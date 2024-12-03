@@ -6,7 +6,7 @@ keywords: Cognitive
 author: eric-urban
 manager: nitinme
 ms.service: azure-ai-services
-ms.custom: devx-track-azurecli, devx-track-azurepowershell, build-2024
+ms.custom: devx-track-azurecli, devx-track-azurepowershell, build-2024, ignite-2024
 ms.topic: quickstart
 ms.date: 8/20/2024
 ms.author: eur

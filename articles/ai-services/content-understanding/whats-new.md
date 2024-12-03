@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: Learn the latest updates to the Content Understanding API.
 author: laujan
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-content-understanding
 ms.topic: whats-new
 ms.date: 11/19/2024
 ms.author: lajanuar

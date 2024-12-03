@@ -6,6 +6,8 @@ description: Truncate dimensions on text-embedding-3 models using Matryoshka Rep
 author: heidisteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 11/19/2024
 ---
@@ -41,7 +43,7 @@ You can use the REST APIs or Azure SDK beta packages to implement MRL compressio
 
 - Check the change logs for each Azure SDK beta package: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.3/sdk/search/azure-search-documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md).
 
-There's no Azure portal or Azure AI Studio support at this time.
+There's no Azure portal or Azure AI Foundry support at this time.
 
 ## How to use MRL-extended text embeddings
 

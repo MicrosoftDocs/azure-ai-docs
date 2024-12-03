@@ -5,7 +5,9 @@ author: s-polly
 ms.author: scottpolly
 ms.reviewer: skohlmeier
 ms.service: azure-ai-studio
-ms.topic: concept-article 
+ms.custom:
+  - ignite-2024
+ms.topic: concept-article
 ms.date: 11/22/2024
 
 #CustomerIntent: As an AI application developer, I want to learn about A/B experiments so that I can evaluate and improve my applications.

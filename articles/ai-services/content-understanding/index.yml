@@ -5,7 +5,7 @@ summary: Content Understanding is a solution that analyzes and comprehends vario
 metadata:
   title: Azure AI Content Understanding documentation
   description: Content Understanding is a solution that analyzes and comprehends various media content—such as audio, video, text, and images—transforming it into structured, organized, and searchable data.
-  ms.service: azure
+  ms.service: azure-ai-content-understanding
   ms.topic: landing-page
   author: laujan
   ms.author: lajanuar

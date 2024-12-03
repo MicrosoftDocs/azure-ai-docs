@@ -56,7 +56,7 @@ For the SDK, you configure whether to authenticate with a Speech resource key or
 
 Once you're signed into [Speech Studio](speech-studio-overview.md), you select a subscription and Speech resource. You don't choose whether to authenticate with a Speech resource key or Microsoft Entra token. Speech Studio gets the key or token automatically from the Speech resource. If one of the assigned [roles](#roles-for-speech-resources) has permission to list resource keys and the key authentication is not disabled, Speech Studio authenticates with the key. Otherwise, Speech Studio authenticates with the Microsoft Entra token.
 
-If Speech Studio uses your Microsoft Entra token, but the Speech resource doesn't have a custom subdomain, then you can't use any features in Speech Studio. If you don't have necessary role permissions for a feature in Speech Studio, you can't use it, and you will see a permission warning banner on the page.
+If Speech Studio utilizes your Microsoft Entra token and your Speech resource lacks a properly configured custom subdomain, Role-based access control (RBAC) will not be activated, and you will be unable to access any features in Speech Studio. RBAC determines your access to features based on the role assigned to you and the permissions associated with that role. If your role does not grant access to a specific feature, a warning message will be displayed on the page. Ensure you have the appropriate role to access the desired feature.
 
 | Authentication credential                      | Feature availability                                                |
 | ---------------------------------------------- | ------------------------------------------------------------------- |

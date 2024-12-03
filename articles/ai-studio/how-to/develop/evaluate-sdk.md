@@ -7,6 +7,7 @@ ms.service: azure-ai-studio
 ms.custom:
   - build-2024
   - references_regions
+  - ignite-2024
 ms.topic: how-to
 ms.date: 11/19/2024
 ms.reviewer: minthigpen
@@ -80,7 +81,7 @@ Built-in evaluators can accept *either* query and response pairs or a list of co
 | `HateUnfairnessEvaluator`        | Required: String | Required: String | N/A           | N/A           |Supported |
 | `IndirectAttackEvaluator`      | Required: String | Required: String | Required: String | N/A           |Supported |
 | `ProtectedMaterialEvaluator`  | Required: String | Required: String | N/A           | N/A           |Supported |
-| `QAEvaluator`      | Required: String | Required: String | Required: String | N/A           | Not supported |
+| `QAEvaluator`      | Required: String | Required: String | Required: String | Required: String           | Not supported |
 | `ContentSafetyEvaluator`      | Required: String | Required: String |  N/A  | N/A           | Supported |
 
 - Query: the query sent in to the generative AI application

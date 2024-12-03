@@ -14,7 +14,7 @@ ms.custom:
  - build-2024
 ---
 
-# Reference: Image Embeddings | Azure AI Studio
+# Reference: Image Embeddings | Azure AI Foundry
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 

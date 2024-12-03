@@ -7,14 +7,15 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 11/04/2024
 ms.author: jboback
 ---
 
-# Learn about named entity recognition skill parameters
+# Using named entity recognition skill parameters
 
-Use this article to get an overview of the different API parameters used to adjust the input to a Named Entity Recognition (NER) API call.
+Use this article to get an overview of the different API parameters used to adjust the input to a Named Entity Recognition (NER) API call. The Generally Available NER service now supports the ability to specify a list of entity tags to be included into the response or excluded from the response. If a piece of text is classified as more than one entity type, the `overlapPolicy` parameter allows customers to specify how the service will handle the overlap. The `inferenceOptions` parameter allows for users to adjust the inference, such as excluding the detected entity values from being normalized and included in the metadata.
 
 ## InclusionList parameter
 

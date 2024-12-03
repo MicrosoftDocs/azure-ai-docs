@@ -4,6 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Evaluate and deploy a custom chat app with the prompt flow SDK. This tutorial is part 3 of a 3-part tutorial series.
 manager: scottpolly
 ms.service: azure-ai-studio
+ms.custom:
+  - ignite-2024
 ms.topic: tutorial
 ms.date: 11/06/2024
 ms.reviewer: lebaro
@@ -14,11 +16,12 @@ author: sdgilley
 
 # Tutorial: Part 3 - Evaluate a custom chat application with the Azure AI Foundry SDK
 
-In this tutorial, you use the Azure AI SDK (and other libraries) to  evaluate and deploy the chat app you built in [Part 2 of the tutorial series](copilot-sdk-build-rag.md). In this part three, you learn how to:
+In this tutorial, you use the Azure AI SDK (and other libraries) to  evaluate the chat app you built in [Part 2 of the tutorial series](copilot-sdk-build-rag.md). In this part three, you learn how to:
 
 > [!div class="checklist"]
 > - Create an evaluation dataset
 > - Evaluate the chat app with Azure AI evaluators
+> - Iterate and improve your app
 
 
 This tutorial is part three of a three-part tutorial.
@@ -68,17 +71,17 @@ The script also logs the evaluation results to the cloud project so that you can
 
     :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="evaluate_wrapper":::
 
-1. Finally, add code to run the evaluation, view the results locally, and gives you a link to the evaluation results in AI Studio:
+1. Finally, add code to run the evaluation, view the results locally, and gives you a link to the evaluation results in AI Foundry portal:
  
     :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="run_evaluation":::
 
-### Configure the evaluation model 
+### Configure the evaluation model
 
 Since the evaluation script calls the model many times, you might want to increase the number of tokens per minute for the evaluation model.  
 
 In Part 1 of this tutorial series, you created an **.env** file that specifies the name of the evaluation model, `gpt-4o-mini`.  Try to increase the tokens per minute limit for this model, if you have available quota. If you don't have enough quota to increase the value, don't worry.  The script is designed to handle limit errors.
 
-1. In your project in Azure AI Studio, select **Models + endpoints**.
+1. In your project in Azure AI Foundry portal, select **Models + endpoints**.
 1. Select **gpt-4o-mini**.  
 1. Select **Edit**.
 1. If you have quota to increase the **Tokens per Minute Rate Limit**, try increasing it to 30. 
@@ -135,22 +138,22 @@ If you weren't able to increase the tokens per minute limit for your model, you 
 12  Sorry, I only can answer queries related to ou...  ...          12
 
 [13 rows x 8 columns]
-('View evaluation results in AI Studio: '
+('View evaluation results in AI Foundry portal: '
  'https://xxxxxxxxxxxxxxxxxxxxxxx')
 ```
 
 
-### View evaluation results in AI Studio
+### View evaluation results in AI Foundry portal
 
-Once the evaluation run completes, follow the link to view the evaluation results on the **Evaluation** page in the Azure AI Studio.
+Once the evaluation run completes, follow the link to view the evaluation results on the **Evaluation** page in the Azure AI Foundry portal.
 
-:::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/eval-studio-overview.png" alt-text="Screenshot shows evaluation overview in Azure AI Studio.":::
+:::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/eval-studio-overview.png" alt-text="Screenshot shows evaluation overview in Azure AI Foundry portal.":::
 
 You can also look at the individual rows and see metric scores per row, and view the full context/documents that were retrieved. These metrics can be helpful in interpreting and debugging evaluation results.
 
-:::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/eval-studio-rows.png" alt-text="Screenshot shows rows of evaluation results in Azure AI Studio.":::
+:::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/eval-studio-rows.png" alt-text="Screenshot shows rows of evaluation results in Azure AI Foundry portal.":::
 
-For more information about evaluation results in AI Studio, see [How to view evaluation results in AI Studio](../how-to/evaluate-results.md).
+For more information about evaluation results in AI Foundry portal, see [How to view evaluation results in AI Foundry portal](../how-to/evaluate-results.md).
 
 ## Iterate and improve
 

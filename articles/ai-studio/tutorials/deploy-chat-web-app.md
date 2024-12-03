@@ -1,25 +1,26 @@
 ---
-title: "Tutorial: Deploy an enterprise chat web app in the Azure AI Studio playground"
+title: "Tutorial: Deploy an enterprise chat web app in the Azure AI Foundry portal playground"
 titleSuffix: Azure AI Foundry
-description: Use this article to deploy an enterprise chat web app in the Azure AI Studio playground.
+description: Use this article to deploy an enterprise chat web app in the Azure AI Foundry portal playground.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2023
   - build-2024
+  - ignite-2024
 ms.topic: tutorial
 ms.date: 11/14/2024
 ms.reviewer: tgokal
 ms.author: sgilley
 author: sdgilley
-# customer intent: As a developer, I want to deploy an enterprise chat web app in the Azure AI Studio playground so that I can use my own data with a large language model.
+# customer intent: As a developer, I want to deploy an enterprise chat web app in the Azure AI Foundry portal playground so that I can use my own data with a large language model.
 ---
 
 # Tutorial: Deploy an enterprise chat web app
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you deploy an enterprise chat web app that uses your own data with a large language model in AI Studio.
+In this article, you deploy an enterprise chat web app that uses your own data with a large language model in AI Foundry portal.
 
 Your data source is used to help ground the model with specific data. Grounding means that the model uses your data to help it understand the context of your question. You're not changing the deployed model itself. Your data is stored separately and securely in your original data source
 
@@ -33,7 +34,7 @@ The steps in this tutorial are:
 ## Prerequisites
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- A [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model. Complete the [AI Studio playground quickstart](../quickstarts/get-started-playground.md) to create this resource if you haven't already.
+- A [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model. Complete the [AI Foundry playground quickstart](../quickstarts/get-started-playground.md) to create this resource if you haven't already.
 
 - An [Azure AI Search service connection](../how-to/connections-add.md#create-a-new-connection) to index the sample product data.
 
@@ -43,25 +44,25 @@ The steps in this tutorial are:
 
 ## Add your data and try the chat model again
 
-In the [AI Studio playground quickstart](../quickstarts/get-started-playground.md) (that's a prerequisite for this tutorial), observe how your model responds without your data. Now you add your data to the model to help it answer questions about your products.
+In the [AI Foundry playground quickstart](../quickstarts/get-started-playground.md) (that's a prerequisite for this tutorial), observe how your model responds without your data. Now you add your data to the model to help it answer questions about your products.
 
 [!INCLUDE [Chat with your data](../includes/chat-with-data.md)] 
 
 ## Deploy your web app
 
-Once you're satisfied with the experience in Azure AI Studio, you can deploy the model as a standalone web application. 
+Once you're satisfied with the experience in Azure AI Foundry portal, you can deploy the model as a standalone web application. 
 
 ### Find your resource group in the Azure portal
 
-In this tutorial, your web app is deployed to the same resource group as your [AI Studio hub](../how-to/create-secure-ai-hub.md). Later you configure authentication for the web app in the Azure portal.
+In this tutorial, your web app is deployed to the same resource group as your [AI Foundry hub](../how-to/create-secure-ai-hub.md). Later you configure authentication for the web app in the Azure portal.
 
-Follow these steps to navigate from Azure AI Studio to your resource group in the Azure portal:
+Follow these steps to navigate from Azure AI Foundry to your resource group in the Azure portal:
 
-1. Go to your project in [Azure AI Studio](https://ai.azure.com). Then select **Management center** from the left pane.
+1. Go to your project in [Azure AI Foundry](https://ai.azure.com). Then select **Management center** from the left pane.
 1. Under the **Project** heading, select **Overview**.
 1. Select the resource group name to open the resource group in the Azure portal. In this example, the resource group is named `rg-contoso`.
 
-    :::image type="content" source="../media/tutorials/chat/resource-group-manage-page.png" alt-text="Screenshot of the resource group in the Azure AI Studio." lightbox="../media/tutorials/chat/resource-group-manage-page.png":::
+    :::image type="content" source="../media/tutorials/chat/resource-group-manage-page.png" alt-text="Screenshot of the resource group in the Azure AI Foundry portal." lightbox="../media/tutorials/chat/resource-group-manage-page.png":::
 
 1. You should now be in the Azure portal, viewing the contents of the resource group where you deployed the hub. Keep this page open in a browser tab. You return to it later.
 
@@ -77,7 +78,7 @@ To deploy the web app:
 1. Complete the steps in the previous section to [add your data](#add-your-data-and-try-the-chat-model-again) to the playground. 
 
     > [!NOTE]
-    > You can deploy a web app with or without your own data, but at least you need a deployed model as described in the [AI Studio playground quickstart](../quickstarts/get-started-playground.md).
+    > You can deploy a web app with or without your own data, but at least you need a deployed model as described in the [AI Foundry playground quickstart](../quickstarts/get-started-playground.md).
 
 1. Select **Deploy > ...as a web app**.
 
@@ -123,10 +124,10 @@ By default, the web app will only be accessible to you. In this tutorial, you ad
 You're almost there! Now you can test the web app.
 
 1. Wait 10 minutes or so for the authentication settings to take effect.
-1. Return to the browser tab containing the chat playground page in Azure AI Studio.
+1. Return to the browser tab containing the chat playground page in Azure AI Foundry portal.
 1. Select **Launch** to launch the deployed web app. If prompted, accept the permissions request.
 
-    *If the authentication settings haven't yet taken effect, close the browser tab for your web app and return to the chat playground in Azure AI Studio. Then wait a little longer and try again.*
+    *If the authentication settings haven't yet taken effect, close the browser tab for your web app and return to the chat playground in Azure AI Foundry portal. Then wait a little longer and try again.*
 
 1. In your web app, you can ask the same question as before ("How much are the TrailWalker hiking shoes"), and this time it uses information from your data to construct the response. You can expand the **reference** button to see the data that was used.
 

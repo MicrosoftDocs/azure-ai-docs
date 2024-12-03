@@ -6,6 +6,8 @@ description: Create or update a search index to include vector fields.
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 08/05/2024
 ---
@@ -527,7 +529,7 @@ Pull APIs refer to indexers, which automate multiple indexing steps, from data r
   + [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md)
   + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
   + [Azure AI Vision multimodal embeddings skill (preview)](cognitive-search-skill-vision-vectorize.md)
-  + [AML skill (preview)](cognitive-search-aml-skill.md) to generate embeddings for models hosted in the Azure AI Studio model catalog. See [How to implement integrated vectorization using models from Azure AI Studio](vector-search-integrated-vectorization-ai-studio.md) for details.
+  + [AML skill (preview)](cognitive-search-aml-skill.md) to generate embeddings for models hosted in the Azure AI Foundry model catalog. See [How to implement integrated vectorization using models from Azure AI Foundry](vector-search-integrated-vectorization-ai-studio.md) for details.
 
 + Indexes provide the vector field definitions and vector search configurations. Those definitions are described in this article.
 

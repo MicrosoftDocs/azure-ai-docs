@@ -2,14 +2,15 @@
 title: Import wizards in Azure portal
 titleSuffix: Azure AI Search
 description: Learn about the import wizards in the Azure portal used to create and load an index, and optionally invoke applied AI for vectorization, natural language processing, language translation, OCR, and image analysis.
-customer intent: As a developer, I want to use wizards for index creation so that I can query the content quickly.
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
+  - ignite-2024
 ms.topic: concept-article
 ms.date: 11/20/2024
+customer intent: As a developer, I want to use wizards for index creation so that I can query the content quickly.
 ---
 
 # Import data wizards in the Azure portal
@@ -71,7 +72,7 @@ Here are some points to keep in mind about the skills in the following list:
 |------|--------------------|----------------------------------|
 | [AI Vision multimodal](cognitive-search-skill-vision-vectorize.md)  | ❌ | ✅ |
 | [Azure OpenAI embedding](cognitive-search-skill-azure-openai-embedding.md)  | ❌ | ✅ |
-| [Azure Machine Learning (AI Studio model catalog)](cognitive-search-aml-skill.md)  | ❌ | ✅ |
+| [Azure Machine Learning (AI Foundry model catalog)](cognitive-search-aml-skill.md)  | ❌ | ✅ |
 | [Document layout](cognitive-search-skill-document-intelligence-layout.md)  | ❌ | ✅ |
 | [Entity recognition](cognitive-search-skill-entity-recognition-v3.md)  | ✅ | ❌ |
 | [Image analysis (applies to blobs, default parsing, whole file indexing](cognitive-search-skill-image-analysis.md)  | ✅ | ❌ |
@@ -108,7 +109,7 @@ To view these objects after the wizard runs:
 | [Indexer](/rest/api/searchservice/indexers/create)  | A configuration object specifying a data source, target index, an optional skillset, optional schedule, and optional configuration settings for error handing and base-64 encoding. |
 | [Data Source](/rest/api/searchservice/data-sources/create)  | Persists connection information to a [supported data source](search-indexer-overview.md#supported-data-sources) on Azure. A data source object is used exclusively with indexers. | 
 | [Index](/rest/api/searchservice/indexes/create) | Physical data structure used for full text search and other queries. | 
-| [Skillset](/rest/api/searchservice/skillsets/create) | Optional. A complete set of instructions for manipulating, transforming, and shaping content, including analyzing and extracting information from image files. Skillsets are also used for integrated vectorization. Unless the volume of work fall under the limit of 20 transactions per indexer per day, the skillset must include a reference to an Azure AI multiservice resource that provides enrichment. For integrated vectorization, you can use either Azure AI Vision or an embedding model in the Azure AI Studio model catalog. | 
+| [Skillset](/rest/api/searchservice/skillsets/create) | Optional. A complete set of instructions for manipulating, transforming, and shaping content, including analyzing and extracting information from image files. Skillsets are also used for integrated vectorization. Unless the volume of work fall under the limit of 20 transactions per indexer per day, the skillset must include a reference to an Azure AI multiservice resource that provides enrichment. For integrated vectorization, you can use either Azure AI Vision or an embedding model in the Azure AI Foundry model catalog. | 
 | [Knowledge store](knowledge-store-concept-intro.md) | Optional. Available only in the **Import data** wizard. Stores enriched skillset output from in tables and blobs in Azure Storage for independent analysis or downstream processing in nonsearch scenarios. |
 
 ## Benefits
@@ -149,7 +150,7 @@ You can use the wizards over restricted public connections, but not all function
 
   The Azure resource must admit network requests from the IP address of the device used on the connection. You should also list Azure AI Search as a trusted service on the resource's network configuration. For example, in Azure Storage, you can list `Microsoft.Search/searchServices` as a trusted service.
 
-+ On connections to an Azure AI multi-service account that you provide, or on connections to embedding models deployed in Azure AI Studio or Azure OpenAI, public internet access must be enabled unless your search service meets the creation date, tier, and region requirements for private connections. For more information about these requirements, see [Make outbound connections through a shared private link](search-indexer-howto-access-private.md).
++ On connections to an Azure AI multi-service account that you provide, or on connections to embedding models deployed in Azure AI Foundry portal or Azure OpenAI, public internet access must be enabled unless your search service meets the creation date, tier, and region requirements for private connections. For more information about these requirements, see [Make outbound connections through a shared private link](search-indexer-howto-access-private.md).
 
   Connections to Azure AI multi-service are for [billing purposes](cognitive-search-attach-cognitive-services.md). Billing occurs when API calls exceed the free transaction count (20 per indexer run) for built-in skills called by the **Import data** wizard or integrated vectorization in the **Import and vectorize data** wizard. 
 

@@ -7,9 +7,10 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.custom:
+  - ignite-2024
 ms.topic: tutorial
 ms.date: 11/19/2024
-
 ---
 
 # Tutorial: Build an indexing pipeline for RAG on Azure AI Search

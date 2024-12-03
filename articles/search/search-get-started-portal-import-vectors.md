@@ -7,8 +7,9 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - build-2024
+  - ignite-2024
 ms.topic: quickstart
-ms.date: 11/20/2024
+ms.date: 11/22/2024
 ---
 
 # Quickstart: Vectorize text and images by using the Azure portal
@@ -21,7 +22,7 @@ This quickstart helps you get started with [integrated vectorization](vector-sea
 
 + [An Azure AI Search service](search-create-service-portal.md) in the same region as Azure AI. We recommend the Basic tier or higher.
 
-+ [A supported data source](#supported-data-sources).
++ [A supported data source](#supported-data-sources) with the [Health Plan PDF](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) sample documents.
 
 + [A supported embedding model](#supported-embedding-models).
 
@@ -46,12 +47,12 @@ Use an embedding model on an Azure AI platform in the [same region as Azure AI S
 | Provider | Supported models |
 |---|---|
 | [Azure OpenAI Service](https://aka.ms/oai/access) | text-embedding-ada-002, text-embedding-3-large, or text-embedding-3-small. |
-| [Azure AI Studio model catalog](/azure/ai-studio/what-is-ai-studio) |  Azure, Cohere, and Facebook embedding models. |
+| [Azure AI Foundry model catalog](/azure/ai-studio/what-is-ai-studio) |  Azure, Cohere, and Facebook embedding models. |
 | [Azure AI services multi-service account](/azure/ai-services/multi-service-resource) | [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) for image and text vectorization. Azure AI Vision multimodal is available in selected regions. [Check the documentation](/azure/ai-services/computer-vision/how-to/image-retrieval?tabs=csharp) for an updated list. Depending on how you [attach the multi-service resource](cognitive-search-attach-cognitive-services.md), the account might need to be in the same region as Azure AI Search. |
 
 If you use the Azure OpenAI Service, the endpoint must have an associated [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains). A custom subdomain is an endpoint that includes a unique name (for example, `https://hereismyuniquename.cognitiveservices.azure.com`). If the service was created through the Azure portal, this subdomain is automatically generated as part of your service setup. Ensure that your service includes a custom subdomain before using it with the Azure AI Search integration.
 
-Azure OpenAI Service resources (with access to embedding models) that were created in AI Studio aren't supported. Only the Azure OpenAI Service resources created in the Azure portal are compatible with the **Azure OpenAI Embedding** skill integration.
+Azure OpenAI Service resources (with access to embedding models) that were created in AI Foundry portal aren't supported. Only the Azure OpenAI Service resources created in the Azure portal are compatible with the **Azure OpenAI Embedding** skill integration.
 
 ### Public endpoint requirements
 
@@ -156,7 +157,7 @@ This section points you to the content that works for this quickstart.
 
 ## Set up embedding models
 
-The wizard can use embedding models deployed from Azure OpenAI, Azure AI Vision, or from the model catalog in Azure AI Studio.
+The wizard can use embedding models deployed from Azure OpenAI, Azure AI Vision, or from the model catalog in Azure AI Foundry portal.
 
 ### [Azure OpenAI](#tab/model-aoai)
 
@@ -180,7 +181,7 @@ The wizard supports text-embedding-ada-002, text-embedding-3-large, and text-emb
 
 1. On the **Overview** page, select **Click here to view endpoints** or **Click here to manage keys** if you need to copy an endpoint or API key. You can paste these values into the wizard if you're using an Azure OpenAI resource with key-based authentication.
 
-1. Under **Resource Management** and **Model deployments**, select **Manage Deployments** to open Azure AI Studio.
+1. Under **Resource Management** and **Model deployments**, select **Manage Deployments** to open Azure AI Foundry.
 
 1. Copy the deployment name of `text-embedding-ada-002` or another supported embedding model. If you don't have an embedding model, deploy one now.
 
@@ -199,15 +200,15 @@ After you finish these steps, you should be able to select the Azure AI Vision v
 > [!NOTE]
 > If you can't select an Azure AI Vision vectorizer, make sure you have an Azure AI Vision resource in a supported region. Also make sure that your search service's managed identity has **Cognitive Services OpenAI User** permissions.
 
-### [Azure AI Studio model catalog](#tab/model-catalog)
+### [Azure AI Foundry model catalog](#tab/model-catalog)
 
-The wizard supports Azure, Cohere, and Facebook embedding models in the Azure AI Studio model catalog, but it doesn't currently support the OpenAI CLIP model. Internally, the wizard calls the [AML skill](cognitive-search-aml-skill.md) to connect to the catalog.
+The wizard supports Azure, Cohere, and Facebook embedding models in the Azure AI Foundry model catalog, but it doesn't currently support the OpenAI CLIP model. Internally, the wizard calls the [AML skill](cognitive-search-aml-skill.md) to connect to the catalog.
 
-1. For the model catalog, you should have an [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource), a [hub in Azure AI Studio](/azure/ai-studio/how-to/create-projects), and a [project](/azure/ai-studio/how-to/create-projects). Hubs and projects having the same name can share connection information and permissions.
+1. For the model catalog, you should have an [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource), a [hub in Azure AI Foundry portal](/azure/ai-studio/how-to/create-projects), and a [project](/azure/ai-studio/how-to/create-projects). Hubs and projects having the same name can share connection information and permissions.
 
 1. Deploy a supported embedding model to the model catalog in your project.
 
-1. For role-based connections, create two role assignments: one for Azure AI Search, and another for the AI Studio project. Assign the [Cognitive Services OpenAI User](/azure/ai-services/openai/how-to/role-based-access-control) role for embeddings and vectorization.
+1. For role-based connections, create two role assignments: one for Azure AI Search, and another for the AI Foundry project. Assign the [Cognitive Services OpenAI User](/azure/ai-services/openai/how-to/role-based-access-control) role for embeddings and vectorization.
 
 ---
 
@@ -311,7 +312,7 @@ Chunking is built in and nonconfigurable. The effective settings are:
 1. On the **Vectorize your text** page, choose the source of the embedding model:
 
    + Azure OpenAI
-   + Azure AI Studio model catalog
+   + Azure AI Foundry model catalog
    + An existing Azure AI Vision multimodal resource in the same region as Azure AI Search. If there's no [Azure AI Services multi-service account](/azure/ai-services/multi-service-resource) in the same region, this option isn't available.
 
 1. Choose the Azure subscription.
@@ -320,7 +321,7 @@ Chunking is built in and nonconfigurable. The effective settings are:
 
    + For Azure OpenAI, choose an existing deployment of text-embedding-ada-002, text-embedding-3-large, or text-embedding-3-small.
 
-   + For AI Studio catalog, choose an existing deployment of an Azure, Cohere, and Facebook embedding model.
+   + For AI Foundry catalog, choose an existing deployment of an Azure, Cohere, and Facebook embedding model.
 
    + For AI Vision multimodal embeddings, select the account.
 
@@ -332,29 +333,33 @@ Chunking is built in and nonconfigurable. The effective settings are:
 
 1. Select the checkbox that acknowledges the billing effects of using these resources.
 
+   :::image type="content" source="media/search-get-started-portal-import-vectors/vectorize-text.png" alt-text="Screenshot of the vectorize text page in the wizard.":::
+
 1. Select **Next**.
 
 ## Vectorize and enrich your images
 
-The health plan PDFs don't include images, so you can skip this step.
+The health plan PDFs include a corporate logo, but otherwise there are no images. You can skip this step if you're using the sample documents.
 
-However, if you work with content that includes images, you can apply AI in two ways:
+However, if you work with content that includes useful images, you can apply AI in two ways:
 
 + Use a supported image embedding model from the catalog, or choose the Azure AI Vision multimodal embeddings API to vectorize images.
 
 + Use optical character recognition (OCR) to recognize text in images. This option invokes the [OCR skill](cognitive-search-skill-ocr.md) to read text from images.
 
-Azure AI Search and your Azure AI resource must be in the same region.
+Azure AI Search and your Azure AI resource must be in the same region or configured for [keyless billing connections](cognitive-search-attach-cognitive-services.md).
 
-1. On the **Vectorize your images** page, specify the kind of connection the wizard should make. For image vectorization, the wizard can connect to embedding models in Azure AI Studio or Azure AI Vision.
+1. On the **Vectorize your images** page, specify the kind of connection the wizard should make. For image vectorization, the wizard can connect to embedding models in Azure AI Foundry portal or Azure AI Vision.
 
 1. Specify the subscription.
 
-1. For the Azure AI Studio model catalog, specify the project and deployment. For more information, see [Set up embedding models](#set-up-embedding-models) earlier in this article.
+1. For the Azure AI Foundry model catalog, specify the project and deployment. For more information, see [Set up embedding models](#set-up-embedding-models) earlier in this article.
 
 1. Optionally, you can crack binary images (for example, scanned document files) and [use OCR](cognitive-search-skill-ocr.md) to recognize text.
 
 1. Select the checkbox that acknowledges the billing effects of using these resources.
+
+   :::image type="content" source="media/search-get-started-portal-import-vectors/vectorize-images.png" alt-text="Screenshot of the vectorize images page in the wizard.":::
 
 1. Select **Next**.
 
@@ -370,12 +375,12 @@ Key points about this step:
 + You can add fields, but you can't delete or modify generated fields.
 + Document parsing mode creates chunks (one search document per chunk).
 
-On the **Advanced settings** page, you can optionally add new fields. By default, the wizard generates the following fields with these attributes:
+On the **Advanced settings** page, you can optionally add new fields assuming the data source provides metadata or fields that aren't picked up on the first pass. By default, the wizard generates the following fields with these attributes:
 
 | Field | Applies to | Description |
 |-------|------------|-------------|
 | chunk_id | Text and image vectors | Generated string field. Searchable, retrievable, sortable. This is the document key for the index. |
-| parent_id | Text vectors | Generated string field. Retrievable, filterable. Identifies the parent document from which the chunk originates. |
+| text_parent_id | Text vectors | Generated string field. Retrievable, filterable. Identifies the parent document from which the chunk originates. |
 | chunk | Text and image vectors | String field. Human readable version of the data chunk. Searchable and retrievable, but not filterable, facetable, or sortable. |
 | title | Text and image vectors | String field. Human readable document title or page title or page number. Searchable and retrievable, but not filterable, facetable, or sortable. |
 | text_vector | Text vectors | Collection(Edm.single). Vector representation of the chunk.  Searchable and retrievable, but not filterable, facetable, or sortable.|
@@ -408,7 +413,7 @@ When the wizard completes the configuration, it creates the following objects:
 
 + Index with vector fields, vectorizers, vector profiles, and vector algorithms. You can't design or modify the default index during the wizard workflow. Indexes conform to the [2024-05-01-preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true).
 
-+ Skillset with the [Text Split skill](cognitive-search-skill-textsplit.md) for chunking and an embedding skill for vectorization. The embedding skill is either the [AzureOpenAIEmbeddingModel skill](cognitive-search-skill-azure-openai-embedding.md) for Azure OpenAI or the [AML skill](cognitive-search-aml-skill.md) for the Azure AI Studio model catalog. The skillset also has the [index projections](index-projections-concept-intro.md) configuration that allows data to be mapped from one document in the data source to its corresponding chunks in a "child" index.
++ Skillset with the [Text Split skill](cognitive-search-skill-textsplit.md) for chunking and an embedding skill for vectorization. The embedding skill is either the [AzureOpenAIEmbeddingModel skill](cognitive-search-skill-azure-openai-embedding.md) for Azure OpenAI or the [AML skill](cognitive-search-aml-skill.md) for the Azure AI Foundry model catalog. The skillset also has the [index projections](index-projections-concept-intro.md) configuration that allows data to be mapped from one document in the data source to its corresponding chunks in a "child" index.
 
 + Indexer with field mappings and output field mappings (if applicable).
 
@@ -418,7 +423,7 @@ Search Explorer accepts text strings as input and then vectorizes the text for v
 
 1. In the Azure portal, go to **Search Management** > **Indexes**, and then select the index that you created.
 
-1. Optionally, select **Query options** and hide vector values in search results. This step makes your search results easier to read.
+1. Select **Query options** and hide vector values in search results. This step makes your search results easier to read.
 
    :::image type="content" source="media/search-get-started-portal-import-vectors/query-options.png" alt-text="Screenshot of the button for query options.":::
 
@@ -426,43 +431,69 @@ Search Explorer accepts text strings as input and then vectorizes the text for v
 
    :::image type="content" source="media/search-get-started-portal-import-vectors/select-json-view.png" alt-text="Screenshot of the menu command for opening the JSON view.":::
 
-   The wizard offers a default query that issues a vector query on the `vector` field and returns the five nearest neighbors. If you opted to hide vector values, your default query includes a `select` statement that excludes the `vector` field from search results.
+   The default query is an empty search (`"*"`), but includes parameters for returning the number matches. It's a hybrid query that runs text and vector queries in parallel. It includes semantic ranking. It specifies which fields to return in the results through the `select` statement.
 
    ```json
-   {
-      "select": "chunk_id,parent_id,chunk,title",
+    {
+      "search": "*",
+      "count": true,
       "vectorQueries": [
-          {
-             "kind": "text",
-             "text": "*",
-             "k": 5,
-             "fields": "vector"
-          }
-       ]
-   }
+        {
+          "kind": "text",
+          "text": "*",
+          "fields": "text_vector,image_vector"
+        }
+      ],
+      "queryType": "semantic",
+      "semanticConfiguration": "my-demo-semantic-configuration",
+      "captions": "extractive",
+      "answers": "extractive|count-3",
+      "queryLanguage": "en-us",
+      "select": "chunk_id,text_parent_id,chunk,title,image_parent_id"
+    }
    ```
 
-1. For the `text` value, replace the asterisk (`*`) with a question related to health plans, such as `Which plan has the lowest deductible?`.
+1. Replace both asterisk (`*`) placeholders with a question related to health plans, such as `Which plan has the lowest deductible?`.
+
+   ```json
+    {
+      "search": "Which plan has the lowest deductible?",
+      "count": true,
+      "vectorQueries": [
+        {
+          "kind": "text",
+          "text": "Which plan has the lowest deductible?",
+          "fields": "text_vector,image_vector"
+        }
+      ],
+      "queryType": "semantic",
+      "semanticConfiguration": "my-demo-semantic-configuration",
+      "captions": "extractive",
+      "answers": "extractive|count-3",
+      "queryLanguage": "en-us",
+      "select": "chunk_id,text_parent_id,chunk,title"
+    }
+   ```
 
 1. Select **Search** to run the query.
 
    :::image type="content" source="media/search-get-started-portal-import-vectors/search-results.png" alt-text="Screenshot of search results.":::
 
-   Five matches should appear. Each document is a chunk of the original PDF. The `title` field shows which PDF the chunk comes from.
+   Each document is a chunk of the original PDF. The `title` field shows which PDF the chunk comes from. Each `chunk` is quite long. You can copy and paste one into a text editor to read the entire value.
 
-1. To see all of the chunks from a specific document, add a filter for the `title` field for a specific PDF:
+1. To see all of the chunks from a specific document, add a filter for the `title_parent_id` field for a specific PDF. You can check the **Fields** tab of your index to confirm this field is filterable.
 
    ```json
    {
-      "select": "chunk_id,parent_id,chunk,title",
-      "filter": "title eq 'Benefit_Options.pdf'",
+      "select": "chunk_id,text_parent_id,chunk,title",
+      "filter": "text_parent_id eq 'aHR0cHM6Ly9oZWlkaXN0c3RvcmFnZWRlbW9lYXN0dXMuYmxvYi5jb3JlLndpbmRvd3MubmV0L2hlYWx0aC1wbGFuLXBkZnMvTm9ydGh3aW5kX1N0YW5kYXJkX0JlbmVmaXRzX0RldGFpbHMucGRm0'",
       "count": true,
       "vectorQueries": [
           {
              "kind": "text",
              "text": "*",
              "k": 5,
-             "fields": "vector"
+             "fields": "text_vector"
           }
        ]
    }

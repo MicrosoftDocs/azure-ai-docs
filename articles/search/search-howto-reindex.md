@@ -8,6 +8,8 @@ author: HeidiSteen
 ms.author: heidist
 
 ms.service: azure-ai-search
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 08/14/2024
 ---

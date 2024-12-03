@@ -438,7 +438,7 @@ Assigned to user does not need compute write (create) permission to enable SSO.
 
 Here are the steps assigned to user needs to take. Please note creator of compute instance is not allowed to enable SSO on that compute instance due to security reasons.
 
-1. Click on compute in left navigation pane in Azure Machine Learning Studio.
+1. Click on compute in left navigation pane in Azure Machine Learning studio.
 1. Click on the name of compute instance where you need to enable SSO.
 1. Edit the Single sign-on details section.
 

@@ -1,7 +1,7 @@
 ---
-title: Index Lookup tool for flows in Azure AI Studio
+title: Index Lookup tool for flows in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
-description: This article introduces you to the Index Lookup tool for flows in Azure AI Studio.
+description: This article introduces you to the Index Lookup tool for flows in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
@@ -13,7 +13,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Index Lookup tool for Azure AI Studio
+# Index Lookup tool for Azure AI Foundry
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -21,10 +21,10 @@ The prompt flow Index Lookup tool enables the use of common vector indices (such
 
 ## Build with the Index Lookup tool
 
-1. Create or open a flow in [Azure AI Studio](https://ai.azure.com). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ More tools** > **Index Lookup** to add the Index Lookup tool to your flow.
 
-    :::image type="content" source="../../media/prompt-flow/configure-index-lookup-tool.png" alt-text="Screenshot that shows the Index Lookup tool added to a flow in Azure AI Studio." lightbox="../../media/prompt-flow/configure-index-lookup-tool.png":::
+    :::image type="content" source="../../media/prompt-flow/configure-index-lookup-tool.png" alt-text="Screenshot that shows the Index Lookup tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/configure-index-lookup-tool.png":::
 
 1. Enter values for the Index Lookup tool [input parameters](#inputs). The large language model [(LLM) tool](llm-tool.md) can generate the vector input.
 1. Add more tools to your flow, as needed. Or select **Run** to run the flow.

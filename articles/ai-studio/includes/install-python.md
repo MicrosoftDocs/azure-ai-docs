@@ -7,7 +7,7 @@ ms.author: sgilley
 ms.service: azure-ai-studio
 ms.topic: include
 ms.date: 08/29/2024
-ms.custom: include
+ms.custom: include, ignite-2024
 ---
 
 First you need to create a new Python environment to use to install the package you need for this tutorial. DO NOT install packages into your global python installation. You should always use a virtual or conda environment when installing python packages, otherwise you can break your global install of Python.

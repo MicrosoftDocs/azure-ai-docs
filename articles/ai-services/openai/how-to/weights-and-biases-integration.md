@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to integrate Weights & Biases and Azure OpenAI fine-tuning.
 manager: nitinme
 ms.service: azure-ai-openai
-ms.custom: 
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 11/10/2024
 author: mrbullwinkle
@@ -86,7 +87,7 @@ Give your Azure OpenAI resource the **Key Vault Secrets Officer** role.
 
 ## Link Weights & Biases with Azure OpenAI
 
-1. Navigate to [AI Studio](https://ai.azure.com) and select your Azure OpenAI fine-tuning resource.
+1. Navigate to [AI Foundry portal](https://ai.azure.com) and select your Azure OpenAI fine-tuning resource.
 
     :::image type="content" source="../media/how-to/weights-and-biases/manage-integrations.png" alt-text="Screenshot of the manage integrations button." lightbox="../media/how-to/weights-and-biases/manage-integrations.png":::
 

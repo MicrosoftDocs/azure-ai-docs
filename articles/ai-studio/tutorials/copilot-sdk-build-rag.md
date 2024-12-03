@@ -9,17 +9,18 @@ ms.date: 11/11/2024
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
-ms.custom: [copilot-learning-hub]
+ms.custom: copilot-learning-hub, ignite-2024
 #customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can build a RAG-based chat app.
 ---
 
 # Tutorial:  Part 2 - Build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK
 
-In this tutorial, you use the Azure AI Foundry SDK (and other libraries) to build, configure, evaluate, and deploy a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
+In this tutorial, you use the Azure AI Foundry SDK (and other libraries) to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
 This part two shows you how to enhance a basic chat application by adding [retrieval augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) to ground the responses in your custom data. Retrieval Augmented Generation (RAG) is a pattern that uses your data with a large language model (LLM) to generate answers specific to your data. In this part two, you learn how to:
 
 > [!div class="checklist"]
+> - Get example data
 > - Create a search index of the data for the chat app to use
 > - Develop custom RAG code
 
@@ -77,7 +78,7 @@ The search index is used to store vectorized data from the embeddings model. The
     python create_search_index.py
     ```
 
-1. Once the script is run, you can view your newly created index in the **Data + indexes** page of your Azure AI Studio project. For more information, see [How to build and consume vector indexes in Azure AI Studio](../how-to/index-add.md).
+1. Once the script is run, you can view your newly created index in the **Data + indexes** page of your Azure AI Foundry project. For more information, see [How to build and consume vector indexes in Azure AI Foundry portal](../how-to/index-add.md).
 
 1. If you run the script again with the same index name, it creates a new version of the same index.
 

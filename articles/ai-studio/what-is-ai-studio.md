@@ -10,7 +10,7 @@ ms.date: 10/31/2024
 ms.reviewer: sgilley
 ms.author: sgilley
 author: sdgilley
-ms.custom: ignite-2023, build-2024
+ms.custom: ignite-2023, build-2024, ignite-2024
 #customer intent: As a developer, I want to understand what Azure AI Foundry is so that I can use it to build AI applications.
 ---
 
@@ -20,7 +20,7 @@ ms.custom: ignite-2023, build-2024
 
 [!INCLUDE [new-name](includes/new-name.md)]
 
-[AI Foundry](https://ai.azure.com) is designed for developers to:
+[Azure AI Foundry](https://ai.azure.com) is designed for developers to:
 
 - Build generative AI applications on an enterprise-grade platform.
 - Explore, build, test, and deploy using cutting-edge AI tools and ML models, grounded in responsible AI practices.
@@ -88,6 +88,6 @@ But for full functionality there are some requirements:
 
 ## Related content
 
-- [Quickstart: Use the chat playground in Azure AI Studio](quickstarts/get-started-playground.md)
+- [Quickstart: Use the chat playground in Azure AI Foundry portal](quickstarts/get-started-playground.md)
 - [Build a custom chat app in Python using the Azure AI SDK](quickstarts/get-started-code.md)
 - [Create a project](./how-to/create-projects.md)

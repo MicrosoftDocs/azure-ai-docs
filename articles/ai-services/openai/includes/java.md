@@ -21,8 +21,6 @@ ms.date: 07/26/2023
 * The [Gradle build tool](https://gradle.org/install/), or another dependency manager.
 - An Azure OpenAI Service resource with the `gpt-35-turbo-instruct` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=JAVA&Pillar=AOAI&&Product=gpt&Page=quickstart&Section=Prerequisites)
 
 ## Set up
 
@@ -30,8 +28,6 @@ ms.date: 07/26/2023
 
 [!INCLUDE [environment-variables](environment-variables.md)]
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the setup.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=JAVA&Pillar=AOAI&&Product=gpt&Page=quickstart&Section=Set-up-the-environment)
 
 ## Create a new Java application
 
@@ -159,8 +155,6 @@ Microsoft was founded on April 4, 1975..
 Usage: number of prompt token is 5, number of completion token is 11, and number of total tokens in request and response is 16.
 ```
 
-> [!div class="nextstepaction"]
-> [I ran into an issue when running the code sample.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=JAVA&Pillar=AOAI&&Product=gpt&Page=quickstart&Section=Create-application)
 
 ## Clean up resources
 
