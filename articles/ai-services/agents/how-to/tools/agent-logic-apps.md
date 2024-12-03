@@ -103,7 +103,7 @@ Here are the steps to import your Logic Apps workflows as function in the Agents
     > This list only shows the consumption SKU workflows and with a request trigger.
 
 
-    :::image type="content" source="../../media/tools/logic-apps/add-logic-app.png" alt-text="A screenshot showing the menu for adding a Logic App." lightbox="..\..\..\openai\media\how-to\assistants\logic-apps\add-logic-app.png":::
+    :::image type="content" source="../../media/tools/logic-apps/add-logic-app.png" alt-text="A screenshot showing the menu for adding a Logic App." lightbox="../../media/tools/logic-apps/add-logic-app.png":::
 
 You have now successfully imported your workflow and it is ready to be invoked. The function specification is generated based on the logic apps workflow swagger and includes the schema and description based on what you configured in the request trigger action.
 
