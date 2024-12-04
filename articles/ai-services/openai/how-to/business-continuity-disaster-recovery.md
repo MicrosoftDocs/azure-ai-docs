@@ -57,10 +57,6 @@ By default, the Azure OpenAI service provides a [default SLA](https://www.micros
 
 :::image type="content" source="../how-to/media/disaster-recovery/disaster-recovery-diagram.jpg" alt-text="Disaster recovery architectural diagram." lightbox="../how-to/media/disaster-recovery/disaster-recovery-diagram.jpg":::
 
-The additional benefit of this architecture is that it allows you to stack Standard deployments with Provisioned Deployments so that you can dial in your preferred level of performance and resiliency. This allows you to use PTU for your baseline demand across workloads and leverage pay-as-you-go for spikes in traffic.
-
-:::image type="content" source="../how-to/media/disaster-recovery/recovery.jpg" alt-text="Failover architectural diagram." lightbox="../how-to/media/disaster-recovery/recovery.jpg":::
-
 ## Supporting Infrastructure
 
 The infrastructure that supports the Azure OpenAI architecture needs to be considered in designs. The infrastructure components involved in the architecture vary depending on if the applications consume the Azure OpenAI service over the Internet or over a private network. The architecture discussed in this article assumes the organization has implemented a [Generative AI Gateway](/ai/playbook/technology-guidance/generative-ai/dev-starters/genai-gateway/). Organizations with a mature Azure footprint and hybrid connectivity should consume the service through a private network while organizations without hybrid connectivity, or with applications in another cloud such as GCP or AWS, will consume the service through the Microsoft public backbone.
@@ -73,7 +69,11 @@ Organizations consuming the service through the Microsoft public backbone should
 
 1. A public global server load balancer should be used to load balance across the multiple Generative AI Gateway instances in either an active/active or active/passive manner. [Azure FrontDoor](/azure/traffic-manager/traffic-manager-routing-methods) can be used to fulfill this role depending on the organization’s requirements.
 
-:::image type="content" source="../how-to/media/disaster-recovery/scaling.png" alt-text="Provisioned scaling diagram." lightbox="../how-to/media/disaster-recovery/scaling.png":::
+:::image type="content" source="../how-to/media/disaster-recovery/scaling.jpg" alt-text="Provisioned scaling diagram." lightbox="../how-to/media/disaster-recovery/scaling.jpg":::
+
+The additional benefit of this architecture is that it allows you to stack Standard deployments with Provisioned Deployments so that you can dial in your preferred level of performance and resiliency. This allows you to use PTU for your baseline demand across workloads and leverage pay-as-you-go for spikes in traffic.
+
+:::image type="content" source="../how-to/media/disaster-recovery/recovery.png" alt-text="Failover architectural diagram." lightbox="../how-to/media/disaster-recovery/recovery.png":::
 
 ### Designing for consumption through the private networking
 
