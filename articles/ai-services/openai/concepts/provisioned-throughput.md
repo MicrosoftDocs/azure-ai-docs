@@ -116,7 +116,7 @@ Azure OpenAI is a highly sought-after service where customer demand might exceed
 
 #### Regional capacity guidance
 
-To find the capacity needed for their deployments, use the capacity API or the Foundry deployment experience to provide real-time information on capacity availability.
+To find the capacity needed for their deployments, use the capacity API or the AI Foundry deployment experience to provide real-time information on capacity availability.
 
 In Azure AI Foundry, the deployment experience identifies when a region lacks the capacity needed to deploy the model. This looks at the desired model, version and number of PTUs. If capacity is unavailable, the experience directs  users to a select an alternative region.
 
