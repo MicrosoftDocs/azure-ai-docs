@@ -15,8 +15,6 @@ recommendations: false
 
 # Bring your licensed data
 
-::: zone pivot="overview"
-
 Azure AI Agent Service integrates your own licensed data from specialized data providers, 
 such as Tripadvisor. Enhance the quality of your agent's responses with high-quality, fresh data, 
 such as travel guidance and reviews. These insights empower your agents to deliver nuanced, informed 
@@ -27,10 +25,6 @@ Tripadvisor is the first licensed data provider and you can ground with your lic
 > [!IMPORTANT]
 > 1. You are responsible for obtaining license from licensed data provider and bring your license to authorize the connection with the licensed data.
 > 2. Grounding with licensed data will incur usage with licensed data providers, please review the pricing plan with your selected licensed data providers.
-
-::: zone-end
-
-::: zone pivot="tripadvisor"
 
 ## Prerequisites
 
@@ -60,6 +54,3 @@ Tripadvisor is the first licensed data provider and you can ground with your lic
 ## Use OpenAPI spec to connect with your licensed data
 
 You can apply the OpenAPI Spec tool to connect with your licensed data.
-
-::: zone-end
-

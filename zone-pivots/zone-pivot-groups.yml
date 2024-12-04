@@ -937,14 +937,6 @@ groups:
     title: C# example
   - id: python-example
     title: Python example
-- id: selection-agents-licenced-data
-  title: Selections
-  prompt: What would you like to see?
-  pivots:
-  - id: overview
-    title: Overview
-  - id: tripadvisor
-    title: Tripadvisor
 # owner: sgilley
 - id: programming-languages-sdk-overview
   title: Programming languages
