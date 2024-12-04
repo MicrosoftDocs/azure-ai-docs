@@ -70,9 +70,10 @@ The infrastructure that supports the Azure OpenAI architecture needs to be consi
 Organizations consuming the service through the Microsoft public backbone should consider the following design elements:
 
 1. The Generative AI Gateway should be deployed in manner that ensures it's available in the event of an Azure regional outage. If using APIM (Azure API Management), this can be done by deploying separate APIM instances in multiple regions or using the [multi-region gateway feature of APIM](/azure/api-management/api-management-howto-deploy-multi-region).
+
 1. A public global server load balancer should be used to load balance across the multiple Generative AI Gateway instances in either an active/active or active/passive manner. [Azure FrontDoor](/azure/traffic-manager/traffic-manager-routing-methods) can be used to fulfill this role depending on the organization’s requirements.
 
-:::image type="content" source="../how-to/media/disaster-recovery/scaling.jpg" alt-text="Provisioned scaling diagram." lightbox="../how-to/media/disaster-recovery/scaling.jpg":::
+:::image type="content" source="../how-to/media/disaster-recovery/scaling.png" alt-text="Provisioned scaling diagram." lightbox="../how-to/media/disaster-recovery/scaling.png":::
 
 ### Designing for consumption through the private networking
 
