@@ -10,7 +10,7 @@ ms.date: 11/20/2024
 author: aahill
 ms.author: aahi
 recommendations: false
-zone_pivot_groups: selection-code-interpreter
+zone_pivot_groups: selection-file-search
 ---
 
 # Azure AI Agent Service file search tool
@@ -89,7 +89,7 @@ As a fallback, there's a 60-second maximum wait in the run object when the threa
 In this example, we’ll use Azure AI Agent Service to create an agent that can help answer questions on information you upload from local files.  
 
 ##  Prerequisites 
-Complete the [agent setup](../../../quickstart.md).
+Complete the [agent setup](../../quickstart.md).
 
 ## Step 1: Create a project client
 
