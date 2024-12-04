@@ -133,7 +133,7 @@ agent = project_client.agents.create_agent(
 
 ```csharp
 Response<Agent> agentResponse = await client.CreateAgentAsync(
-    model: "gpt-4-1106-preview",
+    model: "gpt-4o-mini",
     name: "My agent",
     instructions: "You are a helpful agent.",
     tools: new List<ToolDefinition> { new CodeInterpreterToolDefinition() },
@@ -145,9 +145,9 @@ Agent agent = agentResponse.Value;
 
 ## Create a thread, message, and get the agent response 
 
-Next create a thread with `create_thread()` and attach a message to it using `create_message()` that will trigger the code interpreter tool. Afterwards, create and execute a run with `create_and_process_run()`. Once the run finishes, you can delete the file from the agent with `delete_file()` to free up space in the agent. Finally, print the messages from the agent.
-
 # [Python](#tab/python)
+
+Next create a thread with `create_thread()` and attach a message to it using `create_message()` that will trigger the code interpreter tool. Afterwards, create and execute a run with `create_and_process_run()`. Once the run finishes, you can delete the file from the agent with `delete_file()` to free up space in the agent. Finally, print the messages from the agent.
 
 ```python
 # create a thread
