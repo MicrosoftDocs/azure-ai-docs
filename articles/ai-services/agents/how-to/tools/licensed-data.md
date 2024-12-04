@@ -23,8 +23,8 @@ solutions tailored to specific use cases.
 Tripadvisor is the first licensed data provider and you can ground with your licensed Tripadvisor data through the API, SDK, and Azure AI Foundry portal. 
 
 > [!IMPORTANT]
-> 1. You are responsible for obtaining license from licensed data provider and bring your license to authorize the connection with the licensed data.
-> 2. Grounding with licensed data will incur usage with licensed data providers, please review the pricing plan with your selected licensed data providers.
+> - You are responsible for obtaining license from licensed data provider and bring your license to authorize the connection with the licensed data.
+> - Grounding with licensed data will incur usage with licensed data providers, please review the pricing plan with your selected licensed data providers.
 
 ## Prerequisites
 
