@@ -85,6 +85,12 @@ You can ask questions such as "*what is the weather in Seattle?*" or "*what is t
     - Connection name: `YOUR_CONNECTION_NAME` (You will use this connection name in the sample code below.)
     - Access: you can choose either *this project only* or *shared to all projects*. Just make sure in the sample code below, the project you entered connection string for has access to this connection.
 
+## Terms of use and display requirements
+
+According to Terms of use and display requirements, you need to display both website URLs and Bing search query URLs in your custom interface. You can find website URLs through `annotations` parameter in API response and Bing search query URLs through `runstep` details.  
+
+:::image type="content" source="../../media/tools/bing/website-citations.png" alt-text="A screenshot showing citations for Bing search results." lightbox="../../media/tools/bing/website-citations.png":::
+
 ::: zone-end
 
 ::: zone pivot="csharp-example"
