@@ -27,7 +27,7 @@ Parameters are case-sensitive. Which parameters you choose to use depends on wha
 | Parameter name | Description |
 |--------------------|-------------|
 | `uri` | (Required) The [URI of the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md) to which the _JSON_ payload is sent. Only the **https** URI scheme is allowed. |
-| `modelName` | (Required) The model ID from the AI Foundry model catalog that is deployed at the provided endpoint. Currently supported models are <ul><li>Facebook-DinoV2-Image-Embeddings-ViT-Base </li><li>Facebook-DinoV2-Image-Embeddings-ViT-Giant </li><li>Cohere-embed-v3-english </li><li>Cohere-embed-v3-multilingual</ul> |
+| `modelName` | (Required) The model ID from the AI Foundry model catalog that is deployed at the provided endpoint. Supported models are: <ul><li>Facebook-DinoV2-Image-Embeddings-ViT-Base </li><li>Facebook-DinoV2-Image-Embeddings-ViT-Giant </li><li>Cohere-embed-v3-english </li><li>Cohere-embed-v3-multilingual</ul> |
 | `key` | (Required for [key authentication](#WhatParametersToUse)) The [key for the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md). |
 | `resourceId` | (Required for [token authentication](#WhatParametersToUse)). The Azure Resource Manager resource ID of the AML online endpoint. It should be in the format subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.MachineLearningServices/workspaces/{workspace-name}/onlineendpoints/{endpoint_name}. |
 | `region` | (Optional for [token authentication](#WhatParametersToUse)). The [region](https://azure.microsoft.com/global-infrastructure/regions/) the AML online endpoint is deployed in. Needed if the region is different from the region of the search service. |
@@ -49,7 +49,7 @@ Which authentication parameters are required depends on what authentication your
 
 Which vector query types are supported by the AI Foundry model catalog vectorizer depends on the `modelName` that is configured.
 
-| `modelName` | Supports `text` query | Supports `imageUrl` query | Supports `imageBinary` query |
+| Embedding model | Supports `text` query | Supports `imageUrl` query | Supports `imageBinary` query |
 |--------------------|-------------|-------------|-------------|
 | Facebook-DinoV2-Image-Embeddings-ViT-Base |  | X | X |
 | Facebook-DinoV2-Image-Embeddings-ViT-Giant |  | X | X |
@@ -69,16 +69,18 @@ The expected field dimensions for a field configured with an AI Foundry model ca
 
 ## Sample definition
 
+Suggested model names in the Azure AI Foundry model catalog consist of the base model plus a random three-letter suffix. The name of your model will be different from the one shown in this example.
+
 ```json
 "vectorizers": [
     {
-        "name": "my-ai-studio-catalog-vectorizer",
+        "name": "my-model-catalog-vectorizer",
         "kind": "aml",
         "amlParameters": {
-            "uri": "https://my-aml-endpoint.eastus.inference.ml.azure.com/score",
-            "key": "0000000000000000000000000000000000000",
+            "uri": "https://Cohere-embed-v3-multilingual-hin.eastus.models.ai.azure.com",
+            "key": "aaaaaaaa-0b0b-1c1c-2d2d-333333333333",
             "timeout": "PT60S",
-            "modelName": "OpenAI-CLIP-Image-Text-Embeddings-vit-base-patch3",
+            "modelName": "Cohere-embed-v3-multilingual-hin",
             "resourceId": null,
             "region": null,
         },
