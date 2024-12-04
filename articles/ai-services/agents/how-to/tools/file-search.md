@@ -84,7 +84,7 @@ As a fallback, there's a 60-second maximum wait in the run object when the threa
 
 ::: zone pivot="quickstart"
 
-# Quickstart – Upload Local Files w/ file search 
+## Quickstart – Upload Local Files w/ file search 
 
 In this example, we’ll use Azure AI Agent Service to create an agent that can help answer questions on information you upload from local files.  
 
@@ -225,8 +225,6 @@ message = project_client.agents.create_message(
 )
 print(f"Created message, message ID: {message.id}")
 ```
-
-
 
 # [C#](#tab/csharp)
 

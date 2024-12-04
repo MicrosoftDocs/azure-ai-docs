@@ -927,6 +927,19 @@ groups:
     title: Python example
   - id: supported-filetypes
     title: Supported file types
+# owner: fosteramanda
+- id: selection-file-search
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: overview
+    title: Overview
+  - id: quickstart
+    title: Quickstart
+  - id: supported-filetypes
+    title: Supported file types
+  - id: deep-dive
+    title: Deep dive
 - id: selection-bing-grounding
   title: Selections
   prompt: What would you like to see?
