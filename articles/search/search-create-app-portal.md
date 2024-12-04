@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Create a demo app in Azure portal"
+title: "Quickstart: Create a demo search app in Azure portal"
 titleSuffix: Azure AI Search
 description: Run the Create demo app wizard to generate HTML pages and script for an operational web app. The page includes a search bar, results area, sidebar, and typeahead support.
 manager: nitinme
@@ -7,15 +7,15 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 01/17/2024
+ms.date: 12/04/2024
 ms.custom:
   - mode-ui
   - ignite-2023
 ---
 
-# Quickstart: Create a demo app in the Azure portal
+# Quickstart: Create a demo search app in the Azure portal
 
-In this Azure AI Search quickstart, you'll use the Azure portal's **Create demo app** wizard to generate a downloadable, "localhost"-style web app that runs in a browser. Depending on its configuration, the generated app is operational on first use, with a live read-only connection to an index on your search service. A default app can include a search bar, results area, sidebar filters, and typeahead support.
+In this quickstart for Azure AI Search, learn how to use the Azure portal's **Create demo app** wizard to generate a downloadable, "localhost"-style web app that runs in a browser. Depending on how you configure it, the generated app is operational on first use, with a live read-only connection to an index on your search service. A default app can include a search bar, results area, sidebar filters, and typeahead support.
 
 A demo app can help you visualize how an index will function in a client app, but it isn't intended for production scenarios. Production apps should include security, error handling, and hosting logic that the demo app doesn't provide. 
 
@@ -39,15 +39,17 @@ When the index is ready to use, move on to the next step.
 
 ## Start the wizard
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) with your Azure account.
+1. Sign in to the [Azure portal](https://portal.azure.com/) with your Azure account and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. [Find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) and on the Overview page, from the links on the middle of the page, select **Indexes**. 
+1. Under **Search Management** > **Indexes**
 
 1. Choose *realestate-us-sample-index* from the list of existing indexes.
 
 1. On the index page, at the top, select **Create demo app** to start the wizard.
 
 1. On the first wizard page, select **Enable Cross Origin Resource Sharing (CORS)** to add CORS support to your index definition. This step is optional, but your local web app won't connect to the remote index without it.
+
+:::image type="content" source="media/search-create-app-portal/start-app-enable-cors.png" alt-text="Screenshot of the enable CORS option for the real estate sample index.":::
 
 ## Configure search results
 
@@ -57,7 +59,7 @@ The wizard provides a basic layout for rendered search results that includes spa
 
 1. In Title, choose a field that conveys the uniqueness of each document. In this sample, the listing ID is a reasonable selection.
 
-1. In Description, choose a field that provides details that might help someone decide whether to click through to that particular document.
+1. In Description, choose a field that provides details that might help someone decide whether to drill down to that particular document.
 
    :::image type="content" source="media/search-create-app-portal/configure-results.png" alt-text="configure results for sample data" border="false":::
 
@@ -87,6 +89,8 @@ The following screenshot shows options in the wizard, juxtaposed with a rendered
 ## Add suggestions
 
 Suggestions refer to automated query prompts that are attached to the search box. Azure AI Search supports two: *autocompletion* of a partially entered search term, and *suggestions* for a dropdown list of potential matching documents based.
+
+Select fields for which suggested queries are provided. You should choose shorter string fields. Avoid verbose fields such as descriptions.
 
 The wizard supports suggestions, and the fields that can provide suggested results are derived from a [`Suggesters`](index-add-suggesters.md) construct in the index:
 
