@@ -1,6 +1,6 @@
 ---
 title: Azure AI Model Inference Chat Completions
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Reference for Azure AI Model Inference Chat Completions API
 manager: scottpolly
 ms.service: azure-ai-studio
@@ -14,9 +14,9 @@ ms.custom:
  - build-2024
 ---
 
-# Reference: Chat Completions | Azure AI Studio
+# Reference: Chat Completions | Azure AI Foundry
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Creates a model response for the given chat conversation.
 

@@ -8,19 +8,20 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/03/2024
+ms.date: 10/30/2024
 ms.custom: subject-rbac-steps, devx-track-azurepowershell
 ---
 
 # Connect to Azure AI Search using roles
 
-Azure provides a global authentication and [role-based authorization system](/azure/role-based-access-control/role-assignments-portal) for all services running on the platform. In Azure AI Search, you can assign Azure roles for:
+Azure provides a global authentication and [role-based access control](/azure/role-based-access-control/role-assignments-portal) through Microsoft Entra ID for all services running on the platform. In this article, learn which roles provide access to search content and administration on Azure AI Search.
 
-> [!div class="checklist"]
-> + [Service administration](#assign-roles-for-service-administration)
-> + [Development or write-access to a search service](#assign-roles-for-development)
-> + [Read-only access for queries](#assign-roles-for-read-only-queries)
-> + [Scoped access to a single index](#grant-access-to-a-single-index)
+In Azure AI Search, you can assign Azure roles for:
+
++ [Service administration](#assign-roles-for-service-administration)
++ [Development or write-access to a search service](#assign-roles-for-development)
++ [Read-only access for queries](#assign-roles-for-read-only-queries)
++ [Scoped access to a single index](#grant-access-to-a-single-index)
 
 Per-user access over search results (sometimes referred to as *row-level security* or *document-level security*) isn't supported through role assignments. As a workaround, [create security filters](search-security-trimming-for-azure-search.md) that trim results by user identity, removing documents for which the requestor shouldn't have access. See this [Enterprise chat sample using RAG](/azure/developer/python/get-started-app-chat-template) for a demonstration.
 
@@ -32,11 +33,35 @@ Role-based access is optional, but recommended. The alternative is [key-based au
 
 + A search service in any region, on any tier, [enabled for role-based access](search-security-enable-roles.md).
 
-+ Owner, User Access Administrator, or a custom role with [Microsoft.Authorization/roleAssignments/write](/azure/templates/microsoft.authorization/roleassignments) permissions.
++ Owner, User Access Administrator, Role-based Access Control Administrator, or a custom role with [Microsoft.Authorization/roleAssignments/write](/azure/templates/microsoft.authorization/roleassignments) permissions.
 
-<a name = "built-in-roles-used-in-search"></a>
+## How to assign roles in the portal
 
-## Built-in roles used in Azure AI Search
+The following steps work for all role assignments.
+
+1. Sign in to the [Azure portal](https://portal.azure.com).
+
+1. Navigate to your search service.
+
+1. [Enable role-based access](search-security-enable-roles.md).
+
+1. Select **Access Control (IAM)** in the left navigation pane.
+
+1. Select **+ Add** > **Add role assignment** to start the **Add role assignment** wizard.
+
+   :::image type="content" source="media/search-security-rbac/portal-access-control.png" alt-text="Screenshot of the access control page in the Azure portal.":::
+
+1. Select a role. You can assign multiple security principals, whether users or managed identities to a role in one pass through the wizard, but you have to repeat these steps for each role you define.
+
+1. On the **Members** tab, select the Microsoft Entra user or group identity. If you're setting up permissions for another Azure service, select a system or user-managed identity.
+
+1. On the **Review + assign** tab, select **Review + assign** to assign the role.
+
+## Built-in roles used in search
+
+*Data plane* refers to operations against the search service endpoint, such as indexing or queries, or any other operation specified in the [Search Service REST APIs](/rest/api/searchservice/) or equivalent Azure SDK client libraries. 
+
+*Control plane* refers to Azure resource management, such as creating or configuring a search service.
 
 The following roles are built in. If these roles are insufficient, [create a custom role](#create-a-custom-role). 
 
@@ -54,18 +79,47 @@ Combine these roles to get sufficient permissions for your use case.
 > [!NOTE]
 > If you disable Azure role-based access, built-in roles for the control plane (Owner, Contributor, Reader) continue to be available. Disabling role-based access removes just the data-related permissions associated with those roles. If data plane roles are disabled, Search Service Contributor is equivalent to control-plane Contributor.
 
+## Summary
+
+| Permissions | Search Index Data Reader | Search Index Data Contributor | Search Service Contributor | Owner/Contributor | Reader |
+|-------------|--------------------------|-------------------------------|----------------------------|-------------------|--------|
+|View the resource in Azure portal |❌|❌|✅|✅|✅|
+|View resource properties/metrics/endpoint |❌|❌|✅|✅|✅|
+|List all objects on the resource |❌|❌|✅|✅|✅|
+|Access quotas and service statistics |❌|❌|✅|✅|❌|
+|Read/query an index |✅|❌|❌|❌|❌|
+|Upload data for indexing |❌|✅|❌|❌|❌|
+|Create or edit indexes/aliases |❌|❌|✅|✅|❌|
+|Create, edit and run indexers/data sources/skillsets |❌|❌|✅|✅|❌|
+|Create or edit synonym maps |❌|❌|✅|✅|❌|
+|Create or edit debug sessions |❌|❌|✅|✅|❌|
+|Create or manage deployments |❌|❌|✅|✅|❌|
+|Create or configure Azure AI Search resources |❌|❌|✅|✅|❌|
+|View/Copy/Regenerate keys under Keys |❌|❌|✅|✅|❌|
+|View roles/policies/definitions |❌|❌|✅|✅|❌|
+|Set authentication options |❌|❌|✅|✅|❌|
+|Configure private connections |❌|❌|✅|✅|❌|
+|Configure network security |❌|❌|✅|✅|❌|
+
+Owners and Contributors grant the same permissions, except that only Owners can assign roles.
+
+Owners and Contributors can create, read, update, and delete objects in the Azure portal *if API keys are enabled*. The portal uses keys on internal calls to data plane APIs. In you subsequently configure Azure AI Search to use "roles only", then Owner and Contributor won't be able to manage objects in the portal using just those role assignments. The solution is to assign more roles, such as Search Index Data Reader, Search Index Data Contributor, and Search Service Contributor.
+
 ## Assign roles
 
 In this section, assign roles for:
 
-+ [Service administration](#assign-roles-for-service-administration)
++ Service administration
++ Development or write-access to a search service
++ Read-only access for queries
+
+<!-- + [Service administration](#assign-roles-for-service-administration)
 
     | Role | ID|
     | --- | --- |
     |`Owner`|8e3af657-a8ff-443c-a75c-2fe8c4bcb635|
     |`Contributor`|b24988ac-6180-42a0-ab88-20f7382dd24c|
     |`Reader`|acdd72a7-3385-48ef-bd42-f606fba81ae7|
-    
 
 + [Development or write-access to a search service](#assign-roles-for-development)
 
@@ -79,32 +133,27 @@ In this section, assign roles for:
 
     | Role | ID|
     | --- | --- |
-    | `Search Index Data Reader` [with PowerShell](search-security-rbac.md?tabs=roles-portal-admin%2Croles-portal%2Croles-portal-query%2Ctest-portal%2Ccustom-role-portal#grant-access-to-a-single-index)|1407120a-92aa-4202-b7e9-c0e197c71c8f|
+    | `Search Index Data Reader` [with PowerShell](search-security-rbac.md?tabs=roles-portal-admin%2Croles-portal%2Croles-portal-query%2Ctest-portal%2Ccustom-role-portal#grant-access-to-a-single-index)|1407120a-92aa-4202-b7e9-c0e197c71c8f| -->
 
 ### Assign roles for service administration
 
-As a service administrator, you can create and configure a search service, and perform all control plane operations described in the [Management REST API](/rest/api/searchmanagement/) or equivalent client libraries. Depending on the role, you can also perform most data plane [Search REST API](/rest/api/searchservice/) tasks.
+As a service administrator, you can create and configure a search service, and perform all control plane operations described in the [Management REST API](/rest/api/searchmanagement/) or equivalent client libraries. If you're an Owner or Contributor, you can also perform most data plane [Search REST API](/rest/api/searchservice/) tasks in the Azure portal.
 
+| Role | ID|
+| --- | --- |
+|[`Owner`](/azure/role-based-access-control/built-in-roles#owner) |8e3af657-a8ff-443c-a75c-2fe8c4bcb635|
+|[`Contributor`](/azure/role-based-access-control/built-in-roles#contributor)|b24988ac-6180-42a0-ab88-20f7382dd24c|
+|[`Reader`](/azure/role-based-access-control/built-in-roles#reader)|acdd72a7-3385-48ef-bd42-f606fba81ae7|
 
 #### [**Azure portal**](#tab/roles-portal-admin)
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. Navigate to your search service.
-
-1. Select **Access Control (IAM)** in the left navigation pane.
-
-1. Select **+ Add** > **Add role assignment**.
-
-1. Select an applicable role:
+1. Assign these roles:
 
    + Owner (full access to all data plane and control plane operations, except for query permissions)
    + Contributor (same as Owner, except for permissions to assign roles)
    + Reader (acceptable for monitoring and viewing metrics)
-
-1. On the **Members** tab, select the Microsoft Entra user or group identity.
-
-1. On the **Review + assign** tab, select **Review + assign** to assign the role.
 
 #### [**PowerShell**](#tab/roles-powershell-admin)
 
@@ -124,6 +173,12 @@ New-AzRoleAssignment -SignInName <email> `
 
 Role assignments are global across the search service. To [scope permissions to a single index](#rbac-single-index), use PowerShell or the Azure CLI to create a custom role.
 
+| Task | Role | ID|
+| --- | --- | --- |
+| CRUD operations | [`Search Service Contributor`](/azure/role-based-access-control/built-in-roles#search-service-contributor)|7ca78c08-252a-4471-8644-bb5ff32d4ba0|
+| Load documents, run indexing jobs | [`Search Index Data Contributor`](/azure/role-based-access-control/built-in-roles#search-index-data-contributor)|8ebe5a00-799e-43f5-93ac-243d3dce84a7|
+| Query an index | [`Search Index Data Reader`](/azure/role-based-access-control/built-in-roles#search-index-data-reader)|1407120a-92aa-4202-b7e9-c0e197c71c8f|
+
 Another combination of roles that provides full access is Contributor or Owner, plus Search Index Data Reader.
 
 > [!IMPORTANT]
@@ -133,27 +188,11 @@ Another combination of roles that provides full access is Contributor or Owner, 
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. Navigate to your search service.
-
-1. Select **Access Control (IAM)** in the left navigation pane.
-
-1. Select **+ Add** > **Add role assignment**.
-
-   ![Access control (IAM) page with Add role assignment menu open.](~/reusable-content/ce-skilling/azure/media/role-based-access-control/add-role-assignment-menu-generic.png)
-
-1. Select a role:
+1. Assign these roles:
 
    + Search Service Contributor (create-read-update-delete operations on indexes, indexers, skillsets, and other top-level objects)
    + Search Index Data Contributor (load documents and run indexing jobs)
    + Search Index Data Reader (query an index)
-
-   Another combination of roles that provides full access is Contributor or Owner, plus Search Index Data Reader.
-
-1. On the **Members** tab, select the Microsoft Entra user or group identity.
-
-1. On the **Review + assign** tab, select **Review + assign** to assign the role.
-
-1. Repeat for the other roles. Most developers need all three.
 
 #### [**PowerShell**](#tab/roles-powershell)
 
@@ -179,7 +218,11 @@ New-AzRoleAssignment -SignInName <email> `
 
 ### Assign roles for read-only queries
 
-Use the Search Index Data Reader role for apps and processes that only need read-access to an index. 
+Use the Search Index Data Reader role for apps and processes that only need read-access to an index.
+
+| Role | ID|
+| --- | --- |
+| [`Search Index Data Reader`](/azure/role-based-access-control/built-in-roles#search-index-data-reader) [with PowerShell](search-security-rbac.md#grant-access-to-a-single-index)|1407120a-92aa-4202-b7e9-c0e197c71c8f|
 
 This is a very specific role. It grants [GET or POST access](/rest/api/searchservice/documents) to the *documents collection of a search index* for search, autocomplete, and suggestions. It doesn't support GET or LIST operations on an index or other top-level objects, or GET service statistics.
 
@@ -189,17 +232,7 @@ This section provides basic steps for setting up the role assignment and is here
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. Navigate to your search service.
-
-1. Select **Access Control (IAM)** in the left navigation pane.
-
-1. Select **+ Add** > **Add role assignment**.
-
-1. Select the **Search Index Data Reader** role.
-
-1. On the **Members** tab, select the Microsoft Entra user or group identity. If you're setting up permissions for another service, you might be using a system or user-managed identity. Choose that option if the role assignment is for a service identity.
-
-1. On the **Review + assign** tab, select **Review + assign** to assign the role.
+1. Assign the **Search Index Data Reader** role.
 
 #### [**PowerShell**](#tab/roles-powershell-query)
 

@@ -11,7 +11,7 @@ ms.custom:
   - ignite-2023
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/14/2024
+ms.date: 10/21/2024
 ---
 
 # Model complex data types in Azure AI Search
@@ -37,7 +37,7 @@ The following JSON document is composed of simple fields and complex fields. Com
 ```json
 {
   "HotelId": "1",
-  "HotelName": "Secret Point Motel",
+  "HotelName": "Stay-Kay City Hotel",
   "Description": "Ideally located on the main commercial artery of the city in the heart of New York.",
   "Tags": ["Free wifi", "on-site parking", "indoor pool", "continental breakfast"],
   "Address": {
@@ -180,7 +180,7 @@ namespace AzureSearch.SDKHowTo
 
 ### Complex collection limits
 
-During indexing, you can have a maximum of 3,000 elements across all complex collections within a single document. An element of a complex collection is a member of that collection. For Rooms (the only complex collection in the Hotel example), each room is an element. In the example above, if the "Secret Point Motel" had 500 rooms, the hotel document would have 500 room elements. For nested complex collections, each nested element is also counted, in addition to the outer (parent) element.
+During indexing, you can have a maximum of 3,000 elements across all complex collections within a single document. An element of a complex collection is a member of that collection. For Rooms (the only complex collection in the Hotel example), each room is an element. In the example above, if the "Stay-Kay City Hotel" had 500 rooms, the hotel document would have 500 room elements. For nested complex collections, each nested element is also counted, in addition to the outer (parent) element.
 
 This limit applies only to complex collections, and not complex types (like Address) or string collections (like Tags).
 
@@ -210,7 +210,7 @@ Queries like this are *uncorrelated* for full-text search, unlike filters. In fi
 
 ## Search complex fields in RAG queries
 
-A RAG pattern passes search results to a chat model for generative AI and conversational search. By default, search results passed to an LLM are a flattened rowset. However, if your index has complex types, your query can provide those fields if you first convert the search results output to JSON, and then pass the JSON to the LLM.
+A RAG pattern passes search results to a chat model for generative AI and conversational search. By default, search results passed to an LLM are a flattened rowset. However, if your index has complex types, your query can provide those fields if you first convert the search results to JSON, and then pass the JSON to the LLM.
 
 A partial example illustrates the technique:
 

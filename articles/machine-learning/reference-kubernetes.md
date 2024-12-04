@@ -397,6 +397,7 @@ More information about how to use ARM template can be found from [ARM template d
 
 | Date | Version |Version description |
 |---|---|---|
+|Sep 26, 2024 | 1.1.64|  Fixed vulnerabilities. |
 |Nov 21, 2023 | 1.1.39|  Fixed vulnerabilities. Refined error message. Increased stability for relayserver API. |
 |Nov 1, 2023 | 1.1.37|  Update data plane envoy version. |
 |Oct 11, 2023 | 1.1.35|  Fix vulnerable image. Bug fixes. |

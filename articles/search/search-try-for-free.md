@@ -31,7 +31,7 @@ Once you sign up, you can immediately use either of these links to access Azure 
 
 + [Sign in to Azure portal](https://portal.azure.com/) to view, manage, and create more resources. You can also use the portal to track your credits and projected costs.
 
-+ [Sign in to Azure AI Studio](https://ai.azure.com) for a no-code approach to deploying models on Azure OpenAI and using Azure AI Search for information retrieval. **We recommend you start here first.**
++ [Sign in to Azure AI Foundry](https://ai.azure.com) for a no-code approach to deploying models on Azure OpenAI and using Azure AI Search for information retrieval. **We recommend you start here first.**
 
 <!-- Although you can create a free search service that doesn't use up your credits, we recommend provisioning the **Basic** tier so that you can work with larger indexes, more indexes, and premium features like semantic ranking.
 
@@ -39,9 +39,9 @@ The [Azure portal](https://portal.azure.com/) is the easiest approach for first-
 
 ## Step two: "Day One" tasks
 
-[**How to build and consume vector indexes in Azure AI Studio**](/azure/ai-studio/how-to/index-add) is a great place to start.
+[**How to build and consume vector indexes in Azure AI Foundry portal**](/azure/ai-studio/how-to/index-add) is a great place to start.
 
-1. [Sign in to Azure AI Studio](https://ai.azure.com).
+1. [Sign in to Azure AI Foundry](https://ai.azure.com).
 
 1. Create a new hub and project.
 
@@ -54,7 +54,7 @@ The [Azure portal](https://portal.azure.com/) is the easiest approach for first-
      We recommend Basic for larger data files and more indexes, or Free if your files are less than 50 MB. Basic has more features and storage, but it's billable for the lifetime of the service and it might consume about one third of your available credits if you retain it for the entire trial period.
 
 > [!TIP]
-> Azure AI Search and Azure OpenAI must be in the same region. Currently, these regions provide the most overlap and capacity: **East US**, **East US2**, and **South Central** in the Americas; **France Central** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
+> Azure AI Search and Azure OpenAI must be in the [same region](search-create-service-portal.md#regions-with-the-most-overlap).
 
 ## Step three: Have a plan for next steps
 
@@ -70,7 +70,7 @@ For a next step evaluation of [RAG scenarios](retrieval-augmented-generation-ove
 
 Many of our quickstarts and tutorials use Azure Storage, so we recommend creating an Azure Storage account for getting started.
 
-Generative search requires embedding and chat models. The Azure cloud provides Azure OpenAI, but you can also use Azure AI Vision for multimodal embeddings (but not chat). Another model provider is Azure AI Studio and deploying chat and embedding models into the model catalog. However, for initial exploration, we recommend Azure OpenAI for its familiarity and mainstream offerings.
+Generative search requires embedding and chat models. The Azure cloud provides Azure OpenAI, but you can also use Azure AI Vision for multimodal embeddings (but not chat). Another model provider is Azure AI Foundry and deploying chat and embedding models into the model catalog. However, for initial exploration, we recommend Azure OpenAI for its familiarity and mainstream offerings.
 
 Application frontends are useful if you're prototyping a solution for a wider audience. You can use Azure Web apps or build an ASP.NET MVC application for this task. Otherwise, if you're working locally, you can view output in Jupyter notebooks in Visual Studio Code or another IDE. Or view results in console apps or other apps that run on localhost.
 
@@ -90,7 +90,7 @@ Continue with the following links to review which regions also provide the model
 
 - [Azure OpenAI region list](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)
 - [Azure AI Vision region list](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability)
-- [Azure AI Studio region list](/azure/ai-studio/reference/region-support)
+- [Azure AI Foundry region list](/azure/ai-studio/reference/region-support)
 
 > [!TIP]
 > Currently, these regions provide the most overlap and capacity: **East US**, **East US2**, and **South Central** in the Americas; **France Central** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
@@ -122,9 +122,9 @@ Try the portal quickstarts for Azure AI Search or quickstarts that use Visual St
 - [Quickstart: Generative search (RAG) using a Python client](search-get-started-rag.md)
 - [Quickstart: Vector search using a REST client](search-get-started-vector.md)
 
-Azure AI Studio and Azure OpenAI Studio support connecting to content in Azure AI Search
+Azure AI Foundry supports connecting to content in Azure AI Search.
 
-- [Quickstart: Chat using your own data in Azure OpenAI Studio](/azure/ai-services/openai/use-your-data-quickstart)
+- [Quickstart: Chat using your own data with Azure OpenAI](/azure/ai-services/openai/use-your-data-quickstart)
 - [Tutorial: Build a custom chat app with the prompt flow SDK](/azure/ai-studio/tutorials/copilot-sdk-create-resources)
 
 Developers should review [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repository or the solution accelerators. You can deploy and run any of these samples using the Azure trial subscription. 
@@ -149,6 +149,9 @@ You can create a search service that doesn't consume credits. Here are some poin
 + You can have up to three indexes, indexers, data sources, and skillset at one time.
 
 Review the [service limits](search-limits-quotas-capacity.md) for other constraints that apply to the free tier.
+
+> [!NOTE]
+> Free services that remain inactive for an extended period of time might be deleted to free up capacity if the region is under capacity constraints.
 
 ## Next steps
 

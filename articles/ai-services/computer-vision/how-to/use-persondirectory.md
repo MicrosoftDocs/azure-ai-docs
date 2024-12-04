@@ -13,6 +13,7 @@ ms.date: 02/27/2024
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom: [devx-track-csharp, cogserv-non-critical-vision]
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Use the PersonDirectory data structure (preview)
@@ -23,7 +24,7 @@ To perform face recognition operations such as Identify and Find Similar, Face A
 
 ## Advantages of PersonDirectory
 
-Currently, the Face API offers the **LargePersonGroup** structure, which has similar functionality but is limited to 1 million identities. The **PersonDirectory** structure can scale up to 75 million identities.
+Currently, the Face API offers the **LargePersonGroup** structure, which has similar functionality but is limited to 1 million identities. The **PersonDirectory** structure can scale up to 20 million identities.
 
 Another major difference between **PersonDirectory** and previous data structures is that you'll no longer need to make any Train API calls after adding faces to a **Person** object&mdash;the update process happens automatically.
 
@@ -238,7 +239,7 @@ using (var content = new ByteArrayContent(byteData))
 ```
 
 > [!NOTE]
-> As soon as the call returns, the created **DynamicPersonGroup** will be ready to use in an Identify call, with any **Person** references provided in the process. The completion status of the returned operation ID, on the other hand, indicates the update status of the person-to-group relationship.
+> As soon as the call returns, the created **DynamicPersonGroup** will be ready to use in an Identify call, with any **Person** references provided in the process. The completion status of the returned operation ID, on the other hand, only indicates the update status for [Get Dynamic Person Group References](/rest/api/face/person-directory-operations/get-dynamic-person-group-references) lookup calls.
 
 ### Update the DynamicPersonGroup
 
@@ -392,6 +393,97 @@ using (var content = new ByteArrayContent(byteData))
 ```
 
 The response will contain a Boolean value indicating whether the service considers the new face to belong to the same **Person**, and a confidence score for the prediction.
+
+## Overview of asynchronous operations
+
+The tables below summarize whether a **PersonDirectory** management call is a long-running operation (LRO) processed asynchronously, or it completes immediately and synchronously:
+
+| Person/Face Management | URI | LRO? |
+| --- | --- | --- |
+| [Get Persons](/rest/api/face/person-directory-operations/get-persons) | /persons | |
+| [Create Person](/rest/api/face/person-directory-operations/create-person) | /persons | ✅ |
+| [Get Person](/rest/api/face/person-directory-operations/get-person) | /persons/{personId} | |
+| [Update Person](/rest/api/face/person-directory-operations/update-person) | /persons/{personId} | |
+| [Delete Person](/rest/api/face/person-directory-operations/delete-person) | /persons/{personId} | ✅ |
+| [Get Person Faces](/rest/api/face/person-directory-operations/get-person-faces) | /persons/{personId}/recognitionModels/{model}/persistedfaces | |
+| [Add Person Face](/rest/api/face/person-directory-operations/add-person-face) | /persons/{personId}/recognitionModels/{model}/persistedfaces | ✅ |
+| [Add Person Face From Url](/rest/api/face/person-directory-operations/add-person-face-from-url) | /persons/{personId}/recognitionModels/{model}/persistedfaces | ✅ |
+| [Get Person Face](/rest/api/face/person-directory-operations/get-person-face) | /persons/{personId}/recognitionModels/{model}/persistedfaces/{persistedFaceId} | |
+| [Update Person Face](/rest/api/face/person-directory-operations/update-person-face) | /persons/{personId}/recognitionModels/{model}/persistedfaces/{persistedFaceId} | |
+| [Delete Person Face](/rest/api/face/person-directory-operations/delete-person-face) | /persons/{personId}/recognitionModels/{model}/persistedfaces/{persistedFaceId} | ✅ |
+
+| Group Management | URI | LRO? |
+| --- | --- | --- |
+| [Get Dynamic Person Groups](/rest/api/face/person-directory-operations/get-dynamic-person-groups) | /dynamicpersongroups | |
+| [Create Dynamic Person Group](/rest/api/face/person-directory-operations/create-dynamic-person-group) | /dynamicpersongroups/{dynamicPersonGroupId}	| |
+| [Create Dynamic Person Group With Person](/rest/api/face/person-directory-operations/create-dynamic-person-group-with-person) | /dynamicpersongroups/{dynamicPersonGroupId}	| ✅ |
+| [Get Dynamic Person Group](/rest/api/face/person-directory-operations/get-dynamic-person-group) | /dynamicpersongroups/{dynamicPersonGroupId} | |
+| [Update Dynamic Person Group](/rest/api/face/person-directory-operations/update-dynamic-person-group) | /dynamicpersongroups/{dynamicPersonGroupId} | |
+| [Update Dynamic Person Group With Person Changes](/rest/api/face/person-directory-operations/update-dynamic-person-group-with-person-changes) | /dynamicpersongroups/{dynamicPersonGroupId} | ✅ |
+| [Delete Dynamic Person Group](/rest/api/face/person-directory-operations/delete-dynamic-person-group) | /dynamicpersongroups/{dynamicPersonGroupId} | ✅ |
+| [Get Dynamic Person Group Persons](/rest/api/face/person-directory-operations/get-dynamic-person-group-persons) | /dynamicpersongroups/{dynamicPersonGroupId}/persons | |
+| [Get Dynamic Person Group References](/rest/api/face/person-directory-operations/get-dynamic-person-group-references) | /persons/{personId}/dynamicPersonGroupReferences | |
+
+The following code illustrates the dependencies of these asynchronous operations:
+
+```csharp
+var createPersonResponse = await CreatePersonAsync();
+var personId = createPersonResponse.PersonId;
+
+// faces can be added once the person creation HTTP call returns, even if it's still processing
+var addPersonFaceResponse = await AddPersonFaceAsync(personId);
+var addPersonFaceFromUrlResponse = await AddPersonFaceFromUrlAsync(personId);
+
+switch (scenario)
+{
+    case Scenario.Verify:
+        // only need to ensure the addition of face data has propagated
+        await WaitForLongRunningOperationsAsync(new[]
+        {
+            addPersonFaceResponse.OperationLocation,
+            addPersonFaceFromUrlResponse.OperationLocation
+        });
+        await VerifyFromPersonDirectoryAsync(queryFaceId, personId);
+        break;
+
+    case Scenario.IdentifyInPersonDirectory:
+        // ensure person creation and face data enrollment finish successfully
+        await WaitForLongRunningOperationsAsync(new[]
+        {
+            createPersonResponse.OperationLocation,
+            addPersonFaceResponse.OperationLocation,
+            addPersonFaceFromUrlResponse.OperationLocation
+        });
+        await IdentifyFromPersonDirectoryAsync(queryFaceId);
+        break;
+
+    case Scenario.IdentifyAgainstDynamicPersonGroup:
+        // person creation needs to be completed before it can be added to a group
+        await WaitForLongRunningOperationsAsync(new[]
+        {
+            createPersonResponse.OperationLocation
+        });
+        var groupResponse = await CreateOrUpdateDynamicPersonGroupWithPersonChangesAsync(groupId, [personId]);
+        // and make sure face data are ready before identification
+        await WaitForLongRunningOperationsAsync(new[]
+        {
+            addPersonFaceResponse.OperationLocation,
+            addPersonFaceFromUrlResponse.OperationLocation
+        });
+        await IdentifyFromDynamicPersonGroupAsync(queryFaceId, groupId);
+        // optionally check the person-to-group relationship, which requires the completion of the group's creation or updating call
+        await WaitForLongRunningOperationsAsync(new[]
+        {
+            groupResponse.OperationLocation
+        });
+        var groupIds = await GetDynamicPersonGroupReferencesAsync(personId);
+        break;
+
+    default:
+        break;
+}
+```
+
 
 ## Next steps
 

@@ -1,7 +1,7 @@
 ---
 title: How to deploy Cohere Rerank models as serverless APIs
-titleSuffix: Azure AI Studio
-description: Learn to deploy and use Cohere Rerank models with Azure AI Studio.
+titleSuffix: Azure AI Foundry
+description: Learn to deploy and use Cohere Rerank models with Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
@@ -9,20 +9,20 @@ ms.date: 07/24/2024
 ms.reviewer: shubhiraj
 ms.author: mopeakande
 author: msakande
-ms.custom: references_regions, build-2024
+ms.custom: references_regions, build-2024, ignite-2024
 ---
 
-# How to deploy Cohere Rerank models with Azure AI Studio
+# How to deploy Cohere Rerank models with Azure AI Foundry
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn about the Cohere Rerank models, how to use Azure AI Studio to deploy them as serverless APIs with pay-as-you-go token-based billing, and how to work with the deployed models.
+In this article, you learn about the Cohere Rerank models, how to use Azure AI Foundry to deploy them as serverless APIs with pay-as-you-go token-based billing, and how to work with the deployed models.
 
-[!INCLUDE [maas-models-preview](../includes/maas-models-preview.md)]
+[!INCLUDE [models-preview](../includes/models-preview.md)]
 
 ## Cohere Rerank models
 
-Cohere offers two Rerank models in [Azure AI Studio](https://ai.azure.com). These models are available in the model catalog for deployment as serverless APIs:
+Cohere offers two Rerank models in [Azure AI Foundry](https://ai.azure.com). These models are available in the model catalog for deployment as serverless APIs:
 
 * Cohere Rerank 3 - English
 * Cohere Rerank 3 - Multilingual
@@ -64,7 +64,7 @@ You can deploy the previously mentioned Cohere models as a service with pay-as-y
 ### Prerequisites
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
-- An [AI Studio hub](../how-to/create-azure-ai-resource.md). The serverless API model deployment offering for Cohere Rerank is only available with hubs created in these regions:
+- An [AI Foundry hub](../how-to/create-azure-ai-resource.md). The serverless API model deployment offering for Cohere Rerank is only available with hubs created in these regions:
 
      * East US
      * East US 2
@@ -76,8 +76,8 @@ You can deploy the previously mentioned Cohere models as a service with pay-as-y
     
     For a list of  regions that are available for each of the models supporting serverless API endpoint deployments, see [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md).
 
-- An [Azure AI Studio project](../how-to/create-projects.md).
-- Azure role-based access controls are used to grant access to operations in Azure AI Studio. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Studio](../concepts/rbac-ai-studio.md).
+- An [Azure AI Foundry project](../how-to/create-projects.md).
+- Azure role-based access controls are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).
 
 
 ### Create a new deployment
@@ -86,14 +86,14 @@ The following steps demonstrate the deployment of Cohere Rerank 3 - English, but
 
 To create a deployment:
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com).
+1. Sign in to [Azure AI Foundry](https://ai.azure.com).
 1. Select **Model catalog** from the left sidebar.
 1. Search for *Cohere*.
 1. Select **cohere-rerank-3-english** to open the Model Details page.
 1. Select **Deploy** to open a serverless API deployment window for the model.
-1. Alternatively, you can initiate a deployment by starting from your project in AI Studio. 
+1. Alternatively, you can initiate a deployment by starting from your project in AI Foundry portal. 
 
-    1. From the left sidebar of your project, select **Components** > **Deployments**.
+    1. From the left sidebar of your project, select **Models + Endpoints**.
     1. Select **+ Deploy model**.
     1. Search for and select **Cohere-rerank-3-english**. to open the Model Details page.
     1. Select **Confirm** to open a serverless API deployment window for the model.
@@ -108,7 +108,7 @@ To create a deployment:
 
 1. Select **Deploy**. Wait until the deployment is ready and you're redirected to the Deployments page.
 1. On the Deployments page, select the deployment, and note the endpoint's **Target** URL and the Secret **Key**. For more information on using the APIs, see the [reference](#rerank-api-reference-for-cohere-rerank-models-deployed-as-a-service) section.
-1. You can always find the endpoint's details, URL, and access keys by navigating to your **Project overview** page. Then, from the left sidebar of your project, select **Components** > **Deployments**.
+1. [!INCLUDE [Find your deployment details](../includes/find-deployments.md)]
 
 To learn about billing for the Cohere models deployed as a serverless API with pay-as-you-go token-based billing, see [Cost and quota considerations for Cohere models deployed as a service](#cost-and-quota-considerations-for-models-deployed-as-a-service).
 
@@ -116,7 +116,7 @@ To learn about billing for the Cohere models deployed as a serverless API with p
 
 Cohere Rerank models deployed as serverless APIs can be consumed using the Rerank API.
 
-1. From your **Project overview** page, go to the left sidebar and select **Components** > **Deployments**.
+1. From the left sidebar of your project, select **Models + Endpoints**.
 
 1. Find and select the deployment you created.
 
@@ -242,7 +242,7 @@ The `results` object is a dictionary with the following fields:
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios. 
 
-Cohere models deployed as serverless APIs with pay-as-you-go billing are offered by Cohere through the Azure Marketplace and integrated with Azure AI Studio for use. You can find the Azure Marketplace pricing when deploying the model.
+Cohere models deployed as serverless APIs with pay-as-you-go billing are offered by Cohere through the Azure Marketplace and integrated with Azure AI Foundry for use. You can find the Azure Marketplace pricing when deploying the model.
 
 Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
 
@@ -252,6 +252,6 @@ For more information on how to track costs, see [monitor costs for models offere
 
 ## Related content
 
-- [What is Azure AI Studio?](../what-is-ai-studio.md)
+- [What is Azure AI Foundry?](../what-is-ai-studio.md)
 - [Azure AI FAQ article](../faq.yml)
 - [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)

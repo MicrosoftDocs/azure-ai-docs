@@ -6,11 +6,13 @@ description: This article shows you how to choose which recognition model to use
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
+ms.subservice: azure-ai-face
 ms.topic: how-to
 ms.date: 01/19/2024
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Specify a face recognition model
@@ -130,10 +132,10 @@ If you normally specify a confidence threshold (a value between zero and one tha
 
 In this article, you learned how to specify the recognition model to use with different Face service APIs. Next, follow a quickstart to get started with face detection.
 
-* [Face .NET SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-csharp%253fpivots%253dprogramming-language-csharp)
-* [Face Python SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-python%253fpivots%253dprogramming-language-python)
-* [Face Java SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-java%253fpivots%253dprogramming-language-java)
-* [Face JavaScript SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-javascript%253fpivots%253dprogramming-language-javascript)
+* [Face .NET SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-csharp)
+* [Face Python SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-python)
+* [Face Java SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-java)
+* [Face JavaScript SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-javascript)
 
 [Detect]: /rest/api/face/face-detection-operations/detect
 [Verify Face To Face]: /rest/api/face/face-recognition-operations/verify-face-to-face

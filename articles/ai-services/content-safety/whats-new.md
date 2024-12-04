@@ -16,6 +16,13 @@ ms.author: pafarley
 
 Learn what's new in the service. These items might be release notes, videos, blog posts, and other types of information. Bookmark this page to stay up to date with new features, enhancements, fixes, and documentation updates.
 
+## October 2024
+
+### Upcoming deprecations
+
+To align with Content Safety versioning and lifecycle management policies, the following versions are scheduled for deprecation:
+* **Effective October 28, 2024**: All versions except `2024-09-01`, `2024-09-15-preview`, and `2024-09-30-preview` will be deprecated and no longer supported. We encourage users to transition to the latest available versions to continue receiving full support and updates. If you have any questions about this process or need assistance with the transition, please reach out to our support team.
+
 ## September 2024
 
 ### Multimodal analysis (preview)
@@ -38,11 +45,9 @@ The groundedness detection API includes a correction feature that automatically 
 
 ### New features are GA
 
-The Prompt Shields API and groundedness detection API are now generally available (GA). Follow a quickstart to try them out.
+The Prompt Shields API and Protected Material for text API are now generally available (GA). Follow a quickstart to try them out.
 * [Prompt Shields quickstart](/azure/ai-services/content-safety/quickstart-jailbreak)
-* [Groundedness detection quickstart](/azure/ai-services/content-safety/quickstart-groundedness?tabs=curl)
-
-
+* [Protected Material quickstart](/azure/ai-services/content-safety/quickstart-protected-material?tabs=curl)
 ## July 2024
 
 ### Custom categories (standard) API public preview

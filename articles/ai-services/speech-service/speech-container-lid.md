@@ -37,7 +37,7 @@ The fully qualified container image name is, `mcr.microsoft.com/azure-cognitive-
 | Version | Path |
 |-----------|------------|
 | Latest | `mcr.microsoft.com/azure-cognitive-services/speechservices/language-detection:latest` |
-| 1.15.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/language-detection:1.15.0-amd64-preview` |
+| 1.16.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/language-detection:1.16.0-amd64-preview` |
 
 All tags, except for `latest`, are in the following format and are case sensitive:
 
@@ -57,6 +57,7 @@ The tags are also available [in JSON format](https://mcr.microsoft.com/v2/azure-
     "1.13.0-amd64-preview",
     "1.14.0-amd64-preview",
     "1.15.0-amd64-preview",
+    "1.16.0-amd64-preview",
     "1.3.0-amd64-preview",
     "1.5.0-amd64-preview",
     "1.6.1-amd64-preview",

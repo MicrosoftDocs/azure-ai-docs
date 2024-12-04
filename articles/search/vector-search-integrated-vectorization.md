@@ -46,7 +46,7 @@ For data chunking and text-to-vector conversions, you're taking a dependency on 
  
     + [Azure AI Vision skill (preview)](cognitive-search-skill-vision-vectorize.md) that points to the multimodal API for Azure AI Vision.
 
-    + [AML skill pointing to the model catalog in Azure AI Studio](cognitive-search-aml-skill.md) that points to selected models in the model catalog.
+    + [AML skill pointing to the model catalog in Azure AI Foundry portal](cognitive-search-aml-skill.md) that points to selected models in the model catalog.
 
 ## Using integrated vectorization in queries
 
@@ -63,7 +63,7 @@ For text-to-vector conversion during queries, you take a dependency on these com
     | [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md) | [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md) |
     | [Custom skill](cognitive-search-custom-skill-web-api.md) | [Custom Web API vectorizer](vector-search-vectorizer-custom-web-api.md) |
     | [Azure AI Vision skill (preview)](cognitive-search-skill-vision-vectorize.md)  | [Azure AI Vision vectorizer](vector-search-vectorizer-ai-services-vision.md) |
-    | [AML skill pointing to the model catalog in Azure AI Studio (preview)](cognitive-search-aml-skill.md) | [Azure AI Studio model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) |
+    | [AML skill pointing to the model catalog in Azure AI Foundry portal](cognitive-search-aml-skill.md) | [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) |
 
 ## Component diagram
 
@@ -96,7 +96,7 @@ Data chunking (Text Split skill) is free and available on all Azure AI services 
 
 ## When to use integrated vectorization
 
-We recommend using the built-in vectorization support of Azure AI Studio. If this approach doesn't meet your needs, you can create indexers and skillsets that invoke integrated vectorization using the programmatic interfaces of Azure AI Search.
+We recommend using the built-in vectorization support of Azure AI Foundry. If this approach doesn't meet your needs, you can create indexers and skillsets that invoke integrated vectorization using the programmatic interfaces of Azure AI Search.
 
 ## How to use integrated vectorization
 

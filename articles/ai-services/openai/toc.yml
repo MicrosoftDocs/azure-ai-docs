@@ -130,14 +130,14 @@ items:
       href: ./how-to/completions.md
     - name: JSON mode
       href: ./how-to/json-mode.md
+    - name: Prompt caching
+      href: ./how-to/prompt-caching.md
     - name: Reproducible output
       href: ./how-to/reproducible-output.md
     - name: Structured outputs
       href: ./how-to/structured-outputs.md
     - name: Work with code
       href: ./how-to/work-with-code.md
-    - name: Use with large datasets
-      href: ./how-to/integrate-synapseml.md
     - name: Deploy and use web apps
       href: ./how-to/use-web-app.md
     - name: Legacy
@@ -156,6 +156,8 @@ items:
       href: ./how-to/embeddings.md
     - name: Getting started with embeddings
       href: ./tutorials/embeddings.md
+  - name: Evaluation
+    href: ./how-to/evaluations.md
   - name: Fine-tuning
     items:
       - name: Fine-tuning your model
@@ -164,13 +166,15 @@ items:
       - name: Function calling
         href: ./how-to/fine-tuning-functions.md
         displayName: fine-tuning, finetuning
+      - name: Weights & Biases integration (preview)
+        href: ./how-to/weights-and-biases-integration.md
   - name: Use your data
     items:
       - name: Text data
         href: ./concepts/use-your-data.md
         displayName: use your data, on your data
-      - name: Use Azure OpenAI On Your Data securely
-        href: ./how-to/use-your-data-securely.md
+      - name: Network and access configuration
+        href: ./how-to/on-your-data-configuration.md
       - name: Deploy and use web apps
         href: ./how-to/use-web-app.md
       - name: Use the Azure Developer CLI
@@ -181,6 +185,8 @@ items:
     href: ./how-to/migration.md
   - name: Migrate to OpenAI JavaScript v4.x
     href: ./how-to/migration-javascript.md
+  - name: Migrate to Azure OpenAI .NET v2.0
+    href: ./how-to/dotnet-migration.md
   - name: Models
     items:
       - name: Manage models
@@ -193,8 +199,6 @@ items:
         href: encrypt-data-at-rest.md
       - name: Managed identity
         href: ./how-to/managed-identity.md
-      - name: Use Azure OpenAI on your data securely
-        href: ./how-to/use-your-data-securely.md
   - name: Service management
     items:
       - name: Resource creation & model deployment
@@ -284,6 +288,8 @@ items:
           href: ./references/elasticsearch.md
         - name: Data source - Pinecone (preview)
           href: ./references/pinecone.md
+        - name: Data source - Mongo DB (preview)
+          href: ./references/mongo-db.md
         - name: Ingestion API (preview)
           href: /rest/api/azureopenai/ingestion-jobs?context=/azure/ai-services/openai/context/context
     - name: Azure Resource Manager/Bicep/Terraform

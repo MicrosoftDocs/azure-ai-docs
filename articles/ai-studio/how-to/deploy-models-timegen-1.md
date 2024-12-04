@@ -1,7 +1,7 @@
 ---
-title: How to deploy TimeGEN-1 model with Azure AI Studio
-titleSuffix: Azure AI Studio
-description: Learn how to deploy TimeGEN-1 with Azure AI Studio.
+title: How to deploy TimeGEN-1 model with Azure AI Foundry
+titleSuffix: Azure AI Foundry
+description: Learn how to deploy TimeGEN-1 with Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
@@ -10,19 +10,19 @@ ms.reviewer: kritifaujdar
 reviewer: fkriti
 ms.author: mopeakande
 author: msakande
-ms.custom: references_regions, build-2024
+ms.custom: references_regions, build-2024, ignite-2024
 ---
 
-# How to deploy a TimeGEN-1 model with Azure AI Studio
+# How to deploy a TimeGEN-1 model with Azure AI Foundry
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn how to use Azure AI Studio to deploy the TimeGEN-1 model as a serverless API with pay-as-you-go billing.
+In this article, you learn how to use Azure AI Foundry to deploy the TimeGEN-1 model as a serverless API with pay-as-you-go billing.
 You filter on the Nixtla collection to browse the TimeGEN-1 model in the [Model Catalog](model-catalog.md).
 
 The Nixtla TimeGEN-1 is a generative, pretrained forecasting and anomaly detection model for time series data. TimeGEN-1 can produce accurate forecasts for new time series without training, using only historical values and exogenous covariates as inputs.
 
-[!INCLUDE [maas-models-preview](../includes/maas-models-preview.md)]
+[!INCLUDE [models-preview](../includes/models-preview.md)]
 
 ## Deploy TimeGEN-1 as a serverless API
 
@@ -33,7 +33,7 @@ You can deploy TimeGEN-1 as a serverless API with pay-as-you-go billing. Nixtla 
 ### Prerequisites
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
-- An [AI Studio hub](../how-to/create-azure-ai-resource.md). The serverless API model deployment offering for TimeGEN-1 is only available with hubs created in these regions:
+- An [Azure AI Foundry project](../how-to/create-projects.md). The serverless API model deployment offering for TimeGEN-1 is only available with projects created in these regions:
 
     > [!div class="checklist"]
     > * East US
@@ -46,8 +46,7 @@ You can deploy TimeGEN-1 as a serverless API with pay-as-you-go billing. Nixtla 
 
     For a list of  regions that are available for each of the models supporting serverless API endpoint deployments, see [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md).
 
-- An [Azure AI Studio project](../how-to/create-projects.md).
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Studio. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, visit [Role-based access control in Azure AI Studio](../concepts/rbac-ai-studio.md).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, visit [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).
 
 
 #### Estimate the number of tokens needed
@@ -88,24 +87,24 @@ There are four pricing meters that determine the price you pay. These meters are
 
 These steps demonstrate the deployment of TimeGEN-1. To create a deployment:
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com).
-1. Select **Model catalog** from the left sidebar.
-1. Search for and select **TimeGEN-1** to open its Details page.
+[!INCLUDE [open-catalog](../includes/open-catalog.md)]
+
+4. Search for and select **TimeGEN-1** to open its Details page.
 1. Select **Deploy** to open a serverless API deployment window for the model.
-1. Alternatively, you can initiate a deployment by starting from your project in AI Studio.
-    1. From the left sidebar of your project, select **Components** > **Deployments**.
-    1. Select **+ Deploy model**.
+1. Alternatively, you can initiate a deployment by starting from the **Models + endpoints** page in AI Foundry portal.
+    1. From the left navigation pane of your project, select **My assets** > **Models + endpoints**.
+    1. Select **+ Deploy model** > **Deploy base model**.
     1. Search for and select **TimeGEN-1**. to open the Model's Details page.
     1. Select **Confirm** to open a serverless API deployment window for the model.
-1. Select the project in which you want to deploy your model. To deploy the TimeGEN-1 model, your project must be in one of the regions listed in the [Prerequisites](#prerequisites) section.
+1. Your current project is specified for the deployment. To successfully deploy the TimeGEN-1 model, your project must be in one of the regions listed in the [Prerequisites](#prerequisites) section.
 1. In the deployment wizard, select the link to **Azure Marketplace Terms**, to learn more about the terms of use.
 1. Select the **Pricing and terms** tab to learn about pricing for the selected model.
 1. Select the **Subscribe and Deploy** button. If this is your first time deploying the model in the project, you have to subscribe your project for the particular offering. This step requires that your account has the **Azure AI Developer role** permissions on the resource group, as listed in the prerequisites. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Currently, you can have only one deployment for each model within a project.
 1. Once you subscribe the project for the particular Azure Marketplace offering, subsequent deployments of the _same_ offering in the _same_ project don't require subscribing again. If this scenario applies to you,  there's a **Continue to deploy** option to select.
 1. Give the deployment a name. This name becomes part of the deployment API URL. This URL must be unique in each Azure region.
 1. Select **Deploy**. Wait until the deployment is ready and you're redirected to the Deployments page.
-1. Return to the Deployments page, select the deployment, and note the endpoint's **Target** URL and the Secret **Key**. For more information on using the APIs, see the [reference](#reference-for-timegen-1-deployed-as-a-serverless-api) section.
-1. You can always find the endpoint's details, URL, and access keys by navigating to your **Project overview** page. Then, from the left sidebar of your project, select **Components** > **Deployments**.
+1. Return to the Deployments page, select the deployment, and note the endpoint's **Target** URI and the Secret **Key**. For more information on using the APIs, see the [reference](#reference-for-timegen-1-deployed-as-a-serverless-api) section.
+1. [!INCLUDE [Find your deployment details](../includes/find-deployments.md)]
 
 To learn about billing for the TimeGEN-1 model deployed as a serverless API with pay-as-you-go token-based billing, see [Cost and quota considerations for the TimeGEN-1 family of models deployed as a service](#cost-and-quota-considerations-for-timegen-1-deployed-as-a-serverless-api).
 
@@ -113,11 +112,11 @@ To learn about billing for the TimeGEN-1 model deployed as a serverless API with
 
 You can consume TimeGEN-1 models by using the forecast API.
 
-1. From your **Project overview** page, go to the left sidebar and select **Components** > **Deployments**.
+1. From the left navigation pane of your project, select **My assets** > **Models + endpoints**.
 
 1. Find and select the deployment you created.
 
-1. Copy the **Target** URL and the **Key** value.
+1. Copy the **Target** URI and the **Key** value.
 
 1. Try the samples here:
 
@@ -135,12 +134,12 @@ For more information about use of the APIs, visit the [reference](#reference-for
 
 #### Forecast API
 
-Use the method `POST` to send the request to the `/forecast_multi_series` route:
+Use the method `POST` to send the request to the `/forecast` route:
 
 __Request__
 
 ```rest
-POST /forecast_multi_series HTTP/1.1
+POST /forecast HTTP/1.1
 Host: <DEPLOYMENT_URI>
 Authorization: Bearer <TOKEN>
 Content-type: application/json
@@ -152,8 +151,7 @@ The Payload JSON formatted string contains these parameters:
 
 | Key | Type | Default | Description |
 |-----|-----|-----|-----|
-| **DataFrame (`df`)**    | `DataFrame`  | No default. This value must be specified.  | The DataFrame on which the function operates. Expected to contain at least these columns:<br><br>`time_col`: Column name in `df` that contains the time indices of the time series. This column is typically a datetime column with regular intervals - for example, hourly, daily, monthly data points.<br><br>`target_col`: Column name in `df` that contains the target variable of the time series, in other words, the variable we wish to predict or analyze.<br><br>Additionally, you can pass multiple time series (stacked in the dataframe) considering another column:<br><br>`id_col`: Column name in `df` that identifies unique time series. Each unique value in this column corresponds to a unique time series.|
-| **Forecast Horizon (`h`)**     | `int` | No default. This value must be specified. | Forecast horizon |
+| **Forecast Horizon (`fh`)**     | `int` | No default. This value must be specified. | Forecast horizon |
 | **Frequency (`freq`)** | `str` | None    |Frequency of the data. By default, the frequency is inferred automatically. For more information, visit [pandas available frequencies](https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#offset-aliases). |
 | **Identifying Column (`id_col`)**       | `str` | `unique_id`    | Column that identifies each series.|
 |**Time Column (`time_col`)**| `str`  |`ds`    | Column that identifies each timestep; its values can be timestamps or integers.  |
@@ -275,7 +273,7 @@ This JSON sample is an example response:
 
 ### Cost and quota considerations for TimeGEN-1 deployed as a serverless API
 
-Nixtla offers TimeGEN-1 deployed as a serverless API through the Azure Marketplace. TimeGEN-1 is integrated with Azure AI Studio for use. You can find more information about Azure Marketplace pricing when you deploy the model.
+Nixtla offers TimeGEN-1 deployed as a serverless API through the Azure Marketplace. TimeGEN-1 is integrated with Azure AI Foundry for use. You can find more information about Azure Marketplace pricing when you deploy the model.
 
 Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
 
@@ -285,6 +283,6 @@ Quota is managed per deployment. Each deployment has a rate limit of 200,000 tok
 
 ## Related content
 
-- [What is Azure AI Studio?](../what-is-ai-studio.md)
+- [What is Azure AI Foundry?](../what-is-ai-studio.md)
 - [Azure AI FAQ article](../faq.yml)
 - [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)

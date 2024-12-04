@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
 ms.custom: references_regions
-ms.date: 10/03/2024
+ms.date: 10/25/2024
 ---
 
 | **Region**     | **gpt-4o**, **2024-08-06**   | **gpt-4o-mini**, **2024-07-18**   |
@@ -27,10 +27,10 @@ ms.date: 10/03/2024
 | southafricanorth   | ✅                       | ✅                            |
 | southcentralus     | ✅                       | ✅                            |
 | southindia         | ✅                       | ✅                            |
-| spaincentral       | ✅                       | ✅                            |
 | swedencentral      | ✅                       | ✅                            |
 | switzerlandnorth   | ✅                       | ✅                            |
 | switzerlandwest    | ✅                       | ✅                            |
+| uaenorth           | ✅                       | ✅                            |
 | uksouth            | ✅                       | ✅                            |
 | westeurope         | ✅                       | ✅                            |
 | westus             | ✅                       | ✅                            |

@@ -6,14 +6,14 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: references_regions
 ms.topic: how-to
-ms.date: 10/14/2024
+ms.date: 10/18/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
 zone_pivot_groups: openai-fine-tuning-batch
 ---
 
-# Getting started with Azure OpenAI global batch deployments (preview)
+# Getting started with Azure OpenAI global batch deployments
 
 The Azure OpenAI Batch API is designed to handle large-scale and high-volume processing tasks efficiently. Process asynchronous groups of requests with separate quota, with 24-hour target turnaround, at [50% less cost than global standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than send one request at a time you send a large number of requests in a single file. Global batch requests have a separate enqueued token quota avoiding any disruption of your online workloads.  
 
@@ -44,9 +44,7 @@ Key use cases include:
 
 Global batch is currently supported in the following regions:
 
-- East US
-- West US
-- Sweden Central
+[!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
 
 The following models support global batch:
 
@@ -65,9 +63,14 @@ Refer to the [models page](../concepts/models.md) for the most up-to-date inform
 
 ### API support
 
-API support was first added with `2024-07-01-preview`. Use `2024-10-01-preview` to take advantage of the latest features.
+|   | API Version   |
+|---|---|
+|**Latest GA API release:**| `2024-10-21`|
+|**Latest Preview API release:**| `2024-10-01-preview`|
 
-### Not supported
+Support first added in: `2024-07-01-preview`
+
+### Feature support
 
 The following aren't currently supported:
 
@@ -75,24 +78,20 @@ The following aren't currently supported:
 - Integration with Azure OpenAI On Your Data feature.
 
 > [!NOTE]
-> There is a known issue with Azure OpenAI global batch and [structured outputs](./structured-outputs.md). Currently, lines in your jsonl file with structured output requests will fail with the following error message written to the error file:
->
-> ***response_format value as json_schema is enabled only for api versions 2024-08-01-preview and later***.
->
->This error will occur even when your code targets the latest preview APIs which support structured outputs. Once the issue is resolved, this page will be updated.
+> Structured outputs is now supported with Global Batch.
 
 ### Global batch deployment
 
-In the Studio UI the deployment type will appear as `Global-Batch`.
+In the AI Foundry portal the deployment type will appear as `Global-Batch`.
 
-:::image type="content" source="../media/how-to/global-batch/global-batch.png" alt-text="Screenshot that shows the model deployment dialog in Azure OpenAI Studio with Global-Batch deployment type highlighted." lightbox="../media/how-to/global-batch/global-batch.png":::
+:::image type="content" source="../media/how-to/global-batch/global-batch.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Foundry portal with Global-Batch deployment type highlighted." lightbox="../media/how-to/global-batch/global-batch.png":::
 
 > [!TIP]
 > We recommend enabling **dynamic quota** for all global batch model deployments to help avoid job failures due to insufficient enqueued token quota. Dynamic quota allows your deployment to opportunistically take advantage of more quota when extra capacity is available. When dynamic quota is set to off, your deployment will only be able to process requests up to the enqueued token limit that was defined when you created the deployment.
 
-::: zone pivot="programming-language-ai-studio"
+::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Studio](../includes/batch/batch-studio.md)]
+[!INCLUDE [AI Foundry portal](../includes/batch/batch-studio.md)]
 
 ::: zone-end
 
@@ -155,72 +154,7 @@ Yes. Similar to other deployment types, you can create content filters and assoc
 
 ### Can I request additional quota?
 
-Yes, from the quota page in the Studio UI. Default quota allocation can be found in the [quota and limits article](../quotas-limits.md#global-batch-quota).
-
-### How do I tell how many tokens my batch request contains, and how many tokens are available as quota?
-
-The `2024-10-01-preview` REST API adds two new response headers:
-
-* `deployment-enqueued-tokens` - A approximate token count for your jsonl file calculated immediately after the batch request is submitted. This value represents an estimate based on the number of characters and is not the true token count.
-* `deployment-maximum-enqueued-tokens` The total available enqueued tokens available for this global batch model deployment.
-
-These response headers are only available when making a POST request to begin batch processing of a file with the REST API. The language specific client libraries do not currently return these new response headers. To return all response headers you can add `-i` to the standard REST request.
-
-```http
-curl -i -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-version=2024-10-01-preview \
-  -H "api-key: $AZURE_OPENAI_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "input_file_id": "file-abc123",
-    "endpoint": "/chat/completions",
-    "completion_window": "24h"
-  }'
-```
-
-```output
-HTTP/1.1 200 OK
-Content-Length: 619
-Content-Type: application/json; charset=utf-8
-Vary: Accept-Encoding
-Request-Context: appId=
-x-ms-response-type: standard
-deployment-enqueued-tokens: 139
-deployment-maximum-enqueued-tokens: 740000
-Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-X-Content-Type-Options: nosniff
-x-aml-cluster: vienna-swedencentral-01
-x-request-time: 2.125
-apim-request-id: c8bf4351-c6f5-4bfe-9a79-ef3720eca8af
-x-ms-region: Sweden Central
-Date: Thu, 17 Oct 2024 01:45:45 GMT
-
-{
-  "cancelled_at": null,
-  "cancelling_at": null,
-  "completed_at": null,
-  "completion_window": "24h",
-  "created_at": 1729129545,
-  "error_file_id": null,
-  "expired_at": null,
-  "expires_at": 1729215945,
-  "failed_at": null,
-  "finalizing_at": null,
-  "id": "batch_c8dd49a7-c808-4575-9957-b188cd0dd642",
-  "in_progress_at": null,
-  "input_file_id": "file-f89384af0082485da43cb26b49dc25ce",
-  "errors": null,
-  "metadata": null,
-  "object": "batch",
-  "output_file_id": null,
-  "request_counts": {
-    "total": 0,
-    "completed": 0,
-    "failed": 0
-  },
-  "status": "validating",
-  "endpoint": "/chat/completions"
-}
-```
+Yes, from the quota page in the AI Foundry portal. Default quota allocation can be found in the [quota and limits article](../quotas-limits.md#global-batch-quota).
 
 ### What happens if the API doesn't complete my request within the 24 hour time frame?
 

@@ -119,16 +119,18 @@ groups:
   title: Programming languages
   prompt: Choose your preferred usage method
   pivots:
-  - id: programming-language-ai-studio
-    title: AI Studio
+  - id: ai-foundry-portal
+    title: AI Foundry portal
   - id: programming-language-csharp
     title: C#
-  - id: programming-language-python
-    title: Python
   - id: programming-language-javascript
     title: JavaScript
+  - id: programming-language-python
+    title: Python
   - id: rest-api
     title: REST
+  - id: programming-language-typescript
+    title: TypeScript
 # Owner: mbullwin
 - id: openai-quickstart-new
   title: Programming languages
@@ -142,8 +144,6 @@ groups:
     title: Go
   - id: programming-language-java
     title: Java
-  - id: programming-language-spring
-    title: Spring
   - id: programming-language-javascript
     title: JavaScript
   - id: programming-language-python
@@ -152,62 +152,73 @@ groups:
     title: PowerShell
   - id: rest-api
     title: REST
+  - id: programming-language-spring
+    title: Spring
+  - id: programming-language-typescript
+    title: TypeScript
 - id: openai-quickstart-dall-e
   title: Programming languages
   prompt: Choose your preferred usage method
   pivots:
   - id: programming-language-studio
     title: Studio 
-  - id: rest-api
-    title: REST 
-  - id: programming-language-python
-    title: Python 
   - id: programming-language-csharp
     title: C#
+  - id: programming-language-go
+    title: Go
   - id: programming-language-java
     title: Java
   - id: programming-language-javascript
     title: JavaScript
-  - id: programming-language-go
-    title: Go
   - id: programming-language-powershell
     title: PowerShell
+  - id: programming-language-python
+    title: Python 
+  - id: rest-api
+    title: REST 
+  - id: programming-language-typescript
+    title: TypeScript    
 # Owner: pafarley
 - id: openai-quickstart-gpt-v
   title: Programming languages
   prompt: Choose your preferred usage method
   pivots:
-  - id: programming-language-studio
-    title: Studio
-  - id: programming-language-python
-    title: Python
+  - id: ai-foundry-portal
+    title: AI Foundry portal
   - id: programming-language-javascript
     title: JavaScript
   - id: programming-language-dotnet
     title: C#
+  - id: programming-language-python
+    title: Python
   - id: rest-api
     title: REST
+  - id: programming-language-typescript
+    title: TypeScript
 # Owner: mbullwin
 - id: openai-use-your-data
   title: Programming languages
   prompt: Choose your preferred usage method
   pivots:
-  - id: programming-language-studio
-    title: Studio
+  - id: ai-foundry-portal
+    title: AI Foundry portal
   - id: programming-language-csharp
     title: C#
-  - id: programming-language-spring
-    title: Spring
+  - id: programming-language-go
+    title: Go
   - id: programming-language-javascript
     title: JavaScript
   - id: programming-language-python
     title: Python
-  - id: programming-language-go
-    title: Go
   - id: rest-api
     title: REST
   - id: programming-language-powershell
     title: PowerShell
+  - id: programming-language-spring
+    title: Spring
+  - id: programming-language-typescript
+    title: TypeScript
+
 # Owner: pafarley
 - id: openai-whisper
   title: Programming languages
@@ -232,12 +243,14 @@ groups:
   title: Programming languages
   prompt: Choose a programming language
   pivots:
-  - id: programming-language-javascript
-    title: JavaScript
   - id: programming-language-dotnet
     title: C#
+  - id: programming-language-javascript
+    title: JavaScript
   - id: rest-api
     title: REST
+  - id: programming-language-typescript
+    title: TypeScript
 # Owner: diberry
 - id: programming-languages-rest-ps-py-js
   title: Programming languages
@@ -255,17 +268,20 @@ groups:
   title: Programming languages
   prompt: Choose a programming language
   pivots:
+  - id: programming-language-dotnet
+    title: C#    
   - id: programming-language-javascript
     title: JavaScript
   - id: programming-language-python
     title: Python
-  - id: programming-language-dotnet
-    title: C#
+
   - id: programming-language-powershell
     title: PowerShell
   - id: rest-api
     title: REST
-# Owner: diberry
+  - id: programming-language-typescript
+    title: TypeScript
+    # Owner: diberry
 - id: programming-languages-set-six
   title: Programming languages
   prompt: Choose a programming language
@@ -372,7 +388,7 @@ groups:
   prompt: Choose a programming language or tool
   pivots:
   - id: ai-studio
-    title: AI Studio
+    title: AI Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-cpp
@@ -761,12 +777,27 @@ groups:
   title: Programming languages
   prompt: Choose your preferred usage method
   pivots:
-  - id: programming-language-ai-studio
-    title: AI Studio
+  - id: ai-foundry-portal
+    title: AI Foundry portal
   - id: programming-language-python
     title: Python
   - id: rest-api
     title: REST
+# Owner: mbullwin
+- id: openai-supported-languages
+  title: Programming languages
+  prompt: Choose your preferred language
+  pivots:
+  - id: programming-language-dotnet
+    title: C#
+  - id:  programming-language-go
+    title: Go
+  - id:  programming-language-java
+    title: Java
+  - id:  programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
 # Owner: mbullwin
 - id: openai-create-resource
   title: Programming languages
@@ -779,14 +810,12 @@ groups:
   - id: ps
     title: PowerShell
 # Owner: mbullwin
-- id: openai-fine-tuning-new
+- id: openai-fine-tuning
   title: Programming languages
   prompt: Choose your preferred fine-tuning method
   pivots:
   - id: programming-language-studio
-    title: Studio
-  - id: programming-language-ai-studio
-    title: AI Studio
+    title: AI Foundry portal
   - id: programming-language-python
     title: Python
   - id: rest-api
@@ -867,11 +896,20 @@ groups:
     title: Python
   - id: programming-language-powershell
     title: PowerShell
-- id: openai-studio-js
+- id: openai-portal-js
   title: Programming languages
   prompt: Choose your preferred usage method
   pivots:
-  - id: programming-language-ai-studio
-    title: AI Studio
+  - id: ai-foundry-portal
+    title: AI Foundry portal
   - id: programming-language-javascript
     title: JavaScript
+# owner: sgilley
+- id: programming-languages-sdk-overview
+  title: Programming languages
+  prompt: Choose one of the client library languages.
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#

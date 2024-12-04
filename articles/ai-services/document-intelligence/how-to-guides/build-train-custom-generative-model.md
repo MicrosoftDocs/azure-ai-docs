@@ -1,7 +1,7 @@
 ---
-title: Use AI Studio to build and train an Azure AI Document Intelligence custom generative model
+title: Use AI Foundry to build and train an Azure AI Document Intelligence custom generative model
 titleSuffix: Azure AI services
-description: How to build and train a custom generative AI model with AI Studio to extract user-specified fields from documents across a wide variety of visual templates.
+description: How to build and train a custom generative AI model with AI Foundry to extract user-specified fields from documents across a wide variety of visual templates.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
@@ -11,9 +11,9 @@ ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---
 
-# Build and train a custom generative model with AI Studio
+# Build and train a custom generative model with AI Foundry
 
-In this article, learn to build and train a custom generative model with Azure AI Studio. Document Intelligence custom models require as few as five training documents to get started. Do you have at least five documents? If so,  let's get started training and testing the custom generative model.
+In this article, learn to build and train a custom generative model with Azure AI Foundry. Document Intelligence custom models require as few as five training documents to get started. Do you have at least five documents? If so,  let's get started training and testing the custom generative model.
 
 ## Prerequisites
 
@@ -61,9 +61,9 @@ Follow these tips to optimize your data set for training:
 
 Once you have your Azure blob storage containers, upload your training data to your source containers. Now you're ready to train your custom generative model.
 
-## Azure AI Studio
+## Azure AI Foundry
 
-1. Navigate to the [Azure AI Studio](https://ai.azure.com/?tid=72f988bf-86f1-41af-91ab-2d7cd011db47). The first time you use the Studio, you need to [initialize your subscription and create a hub](../../../ai-studio/how-to/create-azure-ai-resource.md) before creating a project. Custom generative models are only available in East US and North Central US in preview. Ensure your resource group is set to East US or North Central US during hub creation.
+1. Navigate to the [Azure AI Foundry](https://ai.azure.com/?tid=72f988bf-86f1-41af-91ab-2d7cd011db47). The first time you use the Studio, you need to [initialize your subscription and create a hub](../../../ai-studio/how-to/create-azure-ai-resource.md) before creating a project. Custom generative models are only available in East US and North Central US in preview. Ensure your resource group is set to East US or North Central US during hub creation.
 
 1. Select the Vision + Document tile.
 
@@ -73,7 +73,7 @@ Once you have your Azure blob storage containers, upload your training data to y
 
     :::image type="content" source="../media/custom-generative-model/start-document-field-extraction.png" alt-text="Screenshot of the create document field extraction project page.":::
 
-1. Create your project. For more information, *see* [Create a project in Azure AI Studio](../../../ai-studio/how-to/create-projects.md).
+1. Create your project. For more information, *see* [Create a project in Azure AI Foundry portal](../../../ai-studio/how-to/create-projects.md).
 
 1. Create an Azure AI services connection to access Azure Document Intelligence service:
 
@@ -128,7 +128,7 @@ Select **`Build`** to initiate the training process. Generative models train i
 
 * Validate your model accuracy by evaluating the results for each field.
 
-That's it! You learned to train a custom generative model in the Azure AI Studio. Your model is ready for use with the REST API or the SDK to analyze documents.
+That's it! You learned to train a custom generative model in the Azure AI Foundry portal. Your model is ready for use with the REST API or the SDK to analyze documents.
 
 ## Next steps
 

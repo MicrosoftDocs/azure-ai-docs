@@ -1,7 +1,7 @@
 ---
-title: Synthetic data generation in AI Studio
-titleSuffix: Azure AI Studio
-description: Learn how to generate a synthetic dataset in Azure AI Studio.
+title: Synthetic data generation in AI Foundry portal
+titleSuffix: Azure AI Foundry
+description: Learn how to generate a synthetic dataset in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
@@ -13,9 +13,9 @@ author: ssalgadodev
 ms.custom: references_regions
 ---
 
-# Synthetic data generation in Azure AI Studio
+# Synthetic data generation in Azure AI Foundry portal
 
-In Azure AI Studio, you can use synthetic data generation to efficiently produce predictions for your datasets. This article introduces you to the concept of synthetic data generation and how you can use it in machine learning.
+In Azure AI Foundry portal, you can use synthetic data generation to efficiently produce predictions for your datasets. This article introduces you to the concept of synthetic data generation and how you can use it in machine learning.
 
 ## What is synthetic data generation?
 
@@ -35,6 +35,6 @@ To see how to generate synthetic data, you can use the [sample notebook](https:/
 
 ## Related content
 
-- [What is Azure AI Studio?](../what-is-ai-studio.md)
-- [Deploy Meta Llama 3.1 models with Azure AI Studio](../how-to/deploy-models-llama.md)
-- [Azure AI Studio FAQ](../faq.yml)
+- [What is Azure AI Foundry?](../what-is-ai-studio.md)
+- [Deploy Meta Llama 3.1 models with Azure AI Foundry](../how-to/deploy-models-llama.md)
+- [Azure AI Foundry FAQ](../faq.yml)

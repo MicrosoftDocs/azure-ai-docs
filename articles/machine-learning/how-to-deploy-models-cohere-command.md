@@ -13,6 +13,7 @@ ms.author: mopeakande
 author: msakande
 ms.custom: references_regions, generated
 zone_pivot_groups: azure-ai-model-catalog-samples-chat
+ms.collection: ce-skilling-ai-copilot
 ---
 
 # How to use Cohere Command chat models with Azure Machine Learning studio
@@ -2164,4 +2165,4 @@ For more information on how to track costs, see [Monitor costs for models offere
 * [Azure AI Model Inference API](reference-model-inference-api.md)
 * [Deploy models as serverless APIs](how-to-deploy-models-serverless.md)
 * [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md)
-* [Plan and manage costs for Azure AI Studio](concept-plan-manage-cost.md)
+* [Plan and manage costs for Azure AI Foundry](/azure/ai-studio/how-to/costs-plan-manage)

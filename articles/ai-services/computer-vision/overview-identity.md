@@ -13,6 +13,7 @@ ms.author: pafarley
 ms.custom:
   - ignite-2023
 keywords: facial recognition, facial recognition software, facial analysis, face matching, face recognition app, face search by image, facial recognition search
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 #Customer intent: As the developer of an app that deals with images of humans, I want to learn what the Face service does so I can determine if I should use its features.
 ---
 
@@ -54,6 +55,8 @@ The following are common use cases for the Face service:
 
 **Face redaction**: Redact or blur detected faces of people recorded in a video to protect their privacy.
 
+See the [customer checkin management](https://github.com/Azure-Samples/azure-ai-vision/tree/main/face/Scenario-CustomerCheckinManagement) and [face photo tagging](https://github.com/Azure-Samples/azure-ai-vision/tree/main/face/Scenario-FacePhotoTagging) scenarios on GitHub for working examples of facial recognition technology.
+
 > [!WARNING]
 > On June 11, 2020, Microsoft announced that it will not sell facial recognition technology to police departments in the United States until strong regulation, grounded in human rights, has been enacted. As such, customers may not use facial recognition features or functionality included in Azure Services, such as Face or Video Indexer, if a customer is, or is allowing use of such services by or for, a police department in the United States. When you create a new Face resource, you must acknowledge and agree in the Azure Portal that you will not use the service by or for a police department in the United States and that you have reviewed the Responsible AI documentation and will use this service in accordance with it.
 
@@ -82,7 +85,7 @@ The goal of liveness detection is to ensure that the system is interacting with 
 
 The liveness detection solution successfully defends against a variety of spoof types ranging from paper printouts, 2d/3d masks, and spoof presentations on phones and laptops. Liveness detection is an active area of research, with continuous improvements being made to counteract increasingly sophisticated spoofing attacks over time. Continuous improvements will be rolled out to the client and the service components over time as the overall solution gets more robust to new types of attacks.
 
-Our liveness detection solution meets iBeta Level 1 and 2 ISO/IEC 30107-3 compliance.
+Our liveness detection solution meets [iBeta Level 1 and 2 ISO/IEC 30107-3](https://www.ibeta.com/iso-30107-3-presentation-attack-detection-confirmation-letters/#letters) compliance.
 
 Tutorial
 - [Face liveness Tutorial](Tutorials/liveness.md)
