@@ -26,7 +26,7 @@ You can ask questions such as "*what is the weather in Seattle?*" or "*what is t
 ## Setup  
 
 > [!IMPORTANT]
-> Grounding with Bing Search only works with the following AOAI models: `gpt-3.5-turbo-0125`, `gpt-4-0125-preview`, `gpt-4-turbo-preview`, `gpt-4-turbo`, `gpt-4-turbo-2024-04-09`, `gpt-4o`
+> Grounding with Bing Search only works with the following AOAI models: `gpt-3.5-turbo-0125`, `gpt-4-0125-preview`, `gpt-4-turbo-2024-04-09`, `gpt-4o-0513`
 
 1. Ensure you've completed the prerequisites and setup steps in the [quickstart](../../quickstart.md).
 
@@ -65,7 +65,7 @@ You can ask questions such as "*what is the weather in Seattle?*" or "*what is t
 
 
 
-1. Go to [Azure AI Studio](https://ai.azure.com/) and select the AI Project(make sure it's in the same resource group of your Grounding with Bing Search resource). Click **Settings** 
+1. Go to [Azure AI Foundry Portal](https://ai.azure.com/) and select the AI Project(make sure it's in the same resource group of your Grounding with Bing Search resource). Click **Settings** 
 
     :::image type="content" source="../../media/tools/bing/project-settings-button.png" alt-text="A screenshot of the settings button for an AI project." lightbox="../../media/tools/bing/project-settings-button.png":::
 
@@ -194,7 +194,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects.models import BingGroundingTool
 
 
-# Create an Azure AI Client from a connection string, copied from your AI Studio project.
+# Create an Azure AI Client from a connection string, copied from your Azure AI project.
 # At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
 # Customer needs to login to Azure subscription via Azure CLI and set the environment variables
 
