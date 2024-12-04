@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 08/20/2024
+ms.date: 12/03/2024
 ---
 
 # Tutorial: Fix a skillset using Debug Sessions

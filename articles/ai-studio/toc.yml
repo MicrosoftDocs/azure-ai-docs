@@ -91,6 +91,10 @@ items:
       href: how-to/model-catalog-overview.md
     - name: Data, privacy, and security for Model Catalog
       href: how-to/concept-data-privacy.md
+    - name: Model lifecycle and retirement
+      href: concepts/model-lifecycle-retirement.md
+    - name: Model benchmarks
+      href: how-to/model-benchmarks.md
     - name: Model benchmarking
       items:
       - name: Model benchmarks

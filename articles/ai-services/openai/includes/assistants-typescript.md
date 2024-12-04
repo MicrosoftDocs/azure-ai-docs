@@ -3,8 +3,8 @@ title: 'Quickstart: Use the Azure OpenAI Service via the JavaScript SDK'
 titleSuffix: Azure OpenAI Service
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the JavaScript SDK. 
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+author: aahill
+ms.author: aahi
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 10/09/2024
