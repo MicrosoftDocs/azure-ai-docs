@@ -302,7 +302,7 @@ items:
     - name: Java
       href: /java/api/com.azure.ai.openai?view=azure-java-preview&preserve-view=true
     - name: JavaScript
-      href: /javascript/api/@azure/openai/?view=azure-node-preview&preserve-view=true
+      href: /azure/ai-services/openai/gpt-v-quickstart?view=azure-node-preview&preserve-view=true&tabs=image%2Ccommand-line%2Cjavascript-keyless%2Ctypescript-keyless&pivots=programming-language-javascript#create-a-node-application
     - name: .NET 
       href: /dotnet/api/azure.ai.openai?view=azure-dotnet-preview&preserve-view=true
     - name: REST API (fine-tuning)
