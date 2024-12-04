@@ -248,6 +248,12 @@ with project_client:
 
 ::: zone-end
 
+## Terms of use and display requirements
+
+According to Terms of use and display requirements, you need to display both website URLs and Bing search query URLs in your custom interface. You can find website URLs through `annotations` parameter in API response and Bing search query URLs through `runstep` details.  
+
+:::image type="content" source="../../media/tools/bing/website-citations.png" alt-text="A screenshot showing citations for Bing search results." lightbox="../../media/tools/bing/website-citations.png":::
+
 ## Next steps
 
 [Learn how to use the code interpreter tool.](./code-interpreter.md)
