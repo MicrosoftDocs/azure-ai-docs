@@ -8,12 +8,12 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: reference
-ms.date: 08/05/2024
+ms.date: 12/03/2024
 ---
 
 #	Azure AI Foundry model catalog vectorizer
 
-> [!IMPORTANT] 
+> [!IMPORTANT]
 > This vectorizer is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [2024-05-01-Preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-05-01-Preview&preserve-view=true) supports this feature.
 
 The **Azure AI Foundry model catalog** vectorizer connects to an embedding model that was deployed via [the Azure AI Foundry model catalog](/azure/ai-studio/how-to/model-catalog) to an Azure Machine Learning endpoint. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed. 
@@ -27,7 +27,7 @@ Parameters are case-sensitive. Which parameters you choose to use depends on wha
 | Parameter name | Description |
 |--------------------|-------------|
 | `uri` | (Required) The [URI of the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md) to which the _JSON_ payload is sent. Only the **https** URI scheme is allowed. |
-| `modelName` | (Required) The model ID from the AI Foundry model catalog that is deployed at the provided endpoint. Currently supported values are <ul><li>OpenAI-CLIP-Image-Text-Embeddings-vit-base-patch32 </li><li>OpenAI-CLIP-Image-Text-Embeddings-ViT-Large-Patch14-336 </li><li>Facebook-DinoV2-Image-Embeddings-ViT-Base </li><li>Facebook-DinoV2-Image-Embeddings-ViT-Giant </li><li>Cohere-embed-v3-english </li><li>Cohere-embed-v3-multilingual</ul> |
+| `modelName` | (Required) The model ID from the AI Foundry model catalog that is deployed at the provided endpoint. Currently supported models are <ul><li>Facebook-DinoV2-Image-Embeddings-ViT-Base </li><li>Facebook-DinoV2-Image-Embeddings-ViT-Giant </li><li>Cohere-embed-v3-english </li><li>Cohere-embed-v3-multilingual</ul> |
 | `key` | (Required for [key authentication](#WhatParametersToUse)) The [key for the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md). |
 | `resourceId` | (Required for [token authentication](#WhatParametersToUse)). The Azure Resource Manager resource ID of the AML online endpoint. It should be in the format subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.MachineLearningServices/workspaces/{workspace-name}/onlineendpoints/{endpoint_name}. |
 | `region` | (Optional for [token authentication](#WhatParametersToUse)). The [region](https://azure.microsoft.com/global-infrastructure/regions/) the AML online endpoint is deployed in. Needed if the region is different from the region of the search service. |
@@ -51,8 +51,6 @@ Which vector query types are supported by the AI Foundry model catalog vectorize
 
 | `modelName` | Supports `text` query | Supports `imageUrl` query | Supports `imageBinary` query |
 |--------------------|-------------|-------------|-------------|
-| OpenAI-CLIP-Image-Text-Embeddings-vit-base-patch32 | X | X | X |
-| OpenAI-CLIP-Image-Text-Embeddings-ViT-Large-Patch14-336 | X | X | X |
 | Facebook-DinoV2-Image-Embeddings-ViT-Base |  | X | X |
 | Facebook-DinoV2-Image-Embeddings-ViT-Giant |  | X | X |
 | Cohere-embed-v3-english | X |  |  |
@@ -64,8 +62,6 @@ The expected field dimensions for a field configured with an AI Foundry model ca
 
 | `modelName` | Expected dimensions |
 |--------------------|-------------|
-| OpenAI-CLIP-Image-Text-Embeddings-vit-base-patch32 | 512 |
-| OpenAI-CLIP-Image-Text-Embeddings-ViT-Large-Patch14-336 | 768 |
 | Facebook-DinoV2-Image-Embeddings-ViT-Base | 768 |
 | Facebook-DinoV2-Image-Embeddings-ViT-Giant | 1536 |
 | Cohere-embed-v3-english | 1024 |

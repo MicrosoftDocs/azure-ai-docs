@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 10/29/2024
+ms.date: 12/03/2024
 ---
 
 # How to implement integrated vectorization using models from Azure AI Foundry
@@ -105,8 +105,6 @@ The URI and key are generated when you deploy the model from the catalog. For mo
 
 This AML skill payload works with the following models from AI Foundry:
 
-+ OpenAI-CLIP-Image-Text-Embeddings-vit-base-patch32
-+ OpenAI-CLIP-Image-Text-Embeddings-ViT-Large-Patch14-336
 + Facebook-DinoV2-Image-Embeddings-ViT-Base
 + Facebook-DinoV2-Image-Embeddings-ViT-Giant
 
