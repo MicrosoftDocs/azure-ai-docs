@@ -53,13 +53,13 @@ By default, the Azure OpenAI service provides a [default SLA](https://www.micros
 
 1. Certain workloads may need to have their own dedicated provisioned deployment. If so, you can create a dedicated PTU deployment for that application.
 1. The workload and enterprise PTU pool deployments should protect against regional failures. You could do this by placing the workload PTU pool in Region A and the enterprise PTU pool in Region B.    
-1. This deployment should failover first to the Enterprise PTU Pool and then to the Standard deployment. This implies that when utilization of the workload PTU deployment exceeds 100%, requests would still be serviced by PTU endpoints, enabling a higher latency SLA for that application.
+1. This deployment should fail over first to the Enterprise PTU Pool and then to the Standard deployment. This implies that when utilization of the workload PTU deployment exceeds 100%, requests would still be serviced by PTU endpoints, enabling a higher latency SLA for that application.
 
-:::image type="content" source="../how-to/media/disaster-recovery/disaster-recovery-diagram.jpg" alt-text="Disaster recovery architectural diagram" lightbox="../how-to/media/disaster-recovery/disaster-recovery-diagram.jpg":::
+:::image type="content" source="../how-to/media/disaster-recovery/disaster-recovery-diagram.jpg" alt-text="Disaster recovery architectural diagram." lightbox="../how-to/media/disaster-recovery/disaster-recovery-diagram.jpg":::
 
 The additional benefit of this architecture is that it allows you to stack Standard deployments with Provisioned Deployments so that you can dial in your preferred level of performance and resiliency. This allows you to use PTU for your baseline demand across workloads and leverage pay-as-you-go for spikes in traffic.
 
-:::image type="content" source="../how-to/media/disaster-recovery/recovery.jpg" alt-text="Failover architectural diagram" lightbox="../how-to/media/disaster-recovery/recovery.jpg":::
+:::image type="content" source="../how-to/media/disaster-recovery/recovery.jpg" alt-text="Failover architectural diagram." lightbox="../how-to/media/disaster-recovery/recovery.jpg":::
 
 ## Supporting Infrastructure
 
@@ -72,7 +72,7 @@ Organizations consuming the service through the Microsoft public backbone should
 1. The Generative AI Gateway should be deployed in manner that ensures it's available in the event of an Azure regional outage. If using APIM (Azure API Management), this can be done by deploying separate APIM instances in multiple regions or using the [multi-region gateway feature of APIM](/azure/api-management/api-management-howto-deploy-multi-region).
 1. A public global server load balancer should be used to load balance across the multiple Generative AI Gateway instances in either an active/active or active/passive manner. [Azure FrontDoor](/azure/traffic-manager/traffic-manager-routing-methods) can be used to fulfill this role depending on the organization’s requirements.
 
-:::image type="content" source="../how-to/media/disaster-recovery/scaling.jpg" alt-text="Provisioned scaling diagram" lightbox="../how-to/media/disaster-recovery/scaling.jpg":::
+:::image type="content" source="../how-to/media/disaster-recovery/scaling.jpg" alt-text="Provisioned scaling diagram." lightbox="../how-to/media/disaster-recovery/scaling.jpg":::
 
 ### Designing for consumption through the private networking
 
