@@ -19,7 +19,7 @@ zone_pivot_groups: selection-file-search
 
 File search augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.  
 
-With the improved file search tool, your files remain in your own storage, and your Azure AI Search resource is used to ingest them, ensuring you maintain complete control over your data.   
+[!New] Using the standard agent setup, the improved file search tool ensures your files remain in your own storage, and your Azure AI Search resource is used to ingest them, ensuring you maintain complete control over your data.   
 
 <!-- 
 > [!IMPORTANT]
@@ -28,7 +28,7 @@ With the improved file search tool, your files remain in your own storage, and y
 
 ### File sources  
 - Upload local files 
-- [Coming soon] Azure Blob Storage 
+- Azure Blob Storage 
 
 
 ## Dependency on agent setup
@@ -82,7 +82,7 @@ As a fallback, there's a 60-second maximum wait in the run object when the threa
 
 ::: zone-end
 
-::: zone pivot="quickstart"
+::: zone pivot="code-examples"
 
 ## Quickstart – Upload Local Files w/ file search 
 

@@ -934,8 +934,8 @@ groups:
   pivots:
   - id: overview
     title: Overview
-  - id: quickstart
-    title: Quickstart
+  - id: code-examples
+    title: Code examples
   - id: supported-filetypes
     title: Supported file types
   - id: deep-dive
