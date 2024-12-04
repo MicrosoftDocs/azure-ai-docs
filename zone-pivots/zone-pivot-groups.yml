@@ -937,7 +937,6 @@ groups:
     title: C# example
   - id: python-example
     title: Python example
-
 # owner: sgilley
 - id: programming-languages-sdk-overview
   title: Programming languages
