@@ -77,7 +77,7 @@ Skill inputs are a node of the [enriched document](cognitive-search-working-with
 
 ## Skill outputs
 
-Skill outputs are new nodes of an enriched document created by the skill. There are no predefined outputs for this skill. For outputs, you should provide nodes that can be populated from the JSON reponse of your AML skill.
+Skill outputs are new nodes of an enriched document created by the skill. There are no predefined outputs for this skill. For outputs, you should provide nodes that can be populated from the JSON response of your AML skill.
 
 ## Sample definition
 
