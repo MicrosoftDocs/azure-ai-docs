@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure
 ms.topic: how-to
 ms.date: 11/20/2024
-author: aahill
+author: fosteramanda
 ms.author: aahi
 recommendations: false
 zone_pivot_groups: selection-file-search
@@ -240,6 +240,7 @@ Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
     "Can you give me the documented codes for 'banana' and 'orange'?");
 ThreadMessage message = messageResponse.Value;
 ```
+---
 
 ## Step 5: Create a run and check the output
 Create a run and observe that the model uses the file search tool to provide a response to the user's question.
