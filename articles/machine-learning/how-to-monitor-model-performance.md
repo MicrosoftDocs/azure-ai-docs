@@ -82,19 +82,23 @@ You can use the Azure CLI, the Python SDK, or the studio for an out-of-box setup
 
 # [Azure CLI](#tab/azure-cli)
 
-Azure Machine Learning model monitoring uses `az ml schedule` to schedule a monitoring job. You can create the out-of-box model monitor with the following CLI command and YAML definition:
+In the Azure CLI, you use `az ml schedule` to schedule a monitoring job.
 
-```azurecli
-az ml schedule create -f ./out-of-box-monitoring.yaml
-```
+1. Create a monitoring definition in a YAML file. For a sample out-of-box definition, see the following YAML code, which is also available in the [azureml-examples repository](https://github.com/Azure/azureml-examples/blob/main/cli/monitoring/out-of-box-monitoring.yaml).
 
-The following YAML contains the definition for the out-of-box model monitoring.
+   Before you use this definition, adjust the values to fit your environment. For `endpoint_deployment_id`, use a value in the format `azureml:<endpoint-name>:<model-name>`.
 
-:::code language="yaml" source="~/azureml-examples-main/cli/monitoring/out-of-box-monitoring.yaml":::
+   :::code language="yaml" source="~/azureml-examples-main/cli/monitoring/out-of-box-monitoring.yaml":::
+
+1. Run the following command to create the model:
+
+   ```azurecli
+   az ml schedule create -f ./out-of-box-monitoring.yaml
+   ```
 
 # [Python SDK](#tab/python)
 
-You can use the following code to set up the out-of-box model monitoring:
+To set up the out-of-box model monitoring, use code that's similar to the following sample. For `endpoint_deployment_id`, use a value in the format `azureml:<endpoint-name>:<model-name>`.
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -109,7 +113,7 @@ from azure.ai.ml.entities import (
     ServerlessSparkCompute
 )
 
-# get a handle to the workspace
+# Get a handle to the workspace.
 ml_client = MLClient(
     DefaultAzureCredential(),
     subscription_id="subscription_id",
@@ -117,74 +121,75 @@ ml_client = MLClient(
     workspace_name="workspace_name",
 )
 
-# create the compute
+# Create the compute instance.
 spark_compute = ServerlessSparkCompute(
     instance_type="standard_e4s_v3",
     runtime_version="3.3"
 )
 
-# specify your online endpoint deployment
+# Specify your online endpoint deployment.
 monitoring_target = MonitoringTarget(
     ml_task="classification",
     endpoint_deployment_id="azureml:credit-default:main"
 )
 
 
-# create alert notification object
+# Create an alert notification object.
 alert_notification = AlertNotification(
     emails=['abc@example.com', 'def@example.com']
 )
 
-# create the monitor definition
+# Create the monitor definition.
 monitor_definition = MonitorDefinition(
     compute=spark_compute,
     monitoring_target=monitoring_target,
     alert_notification=alert_notification
 )
 
-# specify the schedule frequency
+# Specify the schedule frequency.
 recurrence_trigger = RecurrenceTrigger(
     frequency="day",
     interval=1,
     schedule=RecurrencePattern(hours=3, minutes=15)
 )
 
-# create the monitor
+# Create the monitoring schedule.
 model_monitor = MonitorSchedule(
     name="credit_default_monitor_basic",
     trigger=recurrence_trigger,
     create_monitor=monitor_definition
 )
 
+# Schedule the monitoring job.
 poller = ml_client.schedules.begin_create_or_update(model_monitor)
 created_monitor = poller.result()
 ```
 
 # [Studio](#tab/azure-studio)
 
-1. Navigate to [Azure Machine Learning studio](https://ml.azure.com).
+1. Go to [Azure Machine Learning studio](https://ml.azure.com).
 1. Go to your workspace.
-1. Select **Monitoring** from the **Manage** section
+1. Under **Manage**, select **Monitoring**.
 1. Select **Add**.
 
    :::image type="content" source="media/how-to-monitor-models/add-model-monitoring.png" alt-text="Screenshot showing how to add model monitoring." lightbox="media/how-to-monitor-models/add-model-monitoring.png":::
 
-1. On the **Basic settings** page, use **(Optional) Select model** to choose the model to monitor.
-1. The **(Optional) Select deployment with data collection enabled** dropdown list should be automatically populated if the model is deployed to an Azure Machine Learning online endpoint. Select the deployment from the dropdown list.
-1. Select the training data to use as the comparison reference in the **(Optional) Select training data** box.
-1. Enter a name for the monitoring in **Monitor name** or keep the default name.
-1. Notice that the virtual machine size is already selected for you.
-1. Select your **Time zone**. 
-1. Select **Recurrence** or **Cron expression** scheduling.
-1. For **Recurrence** scheduling, specify the repeat frequency, day, and time. For **Cron expression** scheduling, enter a cron expression for monitoring run.
+1. On the Basic settings page, under **(Optional) Select model**, select the model that you want to monitor.
+1. In the **(Optional) Select deployment with data collection enabled** list, select the deployment that you want to monitor. This list should be automatically populated if the model is deployed to an Azure Machine Learning online endpoint.
+1. Under **(Optional) Select training data**, select the training data to use as the comparison reference.
+1. Under **Monitor name**, enter a name for the monitoring, or keep the default name.
+1. Under **Virtual machine size**, use the default size.
+1. Under **Time zone**, select your time zone. 
+1. For scheduling, select **Recurrence** or **Cron expression**.
+1. For recurrence scheduling, specify the repeat frequency, day, and time. For cron expression scheduling, enter a cron expression for a monitoring run.
 
    :::image type="content" source="media/how-to-monitor-models/model-monitoring-basic-setup.png" alt-text="Screenshot of basic settings page for model monitoring." lightbox="media/how-to-monitor-models/model-monitoring-basic-setup.png":::
 
 1. Select **Next** to go to the **Advanced settings** section. 
-1. Select **Next** on the **Configure data asset** page to keep the default datasets.
-1. Select **Next** to go to the **Select monitoring signals** page.
-1. Select **Next** to go to the **Notifications** page. Add your email to receive email notifications.
-1. Review your monitoring details and select **Create** to create the monitor.
+1. On the Configure data asset page, select **Next** to keep the default datasets.
+1. On the Select monitoring signals page, select **Next**.
+1. On the Notifications page, enter the email address that you want to use to receive notifications, and then select **Next**.
+1. On the Review monitoring details page, check the settings, and then select **Create**.
 
 ---
 
