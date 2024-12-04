@@ -395,7 +395,7 @@ The `AdversarialSimulator` supports a range of scenarios, hosted in the service,
 | Grounded Content Generation (single turn only)  | `ADVERSARIAL_CONTENT_GEN_GROUNDED`   |475 |Hateful and unfair content, Sexual content, Violent content, Self-harm-related content, Direct Attack (UPIA) Jailbreak |
 | Protected Material (single turn only) | `ADVERSARIAL_PROTECTED_MATERIAL` | 306 | Protected Material |
 
-- For testing groundedness scenarios (single or multi-turn), see the section on [simulating and evaluating for groundendess](#simulating-and-evaluating-for-groundendess).
+- For testing groundedness scenarios (single or multi-turn), see the section on [simulating and evaluating for groundedness](#simulating-and-evaluating-for-groundendess).
 - For simulating direct attack (UPIA) and indirect attack (XPIA) scenarios, see section on [simulating jailbreak attacks](#simulating-jailbreak-attacks).
 
 ### Simulating jailbreak attacks
@@ -507,7 +507,7 @@ Using the [ISO standard](https://www.andiamo.co.uk/resources/iso-language-codes/
 | Simplified Chinese | zh-cn             |
 | German             | de                |
 
-The language options can be passed in as an optional parameter to the `AdversarialSimulator` class using the [`SupportedLanguages` class](https://learn.microsoft.com/python/api/azure-ai-evaluation/azure.ai.evaluation.simulator.supportedlanguages?view=azure-python-preview).
+The language options can be passed in as an optional parameter to the `AdversarialSimulator` class using the [`SupportedLanguages` class](/python/api/azure-ai-evaluation/azure.ai.evaluation.simulator.supportedlanguages).
 
 Usage example below:
 
