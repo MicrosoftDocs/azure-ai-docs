@@ -111,6 +111,11 @@
             "redirect_document_id": true
         },
         {
+            "source_path_from_root": "/articles/ai-studio/concepts/model-lifecycle-and-retirement.md",
+            "redirect_url": "/azure/ai-studio/concepts/model-lifecycle-retirement",
+            "redirect_document_id": true
+        },
+        {
             "source_path_from_root": "/articles/ai-studio/how-to/llmops-azure-devops-prompt-flow.md",
             "redirect_url": "/azure/machine-learning/prompt-flow/how-to-end-to-end-llmops-with-prompt-flow",
             "redirect_document_id": false

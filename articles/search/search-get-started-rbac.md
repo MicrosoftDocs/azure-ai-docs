@@ -7,60 +7,62 @@ ms.author: heidist
 ms.service: azure-ai-search
 
 ms.topic: quickstart
-ms.date: 11/26/2024
+ms.date: 12/03/2024
 ---
 
 # Quickstart: Connect without keys
 
-Configure Azure AI Search to use Microsoft Entra ID authentication and roles. Connect from your local system, running Jupyter notebooks, or using a REST client.
+Configure Azure AI Search to use Microsoft Entra ID authentication and role-based access control (RBAC) so that you can connect from your local system without API keys, using Jupyter notebooks or a REST client to interact with your search service.
 
-If you stepped through other quickstarts that connect using API keys, this quickstart shows you how to switch to identity-based authentication so that you can avoid hard-coded API keys in your example code.
+If you stepped through other quickstarts that connect using API keys, this quickstart shows you how to switch to identity-based authentication so that you can avoid hard-coded keys in your example code.
 
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 
-- [Azure AI Search](search-create-service-portal.md), any region or tier, but you need Basic or higher to configure a system-assigned managed identity for Azure AI Search.
+- [Azure AI Search](search-create-service-portal.md), any region or tier, but you need Basic or higher to configure a managed identity for Azure AI Search.
 
-- A command line tool, such as the [Azure CLI](/cli/azure/install-azure-cli).
+- A command line tool, such as PowerShell or Bash, and the [Azure CLI](/cli/azure/install-azure-cli).
 
-## Step 1: Set up your Azure subscription and tenant
+## Step 1: Get your Azure subscription and tenant IDs
 
-This step is necessary if you have more than one subscription or tenant.
+You need this step if you have more than one subscription or tenant.
 
 1. Get the Azure subscription and tenant for your search service:
 
-   1. Sign into the Azure portal and navigate to your search service.
+   1. Sign into the [Azure portal](https://portal.azure.com) and navigate to your search service.
 
    1. Notice the subscription name and ID in **Overview** > **Essentials**.
 
-   1. Select the subscription name to view the parent management group (tenant ID).
+   1. Now select the subscription name to show the parent management group (tenant ID) on the next page.
 
       :::image type="content" source="media/search-get-started-rbac/select-subscription-name.png" lightbox="media/search-get-started-rbac/select-subscription-name.png" alt-text="Screenshot of the portal page providing the subscription name":::
 
-1. Identify the active Azure subscription and tenant on your local device:
+1. You now know which subscription and tenant Azure AI Search is under. Switch to your local device and a command prompt, and identify the active Azure subscription and tenant on your device:
 
-   `az account show`
+   ```azurecli
+   az account show
+   ```
 
-1. Set your Azure subscription to the subscription and tenant:
+1. If the active subscription and tenant differ from the information obtained in the previous step, change the subscription ID. Next, sign in to Azure using the tenant ID that you found in the previous step:
 
-   `az account set --subscription <your-subscription-id>`
+   ```azurecli
+    az account set --subscription <your-subscription-id>
 
-   `az login --tenant <your-tenant-id>`
+    az login --tenant <your-tenant-id>
+   ```
 
-1. Check your tenant ID:
+## Step 2: Configure Azure AI Search for RBAC
 
-   `az account show --query tenantId --output tsv`
-
-## Step 2: Configure Azure AI Search for Microsoft Entra ID authentication
-
-1. Sign in to the Azure portal and navigate to your Azure AI Search service.
+1. Sign in to the [Azure portal](https://portal.azure.com) and navigate to your Azure AI Search service.
 
 1. Enable role-based access control (RBAC):
 
    1. Go to **Settings** > **Keys**.
 
-   1. Choose **Role-based control** or **Both** if you need time to transition clients to role-based access control1.
+   1. Choose **Role-based control** or **Both** if you need time to transition clients to role-based access control.
+
+      If you choose **Role-based control**, make sure that you assign yourself *all* roles named in the next instruction or you won't be able to complete tasks in the portal or through a  local client.
 
 1. Assign roles in the Azure portal:
 
@@ -70,9 +72,22 @@ This step is necessary if you have more than one subscription or tenant.
 
    1. Select **+ Add** > **Add role assignment**.
 
-   1. Choose a role (Search Service Contributor, Search Index Data Contributor, Search Index Data Reader) and assign it to your Microsoft Entra user or group identity. These three roles provide the full set of permissions for creating, loading, and querying objects on Azure AI Search. For more information, see [Connect using roles](search-security-rbac.md).
+   1. Choose a role (Search Service Contributor, Search Index Data Contributor, Search Index Data Reader) and assign it to your Microsoft Entra user or group identity.
+
+      Repeat for each role.
+
+      You need all three roles for creating, loading, and querying objects on Azure AI Search. For more information, see [Connect using roles](search-security-rbac.md).
+
+> [!TIP]
+> Later, if you get authentication failure errors, recheck the settings in this section. There could be policies at the subscription or resource group level that override any API settings you specify.
 
 ## Step 3: Connect from your local system
+
+If you haven't yet signed in to Azure:
+
+```azurecli
+az login
+```
 
 ### Using Python and Jupyter notebooks
 
@@ -89,12 +104,12 @@ This step is necessary if you have more than one subscription or tenant.
     from azure.search.documents import SearchClient
     
     service_endpoint = "https://<your-search-service-name>.search.windows.net"
-    index_name = "<your-index-name>"
+    index_name = "hotels-sample-index"
     
     credential = DefaultAzureCredential()
     client = SearchClient(endpoint=service_endpoint, index_name=index_name, credential=credential)
     
-    results = client.search("search text")
+    results = client.search("beach access")
     for result in results:
         print(result)
     ```
@@ -103,33 +118,38 @@ This step is necessary if you have more than one subscription or tenant.
 
 Several quickstarts and tutorials use a REST client, such as Visual Studio Code with the REST extension. Here's how you connect to Azure AI Search from Visual Studio Code.
 
-1. Get a personal identity token:
+You should have a `.rest` or `.http` file, similar to the one described in [Quickstart: Vector search](search-get-started-vector.md).
 
-   `az account get-access-token --resource https://<your-search-service-name>.search.windows.net`
+1. Get an access token:
 
-1. Extract the token from the output:
+   ```azurecli
+   az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
+   ```
 
-   `TOKEN=$(az account get-access-token --resource https://<your-search-service-name>.search.windows.net --query accessToken --output tsv)`
+1. At the top of your file, set variables used for the connection, pasting the full search service endpoint and the access token you got in the previous step. Your variables should look similar to the following example. Notice the values aren't quote-enclosed.
 
-1. Provide the token in a request header:
-
-   `az rest --method get --url "https://<your-search-service-name>.search.windows.net/indexes/<your-index-name>/docs?api-version=2021-04-30-Preview&search=*" --headers "Authorization=Bearer $TOKEN"`
+    ```REST
+    @baseUrl = https://contoso.search.search.windows.net
+    @token = <a long GUID>
+    ```
 
 1. Specify the authorization bearer token in a REST call:
 
    ```REST
-    POST https://{{baseUrl}}/indexes/{{index-name}}/docs/search?api-version=2024-07-01 HTTP/1.1
+    POST https://{{baseUrl}}/indexes/hotels-sample-index/docs/search?api-version=2024-07-01 HTTP/1.1
       Content-type: application/json
       Authorization: Bearer {{token}}
     
         {
              "queryType": "simple",
-             "search": "motel",
+             "search": "beach access",
              "filter": "",
              "select": "HotelName,Description,Category,Tags",
              "count": true
          }
    ```
+
+If the call fails, revisit the previous steps to make sure you didn't skip any. You might also want to restart your device.
 
 ## Additional configuration
 

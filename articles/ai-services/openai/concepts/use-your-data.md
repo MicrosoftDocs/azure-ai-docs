@@ -43,7 +43,7 @@ To get started, [connect your data source](../use-your-data-quickstart.md) using
 
 ## Azure Role-based access controls (Azure RBAC) for adding data sources
 
-To use Azure OpenAI On Your Data fully, you need to set one or more Azure RBAC roles. See [Use Azure OpenAI On Your Data securely](../how-to/use-your-data-securely.md#role-assignments) for more information.
+To use Azure OpenAI On Your Data fully, you need to set one or more Azure RBAC roles. See [Azure OpenAI On Your Data configuration](../how-to/on-your-data-configuration.md#role-assignments) for more information.
 
 ## Data formats and file types
 
@@ -131,7 +131,7 @@ Azure OpenAI On Your Data has intelligent search enabled for your data. Semantic
 > [!NOTE] 
 > Document-level access control is supported when you select Azure AI Search as your data source.
 
-Azure OpenAI On Your Data lets you restrict the documents that can be used in responses for different users with Azure AI Search [security filters](/azure/search/search-security-trimming-for-azure-search-with-aad). When you enable document level access, the search results returned from Azure AI Search and used to generate a response are trimmed based on user Microsoft Entra group membership. You can only enable document-level access on existing Azure AI Search indexes See [Use Azure OpenAI On Your Data securely](../how-to/use-your-data-securely.md#document-level-access-control) for more information.
+Azure OpenAI On Your Data lets you restrict the documents that can be used in responses for different users with Azure AI Search [security filters](/azure/search/search-security-trimming-for-azure-search-with-aad). When you enable document level access, the search results returned from Azure AI Search and used to generate a response are trimmed based on user Microsoft Entra group membership. You can only enable document-level access on existing Azure AI Search indexes. See [Azure OpenAI On Your Data network and access configuration](../how-to/on-your-data-configuration.md#document-level-access-control) for more information.
 
 
 ### Index field mapping 
@@ -387,7 +387,7 @@ A Teams app lets you bring conversational experience to your users in Teams to i
 - Sign in to your [Microsoft 365 developer account](/microsoftteams/platform/concepts/build-and-test/prepare-your-o365-tenant) (using this link to get a test account: [Developer program](https://developer.microsoft.com/microsoft-365/dev-program)).
     - Enable **custom Teams apps** and turn on **custom app uploading** in your account (instructions [here](/microsoftteams/platform/concepts/build-and-test/prepare-your-o365-tenant#enable-custom-teams-apps-and-turn-on-custom-app-uploading))
 - [Azure command-line interface (CLI)](/cli/azure/install-azure-cli) installed. This is a cross-platform command-line tool to connect to Azure and execute administrative commands on Azure resources. For more information on setting up environment variables, see the [Azure SDK documentation](https://github.com/Azure/azure-sdk-for-go/wiki/Set-up-Your-Environment-for-Authentication).
-- Your Azure account has been assigned **Cognitive Services OpenAI user** or **Cognitive Services OpenAI Contributor** role of the Azure OpenAI resource you're using, allowing your account to make Azure OpenAI API calls. For more information, see [Using your data with Azure OpenAI securely](/azure/ai-services/openai/how-to/use-your-data-securely#using-the-api) and [Add role assignment to an Azure OpenAI resource](/azure/ai-services/openai/how-to/role-based-access-control#add-role-assignment-to-an-azure-openai-resource) for instructions on setting this role in the Azure portal. 
+- Your Azure account has been assigned **Cognitive Services OpenAI user** or **Cognitive Services OpenAI Contributor** role of the Azure OpenAI resource you're using, allowing your account to make Azure OpenAI API calls. For more information, see [Azure OpenAI On Your data configuration](../how-to/on-your-data-configuration.md#using-the-api) and [Add role assignment to an Azure OpenAI resource](/azure/ai-services/openai/how-to/role-based-access-control#add-role-assignment-to-an-azure-openai-resource) for instructions on setting this role in the Azure portal. 
 
 
 You can deploy to a standalone Teams app directly from Azure OpenAI Studio. Follow the steps below: 
@@ -433,9 +433,9 @@ Deploying to a standalone web app lets you and your users to interact with chat 
 
 ---
 
-## Use Azure OpenAI On Your Data securely
+## Configure access and networking for Azure OpenAI On Your Data
 
-You can use Azure OpenAI On Your Data securely by protecting data and resources with Microsoft Entra ID role-based access control, virtual networks, and private endpoints. You can also restrict the documents that can be used in responses for different users with Azure AI Search security filters. See [Securely use Azure OpenAI On Your Data](../how-to/use-your-data-securely.md).
+You can use Azure OpenAI On Your Data and protect data and resources with Microsoft Entra ID role-based access control, virtual networks, and private endpoints. You can also restrict the documents that can be used in responses for different users with Azure AI Search security filters. See [Azure OpenAI On Your Data access and network configuration](../how-to/on-your-data-configuration.md).
 
 ## Best practices
 
@@ -743,6 +743,6 @@ If your Azure OpenAI resource is in another region, you won't be able to use Azu
 ## Next steps
 * [Get started using your data with Azure OpenAI](../use-your-data-quickstart.md)
 
-* [Securely use Azure OpenAI On Your Data](../how-to/use-your-data-securely.md)
+* [Azure OpenAI On Your Data network and access configuration](../how-to/on-your-data-configuration.md)
 
 * [Introduction to prompt engineering](./prompt-engineering.md)

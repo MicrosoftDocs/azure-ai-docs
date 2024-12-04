@@ -138,8 +138,6 @@ items:
       href: ./how-to/structured-outputs.md
     - name: Work with code
       href: ./how-to/work-with-code.md
-    - name: Use with large datasets
-      href: ./how-to/integrate-synapseml.md
     - name: Deploy and use web apps
       href: ./how-to/use-web-app.md
     - name: Legacy
@@ -175,8 +173,8 @@ items:
       - name: Text data
         href: ./concepts/use-your-data.md
         displayName: use your data, on your data
-      - name: Use Azure OpenAI On Your Data securely
-        href: ./how-to/use-your-data-securely.md
+      - name: Network and access configuration
+        href: ./how-to/on-your-data-configuration.md
       - name: Deploy and use web apps
         href: ./how-to/use-web-app.md
       - name: Use the Azure Developer CLI
@@ -201,8 +199,6 @@ items:
         href: encrypt-data-at-rest.md
       - name: Managed identity
         href: ./how-to/managed-identity.md
-      - name: Use Azure OpenAI on your data securely
-        href: ./how-to/use-your-data-securely.md
   - name: Service management
     items:
       - name: Resource creation & model deployment
