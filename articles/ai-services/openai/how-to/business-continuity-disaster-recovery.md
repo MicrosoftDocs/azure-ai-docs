@@ -76,6 +76,7 @@ Organizations consuming the service through the Microsoft public backbone should
 
 :::image type="content" source="../how-to/media/disaster-recovery/recovery.png" alt-text="Failover architectural diagram." lightbox="../how-to/media/disaster-recovery/recovery.png":::
 
+
 ### Designing for consumption through the private networking
 
 Organizations consuming the service through a private network should consider the following design elements:
