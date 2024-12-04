@@ -26,7 +26,7 @@ The following guide walks you through key steps in creating a provisioned deploy
 
 ## Obtain/verify PTU quota availability.
 
-Provisioned throughput deployments are sized in units called Provisioned Throughput Units (PTUs). PTU quotav for each provisioned deployment type is granted to a subscription regionally and limits the total number of PTUs that can be deployed in that region across all models and versions. 
+Provisioned throughput deployments are sized in units called Provisioned Throughput Units (PTUs). PTU quota for each provisioned deployment type is granted to a subscription regionally and limits the total number of PTUs that can be deployed in that region across all models and versions. 
 
 Creating a new deployment requires available (unused) quota to cover the desired size of the deployment. For example: If a subscription has the following in South Central US: 
 
