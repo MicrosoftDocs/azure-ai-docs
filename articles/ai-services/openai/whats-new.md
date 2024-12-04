@@ -555,7 +555,7 @@ You can now use Azure OpenAI On Your Data in the following Azure region:
 ### Azure OpenAI On Your Data
 
 - Full VPN and private endpoint support for Azure OpenAI On Your Data, including security support for: storage accounts, Azure OpenAI resources, and Azure AI Search service resources.   
-- New article for using [Azure OpenAI On Your Data securely](./how-to/use-your-data-securely.md) by protecting data with virtual networks and private endpoints.
+- New article for using [Azure OpenAI On Your Data configuration](./how-to/on-your-data-configuration.md) by protecting data with virtual networks and private endpoints.
 
 ### GPT-4 Turbo with Vision now available
 
