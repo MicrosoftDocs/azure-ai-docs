@@ -28,6 +28,8 @@ Tripadvisor is the first licensed data provider and you can ground with your lic
 > 1. You are responsible for obtaining license from licensed data provider and bring your license to authorize the connection with the licensed data.
 > 2. Grounding with licensed data will incur usage with licensed data providers, please review the pricing plan with your selected licensed data providers.
 
+::: zone-end
+
 ::: zone pivot="tripadvisor"
 
 ## Prerequisites
