@@ -137,73 +137,6 @@ with project_client:
     print(f"Created agent, ID: {agent.id}")
 ```
 
-# [Python](#tab/python)
-
-```python
-import os
-from azure.ai.projects import AIProjectClient
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects.models import BingGroundingTool
-
-
-# Create an Azure AI Client from a connection string, copied from your AI Studio project.
-# At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
-# Customer needs to login to Azure subscription via Azure CLI and set the environment variables
-
-project_client = AIProjectClient.from_connection_string(
-    credential=DefaultAzureCredential(),
-    conn_str=os.environ["PROJECT_CONNECTION_STRING"],
-)
-
-bing_connection = project_client.connections.get(
-    connection_name=os.environ["BING_CONNECTION_NAME"]
-)
-conn_id = bing_connection.id
-
-print(conn_id)
-
-# Initialize agent bing tool and add the connection id
-bing = BingGroundingTool(connection_id=conn_id)
-
-# Create agent with the bing tool and process assistant run
-with project_client:
-    agent = project_client.agents.create_agent(
-        model="gpt-4o-mini",
-        name="my-assistant",
-        instructions="You are a helpful assistant",
-        tools=bing.definitions,
-        headers={"x-ms-enable-preview": "true"}
-    )
-    print(f"Created agent, ID: {agent.id}")
-
-    # Create thread for communication
-    thread = project_client.agents.create_thread()
-    print(f"Created thread, ID: {thread.id}")
-
-    # Create message to thread
-    message = project_client.agents.create_message(
-        thread_id=thread.id,
-        role="user",
-        content="How is the weather in Seattle today?",
-    )
-    print(f"Created message, ID: {message.id}")
-
-    # Create and process agent run in thread with tools
-    run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
-    print(f"Run finished with status: {run.status}")
-
-    if run.status == "failed":
-        print(f"Run failed: {run.last_error}")
-
-    # Delete the assistant when done
-    project_client.agents.delete_agent(agent.id)
-    print("Deleted agent")
-
-    # Fetch and log all messages
-    messages = project_client.agents.list_messages(thread_id=thread.id)
-    print(f"Messages: {messages}")
-```
-
 # [C#](#tab/csharp)
 
 ```csharp
@@ -214,86 +147,128 @@ using Azure.Core;
 using Azure.Core.TestFramework;
 using NUnit.Framework;
 
-namespace Azure.AI.Projects.Tests;
+var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
 
-public partial class Sample_Agent_Bing_Grounding : SamplesBase<AIProjectsTestEnvironment>
+var clientOptions = new AIProjectClientOptions();
+
+// Adding the custom headers policy
+clientOptions.AddPolicy(new CustomHeadersPolicy(), HttpPipelinePosition.PerCall);
+var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential(), clientOptions);
+
+GetConnectionResponse bingConnection = await projectClient.GetConnectionsClient().GetConnectionAsync(TestEnvironment.BINGCONNECTIONNAME);
+var connectionId = bingConnection.Id;
+
+AgentsClient agentClient = projectClient.GetAgentsClient();
+
+ToolConnectionList connectionList = new ToolConnectionList
 {
-    [Test]
-    public async Task BingGroundingExample()
+    ConnectionList = { new ToolConnection(connectionId) }
+};
+BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(connectionList);
+
+Response<Agent> agentResponse = await agentClient.CreateAgentAsync(
+    model: "gpt-4o-mini",
+    name: "my-assistant",
+    instructions: "You are a helpful assistant.",
+    tools: new List<ToolDefinition> { bingGroundingTool });
+Agent agent = agentResponse.Value;
+
+```
+
+---
+
+## Create a thread
+
+# [Python](#tab/python)
+
+```python
+# Create thread for communication
+thread = project_client.agents.create_thread()
+print(f"Created thread, ID: {thread.id}")
+
+# Create message to thread
+message = project_client.agents.create_message(
+    thread_id=thread.id,
+    role="user",
+    content="How is the weather in Seattle today?",
+)
+print(f"Created message, ID: {message.id}")
+```
+
+# [C#](#tab/csharp)
+
+```csharp
+// Create thread for communication
+Response<AgentThread> threadResponse = await agentClient.CreateThreadAsync();
+AgentThread thread = threadResponse.Value;
+
+// Create message to thread
+Response<ThreadMessage> messageResponse = await agentClient.CreateMessageAsync(
+    thread.Id,
+    MessageRole.User,
+    "How does wikipedia explain Euler's Identity?");
+ThreadMessage message = messageResponse.Value;
+```
+
+---
+
+## Create a run and check the output
+
+# [Python](#tab/python)
+
+```python
+# Create and process agent run in thread with tools
+run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
+print(f"Run finished with status: {run.status}")
+
+if run.status == "failed":
+    print(f"Run failed: {run.last_error}")
+
+# Delete the assistant when done
+project_client.agents.delete_agent(agent.id)
+print("Deleted agent")
+
+# Fetch and log all messages
+messages = project_client.agents.list_messages(thread_id=thread.id)
+print(f"Messages: {messages}")
+```
+
+# [C#](#tab/csharp)
+
+```csharp
+// Run the agent
+Response<ThreadRun> runResponse = await agentClient.CreateRunAsync(thread, agent);
+
+do
+{
+    await Task.Delay(TimeSpan.FromMilliseconds(500));
+    runResponse = await agentClient.GetRunAsync(thread.Id, runResponse.Value.Id);
+}
+while (runResponse.Value.Status == RunStatus.Queued
+    || runResponse.Value.Status == RunStatus.InProgress);
+
+Response<PageableList<ThreadMessage>> afterRunMessagesResponse
+    = await agentClient.GetMessagesAsync(thread.Id);
+IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
+
+// Note: messages iterate from newest to oldest, with the messages[0] being the most recent
+foreach (ThreadMessage threadMessage in messages)
+{
+    Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+    foreach (MessageContent contentItem in threadMessage.ContentItems)
     {
-        var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
-
-        var clientOptions = new AIProjectClientOptions();
-
-        // Adding the custom headers policy
-        clientOptions.AddPolicy(new CustomHeadersPolicy(), HttpPipelinePosition.PerCall);
-        var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential(), clientOptions);
-
-        GetConnectionResponse bingConnection = await projectClient.GetConnectionsClient().GetConnectionAsync(TestEnvironment.BINGCONNECTIONNAME);
-        var connectionId = bingConnection.Id;
-
-        AgentsClient agentClient = projectClient.GetAgentsClient();
-
-        ToolConnectionList connectionList = new ToolConnectionList
+        if (contentItem is MessageTextContent textItem)
         {
-            ConnectionList = { new ToolConnection(connectionId) }
-        };
-        BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(connectionList);
-
-        Response<Agent> agentResponse = await agentClient.CreateAgentAsync(
-           model: "gpt-4-1106-preview",
-           name: "my-assistant",
-           instructions: "You are a helpful assistant.",
-           tools: new List<ToolDefinition> { bingGroundingTool });
-        Agent agent = agentResponse.Value;
-
-        // Create thread for communication
-        Response<AgentThread> threadResponse = await agentClient.CreateThreadAsync();
-        AgentThread thread = threadResponse.Value;
-
-        // Create message to thread
-        Response<ThreadMessage> messageResponse = await agentClient.CreateMessageAsync(
-            thread.Id,
-            MessageRole.User,
-            "How does wikipedia explain Euler's Identity?");
-        ThreadMessage message = messageResponse.Value;
-
-        // Run the agent
-        Response<ThreadRun> runResponse = await agentClient.CreateRunAsync(thread, agent);
-
-        do
-        {
-            await Task.Delay(TimeSpan.FromMilliseconds(500));
-            runResponse = await agentClient.GetRunAsync(thread.Id, runResponse.Value.Id);
+            Console.Write(textItem.Text);
         }
-        while (runResponse.Value.Status == RunStatus.Queued
-            || runResponse.Value.Status == RunStatus.InProgress);
-
-        Response<PageableList<ThreadMessage>> afterRunMessagesResponse
-            = await agentClient.GetMessagesAsync(thread.Id);
-        IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
-
-        // Note: messages iterate from newest to oldest, with the messages[0] being the most recent
-        foreach (ThreadMessage threadMessage in messages)
+        else if (contentItem is MessageImageFileContent imageFileItem)
         {
-            Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
-            foreach (MessageContent contentItem in threadMessage.ContentItems)
-            {
-                if (contentItem is MessageTextContent textItem)
-                {
-                    Console.Write(textItem.Text);
-                }
-                else if (contentItem is MessageImageFileContent imageFileItem)
-                {
-                    Console.Write($"<image from ID: {imageFileItem.FileId}");
-                }
-                Console.WriteLine();
-            }
+            Console.Write($"<image from ID: {imageFileItem.FileId}");
         }
+        Console.WriteLine();
     }
 }
 ```
-
 ---
 
 ::: zone-end
