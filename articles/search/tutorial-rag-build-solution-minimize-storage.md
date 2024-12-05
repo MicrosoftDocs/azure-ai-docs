@@ -23,9 +23,9 @@ In this tutorial, you modify the existing search index to use:
 > - Scalar quantization
 > - Reduced storage by opting out of vectors in search results
 
-This tutorial reprises the search index created by the [indexing pipeline](tutorial-rag-build-solution-pipeline.md). All of these updates affect the existing content, requiring you to rerun the indexer. However, instead of deleting the search index, you create a second one so that you can compare reductions in vector index size after each incremental update.
+This tutorial reprises the search index created by the [indexing pipeline](tutorial-rag-build-solution-pipeline.md). All of these updates affect the existing content, requiring you to rerun the indexer. However, instead of deleting the search index, you create a second one so that you can compare reductions in vector index size after adding the new capabilities.
 
-Used together, these techniques can reduce vector storage by about half.
+Altogether, the techniques illustrated in this tutorial can reduce vector storage by about half.
 
 The following screenshot compares the [first index](tutorial-rag-build-solution-pipeline.md) from a previous tutorial to the index built in this one.
 
@@ -42,8 +42,6 @@ You should also have the following objects:
 - py-rag-tutorial-ds (data source)
 
 - py-rag-tutorial-ss (skillset)
-
-- py-rag-tutorial-idxr (indexer)
 
 ## Download the sample
 
@@ -66,7 +64,7 @@ All of these capabilities are specified in a search index. After you load the in
 1. Use the following definition for the new index. The difference between this schema and the previous schema updates in [Maximize relevance](tutorial-rag-build-solution-maximize-relevance.md) are new classes for scalar quantization and a new compressions section, a new data type (`Collection(Edm.Half)`) for the text_vector field, and a new property `stored` set to false.
 
     ```python
-     from azure.identity import DefaultAzureCredential
+    from azure.identity import DefaultAzureCredential
     from azure.identity import get_bearer_token_provider
     from azure.search.documents.indexes import SearchIndexClient
     from azure.search.documents.indexes.models import (
@@ -330,7 +328,7 @@ As a final step, switch to the Azure portal to compare the vector storage requir
 
 The index created in this tutorial uses half-precision floating-point numbers (float16) for the text vectors. This reduces the storage requirements for the vectors by half compared to the previous index that used single-precision floating-point numbers (float32). Scalar compression and the omission of one set of the vectors account for the remaining storage savings. For more information about reducing vector size, see [Choose an approach for optimizing vector storage and processing](vector-search-how-to-configure-compression-storage.md).
 
-Consider revisiting the queries from the previous tutorials so that you can compare query speed and utility. You should expect some variation in LLM output whenever you repeat a query, but in general the storage-saving techniques you implemented shouldn't degrade the quality of your search results.
+Consider revisiting the [queries from the previous tutorial](tutorial-rag-build-solution-query.md) so that you can compare query speed and utility. You should expect some variation in LLM output whenever you repeat a query, but in general the storage-saving techniques you implemented shouldn't degrade the quality of your search results.
 
 ## Next step
 
