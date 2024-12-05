@@ -86,7 +86,7 @@ In the Azure CLI, you use `az ml schedule` to schedule a monitoring job.
 
 1. Create a monitoring definition in a YAML file. For a sample out-of-box definition, see the following YAML code, which is also available in the [azureml-examples repository](https://github.com/Azure/azureml-examples/blob/main/cli/monitoring/out-of-box-monitoring.yaml).
 
-   Before you use this definition, adjust the values to fit your environment. For `endpoint_deployment_id`, use a value in the format `azureml:<endpoint-name>:<model-name>`.
+   Before you use this definition, adjust the values to fit your environment. For `endpoint_deployment_id`, use a value in the format `azureml:<endpoint-name>:<deployment-name>`.
 
    :::code language="yaml" source="~/azureml-examples-main/cli/monitoring/out-of-box-monitoring.yaml":::
 
@@ -98,7 +98,20 @@ In the Azure CLI, you use `az ml schedule` to schedule a monitoring job.
 
 # [Python SDK](#tab/python)
 
-To set up the out-of-box model monitoring, use code that's similar to the following sample. For `endpoint_deployment_id`, use a value in the format `azureml:<endpoint-name>:<model-name>`.
+To set up out-of-box model monitoring, use code that's similar to the following sample. Replace the following placeholders with appropriate values:
+
+| Placeholder | Description | Example |
+| --- | --- | --- |
+| <subscription_ID> | The ID of your subscription | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e |
+| <resource-group-name> | The name of the resource group that contains your workspace | my-resource-group |
+| <workspace_name> | The name of your workspace | my-workspace |
+| <endpoint-name> | The name of the endpoint to monitor | credit-default |
+| <deployment-name> | The name of the deployment to monitor | main |
+| <email-address1> and <email-address2> | Email addresses to use for notifications | `abc@example.com` |
+| <frequency-unit> | The monitoring frequency unit, such as "minute," "hour," "day," "week," or "month" | day |
+| <interval> | The interval between jobs, such as 1 or 2 days or weeks | 1 |
+| <start-hour> | The hour to start monitoring, on a 24-hour clock | 3 |
+| <start-minutes> | The minutes after the specified hour to start monitoring | 15 |
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -116,9 +129,9 @@ from azure.ai.ml.entities import (
 # Get a handle to the workspace.
 ml_client = MLClient(
     DefaultAzureCredential(),
-    subscription_id="subscription_id",
-    resource_group_name="resource_group_name",
-    workspace_name="workspace_name",
+    subscription_id="<subscription_ID>",
+    resource_group_name="<resource-group-name>",
+    workspace_name="<workspace_name>",
 )
 
 # Create the compute instance.
@@ -130,13 +143,12 @@ spark_compute = ServerlessSparkCompute(
 # Specify your online endpoint deployment.
 monitoring_target = MonitoringTarget(
     ml_task="classification",
-    endpoint_deployment_id="azureml:credit-default:main"
+    endpoint_deployment_id="azureml:<endpoint-name>:<deployment-name>"
 )
-
 
 # Create an alert notification object.
 alert_notification = AlertNotification(
-    emails=['abc@example.com', 'def@example.com']
+    emails=['<email-address1>', '<email-address2>']
 )
 
 # Create the monitor definition.
@@ -148,9 +160,9 @@ monitor_definition = MonitorDefinition(
 
 # Specify the schedule frequency.
 recurrence_trigger = RecurrenceTrigger(
-    frequency="day",
-    interval=1,
-    schedule=RecurrencePattern(hours=3, minutes=15)
+    frequency="<frequency-unit>",
+    interval=<interval>,
+    schedule=RecurrencePattern(hours=<start-hour>, minutes=<start-minutes>)
 )
 
 # Create the monitoring schedule.
@@ -215,20 +227,44 @@ After enabling feature importance, you'll see a feature importance for each feat
 You can use Azure CLI, the Python SDK, or the studio for advanced setup of model monitoring.
 
 # [Azure CLI](#tab/azure-cli)
+1. Create a monitoring definition in a YAML file. For a sample advanced definition, see the following YAML code, which is also available in the [azureml-examples repository](https://github.com/Azure/azureml-examples/blob/main/cli/monitoring/advanced-model-monitoring.yaml).
 
-Create advanced model monitoring setup with the following CLI command and YAML definition:
+   Before you use this definition, adjust the following values and any others you need to fit your environment:
 
-```azurecli
-az ml schedule create -f ./advanced-model-monitoring.yaml
-```
+   - For `endpoint_deployment_id`, use a value in the format `azureml:<endpoint-name>:<deployment-name>`.
+   - For `path` in reference input data sections, use a value in the format `azureml:<reference-data-asset-name>:<version>`.
+   - For `target_column`, use something.
+   - For `features`, list something.
+   - For `emails`, list the email addresses that you want to use for notifications.
 
-The following YAML contains the definition for advanced model monitoring.
+   :::code language="yaml" source="~/azureml-examples-main/cli/monitoring/advanced-model-monitoring.yaml":::
 
-:::code language="yaml" source="~/azureml-examples-main/cli/monitoring/advanced-model-monitoring.yaml":::
+1. Run the following command to create the model:
+
+   ```azurecli
+   az ml schedule create -f ./advanced-model-monitoring.yaml
+   ```
 
 # [Python SDK](#tab/python)
 
-Use the following code for advanced model monitoring setup:
+To set up advanced model monitoring, use code that's similar to the following sample. Replace the following placeholders with appropriate values:
+
+| Placeholder | Description | Example |
+| --- | --- | --- |
+| <subscription_ID> | The ID of your subscription | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e |
+| <resource-group-name> | The name of the resource group that contains your workspace | my-resource-group |
+| <workspace_name> | The name of your workspace | my-workspace |
+| <endpoint-name> | The name of the endpoint to monitor | credit-default |
+| <deployment-name> | The name of the deployment to monitor | main |
+| <production-data-asset-name> | The name of the data asset that contains production data | credit-default-main-model_inputs |
+| <reference-data-asset-name> | The name of the data asset that contains reference data | credit-default-reference |
+| <target-column> | Fill in | DEFAULT_NEXT_MONTH |
+| <feature1>, <feature2>, and <feature3> | Fill in , such as 'SEX', 'EDUCATION', or 'AGE' | AGE |
+| <email-address1> and <email-address2> | Email addresses to use for notifications | `abc@example.com` |
+| <frequency-unit> | The monitoring frequency unit, such as "minute," "hour," "day," "week," or "month" | day |
+| <interval> | The interval between jobs, such as 1 or 2 days or weeks | 1 |
+| <start-hour> | The hour to start monitoring, on a 24-hour clock | 3 |
+| <start-minutes> | The minutes after the specified hour to start monitoring | 15 |
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -262,51 +298,52 @@ from azure.ai.ml.entities import (
     ProductionData
 )
 
-# get a handle to the workspace
+# Get a handle to the workspace.
 ml_client = MLClient(
     DefaultAzureCredential(),
-    subscription_id="subscription_id",
-    resource_group_name="resource_group_name",
-    workspace_name="workspace_name",
+    subscription_id="<subscription_ID>",
+    resource_group_name="<resource-group-name>",
+    workspace_name="<workspace_name>",
 )
 
-# create your compute
+# Create a compute instance.
 spark_compute = ServerlessSparkCompute(
     instance_type="standard_e4s_v3",
     runtime_version="3.3"
 )
 
-# specify the online deployment (if you have one)
+# Specify the online deployment if you have one.
 monitoring_target = MonitoringTarget(
     ml_task="classification",
-    endpoint_deployment_id="azureml:credit-default:main"
+    endpoint_deployment_id="azureml:<endpoint-name>:<deployment-name>"
 )
 
-# specify a lookback window size and offset, or omit this to use the defaults, which are specified in the documentation
+# Specify a look-back window size and offset to use. Omit this line to use the default values, which are listed in the documentation.
 data_window = BaselineDataRange(lookback_window_size="P1D", lookback_window_offset="P0D")
 
+# Set up the production data.
 production_data = ProductionData(
     input_data=Input(
         type="uri_folder",
-        path="azureml:credit-default-main-model_inputs:1"
+        path="azureml:<production-data-asset-name>:1"
     ),
     data_window=data_window,
     data_context=MonitorDatasetContext.MODEL_INPUTS,
 )
 
-# training data to be used as reference dataset
+# Set up the training data to use as a reference dataset.
 reference_data_training = ReferenceData(
     input_data=Input(
         type="mltable",
-        path="azureml:credit-default-reference:1"
+        path="azureml:<reference-data-asset-name>:1"
     ),
     data_column_names={
-        "target_column":"DEFAULT_NEXT_MONTH"
+        "target_column":"<target-column>"
     },
     data_context=MonitorDatasetContext.TRAINING,
 )
 
-# create an advanced data drift signal
+# Create an advanced data drift signal.
 features = MonitorFeatureFilter(top_n_feature_importance=10)
 
 metric_thresholds = DataDriftMetricThreshold(
@@ -324,7 +361,7 @@ advanced_data_drift = DataDriftSignal(
     metric_thresholds=metric_thresholds
 )
 
-# create an advanced prediction drift signal
+# Create an advanced prediction drift signal.
 metric_thresholds = PredictionDriftMetricThreshold(
     categorical=CategoricalDriftMetrics(
         jensen_shannon_distance=0.01
@@ -336,8 +373,8 @@ advanced_prediction_drift = PredictionDriftSignal(
     metric_thresholds=metric_thresholds
 )
 
-# create an advanced data quality signal
-features = ['SEX', 'EDUCATION', 'AGE']
+# Create an advanced data quality signal.
+features = ['<feature1>', '<feature2>', '<feature3>']
 
 metric_thresholds = DataQualityMetricThreshold(
     numerical=DataQualityMetricsNumerical(
@@ -355,7 +392,7 @@ advanced_data_quality = DataQualitySignal(
     alert_enabled=False
 )
 
-# create feature attribution drift signal
+# Create a feature attribution drift signal.
 metric_thresholds = FeatureAttributionDriftMetricThreshold(normalized_discounted_cumulative_gain=0.9)
 
 feature_attribution_drift = FeatureAttributionDriftSignal(
@@ -364,19 +401,19 @@ feature_attribution_drift = FeatureAttributionDriftSignal(
     alert_enabled=False
 )
 
-# put all monitoring signals in a dictionary
+# Put all monitoring signals in a dictionary.
 monitoring_signals = {
     'data_drift_advanced':advanced_data_drift,
     'data_quality_advanced':advanced_data_quality,
     'feature_attribution_drift':feature_attribution_drift,
 }
 
-# create alert notification object
+# Create an alert notification object.
 alert_notification = AlertNotification(
-    emails=['abc@example.com', 'def@example.com']
+    emails=['<email-address1>', '<email-address2>']
 )
 
-# create the monitor definition
+# Create the monitor definition.
 monitor_definition = MonitorDefinition(
     compute=spark_compute,
     monitoring_target=monitoring_target,
@@ -384,74 +421,72 @@ monitor_definition = MonitorDefinition(
     alert_notification=alert_notification
 )
 
-# specify the frequency on which to run your monitor
+# Specify the schedule frequency.
 recurrence_trigger = RecurrenceTrigger(
-    frequency="day",
-    interval=1,
-    schedule=RecurrencePattern(hours=3, minutes=15)
+    frequency="<frequency-unit>",
+    interval=<interval>,
+    schedule=RecurrencePattern(hours=<start-hour>, minutes=<start-minutes>)
 )
 
-# create your monitor
+# Create the monitoring schedule.
 model_monitor = MonitorSchedule(
     name="credit_default_monitor_advanced",
     trigger=recurrence_trigger,
     create_monitor=monitor_definition
 )
 
+# Schedule the monitoring job.
 poller = ml_client.schedules.begin_create_or_update(model_monitor)
 created_monitor = poller.result()
 ```
 
 # [Studio](#tab/azure-studio)
 
-To set up advanced monitoring:
+To set up advanced monitoring, take the following steps:
 
-1. Complete the entires on the **Basic settings** page as described earlier in the [Set up out-of-box model monitoring](#set-up-out-of-box-model-monitoring) section.
-1. Select **Next** to open the **Configure data asset** page of the **Advanced settings** section.
-1. **Add** a dataset to be used as the reference dataset. We recommend that you use the model training data as the comparison reference dataset for data drift and data quality. Also, use the model validation data as the comparison reference dataset for prediction drift.
+1. In [Azure Machine Learning studio](https://ml.azure.com), go to your workspace.
+1. Under **Manage**, select **Monitoring**, and then select **Add**.
+1. On the Basic settings page, enter information as described earlier in [Set up out-of-box model monitoring](#set-up-out-of-box-model-monitoring).
+1. Select **Next** to open the Configure data asset page of the **Advanced settings** section.
+1. If you don't see the data asset that you want to use as a reference dataset, select **Add**. We recommend that you use the model training data as the comparison reference dataset for data drift and data quality. Also, use the model validation data as the comparison reference dataset for prediction drift. Add the data assets that you want to use.
 
    :::image type="content" source="media/how-to-monitor-models/model-monitoring-advanced-configuration-data.png" alt-text="Screenshot showing how to add datasets for the monitoring signals to use." lightbox="media/how-to-monitor-models/model-monitoring-advanced-configuration-data.png":::
 
-1. Select **Next** to go to the **Select monitoring signals** page. On this page, you see some monitoring signals already added (if you selected an Azure Machine Learning online deployment earlier).  The signals (data drift, prediction drift, and data quality) use recent, past production data as the comparison reference dataset and use smart defaults for metrics and thresholds.
+1. Select **Next**. The **Select monitoring signals** page opens. If you selected an Azure Machine Learning online deployment earlier, you see some monitoring signals. The data drift, prediction drift, and data quality signals use recent, past production data as the comparison reference dataset and use smart defaults for metrics and thresholds.
 
     :::image type="content" source="media/how-to-monitor-models/model-monitoring-monitoring-signals.png" alt-text="Screenshot showing default monitoring signals." lightbox="media/how-to-monitor-models/model-monitoring-monitoring-signals.png":::
 
-1. Select **Edit** next to the data drift signal.
-1. Configure the data drift in the **Edit signal** window as follows:
-
-    1. In step 1, for the production data asset, select your model inputs dataset. Also, make the following selection:
-        - Select the desired lookback window size.
-    1. In step 2, for the reference data asset, select your training dataset. Also, make the following selection:
-        - Select the target (output) column.
-    1. In step 3, select to monitor drift for the top N most important features, or monitor drift for a specific set of features.
-    1. In step 4, select your preferred metric and thresholds to use for numerical features.
-    1. In step 5, select your preferred metric and thresholds to use for categorical features.
+1. Next to the data drift signal, select **Edit**.
+1. In the **Edit Signal** window, take the following steps to configure the data drift signal:
+    1. In step 1, for the production data asset, select your model input data asset. Also select the lookback window size that you want to use.
+    1. In step 2, for the reference data asset, select your training dataset. Also select the target, or output, column.
+    1. In step 3, select **Top N features** to monitor drift for the *N* most important features. Or select specific features if you want to monitor drift for a specific set.
+    1. In step 4, select the metric and threshold that you want to use for numerical features.
+    1. In step 5, select the metric and threshold that you want to use for categorical features.
+    1. Select **Save**.
 
    :::image type="content" source="media/how-to-monitor-models/model-monitoring-configure-signals.png" alt-text="Screenshot showing how to configure selected monitoring signals." lightbox="media/how-to-monitor-models/model-monitoring-configure-signals.png":::
 
-1. Select **Save** to return to the **Select monitoring signals** page.
-1. Select **Add** to open the **Edit Signal** window.
-1. Select **Feature attribution drift (preview)** to configure the feature attribution drift signal as follows:
+1. On the Select monitoring signals page, select **Add**.
+1. On the Edit Signal window, Select **Feature attribution drift (PREVIEW)**, and then take the following steps to configure the feature attribution drift signal:
 
-    1. In step 1, select the production data asset that has your model inputs
-        - Also, select the desired lookback window size.
-    1. In step 2, select the production data asset that has your model outputs.
-        - Also, select the common column between these data assets to join them on. If the data was collected with the [data collector](how-to-collect-production-data.md), the common column is `correlationid`.
-    1. (Optional)  If you used the data collector to collect data that has your model inputs and outputs already joined, select the joined dataset as your production data asset (in step 1) 
-        - Also, **Remove** step 2 in the configuration panel.  
-    1. In step 3, select your training dataset to use as the reference dataset.
-        - Also, select the target (output) column for your training dataset.
-    1. In step 4, select your preferred metric and threshold.
+    1. In step 1, select the production data asset that has your model inputs. Also select the lookback window size that you want to use.
+    1. In step 2, select the production data asset that has your model outputs. Also select the common column to use to join the production data and the output data. If you use the [data collector](how-to-collect-production-data.md) to collect data, select **correlationid**.
+    1. (Optional) If you use the data collector to collect data that has your model inputs and outputs already joined, take the following steps:
+        1. In step 1, for the production data asset, select the joined dataset. 
+        1. In step 2, select **Remove** to remove step 2 from the configuration panel.  
+    1. In step 3, for the reference dataset, select your training dataset. Also select the target, or output, column for your training dataset.
+    1. In step 4, select the metric and threshold that you want to use.
+    1. Select **Save**.
 
    :::image type="content" source="media/how-to-monitor-models/model-monitoring-configure-feature-attribution-drift.png" alt-text="Screenshot showing how to configure feature attribution drift signal." lightbox="media/how-to-monitor-models/model-monitoring-configure-feature-attribution-drift.png":::
 
-1. Select **Save** to return to the **Select monitoring signals** page.
+1. On the Select monitoring signals page, finish configuring your monitoring signals, and then select **Next**.
 
     :::image type="content" source="media/how-to-monitor-models/model-monitoring-configured-signals.png" alt-text="Screenshot showing the configured signals." lightbox="media/how-to-monitor-models/model-monitoring-configured-signals.png":::
 
-1. When you're finished with your monitoring signals configuration, select **Next** to go to the **Notifications** page.
-1. On the **Notifications** page, enable alert notifications for each signal and select **Next**.
-1. Review your settings on the **Review monitoring settings** page.
+1. On the Notifications page, turn on notifications for each signal, and then select **Next**.
+1. On the Review monitoring details page, review your settings.
 
    :::image type="content" source="media/how-to-monitor-models/model-monitoring-advanced-configuration-review.png" alt-text="Screenshot showing review page of the advanced configuration for model monitoring." lightbox="media/how-to-monitor-models/model-monitoring-advanced-configuration-review.png":::
 
