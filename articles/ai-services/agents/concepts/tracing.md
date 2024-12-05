@@ -1,11 +1,11 @@
 ---
-title: 'How to use Agents with your licensed data'
+title: 'How to enable tracing in Azure AI Agents'
 titleSuffix: Azure AI services
-description: Learn how to connect your licensed data for grounding with Azure AI Agent Service.
+description: Learn how to trace your AI agent's executions for debugging and evaluation.
 services: cognitive-services
 manager: nitinme
 ms.service: azure
-ms.topic: how-to
+ms.topic: conceptual
 ms.date: 12/03/2024
 author: aahill
 ms.author: aahi
