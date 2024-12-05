@@ -9,17 +9,16 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 10/23/2024
+ms.date: 12/05/2024
 ---
 
 # Add a search service to a network security perimeter
 
 > [!IMPORTANT]
-> Azure AI Search support for network security perimeter is in public preview under supplemental terms of use. It's available in [regions providing the feature](/azure/private-link/network-security-perimeter-concepts).
+> Azure AI Search support for network security perimeter is in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). It's available in [regions providing the feature](/azure/private-link/network-security-perimeter-concepts).
 > This preview version is provided without a service level agreement, and it's not recommended for production workloads. Certain features might not be supported or might have constrained capabilities.
-> For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> Be sure to review the [limitations and considerations](#limitations-and-considerations) section before you start.
+>  Review the [limitations and considerations](#limitations-and-considerations) section before you start.
 
 This article explains how to join an Azure AI Search service to a [network security perimeter](/azure/private-link/network-security-perimeter-concepts) to control network access to your search service. By joining a network security perimeter, you can:
 
@@ -35,6 +34,8 @@ You can add a search service to a network security perimeter in the Azure portal
 
 * Supported indexer data sources are currently limited to [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md), [Azure Cosmos DB for NoSQL](./search-howto-index-cosmosdb.md), and [Azure SQL Database](search-how-to-index-sql-database.md).
 
+* Currently, within the perimeter, indexer connections to Azure PaaS for data retrieval is the primary use case. For outbound skills-driven API calls to Azure AI services, Azure OpenAI, or the Azure AI Foundry model catalog, or for inbound calls from the Azure AI Foundry for "chat with your data" scenarios you must [configure inbound and outbound rules](#add-an-inbound-access-rule) to allow the requests through the perimeter. If you require private connections for [structure-aware chunking](search-how-to-semantic-chunking.md) and vectorization, you should [create a shared private link](search-indexer-howto-access-private.md) and a private network.
+
 ## Prerequisites
 
 * An existing network security perimeter. You can [create one to associate with your search service](/azure/private-link/create-network-security-perimeter-portal).
@@ -47,7 +48,7 @@ Azure Network Security Perimeter allows administrators to define a logical netwo
 
 You can add Azure AI Search to a network security perimeter so that all indexing and query requests occur within the security boundary.
 
-1. In the Azure portal, create or find the network security perimeter service for your subscription.
+1. In the Azure portal, find the network security perimeter service for your subscription.
 
 1. Select **Resources** from the left-hand menu.
 
