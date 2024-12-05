@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about the different model capabilities that are available with Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 10/25/2024
+ms.date: 12/05/2024
 ms.custom: references_regions, build-2023, build-2023-dataai, refefences_regions
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
@@ -388,7 +388,13 @@ All deployments can perform the exact same inference operations, however the bil
 
 ### Data zone standard model availability
 
-[!INCLUDE [Global batch](../includes/model-matrix/datazone-standard.md)]
+[!INCLUDE [Data zone standard](../includes/model-matrix/datazone-standard.md)]
+
+# [Data Zone Provisioned Managed](#tab/datazone-provisioned-managed)
+
+### Data zone provisioned managed model availability
+
+[!INCLUDE [Global data zone provisioned managed](../includes/model-matrix/datazone-provisioned-managed.md)]
 
 # [Standard](#tab/standard)
 
