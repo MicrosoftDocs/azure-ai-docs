@@ -21,7 +21,7 @@ recommendations: false
 
 You can ask questions such as "*what is the weather in Seattle?*" or "*what is the recent update in the retail industry in the US?*", which require real-time public data.
 
-Developers and end users don't have access to raw content returned from Grounding with Bing Search. The response, however, includes citations with links to the websites used to generate the response, and a link to the Bing query used for the search. These two *References* must be retained and displayed in the exact form provided by Microsoft, as per Grounding with Bing Search's [Use and Display Requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal#use-and-display-requirements). See more details [below](#How-to-display-Grounding-with-Bing-Search-Results).
+Developers and end users don't have access to raw content returned from Grounding with Bing Search. The response, however, includes citations with links to the websites used to generate the response, and a link to the Bing query used for the search. These two *References* must be retained and displayed in the exact form provided by Microsoft, as per Grounding with Bing Search's [Use and Display Requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal#use-and-display-requirements). See the [how to display Grounding with Bing Search results](#how-to-display-grounding-with-bing-search-results) section for details.
 
 >[!IMPORTANT]
 > Your usage of Grounding with Bing Search may incur costs. See the [pricing page](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
@@ -98,7 +98,7 @@ Developers and end users don't have access to raw content returned from Groundin
     - Connection name: `YOUR_CONNECTION_NAME` (You will use this connection name in the sample code below.)
     - Access: you can choose either *this project only* or *shared to all projects*. Just make sure in the sample code below, the project you entered connection string for has access to this connection.
 
-## How to display Grounding with Bing Search Results
+## How to display Grounding with Bing Search results
 
 According to Grounding with Bing's [Terms of Use and Use and display requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal#use-and-display-requirements), you need to display both website URLs and Bing search query URLs in your custom interface. You can find website URLs through `annotations` parameter in API response and Bing search query URLs through `runstep` details.
 
