@@ -46,7 +46,7 @@ The example shows how to run OpenAI models hosted in Azure OpenAI Service. To be
 
 :::image type="content" source="./media/how-to-use-batch-model-openai-embeddings/aoai-deployments.png" alt-text="A screenshot of the Azure OpenAI Service page within Azure AI Foundry, showing the model deployments available in a particular Azure OpenAI Service resource." lightbox="media/how-to-use-batch-model-openai-embeddings/aoai-deployments.png":::
 
-The previous image shows the Azure OpenAI Service resource to which the model is deployed. Note the name of this resource, as you use it later to construct the URL of the resource. 
+The previous image is an example that shows a deployed Azure OpenAI model and the Azure OpenAI Service resource to which it is deployed. Note the name of the resource used for your model deployment, as you use it later to construct the URL of the resource. 
 
 # [Azure CLI](#tab/cli)
 
