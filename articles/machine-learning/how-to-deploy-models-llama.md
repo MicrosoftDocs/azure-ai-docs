@@ -54,6 +54,7 @@ The following models are available:
 
 * [Meta-Llama-3.1-405B-Instruct](https://aka.ms/azureai/landing/Meta-Llama-3.1-405B-Instruct)
 * [Meta-Llama-3.1-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-70B-Instruct/version/1/registry/azureml-meta)
+* Llama-3.1-70B-Instruct-2024-12
 * [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/1/registry/azureml-meta)
 
 
