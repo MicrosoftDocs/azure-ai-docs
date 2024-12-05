@@ -20,6 +20,8 @@ items:
   items:
     - name: Agents
       href: concepts/agents.md
+    - name: Tracing with Application Insights
+      href: concepts/tracing.md
 - name: How-to
   items:
     - name: Tools
@@ -38,12 +40,12 @@ items:
           href: how-to/tools/licensed-data.md
       - name: Action tools
         items:
-        - name: Function calling
-          items:
-          - name: Agent function calling
-            href: how-to/tools/function-calling.md
-          - name: Logic app function calling
-            href: how-to/tools/agent-logic-apps.md
+        - name: Agent function calling
+          href: how-to/tools/function-calling.md
+        - name: Logic app function calling
+          href: how-to/tools/agent-logic-apps.md
+    - name: Tracing
+      href: how-to/tracing.md
 - name: Responsible AI
   items:
     - name: Overview
