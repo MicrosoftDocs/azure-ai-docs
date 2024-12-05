@@ -49,11 +49,13 @@ When the index is ready to use, move on to the next step.
 
 1. On the first wizard page, select **Enable Cross Origin Resource Sharing (CORS)** to add CORS support to your index definition. This step is optional, but your local web app won't connect to the remote index without it.
 
+   :::image type="content" source="media/search-create-app-portal/enable-cors.png" alt-text="Screenshot of the enable CORS action.":::
+
 ## Configure search results
 
-The wizard provides a basic layout for rendered search results that includes space for a thumbnail image, a title, and description. Backing each of these elements is a field in your index that provides the data. 
+The wizard provides a basic layout for rendered search results that includes space for a thumbnail image, a title, and description. Backing each of these elements is a field in your index that provides the data.
 
-1. Skip **Thumbnail** because this index doesn't have images, but if you have an index field that's populated with URLs resolving to publically available images, you should specify that field for the thumbnail area. If your index doesn't have images, leave this field blank.
+1. Skip **Thumbnail** because this index doesn't have images, but if you have an index field that's populated with URLs resolving to publically available images, you should specify that field for the thumbnail area. If your index doesn't have image URLs, leave this field blank.
 
 1. In Title, choose a field that conveys the uniqueness of each document. In this sample, the Hotel Name is a reasonable selection.
 
@@ -70,7 +72,7 @@ In Azure AI Search, faceted navigation is a cumulative filtering experience. Wit
 > [!TIP]
 > You can view fields attributes on the **Fields** tab of the index in the Azure portal. Fields marked as filterable and facetable can be used in the sidebar
 
-1. In the wizard, select the **Sidebar** tab at the top of the page. You'll see a list of all fields that are attributed as filterable and facetable in the index.
+1. In the wizard, select the **Sidebar** tab at the top of the page. You should see a list of all fields that are attributed as filterable and facetable in the index.
 
 1. Remove some of the fields to shorten the sidebar so that you don't have scroll in the finished app.
 
@@ -84,7 +86,7 @@ The following screenshot shows the suggestions page, juxtaposed with a rendered 
 
 :::image type="content" source="media/search-create-app-portal/suggestions.png" lightbox="media/search-create-app-portal/suggestions.png" alt-text="Screenshot of the suggestion configuration page.":::
 
-## Create, download and execute
+## Create, download, and execute
 
 1. Select **Create demo app** at the bottom of the page to generate the HTML file.
 
