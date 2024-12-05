@@ -252,7 +252,7 @@ monitor = monitor.enable_schedule()
 ```
 
 > [!TIP]
-> For a full example of setting up a `timeseries` dataset and data drift detector, see our [example notebook](https://aka.ms/datadrift-notebook).
+> For a full example of setting up a `timeseries` dataset and data drift detector, see our [example notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/work-with-data/datasets-tutorial/train-with-datasets/train-with-datasets.ipynb).
 
 
 # [Studio](#tab/azure-studio)
