@@ -24,13 +24,13 @@ OpenAI's DALL-E models generate images based on user-provided text prompts. This
 #### [DALL-E 3](#tab/dalle3)
 
 - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
-- An Azure OpenAI resource created in the *Sweden Central* region. For more information, see [Create and deploy an Azure OpenAI Service resource](../how-to/create-resource.md).
-- Deploy a *dall-e-3* model with your Azure OpenAI resource.
+- An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).
+- - Deploy a *dall-e-3* model with your Azure OpenAI resource.
 
 #### [DALL-E 2 (preview)](#tab/dalle2)
 
 - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
-- An Azure OpenAI resource created in the *East US* region. For more information, see [Create and deploy an Azure OpenAI Service resource](../how-to/create-resource.md).
+- An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability). For more information, see [Create and deploy an Azure OpenAI Service resource](../how-to/create-resource.md).
 
 ---
 
