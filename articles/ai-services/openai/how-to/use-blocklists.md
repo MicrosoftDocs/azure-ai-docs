@@ -249,7 +249,6 @@ If the completion itself is blocked, the response returns `200`, as the completi
 } 
 ```
 
----
 
 #### [Azure AI Foundry](#tab/foundry)
 
