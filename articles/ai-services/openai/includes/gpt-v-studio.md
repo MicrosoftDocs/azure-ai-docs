@@ -32,9 +32,7 @@ From this page, you can quickly iterate and experiment with the model's capabili
 For general help with assistant setup, chat sessions, settings, and panels, refer to the [Chat quickstart](/azure/ai-services/openai/chatgpt-quickstart?tabs=command-line&pivots=programming-language-studio). 
 
 
-## Start a chat session to analyze images or video
-
-#### [Image prompts](#tab/image)
+## Start a chat session to analyze images
 
 In this chat session, you're instructing the assistant to aid in understanding images that you input. 
 1. To start, make sure your image-capable deployment is selected in the **Deployment** dropdown.
