@@ -211,7 +211,28 @@ message = project_client.agents.create_message(
     content="Hello, send an email with the datetime and weather information in New York?",
 )
 print(f"Created message, ID: {message.id}")
+```
 
+# [C#](#tab/csharp)
+
+```csharp
+Response<AgentThread> threadResponse = await client.CreateThreadAsync();
+AgentThread thread = threadResponse.Value;
+
+Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
+    thread.Id,
+    MessageRole.User,
+    "What's the weather like in my favorite city?");
+ThreadMessage message = messageResponse.Value;
+```
+
+---
+
+## Create a run and check the output
+
+# [python](#tab/python)
+
+```python
 # Create and process agent run in thread with tools
 run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
 print(f"Run finished with status: {run.status}")
@@ -231,15 +252,6 @@ print(f"Messages: {messages}")
 # [C#](#tab/csharp)
 
 ```csharp
-Response<AgentThread> threadResponse = await client.CreateThreadAsync();
-AgentThread thread = threadResponse.Value;
-
-Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
-    thread.Id,
-    MessageRole.User,
-    "What's the weather like in my favorite city?");
-ThreadMessage message = messageResponse.Value;
-
 Response<ThreadRun> runResponse = await client.CreateRunAsync(thread, agent);
 
 #region Snippet:FunctionsHandlePollingWithRequiredAction
@@ -287,13 +299,6 @@ foreach (ThreadMessage threadMessage in messages)
 ```
 
 ---
-
-## Create a run and check the output
-
-# [python](#tab/python)
-
-# [C#](#tab/csharp)
-
 
 ::: zone-end
 
