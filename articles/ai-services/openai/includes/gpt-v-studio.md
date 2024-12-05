@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
 ms.custom: references_regions, ignite-2024
-ms.date: 10/03/2024
+ms.date: 12/05/2024
 ---
 
 Start using images in your AI chats with a no-code approach through Azure AI Foundry.
