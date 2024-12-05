@@ -203,7 +203,7 @@ fileSearchToolResource.VectorStoreIds.Add(vectorStore.Id);
 
 // Create an agent with toolResources and process assistant run
 Response<Agent> agentResponse = await client.CreateAgentAsync(
-        model: "gpt-4-1106-preview",
+        model: "gpt-4o-mini",
         name: "SDK Test Agent - Retrieval",
         instructions: "You are a helpful agent that can help fetch data from files you know about.",
         tools: new List<ToolDefinition> { new FileSearchToolDefinition() },
