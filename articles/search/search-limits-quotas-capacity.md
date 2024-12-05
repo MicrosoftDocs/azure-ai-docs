@@ -217,26 +217,30 @@ The following table describes the semantic ranker throttling limits by SKU. Subj
 
 ## API request limits
 
+Limits on payloads and queries exist because unbounded queries can destabilize your search service. Typically, such queries are created programmatically. If your application generates search queries programmatically, we recommend designing it in such a way that it doesn't generate queries of unbounded size. If you must exeed a supported limit, you should [test your workload](search-performance-analysis.md#develop-baseline-numbers) so that you know what to expect.
+
 Except where noted, the following API requests apply to all programmable interfaces, including the Azure SDKs.
 
-+ General:
-  + Supported maximum payload limit is 16 MB for indexing and query requests via REST API and SDKs.
-  + Maximum 8-KB URL length (applies to REST APIs only).
+General:
 
-+ Indexing APIs:
-  + Supported maximum 1,000 documents per batch of index uploads, merges, or deletes.
++ Supported maximum payload limit is 16 MB for indexing and query requests via REST API and SDKs.
++ Maximum 8-KB URL length (applies to REST APIs only).
 
-+ Query APIs:
-  + Maximum 32 fields in $orderby clause.
-  + Maximum 100,000 characters in a search clause.
-  + Maximum number of clauses in search is 3,000.
-  + Maximum limits on [wildcard](query-lucene-syntax.md#bkmk_wildcard) and [regular expression](query-lucene-syntax.md#bkmk_regex) queries, as enforced by [Lucene](https://lucene.apache.org/core/7_0_1/core/org/apache/lucene/util/automaton/RegExp.html). It caps the number of patterns, variations, or matches to 1,000 instances. This limit is in place to avoid engine overload.
+Indexing APIs:
 
-+ Search terms:
-  + Supported maximum search term size is 32,766 bytes (32 KB minus 2 bytes) of UTF-8 encoded text. Applies to keyword search and the text property of vector search.
-  + Supported maximum search term size is 1,000 characters for [prefix search](query-simple-syntax.md#prefix-queries) and [regex search](query-lucene-syntax.md#bkmk_regex).
++ Supported maximum 1,000 documents per batch of index uploads, merges, or deletes.
 
-Limits on payloads and queries exist because unbounded queries can destabilize your search service. Typically, such queries are created programmatically. If your application generates search queries programmatically, we recommend designing it in such a way that it doesn't generate queries of unbounded size. If you must exeed a supported limit, you should test your workload so that you know what to expect.
+Query APIs:
+
++ Maximum 32 fields in $orderby clause.
++ Maximum 100,000 characters in a search clause.
++ Maximum number of clauses in search is 3,000.
++ Maximum limits on [wildcard](query-lucene-syntax.md#bkmk_wildcard) and [regular expression](query-lucene-syntax.md#bkmk_regex) queries, as enforced by [Lucene](https://lucene.apache.org/core/7_0_1/core/org/apache/lucene/util/automaton/RegExp.html). It caps the number of patterns, variations, or matches to 1,000 instances. This limit is in place to avoid engine overload.
+
+Search terms:
+
++ Supported maximum search term size is 32,766 bytes (32 KB minus 2 bytes) of UTF-8 encoded text. Applies to keyword search and the text property of vector search.
++ Supported maximum search term size is 1,000 characters for [prefix search](query-simple-syntax.md#prefix-queries) and [regex search](query-lucene-syntax.md#bkmk_regex).
 
 ## API response limits
 
