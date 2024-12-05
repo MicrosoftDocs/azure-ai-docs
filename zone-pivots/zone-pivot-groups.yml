@@ -931,10 +931,8 @@ groups:
   pivots:
   - id: overview
     title: Overview
-  - id: csharp-example
-    title: C# example
-  - id: python-example
-    title: Python example
+  - id: code-example
+    title: Code examples
 # owner: sgilley
 - id: programming-languages-sdk-overview
   title: Programming languages
