@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 9/12/2024
+ms.date: 12/05/2024
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist

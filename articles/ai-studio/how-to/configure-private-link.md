@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 12/05/2024
 ms.reviewer: meerakurup
 ms.author: larryfr
 author: Blackmist
