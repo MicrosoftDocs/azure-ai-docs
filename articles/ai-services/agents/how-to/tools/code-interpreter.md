@@ -121,7 +121,7 @@ code_interpreter = CodeInterpreterTool(file_ids=[file.id])
 
 # create agent with code interpreter tool and tools_resources
 agent = project_client.agents.create_agent(
-    model="gpt-4-1106-preview",
+    model="gpt-4o-mini",
     name="my-agent",
     instructions="You are helpful agent",
     tools=code_interpreter.definitions,
