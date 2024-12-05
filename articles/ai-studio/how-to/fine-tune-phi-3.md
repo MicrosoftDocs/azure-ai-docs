@@ -7,6 +7,8 @@ ms.service: azure-ai-studio
 ms.custom:
 ms.topic: how-to
 ms.date: 7/16/2024
+ms.author: ssalgado
+author: ssalgadodev
 ---
 
 # Fine-tune Phi-3 models in Azure AI Foundry portal
