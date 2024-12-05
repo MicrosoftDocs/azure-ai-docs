@@ -65,10 +65,8 @@ In Azure AI Search, an index that works best for RAG workloads has these qualiti
 
 - Your schema should either be flat (no complex types or structures), or you should [format the complext type output as JSON](search-get-started-rag.md#send-a-complex-rag-query) before sending it to the LLM. This requirement is specific to the RAG pattern in Azure AI Search.
 
-<!-- Although Azure AI Search can't join indexes, you can create indexes that preserve parent-child relationship, and then use sequential queries in your search logic to pull from both (a query on the chunked data index, a lookup on the parent index). This exercise includes templates for parent-child elements in the same index and in separate indexes, where information from the parent index is retrieved using a lookup query. -->
-
-<!-- > [!NOTE]
-> Schema design affects storage and costs. This exercise is focused on schema fundamentals. In the [Minimize storage and costs](tutorial-rag-build-solution-minimize-storage.md) tutorial, you revisit schema design to consider narrow data types, attribution, and vector configurations that offer more efficient. -->
+> [!NOTE]
+> Schema design affects storage and costs. This exercise is focused on schema fundamentals. In the [Minimize storage and costs](tutorial-rag-build-solution-minimize-storage.md) tutorial, you revisit schemas to learn how narrow data types, compression, and storage options significantly reduce the amount of storage used by vectors.
 
 ## Create an index for RAG workloads
 
