@@ -56,7 +56,7 @@ print(response.model_dump_json(indent=2))
 import openai
 
 openai.api_type = "azure"
-openai.api_key = YOUR_API_KEY
+openai.api_key = "YOUR_API_KEY"
 openai.api_base = "https://YOUR_RESOURCE_NAME.openai.azure.com"
 openai.api_version = "2024-06-01"
 
