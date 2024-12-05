@@ -32,9 +32,11 @@ To use all features of function calling including parallel functions, you need t
 
 ::: zone pivot="code-example"
 
-# [Python](#tab/python)
+## Define a function for your agent to call
 
-When you create a function for an agent to call, you describe its structure of it with any required parameters. For example, `fetch_weather` simulates the response of a possible weather function.  
+Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure of it with any required parameters. 
+
+# [Python](#tab/python)
 
 ```python
 def fetch_weather(location: str) -> str:
@@ -57,33 +59,8 @@ def fetch_weather(location: str) -> str:
 See the [python file on GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/user_functions.py) for an example of a full series of function definitions. This file is referred to as `user_functions.py` in the following example below. 
 
 
-In the sample below we create a client and define a `toolset` which will be used to process the functions defined in `user_functions`.
-
-```python
-import os
-from azure.ai.projects import AIProjectClient
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects.models import FunctionTool, ToolSet
-from user_functions import user_functions # found in the user_functions.py file.
-
-# Create an Azure AI Client from a connection string, copied from your AI Studio project.
-# It should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
-# Customers need to login to Azure subscription via Azure CLI and set the environment variables
-
-project_client = AIProjectClient.from_connection_string(
-    credential=DefaultAzureCredential(),
-    conn_str=os.environ["PROJECT_CONNECTION_STRING"],
-)
-
-# Initialize agent toolset with user functions
-functions = FunctionTool(user_functions)
-toolset = ToolSet()
-toolset.add(functions)
-```
 
 # [C#](#tab/csharp)
-
-When you create a function for an agent to call, you describe its structure of it with any required parameters. For example, the following functions are two examples - one that requires no parameters, and one that requires one parameter.
 
 ```csharp
 // Example of a function that defines no parameters
@@ -141,53 +118,35 @@ ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
 
 ---
 
-
-## Submitting function outputs
-
-You can then create an agent, then create a thread and message object that will trigger a call to the function. The helper function defined earlier will help. Complete the **Run** by submitting the tool output from the functions you call.
+## Create a client
 
 # [Python](#tab/python)
 
+In the sample below we create a client and define a `toolset` which will be used to process the functions defined in `user_functions`.
+
 ```python
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects.models import FunctionTool, ToolSet
+from user_functions import user_functions # user functions which can be found in a user_functions.py file.
 
-# Create agent with toolset and process a run
-with project_client:
-    agent = project_client.agents.create_agent(
-        model="gpt-4o-mini", name="my-agent", instructions="You are a helpful agent", toolset=toolset
-    )
-    print(f"Created agent, ID: {agent.id}")
+# Create an Azure AI Client from a connection string, copied from your AI Studio project.
+# It should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
+# Customers need to login to Azure subscription via Azure CLI and set the environment variables
 
-    # Create thread for communication
-    thread = project_client.agents.create_thread()
-    print(f"Created thread, ID: {thread.id}")
+project_client = AIProjectClient.from_connection_string(
+    credential=DefaultAzureCredential(),
+    conn_str=os.environ["PROJECT_CONNECTION_STRING"],
+)
 
-    # Create message to thread
-    message = project_client.agents.create_message(
-        thread_id=thread.id,
-        role="user",
-        content="Hello, send an email with the datetime and weather information in New York?",
-    )
-    print(f"Created message, ID: {message.id}")
-
-    # Create and process agent run in thread with tools
-    run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
-    print(f"Run finished with status: {run.status}")
-
-    if run.status == "failed":
-        print(f"Run failed: {run.last_error}")
-
-    # Delete the agent when done
-    project_client.agents.delete_agent(agent.id)
-    print("Deleted agent")
-
-    # Fetch and log all messages
-    messages = project_client.agents.list_messages(thread_id=thread.id)
-    print(f"Messages: {messages}")
+# Initialize agent toolset with user functions
+functions = FunctionTool(user_functions)
+toolset = ToolSet()
+toolset.add(functions)
 ```
 
 # [C#](#tab/csharp)
-
-You can then create an agent with the `toolbox` object defined earlier, then create a thread and message object that will trigger a call to the function. Complete the **Run** by submitting the tool output from the functions you call.
 
 ```csharp
 // note: parallel function calling is only supported with newer models like gpt-4-1106-preview
@@ -200,8 +159,78 @@ Response<Agent> agentResponse = await client.CreateAgentAsync(
     tools: new List<ToolDefinition> { getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool }
     );
 Agent agent = agentResponse.Value;
-#endregion
+```
 
+---
+
+
+## Submitting function outputs
+
+# [Python](#tab/python)
+
+```python
+
+# Create agent with toolset and process a run
+
+agent = project_client.agents.create_agent(
+    model="gpt-4o-mini", name="my-agent", instructions="You are a helpful agent", toolset=toolset
+)
+print(f"Created agent, ID: {agent.id}")
+```
+
+# [C#](#tab/csharp)
+
+```csharp
+// note: parallel function calling is only supported with newer models like gpt-4-1106-preview
+Response<Agent> agentResponse = await client.CreateAgentAsync(
+    model: "gpt-4-1106-preview",
+    name: "SDK Test Agent - Functions",
+        instructions: "You are a weather bot. Use the provided functions to help answer questions. "
+            + "Customize your responses to the user's preferences as much as possible and use friendly "
+            + "nicknames for cities whenever possible.",
+    tools: new List<ToolDefinition> { getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool }
+    );
+Agent agent = agentResponse.Value;
+```
+
+---
+
+## Create a thread
+
+# [python](#tab/python)
+
+```python
+# Create thread for communication
+thread = project_client.agents.create_thread()
+print(f"Created thread, ID: {thread.id}")
+
+# Create message to thread
+message = project_client.agents.create_message(
+    thread_id=thread.id,
+    role="user",
+    content="Hello, send an email with the datetime and weather information in New York?",
+)
+print(f"Created message, ID: {message.id}")
+
+# Create and process agent run in thread with tools
+run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
+print(f"Run finished with status: {run.status}")
+
+if run.status == "failed":
+    print(f"Run failed: {run.last_error}")
+
+# Delete the agent when done
+project_client.agents.delete_agent(agent.id)
+print("Deleted agent")
+
+# Fetch and log all messages
+messages = project_client.agents.list_messages(thread_id=thread.id)
+print(f"Messages: {messages}")
+```
+
+# [C#](#tab/csharp)
+
+```csharp
 Response<AgentThread> threadResponse = await client.CreateThreadAsync();
 AgentThread thread = threadResponse.Value;
 
@@ -258,6 +287,13 @@ foreach (ThreadMessage threadMessage in messages)
 ```
 
 ---
+
+## Create a run and check the output
+
+# [python](#tab/python)
+
+# [C#](#tab/csharp)
+
 
 ::: zone-end
 
