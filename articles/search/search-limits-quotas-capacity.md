@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 10/28/2024
+ms.date: 12/05/2024
 ms.custom:
   - references_regions
   - build-2024
@@ -200,11 +200,11 @@ Static rate request limits for operations related to a service:
 
 ### Semantic Ranker Throttling limits
 
-[Semantic ranker](search-get-started-semantic.md) uses a queuing system to manage concurrent requests. This sytem allows search services get the highest amount of queries per second possible. When the limit of concurrent requests is reached, additional requests are placed in a queue. If the queue is full, further requests are rejected and must be retried.
+[Semantic ranker](search-get-started-semantic.md) uses a queuing system to manage concurrent requests. This system allows search services get the highest number of queries per second possible. When the limit of concurrent requests is reached, additional requests are placed in a queue. If the queue is full, further requests are rejected and must be retried.
 
 Total semantic ranker queries per second varies based on the following factors:
 + The SKU of the search service. Both queue capacity and concurrent request limits vary by SKU.
-+ The number of search units in the search service. The simplest way to increase the maximum amount of concurrent semantic ranker queries is to [add additional search units to your search service](search-capacity-planning.md#how-to-change-capacity).
++ The number of search units in the search service. The simplest way to increase the maximum number of concurrent semantic ranker queries is to [add additional search units to your search service](search-capacity-planning.md#how-to-change-capacity).
 + The total available semantic ranker capacity in the region.
 + The amount of time it takes to serve a query using semantic ranker. This varies based on how busy the search service is.
 
@@ -219,19 +219,24 @@ The following table describes the semantic ranker throttling limits by SKU. Subj
 
 Except where noted, the following API requests apply to all programmable interfaces, including the Azure SDKs.
 
-+ Maximum of 16 MB per indexing or query request when pushing a payload to the search service <sup>1</sup>
-+ Maximum 8-KB URL length (applies to REST APIs only)
-+ Maximum 1,000 documents per batch of index uploads, merges, or deletes
-+ Maximum 32 fields in $orderby clause
-+ Maximum 100,000 characters in a search clause
-+ The maximum number of clauses in `search` (expressions separated by AND or OR) is 1024
-+ Maximum search term size is 32,766 bytes (32 KB minus 2 bytes) of UTF-8 encoded text
-+ Maximum search term size is 1,000 characters for [prefix search](query-simple-syntax.md#prefix-queries) and [regex search](query-lucene-syntax.md#bkmk_regex)
-+ [Wildcard search](query-lucene-syntax.md#bkmk_wildcard) and [Regular expression search](query-lucene-syntax.md#bkmk_regex) are limited to a maximum of 1,000 states when processed by [Lucene](https://lucene.apache.org/core/7_0_1/core/org/apache/lucene/util/automaton/RegExp.html).
++ General:
+  + Supported maximum payload limit is 16 MB for indexing and query requests via REST API and SDKs.
+  + Maximum 8-KB URL length (applies to REST APIs only).
 
-<sup>1</sup> In Azure AI Search, the body of a request is subject to an upper limit of 16 MB, imposing a practical limit on the contents of individual fields or collections that aren't otherwise constrained by theoretical limits (see [Supported data types](/rest/api/searchservice/supported-data-types) for more information about field composition and restrictions).
++ Indexing APIs:
+  + Supported maximum 1,000 documents per batch of index uploads, merges, or deletes.
 
-Limits on query size and composition exist because unbounded queries can destabilize your search service. Typically, such queries are created programmatically. If your application generates search queries programmatically, we recommend designing it in such a way that it doesn't generate queries of unbounded size.
++ Query APIs:
+  + Maximum 32 fields in $orderby clause.
+  + Maximum 100,000 characters in a search clause.
+  + Maximum number of clauses in search is 3,000.
+  + Maximum limits on [wildcard](query-lucene-syntax.md#bkmk_wildcard) and [regular expression](query-lucene-syntax.md#bkmk_regex) queries, as enforced by [Lucene](https://lucene.apache.org/core/7_0_1/core/org/apache/lucene/util/automaton/RegExp.html). It caps the number of patterns, variations, or matches to 1,000 instances. This limit is in place to avoid engine overload.
+
++ Search terms:
+  + Supported maximum search term size is 32,766 bytes (32 KB minus 2 bytes) of UTF-8 encoded text. Applies to keyword search and the text property of vector search.
+  + Supported maximum search term size is 1,000 characters for [prefix search](query-simple-syntax.md#prefix-queries) and [regex search](query-lucene-syntax.md#bkmk_regex).
+
+Limits on payloads and queries exist because unbounded queries can destabilize your search service. Typically, such queries are created programmatically. If your application generates search queries programmatically, we recommend designing it in such a way that it doesn't generate queries of unbounded size. If you must exeed a supported limit, you should test your workload so that you know what to expect.
 
 ## API response limits
 
