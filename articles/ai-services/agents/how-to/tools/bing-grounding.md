@@ -95,7 +95,9 @@ According to Terms of use and display requirements, you need to display both web
 
 ::: zone pivot="code-example"
 
-## Create an agent with bing grounding
+## Step 1: Create an agent with bing grounding
+
+Create a client object, which will contain the connection string for connecting to your AI project and other resources.
 
 # [Python](#tab/python)
 
@@ -114,7 +116,37 @@ project_client = AIProjectClient.from_connection_string(
     credential=DefaultAzureCredential(),
     conn_str=os.environ["PROJECT_CONNECTION_STRING"],
 )
+```
 
+# [C#](#tab/csharp)
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Azure.Core;
+using Azure.Core.TestFramework;
+using NUnit.Framework;
+
+var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
+
+var clientOptions = new AIProjectClientOptions();
+
+// Adding the custom headers policy
+clientOptions.AddPolicy(new CustomHeadersPolicy(), HttpPipelinePosition.PerCall);
+var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential(), clientOptions);
+
+```
+
+---
+
+## Step 2: Enable the Bing search tool
+
+To make the Bing search tool available to your agent, create a Bing connection to initialize the Bing search tool and attach it to the agent. 
+
+# [Python](#tab/python)
+
+```python
 bing_connection = project_client.connections.get(
     connection_name=os.environ["BING_CONNECTION_NAME"]
 )
@@ -140,21 +172,6 @@ with project_client:
 # [C#](#tab/csharp)
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Azure.Core;
-using Azure.Core.TestFramework;
-using NUnit.Framework;
-
-var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
-
-var clientOptions = new AIProjectClientOptions();
-
-// Adding the custom headers policy
-clientOptions.AddPolicy(new CustomHeadersPolicy(), HttpPipelinePosition.PerCall);
-var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential(), clientOptions);
-
 GetConnectionResponse bingConnection = await projectClient.GetConnectionsClient().GetConnectionAsync(TestEnvironment.BINGCONNECTIONNAME);
 var connectionId = bingConnection.Id;
 
@@ -172,12 +189,11 @@ Response<Agent> agentResponse = await agentClient.CreateAgentAsync(
     instructions: "You are a helpful assistant.",
     tools: new List<ToolDefinition> { bingGroundingTool });
 Agent agent = agentResponse.Value;
-
 ```
-
 ---
 
-## Create a thread
+
+## Step 3: Create a thread
 
 # [Python](#tab/python)
 
@@ -212,7 +228,9 @@ ThreadMessage message = messageResponse.Value;
 
 ---
 
-## Create a run and check the output
+## Step 4: Create a run and check the output
+
+Create a run and observe that the model uses the file search tool to provide a response to the user's question.
 
 # [Python](#tab/python)
 
