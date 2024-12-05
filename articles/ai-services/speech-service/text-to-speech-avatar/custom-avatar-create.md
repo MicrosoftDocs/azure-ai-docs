@@ -23,6 +23,8 @@ You must provide a video file with a recorded statement from your avatar talent,
 
 You can find the verbal consent statement in multiple languages on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/sampledata/customavatar/verbal-statement-all-locales.txt). The language of the verbal statement must be the same as your recording. See also the disclosure for voice talent.
 
+For more information about recording the consent video, see [How to record video samples](custom-avatar-record-video-samples.md).
+
 ## Prepare training data for custom text to speech avatar
 
 You're required to provide video recordings of the avatar talent speaking in a language of your choice. The video recordings should contain high signal-to-noise ratio voice. The voice in the video recording isn't used as training data for a custom neural voice; its purpose is to train the custom text to speech avatar model.

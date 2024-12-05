@@ -327,8 +327,7 @@ Semantic ranking and scoring profiles operate on nonvector content, but you can 
 - analyzers and normalizers
 - advanced query formats (regular expressions, fuzzy search) -->
 
-<!-- ## Next step
+## Next step
 
 > [!div class="nextstepaction"]
-> [Reduce vector storage and costs](tutorial-rag-build-solution-minimize-storage.md)
- -->
+> [Minimize vector storage and costs](tutorial-rag-build-solution-minimize-storage.md)
