@@ -17,7 +17,7 @@ recommendations: false
 
 ::: zone pivot="overview"
 
-**Grounding with Bing Search** allows your Azure AI Agents to incorporate real-time public web data when generating responses. You need to create a Grounding with Bing Search resource, and then connect this resource to your Azure AI Agents. When a user sends a query, Azure AI Agents will decide if Grounding with Bing Search should be leveraged or not. If so, it will leverage Bing to search over public web data and return relevant chunks. Lastly, Azure AI Agents will use returned chunks to generate a response.  
+**Grounding with Bing Search** allows your Azure AI Agents to incorporate real-time public web data when generating responses. You need to create a Grounding with Bing Search resource, and then connect this resource to your Azure AI Agents. When a user sends a query, Azure AI Agents decide if Grounding with Bing Search should be leveraged or not. If so, it will leverage Bing to search over public web data and return relevant chunks. Lastly, Azure AI Agents will use returned chunks to generate a response.  
 
 You can ask questions such as "*what is the weather in Seattle?*" or "*what is the recent update in the retail industry in the US?*", which require real-time public data.
 
@@ -34,9 +34,9 @@ Developers and end users don't have access to raw content returned from Groundin
 1. Ensure you've completed the prerequisites and setup steps in the [quickstart](../../quickstart.md).
 
 1. Create a new Grounding with Bing Search resource. <!--You can find the template file [here](./bingsearch_arm.json) and parameter file [here](./bingsearch_para.json).-->
-   You can do this directly in [Azure Portal](https://portal.azure.com/#create/Microsoft.BingGroundingSearch), and select the different fields in the creation form.
+   You can do this directly in [Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingSearch), and select the different fields in the creation form.
 
-   Alternatively, you can create the resource through Azure CLI. By using this method you automatically agree to be bound by and comply with the [Terms of use and Use and Display Requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal).
+   Alternatively, you can create the resource through Azure CLI. By using this method, you automatically agree to be bound by and comply with the [Terms of use and Use and Display Requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal).
 
    Make sure you create this Grounding with Bing Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.
 
@@ -69,7 +69,7 @@ Developers and end users don't have access to raw content returned from Groundin
 
     :::image type="content" source="../../media/tools/bing/resource-azure-portal.png" alt-text="A screenshot of the Bing resource in the Azure portal." lightbox="../../media/tools/bing/resource-azure-portal.png":::
 
-1. Click the Grounding with Bing Search resource you have created and copy any of the API keys.
+1. Select the Grounding with Bing Search resource you have created and copy any of the API keys.
 
     :::image type="content" source="../../media/tools/bing/key-endpoint-resource-azure-portal.png" alt-text="A screenshot of the key and endpoint screen for the Bing resource in the Azure portal." lightbox="../../media/tools/bing/key-endpoint-resource-azure-portal.png":::
 
@@ -100,7 +100,7 @@ Developers and end users don't have access to raw content returned from Groundin
 
 ## How to display Grounding with Bing Search results
 
-According to Grounding with Bing's [Terms of Use and Use and display requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal#use-and-display-requirements), you need to display both website URLs and Bing search query URLs in your custom interface. You can find website URLs through `annotations` parameter in API response and Bing search query URLs through `runstep` details.
+According to Grounding with Bing's [terms of use and use and display requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal#use-and-display-requirements), you need to display both website URLs and Bing search query URLs in your custom interface. You can find website URLs through `annotations` parameter in API response and Bing search query URLs through `runstep` details.
 
 :::image type="content" source="../../media/tools/bing/website-citations.png" alt-text="A screenshot showing citations for Bing search results." lightbox="../../media/tools/bing/website-citations.png":::
 
