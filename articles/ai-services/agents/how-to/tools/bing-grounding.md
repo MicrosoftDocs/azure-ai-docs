@@ -1,7 +1,7 @@
 ---
-title: 'How to use Azure AI Agent service with Bing Grounding resources'
+title: 'How to use Grounding with Bing Search in Azure AI Agent service'
 titleSuffix: Azure OpenAI
-description: Learn how to ground Azure AI Agents using Bing web search.
+description: Learn how to ground Azure AI Agents using Bing Search results.
 services: cognitive-services
 manager: nitinme
 ms.service: azure
@@ -17,11 +17,14 @@ recommendations: false
 
 ::: zone pivot="overview"
 
-Grounding with Bing Search allows your Azure AI Agents to incorporate real-time public web data when generating responses. To start with, you need to create a Grounding with Bing Search resource, then connect this resource to your Azure AI Agents. When a user sends a query, Azure AI Agents will decide if Grounding with Bing Search should be leveraged or not. If so, it will leverage Bing to search over public web data and return relevant chunks. Lastly, Azure AI Agents will use returned chunks to generate a response.  
+**Grounding with Bing Search** allows your Azure AI Agents to incorporate real-time public web data when generating responses. You need to create a Grounding with Bing Search resource, and then connect this resource to your Azure AI Agents. When a user sends a query, Azure AI Agents will decide if Grounding with Bing Search should be leveraged or not. If so, it will leverage Bing to search over public web data and return relevant chunks. Lastly, Azure AI Agents will use returned chunks to generate a response.  
 
-Citations show links to websites used to generate response, but don't show links to the Bing query used for the search. Developers and end users don't have access to raw content returned from Grounding with Bing Search. 
+You can ask questions such as "*what is the weather in Seattle?*" or "*what is the recent update in the retail industry in the US?*", which require real-time public data.
 
-You can ask questions such as "*what is the weather in Seattle?*" or "*what is the recent update in the retail industry in the US?*" require real-time public data.
+Developers and end users don't have access to raw content returned from Grounding with Bing Search. The response, however, includes citations with links to the websites used to generate the response, and a link to the Bing query used for the search. These two *References* must be retained and displayed in the exact form provided by Microsoft, as per Grounding with Bing Search's [Use and Display Requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal#use-and-display-requirements). See more details [below](#How-to-display-Grounding-with-Bing-Search-Results).
+
+>[!IMPORTANT]
+> Your usage of Grounding with Bing Search may incur costs. See the [pricing page](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
 
 ## Setup  
 
@@ -30,6 +33,13 @@ You can ask questions such as "*what is the weather in Seattle?*" or "*what is t
 
 1. Ensure you've completed the prerequisites and setup steps in the [quickstart](../../quickstart.md).
 
+1. Create a new Grounding with Bing Search resource. <!--You can find the template file [here](./bingsearch_arm.json) and parameter file [here](./bingsearch_para.json).-->
+   You can do this directly in [Azure Portal](https://portal.azure.com/#create/Microsoft.BingGroundingSearch), and select the different fields in the creation form.
+
+   Alternatively, you can create the resource through Azure CLI. By using this method you automatically agree to be bound by and comply with the [Terms of use and Use and Display Requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal).
+
+   Make sure you create this Grounding with Bing Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.
+
 1. Ensure you have logged in to Azure, using `az login`
 
 1. Register the Bing Search provider
@@ -37,7 +47,7 @@ You can ask questions such as "*what is the weather in Seattle?*" or "*what is t
        az provider register --namespace 'Microsoft.Bing'
    ```
 
-1. Create a new Grounding with Bing Search resource. <!--You can find the template file [here](./bingsearch_arm.json) and parameter file [here](./bingsearch_para.json).--> Make sure you have replaced "BING_RESOURCE_NAME" in the parameter file. You can use Azure CLI command: 
+1. Create the resource.
     
     ```console
     az deployment group create
@@ -54,22 +64,25 @@ You can ask questions such as "*what is the weather in Seattle?*" or "*what is t
         --template-file bingsearch_arm.json
         --parameters bingsearch_para.json
     ```
-   Make sure you have created this Grounding with Bing Search resource in the same resource group of your Azure AI Agent, AI Project, etc.
-1. After you have created a Grounding with Bing Search resource, you can find it in [Azure portal](https://ms.portal.azure.com/#home). Going to the resource group you have created the resource at, search for the Grounding with Bing Search resource you have created.
+
+1. After you have created a Grounding with Bing Search resource, you can find it in [Azure portal](https://portal.azure.com/#home). Going to the resource group you have created the resource at, search for the Grounding with Bing Search resource you have created.
 
     :::image type="content" source="../../media/tools/bing/resource-azure-portal.png" alt-text="A screenshot of the Bing resource in the Azure portal." lightbox="../../media/tools/bing/resource-azure-portal.png":::
 
-1. Click the Grounding with Bing Search resource you have created and copy any of the API key
+1. Click the Grounding with Bing Search resource you have created and copy any of the API keys.
 
     :::image type="content" source="../../media/tools/bing/key-endpoint-resource-azure-portal.png" alt-text="A screenshot of the key and endpoint screen for the Bing resource in the Azure portal." lightbox="../../media/tools/bing/key-endpoint-resource-azure-portal.png":::
 
 
 
-1. Go to [Azure AI Foundry Portal](https://ai.azure.com/) and select the AI Project(make sure it's in the same resource group of your Grounding with Bing Search resource). Click **Settings** 
+1. Go to [Azure AI Studio](https://ai.azure.com/) and select the AI Project (make sure it's in the same resource group of your Grounding with Bing Search resource). Click **Settings**.
 
     :::image type="content" source="../../media/tools/bing/project-settings-button.png" alt-text="A screenshot of the settings button for an AI project." lightbox="../../media/tools/bing/project-settings-button.png":::
 
-1. Select **+new connection** in the settings page.
+1. Select **+ new connection** in the settings page. 
+
+    >[!NOTE]
+    > If you re-generate the API key at a later date, you need to update the connection with the new key.
 
     :::image type="content" source="../../media/tools/bing/project-connections.png" alt-text="A screenshot of the connections screen for the AI project." lightbox="../../media/tools/bing/project-connections.png":::
 
@@ -85,11 +98,17 @@ You can ask questions such as "*what is the weather in Seattle?*" or "*what is t
     - Connection name: `YOUR_CONNECTION_NAME` (You will use this connection name in the sample code below.)
     - Access: you can choose either *this project only* or *shared to all projects*. Just make sure in the sample code below, the project you entered connection string for has access to this connection.
 
-## Terms of use and display requirements
+## How to display Grounding with Bing Search Results
 
-According to Terms of use and display requirements, you need to display both website URLs and Bing search query URLs in your custom interface. You can find website URLs through `annotations` parameter in API response and Bing search query URLs through `runstep` details.  
+According to Grounding with Bing's [Terms of Use and Use and display requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal#use-and-display-requirements), you need to display both website URLs and Bing search query URLs in your custom interface. You can find website URLs through `annotations` parameter in API response and Bing search query URLs through `runstep` details.
 
 :::image type="content" source="../../media/tools/bing/website-citations.png" alt-text="A screenshot showing citations for Bing search results." lightbox="../../media/tools/bing/website-citations.png":::
+
+### Other legal considerations
+
+Microsoft will use data you send to Grounding with Bing to improve Microsoft products and services. Where you send personal data to this service, you are responsible for obtaining sufficient consent from the data subjects. The Data Protection Terms in the Online Services Terms do not apply to Grounding with Bing. 
+
+Your use of Grounding with Bing Search will be governed by the Terms of Use. By using Grounding with Bing Search, you agree to be bound by and comply with these Terms of Use.
 
 ::: zone-end
 
