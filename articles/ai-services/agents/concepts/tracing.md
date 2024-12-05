@@ -27,7 +27,7 @@ Tracing lets you analyze your agent's performance and behavior by using OpenTele
 
 To add an Application Insights resource, navigate to the **Tracing** tab in the [AI Foundry portal](https://ai.azure.com/), and create a new resource if you don't already have one.
 
-:::image type="content" source="ai-foundry-tracing.png" alt-text="A screenshot of the tracing screen in the AI Foundry portal." lightbox="ai-foundry-tracing.png":::
+:::image type="content" source="../media/ai-foundry-tracing.png" alt-text="A screenshot of the tracing screen in the AI Foundry portal." lightbox="../media/ai-foundry-tracing.png":::
 
 Once created, you can get an Application Insights connection string, configure your agents, and observe the full execution path of your agent through Azure Monitor. Typically you want to enable tracing before you create an agent.
 

@@ -44,8 +44,6 @@ items:
           href: how-to/tools/function-calling.md
         - name: Logic app function calling
           href: how-to/tools/agent-logic-apps.md
-    - name: Tracing
-      href: how-to/tracing.md
 - name: Responsible AI
   items:
     - name: Overview
