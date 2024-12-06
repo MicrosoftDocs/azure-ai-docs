@@ -19,23 +19,25 @@ recommendations: false
 
 **Grounding with Bing Search** allows your Azure AI Agents to incorporate real-time public web data when generating responses. You need to create a Grounding with Bing Search resource, and then connect this resource to your Azure AI Agents. When a user sends a query, Azure AI Agents decide if Grounding with Bing Search should be leveraged or not. If so, it will leverage Bing to search over public web data and return relevant chunks. Lastly, Azure AI Agents will use returned chunks to generate a response.  
 
-You can ask questions such as "*top news today*" or "*what is the recent update in the retail industry in the US?*", which require real-time public data.
+You can ask questions such as "*what is the top news today*" or "*what is the recent update in the retail industry in the US?*", which require real-time public data.
 
 Developers and end users don't have access to raw content returned from Grounding with Bing Search. The response, however, includes citations with links to the websites used to generate the response, and a link to the Bing query used for the search. These two *References* must be retained and displayed in the exact form provided by Microsoft, as per Grounding with Bing Search's [Use and Display Requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal#use-and-display-requirements). See the [how to display Grounding with Bing Search results](#how-to-display-grounding-with-bing-search-results) section for details.
 
 >[!IMPORTANT]
 > 1. Your usage of Grounding with Bing Search may incur costs. See the [pricing page](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
-> 1. If you choose to create a new Grounding with Bing Search resource through Azure CLI, you automatically agree to be bound by and comply with the [Terms of use and Use and Display Requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal).
+> 1. If you choose to create a new Grounding with Bing Search resource through the Azure CLI, you automatically agree to be bound by and comply with the [terms of use and use and display requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal).
 
 ## Setup  
 
 > [!NOTE]
-> Grounding with Bing Search only works with the following AOAI models: `gpt-3.5-turbo-0125`, `gpt-4-0125-preview`, `gpt-4-turbo-2024-04-09`, `gpt-4o-0513`
+> Grounding with Bing Search only works with the following Azure OpenAI models: `gpt-3.5-turbo-0125`, `gpt-4-0125-preview`, `gpt-4-turbo-2024-04-09`, `gpt-4o-0513`
 
-In one-click, you can create a **new Azure AI Agent and Grounding with Bing Search resource** with the deployment template [here](https://learn.microsoft.com/en-us/azure/ai-services/agents/quickstart?pivots=programming-language-csharp#choose-basic-or-standard-agent-setup). After the deployment, you can find your resources, including AI hub, project, Grounding with Bing Search resource and more created in your resource group. You can find your Grounding with Bing Search connection in `connected resources` of your project in Azure AI Foundry Portal.
-![image](https://github.com/user-attachments/assets/4fd40954-abf3-466e-8526-bc61e03692cf)
+In one click, you can start creating a **new Azure AI Foundry project and Grounding with Bing Search resource** with the available [deployment template](../../quickstart#choose-basic-or-standard-agent-setup). After the deployment, you can find your resources including: an AI hub, project, Grounding with Bing Search resource and more created in your resource group. You can find your Grounding with Bing Search connection in the **connected resources** for your project in Azure AI Foundry portal.
+
+:::image type="content" source="../../media/tools/bing/connected-resources.png" alt-text="A screenshot showing the connected resources for a project in the Azure AI Foundry portal." lightbox="../../media/tools/bing/connected-resources.png":::
 
 1. If you already have a Grounding with Bing Search resource, you can provide your resource ID in the bicep file. Your resource ID should be in this format `/subscriptions/{subscription ID}/resourceGroups/{resource group name}/providers/Microsoft.Bing/accounts/{resource name}`. Replace the following empty string with your resource ID:
+
 ```bicep
 @description('The full ARM Bing Resource ID. This is an optional field, and if not provided, the resource will be created.')
 param bingSearchResourceID string = ''
@@ -44,16 +46,17 @@ param bingSearchResourceID string = ''
 
 Alternatively, you can also follow the step-by-step guide below:
 
-1. Create a standard Azure AI Agent following steps [here]([../../quickstart.md])
+1. Create a standard Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
 
-1. Register the Bing Search provider
+1. Register the Bing Search provider.
+
    ```console
        az provider register --namespace 'Microsoft.Bing'
    ```
 
-1. Create a new Grounding with Bing Search resource in [Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingSearch), and select the different fields in the creation form. Make sure you create this Grounding with Bing Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.
+1. Create a new Grounding with Bing Search resource in the [Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingSearch), and select the different fields in the creation form. Make sure you create this Grounding with Bing Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.
 
-1. After you have created a Grounding with Bing Search resource, you can find it in [Azure portal](https://portal.azure.com/#home). Going to the resource group you have created the resource at, search for the Grounding with Bing Search resource you have created.
+1. After you have created a Grounding with Bing Search resource, you can find it in [Azure portal](https://portal.azure.com/#home). Navigate to the resource group you've created the resource in, search for the Grounding with Bing Search resource you have created.
 
     :::image type="content" source="../../media/tools/bing/resource-azure-portal.png" alt-text="A screenshot of the Bing resource in the Azure portal." lightbox="../../media/tools/bing/resource-azure-portal.png":::
 
@@ -61,7 +64,7 @@ Alternatively, you can also follow the step-by-step guide below:
 
     :::image type="content" source="../../media/tools/bing/key-endpoint-resource-azure-portal.png" alt-text="A screenshot of the key and endpoint screen for the Bing resource in the Azure portal." lightbox="../../media/tools/bing/key-endpoint-resource-azure-portal.png":::
 
-1. Go to [Azure AI Foundry Portal](https://ai.azure.com/) and select the AI Project (make sure it's in the same resource group of your Grounding with Bing Search resource). Click **connected resources**.
+1. Go to the [Azure AI Foundry portal](https://ai.azure.com/) and select the AI Project (make sure it's in the same resource group of your Grounding with Bing Search resource). Click **connected resources**.
 
     :::image type="content" source="../../media/tools/bing/project-settings-button.png" alt-text="A screenshot of the settings button for an AI project." lightbox="../../media/tools/bing/project-settings-button.png":::
 
@@ -153,7 +156,7 @@ var projectClient = new AIProjectClient(connectionString, new DefaultAzureCreden
 
 ## Step 2: Enable the Grounding with Bing search tool
 
-To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connecction in the `connected resources` of your project.
+To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connecction in the **connected resources** section of your project in the Azure AI Foundry portal.
 
 # [Python](#tab/python)
 
@@ -217,7 +220,7 @@ print(f"Created thread, ID: {thread.id}")
 message = project_client.agents.create_message(
     thread_id=thread.id,
     role="user",
-    content="Top news today",
+    content="What is the top news today",
 )
 print(f"Created message, ID: {message.id}")
 ```
