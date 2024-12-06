@@ -28,7 +28,7 @@ items:
     href: /azure/ai-services/openai/use-your-data-quickstart?context=/azure/search/context/context
   - name: Connect without keys
     href: search-get-started-rbac.md
-  - name: Portal
+  - name: Azure portal
     items:
     - name: Keyword search wizard
       href: search-get-started-portal.md
@@ -229,7 +229,7 @@ items:
       href: search-how-to-create-search-index.md
     - name: Load an index
       href: search-how-to-load-search-index.md
-    - name: Portal indexing (import data wizards)
+    - name: Index via import data wizards
       href: search-import-data-portal.md
     - name: Update or rebuild an index
       href: search-howto-reindex.md
