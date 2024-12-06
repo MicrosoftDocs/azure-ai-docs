@@ -51,7 +51,7 @@ In Azure AI Search, indexers that access Azure blobs can use the [trusted servic
 
 1. Scroll down to the **Exceptions** section.
 
-   :::image type="content" source="media\search-indexer-howto-secure-access\exception.png" alt-text="Screenshot of the firewall and networking page for Azure Storage in the portal." border="true":::
+   :::image type="content" source="media\search-indexer-howto-secure-access\exception.png" alt-text="Screenshot of the firewall and networking page for Azure Storage in the Azure portal." border="true":::
 
 1. Make sure the checkbox is selected for **Allow Azure services on the trusted services list to access this storage account**.
 

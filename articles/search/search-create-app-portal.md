@@ -31,9 +31,9 @@ Before you begin, have the following prerequisites in place:
 
 + A [search index](search-what-is-an-index.md) to use as the basis of your generated application. 
 
-  This quickstart uses the built-in Real Estate sample data and index because it has thumbnail images (the wizard supports adding images to the results page). To create the index used in this exercise, run the **Import data** wizard, choosing the *realestate-us-sample* data source.
+  This quickstart uses the built-in hotels sample dataset. To create the index used in this exercise, run the **Import data** wizard, choosing the *hotels-sample* source and accepting all defaults.
 
-  :::image type="content" source="media/search-create-app-portal/import-data-realestate.png" alt-text="data source page for sample data" border="false":::
+  :::image type="content" source="media/search-create-app-portal/import-data-hotels.png" alt-text="Screenshot of the data source page for sample data.":::
 
 When the index is ready to use, move on to the next step.
 
@@ -43,25 +43,25 @@ When the index is ready to use, move on to the next step.
 
 1. Under **Search Management** > **Indexes**
 
-1. Choose *realestate-us-sample-index* from the list of existing indexes.
+1. Select *hotels-sample-index*.
 
 1. On the index page, at the top, select **Create demo app** to start the wizard.
 
 1. On the first wizard page, select **Enable Cross Origin Resource Sharing (CORS)** to add CORS support to your index definition. This step is optional, but your local web app won't connect to the remote index without it.
 
-:::image type="content" source="media/search-create-app-portal/start-app-enable-cors.png" alt-text="Screenshot of the enable CORS option for the real estate sample index.":::
+   :::image type="content" source="media/search-create-app-portal/enable-cors.png" alt-text="Screenshot of the enable CORS action.":::
 
 ## Configure search results
 
-The wizard provides a basic layout for rendered search results that includes space for a thumbnail image, a title, and description. Backing each of these elements is a field in your index that provides the data. 
+The wizard provides a basic layout for rendered search results that includes space for a thumbnail image, a title, and description. Backing each of these elements is a field in your index that provides the data.
 
-1. In Thumbnail, choose the *thumbnail* field in the *realestate-us-sample* index. This sample happens to include image thumbnails in the form of URL-addressed images stored in a field called *thumbnail*. If your index doesn't have images, leave this field blank.
+1. Skip **Thumbnail** because this index doesn't have images, but if you have an index field that's populated with URLs resolving to publically available images, you should specify that field for the thumbnail area. If your index doesn't have image URLs, leave this field blank.
 
-1. In Title, choose a field that conveys the uniqueness of each document. In this sample, the listing ID is a reasonable selection.
+1. In Title, choose a field that conveys the uniqueness of each document. In this sample, the Hotel Name is a reasonable selection.
 
-1. In Description, choose a field that provides details that might help someone decide whether to drill down to that particular document.
+1. In Description, choose a field that provides details that might help someone decide whether to drill down to that particular document. In this sample, the Description is a good candidate.
 
-   :::image type="content" source="media/search-create-app-portal/configure-results.png" alt-text="configure results for sample data" border="false":::
+   :::image type="content" source="media/search-create-app-portal/configure-results.png" lightbox="media/search-create-app-portal/configure-results.png" alt-text="Screenshot of the search results configuration page." :::
 
 ## Add a sidebar
 
@@ -70,70 +70,41 @@ The search service supports faceted navigation, which is often rendered as a sid
 In Azure AI Search, faceted navigation is a cumulative filtering experience. Within a category, selecting multiple filters expands the results (for example, selecting Seattle and Bellevue within City). Across categories, selecting multiple filters narrows results.
 
 > [!TIP]
-> You can view the full index schema in the portal. Look for the **Index definition (JSON)** link in each index's overview page. Fields that qualify for faceted navigation have "filterable: true" and "facetable: true" attributes.
+> You can view fields attributes on the **Fields** tab of the index in the Azure portal. Fields marked as filterable and facetable can be used in the sidebar
 
-1. In the wizard, select the **Sidebar** tab at the top of the page. You'll see a list of all fields that are attributed as filterable and facetable in the index.
+1. In the wizard, select the **Sidebar** tab at the top of the page. You should see a list of all fields that are attributed as filterable and facetable in the index.
 
-1. Accept the current selection of faceted fields and continue to the next page.
-
-## Add typeahead
-
-Typeahead functionality is available in the form of autocomplete and query suggestions. The wizard supports query suggestions. Based on keystroke inputs provided by the user, the search service returns a list of "completed" query strings that can be selected as the input.
-
-Suggestions are enabled on specific field definitions. The wizard gives you options for configuring how much information is included in a suggestion. 
-
-The following screenshot shows options in the wizard, juxtaposed with a rendered page in the app. You can see how field selections are used, and how "Show Field Name" is used to include or exclude labeling within the suggestion.
-
-:::image type="content" source="media/search-create-app-portal/suggestions.png" alt-text="Query suggestion configuration":::
+1. Remove some of the fields to shorten the sidebar so that you don't have scroll in the finished app.
 
 ## Add suggestions
 
-Suggestions refer to automated query prompts that are attached to the search box. Azure AI Search supports two: *autocompletion* of a partially entered search term, and *suggestions* for a dropdown list of potential matching documents based.
+Suggestions refer to automated query prompts that are attached to the search box. The demo app supports *suggestions* that provide a dropdown list of potential matching documents based on partial text inputs.
 
-Select fields for which suggested queries are provided. You should choose shorter string fields. Avoid verbose fields such as descriptions.
+In this page, select fields for which suggested queries are provided. You should choose shorter string fields. Avoid verbose fields such as descriptions. 
 
-The wizard supports suggestions, and the fields that can provide suggested results are derived from a [`Suggesters`](index-add-suggesters.md) construct in the index:
+The following screenshot shows the suggestions page, juxtaposed with a rendered page in the app. You can see how field selections are used, and how "Show Field Name" is used to include or exclude labeling within the suggestion.
 
-```JSON
-  "suggesters": [
-    {
-      "name": "sg",
-      "searchMode": "analyzingInfixMatching",
-      "sourceFields": [
-        "number",
-        "street",
-        "city",
-        "region",
-        "postCode",
-        "tags"
-      ]
-    }
-  ]
-```
+:::image type="content" source="media/search-create-app-portal/suggestions.png" lightbox="media/search-create-app-portal/suggestions.png" alt-text="Screenshot of the suggestion configuration page.":::
 
-1. In the wizard, select the **Suggestions** tab at the top of the page. You'll see a list of all fields that are designated in the index schema as suggestion providers.
-
-1. Accept the current selection and continue to the next page.
-
-## Create, download and execute
+## Create, download, and execute
 
 1. Select **Create demo app** at the bottom of the page to generate the HTML file.
 
 1. When prompted, select **Download your app** to download the file.
 
-1. Open the file and select the **Search** button. This action executes a query, which can be an empty query (`*`) that returns an arbitrary result set. The page should look similar to the following screenshot. Enter a term and use filters to narrow results. 
+1. Open the file and select the **Search** button. This action executes a query, which can be an empty query (`*`) that returns an arbitrary result set. The page should look similar to the following screenshot. 
 
-The underlying index is composed of fictitious, generated data that has been duplicated across documents, and descriptions sometimes don't match the image. You can expect a more cohesive experience when you create an app based on your own indexes.
+1. Enter a term and use filters to narrow results. If you don't see suggested queries, check browser settings or try a different browser.
 
-:::image type="content" source="media/search-create-app-portal/run-app.png" alt-text="Run the app":::
+:::image type="content" source="media/search-create-app-portal/run-app.png" lightbox="media/search-create-app-portal/run-app.png" alt-text="Screenshot of the search application in a browser window.":::
 
 ## Clean up resources
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
+You can find and manage resources in the Azure portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
 
-Remember that a free service is limited to three indexes, indexers, and data sources. You can delete individual items in the portal to stay under the limit. 
+Remember that a free service is limited to three indexes, indexers, and data sources. You can delete individual items in the Azure portal to stay under the limit. 
 
 ## Next steps
 

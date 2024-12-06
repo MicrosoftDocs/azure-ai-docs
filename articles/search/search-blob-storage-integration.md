@@ -128,7 +128,7 @@ A common scenario that makes it easy to sort through blobs of any content type i
 
 ## Search blob content in a search index 
 
-The output of an indexer is a search index, used for interactive exploration using free text and filtered queries in a client app. For initial exploration and verification of content, we recommend starting with [Search Explorer](search-explorer.md) in the portal to examine document structure. In Search explorer, you can use:
+The output of an indexer is a search index, used for interactive exploration using free text and filtered queries in a client app. For initial exploration and verification of content, we recommend starting with [Search Explorer](search-explorer.md) in the Azure portal to examine document structure. In Search explorer, you can use:
 
 + [Simple query syntax](query-simple-syntax.md)
 + [Full query syntax](query-lucene-syntax.md)

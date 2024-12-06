@@ -15,7 +15,7 @@ ms.date: 10/04/2024
 
 # Tutorial: Search your data using a chat model (RAG in Azure AI Search)
 
-The defining characteristic of a RAG solution on Azure AI Search is sending queries to a Large Language Model (LLM) and providing a conversational search experience over your indexed content. It can be surprisingly easy if you implement just the basics.
+The defining characteristic of a RAG solution on Azure AI Search is sending queries to a Large Language Model (LLM) for a conversational search experience over your indexed content. It can be surprisingly easy if you implement just the basics.
 
 In this tutorial, you:
 

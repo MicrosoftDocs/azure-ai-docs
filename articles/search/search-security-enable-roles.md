@@ -53,7 +53,7 @@ The default failure mode for unauthorized requests is `http401WithBearerChalleng
 
 1. As an administrator, if you choose a roles-only approach, [assign data plane roles](search-security-rbac.md) to your user account to restore full administrative access over data plane operations in the Azure portal. Roles include Search Service Contributor, Search Index Data Contributor, and Search Index Data Reader. You need all three roles if you want equivalent access.
 
-   Sometimes it can take five to ten minutes for role assignments to take effect. Until that happens, the following message appears in the portal pages used for data plane operations.
+   Sometimes it can take five to ten minutes for role assignments to take effect. Until that happens, the following message appears in the Azure portal pages used for data plane operations.
 
    :::image type="content" source="media/search-security-rbac/you-do-not-have-access.png" alt-text="Screenshot of portal message indicating insufficient permissions.":::
 

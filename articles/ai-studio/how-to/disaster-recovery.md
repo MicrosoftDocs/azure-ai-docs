@@ -10,7 +10,7 @@ ms.topic: how-to
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: andyaviles
-ms.date: 5/21/2024
+ms.date: 12/05/2024
 ---
 
 # Customer enabled disaster recovery

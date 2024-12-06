@@ -29,13 +29,13 @@ At this point in time, the credit is equivalent to USD 200. As always, the exact
 
 Once you sign up, you can immediately use either of these links to access Azure resources and experiences:
 
-+ [Sign in to Azure portal](https://portal.azure.com/) to view, manage, and create more resources. You can also use the portal to track your credits and projected costs.
++ [Sign in to Azure portal](https://portal.azure.com/) to view, manage, and create more resources. You can also use the Azure portal to track your credits and projected costs.
 
 + [Sign in to Azure AI Foundry](https://ai.azure.com) for a no-code approach to deploying models on Azure OpenAI and using Azure AI Search for information retrieval. **We recommend you start here first.**
 
 <!-- Although you can create a free search service that doesn't use up your credits, we recommend provisioning the **Basic** tier so that you can work with larger indexes, more indexes, and premium features like semantic ranking.
 
-The [Azure portal](https://portal.azure.com/) is the easiest approach for first-time users who want to create and use Azure resources. You can access and manage all of your subscriptions and resources from the portal. For Azure AI Search, you can use the portal to build components for classic search scenarios and generative search (RAG) workloads. -->
+The [Azure portal](https://portal.azure.com/) is the easiest approach for first-time users who want to create and use Azure resources. You can access and manage all of your subscriptions and resources from the Azure portal. For Azure AI Search, you can use the Azure portal to build components for classic search scenarios and generative search (RAG) workloads. -->
 
 ## Step two: "Day One" tasks
 
@@ -114,7 +114,7 @@ Continue with the following links to review which regions also provide the model
 
 ### Try the quickstarts
 
-Try the portal quickstarts for Azure AI Search or quickstarts that use Visual Studio Code with REST or Python extensions.  It's the fastest approach creating searchable content, and you don't need coding skills to complete the tasks.
+Try the Azure portal quickstarts for Azure AI Search or quickstarts that use Visual Studio Code with REST or Python extensions.  It's the fastest approach creating searchable content, and you don't need coding skills to complete the tasks.
 
 - [Quickstart: Vector search in the Azure portal](search-get-started-portal-import-vectors.md)
 - [Quickstart: Image search in the Azure portal](search-get-started-portal-image-search.md)

@@ -565,7 +565,7 @@ Finally, you learned how to test results and reset the system for further iterat
 
 When you're working in your own subscription, at the end of a project, it's a good idea to remove the resources that you no longer need. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal, using the All resources or Resource groups link in the left-navigation pane.
+You can find and manage resources in the Azure portal, using the All resources or Resource groups link in the left-navigation pane.
 
 ## Next steps
 
