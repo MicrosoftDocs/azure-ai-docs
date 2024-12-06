@@ -36,7 +36,7 @@ You need this step if you have more than one subscription or tenant.
 
    1. Now select the subscription name to show the parent management group (tenant ID) on the next page.
 
-      :::image type="content" source="media/search-get-started-rbac/select-subscription-name.png" lightbox="media/search-get-started-rbac/select-subscription-name.png" alt-text="Screenshot of the portal page providing the subscription name":::
+      :::image type="content" source="media/search-get-started-rbac/select-subscription-name.png" lightbox="media/search-get-started-rbac/select-subscription-name.png" alt-text="Screenshot of the Azure portal page providing the subscription name":::
 
 1. You now know which subscription and tenant Azure AI Search is under. Switch to your local device and a command prompt, and identify the active Azure subscription and tenant on your device:
 
@@ -62,7 +62,7 @@ You need this step if you have more than one subscription or tenant.
 
    1. Choose **Role-based control** or **Both** if you need time to transition clients to role-based access control.
 
-      If you choose **Role-based control**, make sure that you assign yourself *all* roles named in the next instruction or you won't be able to complete tasks in the portal or through a  local client.
+      If you choose **Role-based control**, make sure that you assign yourself *all* roles named in the next instruction or you won't be able to complete tasks in the Azure portal or through a  local client.
 
 1. Assign roles in the Azure portal:
 
