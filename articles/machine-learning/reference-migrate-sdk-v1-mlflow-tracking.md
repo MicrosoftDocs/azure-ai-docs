@@ -134,7 +134,7 @@ __SDK v2 with MLflow__
 mlflow.log_artifact("Azure.png")
 ```
 
-The image is logged as an artifact and it appears in the __Images__ tab in Azure Machine Learning Studio.
+The image is logged as an artifact and it appears in the __Images__ tab in Azure Machine Learning studio.
 
 ### Log a matplotlib.pyplot
 
@@ -158,7 +158,7 @@ ax.plot([0, 1], [2, 3])
 mlflow.log_figure(fig, "sample_pyplot.png")
 ```
 
-* The image is logged as an artifact and it appears in the __Images__ tab in Azure Machine Learning Studio.
+* The image is logged as an artifact and it appears in the __Images__ tab in Azure Machine Learning studio.
 
 ### Log a list of metrics
 

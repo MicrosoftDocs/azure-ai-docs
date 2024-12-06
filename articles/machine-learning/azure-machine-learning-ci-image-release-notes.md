@@ -22,7 +22,7 @@ Main updates provided with each image version are described in the below section
 
 ## October 30, 2024
 
-Image Version: '24.10.24'
+Image Version: `24.10.18`
 
 Release Notes:
 

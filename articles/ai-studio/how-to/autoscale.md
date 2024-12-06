@@ -1,7 +1,7 @@
 ---
 title: Autoscale Azure AI limits
-titleSuffix: Azure AI Studio
-description: Learn how you can manage and increase quotas for resources with Azure AI Studio.
+titleSuffix: Azure AI Foundry
+description: Learn how you can manage and increase quotas for resources with Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
@@ -18,7 +18,7 @@ author: Blackmist
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-This article provides guidance for how you can manage and increase quotas for resources with Azure AI Studio.
+This article provides guidance for how you can manage and increase quotas for resources with Azure AI Foundry.
 
 ## Overview
 

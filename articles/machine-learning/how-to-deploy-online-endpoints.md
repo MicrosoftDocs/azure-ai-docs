@@ -134,7 +134,7 @@ The [workspace](concept-workspace.md) is the top-level resource for Azure Machin
         ManagedOnlineDeployment,
         Model,
         Environment,
-        CodeConfiguration,
+        CodeConfiguration
     )
     from azure.identity import DefaultAzureCredential
     ```

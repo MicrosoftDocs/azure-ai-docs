@@ -75,8 +75,6 @@ The available health plans in the Contoso Electronics plan and benefit packages 
 > [!IMPORTANT]
 > For production, use a secure way of storing and accessing your credentials like [The PowerShell Secret Management with Azure Key Vault](/powershell/utility-modules/secretmanagement/how-to/using-azure-keyvault). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with sending the request.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=REST&Pillar=AOAI&Product=ownData&Page=quickstart&Section=Send-request)
 
 ## Chat with your model using a web app
 

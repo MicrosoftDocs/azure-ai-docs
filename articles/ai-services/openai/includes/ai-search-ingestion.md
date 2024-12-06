@@ -1,6 +1,6 @@
 ---
 manager: nitinme
-ms.service: azure-ai-studio
+ms.service: azure-ai-services
 ms.custom:
 ms.topic: include
 ms.date: 10/08/2024
