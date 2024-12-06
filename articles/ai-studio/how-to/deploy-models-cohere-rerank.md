@@ -86,7 +86,7 @@ To create a deployment:
 1. Alternatively, you can initiate a deployment from your project in the AI Foundry portal as follows: 
 
     1. From the left sidebar of your project, select **Models + Endpoints**.
-    1. Select **+ Deploy model**.
+    1. Select **+ Deploy model** > **Deploy base model**.
     1. Search for and select **Cohere-rerank-v3-english** to open the Model Details page.
     1. Select **Confirm** to open a serverless API deployment window for the model.
 
@@ -94,14 +94,14 @@ To create a deployment:
 1. Select the **Pricing and terms** tab to learn about pricing for the selected model.
 1. Select the **Subscribe and Deploy** button. If this is your first time deploying the model in the project, you have to subscribe your project for the particular offering.
 
-> [!NOTE]
-> This step requires that your account has the **Azure AI Developer role** permissions on the resource group, as listed in the prerequisites. Models that are offered by non-Microsoft providers (for example, Cohere models) are billed through the Azure Marketplace. For such models, you're required to subscribe your project to the particular model offering. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Currently, you can have only one deployment for each model within a project.
+    > [!NOTE]
+    > This step requires that your account has the **Azure AI Developer role** permissions on the resource group, as listed in the prerequisites. Models that are offered by non-Microsoft providers (for example, Cohere models) are billed through the Azure Marketplace. For such models, you're required to subscribe your project to the particular model offering. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Currently, you can have only one deployment for each model within a project.
 
 1. Once you subscribe the project for the particular Azure Marketplace offering, subsequent deployments of the _same_ offering in the _same_ project don't require subscribing again. If this scenario applies to you, there's a **Continue to deploy** option to select.
 
 1. Give the deployment a name. This name becomes part of the deployment API URL. This URL must be unique in each Azure region.
 
-1. Select **Deploy**. Wait until the deployment is ready and you're redirected to the Deployments page.
+1. Select **Deploy**. Wait until the deployment is ready and you're redirected to the **Model deployments** page.
 1. On the Deployments page, select the deployment, and note the endpoint's **Target** URL and the Secret **Key**. For more information on using the APIs, see the [reference](#rerank-api-reference-for-cohere-rerank-models-deployed-as-a-service) section.
 1. [!INCLUDE [Find your deployment details](../includes/find-deployments.md)]
 
