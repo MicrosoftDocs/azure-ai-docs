@@ -75,7 +75,7 @@ Count won't be affected by routine maintenance or other workloads on the search 
 >
 > When testing query syntax, `count=true` can quickly tell you whether your modifications are returning greater or fewer results, which can be useful feedback.
 
-<a name="paging-results></a>
+<a name="paging-results"></a>
 
 ## Number of results in the response
 
