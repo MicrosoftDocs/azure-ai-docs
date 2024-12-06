@@ -50,11 +50,11 @@ This section creates the sample data set in Azure Blob Storage so that the index
 
    + Choose the StorageV2 (general purpose V2) account type.
 
-1. Navigate to the Azure Storage services pages in the portal and create a Blob container. Best practice is to specify the access level "private". Name your container `clinicaltrialdataset`.
+1. Navigate to the Azure Storage services pages in the Azure portal and create a Blob container. Best practice is to specify the access level "private". Name your container `clinicaltrialdataset`.
 
 1. In container, select **Upload** to upload the sample files you downloaded and unzipped in the first step.
 
-1. While in the portal, copy the connection string for Azure Storage. You can get the connection string from **Settings** > **Access Keys** in the portal.
+1. While in the Azure portal, copy the connection string for Azure Storage. You can get the connection string from **Settings** > **Access Keys** in the Azure portal.
 
 ## Copy a key and URL
 
@@ -80,7 +80,7 @@ In this section, create a "buggy" workflow that you can fix in this tutorial.
 
 1. Close the file.
 
-## Check results in the portal
+## Check results in the Azure portal
 
 The sample code intentionally creates a buggy index as a consequence of problems that occurred during skillset execution. The problem is that the index is missing data. 
 
@@ -257,9 +257,9 @@ The results should show that organizations and locations are now populated with 
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
+You can find and manage resources in the Azure portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
 
-The free service is limited to three indexes, indexers, and data sources. You can delete individual items in the portal to stay under the limit. 
+The free service is limited to three indexes, indexers, and data sources. You can delete individual items in the Azure portal to stay under the limit. 
 
 ## Next steps
 

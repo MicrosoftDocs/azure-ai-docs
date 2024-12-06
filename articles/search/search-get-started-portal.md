@@ -31,7 +31,7 @@ The wizard creates multiple objects on your search service - [searchable index](
 
 - Familiarity with the wizard. See [Import data wizards in the Azure portal](search-import-data-portal.md) for details.
 
-For this quickstart, which uses built-in sample data, make sure the search service doesn't have [network access controls](service-configure-firewall.md) in place. The portal controller uses the public endpoint to retrieve data and metadata from the built-in sample data source hosted by Microsoft. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
+For this quickstart, which uses built-in sample data, make sure the search service doesn't have [network access controls](service-configure-firewall.md) in place. the Azure portal controller uses the public endpoint to retrieve data and metadata from the built-in sample data source hosted by Microsoft. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
 
 ### Check for space
 
@@ -120,7 +120,7 @@ The last step configures and runs the indexer. This object defines an executable
 
 ## Monitor indexer progress
 
-You can monitor creation of the indexer or index in the portal. The service **Overview** page provides links to the resources created in your Azure AI Search service.
+You can monitor creation of the indexer or index in the Azure portal. The service **Overview** page provides links to the resources created in your Azure AI Search service.
 
 1. On the left, select **Indexers**.
 
@@ -243,4 +243,4 @@ If you use a free service, remember that the limit is three indexes, indexers, a
 Try an Azure portal wizard to generate a ready-to-use web app that runs in a browser. Use this wizard on the small index you created in this quickstart, or use one of the built-in sample data sets for a richer search experience.
 
 > [!div class="nextstepaction"]
-> [Create a demo app in the portal](search-create-app-portal.md)
+> [Create a demo app in the Azure portal](search-create-app-portal.md)

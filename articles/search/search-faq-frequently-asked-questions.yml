@@ -24,7 +24,7 @@ sections:
       - question: |
           How do I work with Azure AI Search?
         answer: | 
-          The primary workflow is create, load, and query an index. Although you can use the portal for most tasks, Azure AI Search is intended to be used programmatically, handling requests from client code. Programmatic support is provided through REST APIs and client libraries in .NET, Python, Java, and JavaScript SDKs for Azure.
+          The primary workflow is create, load, and query an index. Although you can use the Azure portal for most tasks, Azure AI Search is intended to be used programmatically, handling requests from client code. Programmatic support is provided through REST APIs and client libraries in .NET, Python, Java, and JavaScript SDKs for Azure.
 
       - question: |
           Are "Azure Search" and "Azure Cognitive Search" and "Azure AI Search" the same product?

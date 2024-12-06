@@ -102,9 +102,9 @@ The following screenshot shows the suggestions page, juxtaposed with a rendered 
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
+You can find and manage resources in the Azure portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
 
-Remember that a free service is limited to three indexes, indexers, and data sources. You can delete individual items in the portal to stay under the limit. 
+Remember that a free service is limited to three indexes, indexers, and data sources. You can delete individual items in the Azure portal to stay under the limit. 
 
 ## Next steps
 
