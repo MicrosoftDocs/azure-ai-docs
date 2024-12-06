@@ -233,8 +233,8 @@ You can use Azure CLI, the Python SDK, or the studio for advanced setup of model
 
    - For `endpoint_deployment_id`, use a value in the format `azureml:<endpoint-name>:<deployment-name>`.
    - For `path` in reference input data sections, use a value in the format `azureml:<reference-data-asset-name>:<version>`.
-   - For `target_column`, use something.
-   - For `features`, list something.
+   - For `target_column`, use the name of the output column that contains values that the model predicts, such as `DEFAULT_NEXT_MONTH`.
+   - For `features`, list the features like `SEX`, `EDUCATION`, and `AGE` that you want to use in an advanced data quality signal.
    - For `emails`, list the email addresses that you want to use for notifications.
 
    :::code language="yaml" source="~/azureml-examples-main/cli/monitoring/advanced-model-monitoring.yaml":::
@@ -258,8 +258,8 @@ To set up advanced model monitoring, use code that's similar to the following sa
 | <deployment-name> | The name of the deployment to monitor | main |
 | <production-data-asset-name> | The name of the data asset that contains production data | credit-default-main-model_inputs |
 | <reference-data-asset-name> | The name of the data asset that contains reference data | credit-default-reference |
-| <target-column> | Fill in | DEFAULT_NEXT_MONTH |
-| <feature1>, <feature2>, and <feature3> | Fill in , such as 'SEX', 'EDUCATION', or 'AGE' | AGE |
+| <target-column> | The name of the output column that contains values that the model predicts | DEFAULT_NEXT_MONTH |
+| <feature1>, <feature2>, and <feature3> | The features that you want to use in an advanced data quality signal | AGE |
 | <email-address1> and <email-address2> | Email addresses to use for notifications | `abc@example.com` |
 | <frequency-unit> | The monitoring frequency unit, such as "minute," "hour," "day," "week," or "month" | day |
 | <interval> | The interval between jobs, such as 1 or 2 days or weeks | 1 |
@@ -452,14 +452,18 @@ To set up advanced monitoring, take the following steps:
 
    :::image type="content" source="media/how-to-monitor-models/model-monitoring-advanced-configuration-data.png" alt-text="Screenshot showing how to add datasets for the monitoring signals to use." lightbox="media/how-to-monitor-models/model-monitoring-advanced-configuration-data.png":::
 
-1. Select **Next**. The **Select monitoring signals** page opens. If you selected an Azure Machine Learning online deployment earlier, you see some monitoring signals. The data drift, prediction drift, and data quality signals use recent, past production data as the comparison reference dataset and use smart defaults for metrics and thresholds.
+1. Select **Next**. The **Select monitoring signals** page opens. If you're using an Azure Machine Learning online deployment, you see some monitoring signals. The data drift, prediction drift, and data quality signals use recent, past production data as the comparison reference dataset and use smart defaults for metrics and thresholds.
 
     :::image type="content" source="media/how-to-monitor-models/model-monitoring-monitoring-signals.png" alt-text="Screenshot showing default monitoring signals." lightbox="media/how-to-monitor-models/model-monitoring-monitoring-signals.png":::
 
 1. Next to the data drift signal, select **Edit**.
 1. In the **Edit Signal** window, take the following steps to configure the data drift signal:
-    1. In step 1, for the production data asset, select your model input data asset. Also select the lookback window size that you want to use.
-    1. In step 2, for the reference data asset, select your training dataset. Also select the target, or output, column.
+    1. In step 1:
+        1. For the production data asset, select your model input data asset.
+        1. Select the lookback window size that you want to use.
+    1. In step 2:
+        1. For the reference data asset, select your training dataset.
+        1. Select the target, or output, column.
     1. In step 3, select **Top N features** to monitor drift for the *N* most important features. Or select specific features if you want to monitor drift for a specific set.
     1. In step 4, select the metric and threshold that you want to use for numerical features.
     1. In step 5, select the metric and threshold that you want to use for categorical features.
@@ -468,14 +472,20 @@ To set up advanced monitoring, take the following steps:
    :::image type="content" source="media/how-to-monitor-models/model-monitoring-configure-signals.png" alt-text="Screenshot showing how to configure selected monitoring signals." lightbox="media/how-to-monitor-models/model-monitoring-configure-signals.png":::
 
 1. On the Select monitoring signals page, select **Add**.
-1. On the Edit Signal window, Select **Feature attribution drift (PREVIEW)**, and then take the following steps to configure the feature attribution drift signal:
+1. In the Edit Signal window, select **Feature attribution drift (PREVIEW)**, and then take the following steps to configure the feature attribution drift signal:
 
-    1. In step 1, select the production data asset that has your model inputs. Also select the lookback window size that you want to use.
-    1. In step 2, select the production data asset that has your model outputs. Also select the common column to use to join the production data and the output data. If you use the [data collector](how-to-collect-production-data.md) to collect data, select **correlationid**.
+    1. In step 1:
+        1. Select the production data asset that has your model inputs.
+        1. Select the lookback window size that you want to use.
+    1. In step 2:
+        1. Select the production data asset that has your model outputs
+        1. Select the common column to use to join the production data and the output data. If you use the [data collector](how-to-collect-production-data.md) to collect data, select **correlationid**.
     1. (Optional) If you use the data collector to collect data that has your model inputs and outputs already joined, take the following steps:
         1. In step 1, for the production data asset, select the joined dataset. 
         1. In step 2, select **Remove** to remove step 2 from the configuration panel.  
-    1. In step 3, for the reference dataset, select your training dataset. Also select the target, or output, column for your training dataset.
+    1. In step 3:
+        1. For the reference dataset, select your training dataset.
+        1. Select the target, or output, column for your training dataset.
     1. In step 4, select the metric and threshold that you want to use.
     1. Select **Save**.
 
@@ -547,64 +557,93 @@ To understand the concepts associated with model performance monitoring, conside
 
 # [Azure CLI](#tab/azure-cli)
 
-Once you've satisfied the [prerequisites for model performance monitoring](#more-prerequisites-for-model-performance-monitoring), you can set up model monitoring with the following CLI command and YAML definition:
+After you satisfy the [prerequisites for model performance monitoring](#more-prerequisites-for-model-performance-monitoring), you can use the Azure CLI to set up model monitoring:
 
-```azurecli
-az ml schedule create -f ./model-performance-monitoring.yaml
-```
+1. Create a monitoring definition in a YAML file. For a sample advanced definition, see the following YAML code, which is also available in the [azureml-examples repository](https://github.com/Azure/azureml-examples/blob/main/cli/monitoring/advanced-model-monitoring.yaml).
 
-The following YAML contains the definition for model monitoring with production inference data that you've collected.
+    Before you use this definition, adjust the following values and any others you need to fit your environment:
 
-```YAML 
-$schema:  http://azureml/sdk-2-0/Schedule.json
-name: model_performance_monitoring
-display_name: Credit card fraud model performance
-description: Credit card fraud model performance
+    - For `endpoint_deployment_id`, use a value in the format `azureml:<endpoint-name>:<deployment-name>`.
+    - For `path` in reference input data sections, use a value in the format `azureml:<reference-data-asset-name>:<version>`.
+    - For `target_column`, use the name of the output column that contains values that the model predicts, such as `DEFAULT_NEXT_MONTH`.
+    - For `features`, list the features like `SEX`, `EDUCATION`, and `AGE` that you want to use in an advanced data quality signal.
+    - For `emails`, list the email addresses that you want to use for notifications.
 
-trigger:
-  type: recurrence
-  frequency: day
-  interval: 7 
-  schedule: 
-    hours: 10
-    minutes: 15
+    The following YAML contains the definition for model monitoring with production inference data that you've collected.
+
+    ```YAML 
+    $schema:  http://azureml/sdk-2-0/Schedule.json
+    name: model_performance_monitoring
+    display_name: Credit card fraud model performance
+    description: Credit card fraud model performance
+
+    trigger:
+      type: recurrence
+      frequency: day
+      interval: 7 
+      schedule: 
+        hours: 10
+        minutes: 15
   
-create_monitor:
-  compute: 
-    instance_type: standard_e8s_v3
-    runtime_version: "3.3"
-  monitoring_target:
-    ml_task: classification
-    endpoint_deployment_id: azureml:loan-approval-endpoint:loan-approval-deployment
+    create_monitor:
+      compute: 
+        instance_type: standard_e8s_v3
+        runtime_version: "3.3"
+      monitoring_target:
+        ml_task: classification
+        endpoint_deployment_id: azureml:loan-approval-endpoint:loan-approval-deployment
 
-  monitoring_signals:
-    fraud_detection_model_performance: 
-      type: model_performance 
-      production_data:
-        data_column_names:
-          prediction: is_fraud
-          correlation_id: correlation_id
-      reference_data:
-        input_data:
-          path: azureml:my_model_ground_truth_data:1
-          type: mltable
-        data_column_names:
-          actual: is_fraud
-          correlation_id: correlation_id
-        data_context: actuals
-      alert_enabled: true
-      metric_thresholds: 
-        tabular_classification:
-          accuracy: 0.95
-          precision: 0.8
-  alert_notification: 
-      emails: 
-        - abc@example.com
-```
+      monitoring_signals:
+        fraud_detection_model_performance: 
+          type: model_performance 
+          production_data:
+            data_column_names:
+              prediction: is_fraud
+              correlation_id: correlation_id
+          reference_data:
+            input_data:
+              path: azureml:my_model_ground_truth_data:1
+              type: mltable
+            data_column_names:
+              actual: is_fraud
+              correlation_id: correlation_id
+            data_context: actuals
+          alert_enabled: true
+          metric_thresholds: 
+            tabular_classification:
+              accuracy: 0.95
+              precision: 0.8
+      alert_notification: 
+          emails: 
+            - abc@example.com
+    ```
+
+1. Run the following command to create the model:
+
+    ```azurecli
+    az ml schedule create -f ./model-performance-monitoring.yaml
+    ```
 
 # [Python SDK](#tab/python)
 
-Once you've satisfied the [prerequisites for model performance monitoring](#more-prerequisites-for-model-performance-monitoring), you can set up model monitoring with the following Python code:
+After you satisfy the [prerequisites for model performance monitoring](#more-prerequisites-for-model-performance-monitoring), you can use the following Python code to set up model monitoring. First replace the following placeholders with appropriate values:
+
+| Placeholder | Description | Example |
+| --- | --- | --- |
+| <subscription_ID> | The ID of your subscription | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e |
+| <resource-group-name> | The name of the resource group that contains your workspace | my-resource-group |
+| <workspace_name> | The name of your workspace | my-workspace |
+| <production-data-asset-name> | The name of the data asset that contains production data | credit-default-main-model_inputs |
+| <production-target-column> | The name of the production column that contains values that the model predicts | DEFAULT_NEXT_MONTH |
+| <production-join-column> | The name of the production column to use to join the production and ground truth data | correlationid |
+| <ground-truth-data-asset-name> | The name of the data asset that contains ground truth data | credit-ground-truth |
+| <ground-truth-target-column> | The name of the ground truth column that contains actual data that the model tries to predict | ground_truth|
+| <ground-truth-join-column> | The name of the ground truth column to use to join the production and ground truth data | correlationid |
+| <email-address1> and <email-address2> | Email addresses to use for notifications | `abc@example.com` |
+| <frequency-unit> | The monitoring frequency unit, such as "minute," "hour," "day," "week," or "month" | day |
+| <interval> | The interval between jobs, such as 1 or 2 days or weeks | 1 |
+| <start-hour> | The hour to start monitoring, on a 24-hour clock | 3 |
+| <start-minutes> | The minutes after the specified hour to start monitoring | 15 |
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -628,34 +667,34 @@ from azure.ai.ml.entities import (
     ProductionData
 )
 
-# get a handle to the workspace
+# Get a handle to the workspace.
 ml_client = MLClient(
     DefaultAzureCredential(),
-    subscription_id="subscription_id",
-    resource_group_name="resource_group_name",
-    workspace_name="workspace_name",
+    subscription_id="<subscription-ID>",
+    resource_group_name="<resource-group-name>",
+    workspace_name="<workspace-name>",
 )
 
-# create your compute
+# Create a compute instance.
 spark_compute = ServerlessSparkCompute(
     instance_type="standard_e4s_v3",
     runtime_version="3.3"
 )
 
-# reference your azureml endpoint and deployment
+# Specify the type of the model task.
 monitoring_target = MonitoringTarget(
     ml_task="classification",
 )
 
-# MDC-generated production data with data column names 
+# Specify production data that the model data collector generates. 
 production_data = ProductionData(
     input_data=Input(
         type="uri_folder",
-        path="azureml:credit-default-main-model_outputs:1"
+        path="azureml:<production-data-asset-name>:1"
     ),
     data_column_names={
-        "target_column": "DEFAULT_NEXT_MONTH",
-        "join_column": "correlationid"
+        "target_column": "<production-target-column>",
+        "join_column": "<production-join-column>"
     },
     data_window=BaselineDataRange(
         lookback_window_offset="P0D",
@@ -663,20 +702,20 @@ production_data = ProductionData(
     )
 )
 
-# ground truth reference data 
+# Specify ground truth reference data.
 reference_data_ground_truth = ReferenceData(
     input_data=Input(
         type="mltable",
-        path="azureml:credit-ground-truth:1"
+        path="azureml:<ground-truth-data-asset-name>:1"
     ),
     data_column_names={
-        "target_column": "ground_truth",
-        "join_column": "correlationid"
+        "target_column": "<ground-truth-target-column>",
+        "join_column": "<ground-truth-join-column>"
     },
     data_context=MonitorDatasetContext.GROUND_TRUTH_DATA,
 )
 
-# create the model performance signal
+# Create the model performance signal.
 metric_thresholds = ModelPerformanceMetricThreshold(
     classification=ModelPerformanceClassificationThresholds(
         accuracy=0.50,
@@ -691,17 +730,17 @@ model_performance = ModelPerformanceSignal(
     metric_thresholds=metric_thresholds
 )
 
-# put all monitoring signals in a dictionary
+# Put all monitoring signals in a dictionary.
 monitoring_signals = {
     'model_performance':model_performance,
 }
 
-# create alert notification object
+# Create an alert notification object.
 alert_notification = AlertNotification(
-    emails=['abc@example.com', 'def@example.com']
+    emails=['<email-address1>', '<email-address2>']
 )
 
-# Finally monitor definition
+# Set up the monitor definition.
 monitor_definition = MonitorDefinition(
     compute=spark_compute,
     monitoring_target=monitoring_target,
@@ -709,18 +748,21 @@ monitor_definition = MonitorDefinition(
     alert_notification=alert_notification
 )
 
+# Specify the schedule frequency.
 recurrence_trigger = RecurrenceTrigger(
-    frequency="day",
-    interval=1,
-    schedule=RecurrencePattern(hours=3, minutes=15)
+    frequency="<frequency-unit>",
+    interval=<interval>,
+    schedule=RecurrencePattern(hours=<start-hour>, minutes=<start-minutes>)
 )
 
+# Create the monitoring schedule.
 model_monitor = MonitorSchedule(
     name="credit_default_model_performance",
     trigger=recurrence_trigger,
     create_monitor=monitor_definition
 )
 
+# Schedule the monitoring job.
 poller = ml_client.schedules.begin_create_or_update(model_monitor)
 created_monitor = poller.result()
 ```
@@ -729,39 +771,42 @@ created_monitor = poller.result()
 
 To set up model performance monitoring:
 
-1. Complete the entries on the **Basic settings** page as described earlier in the [Set up out-of-box model monitoring](#set-up-out-of-box-model-monitoring) section.
-1. Select **Next** to open the **Configure data asset** page of the **Advanced settings** section.
-1. Select **+ Add** to add a dataset for use as the ground truth dataset.
+1. In [Azure Machine Learning studio](https://ml.azure.com), go to your workspace.
+1. Under **Manage**, select **Monitoring**, and then select **Add**.
+1. On the Basic settings page, enter information as described earlier in [Set up out-of-box model monitoring](#set-up-out-of-box-model-monitoring).
+1. Select **Next** to open the Configure data asset page of the **Advanced settings** section.
+1. Select **Add**, and then add the data asset that you want to use as the ground truth data asset. The ground truth dataset must have a unique ID column. And the values in the unique ID column of the ground truth data asset and the model output data asset must match. These data assets can then be joined together prior to metric computation.
 
-    Ensure that your model outputs dataset is also included in the list of added datasets. The ground truth dataset you add should have a unique ID column.
-    The values in the unique ID column for both the ground truth dataset and the model outputs dataset must match in order for both datasets to be joined together prior to metric computation.
+    :::image type="content" source="media/how-to-monitor-models/model-monitoring-advanced-configuration-data-2.png" alt-text="Screenshot showing how to add datasets to use for model performance monitoring." lightbox="media/how-to-monitor-models/model-monitoring-advanced-configuration-data-2.png":::
 
-   :::image type="content" source="media/how-to-monitor-models/model-monitoring-advanced-configuration-data-2.png" alt-text="Screenshot showing how to add datasets to use for model performance monitoring." lightbox="media/how-to-monitor-models/model-monitoring-advanced-configuration-data-2.png":::
+    If you don't see your model outputs dataset in the list of added datasets, select **Add**, and then add it.
 
-   :::image type="content" source="media/how-to-monitor-models/model-monitoring-added-ground-truth-dataset.png" alt-text="Screenshot showing the ground truth dataset and the model outputs and inputs datasets for the monitoring signals to connect to." lightbox="media/how-to-monitor-models/model-monitoring-added-ground-truth-dataset.png":::
+    :::image type="content" source="media/how-to-monitor-models/model-monitoring-added-ground-truth-dataset.png" alt-text="Screenshot showing the ground truth dataset and the model outputs and inputs datasets for the monitoring signals to connect to." lightbox="media/how-to-monitor-models/model-monitoring-added-ground-truth-dataset.png":::
 
-1. Select **Next** to go to the **Select monitoring signals** page. On this page, you will see some monitoring signals already added (if you selected an Azure Machine Learning online deployment earlier).
-1. Delete the existing monitoring signals on the page, since you're only interested in creating a model performance monitoring signal.
-1. Select **Add** to open the **Edit Signal** window.
-1. Select **Model performance (preview)** to configure the model performance signal as follows:
+1. Select **Next**. The Select monitoring signals page opens. If you're using an Azure Machine Learning online deployment, you see a list of monitoring signals.
+1. Delete any monitoring signals that you see on the page. The focus of this section is to create a model performance monitoring signal.
+1. Select **Add**.
+1. In the Edit Signal window, select **Model performance (PREVIEW)**, and then take the following steps to configure the model performance signal:
 
-    1. In step 1, for the production data asset, select your model outputs dataset. Also, make the following selections:
-        - Select the appropriate target column (for example, `is_fraud`).
-        - Select the desired lookback window size and lookback window offset.
-    1. In step 2, for the reference data asset, select the ground truth data asset that you added earlier. Also, make the following selections:
-        - Select the appropriate target column.
-        - Select the column on which to perform the join with the model outputs dataset. The column used for the join should be the column that is common between the two datasets and which has a unique ID for each row in the dataset (for example, `correlationid`).
-    1. In step 3, select your desired performance metrics and specify their respective thresholds.
+    1. In step 1:
+        1. For the production data asset, select your model outputs dataset.
+        1. Select an appropriate target column, for example, `DEFAULT_NEXT_MONTH`.
+        1. Select the lookback window size and offset that you want to use.
+    1. In step 2:
+        1. For the reference data asset, select your ground truth data asset.
+        1. Select the target column, for example, `ground_truth`.
+        1. Select the column to use for the join with the model outputs dataset, for example, `correlationid`. Both data assets should contain that column, and it should contain a unique ID for each row in the dataset.
+    1. In step 3, select the performance metrics that you want to use, and specify their respective thresholds.
 
-   :::image type="content" source="media/how-to-monitor-models/model-monitoring-configure-model-performance.png" alt-text="Screenshot showing how to configure a model performance signal." lightbox="media/how-to-monitor-models/model-monitoring-configure-model-performance.png":::
+    :::image type="content" source="media/how-to-monitor-models/model-monitoring-configure-model-performance.png" alt-text="Screenshot showing how to configure a model performance signal." lightbox="media/how-to-monitor-models/model-monitoring-configure-model-performance.png":::
 
-1. Select **Save** to return to the **Select monitoring signals** page.
+1. Select **Save**. On the Select monitoring signals page, the model performance signal is visible.
 
     :::image type="content" source="media/how-to-monitor-models/model-monitoring-configured-model-performance-signal.png" alt-text="Screenshot showing the configured model performance signal." lightbox="media/how-to-monitor-models/model-monitoring-configured-model-performance-signal.png":::
 
-1. Select **Next** to go to the **Notifications** page.
-1. On the **Notifications** page, enable alert notification for the model performance signal and select **Next**.
-1. Review your settings on the **Review monitoring settings** page.
+1. Select **Next**.
+1. On the Notifications page, turn on notifications for the model performance signal, and then select **Next**.
+1. On the Review monitoring settings page, review your settings.
 
    :::image type="content" source="media/how-to-monitor-models/model-monitoring-review-monitoring-details.png" alt-text="Screenshot showing review page that includes the configured model performance signal." lightbox="media/how-to-monitor-models/model-monitoring-review-monitoring-details.png":::
 
