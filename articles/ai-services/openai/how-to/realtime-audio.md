@@ -5,11 +5,10 @@ description: Learn how to use the GPT-4o Realtime API for speech and audio with 
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 11/12/2024
+ms.date: 12/6/2024
 author: eric-urban
 ms.author: eur
 ms.custom: references_regions
-zone_pivot_groups: openai-studio-js
 recommendations: false
 ---
 
@@ -166,8 +165,6 @@ The following table describes commands sent by the `/realtime` endpoint to the c
 | `input_audio_buffer_cleared` | Provides acknowledgment that the pending user audio input buffer is cleared. |
 | **Other** | |
 | `error` | Indicates that something went wrong while processing data on the session. Includes an `error` message that provides more detail. |
-
-
 
 ## Related content
 
