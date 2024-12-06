@@ -914,7 +914,7 @@ groups:
     title: C#
   - id: programming-language-python
     title: Python (Azure SDK)
-  - id: programming-language-python
+  - id: programming-language-python-openai
     title: Python (OpenAI SDK) 
 # owner: aahi
 - id: selection-code-interpreter
