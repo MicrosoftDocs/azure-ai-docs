@@ -912,7 +912,7 @@ groups:
     title: AI Foundry
   - id: programming-language-csharp
     title: C#
-  - id: programming-language-python
+  - id: programming-language-python-azure
     title: Python (Azure SDK)
   - id: programming-language-python-openai
     title: Python (OpenAI SDK) 
