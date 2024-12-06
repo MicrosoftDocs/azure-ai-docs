@@ -360,6 +360,9 @@ You can also share this workbook with your team so they stay informed with the l
 
 :::image type="content" source="../media/how-to/online-evaluation/share-azure-workbook.png" alt-text="Screenshot of an Azure Workbook showing the share button and share tab." lightbox="../media/how-to/online-evaluation/share-azure-workbook.png":::
 
+> [!NOTE]
+> When sharing this workbook with your team members, they must have atleast 'Reader' role to the connected Application Insights resource to view the displayed information.
+
 ## Related content
 
 - [Trace your application with Azure AI Inference SDK](./develop/trace-local-sdk.md)
