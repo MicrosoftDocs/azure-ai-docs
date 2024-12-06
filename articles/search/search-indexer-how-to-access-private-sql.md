@@ -19,7 +19,7 @@ On a private connection to a managed instance, the fully qualified domain name (
 Although you can call the Management REST API directly, it's easier to use the Azure CLI `az rest` module to send Management REST API calls from a command line. This article uses the Azure CLI with REST to set up the private link.
 
 > [!NOTE]
-> This article refers to Azure portal for obtaining properties and confirming steps. However, when creating the shared private link for SQL Managed Instance, make sure you're using the REST API. Although the Networking tab lists `Microsoft.Sql/managedInstances` as an option, the portal doesn't currently support the extended URL format used by SQL Managed Instance.
+> This article refers to Azure portal for obtaining properties and confirming steps. However, when creating the shared private link for SQL Managed Instance, make sure you're using the REST API. Although the Networking tab lists `Microsoft.Sql/managedInstances` as an option, the Azure portal doesn't currently support the extended URL format used by SQL Managed Instance.
 
 ## Prerequisites
 
@@ -108,7 +108,7 @@ On the SQL Managed Instance side, the resource owner must approve the private co
 
 1. Find the section that lists the private endpoint connections.
 
-1. Select the connection, and then select **Approve**. It can take a few minutes for the status to be updated in the portal.
+1. Select the connection, and then select **Approve**. It can take a few minutes for the status to be updated in the Azure portal.
 
 After the private endpoint is approved, Azure AI Search creates the necessary DNS zone mappings in the DNS zone that's created for it.
 

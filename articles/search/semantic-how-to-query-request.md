@@ -74,7 +74,7 @@ Semantic queries, whether specified through `search` plus `queryType`, or throug
 
 <sup>1</sup> `queryType=semantic` can't support explicit `simple` or `full` values because the `queryType` parameter is being used for `semantic`. The effective query behaviors are the defaults of the simple parser.
 
-<sup>2</sup> The `semanticQuery` parameter can be used for all query types. However, it isn't supported in the portal [Search Explorer](search-explorer.md).
+<sup>2</sup> The `semanticQuery` parameter can be used for all query types. However, it isn't supported in the Azure portal [Search Explorer](search-explorer.md).
 
 Regardless of the parameter chosen, the index should contain text fields with rich semantic content and a [semantic configuration](semantic-how-to-configure.md).
 

@@ -559,7 +559,7 @@ GET {{baseUrl}}/indexers/sample-markdown-indexer/status?api-version=2024-11-01-p
 
 When you're working in your own subscription, at the end of a project, it's a good idea to remove the resources that you no longer need. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can use the portal to delete indexes, indexers, and data sources.
+You can use the Azure portal to delete indexes, indexers, and data sources.
 
 ## Next steps
 Now that you're familiar with the basics of Azure Blob indexing, let's take a closer look at indexer configuration for Markdown blobs in Azure Storage.

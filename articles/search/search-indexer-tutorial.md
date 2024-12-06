@@ -94,7 +94,7 @@ You'll need this connection string in the next exercise, setting up your environ
 
 ### Azure AI Search
 
-The next component is Azure AI Search, which you can [create in the portal](search-create-service-portal.md). You can use the Free tier to complete this walkthrough. 
+The next component is Azure AI Search, which you can [create in the Azure portal](search-create-service-portal.md). You can use the Free tier to complete this walkthrough. 
 
 ### Get an admin api-key and URL for Azure AI Search
 
@@ -228,7 +228,7 @@ Your code runs locally in Visual Studio, connecting to your search service on Az
 
 * Search service connection information that you provide is the full URL. If you entered just the service name, operations stop at index creation, with a failure to connect error.
 
-* Database connection information in **appsettings.json**. It should be the ADO.NET connection string obtained from the portal, modified to include a username and password that are valid for your database. The user account must have permission to retrieve data. Your local client IP address must be allowed inbound access through the firewall.
+* Database connection information in **appsettings.json**. It should be the ADO.NET connection string obtained from the Azure portal, modified to include a username and password that are valid for your database. The user account must have permission to retrieve data. Your local client IP address must be allowed inbound access through the firewall.
 
 * Resource limits. Recall that the Free tier has limits of three indexes, indexers, and data sources. A service at the maximum limit can't create new objects.
 
@@ -275,13 +275,13 @@ In the early experimental stages of development, the most practical approach for
 
 The sample code for this tutorial checks for existing objects and deletes them so that you can rerun your code.
 
-You can also use the portal to delete indexes, indexers, and data sources.
+You can also use the Azure portal to delete indexes, indexers, and data sources.
 
 ## Clean up resources
 
 When you're working in your own subscription, at the end of a project, it's a good idea to remove the resources that you no longer need. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal, using the All resources or Resource groups link in the left-navigation pane.
+You can find and manage resources in the Azure portal, using the All resources or Resource groups link in the left-navigation pane.
 
 ## Next steps
 

@@ -185,7 +185,7 @@ api-key: [admin key]
 Indexers extract documents or rows from an external [data source](/rest/api/searchservice/data-sources/create) and create *search documents*, which are then indexed by the search service. Occasionally, a document that exists in data source fails to appear in a search index. This unexpected result can occur due to the following reasons:
 
 * The document was updated after the indexer was run. If your indexer is on a [schedule](search-howto-schedule-indexers.md), it eventually reruns and picks up the document.
-* The indexer timed out before the document could be ingested. There are [maximum processing time limits](search-limits-quotas-capacity.md#indexer-limits) after which no documents are processed. You can check indexer status in the portal or by calling [Get Indexer Status (REST API)](/rest/api/searchservice/indexers/get-status).
+* The indexer timed out before the document could be ingested. There are [maximum processing time limits](search-limits-quotas-capacity.md#indexer-limits) after which no documents are processed. You can check indexer status in the Azure portal or by calling [Get Indexer Status (REST API)](/rest/api/searchservice/indexers/get-status).
 * [Field mappings](search-indexer-field-mappings.md) or [AI enrichment](./cognitive-search-concept-intro.md) have changed the document and its articulation in the search index is different from what you expect.
 * Change tracking values are erroneous or prerequisites are missing. If your high watermark value is a date set to a future time, then any documents that have an earlier date are skipped by the indexer. You can determine your indexer's change tracking state using the 'initialTrackingState' and 'finalTrackingState' fields in the [indexer status](/rest/api/searchservice/indexers/get-status). Indexers for Azure SQL and MySQL must have an index on the high water mark column of the source table, or queries used by the indexer might time out. 
 
@@ -220,7 +220,7 @@ Azure AI Search has an implicit dependency on Azure Cosmos DB indexing. If you t
 
 An indexer might show a different document count than either the data source, the index itself, or count in your code. Here are some possible reasons why this behavior can occur:
 
-- The index can lag in showing the real document count, especially in the portal.
+- The index can lag in showing the real document count, especially in the Azure portal.
 - The indexer has a Deleted Document Policy. The deleted documents get counted by the indexer if the documents are indexed before they get deleted.
 - If the ID column in the data source isn't unique. This applies to data sources that have the concept of columns, such as Azure Cosmos DB.
 - If the data source definition has a different query than the one you're using to estimate the number of records. In example, in your database, you're querying the database record count, while in the data source definition query, you might be selecting just a subset of records to index.

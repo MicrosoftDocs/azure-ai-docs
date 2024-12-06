@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 10/04/2024
+ms.date: 12/06/2024
 ---
 
 # Create a skillset in Azure AI Search
@@ -269,9 +269,9 @@ Although skill output can be optionally cached for reuse purposes, it's usually 
 
 ## Tips for a first skillset
 
-+ Try the [Import data wizard](search-import-data-portal.md). 
++ Try the [Import data wizard](search-get-started-portal.md) or [Import and vectorize data wizard](search-get-started-portal-import-vectors.md).
 
-  The wizard automates several steps that can be challenging the first time around. It defines the skillset, index, and indexer, including field mappings and output field mappings. It also defines projections in a knowledge store if you're using one. For some skills, such as OCR or image analysis, the wizard adds utility skills that merge the image and text content that was separated during document cracking.
+  The wizards automate several steps that can be challenging the first time around. It defines the skillset, index, and indexer, including field mappings and output field mappings. It also defines projections in a knowledge store if you're using one. For some skills, such as OCR or image analysis, the wizard adds utility skills that merge the image and text content that was separated during document cracking.
 
   After the wizard runs, you can open each object in the Azure portal to view its JSON definition.
 
