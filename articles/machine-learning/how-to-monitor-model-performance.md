@@ -559,17 +559,14 @@ To understand the concepts associated with model performance monitoring, conside
 
 After you satisfy the [prerequisites for model performance monitoring](#more-prerequisites-for-model-performance-monitoring), you can use the Azure CLI to set up model monitoring:
 
-1. Create a monitoring definition in a YAML file. For a sample advanced definition, see the following YAML code, which is also available in the [azureml-examples repository](https://github.com/Azure/azureml-examples/blob/main/cli/monitoring/advanced-model-monitoring.yaml).
-
-    Before you use this definition, adjust the following values and any others you need to fit your environment:
+1. Create a monitoring definition in a YAML file. The following sample specification defines model monitoring with production inference data. Before you use this definition, adjust the following values and any others you need to fit your environment:
 
     - For `endpoint_deployment_id`, use a value in the format `azureml:<endpoint-name>:<deployment-name>`.
-    - For `path` in reference input data sections, use a value in the format `azureml:<reference-data-asset-name>:<version>`.
-    - For `target_column`, use the name of the output column that contains values that the model predicts, such as `DEFAULT_NEXT_MONTH`.
-    - For `features`, list the features like `SEX`, `EDUCATION`, and `AGE` that you want to use in an advanced data quality signal.
+    - For `path` in the reference input data section, use a value in the format `azureml:<ground-truth-data-asset-name>:<version>`.
+    - For the `prediction` value, use the name of the output column that contains values that the model predicts, such as `DEFAULT_NEXT_MONTH`.
+    - For the `actual` value, use the name of the ground truth column that contains the actual values that the model tries to predict.
+    - For the `correlation_id` values, use the names of the columns that are used to join the output data and the ground truth data.
     - For `emails`, list the email addresses that you want to use for notifications.
-
-    The following YAML contains the definition for model monitoring with production inference data that you've collected.
 
     ```YAML 
     $schema:  http://azureml/sdk-2-0/Schedule.json
@@ -607,7 +604,7 @@ After you satisfy the [prerequisites for model performance monitoring](#more-pre
             data_column_names:
               actual: is_fraud
               correlation_id: correlation_id
-            data_context: actuals
+            data_context: ground_truth
           alert_enabled: true
           metric_thresholds: 
             tabular_classification:
