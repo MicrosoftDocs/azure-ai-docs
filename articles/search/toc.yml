@@ -213,7 +213,7 @@ items:
       href: search-modeling-multitenant-saas-applications.md
     - name: Manage
       items:
-      - name: Manage in the portal
+      - name: Manage in the Azure portal
         href: search-manage.md
       - name: Manage with PowerShell
         href: search-manage-powershell.md

@@ -149,7 +149,7 @@ This section supplements the [skill reference](cognitive-search-predefined-skill
 
 1. [Create or update a skillset](/rest/api/searchservice/skillsets/create) to add skills.
 
-1. Add templates for OCR and Image Analysis from the portal, or copy the definitions from the [skill reference](cognitive-search-predefined-skills.md) documentation. Insert them into the skills array of your skillset definition.
+1. Add templates for OCR and Image Analysis from the Azure portal, or copy the definitions from the [skill reference](cognitive-search-predefined-skills.md) documentation. Insert them into the skills array of your skillset definition.
 
 1. If necessary, [include a multi-service key](cognitive-search-attach-cognitive-services.md) in the Azure AI services property of the skillset. Azure AI Search makes calls to a billable Azure AI services resource for OCR and image analysis for transactions that exceed the free limit (20 per indexer per day). Azure AI services must be in the same region as your search service.
 

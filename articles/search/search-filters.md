@@ -151,7 +151,7 @@ Documents that contain numeric fields (price, size, SKU, ID) provide those value
 
 ## Next steps
 
-First, try **Search explorer** in the portal to submit queries with **$filter** parameters. The [real-estate-sample index](search-get-started-portal.md) provides interesting results for the following filtered queries when you paste them into the search bar:
+First, try **Search explorer** in the Azure portal to submit queries with **$filter** parameters. The [real-estate-sample index](search-get-started-portal.md) provides interesting results for the following filtered queries when you paste them into the search bar:
 
 ```http
 # Geo-filter returning documents within 5 kilometers of Redmond, Washington state

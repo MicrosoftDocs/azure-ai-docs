@@ -70,7 +70,7 @@ For [parallel indexing](search-howto-large-index.md), distribute your data into 
 
 ## See also
 
-+ [Quickstart: Create an AI enrichment pipeline in the portal](search-get-started-skillset.md)
++ [Quickstart: Create an AI enrichment pipeline in the Azure portal](search-get-started-skillset.md)
 + [Tutorial: Learn AI enrichment REST APIs](cognitive-search-tutorial-blob.md)
 + [How to configure blob indexers](search-howto-indexing-azure-blob-storage.md)
 + [How to define a skillset](cognitive-search-defining-skillset.md)
