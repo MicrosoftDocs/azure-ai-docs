@@ -37,11 +37,11 @@ In one click, you can start creating a **new Azure AI Foundry project and Ground
 :::image type="content" source="../../media/tools/bing/connected-resources.png" alt-text="A screenshot showing the connected resources for a project in the Azure AI Foundry portal." lightbox="../../media/tools/bing/connected-resources.png":::
 
 1. If you already have a Grounding with Bing Search resource, you can provide your resource ID in the bicep file. Your resource ID should be in this format `/subscriptions/{subscription ID}/resourceGroups/{resource group name}/providers/Microsoft.Bing/accounts/{resource name}`. Replace the following empty string with your resource ID:
-
-```bicep
-@description('The full ARM Bing Resource ID. This is an optional field, and if not provided, the resource will be created.')
-param bingSearchResourceID string = ''
-```
+    
+    ```bicep
+    @description('The full ARM Bing Resource ID. This is an optional field, and if not provided, the resource will be created.')
+    param bingSearchResourceID string = ''
+    ```
 
 
 Alternatively, you can also follow the step-by-step guide below:
