@@ -19,53 +19,45 @@ recommendations: false
 
 **Grounding with Bing Search** allows your Azure AI Agents to incorporate real-time public web data when generating responses. You need to create a Grounding with Bing Search resource, and then connect this resource to your Azure AI Agents. When a user sends a query, Azure AI Agents decide if Grounding with Bing Search should be leveraged or not. If so, it will leverage Bing to search over public web data and return relevant chunks. Lastly, Azure AI Agents will use returned chunks to generate a response.  
 
-You can ask questions such as "*what is the weather in Seattle?*" or "*what is the recent update in the retail industry in the US?*", which require real-time public data.
+You can ask questions such as "*what is the top news today*" or "*what is the recent update in the retail industry in the US?*", which require real-time public data.
 
 Developers and end users don't have access to raw content returned from Grounding with Bing Search. The response, however, includes citations with links to the websites used to generate the response, and a link to the Bing query used for the search. These two *References* must be retained and displayed in the exact form provided by Microsoft, as per Grounding with Bing Search's [Use and Display Requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal#use-and-display-requirements). See the [how to display Grounding with Bing Search results](#how-to-display-grounding-with-bing-search-results) section for details.
 
 >[!IMPORTANT]
-> Your usage of Grounding with Bing Search may incur costs. See the [pricing page](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
+> 1. Your usage of Grounding with Bing Search may incur costs. See the [pricing page](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
+> 1. If you choose to create a new Grounding with Bing Search resource programatically, such as the Azure CLI or using a deployment template, you automatically agree to be bound by and comply with the [terms of use and use and display requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal).
+
 
 ## Setup  
 
-> [!IMPORTANT]
-> Grounding with Bing Search only works with the following AOAI models: `gpt-3.5-turbo-0125`, `gpt-4-0125-preview`, `gpt-4-turbo-2024-04-09`, `gpt-4o-0513`
+> [!NOTE]
+> Grounding with Bing Search only works with the following Azure OpenAI models: `gpt-3.5-turbo-0125`, `gpt-4-0125-preview`, `gpt-4-turbo-2024-04-09`, `gpt-4o-0513`
 
-1. Ensure you've completed the prerequisites and setup steps in the [quickstart](../../quickstart.md).
+In one click, you can start creating a **new Azure AI Foundry project and Grounding with Bing Search resource** with the available [deployment template](../../quickstart.md#choose-basic-or-standard-agent-setup). After the deployment, you can find your resources including: an AI hub, project, Grounding with Bing Search resource and more created in your resource group. You can find your Grounding with Bing Search connection in the **connected resources** for your project in Azure AI Foundry portal.
 
-1. Create a new Grounding with Bing Search resource. <!--You can find the template file [here](./bingsearch_arm.json) and parameter file [here](./bingsearch_para.json).-->
-   You can do this directly in [Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingSearch), and select the different fields in the creation form.
+:::image type="content" source="../../media/tools/bing/connected-resources.png" alt-text="A screenshot showing the connected resources for a project in the Azure AI Foundry portal." lightbox="../../media/tools/bing/connected-resources.png":::
 
-   Alternatively, you can create the resource through Azure CLI. By using this method, you automatically agree to be bound by and comply with the [Terms of use and Use and Display Requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal).
+1. If you already have a Grounding with Bing Search resource, you can provide your resource ID in the bicep file. Your resource ID should be in this format `/subscriptions/{subscription ID}/resourceGroups/{resource group name}/providers/Microsoft.Bing/accounts/{resource name}`. Replace the following empty string with your resource ID:
+    
+    ```bicep
+    @description('The full ARM Bing Resource ID. This is an optional field, and if not provided, the resource will be created.')
+    param bingSearchResourceID string = ''
+    ```
 
-   Make sure you create this Grounding with Bing Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.
 
-1. Ensure you have logged in to Azure, using `az login`
+Alternatively, you can also follow the step-by-step guide below:
 
-1. Register the Bing Search provider
+1. Create a standard Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
+
+1. Register the Bing Search provider.
+
    ```console
        az provider register --namespace 'Microsoft.Bing'
    ```
 
-1. Create the resource.
-    
-    ```console
-    az deployment group create
-        --name "$deployment_name"
-        --resource-group "$resource_group"
-        --template-file "$path_to_arm_template_file"
-        --parameters "$path_to_parameters_file";
-    ```
-    An example of the CLI command:
-   ```console
-       az deployment group create
-        --name az-cli-ARM-TEST 
-        --resource-group ApiSearch-Test-WestUS2
-        --template-file bingsearch_arm.json
-        --parameters bingsearch_para.json
-    ```
+1. Create a new Grounding with Bing Search resource in the [Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingSearch), and select the different fields in the creation form. Make sure you create this Grounding with Bing Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.
 
-1. After you have created a Grounding with Bing Search resource, you can find it in [Azure portal](https://portal.azure.com/#home). Going to the resource group you have created the resource at, search for the Grounding with Bing Search resource you have created.
+1. After you have created a Grounding with Bing Search resource, you can find it in [Azure portal](https://portal.azure.com/#home). Navigate to the resource group you've created the resource in, search for the Grounding with Bing Search resource you have created.
 
     :::image type="content" source="../../media/tools/bing/resource-azure-portal.png" alt-text="A screenshot of the Bing resource in the Azure portal." lightbox="../../media/tools/bing/resource-azure-portal.png":::
 
@@ -73,9 +65,7 @@ Developers and end users don't have access to raw content returned from Groundin
 
     :::image type="content" source="../../media/tools/bing/key-endpoint-resource-azure-portal.png" alt-text="A screenshot of the key and endpoint screen for the Bing resource in the Azure portal." lightbox="../../media/tools/bing/key-endpoint-resource-azure-portal.png":::
 
-
-
-1. Go to [Azure AI Studio](https://ai.azure.com/) and select the AI Project (make sure it's in the same resource group of your Grounding with Bing Search resource). Click **Settings**.
+1. Go to the [Azure AI Foundry portal](https://ai.azure.com/) and select the AI Project (make sure it's in the same resource group of your Grounding with Bing Search resource). Click **connected resources**.
 
     :::image type="content" source="../../media/tools/bing/project-settings-button.png" alt-text="A screenshot of the settings button for an AI project." lightbox="../../media/tools/bing/project-settings-button.png":::
 
@@ -102,6 +92,12 @@ Developers and end users don't have access to raw content returned from Groundin
 
 According to Grounding with Bing's [terms of use and use and display requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal#use-and-display-requirements), you need to display both website URLs and Bing search query URLs in your custom interface. You can find website URLs through `annotations` parameter in API response and Bing search query URLs through `runstep` details.
 
+```python
+run_steps = project_client.agents.list_run_steps(run_id=run.id, thread_id=thread.id)
+run_steps_data = run_steps['data']
+print(f"Last run step detail: {run_steps_data}")
+```
+
 :::image type="content" source="../../media/tools/bing/website-citations.png" alt-text="A screenshot showing citations for Bing search results." lightbox="../../media/tools/bing/website-citations.png":::
 
 ### Other legal considerations
@@ -114,7 +110,7 @@ Your use of Grounding with Bing Search will be governed by the Terms of Use. By 
 
 ::: zone pivot="code-example"
 
-## Step 1: Create an agent with bing grounding
+## Step 1: Create an agent with Grounding with Bing Search
 
 Create a client object, which will contain the connection string for connecting to your AI project and other resources.
 
@@ -159,9 +155,9 @@ var projectClient = new AIProjectClient(connectionString, new DefaultAzureCreden
 
 ---
 
-## Step 2: Enable the Bing search tool
+## Step 2: Enable the Grounding with Bing search tool
 
-To make the Bing search tool available to your agent, create a Bing connection to initialize the Bing search tool and attach it to the agent. 
+To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Azure AI Foundry portal.
 
 # [Python](#tab/python)
 
@@ -225,7 +221,7 @@ print(f"Created thread, ID: {thread.id}")
 message = project_client.agents.create_message(
     thread_id=thread.id,
     role="user",
-    content="How is the weather in Seattle today?",
+    content="What is the top news today",
 )
 print(f"Created message, ID: {message.id}")
 ```
@@ -249,7 +245,7 @@ ThreadMessage message = messageResponse.Value;
 
 ## Step 4: Create a run and check the output
 
-Create a run and observe that the model uses the file search tool to provide a response to the user's question.
+Create a run and observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
 
 # [Python](#tab/python)
 
