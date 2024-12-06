@@ -24,12 +24,12 @@ In this article, you learn about the Cohere Rerank models, how to use Azure AI F
 
 Cohere offers two Rerank models in [Azure AI Foundry](https://ai.azure.com). These models are available in the model catalog for deployment as serverless APIs:
 
-* Cohere Rerank 3 - English
-* Cohere Rerank 3 - Multilingual
+* Cohere Rerank v3 - English
+* Cohere Rerank v3 - Multilingual
 
 You can browse the Cohere family of models in the [Model Catalog](model-catalog.md) by filtering on the Cohere collection.
 
-### Cohere Rerank 3 - English
+### Cohere Rerank v3 - English
 
 Cohere Rerank English is a reranking model used for semantic search and retrieval-augmented generation (RAG). Rerank enables you to significantly improve search quality by augmenting traditional keyword-based search systems with a semantic-based reranking system that can contextualize the meaning of a user's query beyond keyword relevance. Cohere's Rerank delivers higher quality results than embedding-based search, lexical search, and even hybrid search, and it requires only adding a single line of code into your application.
 
@@ -42,7 +42,7 @@ Rerank supports JSON objects as documents where users can specify, at query time
 
 Rerank English works well for code retrieval, semi-structured data retrieval, and long context.
 
-### Cohere Rerank 3 - Multilingual
+### Cohere Rerank v3 - Multilingual
 
 Cohere Rerank Multilingual is a reranking model used for semantic search and retrieval-augmented generation (RAG). Rerank Multilingual supports more than 100 languages and can be used to search within a language (for example, to search with a French query on French documents) and across languages (for example, to search with an English query on Chinese documents). Rerank enables you to significantly improve search quality by augmenting traditional keyword-based search systems with a semantic-based reranking system that can contextualize the meaning of a user's query beyond keyword relevance. Cohere's Rerank delivers higher quality results than embedding-based search, lexical search, and even hybrid search, and it requires only adding a single line of code into your application.
 
@@ -74,21 +74,16 @@ You can deploy the previously mentioned Cohere models as a service with pay-as-y
 
 ### Create a new deployment
 
-The following steps demonstrate the deployment of Cohere Rerank 3 - English, but you can use the same steps to deploy Cohere Rerank 3 - Multilingual by replacing the model name.
+The following steps demonstrate the deployment of Cohere Rerank v3 - English, but you can use the same steps to deploy Cohere Rerank v3 - Multilingual by replacing the model name.
 
 To create a deployment:
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
-> [!NOTE]
-> For models offered through the Azure Marketplace, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings).
->
-> Models that are offered by non-Microsoft providers (for example, Llama and Mistral models) are billed through the Azure Marketplace. For such models, you're required to subscribe your project to the particular model offering. Models that are offered by Microsoft (for example, Phi-3 models) don't have this requirement, as billing is done differently. For details about billing for serverless deployment of models in the model catalog, see [Billing for serverless APIs](model-catalog-overview.md#billing).
-
 4. Select the model card of the model you want to deploy. In this article, you select **Cohere-rerank-v3-english** to open the Model Details page.
 
 1. Select **Deploy** to open a serverless API deployment window for the model.
-1. Alternatively, you can initiate a deployment by starting from your project in AI Foundry portal. 
+1. Alternatively, you can initiate a deployment from your project in the AI Foundry portal as follows: 
 
     1. From the left sidebar of your project, select **Models + Endpoints**.
     1. Select **+ Deploy model**.
@@ -97,7 +92,11 @@ To create a deployment:
 
 1. In the deployment wizard, select the link to **Azure Marketplace Terms** to learn more about the terms of use.
 1. Select the **Pricing and terms** tab to learn about pricing for the selected model.
-1. Select the **Subscribe and Deploy** button. If this is your first time deploying the model in the project, you have to subscribe your project for the particular offering. This step requires that your account has the **Azure AI Developer role** permissions on the resource group, as listed in the prerequisites. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Currently, you can have only one deployment for each model within a project.
+1. Select the **Subscribe and Deploy** button. If this is your first time deploying the model in the project, you have to subscribe your project for the particular offering.
+
+> [!NOTE]
+> This step requires that your account has the **Azure AI Developer role** permissions on the resource group, as listed in the prerequisites. Models that are offered by non-Microsoft providers (for example, Cohere models) are billed through the Azure Marketplace. For such models, you're required to subscribe your project to the particular model offering. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Currently, you can have only one deployment for each model within a project.
+
 1. Once you subscribe the project for the particular Azure Marketplace offering, subsequent deployments of the _same_ offering in the _same_ project don't require subscribing again. If this scenario applies to you, there's a **Continue to deploy** option to select.
 
 1. Give the deployment a name. This name becomes part of the deployment API URL. This URL must be unique in each Azure region.
@@ -118,11 +117,11 @@ Cohere Rerank models deployed as serverless APIs can be consumed using the Reran
 
 1. Copy the **Target** URL and the **Key** value.
 
-1. Cohere currently exposes `v1/rerank` for inference with the Rerank 3 - English and Rerank 3 - Multilingual models schema. For more information on using the APIs, see the [reference](#rerank-api-reference-for-cohere-rerank-models-deployed-as-a-service) section.
+1. Cohere currently exposes `v1/rerank` for inference with the Rerank v3 - English and Rerank v3 - Multilingual models schema. For more information on using the APIs, see the [reference](#rerank-api-reference-for-cohere-rerank-models-deployed-as-a-service) section.
 
 ## Rerank API reference for Cohere Rerank models deployed as a service
 
-Cohere Rerank 3 - English and Rerank 3 - Multilingual accept the native Cohere Rerank API on `v1/rerank`. This section contains details about the Cohere Rerank API.
+Cohere Rerank v3 - English and Rerank v3 - Multilingual accept the native Cohere Rerank API on `v1/rerank`. This section contains details about the Cohere Rerank API.
 
 #### v1/rerank request
 
@@ -135,7 +134,7 @@ Cohere Rerank 3 - English and Rerank 3 - Multilingual accept the native Cohere R
 
 #### v1/rerank request schema
 
-Cohere Rerank 3 - English and Rerank 3 - Multilingual accept the following parameters for a `v1/rerank` API call:
+Cohere Rerank v3 - English and Rerank v3 - Multilingual accept the following parameters for a `v1/rerank` API call:
 
 | Property | Type | Default | Description |
 | --- | --- | --- | --- |
