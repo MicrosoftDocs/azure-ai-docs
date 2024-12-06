@@ -339,7 +339,7 @@ For search services created after July 2020, only phrases that match the full ph
 
 To quickly generate a search page for your client, consider these options:
 
-+ [Create demo app](search-create-app-portal.md), in the portal, creates an HTML page with a search bar, faceted navigation, and results area that includes images.
++ [Create demo app](search-create-app-portal.md), in the Azure portal, creates an HTML page with a search bar, faceted navigation, and results area that includes images.
 
 + [Add search to an ASP.NET Core (MVC) app](tutorial-csharp-create-mvc-app.md) is a tutorial and code sample that builds a functional client.
 

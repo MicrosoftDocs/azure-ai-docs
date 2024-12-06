@@ -76,7 +76,7 @@ You can use either the **Import data** wizard or **Import and vectorize data** w
 
 1. Specify the database name and collection. The query is optional. It's useful if you have hierarchical data and you want to import a specific slice.
 
-1. Specify an authentication method, either a managed identity or built-in API key. If you don't specify a managed identity connection, the portal uses the key.
+1. Specify an authentication method, either a managed identity or built-in API key. If you don't specify a managed identity connection, the Azure portal uses the key.
 
    If you [configure Azure AI Search to use a managed identity](search-howto-managed-identities-data-sources.md), and you create a [role assignment on Cosmos DB](/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions) that grants **Cosmos DB Account Reader** and **Cosmos DB Built-in Data Reader** permissions to the identity, your indexer can connect to Cosmos DB using Microsoft Entra ID and roles.
 

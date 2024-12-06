@@ -47,14 +47,14 @@ Select the following image to sign in to Azure and open a template. The template
 
 :::image type="content" source="~/reusable-content/ce-skilling/azure/media/template-deployments/deploy-to-azure-button.svg" alt-text="Button to deploy the Resource Manager template to Azure." border="false" link="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.search%2Fazure-search-create%2Fazuredeploy.json":::
 
-The portal displays a form that allows you to easily provide parameter values. Some parameters are pre-filled with the default values from the template. You will need to provide your subscription, resource group, location, and service name. If you want to use Azure AI services in an [AI enrichment](cognitive-search-concept-intro.md) pipeline, for example to analyze binary image files for text, choose a location that offers both Azure AI Search and Azure AI services. Both services are required to be in the same region for AI enrichment workloads. Once you have completed the form, you will need to agree to the terms and conditions and then select the purchase button to complete your deployment.
+the Azure portal displays a form that allows you to easily provide parameter values. Some parameters are pre-filled with the default values from the template. You will need to provide your subscription, resource group, location, and service name. If you want to use Azure AI services in an [AI enrichment](cognitive-search-concept-intro.md) pipeline, for example to analyze binary image files for text, choose a location that offers both Azure AI Search and Azure AI services. Both services are required to be in the same region for AI enrichment workloads. Once you have completed the form, you will need to agree to the terms and conditions and then select the purchase button to complete your deployment.
 
 > [!div class="mx-imgBorder"]
 > ![Azure portal display of template](./media/search-get-started-arm/arm-portalscrnsht.png)
 
 ## Review deployed resources
 
-When your deployment is complete you can access your new resource group and new search service in the portal.
+When your deployment is complete you can access your new resource group and new search service in the Azure portal.
 
 ## Clean up resources
 
@@ -66,5 +66,5 @@ In this quickstart, you created an Azure AI Search service using an ARM template
 
 - Read an [overview of Azure AI Search](search-what-is-azure-search.md).
 - [Create an index](search-get-started-portal.md) for your search service.
-- [Create a demo app](search-create-app-portal.md) using the portal wizard.
+- [Create a demo app](search-create-app-portal.md) using the Azure portal wizard.
 - [Create a skillset](search-get-started-skillset.md) to extract information from your data.

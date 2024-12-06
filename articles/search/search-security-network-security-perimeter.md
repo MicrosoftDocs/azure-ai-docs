@@ -87,7 +87,7 @@ The `publicNetworkAccess` setting determines search service association with a n
 
 #### Change the network security perimeter access mode
 
-1. Navigate to your network security perimeter resource in the portal.
+1. Navigate to your network security perimeter resource in the Azure portal.
 
 1. Select **Resources** in the left-hand menu.
 
@@ -105,7 +105,7 @@ The `publicNetworkAccess` setting determines search service association with a n
 
 ## Enable logging network access
 
-1. Navigate to your network security perimeter resource in the portal.
+1. Navigate to your network security perimeter resource in the Azure portal.
 
 1. Select **Diagnostic settings** in the left-hand menu.
 
@@ -182,9 +182,9 @@ Network security perimeter supports two types of inbound access rules:
 
 * Subscriptions. This type of rule allows inbound access authenticated using any managed identity from the subscription.
 
-To add an inbound access rule in the portal:
+To add an inbound access rule in the Azure portal:
 
-1. Navigate to your network security perimeter resource in the portal.
+1. Navigate to your network security perimeter resource in the Azure portal.
 
 1. Select **Profiles** in the left-hand menu.
 
@@ -222,9 +222,9 @@ Recall that in public preview, Azure AI Search can only connect to Azure Storage
 
 Network security perimeter supports outbound access rules based on the Fully Qualified Domain Name (FQDN) of the destination. For example, you can allow outbound access from any service associated with your network security perimeter to an FQDN such as `mystorageaccount.blob.core.windows.net`.
 
-To add an outbound access rule in the portal:
+To add an outbound access rule in the Azure portal:
 
-1. Navigate to your network security perimeter resource in the portal.
+1. Navigate to your network security perimeter resource in the Azure portal.
 
 1. Select **Profiles** in the left-hand menu.
 
@@ -262,7 +262,7 @@ In order to test your connection through network security perimeter, you need ac
 
 1. Decide if you want to use a local computer or an Azure VM.
    1. If you're using a local computer, you need to know your public IP address.
-   1. If you're using an Azure VM, you can either use [private link](/azure/private-link/private-link-overview) or [check the IP address using the portal](/azure/virtual-network/ip-services/virtual-network-network-interface-addresses).
+   1. If you're using an Azure VM, you can either use [private link](/azure/private-link/private-link-overview) or [check the IP address using the Azure portal](/azure/virtual-network/ip-services/virtual-network-network-interface-addresses).
 
 1. Using the IP address, you can create an [inbound access rule](#add-an-inbound-access-rule) for that IP address to allow access. You can skip this step if you're using private link.
 

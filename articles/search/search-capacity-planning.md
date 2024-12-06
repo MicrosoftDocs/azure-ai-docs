@@ -93,10 +93,10 @@ To increase or decrease the capacity of your search service, add or remove parti
 
    Changes in capacity can take anywhere from 15 minutes up to several hours to complete. You can't cancel once the process has started and there's no real-time monitoring for replica and partition adjustments. However, the following message remains visible while changes are underway.
 
-   :::image type="content" source="media/search-capacity-planning/4-updating.png" alt-text="Status message in the portal" border="true":::
+   :::image type="content" source="media/search-capacity-planning/4-updating.png" alt-text="Status message in the Azure portal" border="true":::
 
 > [!NOTE]
-> After a service is provisioned, it cannot be upgraded to a higher tier. You must create a search service at the new tier and reload your indexes. See [Create an Azure AI Search service in the portal](search-create-service-portal.md) for help with service provisioning.
+> After a service is provisioned, it cannot be upgraded to a higher tier. You must create a search service at the new tier and reload your indexes. See [Create an Azure AI Search service in the Azure portal](search-create-service-portal.md) for help with service provisioning.
 
 ## How scale requests are handled
 
@@ -175,7 +175,7 @@ We recommend estimating on a billable tier, Basic or above. The Free tier runs o
 
    + For vector search, you can [set parameters to reduce vector size](vector-search-how-to-configure-compression-storage.md).
 
-1. [Monitor storage, service limits, query volume, and latency](monitor-azure-cognitive-search.md) in the portal. The portal shows you queries per second, throttled queries, and search latency. All of these values can help you decide if you selected the right tier.
+1. [Monitor storage, service limits, query volume, and latency](monitor-azure-cognitive-search.md) in the Azure portal. the Azure portal shows you queries per second, throttled queries, and search latency. All of these values can help you decide if you selected the right tier.
 
 1. Add replicas for high availability or to mitigate slow query performance.
 

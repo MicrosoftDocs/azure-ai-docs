@@ -32,7 +32,7 @@ Incremental indexing and synchronizing an index against changes in source data i
 
    | Action | Effect |
    |--------|--------|
-   | delete | Removes the entire document from the index. If you want to remove an individual field, use merge instead, setting the field in question to null. Deleted documents and fields don't immediately free up space in the index. Every few minutes, a background process performs the physical deletion. Whether you use the portal or an API to return index statistics, you can expect a small delay before the deletion is reflected in the portal and through APIs. |
+   | delete | Removes the entire document from the index. If you want to remove an individual field, use merge instead, setting the field in question to null. Deleted documents and fields don't immediately free up space in the index. Every few minutes, a background process performs the physical deletion. Whether you use the Azure portal or an API to return index statistics, you can expect a small delay before the deletion is reflected in the Azure portal and through APIs. |
    | merge | Updates a document that already exists, and fails a document that can't be found. Merge replaces existing values. For this reason, be sure to check for collection fields that contain multiple values, such as fields of type `Collection(Edm.String)`. For example, if a `tags` field starts with a value of `["budget"]` and you execute a merge with `["economy", "pool"]`, the final value of the `tags` field is `["economy", "pool"]`. It won't be `["budget", "economy", "pool"]`. |
    | mergeOrUpload | Behaves like merge if the document exists, and upload if the document is new. This is the most common action for incremental updates. |
    | upload | Similar to an "upsert" where the document is inserted if it's new, and updated or replaced if it exists. If the document is missing values that the index requires, the document field's value is set to null. |
@@ -146,7 +146,7 @@ When you create the index, physical storage is allocated for each field in the i
 
 ## Balancing workloads
 
-Indexing doesn't run in the background, but the search service will balance any indexing jobs against ongoing queries. During indexing, you can [monitor query requests](search-monitor-queries.md) in the portal to ensure queries are completing in a timely manner.
+Indexing doesn't run in the background, but the search service will balance any indexing jobs against ongoing queries. During indexing, you can [monitor query requests](search-monitor-queries.md) in the Azure portal to ensure queries are completing in a timely manner.
 
 If indexing workloads introduce unacceptable levels of query latency, conduct [performance analysis](search-performance-analysis.md) and review these [performance tips](search-performance-tips.md) for potential mitigation.
 
@@ -164,9 +164,9 @@ The Azure portal provides index size and vector index size. You can check these 
 
 Azure AI Search supports document-level operations so that you can look up, update, and delete a specific document in isolation. The following example shows how to delete a document. 
 
-Deleting a document doesn't immediately free up space in the index. Every few minutes, a background process performs the physical deletion. Whether you use the portal or an API to return index statistics, you can expect a small delay before the deletion is reflected in the portal and API metrics.
+Deleting a document doesn't immediately free up space in the index. Every few minutes, a background process performs the physical deletion. Whether you use the Azure portal or an API to return index statistics, you can expect a small delay before the deletion is reflected in the Azure portal and API metrics.
 
-1. Identify which field is the document key. In the portal, you can view the fields of each index. Document keys are string fields and are denoted with a key icon to make them easier to spot.
+1. Identify which field is the document key. In the Azure portal, you can view the fields of each index. Document keys are string fields and are denoted with a key icon to make them easier to spot.
 
 1. Check the values of the document key field: `search=*&$select=HotelId`. A simple string is straightforward, but if the index uses a base-64 encoded field, or if search documents were generated from a `parsingMode` setting, you might be working with values that you aren't familiar with.
 
@@ -200,7 +200,7 @@ Deleting a document doesn't immediately free up space in the index. Every few mi
 
 + [Indexer overview](search-indexer-overview.md)
 + [Index large data sets at scale](search-howto-large-index.md)
-+ [Indexing in the portal](search-import-data-portal.md)
++ [Indexing in the Azure portal](search-import-data-portal.md)
 + [Azure SQL Database indexer](search-how-to-index-sql-database.md)
 + [Azure Cosmos DB for NoSQL indexer](search-howto-index-cosmosdb.md)
 + [Azure blob indexer](search-howto-indexing-azure-blob-storage.md)

@@ -64,7 +64,7 @@ You can use either the **Import data** wizard or **Import and vectorize data** w
 
 1. Specify the storage account and table name. The query is optional. It's useful if you have specific columns you want to import.
 
-1. Specify an authentication method, either a managed identity or built-in API key. If you don't specify a managed identity connection, the portal uses the key.
+1. Specify an authentication method, either a managed identity or built-in API key. If you don't specify a managed identity connection, the Azure portal uses the key.
 
    If you [configure Azure AI Search to use a managed identity](search-howto-managed-identities-data-sources.md), and you create a role assignment on Azure Storage that grants **Reader and Data Access** permissions to the identity, your indexer can connect to table storage using Microsoft Entra ID and roles.
 
@@ -187,7 +187,7 @@ In a [search index](search-what-is-an-index.md), add fields to accept the conten
 
 1. Create a document key field ("key": true), but allow the indexer to populate it automatically. A table indexer populates the key field with concatenated partition and row keys from the table. For example, if a row’s PartitionKey is `1` and RowKey is `1_123`, then the key value is `11_123`. If the partition key is null, just the row key is used.
 
-   If you're using the Import data wizard to create the index, the portal infers a "Key" field for the search index and uses an implicit field mapping to connect the source and destination fields. You don't have to add the field yourself, and you don't need to set up a field mapping.
+   If you're using the Import data wizard to create the index, the Azure portal infers a "Key" field for the search index and uses an implicit field mapping to connect the source and destination fields. You don't have to add the field yourself, and you don't need to set up a field mapping.
 
    If you're using the REST APIs and you want implicit field mappings, create and name the document key field "Key" in the search index definition as shown in the previous step (`{ "name": "Key", "type": "Edm.String", "key": true, "searchable": false }`). The indexer populates the Key field automatically, with no field mappings required.
 
