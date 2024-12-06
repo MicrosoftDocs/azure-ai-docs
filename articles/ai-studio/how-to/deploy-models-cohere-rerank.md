@@ -5,7 +5,7 @@ description: Learn to deploy and use Cohere Rerank models with Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
-ms.date: 07/24/2024
+ms.date: 12/06/2024
 ms.reviewer: shubhiraj
 ms.author: mopeakande
 author: msakande
@@ -64,19 +64,11 @@ You can deploy the previously mentioned Cohere models as a service with pay-as-y
 ### Prerequisites
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
-- An [AI Foundry hub](../how-to/create-azure-ai-resource.md). The serverless API model deployment offering for Cohere Rerank is only available with hubs created in these regions:
 
-     * East US
-     * East US 2
-     * North Central US
-     * South Central US
-     * West US
-     * West US 3
-     * Sweden Central
-    
-    For a list of  regions that are available for each of the models supporting serverless API endpoint deployments, see [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md).
+- An [Azure AI Foundry hub](../how-to/create-azure-ai-resource.md). The serverless API model deployment offering for Cohere Rerank is only available with hubs created in specific regions. For a list of regions that are available for each of the Cohere models that support serverless API endpoint deployments, see [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md#cohere-models).
 
 - An [Azure AI Foundry project](../how-to/create-projects.md).
+
 - Azure role-based access controls are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).
 
 
@@ -86,19 +78,23 @@ The following steps demonstrate the deployment of Cohere Rerank 3 - English, but
 
 To create a deployment:
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com).
-1. Select **Model catalog** from the left sidebar.
-1. Search for *Cohere*.
-1. Select **cohere-rerank-3-english** to open the Model Details page.
+[!INCLUDE [open-catalog](../includes/open-catalog.md)]
+
+> [!NOTE]
+> For models offered through the Azure Marketplace, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings).
+>
+> Models that are offered by non-Microsoft providers (for example, Llama and Mistral models) are billed through the Azure Marketplace. For such models, you're required to subscribe your project to the particular model offering. Models that are offered by Microsoft (for example, Phi-3 models) don't have this requirement, as billing is done differently. For details about billing for serverless deployment of models in the model catalog, see [Billing for serverless APIs](model-catalog-overview.md#billing).
+
+4. Select the model card of the model you want to deploy. In this article, you select **Cohere-rerank-v3-english** to open the Model Details page.
+
 1. Select **Deploy** to open a serverless API deployment window for the model.
 1. Alternatively, you can initiate a deployment by starting from your project in AI Foundry portal. 
 
     1. From the left sidebar of your project, select **Models + Endpoints**.
     1. Select **+ Deploy model**.
-    1. Search for and select **Cohere-rerank-3-english**. to open the Model Details page.
+    1. Search for and select **Cohere-rerank-v3-english** to open the Model Details page.
     1. Select **Confirm** to open a serverless API deployment window for the model.
 
-1. Select the project in which you want to deploy your model.
 1. In the deployment wizard, select the link to **Azure Marketplace Terms** to learn more about the terms of use.
 1. Select the **Pricing and terms** tab to learn about pricing for the selected model.
 1. Select the **Subscribe and Deploy** button. If this is your first time deploying the model in the project, you have to subscribe your project for the particular offering. This step requires that your account has the **Azure AI Developer role** permissions on the resource group, as listed in the prerequisites. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Currently, you can have only one deployment for each model within a project.
