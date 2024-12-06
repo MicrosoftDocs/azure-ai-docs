@@ -157,7 +157,7 @@ var projectClient = new AIProjectClient(connectionString, new DefaultAzureCreden
 
 ## Step 2: Enable the Grounding with Bing search tool
 
-To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connecction in the **connected resources** section of your project in the Azure AI Foundry portal.
+To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Azure AI Foundry portal.
 
 # [Python](#tab/python)
 
