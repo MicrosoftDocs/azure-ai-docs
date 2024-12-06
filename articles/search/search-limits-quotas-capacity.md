@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 12/05/2024
+ms.date: 12/06/2024
 ms.custom:
   - references_regions
   - build-2024
@@ -204,7 +204,7 @@ Static rate request limits for operations related to a service:
 
 Total semantic ranker queries per second varies based on the following factors:
 + The SKU of the search service. Both queue capacity and concurrent request limits vary by SKU.
-+ The number of search units in the search service. The simplest way to increase the maximum number of concurrent semantic ranker queries is to [add additional search units to your search service](search-capacity-planning.md#how-to-change-capacity).
++ The number of search units in the search service. The simplest way to increase the maximum number of concurrent semantic ranker queries is to [add more search units to your search service](search-capacity-planning.md#how-to-change-capacity).
 + The total available semantic ranker capacity in the region.
 + The amount of time it takes to serve a query using semantic ranker. This varies based on how busy the search service is.
 
@@ -217,13 +217,17 @@ The following table describes the semantic ranker throttling limits by SKU. Subj
 
 ## API request limits
 
-Limits on payloads and queries exist because unbounded queries can destabilize your search service. Typically, such queries are created programmatically. If your application generates search queries programmatically, we recommend designing it in such a way that it doesn't generate queries of unbounded size. If you must exeed a supported limit, you should [test your workload](search-performance-analysis.md#develop-baseline-numbers) so that you know what to expect.
+Limits on queries exist because unbounded queries can destabilize your search service. Typically, such queries are created programmatically. If your application generates search queries programmatically, we recommend designing it in such a way that it doesn't generate queries of unbounded size.
+
+Limits on payloads exist for similar reasons, ensuring the stability of your search service. The limit applies to the entire request, inclusive of all its components. For example, if the request batches several documents or commands, the entire request must fit within the supported limit.
+
+If you must exceed a supported limit, you should [test your workload](search-performance-analysis.md#develop-baseline-numbers) so that you know what to expect.
 
 Except where noted, the following API requests apply to all programmable interfaces, including the Azure SDKs.
 
 General:
 
-+ Supported maximum payload limit is 16 MB for indexing and query requests via REST API and SDKs.
++ Supported maximum payload limit is 16 MB for indexing and query request via REST API and SDKs.
 + Maximum 8-KB URL length (applies to REST APIs only).
 
 Indexing APIs:
@@ -246,6 +250,8 @@ Search terms:
 
 + Maximum 1,000 documents returned per page of search results
 + Maximum 100 suggestions returned per Suggest API request
+
+The search engine returns 50 results by default, but you can [override this parameter](search-pagination-page-layout.md#number-of-results-in-the-response) up to the maximum limit.
 
 ## API key limits
 
