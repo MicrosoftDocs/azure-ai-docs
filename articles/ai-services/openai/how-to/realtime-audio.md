@@ -40,12 +40,17 @@ Before you can use GPT-4o real-time audio, you need:
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
-- You need a deployment of the `gpt-4o-realtime-preview` model in a supported region as described in the [supported models](#supported-models) section. You can deploy the model from the [Azure AI Studio model catalog](../../ai-studio/how-to/model-catalog-overview.md) or from your project in AI Studio. 
+- You need a deployment of the `gpt-4o-realtime-preview` model in a supported region as described in the [supported models](#supported-models) section. You can deploy the model from the [Azure AI Foundry portal model catalog](../../../ai-studio/how-to/model-catalog-overview.md) or from your project in AI Foundry portal. 
 
 For steps to deploy and use the `gpt-4o-realtime-preview` model, see [the real-time audio quickstart](../realtime-audio-quickstart.md).
 
 For more information about the API and architecture, see the remaining sections in this guide.
 
+## Sample code
+
+Right now, the fastest way to get started development with the GPT-4o Realtime API is to download the sample code from the [Azure OpenAI GPT-4o real-time audio repository on GitHub](https://github.com/azure-samples/aoai-realtime-audio-sdk).
+
+[The Azure-Samples/aisearch-openai-rag-audio repo](https://github.com/Azure-Samples/aisearch-openai-rag-audio) contains an example of how to implement RAG support in applications that use voice as their user interface, powered by the GPT-4o realtime API for audio.
 
 ## Architecture
 
@@ -55,25 +60,25 @@ The Realtime API (via `/realtime`) is built on [the WebSockets API](https://deve
 
 The Realtime API requires an existing Azure OpenAI resource endpoint in a supported region. The API is accessed via a secure WebSocket connection to the `/realtime` endpoint of your Azure OpenAI resource.
 
-A full request URI can be constructed by concatenating:
+You can construct a full request URI by concatenating:
 
 - The secure WebSocket (`wss://`) protocol
-- Your Azure OpenAI resource endpoint hostname, e.g. `my-aoai-resource.openai.azure.com`
+- Your Azure OpenAI resource endpoint hostname, for example, `my-aoai-resource.openai.azure.com`
 - The `openai/realtime` API path
-- An `api-version` query string parameter for a supported API version -- initially, `2024-10-01-preview`
+- An `api-version` query string parameter for a supported API version such as `2024-10-01-preview`
 - A `deployment` query string parameter with the name of your `gpt-4o-realtime-preview` model deployment
 
-Combining into a full example, the following could be a well-constructed `/realtime` request URI:
+The following example is a well-constructed `/realtime` request URI:
 
 ```http
 wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=2024-10-01-preview&deployment=gpt-4o-realtime-preview-1001
 ```
 
 To authenticate:
-- **Microsoft Entra** (recommended): Use token-based authentication with the `/realtime` API for an Azure OpenAI Service resource that has managed identity enabled. Apply a retrieved authentication token using a `Bearer` token with the `Authorization` header.
+- **Microsoft Entra** (recommended): Use token-based authentication with the `/realtime` API for an Azure OpenAI Service resource with managed identity enabled. Apply a retrieved authentication token using a `Bearer` token with the `Authorization` header.
 - **API key**: An `api-key` can be provided in one of two ways:
-  1. Using an `api-key` connection header on the pre-handshake connection. This option isn't available in a browser environment.
-  2. Using an `api-key` query string parameter on the request URI. Query string parameters are encrypted when using https/wss.
+  - Using an `api-key` connection header on the prehandshake connection. This option isn't available in a browser environment.
+  - Using an `api-key` query string parameter on the request URI. Query string parameters are encrypted when using https/wss.
 
 
 ### API concepts
@@ -89,11 +94,11 @@ To authenticate:
 
 ## API details
 
-Once the WebSocket connection session to `/realtime` is established and authenticated, the functional interaction takes place via sending and receiving WebSocket messages, herein referred to as "commands" to avoid ambiguity with the content-bearing "message" concept already present for inference. These commands each take the form of a JSON object. Commands can be sent and received in parallel and applications should generally handle them both concurrently and asynchronously.
+Once the WebSocket connection session to `/realtime` is established and authenticated, the functional interaction takes place via sending and receiving WebSocket messages, that we refer to as "commands" to avoid ambiguity with the content-bearing "message" concept already present for inference. These commands each take the form of a JSON object. Commands can be sent and received in parallel and applications should generally handle them both concurrently and asynchronously.
 
 ### Session configuration and turn handling mode
 
-Often, the first command sent by the caller on a newly established `/realtime` session will be a `session.update` payload. This command controls a wide set of input and output behavior, with output and response generation portions then later overridable via `update_conversation_config` or other properties in `response.create`.
+Often, the first command sent by the caller on a newly established `/realtime` session is a `session.update` payload. This command controls a wide set of input and output behavior, with output and response generation portions then later overridable via `update_conversation_config` or other properties in `response.create`.
 
 One of the key session-wide settings is `turn_detection`, which controls how data flow is handled between the caller and model:
 
@@ -104,6 +109,8 @@ Transcription of user input audio is opted into via the `input_audio_transcripti
 
 ## Summary of commands
 
+Here's a summary of the commands that can be [sent](#requests) and [received](#responses) via the `/realtime` endpoint.
+
 ### Requests
 
 The following table describes commands sent from the caller to the `/realtime` endpoint.
@@ -113,11 +120,11 @@ The following table describes commands sent from the caller to the `/realtime` e
 | **Session Configuration** | |
 | `session.update` | Configures the connection-wide behavior of the conversation session such as shared audio input handling and common response generation characteristics. This is typically sent immediately after connecting, but can also be sent at any point during a session to reconfigure behavior after the current response (if in progress) is complete. |
 | **Input Audio** | |
-| `input_audio_buffer_append` | Appends audio data to the shared user input buffer. This audio won't be processed until an end of speech is detected in the `server_vad` `turn_detection` mode or until a manual `response.create` is sent (in either `turn_detection` configuration). |
+| `input_audio_buffer_append` | Appends audio data to the shared user input buffer. This audio isn't processed until an end of speech is detected in the `server_vad` `turn_detection` mode or until a manual `response.create` is sent (in either `turn_detection` configuration). |
 | `input_audio_buffer_clear` | Clears the current audio input buffer. This doesn't affect responses already in progress. |
 | `input_audio_buffer_commit` | Commits the current state of the user input buffer to subscribed conversations, including it as information for the next response. |
-| **Item Management** | For establishing history or including non-audio item information. |
-| `item_create` | Inserts a new item into the conversation, optionally positioned according to `previous_item_id`. This property can provide new, non-audio input from the user (such as a text message), tool responses, or historical information from another interaction to form a conversation history before generation. |
+| **Item Management** | For establishing history or including nonaudio item information. |
+| `item_create` | Inserts a new item into the conversation, optionally positioned according to `previous_item_id`. This property can provide new, nonaudio input from the user (such as a text message), tool responses, or historical information from another interaction to form a conversation history before generation. |
 | `item_delete` | Removes an item from an existing conversation. |
 | `item_truncate` | Manually shortens text and audio content in a message. This property can be useful in situations where faster-than-realtime model generation produced more data that's later skipped by an interruption. |
 | **Response Management** |
@@ -143,7 +150,7 @@ The following table describes commands sent by the `/realtime` endpoint to the c
 | `response_cancelled` | Confirms that a response was canceled in response to a caller-initiated or internal signal. |
 | `rate_limits_updated` | This response is sent immediately after `response.done`, this property provides the current rate limit information reflecting updated status after the consumption of the just-finished response. |
 | **Item Flow in a Response** | |
-| `response_output_item_added` | Notifies that a new, server-generated conversation item *is being created*; content will then be populated via incremental `add_content` messages with a final `response_output_item_done` command signifying the item creation has completed. |
+| `response_output_item_added` | Notifies that a new, server-generated conversation item *is being created*; content is then be populated via incremental `add_content` messages with a final `response_output_item_done` command signifying the item creation completed. |
 | `response_output_item_done` | Notifies that a new conversation item is added to a conversation. For model-generated messages, this property is preceded by `response_output_item_added` and `delta` commands which begin and populate the new item, respectively. |
 | **Content Flow within Response Items** | |
 | `response_content_part_added` | Notifies that a new content part is being created within a conversation item in an ongoing response. Until `response_content_part_done` arrives, content is then incrementally provided via the appropriate `delta` commands. |
@@ -168,5 +175,5 @@ The following table describes commands sent by the `/realtime` endpoint to the c
 
 ## Related content
 
-* Learn more about Azure OpenAI [deployment types](deployment-types.md)
-* Learn more about Azure OpenAI [quotas and limits](quotas-limits.md)
+* Try the [real-time audio quickstart](../realtime-audio-quickstart.md)
+* Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)
