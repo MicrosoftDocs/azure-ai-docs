@@ -5,6 +5,17 @@ ms.topic: include
 ms.date: 08/01/2024
 ms.author: eur
 ---
+
+### Speech SDK 1.42: 2024-December release
+
+#### New Features
+
+- **Java**: Improved diagnostics trace logging using new classes FileLogger, MemoryLogger, EventLogger and SpxTrace. SDK logs are an important tool for Microsoft to diagnose customer-reported issues. These new classes make it easier for customers to integrate Speech SDK logs into their own logging system.
+
+####  Samples
+- **[Java sample](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/java/jre/console/src/com/microsoft/cognitiveservices/speech/samples/console/SpeechDiagnosticsLoggingSamples.java)** showing usage of the new Diagnostics Logging classes.
+
+
 ### 2024-November release
 
 #### Azure AI Speech Toolkit extension for Visual Studio Code
