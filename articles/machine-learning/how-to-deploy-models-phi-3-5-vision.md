@@ -13,6 +13,7 @@ ms.author: mopeakande
 author: msakande
 ms.custom: references_regions, generated
 zone_pivot_groups: azure-ai-model-catalog-samples-chat
+ms.collection: ce-skilling-ai-copilot
 ---
 
 # How to use Phi-3.5 chat model with vision with Azure Machine Learning
@@ -280,7 +281,7 @@ The following extra parameters can be passed to Phi-3.5 chat model with vision:
 
 
 ### Apply content safety
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
 ```csharp
 try
@@ -669,7 +670,7 @@ The following extra parameters can be passed to Phi-3.5 chat model with vision:
 
 
 ### Apply content safety
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
 ```csharp
 try
@@ -1076,7 +1077,7 @@ The following extra parameters can be passed to Phi-3.5 chat model with vision:
 
 
 ### Apply content safety
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
 ```csharp
 try
@@ -1493,7 +1494,7 @@ The following extra parameters can be passed to Phi-3.5 chat model with vision:
 
 ### Apply content safety
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
 
@@ -1636,4 +1637,4 @@ It is a good practice to start with a low number of instances and scale up as ne
 * [Azure AI Model Inference API](reference-model-inference-api.md)
 * [Deploy models as serverless APIs](how-to-deploy-models-serverless.md)
 * [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md)
-* [Plan and manage costs for Azure AI Studio](concept-plan-manage-cost.md)
+* [Plan and manage costs for Azure AI Foundry](/azure/ai-studio/how-to/costs-plan-manage)

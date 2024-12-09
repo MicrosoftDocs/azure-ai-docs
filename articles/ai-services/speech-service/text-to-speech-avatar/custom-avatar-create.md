@@ -5,7 +5,7 @@ description: Learn how to create a custom text to speech avatar.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 2/24/2024
+ms.date: 9/11/2024
 ms.reviewer: v-baolianzou
 ms.author: eur
 author: eric-urban
@@ -22,6 +22,8 @@ An avatar talent is an individual or target actor whose video of speaking is rec
 You must provide a video file with a recorded statement from your avatar talent, acknowledging the use of their image and voice. Microsoft verifies that the content in the recording matches the predefined script provided by Microsoft. Microsoft compares the face of the avatar talent in the recorded video statement file with randomized videos from the training datasets to ensure that the avatar talent in video recordings and the avatar talent in the statement video file are from the same person.
 
 You can find the verbal consent statement in multiple languages on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/sampledata/customavatar/verbal-statement-all-locales.txt). The language of the verbal statement must be the same as your recording. See also the disclosure for voice talent.
+
+For more information about recording the consent video, see [How to record video samples](custom-avatar-record-video-samples.md).
 
 ## Prepare training data for custom text to speech avatar
 

@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 02/08/2024
+ms.date: 9/20/2024
 ms.author: eur
 zone_pivot_groups: programming-languages-speech-services-nomore-variant
 #customer intent: As an application developer, I want to use language recognition or translations in order to make my apps work seamlessly for more customers.
@@ -32,9 +32,6 @@ Whether you use language identification with [speech to text](#use-speech-to-tex
 - Decide whether to use [at-start or continuous](#at-start-and-continuous-language-identification) language identification.
 
 Then you make a [recognize once or continuous recognition](#recognize-once-or-continuous) request to the Speech service.
-
-> [!IMPORTANT]
-> Language Identification APIs are simplified with the Speech SDK version 1.25 and later. The `SpeechServiceConnection_SingleLanguageIdPriority` and `SpeechServiceConnection_ContinuousLanguageIdPriority` properties have been removed. A single property `SpeechServiceConnection_LanguageIdMode` replaces them. You no longer need to prioritize between low latency and high accuracy. For continuous speech recognition or translation, you only need to select whether to run at-start or continuous Language Identification.
 
 This article provides code snippets to describe the concepts. Links to complete samples for each use case are provided.
 

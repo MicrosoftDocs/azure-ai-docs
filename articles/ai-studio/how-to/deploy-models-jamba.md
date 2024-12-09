@@ -1,7 +1,7 @@
 ---
-title: How to deploy AI21's Jamba family models with Azure AI Studio
-titleSuffix: Azure AI Studio
-description: How to deploy AI21's Jamba family models with Azure AI Studio
+title: How to deploy AI21's Jamba family models with Azure AI Foundry
+titleSuffix: Azure AI Foundry
+description: How to deploy AI21's Jamba family models with Azure AI Foundry
 manager: scottpolly
 ms.service: azure-machine-learning
 ms.topic: how-to
@@ -9,19 +9,21 @@ ms.date: 08/06/2024
 ms.author: ssalgado
 ms.reviewer: tgokal
 reviewer: tgokal
-ms.custom: references_regions
+ms.custom: references_regions, ignite-2024
 ---
 
-# How to deploy AI21's Jamba family models with Azure AI Studio
+# How to deploy AI21's Jamba family models with Azure AI Foundry
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn how to use Azure AI Studio to deploy AI21's Jamba family models as a serverless API with pay-as-you-go billing.
+In this article, you learn how to use Azure AI Foundry to deploy AI21's Jamba family models as a serverless API with pay-as-you-go billing.
 
 The Jamba family models are AI21's production-grade Mamba-based large language model (LLM) which leverages AI21's hybrid Mamba-Transformer architecture. It's an instruction-tuned version of AI21's hybrid structured state space model (SSM) transformer Jamba model. The Jamba family models are built for reliable commercial use with respect to quality and performance.
 
-> [!TIP]
-> See our announcements of AI21's Jamba family models available now on Azure AI Model Catalog through [AI21's blog](https://aka.ms/ai21-jamba-1.5-large-announcement) and [Microsoft Tech Community Blog](https://aka.ms/ai21-jamba-1.5-large-microsoft-annnouncement).
+See our announcements of AI21's Jamba family models available now on Azure AI Model Catalog through [AI21's blog](https://aka.ms/ai21-jamba-1.5-large-announcement) and [Microsoft Tech Community Blog](https://aka.ms/ai21-jamba-1.5-large-microsoft-annnouncement).
+
+[!INCLUDE [models-preview](../includes/models-preview.md)]
+
 
 ## Deploy the Jamba family models as a serverless API
 
@@ -45,7 +47,7 @@ To get started with Jamba 1.5 mini deployed as a serverless API, explore our int
 ### Prerequisites
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
-- An [AI Studio hub](../how-to/create-azure-ai-resource.md). The serverless API model deployment offering for Jamba family models is only available with hubs created in these regions:
+- An [Azure AI Foundry project](../how-to/create-projects.md). The serverless API model deployment offering for Jamba family models is only available with projects created in these regions:
 
      * East US
      * East US 2
@@ -56,10 +58,10 @@ To get started with Jamba 1.5 mini deployed as a serverless API, explore our int
      * Sweden Central
        
     For a list of  regions that are available for each of the models supporting serverless API endpoint deployments, see [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md).
-- An Azure [AI Studio project](../how-to/create-projects.md).
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Studio. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. Alternatively, your account can be assigned a custom role that has the following permissions:
 
-    - On the Azure subscription—to subscribe the AI Studio project to the Azure Marketplace offering, once for each project, per offering:
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. Alternatively, your account can be assigned a custom role that has the following permissions:
+
+    - On the Azure subscription—to subscribe the AI Foundry project to the Azure Marketplace offering, once for each project, per offering:
       - `Microsoft.MarketplaceOrdering/agreements/offers/plans/read`
       - `Microsoft.MarketplaceOrdering/agreements/offers/plans/sign/action`
       - `Microsoft.MarketplaceOrdering/offerTypes/publishers/offers/plans/agreements/read`
@@ -70,35 +72,31 @@ To get started with Jamba 1.5 mini deployed as a serverless API, explore our int
       - `Microsoft.SaaS/resources/read`
       - `Microsoft.SaaS/resources/write`
  
-    - On the AI Studio project—to deploy endpoints (the Azure AI Developer role contains these permissions already):
+    - On the AI Foundry project—to deploy endpoints (the Azure AI Developer role contains these permissions already):
       - `Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*`  
       - `Microsoft.MachineLearningServices/workspaces/serverlessEndpoints/*`
 
-    For more information on permissions, see [Role-based access control in Azure AI Studio](../concepts/rbac-ai-studio.md).
+    For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).
 
 
 ### Create a new deployment
 
 These steps demonstrate the deployment of `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` models. To create a deployment:
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com).
+[!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
-1. Select **Model catalog** from the left sidebar.
-
-1. Search for and select a AI21 model like `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` or `AI21 Jamba Instruct` to open its Details page.
+4. Search for and select an AI21 model like `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` or `AI21 Jamba Instruct` to open its Details page.
 
 1. Select **Deploy** to open a serverless API deployment window for the model.
 
-1. Alternatively, you can initiate a deployment by starting from your project in AI Studio.
+1. Alternatively, you can initiate a deployment by starting from the **Models + endpoints** page in AI Foundry portal.
 
-    1. From the left sidebar of your project, select **Components** > **Deployments**.
-    1. Select **+ Create deployment**.
-
-    1. Search for and select a AI21 model like `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` or `AI21 Jamba Instruct` to open the Model's Details page.
-
+    1. From the left navigation pane of your project, select **My assets** > **Models + endpoints**.
+    1. Select **+ Deploy model** > **Deploy base model**.
+    1. Search for and select an AI21 model like `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` or `AI21 Jamba Instruct` to open the Model's Details page.
     1. Select **Confirm** to open a serverless API deployment window for the model.
 
-1. Select the project in which you want to deploy your model. To deploy the AI21-Jamba family models, your project must be in one of the regions listed in the [Prerequisites](#prerequisites) section.
+1. Your current project is specified for the deployment. To successfully deploy the AI21-Jamba family models, your project must be in one of the regions listed in the [Prerequisites](#prerequisites) section.
 
 1. In the deployment wizard, select the link to **Azure Marketplace Terms**, to learn more about the terms of use.
 
@@ -112,9 +110,9 @@ These steps demonstrate the deployment of `AI21 Jamba 1.5 Large` or `AI21 Jamba 
 
 1. Select **Deploy**. Wait until the deployment is ready and you're redirected to the Deployments page.
 
-1. Return to the Deployments page, select the deployment, and note the endpoint's **Target** URL and the Secret **Key**. For more information on using the APIs, see the [Reference](#reference-for-jamba-family-models-deployed-as-a-serverless-api) section.
+1. Return to the Deployments page, select the deployment, and note the endpoint's **Target** URI and the Secret **Key**. For more information on using the APIs, see the [Reference](#reference-for-jamba-family-models-deployed-as-a-serverless-api) section.
 
-1. You can always find the endpoint's details, URL, and access keys by navigating to your **Project overview** page. Then, from the left sidebar of your project, select **Components** > **Deployments**.
+1. [!INCLUDE [Find your deployment details](../includes/find-deployments.md)]
 
 To learn about billing for the AI21-Jamba family models deployed as a serverless API with pay-as-you-go token-based billing, see [Cost and quota considerations for Jamba Instruct deployed as a serverless API](#cost-and-quota-considerations-for-jamba-family-models-deployed-as-a-serverless-api).
 
@@ -123,11 +121,11 @@ To learn about billing for the AI21-Jamba family models deployed as a serverless
 
 You can consume Jamba family models as follows:
 
-1. From your **Project overview** page, go to the left sidebar and select **Components** > **Deployments**.
+1. From the left navigation pane of your project, select **My assets** > **Models + endpoints**.
 
 1. Find and select the deployment you created.
 
-1. Copy the **Target** URL and the **Key** value.
+1. Copy the **Target** URI and the **Key** value.
 
 1. Make an API request.
 
@@ -193,7 +191,7 @@ Payload is a JSON formatted string containing the following parameters:
 | `temperature` | `float`        | N <br>`1`  |  0.0 – 2.0      | How much variation to provide in each answer. Setting this value to 0 guarantees the same response to the same question every time. Setting a higher value encourages more variation. Modifies the distribution from which tokens are sampled. We recommend altering this or `top_p`, but not both. |
 | `top_p`       | `float`        | N <br>`1`  | 0 < _value_ <=1.0 | Limit the pool of next tokens in each step to the top N percentile of possible tokens, where 1.0 means the pool of all possible tokens, and 0.01 means the pool of only the most likely next tokens. |
 | `stop`        | `string` OR `list[string]`      | N <br>  | ""  | String or list of strings containing the word(s) where the API should stop generating output. Newlines are allowed as "\n". The returned text won't contain the stop sequence. |
-| `n`           | `integer`      | N <br>`1`  | 1 – 16          | How many responses to generate for each prompt. With Azure AI Studio's Playground, `n=1` as we work on multi-response Playground. |
+| `n`           | `integer`      | N <br>`1`  | 1 – 16          | How many responses to generate for each prompt. With Azure AI Foundry's Playground, `n=1` as we work on multi-response Playground. |
 | `stream`   | `boolean`      | N <br>`False` | `True` OR `False` | Whether to enable streaming. If true, results are returned one token at a time. If set to true, `n` must be 1, which is automatically set.|
 | `tools`   | `array[tool]` | N | "" | A list of `tools` the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported.|
 | `response_format`   | `object` | N <br>`null` | "" | Setting to `{ "type": "json_object" }` enables JSON mode, which guarantees the message the model generates is valid JSON.|
@@ -217,7 +215,7 @@ The `document` object has the following fields:
 - `id` (optional; str) - unique identifier. will be linked to in citations. up to 128 characters.
 - `content` (required; str) - the content of the document
 - `metadata` (optional; array of **Metadata)**
-  - `key` (required; str) - type of metadata, like ‘author’, ‘date’, ‘url’, etc. Should be things the model understands.
+  - `key` (required; str) - type of metadata, like 'author', 'date', 'url', etc. Should be things the model understands.
   - `value` (required; str) - value of the metadata
 
 #### Request example
@@ -400,7 +398,7 @@ data: [DONE]
 
 ### Cost and quota considerations for Jamba family models deployed as a serverless API
 
-The Jamba family models are deployed as a serverless API and is offered by AI21 through Azure Marketplace and integrated with Azure AI studio for use. You can find Azure Marketplace pricing when deploying or fine-tuning models.
+The Jamba family models are deployed as a serverless API and is offered by AI21 through Azure Marketplace and integrated with Azure AI Foundry for use. You can find Azure Marketplace pricing when deploying or fine-tuning models.
 
 Each time a workspace subscribes to a given model offering from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently.
 
@@ -410,10 +408,10 @@ Quota is managed per deployment. Each deployment has a rate limit of 200,000 tok
 
 ## Content filtering
 
-Models deployed as a serverless API are protected by Azure AI content safety. With Azure AI content safety enabled, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Learn more about [Azure AI Content Safety](/azure/ai-services/content-safety/overview).
+Models deployed as a serverless API are protected by Azure AI content safety. With Azure AI content safety enabled, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Learn more about [Azure AI Content Safety](/azure/ai-services/content-safety/overview).
 
 ## Related content
 
-- [What is Azure AI Studio?](../what-is-ai-studio.md)
+- [What is Azure AI Foundry?](../what-is-ai-studio.md)
 - [Azure AI FAQ article](../faq.yml)
 - [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)

@@ -19,7 +19,7 @@ ms.author: mbullwin
 - The following Python libraries: `os`, `json`, `requests`, `openai`.
 - The OpenAI Python library **should be at least version 0.28.1**.
 - Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
-- If you do not already have access to view quota, and deploy models in Azure OpenAI Studio you will require [additional permissions](../how-to/role-based-access-control.md).  
+- If you do not already have access to view quota, and deploy models in Azure AI Foundry portal you will require [additional permissions](../how-to/role-based-access-control.md).  
 
 
 ## Models
@@ -32,13 +32,12 @@ The following models support fine-tuning:
 - `gpt-35-turbo` (1106)
 - `gpt-35-turbo` (0125)
 - `gpt-4` (0613)**<sup>*</sup>**
-- `gpt-4o-mini` (2024-07-18)**<sup>*</sup>**
+- `gpt-4o` (2024-08-06)
+- `gpt-4o-mini` (2024-07-18)
 
 **<sup>*</sup>** Fine-tuning for this model is currently in public preview.
 
-If you plan to use `gpt-4` for fine-tuning, please refer to the [GPT-4 public preview safety evaluation guidance](#safety-evaluation-gpt-4-fine-tuning---public-preview)
-
-Or you can fine tune a previously fine-tuned model, formatted as base-model.ft-{jobid}.
+Or you can fine tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
 
 :::image type="content" source="../media/fine-tuning/models.png" alt-text="Screenshot of model options with a custom fine-tuned model." lightbox="../media/fine-tuning/models.png":::
 
@@ -87,11 +86,17 @@ Multiple turns of a conversation in a single line of your jsonl training file is
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "How far is the Moon from Earth?"}, {"role": "assistant", "content": "384,400 kilometers", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Around 384,400 kilometers. Give or take a few, like that really matters.", "weight": 1}]}
 ```
 
+### Chat completions with vision
+
+```json
+{"messages": [{"role": "user", "content": [{"type": "text", "text": "What's in this image?"}, {"type": "image_url", "image_url": {"url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-ai-docs/main/articles/ai-services/openai/media/how-to/generated-seattle.png"}}]}, {"role": "assistant", "content": "The image appears to be a watercolor painting of a city skyline, featuring tall buildings and a recognizable structure often associated with Seattle, like the Space Needle. The artwork uses soft colors and brushstrokes to create a somewhat abstract and artistic representation of the cityscape."}]}
+```
+
 In addition to the JSONL format, training and validation data files must be encoded in UTF-8 and include a byte-order mark (BOM). The file must be less than 512 MB in size.
 
 ### Create your training and validation datasets
 
-The more training examples you have, the better. Fine tuning jobs will not proceed without at least 10 training examples, but such a small number are not enough to noticeably influence model responses. It is best practice to provide hundreds, if not thousands, of training examples to be successful.
+The more training examples you have, the better. Fine tuning jobs will not proceed without at least 10 training examples, but such a small number is not enough to noticeably influence model responses. It is best practice to provide hundreds, if not thousands, of training examples to be successful.
 
 In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind, low quality examples can negatively impact performance. If you train the model on a large amount of internal data, without first pruning the dataset for only the highest quality examples you could end up with a model that performs much worse than expected.
 
@@ -111,7 +116,7 @@ In addition to the JSONL format, training and validation data files must be enco
 
 Designing your prompts and completions for fine-tuning is different from designing your prompts for use with any of [our GPT-3 base models](../concepts/legacy-models.md#gpt-3-models). Prompts for completion calls often use either detailed instructions or few-shot learning techniques, and consist of multiple examples. For fine-tuning, each training example should consist of a single input prompt and its desired completion output. You don't need to give detailed instructions or multiple completion examples for the same prompt.
 
-The more training examples you have, the better. Fine tuning jobs will not proceed without at least 10 training examples, but such a small number are not enough to noticeably influence model responses. It is best practice to provide hundreds, if not thousands, of training examples to be successful.
+The more training examples you have, the better. Fine tuning jobs will not proceed without at least 10 training examples, but such a small number is not enough to noticeably influence model responses. It is best practice to provide hundreds, if not thousands, of training examples to be successful.
 
 In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind, low quality examples can negatively impact performance. If you train the model on a large amount of internal data, without first pruning the dataset for only the highest quality examples you could end up with a model that performs much worse than expected.
 
@@ -287,6 +292,7 @@ The current supported hyperparameters for fine-tuning are:
 |`batch_size` |integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we've found that larger batch sizes tend to work better for larger datasets. The default value as well as the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
 | `learning_rate_multiplier` | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate can be useful to avoid overfitting. |
 |`n_epochs` | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
+|`seed` | integer |	The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be generated for you. |
 
 To set custom hyperparameters with the 1.x version of the OpenAI Python API:
 
@@ -374,7 +380,7 @@ This command isn't available in the 0.28.1 OpenAI Python library. Upgrade to the
 
 ---
 
-## Safety evaluation GPT-4 fine-tuning - public preview
+## Safety evaluation GPT-4, GPT-4o, GPT-4o-mini fine-tuning - public preview
 
 [!INCLUDE [Safety evaluation](../includes/safety-evaluation.md)]
 
@@ -384,7 +390,7 @@ When the fine-tuning job succeeds, the value of the `fine_tuned_model` variable 
 
 [!INCLUDE [Fine-tuning deletion](fine-tune.md)]
 
-You can also use [Azure OpenAI Studio](/azure/ai-services/openai/how-to/fine-tuning?tabs=turbo%2Cpython-new&pivots=programming-language-studio#deploy-a-fine-tuned-model) or the [Azure CLI](#deploy-a-model-with-azure-cli) to deploy your customized model.
+You can also use [Azure AI Foundry](/azure/ai-services/openai/how-to/fine-tuning?tabs=turbo%2Cpython-new&pivots=ai-foundry-portal#deploy-a-fine-tuned-model) or the [Azure CLI](#deploy-a-model-with-azure-cli) to deploy your customized model.
 
 > [!NOTE]
 > Only one deployment is permitted for a customized model. An error occurs if you select an already-deployed customized model.
@@ -525,7 +531,7 @@ az cognitiveservices account deployment create
 
 ## Use a deployed customized model
 
-After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in [Azure OpenAI Studio](https://oai.azure.com) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models. For fine-tuned `babbage-002` and `davinci-002` models you will use the Completions playground and the Completions API. For fine-tuned `gpt-35-turbo-0613` models you will use the Chat playground and the Chat completion API.
+After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in [Azure AI Foundry](https://ai.azure.com) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models. For fine-tuned `babbage-002` and `davinci-002` models you will use the Completions playground and the Completions API. For fine-tuned `gpt-35-turbo-0613` models you will use the Chat playground and the Chat completion API.
 
 # [OpenAI Python 1.x](#tab/python-new)
 
@@ -636,7 +642,7 @@ The result file is a CSV file that contains a header row and a row for each trai
 | `full_valid_loss` | The validation loss calculated at the end of each epoch. When training goes well, loss should decrease. |
 |`full_valid_mean_token_accuracy` | The valid mean token accuracy calculated at the end of each epoch. When training is going well, token accuracy should increase. |
 
-You can also view the data in your results.csv file as plots in Azure OpenAI Studio. Select the link for your trained model, and you will see three charts: loss, mean token accuracy, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
+You can also view the data in your results.csv file as plots in Azure AI Foundry portal. Select the link for your trained model, and you will see three charts: loss, mean token accuracy, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
 
 Look for your loss to decrease over time, and your accuracy to increase. If you see a divergence between your training and validation data that can indicate that you are overfitting. Try training with fewer epochs, or a smaller learning rate multiplier.
 
@@ -650,14 +656,14 @@ When you're done with your customized model, you can delete the deployment and m
 
 You can use various methods to delete the deployment for your customized model:
 
-- [Azure OpenAI Studio](../how-to/fine-tuning.md?pivots=programming-language-studio#delete-your-model-deployment)</a>
+- [Azure AI Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-model-deployment)</a>
 - The [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete)
 
 ### Delete your customized model
 
 Similarly, you can use various methods to delete your customized model:
 
-- [Azure OpenAI Studio](../how-to/fine-tuning.md?pivots=programming-language-studio#delete-your-customized-model)
+- [Azure AI Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-customized-model)
 
 > [!NOTE]
 > You can't delete a customized model if it has an existing deployment. You must first [delete your model deployment](#delete-your-model-deployment) before you can delete your customized model.
@@ -666,7 +672,7 @@ Similarly, you can use various methods to delete your customized model:
 
 You can optionally delete training and validation files that you uploaded for training, and result files generated during training, from your Azure OpenAI subscription. You can use the following methods to delete your training, validation, and result files:
 
-- [Azure OpenAI Studio](../how-to/fine-tuning.md?pivots=programming-language-studio#delete-your-training-files)
+- [Azure AI Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-training-files)
 - The [REST APIs](/rest/api/azureopenai/files/delete)
 - The Python SDK
 
@@ -728,4 +734,4 @@ print(response.model_dump_json(indent=2))
 
 We also recommend including the `suffix` parameter to make it easier to distinguish between different iterations of your fine-tuned model. `suffix` takes a string, and is set to identify the fine-tuned model. With the OpenAI Python API a string of up to 18 characters is supported that will be added to your fine-tuned model name.
 
-If you are unsure of the ID of your existing fine-tuned model this information can be found in the **Models** page of Azure OpenAI Studio, or you can generate a [list of models](/rest/api/azureopenai/models/list?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP&preserve-view=true) for a given Azure OpenAI resource using the REST API.
+If you are unsure of the ID of your existing fine-tuned model this information can be found in the **Models** page of Azure AI Foundry, or you can generate a [list of models](/rest/api/azureopenai/models/list?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP&preserve-view=true) for a given Azure OpenAI resource using the REST API.

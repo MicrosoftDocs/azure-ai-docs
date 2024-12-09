@@ -2,12 +2,14 @@
 title: Keyword recognition overview - Speech service
 titleSuffix: Azure AI services
 description: An overview of the features, capabilities, and restrictions for keyword recognition by using the Speech SDK.
-author: hasyashah
+author: eric-urban
+ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 1/21/2024
-ms.author: hasshah
+ms.date: 9/20/2024
+ms.reviewer: hasshah
+#Customer intent: As a developer, I want to learn about keyword recognition and how to use it with the Speech service.
 ---
 
 # What is keyword recognition?
@@ -26,7 +28,7 @@ The current system is designed with multiple stages that span the edge and cloud
 
 Accuracy of keyword recognition is measured via the following metrics:
 
-* **Correct accept rate**: Measures the system's ability to recognize the keyword when it's spoken by a user. The correct accept rate is also known as the true positive rate.
+* **Correct accept rate**: Measures the system's ability to recognize the keyword spoken by a user. The correct accept rate is also known as the true positive rate.
 * **False accept rate**: Measures the system's ability to filter out audio that isn't the keyword spoken by a user. The false accept rate is also known as the false positive rate.
 
 The goal is to maximize the correct accept rate while minimizing the false accept rate. The current system is designed to detect a keyword or phrase preceded by a short amount of silence. Detecting a keyword in the middle of a sentence or utterance isn't supported.

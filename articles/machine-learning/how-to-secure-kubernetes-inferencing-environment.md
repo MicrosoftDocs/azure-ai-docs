@@ -81,5 +81,6 @@ This article is part of a series on securing an Azure Machine Learning workflow.
 * [Use custom DNS](how-to-custom-dns.md)
 * [Use a firewall](how-to-access-azureml-behind-firewall.md)
 * [Tutorial: Create a secure workspace](tutorial-create-secure-workspace.md)
-* [Tutorial: Create a secure workspace using a template](tutorial-create-secure-workspace-template.md)
+* [Bicep template](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/)
+* [Terraform template](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure).
 * [API platform network isolation](how-to-configure-network-isolation-with-v2.md)

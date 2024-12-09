@@ -12,6 +12,7 @@ ms.custom:
   - ignite-2023
 ms.date: 07/17/2024
 ms.topic: concept-article
+ms.collection: ce-skilling-ai-copilot 
 
 #customer intent: As a developer, I want to use vector indexes in Azure Machine Learning so that I can perform retrieval-augmented generation. 
 ---

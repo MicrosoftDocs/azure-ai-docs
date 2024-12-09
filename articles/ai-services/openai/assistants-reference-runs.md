@@ -5,9 +5,9 @@ description: Learn how to use Azure OpenAI's Python & REST API runs with Assista
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 04/16/2024
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 09/17/2024
+author: aahill
+ms.author: aahi
 recommendations: false
 ms.custom: devx-track-python
 ---
@@ -21,7 +21,7 @@ This article provides reference documentation for Python and REST for the new As
 ## Create run
 
 ```http
-POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs?api-version=2024-05-01-preview
+POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs?api-version=2024-08-01-preview
 ```
 
 Create a run.
@@ -39,8 +39,19 @@ Create a run.
 | `assistant_id` | string | Required | The ID of the assistant to use to execute this run. |
 | `model` | string or null | Optional | The model deployment name to be used to execute this run. If a value is provided here, it will override the model deployment name associated with the assistant. If not, the model deployment name associated with the assistant will be used. |
 | `instructions` | string or null | Optional | Overrides the instructions of the assistant. This is useful for modifying the behavior on a per-run basis. |
+| `additional_instructions` | string | Optional | Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions. |
+| `additional_messages` | array | Optional | Adds additional messages to the thread before creating the run. |
 | `tools` | array or null | Optional | Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis. |
 | `metadata` | map | Optional | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. |
+| `temperature` | number | Optional | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. Default is 1. |
+| `top_p` | number | Optional | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. We generally recommend altering this or temperature but not both. Default is 1. |
+| `stream` | boolean | optional | If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. |
+| `max_prompt_tokens` | integer | optional | The maximum number of completion tokens that might be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. |
+| `max_completion_tokens` | integer | optional | The maximum number of completion tokens that might be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. |
+| `truncation_strategy` | [truncationObject](#truncation-object) | optional | Controls for how a thread will be truncated prior to the run. Use this to control the initial context window of the run. |
+| `tool_choice` | string or object | optional | Controls which (if any) tool is called by the model. A `none` value means the model won't call any tools and instead generates a message. `auto` is the default value and means the model can pick between generating a message or calling a tool. Specifying a particular tool like `{"type": "file_search"}` or `{"type": "function", "function": {"name": "my_function"}}` forces the model to call that tool. |
+| `response_format` | string or object | optional | Specifies the format that the model must output. Compatible with GPT-4 Turbo and all GPT-3.5 Turbo models since `gpt-3.5-turbo-1106`. <br> Setting to `{ "type": "json_object" }` enables JSON mode, which guarantees the message the model generates is valid JSON. <br> **Important**: when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user message. Without this, the model might generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content might be partially cut off if `finish_reason="length"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. |
+
 
 ### Returns
 
@@ -55,7 +66,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview",
+    api_version="2024-08-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -69,7 +80,7 @@ print(run)
 # [REST](#tab/rest)
 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs?api-version=2024-05-01-preview \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs?api-version=2024-08-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H 'Content-Type: application/json' \
   -d '{
@@ -82,7 +93,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs
 ## Create thread and run
 
 ```http
-POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/runs?api-version=2024-05-01-preview
+POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/runs?api-version=2024-08-01-preview
 ```
 
 Create a thread and run it in a single request.
@@ -97,6 +108,14 @@ Create a thread and run it in a single request.
 | `instructions` | string or null  | Optional | Override the default system message of the assistant. This is useful for modifying the behavior on a per-run basis.|
 | `tools` | array or null  | Optional | Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.|
 | `metadata` | map  | Optional | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.|
+| `temperature` | number | Optional | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. Default is 1. |
+| `top_p` | number | Optional | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. We generally recommend altering this or temperature but not both. Default is 1. |
+| `stream` | boolean | optional | If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. |
+| `max_prompt_tokens` | integer | optional | The maximum number of completion tokens that might be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. |
+| `max_completion_tokens` | integer | optional | The maximum number of completion tokens that might be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. |
+| `truncation_strategy` | [truncationObject](#truncation-object) | optional | Controls for how a thread will be truncated prior to the run. Use this to control the initial context window of the run. |
+| `tool_choice` | string or object | optional | Controls which (if any) tool is called by the model. A `none` value means the model won't call any tools and instead generates a message. `auto` is the default value and means the model can pick between generating a message or calling a tool. Specifying a particular tool like `{"type": "file_search"}` or `{"type": "function", "function": {"name": "my_function"}}` forces the model to call that tool. |
+| `response_format` | string or object | optional | Specifies the format that the model must output. Compatible with GPT-4 Turbo and all GPT-3.5 Turbo models since `gpt-3.5-turbo-1106`. <br> Setting to `{ "type": "json_object" }` enables JSON mode, which guarantees the message the model generates is valid JSON. <br> **Important**: when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user message. Without this, the model might generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content might be partially cut off if `finish_reason="length"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. |
 
 ### Returns
 
@@ -111,7 +130,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview",
+    api_version="2024-08-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -128,7 +147,7 @@ run = client.beta.threads.create_and_run(
 # [REST](#tab/rest)
 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/runs?api-version=2024-05-01-preview \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/runs?api-version=2024-08-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H 'Content-Type: application/json' \
   -d '{
@@ -146,7 +165,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/runs?api-version
 ## List runs
 
 ```http
-GET https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs?api-version=2024-05-01-preview
+GET https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs?api-version=2024-08-01-preview
 ```
 
 Returns a list of runs belonging to a thread.
@@ -179,7 +198,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview",
+    api_version="2024-08-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -202,7 +221,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs
 ## List run steps
 
 ```http
-GET https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}/steps?api-version=2024-05-01-preview
+GET https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}/steps?api-version=2024-08-01-preview
 ```
 
 Returns a list of steps belonging to a run.
@@ -236,7 +255,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview",
+    api_version="2024-08-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -250,7 +269,7 @@ print(run_steps)
 # [REST](#tab/rest)
 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}/steps?api-version=2024-05-01-preview \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}/steps?api-version=2024-08-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H 'Content-Type: application/json' 
 ```
@@ -276,7 +295,7 @@ print(run)
 # [REST](#tab/rest)
 
 ```http
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}?api-version=2024-05-01-preview
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}?api-version=2024-08-01-preview
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H 'Content-Type: application/json' 
 ```
@@ -305,7 +324,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview",
+    api_version="2024-08-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -319,7 +338,7 @@ print(run)
 # [REST](#tab/rest)
 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}?api-version=2024-05-01-preview \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}?api-version=2024-08-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H 'Content-Type: application/json' 
 ```
@@ -329,7 +348,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs
 ## Retrieve run step
 
 ```http
-GET https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}/steps/{step_id}?api-version=2024-05-01-preview
+GET https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}/steps/{step_id}?api-version=2024-08-01-preview
 ```
 
 Retrieves a run step.
@@ -355,7 +374,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview",
+    api_version="2024-08-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -370,7 +389,7 @@ print(run_step)
 # [REST](#tab/rest)
 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}/steps/{step_id}?api-version=2024-05-01-preview \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}/steps/{step_id}?api-version=2024-08-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H 'Content-Type: application/json' 
 ```
@@ -380,7 +399,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs
 ## Modify run
 
 ```http
-POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}?api-version=2024-05-01-preview
+POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}?api-version=2024-08-01-preview
 ```
 
 Modifies a run.
@@ -411,7 +430,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview",
+    api_version="2024-08-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -426,7 +445,7 @@ print(run)
 # [REST](#tab/rest)
 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}?api-version=2024-05-01-preview \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}?api-version=2024-08-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H 'Content-Type: application/json' 
   -d '{
@@ -441,7 +460,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs
 ## Submit tool outputs to run
 
 ```http
-POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}/submit_tool_outputs?api-version=2024-05-01-preview
+POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}/submit_tool_outputs?api-version=2024-08-01-preview
 ```
 
 When a run has the status: "requires_action" and required_action.type is submit_tool_outputs, this endpoint can be used to submit the outputs from the tool calls once they're all completed. All outputs must be submitted in a single request.
@@ -458,6 +477,7 @@ When a run has the status: "requires_action" and required_action.type is submit_
 |Name | Type | Required | Description |
 |---  |---   |---       |--- |
 | `tool_outputs` | array | Required | A list of tools for which the outputs are being submitted. |
+| `stream` | boolean | Optional | If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. |
 
 ### Returns
 
@@ -472,7 +492,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview",
+    api_version="2024-08-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -492,7 +512,7 @@ print(run)
 # [REST](#tab/rest)
 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}/submit_tool_outputs?api-version=2024-05-01-preview \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}/submit_tool_outputs?api-version=2024-08-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H 'Content-Type: application/json' \
   -d '{
@@ -511,7 +531,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs
 ## Cancel a run
 
 ```http
-POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}/cancel?api-version=2024-05-01-preview
+POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}/cancel?api-version=2024-08-01-preview
 ```
 
 Cancels a run that is in_progress.
@@ -536,7 +556,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview",
+    api_version="2024-08-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -550,7 +570,7 @@ print(run)
 # [REST](#tab/rest)
 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}/cancel?api-version=2024-05-01-preview \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}/runs/{run_id}/cancel?api-version=2024-08-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H 'Content-Type: application/json' \
   -X POST
@@ -586,7 +606,9 @@ Represents an execution run on a thread.
 | `max_prompt_tokens` | integer or null | The maximum number of prompt tokens specified to have been used over the course of the run. |
 | `max_completion_tokens` | integer or null | The maximum number of completion tokens specified to have been used over the course of the run. |
 | `usage` | object or null | Usage statistics related to the run. This value will be null if the run is not in a terminal state (for example `in_progress`, `queued`). |
-
+| `truncation_strategy` | object | Controls for how a thread will be truncated prior to the run. | 
+| `response_format` | string | The format that the model must output. Compatible with GPT-4 Turbo and all GPT-3.5 Turbo models since `gpt-3.5-turbo-1106`. |
+| `tool_choice` | string | Controls which (if any) tool is called by the model. `none` means the model won't call any tools and instead generates a message. `auto` is the default value and means the model can pick between generating a message or calling a tool. |
 
 ## Run step object
 
@@ -663,6 +685,14 @@ with client.beta.threads.runs.stream(
   stream.until_done()
 ```
 
+## Truncation object
+
+Controls for how a thread will be truncated prior to the run. Use this to control the initial context window of the run.
+
+| Name | Type | Description | Required |
+|---  |---   |---         |
+| `type` | string | The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`. | Yes |	
+| `last_messages`	| integer | The number of most recent messages from the thread when constructing the context for the run. | No | 
 
 ## Message delta object
 

@@ -134,7 +134,7 @@ More [examples](./computer-vision-resource-container-config.md#example-docker-ru
 > [!IMPORTANT]
 > The `Eula`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container won't start.  For more information, see [Billing](#billing).
 
-If you need higher throughput (for example, when processing multi-page files), consider deploying multiple containers [on a Kubernetes cluster](deploy-computer-vision-on-premises.md), using [Azure Storage](/azure/storage/common/storage-account-create) and [Azure Queue](/azure/storage/queues/storage-queues-introduction).
+<!--If you need higher throughput (for example, when processing multi-page files), consider deploying multiple containers [on a Kubernetes cluster](deploy-computer-vision-on-premises.md), using [Azure Storage](/azure/storage/common/storage-account-create) and [Azure Queue](/azure/storage/queues/storage-queues-introduction).-->
 
 If you're using Azure Storage to store images for processing, you can create a [connection string](/azure/storage/common/storage-configure-connection-string) to use when calling the container.
 

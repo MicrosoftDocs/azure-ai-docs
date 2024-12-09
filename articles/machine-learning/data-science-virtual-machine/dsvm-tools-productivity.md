@@ -4,7 +4,7 @@ titleSuffix: Azure Data Science Virtual Machine
 description: Learn about the productivity tools on the Data Science Virtual Machines.
 keywords: deep learning, AI, data science tools, data science virtual machine, geospatial analytics, team data science process
 services: machine-learning
-ms.service: data-science-vm
+ms.service: azure-data-science-virtual-machines
 author: fbsolo-ms1 
 ms.author: franksolomon 
 ms.topic: conceptual

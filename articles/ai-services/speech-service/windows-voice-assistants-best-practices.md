@@ -2,13 +2,15 @@
 title: Voice Assistants on Windows - Design Guidelines
 titleSuffix: Azure AI services
 description: Guidelines for best practices when designing a voice agent experience.
-author: cfogg6
-manager: spencer.king
+author: eric-urban
+ms.author: eur
+manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 1/22/2024
-ms.author: adamwa
+ms.date: 9/24/2024
+ms.reviewer: adamwa
 ms.custom: cogserv-non-critical-speech
+#Customer intent: As a developer, I want to learn about voice assistants and how to create them by using the Speech SDK.
 ---
 # Design assistant experiences for Windows 10
 

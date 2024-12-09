@@ -10,6 +10,7 @@ ms.date: 1/22/2024
 ms.author: eur
 ms.devlang: csharp
 ms.custom: cogserv-non-critical-speech, devx-track-csharp
+#Customer intent: As a developer, I want to learn how to voice-enable my bot using the Speech SDK.
 ---
 
 # Tutorial: Voice-enable your bot

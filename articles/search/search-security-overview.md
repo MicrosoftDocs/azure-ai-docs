@@ -6,7 +6,7 @@ description: Learn about the security features in Azure AI Search to protect end
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
@@ -97,7 +97,7 @@ A search service is provisioned with a public endpoint that allows access using 
 
 :::image type="content" source="media/search-security-overview/inbound-firewall-ip-restrictions.png" alt-text="sample architecture diagram for ip restricted access":::
 
-You can use the portal to [configure firewall access](service-configure-firewall.md).
+You can use the Azure portal to [configure firewall access](service-configure-firewall.md).
 
 Alternatively, you can use the management REST APIs. Starting with API version 2020-03-13, with the [IpRule](/rest/api/searchmanagement/services/create-or-update#iprule) parameter, you can restrict access to your service by identifying IP addresses, individually or in a range, that you want to grant access to your search service.
 

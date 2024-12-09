@@ -1,20 +1,20 @@
 ---
 title: Load an index
 titleSuffix: Azure AI Search
-description: Import and refresh data in a search index using the portal, REST APIs, or an Azure SDK.
+description: Import and refresh data in a search index using the Azure portal, REST APIs, or an Azure SDK.
 
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/01/2024
+ms.date: 10/31/2024
 ---
 
 # Load data into a search index in Azure AI Search
 
-This article explains how to import documents into a predefined search index. In Azure AI Search, a [search index is created first](search-how-to-create-search-index.md) with [data import](search-what-is-data-import.md) following as a second step. The exception is [Import wizards](search-import-data-portal.md) in the portal and indexer pipelines, which create and load an index in one workflow.
+This article explains how to import documents into a predefined search index. In Azure AI Search, a [search index is created first](search-how-to-create-search-index.md) with [data import](search-what-is-data-import.md) following as a second step. The exception is [Import wizards](search-import-data-portal.md) in the Azure portal and indexer pipelines, which create and load an index in one workflow.
 
 ## How data import works
 
@@ -66,7 +66,7 @@ In the Azure portal, use the [import wizards](search-import-data-portal.md) to c
         {
         "@search.action": "upload",
         "HotelId": "1111",
-        "HotelName": "Secret Point Motel",
+        "HotelName": "Stay-Kay City Hotel",
         "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
         "Category": "Boutique",
         "Tags": [ "pool", "air conditioning", "concierge" ]
@@ -74,7 +74,7 @@ In the Azure portal, use the [import wizards](search-import-data-portal.md) to c
         {
         "@search.action": "mergeOrUpload",
         "HotelId": "2",
-        "HotelName": "Twin Dome Motel",
+        "HotelName": "Old Century Hotel",
         "Description": "This is description is replacing the original one for this hotel. New and changed values overwrite the previous ones. In a comma-delimited list like Tags, be sure to provide the full list because there is no merging of values within the field itself.",
         "Category": "Boutique",
         "Tags": [ "pool", "free wifi", "concierge", "my first new tag", "my second new tag" ]

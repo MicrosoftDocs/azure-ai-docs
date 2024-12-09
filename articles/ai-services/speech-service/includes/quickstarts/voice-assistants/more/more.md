@@ -12,7 +12,7 @@ If you've clicked this tab, you probably didn't see a quickstart in your favorit
 
 | Language    | Code samples                                                                                   |
 |-------------|------------------------------------------------------------------------------------------------|
-| C#          | [.NET Framework][dotnet], [.NET Core][netcore], [UWP][uwp], [Unity][unity], [Xamarin][xamarin] |
+| C#          | [.NET Framework][dotnet], [.NET Core][netcore], [UWP][uwp], [Unity][unity] |
 | C++         | [Windows][cpp-windows], [Linux][cpp-linux], [macOS][cpp-mac]                                   |
 | Java        | [Android][java-android], [JRE][java-jre]                                                       |
 | JavaScript  | [Browser, Node.js][js-code]                                                                    |
@@ -24,7 +24,6 @@ If you've clicked this tab, you probably didn't see a quickstart in your favorit
 [netcore]: https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/quickstart/csharp/dotnetcore
 [uwp]: https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/quickstart/csharp/uwp
 [unity]: https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/quickstart/csharp/unity
-[xamarin]: https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/quickstart/csharp/xamarin
 
 [cpp-windows]: https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/quickstart/cpp/windows
 [cpp-linux]: https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/quickstart/cpp/linux

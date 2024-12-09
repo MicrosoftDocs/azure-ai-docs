@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: You can quickly deploy an Azure AI Search service instance using Bicep.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: quickstart
 ms.custom:
   - subject-armqs
@@ -107,5 +107,5 @@ In this quickstart, you created an Azure AI Search service using a Bicep file, a
 
 - Read an [overview of Azure AI Search](search-what-is-azure-search.md).
 - [Create an index](search-get-started-portal.md) for your search service.
-- [Create a demo app](search-create-app-portal.md) using the portal wizard.
-- [Create a skillset](cognitive-search-quickstart-blob.md) to extract information from your data.
+- [Create a demo app](search-create-app-portal.md) using the Azure portal wizard.
+- [Create a skillset](search-get-started-skillset.md) to extract information from your data.

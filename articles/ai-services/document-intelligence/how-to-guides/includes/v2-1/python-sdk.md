@@ -100,7 +100,7 @@ Use the sample form and receipt images included in the samples, which is also av
 
 ## Analyze layout
 
-You can use Document Intelligence to analyze tables, lines, and words in documents, without needing to train a model. For more information about layout extraction, see the [Document Intelligence layout model](../../../concept-layout.md).
+You can use Document Intelligence to analyze tables, lines, and words in documents, without needing to train a model. For more information about layout extraction, see the [Document Intelligence layout model](../../../prebuilt/layout.md).
 
 To analyze the content of a file at a given URL, use the `begin_recognize_content_from_url` method. The returned value is a collection of `FormPage` objects. There's one object for each page in the submitted document. The following code iterates through these objects and prints the extracted key/value pairs and table data.
 
@@ -132,7 +132,7 @@ Confidence score: 1.0
 
 ## Analyze receipts
 
-This section demonstrates how to analyze and extract common fields from US receipts by using a pretrained receipt model. For more information about receipt analysis, see the [Document Intelligence receipt model](../../../concept-receipt.md). To analyze receipts from a URL, use the `begin_recognize_receipts_from_url` method.
+This section demonstrates how to analyze and extract common fields from US receipts by using a pretrained receipt model. For more information about receipt analysis, see the [Document Intelligence receipt model](../../../prebuilt/receipt.md). To analyze receipts from a URL, use the `begin_recognize_receipts_from_url` method.
 
 [!code-python[](~/cognitive-services-quickstart-code/python/FormRecognizer/FormRecognizerQuickstart.py?name=snippet_receipts)]
 
@@ -172,7 +172,7 @@ To analyze business cards from a URL, use the `begin_recognize_business_cards_fr
 
 ## Analyze invoices
 
-This section demonstrates how to analyze and extract common fields from sales invoices by using a pretrained model. For more information about invoice analysis, see the [Document Intelligence invoice model](../../../concept-invoice.md).
+This section demonstrates how to analyze and extract common fields from sales invoices by using a pretrained model. For more information about invoice analysis, see the [Document Intelligence invoice model](../../../prebuilt/invoice.md).
 
 To analyze invoices from a URL, use the `begin_recognize_invoices_from_url` method.
 
@@ -183,7 +183,7 @@ To analyze invoices from a URL, use the `begin_recognize_invoices_from_url` meth
 
 ## Analyze ID documents
 
-This section demonstrates how to analyze and extract key information from government-issued identification documents, including worldwide passports and U.S. driver's licenses, by using the Document Intelligence prebuilt ID model. For more information about ID document analysis, see the [Document Intelligence ID document model](../../../concept-id-document.md).
+This section demonstrates how to analyze and extract key information from government-issued identification documents, including worldwide passports and U.S. driver's licenses, by using the Document Intelligence prebuilt ID model. For more information about ID document analysis, see the [Document Intelligence ID document model](../../../prebuilt/id-document.md).
 
 To analyze ID documents from a URL, use the `begin_recognize_id_documents_from_url` method.
 

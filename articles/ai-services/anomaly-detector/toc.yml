@@ -50,8 +50,6 @@
                 maintainContext: true
     - name: Multivariate Anomaly Detection
       items:
-        - name: REST API with Postman
-          href: how-to/postman.md
         - name: Create an Anomaly Detector Resource
           href: how-to/create-resource.md
         - name: Prepare and upload your data
@@ -76,8 +74,6 @@
       href: tutorials/azure-data-explorer.md
     - name: Visualize anomalies as a batch using Power BI (univariate)
       href: tutorials/batch-anomaly-detection-powerbi.md
-    - name: Azure Synapse with Multivariate Anomaly Detection
-      href: tutorials/multivariate-anomaly-detection-synapse.md
 - name: Responsible use of AI
   items:
   - name: Transparency note

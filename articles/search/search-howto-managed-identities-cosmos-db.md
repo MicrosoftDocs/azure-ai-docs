@@ -5,7 +5,7 @@ description: Learn how to set up an indexer connection to an Azure Cosmos DB acc
 author: gmndrg
 ms.author: gimondra
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/10/2024
 ms.custom:
@@ -83,7 +83,7 @@ Indexers use a data source object for connections to an external data source. Th
 
 ### System-assigned managed identity
 
-The [REST API](/rest/api/searchservice/create-data-source), Azure portal, and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourceconnection) support using a system-assigned managed identity. 
+The [REST API](/rest/api/searchservice/data-sources/create), Azure portal, and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourceconnection) support using a system-assigned managed identity. 
 
 When you're connecting with a system-assigned managed identity, the only change to the data source definition is the format of the "credentials" property. Provide a database name and a ResourceId that has no account key or password. The ResourceId must include the subscription ID of Azure Cosmos DB, the resource group, and the Azure Cosmos DB account name.
 
@@ -92,7 +92,7 @@ When you're connecting with a system-assigned managed identity, the only change 
 * For MongoDB collections, add "ApiKind=MongoDb" to the connection string and use a preview REST API.
 * For Gremlin graphs, add "ApiKind=Gremlin" to the connection string and use a preview REST API.
 
-Here's an example of how to create a data source to index data from a Cosmos DB account using the [Create Data Source](/rest/api/searchservice/create-data-source) REST API and a managed identity connection string. The managed identity connection string format is the same for the REST API, .NET SDK, and the Azure portal.
+Here's an example of how to create a data source to index data from a Cosmos DB account using the [Create Data Source](/rest/api/searchservice/data-sources/create) REST API and a managed identity connection string. The managed identity connection string format is the same for the REST API, .NET SDK, and the Azure portal.
 
 ```http
 POST https://[service name].search.windows.net/datasources?api-version=2024-07-01

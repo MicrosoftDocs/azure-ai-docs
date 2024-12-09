@@ -6,7 +6,7 @@ author: gmndrg
 ms.author: gimondra
 manager: nitinme
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
@@ -63,7 +63,7 @@ In Azure AI Search, set a native blob soft deletion detection policy on the data
 
 1. On the Azure AI Search service Overview page, go to **New Data Source**, a visual editor for specifying a data source definition. 
 
-   The following screenshot shows where you can find this feature in the portal. 
+   The following screenshot shows where you can find this feature in the Azure portal. 
 
    :::image type="content" source="media/search-indexing-changed-deleted-blobs/new-data-source.png" alt-text="Screenshot of data source configuration in Import Data wizard." border="true":::
 
@@ -90,7 +90,7 @@ api-key: [admin key]
 }
 ```
 
-[Run the indexer](/rest/api/searchservice/run-indexer) or set the indexer to run [on a schedule](search-howto-schedule-indexers.md). When the indexer runs and processes a blob having a soft delete state, the corresponding search document will be removed from the index.
+[Run the indexer](/rest/api/searchservice/indexers/run) or set the indexer to run [on a schedule](search-howto-schedule-indexers.md). When the indexer runs and processes a blob having a soft delete state, the corresponding search document will be removed from the index.
 
 ---
 

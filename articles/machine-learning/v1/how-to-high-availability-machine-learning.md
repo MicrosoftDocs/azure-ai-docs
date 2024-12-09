@@ -73,7 +73,7 @@ The rest of this article describes the actions you need to take to make each of 
 A multi-regional deployment relies on creation of Azure Machine Learning and other resources (infrastructure) in two Azure regions. If a regional outage occurs, you can switch to the other region. When planning on where to deploy your resources, consider:
 
 * __Regional availability__: Use regions that are close to your users. To check regional availability for Azure Machine Learning, see [Azure products by region](https://azure.microsoft.com/global-infrastructure/services/).
-* __Azure paired regions__: Paired regions coordinate platform updates and prioritize recovery efforts where needed. For more information, see [Azure paired regions](/azure/availability-zones/cross-region-replication-azure).
+* __Azure paired regions__: Paired regions coordinate platform updates and prioritize recovery efforts where needed. For more information, see [Azure paired regions](/azure/reliability/cross-region-replication-azure).
 * __Service availability__: Decide whether the resources used by your solution should be hot/hot, hot/warm, or hot/cold.
     
     * __Hot/hot__: Both regions are active at the same time, with one region ready to begin use immediately.
@@ -108,7 +108,7 @@ Depending on your needs, you may have more compute or data services that are use
 
 __Compute resources__
 
-* **Azure Kubernetes Service**: See [Best practices for business continuity and disaster recovery in Azure Kubernetes Service (AKS)](/azure/aks/operator-best-practices-multi-region) and [Create an Azure Kubernetes Service (AKS) cluster that uses availability zones](/azure/aks/availability-zones). If the AKS cluster was created by using the Azure Machine Learning Studio, SDK, or CLI, cross-region high availability is not supported.
+* **Azure Kubernetes Service**: See [Best practices for business continuity and disaster recovery in Azure Kubernetes Service (AKS)](/azure/aks/operator-best-practices-multi-region) and [Create an Azure Kubernetes Service (AKS) cluster that uses availability zones](/azure/aks/availability-zones). If the AKS cluster was created by using the Azure Machine Learning studio, SDK, or CLI, cross-region high availability is not supported.
 * **Azure Databricks**: See [Regional disaster recovery for Azure Databricks clusters](/azure/databricks/scenarios/howto-regional-disaster-recovery).
 * **Container Instances**: An orchestrator is responsible for failover. See [Azure Container Instances and container orchestrators](/azure/container-instances/container-instances-orchestrator-relationship).
 * **HDInsight**: See [High availability services supported by Azure HDInsight](/azure/hdinsight/hdinsight-high-availability-components).
@@ -205,4 +205,4 @@ Even if your workspace cannot be recovered, you may still be able to retrieve yo
 
 ## Next steps
 
-To learn about repeatable infrastructure deployments with Azure Machine Learning, use an [Azure Resource Manager template](../tutorial-create-secure-workspace-template.md).
+To learn about repeatable infrastructure deployments with Azure Machine Learning, use a [Bicep](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/) or [Terraform](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure) template.

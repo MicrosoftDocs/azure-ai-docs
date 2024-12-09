@@ -1,11 +1,11 @@
 ---
 title: Region availability for models in Serverless API endpoints
-titleSuffix: Azure AI Studio
-description: Learn about the regions where each model is available for deployment in serverless API endpoints via Azure AI Studio.
+titleSuffix: Azure AI Foundry
+description: Learn about the regions where each model is available for deployment in serverless API endpoints via Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 11/21/2024
 ms.author: mopeakande
 author: msakande
 ms.reviewer: fasantia
@@ -19,6 +19,8 @@ ms.custom:
 # Region availability for models in serverless API endpoints
 
 In this article, you learn about which regions are available for each of the models supporting serverless API endpoint deployments.
+
+[!INCLUDE [models-preview](../includes/models-preview.md)]
 
 Certain models in the model catalog can be deployed as a serverless API with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
 

@@ -3,10 +3,10 @@ title: Image Analysis cognitive skill
 titleSuffix: Azure AI Search
 description: Extract semantic text through image analysis using the Image Analysis cognitive skill in an AI enrichment pipeline in Azure AI Search.
 
-author: careyjmac
-ms.author: chalton
+author: gmndrg
+ms.author: gimondra
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
@@ -23,11 +23,13 @@ This skill uses the machine learning models provided by [Azure AI Vision](/azure
 + The file size of the image must be less than 4 megabytes (MB)
 + The dimensions of the image must be greater than 50 x 50 pixels
 
+Supported data sources for OCR and image analysis are blobs in Azure Blob Storage and Azure Data Lake Storage (ADLS) Gen2, and image content in OneLake. Images can be standalone files or embedded images in a PDF or other files.
+
 This skill is implemented using the [AI Image Analysis API](/azure/ai-services/computer-vision/overview-image-analysis) version 3.2. If your solution requires calling a newer version of that service API (such as version 4.0), consider implementing through [Web API custom skill](cognitive-search-custom-skill-web-api.md).
 
 > [!NOTE]
 > This skill is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services pay-as-you go price](https://azure.microsoft.com/pricing/details/cognitive-services/).
-> 
+>
 > In addition, image extraction is [billable by Azure AI Search](https://azure.microsoft.com/pricing/details/search/).
 >
 
@@ -778,4 +780,4 @@ If you get the error similar to `"One or more skills are invalid. Details: Error
 + [Built-in skills](cognitive-search-predefined-skills.md)
 + [How to define a skillset](cognitive-search-defining-skillset.md)
 + [Extract text and information from images](cognitive-search-concept-image-scenarios.md)
-+ [Create Indexer (REST)](/rest/api/searchservice/create-indexer)
++ [Create Indexer (REST)](/rest/api/searchservice/indexers/create)

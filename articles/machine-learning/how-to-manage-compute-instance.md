@@ -64,7 +64,7 @@ You can [enable automatic shutdown](how-to-create-compute-instance.md#configure-
 You can also [create a schedule](how-to-create-compute-instance.md#schedule-automatic-start-and-stop) for the compute instance to automatically start and stop based on a time and day of week.
 
 > [!TIP]
-> The compute instance has 120GB OS disk. If you run out of disk space, [use the terminal](how-to-access-terminal.md) to clear at least 1-2 GB before you stop or restart the compute instance. Please do not stop the compute instance by issuing sudo shutdown from the terminal. The temp disk size on compute instance depends on the VM size chosen and is mounted on /mnt.
+> The compute instance has 120GB OS disk. If you run out of disk space, [use the terminal](how-to-access-terminal.md) to clear at least 5 GB before you stop or restart the compute instance. Please do not stop the compute instance by issuing sudo shutdown from the terminal. The temp disk size on compute instance depends on the VM size chosen and is mounted on /mnt.
 
 # [Python SDK](#tab/python)
 

@@ -39,7 +39,7 @@ Using network isolation with private endpoints prevents the network traffic from
 
 The following diagram shows a basic network configuration and how the Azure Machine Learning registry fits in. If you're already using Azure Machine Learning workspace and have a secure workspace configuration where all the resources are part of virtual network, you can create a private endpoint from the existing virtual network to Azure Machine Learning registry and it's associated resources (storage and ACR).
 
-If you don't have a secure workspace configuration, you can create it using the [Create a secure workspace in Azure portal](tutorial-create-secure-workspace.md) or [Create a secure workspace with a template](tutorial-create-secure-workspace-template.md) articles.
+If you don't have a secure workspace configuration, you can create it using the [Create a secure workspace in Azure portal](tutorial-create-secure-workspace.md) article, [Bicep template](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/), or [Terraform template](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure).
 
 
 :::image type="content" source="./media/how-to-registry-network-isolation/basic-network-isolation-registry.png" alt-text="Diagram of registry connected to Virtual network containing workspace and associated resources using private endpoint.":::

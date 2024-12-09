@@ -6,9 +6,10 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 7/15/2024
+ms.date: 9/19/2024
 ms.author: eur
 zone_pivot_groups: speech-studio-cli-rest
+#Customer intent: As a developer, I want to learn how to create a project for custom speech so that I can train and deploy a custom model.
 ---
 
 # Create a custom speech project

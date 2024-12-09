@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.topic: tutorial
 author: jboback
 ms.author: jboback
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ms.custom: language-service-question-answering
 ---
 
@@ -20,9 +20,9 @@ In this tutorial, you learn how to:
 > * Accept/reject active learning suggestions
 > * Add alternate questions
 
-This tutorial shows you how to enhance your custom question answering project with active learning. If you notice that customers are asking questions, which are not part of your project. There are often variations of questions that are paraphrased differently.
+This tutorial shows you how to enhance your custom question answering project with active learning. If you notice that customers are asking questions that are not covered in your project, they may be paraphrased variations of questions.
 
-These variations when added as alternate questions to the relevant question answer pair, help to optimize the project to answer real world user queries. You can manually add alternate questions to question answer pairs through the editor. At the same time, you can also use the active learning feature to generate active learning suggestions based on user queries. The active learning feature, however, requires that the project receives regular user traffic to generate suggestions.
+These variations, when added as alternate questions to the relevant question answer pair, help to optimize the project to answer real world user queries. You can manually add alternate questions to question answer pairs through the editor. At the same time, you can also use the active learning feature to generate active learning suggestions based on user queries. The active learning feature, however, requires that the project receives regular user traffic to generate suggestions.
 
 ## Use active learning
 

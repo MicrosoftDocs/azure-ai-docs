@@ -7,7 +7,9 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 08/14/2024
 ---
@@ -30,7 +32,7 @@ Incremental indexing and synchronizing an index against changes in source data i
 
    | Action | Effect |
    |--------|--------|
-   | delete | Removes the entire document from the index. If you want to remove an individual field, use merge instead, setting the field in question to null. Deleted documents and fields don't immediately free up space in the index. Every few minutes, a background process performs the physical deletion. Whether you use the portal or an API to return index statistics, you can expect a small delay before the deletion is reflected in the portal and through APIs. |
+   | delete | Removes the entire document from the index. If you want to remove an individual field, use merge instead, setting the field in question to null. Deleted documents and fields don't immediately free up space in the index. Every few minutes, a background process performs the physical deletion. Whether you use the Azure portal or an API to return index statistics, you can expect a small delay before the deletion is reflected in the Azure portal and through APIs. |
    | merge | Updates a document that already exists, and fails a document that can't be found. Merge replaces existing values. For this reason, be sure to check for collection fields that contain multiple values, such as fields of type `Collection(Edm.String)`. For example, if a `tags` field starts with a value of `["budget"]` and you execute a merge with `["economy", "pool"]`, the final value of the `tags` field is `["economy", "pool"]`. It won't be `["budget", "economy", "pool"]`. |
    | mergeOrUpload | Behaves like merge if the document exists, and upload if the document is new. This is the most common action for incremental updates. |
    | upload | Similar to an "upsert" where the document is inserted if it's new, and updated or replaced if it exists. If the document is missing values that the index requires, the document field's value is set to null. |
@@ -47,7 +49,7 @@ Queries continue to run, but if you're updating or removing existing fields, you
 
 + The payload must include the keys or identifiers of every document you want to add, update, or delete.
 
-+ If your index includes vector fields and you set the [`stored` property to false](vector-search-how-to-configure-compression-storage.md#option-3-set-the-stored-property-to-remove-retrievable-storage), make sure you provide the vector in your partial document update, even if the value is unchanged. A side effect of setting `stored` to false is that vectors are dropped on a reindexing operation. Providing the vector in the documents payload prevents this from happening.
++ If your index includes vector fields and you set the [`stored` property to false](vector-search-how-to-storage-options.md), make sure you provide the vector in your partial document update, even if the value is unchanged. A side effect of setting `stored` to false is that vectors are dropped on a reindexing operation. Providing the vector in the documents payload prevents this from happening.
 
 + To update the contents of simple fields and subfields in complex types, list only the fields you want to change. For example, if you only need to update a description field, the payload should consist of the document key and the modified description. Omitting other fields retains their existing values.
 
@@ -56,12 +58,12 @@ Queries continue to run, but if you're updating or removing existing fields, you
 Here's a [REST API example](search-get-started-rest.md) demonstrating these tips:
 
 ```rest
-### Get Secret Point Hotel by ID
+### Get Stay-Kay City Hotel by ID
 GET  {{baseUrl}}/indexes/hotels-vector-quickstart/docs('1')?api-version=2024-07-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
-### Change the description, city, and tags for Secret Point Hotel
+### Change the description, city, and tags for Stay-Kay City Hotel
 POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search.index?api-version=2024-07-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
@@ -71,7 +73,7 @@ POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search.index?api-version=
             {
             "@search.action": "mergeOrUpload",
             "HotelId": "1",
-            "Description": "I'm overwriting the description for Secret Point Hotel.",
+            "Description": "I'm overwriting the description for Stay-Kay City Hotel.",
             "Tags": ["my old item", "my new item"],
             "Address": {
                 "City": "Gotham City"
@@ -120,7 +122,7 @@ Some modifications require an index drop and rebuild, replacing a current index 
 | Action | Description |
 |-----------|-------------|
 | Delete a field | To physically remove all traces of a field, you have to rebuild the index. When an immediate rebuild isn't practical, you can modify application code to redirect access away from an obsolete field or use the [searchFields](search-query-create.md#example-of-a-full-text-query-request) and [select](search-query-odata-select.md) query parameters to choose which fields are searched and returned. Physically, the field definition and contents remain in the index until the next rebuild, when you apply a schema that omits the field in question. |
-| Change a field definition | Revisions to a field name, data type, or specific [index attributes](/rest/api/searchservice/create-index) (searchable, filterable, sortable, facetable) require a full rebuild. |
+| Change a field definition | Revisions to a field name, data type, or specific [index attributes](/rest/api/searchservice/indexes/create) (searchable, filterable, sortable, facetable) require a full rebuild. |
 | Assign an analyzer to a field | [Analyzers](search-analyzers.md) are defined in an index, assigned to fields, and then invoked during indexing to inform how tokens are created. You can add a new analyzer definition to an index at any time, but you can only *assign* an analyzer when the field is created. This is true for both the **analyzer** and **indexAnalyzer** properties. The **searchAnalyzer** property is an exception (you can assign this property to an existing field). |
 | Update or delete an analyzer definition in an index | You can't delete or change an existing analyzer configuration (analyzer, tokenizer, token filter, or char filter) in the index unless you rebuild the entire index. |
 | Add a field to a suggester | If a field already exists and you want to add it to a [Suggesters](index-add-suggesters.md) construct, rebuild the index. |
@@ -144,13 +146,13 @@ When you create the index, physical storage is allocated for each field in the i
 
 ## Balancing workloads
 
-Indexing doesn't run in the background, but the search service will balance any indexing jobs against ongoing queries. During indexing, you can [monitor query requests](search-monitor-queries.md) in the portal to ensure queries are completing in a timely manner.
+Indexing doesn't run in the background, but the search service will balance any indexing jobs against ongoing queries. During indexing, you can [monitor query requests](search-monitor-queries.md) in the Azure portal to ensure queries are completing in a timely manner.
 
 If indexing workloads introduce unacceptable levels of query latency, conduct [performance analysis](search-performance-analysis.md) and review these [performance tips](search-performance-tips.md) for potential mitigation.
 
 ## Check for updates
 
-You can begin querying an index as soon as the first document is loaded. If you know a document's ID, the [Lookup Document REST API](/rest/api/searchservice/lookup-document) returns the specific document. For broader testing, you should wait until the index is fully loaded, and then use queries to verify the context you expect to see.
+You can begin querying an index as soon as the first document is loaded. If you know a document's ID, the [Lookup Document REST API](/rest/api/searchservice/documents/get) returns the specific document. For broader testing, you should wait until the index is fully loaded, and then use queries to verify the context you expect to see.
 
 You can use [Search Explorer](search-explorer.md) or a [REST client](search-get-started-rest.md) to check for updated content.
 
@@ -162,9 +164,9 @@ The Azure portal provides index size and vector index size. You can check these 
 
 Azure AI Search supports document-level operations so that you can look up, update, and delete a specific document in isolation. The following example shows how to delete a document. 
 
-Deleting a document doesn't immediately free up space in the index. Every few minutes, a background process performs the physical deletion. Whether you use the portal or an API to return index statistics, you can expect a small delay before the deletion is reflected in the portal and API metrics.
+Deleting a document doesn't immediately free up space in the index. Every few minutes, a background process performs the physical deletion. Whether you use the Azure portal or an API to return index statistics, you can expect a small delay before the deletion is reflected in the Azure portal and API metrics.
 
-1. Identify which field is the document key. In the portal, you can view the fields of each index. Document keys are string fields and are denoted with a key icon to make them easier to spot.
+1. Identify which field is the document key. In the Azure portal, you can view the fields of each index. Document keys are string fields and are denoted with a key icon to make them easier to spot.
 
 1. Check the values of the document key field: `search=*&$select=HotelId`. A simple string is straightforward, but if the index uses a base-64 encoded field, or if search documents were generated from a `parsingMode` setting, you might be working with values that you aren't familiar with.
 
@@ -198,8 +200,8 @@ Deleting a document doesn't immediately free up space in the index. Every few mi
 
 + [Indexer overview](search-indexer-overview.md)
 + [Index large data sets at scale](search-howto-large-index.md)
-+ [Indexing in the portal](search-import-data-portal.md)
-+ [Azure SQL Database indexer](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
++ [Indexing in the Azure portal](search-import-data-portal.md)
++ [Azure SQL Database indexer](search-how-to-index-sql-database.md)
 + [Azure Cosmos DB for NoSQL indexer](search-howto-index-cosmosdb.md)
 + [Azure blob indexer](search-howto-indexing-azure-blob-storage.md)
 + [Azure tables indexer](search-howto-indexing-azure-tables.md)

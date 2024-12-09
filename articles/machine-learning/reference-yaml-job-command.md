@@ -175,10 +175,6 @@ Examples are available in the [examples GitHub repository](https://github.com/Az
 
 :::code language="yaml" source="~/azureml-examples-main/cli/jobs/single-step/tensorflow/mnist-distributed/job.yml":::
 
-## YAML: distributed MPI
-
-:::code language="yaml" source="~/azureml-examples-main/cli/jobs/single-step/tensorflow/mnist-distributed-horovod/job.yml":::
-
 ## Next steps
 
 - [Install and use the CLI (v2)](how-to-configure-cli.md)

@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: devx-track-python
 ms.topic: conceptual
-ms.date: 07/08/2024
+ms.date: 09/26/2024
 ms.author: lajanuar
 recommendations: false
 ---
@@ -17,11 +17,7 @@ recommendations: false
 <!-- markdownlint-disable MD001 -->
 <!-- markdownlint-disable MD051 -->
 
-# Azure Text Translation SDK (preview)
-
-> [!IMPORTANT]
->
-> * The Translator text SDKs are currently available in public preview. Features, approaches and processes may change, prior to General Availability (GA), based on user feedback.
+# Azure Text Translation SDK
 
 Azure Text Translation is a cloud-based REST API feature of the Azure AI Translator service. The Text Translation API enables quick and accurate source-to-target text translations in real time. The Text Translation software development kit (SDK) is a set of libraries and tools that enable you to easily integrate Text Translation REST API capabilities into your applications. Text Translation SDK is available across programming platforms in C#/.NET, Java, JavaScript, and Python.
 
@@ -31,16 +27,78 @@ Text Translation SDK supports the programming languages and platforms:
 
 | Language → SDK version | Package|Client library| Supported API version|
 |:----------------------:|:----------|:----------|:-------------|
-|[.NET/C# → 1.0.0-beta.1](https://azuresdkdocs.blob.core.windows.net/$web/dotnet/Azure.AI.Translation.Text/1.0.0-beta.1/index.html)|[NuGet](https://www.nuget.org/packages/Azure.AI.Translation.Text/1.0.0-beta.1)|[Azure SDK for .NET](/dotnet/api/overview/azure/ai.translation.text-readme?view=azure-dotnet-preview&preserve-view=true)|Translator v3.0|
-|[Java&#x2731; → 1.0.0-beta.1](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-ai-translation-text/1.0.0-beta.1/index.html)|[Maven repository](https://mvnrepository.com/artifact/com.azure/azure-ai-translation-text/1.0.0-beta.1)|[Azure SDK for Java](/java/api/overview/azure/ai-translation-text-readme?view=azure-java-preview&preserve-view=true)|Translator v3.0|
-|[JavaScript → 1.0.0-beta.1](https://azuresdkdocs.blob.core.windows.net/$web/javascript/azure-cognitiveservices-translatortext/1.0.0/index.html)|[npm](https://www.npmjs.com/package/@azure-rest/ai-translation-text/v/1.0.0-beta.1)|[Azure SDK for JavaScript](/javascript/api/overview/azure/text-translation?view=azure-node-preview&preserve-view=true) |Translator v3.0 |
-|**Python → 1.0.0b1**|[PyPi](https://pypi.org/project/azure-ai-translation-text/1.0.0b1/)|[Azure SDK for Python](/python/api/azure-ai-translation-text/azure.ai.translation.text?view=azure-python-preview&preserve-view=true) |Translator v3.0|
+|[.NET/C# → 1.0.0](https://azuresdkdocs.blob.core.windows.net/$web/dotnet/Azure.AI.Translation.Text/1.0.0/index.html)|[NuGet](https://www.nuget.org/packages/Azure.AI.Translation.Text/1.0.0)|[Azure SDK for .NET](/dotnet/api/overview/azure/ai.translation.text-readme?view=azure-dotnet&preserve-view=true)|Translator v3.0|
+|[Java&#x2731; → 1.0.0](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-ai-translation-text/1.0.0/index.html)|[Maven repository](https://mvnrepository.com/artifact/com.azure/azure-ai-translation-text/1.0.0)|[Azure SDK for Java](/java/api/overview/azure/ai-translation-text-readme?view=azure-java-stable&preserve-view=true)|Translator v3.0|
+|[JavaScript → 1.0.0](https://azuresdkdocs.blob.core.windows.net/$web/javascript/azure-cognitiveservices-translatortext/1.0.0/index.html)|[npm](https://www.npmjs.com/package/@azure-rest/ai-translation-text/v/1.0.0)|[Azure SDK for JavaScript](/javascript/api/overview/azure/text-translation?view=azure-node-preview&preserve-view=true) |Translator v3.0 |
+|[Python → 1.0.1](https://azuresdkdocs.blob.core.windows.net/$web/python/azure-ai-translation-text/1.0.1/index.html)|[PyPi](https://pypi.org/project/azure-ai-translation-text/1.0.1/)|[Azure SDK for Python](/python/api/overview/azure/ai-translation-text-readme?view=azure-python&preserve-view=true) |Translator v3.0|
 
 &#x2731; The Azure Text Translation SDK for Java is tested and supported on Windows, Linux, and macOS platforms. It isn't tested on other platforms and doesn't support Android deployments.
 
 ## Changelog and release history
 
 This section provides a version-based description of Text Translation feature and capability releases, changes, updates, and enhancements.
+
+#### Translator Text SDK May 2024 GA release
+
+This release includes the following updates:
+
+### [**C#**](#tab/csharp)
+
+* **Version 1.0.0 (2024-05-21)**
+* **Targets Text Translation v3.0**
+* **GA version release**
+
+[**Package (NuGet)**](https://www.nuget.org/packages/Azure.AI.Translation.Text/1.0.0)
+
+[**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/translation/Azure.AI.Translation.Text/CHANGELOG.md#100-2024-05-21)
+
+[**README**](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/translation/Azure.AI.Translation.Text#readme)
+
+[**Samples**](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/translation/Azure.AI.Translation.Text/samples)
+
+### [**Java**](#tab/java)
+
+* **Version 1.0.0 (2024-05-21)**
+* **Targets Text Translation v3.0**
+* **GA version release**
+
+[**Package (MVN)**](https://mvnrepository.com/artifact/com.azure/azure-ai-translation-text/1.0.0)
+
+[**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/translation/azure-ai-translation-text/CHANGELOG.md#100-2024-05-21)
+
+[**README**](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/translation/azure-ai-translation-text#readme)
+
+[**Samples**](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/translation/azure-ai-translation-text#next-steps)
+
+### [**JavaScript**](#tab/javascript)
+
+* **Version 1.0.0 (2024-05-21)**
+* **Targets Text Translation v3.0**
+* **GA version release**
+
+[**Package (npm)**](https://www.npmjs.com/package/@azure-rest/ai-translation-text/v/1.0.0)
+
+[**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/translation/ai-translation-text-rest/CHANGELOG.md#100-2024-05-21)
+
+[**README**](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/translation/ai-translation-text-rest/README.md)
+
+[**Samples**](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/translation/ai-translation-text-rest/samples/v1-beta)
+
+### [**Python**](#tab/python)
+
+* **Version 1.0.0 (2024-05-23)**
+* **Targets Text Translation v3.0**
+* **GA version release**
+
+[**Package (PyPi)**](https://pypi.org/project/azure-ai-translation-text/1.0.1/)
+
+[**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/translation/azure-ai-translation-text/CHANGELOG.md#100-2024-05-23)
+
+[**README**](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/translation/azure-ai-translation-text/README.md)
+
+[**Samples**](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/translation/azure-ai-translation-text/samples)
+
+---
 
 #### Translator Text SDK April 2023 preview release
 
@@ -178,8 +236,8 @@ const {TextTranslationClient } = require("@azure-rest/ai-translation-text").defa
 ### [Python](#tab/python)
 
 ```python
-from azure.core.credentials import TextTranslationClient
-from azure-ai-translation-text import TextTranslationClient
+from azure.core.credentials import AzureKeyCredential
+from azure.ai.translation.text import TextTranslationClient
 ```
 
 ---

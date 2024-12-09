@@ -1,3 +1,4 @@
+items:
 - name: QnA Maker Documentation
   href: index.yml
 - name: Overview
@@ -36,8 +37,6 @@
     href: /legal/cognitive-services/qnamaker/data-privacy-security-qnamaker?context=/azure/ai-services/qnamaker/context/context
 - name: How-to guides
   items:
-  - name: Migrate to Azure OpenAI
-    href: how-to/migrate-to-openai.md
   - name: Manage QnA Maker resources
     items:
     - name: Set up QnA Maker resources
@@ -143,11 +142,11 @@
   - name: REST API
     items:
     - name: QnA Maker 4.0
-      href: /rest/api/cognitiveservices/qnamaker4.0/alterations
+      href: /rest/api/qnamaker/alterations?view=rest-qnamaker-v4.0
     - name: QnA Maker 5.0 Preview 1
-      href: /rest/api/cognitiveservices-qnamaker/qnamaker5.0preview1/alterations  
+      href: /rest/api/qnamaker/alterations?view=rest-qnamaker-v5.0-preview.1  
     - name: QnA Maker 5.0 Preview 2
-      href: /rest/api/cognitiveservices-qnamaker/qnamaker5.0preview2/alterations
+      href: /rest/api/qnamaker/alterations?view=rest-qnamaker-v5.0-preview.2
   - name: SDKs
     items:
     - name: C#

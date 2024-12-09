@@ -1,11 +1,11 @@
 ---
-title: How to use Mistral Nemo chat model with Azure AI Studio
-titleSuffix: Azure AI Studio
-description: Learn how to use Mistral Nemo chat model with Azure AI Studio.
+title: How to use Mistral Nemo chat model with Azure AI Foundry
+titleSuffix: Azure AI Foundry
+description: Learn how to use Mistral Nemo chat model with Azure AI Foundry.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
-ms.date: 08/08/2024
+ms.date: 09/13/2024
 ms.reviewer: kritifaujdar
 reviewer: fkriti
 ms.author: mopeakande
@@ -16,11 +16,12 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 
 # How to use Mistral Nemo chat model
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you learn about Mistral Nemo chat model and how to use them.
 Mistral AI offers two categories of models. Premium models including [Mistral Large and Mistral Small](deploy-models-mistral.md), available as serverless APIs with pay-as-you-go token-based billing. Open models including [Mistral Nemo](deploy-models-mistral-nemo.md), [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](deploy-models-mistral-open.md); available to also download and run on self-hosted managed endpoints.
 
+[!INCLUDE [models-preview](../includes/models-preview.md)]
 
 ::: zone pivot="programming-language-python"
 
@@ -48,7 +49,7 @@ You can learn more about the models in their respective model card:
 
 ## Prerequisites
 
-To use Mistral Nemo chat model with Azure AI Studio, you need the following prerequisites:
+To use Mistral Nemo chat model with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -56,7 +57,7 @@ To use Mistral Nemo chat model with Azure AI Studio, you need the following prer
 
 Mistral Nemo chat model can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -82,7 +83,7 @@ Read more about the [Azure AI inference package and reference](https://aka.ms/az
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral Nemo chat model.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral Nemo chat model.
 
 ### Create a client to consume the model
 
@@ -222,7 +223,7 @@ response = client.complete(
     stop=["<|endoftext|>"],
     temperature=0,
     top_p=1,
-    response_format=ChatCompletionsResponseFormatText(),
+    response_format={ "type": ChatCompletionsResponseFormatText() },
 )
 ```
 
@@ -242,7 +243,7 @@ response = client.complete(
                       " the following format: { ""answer"": ""response"" }."),
         UserMessage(content="How many languages are in the world?"),
     ],
-    response_format=ChatCompletionsResponseFormatJSON()
+    response_format={ "type": ChatCompletionsResponseFormatJSON() }
 )
 ```
 
@@ -428,7 +429,7 @@ response = client.complete(
 
 ### Apply content safety
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
 
@@ -488,7 +489,7 @@ You can learn more about the models in their respective model card:
 
 ## Prerequisites
 
-To use Mistral Nemo chat model with Azure AI Studio, you need the following prerequisites:
+To use Mistral Nemo chat model with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -496,7 +497,7 @@ To use Mistral Nemo chat model with Azure AI Studio, you need the following prer
 
 Mistral Nemo chat model can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -520,7 +521,7 @@ npm install @azure-rest/ai-inference
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral Nemo chat model.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral Nemo chat model.
 
 ### Create a client to consume the model
 
@@ -881,7 +882,7 @@ var result = await client.path("/chat/completions").post({
 
 ### Apply content safety
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
 
@@ -947,7 +948,7 @@ You can learn more about the models in their respective model card:
 
 ## Prerequisites
 
-To use Mistral Nemo chat model with Azure AI Studio, you need the following prerequisites:
+To use Mistral Nemo chat model with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -955,14 +956,14 @@ To use Mistral Nemo chat model with Azure AI Studio, you need the following prer
 
 Mistral Nemo chat model can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
 
 ### The inference package installed
 
-You can consume predictions from this model by using the `Azure.AI.Inference` package from [Nuget](https://www.nuget.org/). To install this package, you need the following prerequisites:
+You can consume predictions from this model by using the `Azure.AI.Inference` package from [NuGet](https://www.nuget.org/). To install this package, you need the following prerequisites:
 
 * The endpoint URL. To construct the client library, you need to pass in the endpoint URL. The endpoint URL has the form `https://your-host-name.your-azure-region.inference.ai.azure.com`, where `your-host-name` is your unique model deployment host name and `your-azure-region` is the Azure region where the model is deployed (for example, eastus2).
 * Depending on your model deployment and authentication preference, you need either a key to authenticate against the service, or Microsoft Entra ID credentials. The key is a 32-character string.
@@ -988,7 +989,7 @@ using Azure.Identity;
 using Azure.AI.Inference;
 ```
 
-This example also use the following namespaces but you may not always need them:
+This example also uses the following namespaces but you may not always need them:
 
 
 ```csharp
@@ -1002,7 +1003,7 @@ using System.Reflection;
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral Nemo chat model.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral Nemo chat model.
 
 ### Create a client to consume the model
 
@@ -1362,7 +1363,7 @@ response = client.Complete(requestOptions);
 
 ### Apply content safety
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
 
@@ -1428,7 +1429,7 @@ You can learn more about the models in their respective model card:
 
 ## Prerequisites
 
-To use Mistral Nemo chat model with Azure AI Studio, you need the following prerequisites:
+To use Mistral Nemo chat model with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -1436,7 +1437,7 @@ To use Mistral Nemo chat model with Azure AI Studio, you need the following prer
 
 Mistral Nemo chat model can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -1453,7 +1454,7 @@ Models deployed with the [Azure AI model inference API](https://aka.ms/azureai/m
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral Nemo chat model.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral Nemo chat model.
 
 ### Create a client to consume the model
 
@@ -1970,7 +1971,7 @@ View the response from the model:
 
 ### Apply content safety
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
 
@@ -2010,7 +2011,7 @@ The following example shows how to handle events when the model detects harmful 
 
 ## More inference examples
 
-For more examples of how to use Mistral, see the following examples and tutorials:
+For more examples of how to use Mistral models, see the following examples and tutorials:
 
 | Description                               | Language          | Sample                                                          |
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|
@@ -2024,11 +2025,11 @@ For more examples of how to use Mistral, see the following examples and tutorial
 | LiteLLM                                   | Python            | [Link](https://aka.ms/mistral-large/litellm-sample)             | 
 
 
-## Cost and quota considerations for Mistral family of models deployed as serverless API endpoints
+## Cost and quota considerations for Mistral models deployed as serverless API endpoints
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
-Mistral models deployed as a serverless API are offered by MistralAI through the Azure Marketplace and integrated with Azure AI Studio for use. You can find the Azure Marketplace pricing when deploying the model.
+Mistral models deployed as a serverless API are offered by MistralAI through the Azure Marketplace and integrated with Azure AI Foundry for use. You can find the Azure Marketplace pricing when deploying the model.
 
 Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
 
@@ -2039,6 +2040,6 @@ For more information on how to track costs, see [Monitor costs for models offere
 
 * [Azure AI Model Inference API](../reference/reference-model-inference-api.md)
 * [Deploy models as serverless APIs](deploy-models-serverless.md)
-* [Consume serverless API endpoints from a different Azure AI Studio project or hub](deploy-models-serverless-connect.md)
+* [Consume serverless API endpoints from a different Azure AI Foundry project or hub](deploy-models-serverless-connect.md)
 * [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)
 * [Plan and manage costs (marketplace)](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace)

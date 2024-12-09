@@ -5,9 +5,9 @@ description: Learn how to use Azure OpenAI on your Azure Search data Python & RE
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 03/12/2024
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 09/20/2024
+author: aahill
+ms.author: aahi
 recommendations: false
 ms.custom: devx-track-python
 ---

@@ -51,7 +51,7 @@ This article is part of a series on securing an Azure Machine Learning workflow.
 * [Use a firewall](how-to-access-azureml-behind-firewall.md)
 :::moniker-end
 
-For a tutorial on creating a secure workspace, visit the [Tutorial: Create a secure workspace](tutorial-create-secure-workspace.md) or [Tutorial: Create a secure workspace using a template](tutorial-create-secure-workspace-template.md) articles.
+For a tutorial on creating a secure workspace, visit the [Tutorial: Create a secure workspace](tutorial-create-secure-workspace.md), [Bicep template](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/), or [Terraform template](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure).
 
 ## Prerequisites
 
@@ -220,7 +220,7 @@ In this section, you learn how Azure Machine Learning securely communicates betw
 :::image type="content" source="./media/how-to-network-security-overview/secure-training-job-submission.svg" alt-text="Diagram showing the secure training job submission workflow.":::
 ### Limitations
 
-- Azure Compute Instance and Azure Compute Clusters must be in the same VNet, region, and subscription as the workspace and its associated resources. 
+- Azure Compute Instance and Azure Compute Clusters must be in the same VNet, region, and subscription as the workspace. If the associated resources are in a different region than the workspace, you may experience additional latency. 
 
 ## Secure the inferencing environment
 

@@ -6,7 +6,7 @@ description: Search big data from Apache Spark that's been transformed by Synaps
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
@@ -49,7 +49,7 @@ You need the `synapseml` library and several Azure resources. If possible, use t
 <sup>4</sup> In this tutorial, Azure Databricks provides the Spark computing platform. We used the [portal instructions](/azure/databricks/scenarios/quickstart-create-databricks-workspace-portal?tabs=azure-portal) to set up the workspace.
 
 > [!NOTE]
-> All of the above Azure resources support security features in the Microsoft Identity platform. For simplicity, this tutorial assumes key-based authentication, using endpoints and keys copied from the portal pages of each service. If you implement this workflow in a production environment, or share the solution with others, remember to replace hard-coded keys with integrated security or encrypted keys.
+> All of the above Azure resources support security features in the Microsoft Identity platform. For simplicity, this tutorial assumes key-based authentication, using endpoints and keys copied from the Azure portal pages of each service. If you implement this workflow in a production environment, or share the solution with others, remember to replace hard-coded keys with integrated security or encrypted keys.
 
 ## Step 1: Create a Spark cluster and notebook
 
@@ -223,7 +223,7 @@ display(translated_df)
 
 Paste the following code in the sixth cell and then run it. No modifications are required.
 
-This code loads [AzureSearchWriter](https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/AI%20Services/Overview/#azure-cognitive-search-sample). It consumes a tabular dataset and infers a search index schema that defines one field for each column. Because the translations structure is an array, it's articulated in the index as a complex collection with subfields for each language translation. The generated index has a document key and use the default values for fields created using the [Create Index REST API](/rest/api/searchservice/create-index).
+This code loads [AzureSearchWriter](https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/AI%20Services/Overview/#azure-cognitive-search-sample). It consumes a tabular dataset and infers a search index schema that defines one field for each column. Because the translations structure is an array, it's articulated in the index as a complex collection with subfields for each language translation. The generated index has a document key and use the default values for fields created using the [Create Index REST API](/rest/api/searchservice/indexes/create).
 
 ```python
 from synapse.ml.cognitive import *
@@ -251,7 +251,7 @@ Paste the following code into the seventh cell and then run it. No modifications
 + [Query syntax](query-simple-syntax.md)
 + [Query examples](search-query-simple-examples.md)
 
-There's no transformer or module that issues queries. This cell is a simple call to the [Search Documents REST API](/rest/api/searchservice/search-documents). 
+There's no transformer or module that issues queries. This cell is a simple call to the [Search Documents REST API](/rest/api/searchservice/documents/search-post). 
 
 This particular example is searching for the word "door" (`"search": "door"`). It also returns a "count" of the number of matching documents, and selects just the contents of the "Description' and "Translations" fields for the results. If you want to see the full list of fields, remove the "select" parameter.
 
@@ -270,7 +270,7 @@ The following screenshot shows the cell output for sample script.
 
 When you're working in your own subscription, at the end of a project, it's a good idea to remove the resources that you no longer need. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
+You can find and manage resources in the Azure portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
 
 ## Next steps
 

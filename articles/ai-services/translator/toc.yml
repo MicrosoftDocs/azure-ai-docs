@@ -30,14 +30,14 @@ items:
   - name: What is Text Translation?
     displayName: features,develop,development,free
     href: text-translation-overview.md
-  - name: 🆕 Text Translation SDK overview (preview)
+  - name: 🆕 Text Translation SDK overview
     displayName: get started,sdk,keys,endpoint
     href: text-sdk-overview.md
   - name: Text Translation REST API guide
     href:  reference/rest-api-guide.md
   - name: Quickstarts
     items:
-    - name: Translator Text SDK (preview)
+    - name: Translator Text SDK
       displayName: get started,sdk,keys,endpoint,headers,c#,go,java,javascript,python,setup
       href: quickstart-text-sdk.md
     - name:  Translator Text REST APIs
@@ -285,6 +285,15 @@ items:
     - name: Automate text translation (preview)
       displayName: connect, power, automate, flow
       href: connector/text-translator-flow.md
+  - name: Microsoft Translator Pro
+    items:
+    - name: What is Microsoft Translator Pro?
+      displayName: app service, mobile app, ios, speech-to-speech
+      href: translator-pro/overview.md
+    - name: Responsible AI and compliance
+      items:
+      - name: Transparency note
+        href: /legal/cognitive-services/translator/translator-pro-transparency-note?context=/azure/ai-services/translator/context/context
 - name: Responsible AI
   items:
   - name: Transparency note

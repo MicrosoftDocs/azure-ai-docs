@@ -1,6 +1,6 @@
 ---
 title: Azure AI Model Inference Embeddings API
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Reference for Azure AI Model Inference Embeddings API
 manager: scottpolly
 ms.service: azure-ai-studio
@@ -14,9 +14,9 @@ ms.custom:
  - build-2024
 ---
 
-# Reference: Embeddings | Azure AI Studio
+# Reference: Embeddings | Azure AI Foundry
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Creates an embedding vector representing the input text.
 
@@ -42,6 +42,7 @@ POST /embeddings?api-version=2024-04-01-preview
 
 | Name            | Required | Type                                                | Description                                                                                                                                                             |
 | --------------- | -------- | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| model |      | string | The model name. This parameter is ignored if the endpoint serves only one model. |
 | input           | True     | string[]                                            | Input text to embed, encoded as a string or array of tokens. To embed multiple inputs in a single request, pass an array of strings or array of token arrays.           |
 | dimensions      |          | integer                                             | The number of dimensions the resulting output embeddings should have. Returns a 422 error if the model doesn't support the value or parameter.                          |
 | encoding_format |          | [EmbeddingEncodingFormat](#embeddingencodingformat) | The format to return the embeddings in. Either base64, float, int8, uint8, binary, or ubinary. Returns a 422 error if the model doesn't support the value or parameter. |

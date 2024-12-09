@@ -6,11 +6,11 @@ description: Configure IP control policies to restrict network access to your Az
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 06/27/2024
+ms.date: 09/24/2024
 ---
 
 # Configure network access and firewall rules for Azure AI Search
@@ -94,11 +94,14 @@ When requests originate from IP addresses that aren't in the allowed list, a gen
 
 When IP rules are configured, some features of the Azure portal are disabled. You can view and manage service level information, but portal access to the import wizards, indexes, indexers, and other top-level resources are restricted. 
 
-You can restore portal access to the full range of search service operations by adding the portal IP address.
+You can restore portal access to the full range of search service operations by adding the Azure portal IP address.
 
-To get the portal's IP address, perform `nslookup` (or `ping`) on `stamp2.ext.search.windows.net`, which is the domain of the traffic manager. For nslookup, the IP address is visible in the "Non-authoritative answer" portion of the response.
+To get the Azure portal's IP address, perform `nslookup` (or `ping`) on:
 
-In the following example, the IP address that you should copy is `52.252.175.48`.
++ `stamp2.ext.search.windows.net`, which is the domain of the traffic manager for the Azure public cloud.
++ `stamp2.ext.search.azure.us` for Azure Government cloud.
+
+For nslookup, the IP address is visible in the "Non-authoritative answer" portion of the response. In the following example, the IP address that you should copy is `52.252.175.48`.
 
 ```bash
 $ nslookup stamp2.ext.search.windows.net
@@ -117,7 +120,7 @@ When services run in different regions, they connect to different traffic manage
 
 For ping, the request times out, but the IP address is visible in the response. For example, in the message `"Pinging azsyrie.northcentralus.cloudapp.azure.com [52.252.175.48]"`, the IP address is `52.252.175.48`.
 
-A banner informs you that IP rules affect the portal experience. This banner remains visible even after you add the portal's IP address. Remember to wait several minutes for network rules to take effect before testing.
+A banner informs you that IP rules affect the Azure portal experience. This banner remains visible even after you add the Azure portal's IP address. Remember to wait several minutes for network rules to take effect before testing.
 
 :::image type="content" source="media/service-configure-firewall/restricted-access.png" alt-text="Screenshot showing the restricted access banner.":::
 
@@ -130,7 +133,7 @@ The trusted service list for Azure AI Search includes:
 + `Microsoft.CognitiveServices` for Azure OpenAI and Azure AI services
 + `Microsoft.MachineLearningServices` for Azure Machine Learning
 
-Workflows for this network exception are requests originating *from* Azure AI Studio, Azure OpenAI Studio, or other AML features *to* Azure AI Search, typically in [Azure OpenAI On Your Data](/azure/ai-services/openai/concepts/use-your-data) scenarios for retrieval augmented generation (RAG) and playground environments.
+Workflows for this network exception are requests originating from Azure AI Foundry or other AML features to Azure AI Search. The trusted services exception is typically for [Azure OpenAI On Your Data](/azure/ai-services/openai/concepts/use-your-data) scenarios for retrieval augmented generation (RAG) and playground environments.
 
 ### Trusted resources must have a managed identity
 

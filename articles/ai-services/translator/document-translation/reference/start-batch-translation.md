@@ -8,7 +8,7 @@ ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 08/23/2024
+ms.date: 09/26/2024
 ---
 
 # Start batch translation
@@ -77,7 +77,7 @@ Request headers are:
           "language": "fr",
           "glossaries": [
             {
-              "glossaryUrl": "https://myblob.blob.core.windows.net/Container/myglossary.tsv",
+              "glossaryUrl": "https://myblob.blob.core.windows.net/Container/myglossary.xlf",
               "format": "XLIFF",
               "version": "2.0",
               "storageSource": "AzureBlob"
@@ -89,9 +89,6 @@ Request headers are:
       "storageType": "Folder"
     }
   ],
-  "options": {
-    "experimental": true
-  }
 }
 
 ```

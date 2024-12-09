@@ -1,11 +1,11 @@
 ---
-title: How to use Mistral-7B and Mixtral chat models with Azure AI Studio
-titleSuffix: Azure AI Studio
-description: Learn how to use Mistral-7B and Mixtral chat models with Azure AI Studio.
+title: How to use Mistral-7B and Mixtral chat models with Azure AI Foundry
+titleSuffix: Azure AI Foundry
+description: Learn how to use Mistral-7B and Mixtral chat models with Azure AI Foundry.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
-ms.date: 08/08/2024
+ms.date: 09/13/2024
 ms.reviewer: kritifaujdar
 reviewer: fkriti
 ms.author: mopeakande
@@ -16,11 +16,12 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 
 # How to use Mistral-7B and Mixtral chat models
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you learn about Mistral-7B and Mixtral chat models and how to use them.
 Mistral AI offers two categories of models. Premium models including [Mistral Large and Mistral Small](deploy-models-mistral.md), available as serverless APIs with pay-as-you-go token-based billing. Open models including [Mistral Nemo](deploy-models-mistral-nemo.md), [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](deploy-models-mistral-open.md); available to also download and run on self-hosted managed endpoints.
 
+[!INCLUDE [models-preview](../includes/models-preview.md)]
 
 ::: zone pivot="programming-language-python"
 
@@ -63,8 +64,8 @@ Mixtral 8x22B comes with the following strengths:
 
 * Fluent in English, French, Italian, German, and Spanish
 * Strong mathematics and coding capabilities
-* Natively capable of function calling; along with the constrained output mode implemented on la Plateforme, this enables application development and tech stack modernization at scale
-* Pprecise information recall from large documents, due to its 64K tokens context window
+* Natively capable of function calling, enabling application development and tech stack modernization at scale
+* Precise information recall from large documents, due to its 64K tokens context window
 
 
 The following models are available:
@@ -79,7 +80,7 @@ The following models are available:
 
 ## Prerequisites
 
-To use Mistral-7B and Mixtral chat models with Azure AI Studio, you need the following prerequisites:
+To use Mistral-7B and Mixtral chat models with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -113,7 +114,7 @@ Read more about the [Azure AI inference package and reference](https://aka.ms/az
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral-7B and Mixtral chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral-7B and Mixtral chat models.
 
 ### Create a client to consume the model
 
@@ -270,12 +271,12 @@ response = client.complete(
     stop=["<|endoftext|>"],
     temperature=0,
     top_p=1,
-    response_format=ChatCompletionsResponseFormatText(),
+    response_format={ "type": ChatCompletionsResponseFormatText() },
 )
 ```
 
 > [!WARNING]
-> Mistral doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+> Mistral models don't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -352,8 +353,8 @@ Mixtral 8x22B comes with the following strengths:
 
 * Fluent in English, French, Italian, German, and Spanish
 * Strong mathematics and coding capabilities
-* Natively capable of function calling; along with the constrained output mode implemented on la Plateforme, this enables application development and tech stack modernization at scale
-* Pprecise information recall from large documents, due to its 64K tokens context window
+* Natively capable of function calling, enabling application development and tech stack modernization at scale
+* Precise information recall from large documents, due to its 64K tokens context window
 
 
 The following models are available:
@@ -368,7 +369,7 @@ The following models are available:
 
 ## Prerequisites
 
-To use Mistral-7B and Mixtral chat models with Azure AI Studio, you need the following prerequisites:
+To use Mistral-7B and Mixtral chat models with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -400,7 +401,7 @@ npm install @azure-rest/ai-inference
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral-7B and Mixtral chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral-7B and Mixtral chat models.
 
 ### Create a client to consume the model
 
@@ -576,7 +577,7 @@ var response = await client.path("/chat/completions").post({
 ```
 
 > [!WARNING]
-> Mistral doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+> Mistral models don't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -658,8 +659,8 @@ Mixtral 8x22B comes with the following strengths:
 
 * Fluent in English, French, Italian, German, and Spanish
 * Strong mathematics and coding capabilities
-* Natively capable of function calling; along with the constrained output mode implemented on la Plateforme, this enables application development and tech stack modernization at scale
-* Pprecise information recall from large documents, due to its 64K tokens context window
+* Natively capable of function calling, enabling application development and tech stack modernization at scale
+* Precise information recall from large documents, due to its 64K tokens context window
 
 
 The following models are available:
@@ -674,7 +675,7 @@ The following models are available:
 
 ## Prerequisites
 
-To use Mistral-7B and Mixtral chat models with Azure AI Studio, you need the following prerequisites:
+To use Mistral-7B and Mixtral chat models with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -689,7 +690,7 @@ For deployment to a self-hosted managed compute, you must have enough quota in y
 
 ### The inference package installed
 
-You can consume predictions from this model by using the `Azure.AI.Inference` package from [Nuget](https://www.nuget.org/). To install this package, you need the following prerequisites:
+You can consume predictions from this model by using the `Azure.AI.Inference` package from [NuGet](https://www.nuget.org/). To install this package, you need the following prerequisites:
 
 * The endpoint URL. To construct the client library, you need to pass in the endpoint URL. The endpoint URL has the form `https://your-host-name.your-azure-region.inference.ai.azure.com`, where `your-host-name` is your unique model deployment host name and `your-azure-region` is the Azure region where the model is deployed (for example, eastus2).
 * Depending on your model deployment and authentication preference, you need either a key to authenticate against the service, or Microsoft Entra ID credentials. The key is a 32-character string.
@@ -715,7 +716,7 @@ using Azure.Identity;
 using Azure.AI.Inference;
 ```
 
-This example also use the following namespaces but you may not always need them:
+This example also uses the following namespaces but you may not always need them:
 
 
 ```csharp
@@ -729,7 +730,7 @@ using System.Reflection;
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral-7B and Mixtral chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral-7B and Mixtral chat models.
 
 ### Create a client to consume the model
 
@@ -897,7 +898,7 @@ Console.WriteLine($"Response: {response.Value.Choices[0].Message.Content}");
 ```
 
 > [!WARNING]
-> Mistral doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+> Mistral models don't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -976,8 +977,8 @@ Mixtral 8x22B comes with the following strengths:
 
 * Fluent in English, French, Italian, German, and Spanish
 * Strong mathematics and coding capabilities
-* Natively capable of function calling; along with the constrained output mode implemented on la Plateforme, this enables application development and tech stack modernization at scale
-* Pprecise information recall from large documents, due to its 64K tokens context window
+* Natively capable of function calling, enabling application development and tech stack modernization at scale
+* Precise information recall from large documents, due to its 64K tokens context window
 
 
 The following models are available:
@@ -992,7 +993,7 @@ The following models are available:
 
 ## Prerequisites
 
-To use Mistral-7B and Mixtral chat models with Azure AI Studio, you need the following prerequisites:
+To use Mistral-7B and Mixtral chat models with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -1017,7 +1018,7 @@ Models deployed with the [Azure AI model inference API](https://aka.ms/azureai/m
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral-7B and Mixtral chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral-7B and Mixtral chat models.
 
 ### Create a client to consume the model
 
@@ -1230,7 +1231,7 @@ Explore other parameters that you can specify in the inference client. For a ful
 ```
 
 > [!WARNING]
-> Mistral doesn't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+> Mistral models don't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -1279,7 +1280,7 @@ The following extra parameters can be passed to Mistral-7B and Mixtral chat mode
 
 ## More inference examples
 
-For more examples of how to use Mistral, see the following examples and tutorials:
+For more examples of how to use Mistral models, see the following examples and tutorials:
 
 | Description                               | Language          | Sample                                                          |
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|
@@ -1293,7 +1294,7 @@ For more examples of how to use Mistral, see the following examples and tutorial
 | LiteLLM                                   | Python            | [Link](https://aka.ms/mistral-large/litellm-sample)             | 
 
 
-## Cost and quota considerations for Mistral family of models deployed to managed compute
+## Cost and quota considerations for Mistral models deployed to managed compute
 
 Mistral models deployed to managed compute are billed based on core hours of the associated compute instance. The cost of the compute instance is determined by the size of the instance, the number of instances running, and the run duration.
 
@@ -1304,6 +1305,6 @@ It is a good practice to start with a low number of instances and scale up as ne
 
 * [Azure AI Model Inference API](../reference/reference-model-inference-api.md)
 * [Deploy models as serverless APIs](deploy-models-serverless.md)
-* [Consume serverless API endpoints from a different Azure AI Studio project or hub](deploy-models-serverless-connect.md)
+* [Consume serverless API endpoints from a different Azure AI Foundry project or hub](deploy-models-serverless-connect.md)
 * [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)
 * [Plan and manage costs (marketplace)](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace)

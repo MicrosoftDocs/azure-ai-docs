@@ -6,7 +6,7 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
-ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1
+ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1, ignite-2024
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: bozhlin
@@ -52,7 +52,9 @@ For information on quota and region availability for ACI, see [Quotas and region
 
 ## Limitations
 
-When your Azure Machine Learning workspace is configured with a private endpoint, deploying to Azure Container Instances in a virtual network isn't supported. Instead, consider using a [Managed online endpoint with network isolation](../how-to-secure-online-endpoint.md).
+> [!NOTE]
+> * Deploying Azure Container Instances in a virtual network is not supported. Instead, for network isolation, consider using [managed online endpoints](../how-to-secure-online-endpoint.md).
+> * To ensure effective support, it is essential to supply the necessary logs for your ACI containers. Without these logs, technical support cannot be guaranteed. It is recommended to use log analytics tools by specifying [`enable_app_insights=True`](/python/api/azureml-core/azureml.core.webservice.aciwebservice#variables) in your deployment configuration to manage and analyze your ACI container logs efficiently.
 
 ## Deploy to ACI
 

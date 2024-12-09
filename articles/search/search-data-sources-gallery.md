@@ -5,7 +5,7 @@ description: Lists data source connectors for importing into an Azure AI Search 
 author: HeidiSteen
 ms.author: heidist
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
@@ -72,7 +72,7 @@ By [Azure AI Search](search-what-is-azure-search.md)
 
 Extract field values from a single table or view, serialized into JSON documents, and imported into a search index as search documents. Configure change tracking to refresh the search index with the latest changes in your database.
 
-[More details](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
+[More details](search-how-to-index-sql-database.md)
 
 :::image type="icon" source="media/search-data-sources-gallery/azuresqlconnectorlogo_medium.png":::
 

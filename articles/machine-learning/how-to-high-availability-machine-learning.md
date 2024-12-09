@@ -127,7 +127,7 @@ __Data services__
 
 Certain Azure services support availability zones. For regions that support availability zones, if a zone goes down any workload pauses and data should be saved. However, the data is unavailable to refresh until the zone is back online.
 
-For more information, see [Availability zone service and regional support](/azure/reliability/availability-zones-service-support).
+For more information, see [Availability zone service support](/azure/reliability/availability-zones-service-support).
 
 ### Deploy critical components to multiple regions
 
@@ -199,4 +199,4 @@ Even if your workspace can't be recovered, you might still be able to retrieve y
 
 ## Next steps
 
-To learn about repeatable infrastructure deployments with Azure Machine Learning, use an [Azure Resource Manager template](tutorial-create-secure-workspace-template.md).
+To learn about repeatable infrastructure deployments with Azure Machine Learning, use a [Bicep template](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/), or [Terraform template](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure).

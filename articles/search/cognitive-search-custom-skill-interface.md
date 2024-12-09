@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Integrate a custom skill with an AI enrichment pipeline in Azure AI Search through a web interface that defines compatible inputs and outputs in a skillset.
 author: gmndrg
 ms.author: gimondra
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to

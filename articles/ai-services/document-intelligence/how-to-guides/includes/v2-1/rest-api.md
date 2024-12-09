@@ -51,7 +51,7 @@ ms.author: lajanuar
 
 ## Analyze layout
 
-You can use Document Intelligence to analyze and extract tables, selection marks, text, and structure in documents, without needing to train a model. For more information about layout extraction, see the [Document Intelligence layout model](../../../concept-layout.md).
+You can use Document Intelligence to analyze and extract tables, selection marks, text, and structure in documents, without needing to train a model. For more information about layout extraction, see the [Document Intelligence layout model](../../../prebuilt/layout.md).
 
 Before you run the command, make these changes:
 
@@ -221,7 +221,7 @@ This response body output has been shortened for simplicity. See the [full sampl
 
 ## Analyze receipts
 
-This section demonstrates how to analyze and extract common fields from US receipts, using a pretrained receipt model. For more information about receipt analysis, see the [Document Intelligence receipt model](../../../concept-receipt.md). To start analyzing a receipt, call the [Analyze Receipt](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true) API using the cURL command. Before you run the command, make these changes:
+This section demonstrates how to analyze and extract common fields from US receipts, using a pretrained receipt model. For more information about receipt analysis, see the [Document Intelligence receipt model](../../../prebuilt/receipt.md). To start analyzing a receipt, call the [Analyze Receipt](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true) API using the cURL command. Before you run the command, make these changes:
 
 1. Replace *\<endpoint>* with the endpoint that you obtained with your Document Intelligence subscription.
 1. Replace *\<your receipt URL>* with the URL address of a receipt image.
@@ -749,7 +749,7 @@ The script prints responses to the console until the Analyze Business Card opera
 
 ## Analyze invoices
 
-You can use Document Intelligence to extract field text and semantic values from a given invoice document. To start analyzing an invoice, use the cURL command. For more information about invoice analysis, see the [Invoice conceptual guide](../../../concept-invoice.md). To start analyzing an invoice, call the [Analyze Invoice](/rest/api/aiservices/operation-groups?view=rest-aiservices-v2.1&preserve-view=true) API using the cURL command.
+You can use Document Intelligence to extract field text and semantic values from a given invoice document. To start analyzing an invoice, use the cURL command. For more information about invoice analysis, see the [Invoice conceptual guide](../../../prebuilt/invoice.md). To start analyzing an invoice, call the [Analyze Invoice](/rest/api/aiservices/operation-groups?view=rest-aiservices-v2.1&preserve-view=true) API using the cURL command.
 
 Before you run the command, make these changes:
 
@@ -953,7 +953,7 @@ This response body JSON content has been shortened for readability. See the [ful
 
 ## Analyze identity documents
 
-To start analyzing an identification (ID) document, use the cURL command. For more information about ID document analysis, see the [Document Intelligence ID document model](../../../concept-id-document.md). To start analyzing an ID document, you call the [Analyze ID Document](/rest/api/aiservices/operation-groups?view=rest-aiservices-v2.1&preserve-view=true) API using the cURL command.
+To start analyzing an identification (ID) document, use the cURL command. For more information about ID document analysis, see the [Document Intelligence ID document model](../../../prebuilt/id-document.md). To start analyzing an ID document, you call the [Analyze ID Document](/rest/api/aiservices/operation-groups?view=rest-aiservices-v2.1&preserve-view=true) API using the cURL command.
 
 Before you run the command, make these changes:
 

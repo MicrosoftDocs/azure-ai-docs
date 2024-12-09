@@ -7,7 +7,8 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/21/2024
+ms.date: 9/23/2024
+#Customer intent: As a developer, I want to learn how to back up and recover speech customer resources.
 ---
 
 # Back up and recover speech customer resources
@@ -114,6 +115,6 @@ Check the [public voices available](language-support.md?tabs=tts). You can also 
 
 ### Speaker recognition
 
-Speaker recognition uses [Azure paired regions](/azure/availability-zones/cross-region-replication-azure) to automatically fail over operations. Speaker enrollments and voice signatures are backed up regularly to prevent data loss and to be used if there's an outage.
+Speaker recognition uses [Azure paired regions](/azure/reliability/cross-region-replication-azure) to automatically fail over operations. Speaker enrollments and voice signatures are backed up regularly to prevent data loss and to be used if there's an outage.
 
 During an outage, the speaker recognition service automatically fails over to a paired region and use the backed-up data to continue processing requests until the main region is back online.

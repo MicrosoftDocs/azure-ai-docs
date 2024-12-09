@@ -7,7 +7,7 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 06/18/2024
+ms.date: 11/04/2024
 ms.author: mbullwin
 ---
 
@@ -18,7 +18,7 @@ Quota provides the flexibility to actively manage the allocation of rate limits 
 ## Prerequisites
 
 > [!IMPORTANT]
-> Viewing quota and deploying models requires the **Cognitive Services Usages Reader** role. This role provides the minimal access necessary to view quota usage across an Azure subscription. To learn more about this role and the other roles you will need to access Azure OpenAI, consult our [Azure role-based access (Azure RBAC) guide](./role-based-access-control.md).
+> For any task that requires viewing available quota we recommend using the **Cognitive Services Usages Reader** role. This role provides the minimal access necessary to view quota usage across an Azure subscription. To learn more about this role and the other roles you will need to access Azure OpenAI, consult our [Azure role-based access (Azure RBAC) guide](./role-based-access-control.md). 
 >
 > This role can be found in the Azure portal under **Subscriptions** > **Access control (IAM)** > **Add role assignment** > search for **Cognitive Services Usages Reader**.This role **must be applied at the subscription level**, it does not exist at the resource level.
 >
@@ -44,13 +44,11 @@ The flexibility to distribute TPM globally within a subscription and region has 
 
 When you create a model deployment, you have the option to assign Tokens-Per-Minute (TPM) to that deployment. TPM can be modified in increments of 1,000, and will map to the TPM and RPM rate limits enforced on your deployment, as discussed above.
 
-To create a new deployment from within the Azure AI Studio under **Management** select **Deployments** > **Create new deployment**.
+To create a new deployment from within the Azure AI Foundry portal select **Deployments** > **Deploy model** > **Deploy base model** > **Select Model** > **Confirm**.
 
-The option to set the TPM is under the **Advanced options** drop-down:
+:::image type="content" source="../media/quota/deployment-new.png" alt-text="Screenshot of the deployment UI of Azure AI Foundry" lightbox="../media/quota/deployment-new.png":::
 
-:::image type="content" source="../media/quota/deployment.png" alt-text="Screenshot of the deployment UI of Azure AI Studio" lightbox="../media/quota/deployment.png":::
-
-Post deployment you can adjust your TPM allocation by selecting **Edit deployment** under **Management** > **Deployments** in Azure AI Studio. You can also modify this selection within the new quota management experience under **Management** > **Quotas**.
+Post deployment you can adjust your TPM allocation by selecting and editing your model from the **Deployments** page in Azure AI Foundry portal. You can also modify this setting from the **Management** > **Model quota** page.
 
 > [!IMPORTANT]
 > Quotas and limits are subject to change, for the most up-date-information consult our [quotas and limits article](../quotas-limits.md).
@@ -66,14 +64,14 @@ All other model classes have a common max TPM value.
 
 ## View and request quota
 
-For an all up view of your quota allocations across deployments in a given region, select **Management** > **Quota** in Azure AI Studio:
+For an all up view of your quota allocations across deployments in a given region, select **Management** > **Quota** in Azure AI Foundry portal:
 
-:::image type="content" source="../media/quota/quota.png" alt-text="Screenshot of the quota UI of Azure AI Studio" lightbox="../media/quota/quota.png":::
+:::image type="content" source="../media/quota/quota-new.png" alt-text="Screenshot of the quota UI of Azure AI Foundry" lightbox="../media/quota/quota-new.png":::
 
-- **Quota Name**: There's one quota value per region for each model type. The quota covers all versions of that model.  The quota name can be expanded in the UI to show the deployments that are using the quota.
 - **Deployment**: Model deployments divided by model class.
-- **Usage/Limit**: For the quota name, this shows how much quota is used by deployments and the total quota approved for this subscription and region. This amount of quota used is also represented in the bar graph.
-- **Request Quota**: The icon in this field navigates to a form where requests to increase quota can be submitted.
+- **Quota type**: There's one quota value per region for each model type. The quota covers all versions of that model.  
+- **Quota allocation**: For the quota name, this shows how much quota is used by deployments and the total quota approved for this subscription and region. This amount of quota used is also represented in the bar graph.
+- **Request Quota**: The icon navigates to a form where requests to increase quota can be submitted.
 
 ## Migrating existing deployments
 
@@ -234,6 +232,73 @@ az cognitiveservices usage list -l eastus
 This command runs in the context of the currently active subscription for Azure CLI. Use `az-account-set --subscription` to [modify the active subscription](/cli/azure/manage-azure-subscriptions-azure-cli#change-the-active-subscription).
 
 For more details on `az cognitiveservices account` and `az cognitivesservices usage` consult the [Azure CLI reference documentation](/cli/azure/cognitiveservices/account/deployment?view=azure-cli-latest&preserve-view=true)
+
+# [Azure PowerShell](#tab/powershell)
+
+Install the latest version of the [Az PowerShell module](/powershell/azure/install-azure-powershell). If you already have the Az PowerShell module installed locally, run `Update-Module -Name Az` to update to the latest version.
+
+To check which version of the Az PowerShell module you are running, use `Get-InstalledModule -Name Az`. Azure Cloud Shell is currently running a version of Azure PowerShell that can take advantage of the latest Azure OpenAI features.
+
+### Deployment
+
+```azurepowershell
+New-AzCognitiveServicesAccountDeployment
+   [-ResourceGroupName] <String>
+   [-AccountName] <String>
+   [-Name] <String>
+   [-Properties] <DeploymentProperties>
+   [-Sku] <Sku>
+   [-DefaultProfile <IAzureContextContainer>]
+   [-WhatIf]
+   [-Confirm]
+   [<CommonParameters>]
+```
+
+To sign into your local installation of Azure PowerShell, run the [Connect-AzAccount](/powershell/module/az.accounts/connect-azaccount) command:
+
+```azurepowershell
+Connect-AzAccount
+```
+
+By setting Sku Capacity to 10 in the command below, this deployment is set to a 10K TPM limit.
+
+```azurepowershell-interactive
+$cognitiveServicesDeploymentParams = @{
+    ResourceGroupName = 'test-resource-group'
+    AccountName = 'test-resource-name'
+    Name = 'test-deployment-name'
+    Properties = @{
+        Model = @{
+            Name = 'gpt-35-turbo'
+            Version = '0613'
+            Format  = 'OpenAI'
+        }
+    }
+    Sku = @{
+        Name = 'Standard'
+        Capacity = '10'
+    }
+}
+New-AzCognitiveServicesAccountDeployment @cognitiveServicesDeploymentParams
+```
+
+### Usage
+
+To [query your quota usage](/powershell/module/az.cognitiveservices/get-azcognitiveservicesusage) in a given region for a specific subscription:
+
+```azurepowershell
+Get-AzCognitiveServicesUsage -Location <location>
+```
+
+### Example
+
+```azurepowershell-interactive
+Get-AzCognitiveServicesUsage -Location eastus
+```
+
+This command runs in the context of the currently active subscription for Azure PowerShell. Use `Set-AzContext` to [modify the active subscription](/powershell/azure/manage-subscriptions-azureps#change-the-active-subscription).
+
+For more details on `New-AzCognitiveServicesAccountDeployment` and `Get-AzCognitiveServicesUsage`, consult the [Azure PowerShell reference documentation](/powershell/module/az.cognitiveservices/).
 
 # [Azure Resource Manager](#tab/arm)
 

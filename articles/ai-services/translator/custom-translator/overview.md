@@ -5,7 +5,7 @@ description: Custom Translator offers similar capabilities to what Microsoft Tra
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 07/08/2024
+ms.date: 09/26/2024
 ms.author: lajanuar
 ms.topic: overview
 ---

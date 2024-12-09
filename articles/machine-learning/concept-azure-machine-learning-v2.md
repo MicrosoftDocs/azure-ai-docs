@@ -10,7 +10,7 @@ ms.topic: conceptual
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: balapv
-ms.date: 08/21/2024
+ms.date: 09/30/2024
 #Customer intent: As a data scientist, I want to understand the big picture about how Azure Machine Learning works.
 ---
 
@@ -41,7 +41,7 @@ This document provides a quick overview of these resources and assets.
 To use the Python SDK code examples in this article:
 
 1. Install the [Python SDK v2](https://aka.ms/sdk-v2-install)
-2. Create a connection to your Azure Machine Learning subscription.  The examples all rely on `ml_client`. To create a workspace, the connection does not need a workspace name, since you may not yet have one.  All other examples in this article require that the workspace name is included in the connection.
+2. Create a connection to your Azure Machine Learning subscription. The examples all rely on `ml_client`. To create a workspace, the connection doesn't need a workspace name, since you may not yet have one. All other examples in this article require that the workspace name is included in the connection.
 
     ```python
     # import required libraries
@@ -82,7 +82,7 @@ Sign in to [Azure Machine Learning studio](https://ml.azure.com).
 
 ## Workspace
 
-The workspace is the top-level resource for Azure Machine Learning, providing a centralized place to work with all the artifacts you create when you use Azure Machine Learning. The workspace keeps a history of all jobs, including logs, metrics, output, and a snapshot of your scripts. The workspace stores references to resources like datastores and compute. It also holds all assets like models, environments, components and data asset.
+The workspace is the top-level resource for Azure Machine Learning, providing a centralized place to work with all the artifacts you create when you use Azure Machine Learning. The workspace keeps a history of all jobs, including logs, metrics, output, and a snapshot of your scripts. The workspace stores references to resources like datastores and compute. It also holds all assets like models, environments, components, and data asset.
 
 ### Create a workspace
 
@@ -133,7 +133,7 @@ A compute is a designated compute resource where you run your job or host your e
 
 * **Compute instance** - a fully configured and managed development environment in the cloud. You can use the instance as a training or inference compute for development and testing. It's similar to a virtual machine on the cloud.
 * **Compute cluster** - a managed-compute infrastructure that allows you to easily create a cluster of CPU or GPU compute nodes in the cloud.
-* **Serverless compute** - a compute cluster you access on the fly.  When you use serverless compute, you don't need to create your own cluster. All compute lifecycle management is offloaded to Azure Machine Learning.
+* **Serverless compute** - a compute cluster you access on the fly. When you use serverless compute, you don't need to create your own cluster. All compute lifecycle management is offloaded to Azure Machine Learning.
 * **Inference cluster** - used to deploy trained machine learning models to Azure Kubernetes Service. You can create an Azure Kubernetes Service (AKS) cluster from your Azure Machine Learning workspace, or attach an existing AKS cluster.
 * **Attached compute** - You can attach your own compute resources to your workspace and use them for training and inference.
 
@@ -171,11 +171,10 @@ az ml compute create --file my_compute.yml
 ```
 
 For the content of the file, see [compute YAML examples](https://github.com/Azure/azureml-examples/tree/main/cli/resources/compute).
-.
 
 ### [Studio](#tab/azure-studio)
 
-1. Select a workspace if you are not already in one.
+1. Select a workspace if you aren't already in one.
 1. From the left-hand menu, select **Compute**.
 1. On the top, select a tab to specify the type of compute you want to create.
 1. Select **New** to create the new compute.
@@ -235,7 +234,7 @@ For the content of the file, see [datastore YAML examples](https://github.com/Az
 
 ### [Studio](#tab/azure-studio)
 
-1. Select a workspace if you are not already in one.
+1. Select a workspace if you aren't already in one.
 1. From the left-hand menu, select **Data**.
 1. On the top, select **Datastores**.
 1. Select **Create** to create a new datastore.
@@ -246,7 +245,7 @@ To learn more about using a datastore, see [Create and manage data assets](how-t
 
 ## Model
 
-Azure Machine Learning models consist of the binary file(s) that represent a machine learning model and any corresponding metadata. Models can be created from a local or remote file or directory. For remote locations `https`, `wasbs` and `azureml` locations are supported. The created model will be tracked in the workspace under the specified name and version. Azure Machine Learning supports three types of storage format for models:
+Azure Machine Learning models consist of one or more binary files that represent a machine learning model and any corresponding metadata. Models can be created from a local or remote file or directory. For remote locations `https`, `wasbs` and `azureml` locations are supported. The created model is tracked in the workspace under the specified name and version. Azure Machine Learning supports three types of storage format for models:
 
 * `custom_model`
 * `mlflow_model`
@@ -260,13 +259,13 @@ For more information on how to create models in the registry, see [Work with mod
 
 ## Environment
 
-Azure Machine Learning environments are an encapsulation of the environment where your machine learning task happens. They specify the software packages, environment variables, and software settings around your training and scoring scripts. The environments are managed and versioned entities within your Machine Learning workspace. Environments enable reproducible, auditable, and portable machine learning workflows across a variety of computes.
+Azure Machine Learning environments are an encapsulation of the environment where your machine learning task happens. They specify the software packages, environment variables, and software settings around your training and scoring scripts. The environments are managed and versioned entities within your Machine Learning workspace. Environments enable reproducible, auditable, and portable machine learning workflows across various computes.
 
 ### Types of environment
 
 Azure Machine Learning supports two types of environments: curated and custom.
 
-Curated environments are provided by Azure Machine Learning and are available in your workspace by default. Intended to be used as is, they contain collections of Python packages and settings to help you get started with various machine learning frameworks. These pre-created environments also allow for faster deployment time. For a full list, see the [curated environments article](resource-curated-environments.md).
+Curated environments are provided by Azure Machine Learning and are available in your workspace by default. Intended to be used as is, they contain collections of Python packages and settings to help you get started with various machine learning frameworks. These precreated environments also allow for faster deployment time. For a full list, see the [curated environments article](resource-curated-environments.md).
 
 In custom environments, you're responsible for setting up your environment and installing packages or any other dependencies that your training or scoring script needs on the compute. Azure Machine Learning allows you to create your own environment using
 
@@ -291,7 +290,7 @@ For more information, see [environment YAML schema](reference-yaml-environment.m
 
 ### [Studio](#tab/azure-studio)
 
-1. Select a workspace if you are not already in one.
+1. Select a workspace if you aren't already in one.
 1. From the left-hand menu, select **Environments**.
 1. On the top, select **Custom environments**.
 1. Select **Create** to create a new custom environment.
@@ -314,7 +313,7 @@ Azure Machine Learning allows you to work with different types of data:
   * `boolean`
   * `number`
 
-For most scenarios, you'll use URIs (`uri_folder` and `uri_file`) - a location in storage that can be easily mapped to the filesystem of a compute node in a job by either mounting or downloading the storage to the node.
+For most scenarios, you use URIs (`uri_folder` and `uri_file`) - a location in storage that can be easily mapped to the filesystem of a compute node in a job by either mounting or downloading the storage to the node.
 
 `mltable` is an abstraction for tabular data that is to be used for AutoML Jobs, Parallel Jobs, and some advanced scenarios. If you're just starting to use Azure Machine Learning and aren't using AutoML, we strongly encourage you to begin with URIs.
 

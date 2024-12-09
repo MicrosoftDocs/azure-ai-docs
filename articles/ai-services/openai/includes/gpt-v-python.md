@@ -21,7 +21,6 @@ Use this article to get started using the Azure OpenAI Python SDK to deploy and 
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>.
 - The following Python libraries: `os`
 - An Azure OpenAI Service resource with a GPT-4 Turbo with Vision model deployed. See [GPT-4 and GPT-4 Turbo Preview model availability](../concepts/models.md#gpt-4-and-gpt-4-turbo-model-availability) for available regions. For more information about resource creation, see the [resource deployment guide](/azure/ai-services/openai/how-to/create-resource).
-- For Vision enhancement (optional): An Azure Computer Vision resource in the same region as your Azure OpenAI resource, in the paid (S1) tier.
 
 ## Set up 
 
@@ -44,7 +43,6 @@ pip install openai
 
 Create a new Python file named _quickstart.py_. Open the new file in your preferred editor or IDE.
 
-#### [Image prompts](#tab/image)
 
 1. Replace the contents of _quickstart.py_ with the following code. 
     
@@ -98,95 +96,6 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
     python quickstart.py
     ```
 
-#### [Image prompt enhancements](#tab/enhanced)
-
-GPT-4 Turbo with Vision provides exclusive access to Azure AI Services tailored enhancements. When combined with Azure AI Vision, it enhances your chat experience by providing the chat model with more detailed information about visible text in the image and the locations of objects.
-
-The **Optical Character Recognition (OCR)** integration allows the model to produce higher quality responses for dense text, transformed images, and number-heavy financial documents. It also covers a wider range of languages.
-
-The **object grounding** integration brings a new layer to data analysis and user interaction, as the feature can visually distinguish and highlight important elements in the images it processes.
-
-> [!CAUTION]
-> Azure AI enhancements for GPT-4 Turbo with Vision will be billed separately from the core functionalities. Each specific Azure AI enhancement for GPT-4 Turbo with Vision has its own distinct charges. For details, see the [special pricing information](../concepts/gpt-with-vision.md#special-pricing-information).
-
-> [!IMPORTANT]
-> Vision enhancements are not supported by the GPT-4 Turbo GA model. They are only available with the preview models.
-
-
-1. Replace the contents of _quickstart.py_ with the following code. 
-    
-    ```python
-    from openai import AzureOpenAI
-    
-    api_base = os.getenv("AZURE_OPENAI_ENDPOINT")
-    api_key= os.getenv("AZURE_OPENAI_API_KEY")
-    deployment_name = '<your_deployment_name>'
-    api_version = '2023-12-01-preview' # this might change in the future
-    
-    client = AzureOpenAI(
-        api_key=api_key,  
-        api_version=api_version,
-        base_url=f"{api_base}/openai/deployments/{deployment_name}/extensions",
-    )
-    
-    response = client.chat.completions.create(
-        model=deployment_name,
-        messages=[
-            { "role": "system", "content": "You are a helpful assistant." },
-            { "role": "user", "content": [  
-                { 
-                    "type": "text", 
-                    "text": "Describe this picture:" 
-                },
-                { 
-                    "type": "image_url",
-                    "image_url": {
-                        "url": "<image URL>"
-                    }
-                }
-            ] } 
-        ],
-        extra_body={
-            "dataSources": [
-                {
-                    "type": "AzureComputerVision",
-                    "parameters": {
-                        "endpoint": "<your_computer_vision_endpoint>",
-                        "key": "<your_computer_vision_key>"
-                    }
-                }],
-            "enhancements": {
-                "ocr": {
-                    "enabled": True
-                },
-                "grounding": {
-                    "enabled": True
-                }
-            }
-        },
-        max_tokens=2000
-    )
-    
-    print(response)
-    ```
-
-1. Make the following changes:
-    1. Enter your GPT-4 Turbo with Vision deployment name in the appropriate field. 
-    1. Enter your Computer Vision endpoint URL and key in the appropriate fields.
-    1. Change the value of the `"url"` field to the URL of your image.
-        > [!TIP]
-        > You can also use a base 64 encoded image data instead of a URL. For more information, see the [GPT-4 Turbo with Vision how-to guide](../how-to/gpt-with-vision.md#use-a-local-image).
-1. Run the application with the `python` command:
-
-    ```console
-    python quickstart.py
-    ```
-
-#### [Video prompt enhancements](#tab/video)
-
-Video prompt integration is outside the scope of this quickstart. See the [GPT-4 Turbo with Vision how-to guide](../how-to/gpt-with-vision.md#use-vision-enhancement-with-video) for detailed instructions on setting up video prompts in chat completions programmatically.
-
----
 
 ## Clean up resources
 

@@ -74,9 +74,9 @@ conceptualContent:
         - itemType: concept
           text: Background removal
           url: concept-background-removal.md
-        - itemType: tutorial
-          text: Generate metadata for images
-          url: Tutorials/storage-lab-tutorial.md
+        #- itemType: tutorial
+        #  text: Generate metadata for images
+        #  url: Tutorials/storage-lab-tutorial.md
         - itemType: learn
           text: Microsoft Learn training
           url: /training/modules/analyze-images-computer-vision/

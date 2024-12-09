@@ -5,7 +5,7 @@ description: Get an overview of the custom text to speech avatar feature of spee
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 2/24/2024
+ms.date: 9/11/2024
 ms.reviewer: v-baolianzou
 ms.author: eur
 author: eric-urban

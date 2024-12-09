@@ -53,7 +53,7 @@ A successful response is returned in JSON, similar to the following example:
 
 ```json
 {
-    "modelVersion": "2024-02-01",
+    "modelVersion": "2023-10-01",
     "captionResult":
     {
         "text": "a man pointing at a screen",

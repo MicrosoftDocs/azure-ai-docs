@@ -7,7 +7,7 @@ ms.service: azure-ai-document-intelligence
 ms.topic: include
 ms.date: 05/23/2024
 ms.author: lajanuar
-ms.custom: devx-track-csharp, ignite-2023, linux-related-content
+ms.custom: devx-track-csharp, linux-related-content
 monikerRange: 'doc-intel-3.1.0 || doc-intel-3.0.0'
 ---
 
@@ -95,7 +95,7 @@ monikerRange: 'doc-intel-3.1.0 || doc-intel-3.0.0'
 
 1. Open the *Program.cs* file.
 
-1. Delete the pre-existing code, including the line `Console.Writeline("Hello World!")`.
+1. Delete the existing code, including the line `Console.Writeline("Hello World!")`.
 
 1. Select one of the following code samples and copy/paste into your application's *Program.cs* file:
 
@@ -798,7 +798,7 @@ if (identityDocument.Fields.TryGetValue("Sex", out DocumentField sexfield))
 
 ```
 
-Visit the Azure samples repository on GitHub and view the [id-document model output](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/dotnet/FormRecognizer/how-to-guide/id-document-model-output.md).
+Visit the Azure samples repository on GitHub and view the [ID-document model output](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/dotnet/FormRecognizer/how-to-guide/id-document-model-output.md).
 
 ## Use the Business card model
 

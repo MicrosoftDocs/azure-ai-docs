@@ -11,9 +11,6 @@ ms.custom: how-to, tracking-python
 
 # Create Azure Machine Learning datasets from Azure Open Datasets
 
-> [!CAUTION]
-> This article references CentOS, a Linux distribution that has reached End Of Life (EOL) status. Please plan accordingly. For more information, visit [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
-
 In this article, you learn how to bring curated enrichment data into your local or remote machine learning experiments, with [Azure Machine Learning](../machine-learning/overview-what-is-azure-machine-learning.md) datasets and [Azure Open Datasets](./index.yml).
 
 With an [Azure Machine Learning dataset](../machine-learning/v1/how-to-create-register-datasets.md), you create a reference to the data source location, along with a copy of its metadata. Because datasets are lazily evaluated, and because the data remains in its existing location, you
@@ -54,7 +51,6 @@ You need:
 > Some dataset classes have dependencies on the **azureml-dataprep** package. This package is only compatible with 64-bit Python. For Linux users, these classes are supported only on these Linux distributions:
 
 - Debian (8, 9)
-- CentOS (7)
 - Fedora (27, 28)
 - Red Hat Enterprise Linux (7, 8)
 - Ubuntu (14.04, 16.04, 18.04)

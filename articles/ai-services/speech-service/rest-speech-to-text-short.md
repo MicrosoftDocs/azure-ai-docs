@@ -6,10 +6,11 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: reference
-ms.date: 1/21/2024
+ms.date: 9/23/2024
 ms.author: eur
 ms.devlang: csharp
 ms.custom: devx-track-csharp
+# Customer intent: As a developer, I want to learn how to use the Speech to text REST API for short audio to convert speech to text.
 ---
 
 # Speech to text REST API for short audio

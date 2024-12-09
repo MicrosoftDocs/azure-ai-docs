@@ -11,7 +11,7 @@ ms.topic: reference
 
 author: Blackmist
 ms.author: larryfr
-ms.date: 05/09/2024
+ms.date: 08/29/2024
 ms.reviewer: ambadal
 ---
 
@@ -32,7 +32,7 @@ ms.reviewer: ambadal
 | `type` | string | **Required.** The connection type. | `azure_open_ai` | `azure_open_ai` |
 | `is_shared` | boolean | `true` if the connection is shared across other projects in the hub; otherwise, `false`. | | `true` |
 | `endpoint` | string | **Required.** The URL of the endpoint. | | |
-| `api_key` | string | **Required.** The API key used to authenticate the connection. If not provided, a Microsoft Entra ID (credential-less authentication) connection is created. | | |
+| `api_key` | string | The API key used to authenticate the connection. If not provided, the connection is authenticated via Microsoft Entra ID (credential-less authentication). | | |
 | `open_ai_resource_id` | string | **Required.** The fully qualified Azure resource ID of the Azure OpenAI resource. | | |
 
 
@@ -40,7 +40,7 @@ ms.reviewer: ambadal
 
 The schema described in this article is used to create a connection to Azure OpenAI only. If you would rather create a single connection for Azure AI Services, see the [Azure AI Services connection schema](reference-yaml-connection-ai-services.md). If you need to create a connection to the non-Microsoft OpenAI service, see the [OpenAI connection schema](reference-yaml-connection-openai.md).
 
-While the `az ml connection` commands can be used to manage both Azure Machine Learning and Azure AI Studio connections, the Azure AI Services connection is specific to Azure AI Studio.
+While the `az ml connection` commands can be used to manage both Azure Machine Learning and Azure AI Foundry connections, the Azure AI Services connection is specific to Azure AI Foundry.
 
 ## Examples
 
@@ -58,7 +58,7 @@ api_key: XXXXXXXXXXXXXXX
 ```
 
 
-### YAML: credential-less
+### YAML: Microsoft Entra ID
 
 ```yml
 #AzureOpenAIConnection.yml

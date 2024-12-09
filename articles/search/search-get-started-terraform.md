@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023
 author: TomArcherMsft
 ms.author: tarcher
-ms.service: cognitive-search
+ms.service: azure-ai-search
 content_well_notification: 
   - AI-contribution
 ai-usage: ai-assisted

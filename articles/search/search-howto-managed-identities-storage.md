@@ -6,7 +6,7 @@ author: gmndrg
 ms.author: gimondra
 manager: nitinme
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/03/2024
 ms.custom:
@@ -68,7 +68,7 @@ Indexers use a data source object for connections to an external data source. Th
 
 You must have a [system-assigned managed identity already configured](search-howto-managed-identities-data-sources.md), and it must have a role-assignment on Azure Storage. 
 
-For connections made using a system-assigned managed identity, the only change to the [data source definition](/rest/api/searchservice/create-data-source) is the format of the `credentials` property. 
+For connections made using a system-assigned managed identity, the only change to the [data source definition](/rest/api/searchservice/data-sources/create) is the format of the `credentials` property. 
 
 Provide a `ResourceId` that has no account key or password. The `ResourceId` must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name.
 

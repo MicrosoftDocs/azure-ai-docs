@@ -10,7 +10,7 @@ ms.author: mopeakande
 ms.reviewer: fasantia
 ms.date: 01/31/2024
 ms.topic: how-to
-ms.custom: deploy, mlflow, devplatv2, no-code-deployment, devx-track-azurecli, cliv2
+ms.custom: deploy, mlflow, devplatv2, no-code-deployment, devx-track-azurecli, cliv2, update-code
 ---
 
 # Deploy MLflow models to online endpoints

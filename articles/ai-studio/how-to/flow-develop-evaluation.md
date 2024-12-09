@@ -1,7 +1,7 @@
 ---
 title: Develop an evaluation flow
-titleSuffix: Azure AI Studio
-description: Learn how to customize or create your own evaluation flow tailored to your tasks and objectives, and then use in a batch run as an evaluation method in prompt flow with Azure AI Studio.
+titleSuffix: Azure AI Foundry
+description: Learn how to customize or create your own evaluation flow tailored to your tasks and objectives, and then use in a batch run as an evaluation method in prompt flow with Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
@@ -14,9 +14,9 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Develop an evaluation flow in Azure AI Studio
+# Develop an evaluation flow in Azure AI Foundry portal
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Evaluation flows are special types of flows that assess how well the outputs of a run align with specific criteria and goals.
 

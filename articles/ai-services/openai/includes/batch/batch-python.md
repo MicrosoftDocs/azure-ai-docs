@@ -5,7 +5,7 @@ description: Azure OpenAI model global batch Python
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 07/22/2024
+ms.date: 10/15/2024
 ---
 
 ## Prerequisites
@@ -55,6 +55,12 @@ Like [fine-tuning](../../how-to/fine-tuning.md), global batch uses files in JSON
 {"custom_id": "request-1", "method": "POST", "url": "/chat/completions", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "messages": [{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": [{"type": "text", "text": "What’s in this image?"},{"type": "image_url","image_url": {"url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-docs/main/articles/ai-services/openai/media/how-to/generated-seattle.png"}}]}],"max_tokens": 1000}}
 ```
 
+# [Structured outputs](#tab/structured-outputs)
+
+```json
+{"custom_id": "task-0", "method": "POST", "url": "/chat/completions", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "messages": [{"role": "system", "content": "Extract the event information."}, {"role": "user", "content": "Alice and Bob are going to a science fair on Friday."}], "response_format": {"type": "json_schema", "json_schema": {"name": "CalendarEventResponse", "strict": true, "schema": {"type": "object", "properties": {"name": {"type": "string"}, "date": {"type": "string"}, "participants": {"type": "array", "items": {"type": "string"}}}, "required": ["name", "date", "participants"], "additionalProperties": false}}}}}
+```
+
 ---
 
 The `custom_id` is required to allow you to identify which individual batch request corresponds to a given response. Responses won't be returned in identical order to the order defined in the `.jsonl` batch file.
@@ -63,6 +69,8 @@ The `custom_id` is required to allow you to identify which individual batch requ
 
 > [!IMPORTANT]
 > The `model` attribute must be set to match the name of the Global Batch deployment you wish to target for inference responses. The **same Global Batch model deployment name must be present on each line of the batch file.** If you want to target a different deployment you must do so in a separate batch file/job.
+>
+> For the best performance we recommend submitting large files for batch processing, rather than a large number of small files with only a few lines in each file.
 
 ### Create input file
 
@@ -72,6 +80,35 @@ For this article we'll create a file named `test.jsonl` and will copy the conten
 
 Once your input file is prepared, you first need to upload the file to then be able to kick off a batch job. File upload can be done both programmatically or via the Studio. This example uses environment variables in place of the key and endpoint values. If you're unfamiliar with using environment variables with Python refer to one of our [quickstarts](../../chatgpt-quickstart.md) where the process of setting up the environment variables in explained step-by-step.
 
+# [Python (Microsoft Entra ID)](#tab/python-secure)
+
+```python
+import os
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(
+  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+  azure_ad_token_provider=token_provider,
+  api_version="2024-10-21"
+)
+
+# Upload a file with a purpose of "batch"
+file = client.files.create(
+  file=open("test.jsonl", "rb"), 
+  purpose="batch"
+)
+
+print(file.model_dump_json(indent=2))
+file_id = file.id
+```
+
+# [Python (API Key)](#tab/python-key)
+
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ```python
@@ -80,7 +117,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-07-01-preview",
+    api_version="2024-10-21",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -94,6 +131,8 @@ print(file.model_dump_json(indent=2))
 file_id = file.id
 ```
 
+---
+
 **Output:**
 
 ```json
@@ -104,37 +143,14 @@ file_id = file.id
   "filename": "test.jsonl",
   "object": "file",
   "purpose": "batch",
-  "status": "pending",
+  "status": null,
   "status_details": null
 }
 ```
 
-## Track file upload status
-
-Depending on the size of your upload file it might take some time before it's fully uploaded and processed. To check on your file upload status run:
-
-```python
-# Wait until the uploaded file is in processed state
-import time
-import datetime 
-
-status = "pending"
-while status != "processed":
-    time.sleep(15)
-    file_response = client.files.retrieve(file_id)
-    status = file_response.status
-    print(f"{datetime.datetime.now()} File Id: {file_id}, Status: {status}")
-```
-
-**Output:**
-
-```output
-2024-07-31 21:42:53.663655 File Id: file-9f3a81d899b4442f98b640e4bc3535dd, Status: processed
-```
-
 ## Create batch job
 
-Once your file has uploaded successfully by reaching a status of `processed` you can submit the file for batch processing.
+Once your file has uploaded successfully you can submit the file for batch processing.
 
 ```python
 # Submit a batch job with the file
@@ -385,8 +401,222 @@ client.batches.cancel("batch_abc123") # set to your batch_id for the job you wan
 
 ### List batch
 
-List all batch jobs for a particular Azure OpenAI resource.
+List batch jobs for a particular Azure OpenAI resource.
 
 ```python
 client.batches.list()
+```
+
+List methods in the Python library are paginated.
+
+To list all jobs:
+
+```python
+all_jobs = []
+# Automatically fetches more pages as needed.
+for job in client.batches.list(
+    limit=20,
+):
+    # Do something with job here
+    all_jobs.append(job)
+print(all_jobs)
+```
+
+### List batch (Preview)
+
+Use the REST API to list all batch jobs with additional sorting/filtering options.
+
+In the examples below we are providing the `generate_time_filter` function to make constructing the filter easier. If you don't wish to use this function the format of the filter string would look like `created_at gt 1728860560 and status eq 'Completed'`.
+
+# [Python (Microsoft Entra ID)](#tab/python-secure)
+
+```python
+import requests
+import json
+from datetime import datetime, timedelta
+from azure.identity import DefaultAzureCredential
+
+token_credential = DefaultAzureCredential()
+token = token_credential.get_token('https://cognitiveservices.azure.com/.default')
+
+endpoint = "https://{YOUR_RESOURCE_NAME}.openai.azure.com/"
+api_version = "2024-10-01-preview"
+url = f"{endpoint}openai/batches"
+order = "created_at asc"
+time_filter =  lambda: generate_time_filter("past 8 hours")
+
+# Additional filter examples:
+#time_filter =  lambda: generate_time_filter("past 1 day")
+#time_filter =  lambda: generate_time_filter("past 3 days", status="Completed")
+
+def generate_time_filter(time_range, status=None):
+    now = datetime.now()
+    
+    if 'day' in time_range:
+        days = int(time_range.split()[1])
+        start_time = now - timedelta(days=days)
+    elif 'hour' in time_range:
+        hours = int(time_range.split()[1])
+        start_time = now - timedelta(hours=hours)
+    else:
+        raise ValueError("Invalid time range format. Use 'past X day(s)' or 'past X hour(s)'")
+    
+    start_timestamp = int(start_time.timestamp())
+    
+    filter_string = f"created_at gt {start_timestamp}"
+    
+    if status:
+        filter_string += f" and status eq '{status}'"
+    
+    return filter_string
+
+filter = time_filter()
+
+headers = {'Authorization': 'Bearer ' + token.token}
+
+params = {
+    "api-version": api_version,
+    "$filter": filter,
+    "$orderby": order
+}
+
+response = requests.get(url, headers=headers, params=params)
+
+json_data = response.json()
+
+if response.status_code == 200:
+    print(json.dumps(json_data, indent=2))
+else:
+    print(f"Request failed with status code: {response.status_code}")
+    print(response.text)  
+```
+
+# [Python (API Key)](#tab/python-key)
+
+```python
+import os
+import requests
+import json
+from datetime import datetime, timedelta
+
+api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
+endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+api_version = "2024-10-01-preview"
+url = f"{endpoint}openai/batches"
+order = "created_at asc"
+
+time_filter = lambda: generate_time_filter("past 8 hours")
+
+# Additional filter examples:
+#time_filter =  lambda: generate_time_filter("past 1 day")
+#time_filter =  lambda: generate_time_filter("past 3 days", status="Completed")
+
+def generate_time_filter(time_range, status=None):
+    now = datetime.now()
+    
+    if 'day' in time_range:
+        days = int(time_range.split()[1])
+        start_time = now - timedelta(days=days)
+    elif 'hour' in time_range:
+        hours = int(time_range.split()[1])
+        start_time = now - timedelta(hours=hours)
+    else:
+        raise ValueError("Invalid time range format. Use 'past X day(s)' or 'past X hour(s)'")
+    
+    start_timestamp = int(start_time.timestamp())
+    
+    filter_string = f"created_at gt {start_timestamp}"
+    
+    if status:
+        filter_string += f" and status eq '{status}'"
+    
+    return filter_string
+
+filter = time_filter()
+
+headers = {
+    "api-key": api_key
+}
+
+params = {
+    "api-version": api_version,
+    "$filter": filter,
+    "$orderby": order
+}
+
+response = requests.get(url, headers=headers, params=params)
+
+json_data = response.json()
+
+if response.status_code == 200:
+    print(json.dumps(json_data, indent=2))
+else:
+    print(f"Request failed with status code: {response.status_code}")
+    print(response.text)  
+```
+
+---
+
+**Output:**
+
+```output
+{
+  "data": [
+    {
+      "cancelled_at": null,
+      "cancelling_at": null,
+      "completed_at": 1729011896,
+      "completion_window": "24h",
+      "created_at": 1729011128,
+      "error_file_id": "file-472c0626-4561-4327-9e4e-f41afbfb30e6",
+      "expired_at": null,
+      "expires_at": 1729097528,
+      "failed_at": null,
+      "finalizing_at": 1729011805,
+      "id": "batch_4ddc7b60-19a9-419b-8b93-b9a3274b33b5",
+      "in_progress_at": 1729011493,
+      "input_file_id": "file-f89384af0082485da43cb26b49dc25ce",
+      "errors": null,
+      "metadata": null,
+      "object": "batch",
+      "output_file_id": "file-62bebde8-e767-4cd3-a0a1-28b214dc8974",
+      "request_counts": {
+        "total": 3,
+        "completed": 2,
+        "failed": 1
+      },
+      "status": "completed",
+      "endpoint": "/chat/completions"
+    },
+    {
+      "cancelled_at": null,
+      "cancelling_at": null,
+      "completed_at": 1729016366,
+      "completion_window": "24h",
+      "created_at": 1729015829,
+      "error_file_id": "file-85ae1971-9957-4511-9eb4-4cc9f708b904",
+      "expired_at": null,
+      "expires_at": 1729102229,
+      "failed_at": null,
+      "finalizing_at": 1729016272,
+      "id": "batch_6287485f-50fc-4efa-bcc5-b86690037f43",
+      "in_progress_at": 1729016126,
+      "input_file_id": "file-686746fcb6bc47f495250191ffa8a28e",
+      "errors": null,
+      "metadata": null,
+      "object": "batch",
+      "output_file_id": "file-04399828-ae0b-4825-9b49-8976778918cb",
+      "request_counts": {
+        "total": 3,
+        "completed": 2,
+        "failed": 1
+      },
+      "status": "completed",
+      "endpoint": "/chat/completions"
+    }
+  ],
+  "first_id": "batch_4ddc7b60-19a9-419b-8b93-b9a3274b33b5",
+  "has_more": false,
+  "last_id": "batch_6287485f-50fc-4efa-bcc5-b86690037f43"
+}
 ```

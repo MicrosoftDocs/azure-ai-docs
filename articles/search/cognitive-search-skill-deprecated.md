@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: This page contains a list of cognitive skills that are considered deprecated and won't be supported moving forward.
 author: gmndrg
 ms.author: gimondra
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
@@ -40,7 +40,7 @@ August 31, 2024
 
 Use [Microsoft.Skills.Text.V3.EntityRecognitionSkill](cognitive-search-skill-entity-recognition-v3.md) instead. It provides most of the functionality of the EntityRecognitionSkill at a higher quality. It also has richer information in its complex output fields.
 
-To migrate to the [Microsoft.Skills.Text.V3.EntityRecognitionSkill](cognitive-search-skill-entity-recognition-v3.md), make one or more of the following changes to your skill definition. You can update the skill definition using the [Update Skillset API](/rest/api/searchservice/update-skillset).
+To migrate to the [Microsoft.Skills.Text.V3.EntityRecognitionSkill](cognitive-search-skill-entity-recognition-v3.md), make one or more of the following changes to your skill definition. You can update the skill definition using the [Update Skillset API](/rest/api/searchservice/skillsets/create-or-update).
 
 1. *(Required)* Change the `@odata.type` from `"#Microsoft.Skills.Text.EntityRecognitionSkill"` to `"#Microsoft.Skills.Text.V3.EntityRecognitionSkill"`.
 
@@ -368,7 +368,7 @@ August 31, 2024
 
 Use [Microsoft.Skills.Text.V3.SentimentSkill](cognitive-search-skill-sentiment-v3.md) instead. It provides an improved model and includes the option to add opinion mining or aspect-based sentiment. As the skill is significantly more complex, the outputs are also very different.
 
-To migrate to the [Microsoft.Skills.Text.V3.SentimentSkill](cognitive-search-skill-sentiment-v3.md), make one or more of the following changes to your skill definition. You can update the skill definition using the [Update Skillset API](/rest/api/searchservice/update-skillset).
+To migrate to the [Microsoft.Skills.Text.V3.SentimentSkill](cognitive-search-skill-sentiment-v3.md), make one or more of the following changes to your skill definition. You can update the skill definition using the [Update Skillset API](/rest/api/searchservice/skillsets/create-or-update).
 
 > [!NOTE]
 > The skill outputs for the Sentiment Skill V3 are not compatible with the index definition based on the SentimentSkill. You will have to make changes to the index definition, skillset (later skill inputs and/or knowledge store projections) and indexer output field mappings to replace the sentiment skill with the new version.
@@ -396,7 +396,7 @@ August 31, 2024
 
 Use [Microsoft.Skills.Text.V3.EntityRecognitionSkill](cognitive-search-skill-entity-recognition-v3.md) instead. It provides most of the functionality of the NamedEntityRecognitionSkill at a higher quality. It also has richer information in its complex output fields.
 
-To migrate to the [Microsoft.Skills.Text.V3.EntityRecognitionSkill](cognitive-search-skill-entity-recognition-v3.md), make one or more of the following changes to your skill definition. You can update the skill definition using the [Update Skillset API](/rest/api/searchservice/update-skillset).
+To migrate to the [Microsoft.Skills.Text.V3.EntityRecognitionSkill](cognitive-search-skill-entity-recognition-v3.md), make one or more of the following changes to your skill definition. You can update the skill definition using the [Update Skillset API](/rest/api/searchservice/skillsets/create-or-update).
 
 1. *(Required)* Change the `@odata.type` from `"#Microsoft.Skills.Text.NamedEntityRecognitionSkill"` to `"#Microsoft.Skills.Text.V3.EntityRecognitionSkill"`.
 

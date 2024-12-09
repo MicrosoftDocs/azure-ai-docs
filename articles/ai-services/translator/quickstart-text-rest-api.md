@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 02/09/2024
+ms.date: 09/26/2024
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, javascript, python
@@ -122,7 +122,7 @@ For detailed information regarding Azure AI Translator service request limits, *
 
 1. Open the **Program.cs** file.
 
-1. Delete the pre-existing code, including the line `Console.WriteLine("Hello World!")`. Copy and paste the code sample into your application's Program.cs file. Make sure you update the key variable with the value from your Azure portal Translator instance:
+1. Delete the existing code, including the line `Console.WriteLine("Hello World!")`. Copy and paste the code sample into your application's Program.cs file. Make sure you update the key variable with the value from your Azure portal Translator instance:
 
 ```csharp
 using System.Text;
@@ -210,7 +210,7 @@ After a successful call, you should see the following response:
 
 ### Set up your Go environment
 
-You can use any text editor to write Go applications. We recommend using the latest version of [Visual Studio Code and the Go extension](/azure/developer/go/configure-visual-studio-code).
+You can use any text editor to write Go applications. We recommend using the latest version of [Visual Studio Code and Go extension](/azure/developer/go/configure-visual-studio-code).
 
 > [!TIP]
 >
@@ -218,7 +218,7 @@ You can use any text editor to write Go applications. We recommend using the lat
 
 1. Make sure the latest version of [Go](https://go.dev/doc/install) is installed:
 
-    * Download the Go version for your operating system.
+    * Download the `Go` programming language version for your operating system.
     * Once the download is complete, run the installer.
     * Open a command prompt and enter the following to confirm Go was installed:
 
@@ -362,7 +362,7 @@ After a successful call, you should see the following response:
 
   * [**Gradle**](https://docs.gradle.org/current/userguide/installation.html), version 6.8 or later.
 <!-- checked -->
-<!-- 
+<!--
  > [!div class="nextstepaction"]
 > [I ran into an issue](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=Java&Product=Translator&Page=quickstart-translator&Section=set-up-your-java-environment) -->
 
@@ -633,7 +633,7 @@ Add the following code sample to your `index.js` file. **Make sure you update th
 
 ```
 <!-- checked -->
-<!-- 
+<!--
  > [!div class="nextstepaction"]
 > [I ran into an issue](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=Python&Product=Translator&Page=quickstart-translator&Section=build-your-javascript-application) -->
 
@@ -671,7 +671,7 @@ After a successful call, you should see the following response:
 
 ```
 <!-- checked -->
-<!-- 
+<!--
  > [!div class="nextstepaction"]
 > [My REST API call was successful](#next-steps) [I ran into an issue](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=Java&Product=Translator&Page=quickstart-translator&Section=run-your-javascript-application) -->
 
@@ -694,7 +694,7 @@ After a successful call, you should see the following response:
     > [!NOTE]
     > We will also use a Python built-in package called json. It's used to work with JSON data.
 <!-- checked -->
-<!-- 
+<!--
  > [!div class="nextstepaction"]
 > [I ran into an issue](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=Python&Product=Translator&Page=quickstart-translator&Section=set-up-your-python-project) -->
 
@@ -744,7 +744,7 @@ print(json.dumps(response, sort_keys=True, ensure_ascii=False, indent=4, separat
 
 ```
 <!-- checked -->
-<!-- 
+<!--
  > [!div class="nextstepaction"]
 > [I ran into an issue](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=Python&Product=Translator&Page=quickstart-translator&Section=build-your-python-application) -->
 
@@ -782,7 +782,7 @@ After a successful call, you should see the following response:
 
 ```
 <!-- checked -->
-<!-- 
+<!--
  > [!div class="nextstepaction"]
 > [My REST API call was successful](#next-steps) [I ran into an issue](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=Python&Product=Translator&Page=quickstart-translator&Section=run-your-python-application) -->
 

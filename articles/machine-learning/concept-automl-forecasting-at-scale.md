@@ -28,7 +28,7 @@ The many models [components](concept-component.md) in AutoML enable you to train
 
 The many models training component applies AutoML's [model sweeping and selection](concept-automl-forecasting-sweeping.md) independently to each store in this example. This model independence aids scalability and can benefit model accuracy especially when the stores have diverging sales dynamics. However, a single model approach may yield more accurate forecasts when there are common sales dynamics. See the [distributed DNN training](#distributed-dnn-training-preview) section for more details on that case.
 
-You can configure the data partitioning, the [AutoML settings](how-to-auto-train-forecast.md#configure-experiment) for the models, and the degree of parallelism for many models training jobs. For examples, see our guide section on [many models components](how-to-auto-train-forecast.md#forecasting-at-scale-many-models).        
+You can configure the data partitioning, the [AutoML settings](how-to-auto-train-forecast.md#configure-experiment) for the models, and the degree of parallelism for many models training jobs. For examples, see our guide section on [many models components](how-to-auto-train-forecast.md#forecast-at-scale-many-models).        
 
 ## Hierarchical time series forecasting
 
@@ -49,7 +49,7 @@ AutoML supports the following features for hierarchical time series (HTS):
 * **Retrieving quantile/probabilistic forecasts for levels at or "below" the training level**. Current modeling capabilities support disaggregation of probabilistic forecasts.
 
 HTS components in AutoML are built on top of [many models](#many-models), so HTS shares the scalable properties of many models. 
-For examples, see our guide section on [HTS components](how-to-auto-train-forecast.md#forecasting-at-scale-hierarchical-time-series).
+For examples, see our guide section on [HTS components](how-to-auto-train-forecast.md#forecast-at-scale-hierarchical-time-series).
 
 ## Distributed DNN training (preview)
 

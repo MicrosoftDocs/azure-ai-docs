@@ -6,7 +6,7 @@ description: Use optimistic concurrency to avoid mid-air collisions on updates o
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 04/23/2024
 ms.custom:

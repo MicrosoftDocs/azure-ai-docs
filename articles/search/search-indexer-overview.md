@@ -6,7 +6,7 @@ description: Crawl Azure SQL Database, SQL Managed Instance, Azure Cosmos DB, or
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
@@ -53,10 +53,10 @@ Indexers crawl data stores on Azure and outside of Azure.
 + [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md)
 + [Azure Cosmos DB](search-howto-index-cosmosdb.md)
 + [Azure Data Lake Storage Gen2](search-howto-index-azure-data-lake-storage.md)
-+ [Azure SQL Database](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
++ [Azure SQL Database](search-how-to-index-sql-database.md)
 + [Azure Table Storage](search-howto-indexing-azure-tables.md)
-+ [Azure SQL Managed Instance](search-howto-connecting-azure-sql-mi-to-azure-search-using-indexers.md)
-+ [SQL Server on Azure Virtual Machines](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md)
++ [Azure SQL Managed Instance](search-how-to-index-sql-managed-instance.md)
++ [SQL Server on Azure Virtual Machines](search-how-to-index-sql-server.md)
 + [Azure Files](search-file-storage-integration.md) (in preview)
 + [Azure MySQL](search-howto-index-mysql.md) (in preview)
 + [SharePoint in Microsoft 365](search-howto-index-sharepoint-online.md) (in preview)
@@ -87,7 +87,7 @@ Depending on the data source, the indexer will try different operations to extra
 
 + When the document is a file with embedded images, such as a PDF, the indexer extracts text, images, and metadata. Indexers can open files from [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md#supported-document-formats), [Azure Data Lake Storage Gen2](search-howto-index-azure-data-lake-storage.md#supported-document-formats), and [SharePoint](search-howto-index-sharepoint-online.md#supported-document-formats).
 
-+ When the document is a record in [Azure SQL](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md), the indexer will extract non-binary content from each field in each record.
++ When the document is a record in [Azure SQL](search-how-to-index-sql-database.md), the indexer will extract non-binary content from each field in each record.
 
 + When the document is a record in [Azure Cosmos DB](search-howto-index-cosmosdb.md), the indexer will extract non-binary content from fields and subfields from the Azure Cosmos DB document.
 
@@ -127,7 +127,7 @@ You can create a data source using any of these approaches:
 
 + Using the Azure portal, on the **Data sources** tab of your search service pages, select **Add data source** to specify the data source definition.
 + Using the Azure portal, the [Import data wizard](search-import-data-portal.md) outputs a data source.
-+ Using the REST APIs, call [Create Data Source](/rest/api/searchservice/create-data-source).
++ Using the REST APIs, call [Create Data Source](/rest/api/searchservice/data-sources/create).
 + Using the Azure SDK for .NET, call [SearchIndexerDataSourceConnection class](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourceconnection)
 
 ### Step 2: Create an index
@@ -146,7 +146,7 @@ For more information, see [Create an indexer](search-howto-create-indexers.md)
 
 After the first indexer run, you can [rerun it on demand](search-howto-run-reset-indexers.md) or [set up a schedule](search-howto-schedule-indexers.md).
 
-You can monitor [indexer status in the portal](search-howto-monitor-indexers.md) or through [Get Indexer Status API](/rest/api/searchservice/get-indexer-status). You should also [run queries on the index](search-query-create.md) to verify the result is what you expected.
+You can monitor [indexer status in the Azure portal](search-howto-monitor-indexers.md) or through [Get Indexer Status API](/rest/api/searchservice/indexers/get-status). You should also [run queries on the index](search-query-create.md) to verify the result is what you expected.
 
 Indexers don't have dedicated processing resources. Based on this, indexers' status may show as idle before running (depending on other jobs in the queue) and run times may not be predictable. Other factors define indexer performance as well, such as document size, document complexity, image analysis, among others.
 

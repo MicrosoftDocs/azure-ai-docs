@@ -126,6 +126,3 @@ ms.date: 03/07/2024
    ```
 
    The application prints the response including both answers to your query and citations from your uploaded files.
-
-> [!div class="nextstepaction"]
-> [I ran into an issue when running the code samples.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=dotnet&Pillar=AOAI&Product=ownData&Page=quickstart&Section=Create-dotnet-application)

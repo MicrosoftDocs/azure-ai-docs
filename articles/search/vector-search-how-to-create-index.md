@@ -5,7 +5,9 @@ description: Create or update a search index to include vector fields.
 
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 08/05/2024
 ---
@@ -184,7 +186,7 @@ Be sure to have a strategy for [vectorizing your content](vector-search-how-to-g
 
 1. Use the [Create or Update Index Preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true) to create the index.
 
-1. Add a `vectorSearch` section in the index that specifies compression settings and the search algorithms used to create the embedding space. For more information, see [Configure vector quantization and reduced storage](vector-search-how-to-configure-compression-storage.md).
+1. Add a `vectorSearch` section in the index that specifies compression settings and the search algorithms used to create the embedding space. For more information, see [Configure vector quantization](vector-search-how-to-quantization.md).
 
    ```json
     "vectorSearch": {
@@ -283,7 +285,7 @@ Vector fields are characterized by [their data type](/rest/api/searchservice/sup
    + `vectorSearchProfile` is the name of a profile defined elsewhere in the index.
    + `searchable` must be true.
    + `retrievable` can be true or false. True returns the raw vectors (1536 of them) as plain text and consumes storage space. Set to true if you're passing a vector result to a downstream app.
-   + `stored` can be true or false. It determines whether an extra copy of vectors is stored for retrieval. For more information, see [Reduce vector size](vector-search-how-to-configure-compression-storage.md).
+   + `stored` can be true or false. It determines whether an extra copy of vectors is stored for retrieval. For more information, see [Reduce vector size](vector-search-how-to-storage-options.md).
    + `filterable`, `facetable`, `sortable` must be false. 
 
 1. Add filterable nonvector fields to the collection, such as "title" with `filterable` set to true, if you want to invoke [prefiltering or postfiltering](vector-search-filters.md) on the [vector query](vector-search-how-to-query.md).
@@ -337,13 +339,13 @@ Vector fields are characterized by [their data type](/rest/api/searchservice/sup
                 "retrievable": false,
                 "stored": false,
                 "dimensions": 1536,
-                "vectorSearchProfile": "-vector-profile-1"
+                "vectorSearchProfile": "vector-profile-1"
             }
         ],
         "vectorSearch": {
             "algorithms": [
                 {
-                    "name": "hsnw-1",
+                    "name": "hnsw-1",
                     "kind": "hnsw",
                     "hnswParameters": {
                         "m": 4,
@@ -527,7 +529,7 @@ Pull APIs refer to indexers, which automate multiple indexing steps, from data r
   + [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md)
   + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
   + [Azure AI Vision multimodal embeddings skill (preview)](cognitive-search-skill-vision-vectorize.md)
-  + [AML skill (preview)](cognitive-search-aml-skill.md) to generate embeddings for models hosted in the Azure AI Studio model catalog. See [How to implement integrated vectorization using models from Azure AI Studio](vector-search-integrated-vectorization-ai-studio.md) for details.
+  + [AML skill (preview)](cognitive-search-aml-skill.md) to generate embeddings for models hosted in the Azure AI Foundry model catalog. See [How to implement integrated vectorization using models from Azure AI Foundry](vector-search-integrated-vectorization-ai-studio.md) for details.
 
 + Indexes provide the vector field definitions and vector search configurations. Those definitions are described in this article.
 

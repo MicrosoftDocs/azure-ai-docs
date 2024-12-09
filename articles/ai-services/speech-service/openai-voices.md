@@ -7,7 +7,7 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 8/20/2024
+ms.date: 9/20/2024
 ms.reviewer: v-baolianzou
 ms.custom: references_regions
 #customer intent: As a user who implements text to speech, I want to understand the options and differences between available OpenAI text to speech voices in Azure AI services.
@@ -36,15 +36,15 @@ You can choose from the following text to speech voices in Azure AI services:
 
 ## OpenAI text to speech voices via Azure OpenAI Service or via Azure AI Speech?
 
-If you want to use OpenAI text to speech voices, you can choose whether to use them via [Azure OpenAI](../openai/text-to-speech-quickstart.md) or via [Azure AI Speech](./get-started-text-to-speech.md#openai-text-to-speech-voices-in-azure-ai-speech). In either case, the speech synthesis result is the same. 
+If you want to use OpenAI text to speech voices, you can choose whether to use them via [Azure OpenAI](../openai/text-to-speech-quickstart.md) or via [Azure AI Speech](./get-started-text-to-speech.md#openai-text-to-speech-voices-in-azure-ai-speech). You can visit the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) to listen to samples of Azure OpenAI voices or synthesize speech with your own text using the [Audio Content Creation](https://speech.microsoft.com/portal/audiocontentcreation). The audio output is identical in both cases, with only a few feature differences between the two services. See the table below for details.
 
 Here's a comparison of features between OpenAI text to speech voices in Azure OpenAI Service and OpenAI text to speech voices in Azure AI Speech. 
 
 | Feature | Azure OpenAI Service (OpenAI voices) | Azure AI Speech (OpenAI voices) | Azure AI Speech voices |
-|---------|---------------|------------------------|
+|---------|---------------|------------------------|------------------------|
 | **Region** | North Central US, Sweden Central | North Central US, Sweden Central | Available in dozens of regions. See the [region list](regions.md#speech-service).|
-| **Voice variety** | 6 | 6 | More than 400 |
-| **Multilingual voice number** | 6 | 6 | 14 |
+| **Voice variety** | 6 | 12 | More than 500 |
+| **Multilingual voice number** | 6 | 12 | 49 |
 | **Max multilingual language coverage** | 57 | 57 | 77 |
 | **Speech Synthesis Markup Language (SSML) support** | Not supported | Support for [a subset of SSML elements](#ssml-elements-supported-by-openai-text-to-speech-voices-in-azure-ai-speech). | Support for the [full set of SSML](speech-synthesis-markup-structure.md) in Azure AI Speech. |
 | **Development options** | REST API | Speech SDK, Speech CLI, REST API | Speech SDK, Speech CLI, REST API |
@@ -75,7 +75,7 @@ The following table outlines the Speech Synthesis Markup Language (SSML) element
 | `<lang>` | Indicates the default locale for the language that you want the neural voice to speak.  |
 | `<break>` | Use to override the default behavior of breaks or pauses between words. |
 
-## Next steps
+## Related content
 
 - [Try the text to speech quickstart in Azure AI Speech](get-started-text-to-speech.md#openai-text-to-speech-voices-in-azure-ai-speech)
 - [Try the text to speech via Azure OpenAI Service](../openai/text-to-speech-quickstart.md)

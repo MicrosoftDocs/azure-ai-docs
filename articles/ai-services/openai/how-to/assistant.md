@@ -8,8 +8,8 @@ ms.service: azure-ai-openai
 ms.custom: references_regions
 ms.topic: how-to
 ms.date: 05/20/2024
-author: mrbullwinkle
-ms.author: mbullwin
+author: aahill
+ms.author: aahi
 recommendations: false
 
 ---

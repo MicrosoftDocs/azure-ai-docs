@@ -5,11 +5,14 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-metrics-advisor
 ms.topic: include
-ms.date: 01/19/2024
+ms.date: 09/20/2024
 ms.author: mbullwin
 ---
 
 [Reference documentation](https://westus2.dev.cognitive.microsoft.com/docs/services/MetricsAdvisor/) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/metricsadvisor/azure-ai-metricsadvisor/src) | [Artifact (Maven)](https://search.maven.org/artifact/com.azure/azure-ai-metricsadvisor) | [Samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/metricsadvisor/azure-ai-metricsadvisor/src/samples)
+
+> [!IMPORTANT]
+> Microsoft recommends that you use the most secure authentication flow available. Some of the authentication flows described in this article require a very high degree of trust in the application, and carries risks that are not present in other more secure flows. You should only use this flow when other more secure flows, such as managed identities, aren't viable.
 
 ## Prerequisites
 
