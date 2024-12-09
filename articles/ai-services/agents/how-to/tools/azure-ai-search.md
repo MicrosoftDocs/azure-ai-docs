@@ -1,8 +1,8 @@
 ---
 title: 'How to BYO AI Search index with the Azure AI Search tool'
 titleSuffix: Azure OpenAI
-description: Learn how to use Agents file search.
-services: azure-ai-agent service
+description: Learn how to use Agents Azure AI Search tool.
+services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure
 ms.topic: how-to
@@ -56,16 +56,16 @@ If you already connected the AI Search resource that contains the index you want
     :::image type="content" source="../../media/tools/ai-search/acs-azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search/acs-azure-portal.png":::
 
 3. In Azure AI Foundry, navigate to the project you created in the agent setup and Click on **Open in management center**.
-    :::image type="content" source="../../media/tools/ai-search/project-studio.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search/project-studio.png":::
+    :::image type="content" source="../../media/tools/ai-search/project-studio.png" alt-text="A screenshot of a porject in Azure AI Foundry." lightbox="../../media/tools/ai-search/project-studio.png":::
 4. Click on the **Connections** tab.
 5. Click on **Add Connection**.
- :::image type="content" source="../../media/tools/ai-search/project-connections-page.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search/project-connections-page.png":::
+ :::image type="content" source="../../media/tools/ai-search/project-connections-page.png" alt-text="A screenshot of the project connections page." lightbox="../../media/tools/ai-search/project-connections-page.png":::
 6. Select **Azure AI Search**.
- :::image type="content" source="../../media/tools/ai-search/select-acs.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search/select-acs.png":::
+ :::image type="content" source="../../media/tools/ai-search/select-acs.png" alt-text="A screenshot of the Azure AI Search connection type the user should select." lightbox="../../media/tools/ai-search/select-acs.png":::
 1. Select the Azure AI Search resource that has the index you want to use and fill in the required fields. Both Managed Identity and Key-based authentication are supported. Once all the fields are filled in, click **Add connection**.
-:::image type="content" source="../../media/tools/ai-search/acs-connection2.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search/acs-connection2.png":::
+:::image type="content" source="../../media/tools/ai-search/acs-connection2.png" alt-text="A screenshot the required fields to add a new Azure AI Search connection." lightbox="../../media/tools/ai-search/acs-connection2.png":::
 1. Verify that the connection was successfully created.
-:::image type="content" source="../../media/tools/ai-search/success-acs-connection.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search/success-acs-connection.png":::
+:::image type="content" source="../../media/tools/ai-search/success-acs-connection.png" alt-text="A screenshot of the project connections page with a new Azure AI Search connection added." lightbox="../../media/tools/ai-search/success-acs-connection.png":::
 ::: zone-end
 
 ::: zone pivot="code-examples"
@@ -113,9 +113,9 @@ for conn in conn_list:
         print(f"Connection ID: {conn.id}")
 ```
 The second way to get the connection ID is to navigate to the project in the Azure AI Foundry and click on the **Connected resources** tab and then select your Azure AI Search resource.
-:::image type="content" source="../../media/tools/ai-search/success-acs-connection.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search/success-acs-connection.png":::
+:::image type="content" source="../../media/tools/ai-search/success-acs-connection.png" alt-text="A screenshot of an AI Search resource connection page in Azure AI Foundry." lightbox="../../media/tools/ai-search/success-acs-connection.png":::
 In the URL, you see the wsid=/subscription/your-subscription-id..., this is the connection ID you need to use. this is the connection ID you need to use. Copy everything that comes after wsid=.
-:::image type="content" source="../../media/tools/ai-search/connection-id.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search/connection-id.png":::
+:::image type="content" source="../../media/tools/ai-search/connection-id.png" alt-text="A screenshot of an AI Search resource connection and how to copy the connection ID." lightbox="../../media/tools/ai-search/connection-id.png":::
 
 ### Step 3: Configure the Azure AI Search tool
 Using the connection ID you got in the previous step, you can now configure the Azure AI Search tool to use your Azure AI Search index.
