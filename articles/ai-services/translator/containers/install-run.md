@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 11/01/2024
+ms.date: 12/09/2024
 ms.author: lajanuar
 recommendations: false
 keywords: on-premises, Docker, container, identify
@@ -633,12 +633,12 @@ Usage charges are calculated based upon the `quantity` value.
       }
    ```
 
-The aggregated value of `billedUnit` for the following meters is counted towards the characters you licensed for your disconnected container usage:
+The aggregated value of `billedUnit` for the following meters is counted towards the `quantity` you licensed for your disconnected container usage:
 
 |Operation|Meter name|Billed unit|
 |---|---|---|
-|Text translation|`CognitiveServices.TextTranslation.Container.TranslatedCharacters`| 1 character = 1 billed unit|
-|Document translation|`CognitiveServices.TextTranslation.Container.OneDocumentTranslatedCharacters`|1 char = 1.5 billed unit.|
+|Text translation|`CognitiveServices.TextTranslation.Container.TranslatedCharacters`|`quantity`:  **1 character equals 1** `billedUnit`|
+|Document translation|`CognitiveServices.TextTranslation.Container.OneDocumentTranslatedCharacters`|`quantity`: **1 character equals 1.5** `billedUnit`|
 
 ---
 
