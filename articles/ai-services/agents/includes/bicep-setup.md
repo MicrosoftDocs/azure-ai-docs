@@ -9,7 +9,7 @@ ms.date: 11/13/2024
 
 ## Set up your Azure AI Hub and Agent project
 
-The following section will show you how to set up the required resources for getting started with Azure AI Agents Service: 
+The following section shows you how to set up the required resources for getting started with Azure AI Agents Service: 
 
 1. Creating an [Azure AI Hub](../../../ai-studio/quickstarts/get-started-playground.md) to set up your app environment and Azure resources.
 
@@ -22,7 +22,7 @@ The following section will show you how to set up the required resources for get
    
 **Basic Setup**:  Agents use multitenant search and storage resources fully managed by Microsoft. You don't have visibility or control over these underlying Azure resources.
 
-**Standard Setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you will incur costs based on your usage.
+**Standard Setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage.
 
 | Description   | Autodeploy |
 | -----------------------------------------------| -----------------------|
@@ -32,8 +32,9 @@ The following section will show you how to set up the required resources for get
 ## Basic agent setup architecture
 :::image type="content" source="../media/quickstart/basic-agent-architecture.png" alt-text="An architecture diagram for basic agent setup." lightbox="../media/quickstart/basic-agent-architecture.png":::
 
-Resources for the hub, project, storage account, and AI Services will be created for you. The AI Services account will be connected to your project/hub and a gpt-4o-mini model will be deployed in the eastus region. A Microsoft-managed key vault will be used by default.
-## Standard agent setup architecture
-:::image type="content" source="../media/quickstart/standard-agent-architecture.png" alt-text="An architecture digram for standard agent setup." lightbox="../media/quickstart/standard-agent-architecture.png":::
+Resources for the AI hub, AI project, storage account, and AI Services are created for you. The AI Services account is connected to your project/hub and a gpt-4o-mini model is deployed in the eastus region. A Microsoft-managed key vault is used by default.
 
-Resources for the AI hub, AI project, key vault, storage account, AI Services, and AI Search will be created for you. The AI Services, AI Search, key vault, and storage account will be connected to your project and hub. A gpt-4o-mini model will be deloyed in eastus region using the AI Services resource OpenAI endpoint.
+## Standard agent setup architecture
+:::image type="content" source="../media/quickstart/standard-agent-architecture.png" alt-text="An architecture diagram for standard agent setup." lightbox="../media/quickstart/standard-agent-architecture.png":::
+
+Resources for the AI hub, AI project, key vault, storage account, AI Services, and AI Search are created for you. The AI Services, AI Search, key vault, and storage account are connected to your project and hub. A gpt-4o-mini model is deployed in eastus region using the AI Services resource OpenAI endpoint.
