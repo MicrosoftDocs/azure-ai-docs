@@ -132,7 +132,6 @@ ai_search.add_index(conn_id, "<your-index-name>")
 
 ### Step 4: Create an agent with the Azure AI Search tool enabled
 
-# Create agent with AI search tool
 ```python
 agent = project_client.agents.create_agent(
     model="gpt-4o-mini",
