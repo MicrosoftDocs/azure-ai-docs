@@ -31,7 +31,7 @@ Use an existing Azure AI Search index with the agent's Azure AI Search tool.
 <br>
 
 **Index with semantic configuration**
-- By default, the Azure AI Search tool can uses semantic or hybrid + semantic search on all text fields.
+- By default, the Azure AI Search tool can use semantic or hybrid + semantic search on all text fields.
 
 ## File Types
 The Azure AI Search tool currently only supports indexes with unstructured data. If your index contains structured data, we can't guarantee the quality of the search results.
@@ -40,7 +40,7 @@ The Azure AI Search tool currently only supports indexes with unstructured data.
 
 ::: zone pivot="setup"
 ## Setup: Create an agent that can use an existing Azure AI Search index
-#### 1. Existing Azure AI Search index
+#### 1. Prerequisite: Have an existing Azure AI Search index
 A prerequisite of using the Azure AI Search tool is to have an existing Azure AI Search index. If you don't have an existing index, you can create one in the Azure portal or via REST API.
 -  [Quickstart: Create a vector index using the Azure portal](../../../../search/search-get-started-portal-import-vectors.md)
 - [Quickstart: Create a vector index using REST API](../../../../search/search-get-started-vector.md)
@@ -53,20 +53,26 @@ A prerequisite of using the Azure AI Search tool is to have an existing Azure AI
 #### 3. Create a project connection to the Azure AI Search resource with the index you want to use
 If you already connected the AI Search resource that contains the index you want to use to your project, skip this step.
 
-1. In the Azure portal, navigate to the AI Search resource that contains the index you want to use.
-2. Make sure your ACS resource is set to **Both** API key and Role-based access control.
+1. Access your Azure AI Search resource
+    - In the Azure portal, navigate to the AI Search resource that contains the index you want to use.
+     :::image type="content" source="../../media/tools/ai-search/connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../media/tools/ai-search/connection-endpoint.png":::
+
+2. From the left-hand navigation bar, scroll down to the Settings section and select **Keys**. Under the **API Access Control** section, ensure the option **Both** API key and Role-based access control is selected.
     :::image type="content" source="../../media/tools/ai-search/acs-azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search/acs-azure-portal.png":::
 
-3. In Azure AI Foundry, navigate to the project you created in the agent setup and Click on **Open in management center**.
+3. In Azure AI Foundry, navigate to the project you created in the agent setup. Click on **Open in management center**.
     :::image type="content" source="../../media/tools/ai-search/project-studio.png" alt-text="A screenshot of a project in Azure AI Foundry." lightbox="../../media/tools/ai-search/project-studio.png":::
-4. Click on the **Connections** tab.
-5. Click on **Add Connection**.
+
+4. Click on the **Connections** tab and select **Add Connection**.
  :::image type="content" source="../../media/tools/ai-search/project-connections-page.png" alt-text="A screenshot of the project connections page." lightbox="../../media/tools/ai-search/project-connections-page.png":::
-6. Select **Azure AI Search**.
+
+5. Select **Azure AI Search**.
  :::image type="content" source="../../media/tools/ai-search/select-acs.png" alt-text="A screenshot of the Azure AI Search connection type the user should select." lightbox="../../media/tools/ai-search/select-acs.png":::
-1. Select the Azure AI Search resource that has the index you want to use and fill in the required fields. Both Managed Identity and Key-based authentication are supported. Once all the fields are filled in, click **Add connection**.
+
+6. Provide the required connection details for the Azure AI Search resource you want to use. Both Managed Identity and Key-based authentication are supported. Once all the fields are filled in, click **Add connection**.
 :::image type="content" source="../../media/tools/ai-search/acs-connection2.png" alt-text="A screenshot the required fields to add a new Azure AI Search connection." lightbox="../../media/tools/ai-search/acs-connection2.png":::
-1. Verify that the connection was successfully created.
+
+7. Verify that the connection was successfully created and now appears in the project's Connections tab.
 :::image type="content" source="../../media/tools/ai-search/success-acs-connection.png" alt-text="A screenshot of the project connections page with a new Azure AI Search connection added." lightbox="../../media/tools/ai-search/success-acs-connection.png":::
 ::: zone-end
 
