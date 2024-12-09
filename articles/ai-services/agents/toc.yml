@@ -60,10 +60,20 @@ items:
       href: /legal/cognitive-services/openai/customer-copyright-commitment?context=/azure/ai-services/agents/context/context
 - name: Reference
   items:
-    - name: C#
-      href: /dotnet/api/overview/azure/ai.projects-readme?context=/azure/ai-services/agents/context/context
-    - name: Python
-      href: /python/api/overview/azure/ai-projects-readme?context=/azure/ai-services/agents/context/context
+    - name: SDK
+      items:
+      - name: Azure SDK
+        items:
+        - name: C#
+          href: /dotnet/api/overview/azure/ai.projects-readme?context=/azure/ai-services/agents/context/context
+        - name: Python
+          href: /python/api/overview/azure/ai-projects-readme?context=/azure/ai-services/agents/context/context
+      - name: OpenAI SDK
+        items:
+        - name: C#
+          href: https://github.com/openai/openai-dotnet/blob/main/README.md
+        - name: Python
+          href: https://github.com/openai/openai-python/blob/main/README.md
 - name: Resources
   items: 
     - name: Support and help options
