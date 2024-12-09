@@ -73,10 +73,6 @@ If you already connected the AI Search resource that contains the index you want
 :::image type="content" source="../../media/tools/ai-search/acs-connection2.png" alt-text="A screenshot the required fields to add a new Azure AI Search connection." lightbox="../../media/tools/ai-search/acs-connection2.png":::
 
 7. Verify that the connection was successfully created and now appears in the project's Connections tab.
-:::image type="content" source="../../media/tools/ai-search/success-acs-connection.png" alt-text="A screenshot of the project connections page with a new Azure AI Search connection added." lightbox="../../media/tools/ai-search/success-acs-connection.png":::
-::: zone-end
-
-::: zone pivot="code-examples"
 
 ## Quickstart – Use an existing Azure AI Search index with the Azure AI Search tool
 
