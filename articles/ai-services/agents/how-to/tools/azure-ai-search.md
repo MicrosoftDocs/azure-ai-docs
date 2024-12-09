@@ -42,8 +42,8 @@ The Azure AI Search tool currently only supports indexes with unstructured data.
 ## Setup: Create an agent that can use an existing Azure AI Search index
 #### 1. Existing Azure AI Search index
 A prerequisite of using the Azure AI Search tool is to have an existing Azure AI Search index. If you don't have an existing index, you can create one in the Azure portal or via REST API.
--  [Quickstart: Create a vector index using the Azure portal](articles/search/search-get-started-portal-import-vectors.md)
-- [Quickstart: Create a vector index using REST API](articles/search/search-get-started-vector.md)
+-  [Quickstart: Create a vector index using the Azure portal](../../../../search/search-get-started-portal-import-vectors.md)
+- [Quickstart: Create a vector index using REST API](../../../../search/search-get-started-vector.md)
 #### 2. Complete the agent setup
 - **Option 1: Standard Agent Setup using existing AI Search resource** If you want your agent to use an existing AI Search resource to create new indexes or bring existing ones you should use the [standard agent setup and add your AI Search resource ID](../../quickstart.md). 
 - You can provide your Azure AI Search resource ID in the bicep file. Your resource ID should be in the format: `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}`.
