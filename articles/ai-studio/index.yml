@@ -1,7 +1,7 @@
 ### YamlMime:Landing
 
 title: Azure AI Foundry documentation # < 60 chars
-summary:  Build cutting-edge, market-ready, responsible applications for your organization with AI.
+summary:  Safely design, customize, and manage AI applications and agents at scale.
 metadata:
   title: Azure AI Foundry documentation
   description: Azure AI Foundry helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and pre-built and customizable APIs and models. Example applications include generative AI, natural language processing for conversations, search, monitoring, translation, speech, vision, and decision-making.
