@@ -1,5 +1,5 @@
 ---
-title: Shpae search results
+title: Shape search results
 titleSuffix: Azure AI Search
 description: Modify search result composition, get a document count, sort results, and add content navigation to search results in Azure AI Search.
 
@@ -10,25 +10,28 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 12/06/2024
+ms.date: 12/09/2024
 ---
 
-# Shape search results and modify search results composition
+# Shape search results or modify search results composition
 
-This article explains search results composition in Azure AI Search and how to modify results for your scenarios. Search results are returned in  a query response. The structure of a response is determined by parameters in the query itself.
+This article explains search results composition in Azure AI Search and how to work with results in your apps. Search results are returned in a query response. The structure of a response is determined by parameters in the query itself.
 
-Search results include top-level fields such as count and semantic ranking-related elements such as `answers`, but the matching documents are a values array.
+Search results include top-level fields such as count and optional semantic ranking-related elements such as `answers`, but most of the response consists of matching documents in a values array.
 
 For search results composition, parameters on the query determine:
 
 + Number of matches found in the index (`count`)
-+ Number of matches returned in the response (50 by default, through `top`) or per page (`skip` and `top`)
++ Number of matches returned in the response (50 by default, configurable through `top`) or per page (`skip` and `top`)
++ A search score for each result, used for ranking (`@search.score`)
 + Fields included in search results (`select`)
-+ Sort order (`orderby`)
++ Sort logic (`orderby`)
 + Highlighting of terms within a result, matching on either the whole or partial term in the body
-+ Whether elements from the semantic ranker are included in the response (semantic ranking is optional)
++ Optional elements from the semantic ranker (`answers` at the top, `captions` for each match)
 
 ## Clients and APIs for defining the query response
+
+You can use the following clients to configure a query response:
 
 + [Search Explorer](search-explorer.md) in the Azure portal, using JSON view so that you can specify any supported parameter
 + [Documents - POST (REST APIs)](/rest/api/searchservice/documents/search-post)
@@ -39,7 +42,7 @@ For search results composition, parameters on the query determine:
 
 ## Result composition
 
-Results are tabular, composed of fields of either all `retrievable` fields, or limited to just those fields specified in the `select` parameter. Rows are the matching documents.
+Results are mostly tabular, composed of fields of either all `retrievable` fields, or limited to just those fields specified in the `select` parameter. Rows are the matching documents, typically ranked in order of relevance unless your query logic precludes relevance ranking.
 
 You can choose which fields are in search results. While a search document might have a large number of fields, typically only a few are needed to represent each document in results. On a query request, append `select=<field list>` to specify which `retrievable` fields should appear in the response.
 
@@ -64,7 +67,7 @@ Occasionally, query output isn't what you're expecting to see. For example, you 
 
 ## Counting matches
 
-The count parameter returns the number of documents in the index that are considered a match for the query. To return the count, add `$count=true` to the query request. There's no maximum value imposed by the search service. Depending on your query and the content of your documents, the count could be as high as every document in the index.
+The count parameter returns the number of documents in the index that are considered a match for the query. To return the count, add `count=true` to the query request. There's no maximum value imposed by the search service. Depending on your query and the content of your documents, the count could be as high as every document in the index.
 
 Count is accurate when the index is stable. If the system is actively adding, updating, or deleting documents, the count is approximate, excluding any documents that aren't fully indexed.
 
@@ -79,19 +82,47 @@ Count won't be affected by routine maintenance or other workloads on the search 
 
 ## Number of results in the response
 
-The maximum API limit is 1,000 documents. By default, the search engine returns up to the first 50 matches. 
+Azure AI Search uses server-side paging to prevent queries from retrieving too many documents at once. Query parameters that determine the number of results in a response are `top` and `skip`. `top` refers to the number of search results in a page. 
 
-The top 50 are determined by search score, assuming the query is full text search or semantic. Otherwise, the top 50 are an arbitrary order for exact match queries (where uniform "@searchScore=1.0" indicates arbitrary ranking).
+The default page size is 50, while the maximum page size is 1,000. If you specify a value greater than 1,000 and there are more than 1,000 results found in your index, only the first 1,000 results are returned.
 
-Set `top` to override the default of 50, returning as many as 1,000 documents in the query response. In newer preview APIs, if you're using a hybrid query, you can [specify maxTextRecallSize](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode-preview) to return up to 10,000 documents.
+If the number of matches exceed the page size, the response includes information to retrieve the next page of results. For example:
 
-To control the paging of all documents returned in a result set, add `top` and `$skip` parameters to a GET request, or `top` and `skip` to a POST request. The following list explains the logic.
+```json
+"@odata.nextLink": "https://contoso-search-eastus.search.windows.net/indexes/realestate-us-sample-index/docs/search?api-version=2024-07-01"
+```
 
-+ Return the first set of 15 matching documents plus a count of total matches: `GET /indexes/<INDEX-NAME>/docs?search=<QUERY STRING>&$top=15&$skip=0&$count=true`
+The top 50 are determined by search score, assuming the query is full text search or semantic. Otherwise, the top 50 are an arbitrary order for exact match queries (where uniform `@search.score=1.0` indicates arbitrary ranking).
 
-+ Return the second set, skipping the first 15 to get the next 15: `$top=15&$skip=15`. Repeat for the third set of 15: `$top=15&$skip=30`
+Set `top` to override the default of 50. In newer preview APIs, if you're using a hybrid query, you can [specify maxTextRecallSize](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode-preview) to return up to 10,000 documents.
 
-The results of paginated queries aren't guaranteed to be stable if the underlying index is changing. Paging changes the value of `$skip` for each page, but each query is independent and operates on the current view of the data as it exists in the index at query time (in other words, there's no caching or snapshot of results, such as those found in a general purpose database).
+To control the paging of all documents returned in a result set, use `top` and `skip` together. This query returns the first set of 15 matching documents plus a count of total matches.
+
+```http
+POST https://contoso-search-eastus.search.windows.net/indexes/realestate-us-sample-index/docs/search?api-version=2024-07-01
+
+{
+    "search": "condos with a view",
+    "count": true,
+    "top": 15,
+    "skip": 0
+}
+```
+
+To return the second set, skip the first 15 to get the next 15:
+
+```http
+POST https://contoso-search-eastus.search.windows.net/indexes/realestate-us-sample-index/docs/search?api-version=2024-07-01
+
+{
+    "search": "condos with a view",
+    "count": true,
+    "top": 15,
+    "skip": 15
+}
+```
+
+The results of paginated queries aren't guaranteed to be stable if the underlying index is changing. Paging changes the value of `skip` for each page, but each query is independent and operates on the current view of the data as it exists in the index at query time (in other words, there's no caching or snapshot of results, such as those found in a general purpose database).
 
 Following is an example of how you might get duplicates. Assume an index with four documents:
 
@@ -120,7 +151,7 @@ Notice that document 2 is fetched twice. This is because the new document 5 has 
 
 ### Paging through a large number of results
 
-Using `top` and `skip` allows a search query to page through 100,000 results, but what if results are larger than 100,000? To page through a response this large, use a [sort order](search-query-odata-orderby.md) and [range filter](search-query-odata-comparison-operators.md) as a workaround for `skip`. 
+An alternative technique for paging is to use a [sort order](search-query-odata-orderby.md) and [range filter](search-query-odata-comparison-operators.md) as a workaround for `skip`.
 
 In this workaround, sort and filter are applied to a document ID field or another field that is unique for each document. The unique field must have `filterable` and `sortable` attribution in the search index.
 
@@ -172,23 +203,23 @@ You can also boost any matches found in specific fields by adding a scoring prof
 
 ### Order by search score
 
-For full text search queries, results are automatically [ranked by a search score](index-similarity-and-scoring.md), calculated based on term frequency and proximity in a document (derived from [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf)), with higher scores going to documents having more or stronger matches on a search term.
+For full text search queries, results are automatically [ranked by a search score](index-similarity-and-scoring.md) using a BM25 algorithm, calculated based on term frequency, document length, and average document length.
 
-The "@search.score" range is either unbounded, or 0 up to (but not including) 1.00 on older services. 
+The `@search.score` range is either unbounded, or 0 up to (but not including) 1.00 on older services. 
 
-For either algorithm, a "@search.score" equal to 1.00 indicates an unscored or unranked result set, where the 1.0 score is uniform across all results. Unscored results occur when the query form is fuzzy search, wildcard or regex queries, or an empty search (`search=*`). If you need to impose a ranking structure over unscored results, consider an **`$orderby`** expression to achieve that objective.
+For either algorithm, a `@search.score` equal to 1.00 indicates an unscored or unranked result set, where the 1.0 score is uniform across all results. Unscored results occur when the query form is fuzzy search, wildcard or regex queries, or an empty search (`search=*`). If you need to impose a ranking structure over unscored results, consider an `orderby` expression to achieve that objective.
 
 ### Order by the semantic reranker
 
-If you're using [semantic ranker](semantic-search-overview.md), the "@search.rerankerScore" determines the sort order of your results. 
+If you're using [semantic ranker](semantic-search-overview.md), the `@search.rerankerScore` determines the sort order of your results.
 
-The "@search.rerankerScore" range is 1 to 4.00, where a higher score indicates a stronger semantic match.
+The `@search.rerankerScore` range is 1 to 4.00, where a higher score indicates a stronger semantic match.
 
-### Order with $orderby
+### Order with orderby
 
-If consistent ordering is an application requirement, you can define an [**`$orderby`** expression](query-odata-filter-orderby-syntax.md) on a field. Only fields that are indexed as "sortable" can be used to order results.
+If consistent ordering is an application requirement, you can define an [`orderby` expression](query-odata-filter-orderby-syntax.md) on a field. Only fields that are indexed as "sortable" can be used to order results.
 
-Fields commonly used in an **`$orderby`** include rating, date, and location. Filtering by location requires that the filter expression calls the [**`geo.distance()` function**](search-query-odata-geo-spatial-functions.md?#order-by-examples), in addition to the field name.
+Fields commonly used in an `orderby` include rating, date, and location. Filtering by location requires that the filter expression calls the [`geo.distance()` function](search-query-odata-geo-spatial-functions.md?#order-by-examples), in addition to the field name.
 
 Numeric fields (`Edm.Double`, `Edm.Int32`, `Edm.Int64`) are sorted in numeric order (for example, 1, 2, 10, 11, 20).
 
@@ -215,7 +246,7 @@ Hit highlighting instructions are provided on the [query request](/rest/api/sear
 ### Requirements for hit highlighting
 
 + Fields must be `Edm.String` or `Collection(Edm.String)`
-+ Fields must be attributed at **searchable**
++ Fields must be attributed at `searchable`
 
 ### Specify highlighting in the request
 
@@ -237,7 +268,7 @@ By default, Azure AI Search returns up to five highlights per field. You can adj
 
 ### Highlighted results
 
-When highlighting is added to the query, the response includes an "@search.highlights" for each result so that your application code can target that structure. The list of fields specified for "highlight" are included in the response.
+When highlighting is added to the query, the response includes an `@search.highlights` for each result so that your application code can target that structure. The list of fields specified for "highlight" are included in the response.
 
 In a keyword search, each term is scanned for independently. A query for "divine secrets" returns matches on any document containing either term.
 
@@ -308,7 +339,7 @@ POST /indexes/good-books/docs/search?api-version=2024-07-01
     }
 ```
 
-Because the criteria now have both terms, only one match is found in the search index. The response to the above query looks like this:
+Because the criteria now have both terms, only one match is found in the search index. The response to the previous query looks like this:
 
 ```json
 {
@@ -341,7 +372,7 @@ For the following examples, assume a query string that includes the quote-enclos
      ]
   ```
 
-For search services created after July 2020, only phrases that match the full phrase query will be returned in "@search.highlights":
+For search services created after July 2020, only phrases that match the full phrase query are returned in `@search.highlights`:
 
   ```json
   "@search.highlights": {
@@ -354,7 +385,7 @@ For search services created after July 2020, only phrases that match the full ph
 
 To quickly generate a search page for your client, consider these options:
 
-+ [Create demo app](search-create-app-portal.md), in the Azure portal, creates an HTML page with a search bar, faceted navigation, and results area that includes images.
++ [Create demo app](search-create-app-portal.md), in the Azure portal, creates an HTML page with a search bar, faceted navigation, and a thumbnail area if you have images.
 
 + [Add search to an ASP.NET Core (MVC) app](tutorial-csharp-create-mvc-app.md) is a tutorial and code sample that builds a functional client.
 
