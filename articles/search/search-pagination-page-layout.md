@@ -268,7 +268,7 @@ By default, Azure AI Search returns up to five highlights per field. You can adj
 
 ### Highlighted results
 
-When highlighting is added to the query, the response includes an "@search.highlights" for each result so that your application code can target that structure. The list of fields specified for "highlight" are included in the response.
+When highlighting is added to the query, the response includes an `@search.highlights` for each result so that your application code can target that structure. The list of fields specified for "highlight" are included in the response.
 
 In a keyword search, each term is scanned for independently. A query for "divine secrets" returns matches on any document containing either term.
 
@@ -372,7 +372,7 @@ For the following examples, assume a query string that includes the quote-enclos
      ]
   ```
 
-For search services created after July 2020, only phrases that match the full phrase query are returned in "@search.highlights":
+For search services created after July 2020, only phrases that match the full phrase query are returned in `@search.highlights`:
 
   ```json
   "@search.highlights": {
