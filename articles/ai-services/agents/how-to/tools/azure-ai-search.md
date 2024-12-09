@@ -31,10 +31,7 @@ Use an existing Azure AI Search index with the agent's Azure AI Search tool.
 <br>
 
 **Index with semantic configuration**
-- By default, the Azure AI Search tool can use semantic or hybrid + semantic search on all text fields.
-
-## File Types
-The Azure AI Search tool currently only supports indexes with unstructured data. If your index contains structured data, we can't guarantee the quality of the search results.
+- By default, the Azure AI Search tool runs hybrid + semantic search on all text fields.
 
 ::: zone-end
 
