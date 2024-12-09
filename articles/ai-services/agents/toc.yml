@@ -30,8 +30,6 @@ items:
         href: how-to/tools/overview.md
       - name: Knowledge tools
         items:
-        - name: Code interpreter
-          href: how-to/tools/code-interpreter.md
         - name: Grounding with Bing Search
           href: how-to/tools/bing-grounding.md
         - name: File search
@@ -44,6 +42,8 @@ items:
           href: how-to/tools/function-calling.md
         - name: Logic app function calling
           href: how-to/tools/agent-logic-apps.md
+        - name: Code interpreter
+          href: how-to/tools/code-interpreter.md
 - name: Responsible AI
   items:
     - name: Overview
