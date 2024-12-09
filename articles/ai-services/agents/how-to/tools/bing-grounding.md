@@ -308,4 +308,4 @@ foreach (ThreadMessage threadMessage in messages)
 
 ## Next steps
 
-[Learn how to use the code interpreter tool.](./code-interpreter.md)
+[See the full sample for Grounding with Bing Search.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_bing_grounding.py)
