@@ -18,7 +18,8 @@ zone_pivot_groups: selection-azure-ai-search
 
 Use an existing Azure AI Search index with the agent's Azure AI Search tool.
 
-> [!NOTE] Azure AI Search indexes must meet the following requirements:
+> [!NOTE] 
+> Azure AI Search indexes must meet the following requirements:
 > - The index must contain at least one searchable & retrievable text field (type Edm.String) 
 > - The index must contain at least one searchable vector field (type Collection(Edm.Single)) 
 > - The index must use a vector profile/integrated vectorization
@@ -40,8 +41,8 @@ The Azure AI Search tool currently only supports indexes with unstructured data.
 ## Setup: Create an agent that can use an existing Azure AI Search index
 #### 1. Existing Azure AI Search index
 A prerequisite of using the Azure AI Search tool is to have an existing Azure AI Search index. If you don't have an existing index, you can create one in the Azure portal or via REST API.
--  [Quickstart: Create a vector index using the Azure portal](../../../search/search-get-started-portal-import-vectors.md)
-- [Quickstart: Create a vector index using REST API](../../../search/search-get-started-vector.md)
+-  [Quickstart: Create a vector index using the Azure portal](articles/search/search-get-started-portal-import-vectors.md)
+- [Quickstart: Create a vector index using REST API](articles/search/search-get-started-vector.md)
 #### 2. Complete the agent setup
 - **Option 1: Standard Agent Setup using existing AI Search resource** If you want your agent to use an existing AI Search resource to create new indexes or bring existing ones you should use the [standard agent setup and add your AI Search resource ID](../../quickstart.md). 
 - You can provide your Azure AI Search resource ID in the bicep file. Your resource ID should be in the format: `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}`.
@@ -56,7 +57,7 @@ If you already connected the AI Search resource that contains the index you want
     :::image type="content" source="../../media/tools/ai-search/acs-azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search/acs-azure-portal.png":::
 
 3. In Azure AI Foundry, navigate to the project you created in the agent setup and Click on **Open in management center**.
-    :::image type="content" source="../../media/tools/ai-search/project-studio.png" alt-text="A screenshot of a porject in Azure AI Foundry." lightbox="../../media/tools/ai-search/project-studio.png":::
+    :::image type="content" source="../../media/tools/ai-search/project-studio.png" alt-text="A screenshot of a project in Azure AI Foundry." lightbox="../../media/tools/ai-search/project-studio.png":::
 4. Click on the **Connections** tab.
 5. Click on **Add Connection**.
  :::image type="content" source="../../media/tools/ai-search/project-connections-page.png" alt-text="A screenshot of the project connections page." lightbox="../../media/tools/ai-search/project-connections-page.png":::
@@ -75,7 +76,7 @@ If you already connected the AI Search resource that contains the index you want
 This quickstart shows how to use an existing Azure AI Search index with the Azure AI Search tool.
 
 ### Prerequisites
-1. Complete the [Azure AI Search tool setup](#setup-create-an-agent-that-can-use-an-existing-azure-ai-search-index).
+1. Complete the [Azure AI Search tool setup](?pivot=setup).
 
 ### Step 1: Create an Azure AI Client
 
@@ -114,7 +115,7 @@ for conn in conn_list:
 ```
 The second way to get the connection ID is to navigate to the project in the Azure AI Foundry and click on the **Connected resources** tab and then select your Azure AI Search resource.
 :::image type="content" source="../../media/tools/ai-search/success-acs-connection.png" alt-text="A screenshot of an AI Search resource connection page in Azure AI Foundry." lightbox="../../media/tools/ai-search/success-acs-connection.png":::
-In the URL, you see the wsid=/subscription/your-subscription-id..., this is the connection ID you need to use. this is the connection ID you need to use. Copy everything that comes after wsid=.
+In the URL, you see the wsid=/subscription/your-subscription-id..., this is the connection ID you need to use. Copy everything that comes after wsid=.
 :::image type="content" source="../../media/tools/ai-search/connection-id.png" alt-text="A screenshot of an AI Search resource connection and how to copy the connection ID." lightbox="../../media/tools/ai-search/connection-id.png":::
 
 ### Step 3: Configure the Azure AI Search tool
