@@ -34,9 +34,78 @@ work together, generate client code, create tests, apply design standards, and m
 
 ::: zone pivot="code-example"
 ## Step 1: Create an agent with OpenAPI Spec tool
+Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+```python
+import os
+import jsonref
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects.models import OpenApiTool, OpenApiAnonymousAuthDetails
+
+
+# Create an Azure AI Client from a connection string, copied from your AI Studio project.
+# At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
+# Customer needs to login to Azure subscription via Azure CLI and set the environment variables
+
+project_client = AIProjectClient.from_connection_string(
+    credential=DefaultAzureCredential(),
+    conn_str=os.environ["PROJECT_CONNECTION_STRING"],
+)
+```
 
 ## Step 2: Enable the OpenAPI Spec tool
+You may want to store the OpenAPI specification in another file and import the content to initialize the tool. Please note the sample code is using `anonymous` as authentication type.
+```python
+with open('./weather_openapi.json', 'r') as f:
+    openapi_spec = jsonref.loads(f.read())
+
+# Create Auth object for the OpenApiTool (note that connection or managed identity auth setup requires additional setup in Azure)
+auth = OpenApiAnonymousAuthDetails()
+
+# Initialize agent OpenApi tool using the read in OpenAPI spec
+openapi = OpenApiTool(name="get_weather", spec=openapi_spec, description="Retrieve weather information for a location", auth=auth)
+```
 
 ## Step 3: Create a thread
+```python
+# Create agent with OpenApi tool and process assistant run
+with project_client:
+    agent = project_client.agents.create_agent(
+        model="gpt-4o-mini",
+        name="my-assistant",
+        instructions="You are a helpful assistant",
+        tools=openapi.definitions
+    )
+    print(f"Created agent, ID: {agent.id}")
+
+    # Create thread for communication
+    thread = project_client.agents.create_thread()
+    print(f"Created thread, ID: {thread.id}")
+```
 
 ## Step 4: Create a run and check the output
+Create a run and observe that the model uses the OpenAPI Spec tool to provide a response to the user's question.
+```python
+# Create message to thread
+    message = project_client.agents.create_message(
+        thread_id=thread.id,
+        role="user",
+        content="What's the weather in Seattle?",
+    )
+    print(f"Created message, ID: {message.id}")
+
+    # Create and process agent run in thread with tools
+    run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
+    print(f"Run finished with status: {run.status}")
+
+    if run.status == "failed":
+        print(f"Run failed: {run.last_error}")
+
+    # Delete the assistant when done
+    project_client.agents.delete_agent(agent.id)
+    print("Deleted agent")
+
+    # Fetch and log all messages
+    messages = project_client.agents.list_messages(thread_id=thread.id)
+    print(f"Messages: {messages}")
+```
