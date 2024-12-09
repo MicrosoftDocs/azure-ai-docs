@@ -13,7 +13,7 @@ recommendations: false
 zone_pivot_groups: selection-azure-ai-search
 ---
 
-# BYO AI Search index with the Azure AI Search tool
+# Use an existing AI Search index with the Azure AI Search tool
 ::: zone pivot="overview"
 
 Use an existing Azure AI Search index with the agent's Azure AI Search tool.
