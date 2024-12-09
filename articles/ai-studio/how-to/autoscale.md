@@ -16,7 +16,7 @@ author: Blackmist
 
 # Autoscale Azure AI limits
 
-This article provides guidance for how you can manage and increase quotas for Azure AI serevices resources with Azure AI Foundry.
+This article provides guidance for how you can manage and increase quotas for Azure AI services resources with Azure AI Foundry.
 
 ## Overview
 
@@ -24,7 +24,7 @@ Each Azure AI services resource has a preconfigured static call rate (transactio
 
 ## Get started with the autoscale feature
 
-This feature is disabled by default for every new resource. Follow these instructions to enable it.
+This feature is disabled by default for every new resource. To enable it, use the following information.
 
 #### [Azure portal](#tab/portal)
 
