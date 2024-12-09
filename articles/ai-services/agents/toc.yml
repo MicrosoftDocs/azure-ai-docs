@@ -11,7 +11,7 @@ items:
     - name: Model and region support
       href: ./concepts/model-region-support.md
     - name: Pricing
-      href: https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/
+      href: https://azure.microsoft.com/pricing/details/ai-studio/
     - name: FAQ
       href: faq.yml
 - name: Quickstart
