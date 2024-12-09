@@ -29,4 +29,11 @@ The following section will show you how to set up the required resources for get
 | Deploy a basic agent setup that uses Managed Identity for authentication. | [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.azure-ai-agent-service%2Fbasic-agent-identity%2Fazuredeploy.json)
 | Deploy a standard agent setup that uses Managed Identity for authentication. | [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Frefs%2Fheads%2Fmaster%2Fquickstarts%2Fmicrosoft.azure-ai-agent-service%2Fstandard-agent%2Fazuredeploy.json)
 
-Resources for the AI hub, project, storage account, and AI Services that are needed to create agents will be created for you. The AI Services account will be connected to your project/hub and a gpt-4o-mini model will be deployed in the eastus region. A Microsoft-managed key vault will be used by default.
+## Basic agent setup architecture
+:::image type="content" source="../media/quickstart/basic-agent-architecture.png" alt-text="An architecture diagram for basic agent setup." lightbox="../media/quickstart/basic-agent-architecture.png":::
+
+Resources for the hub, project, storage account, and AI Services will be created for you. The AI Services account will be connected to your project/hub and a gpt-4o-mini model will be deployed in the eastus region. A Microsoft-managed key vault will be used by default.
+## Standard agent setup architecture
+:::image type="content" source="../media/quickstart/standard-agent-architecture.png" alt-text="An architecture digram for standard agent setup." lightbox="../media/quickstart/standard-agent-architecture.png":::
+
+Resources for the AI hub, AI project, key vault, storage account, AI Services, and AI Search will be created for you. The AI Services, AI Search, key vault, and storage account will be connected to your project and hub. A gpt-4o-mini model will be deloyed in eastus region using the AI Services resource OpenAI endpoint.

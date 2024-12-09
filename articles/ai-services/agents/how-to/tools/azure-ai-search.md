@@ -89,7 +89,7 @@ This quickstart shows how to use an existing Azure AI Search index with the Azur
 1. Complete the [Azure AI Search tool setup](?pivot=setup).
 
 ### Step 1: Create an Azure AI Client
-
+First, create an Azure AI Client using the connection string of your project.
 ```python
 import os
 from azure.ai.projects import AIProjectClient
@@ -97,7 +97,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects.models import AzureAISearchTool
 
 # Create an Azure AI Client from a connection string, copied from your AI Studio project.
-# At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
+# At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
 # HostName can be found by navigating to your discovery_url and removing the leading "https://" and trailing "/discovery" 
 # To find your discovery_url, run the CLI command: az ml workspace show -n {project_name} --resource-group {resource_group_name} --query discovery_url
 # Project Connection example: eastus.api.azureml.ms;12345678-abcd-1234-9fc6-62780b3d3e05;my-resource-group;my-hub-name
@@ -154,8 +154,8 @@ agent = project_client.agents.create_agent(
 print(f"Created agent, ID: {agent.id}")
 ```
 
-### Step 5: Ask the Agent questions about data in the index
-For example, assuming the index contains health care plan information.
+### Step 5: Ask the agent questions about data in the index
+Now that the agent is created, ask it questions about the data in your Azure AI Search index. The example assumes your Azure AI Search index contains information about health care plans.
 ```python
 # Create a thread
 thread = project_client.agents.create_thread()
