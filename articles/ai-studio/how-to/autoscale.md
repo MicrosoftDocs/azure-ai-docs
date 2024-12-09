@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 12/09/2024
 ms.reviewer: siarora
 ms.author: larryfr
 author: Blackmist
@@ -16,9 +16,7 @@ author: Blackmist
 
 # Autoscale Azure AI limits
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
-
-This article provides guidance for how you can manage and increase quotas for resources with Azure AI Foundry.
+This article provides guidance for how you can manage and increase quotas for Azure AI services resources with Azure AI Foundry.
 
 ## Overview
 
@@ -26,7 +24,7 @@ Each Azure AI services resource has a preconfigured static call rate (transactio
 
 ## Get started with the autoscale feature
 
-This feature is disabled by default for every new resource. Follow these instructions to enable it.
+This feature is disabled by default for every new resource. To enable it, use the following information.
 
 #### [Azure portal](#tab/portal)
 
@@ -61,7 +59,7 @@ By default, Azure AI services resources have a default rate limit of 10 TPS. If 
 
 ### Does autoscale increase my Azure spend? 
 
-Azure AI services pricing hasn't changed and can be accessed [here](https://azure.microsoft.com/pricing/details/cognitive-services/). We'll only bill for successful calls made to Azure AI services APIs. However, increased call rate limits mean more transactions are completed, and you might receive a higher bill.
+Azure AI services pricing hasn't changed and can be viewed from the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/). We'll only bill for successful calls made to Azure AI services APIs. However, increased call rate limits mean more transactions are completed, and you might receive a higher bill.
 
 Be aware of potential errors and their consequences. If a bug in your client application causes it to call the service hundreds of times per second, that would likely lead to a higher bill, whereas the cost would be much more limited under a fixed rate limit. Errors of this kind are your responsibility. We highly recommend that you perform development and client update tests against a resource with a fixed rate limit prior to using the autoscale feature.
 
