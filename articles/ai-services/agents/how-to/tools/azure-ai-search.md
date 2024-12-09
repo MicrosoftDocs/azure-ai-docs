@@ -131,7 +131,7 @@ ai_search.add_index(conn_id, "<your-index-name>")
 ```
 
 ### Step 4: Create an agent with the Azure AI Search tool enabled
-
+Change the model to the one you have deployed in your workspace. You can find the model name in the Azure AI Foundry under the **Models** tab. You can also change the name and instructions of the agent to suit your needs.
 ```python
 agent = project_client.agents.create_agent(
     model="gpt-4o-mini",
