@@ -1865,7 +1865,7 @@ Access the following web-based authoring tools from the studio:
 
 | Web-based tool | Description |
 |---|---|
-| Azure Machine Learning Studio Notebooks | First in-class authoring for notebook files and support all operation available in the Azure Machine Learning Python SDK. |
+| Azure Machine Learning studio Notebooks | First in-class authoring for notebook files and support all operation available in the Azure Machine Learning Python SDK. |
 
 ## 2020-04-27
 

@@ -23,14 +23,14 @@ sections:
       - question: |
           How do we get started with Content Safety? First steps?
         answer: |
-          For references on how to start submitting text and images to Azure AI Content Safety, and view model responses and results, visit our [AI Studio-Content Safety Try it out](https://ai.azure.com/explore/contentsafety) page. You can use the sidebar to navigate through the Safety+ Security page. 
+          For references on how to start submitting text and images to Azure AI Content Safety, and view model responses and results, visit the [Azure AI Foundry portal](https://ai.azure.com/explore/contentsafety) page. You can use the sidebar to navigate through the Safety+ Security page. 
       - question: |
           What types of media can Azure AI Content Safety classify/moderate? 
         answer: |
           Our content harm classification models currently support the moderation of text, images, and multimodal (images with text + OCR). The protected material, prompt shields, and groundedness detection models work with text content. 
  
       - question: |
-          How are Azure AI Content Safety’s models priced?
+          How are Azure AI Content Safety's models priced?
         answer: |
           A: We generally charge by volume. For example, the Image API is priced based on the number of images submitted. The Text API is billed for the number of text records submitted to the service. However, each model has its own corresponding rate. See the Azure [pricing page](https://aka.ms/content-safety-pricing) for more information about pricing tiers. 
       - question: |

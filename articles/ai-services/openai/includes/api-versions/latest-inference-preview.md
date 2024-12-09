@@ -4638,7 +4638,7 @@ Represents a completion response from the API. Note: both the streamed and non-s
 |------|------|-------------|----------|---------|
 | description | string | A description of what the function does, used by the model to choose when and how to call the function. | No |  |
 | name | string | The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. | Yes |  |
-| parameters | [FunctionParameters](#functionparameters) | The parameters the functions accepts, described as a JSON Schema object. See the guide](/azure/ai-services/openai/how-to/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. <br><br>Omitting `parameters` defines a function with an empty parameter list. | No |  |
+| parameters | [FunctionParameters](#functionparameters) | The parameters the functions accepts, described as a JSON Schema object. [See the guide](/azure/ai-services/openai/how-to/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. <br><br>Omitting `parameters` defines a function with an empty parameter list. | No |  |
 
 
 ### chatCompletionFunctionCallOption
@@ -5296,7 +5296,7 @@ on an Azure OpenAI endpoint call for embeddings.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | type | [onYourDataVectorizationSourceType](#onyourdatavectorizationsourcetype) | Represents the available sources Azure OpenAI On Your Data can use to configure vectorization of data for use with<br>vector search. | Yes |  |
-| endpoint | string | Specifies the resource endpoint URL from which embeddings should be retrieved. It should be in the format of https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT_NAME/embeddings. The api-version query parameter isn't allowed. | No |  |
+| endpoint | string | Specifies the resource endpoint URL from which embeddings should be retrieved. It should be in the format of `https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT_NAME/embeddings`. The api-version query parameter isn't allowed. | No |  |
 | authentication | [onYourDataApiKeyAuthenticationOptions](#onyourdataapikeyauthenticationoptions) or [onYourDataAccessTokenAuthenticationOptions](#onyourdataaccesstokenauthenticationoptions) |  | No |  |
 | dimensions | integer | The number of dimensions the embeddings should have. Only supported in `text-embedding-3` and later models. | No |  |
 

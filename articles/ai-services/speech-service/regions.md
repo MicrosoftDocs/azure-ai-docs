@@ -51,7 +51,7 @@ The following regions are supported for Speech service features such as speech t
 | Europe        | UK South             | `uksouth` <sup>1,2,4,7</sup>            |
 | Middle East   | UAE North            | `uaenorth` <sup>6</sup>                 |
 | South America | Brazil South         | `brazilsouth` <sup>6,12</sup>           |
-| Qatar         | Qatar Central        | `qatarcentral`<sup>3,8</sup>            |
+| Qatar         | Qatar Central        | `qatarcentral`<sup>3</sup>            |
 | US            | Central US           | `centralus`                             |
 | US            | East US              | `eastus` <sup>1,2,4,5,7,9,11,12</sup>   |
 | US            | East US 2            | `eastus2` <sup>1,2,4,5,10,12</sup>         |

@@ -1,7 +1,7 @@
 ---
-title: 'Customize a model with Azure OpenAI Service and Azure AI Studio'
+title: 'Customize a model with Azure OpenAI Service and Azure AI Foundry'
 titleSuffix: Azure OpenAI
-description: Learn how to create your own custom model with Azure OpenAI Service by using the Azure AI Studio.
+description: Learn how to create your own custom model with Azure OpenAI Service by using the Azure AI Foundry portal.
 #services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
@@ -17,7 +17,7 @@ ms.author: mbullwin
 - An Azure subscription. <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An Azure OpenAI resource that's located in a region that supports fine-tuning of the Azure OpenAI model. Check the [Model summary table and region availability](../concepts/models.md#fine-tuning-models) for the list of available models by region and supported functionality. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 - Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
-- If you do not already have access to view quota, and deploy models in Azure AI Studio you will require [additional permissions](../how-to/role-based-access-control.md).  
+- If you do not already have access to view quota, and deploy models in Azure AI Foundry portal you will require [additional permissions](../how-to/role-based-access-control.md).  
 
 ## Models
 
@@ -40,12 +40,12 @@ Or you can fine tune a previously fine-tuned model, formatted as base-model.ft-{
 Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
 
 
-## Review the workflow for Azure AI Studio
+## Review the workflow for Azure AI Foundry
 
-Take a moment to review the fine-tuning workflow for using Azure AI Studio:
+Take a moment to review the fine-tuning workflow for using Azure AI Foundry:
 
 1. Prepare your training and validation data.
-1. Use the **Create custom model** wizard in Azure AI Studio to train your custom model.
+1. Use the **Create custom model** wizard in Azure AI Foundry portal to train your custom model.
     1. [Select a base model](#select-the-base-model).
     1. [Choose your training data](#choose-your-training-data).
     1. Optionally, [choose your validation data](#choose-your-validation-data).
@@ -76,7 +76,7 @@ If you would like a step-by-step walk-through of fine-tuning a `gpt-4o-mini` (20
 {"messages": [{"role": "system", "content": "You are an Xbox customer support agent whose primary goal is to help users with issues they are experiencing with their Xbox devices. You are friendly and concise. You only provide factual answers to queries, and do not provide answers that are not related to Xbox."}, {"role": "user", "content": "I'm having trouble connecting my Xbox to the Wi-Fi."}, {"role": "assistant", "content": "No worries, let's go through the network settings on your Xbox. Can you please tell me what happens when you try to connect it to the Wi-Fi?"}]}
 ```
 
-## Multi-turn chat file format Azure OpenAI 
+### Multi-turn chat file format Azure OpenAI 
 
 Multiple turns of a conversation in a single line of your jsonl training file is also supported. To skip fine-tuning on specific assistant messages add the optional `weight` key value pair. Currently `weight` can be set to 0 or 1.  
 
@@ -84,6 +84,12 @@ Multiple turns of a conversation in a single line of your jsonl training file is
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital of France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "Who wrote 'Romeo and Juliet'?"}, {"role": "assistant", "content": "William Shakespeare", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Oh, just some guy named William Shakespeare. Ever heard of him?", "weight": 1}]}
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "How far is the Moon from Earth?"}, {"role": "assistant", "content": "384,400 kilometers", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Around 384,400 kilometers. Give or take a few, like that really matters.", "weight": 1}]}
+```
+
+### Chat completions with vision
+
+```json
+{"messages": [{"role": "user", "content": [{"type": "text", "text": "What's in this image?"}, {"type": "image_url", "image_url": {"url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-ai-docs/main/articles/ai-services/openai/media/how-to/generated-seattle.png"}}]}, {"role": "assistant", "content": "The image appears to be a watercolor painting of a city skyline, featuring tall buildings and a recognizable structure often associated with Seattle, like the Space Needle. The artwork uses soft colors and brushstrokes to create a somewhat abstract and artistic representation of the cityscape."}]}
 ```
 
 In addition to the JSONL format, training and validation data files must be encoded in UTF-8 and include a byte-order mark (BOM). The file must be less than 512 MB in size.
@@ -144,13 +150,13 @@ After it guides you through the process of implementing suggested changes, the t
 
 ## Use the Create custom model wizard
 
-Azure AI Studio provides the **Create custom model** wizard, so you can interactively create and train a fine-tuned model for your Azure resource.
+Azure AI Foundry provides the **Create custom model** wizard, so you can interactively create and train a fine-tuned model for your Azure resource.
 
-1. Open Azure AI Studio at <a href="https://oai.azure.com/" target="_blank">https://oai.azure.com/</a> and sign in with credentials that have access to your Azure OpenAI resource. During the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
+1. Open Azure AI Foundry at <a href="https://oai.azure.com/" target="_blank">https://oai.azure.com/</a> and sign in with credentials that have access to your Azure OpenAI resource. During the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
 
-1. In Azure AI Studio, browse to the **Tools > Fine-tuning** pane, and select **Fine-tune model**.
+1. In Azure AI Foundry portal, browse to the **Tools > Fine-tuning** pane, and select **Fine-tune model**.
 
-   :::image type="content" source="../media/fine-tuning/studio-create-custom-model.png" alt-text="Screenshot that shows how to access the Create custom model wizard in Azure AI Studio." lightbox="../media/fine-tuning/studio-create-custom-model.png":::
+   :::image type="content" source="../media/fine-tuning/studio-create-custom-model.png" alt-text="Screenshot that shows how to access the Create custom model wizard in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-create-custom-model.png":::
 
 The **Create custom model** wizard opens.
 
@@ -179,7 +185,7 @@ For more information about our base models that can be fine-tuned, see [Models](
 
 The next step is to either choose existing prepared training data or upload new prepared training data to use when customizing your model. The **Training data** pane displays any existing, previously uploaded datasets and also provides options to upload new training data.
 
-:::image type="content" source="../media/fine-tuning/studio-training-data.png" alt-text="Screenshot of the Training data pane for the Create custom model wizard in Azure AI Studio." lightbox="../media/fine-tuning/studio-training-data.png":::
+:::image type="content" source="../media/fine-tuning/studio-training-data.png" alt-text="Screenshot of the Training data pane for the Create custom model wizard in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-training-data.png":::
 
 - If your training data is already uploaded to the service, select **Files from Azure OpenAI Connection**.
 
@@ -228,7 +234,7 @@ The next step provides options to configure the model to use validation data in 
 
 The **Validation data** pane displays any existing, previously uploaded training and validation datasets and provides options by which you can upload new validation data. 
 
-:::image type="content" source="../media/fine-tuning/studio-validation-data.png" alt-text="Screenshot of the Validation data pane for the Create custom model wizard in Azure AI Studio." lightbox="../media/fine-tuning/studio-validation-data.png":::
+:::image type="content" source="../media/fine-tuning/studio-validation-data.png" alt-text="Screenshot of the Validation data pane for the Create custom model wizard in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-validation-data.png":::
 
 - If your validation data is already uploaded to the service, select **Choose dataset**.
 
@@ -293,7 +299,7 @@ After you configure the advanced options, select **Next** to [review your choice
 
 The **Review** pane of the wizard displays information about your configuration choices.
 
-:::image type="content" source="../media/fine-tuning/studio-review.png" alt-text="Screenshot of the Review pane for the Create custom model wizard in Azure AI Studio." lightbox="../media/fine-tuning/studio-review.png":::
+:::image type="content" source="../media/fine-tuning/studio-review.png" alt-text="Screenshot of the Review pane for the Create custom model wizard in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-review.png":::
 
 If you're ready to train your model, select **Start Training job** to start the fine-tuning job and return to the **Models** pane.
 
@@ -301,7 +307,7 @@ If you're ready to train your model, select **Start Training job** to start the 
 
 The **Models** pane displays information about your custom model in the **Customized models** tab. The tab includes information about the status and job ID of the fine-tune job for your custom model. When the job completes, the tab displays the file ID of the result file. You might need to select **Refresh** in order to see an updated status for the model training job.
 
-:::image type="content" source="../media/fine-tuning/studio-models-job-running.png" alt-text="Screenshot of the Models pane from Azure AI Studio, with a custom model displayed." lightbox="../media/fine-tuning/studio-models-job-running.png":::
+:::image type="content" source="../media/fine-tuning/studio-models-job-running.png" alt-text="Screenshot of the Models pane from Azure AI Foundry, with a custom model displayed." lightbox="../media/fine-tuning/studio-models-job-running.png":::
 
 After you start a fine-tuning job, it can take some time to complete. Your job might be queued behind other jobs on the system. Training your model can take minutes or hours depending on the model and dataset size.
 
@@ -317,7 +323,7 @@ Here are some of the tasks you can do on the **Models** pane:
 
 - Select **Refresh** to update the information on the page.
 
-:::image type="content" source="../media/fine-tuning/studio-model-details.png" alt-text="Screenshot of the Models pane in Azure AI Studio, with a custom model displayed." lightbox="../media/fine-tuning/studio-models-job-running.png":::
+:::image type="content" source="../media/fine-tuning/studio-model-details.png" alt-text="Screenshot of the Models pane in Azure AI Foundry portal, with a custom model displayed." lightbox="../media/fine-tuning/studio-models-job-running.png":::
 
 ## Checkpoints
 
@@ -339,13 +345,13 @@ When the fine-tuning job succeeds, you can deploy the custom model from the **Mo
 
 To deploy your custom model, select the custom model to deploy, and then select **Deploy model**.
 
-:::image type="content" source="../media/fine-tuning/studio-models-deploy-model.png" alt-text="Screenshot that shows how to deploy a custom model in Azure AI Studio." lightbox="../media/fine-tuning/studio-models-deploy-model.png":::
+:::image type="content" source="../media/fine-tuning/studio-models-deploy-model.png" alt-text="Screenshot that shows how to deploy a custom model in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-models-deploy-model.png":::
 
 The **Deploy model** dialog box opens. In the dialog box, enter your **Deployment name** and then select **Create** to start the deployment of your custom model. 
 
-:::image type="content" source="../media/fine-tuning/studio-models-deploy.png" alt-text="Screenshot of the Deploy Model dialog in Azure AI Studio." lightbox="../media/fine-tuning/studio-models-deploy.png":::
+:::image type="content" source="../media/fine-tuning/studio-models-deploy.png" alt-text="Screenshot of the Deploy Model dialog in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-models-deploy.png":::
 
-You can monitor the progress of your deployment on the **Deployments** pane in Azure AI Studio.
+You can monitor the progress of your deployment on the **Deployments** pane in Azure AI Foundry portal.
 
 ### Cross region deployment
 
@@ -357,13 +363,13 @@ Cross subscription/region deployment can be accomplished via [Python](/azure/ai-
 
 ## Use a deployed custom model
 
-After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in [Azure AI Studio](https://oai.azure.com) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models. For fine-tuned `babbage-002` and `davinci-002` models you will use the Completions playground and the Completions API. For fine-tuned `gpt-35-turbo-0613` models you will use the Chat playground and the Chat completion API.
+After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in [Azure AI Foundry](https://oai.azure.com) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models. For fine-tuned `babbage-002` and `davinci-002` models you will use the Completions playground and the Completions API. For fine-tuned `gpt-35-turbo-0613` models you will use the Chat playground and the Chat completion API.
 
-:::image type="content" source="../media/quickstarts/playground-load-new.png" alt-text="Screenshot of the Playground pane in Azure AI Studio, with sections highlighted." lightbox="../media/quickstarts/playground-load-new.png":::
+:::image type="content" source="../media/quickstarts/playground-load-new.png" alt-text="Screenshot of the Playground pane in Azure AI Foundry portal, with sections highlighted." lightbox="../media/quickstarts/playground-load-new.png":::
 
 ## Analyze your custom model
 
-Azure OpenAI attaches a result file named _results.csv_ to each fine-tuning job after it completes. You can use the result file to analyze the training and validation performance of your custom model. The file ID for the result file is listed for each custom model in the **Result file Id** column on the **Models** pane for Azure AI Studio. You can use the file ID to identify and download the result file from the **Data files** pane of Azure AI Studio.
+Azure OpenAI attaches a result file named _results.csv_ to each fine-tuning job after it completes. You can use the result file to analyze the training and validation performance of your custom model. The file ID for the result file is listed for each custom model in the **Result file Id** column on the **Models** pane for Azure AI Foundry. You can use the file ID to identify and download the result file from the **Data files** pane of Azure AI Foundry.
 
 The result file is a CSV file that contains a header row and a row for each training step performed by the fine-tuning job. The result file contains the following columns:
 
@@ -377,7 +383,7 @@ The result file is a CSV file that contains a header row and a row for each trai
 | `full_valid_loss` | The validation loss calculated at the end of each epoch. When training goes well, loss should decrease. |
 |`full_valid_mean_token_accuracy` | The valid mean token accuracy calculated at the end of each epoch. When training is going well, token accuracy should increase. |
 
-You can also view the data in your results.csv file as plots in Azure AI Studio. Select the link for your trained model, and you will see three charts: loss, mean token accuracy, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
+You can also view the data in your results.csv file as plots in Azure AI Foundry portal. Select the link for your trained model, and you will see three charts: loss, mean token accuracy, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
 
 Look for your loss to decrease over time, and your accuracy to increase. If you see a divergence between your training and validation data, that may indicate that you are overfitting. Try training with fewer epochs, or a smaller learning rate multiplier.
 
@@ -389,18 +395,18 @@ When you're done with your custom model, you can delete the deployment and model
 
 [!INCLUDE [Fine-tuning deletion](fine-tune.md)]
 
-You can delete the deployment for your custom model on the **Deployments** pane in Azure AI Studio. Select the deployment to delete, and then select **Delete** to delete the deployment.
+You can delete the deployment for your custom model on the **Deployments** pane in Azure AI Foundry portal. Select the deployment to delete, and then select **Delete** to delete the deployment.
 
 ### Delete your custom model
 
-You can delete a custom model on the **Models** pane in Azure AI Studio. Select the custom model to delete from the **Customized models** tab, and then select **Delete** to delete the custom model.
+You can delete a custom model on the **Models** pane in Azure AI Foundry portal. Select the custom model to delete from the **Customized models** tab, and then select **Delete** to delete the custom model.
 
 > [!NOTE]
 > You can't delete a custom model if it has an existing deployment. You must first [delete your model deployment](#delete-your-model-deployment) before you can delete your custom model.
 
 ### Delete your training files
 
-You can optionally delete training and validation files that you uploaded for training, and result files generated during training, on the **Management** > **Data files** pane in Azure AI Studio. Select the file to delete, and then select **Delete** to delete the file.
+You can optionally delete training and validation files that you uploaded for training, and result files generated during training, on the **Management** > **Data files** pane in Azure AI Foundry portal. Select the file to delete, and then select **Delete** to delete the file.
 
 ## Continuous fine-tuning
 

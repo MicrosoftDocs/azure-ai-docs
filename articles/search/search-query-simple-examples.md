@@ -125,7 +125,7 @@ After search results are returned, a logical next step is to provide a details p
 GET /indexes/hotels-sample-index/docs/41?api-version=2024-07-01
 ```
 
-All documents have a unique identifier. If you're using the portal, select the index from the **Indexes** tab and then look at the field definitions to determine which field is the key. In the REST API, the [GET Index](/rest/api/searchservice/indexes/get) call returns the index definition in the response body.
+All documents have a unique identifier. If you're using the Azure portal, select the index from the **Indexes** tab and then look at the field definitions to determine which field is the key. In the REST API, the [GET Index](/rest/api/searchservice/indexes/get) call returns the index definition in the response body.
 
 The response for the preceding query consists of the document whose key is *41*. Any field that is marked as *retrievable* in the index definition can be returned in search results and rendered in your app.
 

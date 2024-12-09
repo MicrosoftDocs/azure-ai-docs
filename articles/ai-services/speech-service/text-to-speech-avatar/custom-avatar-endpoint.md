@@ -37,9 +37,8 @@ Once your model is successfully deployed as an endpoint, you can select the endp
 To remove a deployment endpoint, follow these steps:
 
 1. Sign in to [Speech Studio](https://speech.microsoft.com/portal).
-1. Navigate to **Custom Avatar** > Your project name > **Train model**.
-1. All available models are listed on the **Train model** page. Select a model link to view more information, such as the created date and a preview image of the custom avatar.
-1. Select a model on the **Train model** page. If it's in "Succeeded" status, it means it's in hosting status. You can select the **Delete** button and confirm the deletion to remove the hosting.
+1. Navigate to **Custom Avatar** > Your project name > **Deploy model**.
+1. Select the endpoint on the **Deploy model** page. If it's in "Succeeded" status, it means it's in hosting status. You can select the **Delete** button and confirm the deletion to remove the hosting.
 
 ## Use your custom neural voice
 
