@@ -54,10 +54,13 @@ A prerequisite of using the Azure AI Search tool is to have an existing Azure AI
 If you already connected the AI Search resource that contains the index you want to use to your project, skip this step.
 
 1. Access your Azure AI Search resource
-    - In the Azure portal, navigate to the AI Search resource that contains the index you want to use.
+    - In the Azure portal, navigate to the AI Search resource that contains the index you want to use. 
+    - In the Overview tab, copy the URL of your resource. The URL should be in the format `https://<your-resource-name>.search.windows.net/`.
      :::image type="content" source="../../media/tools/ai-search/connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../media/tools/ai-search/connection-endpoint.png":::
 
-2. From the left-hand navigation bar, scroll down to the Settings section and select **Keys**. Under the **API Access Control** section, ensure the option **Both** API key and Role-based access control is selected.
+2. From the left-hand navigation bar, scroll down to the Settings section and select **Keys**. 
+    - Under the **API Access Control** section, ensure the option **Both** API key and Role-based access control is selected.
+    - If you want the connection to use API Keys for authentication, copy one of the keys under **Manage admin keys**.
     :::image type="content" source="../../media/tools/ai-search/acs-azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search/acs-azure-portal.png":::
 
 3. In Azure AI Foundry, navigate to the project you created in the agent setup. Click on **Open in management center**.
