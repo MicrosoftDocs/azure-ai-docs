@@ -6,7 +6,7 @@ author: challenp
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.custom: references_regions, azuregovernment
-ms.date: 12/11/2025
+ms.date: 12/11/2024
 recommendations: false
 ---
 
