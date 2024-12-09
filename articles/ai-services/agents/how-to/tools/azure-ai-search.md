@@ -1,5 +1,5 @@
 ---
-title: 'How to BYO AI Search index with the Azure AI Search tool'
+title: 'How to use an existing AI Search index with the Azure AI Search tool'
 titleSuffix: Azure OpenAI
 description: Learn how to use Agents Azure AI Search tool.
 services: azure-ai-agent-service
@@ -34,7 +34,8 @@ Use an existing Azure AI Search index with the agent's Azure AI Search tool.
 - By default, the Azure AI Search tool can uses semantic or hybrid + semantic search on all text fields.
 
 ## File Types
-The Azure AI Search tool currently only supports indexes with unstructured data. If you have structured data in your index, we can't make any guarantees on the quality of the search results.
+The Azure AI Search tool currently only supports indexes with unstructured data. If your index contains structured data, we can't guarantee the quality of the search results.
+
 ::: zone-end
 
 ::: zone pivot="setup"
@@ -53,7 +54,7 @@ A prerequisite of using the Azure AI Search tool is to have an existing Azure AI
 If you already connected the AI Search resource that contains the index you want to use to your project, skip this step.
 
 1. In the Azure portal, navigate to the AI Search resource that contains the index you want to use.
-2. Make sure your ACS resource is set to **Both** API key and RBAC access control.
+2. Make sure your ACS resource is set to **Both** API key and Role-based access control.
     :::image type="content" source="../../media/tools/ai-search/acs-azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search/acs-azure-portal.png":::
 
 3. In Azure AI Foundry, navigate to the project you created in the agent setup and Click on **Open in management center**.
@@ -102,7 +103,7 @@ project_client = AIProjectClient.from_connection_string(
 ```
 ### Step 2: Get the connection ID for the Azure AI Search resource
 
-Get the connection ID of the Azure AI Search connection in the project. You can use the code snippet below to print the connection ID of all the Azure AI Search connections in the project. 
+Get the connection ID of the Azure AI Search connection in the project. You can use the code snippet to print the connection ID of all the Azure AI Search connections in the project. 
 ```python
 # AI Search resource connection ID
 # This code prints out the connection ID of all the Azure AI Search connections in the project
@@ -131,7 +132,7 @@ ai_search.add_index(conn_id, "<your-index-name>")
 ```
 
 ### Step 4: Create an agent with the Azure AI Search tool enabled
-Change the model to the one you have deployed in your workspace. You can find the model name in the Azure AI Foundry under the **Models** tab. You can also change the name and instructions of the agent to suit your needs.
+Change the model to the one deployed in your project. You can find the model name in the Azure AI Foundry under the **Models** tab. You can also change the name and instructions of the agent to suit your needs.
 ```python
 agent = project_client.agents.create_agent(
     model="gpt-4o-mini",
