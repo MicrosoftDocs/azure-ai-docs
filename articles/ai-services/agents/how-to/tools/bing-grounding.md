@@ -175,7 +175,7 @@ bing = BingGroundingTool(connection_id=conn_id)
 # Create agent with the bing tool and process assistant run
 with project_client:
     agent = project_client.agents.create_agent(
-        model="gpt-4o-mini",
+        model="gpt-4o",
         name="my-assistant",
         instructions="You are a helpful assistant",
         tools=bing.definitions,
@@ -199,7 +199,7 @@ ToolConnectionList connectionList = new ToolConnectionList
 BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(connectionList);
 
 Response<Agent> agentResponse = await agentClient.CreateAgentAsync(
-    model: "gpt-4o-mini",
+    model: "gpt-4o",
     name: "my-assistant",
     instructions: "You are a helpful assistant.",
     tools: new List<ToolDefinition> { bingGroundingTool });
