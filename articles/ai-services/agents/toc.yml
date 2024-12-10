@@ -34,14 +34,10 @@ items:
           href: how-to/tools/bing-grounding.md
         - name: File search
           href: how-to/tools/file-search.md
-        - name: Use licensed data
-          href: how-to/tools/licensed-data.md
       - name: Action tools
         items:
         - name: Agent function calling
           href: how-to/tools/function-calling.md
-        - name: Logic app function calling
-          href: how-to/tools/agent-logic-apps.md
         - name: Code interpreter
           href: how-to/tools/code-interpreter.md
     - name: Content filtering
