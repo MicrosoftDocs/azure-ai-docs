@@ -22,6 +22,7 @@ You can use either an API key or credential-less YAML configuration file. For mo
     type: azure_ai_search
     endpoint: https://contoso.search.windows.net/
     ```
+---
 # [Python](#tab/python)
 
 ```python
@@ -39,7 +40,7 @@ my_connection = AzureAISearchConnection(name=my_connection_name,
 # Create the connection
 ml_client.connections.create_or_update(my_connection)
 ```
-
+---
 # [Azure AI Foundry](#tab/azureaifoundry)
 
 
@@ -57,5 +58,4 @@ ml_client.connections.create_or_update(my_connection)
 
 5. Verify that the connection was successfully created and now appears in the project's Connections tab.
 :::image type="content" source="../media/tools/ai-search/success-acs-connection.png" alt-text="A screenshot of the project connections page with a new Azure AI Search connection added." lightbox="../media/tools/ai-search/success-acs-connection.png":::
-
 ---
