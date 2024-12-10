@@ -13,9 +13,9 @@ ms.topic: how-to
 ms.date: 12/09/2024
 ---
 
-# Shape search results or modify search results composition
+# Shape search results or modify search results composition in Azure AI Search
 
-This article explains search results composition in Azure AI Search and how to work with results in your apps. Search results are returned in a query response. The shape of a response is determined by parameters in the query itself. These parameters include:
+This article explains search results composition and how to shape search results to fit your scenarios. Search results are returned in a query response. The shape of a response is determined by parameters in the query itself. These parameters include:
 
 + Number of matches found in the index (`count`)
 + Number of matches returned in the response (50 by default, configurable through `top`) or per page (`skip` and `top`)
@@ -80,17 +80,15 @@ Count won't be affected by routine maintenance or other workloads on the search 
 
 ## Number of results in the response
 
-Azure AI Search uses server-side paging to prevent queries from retrieving too many documents at once. Query parameters that determine the number of results in a response are `top` and `skip`. `top` refers to the number of search results in a page. 
+Azure AI Search uses server-side paging to prevent queries from retrieving too many documents at once. Query parameters that determine the number of results in a response are `top` and `skip`. `top` refers to the number of search results in a page. `skip` is an interval of `top`, and it tells the search engine how many results to skip before getting the next set.
 
-The default page size is 50, while the maximum page size is 1,000. If you specify a value greater than 1,000 and there are more than 1,000 results found in your index, only the first 1,000 results are returned.
-
-If the number of matches exceed the page size, the response includes information to retrieve the next page of results. For example:
+The default page size is 50, while the maximum page size is 1,000. If you specify a value greater than 1,000 and there are more than 1,000 results found in your index, only the first 1,000 results are returned. If the number of matches exceed the page size, the response includes information to retrieve the next page of results. For example:
 
 ```json
 "@odata.nextLink": "https://contoso-search-eastus.search.windows.net/indexes/realestate-us-sample-index/docs/search?api-version=2024-07-01"
 ```
 
-The top 50 are determined by search score, assuming the query is full text search or semantic. Otherwise, the top 50 are an arbitrary order for exact match queries (where uniform `@search.score=1.0` indicates arbitrary ranking).
+The top matches are determined by search score, assuming the query is full text search or semantic. Otherwise, the top matches are an arbitrary order for exact match queries (where uniform `@search.score=1.0` indicates arbitrary ranking).
 
 Set `top` to override the default of 50. In newer preview APIs, if you're using a hybrid query, you can [specify maxTextRecallSize](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode-preview) to return up to 10,000 documents.
 
@@ -107,7 +105,7 @@ POST https://contoso-search-eastus.search.windows.net/indexes/realestate-us-samp
 }
 ```
 
-To return the second set, skip the first 15 to get the next 15:
+This query returns the second set, skipping the first 15 to get the next 15 (16 through 30):
 
 ```http
 POST https://contoso-search-eastus.search.windows.net/indexes/realestate-us-sample-index/docs/search?api-version=2024-07-01
