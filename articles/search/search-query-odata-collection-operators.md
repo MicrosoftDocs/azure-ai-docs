@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 12/10/2024
+ms.date: 02/07/2023
 ---
 
 # OData collection operators in Azure AI Search - `any` and `all`
