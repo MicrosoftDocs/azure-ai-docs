@@ -107,7 +107,7 @@ To set up out-of-box model monitoring, use code that's similar to the following 
 | <workspace_name> | The name of your workspace | my-workspace |
 | <endpoint-name> | The name of the endpoint to monitor | credit-default |
 | <deployment-name> | The name of the deployment to monitor | main |
-| <email-address1> and <email-address2> | Email addresses to use for notifications | `abc@example.com` |
+| <email-address-1> and <email-address-2> | Email addresses to use for notifications | `abc@example.com` |
 | <frequency-unit> | The monitoring frequency unit, such as "minute," "hour," "day," "week," or "month" | day |
 | <interval> | The interval between jobs, such as 1 or 2 days or weeks | 1 |
 | <start-hour> | The hour to start monitoring, on a 24-hour clock | 3 |
@@ -148,7 +148,7 @@ monitoring_target = MonitoringTarget(
 
 # Create an alert notification object.
 alert_notification = AlertNotification(
-    emails=['<email-address1>', '<email-address2>']
+    emails=['<email-address-1>', '<email-address-2>']
 )
 
 # Create the monitor definition.
@@ -260,7 +260,7 @@ To set up advanced model monitoring, use code that's similar to the following sa
 | <reference-data-asset-name> | The name of the data asset that contains reference data | credit-default-reference |
 | <target-column> | The name of the output column that contains values that the model predicts | DEFAULT_NEXT_MONTH |
 | <feature1>, <feature2>, and <feature3> | The features that you want to use in an advanced data quality signal | AGE |
-| <email-address1> and <email-address2> | Email addresses to use for notifications | `abc@example.com` |
+| <email-address-1> and <email-address-2> | Email addresses to use for notifications | `abc@example.com` |
 | <frequency-unit> | The monitoring frequency unit, such as "minute," "hour," "day," "week," or "month" | day |
 | <interval> | The interval between jobs, such as 1 or 2 days or weeks | 1 |
 | <start-hour> | The hour to start monitoring, on a 24-hour clock | 3 |
@@ -410,7 +410,7 @@ monitoring_signals = {
 
 # Create an alert notification object.
 alert_notification = AlertNotification(
-    emails=['<email-address1>', '<email-address2>']
+    emails=['<email-address-1>', '<email-address-2>']
 )
 
 # Create the monitor definition.
@@ -636,7 +636,7 @@ After you satisfy the [prerequisites for model performance monitoring](#more-pre
 | <ground-truth-data-asset-name> | The name of the data asset that contains ground truth data | credit-ground-truth |
 | <ground-truth-target-column> | The name of the ground truth column that contains actual data that the model tries to predict | ground_truth|
 | <ground-truth-join-column> | The name of the ground truth column to use to join the production and ground truth data | correlationid |
-| <email-address1> and <email-address2> | Email addresses to use for notifications | `abc@example.com` |
+| <email-address-1> and <email-address-2> | Email addresses to use for notifications | `abc@example.com` |
 | <frequency-unit> | The monitoring frequency unit, such as "minute," "hour," "day," "week," or "month" | day |
 | <interval> | The interval between jobs, such as 1 or 2 days or weeks | 1 |
 | <start-hour> | The hour to start monitoring, on a 24-hour clock | 3 |
@@ -699,7 +699,7 @@ production_data = ProductionData(
     )
 )
 
-# Specify ground truth reference data.
+# Specify the ground truth reference data.
 reference_data_ground_truth = ReferenceData(
     input_data=Input(
         type="mltable",
@@ -734,7 +734,7 @@ monitoring_signals = {
 
 # Create an alert notification object.
 alert_notification = AlertNotification(
-    emails=['<email-address1>', '<email-address2>']
+    emails=['<email-address-1>', '<email-address-2>']
 )
 
 # Set up the monitor definition.
@@ -848,14 +848,29 @@ After you register your production data and preprocessing component, you can set
 
     :::code language="yaml" source="~/azureml-examples-main/cli/monitoring/model-monitoring-with-collected-data.yaml":::
 
-1. Run the following command to create the model:
-
+1. Run the following command to create the model. Replace `<file-name>` with the name of the model specification file, such as `model-monitoring-with-collected-data.yaml`.
 
     ```azurecli
-    az ml schedule create -f ./model-monitoring-with-collected-data.yaml
+    az ml schedule create -f ./<file-name>
     ```
 
 # [Python SDK](#tab/python)
+
+Use a script that's similat to the following Python code to set up model monitoring. First replace the following placeholders with appropriate values:
+
+| Placeholder | Description | Example |
+| --- | --- | --- |
+| <subscription_ID> | The ID of your subscription | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e |
+| <resource-group-name> | The name of the resource group that contains your workspace | my-resource-group |
+| <workspace_name> | The name of your workspace | my-workspace |
+| <production-data-asset-name> | The name of the data asset that contains production data | my_model_production_data |
+| <preprocessing-component-name> | The name of your preprocessing component | production_data_preprocessing |
+| <training-data-asset-name> | The name of the training data asset that you want to use as a reference data asset | my_model_training_data |
+| <email-address-1> and <email-address-2> | Email addresses to use for notifications | `abc@example.com` |
+| <frequency-unit> | The monitoring frequency unit, such as "minute," "hour," "day," "week," or "month" | day |
+| <interval> | The interval between jobs, such as 1 or 2 days or weeks | 1 |
+| <start-hour> | The hour to start monitoring, on a 24-hour clock | 3 |
+| <start-minutes> | The minutes after the specified hour to start monitoring | 15 |
 
 ```python
 from azure.identity import InteractiveBrowserCredential
@@ -887,7 +902,10 @@ from azure.ai.ml.entities import (
     ProductionData
 )
 
-# get a handle to the workspace
+# Get a handle to the workspace.
+subscription_id = "<subscription-ID>"
+resource_group = "<resource-group-name>"
+workspace = "<workspace-name>"
 ml_client = MLClient(
    InteractiveBrowserCredential(),
    subscription_id,
@@ -895,32 +913,32 @@ ml_client = MLClient(
    workspace
 )
 
+# Specify the compute instance.
 spark_compute = ServerlessSparkCompute(
     instance_type="standard_e4s_v3",
-    runtime_version="3.2"
+    runtime_version="3.3"
 )
 
-#define target dataset (production dataset)
+# Specify the target data asset (the production data asset).
 production_data = ProductionData(
     input_data=Input(
         type="uri_folder",
-        path="azureml:my_model_production_data:1"
+        path="azureml:<production-data-asset-name>:1"
     ),
     data_context=MonitorDatasetContext.MODEL_INPUTS,
-    pre_processing_component="azureml:production_data_preprocessing:1"
+    pre_processing_component="azureml:<preprocessing-component-name>:1.0.0"
 )
 
-
-# training data to be used as reference dataset
+# Specify the training data to use as a reference data asset.
 reference_data_training = ReferenceData(
     input_data=Input(
         type="mltable",
-        path="azureml:my_model_training_data:1"
+        path="azureml:<training-data-asset-name>:1"
     ),
     data_context=MonitorDatasetContext.TRAINING
 )
 
-# create an advanced data drift signal
+# Create an advanced data drift signal.
 features = MonitorFeatureFilter(top_n_feature_importance=20)
 metric_thresholds = DataDriftMetricThreshold(
     numerical=NumericalDriftMetrics(
@@ -938,8 +956,7 @@ advanced_data_drift = DataDriftSignal(
     metric_thresholds=metric_thresholds
 )
 
-
-# create an advanced data quality signal
+# Create an advanced data quality signal.
 features = ['feature_A', 'feature_B', 'feature_C']
 metric_thresholds = DataQualityMetricThreshold(
     numerical=DataQualityMetricsNumerical(
@@ -958,36 +975,39 @@ advanced_data_quality = DataQualitySignal(
     alert_enabled="False"
 )
 
-# put all monitoring signals in a dictionary
+# Put all monitoring signals in a dictionary.
 monitoring_signals = {
     'data_drift_advanced': advanced_data_drift,
     'data_quality_advanced': advanced_data_quality
 }
 
-# create alert notification object
+# Create an alert notification object.
 alert_notification = AlertNotification(
-    emails=['abc@example.com', 'def@example.com']
+    emails=['<email-address-1>', '<email-address-2>']
 )
 
-# Finally monitor definition
+# Set up the monitor definition.
 monitor_definition = MonitorDefinition(
     compute=spark_compute,
     monitoring_signals=monitoring_signals,
     alert_notification=alert_notification
 )
 
+# Specify the schedule frequency.
 recurrence_trigger = RecurrenceTrigger(
-    frequency="day",
-    interval=1,
-    schedule=RecurrencePattern(hours=3, minutes=15)
+    frequency="<frequency-unit>",
+    interval=<interval>,
+    schedule=RecurrencePattern(hours=<start-hour>, minutes=<start-minutes>)
 )
 
+# Create the monitoring schedule.
 model_monitor = MonitorSchedule(
     name="fraud_detection_model_monitoring_advanced",
     trigger=recurrence_trigger,
     create_monitor=monitor_definition
 )
 
+# Schedule the monitoring job.
 poller = ml_client.schedules.begin_create_or_update(model_monitor)
 created_monitor = poller.result()
 
@@ -995,9 +1015,9 @@ created_monitor = poller.result()
 
 # [Studio](#tab/azure-studio)
 
-The studio currently doesn't support configuring monitoring for models that are deployed outside of Azure Machine Learning. See the Azure CLI or Python SDK tabs instead. 
+The studio currently doesn't support configuring monitoring for models that are deployed outside Azure Machine Learning. See the Azure CLI or Python SDK tabs instead. 
 
-Once you've configured your monitor with the CLI or SDK, you can view the monitoring results in the studio. For more information on interpreting monitoring results, see [Interpreting monitoring results](how-to-monitor-model-performance.md#interpret-monitoring-results).
+After you use the Azure CLI or the Python SDK to configure monitoring, you can view the monitoring results in the studio. For more information about interpreting monitoring results, see [Interpret monitoring results](how-to-monitor-model-performance.md#interpret-monitoring-results).
 
 ---
 
