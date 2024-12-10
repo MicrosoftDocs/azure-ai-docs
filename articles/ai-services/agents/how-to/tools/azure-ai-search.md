@@ -50,7 +50,7 @@ A prerequisite of using the Azure AI Search tool is to have an existing Azure AI
 #### 3. Create a project connection to the Azure AI Search resource with the index you want to use
 If you already connected the AI Search resource that contains the index you want to use to your project, skip this step.
 
-1. Access your Azure AI Search resource
+1. Access your Azure AI Search resource.
     - In the Azure portal, navigate to the AI Search resource that contains the index you want to use. 
     - In the Overview tab, copy the URL of your resource. The URL should be in the format `https://<your-resource-name>.search.windows.net/`.
      :::image type="content" source="../../media/tools/ai-search/connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../media/tools/ai-search/connection-endpoint.png":::
@@ -70,7 +70,7 @@ If you already connected the AI Search resource that contains the index you want
  :::image type="content" source="../../media/tools/ai-search/select-acs.png" alt-text="A screenshot of the Azure AI Search connection type the user should select." lightbox="../../media/tools/ai-search/select-acs.png":::
 
 6. Provide the required connection details for the Azure AI Search resource you want to use. Both Managed Identity and Key-based authentication are supported. Once all the fields are filled in, click **Add connection**.
-:::image type="content" source="../../media/tools/ai-search/acs-connection2.png" alt-text="A screenshot the required fields to add a new Azure AI Search connection." lightbox="../../media/tools/ai-search/acs-connection2.png":::
+:::image type="content" source="../../media/tools/ai-search/acs-connection-2.png" alt-text="A screenshot the required fields to add a new Azure AI Search connection." lightbox="../../media/tools/ai-search/acs-connection-2.png":::
 
 7. Verify that the connection was successfully created and now appears in the project's Connections tab.
 :::image type="content" source="../../media/tools/ai-search/success-acs-connection.png" alt-text="A screenshot of the project connections page with a new Azure AI Search connection added." lightbox="../../media/tools/ai-search/success-acs-connection.png":::
@@ -83,7 +83,7 @@ If you already connected the AI Search resource that contains the index you want
 This quickstart shows how to use an existing Azure AI Search index with the Azure AI Search tool.
 
 ### Prerequisites
-1. Complete the [Azure AI Search tool setup](?pivot=setup).
+Complete the [Azure AI Search tool setup](?pivot=setup).
 
 ### Step 1: Create an Azure AI Client
 First, create an Azure AI Client using the connection string of your project.
@@ -98,7 +98,7 @@ from azure.ai.projects.models import AzureAISearchTool
 # At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
 # HostName can be found by navigating to your discovery_url and removing the leading "https://" and trailing "/discovery" 
 # To find your discovery_url, run the CLI command: az ml workspace show -n {project_name} --resource-group {resource_group_name} --query discovery_url
-# Project Connection example: eastus.api.azureml.ms;12345678-abcd-1234-9fc6-62780b3d3e05;my-resource-group;my-hub-name
+# Project Connection example: eastus.api.azureml.ms;my-subscription-id;my-resource-group;my-hub-name
 
 connection_string = os.environ["PROJECT_CONNECTION_STRING"] 
 
