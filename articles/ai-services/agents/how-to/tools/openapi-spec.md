@@ -30,6 +30,26 @@ work together, generate client code, create tests, apply design standards, and m
 ## Set up
 1. Ensure you've completed the prerequisites and setup steps in the [quickstart](../../quickstart.md).
 
+1. [optional]If your OpenAPI spec requires API key, you can store your API key in a `custom keys` connection and use `connection` authentication
+
+    1. Go to the [Azure AI Foundry portal](https://ai.azure.com/) and select the AI Project. Click **connected resources**.
+    :::image type="content" source="../../media/tools/bing/project-settings-button.png" alt-text="A screenshot of the settings button for an AI project." lightbox="../../media/tools/bing/project-settings-button.png":::
+
+    1. Select **+ new connection** in the settings page. 
+        >[!NOTE]
+        > If you re-generate the API key at a later date, you need to update the connection with the new key.
+        
+       :::image type="content" source="../../media/tools/bing/project-connections.png" alt-text="A screenshot of the connections screen for the AI project." lightbox="../../media/tools/bing/project-connections.png":::
+
+   1. Select **custom keys** in **other resource types**.
+    ![image](https://github.com/user-attachments/assets/2e6e8efe-1a31-4097-a859-58ac5ee17a96)
+
+   1. Enter the following information
+      - `key`: "key"
+      - value: YOUR_API_KEY
+      - Connection name: `YOUR_CONNECTION_NAME` (You will use this connection name in the sample code below.)
+      - Access: you can choose either *this project only* or *shared to all projects*. Just make sure in the sample code below, the project you entered connection string for has access to this connection.
+        
 ::: zone-end
 
 ::: zone pivot="code-example"
@@ -65,6 +85,17 @@ auth = OpenApiAnonymousAuthDetails()
 # Initialize agent OpenApi tool using the read in OpenAPI spec
 openapi = OpenApiTool(name="get_weather", spec=openapi_spec, description="Retrieve weather information for a location", auth=auth)
 ```
+If you want to use connection, which stores API key, for authentication, replace the line with
+```python
+auth = OpenApiConnectionAuthDetails(security_scheme=OpenApiConnectionSecurityScheme(connection_id="your_connection_id"))
+```
+Your connection ID looks like `/subscriptions/{subscription ID}/resourceGroups/{resource group name}/providers/Microsoft.MachineLearningServices/workspaces/{project name}/connections/{connection name}`.
+
+If you want to use managed identity for authentication, replace the line with
+```python
+auth = OpenApiManagedAuthDetails(security_scheme=OpenApiManagedSecurityScheme(audience="https://your_identity_scope.com"))
+```
+An example of the audience would be ```https://cognitiveservices.azure.com/```.
 
 ## Step 3: Create a thread
 ```python
