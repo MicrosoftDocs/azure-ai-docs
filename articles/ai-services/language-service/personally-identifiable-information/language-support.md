@@ -191,12 +191,11 @@ Use this article to learn which natural languages are supported by the text PII,
 
 ## PII language support
 
+Note that preview model version `2023-04-15-preview` supports English, German, Spanish, and French. The table below shows the langauge support for the Generally Available serivce.
+
 | Language              | Language code | Notes              |
 |-----------------------|---------------|--------------------|
-|German                 |`de`           |                    |
 |English                |`en`           |                    |
-|Spanish                |`es`           |                    |
-|French                 |`fr`           |                    |
 
 ---
 
