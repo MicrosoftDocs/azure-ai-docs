@@ -819,7 +819,7 @@ You can also set up model monitoring for models deployed to Azure Machine Learni
 * Register the production inference data as an Azure Machine Learning data asset, and ensure continuous updates of the data.
 * Provide a custom data preprocessing component and register it as an Azure Machine Learning component. 
 
-You must provide a custom data preprocessing component if your data isn't collected with the [data collector](how-to-collect-production-data.md). Without this custom data preprocessing component, the Azure Machine Learning model monitoring system won't know how to process your data into tabular form with support for time windowing.
+You must provide a custom data preprocessing component if your data isn't collected with the [data collector](how-to-collect-production-data.md). Without this custom data preprocessing component, the Azure Machine Learning model monitoring system can't process your data into tabular form with support for time windowing.
 
 Your custom preprocessing component must have these input and output signatures:
 
@@ -832,21 +832,30 @@ Your custom preprocessing component must have these input and output signatures:
 
 For an example of a custom data preprocessing component, see [custom_preprocessing in the azuremml-examples GitHub repo](https://github.com/Azure/azureml-examples/tree/main/cli/monitoring/components/custom_preprocessing).
 
+For instructions for registering an Azure Machine Learning component, see [Register component in your workspace](how-to-create-component-pipelines-ui.md#register-component-in-your-workspace).
+
+After you register your production data and preprocessing component, you can set up model monitoring.
+
 # [Azure CLI](#tab/azure-cli)
 
-Once you've satisfied the previous requirements, you can set up model monitoring with the following CLI command and YAML definition:
+1. Create a monitoring definition YAML file that's similar to the following one. Before you use this definition, adjust the following values and any others you need to fit your environment:
 
-```azurecli
-az ml schedule create -f ./model-monitoring-with-collected-data.yaml
-```
+    - For `endpoint_deployment_id`, use a value in the format `azureml:<endpoint-name>:<deployment-name>`.
+    - For `pre_processing_component`, use a value in the format `azureml:<component-name>:<component-version>`. Specify the exact version, such as `1.0.0`, not `1`.
+    - For each `path`, use a value in the format `azureml:<data-asset-name>:<version>`.
+    - For the `target_column` value, use the name of the output column that contains values that the model predicts, such as `DEFAULT_NEXT_MONTH`.
+    - For `emails`, list the email addresses that you want to use for notifications.
 
-The following YAML contains the definition for model monitoring with production inference data that you've collected.
+    :::code language="yaml" source="~/azureml-examples-main/cli/monitoring/model-monitoring-with-collected-data.yaml":::
 
-:::code language="yaml" source="~/azureml-examples-main/cli/monitoring/model-monitoring-with-collected-data.yaml":::
+1. Run the following command to create the model:
+
+
+    ```azurecli
+    az ml schedule create -f ./model-monitoring-with-collected-data.yaml
+    ```
 
 # [Python SDK](#tab/python)
-
-Once you've satisfied the previous requirements, you can set up model monitoring with the following Python code:
 
 ```python
 from azure.identity import InteractiveBrowserCredential
