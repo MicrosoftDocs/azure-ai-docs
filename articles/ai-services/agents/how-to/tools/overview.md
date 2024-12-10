@@ -37,4 +37,4 @@ Agents can access multiple tools in parallel. These can be both Azure OpenAI-hos
 |Tool  |Description  |
 |---------|---------|
 |[Function calling](./function-calling.md)     | Allows you to describe the structure of functions to an agent and then return the functions that need to be called along with their arguments.        |
-| [Logic Apps function calling](./agent-logic-apps.md) | Enables agents to call Logic Apps workflows through function calling. |
+
