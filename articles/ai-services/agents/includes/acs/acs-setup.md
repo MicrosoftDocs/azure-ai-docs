@@ -53,7 +53,7 @@ You can use either an API key or credential-less YAML configuration file. For mo
     endpoint: https://contoso.search.windows.net/
     ```
 
-# [Python](#tab/python)
+# [Python](#tab/pythonsdk)
 ```python
 from azure.ai.ml.entities import AzureAISearchConnection
 
@@ -69,6 +69,7 @@ my_connection = AzureAISearchConnection(name=my_connection_name,
 # Create the connection
 ml_client.connections.create_or_update(my_connection)
 ```
+
 # [Azure AI Foundry](#tab/azureaifoundry)
 1. In Azure AI Foundry, navigate to the project you created in the agent setup. Click on **Open in management center**.
     :::image type="content" source="../../media/tools/ai-search/project-studio.png" alt-text="A screenshot of a project in Azure AI Foundry." lightbox="../../media/tools/ai-search/project-studio.png":::
