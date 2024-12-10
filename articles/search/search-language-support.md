@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 01/11/2024
+ms.date: 12/10/2024
 ---
 
 # Create an index for multiple languages in Azure AI Search

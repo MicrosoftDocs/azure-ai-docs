@@ -9,7 +9,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.devlang: powershell
 ms.topic: how-to
-ms.date: 04/05/2024
+ms.date: 12/10/2024
 ms.custom:
   - devx-track-azurepowershell
   - ignite-2023
