@@ -44,13 +44,13 @@ ml_client.connections.create_or_update(my_connection)
 
 
 1. In Azure AI Foundry, navigate to the project you created in the agent setup. Click on **Open in management center**.
-    :::image type="content" source="../../media/tools/ai-search/project-studio.png" alt-text="A screenshot of a project in Azure AI Foundry." lightbox="../media/tools/ai-search/project-studio.png":::
+    :::image type="content" source="../media/tools/ai-search/project-studio.png" alt-text="A screenshot of a project in Azure AI Foundry." lightbox="../media/tools/ai-search/project-studio.png":::
 
 2. Click on the **Connections** tab and select **Add Connection**.
- :::image type="content" source="../../media/tools/ai-search/project-connections-page.png" alt-text="A screenshot of the project connections page." lightbox="../media/tools/ai-search/project-connections-page.png":::
+ :::image type="content" source="../media/tools/ai-search/project-connections-page.png" alt-text="A screenshot of the project connections page." lightbox="../media/tools/ai-search/project-connections-page.png":::
 
 3. Select **Azure AI Search**.
- :::image type="content" source="../../media/tools/ai-search/select-acs.png" alt-text="A screenshot of the Azure AI Search connection type the user should select." lightbox="../media/tools/ai-search/select-acs.png":::
+ :::image type="content" source="../media/tools/ai-search/select-acs.png" alt-text="A screenshot of the Azure AI Search connection type the user should select." lightbox="../media/tools/ai-search/select-acs.png":::
 
 4. Provide the required connection details for the Azure AI Search resource you want to use. Both Managed Identity and Key-based authentication are supported. Once all the fields are filled in, click **Add connection**.
 :::image type="content" source="../media/tools/ai-search/acs-connection-2.png" alt-text="A screenshot the required fields to add a new Azure AI Search connection." lightbox="../../media/tools/ai-search/acs-connection-2.png":::
