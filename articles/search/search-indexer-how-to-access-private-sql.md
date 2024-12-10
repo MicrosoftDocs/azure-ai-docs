@@ -7,7 +7,7 @@ author: mattgotteiner
 ms.author: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/23/2024
+ms.date: 12/10/2024
 ---
 
 # Create a shared private link for a SQL managed instance from Azure AI Search

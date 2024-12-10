@@ -6,7 +6,7 @@ author: mattgotteiner
 ms.author: magottei
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 06/06/2024
+ms.date: 12/10/2024
 ---
 
 # Tips for better performance in Azure AI Search
