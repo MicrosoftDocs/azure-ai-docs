@@ -63,9 +63,9 @@ Alternatively, you can also follow the step-by-step guide below:
 
 1. Select the Grounding with Bing Search resource you have created and copy any of the API keys.
 
-    :::image type="content" source="../../media/tools/bing/key-endpoint-resource-azure-portal.png" alt-text="A screenshot of the key and endpoint screen for the Bing resource in the Azure portal." lightbox="../../media/tools/bing/key-endpoint-resource-azure-portal.png":::
+    :::image type="content" source="../../media/tools/bing/key-resource-azure-portal.png" alt-text="A screenshot of the key and endpoint screen for the Bing resource in the Azure portal." lightbox="../../media/tools/bing/key-resource-azure-portal.png":::
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com/) and select the AI Project (make sure it's in the same resource group of your Grounding with Bing Search resource). Click **connected resources**.
+1. Go to the [Azure AI Foundry portal](https://ai.azure.com/) and select the AI Project (make sure it's in the same resource group of your Grounding with Bing Search resource). Click **management center**.
 
     :::image type="content" source="../../media/tools/bing/project-settings-button.png" alt-text="A screenshot of the settings button for an AI project." lightbox="../../media/tools/bing/project-settings-button.png":::
 
