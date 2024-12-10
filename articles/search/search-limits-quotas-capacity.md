@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 12/06/2024
+ms.date: 12/09/2024
 ms.custom:
   - references_regions
   - build-2024
@@ -198,17 +198,18 @@ Static rate request limits for operations related to a service:
 
 + Service Statistics (GET /servicestats): 4 per second per search unit
 
-### Semantic Ranker Throttling limits
+### Semantic ranker throttling limits
 
 [Semantic ranker](search-get-started-semantic.md) uses a queuing system to manage concurrent requests. This system allows search services get the highest number of queries per second possible. When the limit of concurrent requests is reached, additional requests are placed in a queue. If the queue is full, further requests are rejected and must be retried.
 
 Total semantic ranker queries per second varies based on the following factors:
-+ The SKU of the search service. Both queue capacity and concurrent request limits vary by SKU.
+
++ The tier of the search service. Both queue capacity and concurrent request limits vary by tier.
 + The number of search units in the search service. The simplest way to increase the maximum number of concurrent semantic ranker queries is to [add more search units to your search service](search-capacity-planning.md#how-to-change-capacity).
 + The total available semantic ranker capacity in the region.
 + The amount of time it takes to serve a query using semantic ranker. This varies based on how busy the search service is.
 
-The following table describes the semantic ranker throttling limits by SKU. Subject to available capacity in the region, contact support to request a limit increase.
+The following table describes the semantic ranker throttling limits by tier, subject to available capacity in the region. You can contact Microsoft support to request a limit increase.
 
 | Resource | Basic | S1 | S2 | S3 | S3-HD | L1 | L2 |
 |----------|-------|----|----|----|-------|----|----|

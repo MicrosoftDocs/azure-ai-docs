@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 02/08/2024
+ms.date: 12/10/2024
 ---
 
 # Return a semantic answer in Azure AI Search
