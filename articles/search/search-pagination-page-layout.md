@@ -15,11 +15,7 @@ ms.date: 12/09/2024
 
 # Shape search results or modify search results composition
 
-This article explains search results composition in Azure AI Search and how to work with results in your apps. Search results are returned in a query response. The structure of a response is determined by parameters in the query itself.
-
-Search results include top-level fields such as count and optional semantic ranking-related elements such as `answers`, but most of the response consists of matching documents in a values array.
-
-For search results composition, parameters on the query determine:
+This article explains search results composition in Azure AI Search and how to work with results in your apps. Search results are returned in a query response. The shape of a response is determined by parameters in the query itself. These parameters include:
 
 + Number of matches found in the index (`count`)
 + Number of matches returned in the response (50 by default, configurable through `top`) or per page (`skip` and `top`)
@@ -28,6 +24,8 @@ For search results composition, parameters on the query determine:
 + Sort logic (`orderby`)
 + Highlighting of terms within a result, matching on either the whole or partial term in the body
 + Optional elements from the semantic ranker (`answers` at the top, `captions` for each match)
+
+Search results can include top-level fields, but most of the response consists of matching documents in an array.
 
 ## Clients and APIs for defining the query response
 
@@ -67,7 +65,7 @@ Occasionally, query output isn't what you're expecting to see. For example, you 
 
 ## Counting matches
 
-The count parameter returns the number of documents in the index that are considered a match for the query. To return the count, add `count=true` to the query request. There's no maximum value imposed by the search service. Depending on your query and the content of your documents, the count could be as high as every document in the index.
+The `count` parameter returns the number of documents in the index that are considered a match for the query. To return the count, add `count=true` to the query request. There's no maximum value imposed by the search service. Depending on your query and the content of your documents, the count could be as high as every document in the index.
 
 Count is accurate when the index is stable. If the system is actively adding, updating, or deleting documents, the count is approximate, excluding any documents that aren't fully indexed.
 
