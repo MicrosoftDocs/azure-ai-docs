@@ -20,7 +20,7 @@ This article shows you how to use Microsoft Entra ID to authenticate a request t
 * [Register an identity app with Microsoft Entra ID](#register-an-identity-application-with-microsoft-entra-id).
 * [Add a client secret](#add-a-client-secret-credential).
 * [Assign an `RBAC` (role-based access control) role granting your app access permissions](#add-api-permissions).
-* [Obtain an access token](#obtain-an-access-token)
+* [Obtain an access token](#obtain-an-access-token-with-oauth-client-credentials-flow)
 * [Make a request to the Translator API](#).
 
 ## Prerequisites
@@ -264,7 +264,7 @@ To make a valid REST API request, the following values are required:
 
     :::image type="content" source="media/managed-identities/resource-id-property.png" alt-text="Screenshot of Resource ID value location in the Azure portal.":::
 
-* Replace {your-resource-ID} with the value from the Azure portal and {access-token} with the value obtained from the previous step: [obtain an access token](#obtain-an-access-token).
+* Replace {your-resource-ID} with the value from the Azure portal and {access-token} with the value obtained from the previous step: [obtain an access token](#obtain-an-access-token-with-oauth-client-credentials-flow).
 
 ***Linux or macOS***
 
@@ -308,6 +308,6 @@ curl -X POST "https://{your-custom-domain}.cognitiveservices.azure.com/translato
   -d "[{'Text':'Hola'}]"
 ```
 
-Replace {your-custom-domain} with the value form the Azure portal and {access-token} with the token obtained from the previous step, [obtain an access token](#obtain-an-access-token).
+Replace {your-custom-domain} with the value form the Azure portal and {access-token} with the token obtained from the previous step, [obtain an access token](#obtain-an-access-token-with-oauth-client-credentials-flow).
 
 That's it! You now know how to use Microsoft Entra ID to authenticate requests to your Azure  API.
