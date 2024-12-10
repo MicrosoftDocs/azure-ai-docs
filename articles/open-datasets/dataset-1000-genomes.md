@@ -38,6 +38,7 @@ This dataset is stored in the West US 2 and West Central US Azure regions. We re
 ## Data access
 
 West US 2:"https://dataset1000genomes.blob.core.windows.net/dataset'"
+
 West Central US: "https://dataset1000genomes-secondary.blob.core.windows.net/dataset"
 
 ## Use Terms
