@@ -27,14 +27,18 @@ Visit [this resource](http://www.internationalgenome.org/formats) for more infor
 
 This dataset is a mirror of [this](ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/) FTP resource.
 
+## Data volumes and update frequency
+
+This dataset contains approximately 815 TB of data. It receives daily updates.
+
+## Storage location
+
+This dataset is stored in the West US 2 and West Central US Azure regions. We recommend locating compute resources in West US 2 or West Central US for affinity.
+
 ## Data access
 
 West US 2:"https://dataset1000genomes.blob.core.windows.net/dataset'"
 West Central US: "https://dataset1000genomes-secondary.blob.core.windows.net/dataset"
-
-## Data volumes and update frequency
-
-This dataset contains approximately 815 TB of data. It receives daily updates.
 
 ## Use Terms
 
