@@ -8,8 +8,6 @@ ms.date: 04/16/2021
 
 # Illumina Platinum Genomes
 
-[!INCLUDE [Open Dataset access change notice](./includes/open-datasets-change-note.md)]
-
 Whole-genome sequencing is enabling researchers worldwide to characterize the human genome more fully and accurately. This requires a comprehensive, genome-wide catalog of high-confidence variants called in a set of genomes as a benchmark. Illumina has generated deep, whole-genome sequence data of 17 individuals in a three-generation pedigree. Illumina has called variants in each genome using a range of currently available algorithms.
 
 For more information on the data, see the official [Illumina site](https://www.illumina.com/platinumgenomes.html).
@@ -33,8 +31,6 @@ This dataset is stored in the West US 2 and West Central US Azure regions. We re
 West US 2: 'https://datasetplatinumgenomes.blob.core.windows.net/dataset'
 
 West Central US: 'https://datasetplatinumgenomes-secondary.blob.core.windows.net/dataset'
-
-[SAS Token](/azure/storage/common/storage-sas-overview): sv=2019-02-02&se=2050-01-01T08%3A00%3A00Z&si=prod&sr=c&sig=FFfZ0QaDcnEPQmWsshtpoYOjbzd4jtwIWeK%2Fc4i9MqM%3D
 
 ## Use Terms
 
