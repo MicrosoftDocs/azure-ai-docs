@@ -45,7 +45,7 @@ items:
         - name: Code interpreter
           href: how-to/tools/code-interpreter.md
     - name: Content filtering
-      href: ../openai/how-to/content-filters?context=/azure/ai-services/agents/context/context
+      href: ../openai/how-to/content-filters.md?context=/azure/ai-services/agents/context/context
 - name: Responsible AI
   items:
     - name: Overview
