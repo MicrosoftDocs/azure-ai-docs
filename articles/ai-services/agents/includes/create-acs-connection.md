@@ -53,9 +53,9 @@ ml_client.connections.create_or_update(my_connection)
  :::image type="content" source="../media/tools/ai-search/select-acs.png" alt-text="A screenshot of the Azure AI Search connection type the user should select." lightbox="../media/tools/ai-search/select-acs.png":::
 
 4. Provide the required connection details for the Azure AI Search resource you want to use. Both Managed Identity and Key-based authentication are supported. Once all the fields are filled in, click **Add connection**.
-:::image type="content" source="../media/tools/ai-search/acs-connection-2.png" alt-text="A screenshot the required fields to add a new Azure AI Search connection." lightbox="../../media/tools/ai-search/acs-connection-2.png":::
+:::image type="content" source="../media/tools/ai-search/acs-connection-2.png" alt-text="A screenshot the required fields to add a new Azure AI Search connection." lightbox="../media/tools/ai-search/acs-connection-2.png":::
 
 5. Verify that the connection was successfully created and now appears in the project's Connections tab.
-:::image type="content" source="../media/tools/ai-search/success-acs-connection.png" alt-text="A screenshot of the project connections page with a new Azure AI Search connection added." lightbox="../../media/tools/ai-search/success-acs-connection.png":::
+:::image type="content" source="../media/tools/ai-search/success-acs-connection.png" alt-text="A screenshot of the project connections page with a new Azure AI Search connection added." lightbox="../media/tools/ai-search/success-acs-connection.png":::
 
 ---
