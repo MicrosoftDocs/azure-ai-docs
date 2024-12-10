@@ -44,6 +44,8 @@ items:
           href: how-to/tools/agent-logic-apps.md
         - name: Code interpreter
           href: how-to/tools/code-interpreter.md
+      - name: Content filtering
+        href: ../openai/how-to/content-filters.md?context=/azure/ai-services/agents/context/context
 - name: Responsible AI
   items:
     - name: Overview
