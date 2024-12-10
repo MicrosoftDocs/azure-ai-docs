@@ -69,7 +69,7 @@ If you already connected the AI Search resource that contains the index you want
 az ml connection create --file {connection.yml} --resource-group {my_resource_group} --workspace-name {my_hub_name}
 ```
 
-You can use either an API key or credential-less YAML configuration file. For more information on the YAML configuration file, see the [Azure AI Search connection YAML schema](../../../machine-learning/reference-yaml-connection-ai-search.md):
+You can use either an API key or credential-less YAML configuration file. For more information on the YAML configuration file, see the [Azure AI Search connection YAML schema](../../../../machine-learning/reference-yaml-connection-ai-search.md):
 - API Key example:
 
     ```yml
