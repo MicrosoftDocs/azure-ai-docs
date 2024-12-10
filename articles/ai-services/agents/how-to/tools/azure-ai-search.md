@@ -45,20 +45,68 @@ A prerequisite of using the Azure AI Search tool is to have an existing Azure AI
 - **Option 1: Standard Agent Setup using existing AI Search resource** If you want your agent to use an existing AI Search resource to create new indexes or bring existing ones you should use the [standard agent setup and add your AI Search resource ID](../../quickstart.md). 
 - You can provide your Azure AI Search resource ID in the bicep file. Your resource ID should be in the format: `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}`.
 - **Option 2: Standard Agent Setup** If you want to create a new Azure AI Search resource for your agents to use when creating new indexes follow the [standard agent setup](../../quickstart.md).
-- **Option 3: Basic Agent Setup** If you want your agent to use multitenant search and storage resources fully managed by Microsoft and connect your AI Search index later use the [basic agent setup](../../quickstart.md).
 
 #### 3. Create a project connection to the Azure AI Search resource with the index you want to use
 If you already connected the AI Search resource that contains the index you want to use to your project, skip this step.
 
+##### Get your Azure AI Search resource connection key and endpoint
 1. Access your Azure AI Search resource.
     - In the Azure portal, navigate to the AI Search resource that contains the index you want to use. 
+2. Copy the connection endpoint.
     - In the Overview tab, copy the URL of your resource. The URL should be in the format `https://<your-resource-name>.search.windows.net/`.
      :::image type="content" source="../../media/tools/ai-search/connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../media/tools/ai-search/connection-endpoint.png":::
 
-2. From the left-hand navigation bar, scroll down to the Settings section and select **Keys**. 
+3. Verify API Acccess control is set to **Both** and copy one of the keys under **Manage admin keys**. 
+    - From the left-hand navigation bar, scroll down to the Settings section and select **Keys**. 
     - Under the **API Access Control** section, ensure the option **Both** API key and Role-based access control is selected.
     - If you want the connection to use API Keys for authentication, copy one of the keys under **Manage admin keys**.
     :::image type="content" source="../../media/tools/ai-search/acs-azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search/acs-azure-portal.png":::
+##### Create an Azure AI Search project connection
+# [Azure CLI](#tab/azurecli)
+```azurecli
+az ml connection create --file {connection.yml} --resource-group {my_resource_group} --workspace-name {my_hub_name}
+```
+
+You can use either an API key or credential-less YAML configuration file. For more information on the YAML configuration file, see the [AI Services connection YAML schema](/azure/machine-learning/reference-yaml-connection-ai-services):
+
+- API Key example:
+
+    ```yml
+    name: myazai_ei
+    type: azure_ai_services
+    endpoint: https://contoso.cognitiveservices.azure.com/
+    api_key: XXXXXXXXXXXXXXX
+    ```
+
+- Credential-less
+
+    ```yml    
+    name: myazai_apk
+    type: azure_ai_services
+    endpoint: https://contoso.cognitiveservices.azure.com/
+    ```
+# [Python SDK](#tab/python)
+
+```python
+from azure.ai.ml.entities import AzureAIServicesConnection
+
+# constrict an AI Services connection
+my_connection_name = "myaiservivce"
+my_endpoint = "demo.endpoint" # this could also be called target
+my_api_keys = None # leave blank for Authentication type = AAD
+my_ai_services_resource_id = "" # ARM id required
+
+my_connection = AzureAIServicesConnection(name=my_connection_name,
+                                    endpoint=my_endpoint, 
+                                    api_key= my_api_keys,
+                                    ai_services_resource_id=my_ai_services_resource_id)
+
+# Create the connection
+ml_client.connections.create_or_update(my_connection)
+```
+
+# [Azure AI Foundry](#tab/azureaifoundry)
+
 
 3. In Azure AI Foundry, navigate to the project you created in the agent setup. Click on **Open in management center**.
     :::image type="content" source="../../media/tools/ai-search/project-studio.png" alt-text="A screenshot of a project in Azure AI Foundry." lightbox="../../media/tools/ai-search/project-studio.png":::
@@ -74,6 +122,9 @@ If you already connected the AI Search resource that contains the index you want
 
 7. Verify that the connection was successfully created and now appears in the project's Connections tab.
 :::image type="content" source="../../media/tools/ai-search/success-acs-connection.png" alt-text="A screenshot of the project connections page with a new Azure AI Search connection added." lightbox="../../media/tools/ai-search/success-acs-connection.png":::
+
+---
+
 ::: zone-end
 
 ::: zone pivot="code-examples"
