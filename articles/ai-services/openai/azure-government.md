@@ -6,7 +6,7 @@ author: challenp
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.custom: references_regions, azuregovernment
-ms.date: 8/29/2024
+ms.date: 12/11/2024
 recommendations: false
 ---
 
@@ -22,21 +22,25 @@ Learn more about the different capabilities of each model in [Azure OpenAI Servi
 The following sections show model availability by region and deployment type.
 
 ### Standard deployment model availability
+|   **Region**  | **gpt-4o**, **2024-05-13** | **gpt-4o-mini**, **2024-07-18** | **gpt-4**, **1106-Preview** | **gpt-35-turbo**, **0125** | **gpt-35-turbo**, **1106** | **text-embedding-3-large**, **1** | **text-embedding-ada-002**, **2** |
+|:--------------|:--------------------------:|:-------------------------------:|:---------------------------:|:--------------------------:|:--------------------------:|:---------------------------------:|:---------------------------------:|
+| usgovarizona  | ✅ | ✅ | ✅ | ✅ | -  | ✅ | ✅ |
+| usgovvirginia | ✅ | -  | ✅ | ✅ | ✅ |  - | ✅ |
+ 
+#### Standard quota limits in tokens per minute (TPM): 
+| **gpt-4o** | **gpt-4o-mini** | **gpt-4** | **gpt-35-turbo** | **text-embedding-3-large** | **text-embedding-ada-002**|
+|:----------:|:---------------:|:---------:|:----------------:|:--------------------------:|:-------------------------:|
+|    300k    |      600k       |    200k   |      500k        |            700k            |           600k            |
 
-|   **Region**  | **gpt-35-turbo**, **1106** | **gpt-35-turbo**, **0125** | **gpt-4**, **1106-Preview** | **gpt-4o**, **2024-05-13** | **text-embedding-ada-002** |
-|:--------------|:--------------------------:|:--------------------------:|:---------------------------:|:--------------------------:|:--------------------------:|
-| usgovarizona  | - | ✅ | ✅ | ✅ | ✅ |
-| usgovvirginia | ✅ | ✅ | ✅ | - | ✅ |
-
-To request quota increases for the pay-as-you-go consumption model, apply at [https://aka.ms/AOAIGovQuota](https://aka.ms/AOAIGovQuota)
+To request quota increases up to these maximum values, submit a request at [https://aka.ms/AOAIGovQuota](https://aka.ms/AOAIGovQuota).
 
 ### Provisioned deployment model availability
-|   **Region**  | **gpt-35-turbo**, **1106** | **gpt-35-turbo**, **0125** | **gpt-4**, **1106-Preview** | **gpt-4o**, **2024-05-13** |
-|:--------------|:--------------------------:|:--------------------------:|:---------------------------:|:--------------------------:|
-| usgovarizona  | - | ✅ | - | ✅ |
-| usgovvirginia | - | ✅ | ✅ | ✅ |
+|   **Region**  | **gpt-4o**, **2024-05-13** | **gpt-4o-mini**, **2024-07-18** | **gpt-4**, **1106-Preview** | **gpt-35-turbo**, **0125** | **gpt-35-turbo**, **1106** |
+|:--------------|:--------------------------:|:-------------------------------:|:---------------------------:|:--------------------------:|:--------------------------:|
+| usgovarizona  | ✅ | - | - | ✅ | - |
+| usgovvirginia | ✅ | - | - | ✅ | - |
 
-> [!NOTE]
+[NOTE]
 > Provisioned Throughput Units (PTUs) are different from standard quota in Azure OpenAI and are not available by default in Azure Government. To learn more about this offering contact your Microsoft Account Team.
 
 <br>
