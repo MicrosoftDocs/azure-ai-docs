@@ -140,3 +140,4 @@ Create a run and observe that the model uses the OpenAPI Spec tool to provide a 
     messages = project_client.agents.list_messages(thread_id=thread.id)
     print(f"Messages: {messages}")
 ```
+::: zone-end
