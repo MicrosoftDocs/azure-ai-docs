@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 05/23/2024
+ms.date: 12/10/2024
 ---
 
 # Querying in Azure AI Search

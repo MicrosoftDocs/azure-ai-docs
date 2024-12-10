@@ -7,7 +7,7 @@ ms.author: heidist
 manager: nitinme
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 03/18/2024
+ms.date: 12/10/2024
 ms.custom:
   - mode-ui
   - ignite-2023

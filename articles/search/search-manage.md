@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 06/18/2024
+ms.date: 12/10/2024
 ---
 
 # Service administration for Azure AI Search in the Azure portal

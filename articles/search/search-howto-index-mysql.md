@@ -12,7 +12,7 @@ ms.topic: how-to
 ms.custom:
   - kr2b-contr-experiment
   - ignite-2023
-ms.date: 06/25/2024
+ms.date: 12/10/2024
 ---
 
 # Index data from Azure Database for MySQL flexible server
