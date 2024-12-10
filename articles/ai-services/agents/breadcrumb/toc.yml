@@ -15,8 +15,8 @@
   items:
   - name: Azure AI services                # Original doc set name
     tocHref: /legal/cognitive-services/openai    # Destination doc set route
-    topicHref: /azure/ai-services/openai/index    # Original doc set route
+    topicHref: /azure/ai-services/agents/index    # Original doc set route
     items:
-    - name: Azure OpenAI Service      # Destination doc set name
+    - name: Azure AI Agent Service      # Destination doc set name
       tocHref: /legal/cognitive-services/openai      # Destination doc set route
-      topicHref: /azure/ai-services/openai/index    # Original doc set route
+      topicHref: /azure/ai-services/agents/index    # Original doc set route
