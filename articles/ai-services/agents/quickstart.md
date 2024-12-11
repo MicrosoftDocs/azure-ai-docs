@@ -16,8 +16,6 @@ recommendations: false
 
 Azure AI Agent Service allows you to create AI agents tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions.
 
-::: zone-end
-
 ::: zone pivot="programming-language-csharp"
 
 [!INCLUDE [quickstart-csharp](includes/quickstart-csharp.md)]
