@@ -14,31 +14,23 @@ ms.date: 12/10/2024
 
 # Migrate semantic ranking code from previous versions
 
-If your semantic ranking code was written against preview APIs, this article explains how to migrate to newer APIs. Breaking changes for semantic ranker are limited to query logic in recent APIs, but if your code was written against the initial preview, you might need to change your semantic configuration as well.
+If your semantic ranking code was written against preview APIs, this article explains how to migrate to newer APIs. Breaking changes for semantic ranker are limited to query logic in recent APIs, but if your code was written against the initial preview version, you might need to change your semantic configuration as well.
 
 ## API versions providing semantic ranking
 
 Check your code for the REST API version or SDK package version to confirm which one provides semantic ranking. The following API versions have some level of support for semantic ranking.
 
-| Release | REST API version |
-|--|--|
-| initial | 2020-06-30-preview (query only) |
-| preview | 2021-04-30-preview (adds semantic configuration) |
-| preview | 2023-07-01-preview (changes semantic configuration <sup>1</sup>) |
-| preview | 2023-10-01-preview (changes semantic configuration <sup>2</sup>) |
-| stable | [2023-11-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2023-11-01&preserve-view=true) (generally available <sup>3</sup>)|
-| preview | 2024-05-01-preview (no change) |
-| stable | [2024-07-01 (REST)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-07-01&preserve-view=true) (no change) |
-| preview | 2024-09-01-preview (no change) |
-| preview | 2024-11-01-preview (adds query rewrite <sup>4</sup>) |
-
-<sup>1</sup> Starting on July 14, 2023 updates to the Microsoft-hosted semantic models made semantic ranker language-agnostic, effectively decommissioning the `queryLanguage` property for semantic ranking. There's no breaking change in code, but the property is ignored. Customers were advised to remove this property from code.
-
-<sup>2</sup> API version 2023-07-01-preview introduced changes to semantic configuration that are now abandoned. Don't use this version.
-
-<sup>3</sup> API version 2023-10-01-preview introduced changes to semantic configuration that progressed to the stable version. If your code targets this version or later, it's compatible with newer API versions unless you adopt new preview features.
-
-<sup>4</sup> The `queryLanguage` property is now required if you use [query rewrite (preview)](semantic-how-to-query-rewrite.md).
+| Release | REST API version | Update |
+|--|--|--|
+| initial | [2020-06-30-preview](/rest/api/searchservice/preview-api/search-documents) | Adds queryType=semantic to Search Documents |
+| preview | [2021-04-30-preview](/rest/api/searchservice/preview-api/search-documents)  | Adds semantic configuration |
+| preview | [2023-07-01-preview](/rest/api/searchservice/preview-api/search-documents) | Changes to semantic configuration. Starting on July 14, 2023 updates to the Microsoft-hosted semantic models made semantic ranker language-agnostic, effectively decommissioning the `queryLanguage` property for semantic ranking. There's no breaking change in code, but the property is ignored. Customers were advised to remove this property from code.|
+| preview | [2023-10-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2023-10-01-preview&preserve-view=true) | Changes to semantic configuration. Introduced changes to semantic configuration that are now abandoned. Don't use this version.|
+| stable | [2023-11-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2023-11-01&preserve-view=true) | Generally available. Introduced changes to semantic configuration that progressed to the stable version. If your code targets this version or later, it's compatible with newer API versions unless you adopt new preview features.|
+| preview | [2024-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-05-01-preview) | No change |
+| stable | [2024-07-01](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-07-01&preserve-view=true) | No change |
+| preview | [2024-09-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-09-01-preview) | No change |
+| preview | [2024-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-11-01-preview) | Adds query rewrite. The `queryLanguage` property is now required if you use [query rewrite (preview)](semantic-how-to-query-rewrite.md). |
 
 ## Change logs for Azure SDKs
 
@@ -90,17 +82,17 @@ Starting on July 14, 2023, semantic ranker is language agnostic. In preview vers
 
 ## 2021-04-30-preview
 
-+ Semantic support is now scoped to both [Search Documents](/rest/api/searchservice/preview-api/search-documents) and [Create or Update Index](/rest/api/searchservice/preview-api/create-or-update-index) preview API calls.
++ Semantic support is through [Search Documents](/rest/api/searchservice/preview-api/search-documents) and [Create or Update Index](/rest/api/searchservice/preview-api/create-or-update-index) preview API calls.
 + Adds `semanticConfiguration` to a search index. A semantic configuration has a name and a prioritized field list.
-+ Adds `semanticFields`. The `searchFields` property is no longer used to prioritize fields.
++ Adds `semanticFields`.
 
-In all versions after `2020-06-30-preview`, `semanticConfiguration` replaces `searchFields` as the mechanism for specifying which fields to use for L2 ranking.
+The `searchFields` property is no longer used to prioritize fields. In all versions moving forward, `semanticConfiguration.semanticFields` replaces `searchFields` as the mechanism for specifying which fields to use for L2 ranking.
 
 ## 2020-06-30-preview
 
-+ Semantic support is scoped to a [Search Documents](/rest/api/searchservice/preview-api/search-documents) preview API call.
++ Semantic support is through a [Search Documents](/rest/api/searchservice/preview-api/search-documents) preview API call.
 + Adds `queryType=semantic` to the query request.
-+ Adapts `searchFields` so that if the query type is semantic, the `searchFields` property determines the priority order of field.inputs to the semantic ranker.
++ Adapts `searchFields` so that if the query type is semantic, the `searchFields` property determines the priority order of field inputs to the semantic ranker.
 + Adds `captions`, `answers`, and `highlights` to the query response.
 
 ## Next steps
