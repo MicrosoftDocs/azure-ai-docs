@@ -17,16 +17,12 @@ Agents are powered by a diverse set of models with different capabilities and pr
 
 | Region | `gpt-35-turbo (0613)` | `gpt-35-turbo (1106)`| `fine tuned gpt-3.5-turbo-0125` | `gpt-4 (0613)` | `gpt-4 (1106)` | `gpt-4 (0125)` | `gpt-4o (2024-05-13)` | `gpt-4o-mini (2024-07-18)` |
 |-----|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| Australia East | ✅ | ✅ | | ✅ |✅ | | | |
 | East US  | ✅ | | | | | ✅ | ✅ |✅|
 | East US 2 | ✅ |  | ✅ | ✅ |✅ | |✅| |
 | France Central  | ✅ | ✅ | | ✅ |✅ |  | | |
 | Japan East | ✅ |  | | | | | | |
-| Norway East | |  | | | ✅ |  | | |
-| Sweden Central | ✅ |✅ | ✅ |✅ |✅| |✅| |
 | UK South | ✅  | ✅ | | | ✅ | ✅ |  | |
 | West US |  | ✅ | | | ✅ | |✅| |
-| West US 3 |  |  | | |✅ | |✅| |
 
 ## Additional models
 
