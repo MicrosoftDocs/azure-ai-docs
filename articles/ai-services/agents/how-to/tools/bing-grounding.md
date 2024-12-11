@@ -25,7 +25,7 @@ Developers and end users don't have access to raw content returned from Groundin
 
 >[!IMPORTANT]
 > 1. Your usage of Grounding with Bing Search may incur costs. See the [pricing page](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
-> 1. If you choose to create a new Grounding with Bing Search resource programatically, such as the Azure CLI or using a deployment template, you automatically agree to be bound by and comply with the [terms of use and use and display requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal).
+> 1. By creating and using a Grounding with Bing Search resource through code-first experience, such as Azure CLI, or deploying through deployment template, you agree to be bound by and comply with the terms available at https://www.microsoft.com/en-us/bing/apis/grounding-legal, which may be updated from time to time.
 
 
 ## Setup  
