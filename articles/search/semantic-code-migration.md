@@ -14,14 +14,14 @@ ms.date: 12/10/2024
 
 # Migrate semantic ranking code from previous versions
 
-If your semantic ranking code was written against preview APIs, this article explains how to migrate to newer APIs. Breaking changes for semantic ranker are limited to query logic in recent APIs, but if your code was written against the initial preview version, you might need to change your semantic configuration as well.
+If your semantic ranking code was written against early preview APIs, this article identifies the code changes necessary for migrating to newer API versions. Breaking changes for semantic ranker are limited to query logic in recent APIs, but if your code was written against the initial preview version, you might need to change your semantic configuration as well.
 
 ## Breaking changes
 
 There are two breaking changes for semantic ranker across REST API versions:
 
-+ `searchFields` replaced by `semanticConfiguration` in 2021-04-30-preview
-+ `queryLanguage` ignored in 2023-07-01-preview, but reinstated for query rewrite in 2024-11-01-preview
++ `searchFields` was replaced by `semanticConfiguration` in 2021-04-30-preview
++ `queryLanguage` was ignored starting in 2023-07-01-preview, but reinstated for query rewrite in 2024-11-01-preview
 
 Other version-specific updates pertain to new capabilities, but don't break existing code and are therefore not breaking changes.
 
@@ -41,11 +41,11 @@ Check your code for the REST API version or SDK package version to confirm which
 | preview | [2024-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-05-01-preview&preserve-view=true) | No change |
 | stable | [2024-07-01](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-07-01&preserve-view=true) | No change |
 | preview | [2024-09-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-09-01-preview&preserve-view=true) | No change |
-| preview | [2024-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-11-01-preview&preserve-view=true) | Adds query rewrite. The `queryLanguage` property is now required if you use [query rewrite (preview)](semantic-how-to-query-rewrite.md). For a list of valid values, see the [REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-11-01-preview#querylanguage&preserve-view=true). |
+| preview | [2024-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-11-01-preview&preserve-view=true) | Adds query rewrite. The `queryLanguage` property is now required if you use [query rewrite (preview)](semantic-how-to-query-rewrite.md).  |
 
 ## Change logs for Azure SDKs
 
-Azure SDKs are on an independent release schedule. You should check the change logs to determine which packages provide semantic features.
+Azure SDKs are on an independent release schedule. You should check the change logs to determine which packages provide semantic features and whether any APIs have been renamed.
 
 + [Azure SDK for .NET change log](https://github.com/Azure/azure-sdk-for-net/blob/Azure.Search.Documents_11.5.1/sdk/search/Azure.Search.Documents/CHANGELOG.md#1150-2023-11-10&preserve-view=true)
 + [Azure SDK for Python change log](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md#1140-2023-10-13&preserve-view=true)
@@ -55,7 +55,7 @@ Azure SDKs are on an independent release schedule. You should check the change l
 ## 2024-11-01-preview
 
 + Adds [query rewrite](semantic-how-to-query-rewrite.md) to Search Documents.
-+ Requires `queryLanguage` for query rewrite workloads.
++ Requires `queryLanguage` for query rewrite workloads. For a list of valid values, see the [REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-11-01-preview#querylanguage&preserve-view=true).
 
 ## 2024-09-01-preview
 
@@ -73,7 +73,7 @@ No changes to semantic ranking syntax from the 2024-03-01-preview version.
 
 ## 2024-03-01-preview
 
-No changes to semantic ranking syntax from the 2023-10-01-preview version, but vector queries are introduced. Semantic ranking now applies to responses from hybrid and vector queries, apply reranking on any human-readable text fields in the response.
+No changes to semantic ranking syntax from the 2023-10-01-preview version, but vector queries are introduced. Semantic ranking now applies to responses from hybrid and vector queries. You can apply reranking on any human-readable text fields in the response, assuming the fields are listed in `prioritizedFields`.
 
 ## 2023-11-01
 
@@ -95,9 +95,9 @@ Starting on July 14, 2023, semantic ranker is language agnostic. In preview vers
 
 + Semantic support is through [Search Documents](/rest/api/searchservice/preview-api/search-documents) and [Create or Update Index](/rest/api/searchservice/preview-api/create-or-update-index) preview API calls.
 + Adds `semanticConfiguration` to a search index. A semantic configuration has a name and a prioritized field list.
-+ Adds `semanticFields`.
++ Adds ``prioritizedFields`.
 
-The `searchFields` property is no longer used to prioritize fields. In all versions moving forward, `semanticConfiguration.semanticFields` replaces `searchFields` as the mechanism for specifying which fields to use for L2 ranking.
+The `searchFields` property is no longer used to prioritize fields. In all versions moving forward, `semanticConfiguration.prioritizedFields` replaces `searchFields` as the mechanism for specifying which fields to use for L2 ranking.
 
 ## 2020-06-30-preview
 
