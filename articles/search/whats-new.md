@@ -24,7 +24,7 @@ ms.custom:
 
 | Item&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Type |  Description |
 |-----------------------------|------|--------------|
-| [**RAG chat with Azure AI Search + Python**](https://azure.github.io/ai-app-templates/repo/azure-samples/azure-search-openai-demo/) | Sample | Use an AI application template to build a RAG solution using Azure AI Search and Python. |
+| [**RAG chat with Azure AI Search + Python**](https://azure.github.io/ai-app-templates/repo/azure-samples/azure-search-openai-demo/) | Template | An AI application template for building a RAG solution using Azure AI Search and Python. |
 
 ## November 2024
 
