@@ -30,6 +30,7 @@ Agents can access multiple tools in parallel. These can be both Azure OpenAI-hos
 |---------|---------|
 | [Grounding with Bing Search](./bing-grounding.md)     | Allows your agents to incorporate real-time public web data when generating responses.         |
 |[File search](./file-search.md)    | Augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.        |
+| [Azure AI Search](./azure-ai-search.md) | Usees an existing Azure AI Search index as a knowlege base. |
 
 ## Action tools
 
@@ -37,4 +38,5 @@ Agents can access multiple tools in parallel. These can be both Azure OpenAI-hos
 |---------|---------|
 | [Code interpreter](./code-interpreter.md)     | Enables agents to write and run Python code in a sandboxed execution environment.        |
 |[Function calling](./function-calling.md)     | Allows you to describe the structure of functions to an agent and then return the functions that need to be called along with their arguments.        |
+| [OpenAPI specified tools](./openapi-spec.md) | Connects your Azure AI Agent to an external API using an OpenAPI 3.0 specified tool. |
 
