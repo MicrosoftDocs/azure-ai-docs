@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 01/17/2024
+ms.date: 12/10/2024
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet

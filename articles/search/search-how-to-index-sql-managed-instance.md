@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 05/23/2024
+ms.date: 12/10/2024
 ---
 
 # Indexer connections to Azure SQL Managed Instance through a public endpoint

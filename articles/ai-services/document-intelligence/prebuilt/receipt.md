@@ -6,16 +6,13 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/16/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ---
 
 <!-- markdownlint-disable MD033 -->
 
 # Document Intelligence receipt model
-
-::: moniker range="doc-intel-4.0.0"
-[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
 
 [!INCLUDE [applies to v4.0](../includes/applies-to-v40.md)]
 ::: moniker-end
@@ -32,21 +29,20 @@ ms.author: lajanuar
 [!INCLUDE [applies to v2.1](../includes/applies-to-v21.md)]
 ::: moniker-end
 
-The Document Intelligence receipt model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract key information from sales receipts. Receipts can be of various formats and quality including printed and handwritten receipts. The API extracts key information such as merchant name, merchant phone number, transaction date, tax, and transaction total and returns structured JSON data.
+The Document Intelligence receipt model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract key information from sales receipts. Receipts can be of various formats and quality including printed and handwritten receipts. The API extracts key information such as merchant name, merchant phone number, transaction date, tax, and transaction total and returns structured JSON data. Receipt model v4.0 (GA) also supports other fields including `ReceiptType`, `TaxDetails.NetAmount`, `TaxDetails.Description`, `TaxDetails.Rate` and `CountryRegion`.
 
 **Supported receipt types:**
 
-* Thermal
-* Credit Card
-* Gas
-* Parking
+* Meal
+* Supplies
 * Hotel
+* Fuel&Energy
 * Transportation
 * Communication
+* Subscriptions
 * Entertainment
-* Flight
 * Training
-* Pharmacy/Medical
+* Healthcare 
 
 ## Receipt data extraction
 
@@ -72,11 +68,11 @@ Receipt digitization encompasses the transformation of various types of receipts
 
 ::: moniker range="doc-intel-4.0.0"
 
-Document Intelligence v4.0 (2024-07-31-preview) supports the following tools, applications, and libraries:
+Document Intelligence v4.0: **2024-11-30** (GA) supports the following tools, applications, and libraries:
 
 | Feature | Resources | Model ID |
 |----------|-------------|-----------|
-|**Receipt model**|&bullet; [**Document Intelligence Studio**](https://formrecognizer.appliedai.azure.com)</br>&bullet;  [**REST API**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)</br>&bullet;  [**C# SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Python SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Java SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**JavaScript SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|**prebuilt-receipt**|
+|**Receipt model**|&bullet; [**Document Intelligence Studio**](https://formrecognizer.appliedai.azure.com)</br>&bullet;  [**REST API**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)</br>&bullet;  [**C# SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Python SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Java SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**JavaScript SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|**prebuilt-receipt**|
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0"
@@ -199,6 +195,11 @@ For a complete list of supported languages, *see* our [prebuilt models language 
 
 ## Field extraction
 
+::: moniker range=">=doc-intel-3.0.0"
+
+For supported document extraction fields, refer to the [receipt model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/receipt.md) page in our GitHub sample repository
+:::moniker-end
+
 ::: moniker range="doc-intel-2.1.0"
 
 |Name| Type | Description | Standardized output |
@@ -221,11 +222,6 @@ For a complete list of supported languages, *see* our [prebuilt models language 
 
 ::: moniker-end
 
-::: moniker range=">=doc-intel-3.0.0"
-
-For supported document extraction fields, refer to the [receipt model schema](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/receipt.md) page in our GitHub sample repository.
- 
-::: moniker-end
 
 ::: moniker range="doc-intel-2.1.0"
 

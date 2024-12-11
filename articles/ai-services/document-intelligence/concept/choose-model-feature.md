@@ -6,16 +6,12 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: overview
-ms.date: 09/26/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ---
 
 
 # Which model should I choose?
-
- ::: moniker range="<=doc-intel-3.1.0"
-[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
-::: moniker-end
 
 Azure AI Document Intelligence supports a wide variety of models that enable you to add intelligent document processing to your applications and optimize your workflows. Selecting the right model is essential to ensure the success of your enterprise. In this article, we explore the available Document Intelligence models and provide guidance for how to choose the best solution for your projects.
 
@@ -40,6 +36,8 @@ The following decision charts highlight the features of each supported model to 
 | -----------------|--------------|-------------------|
 |**US Unified Tax**|You want to extract key information across all tax forms of W2, 1040, 1090, 1098 from a single file without running any custom classification of your own.|[**US Unified tax model**](../prebuilt/tax-document.md)|
 |**US Tax W-2 tax**|You want to extract key information such as salary, wages, and taxes withheld.|[**US tax W-2 model**](../prebuilt/tax-document.md)|
+|**US Tax W-4 tax**|You want to extract key information such as claim adjustments, personal information.|[**US tax W-4 model**](../prebuilt/tax-document.md)|
+|**US Tax 1095(A,C)**|You want to extract premium tax credit, advance credit payment details.|[**US tax 1095 model**](../prebuilt/tax-document.md)|
 |**US Tax 1098**|You want to extract mortgage interest details such as principal, points, and tax.|[**US tax 1098 model**](../prebuilt/tax-document.md)|
 |**US Tax 1098-E**|You want to extract student loan interest details such as lender and interest amount.|[**US tax 1098-E model**](../prebuilt/tax-document.md)|
 |**US Tax 1098T**|You want to extract qualified tuition details such as scholarship adjustments, student status, and lender information.|[**US tax 1098-T model**](../prebuilt/tax-document.md)|
@@ -73,7 +71,6 @@ The following decision charts highlight the features of each supported model to 
 | -----------------|--------------|-------------------|
 |**Structured, consistent, documents with a static layout**. |Structured forms such as questionnaires or applications. | [**Custom template model**](./../train/custom-template.md)|
 |**Structured and semi-structured**.|&#9679; Structured &rightarrow; surveys</br>&#9679; Semi-structured &rightarrow; invoices | [**Custom neural model**](../train/custom-neural.md)|
-|**Unstructured documents, documents with varying templates**.|&#9679; Unstructured documents like contracts or letters</br> &#9679; Varying document templates like loan statements from different mortgage companies| [**Custom generative model**](../train/custom-generative-extraction.md)|
 |**A collection of several models each trained on similar-type documents.** |&#9679; Supply purchase orders</br>&#9679; Equipment purchase orders</br>&#9679; Furniture purchase orders</br> **All composed into a single model**.| [**Composed custom model**](../train/composed-models.md)|
 
 ## Custom classification model
@@ -84,4 +81,4 @@ The following decision charts highlight the features of each supported model to 
 
 ## Next steps
 
-* [Learn how to process your own forms and documents](../quickstarts/try-document-intelligence-studio.md) with the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio)
+* [Learn how to process your own forms and documents](../studio-overview.md) with the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio)

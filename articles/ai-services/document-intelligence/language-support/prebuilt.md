@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 02/29/2024
+ms.date: 11/19/2024
 ---
 
 # Language support: prebuilt models
@@ -38,7 +38,7 @@ Azure AI Document Intelligence models provide multilingual document processing s
 
 :::moniker range="doc-intel-4.0.0"
  > [!IMPORTANT]
-> Starting with Document Intelligence **v4.0 (preview)**, and going forward, the business card model (prebuilt-businessCard) is deprecated. To extract data from business cards, use earlier models.
+> Starting with Document Intelligence **v4.0 preview versions**, and going forward, the business card model (prebuilt-businessCard) is deprecated. To extract data from business cards, use earlier models.
 
 | Feature   | version| Model ID |
 |----------  |---------|--------|
@@ -113,6 +113,26 @@ Azure AI Document Intelligence models provide multilingual document processing s
 :::moniker-end
 
 ## ID document
+
+:::moniker range=">=doc-intel-4.0.0"
+
+***Model ID: prebuilt-idDocument***
+
+#### Supported document types
+
+| Region | Document Types |
+|--------|----------------|
+|Worldwide|Passport Book, Passport Card|
+|United States|Driver License, Identification Card, Residency Permit (Green card), Social Security Card, Military ID|
+|North America|Driver License, Identification Card, Residency Permit|
+|South America|Driver License, Identification Card, Residency Permit|
+|Europe|Driver License, Identification Card, Residency Permit|
+|Southeast Asia|Driver License, Identification Card, Residency Permit|
+|India|Driver License, PAN Card, Aadhaar Card|
+|Australia|Driver License, Photo Card, Key-pass ID (including digital version)|
+|New Zealand|Driver License, Identification Card, Residency Permit|
+
+::: moniker-end
 
 :::moniker range=">=doc-intel-3.0.0"
 
@@ -392,9 +412,11 @@ Azure AI Document Intelligence models provide multilingual document processing s
   | Model ID | Language  Locale code | Default |
   |--------|:----------------------|:---------|
   |**prebuilt-tax.us.w2**|English (United States)|English (United States) `en-US`|
+  |**prebuilt-tax.us.w4**|English (United States)|English (United States) `en-US`|
   |**prebuilt-tax.us**|English (United States)|English (United States) `en-US`|
   |**prebuilt-tax.us.1099Combo**|English (United States)|English (United States) `en-US`|
   |**prebuilt-tax.us.1098**|English (United States)|English (United States) `en-US`|
+  |**prebuilt-tax.us.1095**|English (United States)|English (United States) `en-US`|
   |**prebuilt-tax.us.1098E**|English (United States)|English (United States) `en-US`|
   |**prebuilt-tax.us.1098T**|English (United States)|English (United States) `en-US`|
   |**prebuilt-tax.us.1099**|English (United States)|English (United States) `en-US`|

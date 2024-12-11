@@ -414,7 +414,7 @@ items:
         href: search-normalizers.md
     - name: Search results 
       items:
-      - name: Paging, sorting, and formatting
+      - name: Page, sort, and shape results
         href: search-pagination-page-layout.md
       - name: Return a semantic answer
         href: semantic-answers.md

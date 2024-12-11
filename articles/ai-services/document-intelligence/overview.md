@@ -1,12 +1,12 @@
 ---
-title: What is Azure AI Document Intelligence ?
+title: What is Azure AI Document Intelligence?
 titleSuffix: Azure AI services
 description: Azure AI Document Intelligence is a machine-learning based OCR and intelligent document processing service to automate extraction of key data from forms and documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: overview
-ms.date: 08/07/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ---
@@ -20,7 +20,7 @@ monikerRange: '<=doc-intel-4.0.0'
 # What is Azure AI Document Intelligence?
 
  :::moniker range="doc-intel-4.0.0"
-[!INCLUDE [preview-version-notice](includes/preview-notice.md)]
+
 
 [!INCLUDE [applies to v4.0](includes/applies-to-v40.md)]
 
@@ -40,15 +40,6 @@ monikerRange: '<=doc-intel-4.0.0'
 [!INCLUDE [applies to v2.1](includes/applies-to-v21.md)]
 
 :::moniker-end
-
-> [!NOTE]
-> Form Recognizer is now **Azure AI Document Intelligence**!
->
-> * As of July 2023, Azure AI services encompass all of what were previously known as Cognitive Services and Azure Applied AI Services.
-> * There are no changes to pricing.
-> * The names *Cognitive Services* and *Azure Applied AI* continue to be used in Azure billing, cost analysis, price list, and price APIs.
-> * There are no breaking changes to application programming interfaces (APIs) or SDKs prior to and including v3.1. Starting from v4.0, APIs and SDKs are updated to Document Intelligence.
-> * Some platforms are still awaiting the renaming update. All mention of Form Recognizer or Document Intelligence in our documentation refers to the same Azure service.
 
 Azure AI Document Intelligence is a cloud-based [Azure AI service](../../ai-services/index.yml) that enables you to build intelligent document processing solutions. Massive amounts of data, spanning a wide variety of data types, are stored in forms and documents. Document Intelligence enables you to effectively manage the velocity at which data is collected and processed and is key to improved operations, informed data-driven decisions, and enlightened innovation. </br></br>
 
@@ -222,7 +213,6 @@ Custom models are trained using your labeled datasets to extract distinct data f
 
 :::row:::
    :::column:::
-    [**Custom generative**](#custom-generative-document-field-extraction) | Build a custom extraction model using generative AI for documents with unstructured format and varying templates.
    :::column-end:::
    :::column span="":::
     [**Custom neural**](#custom-neural) | Extract data from mixed-type documents.
@@ -247,7 +237,7 @@ Custom models are trained using your labeled datasets to extract distinct data f
 
 ## Add-on capabilities
 
-Document Intelligence supports optional features that can be enabled and disabled depending on the document extraction scenario. The following add-on capabilities are available for `2023-07-31 (GA)` and later releases:
+Document Intelligence supports optional features that can be enabled and disabled depending on the document extraction scenario:
 
 * [`ocr.highResolution`](concept-add-on-capabilities.md#high-resolution-extraction)
 
@@ -257,11 +247,9 @@ Document Intelligence supports optional features that can be enabled and disable
 
 * [`ocr.barcode`](concept-add-on-capabilities.md#barcode-property-extraction)
 
- The`2024-07-31-preview` release introduces `read` model support for [searchable PDF](prebuilt/read.md#searchable-pdf) output:
+* [`Read model support for searchable PDF`](prebuilt/read.md#searchable-pdf)
 
-* [`Searchable PDF](concept-add-on-capabilities.md#searchable-pdf)
-
-Document Intelligence supports optional features that can be enabled and disabled depending on the document extraction scenario. The following add-on capabilities are available for `2023-10-31-preview`, and later releases:
+* [`Searchable PDF`](concept-add-on-capabilities.md#searchable-pdf)
 
 * [`queryFields`](concept-add-on-capabilities.md#query-fields)
 
@@ -483,7 +471,7 @@ You can use Document Intelligence to automate document processing in application
 
 | Model ID| Description |Automation use cases | Development options |
 |----------|--------------|-------------------------|-----------|
-|[**prebuilt-tax.us.W-2**](prebuilt/tax-document.md) |&#9679; Extract key information from IRS US W2 tax forms (year 2018-2021).</br>&#9679; [Data and field extraction](prebuilt/tax-document.md#field-extraction-w-2)|&#9679; Automated tax document management.</br>&#9679; Mortgage loan application processing. |&#9679; [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=tax.us.w2&formType=tax.us.w2)</br>&#9679; [**REST API**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-rest-api#analyze-document-post-request)</br>&#9679; [**C# SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**Python SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**Java SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**JavaScript**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model) |
+|[**prebuilt-tax.us.W-2**](prebuilt/tax-document.md) |&#9679; Extract key information from IRS US W2 tax forms (year 2018-2021).</br>&#9679;|&#9679; Automated tax document management.</br>&#9679; Mortgage loan application processing. |&#9679; [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=tax.us.w2&formType=tax.us.w2)</br>&#9679; [**REST API**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-rest-api#analyze-document-post-request)</br>&#9679; [**C# SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**Python SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**Java SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**JavaScript**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model) |
 
 > [!div class="nextstepaction"]
 > [Return to model types](#prebuilt-models)
@@ -494,7 +482,7 @@ You can use Document Intelligence to automate document processing in application
 
 | Model ID | Description| Development options |
 |----------|--------------|-------------------|
-|[**prebuilt-tax.us.1098{`variation`}**](prebuilt/tax-document.md)|&#9679; Extract key information from 1098-form variations.</br>&#9679; [Data and field extraction](prebuilt/tax-document.md#field-extraction-1098)|&#9679; [**Document Intelligence Studio**](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=tax.us.1098)</br>&#9679; [**REST API**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-rest-api#analyze-document-post-request)</br>&#9679; [**C# SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**Python SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**Java SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**JavaScript**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)|
+|[**prebuilt-tax.us.1098{`variation`}**](prebuilt/tax-document.md)|&#9679; Extract key information from 1098-form variations.</br>&#9679;|&#9679; [**Document Intelligence Studio**](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=tax.us.1098)</br>&#9679; [**REST API**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-rest-api#analyze-document-post-request)</br>&#9679; [**C# SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**Python SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**Java SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**JavaScript**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)|
 
 > [!div class="nextstepaction"]
 > [Return to model types](#prebuilt-models)
@@ -505,7 +493,7 @@ You can use Document Intelligence to automate document processing in application
 
 | Model ID |Description|Development options |
 |----------|--------------|-----------------|
-|[**prebuilt-tax.us.1099{`variation`}**](prebuilt/tax-document.md)|&#9679; Extract information from 1099-form variations.</br>&#9679; [Data and field extraction](prebuilt/tax-document.md#field-extraction-1099-nec)|&#9679; [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=tax.us.1099)</br>&#9679; [**REST API**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-rest-api#analyze-document-post-request)</br>&#9679; [**C# SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**Python SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**Java SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**JavaScript**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)|
+|[**prebuilt-tax.us.1099{`variation`}**](prebuilt/tax-document.md)|&#9679; Extract information from 1099-form variations.</br>&#9679;|&#9679; [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=tax.us.1099)</br>&#9679; [**REST API**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-rest-api#analyze-document-post-request)</br>&#9679; [**C# SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**Python SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**Java SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**JavaScript**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)|
 
 > [!div class="nextstepaction"]
 > [Return to model types](#prebuilt-models)
@@ -516,7 +504,7 @@ You can use Document Intelligence to automate document processing in application
 
 | Model ID |Description|Development options |
 |----------|--------------|-----------------|
-|[**prebuilt-tax.us.1040{`variation`}**](prebuilt/tax-document.md)|&#9679; Extract information from 1040-form variations.</br>&#9679; [Data and field extraction](prebuilt/tax-document.md#field-extraction-1040-tax-form)|&#9679; [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=tax.us.1040)</br>&#9679; [**REST API**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-rest-api#analyze-document-post-request)</br>&#9679; [**C# SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**Python SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**Java SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**JavaScript**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)|
+|[**prebuilt-tax.us.1040{`variation`}**](prebuilt/tax-document.md)|&#9679; Extract information from 1040-form variations.</br>&#9679;|&#9679; [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=tax.us.1040)</br>&#9679; [**REST API**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-rest-api#analyze-document-post-request)</br>&#9679; [**C# SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**Python SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**Java SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [**JavaScript**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)|
 
 :::moniker range=">=doc-intel-4.0.0"
 
@@ -554,21 +542,6 @@ You can use Document Intelligence to automate document processing in application
 > [!div class="nextstepaction"]
 > [Return to custom model types](#custom-models)
 
-#### Custom generative (document field extraction)
-
-:::image type="content" source="media/overview/analyze-custom-generative.png" alt-text="Screenshot of Custom generative model analysis using Azure AI Foundry.":::
-
-  > [!NOTE]
-  > Custom generative model is only available in Azure AI Foundry portal.
-  > To try out custom generative model in AI Foundry portal, *visit* [Document field extraction (custom generative)](https://aka.ms/custom-generative)
-
-| About | Description |Automation use cases | Development options |
-|----------|--------------|-------------------------|-----------|
-|[**Custom generative model**](train/custom-generative-extraction.md)| The custom generative model is used to extract fields from unstructured documents or structured forms with a wide variety of visual templates.|The model uses Generative AI to extract fields, improve quality with only a few labeled samples and can be integrated into your processes with grounding and confidence scores.​|[**Azure AI Foundry**](https://aka.ms/custom-generative)</br>&#9679; [**REST API**](/rest/api/aiservices/document-models/build-model?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)</br>&#9679; [**C# SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&#9679; [**Java SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&#9679; [**JavaScript SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&#9679; [**Python SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|
-
-> [!div class="nextstepaction"]
-> [Return to custom model types](#custom-models)
-
 #### Custom neural
 
 :::image type="content" source="media/overview/analyze-custom-neural.png" alt-text="Screenshot of Custom Neural model analysis using Document Intelligence Studio.":::
@@ -600,8 +573,6 @@ You can use Document Intelligence to automate document processing in application
 > [Return to custom model types](#custom-models)
 
 #### Custom composed
-
-:::image type="content" source="media/overview/composed-custom-models.png" alt-text="Screenshot of Composed Custom model list in Document Intelligence Studio.":::
 
 | About | Description |Automation use cases | Development options |
 |----------|--------------|-------------------------|-----------|
