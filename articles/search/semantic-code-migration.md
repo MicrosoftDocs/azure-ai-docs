@@ -31,12 +31,12 @@ If you're using Azure SDKs, multiple APIs have been renamed over time. The SDK c
 
 Check your code for the REST API version or SDK package version to confirm which one provides semantic ranking. The following API versions have some level of support for semantic ranking.
 
-| Release type | REST&nbsp;API&nbsp;version | Update |
+| Release&nbsp;type | REST&nbsp;API&nbsp;version | Semantic ranker updates |
 |--|--|--|
 | initial | [2020-06-30-preview](/rest/api/searchservice/preview-api/search-documents) | Adds `queryType=semantic` to Search Documents |
 | preview | [2021-04-30-preview](/rest/api/searchservice/preview-api/search-documents)  | Adds `semanticConfiguration` to Create or Update Index |
 | preview | [2023-07-01-preview](/rest/api/searchservice/preview-api/search-documents) | Updates `semanticConfiguration`. Starting on July 14, 2023 updates to the Microsoft-hosted semantic models made semantic ranker language-agnostic, effectively decommissioning the `queryLanguage` property for semantic ranking. There's no breaking change in code, but the property is ignored. Customers were advised to remove this property from code.|
-| preview | [2023-10-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2023-10-01-preview&preserve-view=true) | Updates `semanticConfiguration`. Introduced changes to `semanticConfiguration` that are now abandoned. Don't use this version.|
+| preview | [2023-10-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2023-10-01-preview&preserve-view=true) | Adds `semanticQuery` to send a query used only for reranking purposes. |
 | stable | [2023-11-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2023-11-01&preserve-view=true) | Generally available. Introduced changes to `semanticConfiguration` that progressed to the stable version. If your code targets this version or later, it's compatible with newer API versions unless you adopt new preview features.|
 | preview | [2024-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-05-01-preview&preserve-view=true) | No change |
 | stable | [2024-07-01](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-07-01&preserve-view=true) | No change |
