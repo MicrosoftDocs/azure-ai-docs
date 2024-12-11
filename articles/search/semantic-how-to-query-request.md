@@ -11,14 +11,14 @@ ms.custom:
   - ignite-2023
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 12/10/2024
 ---
 
 # Add semantic ranking to queries in Azure AI Search
 
 You can apply semantic ranking to text queries, hybrid queries, and vector queries if your search documents contain string fields and the [vector query has a text representation](vector-search-how-to-query.md#query-with-integrated-vectorization) in the search document.
 
-This article explains how to invoke the semantic ranker on queries. 
+This article explains how to invoke the semantic ranker on queries. It assumes you're using the most recent stable or preview APIs. For help with older versions, see [Migrate semantic ranking code](semantic-code-migration.md).
 
 ## Prerequisites
 
