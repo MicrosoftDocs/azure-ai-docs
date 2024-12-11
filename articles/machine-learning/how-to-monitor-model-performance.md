@@ -41,31 +41,59 @@ In this article you, learn to perform the following tasks:
 
 # [Studio](#tab/azure-studio)
 
-Before following the steps in this article, make sure you have the following prerequisites:
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* An Azure Machine Learning workspace. For steps for creating a workspace, see [Create the workspace](../quickstart-create-resources.md#create-the-workspace).
 
-* An Azure Machine Learning workspace and a compute instance. If you don't have these resources, use the steps in the [Quickstart: Create workspace resources](quickstart-create-resources.md) article to create them.
+* An Azure Machine Learning compute instance. For steps for creating a compute instance, see [Create a compute instance](quickstart-create-resources.md#create-a-compute-instance).
 
 ---
 
-* Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure Machine Learning workspace, or a custom role allowing `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. For more information, see [Manage access to an Azure Machine Learning workspace](how-to-assign-roles.md).
+* A user account that has one of the following Azure role-based access control (Azure RBAC) roles:
 
-*  For monitoring a model that is deployed to an Azure Machine Learning online endpoint (managed online endpoint or Kubernetes online endpoint), be sure to:
+  * An Owner role for the Azure Machine Learning workspace
+  * A Contributor role for the Azure Machine Learning workspace
+  * A custom role that has been assigned `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*` permissions
 
-    * Have a model already deployed to an Azure Machine Learning online endpoint. Both managed online endpoint and Kubernetes online endpoint are supported. If you don't have a model deployed to an Azure Machine Learning online endpoint, see [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md).
+  For more information, see [Manage access to an Azure Machine Learning workspace](how-to-assign-roles.md).
 
-    * Enable data collection for your model deployment. You can enable data collection during the deployment step for Azure Machine Learning online endpoints. For more information, see [Collect production data from models deployed to a real-time endpoint](how-to-collect-production-data.md).
+* For monitoring an Azure Machine Learning managed online endpoint or Kubernetes online endpoint:
 
-*  For monitoring a model that is deployed to an Azure Machine Learning batch endpoint or deployed outside of Azure Machine Learning, be sure to:
+  * A model that's deployed to the Azure Machine Learning online endpoint. Managed online endpoints and Kubernetes online endpoints are supported. For instructions for deploying a model to an Azure Machine Learning online endpoint, see [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md).
 
-    * Have a means to collect production data and register it as an Azure Machine Learning data asset.
-    * Update the registered data asset continuously for model monitoring.
-    * (Recommended) Register the model in an Azure Machine Learning workspace, for lineage tracking.
+  * Data collection enabled for your model deployment. You can enable data collection during the deployment step for Azure Machine Learning online endpoints. For more information, see [Collect production data from models deployed to a real-time endpoint](how-to-collect-production-data.md).
 
-> [!IMPORTANT]
->
-> Model monitoring jobs are scheduled to run on serverless Spark compute pools with support for the following VM instance types: `Standard_E4s_v3`, `Standard_E8s_v3`, `Standard_E16s_v3`, `Standard_E32s_v3`, and `Standard_E64s_v3`. You can select the VM instance type with the `create_monitor.compute.instance_type` property in your YAML configuration or from the dropdown in the Azure Machine Learning studio.
+* For monitoring a model that's deployed to an Azure Machine Learning batch endpoint or deployed outside Azure Machine Learning:
+
+  * A means to collect production data and register it as an Azure Machine Learning data asset
+  * A means to update the registered data asset continuously for model monitoring
+  * (Recommended) Registration of the model in an Azure Machine Learning workspace, for lineage tracking
+
+## Configure a serverless Spark compute pool
+
+Model monitoring jobs are scheduled to run on serverless Spark compute pools. The following Azure Virtual Machine instance types are supported:
+
+- Standard_E4s_v3
+- Standard_E8s_v3
+- Standard_E16s_v3
+- Standard_E32s_v3
+- Standard_E64s_v3
+
+To specify a virtual machine instance type when you follow the procedures in this article, take the following steps:
+
+# [Azure CLI](#tab/azure-cli)
+
+When you use the Azure CLI to create a monitor, you use a YAML configuration file. In that file, set the `create_monitor.compute.instance_type` value to the type that you want to use.
+
+# [Python SDK](#tab/python)
+
+When you use the Python SDK to create a monitor, you use `azure.ai.ml.entities.ServerlessSparkCompute` to create a compute instance. When you call that method, set the `instance_type` parameter to the type that you want to use.
+
+# [Studio](#tab/azure-studio)
+
+When you use the Azure Machine Learning studio to add a monitor, the Basic settings page opens. Under **Virtual machine size**, select the type that you want to use.
+
+---
 
 ## Set up out-of-box model monitoring
 
@@ -1130,23 +1158,23 @@ The studio currently doesn't support monitoring for custom signals. See the Azur
 
 ## Interpret monitoring results
 
-After you've configured your model monitor and the first run has completed, you can navigate back to the **Monitoring** tab in Azure Machine Learning studio to view the results.
+After you configure your model monitor and the first run finishes, you can view the results in Azure Machine Learning studio.
 
-- From the main **Monitoring** view, select the name of your model monitor to see the Monitor overview page. This page shows the corresponding model, endpoint, and deployment, along with details regarding the signals you configured. The next image shows a monitoring dashboard that includes data drift and data quality signals. Depending on the monitoring signals you configured, your dashboard might look different.
+- In the studio, under **Manage**, select **Monitoring**. In the Monitoring page, select the name of your model monitor to see its overview page. This page shows the monitoring model, endpoint, and deployment. It also provides detailed information about configured signals. The followng image shows a monitoring overviewpage that includes data drift and data quality signals.
 
    :::image type="content" source="media/how-to-monitor-models/monitoring-dashboard.png" alt-text="Screenshot showing a monitoring dashboard." lightbox="media/how-to-monitor-models/monitoring-dashboard.png":::
 
-- Look in the **Notifications** section of the dashboard to see, for each signal, which features breached the configured threshold for their respective metrics:
+- Look in the **Notifications** section of the overview page. In this section, you can see the feature for each signal that breached the configured threshold for its respective metrics.
 
-- Select the **data_drift** to go to the data drift details page. On the details page, you can see the data drift metric value for each numerical and categorical feature that you included in your monitoring configuration. When your monitor has more than one run, you'll see a trendline for each feature.
+- In the **Signals** section, select **data_drift** to see detailed information about the data drift signal. On the details page, you can see the data drift metric value for each numerical and categorical feature that your monitoring configuration includes. If your monitor has more than one run, you see a trendline for each feature.
 
    :::image type="content" source="media/how-to-monitor-models/data-drift-details-page.png" alt-text="Screenshot showing the details page of the data drift signal." lightbox="media/how-to-monitor-models/data-drift-details-page.png":::
 
-- To view an individual feature in detail, select the name of the feature to view the production distribution compared to the reference distribution. This view also allows you to track drift over time for that specific feature.
+- On the details page, select the name of an individual feature. A detailed view opens that shows the production distribution compared to the reference distribution. You can also use this view to track drift over time for the feature.
 
    :::image type="content" source="media/how-to-monitor-models/data-drift-individual-feature.png" alt-text="Screenshot showing the data drift details for an individual feature." lightbox="media/how-to-monitor-models/data-drift-individual-feature.png":::
 
-- Return to the monitoring dashboard and select **data_quality** to view the data quality signal page. On this page, you can see the null value rates, out-of-bounds rates, and data type error rates for each feature you're monitoring.
+- Return to the monitoring overview page. In the **Signals** section, select **data_quality** to view detailed information about this signal. On this page, you can see the null value rates, out-of-bounds rates, and data type error rates for each feature that you monitor.
 
    :::image type="content" source="media/how-to-monitor-models/data-quality-details-page.png" alt-text="Screenshot showing the details page of the data quality signal." lightbox="media/how-to-monitor-models/data-quality-details-page.png":::
 
@@ -1155,46 +1183,62 @@ Model monitoring is a continuous process. With Azure Machine Learning model moni
 
 ## Integrate Azure Machine Learning model monitoring with Azure Event Grid
 
-You can use events generated by Azure Machine Learning model monitoring to set up event-driven applications, processes, or CI/CD workflows with [Azure Event Grid](how-to-use-event-grid.md). You can consume events through various event handlers, such as Azure Event Hubs, Azure functions, and logic apps. Based on the drift detected by your monitors, you can take action programmatically, such as by setting up a machine learning pipeline to re-train a model and re-deploy it.
+When you use [Azure Event Grid](how-to-use-event-grid.md), you can configure events that are generated by Azure Machine Learning model monitoring to trigger applications, processes, and CI/CD workflows. You can consume events through various event handlers, such as Azure Event Hubs, Azure Functions, and Azure Logic Apps. Based on the drift detected by your monitors, you can take action programmatically, such as by setting up a machine learning pipeline to retrain a model and redeploy it.
 
-To get started with integrating Azure Machine Learning model monitoring with Event Grid:
+To integrate Azure Machine Learning model monitoring with Event Grid, take the steps in the following sections.
 
-1. Follow the steps in see [Set up in Azure portal](how-to-use-event-grid.md#set-up-in-azure-portal). Give your **Event Subscription** a name, such as MonitoringEvent, and select only the **Run status changed** box under **Event Types**. 
+### Create a system topic
+
+If you don't have an Azure Event Grid system topic to use for monitoring, create one. For instructions, see [Create, view, and manage Event Grid system topics in the Azure portal](/azure/event-grid/create-view-manage-system-topics).
+
+### Create an event subscription
+
+1. In the Azure portal, go to your Azure Machine Learning workspace.
+
+1. Select **Events**, and then select **Event Subscription**.
+
+    :::image type="content" source="./media/how-to-monitor-models/add-event-subscription.png" alt-text="Screenshot that shows the Event page of a workspace. Events and Event Subscription are highlighted.":::
+
+1. Next to **Name**, enter a name for your event subscription, such as **MonitoringEvent**.
+
+1. Under **Event Types**, select only **Run status changed**. 
 
     > [!WARNING]
     >
-    > Be sure to select **Run status changed** for the event type. Don't select **Dataset drift detected**, as it applies to data drift v1, rather than Azure Machine Learning model monitoring.
+    > Select only **Run status changed** for the event type. Don't select **Dataset drift detected**, which applies to data drift v1, not Azure Machine Learning model monitoring.
 
-1. Follow the steps in [Filter & subscribe to events](how-to-use-event-grid.md#filter--subscribe-to-events) to set up event filtering for your scenario. Navigate to the **Filters** tab and add the following **Key**, **Operator**, and **Value** under **Advanced Filters**:
+1. Select the **Filters** tab. Under **Advanced Filters**, select **Add new filter**, and then enter the following values:
 
-    - **Key**: `data.RunTags.azureml_modelmonitor_threshold_breached`
-    - **Value**: has failed due to one or more features violating metric thresholds
-    - **Operator**: String contains
+    - Under **Key**, enter **data.RunTags.azureml_modelmonitor_threshold_breached**.
+    - Under **Operator**, select **String contains**.
+    - Under **Value**, enter **has failed due to one or more features violating metric thresholds**.
 
-    With this filter, events are generated when the run status changes (from Completed to Failed, or from Failed to Completed) for any monitor within your Azure Machine Learning workspace.
+    :::image type="content" source="media/how-to-monitor-models/add-advanced-filter.png" alt-text="Screenshot of the Create Event Description page in the Azure portal. The Filters tab and the values under Key, Operator, and Value are highlighted." lightbox="media/how-to-monitor-models/events-on-endpoint-page.png":::
 
-1. To filter at the monitoring level, use the following **Key**, **Operator**, and **Value** under **Advanced Filters**:
+    When you use this filter, events are generated when the run status of any monitor in your Azure Machine Learning workspace changes. The run status can change from completed to failed or from failed to completed.
 
-    - **Key**: `data.RunTags.azureml_modelmonitor_threshold_breached`
-    - **Value**: `your_monitor_name_signal_name`
-    - **Operator**: String contains
+    To filter at the monitoring level, select **Add new filter** again, and then enter the following values:
 
-    Ensure that `your_monitor_name_signal_name` is the name of a signal in the specific monitor you want to filter events for. For example, `credit_card_fraud_monitor_data_drift`. For this filter to work, this string must match the name of your monitoring signal. You should name your signal with both the monitor name and the signal name for this case.
+    - Under **Key**, enter **data.RunTags.azureml_modelmonitor_threshold_breached**.
+    - Under **Operator**, select **String contains**.
+    - Under **Value**, enter the name of a monitor signal that you want to filter events for, such as **credit_card_fraud_monitor_data_drift**. The name that you enter must match the name of your monitoring signal. Any signal that you use in filtering should have a name in the format `<monitor-name>_<signal-name>` that includes the monitor name and the signal name.
 
-1. When you've completed your **Event Subscription** configuration, select the desired endpoint to serve as your event handler, such as Azure Event Hubs.
-1. After events have been captured, you can view them from the endpoint page:
+1. Select the **Basics** tab. Configure the endpoint that you want to serve as your event handler, such as Azure Event Hubs.
 
-   :::image type="content" source="media/how-to-monitor-models/events-on-endpoint-page.png" alt-text="Screenshot showing events viewed from the endpoint page." lightbox="media/how-to-monitor-models/events-on-endpoint-page.png":::
+1. Select **Create** to create the event subscription.
+
+### View events
+
+After you capture events, you can view them in the endpoint page:
+
+:::image type="content" source="media/how-to-monitor-models/events-on-endpoint-page.png" alt-text="Screenshot showing events viewed from the endpoint page." lightbox="media/how-to-monitor-models/events-on-endpoint-page.png":::
 
 You can also view events in the Azure Monitor **Metrics** tab: 
 
-   :::image type="content" source="media/how-to-monitor-models/events-in-azure-monitor-metrics-tab.png" alt-text="Screenshot showing events viewed from the Azure monitor metrics tab." lightbox="media/how-to-monitor-models/events-in-azure-monitor-metrics-tab.png":::
-
----
+:::image type="content" source="media/how-to-monitor-models/events-in-azure-monitor-metrics-tab.png" alt-text="Screenshot showing events viewed from the Azure monitor metrics tab." lightbox="media/how-to-monitor-models/events-in-azure-monitor-metrics-tab.png":::
 
 ## Related content
 
 - [Data collection from models in production (preview)](concept-data-collection.md)
-- [Collect production data from models deployed for real-time inferencing](how-to-collect-production-data.md)
 - [CLI (v2) schedule YAML schema for model monitoring (preview)](reference-yaml-monitor.md)
 - [Model monitoring for generative AI applications](./prompt-flow/how-to-monitor-generative-ai-applications.md)
