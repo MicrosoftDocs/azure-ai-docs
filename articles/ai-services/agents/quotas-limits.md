@@ -21,10 +21,10 @@ The following sections provide you with a guide to the default quotas and limits
 
 | Limit Name | Limit Value |
 |--|--|
-| Max files per Assistant/thread | 10,000 when using the API or AI Studio. 20 when using Azure OpenAI Studio.|
-| Max file size for Assistants & fine-tuning | 512 MB |
-| Max size for all uploaded files for Assistants |100 GB |  
-| Assistants token limit | 2,000,000 token limit |
+| Max files per agent/thread | 10,000 when using the API or AI Studio. 20 when using Azure OpenAI Studio.|
+| Max file size for agents & fine-tuning | 512 MB |
+| Max size for all uploaded files for agents |100 GB |  
+| agents token limit | 2,000,000 token limit |
 
 ## Quotas and limits for Azure OpenAI models
 
