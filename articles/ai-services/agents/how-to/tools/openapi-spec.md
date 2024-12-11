@@ -43,7 +43,7 @@ work together, generate client code, create tests, apply design standards, and m
 
    1. Select **custom keys** in **other resource types**.
 
-    :::image type="content" source="../../media/tools/openapi/custom-keys-portal.png" alt-text="A screenshot of the custom keys selection for the AI project." lightbox="../../media/tools/openapi/custom-keys-portal.png":::
+    :::image type="content" source="../../media/tools/bing/api-key-connection.png" alt-text="A screenshot of the custom keys selection for the AI project." lightbox="../../media/tools/bing/api-key-connection.png":::
 
    1. Enter the following information
       - `key`: "key"
