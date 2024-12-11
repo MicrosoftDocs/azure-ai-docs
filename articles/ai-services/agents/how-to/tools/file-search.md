@@ -83,7 +83,7 @@ As a fallback, there's a 60-second maximum wait in the run object when the threa
 
 ::: zone-end
 
-::: zone pivot="code-examples"
+::: zone pivot="upload-files-code-examples"
 
 ## Quickstart – Upload Local Files with file search 
 
@@ -106,7 +106,7 @@ from azure.identity import DefaultAzureCredential
 
 
 # Create an Azure AI Client from a connection string, copied from your AI Studio project.
-# At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
+# At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
 # Customer needs to login to Azure subscription via Azure CLI and set the environment variables
 
 credential = DefaultAzureCredential()
@@ -126,7 +126,7 @@ using Azure.Core.TestFramework;
 using NUnit.Framework;
 
 // Create an Azure AI Client from a connection string, copied from your AI Studio project.
-// At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
+// At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
 // Customer needs to login to Azure subscription via Azure CLI and set the environment variables
 var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
 AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredential());
@@ -145,7 +145,7 @@ Vector stores are created using message attachments that have a default expirati
 ```python
 # We will upload the local file to Azure and will use it for vector store creation.
 _, asset_uri = project_client.upload_file("./data/product_info_1.md")
-
+print(f"Uploaded file, asset URI: {asset_uri}")
 # create a vector store with no file and wait for it to be processed
 ds = VectorStoreDataSource(asset_identifier=asset_uri, asset_type=VectorStoreDataSourceAssetType.URI_ASSET)
 vector_store = project_client.agents.create_vector_store_and_poll(data_sources=[ds], name="sample_vector_store")
@@ -301,6 +301,37 @@ foreach (ThreadMessage threadMessage in messages)
 
 ::: zone-end
 
+::: zone pivot="azure-blob-storage-code-examples"
+## Quickstart – Use existing files in Azure Blob Storage with file search
+In this example, we’ll use Azure AI Agent Service to create an agent that can help answer questions on information from files in Azure Blob Storage.
+
+###  Prerequisites 
+Complete the [standard agent setup](../../quickstart.md).
+
+> [!NOTE]
+> Azure Blob Storage is only available with the standard agent setup. The basic agent setup does not support this file source.
+
+### Step 1: Create a project client
+# [Python](#tab/python)
+
+```python
+import os
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import FileSearchTool, VectorStoreDataSource, VectorStoreDataSourceAssetType
+from azure.identity import DefaultAzureCredential
+
+
+# Create an Azure AI Client from a connection string, copied from your AI Studio project.
+# At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
+# Customer needs to login to Azure subscription via Azure CLI and set the environment variables
+
+credential = DefaultAzureCredential()
+project_client = AIProjectClient.from_connection_string(
+    credential=credential, conn_str=os.environ["PROJECT_CONNECTION_STRING"]
+)
+```
+
+::: zone-end
 ::: zone pivot="supported-filetypes"
 
 ### Supported file types

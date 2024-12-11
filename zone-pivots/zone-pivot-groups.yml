@@ -934,8 +934,10 @@ groups:
   pivots:
   - id: overview
     title: Overview
-  - id: code-examples
-    title: Code examples
+  - id: upload-files-code-examples
+    title: Upload files code examples
+  - id: azure-blob-storage-code-examples
+    title: Azure Blob Storage code examples
   - id: supported-filetypes
     title: Supported file types
   - id: deep-dive
