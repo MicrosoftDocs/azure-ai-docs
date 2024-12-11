@@ -85,7 +85,7 @@ To authenticate:
 
 ## Realtime API architecture
 
-Once the WebSocket connection session to `/realtime` is established and authenticated, the functional interaction takes place via events for sending and receiving WebSocket messages. These events each take the form of a JSON object. events can be sent and received in parallel and applications should generally handle them both concurrently and asynchronously.
+Once the WebSocket connection session to `/realtime` is established and authenticated, the functional interaction takes place via events for sending and receiving WebSocket messages. These events each take the form of a JSON object. Events can be sent and received in parallel and applications should generally handle them both concurrently and asynchronously.
 
 - A caller establishes a connection to `/realtime`, which starts a new `session`.
 - A `session` automatically creates a default `conversation`. Multiple concurrent conversations aren't supported.
