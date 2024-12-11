@@ -5,7 +5,7 @@ description: Learn how to use GPT-4o Realtime API for speech and audio with Azur
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 10/3/2024
+ms.date: 12/11/2024
 author: eric-urban
 ms.author: eur
 ms.custom: references_regions, ignite-2024
@@ -14,6 +14,8 @@ recommendations: false
 ---
 
 # GPT-4o Realtime API for speech and audio (Preview)
+
+[!INCLUDE [Feature preview](includes/preview-feature.md)]
 
 Azure OpenAI GPT-4o Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. The GPT-4o audio `realtime` API is designed to handle real-time, low-latency conversational interactions, making it a great fit for use cases involving live interactions between a user and a model, such as customer support agents, voice assistants, and real-time translators.
 
@@ -125,5 +127,5 @@ You can run the sample code locally on your machine by following these steps. Re
 
 ## Related content
 
-* Learn more about Azure OpenAI [deployment types](./how-to/deployment-types.md)
+* Learn more about [How to use the Realtime API](./how-to/realtime-audio.md)
 * Learn more about Azure OpenAI [quotas and limits](quotas-limits.md)

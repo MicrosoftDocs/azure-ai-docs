@@ -9,8 +9,6 @@ ms.date: 07/10/2024
 
 # 1000 Genomes
 
-[!INCLUDE [Open Dataset access change notice](./includes/open-datasets-change-note.md)]
-
 The 1000 Genomes Project ran between 2008 and 2015, to create the largest public catalog of human variation and genotype data. The final data set contains data for 2,504 individuals from 26 populations and 84 million identified variants. For more information, visit the 1000 Genome Project [website](https://www.internationalgenome.org/) and these publications:
 
 [Pilot Analysis: A map of human genome variation from population-scale sequencing Nature 467, 1061-1073 (28 October 2010)](https://www.nature.com/articles/nature09534)
@@ -32,6 +30,16 @@ This dataset is a mirror of [this](ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/) FT
 ## Data volumes and update frequency
 
 This dataset contains approximately 815 TB of data. It receives daily updates.
+
+## Storage location
+
+This dataset is stored in the West US 2 and West Central US Azure regions. We recommend locating compute resources in West US 2 or West Central US for affinity.
+
+## Data access
+
+West US 2:"https://dataset1000genomes.blob.core.windows.net/dataset'"
+
+West Central US: "https://dataset1000genomes-secondary.blob.core.windows.net/dataset"
 
 ## Use Terms
 

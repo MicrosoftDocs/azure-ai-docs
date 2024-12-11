@@ -25,13 +25,27 @@ Developers and end users don't have access to raw content returned from Groundin
 
 >[!IMPORTANT]
 > 1. Your usage of Grounding with Bing Search may incur costs. See the [pricing page](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
-> 1. If you choose to create a new Grounding with Bing Search resource programatically, such as the Azure CLI or using a deployment template, you automatically agree to be bound by and comply with the [terms of use and use and display requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal).
+> 1. By creating and using a Grounding with Bing Search resource through code-first experience, such as Azure CLI, or deploying through deployment template, you agree to be bound by and comply with the terms available at https://www.microsoft.com/en-us/bing/apis/grounding-legal, which may be updated from time to time.
 
 
 ## Setup  
 
 > [!NOTE]
-> Grounding with Bing Search only works with the following Azure OpenAI models: `gpt-3.5-turbo-0125`, `gpt-4-0125-preview`, `gpt-4-turbo-2024-04-09`, `gpt-4o-0513`
+> 1. Grounding with Bing Search only works with the following Azure OpenAI models: `gpt-3.5-turbo-0125`, `gpt-4-0125-preview`, `gpt-4-turbo-2024-04-09`, `gpt-4o-0513`
+> 1. It works in the following regions: `West Central US` and `West US 2`
+
+In one click, you can start creating a **new Azure AI Foundry project and Grounding with Bing Search resource** with the available [deployment template](../../quickstart.md#choose-basic-or-standard-agent-setup). After the deployment, you can find your resources including: an AI hub, project, Grounding with Bing Search resource and more created in your resource group. You can find your Grounding with Bing Search connection in the **connected resources** for your project in Azure AI Foundry portal.
+ 
+:::image type="content" source="../../media/tools/bing/connected-resources.png" alt-text="A screenshot showing the connected resources for a project in the Azure AI Foundry portal." lightbox="../../media/tools/bing/connected-resources.png":::
+ 
+1. If you already have a Grounding with Bing Search resource, you can provide your resource ID in the bicep file. Your resource ID should be in this format `/subscriptions/{subscription ID}/resourceGroups/{resource group name}/providers/Microsoft.Bing/accounts/{resource name}`. Replace the following empty string with your resource ID:
+    ```bicep
+    @description('The full ARM Bing Resource ID. This is an optional field, and if not provided, the resource will be created.')
+    param bingSearchResourceID string = ''
+    ```
+ 
+ 
+Alternatively, you can also follow the step-by-step guide below:
 
 1. Create a standard Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
 

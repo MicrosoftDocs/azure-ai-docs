@@ -252,7 +252,7 @@ monitor = monitor.enable_schedule()
 ```
 
 > [!TIP]
-> For a full example of setting up a `timeseries` dataset and data drift detector, see our [example notebook](https://aka.ms/datadrift-notebook).
+> For a full example of setting up a `timeseries` dataset and data drift detector, see our [example notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/work-with-data/datasets-tutorial/train-with-datasets/train-with-datasets.ipynb).
 
 
 # [Studio](#tab/azure-studio)
@@ -573,6 +573,6 @@ Limitations and known issues for data drift monitors:
 
 ## Next steps
 
-* Head to the [Azure Machine Learning studio](https://ml.azure.com) or the [Python notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/work-with-data/datadrift-tutorial/datadrift-tutorial.ipynb) to set up a dataset monitor.
+* Head to the [Azure Machine Learning studio](https://ml.azure.com) or the [Python notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/work-with-data/datasets-tutorial/train-with-datasets/train-with-datasets.ipynb) to set up a dataset monitor.
 * See how to set up data drift on [models deployed to Azure Kubernetes Service](how-to-enable-data-collection.md).
 * Set up dataset drift monitors with [Azure Event Grid](../how-to-use-event-grid.md).

@@ -115,7 +115,7 @@ TF_CONFIG='{
 
 ### TensorFlow example
 
-* For the full notebook to run the TensorFlow example, see [azureml-examples: Train a basic neural network with distributed MPI on the MNIST dataset using Tensorflow with Horovod](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/single-step/tensorflow/mnist-distributed-horovod/tensorflow-mnist-distributed-horovod.ipynb).
+* For the full notebook to run the TensorFlow example, see [azureml-examples: Train a basic neural network with distributed MPI on the MNIST dataset using Tensorflow with Horovod](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/single-step/tensorflow/mnist-distributed/tensorflow-mnist-distributed.ipynb).
 
 ## Accelerating distributed GPU training with InfiniBand
 

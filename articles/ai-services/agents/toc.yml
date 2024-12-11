@@ -12,6 +12,8 @@ items:
       href: ./concepts/model-region-support.md
     - name: Pricing
       href: https://azure.microsoft.com/pricing/details/ai-studio/
+    - name: What's new
+      href: ./whats-new.md
     - name: FAQ
       href: faq.yml
 - name: Quickstart
@@ -40,7 +42,7 @@ items:
         items:
         - name: OpenAPI specified tools
           href: how-to/tools/openapi-spec.md
-        - name: Agent function calling
+        - name: Function calling
           href: how-to/tools/function-calling.md
         - name: Code interpreter
           href: how-to/tools/code-interpreter.md

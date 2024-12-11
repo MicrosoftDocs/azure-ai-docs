@@ -72,7 +72,7 @@ Effective March 29, 2024 and applicable to all [supported REST APIs](/rest/api/s
 
 + For all API versions, updates on July 14, 2023 to the Microsoft-hosted semantic models made semantic ranker language-agnostic, effectively decommissioning the `queryLanguage` property. There's no "breaking change" in code, but the property is ignored.
 
-See [Migrate from preview version](semantic-how-to-configure.md#migrate-from-preview-versions) to transition your code to use `semanticConfiguration`.
+See [Migrate from preview version](semantic-code-migration.md) to transition your code to use `semanticConfiguration`.
 
 ## Upgrade to 2024-11-01-preview
 

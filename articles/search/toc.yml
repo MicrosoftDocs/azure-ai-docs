@@ -430,20 +430,20 @@ items:
     href: hybrid-search-how-to-query.md
   - name: Ranking and relevance
     items:
+    - name: Add a scoring profile
+      href: index-add-scoring-profiles.md
+    - name: Configure BM25 ranking
+      href: index-ranking-similarity.md
     - name: Enable or disable semantic ranker
       href: semantic-how-to-enable-disable.md      
     - name: Configure semantic ranker
       href: semantic-how-to-configure.md
     - name: Add semantic ranking to queries
-      displayName: query
       href: semantic-how-to-query-request.md
     - name: Rewrite queries with semantic ranker
-      displayName: query
       href: semantic-how-to-query-rewrite.md
-    - name: Add a scoring profile
-      href: index-add-scoring-profiles.md
-    - name: Configure BM25 ranking
-      href: index-ranking-similarity.md
+    - name: Migrate semantic ranking code
+      href: semantic-code-migration.md
   - name: Security
     items:
     - name: Configure network access
