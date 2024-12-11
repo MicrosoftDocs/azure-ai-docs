@@ -29,7 +29,7 @@ items:
   - name: Content Understanding REST API
     displayName: quickstart, extract, text, images, OCR, optical character recognition
     href: quickstart/use-rest-api.md
-  - name: Content Understanding Azure AI Foundry
+  - name: Content Understanding Azure AI Foundry portal
     displayName: quickstart, extract, text, images, OCR, optical character recognition
     href: quickstart/use-ai-foundry.md
 - name: Capabilities
