@@ -63,7 +63,6 @@ Azure OpenAI is receiving the (query) "Can you recommend a few hotels" from your
 
     1. On Azure AI Search, make sure you have permissions to create, load, and query a search index:
 
-       - **Search Index Data Reader**
        - **Search Index Data Contributor**
        - **Search Service Contributor**
 
