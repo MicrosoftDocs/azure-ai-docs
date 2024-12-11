@@ -940,6 +940,15 @@ groups:
     title: Supported file types
   - id: deep-dive
     title: Deep dive
+# owner: fosteramanda
+- id: selection-azure-ai-search
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: overview
+    title: Overview
+  - id: code-examples
+    title: Code examples
 - id: selection-bing-grounding
   title: Selections
   prompt: What would you like to see?
