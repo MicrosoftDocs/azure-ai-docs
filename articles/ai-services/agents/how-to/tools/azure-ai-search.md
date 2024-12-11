@@ -33,16 +33,12 @@ Use an existing Azure AI Search index with the agent's Azure AI Search tool.
 **Index with semantic configuration**
 - By default, the Azure AI Search tool runs hybrid + semantic search on all text fields.
 
-::: zone-end
-
-::: zone pivot="setup"
-
-[!INCLUDE [acs-setup](../../includes/acs/acs-setup.md)]
+[!INCLUDE [setup](../../includes/azure-search/setup.md)]
 
 ::: zone-end
 
 ::: zone pivot="code-examples"
 
-[!INCLUDE [acs-code-examples](../../includes/acs/acs-code-examples.md)]
+[!INCLUDE [code-examples](../../includes/azure-search/code-examples.md)]
 
 ::: zone-end

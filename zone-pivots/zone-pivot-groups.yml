@@ -945,8 +945,6 @@ groups:
   pivots:
   - id: overview
     title: Overview
-  - id: setup
-    title: Setup
   - id: code-examples
     title: Code examples
 - id: selection-bing-grounding

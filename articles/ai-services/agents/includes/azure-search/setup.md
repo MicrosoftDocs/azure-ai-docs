@@ -31,11 +31,11 @@ If you already connected the AI Search resource that contains the index you want
     - In the Overview tab, copy the URL of your resource. The URL should be in the format `https://<your-resource-name>.search.windows.net/`.
      :::image type="content" source="../../media/tools/ai-search/connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../media/tools/ai-search/connection-endpoint.png":::
 
-3. Verify API Acccess control is set to **Both** and copy one of the keys under **Manage admin keys**. 
+3. Verify API Access control is set to **Both** and copy one of the keys under **Manage admin keys**. 
     - From the left-hand navigation bar, scroll down to the Settings section and select **Keys**. 
     - Under the **API Access Control** section, ensure the option **Both** API key and Role-based access control is selected.
     - If you want the connection to use API Keys for authentication, copy one of the keys under **Manage admin keys**.
-    :::image type="content" source="../../media/tools/ai-search/acs-azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search/acs-azure-portal.png":::
+    :::image type="content" source="../../media/tools/ai-search/azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search/azure-portal.png":::
 
 ##### Create an Azure AI Search project connection
 
@@ -72,8 +72,8 @@ Replace the placeholders ```my_connection_name```, ```my_endpoint```, and ```my_
 from azure.ai.ml.entities import AzureAISearchConnection
 
 # create an Azure AI Search project connection
-my_connection_name = "my-acs-connection-name"
-my_endpoint = "my-acs-endpoint" # this could also be called target
+my_connection_name = "my-connection-name"
+my_endpoint = "my-endpoint" # this could also be called target
 my_api_keys = None # leave blank for Authentication type = AAD
 
 my_connection = AzureAISearchConnection(name=my_connection_name,
@@ -92,12 +92,12 @@ ml_client.connections.create_or_update(my_connection)
  :::image type="content" source="../../media/tools/ai-search/project-connections-page.png" alt-text="A screenshot of the project connections page." lightbox="../../media/tools/ai-search/project-connections-page.png":::
 
 3. Select **Azure AI Search**.
- :::image type="content" source="../../media/tools/ai-search/select-acs.png" alt-text="A screenshot of the Azure AI Search connection type the user should select." lightbox="../../media/tools/ai-search/select-acs.png":::
+ :::image type="content" source="../../media/tools/ai-search/select.png" alt-text="A screenshot of the Azure AI Search connection type the user should select." lightbox="../../media/tools/ai-search/select.png":::
 
 4. Provide the required connection details for the Azure AI Search resource you want to use. Both Managed Identity and Key-based authentication are supported. Once all the fields are filled in, click **Add connection**.
-:::image type="content" source="../../media/tools/ai-search/acs-connection-2.png" alt-text="A screenshot the required fields to add a new Azure AI Search connection." lightbox="../../media/tools/ai-search/acs-connection-2.png":::
+:::image type="content" source="../../media/tools/ai-search/connection-2.png" alt-text="A screenshot the required fields to add a new Azure AI Search connection." lightbox="../../media/tools/ai-search/connection-2.png":::
 
 5. Verify that the connection was successfully created and now appears in the project's Connections tab.
-:::image type="content" source="../../media/tools/ai-search/success-acs-connection.png" alt-text="A screenshot of the project connections page with a new Azure AI Search connection added." lightbox="../../media/tools/ai-search/success-acs-connection.png":::
+:::image type="content" source="../../media/tools/ai-search/success-connection.png" alt-text="A screenshot of the project connections page with a new Azure AI Search connection added." lightbox="../../media/tools/ai-search/success-connection.png":::
 ---
 
