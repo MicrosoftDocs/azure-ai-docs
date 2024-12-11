@@ -76,7 +76,7 @@ ListConnectionsResponse connections = await projectClient.GetConnectionsClient()
 ```
 ---
 The second way to get the connection ID is to navigate to the project in the Azure AI Foundry and click on the **Connected resources** tab and then select your Azure AI Search resource.
-:::image type="content" source="../../media/tools/ai-search/success-acs-connection.png" alt-text="A screenshot of an AI Search resource connection page in Azure AI Foundry." lightbox="../../media/tools/ai-search/success-acs-connection.png":::
+:::image type="content" source="../../media/tools/ai-search/success-connection.png" alt-text="A screenshot of an AI Search resource connection page in Azure AI Foundry." lightbox="../../media/tools/ai-search/success-connection.png":::
 In the URL, you see the wsid=/subscription/your-subscription-id..., this is the connection ID you need to use. Copy everything that comes after wsid=.
 :::image type="content" source="../../media/tools/ai-search/connection-id.png" alt-text="A screenshot of an AI Search resource connection and how to copy the connection ID." lightbox="../../media/tools/ai-search/connection-id.png":::
 
