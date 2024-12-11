@@ -13,7 +13,7 @@ recommendations: false
 
 # What is Azure AI Agent Service?
 
-Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. Using an extensive ecosystem of models, tools, and capabilities from OpenAI, Microsoft, and other non-Microsoft providers, Azure AI Agent Service enables you to build agents for a wide range of generative AI use cases. Users can access the service through REST APIs, SDKs, or in the [Azure AI Foundry](https://ai.azure.com).
+Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. Using an extensive ecosystem of models, tools, and capabilities from OpenAI, Microsoft, and other non-Microsoft providers, Azure AI Agent Service enables you to build agents for a wide range of generative AI use cases. Users can access the service through the [available SDKs](./quickstart.md).
 
 
 ## Comparing Azure agents and Azure OpenAI assistants
@@ -42,12 +42,9 @@ At Microsoft, we're committed to the advancement of AI driven by principles that
 To get started with Azure AI Agent Service, you need to create an Azure AI Foundry hub and an Agent project in your Azure subscription. 
 
 Start with the [quickstart](./quickstart.md) guide if it's your first time using the service.
-1. You can create a AI hub and project with the required resources via AI Foundry or Azure portal. 
+1. You can create a AI hub and project with the required resources. 
 1. After you create a project, you can deploy a compatible model such as GPT-4o.
-1. When you have a deployed model, you can:
-
-    - Try out the Azure AI Foundry agents playground to start exploring agents' capabilities. 
-    - You can also start making API calls to the service using the REST API or SDKs.
+1. When you have a deployed model, you can also start making API calls to the service using the SDKs.
 
 
 ## Next steps
