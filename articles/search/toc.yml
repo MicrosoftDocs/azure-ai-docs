@@ -444,6 +444,8 @@ items:
       href: index-add-scoring-profiles.md
     - name: Configure BM25 ranking
       href: index-ranking-similarity.md
+    - name: Migrate semantic ranking code
+      href: semantic-code-migration.md
   - name: Security
     items:
     - name: Configure network access
