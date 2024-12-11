@@ -36,6 +36,8 @@ items:
           href: how-to/tools/file-search.md
       - name: Action tools
         items:
+        - name: OpenAPI specified tools
+          href: how-to/tools/openapi-spec.md
         - name: Agent function calling
           href: how-to/tools/function-calling.md
         - name: Code interpreter
