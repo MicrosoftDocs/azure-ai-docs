@@ -41,7 +41,7 @@ Check your code for the REST API version or SDK package version to confirm which
 | preview | [2024-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-05-01-preview&preserve-view=true) | No change |
 | stable | [2024-07-01](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-07-01&preserve-view=true) | No change |
 | preview | [2024-09-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-09-01-preview&preserve-view=true) | No change |
-| preview | [2024-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-11-01-preview&preserve-view=true) | Adds query rewrite. The `queryLanguage` property is now required if you use [query rewrite (preview)](semantic-how-to-query-rewrite.md). |
+| preview | [2024-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-11-01-preview&preserve-view=true) | Adds query rewrite. The `queryLanguage` property is now required if you use [query rewrite (preview)](semantic-how-to-query-rewrite.md). For a list of valid values, see the [REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-11-01-preview#querylanguage&preserve-view=true). |
 
 ## Change logs for Azure SDKs
 
