@@ -791,6 +791,21 @@
       "redirect_document_id": true
     },
     {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/quickstarts/try-document-intelligence-studio.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/quickstarts/studio-custom-project",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/train/custom-generative-extraction.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/custom-model",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/how-to-guides/build-train-custom-generative-model.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/how-to-guides/build-a-custom-model",
+      "redirect_document_id": true
+    },
+    {
       "source_path_from_root": "/articles/ai-services/openai/how-to/integrate-synapseml.md",
       "redirect_url": "/azure/ai-services/openai/overview",
       "redirect_document_id": true

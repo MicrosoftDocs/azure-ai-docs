@@ -1,8 +1,8 @@
 ---
 title: Azure OpenAI Service provisioned throughput
-description: Learn about provisioned throughput and Azure OpenAI. 
+description: Learn about provisioned throughput and Azure OpenAI.
 ms.service: azure-ai-openai
-ms.topic: conceptual 
+ms.topic: conceptual
 ms.date: 08/07/2024
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
@@ -20,7 +20,7 @@ The provisioned throughput capability allows you to specify the amount of throug
 
 ## What do the provisioned deployment types provide?
 
-- **Predictable performance:** stable max latency and throughput for uniform workloads. 
+- **Predictable performance:** stable max latency and throughput for uniform workloads.
 - **Reserved processing capacity:** A deployment configures the amount of throughput. Once deployed, the throughput is available whether used or not.
 - **Cost savings:** High throughput workloads might provide cost savings vs token-based consumption.
 
@@ -40,7 +40,7 @@ An Azure OpenAI Deployment is a unit of management for a specific OpenAI Model. 
 
 
 ## How much throughput per PTU you get for each model
-The amount of throughput (tokens per minute or TPM) a deployment gets per PTU is a function of the input and output tokens in the minute. Generating output tokens requires more processing than input tokens and so the more output tokens generated the lower your overall TPM. The service dynamically balances the input & output costs, so users do not have to set specific input and output limits. This approach means your deployment is resilient to fluctuations in the workload shape. 
+The amount of throughput (tokens per minute or TPM) a deployment gets per PTU is a function of the input and output tokens in the minute. Generating output tokens requires more processing than input tokens and so the more output tokens generated the lower your overall TPM. The service dynamically balances the input & output costs, so users do not have to set specific input and output limits. This approach means your deployment is resilient to fluctuations in the workload shape.
 
 To help with simplifying the sizing effort, the following table outlines the TPM per PTU for the `gpt-4o` and `gpt-4o-mini` models which represent the max TPM assuming all traffic is either input or output. To understand how different ratios of input and output tokens impact your Max TPM per PTU, see the [Azure OpenAI capacity calculator](https://oai.azure.com/portal/calculator). The table also shows Service Level Agreement (SLA) Latency Target Values per model.  For more information about the SLA for Azure OpenAI Service, see the [Service Level Agreements (SLA) for Online Services page](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1)
 
@@ -77,19 +77,19 @@ az cognitiveservices account deployment create \
 --model-version 0613  \
 --model-format OpenAI \
 --sku-capacity 100 \
---sku-name ProvisionedManaged 
+--sku-name ProvisionedManaged
 ```
 
 ### Quota
 
-#### Provisioned throughput units 
+#### Provisioned throughput units
 
 Provisioned throughput units (PTU) are generic units of model processing capacity that you can use to size provisioned deployments to achieve the required throughput for processing prompts and generating completions.   Provisioned throughput units are granted to a subscription as quota. Each quota is specific to a region and defines  the maximum number of PTUs that can be assigned to deployments in that subscription and region.
 
 
 #### Model independent quota
 
-Unlike the Tokens Per Minute (TPM) quota used by other Azure OpenAI offerings, PTUs are model-independent. The PTUs might be used to deploy any supported model/version in the region. 
+Unlike the Tokens Per Minute (TPM) quota used by other Azure OpenAI offerings, PTUs are model-independent. The PTUs might be used to deploy any supported model/version in the region.
 
 :::image type="content" source="../media/provisioned/model-independent-quota.png" alt-text="Diagram of model independent quota with one pool of PTUs available to multiple Azure OpenAI models." lightbox="../media/provisioned/model-independent-quota.png":::
 
@@ -97,19 +97,19 @@ For provisioned deployments, the new quota shows up in Azure AI Foundry as a quo
 
 :::image type="content" source="../media/provisioned/ptu-quota-page.png" alt-text="Screenshot of quota UI for Azure OpenAI provisioned." lightbox="../media/provisioned/ptu-quota-page.png":::
 
-#### Obtaining PTU Quota 
+#### Obtaining PTU Quota
 
 PTU quota is available by default in many regions. If more quota is required, customers can request quota via the Request Quota link. This link can be found to the right of the designated provisioned deployment type quota tabs in Azure AI Foundry The form allows the customer to request an increase in the specified PTU quota for a given region. The customer receives an email at the included address once the request is approved, typically within two business days. 
 
-#### Per-Model PTU Minimums 
+#### Per-Model PTU Minimums
 
-The minimum PTU deployment, increments, and processing capacity associated with each unit varies by model type & version. 
+The minimum PTU deployment, increments, and processing capacity associated with each unit varies by model type & version.
 
 ## Capacity transparency
 
 Azure OpenAI is a highly sought-after service where customer demand might exceed service GPU capacity. Microsoft strives to provide capacity for all in-demand regions and models, but selling out a region is always a possibility. This constraint can limit some customers' ability to create a deployment of their desired model, version, or number of PTUs in a desired region - even if they have quota available in that region. Generally speaking:
 
-- Quota places a limit on the maximum number of PTUs that can be deployed in a subscription and region, and does not guarantee of capacity availability. 
+- Quota places a limit on the maximum number of PTUs that can be deployed in a subscription and region, and does not guarantee of capacity availability.
 - Capacity is allocated at deployment time and is held for as long as the deployment exists.  If service capacity is not available, the deployment will fail
 - Customers use real-time information on quota/capacity availability to choose an appropriate region for their scenario with the necessary model capacity
 - Scaling down or deleting a deployment releases capacity back to the region.  There is no guarantee that the capacity will be available should the deployment be scaled up or re-created later.
@@ -132,7 +132,7 @@ If an acceptable region isn't available to support the desire model, version and
 
 ### Determining the number of PTUs needed for a workload
 
-PTUs represent an amount of model processing capacity. Similar to your computer or databases, different workloads or requests to the model will consume different amounts of underlying processing capacity. The conversion from call shape characteristics (prompt size, generation size and call rate) to PTUs is complex and nonlinear. To simplify this process, you can use the [Azure OpenAI Capacity calculator](https://oai.azure.com/portal/calculator) to size specific workload shapes. 
+PTUs represent an amount of model processing capacity. Similar to your computer or databases, different workloads or requests to the model will consume different amounts of underlying processing capacity. The conversion from call shape characteristics (prompt size, generation size and call rate) to PTUs is complex and nonlinear. To simplify this process, you can use the [Azure OpenAI Capacity calculator](https://oai.azure.com/portal/calculator) to size specific workload shapes.
 
 A few high-level considerations:
 - Generations require more capacity than prompts
@@ -196,4 +196,4 @@ The number of concurrent calls you can achieve depends on each call's shape (pro
 ## Next steps
 
 - [Learn about the onboarding steps for provisioned deployments](../how-to/provisioned-throughput-onboarding.md)
-- [Provisioned Throughput Units (PTU) getting started guide](../how-to//provisioned-get-started.md) 
+- [Provisioned Throughput Units (PTU) getting started guide](../how-to//provisioned-get-started.md)

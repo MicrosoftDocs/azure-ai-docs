@@ -1,42 +1,26 @@
 ---
-title: "Batch analysis and processing (preview)"
+title: "Batch analysis and processing"
 titleSuffix: Azure AI services
-description: Learn about the Document Intelligence Batch analysis API preview
+description: Learn about the Document Intelligence Batch analysis API 
 author: laujan
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/03/2024
-ms.author: ginle
+ms.date: 11/19/2024
+ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---
 
-# Document Intelligence batch analysis (preview)
+# Document Intelligence batch analysis 
 
-[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
-
-The batch analysis API allows you to bulk process multiple documents using one asynchronous request. Rather than having to submit documents individually and track multiple request IDs, you can analyze a collection of invoices, a series of loan documents, or a group of custom model training documents simultaneously.
+The batch analysis API allows you to bulk process multiple documents using one asynchronous request. Rather than having to submit documents individually and track multiple request IDs, you can analyze a collection of documents like invoices, a series of loan documents, or a group of custom documents simultaneously. The batch API supports reading the documents from Azure blob storage and writing the results to blob storage.
 
 * To utilize batch analysis, you need an Azure Blob storage account with specific containers for both your source documents and the processed outputs.
 * Upon completion, the batch operation result lists all of the individual documents processed with their status, such as `succeeded`, `skipped`, or `failed`.
 * The Batch API preview version is available via pay-as-you-go pricing.
 
-The following models support batch analysis:
-
-* [**Read**](../prebuilt/read.md). Extract text lines, words, detected languages, and handwritten style from forms and document.
-
-* [**Layout**](../prebuilt/layout.md). Extract text, tables, selection marks, and structure information from forms and documents.
-
-* [**Custom Template**](../train/custom-template.md). Train models to extract key-value pairs, selection marks, tables, signature fields, and regions from structured forms.
-
-* [**Custom Neural**](../train/custom-neural.md). Train models to extract specified data fields from structured, semi-structured, and unstructured documents.
-
-* **Custom Generative**. Train models to extract specified data from complex objects such as nested tables, abstractive/generative fields, and truly unstructured formats.
-
 ## Batch analysis guidance
 
 * The maximum number of documents processed per single batch analyze request (including skipped documents) is 10,000.
-
-* The `azureBlobFileListSource` parameter can be used to break larger requests into smaller ones.
 
 * Operation results are retained for 24 hours after completion. The documents and results are in the storage account provided, but operation status is no longer available 24 hours after completion.
 
@@ -86,35 +70,63 @@ To learn more, *see* [**Create SAS tokens**](../authentication/create-sas-tokens
 
 * Specify the Azure Blob Storage container URL for your source document set within the `azureBlobSource` or `azureBlobFileListSource` objects.
 
-* Specify the Azure Blob Storage container URL for your batch analysis results using `resultContainerUrl`. To avoid accidental overwriting, we recommend using separate containers for source and processed documents.
+### Specify the input files
 
-  * If you use the same container, set `resultContainerUrl` and `resultPrefix` to match your input `azureBlobSource`.
+The batch API supports two options for specifying the files to be processed. If you need all files in a container or folder processed, and the number of files is less than the 10000 limit for a single batch request, use the ```azureBlobSource``` container. 
+
+If you have specific files in the container or folder to process or the number of files to be processed is over the max limit for a single batch, use the ```azureBlobFileListSource```. Split the dataset into multiple batches and add a file with the list of files to be processed in a JSONL format in the root folder of the container. An example of the file list format is.
+
+```JSON
+{"file": "Adatum Corporation.pdf"}
+{"file": "Best For You Organics Company.pdf"}
+```
+### Specify the results location
+
+Specify the Azure Blob Storage container URL for your batch analysis results using `resultContainerUrl`. To avoid accidental overwriting, we recommend using separate containers for source and processed documents.
+
+Set the ```overwriteExisting``` boolean property to false if you don't want any existing results with the same file names overwritten. This setting doesn't affect the billing and only prevents results from being overwritten after the input file is processed.
+
+Set the ```resultPrefix``` to namespace the results from this run of the batch API. 
+
+  * If you plan to use the same container for both input and output, set `resultContainerUrl` and `resultPrefix` to match your input `azureBlobSource`.
   * When using the same container, you can include the `overwriteExisting` field to decide whether to overwrite any files with the analysis result files.
 
 ## Build and run the POST request
 
 Before you run the POST request, replace {your-source-container-SAS-URL} and {your-result-container-SAS-URL} with the values from your Azure Blob storage container instances.
 
+The following sample shows how to add the ```azureBlobSource``` property to the request:
+
 **Allow only one either `azureBlobSource` or `azureBlobFileListSource`.**
 
 ```bash
 POST /documentModels/{modelId}:analyzeBatch
 
-[
-  {
-    "azureBlobSource": {
-      "containerUrl": "{your-source-container-SAS-URL}",
-      "prefix": "trainingDocs/"
-    },
-    "azureBlobFileListSource": {
-      "containerUrl": "{your-source-container-SAS-URL}",
+{
+  "azureBlobSource": {
+    "containerUrl": "https://myStorageAccount.blob.core.windows.net/myContainer?mySasToken",
+    "prefix": "trainingDocs/"
+  },
+  "resultContainerUrl": "https://myStorageAccount.blob.core.windows.net/myOutputContainer?mySasToken",
+  "resultPrefix": "layoutresult/",
+  "overwriteExisting": true
+}
+
+```
+The following sample shows how to add the ```azureBlobFileListSource``` property to the request:
+
+```bash
+POST /documentModels/{modelId}:analyzeBatch
+
+{
+   "azureBlobFileListSource": {
+      "containerUrl": "https://myStorageAccount.blob.core.windows.net/myContainer?mySasToken",
       "fileList": "myFileList.jsonl"
     },
-    "resultContainerUrl": "{your-result-container-SAS-URL}",
-    "resultPrefix": "trainingDocsResult/",
-    "overwriteExisting": false
-  }
-]
+  "resultContainerUrl": "https://myStorageAccount.blob.core.windows.net/myOutputContainer?mySasToken",
+  "resultPrefix": "customresult/",
+  "overwriteExisting": true
+}
 
 ```
 
