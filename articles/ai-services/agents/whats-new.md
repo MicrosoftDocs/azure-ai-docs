@@ -25,7 +25,7 @@ Azure AI Service is now available in preview. The service builds off of the [Ass
 * The ability to use non Azure OpenAI [models](./concepts/model-region-support.md#additional-models): 
     * Llama 3.1-70B-instruct
     * Mistral-large-2407    
-    * Cohere command-r+
+    * Cohere command R+
 * Enterprise ready security with secure data handling, keyless authentication, and no public egress.
 * The ability to either use Microsoft-managed storage, or bring your own.
 * SDK support for:
