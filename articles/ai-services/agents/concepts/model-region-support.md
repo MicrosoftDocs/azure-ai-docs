@@ -30,7 +30,7 @@ In addition to the supported Azure OpenAI models, you can also use the following
 
 * Llama 3.1-70B-instruct
 * Mistral-large-2407
-* Cohere command-r+
+* Cohere command R+
 
 To use these models, you can use Azure AI Foundry portal to make a deployment, and then reference it in your agent. 
 
