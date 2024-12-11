@@ -30,7 +30,7 @@ Agents can access multiple tools in parallel. These can be both Azure OpenAI-hos
 |---------|---------|
 | [Grounding with Bing Search](./bing-grounding.md)     | Allows your agents to incorporate real-time public web data when generating responses.         |
 |[File search](./file-search.md)    | Augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.        |
-| [Azure AI Search](./azure-ai-search.md) | Usees an existing Azure AI Search index as a knowlege base. |
+| [Azure AI Search](./azure-ai-search.md) | Uses an existing Azure AI Search index as a knowledge base. |
 
 ## Action tools
 
