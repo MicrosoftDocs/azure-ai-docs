@@ -72,11 +72,11 @@ You need this step if you have more than one subscription or tenant.
 
    1. Select **+ Add** > **Add role assignment**.
 
-   1. Choose a role (Search Service Contributor, Search Index Data Contributor, Search Index Data Reader) and assign it to your Microsoft Entra user or group identity.
+   1. Choose a role (**Search Service Contributor**, **Search Index Data Contributor**, **Search Index Data Reader**) and assign it to your Microsoft Entra user or group identity.
 
       Repeat for each role.
 
-      You need all three roles for creating, loading, and querying objects on Azure AI Search. For more information, see [Connect using roles](search-security-rbac.md).
+      You need **Search Service Contributor** plus **Search Index Data Contributor** to create, load, and query objects on Azure AI Search. For more information, see [Connect using roles](search-security-rbac.md).
 
 > [!TIP]
 > Later, if you get authentication failure errors, recheck the settings in this section. There could be policies at the subscription or resource group level that override any API settings you specify.

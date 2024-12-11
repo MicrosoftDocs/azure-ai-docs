@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 09/26/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ---
@@ -78,7 +78,7 @@ Document Intelligence billing is calculated monthly based on the model type and 
 >
 > * [**Document Intelligence SDKs**](quickstarts/get-started-sdks-rest-api.md)
 > * [**Document Intelligence REST API**](quickstarts/get-started-sdks-rest-api.md)
-> * [**Document Intelligence Studio v3.0**](quickstarts/try-document-intelligence-studio.md)
+> * [**Document Intelligence Studio v3.0**](studio-overview.md)
 ::: moniker-end
 
 ::: moniker range="doc-intel-2.1.0"
@@ -116,7 +116,6 @@ Document Intelligence billing is calculated monthly based on the model type and 
 >
 > * [**Custom template model**](train/custom-template.md)
 > * [**Custom neural model**](train/custom-neural.md)
-> * [**Custom generative model**](train/custom-generative-extraction.md)
 > * [**Composed classification models**](train/custom-classifier.md)
 > * [**Composed custom models**](train/composed-models.md)
 
