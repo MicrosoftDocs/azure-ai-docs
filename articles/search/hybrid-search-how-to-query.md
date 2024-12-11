@@ -228,6 +228,8 @@ POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/d
 
 Assuming that you [enabled semantic ranker](semantic-how-to-enable-disable.md) and your index definition includes a [semantic configuration](semantic-how-to-query-request.md), you can formulate a query that includes vector search and keyword search, with semantic ranking over the merged result set. Optionally, you can add captions and answers. 
 
+Whenever you use semantic ranking with vectors, make sure `k` is set to 50. Semantic ranker uses up to 50 matches as input. Specifying less than 50 deprives the semantic ranking models of necessary inputs.
+
 ```http
 POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2024-07-01
 Content-Type: application/json
@@ -306,7 +308,7 @@ api-key: {{admin-api-key}}
 
 + Prefiltering is applied before query execution. If prefilter reduces the search area to 100 documents, the vector query executes over the "DescriptionVector" field for those 100 documents, returning the k=50 best matches. Those 50 matching documents then pass to RRF for merged results, and then to semantic ranker.
 
-+ Postfilter is applied after query execution. If k=50 returns 50 matches on the vector query side, then the post-filter is applied to the 50 matches, reducing results that meet filter criteria, leaving you with fewer than 50 documents to pass to semantic ranker.
++ Postfilter is applied after query execution. If k=50 returns 50 matches on the vector query side, followed by a post-filter applied to the 50 matches, your results are reduced by the number of documents that meet filter criteria. This leaves you with fewer than 50 documents to pass to semantic ranker. Keep this in mind if you're using semantic ranking. The semantic ranker works best if it has 50 documents as input.
 
 ## Set maxTextRecallSize and countAndFacetMode (preview)
 
