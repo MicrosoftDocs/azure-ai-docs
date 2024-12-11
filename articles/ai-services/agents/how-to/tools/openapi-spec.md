@@ -49,7 +49,19 @@ work together, generate client code, create tests, apply design standards, and m
       - value: YOUR_API_KEY
       - Connection name: `YOUR_CONNECTION_NAME` (You will use this connection name in the sample code below.)
       - Access: you can choose either *this project only* or *shared to all projects*. Just make sure in the sample code below, the project you entered connection string for has access to this connection.
-        
+     
+    1. Update your OpenAPI Spec with the following:
+    ```json
+        "components": {
+        "securitySchemes": {
+          "cosoLocationApiLambdaAuthorizer": {
+            "type": "apiKey",
+            "name": "key",
+            "in": "query"
+          }
+        }
+      }
+    ```
 ::: zone-end
 
 ::: zone pivot="code-example"
