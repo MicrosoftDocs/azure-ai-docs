@@ -33,6 +33,7 @@ This dataset is stored in the West US 2 and West Central US Azure regions. We re
 ## Data Access
 
 West US 2:"https://datasetclinvar.blob.core.windows.net/dataset'"
+
 West Central US: "https://datasetclinvar-secondary.blob.core.windows.net/dataset"
 
 ## Use Terms
