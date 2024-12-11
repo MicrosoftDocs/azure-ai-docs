@@ -6,7 +6,7 @@ author: erindormier
 manager: venkyv
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 11/15/2023
+ms.date: 11/19/2024
 monikerRange: '<=doc-intel-4.0.0'
 ---
 

@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.custom: linux-related-content
 ms.topic: include
-ms.date: 09/09/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD033 -->
@@ -16,7 +16,7 @@ ms.author: lajanuar
 >
 > This project uses cURL command-line tool to execute REST API calls.
 
-| [Document Intelligence REST API](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true) | [Supported Azure SDKS](../../../sdk-overview-v4-0.md)
+| [Document Intelligence REST API](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) | [Supported Azure SDKS](../../../sdk-overview-v4-0.md)
 
 ## Prerequisites
 

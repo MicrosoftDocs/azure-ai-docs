@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/03/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ---
 
@@ -20,8 +20,8 @@ A confidence score indicates probability by measuring the degree of statistical 
 
 > [!NOTE]
 >
-> * Field level confidence is getting update to take into account word confidence score starting with **2024-07-31-preview** API version for **custom models**.
-> * Confidence scores for tables, table rows and table cells are available starting with the **2024-07-31-preview** API version for **custom models**.
+> * Field level confidence includes word confidence scores with **2024-11-30 (GA)** API version for **custom models**.
+> * Confidence scores for tables, table rows, and table cells are available starting with the **2024-11-30 (GA)** API version for **custom models**.
 
 Document Intelligence analysis results return an estimated confidence for predicted words, key-value pairs, selection marks, regions, and signatures. Currently, not all document fields return a confidence score.
 
@@ -95,7 +95,7 @@ Variances in the visual structure of your documents affect the accuracy of your 
 
 ## Table, row, and cell confidence
 
-With the addition of table, row and cell confidence with the ```2024-02-29-preview``` API and onward, here are some common questions that should help with interpreting the table, row, and cell scores:
+Here are some common questions that should help with interpreting the table, row, and cell scores:
 
 **Q:** Is it possible to see a high confidence score for cells, but a low confidence score for the row?<br>
 
