@@ -21,20 +21,23 @@ Learn more about the different capabilities of each model in [Azure OpenAI Servi
 
 The following sections show model availability by region and deployment type.
 
-### Standard deployment model availability
+<br>
+
+## Standard deployment model availability
 |   **Region**  | **gpt-4o**, **2024-05-13** | **gpt-4o-mini**, **2024-07-18** | **gpt-4**, **1106-Preview** | **gpt-35-turbo**, **0125** | **gpt-35-turbo**, **1106** | **text-embedding-3-large**, **1** | **text-embedding-ada-002**, **2** |
 |:--------------|:--------------------------:|:-------------------------------:|:---------------------------:|:--------------------------:|:--------------------------:|:---------------------------------:|:---------------------------------:|
 | usgovarizona  | ✅ | ✅ | ✅ | ✅ | -  | ✅ | ✅ |
 | usgovvirginia | ✅ | -  | ✅ | ✅ | ✅ |  - | ✅ |
- 
-#### Standard quota limits in tokens per minute (TPM): 
+
+To request quota increases for these models, submit a request at [https://aka.ms/AOAIGovQuota](https://aka.ms/AOAIGovQuota). Please note the following maximum quota limits that will be granted via that form:
+
 | **gpt-4o** | **gpt-4o-mini** | **gpt-4** | **gpt-35-turbo** | **text-embedding-3-large** | **text-embedding-ada-002**|
 |:----------:|:---------------:|:---------:|:----------------:|:--------------------------:|:-------------------------:|
-|    300k    |      600k       |    200k   |      500k        |            700k            |           600k            |
+|    300k    |      600k       |    200k   |      500k        |            700k            |           700k            |
 
-To request quota increases up to these maximum values, submit a request at [https://aka.ms/AOAIGovQuota](https://aka.ms/AOAIGovQuota).
+<br>
 
-### Provisioned deployment model availability
+## Provisioned deployment model availability
 |   **Region**  | **gpt-4o**, **2024-05-13** | **gpt-4o-mini**, **2024-07-18** | **gpt-4**, **1106-Preview** | **gpt-35-turbo**, **0125** | **gpt-35-turbo**, **1106** |
 |:--------------|:--------------------------:|:-------------------------------:|:---------------------------:|:--------------------------:|:--------------------------:|
 | usgovarizona  | ✅ | - | - | ✅ | - |

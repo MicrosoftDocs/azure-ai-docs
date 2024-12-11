@@ -29,8 +29,6 @@ This dataset is stored in the East US Azure region. We recommend locating comput
 
 East US: 'https://datasetpanukbb.blob.core.windows.net/dataset'
 
-[SAS Token](/azure/storage/common/storage-sas-overview): ?sp=rl&st=2023-05-17T21:26:19Z&se=2050-05-18T05:26:19Z&spr=https&sv=2022-11-02&sr=c&sig=MGvVbVHbmkGKmWmfkHzpcaJEf5G0ljLnBQy6cbrmR%2FA%3D
-
 ## Use Terms
 
 The GWAS results data produced by the Pan-UKB are available free of restrictions under the Creative Commons Attribution 4.0 International (CC BY 4.0). The team requests that you acknowledge and give attribution to both the Pan-UKB project and UK Biobank, and link back to the relevant page, wherever possible. Full terms of use can be found [here](https://pan.ukbb.broadinstitute.org/downloads)

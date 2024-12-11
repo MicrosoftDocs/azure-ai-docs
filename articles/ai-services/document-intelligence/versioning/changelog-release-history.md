@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: reference
-ms.date: 09/09/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ---
 
@@ -18,8 +18,6 @@ ms.author: lajanuar
 # SDK changelog and release history
 
 This reference article provides a version-based description of Document Intelligence feature and capability releases, changes, updates, and enhancements.
-
-[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
 
 #### August 2024 (preview) release
 

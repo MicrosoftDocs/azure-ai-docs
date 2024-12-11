@@ -107,10 +107,10 @@ These models are currently available for use in Azure OpenAI Service.
 | `gpt-4o` | 2024-05-13 | No earlier than May 20, 2025 <br><br>Deployments set to [**Auto-update to default**](/azure/ai-services/openai/how-to/working-with-models?tabs=powershell#auto-update-to-default) will be automatically upgraded to version: `2024-08-06`, starting on February 13, 2025. | |
 | `gpt-4o-mini` | 2024-07-18 | No earlier than July 18, 2025  | |
 | `gpt-3.5-turbo-instruct` | 0914 | No earlier than February 1, 2025 |  |
-| `text-embedding-ada-002` | 2 | No earlier than April 3, 2025 | `text-embedding-3-small` or `text-embedding-3-large` |
-| `text-embedding-ada-002` | 1 | No earlier than April 3, 2025 | `text-embedding-3-small` or `text-embedding-3-large` |
-| `text-embedding-3-small` | | No earlier than April 3, 2025 | |
-| `text-embedding-3-large` | | No earlier than April 3, 2025 | |
+| `text-embedding-ada-002` | 2 | No earlier than October 3, 2025 | `text-embedding-3-small` or `text-embedding-3-large` |
+| `text-embedding-ada-002` | 1 | No earlier than October 3, 2025 | `text-embedding-3-small` or `text-embedding-3-large` |
+| `text-embedding-3-small` | | No earlier than October 3, 2025 | |
+| `text-embedding-3-large` | | No earlier than October 3, 2025 | |
 
  **<sup>1</sup>** We will notify all customers with these preview deployments at least 30 days before the start of the upgrades. We will publish an upgrade schedule detailing the order of regions and model versions that we will follow during the upgrades, and link to that schedule from here.
 
@@ -161,6 +161,10 @@ If you're an existing customer looking for information about these models, see [
 | code-search-babbage-text-001 | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
 
 ## Retirement and deprecation history
+
+## December 11, 2024
+
+Embeddings models updated to no earlier than October 3, 2025.
 
 ## December 2, 2024
 
