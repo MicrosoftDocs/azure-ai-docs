@@ -38,8 +38,10 @@ Here is table to illustrate the options in different network set up for prompt f
 
 |Ingress|Egress |Compute type in authoring               |Compute type in inference                                |Network options for workspace|
 |-------|-------|----------------------------------------|---------------------------------------------------------|-----------------------------|
-|Public |Public |Serverless (recommend), Compute instance| Managed online endpoint (recommend), K8s online endpoint|Managed (recommend) /Bring you own|
-|Private|Public |Serverless (recommend), Compute instance| Managed online endpoint (recommend), K8s online endpoint|Managed (recommend) /Bring you own|
+|Public |Public |Serverless (recommend), Compute instance| Managed online endpoint (recommend)|Managed (recommend)|
+|Public |Public |Serverless (recommend), Compute instance|  K8s online endpoint| Bring you own|
+|Private|Public |Serverless (recommend), Compute instance| Managed online endpoint (recommend)|Managed (recommend)|
+|Private|Public |Serverless (recommend), Compute instance|  K8s online endpoint|Bring you own|
 |Public |Private|Serverless (recommend), Compute instance| Managed online endpoint                                 |Managed|
 |Private|Private|Serverless (recommend), Compute instance| Managed online endpoint                                 |Managed|
 

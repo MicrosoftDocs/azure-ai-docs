@@ -170,7 +170,7 @@ Associating a user-assigned managed identity is supported in the Azure portal, i
 
 ### [**REST API**](#tab/rest-user)
 
-You can use a preview Management REST API instead of the portal to assign a user-assigned managed identity. Use API versions `2021-04-01-preview` or later. This example uses `2024-06-01-preview`.
+You can use a preview Management REST API instead of the Azure portal to assign a user-assigned managed identity. Use API versions `2021-04-01-preview` or later. This example uses `2024-06-01-preview`.
 
 1. Formulate a request to [UPDATE](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2024-06-01-preview&preserve-view=true#identity) a search service.
 
@@ -275,7 +275,7 @@ A knowledge store definition includes a connection string to Azure Storage. The 
 
 [**Enrichment cache:**](search-howto-incremental-index.md)
 
-An indexer creates, uses, and remembers the container used for the cached enrichments. It's not necessary to include the container in the cache connection string. You can find the object ID on the **Identity** page of your search service in the portal.
+An indexer creates, uses, and remembers the container used for the cached enrichments. It's not necessary to include the container in the cache connection string. You can find the object ID on the **Identity** page of your search service in the Azure portal.
 
 ```json
 "cache": {
@@ -286,7 +286,7 @@ An indexer creates, uses, and remembers the container used for the cached enrich
 
 [**Debug session:**](cognitive-search-debug-session.md)
 
-A debug session runs in the portal and takes a connection string when you start the session. You can paste a string similar to the following example.
+A debug session runs in the Azure portal and takes a connection string when you start the session. You can paste a string similar to the following example.
 
 ```json
 "ResourceId=/subscriptions/{subscription-ID}/resourceGroups/{resource-group-name}/providers/Microsoft.Storage/storageAccounts/{storage-account-name}/{container-name};",

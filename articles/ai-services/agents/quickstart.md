@@ -27,11 +27,17 @@ Azure AI Agent Service allows you to create AI agents tailored to your needs thr
 [!INCLUDE [quickstart-csharp](includes/quickstart-csharp.md)]
 
 ::: zone-end
-::: zone pivot="programming-language-python"
+::: zone pivot="programming-language-python-azure"
 
-[!INCLUDE [quickstart-python](includes/quickstart-python.md)]
+[!INCLUDE [quickstart-python-azure](includes/quickstart-python.md)]
 
 ::: zone-end
+::: zone pivot="programming-language-python-openai"
+
+[!INCLUDE [quickstart-python-openai](includes/quickstart-python-openai.md)]
+
+::: zone-end
+
 
 
 

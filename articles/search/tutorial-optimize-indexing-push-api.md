@@ -360,7 +360,7 @@ After the function is finished running, you can verify that all of the documents
 
 ## Step 6: Explore the index
 
-You can explore the populated search index after the program has run either programmatically or by using the [Search explorer](search-explorer.md) in the portal.
+You can explore the populated search index after the program has run either programmatically or by using the [Search explorer](search-explorer.md) in the Azure portal.
 
 ### Programatically
 
@@ -396,13 +396,13 @@ In the early experimental stages of development, the most practical approach for
 
 The sample code for this tutorial checks for existing indexes and deletes them so that you can rerun your code.
 
-You can also use the portal to delete indexes.
+You can also use the Azure portal to delete indexes.
 
 ## Clean up resources
 
 When you're working in your own subscription, at the end of a project, it's a good idea to remove the resources that you no longer need. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
+You can find and manage resources in the Azure portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
 
 ## Next step
 

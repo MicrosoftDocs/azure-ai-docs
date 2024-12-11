@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 06/18/2024
+ms.date: 12/10/2024
 ---
 
 # Service administration for Azure AI Search in the Azure portal
@@ -21,7 +21,7 @@ ms.date: 06/18/2024
 
 In Azure AI Search, the [Azure portal](https://portal.azure.com) supports a broad range of administrative and content management operations so that you don't have to write code unless you want automation. 
 
-Each search service is managed as a standalone resource. Your role assignment determines what operations are exposed in the portal.
+Each search service is managed as a standalone resource. Your role assignment determines what operations are exposed in the Azure portal.
 
 ## Portal and administrator permissions
 
@@ -59,7 +59,7 @@ A search service is always created with [API keys](search-security-api-keys.md) 
 
 1. For administration, [assign data plane roles](search-security-rbac.md) to replace the functionality lost when you disable API keys. Role assignments include Search Service Contributor, Search Index Data Contributor, and Search Index Data Reader. You need all three.
 
-   Sometimes it can take five to ten minutes for role assignments to take effect. Until that happens, the following message appears in the portal pages used for data plane operations.
+   Sometimes it can take five to ten minutes for role assignments to take effect. Until that happens, the following message appears in the Azure portal pages used for data plane operations.
 
    :::image type="content" source="media/search-security-rbac/you-do-not-have-access.png" alt-text="Screenshot of portal message indicating insufficient permissions.":::
 
@@ -100,7 +100,7 @@ Some features add to the cost of running the service:
 
 [Enable diagnostic logging](monitor-azure-cognitive-search.md) to track user activity. If you skip this step, you still get [activity logs](/azure/azure-monitor/essentials/activity-log)  and [platform metrics](/azure/azure-monitor/essentials/data-platform-metrics#types-of-metrics) automatically, but if you want index and query usage information, you should enable diagnostic logging and choose a destination for logged operations. 
 
-We recommend Log Analytics Workspace for durable storage so that you can run system queries in the portal.
+We recommend Log Analytics Workspace for durable storage so that you can run system queries in the Azure portal.
 
 Internally, Microsoft collects telemetry data about your service and the platform. To learn more about data retention, see [Retention of metrics](/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics).
 
