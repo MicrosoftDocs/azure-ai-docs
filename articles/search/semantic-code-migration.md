@@ -16,30 +16,41 @@ ms.date: 12/10/2024
 
 If your semantic ranking code was written against preview APIs, this article explains how to migrate to newer APIs. Breaking changes for semantic ranker are limited to query logic in recent APIs, but if your code was written against the initial preview version, you might need to change your semantic configuration as well.
 
+## Breaking changes
+
+There are two breaking changes for semantic ranker across REST API versions:
+
++ `searchFields` replaced by `semanticConfiguration` in 2021-04-30-preview
++ `queryLanguage` ignored in 2023-07-01-preview, but reinstated for query rewrite in 2024-11-01-preview
+
+Other version-specific updates pertain to new capabilities, but don't break existing code and are therefore not breaking changes.
+
+If you're using Azure SDKs, multiple APIs have been renamed over time. The SDK change logs provide the details.
+
 ## API versions providing semantic ranking
 
 Check your code for the REST API version or SDK package version to confirm which one provides semantic ranking. The following API versions have some level of support for semantic ranking.
 
-| Release | REST API version | Update |
+| Release type | REST&nbsp;API&nbsp;version | Update |
 |--|--|--|
-| initial | [2020-06-30-preview](/rest/api/searchservice/preview-api/search-documents) | Adds queryType=semantic to Search Documents |
-| preview | [2021-04-30-preview](/rest/api/searchservice/preview-api/search-documents)  | Adds semantic configuration |
-| preview | [2023-07-01-preview](/rest/api/searchservice/preview-api/search-documents) | Changes to semantic configuration. Starting on July 14, 2023 updates to the Microsoft-hosted semantic models made semantic ranker language-agnostic, effectively decommissioning the `queryLanguage` property for semantic ranking. There's no breaking change in code, but the property is ignored. Customers were advised to remove this property from code.|
-| preview | [2023-10-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2023-10-01-preview&preserve-view=true) | Changes to semantic configuration. Introduced changes to semantic configuration that are now abandoned. Don't use this version.|
-| stable | [2023-11-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2023-11-01&preserve-view=true) | Generally available. Introduced changes to semantic configuration that progressed to the stable version. If your code targets this version or later, it's compatible with newer API versions unless you adopt new preview features.|
-| preview | [2024-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-05-01-preview) | No change |
+| initial | [2020-06-30-preview](/rest/api/searchservice/preview-api/search-documents) | Adds `queryType=semantic` to Search Documents |
+| preview | [2021-04-30-preview](/rest/api/searchservice/preview-api/search-documents)  | Adds `semanticConfiguration` to Create or Update Index |
+| preview | [2023-07-01-preview](/rest/api/searchservice/preview-api/search-documents) | Updates `semanticConfiguration`. Starting on July 14, 2023 updates to the Microsoft-hosted semantic models made semantic ranker language-agnostic, effectively decommissioning the `queryLanguage` property for semantic ranking. There's no breaking change in code, but the property is ignored. Customers were advised to remove this property from code.|
+| preview | [2023-10-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2023-10-01-preview&preserve-view=true) | Updates `semanticConfiguration`. Introduced changes to `semanticConfiguration` that are now abandoned. Don't use this version.|
+| stable | [2023-11-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2023-11-01&preserve-view=true) | Generally available. Introduced changes to `semanticConfiguration` that progressed to the stable version. If your code targets this version or later, it's compatible with newer API versions unless you adopt new preview features.|
+| preview | [2024-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-05-01-preview&preserve-view=true) | No change |
 | stable | [2024-07-01](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-07-01&preserve-view=true) | No change |
-| preview | [2024-09-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-09-01-preview) | No change |
-| preview | [2024-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-11-01-preview) | Adds query rewrite. The `queryLanguage` property is now required if you use [query rewrite (preview)](semantic-how-to-query-rewrite.md). |
+| preview | [2024-09-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-09-01-preview&preserve-view=true) | No change |
+| preview | [2024-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-11-01-preview&preserve-view=true) | Adds query rewrite. The `queryLanguage` property is now required if you use [query rewrite (preview)](semantic-how-to-query-rewrite.md). |
 
 ## Change logs for Azure SDKs
 
 Azure SDKs are on an independent release schedule. You should check the change logs to determine which packages provide semantic features.
 
-+ [Azure SDK for .NET change log](https://github.com/Azure/azure-sdk-for-net/blob/Azure.Search.Documents_11.5.1/sdk/search/Azure.Search.Documents/CHANGELOG.md#1150-2023-11-10)
-+ [Azure SDK for Python change log](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md#1140-2023-10-13)
-+ [Azure SDK for Java change log](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.6.1/sdk/search/azure-search-documents/CHANGELOG.md#1160-2023-11-13)
-+ [Azure SDK for JavaScript change log](https://github.com/Azure/azure-sdk-for-js/blob/%40azure/search-documents_12.0.0/sdk/search/search-documents/CHANGELOG.md#1200-2023-11-13)
++ [Azure SDK for .NET change log](https://github.com/Azure/azure-sdk-for-net/blob/Azure.Search.Documents_11.5.1/sdk/search/Azure.Search.Documents/CHANGELOG.md#1150-2023-11-10&preserve-view=true)
++ [Azure SDK for Python change log](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md#1140-2023-10-13&preserve-view=true)
++ [Azure SDK for Java change log](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.6.1/sdk/search/azure-search-documents/CHANGELOG.md#1160-2023-11-13&preserve-view=true)
++ [Azure SDK for JavaScript change log](https://github.com/Azure/azure-sdk-for-js/blob/%40azure/search-documents_12.0.0/sdk/search/search-documents/CHANGELOG.md#1200-2023-11-13&preserve-view=true)
 
 ## 2024-11-01-preview
 
@@ -97,7 +108,7 @@ The `searchFields` property is no longer used to prioritize fields. In all versi
 
 ## Next steps
 
-Test your semantic configuration by running a semantic query.
+Test your semantic configuration migration by running a semantic query.
 
 > [!div class="nextstepaction"]
 > [Create a semantic query](semantic-how-to-query-request.md)
