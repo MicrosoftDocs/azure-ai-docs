@@ -87,7 +87,7 @@ Combine these roles to get sufficient permissions for your use case.
 |View resource properties/metrics/endpoint |❌|❌|✅|✅|✅|
 |List all objects on the resource |❌|❌|✅|✅|✅|
 |Access quotas and service statistics |❌|❌|✅|✅|❌|
-|Read/query an index |✅|❌|❌|❌|❌|
+|Read/query an index |✅|✅|❌|❌|❌|
 |Upload data for indexing |❌|✅|❌|❌|❌|
 |Create or edit indexes/aliases |❌|❌|✅|✅|❌|
 |Create, edit and run indexers/data sources/skillsets |❌|❌|✅|✅|❌|
