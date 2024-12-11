@@ -174,7 +174,7 @@ For provisioned deployments, we use a variation of the leaky bucket algorithm to
 
     b.    If the actual < estimated, then the difference is subtracted.
 
-1.  The overall utilization is decremented down at a continuous rate based on the number of PTUs deployed.
+1.  The overall utilization is decremented down at a continuous rate based on the number of PTUs deployed. 
 
 > [!NOTE]
 > Calls are accepted until utilization reaches 100%. Bursts just over 100% may be permitted in short periods, but over time, your traffic is capped at 100% utilization.
