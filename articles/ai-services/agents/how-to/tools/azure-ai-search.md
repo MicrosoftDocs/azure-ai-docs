@@ -14,7 +14,7 @@ zone_pivot_groups: selection-azure-ai-search
 ---
 
 # Use an existing AI Search index with the Azure AI Search tool
-::: zone pivot="overview" id="overview-pivot"
+::: zone pivot="overview-azure-ai-search"
 
 Use an existing Azure AI Search index with the agent's Azure AI Search tool.
 
@@ -33,7 +33,7 @@ Use an existing Azure AI Search index with the agent's Azure AI Search tool.
 **Index with semantic configuration**
 - By default, the Azure AI Search tool runs hybrid + semantic search on all text fields.
 
-<a id="overview-pivot"></a>
+<a id="overview-azure-ai-search"></a>
 
 [!INCLUDE [setup](../../includes/azure-search/setup.md)]
 
