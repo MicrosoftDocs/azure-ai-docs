@@ -33,16 +33,17 @@ The following section shows you how to set up the required resources for getting
 You can customize the model used by your agent by editing the model parameters in the autodeploy template. To deploy a different model, you need to update at least the `modelName` and `modelVersion` parameters. 
 
 By default, the deployment template is configured with the following values:
-| Model Parameter | Default Value |
-| --------------------------- | ------------|
-| modelName | gpt-4o-mini |
-| modelFormat | OpenAI |
-| modelVersion | 2024-07-18 |
-| modelSkuName | GlobalStandard |
-| modelLocation | eastus |
+
+| Model Parameter  | Default Value  |
+|------------------|----------------|
+| modelName        | gpt-4o-mini    |
+| modelFormat      | OpenAI         |
+| modelVersion     | 2024-07-18     |
+| modelSkuName     | GlobalStandard |
+| modelLocation    | eastus         |
 
 > [!IMPORTANT]
-> **Don't change the modelFormat parameter** 
+> **Don't change the modelFormat parameter.** 
 >
 > The templates only support deployment of OpenAI models. See which OpenAI models are supported in the [Azure AI Agent Service model support](../concepts/model-region-support.md) documentation.
 
@@ -66,7 +67,7 @@ Replace the parameter value for `aiServiceAccountResourceId` with the full arm r
     The value returned is the `aiServiceAccountResourceId` you need to use in the template.
 
 2. In the basic agent template file, set the parameter:
-    - aiServiceAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}"
+    - aiServiceAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
 
 #### Standard agent setup: use an existing AI Services, storage, and/or Azure AI Search resource 
 

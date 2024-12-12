@@ -44,7 +44,7 @@ If you already connected the AI Search resource that contains the index you want
 **Create the following connections.yml file**
 
 
-You can use either an API key or credential-less YAML configuration file. Replace the placeholders for ```name```, ```endpoint``` and ```api_key``with your Azure AI Search resource values. For more information on the YAML configuration file, see the [Azure AI Search connection YAML schema](../../../../machine-learning/reference-yaml-connection-ai-search.md). 
+You can use either an API key or credential-less YAML configuration file. Replace the placeholders for ```name```, ```endpoint``` and ```api_key``` with your Azure AI Search resource values. For more information on the YAML configuration file, see the [Azure AI Search connection YAML schema](../../../../machine-learning/reference-yaml-connection-ai-search.md). 
 - API Key example:
 
     ```yml
