@@ -34,9 +34,9 @@ The following section shows you how to set up the required resources for getting
 
 #### Basic agent setup: use an existing AI Services resource 
 
-Replace the parameter value for `aiServiceAccountResourceId` with the full arm resource id of the AI Services account you want to use.
+Replace the parameter value for `aiServiceAccountResourceId` with the full arm resource ID of the AI Services account you want to use.
 
-1. To get the AI Services account resource id, sign in to the Azure CLI and select the subscription with your AI Services account:
+1. To get the AI Services account resource ID, sign in to the Azure CLI and select the subscription with your AI Services account:
        
     ```az login``` 
 2. Replace `<your-resource-group>` with the resource group containing your resource and `your-ai-service-resource-name` with the name of your AI Service resource, and run:
@@ -50,15 +50,15 @@ Replace the parameter value for `aiServiceAccountResourceId` with the full arm r
 
 #### Standard agent setup: use an existing AI Services, storage, and/or Azure AI Search resource 
 
-Use an existing AI Search, storage accont, and/or Azure AI Search resource by providing the full arm resource id in the standard agent template file.
+Use an existing AI Search, storage account, and/or Azure AI Search resource by providing the full arm resource ID in the standard agent template file.
 
 Use an existing AI Services resource:
-1. See steps in basic agent setup to get the AI Services account resource id.
+1. Follow the steps in basic agent setup to get the AI Services account resource ID.
 2. In the standard agent template file, set the parameter:
     - aiServiceAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
 
 Use an existing storage account:
-1. To get your storage account resource id, sign in to the Azure CLI and select the subscription with your storage account: 
+1. To get your storage account resource ID, sign in to the Azure CLI and select the subscription with your storage account: 
     
     ```az login``` 
 2. Then run the command:
@@ -70,7 +70,7 @@ Use an existing storage account:
     - aiStorageAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}
 
 Use an existing Azure AI Search resource:
-1. To get your Azure AI Search resource id, sign into Azure CLI and select the subscription with your search resource: 
+1. To get your Azure AI Search resource ID, sign into Azure CLI and select the subscription with your search resource: 
     
     ```az login```
 2. Then run the command:
@@ -82,7 +82,7 @@ Use an existing Azure AI Search resource:
 ## Basic agent setup resource architecture
 :::image type="content" source="../media/quickstart/basic-agent-setup-resources.png" alt-text="An architecture diagram for basic agent setup." lightbox="../media/quickstart/basic-agent-setup-resources.png":::
 
-Resources for the AI hub, AI project, and AI Services are created for you. A storage account is created because it is a required resource for hubs, but this is not used by agents. The AI Services account is connected to your project/hub and a gpt-4o-mini model is deployed in the eastus region. A Microsoft-managed key vault, storage account, and search resource is used by default.
+Resources for the AI hub, AI project, and AI Services are created for you. A storage account is created because it's a required resource for hubs, but this storage account is not used by agents. The AI Services account is connected to your project/hub and a gpt-4o-mini model is deployed in the eastus region. A Microsoft-managed key vault, storage account, and search resource is used by default.
 
 ## Standard agent setup resource architecture
 :::image type="content" source="../media/quickstart/standard-agent-setup-resources.png" alt-text="An architecture diagram for standard agent setup." lightbox="../media/quickstart/standard-agent-setup-resources.png":::

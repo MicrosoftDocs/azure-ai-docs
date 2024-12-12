@@ -48,14 +48,14 @@ batch = project_client.agents.create_vector_store_file_batch_and_poll(
 Files can be removed from a vector store by either:
 
 * Deleting the vector store file object or,
-* By deleting the underlying file object, which removes the file it from all vector_store and code_interpreter configurations across all agents and threads in your organization
+* Deleting the underlying file object, which removes the file it from all vector_store and code_interpreter configurations across all agents and threads in your organization
 
 The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens per file (computed automatically when you attach a file).
 
 
 ## Remove vector store 
 
-You can can remove a vector store from the file search tool.
+You can remove a vector store from the file search tool.
 
 ```python
 file_search_tool.remove_vector_store(vector_store.id)
