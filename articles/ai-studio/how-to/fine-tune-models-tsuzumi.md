@@ -5,7 +5,7 @@ description: Learn how to fine-tune tsuzumi-7b in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
-ms.date: 7/23/2024
+ms.date: 11/11/2024
 ms.reviewer: rasavage
 reviewer: shubhirajMsft
 ms.author: ssalgado

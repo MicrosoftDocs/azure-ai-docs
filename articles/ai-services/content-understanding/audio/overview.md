@@ -20,7 +20,7 @@ ms.custom: ignite-2024-understanding-release
 > * Features, approaches, and processes may change or have constrained capabilities, prior to General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Content Understanding audio analyzers enable transcription and diarization of conversational audio, extracting structured fields such as summaries, sentiments, and key topics. Customize an audio analyzer template to your business needs using [Azure AI Foundry](https://ai.azure.com/) to start generating results.
+Content Understanding audio analyzers enable transcription and diarization of conversational audio, extracting structured fields such as summaries, sentiments, and key topics. Customize an audio analyzer template to your business needs using [Azure AI Foundry portal](https://ai.azure.com/) to start generating results.
 
 Here are common scenarios for using Content Understanding with conversational audio data:
 
@@ -82,5 +82,5 @@ Developers using Content Understanding should review Microsoft's policies on cus
 
 ## Next steps
 
-* Try processing your audio content using Content Understanding in [Azure AI Foundry](https://ai.azure.com/).
+* Try processing your audio content using Content Understanding in [Azure AI Foundry portal](https://ai.azure.com/).
 * Learn more about audio [**analyzer templates**](../quickstart/use-ai-foundry.md).
