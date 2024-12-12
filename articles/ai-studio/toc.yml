@@ -309,8 +309,6 @@ items:
          href: how-to/develop/trace-local-sdk.md
        - name: Visualize your traces
          href: how-to/develop/visualize-traces.md
-       - name: Continuously monitor your applications
-         href: how-to/online-evaluation.md
   - name: Evaluate generative AI apps
     items:
     - name: Evaluations concepts
@@ -341,16 +339,20 @@ items:
       href: concepts/a-b-experimentation.md
   - name: Deploy and monitor generative AI apps
     items:
-    - name: Deploy a flow for real-time inference
-      href: how-to/flow-deploy.md
-      displayName: endpoint
-    - name: Enable tracing and collect feedback for a flow deployment
-      href: how-to/develop/trace-production-sdk.md
-      displayName: code
-    - name: Monitor prompt flow deployments
-      href: how-to/monitor-quality-safety.md
-    - name: Troubleshoot deployments and monitoring
-      href: how-to/troubleshoot-deploy-and-monitor.md
+    - name: Continuously monitor your applications
+      href: how-to/online-evaluation.md
+    - name: Deploy and monitor flows
+      items:
+      - name: Deploy a flow for real-time inference
+        href: how-to/flow-deploy.md
+        displayName: endpoint
+      - name: Enable tracing and collect feedback for a flow deployment
+        href: how-to/develop/trace-production-sdk.md
+        displayName: code
+      - name: Monitor prompt flow deployments
+        href: how-to/monitor-quality-safety.md
+      - name: Troubleshoot deployments and monitoring
+        href: how-to/troubleshoot-deploy-and-monitor.md
   - name: Costs and quotas
     items:
     - name: Plan and manage costs

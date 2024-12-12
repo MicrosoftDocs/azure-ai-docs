@@ -161,4 +161,5 @@ An example `session.update` that configures several aspects of the session, incl
 ## Related content
 
 * Try the [real-time audio quickstart](../realtime-audio-quickstart.md)
+* See the [Realtime API reference](../realtime-audio-reference.md)
 * Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)

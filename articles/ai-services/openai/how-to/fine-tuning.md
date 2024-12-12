@@ -26,9 +26,6 @@ In contrast to few-shot learning, fine tuning improves the model by training on 
 
 We use LoRA, or low rank approximation, to fine-tune models in a way that reduces their complexity without significantly affecting their performance. This method works by approximating the original high-rank matrix with a lower rank one, thus only fine-tuning a smaller subset of *important* parameters during the supervised training phase, making the model more manageable and efficient. For users, this makes training faster and more affordable than other techniques.
 
-> [!NOTE]
-> Azure OpenAI currently only supports text-to-text fine-tuning for all supported models including GPT-4o mini.
-
 ::: zone pivot="programming-language-studio"
 
 [!INCLUDE [Azure OpenAI Studio fine-tuning](../includes/fine-tuning-unified.md)]
