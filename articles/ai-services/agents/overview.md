@@ -19,15 +19,36 @@ Azure AI Agent Service is a fully managed service designed to empower developers
 
 Within Azure AI Foundry, an AI Agent acts as a "smart" microservice that can be used to answer questions (RAG), perform actions, or completely automate workflows. It achieves this by combining the power of generative AI models with tools that allow it to access and interact with real-world data sources.
 
-// Add a diagram here
-
 Because Azure AI Agent Service uses the same wire protocol as [Azure OpenAI Assistants](/azure/ai-services/openai/how-to/assistant), you can use either [OpenAI SDKs](./quickstart.md?pivots=programming-language-python-openai) or [Azure AI Foundry SDKs](./quickstart.md?programming-language-python-azure) to create and run an agent in just a few lines of code. For example, to create an AI Agent with Azure AI Foundry SDK, you can simply  define which model the AI uses, the instructions for how it should complete tasks, and the tools it can use to access and interact with other services.
 
-// Add code here
+```python
+agent = project_client.agents.create_agent(
+    model="gpt-4o-mini",
+    name="my-agent",
+    instructions="You are helpful agent",
+    tools=code_interpreter.definitions,
+    tool_resources=code_interpreter.resources,
+)
+```
 
 After defining an agent, you can start asking it to perform work by invoking a run on top of an activity thread, which is simply a conversation between multiple agents and users. 
 
-// Add code here
+```python
+# Create a thread with messages
+thread = project_client.agents.create_thread()
+message = project_client.agents.create_message(
+    thread_id=thread.id,
+    role="user",
+    content="Could you please create a bar chart for the operating profit using the following data and provide the file to me? Company A: $1.2 million, Company B: $2.5 million, Company C: $3.0 million, Company D: $1.8 million",
+)
+
+# Ask the agent to perform work on the thread
+run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+
+# Fetch and log all messages to see the agent's response
+messages = project_client.agents.list_messages(thread_id=thread.id)
+print(f"Messages: {messages}")
+```
 
 Whenever the run operation is invoked, Azure AI Agent Service will complete the entire tool calling lifecycle for you by 1) running the model with the provided instructions, 2) invoking the tools as the agent calls them, and 3) returning the results back to you.
 
