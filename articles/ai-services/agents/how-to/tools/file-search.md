@@ -15,9 +15,7 @@ zone_pivot_groups: selection-file-search
 
 # Azure AI Agent Service file search tool
 
-::: zone pivot="overview" id="overview-pivot"
-
-<a id="overview"></a>
+::: zone pivot="overview" 
 
 File search augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.  
 
