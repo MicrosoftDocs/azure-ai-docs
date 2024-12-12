@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: conceptual
-ms.date: 5/21/2024
+ms.date: 12/12/2024
 ms.reviewer: sgilley
 ms.author: sgilley
 author: sdgilley
@@ -16,7 +16,7 @@ author: sdgilley
 
 # Retrieval augmented generation and indexes
 
-This article talks about the importance and need for Retrieval Augmented Generation (RAG) and index in generative AI. 
+This article talks about the importance and need for Retrieval Augmented Generation (RAG) and index in generative AI.
 
 ## What is RAG?
 
@@ -24,14 +24,14 @@ Some basics first. Large language models (LLMs) like ChatGPT are trained on publ
 
 ## How does RAG work?
 
-RAG is a pattern that uses your data with an LLM to generate answers specific to your data. When a user asks a question, the data store is searched based on user input. The user question is then combined with the matching results and sent to the LLM using a prompt (explicit instructions to an AI or machine learning model) to generate the desired answer. This can be illustrated as follows.
+RAG is a pattern that uses your data with an LLM to generate answers specific to your data. When a user asks a question, the data store is searched based on user input. The user question is then combined with the matching results and sent to the LLM using a prompt (explicit instructions to an AI or machine learning model) to generate the desired answer. This process can be illustrated as follows.
 
 :::image type="content" source="../media/index-retrieve/rag-pattern.png" alt-text="Screenshot of the RAG pattern." lightbox="../media/index-retrieve/rag-pattern.png":::
 
 
 ## What is an index and why do I need it?
 
-RAG uses your data to generate answers to the user question. For RAG to work well, we need to find a way to search and send your data in an easy and cost efficient manner to the LLMs. This is achieved by using an index. An index is a data store that allows you to search data efficiently. This is very useful in RAG. An index can be optimized for LLMs by creating vectors (text data converted to number sequences using an embedding model). A good index usually has efficient search capabilities like keyword searches, semantic searches, vector searches or a combination of these. This optimized RAG pattern can be illustrated as follows.
+RAG uses your data to generate answers to the user question. For RAG to work well, we need to find a way to search and send your data in an easy and cost efficient manner to the LLMs. This is achieved by using an index. An index is a data store that allows you to search data efficiently. This index is very useful in RAG. An index can be optimized for LLMs by creating vectors (text data converted to number sequences using an embedding model). A good index usually has efficient search capabilities like keyword searches, semantic searches, vector searches, or a combination of these. This optimized RAG pattern can be illustrated as follows.
 
 :::image type="content" source="../media/index-retrieve/rag-pattern-with-index.png" alt-text="Screenshot of the RAG pattern with index." lightbox="../media/index-retrieve/rag-pattern-with-index.png":::
 
