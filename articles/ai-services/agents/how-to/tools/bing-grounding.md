@@ -32,7 +32,7 @@ Developers and end users don't have access to raw content returned from Groundin
 
 > [!NOTE]
 > 1. Grounding with Bing Search only works with the following Azure OpenAI models: `gpt-3.5-turbo-0125`, `gpt-4-0125-preview`, `gpt-4-turbo-2024-04-09`, `gpt-4o-0513`
-> 1. It works in the following regions: `West Central US` and `West US 2`
+> 1. It works in the following regions: `France Central`, `Japan East`, `Korea Central`, `West Central US`, `West US`, `West US 2`, `West US 3`, `UK South`
 
 In one click, you can start creating a **new Azure AI Foundry project and Grounding with Bing Search resource** with the available [deployment template](../../quickstart.md#choose-basic-or-standard-agent-setup). After the deployment, you can find your resources including: an AI hub, project, Grounding with Bing Search resource and more created in your resource group. You can find your Grounding with Bing Search connection in the **connected resources** for your project in Azure AI Foundry portal.
  
