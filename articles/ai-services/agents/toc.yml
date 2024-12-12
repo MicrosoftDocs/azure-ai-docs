@@ -52,8 +52,6 @@ items:
       href: /legal/cognitive-services/openai/overview?context=/azure/ai-services/agents/context/context
     - name : Transparency note
       href: /legal/cognitive-services/openai/transparency-note?context=/azure/ai-services/agents/context/context
-    - name: Code of conduct
-      href: /legal/cognitive-services/openai/code-of-conduct?context=/azure/ai-services/agents/context/context
     - name: Data, privacy, and security
       href: /legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/agents/context/context
     - name: Customer Copyright Commitment
