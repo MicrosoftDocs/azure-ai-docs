@@ -254,6 +254,11 @@ Create a run and observe that the model uses the Grounding with Bing Search tool
 run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
 print(f"Run finished with status: {run.status}")
 
+# Retrieve run step details to get Bing Search query link
+run_steps = project_client.agents.list_run_steps(run_id=run.id, thread_id=thread.id)
+run_steps_data = run_steps['data']
+print(f"Last run step detail: {run_steps_data}")
+
 if run.status == "failed":
     print(f"Run failed: {run.last_error}")
 
