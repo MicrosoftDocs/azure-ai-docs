@@ -70,7 +70,7 @@ For more information, see [Management center overview](./concepts/management-cen
 
 Azure AI Foundry is monetized through individual products customer access and consume in the platform, including API and models, complete AI toolchain, and responsible AI and enterprise grade production at scale products. Each product has its own billing model and price. 
 
-The platform is free to use and explore. Pricing occurs at deployment level. For more information abut AI Foundry pricing, see [AI Foundry pricing](https://aka.ms/Azure-AI-Foundry-New-Pricing-Page).
+The platform is free to use and explore. Pricing occurs at deployment level. 
 
 Using AI Foundry also incurs cost associated with the underlying services. To learn more, read [Plan and manage costs for Azure AI services](./how-to/costs-plan-manage.md).
 

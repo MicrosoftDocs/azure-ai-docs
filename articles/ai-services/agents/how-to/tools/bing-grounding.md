@@ -31,7 +31,8 @@ Developers and end users don't have access to raw content returned from Groundin
 ## Setup  
 
 > [!NOTE]
-> Grounding with Bing Search only works with the following Azure OpenAI models: `gpt-3.5-turbo-0125`, `gpt-4-0125-preview`, `gpt-4-turbo-2024-04-09`, `gpt-4o-0513`
+> 1. Grounding with Bing Search only works with the following Azure OpenAI models: `gpt-3.5-turbo-0125`, `gpt-4-0125-preview`, `gpt-4-turbo-2024-04-09`, `gpt-4o-0513`
+> 1. It works in the following regions: `West Central US` and `West US 2`
 
 In one click, you can start creating a **new Azure AI Foundry project and Grounding with Bing Search resource** with the available [deployment template](../../quickstart.md#choose-basic-or-standard-agent-setup). After the deployment, you can find your resources including: an AI hub, project, Grounding with Bing Search resource and more created in your resource group. You can find your Grounding with Bing Search connection in the **connected resources** for your project in Azure AI Foundry portal.
  
@@ -89,7 +90,7 @@ Alternatively, you can also follow the step-by-step guide below:
 
 ## How to display Grounding with Bing Search results
 
-According to Grounding with Bing's [terms of use and use and display requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal#use-and-display-requirements), you need to display both website URLs and Bing search query URLs in your custom interface. You can find website URLs through `annotations` parameter in API response and Bing search query URLs through `runstep` details.
+According to Grounding with Bing's [terms of use and use and display requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal#use-and-display-requirements), you need to display both website URLs and Bing search query URLs in your custom interface. You can find website URLs through `annotations` parameter in API response and Bing search query URLs through `runstep` details. To render the webpage, we recommend you replace the endpoint of Bing search query URLs with `www.bing.com` and your Bing search query URL would look like "https://www.bing.com/search?q={search query}"
 
 ```python
 run_steps = project_client.agents.list_run_steps(run_id=run.id, thread_id=thread.id)
@@ -252,6 +253,12 @@ Create a run and observe that the model uses the Grounding with Bing Search tool
 # Create and process agent run in thread with tools
 run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
 print(f"Run finished with status: {run.status}")
+
+# Retrieve run step details to get Bing Search query link
+# To render the webpage, we recommend you replace the endpoint of Bing search query URLs with `www.bing.com` and your Bing search query URL would look like "https://www.bing.com/search?q={search query}"
+run_steps = project_client.agents.list_run_steps(run_id=run.id, thread_id=thread.id)
+run_steps_data = run_steps['data']
+print(f"Last run step detail: {run_steps_data}")
 
 if run.status == "failed":
     print(f"Run failed: {run.last_error}")
