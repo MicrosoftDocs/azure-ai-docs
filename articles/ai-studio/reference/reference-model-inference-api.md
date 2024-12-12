@@ -55,8 +55,8 @@ Models deployed to [managed inference](../concepts/deployments-overview.md):
 
 > [!div class="checklist"]
 > * [Meta Llama 3 instruct](../how-to/deploy-models-llama.md) family of models
-> * [Phi-3](../how-to/deploy-models-phi-3.md) family of models
-> * [Mistral](../how-to/deploy-models-mistral-open.md) and [Mixtral](../how-to/deploy-models-mistral-open.md?tabs=mistral-8x7B-instruct) family of models.
+> * [Phi-3](../how-to/deploy-models-phi-3.md), and [Phi-4](../how-to/deploy-models-phi-4.md) family of models
+> * [Mistral](../how-to/deploy-models-mistral-open.md) and [Mixtral](../how-to/deploy-models-mistral-open.md?tabs=mistral-8x7B-instruct) family of models
 
 The API is compatible with Azure OpenAI model deployments.
 
