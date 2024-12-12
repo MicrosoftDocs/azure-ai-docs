@@ -21,7 +21,7 @@ Azure AI Agent Service is a fully managed service designed to empower developers
 Both agents and assistants enable you to build automated workflows that leverage Large Language Models (LLMs), but Azure AI Agent Service provides all the capabilities of assistants and:
 
 * The ability to use non-Azure OpenAI models Such as Llama 3.
-* An extended toolset that lets you ground the agent with different datasets and access the web using Bing web searches.
+* An extended toolset that lets you ground the agent with different datasets such as Microsoft Fabric, SharePoint, OpenAPI, and access the web using Bing web searches.
 
 ## Features overview
 
