@@ -6,10 +6,10 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure
 ms.topic: how-to
-ms.date: 11/18/2024
+ms.date: 12/11/2024
 author: aahill
 ms.author: aahi
-recommendations: false
+ms.custom: azure-ai-agents
 zone_pivot_groups: selection-code-interpreter
 ---
 

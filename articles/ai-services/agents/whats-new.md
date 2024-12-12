@@ -8,7 +8,7 @@ ms.author: aahi
 ms.service: azure
 ms.topic: overview
 ms.date: 12/11/2024
-recommendations: false
+ms.custom: azure-ai-agents
 ---
 
 # What's new in Azure AI Agent Service
