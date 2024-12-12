@@ -40,7 +40,7 @@ The steps in this tutorial are:
 
 - A local copy of product data. The [Azure-Samples/rag-data-openai-python-promptflow repository on GitHub](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/) contains sample retail product information that's relevant for this tutorial scenario. Specifically, the `product_info_11.md` file contains product information about the TrailWalker hiking shoes that's relevant for this tutorial example. [Download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/raw/refs/heads/main/tutorial/data/product-info.zip) to your local machine.
 
-- A **Microsoft.Web** resource provider registered in the selected subscription, to be able to deploy to a web app.
+- A **Microsoft.Web** resource provider registered in the selected subscription, to be able to deploy to a web app. [Learn how to register a resource provider](/azure-resource-manager/management/resource-providers-and-types).
 
 ## Add your data and try the chat model again
 
@@ -126,6 +126,7 @@ You're almost there! Now you can test the web app.
 1. Wait 10 minutes or so for the authentication settings to take effect.
 1. Return to the browser tab containing the chat playground page in Azure AI Foundry portal.
 1. Select **Launch** to launch the deployed web app. If prompted, accept the permissions request.
+1. If you don't see **Launch** in the playground, select **Web apps** from the left pane, then select your app from the list to launch it.
 
     *If the authentication settings haven't yet taken effect, close the browser tab for your web app and return to the chat playground in Azure AI Foundry portal. Then wait a little longer and try again.*
 
