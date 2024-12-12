@@ -11,7 +11,10 @@ ms.date: 12/10/2024
 In this example, we use Azure AI Agent Service to create an agent that can help answer questions on information from files in Azure Blob Storage.
 
 ###  Prerequisites 
-Complete the [standard agent setup](../../quickstart.md).
+1. Complete the [standard agent setup](../../quickstart.md).
+
+2. Ensure that you have the role  **Storage Blob Data Contributor** on your project's storage account.
+
 
 > [!IMPORTANT]
 > File search using Blob storage is only supported by the standard agent setup.
@@ -36,12 +39,14 @@ project_client = AIProjectClient.from_connection_string(
 
 ### Step 2: Upload local files to your project Azure Blob Storage container
 Upload your local file to the project’s Azure Blob Storage container. This is the same storage account you connected to your agent during setup. If you create more agents in the same project that need to use the uploaded file(s), you can reuse this asset uri, avoiding the need to upload the file multiple times.
+
+Then, create a vector store using the ```asset_uri```, which is the location of your file in your project's datastore.
 ```python
 # We'll upload the local file to your project Azure Blob Storage container and will use it for vector store creation.
 _, asset_uri = project_client.upload_file("sample_file_for_upload.md")
 print(f"Uploaded file, asset URI: {asset_uri}")
 
-# create a vector store with no file and wait for it to be processed
+# create a vector store with a file in blob storage and wait for it to be processed
 ds = VectorStoreDataSource(asset_identifier=asset_uri, asset_type=VectorStoreDataSourceAssetType.URI_ASSET)
 vector_store = project_client.agents.create_vector_store_and_poll(data_sources=[ds], name="sample_vector_store")
 print(f"Created vector store, vector store ID: {vector_store.id}")
@@ -101,7 +106,7 @@ file_search_tool_2 = FileSearchTool(vector_store_ids=[vector_store_2.id])
 # notices that FileSearchTool as tool and tool_resources must be added or the assistant unable to search the file
 agent_2 = project_client.agents.create_agent(
     model="gpt-4o-mini",
-    name="my-assistant",
+    name="my-assistant-2",
     instructions="You are helpful assistant",
     tools=file_search_tool_2.definitions,
     tool_resources=file_search_tool_2.resources,
