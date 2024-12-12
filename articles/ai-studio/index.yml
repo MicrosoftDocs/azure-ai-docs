@@ -72,7 +72,7 @@ landingContent:
       - linkListType: tutorial
         links:
           - text: Build a custom chat app with the Azure AI SDK
-            url: tutorials/copilot-sdk-create-resoureces.md
+            url: tutorials/copilot-sdk-create-resources.md
 
       - linkListType: concept
         links:
