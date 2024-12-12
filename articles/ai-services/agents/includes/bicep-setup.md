@@ -30,6 +30,12 @@ The following section shows you how to set up the required resources for getting
 | Deploy a standard agent setup that uses Managed Identity authentication on the AI Services, storage account, and Azure AI Search connections. |AI hub, AI project, storage account, key vault, Azure AI Search, AI Services | [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Frefs%2Fheads%2Fmaster%2Fquickstarts%2Fmicrosoft.azure-ai-agent-service%2Fstandard-agent%2Fazuredeploy.json)|
 
 ### [Optional] Model selection in autodeploy template
+
+> [!IMPORTANT]
+> **Don't change the modelFormat parameter** 
+>
+> The templates only support deployment of OpenAI models. See which OpenAI models are supported in the [Azure AI Agent Service model support](./concepts/model-region-support.md) documentation.
+
 You can customize the model used by your agent by editing the model parameters in the autodeploy template. To deploy a different model, you need to update at least the **modelName** and **modelVersion** parameters. 
 
 By default, the autodeploy template is configured with the following values:
@@ -40,15 +46,12 @@ By default, the autodeploy template is configured with the following values:
 | modelVersion | 2024-07-18 |
 | modelSkuName | GlobalStandard |
 | modelLocation | eastus |
- 
-> [!IMPORTANT]
-> **Don't change the modelFormat parameter** 
->
-> The templates only support deployment of OpenAI models. See which OpenAI models are supported in the [Azure AI Agent Service model support](./concepts/model-region-support.md) documentation.
 
 
 ### [Optional] Use your own resources in agent setup
 
+> [!NOTE]
+> If you use an existing AI Services/AOAI resource, no model will be deployed. You can deploy a model to the resource after the agent setup is complete. 
 
 #### Basic agent setup: use an existing AI Services resource 
 
