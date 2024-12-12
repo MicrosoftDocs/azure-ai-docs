@@ -36,20 +36,15 @@ Once you've gotten the basics, you can start using multiple agents together to a
 ## Why use Azure AI Agent Service?
 
 When compared to developing with the [Inference API](/azure/ai-studio/reference/reference-model-inference-api) directly, Azure AI Agent Service provides a more streamlined and secure way to build and deploy AI agents. This includes:
-1. Automating the tool calling lifecycle for you – no need to parse a tool call, invoke the tool, and handle the response; all of this is now done server-side
-2. Securely managing your data – instead of managing your own conversation state, you can rely on threads to store all the information you need
-3. Providing out-of-the-box tools – Azure AI Agent Service comes with a set of tools that you can use to interact with your data sources, such as Bing, Azure AI Search, and Azure Functions.
+1. **Automatic tool calling** – no need to parse a tool call, invoke the tool, and handle the response; all of this is now done server-side
+2. **Securely managed data** – instead of managing your own conversation state, you can rely on threads to store all the information you need
+3. **Out-of-the-box tools** – In addition to the file retrieval and code interpreter tools provided by Azure OpenAI Assistants, Azure AI Agent Service also comes with a set of tools that you can use to interact with your data sources, such as Bing, Azure AI Search, and Azure Functions.
 
 What originally took hundreds of lines of code can now be done in just a few with Azure AI Agent Service.
 
 ### Comparing Azure agents and Azure OpenAI assistants
 
 Both services enable you to build agents using the same API and SDKs, but if you have additional enterprise requirements, you may want to consider using Azure AI Agent Service. Azure AI Agent Service provides all the capabilities of assistants in addition to:
-* The ability to use non-Azure OpenAI models Such as Llama-3.
-* An extended toolset that lets you ground the agent with different services such as Microsoft Bing, Azure Functions, and services defined with OpenAPI specifications.
-* And the ability to bring your own Azure Blog storage and Azure AI Search resources for full control and visibility of your storage resources.
-
-## Features overview
 
 **Flexible model selection** - Create agents that leverage OpenAI models, or others such as Llama 3, Mistral and Cohere. Choose the most suitable model to meet your business needs.
 
