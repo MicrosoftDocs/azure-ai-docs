@@ -932,8 +932,10 @@ groups:
   pivots:
   - id: overview
     title: Overview
-  - id: code-examples
-    title: Code examples
+  - id: upload-files-code-examples
+    title: Upload files code examples
+  - id: azure-blob-storage-code-examples
+    title: Azure Blob Storage code examples
   - id: supported-filetypes
     title: Supported file types
   - id: deep-dive
@@ -943,10 +945,11 @@ groups:
   title: Selections
   prompt: What would you like to see?
   pivots:
-  - id: overview
+  - id: overview-azure-ai-search
     title: Overview
   - id: code-examples
     title: Code examples
+# owner: zhuoqunli
 - id: selection-bing-grounding
   title: Selections
   prompt: What would you like to see?

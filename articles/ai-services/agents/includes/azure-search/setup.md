@@ -10,9 +10,8 @@ ms.date: 12/10/2024
 ## Setup: Create an agent that can use an existing Azure AI Search index
 
 #### Prerequisite: Have an existing Azure AI Search index
-A prerequisite of using the Azure AI Search tool is to have an existing Azure AI Search index. If you don't have an existing index, you can create one in the Azure portal or via REST API.
--  [Quickstart: Create a vector index using the Azure portal](../../../../search/search-get-started-portal-import-vectors.md)
-- [Quickstart: Create a vector index using REST API](../../../../search/search-get-started-vector.md)
+A prerequisite of using the Azure AI Search tool is to have an existing Azure AI Search index. If you don't have an existing index, you can create one in the Azure portal using the import and vectorize data wizard.
+-  [Quickstart: Create a vector index with the import and vectorize data wizard in the Azure portal](../../../../search/search-get-started-portal-import-vectors.md)
 
 
 #### Complete the agent setup
@@ -22,7 +21,9 @@ A prerequisite of using the Azure AI Search tool is to have an existing Azure AI
 
 
 #### Create a project connection to the Azure AI Search resource with the index you want to use
-If you already connected the AI Search resource that contains the index you want to use to your project, skip this step.
+Once you have completed the standard agent setup, you must create a project connection to the Azure AI Search resource that contains the index you want to use. 
+
+If you already connected the AI Search resource that contains the index you want to use to your project, skip this step. 
 
 ##### Get your Azure AI Search resource connection key and endpoint
 1. Access your Azure AI Search resource.
@@ -43,11 +44,11 @@ If you already connected the AI Search resource that contains the index you want
 **Create the following connections.yml file**
 
 
-You can use either an API key or credential-less YAML configuration file. For more information on the YAML configuration file, see the [Azure AI Search connection YAML schema](../../../../machine-learning/reference-yaml-connection-ai-search.md):
+You can use either an API key or credential-less YAML configuration file. Replace the placeholders for ```name```, ```endpoint``` and ```api_key``` with your Azure AI Search resource values. For more information on the YAML configuration file, see the [Azure AI Search connection YAML schema](../../../../machine-learning/reference-yaml-connection-ai-search.md). 
 - API Key example:
 
     ```yml
-    name: myazaics_apk
+    name: my_project_acs_connection_keys
     type: azure_ai_search
     endpoint: https://contoso.search.windows.net/
     api_key: XXXXXXXXXXXXXXX
@@ -56,7 +57,7 @@ You can use either an API key or credential-less YAML configuration file. For mo
 - Credential-less
 
     ```yml    
-    name: myazaics_ei
+    name: my_project_acs_connection_credentialless
     type: azure_ai_search
     endpoint: https://contoso.search.windows.net/
     ```
