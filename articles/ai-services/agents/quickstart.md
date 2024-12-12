@@ -7,9 +7,9 @@ author: aahill
 ms.author: aahi
 ms.service: azure
 ms.topic: quickstart
-ms.date: 11/13/2024
+ms.date: 12/11/2024
 zone_pivot_groups: programming-languages-agents
-recommendations: false
+ms.custom: azure-ai-agents
 ---
 
 # Quickstart: Create a new agent

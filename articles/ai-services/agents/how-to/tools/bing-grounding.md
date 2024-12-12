@@ -6,11 +6,11 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure
 ms.topic: how-to
-ms.date: 11/20/2024
+ms.date: 12/11/2024
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-bing-grounding
-recommendations: false
+ms.custom: azure-ai-agents
 ---
 
 # Grounding with Bing Search 

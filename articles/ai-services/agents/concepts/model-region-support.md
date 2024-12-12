@@ -7,8 +7,8 @@ author: aahill
 ms.author: aahi
 ms.service: azure
 ms.topic: conceptual
-ms.date: 11/13/2024
-recommendations: false
+ms.date: 12/11/2024
+ms.custom: azure-ai-agents
 ---
 
 # Models supported by Azure AI Agent Service

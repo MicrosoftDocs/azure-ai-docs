@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure
 ms.topic: conceptual
-ms.date: 12/03/2024
+ms.date: 12/11/2024
 author: aahill
 ms.author: aahi
 ---
