@@ -13,4 +13,4 @@ ms.custom: include file
 To use Azure Machine Learning, you need a workspace. If you don't have one, complete [Create resources you need to get started](../quickstart-create-resources.md) to create a workspace and learn more about using it.
 
 > [!IMPORTANT]
-> If your Azure Machine Learning workspace is configured with a managed virtual network, you may need to add outbound rules to allow access to the public Python package repositories. For more information, see [Scenario: Access public machine learning packages](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-managed-network#scenario-access-public-machine-learning-packages).
+> If your Azure Machine Learning workspace is configured with a managed virtual network, you may need to add outbound rules to allow access to the public Python package repositories. For more information, see [Scenario: Access public machine learning packages](/azure/machine-learning/how-to-managed-network#scenario-access-public-machine-learning-packages).
