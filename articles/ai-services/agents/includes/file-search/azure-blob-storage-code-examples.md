@@ -26,8 +26,7 @@ project_client = AIProjectClient.from_connection_string(
 ```
 ### Step 2: Upload local files to your project Azure Blob Storage container
 We will upload the local file to your project Azure Blob Storage container. This is the same storage account you connected to your agent during the agent setup. 
-The project asset ID is the URI of the uploaded file and we print out this value. If you create more agents in the same project that want to use the uploaded file, you can reuse this asset ID.
-That way you don't need to upload the file again.
+The project asset ID is the URI of the uploaded file and we print out this value. If you create more agents in the same project that want to use the uploaded file, you can reuse this asset ID. That way you don't need to upload the file again.
 ```python
 # We will upload the local file to your project Azure Blob Storage container and will use it for vector store creation.
 _, asset_uri = project_client.upload_file("C:\\Users\\fosteramanda\\Downloads\\hub bicep\\azure-ai-agents\\data\\product_info_1.md")
@@ -38,7 +37,7 @@ ds = VectorStoreDataSource(asset_identifier=asset_uri, asset_type=VectorStoreDat
 vector_store = project_client.agents.create_vector_store_and_poll(data_sources=[ds], name="sample_vector_store-3")
 print(f"Created vector store, vector store ID: {vector_store.id}")
 ```
-### Step 3: Create agent_1 with access to the file search tool
+### Step 3: Create an agent with access to the file search tool
 
 ```python
 # create a file search tool
@@ -76,16 +75,17 @@ print(f"Messages: {messages}")
 ```
 
 ### Step 4: Create second vector store using the previously uploaded file
+Now we will create a second vector store using the previously uploaded file. This is useful if you have multiple agents that need access to the same files.
 ```python
 
-# create a vector store with no file and wait for it to be processed
+# create a vector store with a previously uploaded file and wait for it to be processed
 ds_2 = VectorStoreDataSource(asset_identifier=asset_uri, asset_type=VectorStoreDataSourceAssetType.URI_ASSET)
 vector_store_2 = project_client.agents.create_vector_store_and_poll(data_sources=[ds_2], name="sample_vector_store_2")
 print(f"Created vector store, vector store ID: {vector_store.id}")
 
 ```
 
-### Step 5: Create agent_2 with access to the file search tool
+### Step 5: Create a second agent with access to the file search tool
 ```python
 file_search_tool_2 = FileSearchTool(vector_store_ids=[vector_store_2.id])
 # notices that FileSearchTool as tool and tool_resources must be added or the assistant unable to search the file
