@@ -41,7 +41,7 @@ batch = project_client.agents.create_vector_store_file_batch_and_poll(
 Files can be removed from a vector store by either:
 
 * Deleting the vector store file object or,
-* By deleting the underlying file object (which removes the file it from all vector_store and code_interpreter configurations across all agents and threads in your organization)
+* By deleting the underlying file object, which removes the file it from all vector_store and code_interpreter configurations across all agents and threads in your organization
 
 The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens per file (computed automatically when you attach a file).
 
@@ -69,15 +69,15 @@ print("Deleted vector store")
 
 ## Ensuring vector store readiness before creating runs
 
-We highly recommend that you ensure all files in a vector_store are fully processed before you create a run. This ensures that all the data in your vector store is searchable. You can check for vector store readiness by using the polling helpers in the SDKs, or by manually polling the `vector_store` object to ensure the status is completed.
+We highly recommend that you ensure all files in a vector_store are fully processed before you create a run. This approach ensures that all the data in your vector store is searchable. You can check for vector store readiness by using the polling helpers in the SDKs, or by manually polling the `vector_store` object to ensure the status is completed.
 
-As a fallback, there's a 60-second maximum wait in the run object when the thread's vector store contains files that are still being processed. This is to ensure that any files your users upload in a thread a fully searchable before the run proceeds. This fallback wait does not apply to the agent's vector store.
+As a fallback, there's a 60-second maximum wait in the run object when the thread's vector store contains files that are still being processed. This step ensures that any files your users upload in a thread are fully searchable before the run proceeds. This fallback wait does not apply to the agent's vector store.
 
 ## Managing costs with expiration policies
 
-For basic agent setup. the `file_search` tool uses the `vector_stores` object as its resource and you will be billed based on the size of the vector_store objects created. The size of the vector store object is the sum of all the parsed chunks from your files and their corresponding embeddings.
+For basic agent setup, the `file_search` tool uses the `vector_stores`  object as its resource and you are billed based on the size of the vector_store objects created. The size of the vector store object is the sum of all the parsed chunks from your files and their corresponding embeddings.
 
-In order to help you manage the costs associated with these vector_store objects, we have added support for expiration policies in the `vector_store` object. You can set these policies when creating or updating the `vector_store` object.
+To help you manage the costs associated with these vector_store objects, we added support for expiration policies in the `vector_store` object. You can set these policies when creating or updating the `vector_store` object.
 
 ```python
 vector_store = project_client.agents.create_vector_store_and_poll(
@@ -94,7 +94,7 @@ vector_store = project_client.agents.create_vector_store_and_poll(
 
 Vector stores created using thread helpers (like `tool_resources.file_search.vector_stores` in Threads or `message.attachments` in Messages) have a default expiration policy of seven days after they were last active (defined as the last time the vector store was part of a run).
 
-When a vector store expires, the runs on that thread fail. To fix this, you can recreate a new vector_store with the same files and reattach it to the thread.
+When a vector store expires, the runs on that thread fail.  To fix this issue, you can recreate a new vector_store with the same files and reattach it to the thread.
 
 ```python
 all_files = list(client.beta.vector_stores.files.list("vs_expired"))

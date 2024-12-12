@@ -3,7 +3,7 @@
 This quickstart shows how to use an existing Azure AI Search index with the Azure AI Search tool.
 
 ### Prerequisites
-Complete the [Azure AI Search tool setup](?pivot=setup).
+Complete the [Azure AI Search tool setup](../../includes/azure-search/setup.md).
 
 ### Step 1: Create an Azure AI Client
 First, create an Azure AI Client using the connection string of your project.
@@ -119,7 +119,6 @@ agent = project_client.agents.create_agent(
     instructions="You are a helpful assistant",
     tools=ai_search.definitions,
     tool_resources = ai_search.resources,
-    headers={"x-ms-enable-preview": "true"},
 )
 print(f"Created agent, ID: {agent.id}")
 ```

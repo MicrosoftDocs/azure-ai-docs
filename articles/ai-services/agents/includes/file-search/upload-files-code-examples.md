@@ -7,8 +7,7 @@ Complete the [agent setup](../../quickstart.md).
 
 ## Step 1: Create a project client
 
-Create a client object, that contains the connection string for connecting to your AI project and other resources. 
-
+Create a client object that contains the connection string for connecting to your AI project and other resources.
 # [Python](#tab/python)
 
 ```python
@@ -49,7 +48,7 @@ AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredent
 
 ## Step 2: Upload files and add them to a Vector Store
 
-To access your files, the file search tool uses the vector store object. Upload your files and create a vector store to contain them. Once the vector store is created, you should poll its status until all files are out of the `in_progress` state to ensure that all content has finished processing. The SDK provides helpers for uploading and polling.
+To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. After creating the vector store, poll its status until all files are out of the `in_progress` state to ensure that all content is fully processing. The SDK provides helpers for uploading and polling.
 # [Python](#tab/python)
 
 ```python
@@ -85,7 +84,7 @@ VectorStore vectorStore = await client.CreateVectorStoreAsync(
 ```
 ---
 
-## Step 3: Create an agent with access to  file search
+## Step 3: Create an agent and enable file search
 
 To make the files accessible to your agent, create a `FileSearchTool` object with the `vector_store` ID, and attach `tools` and `tool_resources` to the agent.
 
@@ -126,10 +125,11 @@ Agent agent = agentResponse.Value;
 ---
 
 ## Step 4: Create a thread
-You can also attach files as Message attachments on your thread. Doing so will create another ```vector_store``` associated with the thread, or, if there is already a vector store attached to this thread, attach the new files to the existing thread vector store. When you create a Run on this thread, the file search tool will query both the ```vector_store``` from your assistant and the ```vector_store``` on the thread.
+You can also attach files as Message attachments on your thread. Doing so creates another ```vector_store``` associated with the thread, or, if there's already a vector store attached to this thread, attaches the new files to the existing thread vector store.  When you create a Run on this thread, the file search tool queries both the ```vector_store``` from your agent and the ```vector_store``` on the thread.
 # [Python](#tab/python)
 
 ```python
+# Create a thread
 thread = project_client.agents.create_thread()
 print(f"Created thread, thread ID: {thread.id}")
 
@@ -139,7 +139,7 @@ print(f"Uploaded file, file ID: {message_file.id}")
 
 # Create a message with the file search attachment
 # Notice that vector store is created temporarily when using attachments with a default expiration policy of seven days.
-attachment = MessageAttachment(file_id=file.id, tools=FileSearchTool().definitions)
+attachment = MessageAttachment(file_id=message_file.id, tools=FileSearchTool().definitions)
 message = project_client.agents.create_message(
     thread_id=thread.id, role="user", content="What feature does Smart Eyewear offer?", attachments=[attachment]
 )
