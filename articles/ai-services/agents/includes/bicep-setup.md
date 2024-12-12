@@ -29,6 +29,24 @@ The following section shows you how to set up the required resources for getting
 | Deploy a basic agent setup that uses Managed Identity authentication on the AI Services and storage account connections. | AI hub, AI project, AI Services | [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.azure-ai-agent-service%2Fbasic-agent-identity%2Fazuredeploy.json) |
 | Deploy a standard agent setup that uses Managed Identity authentication on the AI Services, storage account, and Azure AI Search connections. |AI hub, AI project, storage account, key vault, Azure AI Search, AI Services | [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Frefs%2Fheads%2Fmaster%2Fquickstarts%2Fmicrosoft.azure-ai-agent-service%2Fstandard-agent%2Fazuredeploy.json)|
 
+### [Optional] Model selection in autodeploy template
+You can customize the model used by your agent by editing the model parameters in the autodeploy template. To deploy a different model, you need to update at least the **modelName** and **modelVersion** parameters. 
+
+By default, the autodeploy template is configured with the following values:
+| Model Parameter | Default Value |
+| --------------------------- | ------------|
+| modelName | gpt-4o-mini |
+| modelFormat | OpenAI |
+| modelVersion | 2024-07-18 |
+| modelSkuName | GlobalStandard |
+| modelLocation | eastus |
+ 
+> [!IMPORTANT]
+> **Don't change the modelFormat parameter** 
+>
+> The templates only support deployment of OpenAI models. See which OpenAI models are supported in the [Azure AI Agent Service model support](./concepts/model-region-support.md) documentation.
+
+
 ### [Optional] Use your own resources in agent setup
 
 
