@@ -25,16 +25,15 @@ project_client = AIProjectClient.from_connection_string(
 )
 ```
 ### Step 2: Upload local files to your project Azure Blob Storage container
-We upload the local file to your project Azure Blob Storage container. This is the same storage account you connected to your agent during the agent setup. 
-The project asset ID is the URI of the uploaded file and we print this value. If you create more agents in the same project that want to use the uploaded file, you can reuse this asset ID. That way you don't need to upload the file again.
+Upload your local file to the project’s Azure Blob Storage container. This is the same storage account you connected to your agent during setup. If you create more agents in the same project that need to use the uploaded file(s), you can reuse this asset uri, avoiding the need to upload the file multiple times.
 ```python
 # We'll upload the local file to your project Azure Blob Storage container and will use it for vector store creation.
-_, asset_uri = project_client.upload_file("C:\\Users\\fosteramanda\\Downloads\\hub bicep\\azure-ai-agents\\data\\product_info_1.md")
+_, asset_uri = project_client.upload_file("sample_file_for_upload.md")
 print(f"Uploaded file, asset URI: {asset_uri}")
 
 # create a vector store with no file and wait for it to be processed
 ds = VectorStoreDataSource(asset_identifier=asset_uri, asset_type=VectorStoreDataSourceAssetType.URI_ASSET)
-vector_store = project_client.agents.create_vector_store_and_poll(data_sources=[ds], name="sample_vector_store-3")
+vector_store = project_client.agents.create_vector_store_and_poll(data_sources=[ds], name="sample_vector_store")
 print(f"Created vector store, vector store ID: {vector_store.id}")
 ```
 ### Step 3: Create an agent with access to the file search tool
@@ -75,7 +74,7 @@ print(f"Messages: {messages}")
 ```
 
 ### Step 4: Create second vector store using the previously uploaded file
-Now we create a second vector store using the previously uploaded file. Using the asset_uri of file already in Azure Blob Storage is useful if you have multiple agents that need access to the same files. That way you don't need to upload the same file multiple times.
+Now, create a second vector store using the previously uploaded file. Using the ```asset_uri``` of a file already in Azure Blob Storage is useful if you have multiple agents that need access to the same files, as it eliminates the need to upload the same file multiple times.
 ```python
 
 # create a vector store with a previously uploaded file and wait for it to be processed

@@ -14,7 +14,7 @@ Create a client object, that contains the connection string for connecting to yo
 ```python
 import os
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import FileSearchTool
+from azure.ai.projects.models import FileSearchTool, MessageAttachment, FilePurpose
 from azure.identity import DefaultAzureCredential
 
 
@@ -42,7 +42,7 @@ using NUnit.Framework;
 // At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
 // Customer needs to login to Azure subscription via Azure CLI and set the environment variables
 var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
-AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredentia());
+AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredential());
 ```
 
 ---
@@ -50,20 +50,14 @@ AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredent
 ## Step 2: Upload files and add them to a Vector Store
 
 To access your files, the file search tool uses the vector store object. Upload your files and create a vector store to contain them. Once the vector store is created, you should poll its status until all files are out of the `in_progress` state to ensure that all content has finished processing. The SDK provides helpers for uploading and polling.
-
-Vector stores are created using message attachments that have a default expiration policy of seven days after they were last active (defined as the last time the vector store was part of a run). This default exists to help you manage your vector storage costs. You can override these expiration policies at any time.
-
 # [Python](#tab/python)
 
 ```python
 # We will upload the local file and will use it for vector store creation.
 
 #upload a file
-file = project_client.agents.upload_file_and_poll(file_path='./data/product_info_1.md', purpose="assistants")
+file = project_client.agents.upload_file_and_poll(file_path='./data/product_catelog.md', purpose=FilePurpose.AGENTS)
 print(f"Uploaded file, file ID: {file.id}")
-
-_, asset_uri = project_client.upload_file("./data/product_info_1.md")
-print(f"Uploaded file, asset URI: {asset_uri}")
 
 # create a vector store with the file you uploaded
 vector_store = project_client.agents.create_vector_store_and_poll(file_ids=[file.id], name="my_vectorstore")
@@ -91,7 +85,7 @@ VectorStore vectorStore = await client.CreateVectorStoreAsync(
 ```
 ---
 
-## Step 3: Enable file search
+## Step 3: Create an agent with access to  file search
 
 To make the files accessible to your agent, create a `FileSearchTool` object with the `vector_store` ID, and attach `tools` and `tool_resources` to the agent.
 
@@ -132,15 +126,22 @@ Agent agent = agentResponse.Value;
 ---
 
 ## Step 4: Create a thread
-
+You can also attach files as Message attachments on your thread. Doing so will create another ```vector_store``` associated with the thread, or, if there is already a vector store attached to this thread, attach the new files to the existing thread vector store. When you create a Run on this thread, the file search tool will query both the ```vector_store``` from your assistant and the ```vector_store``` on the thread.
 # [Python](#tab/python)
 
 ```python
 thread = project_client.agents.create_thread()
 print(f"Created thread, thread ID: {thread.id}")
 
+# Upload the user provided file as a messsage attachment
+message_file = project_client.agents.upload_file_and_poll(file_path='product_info_1.md', purpose=FilePurpose.AGENTS)
+print(f"Uploaded file, file ID: {message_file.id}")
+
+# Create a message with the file search attachment
+# Notice that vector store is created temporarily when using attachments with a default expiration policy of seven days.
+attachment = MessageAttachment(file_id=file.id, tools=FileSearchTool().definitions)
 message = project_client.agents.create_message(
-    thread_id=thread.id, role="user", content="What feature does Smart Eyewear offer?"
+    thread_id=thread.id, role="user", content="What feature does Smart Eyewear offer?", attachments=[attachment]
 )
 print(f"Created message, message ID: {message.id}")
 ```
