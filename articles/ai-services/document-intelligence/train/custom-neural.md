@@ -218,7 +218,7 @@ The `Build` operation to train model supports a new ```buildMode``` property, to
 :::moniker range="doc-intel-4.0.0"
 
 ```bash
-https://{endpoint}/documentintelligence/documentModels:build?api-version=2024-07-31-preview
+https://{endpoint}/documentintelligence/documentModels:build?api-version=2024-11-30
 
 {
   "modelId": "string",
@@ -281,7 +281,7 @@ With version `v4.0 2024-11-30 (GA)`, you can train your custom neural model for 
 You can choose to spend all of 10 free hours on a single model build with a large set of data, or utilize it across multiple builds by adjusting the maximum duration value for the `build` operation by specifying `maxTrainingHours`:
 
 ```bash
-POST https://{endpoint}/documentintelligence/documentModels:build?api-version=2024-07-31-preview
+POST https://{endpoint}/documentintelligence/documentModels:build?api-version=2024-11-30
 
 {
   "modelId": "string",
@@ -341,7 +341,7 @@ For Document Intelligence versions `v3.1 (2023-07-31) and v3.0 (2022-08-31)`, yo
 > * When increasing the training limit, note that 2 custom neural model training sessions will be considered as 1 training hour. For more information on the pricing for increasing the number of training sessions, *see* the [pricing page](https://azure.microsoft.com/pricing/details/ai-document-intelligence/).
 > * Azure support ticket for training limit increase can only apply at a **resource-level**, not a subscription level. You can request a training limit increase for a single Document Intelligence resource by specifying your resource ID and region in the support ticket.
 
-If you want to train models for longer durations than 30 minutes, we support **paid training** with our newest version, `v4.0 (2024-07-31)`. Using the latest version, you can train your model for a longer duration to process larger documents. For more information about paid training, *see* [Billing v4.0](../service-limits.md#billing).
+If you want to train models for longer durations than 30 minutes, we support **paid training** with our newest version, `v4.0 (2024-11-30)`. Using the latest version, you can train your model for a longer duration to process larger documents. For more information about paid training, *see* [Billing v4.0](../service-limits.md#billing).
 
 :::moniker-end
 
