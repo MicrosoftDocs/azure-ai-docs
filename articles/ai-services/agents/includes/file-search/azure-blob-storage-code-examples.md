@@ -13,8 +13,8 @@ In this example, we use Azure AI Agent Service to create an agent that can help 
 ###  Prerequisites 
 Complete the [standard agent setup](../../quickstart.md).
 
-> [!NOTE]
-> Azure Blob Storage is only available with the standard agent setup. The basic agent setup does not support this file source.
+> [!IMPORTANT]
+> File search using Blob storage is only supported by the standard agent setup.
 
 ### Step 1: Create a project client
 ```python
@@ -33,6 +33,7 @@ project_client = AIProjectClient.from_connection_string(
     credential=credential, conn_str=os.environ["PROJECT_CONNECTION_STRING"]
 )
 ```
+
 ### Step 2: Upload local files to your project Azure Blob Storage container
 Upload your local file to the project’s Azure Blob Storage container. This is the same storage account you connected to your agent during setup. If you create more agents in the same project that need to use the uploaded file(s), you can reuse this asset uri, avoiding the need to upload the file multiple times.
 ```python
@@ -45,6 +46,7 @@ ds = VectorStoreDataSource(asset_identifier=asset_uri, asset_type=VectorStoreDat
 vector_store = project_client.agents.create_vector_store_and_poll(data_sources=[ds], name="sample_vector_store")
 print(f"Created vector store, vector store ID: {vector_store.id}")
 ```
+
 ### Step 3: Create an agent with access to the file search tool
 
 ```python
