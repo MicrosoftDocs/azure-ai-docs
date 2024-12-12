@@ -34,7 +34,7 @@ The following section shows you how to set up the required resources for getting
 > [!IMPORTANT]
 > **Don't change the modelFormat parameter** 
 >
-> The templates only support deployment of OpenAI models. See which OpenAI models are supported in the [Azure AI Agent Service model support](./concepts/model-region-support.md) documentation.
+> The templates only support deployment of OpenAI models. See which OpenAI models are supported in the [Azure AI Agent Service model support](../concepts/model-region-support.md) documentation.
 
 You can customize the model used by your agent by editing the model parameters in the autodeploy template. To deploy a different model, you need to update at least the **modelName** and **modelVersion** parameters. 
 
