@@ -14,7 +14,7 @@ metadata:
   ms.reviewer: sgilley
   ms.author: sgilley
   author: sdgilley
-  ms.date: 5/21/2024
+  ms.date: 12/12/2024
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
 landingContent:
@@ -72,7 +72,7 @@ landingContent:
       - linkListType: tutorial
         links:
           - text: Build a custom chat app with the Azure AI SDK
-            url: tutorials/copilot-sdk-build-rag.md
+            url: tutorials/copilot-sdk-create-resoureces.md
 
       - linkListType: concept
         links:
