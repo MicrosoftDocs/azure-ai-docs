@@ -255,6 +255,7 @@ run = project_client.agents.create_and_process_run(thread_id=thread.id, assistan
 print(f"Run finished with status: {run.status}")
 
 # Retrieve run step details to get Bing Search query link
+# To render the webpage, we recommend you replace the endpoint of Bing search query URLs with `www.bing.com` and your Bing search query URL would look like "https://www.bing.com/search?q={search query}"
 run_steps = project_client.agents.list_run_steps(run_id=run.id, thread_id=thread.id)
 run_steps_data = run_steps['data']
 print(f"Last run step detail: {run_steps_data}")
