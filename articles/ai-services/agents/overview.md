@@ -13,15 +13,41 @@ ms.custom: azure-ai-agents
 
 # What is Azure AI Agent Service?
 
-Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. Using an extensive ecosystem of models, tools, and capabilities from OpenAI, Microsoft, and other non-Microsoft providers, Azure AI Agent Service enables you to build agents for a wide range of generative AI use cases. Users can access the service through the [available SDKs](./quickstart.md).
+Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents without needing to manage the underlying compute and storage resources. What originally took hundreds of lines of code to support [client side function calling](/azure/ai-services/openai/how-to/function-calling) can now be done in just a few lines of code with Azure AI Agent Service.
 
+## What is an AI agent?
 
-## Comparing Azure agents and Azure OpenAI assistants
+Within Azure AI Foundry, an AI Agent acts as a "smart" microservice that can be used to answer questions (RAG), perform actions, or completely automate workflows. It achieves this by combining the power of generative AI models with tools that allow it to access and interact with real-world data sources.
 
-Both agents and assistants enable you to build automated workflows that leverage Large Language Models (LLMs), but Azure AI Agent Service provides all the capabilities of assistants and:
+// Add a diagram here
 
-* The ability to use non-Azure OpenAI models Such as Llama 3.
-* An extended toolset that lets you ground the agent with different datasets such as Microsoft Fabric, SharePoint, OpenAPI, and access the web using Bing web searches.
+Because Azure AI Agent Service uses the same wire protocol as [Azure OpenAI Assistants](/azure/ai-services/openai/how-to/assistant), you can use either [OpenAI SDKs](./quickstart.md?pivots=programming-language-python-openai) or [Azure AI Foundry SDKs](./quickstart.md?programming-language-python-azure) to create and run an agent in just a few lines of code. For example, to create an AI Agent with Azure AI Foundry SDK, you can simply  define which model the AI uses, the instructions for how it should complete tasks, and the tools it can use to access and interact with other services.
+
+// Add code here
+
+After defining an agent, you can start asking it to perform work by invoking a run on top of an activity thread, which is simply a conversation between multiple agents and users. 
+
+// Add code here
+
+Whenever the run operation is invoked, Azure AI Agent Service will complete the entire tool calling lifecycle for you by 1) running the model with the provided instructions, 2) invoking the tools as the agent calls them, and 3) returning the results back to you.
+
+Once you've gotten the basics, you can start using multiple agents together to automate even more complex workflows with [AutoGen](https://microsoft.github.io/autogen/0.2/docs/Getting-Started/) and [Semantic Kernel](/semantic-kernel). Because Azure AI Agent Service is a fully managed service, you can focus on building workflows and the agents that power them without needing to worry about scaling, security, or management of the underlying infrastructure for individual agents.
+
+## Why use Azure AI Agent Service?
+
+When compared to developing with the [Inference API](/azure/ai-studio/reference/reference-model-inference-api) directly, Azure AI Agent Service provides a more streamlined and secure way to build and deploy AI agents. This includes:
+1. Automating the tool calling lifecycle for you – no need to parse a tool call, invoke the tool, and handle the response; all of this is now done server-side
+2. Securely managing your data – instead of managing your own conversation state, you can rely on threads to store all the information you need
+3. Providing out-of-the-box tools – Azure AI Agent Service comes with a set of tools that you can use to interact with your data sources, such as Bing, Azure AI Search, and Azure Functions.
+
+What originally took hundreds of lines of code can now be done in just a few with Azure AI Agent Service.
+
+### Comparing Azure agents and Azure OpenAI assistants
+
+Both services enable you to build agents using the same API and SDKs, but if you have additional enterprise requirements, you may want to consider using Azure AI Agent Service. Azure AI Agent Service provides all the capabilities of assistants in addition to:
+* The ability to use non-Azure OpenAI models Such as Llama-3.
+* An extended toolset that lets you ground the agent with different services such as Microsoft Bing, Azure Functions, and services defined with OpenAPI specifications.
+* And the ability to bring your own Azure Blog storage and Azure AI Search resources for full control and visibility of your storage resources.
 
 ## Features overview
 
