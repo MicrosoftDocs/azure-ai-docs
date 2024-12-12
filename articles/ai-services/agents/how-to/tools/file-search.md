@@ -35,7 +35,7 @@ File search augments agents with knowledge from outside its model, such as propr
 ## Dependency on agent setup
 
 ### Basic agent setup
-The file search tool has the same functionality as AOAI Assistants. Microsoft managed search and storage resources are used. 
+The file search tool has the same functionality as Azure OpenAI Assistants. Microsoft managed search and storage resources are used. 
 - Uploaded files get stored in Microsoft managed storage 
 - A vector store is created using a Microsoft managed search resource 
 

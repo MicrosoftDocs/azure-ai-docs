@@ -14,7 +14,7 @@ Create a client object, which will contain the connection string for connecting 
 ```python
 import os
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import FileSearchTool, VectorStoreDataSource, VectorStoreDataSourceAssetType
+from azure.ai.projects.models import FileSearchTool
 from azure.identity import DefaultAzureCredential
 
 
@@ -42,7 +42,7 @@ using NUnit.Framework;
 // At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
 // Customer needs to login to Azure subscription via Azure CLI and set the environment variables
 var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
-AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredential());
+AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredentia());
 ```
 
 ---
@@ -56,12 +56,17 @@ Vector stores are created using message attachments that have a default expirati
 # [Python](#tab/python)
 
 ```python
-# We will upload the local file to Azure and will use it for vector store creation.
+# We will upload the local file and will use it for vector store creation.
+
+#upload a file
+file = project_client.agents.upload_file_and_poll(file_path='./data/product_info_1.md', purpose="assistants")
+print(f"Uploaded file, file ID: {file.id}")
+
 _, asset_uri = project_client.upload_file("./data/product_info_1.md")
 print(f"Uploaded file, asset URI: {asset_uri}")
-# create a vector store with no file and wait for it to be processed
-ds = VectorStoreDataSource(asset_identifier=asset_uri, asset_type=VectorStoreDataSourceAssetType.URI_ASSET)
-vector_store = project_client.agents.create_vector_store_and_poll(data_sources=[ds], name="sample_vector_store")
+
+# create a vector store with the file you uploaded
+vector_store = project_client.agents.create_vector_store_and_poll(file_ids=[file.id], name="my_vectorstore")
 print(f"Created vector store, vector store ID: {vector_store.id}")
 ```
 
