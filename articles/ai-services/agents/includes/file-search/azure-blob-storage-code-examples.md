@@ -38,7 +38,7 @@ project_client = AIProjectClient.from_connection_string(
 ```
 
 ### Step 2: Upload local files to your project Azure Blob Storage container
-Upload your local file to the project’s Azure Blob Storage container. This is the same storage account you connected to your agent during setup. If you create more agents in the same project that need to use the uploaded file(s), you can reuse this asset uri, avoiding the need to upload the file multiple times.
+Upload your local file to the project’s Azure Blob Storage container. This is the same storage account you connected to your agent during setup. When creating additional agents within the same project, you can reuse the asset URIs of any previously uploaded files that those agents need. This means you don't have to upload the same file repeatedly, as the asset URIs allow you to reference the files directly.
 
 Then, create a vector store using the ```asset_uri```, which is the location of your file in your project's datastore.
 ```python
