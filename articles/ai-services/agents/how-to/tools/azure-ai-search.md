@@ -33,7 +33,7 @@ Use an existing Azure AI Search index with the agent's Azure AI Search tool.
 **Index with semantic configuration**
 - By default, the Azure AI Search tool runs hybrid + semantic search on all text fields.
 
-<a id="overview"></a>
+<a id="overview-pivot"></a>
 
 [!INCLUDE [setup](../../includes/azure-search/setup.md)]
 

@@ -1,4 +1,11 @@
-
+---
+manager: nitinme
+author: fosteramanda
+ms.author: fosteramanda
+ms.service: azure
+ms.topic: include
+ms.date: 12/10/2024
+---
 ## Creating vector stores and adding files 
 
 You can create a vector store and add files to it in a single API call:
@@ -66,12 +73,6 @@ print(f"Updated agent, agent ID: {agent.id}")
 project_client.agents.delete_vector_store(vector_store.id)
 print("Deleted vector store")
 ```
-
-## Ensuring vector store readiness before creating runs
-
-We highly recommend that you ensure all files in a vector_store are fully processed before you create a run. This approach ensures that all the data in your vector store is searchable. You can check for vector store readiness by using the polling helpers in the SDKs, or by manually polling the `vector_store` object to ensure the status is completed.
-
-As a fallback, there's a 60-second maximum wait in the run object when the thread's vector store contains files that are still being processed. This step ensures that any files your users upload in a thread are fully searchable before the run proceeds. This fallback wait does not apply to the agent's vector store.
 
 ## Managing costs with expiration policies
 
