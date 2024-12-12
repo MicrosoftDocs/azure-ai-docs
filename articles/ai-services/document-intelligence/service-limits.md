@@ -246,7 +246,7 @@ Document Intelligence billing is calculated monthly based on the model type and 
 > <sup>4</sup> This limit applies to all documents found in your training dataset folder prior to any labeling-related updates.
 ::: moniker-end
 ::: moniker range=">=doc-intel-4.0.0"
-> <sup>5</sup> This limit applies for `v 4.0 (2024-07-31)` custom neural models only. Starting from `v 4.0`, we support training larger documents for longer durations (up to 10 hours for free, and incurring charges after). For more information, please refer to [custom nerual model page](train/custom-neural.md).
+> <sup>5</sup> This limit applies for `v 4.0 (2024-11-30 GA)` custom neural models only. Starting from `v 4.0`, we support training larger documents for longer durations (up to 10 hours for free, and incurring charges after). For more information, please refer to [custom neural model page](train/custom-neural.md).
 ::: moniker-end
 
 ## Detailed description, Quota adjustment, and best practices

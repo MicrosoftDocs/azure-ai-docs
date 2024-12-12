@@ -303,7 +303,7 @@ items:
       href: how-to-guides/resolve-errors.md
     - name: v2.1
       href: /rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true
-  - name: Client libraries (2024-07-31-preview)
+  - name: Client libraries (2024-11-30 GA)
     items:
     - name: C# / .NET
       href: /dotnet/api/overview/azure/ai.documentintelligence-readme?view=azure-dotnet-preview&preserve-view=true

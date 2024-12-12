@@ -97,7 +97,7 @@ The searchable PDF capability enables you to convert an analog PDF, such as scan
   > [!IMPORTANT]
   >
   > * Currently, the searchable PDF capability is only supported by Read OCR model `prebuilt-read`. When using this feature, please specify the `modelId` as `prebuilt-read`, as other model types will return error for this preview version.
-  > * Searchable PDF is included with the 2024-07-31-preview `prebuilt-read` model with no additional cost for generating a searchable PDF output.
+  > * Searchable PDF is included with the 2024-11-30 GA `prebuilt-read` model with no additional cost for generating a searchable PDF output.
 
 ### Use searchable PDFs
 

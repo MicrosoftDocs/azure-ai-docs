@@ -70,5 +70,5 @@ For a detailed list of supported languages and regions, visit our [Language and 
 Developers using Content Understanding should review Microsoft's policies on customer data. For more information, visit our [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) page.
 
 ## Next step
-* Try processing your document content using Content Understanding in [Azure AI Foundry](https://ai.azure.com/).
+* Try processing your document content using Content Understanding in [Azure ](https://ai.azure.com/).
 * Learn more about document [**analyzer templates**](../quickstart/use-ai-foundry.md).

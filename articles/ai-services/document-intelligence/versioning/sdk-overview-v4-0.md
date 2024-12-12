@@ -24,7 +24,7 @@ monikerRange: 'doc-intel-4.0.0'
 
 # SDK target: REST API v4.0
 
-![Document Intelligence checkmark](../media/yes-icon.png) **REST API version 2024-07-31-preview**
+![Document Intelligence checkmark](../media/yes-icon.png) **REST API version 2024-11-30 GA**
 
 Azure AI Document Intelligence is a cloud service that uses machine learning to analyze text and structured data from documents. The Document Intelligence software development kit (SDK) is a set of libraries and tools that enable you to easily integrate Document Intelligence models and capabilities into your applications. Document Intelligence SDK is available across platforms in C#/.NET, Java, JavaScript, and Python programming languages.
 
@@ -53,7 +53,7 @@ The following tables present the correlation between each SDK version the suppor
 
 | Language| SDK alias | API version (default) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; | Supported clients|
 | :------ | :-----------|:---------- | :-----------------|
- |**.NET/C# 1.0.0-beta.2 (preview)**| v4.0 (preview)| 2024-07-31-preview|**DocumentIntelligenceClient**</br>**DocumentIntelligenceAdministrationClient**|
+ |**.NET/C# 1.0.0-beta.2 (preview)**| v4.0 (GA)| 2024-11-30 GA|**DocumentIntelligenceClient**</br>**DocumentIntelligenceAdministrationClient**|
 |**.NET/C# 4.1.0**| v3.1 latest (GA)| 2023-07-31|**DocumentAnalysisClient**</br>**DocumentModelAdministrationClient** |
 |**.NET/C# 4.0.0**| v3.0 (GA)| 2022-08-31|  **DocumentAnalysisClient**</br>**DocumentModelAdministrationClient** |
 |**.NET/C# 3.1.x**| v2.1 |  v2.1 |  **FormRecognizerClient**</br>**FormTrainingClient** |
@@ -63,7 +63,7 @@ The following tables present the correlation between each SDK version the suppor
 
 | Language| SDK alias | API version (default) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; | Supported clients|
 | :------ | :-----------|:---------- | :-----------------|
-|**Java 1.0.0-beta.2 (preview)**| v4.0 (preview)| 2024-07-31-preview|**DocumentIntelligenceClient**</br>**DocumentIntelligenceAdministrationClient**|
+|**Java 1.0.0-beta.2 (preview)**| v4.0 (GA)| 2024-07-31-preview|**DocumentIntelligenceClient**</br>**DocumentIntelligenceAdministrationClient**|
 |**Java 4.1.0**| v3.1 latest (GA)| 2023-07-31|**DocumentAnalysisClient**</br>**DocumentModelAdministrationClient** |
 |**Java 4.0.0**</br>| v3.0 (GA)| 2022-08-31|  **DocumentAnalysisClient**</br>**DocumentModelAdministrationClient** |
 |**Java 3.1.x**| v2.1 |  v2.1 |  **FormRecognizerClient**</br>**FormTrainingClient** |
@@ -73,7 +73,7 @@ The following tables present the correlation between each SDK version the suppor
 
 | Language| SDK alias | API version (default) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; | Supported clients|
 | :------ | :-----------|:---------- | :-----------------|
-|**JavaScript 1.0.0-beta.2**| v4.0 (preview)| 2024-07-31-preview|**DocumentIntelligenceClient**</br>**DocumentIntelligenceAdministrationClient**|
+|**JavaScript 1.0.0-beta.2**| v4.0 (GA)| 2024-07-31-preview|**DocumentIntelligenceClient**</br>**DocumentIntelligenceAdministrationClient**|
 |**JavaScript 5.0.0**| v3.1 latest (GA)| 2023-07-31 |**DocumentAnalysisClient**</br>**DocumentModelAdministrationClient** |
 |**JavaScript 4.0.0**</br>| v3.0 (GA)| 2022-08-31|  **DocumentAnalysisClient**</br>**DocumentModelAdministrationClient** |
 |**JavaScript 3.1.x**</br>| v2.1 |  v2.1 |  **FormRecognizerClient**</br>**FormTrainingClient** |

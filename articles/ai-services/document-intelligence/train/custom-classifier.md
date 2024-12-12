@@ -44,6 +44,7 @@ Custom classification models are deep-learning-model types that combine layout a
 > [!NOTE]
 >
 > * Custom classification v4.0 2024-11-30 (GA) models support incremental training. You can add new samples to existing classes or add new classes by referencing an existing classifier.
+> * Custom classification v3.1 2023-07-31 (GA) model does not support model copy. To use the model copy feature, please train the model using the latest v4.0 GA model.
 
 Custom classification models can analyze a single- or multi-file documents to identify if any of the trained document types are contained within an input file. Here are the currently supported scenarios:
 
@@ -285,14 +286,14 @@ You can now update the custom classification in-place. Directly overwriting the 
 > * **West US2**
 > * **West Europe**
 >
-> Use the [**REST API**](/rest/api/aiservices/operation-groups?view=rest-aiservices-2024-07-31-preview&preserve-view=true) or [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com/studio/document-classifier/projects) to copy a model to another region.
+> Use the [**REST API**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) or [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com/studio/document-classifier/projects) to copy a model to another region.
 
 ### Generate Copy authorization request
 
 The following HTTP request gets copy authorization from your target resource. You need to enter the endpoint and key of your target resource as headers.
 
 ```http
-POST https://myendpoint.cognitiveservices.azure.com/documentintelligence/documentClassifiers:authorizeCopy?api-version=2024-07-31-preview
+POST https://myendpoint.cognitiveservices.azure.com/documentintelligence/documentClassifiers:authorizeCopy?api-version=2024-11-30
 Ocp-Apim-Subscription-Key: {<your-key>}
 ```
 
@@ -323,7 +324,7 @@ You receive a `200` response code with response body that contains the JSON payl
 The following HTTP request starts the copy operation on the source resource. You need to enter the endpoint and key of your source resource as the url and header. Notice that the request URL contains the classifier ID of the source classifier you want to copy.
 
 ```http
-POST {endpoint}/documentintelligence/documentClassifiers/{classifierId}:copyTo?api-version=2024-07-31-preview
+POST {endpoint}/documentintelligence/documentClassifiers/{classifierId}:copyTo?api-version=2024-11-30
 Ocp-Apim-Subscription-Key: {<your-key>}
 ```
 
