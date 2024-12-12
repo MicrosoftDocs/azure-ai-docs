@@ -44,6 +44,7 @@ Custom classification models are deep-learning-model types that combine layout a
 > [!NOTE]
 >
 > * Custom classification v4.0 2024-11-30 (GA) models support incremental training. You can add new samples to existing classes or add new classes by referencing an existing classifier.
+> * Custom classification v3.1 2023-07-31 (GA) model does not support model copy. To use the model copy feature, please train the model using the latest v4.0 GA model.
 
 Custom classification models can analyze a single- or multi-file documents to identify if any of the trained document types are contained within an input file. Here are the currently supported scenarios:
 
