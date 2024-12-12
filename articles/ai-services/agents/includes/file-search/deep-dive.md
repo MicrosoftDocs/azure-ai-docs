@@ -76,7 +76,7 @@ print("Deleted vector store")
 
 ## Managing costs with expiration policies
 
-For basic agent setup, the `file_search` tool uses the `vector_stores`  object as its resource and you are billed based on the size of the vector_store objects created. The size of the vector store object is the sum of all the parsed chunks from your files and their corresponding embeddings.
+For basic agent setup, the `file_search` tool uses the `vector_stores`  object as its resource and you're billed based on the size of the vector_store objects created. The size of the vector store object is the sum of all the parsed chunks from your files and their corresponding embeddings.
 
 To help you manage the costs associated with these vector_store objects, we added support for expiration policies in the `vector_store` object. You can set these policies when creating or updating the `vector_store` object.
 
