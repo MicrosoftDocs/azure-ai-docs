@@ -40,6 +40,8 @@ Use the following code to create and run an agent. To run this code, you will ne
 
 `<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>`
 
+[!INCLUDE [connection-string-portal](connection-string-portal.md)]
+
 `HostName` can be found by navigating to your `discovery_url` and removing the leading `https://` and trailing `/discovery`. To find your `discovery_url`, run this CLI command:
 
 ```azurecli
@@ -78,8 +80,8 @@ with project_client:
     # The CodeInterpreterTool needs to be included in creation of the agent
     agent = project_client.agents.create_agent(
         model="gpt-4o-mini",
-        name="my-assistant",
-        instructions="You are helpful assistant",
+        name="my-agent",
+        instructions="You are helpful agent",
         tools=code_interpreter.definitions,
         tool_resources=code_interpreter.resources,
     )

@@ -15,18 +15,18 @@ recommendations: false
 
 Agents are powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. Certain tools and capabilities require the latest models. The following models are available in the available SDKs. The following table is for pay-as-you-go. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](../../openai/concepts/provisioned-throughput.md) in the OpenAI documentation. You can use [global standard models](../../openai/concepts/models.md#global-standard-model-availability) if they're supported in the regions listed here. 
 
-| Region | `gpt-35-turbo (0613)` | `gpt-35-turbo (1106)`| `fine tuned gpt-3.5-turbo-0125` | `gpt-4 (0613)` | `gpt-4 (1106)` | `gpt-4 (0125)` | `gpt-4o (2024-05-13)` | `gpt-4o-mini (2024-07-18)` |
-|-----|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| Australia East | ✅ | ✅ | | ✅ |✅ | | | |
-| East US  | ✅ | | | | | ✅ | ✅ |✅|
-| East US 2 | ✅ |  | ✅ | ✅ |✅ | |✅| |
-| France Central  | ✅ | ✅ | | ✅ |✅ |  | | |
-| Japan East | ✅ |  | | | | | | |
-| Norway East | |  | | | ✅ |  | | |
-| Sweden Central | ✅ |✅ | ✅ |✅ |✅| |✅| |
-| UK South | ✅  | ✅ | | | ✅ | ✅ |  | |
-| West US |  | ✅ | | | ✅ | |✅| |
-| West US 3 |  |  | | |✅ | |✅| |
+## Azure OpenAI models
+
+Azure AI Agent service supports the same models as the chat completions API in Azure OpenAI, in the following regions.
+
+| **Region**   | **o1-preview**, **2024-09-12**   | **o1-mini**, **2024-09-12**   | **gpt-4o**, **2024-05-13**   | **gpt-4o**, **2024-08-06**   | **gpt-4o-mini**, **2024-07-18**   | **gpt-4**, **0613**   | **gpt-4**, **1106-Preview**   | **gpt-4**, **0125-Preview**   | **gpt-4**, **vision-preview**   | **gpt-4**, **turbo-2024-04-09**   | **gpt-4-32k**, **0613**   | **gpt-35-turbo**, **0301**   | **gpt-35-turbo**, **0613**   | **gpt-35-turbo**, **1106**   | **gpt-35-turbo**, **0125**   | **gpt-35-turbo-16k**, **0613**   |
+|:-----------------|:------------------------------:|:---------------------------:|:--------------------------:|:--------------------------:|:-------------------------------:|:-------------------:|:---------------------------:|:---------------------------:|:-----------------------------:|:-------------------------------:|:-----------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:------------------------------:|
+| eastus           | ✅                           | ✅                        | ✅                       | ✅                       | ✅                            | -               | -                       | ✅                        | -                         | ✅                            | -                   | ✅                       | ✅                       | -                      | ✅                       | ✅                           |
+| francecentral    | -                          | -                       | -                      | -                      | -                           | ✅                | ✅                        | -                       | -                         | -                           | ✅                    | ✅                       | ✅                       | ✅                       | -                      | ✅                           |
+| japaneast        | -                          | -                       | -                      | -                      | -                           | -               | -                       | -                       | ✅                          | -                           | -                   | -                      | ✅                       | -                      | ✅                       | ✅                           |
+| uksouth          | -                          | -                       | -                      | -                      | -                           | -               | ✅                        | ✅                        | -                         | -                           | -                   | ✅                       | ✅                       | ✅                       | ✅                       | ✅                           |
+| westus           | ✅                           | ✅                        | ✅                       | ✅                       | ✅                            | -               | ✅                        | -                       | ✅                          | ✅                            | -                   | -                      | -                      | ✅                       | ✅                       | -                          |
+
 
 ## Additional models
 
@@ -34,7 +34,7 @@ In addition to the supported Azure OpenAI models, you can also use the following
 
 * Llama 3.1-70B-instruct
 * Mistral-large-2407
-* Cohere command-r+
+* Cohere command R+
 
 To use these models, you can use Azure AI Foundry portal to make a deployment, and then reference it in your agent. 
 
