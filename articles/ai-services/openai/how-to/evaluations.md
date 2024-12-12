@@ -22,6 +22,7 @@ Azure OpenAI evaluation enables developers to create evaluation runs to test aga
 
 ### Regional availability
 
+- East US2
 - North Central US
 - Sweden Central
 - Switzerland West
