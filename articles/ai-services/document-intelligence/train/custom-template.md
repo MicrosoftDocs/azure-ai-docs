@@ -109,7 +109,7 @@ Custom template models are generally available starting with v2.0 API and later 
 With the v3.0 and later APIs, the build operation to train model supports a new ```buildMode``` property, to train a custom template model, set the ```buildMode``` to ```template```.
 
 ```REST
-https://{endpoint}/documentintelligence/documentModels:build?api-version=2024-07-31-preview
+https://{endpoint}/documentintelligence/documentModels:build?api-version=2024-11-30
 
 
 {
