@@ -128,4 +128,5 @@ You can run the sample code locally on your machine by following these steps. Re
 ## Related content
 
 * Learn more about [How to use the Realtime API](./how-to/realtime-audio.md)
+* See the [Realtime API reference](./realtime-audio-reference.md)
 * Learn more about Azure OpenAI [quotas and limits](quotas-limits.md)

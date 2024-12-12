@@ -46,7 +46,7 @@ To create a project in [Azure AI Foundry](https://ai.azure.com), follow these st
 1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com).
 1. Select **+ Create project**.
 1. Enter a name for the project.  Keep all the other settings as default.
-1. Projects are created in hubs.  For this tutorial, create a new hub. If you see **Create a new hub** select it and specify a name.  Then select **Next**. (If you don't see **Create new hub**, it's because a new one is being created for you.) 
+1. Projects are created in hubs.  If you see **Create a new hub** select it and specify a name.  Then select **Next**. (If you don't see **Create new hub**, don't worry; it's because a new one is being created for you.) 
 1. Select **Customize** to specify properties of the hub.
 1. Use any values you want, except for **Region**.  We recommend you use either **East US2** or **Sweden Central** for the region for this tutorial series.
 1. Select **Next**.
