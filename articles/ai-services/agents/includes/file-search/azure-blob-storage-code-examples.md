@@ -15,6 +15,7 @@ In this example, we use Azure AI Agent Service to create an agent that can help 
 
 2. Ensure that you have the role  **Storage Blob Data Contributor** on your project's storage account.
 
+3. Ensure that you have the role **Azure AI Developer** on your project.
 
 > [!IMPORTANT]
 > File search using Blob storage is only supported by the standard agent setup.
