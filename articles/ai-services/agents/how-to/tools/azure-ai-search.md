@@ -15,7 +15,6 @@ zone_pivot_groups: selection-azure-ai-search
 
 # Use an existing AI Search index with the Azure AI Search tool
 ::: zone pivot="overview-azure-ai-search"
-
 Use an existing Azure AI Search index with the agent's Azure AI Search tool.
 
 > [!NOTE] 
