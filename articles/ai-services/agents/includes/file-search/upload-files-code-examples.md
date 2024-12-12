@@ -1,13 +1,13 @@
 ## Quickstart – Upload Local Files with file search 
 
-In this example, we’ll use Azure AI Agent Service to create an agent that can help answer questions on information you upload from local files.  
+In this example, we use Azure AI Agent Service to create an agent that can help answer questions on information you upload from local files.  
 
 ##  Prerequisites 
 Complete the [agent setup](../../quickstart.md).
 
 ## Step 1: Create a project client
 
-Create a client object, which will contain the connection string for connecting to your AI project and other resources. 
+Create a client object, that contains the connection string for connecting to your AI project and other resources. 
 
 # [Python](#tab/python)
 
