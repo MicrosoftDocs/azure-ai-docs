@@ -1,3 +1,12 @@
+---
+manager: nitinme
+author: fosteramanda
+ms.author: fosteramanda
+ms.service: azure
+ms.topic: include
+ms.date: 12/10/2024
+---
+
 ## Quickstart – Use existing files in Azure Blob Storage with file search
 In this example, we use Azure AI Agent Service to create an agent that can help answer questions on information from files in Azure Blob Storage.
 
