@@ -62,8 +62,6 @@ landingContent:
             url: ./how-to/tools/bing-grounding.md
           - text: File search
             url: ./how-to/tools/file-search.md
-          - text: OpenAPI specified tools
-            url: ./how-to/tools/openapi-spec.md
           - text: Function calling 
             url: ./how-to/tools/function-calling.md
           - text: Code interpreter

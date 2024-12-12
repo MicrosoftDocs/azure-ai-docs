@@ -40,8 +40,6 @@ items:
           href: how-to/tools/azure-ai-search.md 
       - name: Action tools
         items:
-        - name: OpenAPI specified tools
-          href: how-to/tools/openapi-spec.md
         - name: Function calling
           href: how-to/tools/function-calling.md
         - name: Code interpreter
