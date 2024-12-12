@@ -15,7 +15,9 @@ zone_pivot_groups: selection-file-search
 
 # Azure AI Agent Service file search tool
 
-::: zone pivot="overview"
+::: zone pivot="overview" id="overview-pivot"
+
+<a id="overview"></a>
 
 File search augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.  
 
@@ -45,7 +47,10 @@ The file search tool uses the Azure AI Search and Azure Blob Storage resources y
 - Vector stores get created using your connected Azure AI Search resource 
 <br> </br>
 
-For both agent setups, OpenAI handles the entire ingestion process, including automatically parsing and chunking documents, generating and storing embeddings, and utilizing both vector and keyword searches to retrieve relevant content for user queries. 
+For both agent setups, OpenAI handles the entire ingestion process, which includes:
+- Automatically parsing and chunking documents
+- Generating and storing embeddings
+- Utilizing both vector and keyword searches to retrieve relevant content for user queries. 
 
 There is no difference in the code between the two setups; the only variation is in where your files and created vector stores are stored. 
 
