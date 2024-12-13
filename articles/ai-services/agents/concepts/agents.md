@@ -43,7 +43,7 @@ Azure AI Agents Service is built on the same capabilities that power Azure OpenA
 |**Run** | Activation of an agent to begin running based on the contents of the Thread. The agent uses its configuration and the Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread.|
 |**Run Step** | A detailed list of steps the agent took as part of a Run. An agent can call tools or create Messages during it’s run. Examining Run Steps allows you to understand how the agent is getting to its final results. |
 
-## Agents data access
+<!--## Agents data access
 
 Currently, agents, threads, messages, and files created for agents are scoped at the resource level. Therefore, anyone with access to the resource or API key access is able to read/write agents, threads, messages, and files.
 
@@ -53,6 +53,7 @@ We strongly recommend the following data access controls:
 - Restrict resource and API key access. Carefully consider who has access to resources where agents are being used, and the associated API keys.
 - Routinely audit which accounts/individuals have access to the resource. API keys and resource level access enable a wide range of operations including reading and modifying messages and files.
 - If you're using Azure OpenAI models, enabling [diagnostic settings](../../openai/how-to/monitor-openai.md#configure-diagnostic-settings) to allow long-term tracking of certain aspects of the Azure OpenAI resource's activity log.
+-->
 
 ## Parameters
 
