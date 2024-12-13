@@ -101,7 +101,7 @@ print(completion.choices[0].message)
 
 Once stored completions are enabled for an Azure OpenAI deployment they will begin to show up in the [Azure AI Foundry portal](https://oai.azure.com) in the **Stored Completions** pane.
 
-:::image type="content" source="../media/how-to/stored-completions/stored-completions.png" alt-text="Screenshot of the stored completions User Experience." lightbox="../media/how-to/stored-completions/stored-completions.png":::
+:::image type="content" source="../media/stored-completions/stored-completions.png" alt-text="Screenshot of the stored completions User Experience." lightbox="../media/stored-completions/stored-completions.png":::
 
 ## Distillation
 
@@ -113,22 +113,22 @@ Distillation requires a minimum of 10 stored completions, though it is recommend
 
 2. To begin distillation select **Distill**
 
-    :::image type="content" source="../media/how-to/stored-completions/stored-completions.png" alt-text="Screenshot of the stored completions User Experience with distill highlighted." lightbox="../media/how-to/stored-completions/stored-completions.png":::
+    :::image type="content" source="../media/stored-completions/stored-completions.png" alt-text="Screenshot of the stored completions User Experience with distill highlighted." lightbox="../media/stored-completions/stored-completions.png":::
 
 3. Pick which model you would like to fine-tune with your stored completion dataset.
 
-        :::image type="content" source="../media/how-to/stored-completions/fine-tune.png" alt-text="Screenshot of the stored completion distillation model selection." lightbox="../media/how-to/stored-completions/fine-tune.png":::
+    :::image type="content" source="../media/stored-completions/fine-tune.png" alt-text="Screenshot of the stored completion distillation model selection." lightbox="../media/stored-completions/fine-tune.png":::
 
 4. Confirm which version of the model you want to fine-tune:
 
-        :::image type="content" source="../media/how-to/stored-completions/version.png" alt-text="Screenshot of the stored completion distillation version." lightbox="../media/how-to/stored-completions/version.png":::
+    :::image type="content" source="../media/stored-completions/version.png" alt-text="Screenshot of the stored completion distillation version." lightbox="../media/stored-completions/version.png":::
 
 5. A `.jsonl` file with a randomly generated name will be created as a training dataset from your stored completions. Select the file > **Next**.
 
     > [!Note]
     > Stored completion distillation training files cannot be accessed directly and cannot be exported externally/downloaded.
 
-    :::image type="content" source="../media/how-to/stored-completions/file-name.png" alt-text="Screenshot of the stored completion training dataset jsonl file." lightbox="../media/how-to/stored-completions/file-name.png":::
+    :::image type="content" source="../media/stored-completions/file-name.png" alt-text="Screenshot of the stored completion training dataset jsonl file." lightbox="../media/stored-completions/file-name.png":::
 
 The rest of the steps correspond to the typical Azure OpenAI fine-tuning steps. To learn more, see our [fine-tuning getting started guide](./fine-tuning.md).
 
@@ -142,14 +142,14 @@ Stored completions can be used as a dataset for running evaluations.
 
 2. To configure the evaluation select **Evaluate**
 
-    :::image type="content" source="../media/how-to/stored-completions/evaluate.png" alt-text="Screenshot of the stored completion pane with evaluate selected." lightbox="../media/how-to/stored-completions/evaluate.png":::
+    :::image type="content" source="../media/stored-completions/evaluate.png" alt-text="Screenshot of the stored completion pane with evaluate selected." lightbox="../media/stored-completions/evaluate.png":::
 
 3. This will launch the **Evaluations** pane with prepopulated `.jsonl` file with a randomly generated name that will be created as a evaluation dataset from your stored completions.
 
     > [!Note]
     > Stored completion evaluation data files cannot be accessed directly and cannot be exported externally/downloaded.
 
-    :::image type="content" source="../media/how-to/stored-completions/evaluate.png" alt-text="Screenshot of the evaluations pane." lightbox="../media/how-to/stored-completions/evaluate.png":::
+    :::image type="content" source="../media/stored-completions/evaluate.png" alt-text="Screenshot of the evaluations pane." lightbox="../media/stored-completions/evaluate.png":::
 
 To learn more about evaluation see, [getting started with evaluations](./evaluations.md)
 
@@ -164,7 +164,7 @@ Stored completions access is controlled via two DataActions:
 
 By default `Cognitive Services OpenAI Contributor` has access to both these permissions:
 
-:::image type="content" source="../media/how-to/stored-completions/permissions.png" alt-text="Screenshot of stored completions permissions." lightbox="../media/how-to/stored-completions/permissions.png":::
+:::image type="content" source="../media/stored-completions/permissions.png" alt-text="Screenshot of stored completions permissions." lightbox="../media/stored-completions/permissions.png":::
 
 ### How do I delete stored data?
 
