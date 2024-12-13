@@ -149,7 +149,7 @@ Stored completions can be used as a dataset for running evaluations.
     > [!Note]
     > Stored completion evaluation data files cannot be accessed directly and cannot be exported externally/downloaded.
 
-    :::image type="content" source="../media/stored-completions/evaluate.png" alt-text="Screenshot of the evaluations pane." lightbox="../media/stored-completions/evaluate.png":::
+    :::image type="content" source="../media/stored-completions/evaluation-data.png" alt-text="Screenshot of the evaluations pane." lightbox="../media/stored-completions/evaluation-data.png":::
 
 To learn more about evaluation see, [getting started with evaluations](./evaluations.md)
 
