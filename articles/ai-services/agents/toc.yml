@@ -52,6 +52,8 @@ items:
       href: https://go.microsoft.com/fwlink/?linkid=2300017
     - name: Data, privacy, and security for Model Catalog
       href: ../ai-studio/how-to/concept-data-privacy
+    - name: Data, privacy, and security for OpenAI
+      href: /legal/cognitive-services/openai/data-privacy
 - name: Reference
   items:
     - name: SDK
