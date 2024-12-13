@@ -113,7 +113,7 @@ Distillation requires a minimum of 10 stored completions, though it's recommende
 
 2. To begin distillation, select **Distill**
 
-    :::image type="content" source="../media/stored-completions/stored-completions.png" alt-text="Screenshot of the stored completions User Experience with distill highlighted." lightbox="../media/stored-completions/stored-completions.png":::
+    :::image type="content" source="../media/stored-completions/distill.png" alt-text="Screenshot of the stored completions User Experience with distill highlighted." lightbox="../media/stored-completions/distill.png":::
 
 3. Pick which model you would like to fine-tune with your stored completion dataset.
 
@@ -144,7 +144,7 @@ Stored completions can be used as a dataset for running evaluations.
 
     :::image type="content" source="../media/stored-completions/evaluate.png" alt-text="Screenshot of the stored completion pane with evaluate selected." lightbox="../media/stored-completions/evaluate.png":::
 
-3. This launches the **Evaluations** pane with prepopulated `.jsonl` file with a randomly generated name that is created as an evaluation dataset from your stored completions.
+3. This launches the **Evaluations** pane with a prepopulated `.jsonl` file with a randomly generated name that is created as an evaluation dataset from your stored completions.
 
     > [!Note]
     > Stored completion evaluation data files cannot be accessed directly and cannot be exported externally/downloaded.
@@ -180,4 +180,4 @@ You'll need to open a case with customer support to disable stored completions a
 
 ### TypeError: Completions.create() got an unexpected argument 'store'
 
-This error occurs when you're running an older version of the OpenAI client library. Run  `pip install openai --upgrade`.
+This error occurs when you're running an older version of the OpenAI client library that predates the stored completions feature being released. Run  `pip install openai --upgrade`.
