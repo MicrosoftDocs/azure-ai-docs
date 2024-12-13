@@ -32,7 +32,6 @@ Developers and end users don't have access to raw content returned from Groundin
 
 > [!NOTE]
 > 1. Grounding with Bing Search only works with the following Azure OpenAI models: `gpt-3.5-turbo-0125`, `gpt-4-0125-preview`, `gpt-4-turbo-2024-04-09`, `gpt-4o-0513`
-> 1. It works in the following regions: `France Central`, `Japan East`, `Korea Central`, `West Central US`, `West US`, `West US 2`, `West US 3`, `UK South`
 
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
 
