@@ -51,6 +51,9 @@ Azure OpenAI fine-tuning supports [global standard deployments](./deployment-typ
 - `gpt-4o` (2024-08-06)
 - `gpt-4o-mini` (2024-07-18)
 
+Global Standard fine-tuning deployments currently do not support vision and structured outputs.
+
+
 ## Vision fine-tuning
 
 Fine-tuning is also possible with images in your JSONL files. Just as you can send one or many image inputs to chat completions, you can include those same message types within your training data. Images can be provided either as publicly accessible URLs or data URIs containing [base64 encoded images](/azure/ai-services/openai/how-to/gpt-with-vision?tabs=rest#call-the-chat-completion-apis). 
