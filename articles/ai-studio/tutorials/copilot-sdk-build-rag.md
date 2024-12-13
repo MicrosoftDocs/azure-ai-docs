@@ -1,5 +1,5 @@
 ---
-title: "Part 2: Build a ca custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK"
+title: "Part 2: Build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK"
 titleSuffix: Azure AI Foundry
 description:  Learn how to build a RAG-based chat app using the Azure AI Foundry SDK. This tutorial is part 2 of a 3-part tutorial series.
 manager: scottpolly
