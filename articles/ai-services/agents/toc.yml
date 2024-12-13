@@ -48,14 +48,10 @@ items:
       href: ../openai/how-to/content-filters.md?context=/azure/ai-services/agents/context/context
 - name: Responsible AI
   items:
-    - name: Overview
-      href: /legal/cognitive-services/openai/overview?context=/azure/ai-services/agents/context/context
     - name : Transparency note
       href: /legal/cognitive-services/openai/transparency-note?context=/azure/ai-services/agents/context/context
     - name: Data, privacy, and security
       href: /legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/agents/context/context
-    - name: Customer Copyright Commitment
-      href: /legal/cognitive-services/openai/customer-copyright-commitment?context=/azure/ai-services/agents/context/context
 - name: Reference
   items:
     - name: SDK
