@@ -96,18 +96,3 @@ vector_store = project_client.agents.create_vector_store_and_poll(
 Vector stores created using thread helpers (like `tool_resources.file_search.vector_stores` in Threads or `message.attachments` in Messages) have a default expiration policy of seven days after they were last active (defined as the last time the vector store was part of a run).
 
 When a vector store expires, the runs on that thread fail.  To fix this issue, you can recreate a new vector_store with the same files and reattach it to the thread.
-
-```python
-all_files = list(client.beta.vector_stores.files.list("vs_expired"))
-
-vector_store = client.beta.vector_stores.create(name="rag-store")
-client.beta.threads.update(
-    "thread_abc123",
-    tool_resources={"file_search": {"vector_store_ids": [vector_store.id]}},
-)
-
-for file_batch in chunked(all_files, 100):
-    client.beta.vector_stores.file_batches.create_and_poll(
-        vector_store_id=vector_store.id, file_ids=[file.id for file in file_batch]
-    )
-```

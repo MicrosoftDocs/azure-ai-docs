@@ -39,6 +39,7 @@ If you already connected the AI Search resource that contains the index you want
     :::image type="content" source="../../media/tools/ai-search/azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search/azure-portal.png":::
 
 ##### Create an Azure AI Search project connection
+If you use Microsoft Entra ID for the connection authentication type, you need to manually assign the project managed identity the roles Search Index Data Contributor and Search Service Contributor to the Azure AI Search resource.
 
 # [Azure CLI](#tab/azurecli)
 **Create the following connections.yml file**
@@ -102,3 +103,4 @@ ml_client.connections.create_or_update(my_connection)
 :::image type="content" source="../../media/tools/ai-search/success-connection.png" alt-text="A screenshot of the project connections page with a new Azure AI Search connection added." lightbox="../../media/tools/ai-search/success-connection.png":::
 ---
 
+Now that you have created a project connection to your Azure AI Search resource, you can configure and start using the Azure AI Search tool with the SDK. See the code examples tab to get started.
