@@ -21,7 +21,8 @@ __RSS feed__: Get notified when this page is updated by copying and pasting the 
 
 ## 2024-11-12
 ### Azure Machine Learning SDK for Python v1.59.0
-Support for Python 3.11
+Support onnx 1.17.0 to avoid security vulnerability
+Fixed mlflow model conda definition for ai-ml-automl-gpu environment, resolving endpoint deployment issues for models based on ai-ml-automl-gpu
 
 ## 2024-10-18
 ### Azure Machine Learning SDK for Python v1.58.0
