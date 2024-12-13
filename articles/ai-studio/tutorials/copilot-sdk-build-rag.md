@@ -167,8 +167,9 @@ python chat_with_products.py --query "I need a new tent for 4 people, what would
 1. Add the `--enable-telemetry` flag when you use the `chat_with_products.py` script:
 
    ```bash
-   python chat_with_products.py --query "I need a new tent for 4 people, what would you recommend?" --enable-telemetry -->
+   python chat_with_products.py --query "I need a new tent for 4 people, what would you recommend?" --enable-telemetry 
    ```
+-->
 
 ## Clean up resources
 
