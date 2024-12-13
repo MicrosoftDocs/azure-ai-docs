@@ -30,6 +30,11 @@ See our announcements of Meta's Llama 3.2 family models available now on Azure A
 
 The Meta Llama family of models include the following models:
 
+# [Llama-3.3](#tab/python-llama-3-3)
+
+* Llama-3.3-70B-Instruct
+
+
 # [Llama-3.2](#tab/python-llama-3-2)
 
 The Llama 3.2 collection of SLMs and image reasoning models are now available. Coming soon, Llama 3.2 11B Vision Instruct and Llama 3.2 90B Vision Instruct will be available as a serverless API endpoint via Models-as-a-Service. Starting today, the following models will be available for deployment via managed compute:
