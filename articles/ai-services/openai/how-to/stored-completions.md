@@ -14,7 +14,7 @@ recommendations: false
 
 # Azure OpenAI stored completions & distillation (preview)
 
-Stored completions allows you to capture the conversation history from chat completions sessions to use as datasets for [evaluations](./evaluations.md) and [fine-tuning](./fine-tuning.md).
+Stored completions allow you to capture the conversation history from chat completions sessions to use as datasets for [evaluations](./evaluations.md) and [fine-tuning](./fine-tuning.md).
 
 ## Stored completions support
 
@@ -28,7 +28,7 @@ Support for stored completions was added in `2024-12-01-preview`.
 
 ## Configure stored completions
 
-To enable stored completions for you Azure OpenAI deployment set the `store` parameter to `True`. Use the `metadata` parameter to enrich your stored completion dataset with additional information.
+To enable stored completions for your Azure OpenAI deployment set the `store` parameter to `True`. Use the `metadata` parameter to enrich your stored completion dataset with additional information.
 
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
@@ -99,7 +99,7 @@ print(completion.choices[0].message)
 ```
 ---
 
-Once stored completions are enabled for an Azure OpenAI deployment they will begin to show up in the [Azure AI Foundry portal](https://oai.azure.com) in the **Stored Completions** pane.
+Once stored completions are enabled for an Azure OpenAI deployment, they'll begin to show up in the [Azure AI Foundry portal](https://oai.azure.com) in the **Stored Completions** pane.
 
 :::image type="content" source="../media/stored-completions/stored-completions.png" alt-text="Screenshot of the stored completions User Experience." lightbox="../media/stored-completions/stored-completions.png":::
 
@@ -107,11 +107,11 @@ Once stored completions are enabled for an Azure OpenAI deployment they will beg
 
 Distillation allows you to turn your stored completions into a fine-tuning dataset. A common use case is to use stored completions with a larger more powerful model for a particular task and then use the stored completions to train a smaller model on high quality examples of model interactions.
 
-Distillation requires a minimum of 10 stored completions, though it is recommended to provide hundred to thousands of stored completions for the best results.
+Distillation requires a minimum of 10 stored completions, though it's recommended to provide hundreds to thousands of stored completions for the best results.
 
 1. From the **Stored Completions** pane in the [Azure AI Foundry portal](https://oai.azure.com) use the **Filter** options to select the completions you want to train your model with.
 
-2. To begin distillation select **Distill**
+2. To begin distillation, select **Distill**
 
     :::image type="content" source="../media/stored-completions/stored-completions.png" alt-text="Screenshot of the stored completions User Experience with distill highlighted." lightbox="../media/stored-completions/stored-completions.png":::
 
@@ -140,11 +140,11 @@ Stored completions can be used as a dataset for running evaluations.
 
 1. From the **Stored Completions** pane in the [Azure AI Foundry portal](https://oai.azure.com) use the **Filter** options to select the completions you want to be part of your evaluation dataset.
 
-2. To configure the evaluation select **Evaluate**
+2. To configure the evaluation, select **Evaluate**
 
     :::image type="content" source="../media/stored-completions/evaluate.png" alt-text="Screenshot of the stored completion pane with evaluate selected." lightbox="../media/stored-completions/evaluate.png":::
 
-3. This will launch the **Evaluations** pane with prepopulated `.jsonl` file with a randomly generated name that will be created as a evaluation dataset from your stored completions.
+3. This launches the **Evaluations** pane with prepopulated `.jsonl` file with a randomly generated name that is created as an evaluation dataset from your stored completions.
 
     > [!Note]
     > Stored completion evaluation data files cannot be accessed directly and cannot be exported externally/downloaded.
@@ -172,12 +172,12 @@ Data can be deleted by deleting the associated Azure OpenAI resource. If you wis
 
 ### How much stored completion data can I store?
 
-You can store a maximum 10GB of data.
+You can store a maximum 10 GB of data.
 
 ### Can I prevent stored completions from ever being enabled on a subscription?
 
-You will need to open a case with customer support to disable stored completions at the subscription level.
+You'll need to open a case with customer support to disable stored completions at the subscription level.
 
 ### TypeError: Completions.create() got an unexpected argument 'store'
 
-This error occurs when you are running an older version of the OpenAI client library. Run  `pip install openai --upgrade`.
+This error occurs when you're running an older version of the OpenAI client library. Run  `pip install openai --upgrade`.
