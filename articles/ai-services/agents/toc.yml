@@ -51,9 +51,9 @@ items:
     - name: Data, privacy, and security For Azure AI Agent Service
       href: https://go.microsoft.com/fwlink/?linkid=2300017
     - name: Data, privacy, and security for Model Catalog
-      href: ../ai-studio/how-to/concept-data-privacy
+      href: ../ai-studio/how-to/concept-data-privacy.md?context=/azure/ai-services/agents/context/context
     - name: Data, privacy, and security for OpenAI
-      href: /legal/cognitive-services/openai/data-privacy
+      href: /legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/agents/context/context
 - name: Reference
   items:
     - name: SDK
