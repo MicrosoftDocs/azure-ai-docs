@@ -1,107 +1,53 @@
 ---
-title: How to use the Meta Llama family of models with Azure AI Foundry
+title: How to use Phi-4 family chat models with Azure AI Foundry
 titleSuffix: Azure AI Foundry
-description: Learn how to use the Meta Llama family of models with Azure AI Foundry.
+description: Learn how to use Phi-4 family chat models with Azure AI Foundry.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
-ms.date: 12/04/2024
-ms.reviewer: shubhiraj
-reviewer: shubhirajMsft
-ms.author: ssalgado
-author: ssalgadodev
-ms.custom: references_regions, generated, ai-learning-hub
+ms.date: 12/12/2024
+ms.reviewer: fasantia
+reviewer: santiagxf
+ms.author: mopeakande
+author: msakande
+ms.custom: references_regions, generated
 zone_pivot_groups: azure-ai-model-catalog-samples-chat
 ---
 
-# How to use the Meta Llama family of models
+# How to use Phi-4 family chat models
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn about the Meta Llama family of models and how to use them. Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models - ranging in scale from SLMs (1B, 3B Base and Instruct models) for on-device and edge inferencing - to mid-size LLMs (7B, 8B and 70B Base and Instruct models) and high performant models like Meta Llama 3.1 405B Instruct for synthetic data generation and distillation use cases.
+In this article, you learn about Phi-4 family chat models and how to use them.
+The Phi-4 family of small language models (SLMs) is a collection of instruction-tuned generative text models.
 
-See our announcements of Meta's Llama 3.2 family models available now on Azure AI Model Catalog through [Meta's blog](https://aka.ms/llama-3.2-meta-announcement) and [Microsoft Tech Community Blog](https://aka.ms/llama-3.2-microsoft-announcement).
 
-[!INCLUDE [models-preview](../includes/models-preview.md)]
 
 ::: zone pivot="programming-language-python"
 
-## Meta Llama family of models
+## Phi-4 family chat models
 
-The Meta Llama family of models include the following models:
+Phi-4 is a state-of-the-art open model built upon a blend of synthetic datasets, data from filtered public domain websites, and acquired academic books and Q&A datasets. The goal of this approach was to ensure that small capable models were trained with data focused on high quality and advanced reasoning.
 
-# [Llama-3.3](#tab/python-llama-3-3)
+Phi-4 underwent a rigorous enhancement and alignment process, incorporating both supervised fine-tuning and direct preference optimization to ensure precise instruction adherence and robust safety measures.
 
-* Llama-3.3-70B-Instruct
-
-
-# [Llama-3.2](#tab/python-llama-3-2)
-
-The Llama 3.2 collection of SLMs and image reasoning models are now available. Coming soon, Llama 3.2 11B Vision Instruct and Llama 3.2 90B Vision Instruct will be available as a serverless API endpoint via Models-as-a-Service. Starting today, the following models will be available for deployment via managed compute:
-* Llama 3.2 1B
-* Llama 3.2 3B
-* Llama 3.2 1B Instruct
-* Llama 3.2 3B Instruct
-* Llama Guard 3 1B
-* Llama Guard 11B Vision
-* Llama 3.2 11B Vision Instruct
-* Llama 3.2 90B Vision Instruct are available for managed compute deployment.
-
-# [Meta Llama-3.1](#tab/python-meta-llama-3-1)
-
-The Meta Llama 3.1 collection of multilingual large language models (LLMs) is a collection of pretrained and instruction tuned generative models in 8B, 70B and 405B sizes (text in/text out). The Llama 3.1 instruction tuned text only models (8B, 70B, 405B) are optimized for multilingual dialogue use cases and outperform many of the available open-source and closed models on common industry benchmarks.
+The Phi-4 models come in the following variants with a 16K tokens length.
 
 
-The following models are available:
+You can learn more about the models in their respective model card:
 
-* [Meta-Llama-3.1-405B-Instruct](https://aka.ms/azureai/landing/Meta-Llama-3.1-405B-Instruct)
-* [Meta-Llama-3.1-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-70B-Instruct/version/1/registry/azureml-meta)
-* [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/1/registry/azureml-meta)
+* [Phi-4](https://aka.ms/azureai/landing/Phi-4)
 
-
-# [Meta Llama-3](#tab/python-meta-llama-3)
-
-Meta developed and released the Meta Llama 3 family of large language models (LLMs), a collection of pretrained and instruction tuned generative text models in 8B, and 70B sizes. The Llama 3 instruction tuned models are optimized for dialogue use cases and outperform many of the available open-source models on common industry benchmarks. Further, in developing these models, we took great care to optimize helpfulness and safety.
-
-
-The following models are available:
-
-* [Meta-Llama-3-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-70B-Instruct/version/6/registry/azureml-meta)
-* [Meta-Llama-3-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-8B-Instruct/version/6/registry/azureml-meta)
-
-
-# [Meta Llama-2](#tab/python-meta-llama-2)
-
-Meta has developed and publicly released the Llama 2 family of large language models (LLMs), a collection of pretrained and fine-tuned generative text models ranging in scale from 7 billion to 70 billion parameters. Our fine-tuned LLMs, called Llama-2-Chat, are optimized for dialogue use cases. Llama-2-Chat models outperform open-source chat models on most benchmarks we tested, and in our human evaluations for helpfulness and safety, are on par with some popular closed-source models like ChatGPT and PaLM. We provide a detailed description of our approach to fine-tuning and safety improvements of Llama-2-Chat in order to enable the community to build on our work and contribute to the responsible development of LLMs.
-
-
-The following models are available:
-
-* [Llama-2-70b-chat](https://ai.azure.com/explore/models/Llama-2-70b-chat/version/20/registry/azureml-meta)
-* [Llama-2-13b-chat](https://ai.azure.com/explore/models/Llama-2-13b-chat/version/20/registry/azureml-meta)
-* [Llama-2-7b-chat](https://ai.azure.com/explore/models/Llama-2-7b-chat/version/24/registry/azureml-meta)
-
-
----
 
 ## Prerequisites
 
-To use Meta Llama models with Azure AI Foundry, you need the following prerequisites:
+To use Phi-4 family chat models with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
-**Deployment to serverless APIs**
-
-Meta Llama models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
-
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
-
-> [!div class="nextstepaction"]
-> [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
-
 **Deployment to a self-hosted managed compute**
 
-Meta Llama models can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.
+Phi-4 family chat models can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.
 
 For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 
@@ -129,7 +75,7 @@ Read more about the [Azure AI inference package and reference](https://aka.ms/az
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Meta Llama Instruct models - text-only or image reasoning models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry with the same code and structure, including Phi-4 family chat models.
 
 ### Create a client to consume the model
 
@@ -161,9 +107,6 @@ client = ChatCompletionsClient(
 )
 ```
 
-> [!NOTE]
-> Currently, serverless API endpoints do not support using Microsoft Entra ID for authentication.
-
 ### Get the model's capabilities
 
 The `/info` route returns information about the model that is deployed to the endpoint. Return the model's information by calling the following method:
@@ -183,9 +126,9 @@ print("Model provider name:", model_info.model_provider_name)
 ```
 
 ```console
-Model name: Meta-Llama-3.1-405B-Instruct
+Model name: Phi-4
 Model type: chat-completions
-Model provider name: Meta
+Model provider name: Microsoft
 ```
 
 ### Create a chat completion request
@@ -217,7 +160,7 @@ print("\tCompletion tokens:", response.usage.completion_tokens)
 
 ```console
 Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
-Model: Meta-Llama-3.1-405B-Instruct
+Model: Phi-4
 Usage: 
   Prompt tokens: 19
   Total tokens: 91
@@ -291,7 +234,7 @@ response = client.complete(
 ```
 
 > [!WARNING]
-> Meta Llama models don't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+> Phi-4 family models don't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -314,119 +257,44 @@ response = client.complete(
 )
 ```
 
-The following extra parameters can be passed to Meta Llama models:
+The following extra parameters can be passed to Phi-4 family chat models:
 
 | Name           | Description           | Type            |
 | -------------- | --------------------- | --------------- |
-| `n` | How many completions to generate for each prompt. Note: Because this parameter generates many completions, it can quickly consume your token quota. | `integer` |
-| `best_of` | Generates best_of completions server-side and returns the *best* (the one with the lowest log probability per token). Results can't be streamed. When used with `n`, best_of controls the number of candidate completions and n specifies how many to return—best_of must be greater than `n`. Note: Because this parameter generates many completions, it can quickly consume your token quota. | `integer` |
-| `logprobs` | A number indicating to include the log probabilities on the logprobs most likely tokens and the chosen tokens. For example, if logprobs is 10, the API returns a list of the 10 most likely tokens. the API will always return the logprob of the sampled token, so there might be up to logprobs+1 elements in the response. | `integer` |
-| `ignore_eos` | Whether to ignore the `EOS` token and continue generating tokens after the `EOS` token is generated. | `boolean` |
-| `use_beam_search` | Whether to use beam search instead of sampling. In such case, `best_of` must be greater than 1 and temperature must be 0. | `boolean` |
-| `stop_token_ids` | List of IDs for tokens that, when generated, stop further token generation. The returned output contains the stop tokens unless the stop tokens are special tokens. | `array` |
-| `skip_special_tokens` | Whether to skip special tokens in the output. | `boolean` |
+| `logit_bias` | Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. | `float` |
+| `logprobs` | Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. | `int` |
+| `top_logprobs` | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. | `float` |
+| `n` | How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. | `int` |
 
-
-### Apply content safety
-
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
-
-The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
-
-
-```python
-from azure.ai.inference.models import AssistantMessage, UserMessage, SystemMessage
-
-try:
-    response = client.complete(
-        messages=[
-            SystemMessage(content="You are an AI assistant that helps people find information."),
-            UserMessage(content="Chopping tomatoes and cutting them into cubes or wedges are great ways to practice your knife skills."),
-        ]
-    )
-
-    print(response.choices[0].message.content)
-
-except HttpResponseError as ex:
-    if ex.status_code == 400:
-        response = ex.response.json()
-        if isinstance(response, dict) and "error" in response:
-            print(f"Your request triggered an {response['error']['code']} error:\n\t {response['error']['message']}")
-        else:
-            raise
-    raise
-```
-
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
-
-> [!NOTE]
-> Azure AI content safety is only available for models deployed as serverless API endpoints.
 
 ::: zone-end
 
 
 ::: zone pivot="programming-language-javascript"
 
-## Meta Llama models
+## Phi-4 family chat models
 
-The Meta Llama models include the following models:
+Phi-4 is a state-of-the-art open model built upon a blend of synthetic datasets, data from filtered public domain websites, and acquired academic books and Q&A datasets. The goal of this approach was to ensure that small capable models were trained with data focused on high quality and advanced reasoning.
 
-# [Meta Llama-3.1](#tab/meta-llama-3-1)
+Phi-4 underwent a rigorous enhancement and alignment process, incorporating both supervised fine-tuning and direct preference optimization to ensure precise instruction adherence and robust safety measures.
 
-The Meta Llama 3.1 collection of multilingual large language models (LLMs) is a collection of pretrained and instruction tuned generative models in 8B, 70B and 405B sizes (text in/text out). The Llama 3.1 instruction tuned text only models (8B, 70B, 405B) are optimized for multilingual dialogue use cases and outperform many of the available open-source and closed chat models on common industry benchmarks.
-
-
-The following models are available:
-
-* [Meta-Llama-3.1-405B-Instruct](https://aka.ms/azureai/landing/Meta-Llama-3.1-405B-Instruct)
-* [Meta-Llama-3.1-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-70B-Instruct/version/1/registry/azureml-meta)
-* [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/1/registry/azureml-meta)
+The Phi-4 models come in the following variants with a 16K tokens length.
 
 
-# [Meta Llama-3](#tab/meta-llama-3)
+You can learn more about the models in their respective model card:
 
-Meta developed and released the Meta Llama 3 family of large language models (LLMs), a collection of pretrained and instruction tuned generative text models in 8B, 70B, and 405B sizes. The Llama 3 instruction tuned models are optimized for dialogue use cases and outperform many of the available open-source chat models on common industry benchmarks. Further, in developing these models, we took great care to optimize helpfulness and safety.
+* [Phi-4](https://aka.ms/azureai/landing/Phi-4)
 
-
-The following models are available:
-
-* [Meta-Llama-3-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-70B-Instruct/version/6/registry/azureml-meta)
-* [Meta-Llama-3-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-8B-Instruct/version/6/registry/azureml-meta)
-
-
-# [Meta Llama-2](#tab/meta-llama-2)
-
-Meta has developed and publicly released the Llama 2 family of large language models (LLMs), a collection of pretrained and fine-tuned generative text models ranging in scale from 7 billion to 70 billion parameters. Our fine-tuned LLMs, called Llama-2-Chat, are optimized for dialogue use cases. Llama-2-Chat models outperform open-source chat models on most benchmarks we tested, and in our human evaluations for helpfulness and safety, are on par with some popular closed-source models like ChatGPT and PaLM. We provide a detailed description of our approach to fine-tuning and safety improvements of Llama-2-Chat in order to enable the community to build on our work and contribute to the responsible development of LLMs.
-
-
-The following models are available:
-
-* [Llama-2-70b-chat](https://ai.azure.com/explore/models/Llama-2-70b-chat/version/20/registry/azureml-meta)
-* [Llama-2-13b-chat](https://ai.azure.com/explore/models/Llama-2-13b-chat/version/20/registry/azureml-meta)
-* [Llama-2-7b-chat](https://ai.azure.com/explore/models/Llama-2-7b-chat/version/24/registry/azureml-meta)
-
-
----
 
 ## Prerequisites
 
-To use Meta Llama models with Azure AI Foundry, you need the following prerequisites:
+To use Phi-4 family chat models with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
-**Deployment to serverless APIs**
-
-Meta Llama models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
-
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
-
-> [!div class="nextstepaction"]
-> [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
-
 **Deployment to a self-hosted managed compute**
 
-Meta Llama models can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.
+Phi-4 family chat models can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.
 
 For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 
@@ -452,7 +320,7 @@ npm install @azure-rest/ai-inference
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Meta Llama models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry with the same code and structure, including Phi-4 family chat models.
 
 ### Create a client to consume the model
 
@@ -484,9 +352,6 @@ const client = new ModelClient(
 );
 ```
 
-> [!NOTE]
-> Currently, serverless API endpoints do not support using Microsoft Entra ID for authentication.
-
 ### Get the model's capabilities
 
 The `/info` route returns information about the model that is deployed to the endpoint. Return the model's information by calling the following method:
@@ -506,9 +371,9 @@ console.log("Model provider name: ", model_info.body.model_provider_name)
 ```
 
 ```console
-Model name: Meta-Llama-3.1-405B-Instruct
+Model name: Phi-4
 Model type: chat-completions
-Model provider name: Meta
+Model provider name: Microsoft
 ```
 
 ### Create a chat completion request
@@ -546,7 +411,7 @@ console.log("\tCompletion tokens:", response.body.usage.completion_tokens);
 
 ```console
 Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
-Model: Meta-Llama-3.1-405B-Instruct
+Model: Phi-4
 Usage: 
   Prompt tokens: 19
   Total tokens: 91
@@ -628,7 +493,7 @@ var response = await client.path("/chat/completions").post({
 ```
 
 > [!WARNING]
-> Meta Llama models don't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+> Phi-4 family models don't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -656,125 +521,44 @@ var response = await client.path("/chat/completions").post({
 });
 ```
 
-The following extra parameters can be passed to Meta Llama models:
+The following extra parameters can be passed to Phi-4 family chat models:
 
 | Name           | Description           | Type            |
 | -------------- | --------------------- | --------------- |
-| `n` | How many completions to generate for each prompt. Note: Because this parameter generates many completions, it can quickly consume your token quota. | `integer` |
-| `best_of` | Generates best_of completions server-side and returns the *best* (the one with the lowest log probability per token). Results can't be streamed. When used with `n`, best_of controls the number of candidate completions and n specifies how many to return—best_of must be greater than `n`. Note: Because this parameter generates many completions, it can quickly consume your token quota. | `integer` |
-| `logprobs` | A number indicating to include the log probabilities on the logprobs most likely tokens and the chosen tokens. For example, if logprobs is 10, the API returns a list of the 10 most likely tokens. the API will always return the logprob of the sampled token, so there might be up to logprobs+1 elements in the response. | `integer` |
-| `ignore_eos` | Whether to ignore the `EOS` token and continue generating tokens after the `EOS` token is generated. | `boolean` |
-| `use_beam_search` | Whether to use beam search instead of sampling. In such case, `best_of` must be greater than 1 and temperature must be 0. | `boolean` |
-| `stop_token_ids` | List of IDs for tokens that, when generated, stop further token generation. The returned output contains the stop tokens unless the stop tokens are special tokens. | `array` |
-| `skip_special_tokens` | Whether to skip special tokens in the output. | `boolean` |
+| `logit_bias` | Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. | `float` |
+| `logprobs` | Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. | `int` |
+| `top_logprobs` | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. | `float` |
+| `n` | How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. | `int` |
 
-
-### Apply content safety
-
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
-
-The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
-
-
-```javascript
-try {
-    var messages = [
-        { role: "system", content: "You are an AI assistant that helps people find information." },
-        { role: "user", content: "Chopping tomatoes and cutting them into cubes or wedges are great ways to practice your knife skills." },
-    ];
-
-    var response = await client.path("/chat/completions").post({
-        body: {
-            messages: messages,
-        }
-    });
-
-    console.log(response.body.choices[0].message.content);
-}
-catch (error) {
-    if (error.status_code == 400) {
-        var response = JSON.parse(error.response._content);
-        if (response.error) {
-            console.log(`Your request triggered an ${response.error.code} error:\n\t ${response.error.message}`);
-        }
-        else
-        {
-            throw error;
-        }
-    }
-}
-```
-
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
-
-> [!NOTE]
-> Azure AI content safety is only available for models deployed as serverless API endpoints.
 
 ::: zone-end
 
 
 ::: zone pivot="programming-language-csharp"
 
-## Meta Llama models
+## Phi-4 family chat models
 
-The Meta Llama models include the following models:
+Phi-4 is a state-of-the-art open model built upon a blend of synthetic datasets, data from filtered public domain websites, and acquired academic books and Q&A datasets. The goal of this approach was to ensure that small capable models were trained with data focused on high quality and advanced reasoning.
 
-# [Meta Llama-3.1](#tab/meta-llama-3-1)
+Phi-4 underwent a rigorous enhancement and alignment process, incorporating both supervised fine-tuning and direct preference optimization to ensure precise instruction adherence and robust safety measures.
 
-The Meta Llama 3.1 collection of multilingual large language models (LLMs) is a collection of pretrained and instruction tuned generative models in 8B, 70B and 405B sizes (text in/text out). The Llama 3.1 instruction tuned text only models (8B, 70B, 405B) are optimized for multilingual dialogue use cases and outperform many of the available open-source and closed models on common industry benchmarks.
-
-
-The following models are available:
-
-* [Meta-Llama-3.1-405B-Instruct](https://aka.ms/azureai/landing/Meta-Llama-3.1-405B-Instruct)
-* [Meta-Llama-3.1-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-70B-Instruct/version/1/registry/azureml-meta)
-* [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/1/registry/azureml-meta)
+The Phi-4 models come in the following variants with a 16K tokens length.
 
 
-# [Meta Llama-3](#tab/meta-llama-3)
+You can learn more about the models in their respective model card:
 
-Meta developed and released the Meta Llama 3 family of large language models (LLMs), a collection of pretrained and instruction tuned generative text models in 8B, 70B, and 405B sizes. The Llama 3 instruction tuned models are optimized for dialogue use cases and outperform many of the available open-source models on common industry benchmarks. Further, in developing these models, we took great care to optimize helpfulness and safety.
+* [Phi-4](https://aka.ms/azureai/landing/Phi-4)
 
-
-The following models are available:
-
-* [Meta-Llama-3-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-70B-Instruct/version/6/registry/azureml-meta)
-* [Meta-Llama-3-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-8B-Instruct/version/6/registry/azureml-meta)
-
-
-# [Meta Llama-2](#tab/meta-llama-2)
-
-Meta has developed and publicly released the Llama 2 family of large language models (LLMs), a collection of pretrained and fine-tuned generative text models ranging in scale from 7 billion to 70 billion parameters. Our fine-tuned LLMs, called Llama-2-Chat, are optimized for dialogue use cases. Llama-2-Chat models outperform open-source chat models on most benchmarks we tested, and in our human evaluations for helpfulness and safety, are on par with some popular closed-source models like ChatGPT and PaLM. We provide a detailed description of our approach to fine-tuning and safety improvements of Llama-2-Chat in order to enable the community to build on our work and contribute to the responsible development of LLMs.
-
-
-The following models are available:
-
-* [Llama-2-70b-chat](https://ai.azure.com/explore/models/Llama-2-70b-chat/version/20/registry/azureml-meta)
-* [Llama-2-13b-chat](https://ai.azure.com/explore/models/Llama-2-13b-chat/version/20/registry/azureml-meta)
-* [Llama-2-7b-chat](https://ai.azure.com/explore/models/Llama-2-7b-chat/version/24/registry/azureml-meta)
-
-
----
 
 ## Prerequisites
 
-To use Meta Llama models with Azure AI Foundry, you need the following prerequisites:
+To use Phi-4 family chat models with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
-**Deployment to serverless APIs**
-
-Meta Llama models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
-
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
-
-> [!div class="nextstepaction"]
-> [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
-
 **Deployment to a self-hosted managed compute**
 
-Meta Llama models can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.
+Phi-4 family chat models can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.
 
 For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 
@@ -823,7 +607,7 @@ using System.Reflection;
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Meta Llama chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry with the same code and structure, including Phi-4 family chat models.
 
 ### Create a client to consume the model
 
@@ -847,9 +631,6 @@ client = new ChatCompletionsClient(
 );
 ```
 
-> [!NOTE]
-> Currently, serverless API endpoints do not support using Microsoft Entra ID for authentication.
-
 ### Get the model's capabilities
 
 The `/info` route returns information about the model that is deployed to the endpoint. Return the model's information by calling the following method:
@@ -869,9 +650,9 @@ Console.WriteLine($"Model provider name: {modelInfo.Value.ModelProviderName}");
 ```
 
 ```console
-Model name: Meta-Llama-3.1-405B-Instruct
+Model name: Phi-4
 Model type: chat-completions
-Model provider name: Meta
+Model provider name: Microsoft
 ```
 
 ### Create a chat completion request
@@ -904,7 +685,7 @@ Console.WriteLine($"\tCompletion tokens: {response.Value.Usage.CompletionTokens}
 
 ```console
 Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
-Model: Meta-Llama-3.1-405B-Instruct
+Model: Phi-4
 Usage: 
   Prompt tokens: 19
   Total tokens: 91
@@ -991,7 +772,7 @@ Console.WriteLine($"Response: {response.Value.Choices[0].Message.Content}");
 ```
 
 > [!WARNING]
-> Meta Llama models don't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+> Phi-4 family models don't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -1016,125 +797,44 @@ response = client.Complete(requestOptions, extraParams: ExtraParameters.PassThro
 Console.WriteLine($"Response: {response.Value.Choices[0].Message.Content}");
 ```
 
-The following extra parameters can be passed to Meta Llama models:
+The following extra parameters can be passed to Phi-4 family chat models:
 
 | Name           | Description           | Type            |
 | -------------- | --------------------- | --------------- |
-| `n` | How many completions to generate for each prompt. Note: Because this parameter generates many completions, it can quickly consume your token quota. | `integer` |
-| `best_of` | Generates best_of completions server-side and returns the *best* (the one with the lowest log probability per token). Results can't be streamed. When used with `n`, best_of controls the number of candidate completions and n specifies how many to return—best_of must be greater than `n`. Note: Because this parameter generates many completions, it can quickly consume your token quota. | `integer` |
-| `logprobs` | A number indicating to include the log probabilities on the logprobs most likely tokens and the chosen tokens. For example, if logprobs is 10, the API returns a list of the 10 most likely tokens. the API will always return the logprob of the sampled token, so there might be up to logprobs+1 elements in the response. | `integer` |
-| `ignore_eos` | Whether to ignore the `EOS` token and continue generating tokens after the `EOS` token is generated. | `boolean` |
-| `use_beam_search` | Whether to use beam search instead of sampling. In such case, `best_of` must be greater than 1 and temperature must be 0. | `boolean` |
-| `stop_token_ids` | List of IDs for tokens that, when generated, stop further token generation. The returned output contains the stop tokens unless the stop tokens are special tokens. | `array` |
-| `skip_special_tokens` | Whether to skip special tokens in the output. | `boolean` |
+| `logit_bias` | Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. | `float` |
+| `logprobs` | Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. | `int` |
+| `top_logprobs` | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. | `float` |
+| `n` | How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. | `int` |
 
-
-### Apply content safety
-
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
-
-The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
-
-
-```csharp
-try
-{
-    requestOptions = new ChatCompletionsOptions()
-    {
-        Messages = {
-            new ChatRequestSystemMessage("You are an AI assistant that helps people find information."),
-            new ChatRequestUserMessage(
-                "Chopping tomatoes and cutting them into cubes or wedges are great ways to practice your knife skills."
-            ),
-        },
-    };
-
-    response = client.Complete(requestOptions);
-    Console.WriteLine(response.Value.Choices[0].Message.Content);
-}
-catch (RequestFailedException ex)
-{
-    if (ex.ErrorCode == "content_filter")
-    {
-        Console.WriteLine($"Your query has trigger Azure Content Safety: {ex.Message}");
-    }
-    else
-    {
-        throw;
-    }
-}
-```
-
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
-
-> [!NOTE]
-> Azure AI content safety is only available for models deployed as serverless API endpoints.
 
 ::: zone-end
 
 
 ::: zone pivot="programming-language-rest"
 
-## Meta Llama chat models
+## Phi-4 family chat models
 
-The Meta Llama chat models include the following models:
+Phi-4 is a state-of-the-art open model built upon a blend of synthetic datasets, data from filtered public domain websites, and acquired academic books and Q&A datasets. The goal of this approach was to ensure that small capable models were trained with data focused on high quality and advanced reasoning.
 
-# [Meta Llama-3.1](#tab/meta-llama-3-1)
+Phi-4 underwent a rigorous enhancement and alignment process, incorporating both supervised fine-tuning and direct preference optimization to ensure precise instruction adherence and robust safety measures.
 
-The Meta Llama 3.1 collection of multilingual large language models (LLMs) is a collection of pretrained and instruction tuned generative models in 8B, 70B and 405B sizes (text in/text out). The Llama 3.1 instruction tuned text only models (8B, 70B, 405B) are optimized for multilingual dialogue use cases and outperform many of the available open-source and closed chat models on common industry benchmarks.
-
-
-The following models are available:
-
-* [Meta-Llama-3.1-405B-Instruct](https://aka.ms/azureai/landing/Meta-Llama-3.1-405B-Instruct)
-* [Meta-Llama-3.1-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-70B-Instruct/version/1/registry/azureml-meta)
-* [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/1/registry/azureml-meta)
+The Phi-4 models come in the following variants with a 16K tokens length.
 
 
-# [Meta Llama-3](#tab/meta-llama-3)
+You can learn more about the models in their respective model card:
 
-Meta developed and released the Meta Llama 3 family of large language models (LLMs), a collection of pretrained and instruction tuned generative text models in 8B, 70B, and 405B sizes. The Llama 3 instruction tuned models are optimized for dialogue use cases and outperform many of the available open-source chat models on common industry benchmarks. Further, in developing these models, we took great care to optimize helpfulness and safety.
+* [Phi-4](https://aka.ms/azureai/landing/Phi-4)
 
-
-The following models are available:
-
-* [Meta-Llama-3-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-70B-Instruct/version/6/registry/azureml-meta)
-* [Meta-Llama-3-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-8B-Instruct/version/6/registry/azureml-meta)
-
-
-# [Meta Llama-2](#tab/meta-llama-2)
-
-Meta has developed and publicly released the Llama 2 family of large language models (LLMs), a collection of pretrained and fine-tuned generative text models ranging in scale from 7 billion to 70 billion parameters. Our fine-tuned LLMs, called Llama-2-Chat, are optimized for dialogue use cases. Llama-2-Chat models outperform open-source chat models on most benchmarks we tested, and in our human evaluations for helpfulness and safety, are on par with some popular closed-source models like ChatGPT and PaLM. We provide a detailed description of our approach to fine-tuning and safety improvements of Llama-2-Chat in order to enable the community to build on our work and contribute to the responsible development of LLMs.
-
-
-The following models are available:
-
-* [Llama-2-70b-chat](https://ai.azure.com/explore/models/Llama-2-70b-chat/version/20/registry/azureml-meta)
-* [Llama-2-13b-chat](https://ai.azure.com/explore/models/Llama-2-13b-chat/version/20/registry/azureml-meta)
-* [Llama-2-7b-chat](https://ai.azure.com/explore/models/Llama-2-7b-chat/version/24/registry/azureml-meta)
-
-
----
 
 ## Prerequisites
 
-To use Meta Llama models with Azure AI Foundry, you need the following prerequisites:
+To use Phi-4 family chat models with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
-**Deployment to serverless APIs**
-
-Meta Llama chat models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
-
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
-
-> [!div class="nextstepaction"]
-> [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
-
 **Deployment to a self-hosted managed compute**
 
-Meta Llama models can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.
+Phi-4 family chat models can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served.
 
 For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 
@@ -1153,16 +853,13 @@ Models deployed with the [Azure AI model inference API](https://aka.ms/azureai/m
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Meta Llama chat models.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry with the same code and structure, including Phi-4 family chat models.
 
 ### Create a client to consume the model
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
 
 When you deploy the model to a self-hosted online endpoint with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
-
-> [!NOTE]
-> Currently, serverless API endpoints do not support using Microsoft Entra ID for authentication.
 
 ### Get the model's capabilities
 
@@ -1180,9 +877,9 @@ The response is as follows:
 
 ```json
 {
-    "model_name": "Meta-Llama-3.1-405B-Instruct",
+    "model_name": "Phi-4",
     "model_type": "chat-completions",
-    "model_provider_name": "Meta"
+    "model_provider_name": "Microsoft"
 }
 ```
 
@@ -1213,7 +910,7 @@ The response is as follows, where you can see the model's usage statistics:
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718726686,
-    "model": "Meta-Llama-3.1-405B-Instruct",
+    "model": "Phi-4",
     "choices": [
         {
             "index": 0,
@@ -1270,7 +967,7 @@ You can visualize how streaming generates content:
     "id": "23b54589eba14564ad8a2e6978775a39",
     "object": "chat.completion.chunk",
     "created": 1718726371,
-    "model": "Meta-Llama-3.1-405B-Instruct",
+    "model": "Phi-4",
     "choices": [
         {
             "index": 0,
@@ -1293,7 +990,7 @@ The last message in the stream has `finish_reason` set, indicating the reason fo
     "id": "23b54589eba14564ad8a2e6978775a39",
     "object": "chat.completion.chunk",
     "created": 1718726371,
-    "model": "Meta-Llama-3.1-405B-Instruct",
+    "model": "Phi-4",
     "choices": [
         {
             "index": 0,
@@ -1344,7 +1041,7 @@ Explore other parameters that you can specify in the inference client. For a ful
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718726686,
-    "model": "Meta-Llama-3.1-405B-Instruct",
+    "model": "Phi-4",
     "choices": [
         {
             "index": 0,
@@ -1366,7 +1063,7 @@ Explore other parameters that you can specify in the inference client. For a ful
 ```
 
 > [!WARNING]
-> Meta Llama models don't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+> Phi-4 family models don't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -1401,89 +1098,36 @@ extra-parameters: pass-through
 }
 ```
 
-The following extra parameters can be passed to Meta Llama chat models:
+The following extra parameters can be passed to Phi-4 family chat models:
 
 | Name           | Description           | Type            |
 | -------------- | --------------------- | --------------- |
-| `n` | How many completions to generate for each prompt. Note: Because this parameter generates many completions, it can quickly consume your token quota. | `integer` |
-| `best_of` | Generates best_of completions server-side and returns the *best* (the one with the lowest log probability per token). Results can't be streamed. When used with `n`, best_of controls the number of candidate completions and n specifies how many to return—best_of must be greater than `n`. Note: Because this parameter generates many completions, it can quickly consume your token quota. | `integer` |
-| `logprobs` | A number indicating to include the log probabilities on the logprobs most likely tokens and the chosen tokens. For example, if logprobs is 10, the API returns a list of the 10 most likely tokens. the API will always return the logprob of the sampled token, so there might be up to logprobs+1 elements in the response. | `integer` |
-| `ignore_eos` | Whether to ignore the `EOS` token and continue generating tokens after the `EOS` token is generated. | `boolean` |
-| `use_beam_search` | Whether to use beam search instead of sampling. In such case, `best_of` must be greater than 1 and temperature must be 0. | `boolean` |
-| `stop_token_ids` | List of IDs for tokens that, when generated, stop further token generation. The returned output contains the stop tokens unless the stop tokens are special tokens. | `array` |
-| `skip_special_tokens` | Whether to skip special tokens in the output. | `boolean` |
+| `logit_bias` | Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. | `float` |
+| `logprobs` | Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. | `int` |
+| `top_logprobs` | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. | `float` |
+| `n` | How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. | `int` |
 
-
-### Apply content safety
-
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
-
-The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
-
-
-```json
-{
-    "messages": [
-        {
-            "role": "system",
-            "content": "You are an AI assistant that helps people find information."
-        },
-                {
-            "role": "user",
-            "content": "Chopping tomatoes and cutting them into cubes or wedges are great ways to practice your knife skills."
-        }
-    ]
-}
-```
-
-
-```json
-{
-    "error": {
-        "message": "The response was filtered due to the prompt triggering Microsoft's content management policy. Please modify your prompt and retry.",
-        "type": null,
-        "param": "prompt",
-        "code": "content_filter",
-        "status": 400
-    }
-}
-```
-
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
-
-> [!NOTE]
-> Azure AI content safety is only available for models deployed as serverless API endpoints.
 
 ::: zone-end
 
 ## More inference examples
 
-For more examples of how to use Meta Llama models, see the following examples and tutorials:
+For more examples of how to use Phi-4 family models, see the following examples and tutorials:
 
-| Description                               | Language          | Sample                                                             |
-|-------------------------------------------|-------------------|------------------------------------------------------------------- |
-| CURL request                              | Bash              | [Link](https://aka.ms/meta-llama-3.1-405B-instruct-webrequests)    |
-| Azure AI Inference package for JavaScript | JavaScript        | [Link](https://github.com/Azure/azureml-examples/blob/main/sdk/typescript/README.md) |
-| Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)     |
-| Python web requests                       | Python            | [Link](https://aka.ms/meta-llama-3.1-405B-instruct-webrequests)    |
-| OpenAI SDK (experimental)                 | Python            | [Link](https://aka.ms/meta-llama-3.1-405B-instruct-openai)         |
-| LangChain                                 | Python            | [Link](https://aka.ms/meta-llama-3.1-405B-instruct-langchain)      |
-| LiteLLM                                   | Python            | [Link](https://aka.ms/meta-llama-3.1-405B-instruct-litellm)        | 
+| Description                               | Language          | Sample                                                          |
+|-------------------------------------------|-------------------|-----------------------------------------------------------------|
+| CURL request                              | Bash              | [Link](https://aka.ms/phi-3/webrequests-sample)         |
+| Azure AI Inference package for JavaScript | JavaScript        | [Link](https://aka.ms/azsdk/azure-ai-inference/javascript/samples)  |
+| Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)  |
+| Python web requests                       | Python            | [Link](https://aka.ms/phi-3/webrequests-sample)         |
+| OpenAI SDK (experimental)                 | Python            | [Link](https://aka.ms/phi-3/openaisdk)                  |
+| LangChain                                 | Python            | [Link](https://aka.ms/phi-3/langchain-sample)           |
+| LiteLLM                                   | Python            | [Link](https://aka.ms/phi-3/litellm-sample)             | 
 
-## Cost and quota considerations for Meta Llama models deployed as serverless API endpoints
 
-Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
+## Cost and quota considerations for Phi-4 family models deployed to managed compute
 
-Meta Llama models deployed as a serverless API are offered by Meta through the Azure Marketplace and integrated with Azure AI Foundry for use. You can find the Azure Marketplace pricing when deploying the model.
-
-Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
-
-For more information on how to track costs, see [Monitor costs for models offered through the Azure Marketplace](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
-
-## Cost and quota considerations for Meta Llama models deployed to managed compute
-
-Meta Llama models deployed to managed compute are billed based on core hours of the associated compute instance. The cost of the compute instance is determined by the size of the instance, the number of instances running, and the run duration.
+Phi-4 family models deployed to managed compute are billed based on core hours of the associated compute instance. The cost of the compute instance is determined by the size of the instance, the number of instances running, and the run duration.
 
 It is a good practice to start with a low number of instances and scale up as needed. You can monitor the cost of the compute instance in the Azure portal.
 
