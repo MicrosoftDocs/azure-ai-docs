@@ -48,10 +48,8 @@ items:
       href: ../openai/how-to/content-filters.md?context=/azure/ai-services/agents/context/context
 - name: Responsible AI
   items:
-    - name : Transparency note
-      href: /legal/cognitive-services/openai/transparency-note?context=/azure/ai-services/agents/context/context
     - name: Data, privacy, and security
-      href: /legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/agents/context/context
+      href: https://go.microsoft.com/fwlink/?linkid=2300017
 - name: Reference
   items:
     - name: SDK
