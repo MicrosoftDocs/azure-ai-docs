@@ -41,10 +41,10 @@ Replace the parameter value for `aiServiceAccountResourceId` with the full arm r
     The value returned is the `aiServiceAccountResourceId` you need to use in the template.
 
 2. In the basic agent template file, replace the following placeholders:
-
-```
-aiServiceAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
-```
+    
+    ```
+    aiServiceAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
+    ```
 
 ## Standard agent setup: use an existing AI Services, storage, and/or Azure AI Search resource 
 
@@ -53,10 +53,10 @@ Use an existing AI Search, storage account, and/or Azure AI Search resource by p
 Use an existing AI Services resource:
 1. Follow the steps in basic agent setup to get the AI Services account resource ID.
 2. In the standard agent template file, replace the following placeholders:
-
-```
-aiServiceAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
-```
+    
+    ```
+    aiServiceAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
+    ```
 
 ### Use an existing storage account
 
@@ -69,10 +69,10 @@ aiServiceAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resou
     
      The output is the `aiStorageAccountResourceID` you need to use in the template.
 3. In the standard agent template file, In the basic agent template file, replace the following placeholders:
-
-```
-aiStorageAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}
-```
+    
+    ```
+    aiStorageAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}
+    ```
 
 ### Use an existing Azure AI Search resource
 
@@ -84,7 +84,10 @@ aiStorageAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resou
     ```az search service show --resource-group  <your-resource-group> --name <your-search-service>  --query "id" --output tsv```
 3. In the standard agent template file, replace the following placeholders:
 
-```
-aiSearchServiceResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}
-```
+    ```
+    aiSearchServiceResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}
+    ```
+
+## See also
+
 * Learn about the different [tools](./tools/overview.md) agents can use. 
