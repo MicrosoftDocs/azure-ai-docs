@@ -24,20 +24,12 @@ Azure AI Agent Service is now available in public preview. The service makes it 
 
 Previously, building custom AI agents needed heavy lifting even for experienced developers. While many APIs are lightweight and powerful like Azure OpenAI's chat completions API, it's inherently stateless which means that developers had to manage conversation state and chat threads, tool integrations, retrieval documents and indexes, and execute code manually.
 
-Azure AI Agents Service, as the evolution of the chat completion API and Assistants, provides a solution for these challenges. Agents support persistent automatically managed threads. This means that as a developer you no longer need to develop conversation state management systems and work around a model’s context window constraints. Agents will automatically handle the optimizations to keep the thread below the max context window of your chosen model. Once you create a thread, you can append new messages to it as users respond. Agents can also access multiple tools in parallel, if needed. These tools include:
+Azure AI Agents Service, as the evolution of the chat completion API and Assistants, provides a solution for these challenges. Agents support persistent automatically managed threads. This means that as a developer you no longer need to develop conversation state management systems and work around a model’s context window constraints. Agents will automatically handle the optimizations to keep the thread below the max context window of your chosen model. Once you create a thread, you can append new messages to it as users respond. Agents can also access multiple [tools](../how-to/tools/overview.md) in parallel.
 
-- [Code Interpreter](../how-to/tools/code-interpreter.md)
-- [Function calling](../how-to/tools/function-calling.md)
-- [Grounding with Bing](../how-to/tools/bing-grounding.md)
-
-Azure AI Agents Service is built on the same capabilities that power Azure OpenAI's assistants. Some possible use cases range from AI-powered product recommender, sales analyst app, coding assistant, employee Q&A chatbot, and more. Start building on the no-code agents playground on the Azure AI Studio or start building with the API using the [quickstart](../quickstart.md).
+Azure AI Agents Service is built on the same capabilities that power Azure OpenAI's assistants. Some possible use cases range from AI-powered product recommender, sales analyst app, coding assistant, employee Q&A chatbot, and more.
 
 > [!IMPORTANT]
-> Retrieving untrusted data using Function Calling, Code Interpreter or File Search with file input, and agent threads functionalities could compromise the security of your agent, or the application that uses the agent. Learn about mitigation approaches [here](https://aka.ms/oai/assistant-rai).
-
-## Agents playground
-
-We provide a walkthrough of the agents playground in our [quickstart guide](../quickstart.md). This provides a no-code environment to test out the capabilities of agents.
+> Retrieving untrusted data using Function Calling, Code Interpreter or File Search with file input, and agent threads functionalities could compromise the security of your agent, or the application that uses the agent.
 
 ## Agents components
 
@@ -45,7 +37,7 @@ We provide a walkthrough of the agents playground in our [quickstart guide](../q
 
 | **Component** | **Description** |
 |---|---|
-| **Agent** | Custom AI that uses Azure OpenAI models in conjunction with tools. |
+| **Agent** | Custom AI that uses models in conjunction with tools. |
 |**Thread** | A conversation session between an agent and a user. Threads store Messages and automatically handle truncation to fit content into a model’s context.|
 | **Message** | A message created by an agent or a user. Messages can include text, images, and other files. Messages are stored as a list on the Thread. |
 |**Run** | Activation of an agent to begin running based on the contents of the Thread. The agent uses its configuration and the Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread.|
@@ -53,13 +45,13 @@ We provide a walkthrough of the agents playground in our [quickstart guide](../q
 
 ## Agents data access
 
-Currently, agents, threads, messages, and files created for agents are scoped at the Azure OpenAI resource level. Therefore, anyone with access to the Azure OpenAI resource or API key access is able to read/write agents, threads, messages, and files.
+Currently, agents, threads, messages, and files created for agents are scoped at the resource level. Therefore, anyone with access to the resource or API key access is able to read/write agents, threads, messages, and files.
 
 We strongly recommend the following data access controls:
 
 - Implement authorization. Before performing reads or writes on agents, threads, messages, and files, ensure that the end-user is authorized to do so.
-- Restrict Azure OpenAI resource and API key access. Carefully consider who has access to Azure OpenAI resources where agents are being used, and the associated API keys.
-- Routinely audit which accounts/individuals have access to the Azure OpenAI resource. API keys and resource level access enable a wide range of operations including reading and modifying messages and files.
+- Restrict resource and API key access. Carefully consider who has access to resources where agents are being used, and the associated API keys.
+- Routinely audit which accounts/individuals have access to the resource. API keys and resource level access enable a wide range of operations including reading and modifying messages and files.
 - If you're using Azure OpenAI models, enabling [diagnostic settings](../../openai/how-to/monitor-openai.md#configure-diagnostic-settings) to allow long-term tracking of certain aspects of the Azure OpenAI resource's activity log.
 
 ## Parameters
