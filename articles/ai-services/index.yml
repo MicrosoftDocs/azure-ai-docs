@@ -42,6 +42,11 @@ productDirectory:
       summary: Perform a wide variety of natural language tasks.
       url: ./openai/index.yml
     # Card
+    - title: Azure AI Agent Service
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-agents.png
+      summary: Develop AI agents to automate and execute business processes.
+      url: ./agents/index.yml
+    # Card
     - title: Azure AI Search
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/search.svg
       summary: Bring AI-powered cloud search to your mobile and web applications.
