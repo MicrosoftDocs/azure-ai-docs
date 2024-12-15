@@ -25,7 +25,7 @@ To use your own resources, you can edit the parameters in the provided deploymen
    
 **Basic Setup**:  Agents use multitenant search and storage resources fully managed by Microsoft. You don't have visibility or control over these underlying Azure resources. You can only use your own AI services account with this option.
 
-**Standard Setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage. You can use your own AI serivices account, storage account, and/or Azure AI Search resource with this option. 
+**Standard Setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage. You can use your own AI services account, storage account, and/or Azure AI Search resource with this option. 
 
 ## Basic agent setup: use an existing AI Services resource 
 
