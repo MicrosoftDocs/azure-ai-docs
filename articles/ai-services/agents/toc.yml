@@ -46,6 +46,8 @@ items:
           href: how-to/tools/code-interpreter.md
     - name: Content filtering
       href: ../openai/how-to/content-filters.md?context=/azure/ai-services/agents/context/context
+    - name: Use your own resources
+      href: how-to/use-your-own-resources.md
 - name: Responsible AI
   items:
     - name: Data, privacy, and security For Azure AI Agent Service
