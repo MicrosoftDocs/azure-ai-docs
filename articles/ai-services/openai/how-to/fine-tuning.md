@@ -51,6 +51,10 @@ Azure OpenAI fine-tuning supports [global standard deployments](./deployment-typ
 - `gpt-4o` (2024-08-06)
 - `gpt-4o-mini` (2024-07-18)
 
+Global standard fine-tuned deployments offers [cost savings](./https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), but custom model weights may temporarily be stored outside the geography of your Azure OpenAI resource.
+
+:::image type="content" source="../media/fine-tuning/global-standard.png" alt-text="Screenshot of the global standard deployment user experience with a fine-tuned model." lightbox="../media/fine-tuning/global-standard.png":::
+
 Global Standard fine-tuning deployments currently do not support vision and structured outputs.
 
 

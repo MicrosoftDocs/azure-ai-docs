@@ -20,7 +20,7 @@ Stored completions allow you to capture the conversation history from chat compl
 
 ### API support
 
-Support for stored completions was added in `2024-12-01-preview`.
+- `2024-10-01-preview`
 
 ### Regional availability
 
@@ -45,7 +45,7 @@ token_provider = get_bearer_token_provider(
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   azure_ad_token_provider=token_provider,
-  api_version="2024-12-01-preview"
+  api_version="2024-10-01-preview"
 )
 
 completion = client.chat.completions.create(
@@ -77,7 +77,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-12-01-preview",
+    api_version="2024-10-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -181,3 +181,4 @@ You'll need to open a case with customer support to disable stored completions a
 ### TypeError: Completions.create() got an unexpected argument 'store'
 
 This error occurs when you're running an older version of the OpenAI client library that predates the stored completions feature being released. Run  `pip install openai --upgrade`.
+
