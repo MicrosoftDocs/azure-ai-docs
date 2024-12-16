@@ -68,6 +68,8 @@ work together, generate client code, create tests, apply design standards, and m
 ::: zone pivot="code-example"
 ## Step 1: Create an agent with OpenAPI Spec tool
 Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+# [Python](#tab/python)
+
 ```python
 import os
 import jsonref
@@ -85,9 +87,42 @@ project_client = AIProjectClient.from_connection_string(
     conn_str=os.environ["PROJECT_CONNECTION_STRING"],
 )
 ```
+# [C#](#tab/csharp)
+```csharp
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Text.Json.Serialization;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Azure.Core.TestFramework;
+using NUnit.Framework;
+using Newtonsoft.Json.Linq;
+
+namespace Azure.AI.Projects.Tests;
+
+public partial class Sample_Agent_Azure_Functions : SamplesBase<AIProjectsTestEnvironment>
+{
+    private static string GetFile([CallerFilePath] string pth = "")
+    {
+        var dirName = Path.GetDirectoryName(pth) ?? "";
+        return Path.Combine(dirName, "weather_openapi.json");
+    }
+
+    [Test]
+    public async Task OpenAPICallingExample()
+    {
+        var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
+        var storageQueueUri = TestEnvironment.STORAGE_QUEUE_URI;
+        AgentsClient client = new(connectionString, new DefaultAzureCredential());
+        var file_path = GetFile();
+````
+
 
 ## Step 2: Enable the OpenAPI Spec tool
 You may want to store the OpenAPI specification in another file and import the content to initialize the tool. Please note the sample code is using `anonymous` as authentication type.
+# [Python](#tab/python)
 ```python
 with open('./weather_openapi.json', 'r') as f:
     openapi_spec = jsonref.loads(f.read())
@@ -110,7 +145,20 @@ auth = OpenApiManagedAuthDetails(security_scheme=OpenApiManagedSecurityScheme(au
 ```
 An example of the audience would be ```https://cognitiveservices.azure.com/```.
 
+# [C#](#tab/csharp)
+```csharp
+    #region Snippet:OpenAPIDefineFunctionTools
+    OpenApiAnonymousAuthDetails oaiAuth = new();
+    OpenApiToolDefinition openapiTool = new(
+        name: "get_weather",
+        description: "Retrieve weather information for a location",
+        spec: BinaryData.FromBytes(File.ReadAllBytes(file_path)),
+        auth: oaiAuth
+    );
+```
+
 ## Step 3: Create a thread
+# [Python](#tab/python)
 ```python
 # Create agent with OpenApi tool and process assistant run
 with project_client:
@@ -126,9 +174,23 @@ with project_client:
     thread = project_client.agents.create_thread()
     print(f"Created thread, ID: {thread.id}")
 ```
+# [C#](#tab/csharp)
+```csharp
+Response<Agent> agentResponse = await client.CreateAgentAsync(
+            model: "gpt-4",
+            name: "azure-function-agent-foo",
+            instructions: "You are a helpful assistant.",
+            tools: new List<ToolDefinition> { openapiTool }
+            );
+Agent agent = agentResponse.Value;
+#endregion
+Response<AgentThread> threadResponse = await client.CreateThreadAsync();
+AgentThread thread = threadResponse.Value;
+```
 
 ## Step 4: Create a run and check the output
 Create a run and observe that the model uses the OpenAPI Spec tool to provide a response to the user's question.
+# [Python](#tab/python)
 ```python
 # Create message to thread
     message = project_client.agents.create_message(
@@ -152,5 +214,48 @@ Create a run and observe that the model uses the OpenAPI Spec tool to provide a 
     # Fetch and log all messages
     messages = project_client.agents.list_messages(thread_id=thread.id)
     print(f"Messages: {messages}")
+```
+# [C#](#tab/csharp)
+```csharp
+        #region Snippet:OpenAPIHandlePollingWithRequiredAction
+        Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
+            thread.Id,
+            MessageRole.User,
+            "What's the weather in Seattle?");
+        ThreadMessage message = messageResponse.Value;
+
+        Response<ThreadRun> runResponse = await client.CreateRunAsync(thread, agent);
+
+        do
+        {
+            await Task.Delay(TimeSpan.FromMilliseconds(500));
+            runResponse = await client.GetRunAsync(thread.Id, runResponse.Value.Id);
+        }
+        while (runResponse.Value.Status == RunStatus.Queued
+            || runResponse.Value.Status == RunStatus.InProgress
+            || runResponse.Value.Status == RunStatus.RequiresAction);
+        #endregion
+
+        Response<PageableList<ThreadMessage>> afterRunMessagesResponse
+            = await client.GetMessagesAsync(thread.Id);
+        IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
+
+        // Note: messages iterate from newest to oldest, with the messages[0] being the most recent
+        foreach (ThreadMessage threadMessage in messages)
+        {
+            Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+            foreach (MessageContent contentItem in threadMessage.ContentItems)
+            {
+                if (contentItem is MessageTextContent textItem)
+                {
+                    Console.Write(textItem.Text);
+                }
+                else if (contentItem is MessageImageFileContent imageFileItem)
+                {
+                    Console.Write($"<image from ID: {imageFileItem.FileId}");
+                }
+                Console.WriteLine();
+            }
+        }
 ```
 ::: zone-end
