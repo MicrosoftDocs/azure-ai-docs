@@ -161,6 +161,8 @@ An example of the audience would be ```https://cognitiveservices.azure.com/```.
     );
 ```
 
+---
+
 ## Step 3: Create a thread
 
 # [Python](#tab/python)
