@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure
 ms.topic: how-to
-ms.date: 12/11/2024
+ms.date: 12/16/2024
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-function-calling
@@ -25,7 +25,7 @@ OpenAPI Specified tool improves your function calling experience by providing st
 automated, and scalable API integrations that enhance the capabilities and efficiency of your agent. 
 [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) provide a formal standard for 
 describing HTTP APIs. This allows people to understand how an API works, how a sequence of APIs 
-work together, generate client code, create tests, apply design standards, and much, much more. 
+work together, generate client code, create tests, apply design standards, and more. 
 
 ## Set up
 1. Ensure you've completed the prerequisites and setup steps in the [quickstart](../../quickstart.md).
@@ -117,12 +117,15 @@ public partial class Sample_Agent_OpenAPI : SamplesBase<AIProjectsTestEnvironmen
         var storageQueueUri = TestEnvironment.STORAGE_QUEUE_URI;
         AgentsClient client = new(connectionString, new DefaultAzureCredential());
         var file_path = GetFile();
-````
+```
 
+---
 
 ## Step 2: Enable the OpenAPI Spec tool
-You may want to store the OpenAPI specification in another file and import the content to initialize the tool. Please note the sample code is using `anonymous` as authentication type.
+You might want to store the OpenAPI specification in another file and import the content to initialize the tool. Please note the sample code is using `anonymous` as authentication type.
+
 # [Python](#tab/python)
+
 ```python
 with open('./weather_openapi.json', 'r') as f:
     openapi_spec = jsonref.loads(f.read())
@@ -146,6 +149,7 @@ auth = OpenApiManagedAuthDetails(security_scheme=OpenApiManagedSecurityScheme(au
 An example of the audience would be ```https://cognitiveservices.azure.com/```.
 
 # [C#](#tab/csharp)
+
 ```csharp
     #region Snippet:OpenAPIDefineFunctionTools
     OpenApiAnonymousAuthDetails oaiAuth = new();
@@ -158,7 +162,9 @@ An example of the audience would be ```https://cognitiveservices.azure.com/```.
 ```
 
 ## Step 3: Create a thread
+
 # [Python](#tab/python)
+
 ```python
 # Create agent with OpenApi tool and process assistant run
 with project_client:
@@ -188,9 +194,13 @@ Response<AgentThread> threadResponse = await client.CreateThreadAsync();
 AgentThread thread = threadResponse.Value;
 ```
 
+---
+
 ## Step 4: Create a run and check the output
 Create a run and observe that the model uses the OpenAPI Spec tool to provide a response to the user's question.
+
 # [Python](#tab/python)
+
 ```python
 # Create message to thread
     message = project_client.agents.create_message(
@@ -215,7 +225,9 @@ Create a run and observe that the model uses the OpenAPI Spec tool to provide a 
     messages = project_client.agents.list_messages(thread_id=thread.id)
     print(f"Messages: {messages}")
 ```
+
 # [C#](#tab/csharp)
+
 ```csharp
         #region Snippet:OpenAPIHandlePollingWithRequiredAction
         Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
@@ -258,4 +270,7 @@ Create a run and observe that the model uses the OpenAPI Spec tool to provide a 
             }
         }
 ```
+
+---
+
 ::: zone-end
