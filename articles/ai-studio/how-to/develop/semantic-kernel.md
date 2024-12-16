@@ -29,6 +29,10 @@ In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overvie
     ```bash
     pip install semantic-kernel
     ```
+- In this example, we are working with the Azure AI model inference API, hence we install the relevant azure dependencies. You can do it with:
+    ```bash
+    pip install semantic-kernel[azure]
+    ```
 
 ## Configure the environment
 
