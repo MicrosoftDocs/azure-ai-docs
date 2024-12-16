@@ -1,13 +1,26 @@
-### [Optional] Use your own resources in agent setup
+---
+title: 'How to use your own resources in agent setup'
+titleSuffix: Azure OpenAI
+description: Learn how to use your own resources in the Azure AI Agent service setup.
+services: cognitive-services
+manager: nitinme
+ms.service: azure
+ms.topic: how-to
+ms.date: 12/11/2024
+author: fosteramanda
+ms.author: fosteramanda
+ms.custom: azure-ai-agents
+---
+# [Optional] Use your own resources in agent setup
 
 > [!NOTE]
 > If you use an existing AI Services/AOAI resource, no model will be deployed. You can deploy a model to the resource after the agent setup is complete. 
 
-#### Basic agent setup: use an existing AI Services or Azure OpenAI resource 
+### Basic agent setup: use an existing AI Services or Azure OpenAI resource 
 
-Replace the parameter value for `aiServiceAccountResourceId` with the full arm resource ID of the AI Services account you want to use.
+Replace the parameter value for `aiServiceAccountResourceId` with the full arm resource ID of the AI Services/ Azure OpenAI resource you want to use.
 
-1. To get the AI Services account resource ID, sign in to the Azure CLI and select the subscription with your AI Services/AOAI account:
+1. To get the AI Services/Azure OpenAI resource ID, sign in to the Azure CLI and select the subscription with your AI Services/Azure OpenAI account:
        
     ```az login``` 
 2. Replace `<your-resource-group>` with the resource group containing your resource and `your-ai-service-resource-name` with the name of your AI Service resource, and run:
@@ -23,7 +36,7 @@ Replace the parameter value for `aiServiceAccountResourceId` with the full arm r
 
     If you want to use an existing Azure OpenAI resource, you will need to update the `aiServiceAccountResourceId` and the `aiServiceKind` parameters in the parameter file. The aiServiceKind parameter should be set to AzureOpenAI.
 
-#### Standard agent setup: use an existing AI Services, storage, and/or Azure AI Search resource 
+### Standard agent setup: use an existing AI Services, storage, and/or Azure AI Search resource 
 
 Use an existing AI Search, storage account, and/or Azure AI Search resource by providing the full arm resource ID in the standard agent template file.
 
