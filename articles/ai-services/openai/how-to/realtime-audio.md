@@ -87,7 +87,7 @@ To authenticate:
 
 Once the WebSocket connection session to `/realtime` is established and authenticated, the functional interaction takes place via events for sending and receiving WebSocket messages. These events each take the form of a JSON object. 
 
-:::image type="content" source="../media/how-to/real-time/realtime-api-sequence.svg" alt-text="Diagram of the Realtime API authentication and connection sequence.":::
+:::image type="content" source="../media/how-to/real-time/realtime-api-sequence.png" alt-text="Diagram of the Realtime API authentication and connection sequence." lightbox="../media/how-to/real-time/realtime-api-sequence.png":::
 
 <!--
 sequenceDiagram
@@ -197,7 +197,7 @@ The session relies on caller-initiated [`input_audio_buffer.commit`](../realtime
 - The server responds by sending the [`input_audio_buffer.committed`](../realtime-audio-reference.md#realtimeservereventinputaudiobuffercommitted) event.
 - The server responds by sending the [`conversation.item.created`](../realtime-audio-reference.md#realtimeservereventconversationitemcreated) event.
 
-:::image type="content" source="../media/how-to/real-time/input-audio-buffer-client-managed.svg" alt-text="Diagram of the Realtime API input audio sequence without server decision mode.":::
+:::image type="content" source="../media/how-to/real-time/input-audio-buffer-client-managed.png" alt-text="Diagram of the Realtime API input audio sequence without server decision mode." lightbox="../media/how-to/real-time/input-audio-buffer-client-managed.png":::
 
 <!--
 sequenceDiagram
@@ -221,7 +221,8 @@ The session can be configured with the `turn_detection` type set to `server_vad`
 - The server commits the input audio buffer by sending the [`input_audio_buffer.committed`](../realtime-audio-reference.md#realtimeservereventinputaudiobuffercommitted) event.
 - The server sends the [`conversation.item.created`](../realtime-audio-reference.md#realtimeservereventconversationitemcreated) event with the user message item created from the audio buffer.
 
-:::image type="content" source="../media/how-to/real-time/input-audio-buffer-server-vad.svg" alt-text="Diagram of the Realtime API input audio sequence with server decision mode.":::
+:::image type="content" source="../media/how-to/real-time/input-audio-buffer-server-vad.png" alt-text="Diagram of the Realtime API input audio sequence with server decision mode." lightbox="../media/how-to/real-time/input-audio-buffer-server-vad.png":::
+
 
 <!-- 
 sequenceDiagram
@@ -250,7 +251,7 @@ Optionally, the client can truncate or delete items in the conversation:
 - The client deletes an item in the conversation with a [`conversation.item.delete`](../realtime-audio-reference.md#realtimeclienteventconversationitemdelete) event.
 - The server [`conversation.item.deleted`](../realtime-audio-reference.md#realtimeservereventconversationitemdeleted) event is returned to sync the client and server state.
 
-:::image type="content" source="../media/how-to/real-time/conversation-item-sequence.svg" alt-text="Diagram of the Realtime API conversation item sequence.":::
+:::image type="content" source="../media/how-to/real-time/conversation-item-sequence.png" alt-text="Diagram of the Realtime API conversation item sequence." lightbox="../media/how-to/real-time/conversation-item-sequence.png":::
 
 <!-- 
 sequenceDiagram
@@ -267,10 +268,6 @@ sequenceDiagram
   Server->>Server: Delete item
   Server->>Client: conversation.item.deleted
 -->
-
-
-
-
 
 
 ## Related content
