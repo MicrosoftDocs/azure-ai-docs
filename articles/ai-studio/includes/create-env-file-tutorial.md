@@ -29,7 +29,7 @@ Find your connection string in the Azure AI Foundry project you created in the [
 
 :::image type="content" source="../media/quickstarts/azure-ai-sdk/connection-string.png" alt-text="Screenshot shows the overview page of a project and the location of the connection string.":::
 
-If you have a search index that you want to use, update the `AISEARCH_INDEX_NAME` value to match the name of your search index.  If you don't have one, you'll create one in Part 2 of this tutorial.
+If you don't yet have a search index, keep the value "example-index" for `AISEARCH_INDEX_NAME`. In Part 2 of this tutorial you'll create the index using this name. If you have previously created a search index that you want to use instead, update the value to match the name of that search index.  
 
 If you changed the names of the models when you deployed them, update the values in the `.env` file to match the names you used.
 
