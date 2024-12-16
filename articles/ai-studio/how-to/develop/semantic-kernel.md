@@ -184,7 +184,7 @@ If you're streaming the response, you can use the following code:
 
 ```python
 while True:
-    response = chat_completion.get_streaming_chat_message_content(
+    response = chat_completion_service.get_streaming_chat_message_content(
         chat_history=chat_history,
         settings=execution_settings,
     )
