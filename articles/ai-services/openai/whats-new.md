@@ -23,7 +23,7 @@ This article provides a summary of the latest releases and major documentation u
 
 ### GPT-4o 2024-11-20
 
-`gpt-4o-2024-11-20` is now available for global standard deployment in:
+`gpt-4o-2024-11-20` is now available for [global standard deployment](./how-to/deployment-types.md) in:
 
 - East US
 - East US 2
