@@ -5,7 +5,7 @@ description: Learn how to use the Meta Llama family of models with Azure AI Foun
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
-ms.date: 08/08/2024
+ms.date: 12/04/2024
 ms.reviewer: shubhiraj
 reviewer: shubhirajMsft
 ms.author: ssalgado
@@ -20,7 +20,7 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 
 In this article, you learn about the Meta Llama family of models and how to use them. Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models - ranging in scale from SLMs (1B, 3B Base and Instruct models) for on-device and edge inferencing - to mid-size LLMs (7B, 8B and 70B Base and Instruct models) and high performant models like Meta Llama 3.1 405B Instruct for synthetic data generation and distillation use cases.
 
-See our announcements of Meta's Llama 3.2 family models available now on Azure AI Model Catalog through [Meta's blog](https://aka.ms/llama-3.2-meta-announcement) and [Microsoft Tech Community Blog](https://aka.ms/llama-3.2-microsoft-announcement).
+See our announcements of Meta's Llama 3.3 family models available now on Azure AI Model Catalog through [Microsoft Tech Community Blog](https://aka.ms/Metallama70blaunchblog).
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
@@ -29,6 +29,11 @@ See our announcements of Meta's Llama 3.2 family models available now on Azure A
 ## Meta Llama family of models
 
 The Meta Llama family of models include the following models:
+
+# [Llama-3.3](#tab/python-llama-3-3)
+
+* Llama-3.3-70B-Instruct
+
 
 # [Llama-3.2](#tab/python-llama-3-2)
 

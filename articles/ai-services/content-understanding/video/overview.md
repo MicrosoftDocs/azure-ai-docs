@@ -48,7 +48,7 @@ Content extraction for video includes transcription, shot detection, key frame e
 * **Shot detection**: Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly on shot boundaries.
 * **Key frame extraction**: Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable Field Extraction to work effectively.
 * **Face grouping**: Grouped faces appearing in a video to extract one representative face image for each person and provides segments where each one is present. The grouped face data is available as metadata and can be used to generate customized metadata fields.
-* This feature is limited access and involves face identification and grouping; customers need to register for access at [Face Recognition](https://aka.ms/facerecognition).
+  * This feature is limited access and involves face identification and grouping; customers need to register for access at [Face Recognition](https://aka.ms/facerecognition).
 
 ### Field extraction 
 
@@ -90,5 +90,5 @@ As with all the Azure AI services, developers using the Content Understanding se
 
 ## Next steps
 
-* Try processing your video content using Content Understanding in [Azure AI Foundry](https://ai.azure.com/).
+ * Try processing your video content using Content Understanding in [Azure portal](https://ai.azure.com/).
 * Learn more about video [**analyzer templates**](../quickstart/use-ai-foundry.md).
