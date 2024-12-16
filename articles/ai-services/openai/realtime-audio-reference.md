@@ -294,19 +294,19 @@ There are 28 server events that can be received from the server:
 | [RealtimeServerEventInputAudioBufferSpeechStopped](#realtimeservereventinputaudiobufferspeechstopped) | Server event in server turn detection mode when speech stops. |
 | [RealtimeServerEventRateLimitsUpdated](#realtimeservereventratelimitsupdated) | Emitted after every "response.done" event to indicate the updated rate limits. |
 | [RealtimeServerEventResponseAudioDelta](#realtimeservereventresponseaudiodelta) | Server event when the model-generated audio is updated. |
-| [RealtimeServerEventResponseAudioDone](#realtimeservereventresponseaudiodone) | Server event when the model-generated audio is done. Also emitted when a response is interrupted, incomplete, or cancelled. |
+| [RealtimeServerEventResponseAudioDone](#realtimeservereventresponseaudiodone) | Server event when the model-generated audio is done. Also emitted when a response is interrupted, incomplete, or canceled. |
 | [RealtimeServerEventResponseAudioTranscriptDelta](#realtimeservereventresponseaudiotranscriptdelta) | Server event when the model-generated transcription of audio output is updated. |
-| [RealtimeServerEventResponseAudioTranscriptDone](#realtimeservereventresponseaudiotranscriptdone) | Server event when the model-generated transcription of audio output is done streaming. Also emitted when a response is interrupted, incomplete, or cancelled. |
+| [RealtimeServerEventResponseAudioTranscriptDone](#realtimeservereventresponseaudiotranscriptdone) | Server event when the model-generated transcription of audio output is done streaming. Also emitted when a response is interrupted, incomplete, or canceled. |
 | [RealtimeServerEventResponseContentPartAdded](#realtimeservereventresponsecontentpartadded) | Server event when a new content part is added to an assistant message item during response generation. |
-| [RealtimeServerEventResponseContentPartDone](#realtimeservereventresponsecontentpartdone) | Server event when a content part is done streaming in an assistant message item. Also emitted when a response is interrupted, incomplete, or cancelled. |
+| [RealtimeServerEventResponseContentPartDone](#realtimeservereventresponsecontentpartdone) | Server event when a content part is done streaming in an assistant message item. Also emitted when a response is interrupted, incomplete, or canceled. |
 | [RealtimeServerEventResponseCreated](#realtimeservereventresponsecreated) | Server event when a new Response is created. The first event of response creation, where the response is in an initial state of "in_progress". |
 | [RealtimeServerEventResponseDone](#realtimeservereventresponsedone) | Server event when a response is done streaming. Always emitted, no matter the final state. |
 | [RealtimeServerEventResponseFunctionCallArgumentsDelta](#realtimeservereventresponsefunctioncallargumentsdelta) | Server event when the model-generated function call arguments are updated. |
-| [RealtimeServerEventResponseFunctionCallArgumentsDone](#realtimeservereventresponsefunctioncallargumentsdone) | Server event when the model-generated function call arguments are done streaming. Also emitted when a response is interrupted, incomplete, or cancelled. |
+| [RealtimeServerEventResponseFunctionCallArgumentsDone](#realtimeservereventresponsefunctioncallargumentsdone) | Server event when the model-generated function call arguments are done streaming. Also emitted when a response is interrupted, incomplete, or canceled. |
 | [RealtimeServerEventResponseOutputItemAdded](#realtimeservereventresponseoutputitemadded) | Server event when a new output item is added to a response. |
-| [RealtimeServerEventResponseOutputItemDone](#realtimeservereventresponseoutputitemdone) | Server event when an output item is done streaming. Also emitted when a response is interrupted, incomplete, or cancelled. |
+| [RealtimeServerEventResponseOutputItemDone](#realtimeservereventresponseoutputitemdone) | Server event when an output item is done streaming. Also emitted when a response is interrupted, incomplete, or canceled. |
 | [RealtimeServerEventResponseTextDelta](#realtimeservereventresponsetextdelta) | Server event when the model-generated text is updated. |
-| [RealtimeServerEventResponseTextDone](#realtimeservereventresponsetextdone) | Server event when the model-generated text is done. Also emitted when a response is interrupted, incomplete, or cancelled. |
+| [RealtimeServerEventResponseTextDone](#realtimeservereventresponsetextdone) | Server event when the model-generated text is done. Also emitted when a response is interrupted, incomplete, or canceled. |
 | [RealtimeServerEventSessionCreated](#realtimeservereventsessioncreated) | Server event when a session is created. |
 | [RealtimeServerEventSessionUpdated](#realtimeservereventsessionupdated) | Server event when a session is updated. |
 
@@ -662,7 +662,7 @@ The server `response.audio.delta` event is returned when the model-generated aud
 
 The server `response.audio.done` event is returned when the model-generated audio is done. 
 
-This event is also returned when a response is interrupted, incomplete, or cancelled.
+This event is also returned when a response is interrupted, incomplete, or canceled.
 
 #### Event structure
 
@@ -718,7 +718,7 @@ The server `response.audio_transcript.delta` event is returned when the model-ge
 
 The server `response.audio_transcript.done` event is returned when the model-generated transcription of audio output is done streaming. 
 
-This event is also returned when a response is interrupted, incomplete, or cancelled.
+This event is also returned when a response is interrupted, incomplete, or canceled.
 
 #### Event structure
 
@@ -781,7 +781,7 @@ The server `response.content_part.added` event is returned when a new content pa
 
 The server `response.content_part.done` event is returned when a content part is done streaming in an assistant message item. 
 
-This event is also returned when a response is interrupted, incomplete, or cancelled.
+This event is also returned when a response is interrupted, incomplete, or canceled.
 
 #### Event structure
 
@@ -882,7 +882,7 @@ The server `response.function_call_arguments.delta` event is returned when the m
 
 The server `response.function_call_arguments.done` event is returned when the model-generated function call arguments are done streaming. 
 
-This event is also returned when a response is interrupted, incomplete, or cancelled.
+This event is also returned when a response is interrupted, incomplete, or canceled.
 
 #### Event structure
 
@@ -935,7 +935,7 @@ The server `response.output_item.added` event is returned when a new item is cre
 
 The server `response.output_item.done` event is returned when an item is done streaming. 
 
-This event is also returned when a response is interrupted, incomplete, or cancelled.
+This event is also returned when a response is interrupted, incomplete, or canceled.
 
 #### Event structure
 
@@ -988,7 +988,7 @@ The server `response.text.delta` event is returned when the model-generated text
 
 The server `response.text.done` event is returned when the model-generated text is done streaming. The text corresponds to the `text` content part of an assistant message item. 
 
-This event is also returned when a response is interrupted, incomplete, or cancelled.
+This event is also returned when a response is interrupted, incomplete, or canceled.
 
 #### Event structure
 
@@ -1258,7 +1258,7 @@ The definition of a function tool as used by the realtime endpoint.
 | status | [RealtimeResponseStatus](#realtimeresponsestatus) | The status of the response.<br><br>The default status value is `in_progress`. |
 | status_details | [RealtimeResponseStatusDetails](#realtimeresponsestatusdetails) | The details of the response status.<br><br>This property is nullable. |
 | output | array of [RealtimeConversationResponseItem](#realtimeconversationresponseitem) | The output items of the response. |
-| usage | object | Usage statistics for the response. Each Realtime API session maintains a conversation context and append new items to the conversation. Output from previous turns (text and audio tokens) are input for later turns.<br><br>See nested properties next.|
+| usage | object | Usage statistics for the response. Each Realtime API session maintains a conversation context and appends new items to the conversation. Output from previous turns (text and audio tokens) is input for later turns.<br><br>See nested properties next.|
 | + total_tokens | integer | The total number of tokens in the Response including input and output text and audio tokens.<br><br>A property of the `usage` object. | 
 | + input_tokens | integer | The number of input tokens used in the response, including text and audio tokens.<br><br>A property of the `usage` object. |
 | + output_tokens | integer | The number of output tokens sent in the response, including text and audio tokens.<br><br>A property of the `usage` object. | 
@@ -1420,7 +1420,7 @@ The response resource.
 | type | string | The type of turn detection.<br><br>Allowed values: `server_vad` |
 | threshold | number | The activation threshold for the server VAD turn detection. In noisy environments, you might need to increase the threshold to avoid false positives. In quiet environments, you might need to decrease the threshold to avoid false negatives.<br><br>Defaults to `0.5`. You can set the threshold to a value between `0.0` and `1.0`. |
 | prefix_padding_ms | string | The duration of speech audio (in milliseconds) to include before the start of detected speech.<br><br>Defaults to `300`. |
-| silence_duration_ms | string | The duration of silence (in milliseconds) to detect the end of speech. You want to detect the end of speech as soon as possible, but not too soon to avoid cutting off the last part of the speech.<br><br>The model will response more quickly if you set this value to a lower number, but it might cut off the last part of the speech. If you set this value to a higher number, the model will wait longer to detect the end of speech, but it might take longer to respond. |
+| silence_duration_ms | string | The duration of silence (in milliseconds) to detect the end of speech. You want to detect the end of speech as soon as possible, but not too soon to avoid cutting off the last part of the speech.<br><br>The model will respond more quickly if you set this value to a lower number, but it might cut off the last part of the speech. If you set this value to a higher number, the model will wait longer to detect the end of speech, but it might take longer to respond. |
 
 ### RealtimeSessionBase
 
