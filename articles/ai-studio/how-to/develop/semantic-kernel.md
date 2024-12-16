@@ -171,7 +171,7 @@ You can create a long-running conversation by using a loop:
 
 ```python
 while True:
-    response = await chat_completion.get_chat_message_content(
+    response = await chat_completion_service.get_chat_message_content(
         chat_history=chat_history,
         settings=execution_settings,
     )
