@@ -152,7 +152,7 @@ Alternatively, you can stream the response from the service:
 chat_history = ChatHistory()
 chat_history.add_user_message("Hello, how are you?")
 
-response = chat_completion.get_streaming_chat_message_content(
+response = chat_completion_service.get_streaming_chat_message_content(
     chat_history=chat_history,
     settings=execution_settings,
 )
