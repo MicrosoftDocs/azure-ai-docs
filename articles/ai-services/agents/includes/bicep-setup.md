@@ -60,15 +60,15 @@ Use an existing AI Services/AOAI, AI Search, and/or Azure Blob Storage resource 
 - aiStorageAccountResourceId
 
 
-If you want to use an existing Azure OpenAI resource, you will need to update the `aiServiceAccountResourceId` and the `aiServiceKind` parameters in the parameter file. The `aiServiceKind` parameter should be set to `AzureOpenAI`. 
+If you want to use an existing Azure OpenAI resource, you need to update the `aiServiceAccountResourceId` and the `aiServiceKind` parameters in the parameter file. The `aiServiceKind` parameter should be set to `AzureOpenAI`. 
 
-For more details see [how to use your own resources](../how-to/tools/use-your-own-resources.md).
+For more information, see [how to use your own resources](../how-to/tools/use-your-own-resources.md).
 
 
 ## Basic agent setup resource architecture
 :::image type="content" source="../media/quickstart/basic-agent-setup-resources.png" alt-text="An architecture diagram for basic agent setup." lightbox="../media/quickstart/basic-agent-setup-resources.png":::
 
-Resources for the AI hub, AI project, and AI Services are created for you. A storage account is created because it's a required resource for hubs, but this storage account is not used by agents. The AI Services account is connected to your project/hub and a gpt-4o-mini model is deployed in the eastus region. A Microsoft-managed key vault, storage account, and search resource is used by default.
+Resources for the AI hub, AI project, and AI Services are created for you. A storage account is created because it's a required resource for hubs, but this storage account isn't used by agents. The AI Services account is connected to your project/hub and a gpt-4o-mini model is deployed in the eastus region. A Microsoft-managed key vault, storage account, and search resource is used by default.
 
 ## Standard agent setup resource architecture
 :::image type="content" source="../media/quickstart/standard-agent-setup-resources.png" alt-text="An architecture diagram for standard agent setup." lightbox="../media/quickstart/standard-agent-setup-resources.png":::
