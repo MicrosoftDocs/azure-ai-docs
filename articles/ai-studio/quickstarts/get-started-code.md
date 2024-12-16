@@ -70,7 +70,7 @@ Let's change the script to take input from a client application and generate a s
 
 1. Remove the last line of the script that prints a response.
 
-1. Now define a `get_chat_response` function that takes messages and context, generates a system message using a prompt template, and calls a model.  Add this code to your **chat.py** file:
+1. Now define a `get_chat_response` function that takes messages and context, generates a system message using a prompt template, and calls a model.  Add this code to your  existing **chat.py** file:
 
     :::code language="python" source="~/azureai-samples-nov2024/scenarios/inference/chat-app/chat-template.py" id="chat_function":::
 
@@ -83,7 +83,7 @@ Let's change the script to take input from a client application and generate a s
 
     :::code language="python" source="~/azureai-samples-nov2024/scenarios/inference/chat-app/chat-template.py" id="create_response":::
 
-Run the script to see the response from the model with this new input.
+Run the revised script to see the response from the model with this new input.
 
 ```bash
 python chat.py
