@@ -1,7 +1,7 @@
 ---
 title: Image prompt engineering techniques
 titleSuffix: Azure OpenAI
-description: Learn how to better engineer image prompts for GPT-4 Turbo with Vision.
+description: Learn how to better engineer image prompts for vision-enabled chat models.
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-openai
@@ -12,7 +12,7 @@ manager: nitinme
 
 # Image prompt engineering techniques
 
-To unlock the full potential of GPT-4 Turbo with Vision, it's essential to tailor the prompts to your specific needs. Here are some guidelines to enhance the accuracy and efficiency of your prompts.
+To unlock the full potential of vision-enabled chat models like GPT-4 Turbo with Vision and GPT-4o, it's essential to tailor the prompts to your specific needs. Here are some guidelines to enhance the accuracy and efficiency of your prompts.
 
 ## Fundamentals of crafting your image prompt
 - **Contextual specificity:** Adding context to the scenario at hand gives the model a better understanding of an appropriate output. This level of specificity aids in focusing on relevant aspects and avoiding extraneous details.
@@ -95,4 +95,4 @@ When you receive a refusal output from a model, there are several ways you can t
 |:::image type="content" source="../media/concepts/gpt-v/rental-listing.jpg" lightbox="../media/concepts/gpt-v/rental-listing.jpg" alt-text="Photograph of a white villa in a tropical region with a pool."::: You are an AI assistant that writes detailed listings for vacation rental properties. Summarize in three sentences the optimal features of the listing, based on only what is visible in the image. Conclude with one sentence on why the customer should book today. | This idyllic villa showcases an inviting private pool with steps for easy access, framed by a beautifully tiled sun deck and comfortable loungers ideal for soaking up the sun or enjoying a good book under the shade of tropical palms. Architectural charm is evident in the villa's design, featuring elegant archways, a thatched-roof gazebo, and balconies that promise serene views and a perfect spot to savor your morning or evening beverages. The lush greenery surrounding the property not only provides privacy but also enhances the sense of an exclusive paradise retreat. Don't miss the opportunity to secure this perfect blend of luxury and tranquility – book today for a tropical escape like no other! |
 
 
-These guidelines and examples demonstrate how tailored system prompts can significantly enhance the performance of GPT-4 Turbo with Vision, ensuring that the responses are not only accurate but also perfectly suited to the specific context of the task at hand.
+These guidelines and examples demonstrate how tailored system prompts can significantly enhance the performance of vision-enabled models, ensuring that the responses are not only accurate but also perfectly suited to the specific context of the task at hand.

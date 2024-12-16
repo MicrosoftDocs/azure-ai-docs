@@ -1,5 +1,5 @@
 ---
-title: GPT-4 Turbo with Vision concepts
+title: Vision-enabled chat model concepts
 titleSuffix: Azure OpenAI
 description: Learn concepts related to using images in your AI model chats, enabled through GPT-4 Turbo with Vision and other models.
 author: PatrickFarley
@@ -10,15 +10,15 @@ ms.date: 09/24/2024
 manager: nitinme
 ---
 
-# GPT-4 Turbo with Vision concepts
+# Vision-enabled chat model concepts
 
-GPT-4 Turbo with Vision is a large multimodal model (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. It incorporates both natural language processing and visual understanding. This guide provides details on the capabilities and limitations of GPT-4 Turbo with Vision.
+Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. The current vision-enabled models are GPT-4 Turbo with Vision, GPT-4o, and GPT-4o-mini. This guide provides details on their capabilities and limitations.
 
-To try out GPT-4 Turbo with Vision, see the [quickstart](/azure/ai-services/openai/gpt-v-quickstart).
+To try out vision-enabled chat models, see the [quickstart](/azure/ai-services/openai/gpt-v-quickstart).
 
-## Chats with vision
+## Vision-enabled chats
 
-The GPT-4 Turbo with Vision model answers general questions about what's present in the images or videos you upload.
+The vision-enabled models answer general questions about what's present in the images or videos you upload.
 
 
 ## Special pricing information
@@ -89,6 +89,6 @@ This section describes the limitations of GPT-4 Turbo with Vision.
 
 ## Next steps
 
-- Get started using GPT-4 Turbo with Vision by following the [quickstart](/azure/ai-services/openai/gpt-v-quickstart).
+- Get started using vision-enabled models by following the [quickstart](/azure/ai-services/openai/gpt-v-quickstart).
 - For a more in-depth look at the APIs, and to use video prompts in chat, follow the [how-to guide](../how-to/gpt-with-vision.md).
 - See the [completions and embeddings API reference](../reference.md)
