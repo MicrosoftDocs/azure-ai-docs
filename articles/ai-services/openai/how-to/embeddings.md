@@ -56,7 +56,7 @@ print(response.model_dump_json(indent=2))
 import openai
 
 openai.api_type = "azure"
-openai.api_key = YOUR_API_KEY
+openai.api_key = "YOUR_API_KEY"
 openai.api_base = "https://YOUR_RESOURCE_NAME.openai.azure.com"
 openai.api_version = "2024-06-01"
 
@@ -128,7 +128,7 @@ return $response.data.embedding
 
 - The maximum length of input text for our latest embedding models is 8,192 tokens. You should verify that your inputs don't exceed this limit before making a request.
 - If sending an array of inputs in a single embedding request the max array size is 2048.
-- The sum of the token count of the entire array of inputs sent in a single API call is subject to the max token limit of 8192. For example, you cannot send an array of 2,048 inputs with each input having five tokens or more. The total token count of this API request would be 10,240 total tokens, 2,048 tokens over the 8192 per API call token limit.
+- When sending an array of inputs in a single request, remember that the number of tokens per minute in your requests must remain below the quota limit that was assigned at model deployment. By default, the latest generation 3 embeddings models are subject to a 350 K TPM per region limit.  
 
 
 ## Limitations & risks

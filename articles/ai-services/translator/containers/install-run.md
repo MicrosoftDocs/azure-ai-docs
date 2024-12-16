@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 11/01/2024
+ms.date: 12/09/2024
 ms.author: lajanuar
 recommendations: false
 keywords: on-premises, Docker, container, identify
@@ -36,11 +36,22 @@ To get started, you need the following resources, gated access approval, and too
 
 ##### Azure resources
 
+> [!IMPORTANT]
+>
+> Your translator resource must meet the following requirements:
+>
+> * Your Translator instance must be a **Translator** resource (**not** a multi-service Azure AI services resource).
+>
+> * Your Translator instance must be a **regional** resource (**not** a global Azure AI Translator resource) within am available Azure geographic region. For more information, *see* [Azure AI Translator region pricing options](https://azure.microsoft.com/pricing/details/cognitive-services/translator/#overview).
+
 * An active [**Azure subscription**](https://portal.azure.com/). If you don't have one, you can [**create a free 12-month account**](https://azure.microsoft.com/free/).
 
 * An approved access request to either a [Translator connected container](https://aka.ms/csgate-translator) or [Translator disconnected container](https://aka.ms/csdisconnectedcontainers).
 
-* An [**Azure AI Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (**not** a multi-service Azure AI services resource) created under the approved subscription ID. You need the API key and endpoint URI associated with your resource. Both values are required to start the container and can be found on the resource overview page in the Azure portal.
+* An [**Azure AI Translator *regional* resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) created under your approved subscription ID.
+
+   * You need the API key and endpoint URI associated with your resource.
+   * Both values are required to start the container and can be found on the resource overview page in the Azure portal.
 
   * For Translator **connected** containers, select the `S1` pricing tier.
 
@@ -244,9 +255,9 @@ Disconnected containers enable you to use the Azure AI Translator API by exporti
 
 ### End a commitment plan
 
-* If you decide that you don't want to continue purchasing a commitment plan, you can set your resource's autorenewal to **Do not auto-renew**. 
+* If you decide that you don't want to continue purchasing a commitment plan, you can set your resource's autorenewal to **Do not auto-renew**.
 
-* Your commitment plan expires on the displayed commitment end date. After this date, you won't be charged for the commitment plan. You're still able to continue using the Azure resource to make API calls, charged at pay-as-you-go pricing. 
+* Your commitment plan expires on the displayed commitment end date. After this date, you won't be charged for the commitment plan. You're still able to continue using the Azure resource to make API calls, charged at pay-as-you-go pricing.
 
 * You have until midnight (UTC) on the last day of the year to end a commitment plan for disconnected containers. If you do so, you avoid charges for the following year.
 
@@ -482,7 +493,7 @@ If you installed Docker Desktop CLI, it includes Docker compose and its prerequi
               - billing={LANGUAGE_RESOURCE_ENDPOINT_URI}
               - apiKey={LANGUAGE_RESOURCE_KEY}
               - Languages=en,es
-              - LADINCLUSTER=true 
+              - LADINCLUSTER=true
         azure-ai-read:
           container_name: azure-ai-read
           image:  mcr.microsoft.com/azure-cognitive-services/vision/read:latest
@@ -633,11 +644,12 @@ Usage charges are calculated based upon the `quantity` value.
       }
    ```
 
-The aggregated value of `billedUnit` for the following meters is counted  towards the characters you licensed for your disconnected container usage:
+The aggregated value of `billedUnit` for the following meters is counted towards the `quantity` you licensed for your disconnected container usage:
 
-* `CognitiveServices.TextTranslation.Container.OneDocumentTranslatedCharacters`
-
-* `CognitiveServices.TextTranslation.Container.TranslatedCharacters`
+|Operation|Meter name|Billed unit|
+|---|---|---|
+|Text translation|`CognitiveServices.TextTranslation.Container.TranslatedCharacters`|`quantity`:  **1 character equals 1** `billedUnit`|
+|Document translation|`CognitiveServices.TextTranslation.Container.OneDocumentTranslatedCharacters`|`quantity`: **1 character equals 1.5** `billedUnit`|
 
 ---
 

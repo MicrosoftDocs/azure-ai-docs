@@ -44,7 +44,7 @@ You can start directly in your Storage Account portal page.
 
 1. In the left navigation page under **Data management**, select **Azure AI Search** to select or create a search service. 
 
-1. Follow the steps in the wizard to extract and optionally create searchable content from your blobs. The workflow is the [**Import data** wizard](cognitive-search-quickstart-blob.md). The workflow creates an indexer, data source, index, and option skillset on your Azure AI Search service.
+1. Follow the steps in the wizard to extract and optionally create searchable content from your blobs. The workflow is the [**Import data** wizard](search-get-started-skillset.md). The workflow creates an indexer, data source, index, and option skillset on your Azure AI Search service.
 
    :::image type="content" source="media/search-blob-storage-integration/blob-blade.png" alt-text="Screenshot of the Azure AI Search wizard in the Azure Storage portal page." border="true":::
 
@@ -128,7 +128,7 @@ A common scenario that makes it easy to sort through blobs of any content type i
 
 ## Search blob content in a search index 
 
-The output of an indexer is a search index, used for interactive exploration using free text and filtered queries in a client app. For initial exploration and verification of content, we recommend starting with [Search Explorer](search-explorer.md) in the portal to examine document structure. In Search explorer, you can use:
+The output of an indexer is a search index, used for interactive exploration using free text and filtered queries in a client app. For initial exploration and verification of content, we recommend starting with [Search Explorer](search-explorer.md) in the Azure portal to examine document structure. In Search explorer, you can use:
 
 + [Simple query syntax](query-simple-syntax.md)
 + [Full query syntax](query-lucene-syntax.md)

@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 01/11/2024
+ms.date: 12/10/2024
 ---
 
 # Create an index for multiple languages in Azure AI Search
@@ -62,7 +62,7 @@ To add text translation, follow these steps:
 1. [Create and run the indexer](search-howto-create-indexers.md), and then apply the guidance in this article to query just the fields of interest.
 
 > [!TIP]
-> Text translation is built into the [Import data wizard](cognitive-search-quickstart-blob.md). If you have a [supported data source](search-indexer-overview.md#supported-data-sources) with text you'd like to translate, you can step through the wizard to try out the language detection and translation functionality before writing any code.
+> Text translation is built into the [Import data wizard](search-get-started-skillset.md). If you have a [supported data source](search-indexer-overview.md#supported-data-sources) with text you'd like to translate, you can step through the wizard to try out the language detection and translation functionality before writing any code.
 
 ## Define fields for content in different languages
 

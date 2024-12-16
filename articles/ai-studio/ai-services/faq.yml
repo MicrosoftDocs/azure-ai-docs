@@ -1,7 +1,7 @@
 ### YamlMime:FAQ
 metadata:
   title: Azure AI model inference service frequently asked questions
-  titleSuffix: Azure AI studio
+  titleSuffix: Azure AI Foundry
   description: Get answers to the most popular questions about Azure AI model service
   #services: cognitive-services
   ms.service: azure-ai-studio
@@ -34,11 +34,11 @@ sections:
 
           Learn more about the [Azure OpenAI service](../../ai-services/openai/overview.md).
       - question: |
-          What's the difference between Azure AI model inference and Azure AI studio?
+          What's the difference between Azure AI model inference and Azure AI Foundry?
         answer: |
-          Azure AI services are a suite of AI services that provide prebuilt APIs for common AI scenarios. One of them is Azure AI model inference service which focuses on inference service of different state-of-the-art models. Azure AI studio is a web-based tool that allows you to build, train, and deploy machine learning models. Azure AI services can be used in Azure AI studio to enhance your models with prebuilt AI capabilities.
+          Azure AI services are a suite of AI services that provide prebuilt APIs for common AI scenarios. One of them is Azure AI model inference service which focuses on inference service of different state-of-the-art models. Azure AI Foundry portal is a web-based tool that allows you to build, train, and deploy machine learning models. Azure AI services can be used in Azure AI Foundry portal to enhance your models with prebuilt AI capabilities.
       - question: |
-          What's the difference between Azure AI model inference service and Serverless API model deployments in Azure AI studio?
+          What's the difference between Azure AI model inference service and Serverless API model deployments in Azure AI Foundry portal?
         answer: |
           Both technologies allow you to deploy models without requiring compute resources as they are based on the Models as a Service idea. [Serverless API model deployments](../how-to/deploy-models-serverless.md) allow you to deploy a single model under a unique endpoint and credentials. You need to create a different endpoint for each model you want to deploy. On top of that, they are always created in the context of the project and while they can be shared by creating connections from other projects, they live in the context of a given project.
           
@@ -52,7 +52,7 @@ sections:
         answer: |
           The Azure AI model inference service in AI services supports all the models in the Azure AI catalog with pay-as-you-go billing (per-token). For more information, see [the Models section](model-inference.md#models).
 
-          The Azure AI model catalog contains a wider list of models, however, those models require compute quota from your subscription. They also need to have a project or AI hub where to host the deployment. For more information, see [deployment options in Azure AI studio](../concepts/deployments-overview.md).
+          The Azure AI model catalog contains a wider list of models, however, those models require compute quota from your subscription. They also need to have a project or AI hub where to host the deployment. For more information, see [deployment options in Azure AI Foundry portal](../concepts/deployments-overview.md).
       - question: |
           Why I can't add OpenAI o1-preview or OpenA o1-mini-preview to my resource?
         answer: |
@@ -105,7 +105,7 @@ sections:
         answer: |
           Billing and costs are displayed in [Microsoft Cost Management + Billing](/azure/cost-management-billing/understand/download-azure-daily-usage). You can see the usage details in the [Azure portal](https://portal.azure.com).
 
-          Billing isn't shown in Azure AI studio.
+          Billing isn't shown in Azure AI Foundry portal.
       - question: |
           How can I place a spending limit to my bill?
         answer: |

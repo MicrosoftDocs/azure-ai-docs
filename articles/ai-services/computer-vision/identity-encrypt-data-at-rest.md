@@ -7,10 +7,11 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 02/27/2024
 ms.author: pafarley
 ms.custom: cogserv-non-critical-vision
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 #Customer intent: As a user of the Face service, I want to learn how encryption at rest works.
 ---
 

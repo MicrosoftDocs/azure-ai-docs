@@ -400,17 +400,19 @@ api-key: {{admin-api-key}}
             "kind": "text",
             "text": "mystery novel set in London",
             "fields": "descriptionVector, synopsisVector",
-            "k": 5
+            "k": 50
         },
         {
             "kind": "text"
             "text": "living english author",
             "fields": "authorBioVector",
-            "k": 5
+            "k": 50
         }
     ]
 }
 ```
+
+Whenever you use semantic ranking with vectors, make sure `k` is set to 50. Semantic ranker uses up to 50 matches as input. Specifying less than 50 deprives the semantic ranking models of necessary inputs.
 
 The scored results from all four queries are fused using [RRF ranking](hybrid-search-ranking.md). Secondary [semantic ranking](semantic-search-overview.md) is invoked over the fused search results, but on the `searchFields` only, boosting results that are the most semantically aligned to `"search":"mystery novel set in London"`.
 

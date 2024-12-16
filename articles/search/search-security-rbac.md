@@ -35,7 +35,7 @@ Role-based access is optional, but recommended. The alternative is [key-based au
 
 + Owner, User Access Administrator, Role-based Access Control Administrator, or a custom role with [Microsoft.Authorization/roleAssignments/write](/azure/templates/microsoft.authorization/roleassignments) permissions.
 
-## How to assign roles in the portal
+## How to assign roles in the Azure portal
 
 The following steps work for all role assignments.
 
@@ -87,7 +87,7 @@ Combine these roles to get sufficient permissions for your use case.
 |View resource properties/metrics/endpoint |❌|❌|✅|✅|✅|
 |List all objects on the resource |❌|❌|✅|✅|✅|
 |Access quotas and service statistics |❌|❌|✅|✅|❌|
-|Read/query an index |✅|❌|❌|❌|❌|
+|Read/query an index |✅|✅|❌|❌|❌|
 |Upload data for indexing |❌|✅|❌|❌|❌|
 |Create or edit indexes/aliases |❌|❌|✅|✅|❌|
 |Create, edit and run indexers/data sources/skillsets |❌|❌|✅|✅|❌|
@@ -103,7 +103,7 @@ Combine these roles to get sufficient permissions for your use case.
 
 Owners and Contributors grant the same permissions, except that only Owners can assign roles.
 
-Owners and Contributors can create, read, update, and delete objects in the Azure portal *if API keys are enabled*. The portal uses keys on internal calls to data plane APIs. In you subsequently configure Azure AI Search to use "roles only", then Owner and Contributor won't be able to manage objects in the portal using just those role assignments. The solution is to assign more roles, such as Search Index Data Reader, Search Index Data Contributor, and Search Service Contributor.
+Owners and Contributors can create, read, update, and delete objects in the Azure portal *if API keys are enabled*. the Azure portal uses keys on internal calls to data plane APIs. In you subsequently configure Azure AI Search to use "roles only", then Owner and Contributor won't be able to manage objects in the Azure portal using just those role assignments. The solution is to assign more roles, such as Search Index Data Reader, Search Index Data Contributor, and Search Service Contributor.
 
 ## Assign roles
 
@@ -284,7 +284,7 @@ Use a client to test role assignments. Remember that roles are cumulative and in
 
    + Search Service Contributors can view and create any object, but can't load documents or query an index. To verify permissions, [create a search index](search-how-to-create-search-index.md#create-an-index).
 
-   + Search Index Data Contributors can load documents. There's no load documents option in the portal outside of Import data wizard, but you can [reset and run an indexer](search-howto-run-reset-indexers.md) to confirm document load permissions.
+   + Search Index Data Contributors can load documents. There's no load documents option in the Azure portal outside of Import data wizard, but you can [reset and run an indexer](search-howto-run-reset-indexers.md) to confirm document load permissions.
 
    + Search Index Data Readers can query the index. To verify permissions, use [Search explorer](search-explorer.md). You should be able to send queries and view results, but you shouldn't be able to view the index definition or create one.
 
@@ -443,7 +443,7 @@ If you're already a Contributor or Owner of your search service, you can present
 
 In some scenarios, you might want to limit an application's access to a single resource, such as an index.
 
-The portal doesn't currently support role assignments at this level of granularity, but it can be done with [PowerShell](/azure/role-based-access-control/role-assignments-powershell) or the [Azure CLI](/azure/role-based-access-control/role-assignments-cli).
+the Azure portal doesn't currently support role assignments at this level of granularity, but it can be done with [PowerShell](/azure/role-based-access-control/role-assignments-powershell) or the [Azure CLI](/azure/role-based-access-control/role-assignments-cli).
 
 In PowerShell, use [New-AzRoleAssignment](/powershell/module/az.resources/new-azroleassignment), providing the Azure user or group name, and the scope of the assignment.
 

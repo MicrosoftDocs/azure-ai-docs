@@ -15,6 +15,7 @@ ms.devlang: csharp
 # ms.devlang: csharp, golang, javascript, python
 ms.custom: devx-track-python, devx-track-csharp, mode-api, devx-track-dotnet, devx-track-extended-java, devx-track-js
 keywords: face search by image, facial recognition search, facial recognition, face recognition app
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Quickstart: Use the Face service

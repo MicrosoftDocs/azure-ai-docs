@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 08/07/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ---
 
@@ -18,7 +18,7 @@ ms.author: lajanuar
 # Document processing models
 
 ::: moniker range="doc-intel-4.0.0"
-[!INCLUDE [preview-version-notice](includes/preview-notice.md)]
+
 
 [!INCLUDE [applies to v4.0](includes/applies-to-v40.md)]
 ::: moniker-end
@@ -46,9 +46,9 @@ ms.author: lajanuar
 
 ## Model overview
 
-The following table shows the available models for each current preview and stable API:
+The following table shows the available models for each stable API:
 
-|**Model Type**| **Model**|&bullet; [2024-02-29-preview](/rest/api/aiservices/document-models/build-model?view=rest-aiservices-2024-02-29-preview&preserve-view=true&branch=docintelligence&tabs=HTTP) <br> &bullet; [2023-10-31-preview](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)|[2023-07-31 (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)|[2022-08-31 (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)|[v2.1 (GA)](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|
+|**Model Type**| **Model**|&bullet; [2024-11-30 (GA)](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)|[2023-07-31 (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)|[2022-08-31 (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)|[v2.1 (GA)](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|
 |----------------|-----------|---|--|---|---|
 |Document analysis models|[Read](prebuilt/read.md)                                  | ✔️| ✔️| ✔️| n/a|
 |Document analysis models|[Layout](prebuilt/layout.md)                              | ✔️| ✔️| ✔️| ✔️|
@@ -63,9 +63,11 @@ The following table shows the available models for each current preview and stab
 |Prebuilt models|[Receipt](prebuilt/receipt.md)                            | ✔️| ✔️| ✔️| ✔️|
 |Prebuilt models|[US Unified Tax*](prebuilt/tax-document.md)                   | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[US 1040 Tax*](prebuilt/tax-document.md)                   | ✔️| ✔️| n/a| n/a|
+|Prebuilt models|[US 1095 Tax*](prebuilt/tax-document.md)                    | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[US 1098 Tax*](prebuilt/tax-document.md)                   | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[US 1099 Tax*](prebuilt/tax-document.md)                 | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[US W2 Tax](prebuilt/tax-document.md)                     | ✔️| ✔️| ✔️| n/a|
+|Prebuilt models|[US W4 Tax](prebuilt/tax-document.md)                      | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[US Mortgage 1003 URLA](concept-mortgage-documents.md)    | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[US Mortgage 1004 URAR](concept-mortgage-documents.md)    | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[US Mortgage 1005](concept-mortgage-documents.md)    | ✔️| n/a| n/a| n/a|
@@ -75,19 +77,32 @@ The following table shows the available models for each current preview and stab
 |Prebuilt models|[Credit card](concept-credit-card.md)   | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[Business card](concept-business-card.md)                | deprecated|✔️|✔️|✔️ |
 |Custom classification model|[Custom classifier](train/custom-classifier.md)        | ✔️| ✔️| n/a| n/a|
-|Custom Generative Model|[Custom Generative Model](train/custom-generative-extraction.md)   | ✔️| n/a| n/a| n/a|
 |Custom extraction model|[Custom neural](train/custom-neural.md)                | ✔️| ✔️| ✔️| n/a|
-|Customextraction model|[Custom template](train/custom-template.md)            | ✔️| ✔️| ✔️| ✔️|
+|Custom extraction model|[Custom template](train/custom-template.md)            | ✔️| ✔️| ✔️| ✔️|
 |Custom extraction model|[Custom composed](train/composed-models.md)            | ✔️| ✔️| ✔️| ✔️|
 |All models|[Add-on capabilities](concept-add-on-capabilities.md)    | ✔️| ✔️| n/a| n/a|
 
-\* - Contains submodels. See the model specific information for supported variations and subtypes.
+\* - Contains submodels. See the model specific information for supported variations and subtypes. </br>
+\**- All the capabilites of General Document model are available in layout model. General model is no longer supported. 
 
 ### Latency
 
 Latency is the amount of time it takes for an API server to handle and process an incoming request and deliver the outgoing response to the client. The time to analyze a document depends on the size (for example, number of pages) and associated content on each page. Document Intelligence is a multitenant service where latency for similar documents is comparable but not always identical. Occasional variability in latency and performance is inherent in any microservice-based, stateless, asynchronous service that processes images and large documents at scale. Although we're continuously scaling up the hardware and capacity and scaling capabilities, you might still have latency issues at runtime.
 
-|**Add-on Capability**| **Add-On/Free**|&bullet; [2024-02-29-preview](/rest/api/aiservices/document-models/build-model?view=rest-aiservices-2024-02-29-preview&preserve-view=true&branch=docintelligence&tabs=HTTP) <br>&bullet [2023-10-31-preview](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true|[`2023-07-31` (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)|[`2022-08-31` (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)|[v2.1 (GA)](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|
+### Add-on Capability
+
+Following are the add-on capability available in document intelligence. For all models, except Business card model, Document Intelligence now supports add-on capabilities to allow for more sophisticated analysis. These optional capabilities can be enabled and disabled depending on the scenario of the document extraction. There are seven add-on capabilities available for the `2023-07-31` (GA) and later API version:
+
+* [`ocrHighResolution`](concept-add-on-capabilities.md#high-resolution-extraction)
+* [`formulas`](concept-add-on-capabilities.md#formula-extraction)
+* [`styleFont`](concept-add-on-capabilities.md#font-property-extraction)
+* [`barcodes`](concept-add-on-capabilities.md#barcode-property-extraction)
+* [`languages`](concept-add-on-capabilities.md#language-detection)
+* [`keyValuePairs`](concept-add-on-capabilities.md#key-value-pairs)
+* [`queryFields`](concept-add-on-capabilities.md#query-fields)  `Not available with the US.Tax models`
+* [`searchablePDF`](prebuilt/read.md#searchable-pdf)  `Only available for Read Model`
+
+|**Add-on Capability**| **Add-On/Free**|&bullet; **2024-11-30 (GA)**|[`2023-07-31` (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)|[`2022-08-31` (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)|[v2.1 (GA)](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|
 |----------------|-----------|---|--|---|---|
 |Font property extraction|Add-On| ✔️| ✔️| n/a| n/a|
 |Formula extraction|Add-On| ✔️| ✔️| n/a| n/a|
@@ -113,17 +128,6 @@ A bounding box (`polygon` in v3.0 and later versions) is an abstract rectangle t
 * The bounding box specifies position by using an x and y coordinate plane presented in an array of four numerical pairs. Each pair represents a corner of the box in the following order: upper left, upper right, lower right, lower left.
 
 * Image coordinates are presented in pixels. For a PDF, coordinates are presented in inches.
-
-For all models, except Business card model, Document Intelligence now supports add-on capabilities to allow for more sophisticated analysis. These optional capabilities can be enabled and disabled depending on the scenario of the document extraction. There are seven add-on capabilities available for the `2023-07-31` (GA) and later API version:
-
-* [`ocrHighResolution`](concept-add-on-capabilities.md#high-resolution-extraction)
-* [`formulas`](concept-add-on-capabilities.md#formula-extraction)
-* [`styleFont`](concept-add-on-capabilities.md#font-property-extraction)
-* [`barcodes`](concept-add-on-capabilities.md#barcode-property-extraction)
-* [`languages`](concept-add-on-capabilities.md#language-detection)
-* [`keyValuePairs`](concept-add-on-capabilities.md#key-value-pairs) (2024-02-29-preview, 2023-10-31-preview)
-* [`queryFields`](concept-add-on-capabilities.md#query-fields) (2024-02-29-preview, 2023-10-31-preview) `Not available with the US.Tax models`
-* [`searchablePDF`](prebuilt/read.md#searchable-pdf) (2024-07-31-preview) `Only available for Read Model`
 
 ## Language support
 
@@ -193,7 +197,9 @@ The US tax document models analyze and extract key fields and line items from a 
   |Model|Description|ModelID|
   |---|---|---|
   |US Tax W-2|Extract taxable compensation details.|**prebuilt-tax.us.w2**|
+  |US Tax W-4|Extract taxable compensation details.|**prebuilt-tax.us.w4**|
   |US Tax 1040|Extract mortgage interest details.|**prebuilt-tax.us.1040(variations)**|
+  |US Tax 1095|Extract health insurance details.|**prebuilt-tax.us.1095(variations)**|
   |US Tax 1098|Extract mortgage interest details.|**prebuilt-tax.us.1098(variations)**|
   |US Tax 1099|Extract income received from sources other than employer.|**prebuilt-tax.us.1099(variations)**|
 
@@ -214,10 +220,11 @@ The US mortgage document models analyze and extract key fields including borrowe
   |Model|Description|ModelID|
   |---|---|---|
   |1003 End-User License Agreement (EULA)|Extract loan, borrower, property details.|**prebuilt-mortgage.us.1003**|
+  |1004 Uniform Residential Appraisal Report (URAR))|Extract loan, borrower, property details.|**prebuilt-mortgage.us.1004**|
+  |1005 Verification of Employment|Extract loan, borrower, property details.|**prebuilt-mortgage.us.1005**|
   |1008 Summary document|Extract borrower, seller, property, mortgage, and underwriting details.|**prebuilt-mortgage.us.1008**|
   |Closing disclosure|Extract closing, transaction costs, and loan details.|**prebuilt-mortgage.us.closingDisclosure**|
-  |Marriage certificate|Extract marriage information details for joint loan applicants.|**prebuilt-marriageCertificate**|
-  |US Tax W-2|Extract taxable compensation details for income verification.|**prebuilt-tax.us.w2**|
+ 
 
 ***Sample Closing disclosure document processed using [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=mortgage.us.closingDisclosure)***:
 
@@ -239,11 +246,50 @@ The US mortgage document models analyze and extract key fields including borrowe
 > [!div class="nextstepaction"]
 > [Learn more: contract model](prebuilt/contract.md)
 
+### US Bank Check
+
+:::image type="icon" source="media/overview/icon-contract.png":::
+
+ The contract model analyzes and extracts key fields from check including check details, account details, amount, memo, is extracted from US bank checks.
+ 
+***Sample bank check processed using [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=check.us)***:
+
+:::image type="content" source="media/studio/analyze-bank-check.png" alt-text="Screenshot of bank check model extraction using Document Intelligence Studio.":::
+
+> [!div class="nextstepaction"]
+> [Learn more: contract model](prebuilt/bank-check.md)
+
+### US Bank Statement
+
+:::image type="icon" source="media/overview/icon-contract.png":::
+
+ The bank statement model analyzes and extracts key fields and line items from US bank statements account number, bank details, statement details and transaction details.
+
+***Sample bank statement processed using [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=bankStatement.us)***:
+
+:::image type="content" source="media/studio/analyze-bank-statement.png" alt-text="Screenshot of bank statement model extraction using Document Intelligence Studio.":::
+
+> [!div class="nextstepaction"]
+> [Learn more: contract model](prebuilt/bank-statement.md)
+
+### PayStub
+
+:::image type="icon" source="media/overview/icon-contract.png":::
+
+ The paystub model analyzes and extracts key fields and line items from documents and files with payroll related information.
+
+***Sample paystub processed using [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=payStub.us)***:
+
+:::image type="content" source="media/studio/analyze-pay-stub.png" alt-text="Screenshot of pay stub model extraction using Document Intelligence Studio.":::
+
+> [!div class="nextstepaction"]
+> [Learn more: contract model](prebuilt/pay-stub.md)
+
 ### Invoice
 
 :::image type="icon" source="media/studio/invoice.png":::
 
-The invoice model automates processing of invoices to extracts customer name, billing address, due date, and amount due, line items, and other key data. Currently, the model supports English, Spanish, German, French, Italian, Portuguese, and Dutch invoices.
+The invoice model automates processing of invoices to extracts customer name, billing address, due date, and amount due, line items, and other key data. 
 
 ***Sample invoice processed using [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=invoice)***:
 
@@ -327,7 +373,7 @@ Version v3.0 and later custom models support signature detection in custom templ
 
 :::image type="icon" source="media/studio/custom-extraction.png":::
 
-Custom extraction model can be one of two types, **custom template** or **custom neural**. To create a custom extraction model, label a dataset of documents with the values you want extracted and train the model on the labeled dataset. You only need five examples of the same form or document type to get started.
+Custom extraction model can be one of three types, **custom template**, **custom neural**. To create a custom extraction model, label a dataset of documents with the values you want extracted and train the model on the labeled dataset. You only need five examples of the same form or document type to get started.
 
 ***Sample custom extraction processed using [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/customform/projects)***:
 

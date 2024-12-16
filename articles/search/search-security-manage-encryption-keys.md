@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/07/2024
+ms.date: 12/06/2024
 ms.custom:
   - references_regions
   - ignite-2023
@@ -21,13 +21,13 @@ Azure AI Search automatically encrypts data at rest with [service-managed keys](
 This article walks you through the steps of setting up customer-managed key (CMK) or "bring-your-own-key" (BYOK) encryption.
 
 > [!NOTE]
-> If an index is CMK encrypted, it is only accessible if the search service has access to the key. If access is revoked, the index is unusable and the service cannot be scaled until the index is deleted or access to the key is restored.
+> If an index is CMK encrypted, it's only accessible if the search service has access to the key. If access is revoked, the index is unusable and the service cannot be scaled until the index is deleted or access to the key is restored.
 
 ## CMK encrypted objects
 
-CMK encryption is enacted on individual objects. If you require CMK across your search service, [set an enforcement policy](#set-up-a-policy-to-enforce-cmk-compliance).
+CMK encryption is applied to individual objects. If you require CMK across your search service, [set an enforcement policy](#set-up-a-policy-to-enforce-cmk-compliance).
 
-CMK encryption becomes operational when an object is created. You can't encrypt objects that already exist. CMK encryption occurs whenever an object is saved to disk, either data at rest for long-term storage or temporary data for short-term storage. With CMK, the disk never sees unencrypted data.
+CMK encryption is applied when an object is created, which means you can't encrypt objects that already exist. CMK encryption occurs each time an object is saved to disk, for both data at rest (long-term storage) or temporary cached data (short-term storage). With CMK, the disk never sees unencrypted data.
 
 Objects that can be encrypted include indexes, synonym lists, indexers, data sources, and skillsets. Encryption is computationally expensive to decrypt so only sensitive content is encrypted.
 
@@ -299,7 +299,7 @@ When you create a new object in the Azure portal, you can specify a predefined c
 + Data sources
 + Indexers
 
-Requirements for using the portal are that the key vault and key must exist, and you completed the previous steps for authorized access to the key.
+Requirements for using the Azure portal are that the key vault and key must exist, and you completed the previous steps for authorized access to the key.
 
 In the Azure portal, skillsets are defined in JSON view. Use the JSON shown in the REST API examples to provide a customer-managed key on a skillset.
 

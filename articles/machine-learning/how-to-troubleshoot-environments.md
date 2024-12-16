@@ -51,7 +51,7 @@ Any Python packages present in the base image aren't available in the isolated c
 
 ### Create and manage environments
 
-You can create and manage environments from clients like Azure Machine Learning Python SDK, Azure Machine Learning CLI, Azure Machine Learning Studio UI, Visual Studio Code extension. 
+You can create and manage environments from clients like Azure Machine Learning Python SDK, Azure Machine Learning CLI, Azure Machine Learning studio UI, Visual Studio Code extension. 
 
 "Anonymous" environments are automatically registered in your workspace when you submit an experiment without registering or referencing an already existing environment.
 They aren't listed but you can retrieve them by version or label.

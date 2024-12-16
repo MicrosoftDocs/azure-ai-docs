@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 04/24/2024
+ms.date: 12/10/2024
 ---
 
 # Visualize Azure AI Search Logs and Metrics with Power BI

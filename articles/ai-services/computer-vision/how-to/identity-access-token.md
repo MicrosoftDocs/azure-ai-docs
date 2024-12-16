@@ -11,6 +11,7 @@ ms.subservice: azure-ai-face
 ms.topic: how-to
 ms.date: 03/07/2024
 ms.author: pafarley
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Use limited access tokens for Face
@@ -50,7 +51,7 @@ The Face resource ID has the following format:
 
 For example:
 
-`/subscriptions/dc4d27d9-ea49-4921-938f-7782a774e151/resourceGroups/client-rg/providers/Microsoft.CognitiveServices/accounts/client-face-api`
+`/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/client-rg/providers/Microsoft.CognitiveServices/accounts/client-face-api`
 
 ## Step 2: ISV generates a token
 
@@ -164,5 +165,3 @@ static void Main(string[] args)
 }
 ```
 ---
-
-

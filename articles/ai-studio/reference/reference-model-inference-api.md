@@ -1,6 +1,6 @@
 ---
 title: Azure AI Model Inference API
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn about how to use the Azure AI Model Inference API
 manager: scottpolly
 ms.service: azure-ai-studio
@@ -14,11 +14,11 @@ ms.custom:
  - build-2024
 ---
 
-# Azure AI Model Inference API | Azure AI Studio
+# Azure AI Model Inference API | Azure AI Foundry
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-The Azure AI Model Inference is an API that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. Developers can talk with different models deployed in Azure AI Studio without changing the underlying code they are using.
+The Azure AI Model Inference is an API that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. Developers can talk with different models deployed in Azure AI Foundry portal without changing the underlying code they are using.
 
 ## Benefits
 
@@ -55,8 +55,8 @@ Models deployed to [managed inference](../concepts/deployments-overview.md):
 
 > [!div class="checklist"]
 > * [Meta Llama 3 instruct](../how-to/deploy-models-llama.md) family of models
-> * [Phi-3](../how-to/deploy-models-phi-3.md) family of models
-> * [Mistral](../how-to/deploy-models-mistral-open.md) and [Mixtral](../how-to/deploy-models-mistral-open.md?tabs=mistral-8x7B-instruct) family of models.
+> * [Phi-3](../how-to/deploy-models-phi-3.md), and [Phi-4](../how-to/deploy-models-phi-4.md) family of models
+> * [Mistral](../how-to/deploy-models-mistral-open.md) and [Mixtral](../how-to/deploy-models-mistral-open.md?tabs=mistral-8x7B-instruct) family of models
 
 The API is compatible with Azure OpenAI model deployments.
 
@@ -152,7 +152,7 @@ const client = new ModelClient(
 );
 ```
 
-Explore our [samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples) and read the [API reference documentation](https://aka.ms/AAp1kxa) to get yourself started.
+Explore our [samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples) and read the [API reference documentation](/javascript/api/@azure-rest/ai-inference) to get yourself started.
 
 # [C#](#tab/csharp)
 
@@ -594,25 +594,25 @@ The Azure AI Model Inference API is currently supported in certain models deploy
 
 # [Python](#tab/python)
 
-The client library `azure-ai-inference` does inference, including chat completions, for AI models deployed by Azure AI Studio and Azure Machine Learning Studio. It supports Serverless API endpoints and Managed Compute endpoints (formerly known as Managed Online Endpoints).
+The client library `azure-ai-inference` does inference, including chat completions, for AI models deployed by Azure AI Foundry and Azure Machine Learning studio. It supports Serverless API endpoints and Managed Compute endpoints (formerly known as Managed Online Endpoints).
 
 Explore our [samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-inference/samples) and read the [API reference documentation](https://aka.ms/azsdk/azure-ai-inference/python/reference) to get yourself started.
 
 # [JavaScript](#tab/javascript)
 
-The client library `@azure-rest/ai-inference` does inference, including chat completions, for AI models deployed by Azure AI Studio and Azure Machine Learning Studio. It supports Serverless API endpoints and Managed Compute endpoints (formerly known as Managed Online Endpoints).
+The client library `@azure-rest/ai-inference` does inference, including chat completions, for AI models deployed by Azure AI Foundry and Azure Machine Learning studio. It supports Serverless API endpoints and Managed Compute endpoints (formerly known as Managed Online Endpoints).
 
-Explore our [samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples) and read the [API reference documentation](https://aka.ms/AAp1kxa) to get yourself started.
+Explore our [samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples) and read the [API reference documentation](/javascript/api/@azure-rest/ai-inference) to get yourself started.
 
 # [C#](#tab/csharp)
 
-The client library `Azure.Ai.Inference` does inference, including chat completions, for AI models deployed by Azure AI Studio and Azure Machine Learning Studio. It supports Serverless API endpoints and Managed Compute endpoints (formerly known as Managed Online Endpoints).
+The client library `Azure.Ai.Inference` does inference, including chat completions, for AI models deployed by Azure AI Foundry and Azure Machine Learning studio. It supports Serverless API endpoints and Managed Compute endpoints (formerly known as Managed Online Endpoints).
 
 Explore our [samples](https://aka.ms/azsdk/azure-ai-inference/csharp/samples) and read the [API reference documentation](https://aka.ms/azsdk/azure-ai-inference/csharp/reference) to get yourself started.
 
 # [REST](#tab/rest)
 
-Explore the reference section of the Azure AI model inference API to see parameters and options to consume models, including chat completions models, deployed by Azure AI Studio and Azure Machine Learning Studio. It supports Serverless API endpoints and Managed Compute endpoints (formerly known as Managed Online Endpoints).
+Explore the reference section of the Azure AI model inference API to see parameters and options to consume models, including chat completions models, deployed by Azure AI Foundry and Azure Machine Learning studio. It supports Serverless API endpoints and Managed Compute endpoints (formerly known as Managed Online Endpoints).
 
 * [Get info](reference-model-inference-info.md): Returns the information about the model deployed under the endpoint.
 * [Text embeddings](reference-model-inference-embeddings.md): Creates an embedding vector representing the input text.

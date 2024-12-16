@@ -7,7 +7,7 @@ author: mattgotteiner
 ms.author: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/23/2024
+ms.date: 12/10/2024
 ---
 
 # Create a shared private link for a SQL managed instance from Azure AI Search
@@ -19,7 +19,7 @@ On a private connection to a managed instance, the fully qualified domain name (
 Although you can call the Management REST API directly, it's easier to use the Azure CLI `az rest` module to send Management REST API calls from a command line. This article uses the Azure CLI with REST to set up the private link.
 
 > [!NOTE]
-> This article refers to Azure portal for obtaining properties and confirming steps. However, when creating the shared private link for SQL Managed Instance, make sure you're using the REST API. Although the Networking tab lists `Microsoft.Sql/managedInstances` as an option, the portal doesn't currently support the extended URL format used by SQL Managed Instance.
+> This article refers to Azure portal for obtaining properties and confirming steps. However, when creating the shared private link for SQL Managed Instance, make sure you're using the REST API. Although the Networking tab lists `Microsoft.Sql/managedInstances` as an option, the Azure portal doesn't currently support the extended URL format used by SQL Managed Instance.
 
 ## Prerequisites
 
@@ -108,7 +108,7 @@ On the SQL Managed Instance side, the resource owner must approve the private co
 
 1. Find the section that lists the private endpoint connections.
 
-1. Select the connection, and then select **Approve**. It can take a few minutes for the status to be updated in the portal.
+1. Select the connection, and then select **Approve**. It can take a few minutes for the status to be updated in the Azure portal.
 
 After the private endpoint is approved, Azure AI Search creates the necessary DNS zone mappings in the DNS zone that's created for it.
 
@@ -126,7 +126,7 @@ You could use the [**Import data**](search-get-started-portal.md) wizard for thi
 
 This article assumes a [REST client](search-get-started-rest.md) and uses the REST APIs to make it easier to see all of the properties. Recall that REST API calls for indexers and data sources use the [Search REST APIs](/rest/api/searchservice/), not the [Management REST APIs](/rest/api/searchmanagement/) used to create the shared private link. The syntax and API versions are different between the two REST APIs.
 
-1. [Create the data source definition](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md) as you would normally for Azure SQL. The format of the connection string is slightly different for a managed instance, but other properties are the same as if you were configuring a data source connection to Azure SQL database.
+1. [Create the data source definition](search-how-to-index-sql-database.md) as you would normally for Azure SQL. The format of the connection string is slightly different for a managed instance, but other properties are the same as if you were configuring a data source connection to Azure SQL database.
 
     Provide the connection string that you copied earlier with an Initial Catalog specified.
 
@@ -199,8 +199,8 @@ Here are some reminders for testing:
 ## See also
 
 + [Make outbound connections through a private endpoint](search-indexer-howto-access-private.md)
-+ [Indexer connections to Azure SQL Managed Instance through a public endpoint](search-howto-connecting-azure-sql-mi-to-azure-search-using-indexers.md)
-+ [Index data from Azure SQL](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
++ [Indexer connections to Azure SQL Managed Instance through a public endpoint](search-how-to-index-sql-managed-instance.md)
++ [Index data from Azure SQL](search-how-to-index-sql-database.md)
 + [Management REST API](/rest/api/searchmanagement/)
 + [Search REST API](/rest/api/searchservice/)
 + [Quickstart: Get started with REST](search-get-started-rest.md)

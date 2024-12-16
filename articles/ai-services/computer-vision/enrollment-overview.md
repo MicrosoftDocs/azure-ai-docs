@@ -10,6 +10,7 @@ ms.subservice: azure-ai-face
 ms.topic: best-practice
 ms.date: 02/14/2024
 ms.author: pafarley
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Best practices for adding users to a Face service

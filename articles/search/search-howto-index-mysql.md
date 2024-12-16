@@ -12,7 +12,7 @@ ms.topic: how-to
 ms.custom:
   - kr2b-contr-experiment
   - ignite-2023
-ms.date: 06/25/2024
+ms.date: 12/10/2024
 ---
 
 # Index data from Azure Database for MySQL flexible server
@@ -36,7 +36,7 @@ When configured to include a high water mark and soft deletion, the indexer take
 
 - A [REST client](search-get-started-rest.md) to create the data source, index, and indexer.
 
-  You can also use the [Azure SDK for .NET](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourcetype.mysql). You can't use the portal for indexer creation, but you can manage indexers and data sources once they're created.
+  You can also use the [Azure SDK for .NET](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourcetype.mysql). You can't use the Azure portal for indexer creation, but you can manage indexers and data sources once they're created.
 
 ## Preview limitations
 
@@ -44,7 +44,7 @@ Currently, change tracking and deletion detection aren't working if the date or 
 
 The preview doesn’t support geometry types and blobs.
 
-As noted, there’s no portal support for indexer creation, but a MySQL indexer and data source can be managed in the portal once they exist. For example, you can edit the definitions, and reset, run, or schedule the indexer.
+As noted, there’s no portal support for indexer creation, but a MySQL indexer and data source can be managed in the Azure portal once they exist. For example, you can edit the definitions, and reset, run, or schedule the indexer.
 
 ## Define the data source
 

@@ -5,6 +5,8 @@ description: In this quickstart, learn how to use grounding data from Azure AI S
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.custom:
+  - ignite-2024
 ms.topic: quickstart
 ms.date: 10/14/2024
 ---
@@ -61,7 +63,6 @@ Azure OpenAI is receiving the (query) "Can you recommend a few hotels" from your
 
     1. On Azure AI Search, make sure you have permissions to create, load, and query a search index:
 
-       - **Search Index Data Reader**
        - **Search Index Data Contributor**
        - **Search Service Contributor**
 
@@ -225,6 +226,8 @@ This section uses Visual Studio Code and Python to call the chat completion APIs
    ```
 
 1. Set up clients, the prompt, query, and response.
+
+   For the Azure Government cloud, modify the API endpoint on the token provider to `"https://cognitiveservices.azure.us/.default"`.
 
    ```python
    # Set up the query for generating responses
@@ -419,7 +422,7 @@ Once you have your tenant ID, run `az login --tenant <YOUR-TENANT-ID>` at a comm
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal by using the **All resources** or **Resource groups** link in the leftmost pane.
+You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
 ## See also
 

@@ -3,8 +3,8 @@ title: 'Quickstart: Use the Azure OpenAI Service via the JavaScript SDK'
 titleSuffix: Azure OpenAI Service
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the JavaScript SDK. 
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+author: aahill
+ms.author: aahi
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 10/09/2024
@@ -151,7 +151,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     const assistantsClient = getClient();
     
     const options: AssistantCreateParams = {
-      model: azureOpenAIDeployment, // Deployment name seen in Azure AI Studio
+      model: azureOpenAIDeployment, // Deployment name seen in Azure AI Foundry portal
       name: "Math Tutor",
       instructions:
         "You are a personal math tutor. Write and run JavaScript code to answer math questions.",
@@ -279,7 +279,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     const assistantsClient = getClient();
     
     const options: AssistantCreateParams = {
-      model: azureOpenAIDeployment, // Deployment name seen in Azure AI Studio
+      model: azureOpenAIDeployment, // Deployment name seen in Azure AI Foundry portal
       name: "Math Tutor",
       instructions:
         "You are a personal math tutor. Write and run JavaScript code to answer math questions.",

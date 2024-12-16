@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 03/13/2024
+ms.date: 12/10/2024
 ---
 
 # Manage your Azure AI Search service with REST APIs
@@ -321,7 +321,7 @@ GET https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups
 
 ## Next steps
 
-After a search service is configured, next steps include [create an index](search-how-to-create-search-index.md) or [query an index](search-query-overview.md) using the portal, REST APIs, or an Azure SDK.
+After a search service is configured, next steps include [create an index](search-how-to-create-search-index.md) or [query an index](search-query-overview.md) using the Azure portal, REST APIs, or an Azure SDK.
 
 * [Create an Azure AI Search index in the Azure portal](search-get-started-portal.md)
 * [Set up an indexer to load data from other services](search-indexer-overview.md)

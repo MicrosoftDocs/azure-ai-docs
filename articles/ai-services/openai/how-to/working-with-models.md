@@ -20,9 +20,9 @@ You can get a list of models that are available for both inference and fine-tuni
 
 ## Model updates
 
-Azure OpenAI now supports automatic updates for select model deployments. On models where automatic update support is available, a model version drop-down is visible in Azure OpenAI Studio under **Deployments** and **Edit**:
+Azure OpenAI now supports automatic updates for select model deployments. On models where automatic update support is available, a model version drop-down is visible in Azure AI Foundry portal under **Deployments** and **Edit**:
 
-:::image type="content" source="../media/models/auto-update-new.png" alt-text="Screenshot of the deploy model UI of Azure OpenAI Studio." lightbox="../media/models/auto-update-new.png":::
+:::image type="content" source="../media/models/auto-update-new.png" alt-text="Screenshot of the deploy model UI of Azure AI Foundry." lightbox="../media/models/auto-update-new.png":::
 
 You can learn more about Azure OpenAI model versions and how they work in the [Azure OpenAI model versions](../concepts/model-versions.md) article.
 
@@ -40,13 +40,13 @@ When you select a specific model version for a deployment, this version remains 
 
 ## Viewing retirement dates
 
-For currently deployed models, from Azure OpenAI Studio select **Deployments**:
+For currently deployed models, from Azure AI Foundry select **Deployments**:
 
-:::image type="content" source="../media/models/deployments-new.png" alt-text="Screenshot of the deployment UI of Azure OpenAI Studio." lightbox="../media/models/deployments-new.png":::
+:::image type="content" source="../media/models/deployments-new.png" alt-text="Screenshot of the deployment UI of Azure AI Foundry." lightbox="../media/models/deployments-new.png":::
 
 ## Model deployment upgrade configuration
 
-You can check what model upgrade options are set for previously deployed models in [Azure OpenAI Studio](https://oai.azure.com). Select **Deployments** > Under the deployment name column select one of the deployment names that are highlighted in blue.
+You can check what model upgrade options are set for previously deployed models in [Azure AI Foundry](https://oai.azure.com). Select **Deployments** > Under the deployment name column select one of the deployment names that are highlighted in blue.
 
 Selecting a deployment name opens the **Properties** for the model deployment. You can view what upgrade options are set for your deployment under **Version update policy**:
 

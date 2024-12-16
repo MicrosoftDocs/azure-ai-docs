@@ -10,7 +10,7 @@ ms.date: 03/25/2024
 
 | **Region**   | **text-embedding-3-small**, **1**   | **text-embedding-3-large**, **1**   | **text-embedding-ada-002**, **1**   | **text-embedding-ada-002**, **2**   |
 |:-----------------|:---------------------------------:|:---------------------------------:|:---------------------------------:|:---------------------------------:|
-| australiaeast    | -                             | -                             | -                             | ✅                              |
+| australiaeast    | ✅                              | ✅                              | -                             | ✅                              |
 | brazilsouth      | -                             | -                             | -                             | ✅                              |
 | canadaeast       | ✅                              | ✅                              | -                             | ✅                              |
 | eastus           | ✅                              | ✅                              | ✅                              | ✅                              |
@@ -24,9 +24,9 @@ ms.date: 03/25/2024
 | southcentralus   | -                             | -                             | ✅                              | ✅                              |
 | southindia       | -                             | ✅                              | -                             | ✅                              |
 | swedencentral    | -                             | ✅                              | -                             | ✅                              |
-| switzerlandnorth | -                             | ✅                              | -                             | ✅                              |
+| switzerlandnorth | ✅                              | ✅                              | -                             | ✅                              |
 | uaenorth         | -                             | -                             | -                             | ✅                              |
 | uksouth          | -                             | ✅                              | -                             | ✅                              |
 | westeurope       | -                             | -                             | -                             | ✅                              |
-| westus           | -                             | -                             | -                             | ✅                              |
+| westus           | ✅                              | -                             | -                             | ✅                              |
 | westus3          | -                             | ✅                              | -                             | ✅                              |
