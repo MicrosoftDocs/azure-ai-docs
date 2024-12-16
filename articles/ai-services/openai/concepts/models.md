@@ -249,9 +249,9 @@ You need to [create](../how-to/create-resource.md) or use an existing resource i
 
 When your resource is created, you can [deploy](../how-to/create-resource.md#deploy-a-model) the GPT-4o models. If you are performing a programmatic deployment, the **model** names are:
 
--`gpt-4o` **Version** `2024-11-20`
+- `gpt-4o` **Version** `2024-11-20`
 - `gpt-4o` **Version** `2024-08-06`
-- `gpt-4o`, **Version**  `2024-05-13`
+- `gpt-4o` **Version** `2024-05-13`
 - `gpt-4o-mini` **Version** `2024-07-18`
 
 ### GPT-4 Turbo
