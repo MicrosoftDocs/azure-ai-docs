@@ -24,6 +24,17 @@ In this article, learn about Azure Machine Learning CLI (v2) releases.
 __RSS feed__: Get notified when this page is updated by copying and pasting the following URL into your feed reader:
 `https://learn.microsoft.com/api/search/rss?search=%22Azure+machine+learning+release+notes-v2%22&locale=en-us`
 
+## 2024-12-17
+
+### Azure Machine Learning CLI (v2) v2.33.0
+
+- `az ml workspace create --provision-network-now`
+  - Added `--provision-network-now` property to trigger the provisioning of the managed network when creating a workspace with the managed network enabled, or else it does nothing
+- `az ml capability-host`
+  - Added create operation
+  - Added get operation
+  - Added delete operation
+
 ## 2024-09-18
 
 ### Azure Machine Learning CLI (v2) v2.30.0
