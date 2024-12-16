@@ -415,6 +415,8 @@ pip install azure-monitor-opentelemetry
 Use the following code to enable instrumentation of the Azure AI Inference SDK and logging to your AI project:
 
 ```Python
+from azure.monitor.opentelemetry import configure_azure_monitor
+
 # Enable instrumentation of AI packages (inference, agents, openai, langchain)
 project.telemetry.enable()
 

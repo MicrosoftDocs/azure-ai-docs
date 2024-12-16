@@ -175,7 +175,7 @@ project_client.agents.delete_file(file.id)
 print("Deleted file")
 
 # print the messages from the agent
-messages = project_client.agents.get_messages(thread_id=thread.id)
+messages = project_client.agents.list_messages(thread_id=thread.id)
 print(f"Messages: {messages}")
 
 # get the most recent message from the assistant
