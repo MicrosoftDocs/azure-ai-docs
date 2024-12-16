@@ -7,8 +7,8 @@ manager: nitinme
 ms.service: azure
 ms.topic: how-to
 ms.date: 12/11/2024
-author: aahill
-ms.author: aahi
+author: fosteramanda
+ms.author: fosteramanda
 ms.custom: azure-ai-agents
 ---
 
@@ -29,7 +29,7 @@ To use your own resources, you can edit the parameters in the provided deploymen
 
 ## Basic agent setup: use an existing AI Services resource 
 
-Replace the parameter value for `aiServiceAccountResourceId` with the full arm resource ID of the AI Services account you want to use.
+Replace the parameter value for `aiServiceAccountResourceId` with the full arm resource ID of the AI Services/Azure OpenAI resource you want to use.
 
 1. To get the AI Services account resource ID, sign in to the Azure CLI and select the subscription with your AI Services account:
        
@@ -44,18 +44,25 @@ Replace the parameter value for `aiServiceAccountResourceId` with the full arm r
     
     ```
     aiServiceAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
+
+    [Azure OpenAI Only] aiServiceKind: AzureOpenAI
     ```
+
+    If you want to use an existing Azure OpenAI resource, you will need to update the `aiServiceAccountResourceId` and the `aiServiceKind` parameters in the parameter file. The aiServiceKind parameter should be set to AzureOpenAI.
+
 
 ## Standard agent setup: use an existing AI Services, storage, and/or Azure AI Search resource 
 
 Use an existing AI Search, storage account, and/or Azure AI Search resource by providing the full arm resource ID in the standard agent template file.
 
-Use an existing AI Services resource:
+Use an existing AI Services/Azure OpenAI resource:
 1. Follow the steps in basic agent setup to get the AI Services account resource ID.
 2. In the standard agent template file, replace the following placeholders:
     
     ```
     aiServiceAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
+    
+    [Azure OpenAI Only] aiServiceKind: AzureOpenAI
     ```
 
 ### Use an existing storage account
