@@ -6,7 +6,7 @@ ms.date: 12/13/2024
 ms.author: larryfr
 ---
 
-* The [Azure CLI](/cli/azure/) and the `ml` extension to the Azure CLI, installed and configured. For more information, see [Install and set up the CLI (v2)](how-to-configure-cli.md).
+* The [Azure CLI](/cli/azure/) and the `ml` extension to the Azure CLI, installed and configured. For more information, see [Install and set up the CLI (v2)](../how-to-configure-cli.md).
 
 * A Bash shell or a compatible shell, for example, a shell on a Linux system or [Windows Subsystem for Linux](/windows/wsl/about). The Azure CLI examples in this article assume that you use this type of shell.
 
