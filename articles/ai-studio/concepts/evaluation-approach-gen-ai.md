@@ -38,7 +38,7 @@ Key considerations at this stage might include:
 - **Bias and ethical considerations**: Does the model produce any outputs that might perpetuate or promote harmful stereotypes?
 - **Risk and safety**: Are there any risks of the model generating unsafe or malicious content?
 
-You can explore [Azure AI Foundry benchmarks](./model-benchmarks.md)to evaluate and compare models on publicly available datasets, while also regenerating benchmark results on your own data. Alternatively, you can evaluate one of many base generative AI models via Azure AI Evaluation SDK as demonstrated, see [Evaluate model endpoints sample](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/evaluate_endpoints/evaluate_endpoints.ipynb).
+You can explore [Azure AI Foundry benchmarks](./model-benchmarks.md)to evaluate and compare models on publicly available datasets, while also regenerating benchmark results on your own data. Alternatively, you can evaluate one of many base generative AI models via Azure AI Evaluation SDK as demonstrated, see [Evaluate model endpoints sample](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/Supported_Evaluation_Targets/Evaluate_Base_Model_Endpoint/Evaluate_Base_Model_Endpoint.ipynb).
 
 ## Pre-production evaluation
 
