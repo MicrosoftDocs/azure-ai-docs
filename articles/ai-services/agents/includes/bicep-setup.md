@@ -1,7 +1,7 @@
 ---
 manager: nitinme
-author: aahill
-ms.author: aahi
+author: fosteramanda
+ms.author: fosteramanda
 ms.service: azure
 ms.topic: include
 ms.date: 11/13/2024
@@ -46,6 +46,24 @@ By default, the deployment template is configured with the following values:
 > **Don't change the modelFormat parameter.** 
 >
 > The templates only support deployment of OpenAI models. See which OpenAI models are supported in the [Azure AI Agent Service model support](../concepts/model-region-support.md) documentation.
+
+
+### [Optional] Use your own resources in agent setup
+
+> [!NOTE]
+> If you use an existing AI Services/AOAI resource, no model will be deployed. You can deploy a model to the resource after the agent setup is complete. 
+
+Use an existing AI Services/AOAI, AI Search, and/or Azure Blob Storage resource by providing the full arm resource id in the parameters file:
+
+- aiServiceAccountResourceId
+- aiSearchServiceResourceId
+- aiStorageAccountResourceId
+
+
+If you want to use an existing Azure OpenAI resource, you will need to update the `aiServiceAccountResourceId` and the `aiServiceKind` parameters in the parameter file. The `aiServiceKind` parameter should be set to `AzureOpenAI`. 
+
+For more details see [how to use your own resources](../how-to/tools/use-your-own-resources.md).
+
 
 ## Basic agent setup resource architecture
 :::image type="content" source="../media/quickstart/basic-agent-setup-resources.png" alt-text="An architecture diagram for basic agent setup." lightbox="../media/quickstart/basic-agent-setup-resources.png":::
