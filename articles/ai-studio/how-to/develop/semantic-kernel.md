@@ -213,7 +213,7 @@ The following code shows how to get embeddings from the service:
 
 ```python
 embeddings = await embedding_generation_service.generate_embeddings(
-    text=["My favorite color is blue.", "I love to eat pizza."],
+    texts=["My favorite color is blue.", "I love to eat pizza."],
 )
 
 for embedding in embeddings:
