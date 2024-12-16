@@ -19,7 +19,7 @@ In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overvie
 
 - An [Azure subscription](https://azure.microsoft.com).
 - An Azure AI project as explained at [Create a project in Azure AI Foundry portal](../create-projects.md).
-- A model supporting the [Azure AI model inference API](../../reference/reference-model-inference-api?tabs=python) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`.
+- A model supporting the [Azure AI model inference API](../../reference/reference-model-inference-api.md?tabs=python) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`.
 
   - You can follow the instructions at [Deploy models as serverless APIs](../deploy-models-serverless.md).
 
