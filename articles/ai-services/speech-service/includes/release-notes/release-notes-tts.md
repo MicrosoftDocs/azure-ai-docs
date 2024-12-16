@@ -7,6 +7,17 @@ ms.author: eur
 ms.custom: references_regions
 ---
 
+
+### November 2024 release
+
+##### Prebuilt neural voice
+Introduced 2 voices (4 fonts) in public preview for `en-IN` and `hi-IN`
+
+| **Locale (BCP-47)** | **Voice name**              |
+|---------------------|---------------------------|
+| `en-IN`, `hi-IN` | `AartiNeural` |
+| `en-IN`, `hi-IN` | `ArjunNeural` |
+
 ### October 2024 release
 
 ##### Prebuilt neural voice
