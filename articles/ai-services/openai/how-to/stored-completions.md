@@ -22,6 +22,10 @@ Stored completions allow you to capture the conversation history from chat compl
 
 - `2024-10-01-preview`
 
+### Model support
+
+- `gpt-4o-2024-08-06`
+
 ### Regional availability
 
 - Sweden Central
