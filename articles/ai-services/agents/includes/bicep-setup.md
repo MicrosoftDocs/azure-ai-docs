@@ -53,7 +53,7 @@ By default, the deployment template is configured with the following values:
 > [!NOTE]
 > If you use an existing AI Services/AOAI resource, no model will be deployed. You can deploy a model to the resource after the agent setup is complete. 
 
-Use an existing AI Services/AOAI, AI Search, and/or Azure Blob Storage resource by providing the full arm resource id in the parameters file:
+Use an existing AI Services/AOAI, AI Search, and/or Azure Blob Storage resource by providing the full arm resource ID in the parameters file:
 
 - aiServiceAccountResourceId
 - aiSearchServiceResourceId
