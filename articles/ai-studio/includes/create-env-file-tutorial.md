@@ -23,10 +23,6 @@ CHAT_MODEL="gpt-4o-mini"
 EVALUATION_MODEL="gpt-4o-mini"
 ```
 
-If you changed the name of the models you deployed, or you want to try different models, update those names in this `.env` file.
-
-Find your connection string in the Azure AI Foundry project you created in the [AI Foundry playground quickstart](../quickstarts/get-started-playground.md).  Open the project, then find the connection string on the **Overview** page.  Copy the connection string and paste it into the `.env` file.
-
 :::image type="content" source="../media/quickstarts/azure-ai-sdk/connection-string.png" alt-text="Screenshot shows the overview page of a project and the location of the connection string.":::
 
 If you don't yet have a search index, keep the value "example-index" for `AISEARCH_INDEX_NAME`. In Part 2 of this tutorial you'll create the index using this name. If you have previously created a search index that you want to use instead, update the value to match the name of that search index.  
