@@ -28,7 +28,7 @@ The Nixtla TimeGEN-1 is a generative, pretrained forecasting and anomaly detecti
 
 Certain models in the model catalog can be deployed as a serverless API with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
 
-You can deploy TimeGEN-1 as a serverless API with pay-as-you-go billing. Nixtla offers TimeGEN-1 through the Microsoft Azure Marketplace. Nixtla can change or update the terms of use and pricing of this model.
+You can deploy TimeGEN-1 as a serverless API with pay-as-you-go billing. Nixtla offers TimeGEN-1 through Microsoft Azure Marketplace. Nixtla can change or update the terms of use and pricing of this model.
 
 ### Prerequisites
 
@@ -96,7 +96,7 @@ These steps demonstrate the deployment of TimeGEN-1. To create a deployment:
 1. Select the **Subscribe and Deploy** button. If this is your first time deploying the model in the project, you have to subscribe your project for the particular offering.
 
     > [!NOTE]
-    > This step requires that your account has the **Azure AI Developer role** permissions on the resource group, as listed in the prerequisites. Models that are offered by non-Microsoft providers (for example, Nixtla TimeGEN-1) are billed through the Azure Marketplace. For such models, you're required to subscribe your project to the particular model offering. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Currently, you can have only one deployment for each model within a project.
+    > This step requires that your account has the **Azure AI Developer role** permissions on the resource group, as listed in the prerequisites. Models that are offered by non-Microsoft providers (for example, Nixtla TimeGEN-1) are billed through Azure Marketplace. For such models, you're required to subscribe your project to the particular model offering. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Currently, you can have only one deployment for each model within a project.
 
 1. Once you subscribe the project for the particular Azure Marketplace offering, subsequent deployments of the _same_ offering in the _same_ project don't require subscribing again. If this scenario applies to you,  there's a **Continue to deploy** option to select.
 1. Give the deployment a name. This name becomes part of the deployment API URL. This URL must be unique in each Azure region.
@@ -271,11 +271,11 @@ This JSON sample is an example response:
 
 ### Cost and quota considerations for TimeGEN-1 deployed as a serverless API
 
-Nixtla offers TimeGEN-1 deployed as a serverless API through the Azure Marketplace. TimeGEN-1 is integrated with Azure AI Foundry for use. You can find more information about Azure Marketplace pricing when you deploy the model.
+Nixtla offers TimeGEN-1 deployed as a serverless API through Azure Marketplace. TimeGEN-1 is integrated with Azure AI Foundry for use. You can find more information about Azure Marketplace pricing when you deploy the model.
 
-Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
+Each time a project subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
 
-For more information about how to track costs, visit [monitor costs for models offered throughout the Azure Marketplace](./costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
+For more information about how to track costs, visit [monitor costs for models offered throughout Azure Marketplace](./costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits are insufficient for your scenarios.
 
