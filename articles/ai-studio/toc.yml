@@ -303,6 +303,8 @@ items:
       - name: Develop with LlamaIndex
         href: how-to/develop/llama-index.md
         displayName: code,sdk
+      - name: Develop with Semantic Kernel 
+        href: how-to/develop/semantic-kernel.md
     - name: Trace generative AI apps
       items:
        - name: Tracing overview
