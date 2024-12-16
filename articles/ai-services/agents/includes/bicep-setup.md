@@ -1,7 +1,7 @@
 ---
 manager: nitinme
-author: aahill
-ms.author: aahi
+author: fosteramanda
+ms.author: fosteramanda
 ms.service: azure
 ms.topic: include
 ms.date: 11/13/2024
@@ -53,52 +53,17 @@ By default, the deployment template is configured with the following values:
 > [!NOTE]
 > If you use an existing AI Services/AOAI resource, no model will be deployed. You can deploy a model to the resource after the agent setup is complete. 
 
-#### Basic agent setup: use an existing AI Services resource 
+Use an existing AI Services/AOAI, AI Search, and/or Azure Blob Storage resource by providing the full arm resource id in the parameters file:
 
-Replace the parameter value for `aiServiceAccountResourceId` with the full arm resource ID of the AI Services account you want to use.
+- aiServiceAccountResourceId
+- aiSearchServiceResourceId
+- aiStorageAccountResourceId
 
-1. To get the AI Services account resource ID, sign in to the Azure CLI and select the subscription with your AI Services account:
-       
-    ```az login``` 
-2. Replace `<your-resource-group>` with the resource group containing your resource and `your-ai-service-resource-name` with the name of your AI Service resource, and run:
-    
-    ```az cognitiveservices account show --resource-group <your-resource-group> --name <your-ai-service-resource-name> --query "id" --output tsv```
 
-    The value returned is the `aiServiceAccountResourceId` you need to use in the template.
+If you want to use an existing Azure OpenAI resource, you will need to update the `aiServiceAccountResourceId` and the `aiServiceKind` parameters in the parameter file. The `aiServiceKind` parameter should be set to `AzureOpenAI`. 
 
-2. In the basic agent template file, set the parameter:
-    - aiServiceAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
+For more details see [how to use your own resources](../how-to/tools/use-your-own-resources.md).
 
-#### Standard agent setup: use an existing AI Services, storage, and/or Azure AI Search resource 
-
-Use an existing AI Search, storage account, and/or Azure AI Search resource by providing the full arm resource ID in the standard agent template file.
-
-Use an existing AI Services resource:
-1. Follow the steps in basic agent setup to get the AI Services account resource ID.
-2. In the standard agent template file, set the parameter:
-    - aiServiceAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
-
-Use an existing storage account:
-1. To get your storage account resource ID, sign in to the Azure CLI and select the subscription with your storage account: 
-    
-    ```az login``` 
-2. Then run the command:
-
-    ```az search service show --resource-group  <your-resource-group> --name <your-storage-account>  --query "id" --output tsv```
-    
-     The output is the `aiStorageAccountResourceID` you need to use in the template.
-3. In the standard agent template file, set the parameter:
-    - aiStorageAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}
-
-Use an existing Azure AI Search resource:
-1. To get your Azure AI Search resource ID, sign into Azure CLI and select the subscription with your search resource: 
-    
-    ```az login```
-2. Then run the command:
-    
-    ```az search service show --resource-group  <your-resource-group> --name <your-search-service>  --query "id" --output tsv```
-3. In the standard agent template file, set the parameter:
-    - aiSearchServiceResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}
 
 ## Basic agent setup resource architecture
 :::image type="content" source="../media/quickstart/basic-agent-setup-resources.png" alt-text="An architecture diagram for basic agent setup." lightbox="../media/quickstart/basic-agent-setup-resources.png":::
