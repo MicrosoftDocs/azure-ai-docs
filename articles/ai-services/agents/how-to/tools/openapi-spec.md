@@ -102,7 +102,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Azure.AI.Projects.Tests;
 
-public partial class Sample_Agent_Azure_Functions : SamplesBase<AIProjectsTestEnvironment>
+public partial class Sample_Agent_OpenAPI : SamplesBase<AIProjectsTestEnvironment>
 {
     private static string GetFile([CallerFilePath] string pth = "")
     {
