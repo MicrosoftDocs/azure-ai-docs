@@ -58,6 +58,9 @@ items:
     - name: Content Understanding
       tocHref: /azure/ai-services/content-understanding/
       topicHref: /azure/ai-services/content-understanding/
+    - name: Agents
+      tocHref: /azure/ai-services/agents/
+      topicHref: /azure/ai-services/agents/
   - name: Genomics
     tocHref: /azure/genomics/
     topicHref: /azure/genomics/

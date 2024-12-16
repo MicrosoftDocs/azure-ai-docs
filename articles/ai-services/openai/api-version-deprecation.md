@@ -16,8 +16,9 @@ ms.custom:
 
 This article is to help you understand the support lifecycle for the Azure OpenAI API previews. New preview APIs target a monthly release cadence. Whenever possible we recommend using either the latest GA, or preview API releases.
 
+
 > [!NOTE]
-> The `2023-06-01-preview` API and the `2023-10-01-preview` API remain supported at this time.
+> New API response objects may be added to the API response without version changes. We recommend you only parse the response objects you require. 
 
 ## Latest preview API releases
 
