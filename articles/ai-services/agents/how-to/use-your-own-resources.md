@@ -27,7 +27,7 @@ To use your own resources, you can edit the parameters in the provided deploymen
 
 **Standard Setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage. You can use your own AI services account, storage account, and/or Azure AI Search resource with this option. 
 
-## Basic agent setup: use an existing AI Services resource 
+## Basic agent setup: use an existing AI Services/Azure OpenAI resource 
 
 Replace the parameter value for `aiServiceAccountResourceId` with the full arm resource ID of the AI Services/Azure OpenAI resource you want to use.
 
@@ -51,7 +51,7 @@ Replace the parameter value for `aiServiceAccountResourceId` with the full arm r
     If you want to use an existing Azure OpenAI resource, you will need to update the `aiServiceAccountResourceId` and the `aiServiceKind` parameters in the parameter file. The aiServiceKind parameter should be set to AzureOpenAI.
 
 
-## Standard agent setup: use an existing AI Services, storage, and/or Azure AI Search resource 
+## Standard agent setup: use an existing AI Services/Azure OpenAI, storage, and/or Azure AI Search resource 
 
 Use an existing AI Search, storage account, and/or Azure AI Search resource by providing the full arm resource ID in the standard agent template file.
 
