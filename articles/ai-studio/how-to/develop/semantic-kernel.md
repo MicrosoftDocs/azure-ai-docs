@@ -29,6 +29,10 @@ In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overvie
     ```bash
     pip install semantic-kernel
     ```
+- In this example, we are working with the Azure AI model inference API, hence we install the relevant azure dependencies. You can do it with:
+    ```bash
+    pip install semantic-kernel[azure]
+    ```
 
 ## Configure the environment
 
@@ -148,7 +152,7 @@ Alternatively, you can stream the response from the service:
 chat_history = ChatHistory()
 chat_history.add_user_message("Hello, how are you?")
 
-response = chat_completion.get_streaming_chat_message_content(
+response = chat_completion_service.get_streaming_chat_message_content(
     chat_history=chat_history,
     settings=execution_settings,
 )
@@ -167,7 +171,7 @@ You can create a long-running conversation by using a loop:
 
 ```python
 while True:
-    response = await chat_completion.get_chat_message_content(
+    response = await chat_completion_service.get_chat_message_content(
         chat_history=chat_history,
         settings=execution_settings,
     )
@@ -180,7 +184,7 @@ If you're streaming the response, you can use the following code:
 
 ```python
 while True:
-    response = chat_completion.get_streaming_chat_message_content(
+    response = chat_completion_service.get_streaming_chat_message_content(
         chat_history=chat_history,
         settings=execution_settings,
     )
@@ -209,7 +213,7 @@ The following code shows how to get embeddings from the service:
 
 ```python
 embeddings = await embedding_generation_service.generate_embeddings(
-    text=["My favorite color is blue.", "I love to eat pizza."],
+    texts=["My favorite color is blue.", "I love to eat pizza."],
 )
 
 for embedding in embeddings:
