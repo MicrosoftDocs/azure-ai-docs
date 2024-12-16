@@ -139,7 +139,7 @@ from semantic_kernel.contents.chat_history import ChatHistory
 chat_history = ChatHistory()
 chat_history.add_user_message("Hello, how are you?")
 
-response = await chat_completion.get_chat_message_content(
+response = await chat_completion_service.get_chat_message_content(
     chat_history=chat_history,
     settings=execution_settings,
 )
