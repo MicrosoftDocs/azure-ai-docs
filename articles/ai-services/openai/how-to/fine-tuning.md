@@ -143,15 +143,11 @@ Users can use preference fine tuning with base models as well as models that hav
 
 ### How to use direct preference optimization fine-tuning?
 
-:::image type="content" source="../media/fine-tuning/preference-fine-tuning.gif" alt-text="Gif demonstrating the steps for preference fine-tuning" lightbox="../media/fine-tuning/preference-fine-tuning.gif":::
-
 1. Prepare `jsonl` datasets in the [preference format](#direct-preference-optimization-dataset-format).
 2. Select the model and then select the method of customization **Direct Preference Optimization**
 3. Upload datasets – training and validation. Preview as needed.
 4. Select hyperparameters, defaults are recommended for initial experimentation.
 5. Review the selections and create fine tuning job.
-
-
 
 ## Troubleshooting
 
