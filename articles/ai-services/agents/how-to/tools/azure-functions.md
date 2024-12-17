@@ -20,10 +20,10 @@ Azure Functions provide support for triggers and bindings, which simplify how yo
  
 Meanwhile, bindings facilitate streamlined connections to input or output data sources, such as databases or APIs, without requiring extensive boilerplate code. For instance, you can configure a trigger to execute an Azure Function whenever a customer message is received in a chatbot and use output bindings to send a response via the Azure AI Agent.
 
-# Prerequisites
+## Prerequisites
 
-* [Azure Functions Core Tools v4.x](https://learn.microsoft.com/azure/azure-functions/functions-run-local?tabs=v4%2Cwindows%2Cnode%2Cportal%2Cbash)
-* [Azure AI Agent Service](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/develop/sdk-overview?tabs=sync&pivots=programming-language-python#azure-ai-agent-service)
+* [Azure Functions Core Tools v4.x](/azure/azure-functions/functions-run-local)
+* [Azure AI Agent Service](../../../../ai-studio/how-to/develop/sdk-overview.md?tabs=sync&pivots=programming-language-python#azure-ai-agent-service)
 * [Azurite](https://github.com/Azure/Azurite)
 
 ## Prepare your local environment
@@ -76,7 +76,7 @@ azd provision
 
 ::: zone-end
 
-::: zone pivot="code-examples"
+::: zone pivot="code-example"
 
 # Azure AI Agents function calling with Azure Functions
 
