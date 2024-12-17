@@ -15,6 +15,7 @@ ms.date: 11/13/2024
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
 * [Python 3.13 or later](https://www.python.org/)
 * Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio.md) assigned at the appropriate level.
+* You may also require the **Cognitive Services OpenAI User** assigned to use Azure AI Services resource.
 * Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
 
 [!INCLUDE [bicep-setup](bicep-setup.md)]
