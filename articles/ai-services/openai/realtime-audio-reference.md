@@ -54,15 +54,15 @@ There are nine client events that can be sent from the client to the server:
 
 | Event | Description |
 |-------|-------------|
-| [RealtimeClientEventConversationItemCreate](#realtimeclienteventconversationitemcreate) | Send this client event when adding an item to the conversation. |
-| [RealtimeClientEventConversationItemDelete](#realtimeclienteventconversationitemdelete) | Send this client event when you want to remove any item from the conversation history. |
-| [RealtimeClientEventConversationItemTruncate](#realtimeclienteventconversationitemtruncate) | Send this client event when you want to truncate a previous assistant message's audio. |
-| [RealtimeClientEventInputAudioBufferAppend](#realtimeclienteventinputaudiobufferappend) | Send this client event to append audio bytes to the input audio buffer. |
-| [RealtimeClientEventInputAudioBufferClear](#realtimeclienteventinputaudiobufferclear) | Send this client event to clear the audio bytes in the buffer. |
-| [RealtimeClientEventInputAudioBufferCommit](#realtimeclienteventinputaudiobuffercommit) | Send this client event to commit audio bytes to a user message. |
-| [RealtimeClientEventResponseCancel](#realtimeclienteventresponsecancel) | Send this client event to cancel an in-progress response. |
-| [RealtimeClientEventResponseCreate](#realtimeclienteventresponsecreate) | Send this client event to trigger a response generation. |
-| [RealtimeClientEventSessionUpdate](#realtimeclienteventsessionupdate) | Send this client event to update the session's default configuration. |
+| [RealtimeClientEventConversationItemCreate](#realtimeclienteventconversationitemcreate) | The client `conversation.item.create` event is used to add a new item to the conversation's context, including messages, function calls, and function call responses. |
+| [RealtimeClientEventConversationItemDelete](#realtimeclienteventconversationitemdelete) | The client `conversation.item.delete` event is used to remove an item from the conversation history. |
+| [RealtimeClientEventConversationItemTruncate](#realtimeclienteventconversationitemtruncate) | The client `conversation.item.truncate` event is used to truncate a previous assistant message's audio. |
+| [RealtimeClientEventInputAudioBufferAppend](#realtimeclienteventinputaudiobufferappend) | The client `input_audio_buffer.append` event is used to append audio bytes to the input audio buffer. |
+| [RealtimeClientEventInputAudioBufferClear](#realtimeclienteventinputaudiobufferclear) | The client `input_audio_buffer.clear` event is used to clear the audio bytes in the buffer. |
+| [RealtimeClientEventInputAudioBufferCommit](#realtimeclienteventinputaudiobuffercommit) | The client `input_audio_buffer.commit` event is used to commit the user input audio buffer. |
+| [RealtimeClientEventResponseCancel](#realtimeclienteventresponsecancel) | The client `response.cancel` event is used to cancel an in-progress response. |
+| [RealtimeClientEventResponseCreate](#realtimeclienteventresponsecreate) | The client `response.create` event is used to instruct the server to create a response via model inferencing. |
+| [RealtimeClientEventSessionUpdate](#realtimeclienteventsessionupdate) | The client `session.update` event is used to update the session's default configuration. |
 
 ### RealtimeClientEventConversationItemCreate
 
@@ -281,34 +281,34 @@ There are 28 server events that can be received from the server:
 
 | Event | Description |
 |-------|-------------|
-| [RealtimeServerEventConversationCreated](#realtimeservereventconversationcreated) | Server event when a conversation is created. Emitted right after session creation. |
-| [RealtimeServerEventConversationItemCreated](#realtimeservereventconversationitemcreated) | Server event when a conversation item is created. |
-| [RealtimeServerEventConversationItemDeleted](#realtimeservereventconversationitemdeleted) | Server event when an item in the conversation is deleted. |
-| [RealtimeServerEventConversationItemInputAudioTranscriptionCompleted](#realtimeservereventconversationiteminputaudiotranscriptioncompleted) | Server event when input audio transcription is enabled and a transcription succeeds. |
-| [RealtimeServerEventConversationItemInputAudioTranscriptionFailed](#realtimeservereventconversationiteminputaudiotranscriptionfailed) | Server event when input audio transcription is configured, and a transcription request for a user message failed. |
-| [RealtimeServerEventConversationItemTruncated](#realtimeservereventconversationitemtruncated) | Server event when the client truncates an earlier assistant audio message item. |
-| [RealtimeServerEventError](#realtimeservereventerror) | Server event when an error occurs. |
-| [RealtimeServerEventInputAudioBufferCleared](#realtimeservereventinputaudiobuffercleared) | Server event when the client clears the input audio buffer. |
-| [RealtimeServerEventInputAudioBufferCommitted](#realtimeservereventinputaudiobuffercommitted) | Server event when an input audio buffer is committed, either by the client or automatically in server VAD mode. |
-| [RealtimeServerEventInputAudioBufferSpeechStarted](#realtimeservereventinputaudiobufferspeechstarted) | Server event in server turn detection mode when speech is detected. |
-| [RealtimeServerEventInputAudioBufferSpeechStopped](#realtimeservereventinputaudiobufferspeechstopped) | Server event in server turn detection mode when speech stops. |
-| [RealtimeServerEventRateLimitsUpdated](#realtimeservereventratelimitsupdated) | Emitted after every "response.done" event to indicate the updated rate limits. |
-| [RealtimeServerEventResponseAudioDelta](#realtimeservereventresponseaudiodelta) | Server event when the model-generated audio is updated. |
-| [RealtimeServerEventResponseAudioDone](#realtimeservereventresponseaudiodone) | Server event when the model-generated audio is done. Also emitted when a response is interrupted, incomplete, or canceled. |
-| [RealtimeServerEventResponseAudioTranscriptDelta](#realtimeservereventresponseaudiotranscriptdelta) | Server event when the model-generated transcription of audio output is updated. |
-| [RealtimeServerEventResponseAudioTranscriptDone](#realtimeservereventresponseaudiotranscriptdone) | Server event when the model-generated transcription of audio output is done streaming. Also emitted when a response is interrupted, incomplete, or canceled. |
-| [RealtimeServerEventResponseContentPartAdded](#realtimeservereventresponsecontentpartadded) | Server event when a new content part is added to an assistant message item during response generation. |
-| [RealtimeServerEventResponseContentPartDone](#realtimeservereventresponsecontentpartdone) | Server event when a content part is done streaming in an assistant message item. Also emitted when a response is interrupted, incomplete, or canceled. |
-| [RealtimeServerEventResponseCreated](#realtimeservereventresponsecreated) | Server event when a new Response is created. The first event of response creation, where the response is in an initial state of "in_progress". |
-| [RealtimeServerEventResponseDone](#realtimeservereventresponsedone) | Server event when a response is done streaming. Always emitted, no matter the final state. |
-| [RealtimeServerEventResponseFunctionCallArgumentsDelta](#realtimeservereventresponsefunctioncallargumentsdelta) | Server event when the model-generated function call arguments are updated. |
-| [RealtimeServerEventResponseFunctionCallArgumentsDone](#realtimeservereventresponsefunctioncallargumentsdone) | Server event when the model-generated function call arguments are done streaming. Also emitted when a response is interrupted, incomplete, or canceled. |
-| [RealtimeServerEventResponseOutputItemAdded](#realtimeservereventresponseoutputitemadded) | Server event when a new output item is added to a response. |
-| [RealtimeServerEventResponseOutputItemDone](#realtimeservereventresponseoutputitemdone) | Server event when an output item is done streaming. Also emitted when a response is interrupted, incomplete, or canceled. |
-| [RealtimeServerEventResponseTextDelta](#realtimeservereventresponsetextdelta) | Server event when the model-generated text is updated. |
-| [RealtimeServerEventResponseTextDone](#realtimeservereventresponsetextdone) | Server event when the model-generated text is done. Also emitted when a response is interrupted, incomplete, or canceled. |
-| [RealtimeServerEventSessionCreated](#realtimeservereventsessioncreated) | Server event when a session is created. |
-| [RealtimeServerEventSessionUpdated](#realtimeservereventsessionupdated) | Server event when a session is updated. |
+| [RealtimeServerEventConversationCreated](#realtimeservereventconversationcreated) | The server `conversation.created` event is returned right after session creation. One conversation is created per session. |
+| [RealtimeServerEventConversationItemCreated](#realtimeservereventconversationitemcreated) | The server `conversation.item.created` event is returned when a conversation item is created. |
+| [RealtimeServerEventConversationItemDeleted](#realtimeservereventconversationitemdeleted) | The server `conversation.item.deleted` event is returned when the client deleted an item in the conversation with a `conversation.item.delete` event. |
+| [RealtimeServerEventConversationItemInputAudioTranscriptionCompleted](#realtimeservereventconversationiteminputaudiotranscriptioncompleted) | The server `conversation.item.input_audio_transcription.completed` event is the result of audio transcription for speech written to the audio buffer. |
+| [RealtimeServerEventConversationItemInputAudioTranscriptionFailed](#realtimeservereventconversationiteminputaudiotranscriptionfailed) | The server `conversation.item.input_audio_transcription.failed` event is returned when input audio transcription is configured, and a transcription request for a user message failed. |
+| [RealtimeServerEventConversationItemTruncated](#realtimeservereventconversationitemtruncated) | The server `conversation.item.truncated` event is returned when the client truncates an earlier assistant audio message item with a `conversation.item.truncate` event. |
+| [RealtimeServerEventError](#realtimeservereventerror) | The server `error` event is returned when an error occurs, which could be a client problem or a server problem. |
+| [RealtimeServerEventInputAudioBufferCleared](#realtimeservereventinputaudiobuffercleared) | The server `input_audio_buffer.cleared` event is returned when the client clears the input audio buffer with a `input_audio_buffer.clear` event. |
+| [RealtimeServerEventInputAudioBufferCommitted](#realtimeservereventinputaudiobuffercommitted) | The server `input_audio_buffer.committed` event is returned when an input audio buffer is committed, either by the client or automatically in server VAD mode. |
+| [RealtimeServerEventInputAudioBufferSpeechStarted](#realtimeservereventinputaudiobufferspeechstarted) | The server `input_audio_buffer.speech_started` event is returned in `server_vad` mode when speech is detected in the audio buffer. |
+| [RealtimeServerEventInputAudioBufferSpeechStopped](#realtimeservereventinputaudiobufferspeechstopped) | The server `input_audio_buffer.speech_stopped` event is returned in `server_vad` mode when the server detects the end of speech in the audio buffer. |
+| [RealtimeServerEventRateLimitsUpdated](#realtimeservereventratelimitsupdated) | The server `rate_limits.updated` event is emitted at the beginning of a response to indicate the updated rate limits. |
+| [RealtimeServerEventResponseAudioDelta](#realtimeservereventresponseaudiodelta) | The server `response.audio.delta` event is returned when the model-generated audio is updated. |
+| [RealtimeServerEventResponseAudioDone](#realtimeservereventresponseaudiodone) | The server `response.audio.done` event is returned when the model-generated audio is done. |
+| [RealtimeServerEventResponseAudioTranscriptDelta](#realtimeservereventresponseaudiotranscriptdelta) | The server `response.audio_transcript.delta` event is returned when the model-generated transcription of audio output is updated. |
+| [RealtimeServerEventResponseAudioTranscriptDone](#realtimeservereventresponseaudiotranscriptdone) | The server `response.audio_transcript.done` event is returned when the model-generated transcription of audio output is done streaming. |
+| [RealtimeServerEventResponseContentPartAdded](#realtimeservereventresponsecontentpartadded) | The server `response.content_part.added` event is returned when a new content part is added to an assistant message item. |
+| [RealtimeServerEventResponseContentPartDone](#realtimeservereventresponsecontentpartdone) | The server `response.content_part.done` event is returned when a content part is done streaming. |
+| [RealtimeServerEventResponseCreated](#realtimeservereventresponsecreated) | The server `response.created` event is returned when a new response is created. This is the first event of response creation, where the response is in an initial state of `in_progress`. |
+| [RealtimeServerEventResponseDone](#realtimeservereventresponsedone) | The server `response.done` event is returned when a response is done streaming. |
+| [RealtimeServerEventResponseFunctionCallArgumentsDelta](#realtimeservereventresponsefunctioncallargumentsdelta) | The server `response.function_call_arguments.delta` event is returned when the model-generated function call arguments are updated. |
+| [RealtimeServerEventResponseFunctionCallArgumentsDone](#realtimeservereventresponsefunctioncallargumentsdone) | The server `response.function_call_arguments.done` event is returned when the model-generated function call arguments are done streaming. |
+| [RealtimeServerEventResponseOutputItemAdded](#realtimeservereventresponseoutputitemadded) | The server `response.output_item.added` event is returned when a new item is created during response generation. |
+| [RealtimeServerEventResponseOutputItemDone](#realtimeservereventresponseoutputitemdone) | The server `response.output_item.done` event is returned when an item is done streaming. |
+| [RealtimeServerEventResponseTextDelta](#realtimeservereventresponsetextdelta) | The server `response.text.delta` event is returned when the model-generated text is updated. |
+| [RealtimeServerEventResponseTextDone](#realtimeservereventresponsetextdone) | The server `response.text.done` event is returned when the model-generated text is done streaming. |
+| [RealtimeServerEventSessionCreated](#realtimeservereventsessioncreated) | The server `session.created` event is the first server event when you establish a new connection to the Realtime API. This event creates and returns a new session with the default session configuration. |
+| [RealtimeServerEventSessionUpdated](#realtimeservereventsessionupdated) | The server `session.updated` event is returned when a session is updated by the client. If there's an error, the server sends an `error` event instead. |
 
 ### RealtimeServerEventConversationCreated
 
