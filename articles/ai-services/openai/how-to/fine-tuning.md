@@ -99,7 +99,7 @@ Azure OpenAI fine-tuning supports prompt caching with select models. Prompt cach
 
 ## Direct preference optimization (DPO)
 
-Direct preference optimization (DPO) is an alignment technique for large language models, used to adjust model weights based on human preferences. It differs from reinforcement learning from human feedback (RLHF) in that it does not require fitting a reward model and uses simpler data binary preferences for training. It is computationally lighter weight and faster than RLHF, while being equally effective at alignment.
+Direct preference optimization (DPO) is an alignment technique for large language models, used to adjust model weights based on human preferences. It differs from reinforcement learning from human feedback (RLHF) in that it does not require fitting a reward model and uses simpler binary data preferences for training. It is computationally lighter weight and faster than RLHF, while being equally effective at alignment.
 
 ### Why is DPO useful?
 
@@ -109,7 +109,7 @@ DPO is believed to be a technique that will make it easier for customers to gene
 
 ### Direct preference optimization dataset format
 
-Direct proference optimization files have a different format than supervised fine-tuning. Customers provide a "conversation" containing the system message and the initial user message, and then "completions" with paired preference data. Users can only provide two completions.
+Direct preference optimization files have a different format than supervised fine-tuning. Customers provide a "conversation" containing the system message and the initial user message, and then "completions" with paired preference data. Users can only provide two completions.
 
 Three top-level fields: `input`, `preferred_output` and `non_preferred_output`
 
@@ -117,9 +117,27 @@ Three top-level fields: `input`, `preferred_output` and `non_preferred_output`
 - Each element in the preferred_output/non_preferred_output can only have roles in (assistant, tool)
 
 ```json
-{
+{  
+  "input": {  
+    "messages": {"role": "system", "content": ...},  
+    "tools": [...],  
+    "parallel_tool_calls": true  
+  },  
+  "preferred_output": [{"role": "assistant", "content": ...}],  
+  "non_preferred_output": [{"role": "assistant", "content": ...}]  
+}  
+```
+
+Training datasets must be in `jsonl` format:
+
+```jsonl
+{{"input": {"messages": [{"role": "system", "content": "You are a chatbot assistant. Given a user question with multiple choice answers, provide the correct answer."}, {"role": "user", "content": "Question: Janette conducts an investigation to see which foods make her feel more fatigued. She eats one of four different foods each day at the same time for four days and then records how she feels. She asks her friend Carmen to do the same investigation to see if she gets similar results. Which would make the investigation most difficult to replicate? Answer choices: A: measuring the amount of fatigue, B: making sure the same foods are eaten, C: recording observations in the same chart, D: making sure the foods are at the same temperature"}]}, "preferred_output": [{"role": "assistant", "content": "A: Measuring The Amount Of Fatigue"}], "non_preferred_output": [{"role": "assistant", "content": "D: making sure the foods are at the same temperature"}]}
 }
 ```
+
+### Direct preference optimization model support
+
+- `gpt-4o-2024-08-06` supports direct preference optimization in its respective fine-tuning regions. Latest of region availability is updated here in [models page](../concepts/models.md#fine-tuning-models)
 
 ## Troubleshooting
 
