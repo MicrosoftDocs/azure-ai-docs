@@ -1080,7 +1080,7 @@ The server `session.updated` event is returned when a session is updated by the 
 | Field | Type | Description | 
 |-------|------|-------------|
 | type | [RealtimeClientEventType](#realtimeclienteventtype) | The type of the client event. |
-| event_id | string | The unique ID of the event. |
+| event_id | string | The unique ID of the event. The ID can be specified by the client to help identify the event. |
 
 ### RealtimeClientEventType
 
@@ -1148,8 +1148,8 @@ The definition of a function tool as used by the realtime endpoint.
 |-------|------|-------------|
 | type | string | The type of the tool.<br><br>Allowed values: `function` |
 | name | string | The name of the function. |
-| description | string | The description of the function. |
-| parameters | object | The parameters of the function. |
+| description | string | The description of the function, including usage guidelines. For example, "Use this function to get the current time." |
+| parameters | object | The parameters of the function in the form of a JSON object. |
 
 ### RealtimeItemStatus
 
@@ -1224,6 +1224,8 @@ The definition of a function tool as used by the realtime endpoint.
 
 ### RealtimeRequestSession
 
+You use the `RealtimeRequestSession` object when you want to update the session configuration via the [session.update](#realtimeclienteventsessionupdate) event.
+
 | Field | Type | Description | 
 |-------|------|-------------|
 | modalities | array | The modalities that the session supports.<br><br>Allowed values: `text`, `audio`<br/><br/>For example, `"modalities": ["text", "audio"]` is the default setting that enables both text and audio modalities. To enable only text, set `"modalities": ["text"]`. You can't enable only audio. |
@@ -1234,7 +1236,7 @@ The definition of a function tool as used by the realtime endpoint.
 | input_audio_transcription | [RealtimeAudioInputTranscriptionSettings](#realtimeaudioinputtranscriptionsettings) | The settings for audio input transcription.<br><br>This property is nullable. |
 | turn_detection | [RealtimeTurnDetection](#realtimeturndetection) | The turn detection settings for the session.<br><br>This property is nullable. |
 | tools | array of [RealtimeTool](#realtimetool) | The tools available to the model for the session. |
-| tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session. |
+| tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session.<br><br>Allowed values: `auto`, `none`, and `required`. Otherwise, you can specify the name of the function to use. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
 | max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br><br>Defaults to `"inf"`. |
 
@@ -1334,6 +1336,10 @@ The response resource.
 
 ### RealtimeResponseSession
 
+The `RealtimeResponseSession` object represents a session in the Realtime API. It's used in some of the server events, such as:
+- [`session.created`](#realtimeservereventsessioncreated)
+- [`session.updated`](#realtimeservereventsessionupdated)
+
 | Field | Type | Description | 
 |-------|------|-------------|
 | object | string | The session object.<br><br>Allowed values: `realtime.session` |
@@ -1379,7 +1385,7 @@ The response resource.
 | Field | Type | Description | 
 |-------|------|-------------|
 | type | [RealtimeServerEventType](#realtimeservereventtype) | The type of the server event. |
-| event_id | string | The unique ID of the event. |
+| event_id | string | The unique ID of the server event. |
 
 ### RealtimeServerEventRateLimitsUpdatedRateLimitsItem
 
@@ -1446,21 +1452,21 @@ The base representation of a realtime tool definition.
 
 ### RealtimeToolChoice
 
-The combined set of available representations for a realtime tool_choice parameter, encompassing both string literal options like 'auto' and structured references to defined tools.
+The combined set of available representations for a realtime `tool_choice` parameter, encompassing both string literal options like 'auto' and structured references to defined tools.
 
 ### RealtimeToolChoiceFunctionObject
 
-The representation of a realtime tool_choice selecting a named function tool.
+The representation of a realtime `tool_choice` selecting a named function tool.
 
 | Field | Type | Description | 
 |-------|------|-------------|
-| type | string | The type of the tool_choice.<br><br>Allowed values: `function` |
+| type | string | The type of the `tool_choice`.<br><br>Allowed values: `function` |
 | function | object | The function tool to select.<br><br>See nested properties next.|
 | + name | string | The name of the function tool.<br><br>A property of the `function` object. | 
 
 ### RealtimeToolChoiceLiteral
 
-The available set of mode-level, string literal tool_choice options for the realtime endpoint.
+The available set of mode-level, string literal `tool_choice` options for the realtime endpoint.
 
 **Allowed Values:**
 
@@ -1470,11 +1476,11 @@ The available set of mode-level, string literal tool_choice options for the real
 
 ### RealtimeToolChoiceObject
 
-A base representation for a realtime tool_choice selecting a named tool.
+A base representation for a realtime `tool_choice` selecting a named tool.
 
 | Field | Type | Description | 
 |-------|------|-------------|
-| type | [RealtimeToolType](#realtimetooltype) | The type of the tool_choice. |
+| type | [RealtimeToolType](#realtimetooltype) | The type of the `tool_choice`. |
 
 ### RealtimeToolType
 
