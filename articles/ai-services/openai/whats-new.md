@@ -33,6 +33,8 @@ This article provides a summary of the latest releases and major documentation u
 - West US 3
 - Sweden Central
 
+As well as [standard and datazone standard deployment](./how-to/deployment-types.md) in East US 2.
+
 ### NEW data zone provisioned deployment type
 
 Data zone provisioned deployments are available in the same Azure OpenAI resource as all other Azure OpenAI deployment types but allow you to leverage Azure global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. Data zone provisioned deployments provide reserved model processing capacity for high and predictable throughput using Azure infrastructure within Microsoft specified data zones. Data zone provisioned deployments are supported on `gpt-4o-2024-08-06`, `gpt-4o-2024-05-13`, and `gpt-4o-mini-2024-07-18` models.
