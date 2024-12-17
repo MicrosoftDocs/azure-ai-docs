@@ -12,6 +12,9 @@ ms.author: aahi
 ms.custom: azure-ai-agents
 zone_pivot_groups: selection-function-calling
 ---
+
+# Use Azure Functions with Azure AI Agent Service
+
 ::: zone pivot="overview"
 
 The Azure AI Agents service integrates with Azure Functions, enabling you to create intelligent, event-driven applications with minimal overhead. This combination allows AI-driven workflows to leverage the scalability and flexibility of serverless computing, making it easier to build and deploy solutions that respond to real-time events or complex workflows. 
