@@ -138,7 +138,7 @@ If you leave the `cognitiveServices` property unspecified, your search service a
 1. Use the [Create or Update Skillset](/rest/api/searchservice/skillsets/create-or-update) API, specifying `cognitiveServices` section in the body of the request:
 
 ```http
-PUT https://[servicename].search.windows.net/skillsets/[skillset name]?api-version=2024-07-01
+PUT https://[servicename].search.windows.net/skillsets/[skillset name]?api-version=2024-11-01-Preview
 api-key: [admin key]
 Content-Type: application/json
 {
