@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2024
 ms.topic: how-to
 ms.date: 11/08/2024
-ms.reviewer: jinzhong
+ms.reviewer: gmuthukumar
 ms.author: lagayhar
 author: lgayhardt
 ---
