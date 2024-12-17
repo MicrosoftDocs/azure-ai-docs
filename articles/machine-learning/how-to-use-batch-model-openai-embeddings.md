@@ -18,9 +18,9 @@ ms.custom: how-to, devplatv2, update-code
 
 [!INCLUDE [cli v2](includes/machine-learning-dev-v2.md)]
 
-To run inference over large amounts of data, you can use batch endpoints to deploy models, including Azure OpenAI models. In this article, you see how to create a batch endpoint to deploy the text-embedding-ada-002 model from Azure OpenAI to compute embeddings at scale. You can use the same approach for completions and chat completions models. 
+To run inference over large amounts of data, you can use batch endpoints to deploy models, including Azure OpenAI models. In this article, you see how to create a batch endpoint to deploy the `text-embedding-ada-002` model from Azure OpenAI to compute embeddings at scale. You can use the same approach for completions and chat completions models. 
 
-The example in this article uses Microsoft Entra authentication to grant access to an Azure OpenAI Service resource, but you can also use an access key. The model is registered in MLflow format. It uses the Azure OpenAI flavor, which provides support for calling Azure OpenAI at scale.
+The example in this article uses Microsoft Entra authentication to grant access to an Azure OpenAI Service resource, but you can also use an access key. The model is registered in MLflow format. It uses the Azure OpenAI flavor, which provides support for calling the Azure OpenAI service at scale.
 
 To follow along with the example steps, see the Jupyter notebook [Score OpenAI models in batch using Batch Endpoints](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb).
 
@@ -68,7 +68,7 @@ openai_api_base="https://<your-azure-openai-resource-name>.openai.azure.com"
 
 ---
 
-In this article, you see how to create a deployment for an Azure OpenAI model. The following image shows a deployed Azure OpenAI model and the Azure OpenAI resource that it's deployed to:
+In this article, you see how to create a deployment for an Azure OpenAI model. The following image shows a deployed Azure OpenAI model and highlights the Azure OpenAI resource that it's deployed to:
 
 :::image type="content" source="./media/how-to-use-batch-model-openai-embeddings/azure-openai-deployments.png" alt-text="Screenshot of the Azure OpenAI page within Azure AI Foundry. A model deployment that's available in a particular Azure OpenAI resource is visible." lightbox="media/how-to-use-batch-model-openai-embeddings/azure-openai-deployments.png":::
 
@@ -140,7 +140,7 @@ You can configure the batch deployment to use the access key of your Azure OpenA
 
 Model deployments in batch endpoints can deploy only registered models. You can use MLflow models with the Azure OpenAI flavor to create a model in your workspace that references a deployment in Azure OpenAI.
 
-In the cloned repository, the model folder contains an MLflow model that generates embeddings based on the text-embedding-ada-002 model.
+In the cloned repository, the model folder contains an MLflow model that generates embeddings based on the `text-embedding-ada-002` model.
 
 Register the model in the workspace:
 
