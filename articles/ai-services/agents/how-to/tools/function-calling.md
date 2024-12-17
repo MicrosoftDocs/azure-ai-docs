@@ -34,11 +34,15 @@ To use all features of function calling including parallel functions, you need t
 
 ## Define a function for your agent to call
 
-Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure of it with any required parameters. 
+Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure of it with any required parameters in a docstring. Include all your function definitions in a single file, `user_functions.py` which you can then import into your main script.
 
 # [Python](#tab/python)
 
 ```python
+import json
+import datetime
+from typing import Any, Callable, Set, Dict, List, Optional
+
 def fetch_weather(location: str) -> str:
     """
     Fetches the weather information for the specified location.
@@ -53,6 +57,11 @@ def fetch_weather(location: str) -> str:
     weather = mock_weather_data.get(location, "Weather data not available for this location.")
     weather_json = json.dumps({"weather": weather})
     return weather_json
+    
+    # Statically defined user functions for fast reference
+user_functions: Set[Callable[..., Any]] = {
+    fetch_weather,
+}
 ```
 
 
