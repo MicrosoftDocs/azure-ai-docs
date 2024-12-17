@@ -143,7 +143,7 @@ The client `input_audio_buffer.append` event is used to append audio bytes to th
 
 In Server VAD (Voice Activity Detection) mode, the audio buffer is used to detect speech and the server decides when to commit. When server VAD is disabled, the client can choose how much audio to place in each event up to a maximum of 15 MiB. For example, streaming smaller chunks from the client can allow the VAD to be more responsive. 
 
-Unlike made other client events, the server doesn't send a confirmation response to client `input_audio_buffer.append` event.
+Unlike most other client events, the server doesn't send a confirmation response to client `input_audio_buffer.append` event.
 
 #### Event structure
 
@@ -1117,18 +1117,29 @@ The item to add to the conversation.
 
 ### RealtimeConversationRequestItem
 
+You use the `RealtimeConversationRequestItem` object to create a new item in the conversation via the [conversation.item.create](#realtimeclienteventconversationitemcreate) event.
+
 | Field | Type | Description | 
 |-------|------|-------------|
 | type | [RealtimeItemType](#realtimeitemtype) | The type of the item. |
-| id | string | The unique ID of the item. |
+| id | string | The unique ID of the item. The ID can be specified by the client to help manage server-side context. If the client doesn't provide an ID, the server generates one. |
 
 ### RealtimeConversationResponseItem
 
+The `RealtimeConversationResponseItem` object represents an item in the conversation. 
+
 | Field | Type | Description | 
 |-------|------|-------------|
-| object | string | The conversation response item.<br><br>Allowed values: `realtime.item` |
-| type | [RealtimeItemType](#realtimeitemtype) | The type of the item. | 
-| id | string | The unique ID of the item.<br><br>This property is nullable. |
+| object | string | The identifier for the returned API object.<br><br>Allowed values: `realtime.item` |
+| type | [RealtimeItemType](#realtimeitemtype) | The type of the item.<br><br>Allowed values: `message`, `function_call`, `function_call_output` | 
+| id | string | The unique ID of the item. The ID can be specified by the client to help manage server-side context. If the client doesn't provide an ID, the server generates one.<br><br>This property is nullable. |
+
+Used by:
+- [conversation.item.created](#realtimeservereventconversationitemcreated)
+- [response.output_item.added](#realtimeservereventresponseoutputitemadded)
+- [response.output_item.done](#realtimeservereventresponseoutputitemdone)
+- [`response.created`](#realtimeservereventresponsecreated) (via the `response` property type [`RealtimeResponse`](#realtimeresponse))
+- [`response.done`](#realtimeservereventresponsedone) (via the `response` property type [`RealtimeResponse`](#realtimeresponse))
 
 ### RealtimeFunctionTool
 
