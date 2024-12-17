@@ -46,6 +46,8 @@ items:
           href: how-to/tools/code-interpreter.md
         - name: Use OpenAPI defined tools
           href: how-to/tools/openapi-spec.md
+        - name: Azure Functions
+          href: how-to/tools/azure-functions.md
     - name: Content filtering
       href: ../openai/how-to/content-filters.md?context=/azure/ai-services/agents/context/context
     - name: Use your own resources
