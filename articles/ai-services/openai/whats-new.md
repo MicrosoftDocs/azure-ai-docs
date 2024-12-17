@@ -11,7 +11,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: whats-new
-ms.date: 11/12/2024
+ms.date: 11/16/2024
 recommendations: false
 ---
 
@@ -20,6 +20,18 @@ recommendations: false
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
 ## December 2024
+
+### GPT-4o 2024-11-20
+
+`gpt-4o-2024-11-20` is now available for [global standard deployment](./how-to/deployment-types.md) in:
+
+- East US
+- East US 2
+- North Central US
+- South Central US
+- West US
+- West US 3
+- Sweden Central
 
 ### NEW data zone provisioned deployment type
 
