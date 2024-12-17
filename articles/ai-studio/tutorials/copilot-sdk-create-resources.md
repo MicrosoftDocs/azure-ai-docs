@@ -127,7 +127,7 @@ Install `azure-ai-projects`(preview) and `azure-ai-inference` (preview), along w
 
 1. First, create a file named **requirements.txt** in your project folder. Add the following packages to the file:
 
-    :::code language="txt" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/requirements.txt":::
+    :::code language="txt" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/requirements.txt":::
 
 1. Install the required packages:
 
@@ -139,7 +139,7 @@ Install `azure-ai-projects`(preview) and `azure-ai-inference` (preview), along w
 
 Create a folder for your work. Create a file called **config.py** in this folder. This helper script is used in the next two parts of the tutorial series. Add the following code:
 
-:::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/config.py":::
+:::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/config.py":::
 
 
 ## Configure environment variables

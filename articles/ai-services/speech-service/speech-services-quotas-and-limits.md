@@ -50,7 +50,7 @@ You can use real-time speech to text with the [Speech SDK](speech-sdk.md) or the
 |-----|-----|-----|
 | Maximum audio input file size | N/A | 200 MB |
 | Maximum audio length | N/A | 120 minutes per file  |
-| Maximum requests per minute | N/A | 300  |
+| Maximum requests per minute | N/A | 600  |
 
 #### Batch transcription
 

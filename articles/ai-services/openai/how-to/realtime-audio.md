@@ -85,31 +85,54 @@ To authenticate:
 
 ## Realtime API architecture
 
-Once the WebSocket connection session to `/realtime` is established and authenticated, the functional interaction takes place via events for sending and receiving WebSocket messages. These events each take the form of a JSON object. Events can be sent and received in parallel and applications should generally handle them both concurrently and asynchronously.
+Once the WebSocket connection session to `/realtime` is established and authenticated, the functional interaction takes place via events for sending and receiving WebSocket messages. These events each take the form of a JSON object. 
 
-- A caller establishes a connection to `/realtime`, which starts a new `session`.
+:::image type="content" source="../media/how-to/real-time/realtime-api-sequence.png" alt-text="Diagram of the Realtime API authentication and connection sequence." lightbox="../media/how-to/real-time/realtime-api-sequence.png":::
+
+<!--
+sequenceDiagram
+  actor User as End User
+  participant MiddleTier as /realtime host
+  participant AOAI as Azure OpenAI
+  User->>MiddleTier: Begin interaction
+  MiddleTier->>MiddleTier: Authenticate/Validate User
+  MiddleTier--)User: audio information
+  User--)MiddleTier: 
+  MiddleTier--)User: text information
+  User--)MiddleTier: 
+  MiddleTier--)User: control information
+  User--)MiddleTier: 
+  MiddleTier->>AOAI: connect to /realtime
+  MiddleTier->>AOAI: configure session
+  AOAI->>MiddleTier: session start
+  MiddleTier--)AOAI: send/receive WS commands
+  AOAI--)MiddleTier: 
+  AOAI--)MiddleTier: create/start conversation responses
+  AOAI--)MiddleTier: (within responses) create/start/add/finish items
+  AOAI--)MiddleTier: (within items) create/stream/finish content parts
+-->
+
+Events can be sent and received in parallel and applications should generally handle them both concurrently and asynchronously.
+
+- A client-side caller establishes a connection to `/realtime`, which starts a new [`session`](#session-configuration).
 - A `session` automatically creates a default `conversation`. Multiple concurrent conversations aren't supported.
-- The `conversation` accumulates input signals until a `response` is started, either via a direct event by the caller or automatically by voice-activity-based (VAD) turn detection.
+- The `conversation` accumulates input signals until a `response` is started, either via a direct event by the caller or automatically by voice activity detection (VAD).
 - Each `response` consists of one or more `items`, which can encapsulate messages, function calls, and other information.
 - Each message `item` has `content_part`, allowing multiple modalities (text and audio) to be represented across a single item.
 - The `session` manages configuration of caller input handling (for example, user audio) and common output generation handling.
-- Each caller-initiated `response.create` can override some of the output `response` behavior, if desired.
+- Each caller-initiated [`response.create`](../realtime-audio-reference.md#realtimeclienteventresponsecreate) can override some of the output [`response`](../realtime-audio-reference.md#realtimeresponse) behavior, if desired.
 - Server-created `item` and the `content_part` in messages can be populated asynchronously and in parallel. For example, receiving audio, text, and function information concurrently in a round robin fashion.
 
-## Session configuration and turn handling mode
+## Session configuration
 
-Often, the first event sent by the caller on a newly established `/realtime` session is a `session.update` payload. This event controls a wide set of input and output behavior, with output and response generation portions then later overridable via `response.create` properties.
+Often, the first event sent by the caller on a newly established `/realtime` session is a [`session.update`](../realtime-audio-reference.md#realtimeclienteventsessionupdate) payload. This event controls a wide set of input and output behavior, with output and response generation properties then later overridable using the [`response.create`](../realtime-audio-reference.md#realtimeclienteventresponsecreate) event.
 
-One of the key session-wide settings is `turn_detection`, which controls how data flow is handled between the caller and model:
+The [`session.update`](../realtime-audio-reference.md#realtimeclienteventsessionupdate) event can be used to configure the following aspects of the session:
+- Transcription of user input audio is opted into via the session's `input_audio_transcription` property. Specifying a transcription model (`whisper-1`) in this configuration enables the delivery of [`conversation.item.audio_transcription.completed`](../realtime-audio-reference.md#realtimeservereventconversationiteminputaudiotranscriptioncompleted) events.
+- Turn handling is controlled by the `turn_detection` property. This property can be set to `none` or `server_vad` as described in the [input audio buffer and turn handling](#input-audio-buffer-and-turn-handling) section.
+- Tools can be configured to enable the server to call out to external services or functions to enrich the conversation. Tools are defined as part of the `tools` property in the session configuration.
 
-- `server_vad` evaluates incoming user audio (as sent via `input_audio_buffer.append`) using a voice activity detector (VAD) component and automatically use that audio to initiate response generation on applicable conversations when an end of speech is detected. Silence detection for the VAD can be configured when specifying `server_vad` detection mode.
-- `none` relies on caller-initiated `input_audio_buffer.commit` and `response.create` events to progress conversations and produce output. This setting is useful for push-to-talk applications or situations that have external audio flow control (such as caller-side VAD component). These manual signals can still be used in `server_vad` mode to supplement VAD-initiated response generation.
-
-Transcription of user input audio is opted into via the `input_audio_transcription` property. Specifying a transcription model (`whisper-1`) in this configuration enables the delivery of `conversation.item.audio_transcription.completed` events.
-
-### Session update example
-
-An example `session.update` that configures several aspects of the session, including tools, follows. All session parameters are optional; not everything needs to be configured!
+An example `session.update` that configures several aspects of the session, including tools, follows. All session parameters are optional and can be omitted if not needed.
 
 ```json
 {
@@ -136,7 +159,7 @@ An example `session.update` that configures several aspects of the session, incl
           "properties": {
             "location": {
               "type": "string",
-              "description": "The city and state e.g. San Francisco, CA"
+              "description": "The city and state such as San Francisco, CA"
             },
             "unit": {
               "type": "string",
@@ -156,6 +179,95 @@ An example `session.update` that configures several aspects of the session, incl
   }
 }
 ```
+
+## Input audio buffer and turn handling
+
+The server maintains an input audio buffer containing client-provided audio that has not yet been committed to the conversation state.
+
+One of the key [session-wide](#session-configuration) settings is `turn_detection`, which controls how data flow is handled between the caller and model. The `turn_detection` setting can be set to `none` or `server_vad` (to use [server-side voice activity detection](#server-decision-mode)).
+
+### Without server decision mode
+
+By default, the session is configured with the `turn_detection` type effectively set to `none`. 
+
+The session relies on caller-initiated [`input_audio_buffer.commit`](../realtime-audio-reference.md#realtimeclienteventinputaudiobuffercommit) and [`response.create`](../realtime-audio-reference.md#realtimeclienteventresponsecreate) events to progress conversations and produce output. This setting is useful for push-to-talk applications or situations that have external audio flow control (such as caller-side VAD component). These manual signals can still be used in `server_vad` mode to supplement VAD-initiated response generation.
+
+- The client can append audio to the buffer by sending the [`input_audio_buffer.append`](../realtime-audio-reference.md#realtimeclienteventinputaudiobufferappend) event.
+- The client commits the input audio buffer by sending the [`input_audio_buffer.commit`](../realtime-audio-reference.md#realtimeclienteventinputaudiobuffercommit) event. The commit creates a new user message item in the conversation.
+- The server responds by sending the [`input_audio_buffer.committed`](../realtime-audio-reference.md#realtimeservereventinputaudiobuffercommitted) event.
+- The server responds by sending the [`conversation.item.created`](../realtime-audio-reference.md#realtimeservereventconversationitemcreated) event.
+
+:::image type="content" source="../media/how-to/real-time/input-audio-buffer-client-managed.png" alt-text="Diagram of the Realtime API input audio sequence without server decision mode." lightbox="../media/how-to/real-time/input-audio-buffer-client-managed.png":::
+
+<!--
+sequenceDiagram
+  participant Client as Client
+  participant Server as Server
+  Client->>Server: input_audio_buffer.append
+  Server->>Server: Append audio to buffer
+  Client->>Server: input_audio_buffer.commit
+  Server->>Server: Commit audio buffer
+  Server->>Client: input_audio_buffer.committed
+  Server->>Client: conversation.item.created
+-->
+
+### Server decision mode
+
+The session can be configured with the `turn_detection` type set to `server_vad`. In this case, the server evaluates user audio from the client (as sent via [`input_audio_buffer.append`](../realtime-audio-reference.md#realtimeclienteventinputaudiobufferappend)) using a voice activity detection (VAD) component. The server automatically uses that audio to initiate response generation on applicable conversations when an end of speech is detected. Silence detection for the VAD can be configured when specifying `server_vad` detection mode.
+
+- The server sends the [`input_audio_buffer.speech_started`](../realtime-audio-reference.md#realtimeservereventinputaudiobufferspeechstarted) event when it detects the start of speech.
+- At any time, the client can optionally append audio to the buffer by sending the [`input_audio_buffer.append`](../realtime-audio-reference.md#realtimeclienteventinputaudiobufferappend) event.
+- The server sends the [`input_audio_buffer.speech_stopped`](../realtime-audio-reference.md#realtimeservereventinputaudiobufferspeechstopped) event when it detects the end of speech.
+- The server commits the input audio buffer by sending the [`input_audio_buffer.committed`](../realtime-audio-reference.md#realtimeservereventinputaudiobuffercommitted) event.
+- The server sends the [`conversation.item.created`](../realtime-audio-reference.md#realtimeservereventconversationitemcreated) event with the user message item created from the audio buffer.
+
+:::image type="content" source="../media/how-to/real-time/input-audio-buffer-server-vad.png" alt-text="Diagram of the Realtime API input audio sequence with server decision mode." lightbox="../media/how-to/real-time/input-audio-buffer-server-vad.png":::
+
+
+<!-- 
+sequenceDiagram
+    participant Client as Client
+    participant Server as Server
+    Server->>Client: input_audio_buffer.speech_started
+    Client->>Server: input_audio_buffer.append (optional)
+    Server->>Server: Append audio to buffer
+    Server->>Client: input_audio_buffer.speech_stopped
+    Server->>Server: Commit audio buffer
+    Server->>Client: input_audio_buffer.committed
+    Server->>Client: conversation.item.created
+-->
+
+## Conversation and response generation
+
+You can have one active conversation per session. The conversation accumulates input signals until a response is started, either via a direct event by the caller or automatically by voice activity detection (VAD).
+
+- The server [`conversation.created`](../realtime-audio-reference.md#realtimeservereventconversationcreated) event is returned right after session creation.
+- The client adds new items to the conversation with a [`conversation.item.create`](../realtime-audio-reference.md#realtimeclienteventconversationitemcreate) event.
+- The server [`conversation.item.created`](../realtime-audio-reference.md#realtimeservereventconversationitemcreated) event is returned when the client adds a new item to the conversation.
+
+Optionally, the client can truncate or delete items in the conversation:
+- The client truncates an earlier assistant audio message item with a [`conversation.item.truncate`](../realtime-audio-reference.md#realtimeclienteventconversationitemtruncate) event.
+- The server [`conversation.item.truncated`](../realtime-audio-reference.md#realtimeservereventconversationitemtruncated) event is returned to sync the client and server state.
+- The client deletes an item in the conversation with a [`conversation.item.delete`](../realtime-audio-reference.md#realtimeclienteventconversationitemdelete) event.
+- The server [`conversation.item.deleted`](../realtime-audio-reference.md#realtimeservereventconversationitemdeleted) event is returned to sync the client and server state.
+
+:::image type="content" source="../media/how-to/real-time/conversation-item-sequence.png" alt-text="Diagram of the Realtime API conversation item sequence." lightbox="../media/how-to/real-time/conversation-item-sequence.png":::
+
+<!-- 
+sequenceDiagram
+  participant Client as Client
+  participant Server as Server
+  Server->>Client: conversation.created
+  Client->>Server: conversation.item.create
+  Server->>Server: Create item
+  Server->>Client: conversation.item.created
+  Client->>Server: conversation.item.truncate
+  Server->>Server: Truncate item
+  Server->>Client: conversation.item.truncated
+  Client->>Server: conversation.item.delete
+  Server->>Server: Delete item
+  Server->>Client: conversation.item.deleted
+-->
 
 
 ## Related content

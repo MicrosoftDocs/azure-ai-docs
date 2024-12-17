@@ -105,9 +105,15 @@
       "branch_mapping": {}
     },
     {
-      "path_to_root": "azureai-samples-nov2024",
+      "path_to_root": "azureai-samples-main",
       "url": "https://github.com/Azure-Samples/azureai-samples",
-      "branch": "dantaylo/nov2024",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "azureai-samples-temp",
+      "url": "https://github.com/sdgilley/azureai-samples",
+      "branch": "sdg-add-quickstart",
       "branch_mapping": {}
     },
     {

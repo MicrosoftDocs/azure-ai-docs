@@ -46,7 +46,7 @@ Use the following evaluation dataset, which contains example questions and expec
 1. Create a file called **chat_eval_data.jsonl** in your **assets** folder.
 1. Paste this dataset into the file:
 
-    :::code language="jsonl" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/assets/chat_eval_data.jsonl":::
+    :::code language="jsonl" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/assets/chat_eval_data.jsonl":::
 
 ## Evaluate with Azure AI evaluators
 
@@ -65,15 +65,15 @@ The script also logs the evaluation results to the cloud project so that you can
 1. Create a file called **evaluate.py** in your main folder.
 1. Add the following code to import the required libraries, create a project client, and configure some settings: 
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="imports_and_config":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/evaluate.py" id="imports_and_config":::
 
 1. Add code to create a wrapper function that implements the evaluation interface for query and response evaluation:
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="evaluate_wrapper":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/evaluate.py" id="evaluate_wrapper":::
 
 1. Finally, add code to run the evaluation, view the results locally, and gives you a link to the evaluation results in AI Foundry portal:
  
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="run_evaluation":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/evaluate.py" id="run_evaluation":::
 
 ### Configure the evaluation model
 
