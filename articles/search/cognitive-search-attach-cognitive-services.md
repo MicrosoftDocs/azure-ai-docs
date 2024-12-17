@@ -110,7 +110,9 @@ POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-ver
 
 Azure AI Search can also charge for transaction using the Azure AI multi-service resource key. This approach is the default and is generally available. You can use the Azure portal, REST API, or an Azure SDK to add the key to a skillset.
 
-You only need to add the key, not the subdomain or endpoint. If you leave the `cognitiveServices` property unspecified, your search service attempts to use the free enrichments available to your indexer on a daily basis. Execution of billable skills stops at 20 transactions per indexer invocation and a "Time Out" message appears in indexer execution history.
+There are two supported key types: `#Microsoft.Azure.Search.CognitiveServicesByKey` which calls the regional endpoint and `"#Microsoft.Azure.Search.AIServicesByKey` which calls the subdomain. We recommend using `AIServicesByKey` for its shared private link support and ability to function with no regional requirements relative to the search service.
+
+If you leave the `cognitiveServices` property unspecified, your search service attempts to use the free enrichments available to your indexer on a daily basis. Execution of billable skills stops at 20 transactions per indexer invocation and a "Time Out" message appears in indexer execution history.
 
 ### [**Azure portal**](#tab/portal)
 
@@ -127,6 +129,9 @@ You only need to add the key, not the subdomain or endpoint. If you leave the `c
    + For a new or existing skillset, provide the key in skillset definition.
 
   :::image type="content" source="media/cognitive-search-attach-cognitive-services/attach-existing2.png" alt-text="Screenshot of the key page." border="true":::
+
+> [!NOTE]
+> Azure portal currently automatically attaches key of type `#Microsoft.Azure.Search.CognitiveServicesByKey`.
 
 ### [**REST**](#tab/cogkey-rest)
 
@@ -157,8 +162,9 @@ Content-Type: application/json
       }
     ],
     "cognitiveServices": {
-        "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
+        "@odata.type": "#Microsoft.Azure.Search.AIServicesByKey",
         "description": "mycogsvcs",
+        "subdomainUrl": “https://[subdomain-name].cognitiveservices.azure.com",
         "key": "<your key goes here>"
     }
 }
