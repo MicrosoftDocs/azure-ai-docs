@@ -137,17 +137,17 @@ Training datasets must be in `jsonl` format:
 
 ### Direct preference optimization model support
 
-- `gpt-4o-2024-08-06` supports direct preference optimization in its respective fine-tuning regions. Latest of region availability is updated here in [models page](../concepts/models.md#fine-tuning-models)
+- `gpt-4o-2024-08-06` supports direct preference optimization in its respective fine-tuning regions. Latest region availability is updated in the [models page](../concepts/models.md#fine-tuning-models)
 
 Users can use preference fine tuning with base models as well as models that have already been fine-tuned using supervised fine-tuning as long as they are of a supported model/version.
 
 ### How to use direct preference optimization fine-tuning?
 
 1. Prepare `jsonl` datasets in the [preference format](#direct-preference-optimization-dataset-format).
-2. Select the model and then select the method of customization **Direct Preference Optimization**
+2. Select the model and then select the method of customization **Direct Preference Optimization**.
 3. Upload datasets – training and validation. Preview as needed.
 4. Select hyperparameters, defaults are recommended for initial experimentation.
-5. Review the selections and create fine tuning job.
+5. Review the selections and create a fine tuning job.
 
 ## Troubleshooting
 
