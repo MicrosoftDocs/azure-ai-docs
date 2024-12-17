@@ -164,7 +164,7 @@ To interact with the Form Recognizer service, you need to create an instance of 
 
 1. Open the **Program.cs** file.
 
-1. Delete the pre-existing code, including the line `Console.Writeline("Hello World!")`, and select one of the following code samples to copy and paste into your application's Program.cs file:
+1. Delete the existing code, including the line `Console.Writeline("Hello World!")`, and select one of the following code samples to copy and paste into your application's Program.cs file:
 
     * [**Layout model**](#layout-model)
 
