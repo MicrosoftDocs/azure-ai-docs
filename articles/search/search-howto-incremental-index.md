@@ -134,7 +134,7 @@ PUT https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME
     }
 ```
 
-If you now issue another GET request on the indexer, the response from the service includes an `ID` property in the cache object. The alphanumeric string is appended to the name of the container containing all the cached results and intermediate state of each document processed by this indexer. The ID is used to uniquely name the cache in Blob storage.
+If you now issue another GET request on the indexer, the response from the service includes an `ID` property in the cache object. The string is appended to the name of the container containing all the cached results and intermediate state of each document processed by this indexer. The ID is used to uniquely name the cache in Blob storage.
 
 ```http
     "cache": {

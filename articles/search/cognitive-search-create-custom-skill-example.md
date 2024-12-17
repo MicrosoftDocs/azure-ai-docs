@@ -32,7 +32,7 @@ Although this example uses an Azure Function to host a web API, it isn't require
 
 1. In Visual Studio, select **New** > **Project** from the File menu.
 
-1. Choose **Azure Functions** as the template and select **Next**. Type a name for your project, and select **Create**. The function app name must be valid as a C# namespace, so don't use underscores, hyphens, or any other non-alphanumeric characters.
+1. Choose **Azure Functions** as the template and select **Next**. Type a name for your project, and select **Create**. The function app name must be valid as a C# namespace, so don't use underscores, hyphens, or any other special characters.
 
 1. Select a framework that has long term support.
 
