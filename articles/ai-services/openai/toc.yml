@@ -170,6 +170,8 @@ items:
         displayName: fine-tuning, finetuning
       - name: Weights & Biases integration (preview)
         href: ./how-to/weights-and-biases-integration.md
+  - name: Stored completions
+    href: ./how-to/stored-completions.md
   - name: Use your data
     items:
       - name: Text data
