@@ -97,6 +97,30 @@ Images containing the following will be excluded from your dataset and not used 
 
 Azure OpenAI fine-tuning supports prompt caching with select models. Prompt caching allows you to reduce overall request latency and cost for longer prompts that have identical content at the beginning of the prompt. To learn more about prompt caching, see [getting started with prompt caching](./prompt-caching.md).
 
+## Direct preference optimization (DPO)
+
+Direct preference optimization (DPO) is an alignment technique for large language models, used to adjust model weights based on human preferences. It differs from reinforcement learning from human feedback (RLHF) in that it does not require fitting a reward model and uses simpler data binary preferences for training. It is computationally lighter weight and faster than RLHF, while being equally effective at alignment.
+
+### Why is DPO useful?
+
+DPO is especially useful in scenarios where there's no clear-cut correct answer, and subjective elements like tone, style, or specific content preferences are important. This approach also enables the model to learn from both positive examples (what's considered correct or ideal) and negative examples (what's less desired or incorrect).
+
+DPO is believed to be a technique that will make it easier for customers to generate high-quality training data sets. While many customers struggle to generate sufficient large data sets for supervised fine-tuning, they often have preference data already collected based on user logs, A/B tests, or smaller manual annotation efforts.
+
+### Direct preference optimization dataset format
+
+Direct proference optimization files have a different format than supervised fine-tuning. Customers provide a "conversation" containing the system message and the initial user message, and then "completions" with paired preference data. Users can only provide two completions.
+
+Three top-level fields: `input`, `preferred_output` and `non_preferred_output`
+
+- Each element in the preferred_output/non_preferred_output must contain at least one assistant message
+- Each element in the preferred_output/non_preferred_output can only have roles in (assistant, tool)
+
+```json
+{
+}
+```
+
 ## Troubleshooting
 
 ### How do I enable fine-tuning?
