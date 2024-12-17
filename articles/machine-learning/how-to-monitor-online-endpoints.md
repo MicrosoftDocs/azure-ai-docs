@@ -44,22 +44,35 @@ You can view metrics pages for online endpoints or deployments in the Azure port
 
 To access the metrics pages through links available in the studio:
 
-1. Go to the [Azure Machine Learning studio](https://ml.azure.com).
-1. In the left navigation bar, select the **Endpoints** page.
-1. Select an endpoint by clicking its name.
-1. Select **View metrics** in the **Attributes** section of the endpoint to open up the endpoint's metrics page in the Azure portal.
-1. Select **View metrics** in the section for each available deployment to open up the deployment's metrics page in the Azure portal.
+1. In [Azure Machine Learning studio](https://ml.azure.com), go to your workspace.
 
-    :::image type="content" source="media/how-to-monitor-online-endpoints/online-endpoints-access-metrics-from-studio.png" alt-text="A screenshot showing how to access the metrics of an endpoint and deployment from the studio UI." lightbox="media/how-to-monitor-online-endpoints/online-endpoints-access-metrics-from-studio.png":::
+1. Under **Assets**, select **Endpoints**.
+
+1. Select the name of an endpoint.
+
+1. Under **Endpoint attributes**, select **View metrics**.
+
+   :::image type="content" source="media/how-to-monitor-online-endpoints/online-endpoints-access-metrics-studio.png" alt-text="A screenshot showing how to access the metrics of an endpoint and deployment from the studio UI." lightbox="media/how-to-monitor-online-endpoints/online-endpoints-access-metrics-studio.png":::
+
+   The endpoint's metrics page opens in the Azure portal.
+
+1. In Azure Machine Learning studio, go to the section for a deployment, and then select **View metrics**.
+
+   :::image type="content" source="media/how-to-monitor-online-endpoints/deployment-metrics-studio.png" alt-text="A screenshot showing how to access the metrics of an endpoint and deployment from the studio UI." lightbox="media/how-to-monitor-online-endpoints/deployment-metrics-studio.png":::
+
+   The deployment's metrics page opens in the Azure portal.
 
 To access metrics directly from the Azure portal:
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
-1. Navigate to the online endpoint or deployment resource.
+1. Go to the [Azure portal](https://portal.azure.com).
 
-    Online endpoints and deployments are Azure Resource Manager (ARM) resources that can be found by going to their owning resource group. Look for the resource types **Machine Learning online endpoint** and **Machine Learning online deployment**.
+1. Go to the online endpoint or deployment resource.
 
-1. In the left-hand column, select **Metrics**.
+   Online endpoints and deployments are Azure Resource Manager resources. You can find them by going to their resource group and then looking for the resource types **Machine Learning online endpoint** and **Machine Learning online deployment**.
+
+1. Under **Monitoring**, select **Metrics**.
+
+   :::image type="content" source="media/how-to-monitor-online-endpoints/endpoint-metrics-azure-portal.png" alt-text="A screenshot showing how to access the metrics of an endpoint and deployment from the studio UI." lightbox="media/how-to-monitor-online-endpoints/endpoint-metrics-azure-portal.png":::
 
 ### Available metrics
 
@@ -83,7 +96,7 @@ For more information, see [Bandwidth limit issues](how-to-troubleshoot-online-en
 
 ### Create dashboards and alerts
 
-Azure Monitor allows you to create dashboards and alerts, based on metrics.
+Azure Monitor allows you to create dashboards and alerts that are based on metrics.
 
 #### Create dashboards and visualize queries
 
@@ -93,31 +106,31 @@ You can create custom dashboards and visualize metrics from multiple sources in 
 
 You can also create custom alerts to notify you of important status updates to your online endpoint:
 
-1. At the top right of the metrics page, select **New alert rule**.
+1. In the Azure portal, go to a metrics page, and then select **New alert rule**.
 
-    :::image type="content" source="./media/how-to-monitor-online-endpoints/online-endpoints-new-alert-rule.png" alt-text="Screenshot showing 'New alert rule' button surrounded by a red box."  lightbox="./media/how-to-monitor-online-endpoints/online-endpoints-new-alert-rule.png" :::
+   :::image type="content" source="./media/how-to-monitor-online-endpoints/online-endpoints-new-alert-rule.png" alt-text="Screenshot showing 'New alert rule' button surrounded by a red box."  lightbox="./media/how-to-monitor-online-endpoints/online-endpoints-new-alert-rule.png" :::
 
-1. Select a condition name to specify when your alert should be triggered.
+1. In the Select a signal window, select the signal that you want to create an alert for, and then select **Apply**.
 
-    :::image type="content" source="./media/how-to-monitor-online-endpoints/online-endpoints-configure-signal-logic.png" alt-text="Screenshot showing 'Configure signal logic' button surrounded by a red box."  lightbox="./media/how-to-monitor-online-endpoints/online-endpoints-configure-signal-logic.png" :::
+1. In the Create an alert rule page, enter a threshold, and edit any other settings that you want to adjust. For more information about alert rule settings, see [Configure the alert rule conditions](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule#configure-the-alert-rule-conditions). Then select **Next: Actions**.
 
-1. Select **Add action groups** > **Create action groups** to specify what should happen when your alert is triggered.
+   :::image type="content" source="./media/how-to-monitor-online-endpoints/configure-alert-rule.png" alt-text="Screenshot showing 'New alert rule' button surrounded by a red box."  lightbox="./media/how-to-monitor-online-endpoints/configure-alert-rule.png" :::
 
-1. Choose **Create alert rule** to finish creating your alert.
+1. In the Select action groups window, create or select an action group to specify what happens when your alert is triggered. For more information, see [Configure the alert rule details](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule#configure-the-alert-rule-details).
 
-For more information, see [Create Azure Monitor alert rules](/azure/azure-monitor/alerts/alerts-create-new-alert-rule).
+1. Choose **Review + Create** to finish creating your alert.
 
-### Enable autoscale based on metrics
+### Scale automatically based on metrics
 
-You can enable autoscale of deployments using metrics using UI or code. When you use code (either CLI or SDK), you can use Metrics IDs listed in the table of [available metrics](#available-metrics) in condition for triggering autoscaling. For more information, see [Autoscaling online endpoints](how-to-autoscale-endpoints.md).
+You can configure deployments to scale automatically based on metrics. To turn on the autoscale feature, you can use the UI or code. The options for code are the Azure Machine Learning CLI and the Azure Machine Learning SDK for Python. When you use code, you provide the IDs of metrics in the conditions for triggering automatic scaling. For those IDs, you can use the metrics that the table lists in the [Available metrics](#available-metrics) section. For more information, see [Autoscaling online endpoints](how-to-autoscale-endpoints.md).
 
 ## Logs
 
-There are three logs that can be enabled for online endpoints:
+There are three logs that you can turn on for online endpoints:
 
-* **AmlOnlineEndpointTrafficLog**: You could choose to enable traffic logs if you want to check the information of your request. Below are some cases: 
+* **AmlOnlineEndpointTrafficLog**: This traffic log provides a way for you to check the information of a request to the endpoint. You can use this log in the following cases: 
 
-    * If the response isn't 200, check the value of the column "ResponseCodeReason" to see what happened. Also check the reason in the "HTTPS status codes" section of the [Troubleshoot online endpoints](how-to-troubleshoot-online-endpoints.md#http-status-codes) article.
+    * If the request response isn't 200, check the value of the `ResponseCodeReason` column to see the reason. Also check the reason in [HTTPS status codes](how-to-troubleshoot-online-endpoints.md#http-status-codes), in the article about troubleshooting online endpoints.
 
     * You could check the response code and response reason of your model from the column "ModelStatusCode" and "ModelStatusReason". 
 
@@ -153,22 +166,33 @@ There are three logs that can be enabled for online endpoints:
     | Killing | Stopping container inference-server 
     | Killing | Stopping container model-mount 
 
-### How to enable/disable logs
+### Turn logs on or off
 
 > [!IMPORTANT]
 > Logging uses Azure Log Analytics. If you do not currently have a Log Analytics workspace, you can create one using the steps in [Create a Log Analytics workspace in the Azure portal](/azure/azure-monitor/logs/quick-create-workspace#create-a-workspace).
 
 1. In the [Azure portal](https://portal.azure.com), go to the resource group that contains your endpoint and then select the endpoint.
-1. From the **Monitoring** section on the left of the page, select **Diagnostic settings** and then **Add settings**.
-1. Select the log categories to enable, select **Send to Log Analytics workspace**, and then select the Log Analytics workspace to use. Finally, enter a **Diagnostic setting name** and select **Save**.
 
-    :::image type="content" source="./media/how-to-monitor-online-endpoints/diagnostic-settings.png" alt-text="Screenshot of the diagnostic settings dialog.":::
+1. Under **Monitoring**, select **Diagnostic settings**, and then select **Add diagnostic setting**.
+
+1. In the Diagnostic setting window, enter the following information:
+   - Next to **Diagnostic setting name**, enter a name for your setting.
+   - Select the log categories that you want to turn on.
+   - Select **Send to Log Analytics workspace**, and then select the subscription and the Log Analytics workspace to use.
+
+   :::image type="content" source="./media/how-to-monitor-online-endpoints/diagnostic-settings.png" alt-text="Screenshot of the diagnostic settings dialog.":::
+
+1. Select **Save**.
 
     > [!IMPORTANT]
-    > It may take up to an hour for the connection to the Log Analytics workspace to be enabled. Wait an hour before continuing with the next steps.
-    
-1. Submit scoring requests to the endpoint. This activity should create entries in the logs.
+    > It may take up to an hour for the connection to the Log Analytics workspace to be enabled. Wait an hour before continuing with the steps in the next section.
+
+### View logs
+
+1. Submit scoring requests to the endpoint to create entries in the logs.
+
 1. From either the online endpoint properties or the Log Analytics workspace, select **Logs** from the left of the screen.
+
 1. Close the **Queries** dialog that automatically opens, and then double-click the **AmlOnlineEndpointConsoleLog**. If you don't see it, use the **Search** field.
 
     :::image type="content" source="./media/how-to-monitor-online-endpoints/online-endpoints-log-queries.png" alt-text="Screenshot showing the log queries.":::
