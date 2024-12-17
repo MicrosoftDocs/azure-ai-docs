@@ -26,7 +26,7 @@ The vision-enabled models answer general questions about what's present in the i
 > [!IMPORTANT]
 > Pricing details are subject to change in the future.
 
-GPT-4 Turbo with Vision accrues charges like other Azure OpenAI chat models. You pay a per-token rate for the prompts and completions, detailed on the [Pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). The base charges and additional features are outlined here:
+Vision-enabled models accrue charges like other Azure OpenAI chat models. You pay a per-token rate for the prompts and completions, detailed on the [Pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). The base charges and additional features are outlined here:
 
 Base Pricing for GPT-4 Turbo with Vision is:
 - Input: $0.01 per 1000 tokens
@@ -71,7 +71,7 @@ Additionally, there's a one-time indexing cost of $0.15 to generate the Video Re
 
 ## Input limitations
 
-This section describes the limitations of GPT-4 Turbo with Vision.
+This section describes the limitations of vision-enabled chat models.
 
 ### Image support
 
