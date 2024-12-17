@@ -48,16 +48,16 @@ By default, the deployment template is configured with the following values:
 > The templates only support deployment of OpenAI models. See which OpenAI models are supported in the [Azure AI Agent Service model support](../concepts/model-region-support.md) documentation.
 
 
-### [Optional] Use your own resources in agent setup
+### [Optional] Use your own resources during agent setup
 
 > [!NOTE]
-> If you use an existing AI Services/AOAI resource, no model will be deployed. You can deploy a model to the resource after the agent setup is complete. 
+> If you use an existing AI Services or Azure OpenAI resource, no model will be deployed. You can deploy a model to the resource after the agent setup is complete. 
 
-Use an existing AI Services/AOAI, AI Search, and/or Azure Blob Storage resource by providing the full arm resource ID in the parameters file:
+Use an existing AI Services, Azure OpenAI, AI Search, and/or Azure Blob Storage resource by providing the full arm resource ID in the parameters file:
 
-- aiServiceAccountResourceId
-- aiSearchServiceResourceId
-- aiStorageAccountResourceId
+- `aiServiceAccountResourceId`
+- `aiSearchServiceResourceId`
+- `aiStorageAccountResourceId`
 
 
 If you want to use an existing Azure OpenAI resource, you need to update the `aiServiceAccountResourceId` and the `aiServiceKind` parameters in the parameter file. The `aiServiceKind` parameter should be set to `AzureOpenAI`. 
