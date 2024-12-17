@@ -38,4 +38,4 @@ Agents can access multiple tools in parallel. These can be both Azure OpenAI-hos
 |---------|---------|---------|---------|---------|---------|
 | [Code interpreter](./code-interpreter.md)     | Enables agents to write and run Python code in a sandboxed execution environment.        | ✔️ | ✔️ | ✔️ | ✔️ |
 |[Function calling](./function-calling.md)     | Allows you to describe the structure of functions to an agent and then return the functions that need to be called along with their arguments.        | ✔️ | ✔️ | ✔️ | ✔️ |
-
+|[OpenAPI Specification](./openapi-spec.md) | Connect to an external API using an OpenAPI 3.0 specified tool, allowing for scalable interoperability with various applications. | ✔️ | ✔️ | ✔️ | ✔️ |
