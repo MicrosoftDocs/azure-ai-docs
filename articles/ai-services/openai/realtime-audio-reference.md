@@ -1126,20 +1126,19 @@ You use the `RealtimeConversationRequestItem` object to create a new item in the
 
 ### RealtimeConversationResponseItem
 
-The `RealtimeConversationResponseItem` object represents an item in the conversation. 
+The `RealtimeConversationResponseItem` object represents an item in the conversation. It's used in some of the server events, such as:
+
+- [conversation.item.created](#realtimeservereventconversationitemcreated)
+- [response.output_item.added](#realtimeservereventresponseoutputitemadded)
+- [response.output_item.done](#realtimeservereventresponseoutputitemdone)
+- [`response.created`](#realtimeservereventresponsecreated) (via the `response` property type [`RealtimeResponse`](#realtimeresponse))
+- [`response.done`](#realtimeservereventresponsedone) (via the `response` property type [`RealtimeResponse`](#realtimeresponse))
 
 | Field | Type | Description | 
 |-------|------|-------------|
 | object | string | The identifier for the returned API object.<br><br>Allowed values: `realtime.item` |
 | type | [RealtimeItemType](#realtimeitemtype) | The type of the item.<br><br>Allowed values: `message`, `function_call`, `function_call_output` | 
 | id | string | The unique ID of the item. The ID can be specified by the client to help manage server-side context. If the client doesn't provide an ID, the server generates one.<br><br>This property is nullable. |
-
-Used by:
-- [conversation.item.created](#realtimeservereventconversationitemcreated)
-- [response.output_item.added](#realtimeservereventresponseoutputitemadded)
-- [response.output_item.done](#realtimeservereventresponseoutputitemdone)
-- [`response.created`](#realtimeservereventresponsecreated) (via the `response` property type [`RealtimeResponse`](#realtimeresponse))
-- [`response.done`](#realtimeservereventresponsedone) (via the `response` property type [`RealtimeResponse`](#realtimeresponse))
 
 ### RealtimeFunctionTool
 
