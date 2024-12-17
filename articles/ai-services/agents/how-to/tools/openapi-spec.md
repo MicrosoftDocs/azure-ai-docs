@@ -42,9 +42,9 @@ work together, generate client code, create tests, apply design standards, and m
        :::image type="content" source="../../media/tools/bing/project-connections.png" alt-text="A screenshot of the connections screen for the AI project." lightbox="../../media/tools/bing/project-connections.png":::
 
    1. Select **custom keys** in **other resource types**.
-
-    :::image type="content" source="../../media/tools/bing/api-key-connection.png" alt-text="A screenshot of the custom keys selection for the AI project." lightbox="../../media/tools/bing/api-key-connection.png":::
-
+    
+        :::image type="content" source="../../media/tools/bing/api-key-connection.png" alt-text="A screenshot of the custom keys selection for the AI project." lightbox="../../media/tools/bing/api-key-connection.png":::
+    
    1. Enter the following information
       - `key`: "key"
       - value: YOUR_API_KEY
