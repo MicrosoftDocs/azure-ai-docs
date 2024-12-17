@@ -134,6 +134,9 @@ You can use the following policy to disable access to any Azure OpenAI deploymen
                     "equals": "GlobalStandard"
                 }
             ]
+        },
+        "then": {
+            "effect": "deny"
         }
     }
 }
