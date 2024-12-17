@@ -5,7 +5,7 @@ description: Learn how to create your own customized model with Azure OpenAI Ser
 #services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
-ms.custom: build-2023, build-2023-dataai, devx-track-python
+ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
 ms.date: 12/13/2024
 author: mrbullwinkle
