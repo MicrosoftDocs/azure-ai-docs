@@ -81,8 +81,6 @@ azd provision
 
 ::: zone pivot="code-example"
 
-# Azure AI Agents function calling with Azure Functions
-
 Azure AI Agents supports function calling, which allows you to describe the structure of functions to an Assistant and then return the functions that need to be called along with their arguments. This example shows how to use Azure Functions to process the function calls through queue messages in Azure Storage. You can see a complete working sample on https://github.com/Azure-Samples/azure-functions-ai-services-agent-python
 
 ### Supported models
