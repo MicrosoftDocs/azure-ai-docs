@@ -348,9 +348,7 @@ For testing the endpoint, you use a sample of the dataset [BillSum: A Corpus for
 
     The deployment creates a child job that implements the scoring. Get a reference to that child job:
 
-    ```python
-    scoring_job = list(ml_client.jobs.list(parent_job_name=job.name))[0]
-    ```
+    [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=get_scoring_job_reference)]
 
     Download the scores:
 
