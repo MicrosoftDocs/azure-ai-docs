@@ -15,11 +15,11 @@ ms.date: 12/10/2024
 
 # What's Azure AI Search?
 
-Azure AI Search ([formerly known as "Azure Cognitive Search"](whats-new.md#new-service-name)) is an enterprise-ready information retrieval system for your heterogeneous content that you ingest into a search index. It comes with a comprehensive set of advanced search technologies, built for high-performance applications at any scale.
+Azure AI Search ([formerly known as "Azure Cognitive Search"](whats-new.md#new-service-name)) is an enterprise-ready information retrieval system for your heterogeneous content that you ingest into a search index, and surface to users through queries and apps. It comes with a comprehensive set of advanced search technologies, built for high-performance applications at any scale.
 
-Azure AI Search is the recommended retrieval system for building RAG-based applications on Azure, with native LLM integrations between Azure OpenAI Service and Azure Machine Learning, and multiple strategies for relevance tuning.
+Azure AI Search is the recommended retrieval system for building RAG-based applications on Azure, with native LLM integrations between Azure OpenAI Service and Azure Machine Learning, an integration mechanism for non-native models and processes, and multiple strategies for relevance tuning.
 
-Azure AI Search can be used in both traditional and GenAI scenarios. Common use cases include catalog or document search, information discovery (data exploration), and retrieval-augmented generation (RAG) for conversational search.  
+Azure AI Search can be used in both traditional and GenAI search scenarios. Common use cases include catalog or document search, information discovery (data exploration), and retrieval-augmented generation (RAG) for conversational search.  
 
 When you create a search service, you work with the following capabilities:
 
