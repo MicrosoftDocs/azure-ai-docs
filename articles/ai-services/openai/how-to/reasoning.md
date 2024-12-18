@@ -1,7 +1,7 @@
 ---
 title: Azure OpenAI o1 series reasoning models
 titleSuffix: Azure OpenAI
-description: Learn how use Azure OpenAI's advanced o1 series reasoning models
+description: Learn how to use Azure OpenAI's advanced o1 series reasoning models
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
@@ -28,7 +28,7 @@ The **o1 series** models are now available for API access and model deployment. 
 
 Request access: [limited access model application](https://aka.ms/OAI/o1access)
 
-Once access has been granted, you will need to create a deployment for each model. If you have an existing `o1-preview` deployment, in-place upgrade is currently not supported, you will need to create a new deployment.
+Once access has been granted, you'll need to create a deployment for each model. If you have an existing `o1-preview` deployment, in-place upgrade is currently not supported, you'll need to create a new deployment.
 
 ### Region availability
 
@@ -52,7 +52,7 @@ The latest most capable **o1 series** model is `o1` **Version: 2024-12-17**. Thi
 
 ## Usage
 
-These models do not currently support the same set of parameters as other models that use the chat completions API. Only a very limited subset is currently supported. Using standard parameters like `temperature` and `top_p` will result in errors.
+These models do not currently support the same set of parameters as other models that use the chat completions API. Only a limited subset is currently supported. Using standard parameters like `temperature` and `top_p` will result in errors.
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
@@ -92,7 +92,7 @@ print(response.model_dump_json(indent=2))
 
 # [Python (key-based auth)](#tab/python)
 
-You may need to upgrade your version of the OpenAI Python library to take advantage of the new parameters like `max_completion_tokens`.
+You might need to upgrade your version of the OpenAI Python library to take advantage of the new parameters like `max_completion_tokens`.
 
 ```cmd
 pip install openai --upgrade
@@ -237,7 +237,7 @@ You will need to upgrade your OpenAI client library for access to the latest par
 pip install openai --upgrade
 ```
 
-If you are new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](../how-to/managed-identity.md).
+If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](../how-to/managed-identity.md).
 
 ```python
 from openai import AzureOpenAI
@@ -268,7 +268,7 @@ print(response.model_dump_json(indent=2))
 
 # [Python (key-based auth)](#tab/python)
 
-You may need to upgrade your version of the OpenAI Python library to take advantage of the new parameters like `max_completion_tokens`.
+You might need to upgrade your version of the OpenAI Python library to take advantage of the new parameters like `max_completion_tokens`.
 
 ```cmd
 pip install openai --upgrade
