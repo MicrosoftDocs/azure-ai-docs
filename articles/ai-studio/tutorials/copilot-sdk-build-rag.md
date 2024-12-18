@@ -156,7 +156,7 @@ Now that you have both the script and the template, run the script to test your 
 python chat_with_products.py --query "I need a new tent for 4 people, what would you recommend?"
 ```
 
-### <a name="logging"><a/> Add telemetry logging
+### <a name="logging"></a> Add telemetry logging
 
 To enable logging of telemetry to your project:
 
