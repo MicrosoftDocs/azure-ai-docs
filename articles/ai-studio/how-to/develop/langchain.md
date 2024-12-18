@@ -385,25 +385,25 @@ You can use the tracing capabilities in Azure AI Foundry by creating a tracer. L
 
 1. Using the connection string directly:
 
-  ```python
-  import os
-
-  application_insights_connection_string = "instrumentation...."
-  ```
+    ```python
+    import os
+  
+    application_insights_connection_string = "instrumentation...."
+    ```
 
 2. Using the Azure AI Foundry SDK and the project connection string (in the landing page of your project).
 
-  ```python
-  from azure.ai.projects import AIProjectClient
-  from azure.identity import DefaultAzureCredential
-  
-  project_client = AIProjectClient.from_connection_string(
-      credential=DefaultAzureCredential(),
-      conn_str="<your-project-connection-string>",
-  )
-  
-  application_insights_connection_string = project_client.telemetry.get_connection_string()
-  ```
+    ```python
+    from azure.ai.projects import AIProjectClient
+    from azure.identity import DefaultAzureCredential
+    
+    project_client = AIProjectClient.from_connection_string(
+        credential=DefaultAzureCredential(),
+        conn_str="<your-project-connection-string>",
+    )
+    
+    application_insights_connection_string = project_client.telemetry.get_connection_string()
+    ```
 
 ### Configure tracing for Azure AI Foundry
 
@@ -446,7 +446,7 @@ To see traces:
 
 3. Identify the trace you have created. It may take a couple of seconds for the trace to show.
 
-:::image type="content" source="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png" alt-text="A screenshot showing the trace of a chain." lightbox="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png":::
+    :::image type="content" source="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png" alt-text="A screenshot showing the trace of a chain." lightbox="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png":::
 
 
 ## Next steps
