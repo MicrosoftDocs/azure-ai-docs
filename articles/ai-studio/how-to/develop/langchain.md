@@ -436,6 +436,18 @@ Then use the `invoke()` method as usual:
 chain.invoke({"topic": "living in a foreign country"})
 ```
 
+### View traces
+
+To see traces:
+
+1. Go to [Azure AI Foundry portal](https://ai.azure.com).
+
+2. Navigate to **Tracing** section.
+
+3. Identify the trace you have created. It may take a couple of seconds for the trace to show.
+
+:::image type="content" source="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png" alt-text="A screenshot showing a list of resources that can be purged." lightbox="media/managing-deleted-resource.png":::
+
 
 ## Next steps
 
