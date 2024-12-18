@@ -55,7 +55,7 @@ requestOptions = new ChatCompletionsOptions()
 };
 
 response = client.Complete(requestOptions);
-Console.WriteLine($"Response: {response.Value.Choices[0].Message.Content}");
+Console.WriteLine($"Response: {response.Value.Content}");
 ```
 
 # [Java](#tab/java)
