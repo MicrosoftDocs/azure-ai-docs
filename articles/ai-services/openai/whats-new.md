@@ -27,7 +27,7 @@ The latest `o1` model is now available for API access and model deployment. **Re
 
 Request access: [limited access model application](https://aka.ms/OAI/o1access)
 
-To learn more about the advanced `o1` series models see, [getting started with o1 series reasoning models](../how-to/reasoning.md).
+To learn more about the advanced `o1` series models see, [getting started with o1 series reasoning models](./how-to/reasoning.md).
 
 ### Region availability
 
