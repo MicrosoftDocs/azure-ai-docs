@@ -27,7 +27,7 @@ ms.author: eur
   
 #### Samples
  * Updated C# samples to use .NET 8.0.
- **[Java sample use Diagnostics loggin API](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/java/jre/console/src/com/microsoft/cognitiveservices/speech/samples/console/SpeechDiagnosticsLoggingSamples.java)** showing usage of the new Diagnostics Logging classes.
+ **[Java sample use Diagnostics logging API](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/java/jre/console/src/com/microsoft/cognitiveservices/speech/samples/console/SpeechDiagnosticsLoggingSamples.java)** showing usage of the new Diagnostics Logging classes.
 
 ### 2024-November release
 
@@ -60,7 +60,7 @@ We added text to speech avatar code samples for [Android](https://github.com/Azu
   * Fixed not being able to fetch the list of TTS voices when using a custom endpoint.
   * Fixed embedded TTS re-initializing for every speak request when the voice is specified by a short name.
   * Fixed the API reference documentation for the max duration of RecognizeOnce audio.
-  * Fixed error handling arbitary sampling rates in JavaScript
+  * Fixed error handling arbitrary sampling rates in JavaScript
     * Thanks to [rseanhall](https://github.com/rseanhall) for this contribution.
   * Fixed error calculating the audio offset in JavaScript
     * Thanks to [motamed](https://github.com/motamed) for this contribution.
