@@ -31,10 +31,9 @@ This reference article provides a version-based description of Document Intellig
 
 [**Package (NuGet)**](https://www.nuget.org/packages/Azure.AI.DocumentIntelligence/1.0.0)
 
-[**Azure SDK**](/dotnet/api/overview/azure/cognitiveservices/documentintelligence?view=azure-dotnet&preserve-view=true)
+[**Azure SDK for .NET**](/dotnet/api/overview/azure/cognitiveservices/documentintelligence?view=azure-dotnet&preserve-view=true)
 
 [**ReadMe**](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/documentintelligence/Azure.AI.DocumentIntelligence/README.md)
-
 
 [**Samples**](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/documentintelligence/Azure.AI.DocumentIntelligence/samples/README.md)
 
@@ -48,6 +47,8 @@ This reference article provides a version-based description of Document Intellig
 [**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-documentintelligence_1.0.0/sdk/documentintelligence/azure-ai-documentintelligence/CHANGELOG.md#100-2024-12-16)
 
 [**Package Maven**](https://central.sonatype.com/artifact/com.azure/azure-ai-documentintelligence/1.0.0)
+
+[**Azure SDK for Java**](/java/api/com.azure.ai.documentintelligence?view=azure-java-stable&preserve-view=true)
 
 [**ReadMe**](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-documentintelligence_1.0.0/sdk/documentintelligence/azure-ai-documentintelligence/README.md)
 
@@ -64,6 +65,8 @@ This reference article provides a version-based description of Document Intellig
 
 [**Package (npm)**](https://www.npmjs.com/package/@azure-rest/ai-document-intelligence/v/1.0.0)
 
+[**Azure SDK for JavaScript**](/javascript/api/%40azure-rest/ai-document-intelligence/?view=azure-node-latest&preserve-view=true)
+
 [**ReadMe**](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/documentintelligence/ai-document-intelligence-rest#azure-documentintelligence-formerly-formrecognizer-rest-client-library-for-javascript)
 
 [**Samples**](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/documentintelligence/ai-document-intelligence-rest/samples/v1)
@@ -74,6 +77,16 @@ This reference article provides a version-based description of Document Intellig
 
 * Document Intelligence **1.0.0**
 * **Targets REST API 2024-11-30 (GA) by default**
+
+[**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-documentintelligence_1.0.0/sdk/documentintelligence/azure-ai-documentintelligence/CHANGELOG.md#100-2024-12-17)
+
+[**Package (PyPi)**](https://pypi.org/project/azure-ai-documentintelligence/1.0.0/)
+
+[**Azure SDK for Python**](/python/api/overview/azure/ai-documentintelligence-readme?view=azure-python&preserve-view=true)
+
+[**ReadMe**](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-documentintelligence_1.0.0/sdk/documentintelligence/azure-ai-documentintelligence/README.md)
+
+[**Samples**](https://github.com/Azure/azure-sdk-for-python/tree/azure-ai-documentintelligence_1.0.0/sdk/documentintelligence/azure-ai-documentintelligence/samples)
 
 [**Migration guide**](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/MIGRATION_GUIDE.md)
 
