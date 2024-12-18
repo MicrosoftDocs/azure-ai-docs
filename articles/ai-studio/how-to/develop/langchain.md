@@ -381,9 +381,13 @@ Use the client as usual in your code.
 
 ## Tracing
 
-You can use the tracing capabilities in Azure AI Foundry by creating a tracer. Logs are stored in Azure Application Insights and can be queried at any time and hence you need a connection string to it. Each AI Hub has an Azure Application Insights created for you. You can get the connection string by either:
+You can use the tracing capabilities in Azure AI Foundry by creating a tracer. Logs are stored in Azure Application Insights and can be queried at any time using Azure Monitor or Azure AI Foundry portal. Each AI Hub has an Azure Application Insights created for you.
 
-1. Using the connection string directly:
+### Get your instrumentation connection string
+
+You can configure your application to send telemetry to Azure Application Insights either by:
+
+1. Using the connection string to Azure Application Insights directly:
 
     ```python
     import os
@@ -391,7 +395,7 @@ You can use the tracing capabilities in Azure AI Foundry by creating a tracer. L
     application_insights_connection_string = "instrumentation...."
     ```
 
-2. Using the Azure AI Foundry SDK and the project connection string (in the landing page of your project).
+2. Using the Azure AI Foundry SDK and the project connection string. You can find the project's connection string by navigating to the landing page of your project.
 
     ```python
     from azure.ai.projects import AIProjectClient
@@ -405,9 +409,12 @@ You can use the tracing capabilities in Azure AI Foundry by creating a tracer. L
     application_insights_connection_string = project_client.telemetry.get_connection_string()
     ```
 
+    > [!TIP]
+    > This snippet of code requires the package `azure-ai-projects` installed.
+
 ### Configure tracing for Azure AI Foundry
 
-The following code creates a tracer connected to a project in Azure AI Foundry. Notice that the parameter `enable_content_recording` is set to `True`. This enables the capture of the inputs and outputs of the entire application as well as the intermediate steps. Such is helpful when debugging and building applications, but you may want to disable it on production environments. By default, the environment variable `AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED`:
+The following code creates a tracer connected to the Azure Application Insights behind a project in Azure AI Foundry. Notice that the parameter `enable_content_recording` is set to `True`. This enables the capture of the inputs and outputs of the entire application as well as the intermediate steps. Such is helpful when debugging and building applications, but you may want to disable it on production environments. It defaults to the environment variable `AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED`:
 
 ```python
 from langchain_azure_ai.callbacks.tracers import AzureAIInferenceTracer
@@ -448,9 +455,11 @@ To see traces:
 
     :::image type="content" source="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png" alt-text="A screenshot showing the trace of a chain." lightbox="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png":::
 
+Learn more about [how to visualize and manage traces](visualize-traces.md).
 
 ## Next steps
 
 * [Develop applications with LlamaIndex](llama-index.md)
+* [Visualize and manage traces in Azure AI Foundry](visualize-traces.md)
 * [Use the Azure AI model inference service](../../ai-services/model-inference.md)
 * [Reference: Azure AI model inference API](../../reference/reference-model-inference-api.md)
