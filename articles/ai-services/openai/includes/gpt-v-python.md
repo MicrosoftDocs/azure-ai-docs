@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use GPT-4 Turbo with Vision on your images and videos with the Python SDK'
+title: 'Quickstart: Use GPT-4 Turbo with Vision on your images with the Python SDK'
 titleSuffix: Azure OpenAI
 description: Get started using the Azure OpenAI Python SDK to deploy and use the GPT-4 Turbo with Vision model.
 services: cognitive-services

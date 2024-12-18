@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use images and videos in chats with the Azure OpenAI Service'
+title: 'Quickstart: Use images in chats with the Azure OpenAI Service'
 titleSuffix: Azure OpenAI
 description: Use this article to get started using Azure AI Foundry to deploy and use an image-capable model.
 services: cognitive-services
