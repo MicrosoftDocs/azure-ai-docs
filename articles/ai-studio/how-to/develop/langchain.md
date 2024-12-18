@@ -97,7 +97,7 @@ model = AzureAIChatCompletionsModel(
 )
 ```
 
-If your endpoint support Microsoft Entra ID, you can use the following code to create the client:
+You can use the following code to create the client if your endpoint supports Microsoft Entra ID:
 
 ```python
 import os
@@ -182,7 +182,7 @@ chain.invoke({"language": "italian", "text": "hi"})
 
 Models deployed to Azure AI Foundry support the Azure AI model inference API, which is standard across all the models. Chain multiple LLM operations based on the capabilities of each model so you can optimize for the right model based on capabilities. 
 
-In the following example, we create 2 model clients, one is a producer and another one is a verifier. To make the distinction clear, we are using a multi-model endpoint like the [Azure AI model inference service](../../ai-services/model-inference.md) and hence we are passing the parameter `model_name` to use a `Mistral-Large` and a `Mistral-Small` model, quoting the fact that **producing content is more complex than verifying it**.
+In the following example, we create two model clients, one is a producer and another one is a verifier. To make the distinction clear, we are using a multi-model endpoint like the [Azure AI model inference service](../../ai-services/model-inference.md) and hence we are passing the parameter `model_name` to use a `Mistral-Large` and a `Mistral-Small` model, quoting the fact that **producing content is more complex than verifying it**.
 
 ```python
 from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
@@ -335,9 +335,9 @@ llm = AzureAIChatCompletionsModel(
 )
 ```
 
-## Debugging and torubleshooting
+## Debugging and troubleshooting
 
-If you need to debug your application and understand which parameters are being sent to the models in Azure AI Foundry, you can use the debug capabilities of the integration as follows:
+If you need to debug your application and understand the requests sent to the models in Azure AI Foundry, you can use the debug capabilities of the integration as follows:
 
 First, configure logging to the level you are interested in:
 
@@ -418,7 +418,7 @@ tracer = AzureAIInferenceTracer(
 )
 ```
 
-To configure tracing with your chain, indicate the value config in the invoke operation as a callback:
+To configure tracing with your chain, indicate the value config in the `invoke` operation as a callback:
 
 ```python
 chain.invoke({"topic": "living in a foreign country"}, config={"callbacks": [tracer]})
