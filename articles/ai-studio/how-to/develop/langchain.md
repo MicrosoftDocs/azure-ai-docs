@@ -446,7 +446,7 @@ To see traces:
 
 3. Identify the trace you have created. It may take a couple of seconds for the trace to show.
 
-:::image type="content" source="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png" alt-text="A screenshot showing a list of resources that can be purged." lightbox="media/managing-deleted-resource.png":::
+:::image type="content" source="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png" alt-text="A screenshot showing the trace of a chain." lightbox="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png":::
 
 
 ## Next steps
