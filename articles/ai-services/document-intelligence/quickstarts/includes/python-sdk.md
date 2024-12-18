@@ -249,7 +249,7 @@ After you add a code sample to your application, build and run your program:
 
 :::moniker range="doc-intel-3.1.0"
 
-To analyze a given file at a URL, you'll use the `begin_analyze_document_from_url` method and pass in `prebuilt-layout` as the model Id. The returned value is a `result` object containing data about the submitted document.
+To analyze a given file at a URL, use the `begin_analyze_document_from_url` method and pass in `prebuilt-layout` as the model ID. The returned value is a `result` object containing data about the submitted document.
 
 **Add the following code sample to your form_recognizer_quickstart.py application. Make sure you update the key and endpoint variables with values from your Azure portal Form Recognizer instance:**
 
@@ -778,7 +778,7 @@ After you add a code sample to your application, build and run your program:
 
 :::moniker range="doc-intel-3.1.0"
 
-To analyze a given file at a URI, you'll use the `begin_analyze_document_from_url` method and pass `prebuilt-invoice` as the model Id. The returned value is a `result` object containing data about the submitted document.
+To analyze a given file at a URI, use the `begin_analyze_document_from_url` method and pass `prebuilt-invoice` as the model ID. The returned value is a `result` object containing data about the submitted document.
 
 **Add the following code sample to your form_recognizer_quickstart.py application. Make sure you update the key and endpoint variables with values from your Azure portal Form Recognizer instance:**
 
