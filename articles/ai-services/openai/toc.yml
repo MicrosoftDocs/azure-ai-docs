@@ -32,7 +32,7 @@ items:
     - name: Chat
       href: chatgpt-quickstart.md  
       displayName: ChatGPT, chatgpt
-    - name: GPT-4 Turbo with Vision
+    - name: Vision-enabled chats
       href: gpt-v-quickstart.md
     - name: DALL-E
       href: dall-e-quickstart.md
@@ -64,7 +64,7 @@ items:
       href: ./concepts/understand-embeddings.md
     - name: Fine-tuning
       href: ./concepts/fine-tuning-considerations.md
-    - name: GPT-4 Turbo with Vision
+    - name: Vision-enabled models
       href: ./concepts/gpt-with-vision.md
     - name: Red teaming large language models (LLMs)
       href: ./concepts/red-teaming.md
@@ -122,7 +122,7 @@ items:
     - name: GPT-35-Turbo & GPT-4 
       href: ./how-to/chatgpt.md
       displayName: ChatGPT, chatgpt
-    - name: GPT-4 Turbo with Vision
+    - name: Vision-enabled chats
       href: ./how-to/gpt-with-vision.md
     - name: DALL-E
       href: ./how-to/dall-e.md
@@ -170,6 +170,8 @@ items:
         displayName: fine-tuning, finetuning
       - name: Weights & Biases integration (preview)
         href: ./how-to/weights-and-biases-integration.md
+  - name: Stored completions
+    href: ./how-to/stored-completions.md
   - name: Use your data
     items:
       - name: Text data
@@ -322,7 +324,7 @@ items:
     - name: Java
       href: /java/api/com.azure.ai.openai?view=azure-java-preview&preserve-view=true
     - name: JavaScript
-      href: /javascript/api/@azure/openai/?view=azure-node-preview&preserve-view=true
+      href: /azure/ai-services/openai/supported-languages?tabs=dotnet-secure%2Csecure%2Cpython-secure%2Ccommand&pivots=programming-language-javascript
     - name: .NET 
       href: /dotnet/api/azure.ai.openai?view=azure-dotnet-preview&preserve-view=true
     - name: REST API (fine-tuning)

@@ -21,7 +21,7 @@ Azure AI Search supports Microsoft and Lucene analyzers. By default, the search 
 
 In Azure AI Search, the two patterns for supporting multiple languages include:
 
-+ Create language-specific indexes where all of the alphanumeric content is in the same language, and all searchable string fields are attributed to use the same [language analyzer](index-add-language-analyzers.md).
++ Create language-specific indexes where all of the human readable content is in the same language, and all searchable string fields are attributed to use the same [language analyzer](index-add-language-analyzers.md).
 
 + Create a blended index with language-specific versions of each field (for example, description_en, description_fr, description_ko), and then constrain full text search to just those fields at query time. This approach is useful for scenarios where language variants are only needed on a few fields, like a description.
 
