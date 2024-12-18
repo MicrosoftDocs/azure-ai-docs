@@ -38,7 +38,7 @@ For more information, *see* client libraries for the following supported program
 
 * [🆕 JavaScript](versioning/changelog-release-history.md?view=doc-intel-4.0.0&tabs=javascript&preserve-view=true)
 
-* [🆕 Python](versioning/changelog-release-history.nd?view=doc-intel-4.0.0&tabs=python&preserve-view=true)
+* [🆕 Python](versioning/changelog-release-history.md?view=doc-intel-4.0.0&tabs=python&preserve-view=true)
 
 ## November 2024
 
