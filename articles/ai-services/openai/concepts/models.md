@@ -40,7 +40,7 @@ The Azure OpenAI `o1` and `o1-mini` models are specifically designed to tackle r
 
 ### Availability
 
-The `o1` and `o1-mini` models are now available for API access and model deployment. **Registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who previously applied and received access to `o1-preview` do not need to reapply as they will automatically be on the wait-list for the latest model.
+The `o1` and `o1-mini` models are now available for API access and model deployment. **Registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who previously applied and received access to `o1-preview`, don't need to reapply as they are automatically on the wait-list for the latest model.
 
 Request access: [limited access model application](https://aka.ms/OAI/o1access)
 
