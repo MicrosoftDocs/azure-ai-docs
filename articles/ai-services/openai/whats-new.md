@@ -33,9 +33,7 @@ To learn more about the advanced `o1` series models see, [getting started with o
 
 | Model | Region |
 |---|---|
-|`o1` | East US2 (Global Standard) <br> Sweden Central (Global Standard) |
-| `o1-preview` | See the [models table](#global-standard-model-availability). |
-| `o1-mini` | See the [models table](#global-provisioned-managed-model-availability). |
+|`o1` <br>(Version: 2024-12-17)| East US2 (Global Standard) <br> Sweden Central (Global Standard) |
 
 ### Preference fine-tuning (preview)
 
