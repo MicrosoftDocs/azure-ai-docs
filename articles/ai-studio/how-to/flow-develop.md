@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/08/2024
+ms.date: 12/18/2024
 ms.reviewer: gmuthukumar
 ms.author: lagayhar
 author: lgayhardt
@@ -34,7 +34,17 @@ In this article, you learn how to create and develop your first prompt flow in A
 - If you don't have an Azure AI Foundry project already, first [create a project](create-projects.md).
 - Prompt flow requires a compute session. If you don't have a runtime, you can [create one in Azure AI Foundry portal](./create-manage-compute-session.md).
 - You need a deployed model.
-
+- In your project, configure access control for the blog storage account. Assign the **Storage Blob Data Contributor** role to your user account.
+    - In the bottom left of the Azure AI Foundry portal, select **Management center**.
+    - In **Connected resources** for your project, select the link that corresponds to the **Azure Blob Storage** type. 
+    - Select **View in Azure Portal**
+    - In the Azure portal, select **Access control (IAM)**.
+    - Select **Add>Add role assignment**.
+    - Search for **Storage Blob Data Contributor**, then select it.
+    - Use the **Add role assignment** page to add yourself as a member.
+    - Select **Review + assign** to review the assignment.
+    - Select **Review + assign** to assign the role.
+    
 ## Create and develop your Prompt flow
 
 You can create a flow by either cloning the samples available in the gallery or creating a flow from scratch. If you already have flow files in local or file share, you can also import the files to create a flow.
@@ -42,6 +52,7 @@ You can create a flow by either cloning the samples available in the gallery or 
 To create a prompt flow from the gallery in Azure AI Foundry portal:
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com) and select your project. 
+1. If you're in the Management center, select **Go to project**.
 1. From the collapsible left menu, select **Prompt flow**.
 1. Select **+ Create**.
 1. In the **Standard flow** tile, select **Create**.
