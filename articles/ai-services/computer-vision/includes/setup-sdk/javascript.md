@@ -3,7 +3,7 @@ author: PatrickFarley
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 01/16/2024
-ms.collection: ce-skilling-fresh-tier2
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
