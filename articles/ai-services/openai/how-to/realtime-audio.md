@@ -269,6 +269,14 @@ sequenceDiagram
   Server->>Client: conversation.item.deleted
 -->
 
+## Response interuption
+
+The client [`response.cancel`](../realtime-audio-reference.md#realtimeclienteventresponsecancel) event is used to cancel an in-progress response. 
+
+A user might want to interrupt the assistant's response or ask the assistant to stop talking. The server produces audio faster than realtime. The client can send a [`conversation.item.truncate`](../realtime-audio-reference.md#realtimeclienteventconversationitemtruncate) event to truncate the audio before it's played. 
+- The server's understanding of the audio with the client's playback is synchronized. 
+- Truncating audio deletes the server-side text transcript to ensure there isn't text in the context that the user doesn't know about.
+- The server responds with a [`conversation.item.truncated`](../realtime-audio-reference.md#realtimeservereventconversationitemtruncated) event.
 
 ## Related content
 
