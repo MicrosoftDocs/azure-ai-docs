@@ -156,7 +156,11 @@ Now that you have both the script and the template, run the script to test your 
 python chat_with_products.py --query "I need a new tent for 4 people, what would you recommend?"
 ```
 
-<!-- To enable logging of telemetry to your project:
+To enable logging of telemetry to your project:
+
+1. Enable tracing by adding an Application Insights resource to your project.  Navigate to the **Tracing** tab in the [Azure AI Foundry portal](https://ai.azure.com/), and create a new resource if you don't already have one.
+
+    :::image type="content" source="../../ai-services/agents/media/ai-foundry-tracing.png" alt-text="A screenshot of the tracing screen in the Azure AI Foundry portal." lightbox="../../ai-services/agents/media/ai-foundry-tracing.png":::
 
 1. Install `azure-monitor-opentelemetry`:
 
@@ -169,7 +173,7 @@ python chat_with_products.py --query "I need a new tent for 4 people, what would
    ```bash
    python chat_with_products.py --query "I need a new tent for 4 people, what would you recommend?" --enable-telemetry 
    ```
--->
+
 
 ## Clean up resources
 
