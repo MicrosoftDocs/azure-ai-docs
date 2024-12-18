@@ -67,7 +67,7 @@ Trace visualization refers to the graphical representation of trace data. Azure 
 
 In order to enable tracing, you need to add an Application Insights resource to your Azure AI Foundry project. To add an Application Insights resource, navigate to the **Tracing** tab in the [AI Foundry portal](https://ai.azure.com/), and create a new resource if you don't already have one.
 
-:::image type="content" source="../../ai-services/agents/media/ai-foundry-tracing.png" alt-text="A screenshot of the tracing screen in the AI Foundry portal." lightbox="../media/ai-foundry-tracing.png":::
+:::image type="content" source="../../ai-services/agents/media/ai-foundry-tracing.png" alt-text="A screenshot of the tracing screen in the AI Foundry portal." lightbox="../../ai-services/agents/media/ai-foundry-tracing.png":::
 
 ## Conclusion
 
