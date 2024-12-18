@@ -43,7 +43,7 @@ For fine-tuning model region availability, see the [models page](./concepts/mode
 
 ### Stored completions & distillation
 
-[Stored completions](./how-to/stored-completions.md) allow you to capture the conversation history from chat completions sessions to use as datasets for [evaluations](./evaluations.md) and [fine-tuning](./fine-tuning.md).
+[Stored completions](./how-to/stored-completions.md) allow you to capture the conversation history from chat completions sessions to use as datasets for [evaluations](./how-to/evaluations.md) and [fine-tuning](./how-to/fine-tuning.md).
 
 ### GPT-4o 2024-11-20
 
