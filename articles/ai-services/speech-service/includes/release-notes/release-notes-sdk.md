@@ -6,7 +6,7 @@ ms.date: 12/17/2024
 ms.author: eur
 ---
 
-### Speech SDK 1.42: 2024-December release
+### Speech SDK 1.42.0: 2024-December release
 
 #### New features
  * Java: Added Diagnostics logging APIs using classes of FileLogger, MemoryLogger, EventLogger and SpxTrace.
