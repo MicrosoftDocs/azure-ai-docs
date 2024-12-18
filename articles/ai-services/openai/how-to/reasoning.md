@@ -48,7 +48,7 @@ The latest most capable **o1 series** model is `o1` **Version: 2024-12-17**. Thi
 
 ### 2024-12-01-preview
 
-`2024-12-01-preview` adds support for the new `reasoning_effort` parameter, structured outputs, and developer messages. The older preview reasoning models do not currently support these features. For reasoning models, these features are currently only available with `o1` **Version: 2024-12-17**.
+`2024-12-01-preview` adds support for the new `reasoning_effort` parameter, [structured outputs](./structured-outputs.md), and developer messages. The older preview reasoning models do not currently support these features. For reasoning models, these features are currently only available with `o1` **Version: 2024-12-17**.
 
 ## Usage
 
@@ -221,11 +221,14 @@ print(response.model_dump_json(indent=2))
 
 
 > [!NOTE]
-> Reasoning models have `reasoning_tokens` as part of `completion_tokens_details` in the model response. These are hidden tokens that are not returned as part of the message response content but are used by the model to help generate a final answer your request. `2024-12-01-preview` adds an additional new parameter `reasoning_effort` which can be set to `low`, `medium`, or `high` with the latest `o1` model. The higher the effort setting, the longer the model will spend processing the request, which will generally result in a larger number of `reasoning_tokens`.
+> Reasoning models have `reasoning_tokens` as part of `completion_tokens_details` in the model response. These are hidden tokens that are not returned as part of the message response content but are used by the model to help generate a final answer to your request. `2024-12-01-preview` adds an additional new parameter `reasoning_effort` which can be set to `low`, `medium`, or `high` with the latest `o1` model. The higher the effort setting, the longer the model will spend processing the request, which will generally result in a larger number of `reasoning_tokens`.
 
 ## Developer messages
 
-**System messages are not supported** with the **o1 series** reasoning models. `o1` **Version: 2024-12-17** with API version: `2024-12-01-preview` and later adds support for developer messages. Functionally developer messages ` "role": "developer"` are the same as system messages.
+Functionally developer messages ` "role": "developer"` are the same as system messages.
+
+- **System messages are not supported** with the **o1 series** reasoning models. 
+- `o1-2024-12-17` with API version: `2024-12-01-preview` and later adds support for developer messages. 
 
 Adding a developer message to the previous code example would look as follows:
 
@@ -297,3 +300,4 @@ print(response.model_dump_json(indent=2))
 ```
 
 ---
+
