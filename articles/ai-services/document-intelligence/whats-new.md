@@ -38,6 +38,8 @@ For more information, *see* client libraries for the following supported program
 
 * [🆕 JavaScript](versioning/changelog-release-history.md?view=doc-intel-4.0.0&tabs=javascript&preserve-view=true)
 
+* [🆕 Python](versioning/changelog-release-history.nd?view=doc-intel-4.0.0&tabs=python&preserve-view=true)
+
 ## November 2024
 
 **Document Intelligence REST API v4.0: [**2024-11-30 REST API (GA)**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) is now generally available (GA)**! The v4.0 REST API includes the following changes:
