@@ -381,7 +381,7 @@ Use the client as usual in your code.
 
 ## Tracing
 
-You can use the tracing capabilities in Azure AI Foundry by creating a tracer. Logs are stored in Azure Application Insights and can be queried at any time using Azure Monitor or Azure AI Foundry portal. Each AI Hub has an Azure Application Insights created for you.
+You can use the tracing capabilities in Azure AI Foundry by creating a tracer. Logs are stored in Azure Application Insights and can be queried at any time using Azure Monitor or Azure AI Foundry portal. Each AI Hub has an Azure Application Insights associated with it.
 
 ### Get your instrumentation connection string
 
@@ -389,28 +389,37 @@ You can configure your application to send telemetry to Azure Application Insigh
 
 1. Using the connection string to Azure Application Insights directly:
 
-    ```python
-    import os
-  
-    application_insights_connection_string = "instrumentation...."
-    ```
+    1. Go to [Azure AI Foundry portal](https://ai.azure.com) and select **Tracing**.
 
-2. Using the Azure AI Foundry SDK and the project connection string. You can find the project's connection string by navigating to the landing page of your project.
+    2. Select **Manage data source**. In this screen you can see the instance that is associated with the project.
 
-    ```python
-    from azure.ai.projects import AIProjectClient
-    from azure.identity import DefaultAzureCredential
+    3. Copy the value at **Connection string** and set it to the following variable:
+
+        ```python
+        import os
+      
+        application_insights_connection_string = "instrumentation...."
+        ```
+
+2. Using the Azure AI Foundry SDK and the project connection string.
+
+    1. Ensure you have the package `azure-ai-projects` installed in your environment.
+
+    2. Go to [Azure AI Foundry portal](https://ai.azure.com).
     
-    project_client = AIProjectClient.from_connection_string(
-        credential=DefaultAzureCredential(),
-        conn_str="<your-project-connection-string>",
-    )
-    
-    application_insights_connection_string = project_client.telemetry.get_connection_string()
-    ```
+    3. Copy your project's connection string and set it the following code:
 
-    > [!TIP]
-    > This snippet of code requires the package `azure-ai-projects` installed.
+        ```python
+        from azure.ai.projects import AIProjectClient
+        from azure.identity import DefaultAzureCredential
+        
+        project_client = AIProjectClient.from_connection_string(
+            credential=DefaultAzureCredential(),
+            conn_str="<your-project-connection-string>",
+        )
+        
+        application_insights_connection_string = project_client.telemetry.get_connection_string()
+        ```
 
 ### Configure tracing for Azure AI Foundry
 
