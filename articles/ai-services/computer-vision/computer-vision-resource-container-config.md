@@ -14,7 +14,7 @@ ms.author: aahi
 
 # Configure Read OCR Docker containers
 
-You can configure the Azure AI Vision Read OCR container's runtime environment by using the `docker run` command arguments. This container has some required settings, along with a few optional settings. Several [examples](#example-docker-run-commands) of the command are available. The container-specific settings are the billing settings. 
+You can configure the Azure AI Vision Read OCR container's runtime environment by using the `docker run` command arguments. This container has some required settings, along with a few optional settings. Several [examples](#example-docker-commands) of the command are available. The container-specific settings are the billing settings. 
 
 ## Configuration settings
 
