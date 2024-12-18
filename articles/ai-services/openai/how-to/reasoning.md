@@ -35,8 +35,8 @@ Once access has been granted, you will need to create a deployment for each mode
 | Model | Region |
 |---|---|
 |`o1` | East US2 (Global Standard) <br> Sweden Central (Global Standard) |
-| `o1-preview` | See [models page](../concepts/models.md#global-standard). |
-| `o1-mini` | See [models page](../concepts/models.md#global-standard). |
+| `o1-preview` | See [models page](../concepts/models.md#global-standard-model-availability). |
+| `o1-mini` | See [models page](../concepts/models.md#global-standard-model-availability). |
 
 ## API support
 
@@ -259,8 +259,7 @@ response = client.chat.completions.create(
         {"role": "developer","content": "You are a helpful assistant."}, # optional equivalent to a system message for reasoning models 
         {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
     ],
-    max_completion_tokens = 5000,
-    reasoning_effort = "medium" # optional 
+    max_completion_tokens = 5000
 
 )
 
@@ -291,9 +290,7 @@ response = client.chat.completions.create(
         {"role": "developer","content": "You are a helpful assistant."}, # optional equivalent to a system message for reasoning models 
         {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
     ],
-    max_completion_tokens = 5000,
-    reasoning_effort = medium
-
+    max_completion_tokens = 5000
 )
 
 print(response.model_dump_json(indent=2))

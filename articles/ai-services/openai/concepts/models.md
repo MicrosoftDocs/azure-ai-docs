@@ -42,19 +42,19 @@ The Azure OpenAI `o1` and `o1-mini` models are specifically designed to tackle r
 
 The `o1` and `o1-mini` models are now available for API access and model deployment. **Registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who previously applied and received access to `o1-preview` do not need to reapply as they will automatically be on the wait-list for the latest model.
 
-Request access: [limited access model application](https://aka.ms/oai/modelaccess)
+Request access: [limited access model application](https://aka.ms/OAI/o1access)
 
 Once access has been granted, you will need to create a deployment for each model. If you have an existing `o1-preview` deployment in place upgrade is currently not supported, you will need to create a new deployment.
 
-To learn more about the advanced `o1` series models see, [getting started with o1 series reasoning models](../how-to/).
+To learn more about the advanced `o1` series models see, [getting started with o1 series reasoning models](../how-to/reasoning.md).
 
 ### Region availability
 
 | Model | Region |
 |---|---|
 |`o1` | East US2 (Global Standard) <br> Sweden Central (Global Standard) |
-| `o1-preview` | See [models table](../concepts/models.md#global-standard). |
-| `o1-mini` | See [models table](../concepts/models.md#global-standard). |
+| `o1-preview` | See the [models table](#global-standard-model-availability). |
+| `o1-mini` | See the [models table](#global-provisioned-managed-model-availability). |
 
 ## GPT-4o-Realtime-Preview
 
