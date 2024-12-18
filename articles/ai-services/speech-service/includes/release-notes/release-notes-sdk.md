@@ -27,7 +27,7 @@ ms.author: eur
   
 #### Samples
  * Updated C# samples to use .NET 8.0.
- **[Java sample use Diagnostics logging API](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/java/jre/console/src/com/microsoft/cognitiveservices/speech/samples/console/SpeechDiagnosticsLoggingSamples.java)** showing usage of the new Diagnostics Logging classes.
+ * Java sample use Diagnostics logging API showing usage of the new Diagnostics Logging classes.
 
 ### 2024-November release
 
