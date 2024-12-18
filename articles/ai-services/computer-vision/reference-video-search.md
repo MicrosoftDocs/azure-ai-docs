@@ -9,6 +9,7 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: reference
 ms.date: 03/11/2024
+ms.collection: ce-skilling-fresh-tier2
 ms.author: pafarley
 ---
 

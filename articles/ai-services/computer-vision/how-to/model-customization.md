@@ -8,6 +8,7 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: how-to
 ms.date: 09/25/2024
+ms.collection: ce-skilling-fresh-tier2
 ms.author: pafarley
 ms.custom: devx-track-python
 ---
