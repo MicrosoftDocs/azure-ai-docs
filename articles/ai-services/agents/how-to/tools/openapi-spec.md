@@ -25,7 +25,7 @@ OpenAPI Specified tool improves your function calling experience by providing st
 automated, and scalable API integrations that enhance the capabilities and efficiency of your agent. 
 [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) provide a formal standard for 
 describing HTTP APIs. This allows people to understand how an API works, how a sequence of APIs 
-work together, generate client code, create tests, apply design standards, and more. 
+work together, generate client code, create tests, apply design standards, and more. Currently, we support 3 authentication types with the OpenAPI 3.0 specified tools: `anonymous`, `API key`, `managed identity`.
 
 ## Set up
 1. Ensure you've completed the prerequisites and setup steps in the [quickstart](../../quickstart.md).
@@ -51,18 +51,6 @@ work together, generate client code, create tests, apply design standards, and m
       - Connection name: `YOUR_CONNECTION_NAME` (You will use this connection name in the sample code below.)
       - Access: you can choose either *this project only* or *shared to all projects*. Just make sure in the sample code below, the project you entered connection string for has access to this connection.
      
-    1. Update your OpenAPI Spec with the following:
-    ```json
-        "components": {
-        "securitySchemes": {
-          "cosoLocationApiLambdaAuthorizer": {
-            "type": "apiKey",
-            "name": "key",
-            "in": "query"
-          }
-        }
-      }
-    ```
 ::: zone-end
 
 ::: zone pivot="code-example"

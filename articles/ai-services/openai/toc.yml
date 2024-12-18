@@ -119,6 +119,8 @@ items:
     href: ./how-to/batch.md
   - name: Completions & chat completions
     items:
+    - name: Reasoning models
+      href: ./how-to/reasoning.md
     - name: GPT-35-Turbo & GPT-4 
       href: ./how-to/chatgpt.md
       displayName: ChatGPT, chatgpt
