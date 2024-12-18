@@ -128,43 +128,33 @@ You can configure deployments to scale automatically based on metrics. To turn o
 
 There are three logs that you can turn on for online endpoints:
 
-* **AmlOnlineEndpointTrafficLog**: This traffic log provides a way for you to check the information of a request to the endpoint. You can use this log in the following cases: 
+* **AmlOnlineEndpointTrafficLog**: This traffic log provides a way for you to check the information of requests to the endpoint. This log is useful in the following cases:
+  * A request response isn't 200, and you want more information. The `ResponseCodeReason` column in the log lists the reason. For a description of status codes and reasons, you can also see [HTTPS status codes](how-to-troubleshoot-online-endpoints.md#http-status-codes) in the article about troubleshooting online endpoints.
+  * You want to look up the response code and response reason of your model for a request. The `ModelStatusCode` and `ModelStatusReason` columns provide this information.
+  * You want to know the duration of a request. The logs provide a breakdown of the latency that shows the total duration, the request duration, the response duration, and the delay caused by network throttling.
+  * You want to check how many recent requests succeeded and failed. The logs provide this information.
+* **AmlOnlineEndpointConsoleLog**: This log contains statements that the containers write as output to the console. This log is useful in the following cases:
+  * A container fails to start. The console log can be useful for debugging.
+  * You want to monitor container behavior and make sure that all requests are correctly handled.
+  * You want to write request IDs in the console log. Joining the request ID, the AmlOnlineEndpointConsoleLog, and AmlOnlineEndpointTrafficLog in the Log Analytics workspace, you can trace a request from the network entry point of an online endpoint to the container.
+  * You want to run a performance analysis. For instance, you want to determine the time the model needs to process each request.
+* **AmlOnlineEndpointEventLog**: This log contains event information about the container life cycle. Currently, the log provides information about the following types of events:
 
-    * If the request response isn't 200, check the value of the `ResponseCodeReason` column to see the reason. Also check the reason in [HTTPS status codes](how-to-troubleshoot-online-endpoints.md#http-status-codes), in the article about troubleshooting online endpoints.
-
-    * You could check the response code and response reason of your model from the column "ModelStatusCode" and "ModelStatusReason". 
-
-    * You want to check the duration of the request like total duration, the request/response duration, and the delay caused by the network throttling. You could check it from the logs to see the breakdown latency. 
-
-    * If you want to check how many requests or failed requests recently. You could also enable the logs. 
-
-* **AmlOnlineEndpointConsoleLog**: Contains logs that the containers output to the console. Below are some cases: 
-
-    * If the container fails to start, the console log can be useful for debugging. 
-
-    * Monitor container behavior and make sure that all requests are correctly handled. 
-
-    * Write request IDs in the console log. Joining the request ID, the AmlOnlineEndpointConsoleLog, and AmlOnlineEndpointTrafficLog in the Log Analytics workspace, you can trace a request from the network entry point of an online endpoint to the container.  
-
-    * You can also use this log for performance analysis in determining the time required by the model to process each request. 
-
-* **AmlOnlineEndpointEventLog**: Contains event information regarding the container's life cycle. Currently, we provide information on the following types of events: 
-
-    | Name | Message |
-    | ----- | ----- | 
-    | BackOff | Back-off restarting failed container 
-    | Pulled | Container image "\<IMAGE\_NAME\>" already present on machine 
-    | Killing | Container inference-server failed liveness probe, will be restarted 
-    | Created | Created container image-fetcher 
-    | Created | Created container inference-server 
-    | Created | Created container model-mount 
-    | LivenessProbeFailed | Liveness probe failed: \<FAILURE\_CONTENT\> 
-    | ReadinessProbeFailed | Readiness probe failed: \<FAILURE\_CONTENT\> 
-    | Started | Started container image-fetcher 
-    | Started | Started container inference-server 
-    | Started | Started container model-mount 
-    | Killing | Stopping container inference-server 
-    | Killing | Stopping container model-mount 
+  | Name | Message |
+  | ----- | ----- | 
+  | BackOff | Back-off restarting failed container |
+  | Pulled | Container image "\<IMAGE\_NAME\>" already present on machine |
+  | Killing | Container inference-server failed liveness probe, will be restarted |
+  | Created | Created container image-fetcher |
+  | Created | Created container inference-server |
+  | Created | Created container model-mount |
+  | LivenessProbeFailed | Liveness probe failed: \<FAILURE\_CONTENT\> |
+  | ReadinessProbeFailed | Readiness probe failed: \<FAILURE\_CONTENT\> |
+  | Started | Started container image-fetcher |
+  | Started | Started container inference-server |
+  | Started | Started container model-mount |
+  | Killing | Stopping container inference-server |
+  | Killing | Stopping container model-mount |
 
 ### Turn logs on or off
 
@@ -193,7 +183,9 @@ There are three logs that you can turn on for online endpoints:
 
 1. From either the online endpoint properties or the Log Analytics workspace, select **Logs** from the left of the screen.
 
-1. Close the **Queries** dialog that automatically opens, and then double-click the **AmlOnlineEndpointConsoleLog**. If you don't see it, use the **Search** field.
+1. Close the **Queries hub** window that automatically opens.
+
+1. Under **Other**, double-click **AmlOnlineEndpointConsoleLog**. If you don't see **AmlOnlineEndpointConsoleLog**, enter that value into the search field.
 
     :::image type="content" source="./media/how-to-monitor-online-endpoints/online-endpoints-log-queries.png" alt-text="Screenshot showing the log queries.":::
 
@@ -203,13 +195,17 @@ There are three logs that you can turn on for online endpoints:
 
 ### Example queries
 
-You can find example queries on the __Queries__ tab while viewing logs. Search for __Online endpoint__ to find example queries.
+Example queries are available for you to use. Take the following steps to view them:
+
+1. On the Logs page, select **Queries** to open the Queries tab.
+
+1. In the search box, enter **Online endpoint**.
 
 :::image type="content" source="./media/how-to-monitor-online-endpoints/example-queries.png" alt-text="Screenshot of the example queries.":::
 
 ### Log column details 
 
-The following tables provide details on the data stored in each log:
+The following tables provide detailed information about the data that's stored in each log:
 
 **AmlOnlineEndpointTrafficLog**
 
