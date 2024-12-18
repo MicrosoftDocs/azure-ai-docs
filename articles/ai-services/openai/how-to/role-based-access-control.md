@@ -62,6 +62,7 @@ A user with only this role assigned would be unable to:
 ❌ Create new model deployments or edit existing model deployments <br>
 ❌ Create/deploy custom fine-tuned models <br>
 ❌ Upload datasets for fine-tuning <br>
+❌ View, query, filter Stored completions data <br>
 ❌ Access quota <br>
 ❌ Create customized content filters <br>
 ❌ Add a data source for the use your data feature
@@ -72,6 +73,7 @@ This role has all the permissions of Cognitive Services OpenAI User and is also 
 
 ✅ Create custom fine-tuned models <br>
 ✅ Upload datasets for fine-tuning <br>
+✅ View, query, filter Stored completions data <br>
 ✅ Create new model deployments or edit existing model deployments **[Added Fall 2023]**
 
 A user with only this role assigned would be unable to:
@@ -98,6 +100,8 @@ This role is typically granted access at the resource group level for a user in 
 ✅ Create custom fine-tuned models **[Added Fall 2023]**<br>
 ✅ Upload datasets for fine-tuning **[Added Fall 2023]**<br>
 ✅ Create new model deployments or edit existing model deployments (via Azure AI Foundry) **[Added Fall 2023]**
+✅ View, query, filter Stored completions data <br>
+
 
 A user with only this role assigned would be unable to:
 
@@ -145,6 +149,7 @@ All the capabilities of Cognitive Services Contributor plus the ability to:
 |Create or edit model deployments|❌|✅|✅| ➖ |
 |Create or deploy custom fine-tuned models|❌|✅|✅| ➖ |
 |Upload datasets for fine-tuning|❌|✅|✅| ➖ |
+|View, query, filter Stored competions data|❌|✅|✅| ➖ |
 |Create new Azure OpenAI resources|❌|❌|✅| ➖ |
 |View/Copy/Regenerate keys under “Keys and Endpoint”|❌|❌|✅| ➖ |
 |Create customized content filters|❌|❌|✅| ➖ |
