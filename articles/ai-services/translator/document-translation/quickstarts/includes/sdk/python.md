@@ -153,13 +153,13 @@ def sample_single_document_translation():
 
     # absolute path to your document
     file_path = "C:/{your-file-path}/document-translation-sample.docx"
-    file_name = os.path.path.basename(file_path)
+    file_name = os.path.basename(file_path)
     file_type = (
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     )
     print(f"File for translation: {file_name}")
 
-    with open(file_name, "r") as file:
+    with open(file_path, "rb") as file:
         file_contents = file.read()
 
     document_content = (file_name, file_contents, file_type)
@@ -168,8 +168,12 @@ def sample_single_document_translation():
     response_stream = client.document_translate(
         body=document_translate_content, target_language=target_language
     )
-    translated_response = response_stream.decode("utf-8-sig")  # type: ignore[attr-defined]
-    print(f"Translated response: {translated_response}")
+    # Save the response_stream to a file
+    output_file_path = "./translated-document.docx"
+    with open(output_file_path, "wb") as output_file:
+        output_file.write(response_stream)
+    
+    print(f"Translated document saved to: {output_file_path}")
 
 
 if __name__ == "__main__":
