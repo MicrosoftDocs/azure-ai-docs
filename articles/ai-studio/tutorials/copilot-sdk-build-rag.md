@@ -5,7 +5,7 @@ description:  Learn how to build a RAG-based chat app using the Azure AI Foundry
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: tutorial
-ms.date: 11/11/2024
+ms.date: 12/18/2024
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
