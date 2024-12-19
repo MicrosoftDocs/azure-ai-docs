@@ -47,9 +47,9 @@ work together, generate client code, create tests, apply design standards, and m
    ```
    If the security schemes include multiple schemes, we recommend keeping only one of them.
 
-1. Remove any parameter in the OpenAPI spec that needs API key, because API key will be stored and passed through connections set up later in this doc
+1. Remove any parameter in the OpenAPI spec that needs API key, because API key will be stored and passed through a connection, as described later in this article.
 
-1. Create a `custom keys` connection to store your API key
+1. Create a `custom keys` connection to store your API key.
 
     1. Go to the [Azure AI Foundry portal](https://ai.azure.com/) and select the AI Project. Click **connected resources**.
     :::image type="content" source="../../media/tools/bing/project-settings-button.png" alt-text="A screenshot of the settings button for an AI project." lightbox="../../media/tools/bing/project-settings-button.png":::
