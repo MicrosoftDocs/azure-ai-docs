@@ -43,6 +43,8 @@ However, if you work outside Azure Machine Learning, you need to configure MLflo
 
 ## Configure the MLflow tracking URI
 
+To do remote tracking, or track experiments running outside Azure Machine Learning, configure MLflow to point to the tracking URI of your Azure Machine Learning workspace.
+
 To connect MLflow to an Azure Machine Learning workspace, you need the tracking URI of the workspace. Each workspace has its own tracking URI, which starts with the protocol `azureml://`.
 
 [!INCLUDE [mlflow-configure-tracking](includes/machine-learning-mlflow-configure-tracking.md)]
