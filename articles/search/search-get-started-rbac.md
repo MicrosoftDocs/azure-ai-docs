@@ -120,7 +120,7 @@ Several quickstarts and tutorials use a REST client, such as Visual Studio Code 
 
 You should have a `.rest` or `.http` file, similar to the one described in [Quickstart: Vector search](search-get-started-vector.md).
 
-1. Get an access token:
+1. Generate an access token.
 
    ```azurecli
    az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
@@ -149,13 +149,22 @@ You should have a `.rest` or `.http` file, similar to the one described in [Quic
          }
    ```
 
-If the call fails, revisit the previous steps to make sure you didn't skip any. You might also want to restart your device.
+### Troubleshoot 401 errors
+
+- Check the active subscription and tenant (`az account show`) and make sure it's valid for your search service.
+
+- Check the search service **Settings** > **Keys** options in the Azure portal and confirm the service is configured for **Both"** or **Role-based access control**.
+
+- For the REST client only: Check the token and endpoint specified in your file and make sure there's no surrounding quotes or extra spaces.
+
+If all else fails, restart your device to remove any cached tokens, and then repeat the steps in this section, starting with `az login`.
 
 ## Additional configuration
 
 Configure a managed identity for outbound connections:
 
 - [Configure a system-assigned or user-assigned managed identity](search-howto-managed-identities-data-sources.md) for your search service.
+
 - [Use role assignments](keyless-connections.md) to authorize access to other Azure resources.
 
 Network access configuration:
