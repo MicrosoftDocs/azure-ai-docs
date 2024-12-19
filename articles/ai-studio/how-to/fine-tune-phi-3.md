@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
 ms.topic: how-to
-ms.date: 7/16/2024
+ms.date: 12/16/2024
 ms.author: ssalgado
 author: ssalgadodev
 ---
