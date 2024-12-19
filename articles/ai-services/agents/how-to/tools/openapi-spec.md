@@ -27,10 +27,29 @@ automated, and scalable API integrations that enhance the capabilities and effic
 describing HTTP APIs. This allows people to understand how an API works, how a sequence of APIs 
 work together, generate client code, create tests, apply design standards, and more. Currently, we support 3 authentication types with the OpenAPI 3.0 specified tools: `anonymous`, `API key`, `managed identity`.
 
-## Set up
+## Prerequisites
 1. Ensure you've completed the prerequisites and setup steps in the [quickstart](../../quickstart.md).
 
-1. [optional]If your OpenAPI spec requires API key, you can store your API key in a `custom keys` connection and use `connection` authentication
+1. Check the OpenAPI spec for the following requirements:
+    1. `operationId` should only contain letters, `-` and `_`. You can modify it to meet the requirement. We recommend using descriptive name to help models efficiently decide which function to use.
+
+## Authenticating with API Key
+
+1. Verify that the OpenAPI spec supports API keys: it has `securitySchemes` section and has one scheme of type `apiKey". An example would be:
+   ```json
+       "securitySchemes": {
+          "apiKeyHeader": {
+                    "type": "apiKey",
+                    "name": "x-api-key",
+                    "in": "header"
+                }
+        }
+   ```
+   If the security schemes include multiple schemes, we recommend keeping only one of them.
+
+1. Remove any parameter in the OpenAPI spec that needs API key, because API key will be stored and passed through a connection, as described later in this article.
+
+1. Create a `custom keys` connection to store your API key.
 
     1. Go to the [Azure AI Foundry portal](https://ai.azure.com/) and select the AI Project. Click **connected resources**.
     :::image type="content" source="../../media/tools/bing/project-settings-button.png" alt-text="A screenshot of the settings button for an AI project." lightbox="../../media/tools/bing/project-settings-button.png":::
@@ -46,9 +65,18 @@ work together, generate client code, create tests, apply design standards, and m
         :::image type="content" source="../../media/tools/bing/api-key-connection.png" alt-text="A screenshot of the custom keys selection for the AI project." lightbox="../../media/tools/bing/api-key-connection.png":::
     
    1. Enter the following information
-      - `key`: "key"
+      - key: `name` of your security scheme. In this example, it should be `x-api-key`
+        ```json
+               "securitySchemes": {
+                  "apiKeyHeader": {
+                            "type": "apiKey",
+                            "name": "x-api-key",
+                            "in": "header"
+                        }
+                }
+        ```
       - value: YOUR_API_KEY
-      - Connection name: `YOUR_CONNECTION_NAME` (You will use this connection name in the sample code below.)
+      - Connection name: YOUR_CONNECTION_NAME (You will use this connection name in the sample code below.)
       - Access: you can choose either *this project only* or *shared to all projects*. Just make sure in the sample code below, the project you entered connection string for has access to this connection.
      
 ::: zone-end
