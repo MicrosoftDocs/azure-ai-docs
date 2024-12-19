@@ -8,8 +8,8 @@ ms.reviewer: None
 author: msakande
 ms.author: mopeakande
 ms.subservice: mlops
-ms.date: 10/24/2023
-ms.topic: conceptual
+ms.date: 12/30/2024
+ms.topic: how-to
 ms.custom: how-to, devplatv2
 ---
 
@@ -23,22 +23,21 @@ Azure Machine Learning uses integration with Azure Monitor to track and monitor 
 
 * **Application insights**: Curated environments include integration with Application Insights, and you can enable or disable this integration when you create an online deployment. Built-in metrics and logs are sent to Application Insights, and you can use the built-in features of Application Insights (such as Live metrics, Transaction search, Failures, and Performance) for further analysis. 
 
-In this article you learn how to:
+In this article you see how to:
 
-> [!div class="checklist"]
-> * Choose the right method to view and track metrics and logs
-> * View metrics for your online endpoint
-> * Create a dashboard for your metrics
-> * Create a metric alert
-> * View logs for your online endpoint
-> * Use Application Insights to track metrics and logs 
+* Choose the right method to view and track metrics and logs.
+* View metrics for your online endpoint.
+* Create a dashboard for your metrics.
+* Create a metric alert.
+* View logs for your online endpoint.
+* Use Application Insights to track metrics and logs.
 
 ## Prerequisites
 
-- An Azure Machine Learning online endpoint.
-- At least [Reader access](/azure/role-based-access-control/role-assignments-portal) on the endpoint.
+- An Azure Machine Learning online endpoint
+- At least [Reader access](/azure/role-based-access-control/role-assignments-portal) on the endpoint
 
-## Metrics
+## Use metrics
 
 In the Azure portal, you can view metrics pages for online endpoints or deployments. An easy way to access these metrics pages is through links that are available in the Azure Machine Learning studio user interface. You can find these links in the **Details** tab of an endpoint's page. These links lead to the metrics page in the Azure portal for the endpoint or deployment. Alternatively, you can also go to the Azure portal and search for the metrics page for the endpoint or deployment.
 
@@ -78,33 +77,33 @@ To access metrics directly from the Azure portal, take the following steps:
 
 The metrics that you see depend on the resource that you select. Metrics are scoped differently for online endpoints and online deployments.
 
-#### Metrics at endpoint scope
+#### Metrics at the endpoint scope
 
-[!INCLUDE [Microsoft.MachineLearningServices/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-machinelearningservices-workspaces-onlineendpoints-metrics-include.md)]
+For information about metrics that are available at the online endpoint scope, see [Supported metrics for Microsoft.MachineLearningServices/workspaces/onlineEndpoints](monitor-azure-machine-learning-reference.md#supported-metrics-for-microsoftmachinelearningservicesworkspacesonlineendpoints).
 
-**Bandwidth throttling**
+##### Bandwidth throttling
 
-Bandwidth will be throttled if the quota limits are exceeded for _managed_ online endpoints. For more information on limits, see the article on [limits for online endpoints](how-to-manage-quotas.md#azure-machine-learning-online-endpoints-and-batch-endpoints). To determine if requests are throttled:
-- Monitor the "Network bytes" metric
-- The response trailers will have the fields: `ms-azureml-bandwidth-request-delay-ms` and `ms-azureml-bandwidth-response-delay-ms`. The values of the fields are the delays, in milliseconds, of the bandwidth throttling.
+Bandwidth is throttled if quota limits are exceeded for _managed_ online endpoints. For more information about limits for online endpoints, see [Azure Machine Learning online endpoints and batch endpoints](how-to-manage-quotas.md#azure-machine-learning-online-endpoints-and-batch-endpoints) in the article about quotas and limits in Azure Machine Learning. To determine whether requests are throttled:
+- Monitor the Network bytes metric.
+- Check for the following fields in the response trailers: `ms-azureml-bandwidth-request-delay-ms` and `ms-azureml-bandwidth-response-delay-ms`. The values of the fields are the delays, in milliseconds, of the bandwidth throttling.
 
 For more information, see [Bandwidth limit issues](how-to-troubleshoot-online-endpoints.md#bandwidth-limit-issues).
 
-#### Metrics at deployment scope
+#### Metrics at the deployment scope
 
-[!INCLUDE [Microsoft.MachineLearningServices/workspaces/onlineEndpoints/deployments](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-machinelearningservices-workspaces-onlineendpoints-deployments-metrics-include.md)]
+For information about metrics that are available at the online endpoint scope, see [Supported metrics for Microsoft.MachineLearningServices/workspaces/onlineEndpoints/deployments](monitor-azure-machine-learning-reference.md#supported-metrics-for-microsoftmachinelearningservicesworkspacesonlineendpointsdeployments).
 
 ### Create dashboards and alerts
 
-Azure Monitor allows you to create dashboards and alerts that are based on metrics.
+In Azure Monitor, you can create dashboards and alerts that are based on metrics.
 
 #### Create dashboards and visualize queries
 
-You can create custom dashboards and visualize metrics from multiple sources in the Azure portal, including the metrics for your online endpoint. For more information on creating dashboards and visualizing queries, see [Dashboards using log data](/azure/azure-monitor/visualize/tutorial-logs-dashboards) and [Dashboards using application data](/azure/azure-monitor/app/overview-dashboard#create-custom-kpi-dashboards-using-application-insights).
+You can create custom dashboards so that you can visualize metrics from multiple sources in the Azure portal, including the metrics for your online endpoint. For more information about creating dashboards and visualizing queries, see [Dashboards using log data](/azure/azure-monitor/visualize/tutorial-logs-dashboards) and [Dashboards using application data](/azure/azure-monitor/app/overview-dashboard#create-custom-kpi-dashboards-using-application-insights).
     
 #### Create alerts
 
-You can also create custom alerts so you can receive notifications about important status updates to your online endpoint:
+You can also create custom alerts so that you can receive notifications about important status updates to your online endpoint:
 
 1. In the Azure portal, go to a metrics page, and then select **New alert rule**.
 
@@ -124,20 +123,20 @@ You can also create custom alerts so you can receive notifications about importa
 
 You can configure deployments to scale automatically based on metrics. To turn on the autoscale feature, you can use the UI or code. The options for code are the Azure Machine Learning CLI and the Azure Machine Learning SDK for Python. When you use code, you provide the IDs of metrics in the conditions for triggering automatic scaling. For those IDs, you can use the metrics that the table lists in the [Available metrics](#available-metrics) section. For more information, see [Autoscaling online endpoints](how-to-autoscale-endpoints.md).
 
-## Logs
+## Use logs
 
 There are three logs that you can turn on for online endpoints:
 
 * **AmlOnlineEndpointTrafficLog**: This traffic log provides a way for you to check the information of requests to the endpoint. This log is useful in the following cases:
-  * A request response isn't 200, and you want more information. The `ResponseCodeReason` column in the log lists the reason. For a description of status codes and reasons, you can also see [HTTPS status codes](how-to-troubleshoot-online-endpoints.md#http-status-codes) in the article about troubleshooting online endpoints.
+  * A request response isn't 200, and you want more information. The `ResponseCodeReason` column in the log lists the reason. For a description of status codes and reasons, see [HTTPS status codes](how-to-troubleshoot-online-endpoints.md#http-status-codes) in the article about troubleshooting online endpoints.
   * You want to look up the response code and response reason of your model for a request. The `ModelStatusCode` and `ModelStatusReason` columns provide this information.
-  * You want to know the duration of a request. The logs provide a breakdown of the latency that shows the total duration, the request duration, the response duration, and the delay caused by network throttling.
+  * You want to know the duration of a request. The logs provide a breakdown of the latency that shows the total duration, the request duration, the response duration, and the delay that's caused by network throttling.
   * You want to check how many recent requests succeeded and failed. The logs provide this information.
 * **AmlOnlineEndpointConsoleLog**: This log contains statements that the containers write as output to the console. This log is useful in the following cases:
   * A container fails to start. The console log can be useful for debugging.
   * You want to monitor container behavior and make sure that all requests are correctly handled.
-  * You want to write request IDs in the console log. Joining the request ID, the AmlOnlineEndpointConsoleLog, and AmlOnlineEndpointTrafficLog in the Log Analytics workspace, you can trace a request from the network entry point of an online endpoint to the container.
-  * You want to run a performance analysis. For instance, you want to determine the time the model needs to process each request.
+  * You want to trace a request from the network entry point of an online endpoint to the container. You can use a Log Analytics query that joins the request ID with information from the AmlOnlineEndpointConsoleLog and AmlOnlineEndpointTrafficLog logs.
+  * You want to run a performance analysis, for instance, to determine the time the model takes to process each request.
 * **AmlOnlineEndpointEventLog**: This log contains event information about the container life cycle. Currently, the log provides information about the following types of events:
 
   | Name | Message |
@@ -156,10 +155,10 @@ There are three logs that you can turn on for online endpoints:
   | Killing | Stopping container inference-server |
   | Killing | Stopping container model-mount |
 
-### Turn logs on or off
+### Turn on logs
 
 > [!IMPORTANT]
-> Logging uses Azure Log Analytics. If you don't currently have a Log Analytics workspace, you can create one by using the steps in [Create a Log Analytics workspace in the Azure portal](/azure/azure-monitor/logs/quick-create-workspace#create-a-workspace).
+> Logging uses Azure Log Analytics. If you don't currently have a Log Analytics workspace, you can create one by following the steps in [Create a Log Analytics workspace in the Azure portal](/azure/azure-monitor/logs/quick-create-workspace#create-a-workspace).
 
 1. In the [Azure portal](https://portal.azure.com), go to the resource group that contains your endpoint, and then select the endpoint.
 
@@ -175,7 +174,7 @@ There are three logs that you can turn on for online endpoints:
 1. Select **Save**.
 
     > [!IMPORTANT]
-    > It may take up to an hour for the connection to the Log Analytics workspace to be enabled. Wait an hour before continuing with the steps in the next section.
+    > It may take up to an hour for the connection to the Log Analytics workspace to be available. Wait an hour before continuing with the steps in the next section.
 
 ### View logs
 
@@ -185,7 +184,7 @@ There are three logs that you can turn on for online endpoints:
    - Go to the properties page for your online endpoint. Under **Monitoring**, select **Logs**.
    - Go to your Log Analytics workspace. On the left, select **Logs**.
 
-1. Close the **Queries hub** window that automatically opens.
+1. Close the **Queries hub** window that opens by default.
 
 1. Under **Other**, double-click **AmlOnlineEndpointConsoleLog**. If you don't see **AmlOnlineEndpointConsoleLog**, enter that value into the search field.
 
@@ -205,19 +204,19 @@ Example queries are available for you to use. Take the following steps to view t
 
 :::image type="content" source="./media/how-to-monitor-online-endpoints/example-queries.png" alt-text="Screenshot of the Queries tab of the Azure portal Logs page. Two example queries are visible, and the Queries tab and the search box are highlighted.":::
 
-### Log column details 
+### Log column details
 
 The following tables provide detailed information about the data that's stored in each log:
 
-**AmlOnlineEndpointTrafficLog**
+#### AmlOnlineEndpointTrafficLog
 
 [!INCLUDE [endpoint-monitor-traffic-reference](includes/endpoint-monitor-traffic-reference.md)]
 
-**AmlOnlineEndpointConsoleLog**
+#### AmlOnlineEndpointConsoleLog
 
 [!INCLUDE [endpoint-monitor-console-reference](includes/endpoint-monitor-console-reference.md)]
 
-**AmlOnlineEndpointEventLog**
+#### AmlOnlineEndpointEventLog
 
 [!INCLUDE [endpoint-monitor-event-reference](includes/endpoint-monitor-event-reference.md)]
 
@@ -237,5 +236,5 @@ When you turn on Application Insights, you can see high-level activity monitor g
 
 ## Related content
 
-* Learn how to [view costs for your deployed endpoint](./how-to-view-online-endpoints-costs.md).
-* Read more about [metrics explorer](/azure/azure-monitor/essentials/metrics-charts).
+* [View costs for an Azure Machine Learning managed online endpoint](how-to-view-online-endpoints-costs.md).
+* [Analyze metrics with Azure Monitor metrics explorer](/azure/azure-monitor/essentials/analyze-metrics).
