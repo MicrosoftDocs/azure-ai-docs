@@ -27,7 +27,7 @@ automated, and scalable API integrations that enhance the capabilities and effic
 describing HTTP APIs. This allows people to understand how an API works, how a sequence of APIs 
 work together, generate client code, create tests, apply design standards, and more. Currently, we support 3 authentication types with the OpenAPI 3.0 specified tools: `anonymous`, `API key`, `managed identity`.
 
-## Prerequisite
+## Prerequisites
 1. Ensure you've completed the prerequisites and setup steps in the [quickstart](../../quickstart.md).
 
 1. Check the OpenAPI spec for the following requirements:
