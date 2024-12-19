@@ -35,14 +35,14 @@ In this article you learn how to:
 
 ## Prerequisites
 
-- Deploy an Azure Machine Learning online endpoint.
-- You must have at least [Reader access](/azure/role-based-access-control/role-assignments-portal) on the endpoint.
+- An Azure Machine Learning online endpoint.
+- At least [Reader access](/azure/role-based-access-control/role-assignments-portal) on the endpoint.
 
 ## Metrics
 
-You can view metrics pages for online endpoints or deployments in the Azure portal. An easy way to access these metrics pages is through links available in the Azure Machine Learning studio user interface—specifically in the **Details** tab of an endpoint's page. Following these links will take you to the exact metrics page in the Azure portal for the endpoint or deployment. Alternatively, you can also go into the Azure portal to search for the metrics page for the endpoint or deployment.
+In the Azure portal, you can view metrics pages for online endpoints or deployments. An easy way to access these metrics pages is through links that are available in the Azure Machine Learning studio user interface. You can find these links in the **Details** tab of an endpoint's page. These links lead to the metrics page in the Azure portal for the endpoint or deployment. Alternatively, you can also go to the Azure portal and search for the metrics page for the endpoint or deployment.
 
-To access the metrics pages through links available in the studio:
+To access the metrics pages through links that are available in the studio, take the following steps:
 
 1. In [Azure Machine Learning studio](https://ml.azure.com), go to your workspace.
 
@@ -62,7 +62,7 @@ To access the metrics pages through links available in the studio:
 
    The deployment's metrics page opens in the Azure portal.
 
-To access metrics directly from the Azure portal:
+To access metrics directly from the Azure portal, take the following steps:
 
 1. Go to the [Azure portal](https://portal.azure.com).
 
@@ -76,7 +76,7 @@ To access metrics directly from the Azure portal:
 
 ### Available metrics
 
-Depending on the resource that you select, the metrics that you see will be different. Metrics are scoped differently for online endpoints and online deployments.
+The metrics that you see depend on the resource that you select. Metrics are scoped differently for online endpoints and online deployments.
 
 #### Metrics at endpoint scope
 
@@ -104,7 +104,7 @@ You can create custom dashboards and visualize metrics from multiple sources in 
     
 #### Create alerts
 
-You can also create custom alerts to notify you of important status updates to your online endpoint:
+You can also create custom alerts so you can receive notifications about important status updates to your online endpoint:
 
 1. In the Azure portal, go to a metrics page, and then select **New alert rule**.
 
@@ -159,9 +159,9 @@ There are three logs that you can turn on for online endpoints:
 ### Turn logs on or off
 
 > [!IMPORTANT]
-> Logging uses Azure Log Analytics. If you do not currently have a Log Analytics workspace, you can create one using the steps in [Create a Log Analytics workspace in the Azure portal](/azure/azure-monitor/logs/quick-create-workspace#create-a-workspace).
+> Logging uses Azure Log Analytics. If you don't currently have a Log Analytics workspace, you can create one by using the steps in [Create a Log Analytics workspace in the Azure portal](/azure/azure-monitor/logs/quick-create-workspace#create-a-workspace).
 
-1. In the [Azure portal](https://portal.azure.com), go to the resource group that contains your endpoint and then select the endpoint.
+1. In the [Azure portal](https://portal.azure.com), go to the resource group that contains your endpoint, and then select the endpoint.
 
 1. Under **Monitoring**, select **Diagnostic settings**, and then select **Add diagnostic setting**.
 
@@ -181,7 +181,9 @@ There are three logs that you can turn on for online endpoints:
 
 1. Submit scoring requests to the endpoint to create entries in the logs.
 
-1. From either the online endpoint properties or the Log Analytics workspace, select **Logs** from the left of the screen.
+1. Go to the Azure portal, and then use one of the following options to open the logs:
+   - Go to the properties page for your online endpoint. Under **Monitoring**, select **Logs**.
+   - Go to your Log Analytics workspace. On the left, select **Logs**.
 
 1. Close the **Queries hub** window that automatically opens.
 
@@ -197,11 +199,11 @@ There are three logs that you can turn on for online endpoints:
 
 Example queries are available for you to use. Take the following steps to view them:
 
-1. On the Logs page, select **Queries** to open the Queries tab.
+1. On the Logs page, select **Queries**.
 
 1. In the search box, enter **Online endpoint**.
 
-:::image type="content" source="./media/how-to-monitor-online-endpoints/example-queries.png" alt-text="Screenshot of the example queries.":::
+:::image type="content" source="./media/how-to-monitor-online-endpoints/example-queries.png" alt-text="Screenshot of the Queries tab of the Azure portal Logs page. Two example queries are visible, and the Queries tab and the search box are highlighted.":::
 
 ### Log column details 
 
@@ -219,17 +221,19 @@ The following tables provide detailed information about the data that's stored i
 
 [!INCLUDE [endpoint-monitor-event-reference](includes/endpoint-monitor-event-reference.md)]
 
+## Use Application Insights
 
-## Using Application Insights
+Curated environments include integration with Application Insights. Through this integration, built-in metrics and logs are sent to Application Insights. You can then use Application Insights built-in features, such as live metrics, transaction search, failures, and performance, for further analysis.
 
-Curated environments include integration with Application Insights, and you can enable or disable this integration when you create an online deployment. Built-in metrics and logs are sent to Application Insights, and you can use the built-in features of Application Insights (such as Live metrics, Transaction search, Failures, and Performance) for further analysis.
+For more information, see [Application Insights overview](/azure/azure-monitor/app/app-insights-overview).
 
-See [Application Insights overview](/azure/azure-monitor/app/app-insights-overview) for more.
+You can turn on integration with Application Insights when you create an online deployment in the studio. On the Deployment page, under **Application Insights diagnostics**, select **Enabled**.
 
-In the studio, you can use the **Monitoring** tab on an online endpoint's page to see high-level activity monitor graphs for the managed online endpoint. To use the monitoring tab, you must select **Enable Application Insight diagnostic and data collection** when you create your endpoint.
+:::image type="content" source="media/how-to-monitor-online-endpoints/turn-on-application-insights-diagnostics.png" lightbox="media/how-to-monitor-online-endpoints/turn-on-application-insights-diagnostics.png" alt-text="Screenshot of the studio Deployment page when a user creates an online endpoint. The Application Insights diagnostics setting is highlighted.":::
 
-:::image type="content" source="media/how-to-monitor-online-endpoints/monitor-endpoint.png" lightbox="media/how-to-monitor-online-endpoints/monitor-endpoint.png" alt-text="A screenshot of monitoring endpoint-level metrics in the studio.":::
+When you turn on Application Insights, you can see high-level activity monitor graphs for a managed online endpoint. In the studio, go to the endpoint's page, and then select the **Monitoring** tab. 
 
+:::image type="content" source="media/how-to-monitor-online-endpoints/monitor-endpoint.png" lightbox="media/how-to-monitor-online-endpoints/monitor-endpoint.png" alt-text="Screenshot of the Monitoring tab on a studio endpoint page. The Monitoring tab is highlighted. A chart shows requests per minute to the endpoint.":::
 
 ## Related content
 
