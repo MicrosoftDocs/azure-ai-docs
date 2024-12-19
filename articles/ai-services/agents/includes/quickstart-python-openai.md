@@ -70,7 +70,10 @@ with AIProjectClient.from_connection_string(
 ) as project_client:
 
     # Explicit type hinting for IntelliSense
-    client: AzureOpenAI = project_client.inference.get_azure_openai_client()
+    client: AzureOpenAI = project_client.inference.get_azure_openai_client(
+        # The latest API version is 2024-10-01-preview
+        api_version = os.environ.get("AZURE_OPENAI_API_VERSION"),
+    )
 
     with client:
         agent = client.beta.assistants.create(
