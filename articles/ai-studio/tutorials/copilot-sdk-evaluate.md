@@ -29,6 +29,7 @@ This tutorial is part three of a three-part tutorial.
 ## Prerequisites
 
 - Complete [part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
+- Make sure you've completed the steps to [add telemetry logging](copilot-sdk-build-rag.md#logging) from part 2.
 
 
 ## <a name="evaluate"></a> Evaluate the quality of the chat app responses
