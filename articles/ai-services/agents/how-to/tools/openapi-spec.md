@@ -31,10 +31,11 @@ work together, generate client code, create tests, apply design standards, and m
 1. Ensure you've completed the prerequisites and setup steps in the [quickstart](../../quickstart.md).
 
 1. Check the OpenAPI spec for the following requirements:
-    1. `operationId` should only contain letters, `-` and `_`. You can modify it to meet the requirement. We recommend to give a descriptive name to help models efficiently decide which function to use.
+    1. `operationId` should only contain letters, `-` and `_`. You can modify it to meet the requirement. We recommend using descriptive name to help models efficiently decide which function to use.
 
 ## Authenticating with API Key
-1. Verify if the OpenAPI spec supports API key: it has `securitySchemes` section and has one scheme of type `apiKey". An example would be:
+
+1. Verify that the OpenAPI spec supports API keys: it has `securitySchemes` section and has one scheme of type `apiKey". An example would be:
    ```json
        "securitySchemes": {
           "apiKeyHeader": {
