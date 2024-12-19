@@ -9,7 +9,7 @@ ms.topic: quickstart
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sgilley
-ms.date: 09/03/2024
+ms.date: 12/19/2024
 ms.custom:
   - sdkv2
   - build-2023
@@ -205,10 +205,32 @@ def main():
     ##########################
     # Registering the model to the workspace
     print("Registering the model via MLFlow")
+
+    # pin numpy
+    conda_env = {
+        'name': 'mlflow-env',
+        'channels': ['conda-forge'],
+        'dependencies': [
+            'python=3.10.15',
+            'pip<=21.3.1',
+            {
+                'pip': [
+                    'mlflow==2.17.0',
+                    'cloudpickle==2.2.1',
+                    'pandas==1.5.3',
+                    'psutil==5.8.0',
+                    'scikit-learn==1.5.2',
+                    'numpy==1.26.4',
+                ]
+            }
+        ],
+    }
+
     mlflow.sklearn.log_model(
         sk_model=clf,
         registered_model_name=args.registered_model_name,
         artifact_path=args.registered_model_name,
+        conda_env=conda_env,
     )
 
     # Saving the model to a file
@@ -230,6 +252,7 @@ if __name__ == "__main__":
 As you can see in this script, once the model is trained, the model file is saved and registered to the workspace. Now you can use the registered model in inferencing endpoints.
 
 You might need to select **Refresh** to see the new folder and script in your **Files**.
+
 
 :::image type="content" source="media/tutorial-azure-ml-in-a-day/refresh.png" alt-text="Screenshot shows the refresh icon.":::
 
