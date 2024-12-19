@@ -21,7 +21,7 @@ Indexers also drive [skillset execution and AI enrichment](cognitive-search-conc
 
 Indexers target [supported data sources](#supported-data-sources). An indexer configuration specifies a data source (origin) and a search index (destination). Several sources, such as Azure Blob Storage, have more indexer configuration properties specific to that content type.
 
-You can run indexers on demand or on a recurring data refresh schedule that runs as often as every five minutes. More frequent updates preclude the use of indexers, requiring that you implement a ['push model'](search-what-is-data-import.md) that simultaneously pushes data to both Azure AI Search and your external data source for data synchronizatio.
+You can run indexers on demand or on a recurring data refresh schedule that runs as often as every five minutes. More frequent updates preclude the use of indexers, requiring that you implement a ['push model'](search-what-is-data-import.md) that simultaneously pushes data to both Azure AI Search and your external data source for data synchronization.
 
 A search service runs one indexer job per search unit. If you need concurrent processing, make sure you have [sufficient replicas](/azure/search/search-capacity-planning#add-or-reduce-replicas-and-partitions). Indexers don't run in the background, so you might detect more query throttling than usual if the service is under pressure.
 
