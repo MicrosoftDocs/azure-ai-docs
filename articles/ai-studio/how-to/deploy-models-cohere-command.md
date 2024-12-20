@@ -5,7 +5,7 @@ description: Learn how to use Cohere Command chat models with Azure AI Foundry.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
-ms.date: 09/23/2024
+ms.date: 12/20/2024
 ms.reviewer: shubhiraj
 reviewer: shubhirajMsft
 ms.author: mopeakande
