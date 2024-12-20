@@ -574,7 +574,7 @@ After you spot-check your built-in or custom evaluators on a single row of data,
 
 ### Prerequisites
 
-If you want to enable logging and tracing to your Azure AI project for evaluation results, follow these steps:
+If you want to enable logging to your Azure AI project for evaluation results, follow these steps:
 
 1. Make sure you're first logged in by running `az login`.
 
