@@ -5,7 +5,7 @@ description: Learn to deploy models as serverless APIs, using Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
-ms.date: 07/18/2024
+ms.date: 12/20/2024
 ms.author: mopeakande
 author: msakande
 ms.reviewer: fasantia
