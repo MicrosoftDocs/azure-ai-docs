@@ -5,7 +5,7 @@ description: Learn about the quotas and limits for when you use Azure AI Agent S
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: conceptual
 ms.date: 12/11/2024
 ms.custom: azure-ai-agents

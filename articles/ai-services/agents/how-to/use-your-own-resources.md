@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn how to use resources that you already have with the Azure AI Agent Service. 
 services: cognitive-services
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: how-to
 ms.date: 12/11/2024
 author: fosteramanda
