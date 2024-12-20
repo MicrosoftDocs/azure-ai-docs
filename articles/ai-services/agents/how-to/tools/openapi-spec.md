@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn how to use Azure AI Agents with OpenAPI Specified Tools.
 services: cognitive-services
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: how-to
 ms.date: 12/16/2024
 author: aahill

@@ -5,7 +5,7 @@ metadata:
   description: Get answers to the most popular questions about Azure AI Agent Service
   #services: cognitive-services
   manager: nitinme
-  ms.service: azure-ai-openai
+  ms.service: azure-ai-agent-service-ai-openai
   ms.topic: faq
   ms.date: 11/14/2024
   ms.author: aahi

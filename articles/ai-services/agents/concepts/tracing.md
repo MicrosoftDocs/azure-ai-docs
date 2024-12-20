@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: Learn how to trace your AI agent's executions for debugging and evaluation.
 services: cognitive-services
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: conceptual
 ms.date: 12/11/2024
 author: aahill

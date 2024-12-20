@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about the various tools available for use by the agents you create. 
 services: cognitive-services
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: how-to
 ms.date: 12/18/2024
 author: aahill
