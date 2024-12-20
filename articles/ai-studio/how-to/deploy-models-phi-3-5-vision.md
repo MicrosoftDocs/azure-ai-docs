@@ -5,9 +5,9 @@ description: Learn how to use Phi-3.5 chat model with vision with Azure AI Found
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
-ms.date: 08/29/2024
-ms.reviewer: kritifaujdar
-reviewer: fkriti
+ms.date: 12/20/2024
+ms.reviewer: v-vkonjarla
+reviewer: VindyaKonjarla 
 ms.author: mopeakande
 author: msakande
 ms.custom: references_regions, generated

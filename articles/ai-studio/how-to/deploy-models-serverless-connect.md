@@ -5,7 +5,7 @@ description: Learn how to consume deployed serverless API endpoints from a diffe
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 12/20/2024
 ms.author: mopeakande
 author: msakande
 ms.reviewer: fasantia
@@ -171,7 +171,7 @@ Follow these steps to create a connection:
 
     # [AI Foundry portal](#tab/azure-ai-studio)
 
-    1. From the left sidebar of your project in AI Foundry portal, select **Management center**.
+    1. From your project in AI Foundry portal, go to the bottom part of the left sidebar and select **Management center**.
 
     1. From the left sidebar of the management center, select **Connected resources**.
     
