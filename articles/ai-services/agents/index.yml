@@ -6,12 +6,12 @@ summary: Azure AI Agent Service is a fully managed service designed to empower d
 metadata:
   title: Azure AI Agent Service documentation - Quickstarts, Tutorials, API Reference - Azure AI services | Microsoft Docs
   description: Learn how to build agents that apply powerful models such as GPT-4o, Llama, and Mistral.
-  ms.service: azure-ai-agent-service-ai-openai
+  ms.service: azure-ai-agent-service
   ms.custom:
   ms.topic: landing-page
   author: aahill
   ms.author: aahi
-  ms.date: 11/13/2024
+  ms.date: 12/20/2024
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 # Limits: https://review.learn.microsoft.com/help/contribute/contribute-how-to-write-landing-page?branch=main#limits
