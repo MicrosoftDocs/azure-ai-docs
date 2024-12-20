@@ -5,7 +5,7 @@ description: Learn how to use the GPT-4o Realtime API for speech and audio with 
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 12/19/2024
+ms.date: 12/20/2024
 author: eric-urban
 ms.author: eur
 ms.custom: references_regions
@@ -268,7 +268,8 @@ A user might want to interrupt the assistant's response or ask the assistant to 
 
 Here's an example of the event sequence for a simple text-in, audio-out conversation:
 
-Received message of type session.created
+When you connect to the `/realtime` endpoint, the server responds with a [`session.created`](../realtime-audio-reference.md#realtimeservereventsessioncreated) event.
+
 ```json
 {
   "type": "session.created",
@@ -316,10 +317,31 @@ await client.send({
 Here's the client [`response.create`](../realtime-audio-reference.md#realtimeclienteventresponsecreate) event in JSON format:
 
 ```json
-{"event_id":null,"type":"response.create","response":{"commit":true,"cancel_previous":true,"append_input_items":null,"input_items":null,"instructions":"Please assist the user.","modalities":["text","audio"],"voice":null,"temperature":null,"max_output_tokens":null,"tools":null,"tool_choice":null,"output_audio_format":null}}
+{
+  "event_id": null,
+  "type": "response.create",
+  "response": {
+    "commit": true,
+    "cancel_previous": true,
+    "instructions": "Please assist the user.",
+    "modalities": ["text", "audio"],
+  }
+}
 ```
 
-Received message of type response.created
+Next, we show a series of events from the server. You can await these events in your client code to handle the responses.
+
+```javascript
+for await (const message of client.messages()) {
+    console.log(JSON.stringify(message, null, 2));
+    if (message.type === "response.done" || message.type === "error") {
+        break;
+    }
+}
+```
+
+The server responds with a [`response.created`](../realtime-audio-reference.md#realtimeservereventresponsecreated) event. 
+
 ```json
 {
   "type": "response.created",
@@ -335,410 +357,37 @@ Received message of type response.created
 }
 ```
 
-Received message of type response.output_item.added
-```json
-{
-  "type": "response.output_item.added",
-  "event_id": "event_AgDhoRPvT4EURjCs57RW7",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "output_index": 0,
-  "item": {
-    "id": "item_AgDhneoMwWvpAA1hjN9IJ",
-    "object": "realtime.item",
-    "type": "message",
-    "status": "in_progress",
-    "role": "assistant",
-    "content": []
-  }
-}
-```
+The server might then send these intermediate events as it processes the response:
 
-Received message of type conversation.item.created
-```json
-{
-  "type": "conversation.item.created",
-  "event_id": "event_AgDhoImrtHjA02Zear3n9",
-  "previous_item_id": null,
-  "item": {
-    "id": "item_AgDhneoMwWvpAA1hjN9IJ",
-    "object": "realtime.item",
-    "type": "message",
-    "status": "in_progress",
-    "role": "assistant",
-    "content": []
-  }
-}
-```
+- `response.output_item.added`
+- `conversation.item.created`
+- `response.content_part.added`
+- `response.audio_transcript.delta`
+- `response.audio_transcript.delta`
+- `response.audio_transcript.delta`
+- `response.audio_transcript.delta`
+- `response.audio_transcript.delta`
+- `response.audio.delta`
+- `response.audio.delta`
+- `response.audio_transcript.delta`
+- `response.audio.delta`
+- `response.audio_transcript.delta`
+- `response.audio_transcript.delta`
+- `response.audio_transcript.delta`
+- `response.audio.delta`
+- `response.audio.delta`
+- `response.audio.delta`
+- `response.audio.delta`
+- `response.audio.done`
+- `response.audio_transcript.done`
+- `response.content_part.done`
+- `response.output_item.done`
+- `response.done`
 
-Received message of type response.content_part.added
-```json
-{
-  "type": "response.content_part.added",
-  "event_id": "event_AgDho4G3ytqT9NQehIZcA",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "part": {
-    "type": "audio",
-    "transcript": ""
-  },
-  "content": {
-    "type": "audio",
-    "transcript": ""
-  }
-}
-```
+You can see that multiple audio and text transcript deltas are sent as the server processes the response.
 
-Received message of type response.audio_transcript.delta
-Received text delta: Hello
-```json
-{
-  "type": "response.audio_transcript.delta",
-  "event_id": "event_AgDhoVSJWHABfEssLbnMS",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": "Hello"
-}
-```
+Eventually, the server sends a [`response.done`](../realtime-audio-reference.md#realtimeservereventresponsedone) event with the completed response.
 
-Received message of type response.audio_transcript.delta
-Received text delta: !
-```json
-{
-  "type": "response.audio_transcript.delta",
-  "event_id": "event_AgDho7s4cYZ3vDM4vLrDW",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": "!"
-}
-```
-
-Received message of type response.audio.delta
-Received 4800 bytes of audio data.
-```json
-{
-  "type": "response.audio.delta",
-  "event_id": "event_AgDhomGB04MXazPUMSTBR",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": "9//8//j//f/x//n/8f/2//T/7v/1//n/9...more characters redacted for brevity"
-}
-```
-
-Received message of type response.audio.delta
-Received 7200 bytes of audio data.
-```json
-{
-  "type": "response.audio.delta",
-  "event_id": "event_AgDhoSlRZcQJK9ElF8jDu",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": "6//7//H/9v/t//P/8P/u//H/6//t//H/7f/s//P/7//9...more characters redacted for brevity"
-}
-```
-
-Received message of type response.audio_transcript.delta
-Received text delta:  How
-```json
-{
-  "type": "response.audio_transcript.delta",
-  "event_id": "event_AgDhoeGtvkmEvaFXGYK9I",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": " How"
-}
-```
-
-Received message of type response.audio.delta
-Received 12000 bytes of audio data.
-```json
-{
-  "type": "response.audio.delta",
-  "event_id": "event_AgDhoYROT0gHDUIKPWlE5",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": "FAAOAA4AFAASABEAEAATAA4AEgASAA4ADQANAAsAEQANAA0A...more characters redacted for brevity"
-}
-```
-
-Received message of type response.audio_transcript.delta
-Received text delta:  can
-```json
-{
-  "type": "response.audio_transcript.delta",
-  "event_id": "event_AgDhoA1mgFR8uDCngG5ba",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": " can"
-}
-```
-
-Received message of type response.audio.delta
-Received 12000 bytes of audio data.
-```json
-{
-  "type": "response.audio.delta",
-  "event_id": "event_AgDhoKt0avo03ZdCoP9mk",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": "8gWVBDYDtwLEAT8DUwWMBz4JRAmxCEsHawa8Bo4FaAUuBaEDP...more characters redacted for brevity"
-}
-```
-
-Received message of type response.audio.delta
-Received 12000 bytes of audio data.
-```json
-{
-  "type": "response.audio.delta",
-  "event_id": "event_AgDhotLW2uip1DSIdELX6",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": "a/yn/Mj8mPzi+0D73frk+vL6k/qQ+Rz4d...more characters redacted for brevity"
-}
-```
-
-Received message of type response.audio_transcript.delta
-Received text delta:  I
-```json
-{
-  "type": "response.audio_transcript.delta",
-  "event_id": "event_AgDhoATCuJ1WCkL988Sah",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": " I"
-}
-```
-
-Received message of type response.audio_transcript.delta
-Received text delta:  assist
-```json
-{
-  "type": "response.audio_transcript.delta",
-  "event_id": "event_AgDholxNBwZFxdh2stCaF",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": " assist"
-}
-```
-
-Received message of type response.audio_transcript.delta
-Received text delta:  you
-```json
-{
-  "type": "response.audio_transcript.delta",
-  "event_id": "event_AgDho3ujXZnrFxoadJMnt",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": " you"
-}
-```
-
-Received message of type response.audio_transcript.delta
-Received text delta:  today
-```json
-{
-  "type": "response.audio_transcript.delta",
-  "event_id": "event_AgDhoiq39PljikidPfOHb",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": " today"
-}
-```
-
-Received message of type response.audio_transcript.delta
-Received text delta: ?
-```json
-{
-  "type": "response.audio_transcript.delta",
-  "event_id": "event_AgDhoMT7EAs4U6GBXHVdp",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": "?"
-}
-```
-
-Received message of type response.audio.delta
-Received 12000 bytes of audio data.
-```json
-{
-  "type": "response.audio.delta",
-  "event_id": "event_AgDhoDIHMbuiLxtPUNe2c",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": "FQASABEAGAARABkAFAAbABQAHQAVABwAFwAZABoAHAA...more characters redacted for brevity"
-}
-```
-
-Received message of type response.audio.delta
-Received 12000 bytes of audio data.
-```json
-{
-  "type": "response.audio.delta",
-  "event_id": "event_AgDho9gLYMk5jThehZ7bp",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": "2P/d/9j/3f/S/9z/1P/Y/9f/0v/a/93/3...more characters redacted for brevity"
-}
-```
-
-Received message of type response.audio.delta
-Received 12000 bytes of audio data.
-```json
-{
-  "type": "response.audio.delta",
-  "event_id": "event_AgDhofNvz5mVks9iSGdzJ",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": "DAAJAAkAEAARABAAEgAUABEAFQATAA4ADgANAA0A...more characters redacted for brevity"
-}
-```
-
-Received message of type response.audio.delta
-Received 12000 bytes of audio data.
-```json
-{
-  "type": "response.audio.delta",
-  "event_id": "event_AgDhoKwoxFtXOGSnJDryv",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": "bv0ZBTkJ5wsdCC8Fcf3m/+38Uvm5+4gA...more characters redacted for brevity"
-}
-```
-
-Received message of type response.audio.delta
-Received 12000 bytes of audio data.
-```json
-{
-  "type": "response.audio.delta",
-  "event_id": "event_AgDhoUYKWQw2gsVhslZhB",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": "Cuob6jXpAOlK6ULqW+rr6zDsj+tu67jqT+q...more characters redacted for brevity"
-}
-```
-
-Received message of type response.audio.delta
-Received 26400 bytes of audio data.
-```json
-{
-  "type": "response.audio.delta",
-  "event_id": "event_AgDhoiOiubIYrFqpf3uOg",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "delta": "EgCJAL//nP9MAO3/rf9dAIUAdgC7AFoA...more characters redacted for brevity"
-}
-```
-
-Received message of type response.audio.done
-```json
-{
-  "type": "response.audio.done",
-  "event_id": "event_AgDhoLubxSMvhw0YBZN3P",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0
-}
-```
-
-Received message of type response.audio_transcript.done
-```json
-{
-  "type": "response.audio_transcript.done",
-  "event_id": "event_AgDhotDtjnGLQl7AlfmRV",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "transcript": "Hello! How can I assist you today?"
-}
-```
-
-Received message of type response.content_part.done
-```json
-{
-  "type": "response.content_part.done",
-  "event_id": "event_AgDhonV12L4rfZEYnFIvr",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "item_id": "item_AgDhneoMwWvpAA1hjN9IJ",
-  "output_index": 0,
-  "content_index": 0,
-  "part": {
-    "type": "audio",
-    "transcript": "Hello! How can I assist you today?"
-  },
-  "content": {
-    "type": "audio",
-    "transcript": "Hello! How can I assist you today?"
-  }
-}
-```
-
-Received message of type response.output_item.done
-```json
-{
-  "type": "response.output_item.done",
-  "event_id": "event_AgDho2BGhl17d9qeMEnsZ",
-  "response_id": "resp_AgDhn6gOJ6m8KIRSTPVMQ",
-  "output_index": 0,
-  "item": {
-    "id": "item_AgDhneoMwWvpAA1hjN9IJ",
-    "object": "realtime.item",
-    "type": "message",
-    "status": "completed",
-    "role": "assistant",
-    "content": [
-      {
-        "type": "audio",
-        "transcript": "Hello! How can I assist you today?"
-      }
-    ]
-  }
-}
-```
-
-Received message of type response.done
 ```json
 {
   "type": "response.done",
