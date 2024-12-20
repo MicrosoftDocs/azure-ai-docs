@@ -6,8 +6,8 @@ manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
 ms.date: 12/16/2024
-ms.reviewer: kritifaujdar
-reviewer: fkriti
+ms.reviewer: haelhamm
+reviewer: hazemelh
 ms.author: mopeakande
 author: msakande
 ms.custom: references_regions, build-2024, ignite-2024
