@@ -8,6 +8,7 @@ ms.service: azure-ai-vision
 ms.custom: build-2023
 ms.topic: how-to
 ms.date: 02/12/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 

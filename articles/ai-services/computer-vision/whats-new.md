@@ -11,6 +11,7 @@ ms.custom:
   - ignite-2023
 ms.topic: whats-new
 ms.date: 03/11/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
