@@ -5,7 +5,7 @@ description: Learn about new feature updates and additions for your AI Agents.
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: overview
 ms.date: 12/11/2024
 ms.custom: azure-ai-agents

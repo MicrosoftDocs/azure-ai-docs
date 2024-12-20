@@ -2,7 +2,7 @@
 manager: nitinme
 author: fosteramanda
 ms.author: fosteramanda
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: include
 ms.date: 11/13/2024
 ---

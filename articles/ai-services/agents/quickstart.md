@@ -5,7 +5,7 @@ description: Use this guide to start using Azure AI Agent Service.
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: quickstart
 ms.date: 12/11/2024
 zone_pivot_groups: programming-languages-agents
