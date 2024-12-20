@@ -201,7 +201,7 @@ safety_score = safety_evaluator(conversation=conversation_image_url)
 
 Currently the image and multi-modal evaluators support:
 
-- Single turn only (i.e. a conversation can have only 1 user message and 1 assistant message)
+- Single turn only (a conversation can have only 1 user message and 1 assistant message)
 - Conversation can have only 1 system message
 - Conversation payload should be less than 10MB size (including images)
 - Absolute URLs and Base64 encoded images
