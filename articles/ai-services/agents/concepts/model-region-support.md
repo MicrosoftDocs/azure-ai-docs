@@ -28,9 +28,9 @@ Azure AI Agent Service supports the same models as the chat completions API in A
 | westus        | ✅                         | ✅                          | ✅                            | -                   | ✅                          | -                           | ✅                            | ✅                               | - | -                          | ✅                         | ✅                          | -                              |
 
 
-## Additional models
+## More models
 
-In addition to the supported Azure OpenAI models, you can also use the following 3rd party models with Azure AI Agent Service. 
+The Azure AI Agent Service also supports the following models from the Azure AI Foundry model catalog.
 
 * Llama 3.1-70B-instruct
 * Mistral-large-2407
@@ -38,7 +38,7 @@ In addition to the supported Azure OpenAI models, you can also use the following
 
 To use these models, you can use Azure AI Foundry portal to make a deployment, and then reference it in your agent. 
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com/) and select **Model catalog** in the left navigation menu, and scroll down to **Meta-Llama-3-70B-Instruct**. You can also find and use one of the models listed above.  
+1. Go to the [Azure AI Foundry portal](https://ai.azure.com/) and select **Model catalog** in the left navigation menu, and scroll down to **Meta-Llama-3-70B-Instruct**. You can also find and use one of the models listed previously.  
 
 1. Select **Deploy**. 
 
@@ -46,11 +46,11 @@ To use these models, you can use Azure AI Foundry portal to make a deployment, a
 
     :::image type="content" source="../media/llama/llama-deployment.png" alt-text="An image of the llama model project selection screen.":::
  
-1. Select your project and click **Subscribe and deploy**. 
+1. Select your project and then select **Subscribe and deploy**. 
 
     :::image type="content" source="../media/llama/llama-deployment-2.png" alt-text="An image of the llama model deployment screen.":::
 
-1. Add the serverless connection to your hub/project. The deployment name you choose will be the one you reference in your code.  
+1. Add the serverless connection to your hub/project. The deployment name you choose is the one that you reference in your code.  
 
 1. When calling agent creation API, set the `models` parameter to your deployment name. For example:
 
