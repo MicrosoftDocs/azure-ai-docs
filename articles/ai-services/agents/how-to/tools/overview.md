@@ -1,5 +1,5 @@
 ---
-title: 'Tools available in the Azure AI Agent service'
+title: 'Tools available in the Azure AI Agent Service'
 titleSuffix: Azure OpenAI
 description: Learn about the various tools available for use by the agents you create. 
 services: cognitive-services

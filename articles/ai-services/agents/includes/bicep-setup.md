@@ -9,7 +9,7 @@ ms.date: 11/13/2024
 
 ## Set up your Azure AI Hub and Agent project
 
-The following section shows you how to set up the required resources for getting started with Azure AI Agents Service: 
+The following section shows you how to set up the required resources for getting started with Azure AI Agent Service: 
 
 1. Creating an [Azure AI Hub](../../../ai-studio/quickstarts/get-started-playground.md) to set up your app environment and Azure resources.
 
@@ -37,7 +37,7 @@ By default, the deployment template is configured with the following values:
 | Model Parameter  | Default Value  |
 |------------------|----------------|
 | modelName        | gpt-4o-mini    |
-| modelFormat      | OpenAI         |
+| modelFormat      | OpenAI (for Azure OpenAI) |
 | modelVersion     | 2024-07-18     |
 | modelSkuName     | GlobalStandard |
 | modelLocation    | eastus         |
@@ -45,7 +45,7 @@ By default, the deployment template is configured with the following values:
 > [!IMPORTANT]
 > **Don't change the modelFormat parameter.** 
 >
-> The templates only support deployment of OpenAI models. See which OpenAI models are supported in the [Azure AI Agent Service model support](../concepts/model-region-support.md) documentation.
+> The templates only support deployment of Azure OpenAI models. See which Azure OpenAI models are supported in the [Azure AI Agent Service model support](../concepts/model-region-support.md) documentation.
 
 
 ### [Optional] Use your own resources during agent setup
@@ -73,4 +73,4 @@ Resources for the AI hub, AI project, and AI Services are created for you. A sto
 ## Standard agent setup resource architecture
 :::image type="content" source="../media/quickstart/standard-agent-setup-resources.png" alt-text="An architecture diagram for standard agent setup." lightbox="../media/quickstart/standard-agent-setup-resources.png":::
 
-Resources for the AI hub, AI project, key vault, storage account, AI Services, and AI Search are created for you. The AI Services, AI Search, key vault, and storage account are connected to your project and hub. A gpt-4o-mini model is deployed in eastus region using the AI Services resource OpenAI endpoint.
+Resources for the AI hub, AI project, key vault, storage account, AI Services, and AI Search are created for you. The AI Services, AI Search, key vault, and storage account are connected to your project and hub. A gpt-4o-mini model is deployed in eastus region using the Azure OpenAI endpoint for your resource.
