@@ -72,4 +72,4 @@ Models labeled _Retired_ are no longer available for use. You can't create new d
 ## Related content
 
 - [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md)
-- [Data, privacy, and security for use of models through the model catalog in AI Foundry portal](../how-to/concept-data-privacy.md)
+- [Data, privacy, and security for use of models through the model catalog in Azure AI Foundry portal](../how-to/concept-data-privacy.md)

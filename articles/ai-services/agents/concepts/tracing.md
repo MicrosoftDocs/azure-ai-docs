@@ -25,9 +25,9 @@ Tracing solves this by allowing you to clearly see the inputs and outputs of eac
 
 Tracing lets you analyze your agent's performance and behavior by using OpenTelemetry and adding an Application Insights resource to your Azure AI Foundry project. 
 
-To add an Application Insights resource, navigate to the **Tracing** tab in the [AI Foundry portal](https://ai.azure.com/), and create a new resource if you don't already have one.
+To add an Application Insights resource, navigate to the **Tracing** tab in the [Azure AI Foundry portal](https://ai.azure.com/), and create a new resource if you don't already have one.
 
-:::image type="content" source="../media/ai-foundry-tracing.png" alt-text="A screenshot of the tracing screen in the AI Foundry portal." lightbox="../media/ai-foundry-tracing.png":::
+:::image type="content" source="../media/ai-foundry-tracing.png" alt-text="A screenshot of the tracing screen in the Azure AI Foundry portal." lightbox="../media/ai-foundry-tracing.png":::
 
 Once created, you can get an Application Insights connection string, configure your agents, and observe the full execution path of your agent through Azure Monitor. Typically you want to enable tracing before you create an agent.
 
@@ -46,7 +46,7 @@ You will also need an exporter to send results to your observability backend. Yo
 pip install opentelemetry-exporter-otlp
 ```
 
-Once you have the packages installed, you can use one the following Python samples to implement tracing with your agents. Samples that use console tracing display the results locally in the console. Samples that use Azure Monitor send the traces to the Azure Monitor in the [AI Foundry portal](https://ai.azure.com/), in the **Tracing** tab in the left navigation menu for the portal.
+Once you have the packages installed, you can use one the following Python samples to implement tracing with your agents. Samples that use console tracing display the results locally in the console. Samples that use Azure Monitor send the traces to the Azure Monitor in the [Azure AI Foundry portal](https://ai.azure.com/), in the **Tracing** tab in the left navigation menu for the portal.
 
 > [!NOTE]
 > There is a known bug in the agents tracing functionality. The bug will cause the agent's function tool to call related info (function names and parameter values, which could contain sensitive information) to be included in the traces even when content recording is not enabled.

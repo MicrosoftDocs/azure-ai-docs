@@ -28,7 +28,7 @@ Use this article to learn how to provide your own image data for GPT-4 Turbo wit
 - An Azure OpenAI resource with the GPT-4 Turbo with Vision model deployed. For more information about model deployment, see the [resource deployment guide](../../ai-services/openai/how-to/create-resource.md).
 - Be sure that you're assigned at least the [Cognitive Services Contributor role](../../ai-services/openai/how-to/role-based-access-control.md#cognitive-services-contributor) for the Azure OpenAI resource. 
 - An Azure AI Search resource. See [create an Azure AI Search service in the portal](/azure/search/search-create-service-portal). If you don't have an Azure AI Search resource, you're prompted to create one when you add your data source later in this guide.
-- An [AI Foundry hub](../how-to/create-azure-ai-resource.md) with your Azure OpenAI resource and Azure AI Search resource added as connections. 
+- An [Azure AI Foundry hub](../how-to/create-azure-ai-resource.md) with your Azure OpenAI resource and Azure AI Search resource added as connections. 
 
 
 ## Deploy a GPT-4 Turbo with Vision model

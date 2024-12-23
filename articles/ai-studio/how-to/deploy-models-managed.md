@@ -1,6 +1,6 @@
 ---
 title: How to deploy and inference a managed compute deployment with code
-titleSuffix: AI Foundry
+titleSuffix: Azure AI Foundry
 description: Learn how to deploy and inference a managed compute deployment with code.
 manager: scottpolly
 ms.service: azure-ai-studio
@@ -16,7 +16,7 @@ author: msakande
 
 # How to deploy and inference a managed compute deployment with code
 
-the AI Foundry portal [model catalog](../how-to/model-catalog-overview.md) offers over 1,600 models, and the most common way to deploy these models is to use the managed compute deployment option, which is also sometimes referred to as a managed online deployment. 
+the Azure AI Foundry portal [model catalog](../how-to/model-catalog-overview.md) offers over 1,600 models, and the most common way to deploy these models is to use the managed compute deployment option, which is also sometimes referred to as a managed online deployment. 
 
 Deployment of a large language model (LLM) makes it available for use in a website, an application, or other production environment. Deployment typically involves hosting the model on a server or in the cloud and creating an API or other interface for users to interact with the model. You can invoke the deployment for real-time inference of generative AI applications such as chat and copilot.
 
@@ -48,7 +48,7 @@ pip install azure-ai-ml
 pip install azure-identity
 ```
 
-Use this code to authenticate with Azure Machine Learning and create a client object. Replace the placeholders with your subscription ID, resource group name, and AI Foundry project name.
+Use this code to authenticate with Azure Machine Learning and create a client object. Replace the placeholders with your subscription ID, resource group name, and Azure AI Foundry project name.
 
 ```python
 from azure.ai.ml import MLClient
@@ -153,11 +153,11 @@ print(json.dumps(response_json, indent=2))
 
 ## Delete the deployment endpoint
 
-To delete deployments in AI Foundry portal, select the **Delete** button on the top panel of the deployment details page.
+To delete deployments in Azure AI Foundry portal, select the **Delete** button on the top panel of the deployment details page.
 
 ## Quota considerations
 
-To deploy and perform inferencing with real-time endpoints, you consume Virtual Machine (VM) core quota that is assigned to your subscription on a per-region basis. When you sign up for AI Foundry, you receive a default VM quota for several VM families available in the region. You can continue to create deployments until you reach your quota limit. Once that happens, you can request for a quota increase.  
+To deploy and perform inferencing with real-time endpoints, you consume Virtual Machine (VM) core quota that is assigned to your subscription on a per-region basis. When you sign up for Azure AI Foundry, you receive a default VM quota for several VM families available in the region. You can continue to create deployments until you reach your quota limit. Once that happens, you can request for a quota increase.  
 
 ## Next steps
 

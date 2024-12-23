@@ -22,7 +22,7 @@ Use this article to learn more about this feature, and how to use it in your app
 Out of the box, the service provides summarization solutions for three types of genre, plain texts, conversations, and native documents. Text summarization only accepts plain text blocks, and conversation summarization accept conversational input, including various speech audio signals in order for the model to effectively segment and summarize, and native document can directly summarize for documents in their native formats, such as Words, PDF, etc. 
 
 > [!TIP]
-> Try out Summarization [in AI Foundry portal](https://ai.azure.com/explore/language), where you can [utilize a currently existing Language Studio resource or create a new AI Foundry resource](../../../ai-studio/ai-services/connect-ai-services.md) in order to use this service. 
+> Try out Summarization [in Azure AI Foundry portal](https://ai.azure.com/explore/language), where you can [utilize a currently existing Language Studio resource or create a new Azure AI Foundry resource](../../../ai-studio/ai-services/connect-ai-services.md) in order to use this service. 
 
 # [Text summarization](#tab/text-summarization)
 

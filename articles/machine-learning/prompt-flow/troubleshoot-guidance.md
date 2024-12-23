@@ -78,7 +78,7 @@ There are possible reasons for this issue:
 
     :::image type="content" source="./media/faq/datastore-with-wrong-account-key.png" alt-text="Screenshot that shows datastore with wrong account key." lightbox = "./media/faq/datastore-with-wrong-account-key.png":::
  
-- If you're using AI Foundry, the storage account needs to set CORS to allow AI Foundry access the storage account, otherwise, you see the flow missing issue. You can add following CORS settings to the storage account to fix this issue.
+- If you're using Azure AI Foundry, the storage account needs to set CORS to allow Azure AI Foundry access the storage account, otherwise, you see the flow missing issue. You can add following CORS settings to the storage account to fix this issue.
     - Go to storage account page, select `Resource sharing (CORS)` under `settings`, and select to `File service` tab.
     - Allowed origins: `https://mlworkspace.azure.ai,https://ml.azure.com,https://*.ml.azure.com,https://ai.azure.com,https://*.ai.azure.com,https://mlworkspacecanary.azure.ai,https://mlworkspace.azureml-test.net`
     - Allowed methods: `DELETE, GET, HEAD, POST, OPTIONS, PUT`

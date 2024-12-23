@@ -28,7 +28,7 @@ In this article, you learn to compare benchmarks across models and datasets, usi
 
 ## Access model benchmarks through the model catalog
 
-Azure AI supports model benchmarking for select models that are popular and most frequently used. Follow these steps to use detailed benchmarking results to compare and select models directly from the AI Foundry model catalog:
+Azure AI supports model benchmarking for select models that are popular and most frequently used. Follow these steps to use detailed benchmarking results to compare and select models directly from the Azure AI Foundry model catalog:
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
@@ -61,7 +61,7 @@ When you're in the "Benchmarks" tab for a specific model, you can gather extensi
 
     :::image type="content" source="../media/how-to/model-benchmarks/gpt4o-benchmark-tab-expand.png" alt-text="Screenshot showing benchmarks tab for gpt-4o." lightbox="../media/how-to/model-benchmarks/gpt4o-benchmark-tab-expand.png":::
 
-By default, AI Foundry displays an average index across various metrics and datasets to provide a high-level overview of model performance.
+By default, Azure AI Foundry displays an average index across various metrics and datasets to provide a high-level overview of model performance.
 
 To access benchmark results for a specific metric and dataset:
 

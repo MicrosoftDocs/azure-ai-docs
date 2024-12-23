@@ -72,7 +72,7 @@ Here are some points to keep in mind about the skills in the following list:
 |------|--------------------|----------------------------------|
 | [AI Vision multimodal](cognitive-search-skill-vision-vectorize.md)  | ❌ | ✅ |
 | [Azure OpenAI embedding](cognitive-search-skill-azure-openai-embedding.md)  | ❌ | ✅ |
-| [Azure Machine Learning (AI Foundry model catalog)](cognitive-search-aml-skill.md)  | ❌ | ✅ |
+| [Azure Machine Learning (Azure AI Foundry model catalog)](cognitive-search-aml-skill.md)  | ❌ | ✅ |
 | [Document layout](cognitive-search-skill-document-intelligence-layout.md)  | ❌ | ✅ |
 | [Entity recognition](cognitive-search-skill-entity-recognition-v3.md)  | ✅ | ❌ |
 | [Image analysis (applies to blobs, default parsing, whole file indexing](cognitive-search-skill-image-analysis.md)  | ✅ | ❌ |
