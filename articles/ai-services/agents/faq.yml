@@ -19,7 +19,7 @@ sections:
       - question: |
           Do you store any data used in the AI Agent Service API? 
         answer: |
-          Yes. Unlike Chat Completions API, Azure OpenAI AI Agent Service is a stateful API, meaning it retains data. There are two types of data stored in the AI Agent Service API: 
+          Yes. Unlike Chat Completions API, Azure AI Agent Service is a stateful API, meaning it retains data. There are two types of data stored in the AI Agent Service API: 
           * Stateful entities: Threads, messages, and runs created during AI Agent Service use. 
           * Files: Uploaded during AI Agent Service setup or as part of a message.  
       - question: |
@@ -41,7 +41,7 @@ sections:
       - question: |
           Where is data stored geographically?
         answer: |
-          Azure OpenAI AI Agent Service endpoints are regional, and data is stored in the same region as the endpoint. For more information, see the [Azure data residency documentation](https://azure.microsoft.com/explore/global-infrastructure/data-residency/#overview). 
+          Azure AI Agent Service endpoints are regional, and data is stored in the same region as the endpoint. For more information, see the [Azure data residency documentation](https://azure.microsoft.com/explore/global-infrastructure/data-residency/#overview). 
       - question: |
           How am I charged for AI Agent Service?
         answer: |

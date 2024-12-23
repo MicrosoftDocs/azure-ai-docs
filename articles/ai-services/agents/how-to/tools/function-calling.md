@@ -1,5 +1,5 @@
 ---
-title: 'How to use Azure AI Agent service with function calling'
+title: 'How to use Azure AI Agent Service with function calling'
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure AI Agents with function calling.
 services: cognitive-services
@@ -142,7 +142,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects.models import FunctionTool, ToolSet
 from user_functions import user_functions # user functions which can be found in a user_functions.py file.
 
-# Create an Azure AI Client from a connection string, copied from your AI Studio project.
+# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
 # It should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
 # Customers need to login to Azure subscription via Azure CLI and set the environment variables
 

@@ -1,7 +1,7 @@
 ---
-title: 'How to use Azure AI Agent service Code Interpreter'
+title: 'How to use Azure AI Agent Service Code Interpreter'
 titleSuffix: Azure OpenAI
-description: Learn how to use Azure AI Agent service Code Interpreter
+description: Learn how to use Azure AI Agent Service Code Interpreter
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
@@ -13,7 +13,7 @@ ms.custom: azure-ai-agents
 zone_pivot_groups: selection-code-interpreter
 ---
 
-# Azure AI Agent service Code Interpreter
+# Azure AI Agent Service Code Interpreter
 
 
 
