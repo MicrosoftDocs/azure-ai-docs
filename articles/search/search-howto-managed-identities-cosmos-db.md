@@ -101,7 +101,8 @@ When you're connecting with a system-assigned managed identity, the only change 
 
 * For SQL collections, the connection string doesn't require "ApiKind". 
 * For SQL collections, add "IdentityAuthType=AccessToken" to go through the _recommended_ approach, that is more secure and will work even if the account is configured to enforce role-based access as the only authentication method (that is, `"disableLocalAuth": true`)
-    * When using the REST API or the SDK, if this property isn't specified on the connection string, Azure AI Search defaults to using the _legacy_ approach. Azure portal appends this property to the connection string as the default.
+    * When using the Azure portal, `IdentityAuthType=AccessToken` gets appended automatically to connection string when identity based authentication is selected.
+    * When using the REST API or the SDK, if this property isn't specified on the connection string, Azure AI Search defaults to using the _legacy_ approach. 
 * For MongoDB collections, add "ApiKind=MongoDb" to the connection string and use a preview REST API.
 * For Gremlin graphs, add "ApiKind=Gremlin" to the connection string and use a preview REST API.
 
@@ -140,7 +141,7 @@ POST https://[service name].search.windows.net/datasources?api-version=2024-07-0
 ```
 
 >[!NOTE]
-> If the `IdentityAuthType` property is not specified at all, then Azure AI Search defaults to the _legacy_ approach to ensure backward compatibility.
+> If the `IdentityAuthType` property is not part of the connection string, then Azure AI Search defaults to the _legacy_ approach to ensure backward compatibility.
 
 ### User-assigned managed identity
 
