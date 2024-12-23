@@ -149,10 +149,15 @@ Avoid port numbers in the endpoint URL. If you include the port number, the conn
 |`{ "connectionString" : "AccountEndpoint=https://<Cosmos DB account name>.documents.azure.com;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>`" }` |
 | You can get the connection string from the Azure Cosmos DB account page in the Azure portal by selecting **Keys** in the left navigation pane. Make sure to select a full connection string and not just a key. |
 
-| Managed identity connection string |
-|------------------------------------|
-|`{ "connectionString" : "ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.DocumentDB/databaseAccounts/<your cosmos db account name>/;(ApiKind=[api-kind];)/(IdentityAuthType=[identity-auth-type])" }`|
-|This connection string doesn't require an account key, but you must have a search service that can [connect using a managed identity](search-howto-managed-identities-data-sources.md). For connections targeting the [SQL API](/azure/cosmos-db/sql-query-getting-started), you can omit `ApiKind` from the connection string. For more information about `ApiKind`, `IdentityAuthType` see [Setting up an indexer connection to an Azure Cosmos DB database using a managed identity](search-howto-managed-identities-cosmos-db.md).|
+| (Legacy approach) Managed identity connection string |
+|------------------------------------------------------|
+|`{ "connectionString" : "ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.DocumentDB/databaseAccounts/<your cosmos db account name>/;(ApiKind=[api-kind];)/(IdentityAuthType=AccountKey)" }`|
+|This connection string doesn't require an account key to be specified directly, but the search service will utilize the managed identity to fetch the account keys in the background. Though this is supported for all CosmosDB account typess, it is not recommended for the NoSQL account type. Such a connection string will not work if account keys are disabled for the CosmosDB account. Note that if the `IdentityAuthType` property is omitted, the search service will still default to fetching the account key in the background. For connections targeting the [SQL API](/azure/cosmos-db/sql-query-getting-started), you can omit `ApiKind` from the connection string. For more information about `ApiKind`, `IdentityAuthType` see [Setting up an indexer connection to an Azure Cosmos DB database using a managed identity](search-howto-managed-identities-cosmos-db.md)|
+
+| (Recommended approach) Managed identity connection string for NoSQL accounts |
+|------------------------------------------------------------------------------|
+|`{ "connectionString" : "ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.DocumentDB/databaseAccounts/<your cosmos db account name>/;(ApiKind=[api-kind];)/(IdentityAuthType=AccessToken)" }`|
+|This connectiong string, supported only for Azure CosmosDB for NoSQL accounts, will ensure that the search service will never use account keys (even in the background) when attempting to access data from CosmosDB. This is recommended, as it will work even if the NoSQL account has account keys disabled. For more information see [Setting up an indexer connection to an Azure Cosmos DB database using a managed identity](search-howto-managed-identities-cosmos-db.md)|
 
 <a name="flatten-structures"></a>
 
