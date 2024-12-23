@@ -41,8 +41,6 @@ Indexer support for Azure Cosmos DB for Gremlin and MongoDB Collections is curre
 
 ## Step 1: Configure role assignments on Azure Cosmos DB control plane
 
-### Azure portal
-
 1. Sign in to Azure portal and find your Cosmos DB for NoSQL account.
 
 1. Select **Access control (IAM)**.
@@ -63,9 +61,9 @@ For more information, see [Use control plane role-based access control with Azur
 
 ## Step 2: Configure role assignments on Azure Cosmos DB data plane
 
-The managed identity needs to assigned a role to read from the Cosmos DB account's data plane. This step can only be performed via Azure CLI at the moment. The Object (principal) ID for the search service's system/user assigned identity can be found from the search service's "Identity" tab.
-
-### Azure CLI
+The managed identity needs to assigned a role to read from the Cosmos DB account's data plane. 
+The Object (principal) ID for the search service's system/user assigned identity can be found from the search service's "Identity" tab.
+This step can only be performed via Azure CLI at the moment. 
 
 Set variables:
 
