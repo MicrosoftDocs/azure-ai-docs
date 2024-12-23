@@ -24,7 +24,7 @@ Get started using GPT-4 Turbo with images with the Azure OpenAI Service.
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [AI Foundry portal quickstart](includes/gpt-v-studio.md)]
+[!INCLUDE [Azure AI Foundry portal quickstart](includes/gpt-v-studio.md)]
 
 ::: zone-end
 

@@ -47,7 +47,7 @@ Use the following steps to create a hub from the Azure portal:
 
     :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-basics.png" alt-text="Screenshot of the option to set Azure AI hub basic information." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-basics.png":::
 
-1. Select an existing **Azure AI services** resource or create a new one. New Azure AI services include multiple API endpoints for Speech, Content Safety and Azure OpenAI. You can also bring an existing Azure OpenAI resource. Optionally, choose an existing **Storage account**, **Key vault**, **Container Registry**, and **Application insights** to host artifacts generated when you use AI Foundry.
+1. Select an existing **Azure AI services** resource or create a new one. New Azure AI services include multiple API endpoints for Speech, Content Safety and Azure OpenAI. You can also bring an existing Azure OpenAI resource. Optionally, choose an existing **Storage account**, **Key vault**, **Container Registry**, and **Application insights** to host artifacts generated when you use Azure AI Foundry.
 
     > [!TIP]
     > You can skip selecting Azure AI Services if you plan to only work in Azure Machine Learning studio. Azure AI Services is required for Azure AI Foundry, and provides access to pre-built AI models for use in prompt flow.
@@ -123,4 +123,4 @@ You can configure your hub for these resources during creation or update after c
 
 ## Next steps
 
-Once you have a workspace hub, you can Create a project using [Azure Machine Learning studio](how-to-manage-workspace.md?tabs=mlstudio), [AI Foundry](/azure/ai-studio/how-to/create-projects), [Azure SDK](how-to-manage-workspace.md?tabs=python), or [Using automation templates](how-to-create-workspace-template.md).
+Once you have a workspace hub, you can Create a project using [Azure Machine Learning studio](how-to-manage-workspace.md?tabs=mlstudio), [Azure AI Foundry](/azure/ai-studio/how-to/create-projects), [Azure SDK](how-to-manage-workspace.md?tabs=python), or [Using automation templates](how-to-create-workspace-template.md).

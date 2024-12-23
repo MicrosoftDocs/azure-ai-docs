@@ -34,7 +34,7 @@ For more information about the projects and hubs model, see [Azure AI Foundry hu
 
 Use the following tabs to select the method you plan to use to create a project:
 
-# [AI Foundry portal](#tab/ai-studio)
+# [Azure AI Foundry portal](#tab/ai-studio)
 
 [!INCLUDE [Create Azure AI Foundry project](../includes/create-projects.md)]
 
@@ -85,11 +85,11 @@ The code in this section assumes you have an existing hub.  If you don't have a 
 
 ## View project settings
 
-# [AI Foundry portal](#tab/ai-studio)
+# [Azure AI Foundry portal](#tab/ai-studio)
 
 On the project **Overview** page you can find information about the project.
 
-:::image type="content" source="../media/how-to/projects/project-settings.png" alt-text="Screenshot of an AI Foundry project settings page." lightbox = "../media/how-to/projects/project-settings.png":::
+:::image type="content" source="../media/how-to/projects/project-settings.png" alt-text="Screenshot of an Azure AI Foundry project settings page." lightbox = "../media/how-to/projects/project-settings.png":::
 
 - Name: The name of the project appears in the top left corner. You can rename the project using the edit tool.
 - Subscription: The subscription that hosts the hub that hosts the project.
@@ -133,7 +133,7 @@ In addition, a number of resources are only accessible by users in your project 
    | workspacefilestore | {project-GUID}-code | Hosts files created on your compute and using prompt flow |
 
 > [!NOTE]
-> Storage connections are not created directly with the project when your storage account has public network access set to disabled. These are created instead when a first user accesses AI Foundry over a private network connection. [Troubleshoot storage connections](troubleshoot-secure-connection-project.md#troubleshoot-configurations-on-connecting-to-storage)
+> Storage connections are not created directly with the project when your storage account has public network access set to disabled. These are created instead when a first user accesses Azure AI Foundry over a private network connection. [Troubleshoot storage connections](troubleshoot-secure-connection-project.md#troubleshoot-configurations-on-connecting-to-storage)
 
 ## Related content
 

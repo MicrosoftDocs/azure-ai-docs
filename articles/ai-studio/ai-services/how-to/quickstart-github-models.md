@@ -46,7 +46,7 @@ To obtain the key and endpoint:
 
 1. Once you've signed in to your Azure account, you're taken to [Azure AI Foundry](https://ai.azure.com). 
 
-1. At the top of the page, select **Go to your GitHub AI resource** to go to Azure AI Foundry / Github](https://ai.azure.com/github). It might take one or two minutes to load your initial model details in AI Foundry portal.
+1. At the top of the page, select **Go to your GitHub AI resource** to go to Azure AI Foundry / Github](https://ai.azure.com/github). It might take one or two minutes to load your initial model details in Azure AI Foundry portal.
 
 1. The page is loaded with your model's details. Select the **Create a Deployment** button to deploy the model to your account.
 

@@ -72,7 +72,7 @@ The script also logs the evaluation results to the cloud project so that you can
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/evaluate.py" id="evaluate_wrapper":::
 
-1. Finally, add code to run the evaluation, view the results locally, and gives you a link to the evaluation results in AI Foundry portal:
+1. Finally, add code to run the evaluation, view the results locally, and gives you a link to the evaluation results in Azure AI Foundry portal:
  
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/evaluate.py" id="run_evaluation":::
 
@@ -139,12 +139,12 @@ If you weren't able to increase the tokens per minute limit for your model, you 
 12  Sorry, I only can answer queries related to ou...  ...          12
 
 [13 rows x 8 columns]
-('View evaluation results in AI Foundry portal: '
+('View evaluation results in Azure AI Foundry portal: '
  'https://xxxxxxxxxxxxxxxxxxxxxxx')
 ```
 
 
-### View evaluation results in AI Foundry portal
+### View evaluation results in Azure AI Foundry portal
 
 Once the evaluation run completes, follow the link to view the evaluation results on the **Evaluation** page in the Azure AI Foundry portal.
 
@@ -154,7 +154,7 @@ You can also look at the individual rows and see metric scores per row, and view
 
 :::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/eval-studio-rows.png" alt-text="Screenshot shows rows of evaluation results in Azure AI Foundry portal.":::
 
-For more information about evaluation results in AI Foundry portal, see [How to view evaluation results in AI Foundry portal](../how-to/evaluate-results.md).
+For more information about evaluation results in Azure AI Foundry portal, see [How to view evaluation results in Azure AI Foundry portal](../how-to/evaluate-results.md).
 
 ## Iterate and improve
 

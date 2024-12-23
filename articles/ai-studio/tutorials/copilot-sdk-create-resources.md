@@ -55,7 +55,7 @@ To create a project in [Azure AI Foundry](https://ai.azure.com), follow these st
 
 You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-4o-mini`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Foundry project, using this set of steps for each model.
 
-These steps deploy a model to a real-time endpoint from the AI Foundry portal [model catalog](../how-to/model-catalog-overview.md):
+These steps deploy a model to a real-time endpoint from the Azure AI Foundry portal [model catalog](../how-to/model-catalog-overview.md):
 
 1. On the left navigation pane, select **Model catalog**.
 1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 

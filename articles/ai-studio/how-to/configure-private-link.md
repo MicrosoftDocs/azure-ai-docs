@@ -17,7 +17,7 @@ author: Blackmist
 
 We have two network isolation aspects. One is the network isolation to access an Azure AI Foundry hub. Another is the network isolation of computing resources in your hub and projects such as compute instances, serverless, and managed online endpoints. This article explains the former highlighted in the diagram. You can use private link to establish the private connection to your hub and its default resources. This article is for Azure AI Foundry (hub and projects). For information on Azure AI services, see the [Azure AI services documentation](/azure/ai-services/cognitive-services-virtual-networks).
 
-:::image type="content" source="../media/how-to/network/azure-ai-network-inbound.svg" alt-text="Diagram of AI Foundry hub network isolation." lightbox="../media/how-to/network/azure-ai-network-inbound.png":::
+:::image type="content" source="../media/how-to/network/azure-ai-network-inbound.svg" alt-text="Diagram of Azure AI Foundry hub network isolation." lightbox="../media/how-to/network/azure-ai-network-inbound.png":::
 
 You get several hub default resources in your resource group. You need to configure following network isolation configurations.
 

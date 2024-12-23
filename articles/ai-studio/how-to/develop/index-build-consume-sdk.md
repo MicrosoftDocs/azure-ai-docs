@@ -23,12 +23,12 @@ In this article, you learn how to create an index and consume it from code. To c
 
 You must have:
 
-- An [AI Foundry hub](../../how-to/create-azure-ai-resource.md) and [project](../../how-to/create-projects.md).
+- An [Azure AI Foundry hub](../../how-to/create-azure-ai-resource.md) and [project](../../how-to/create-projects.md).
 
 - An [Azure AI Search service connection](../../how-to/connections-add.md#create-a-new-connection) to index the sample product and customer data. If you don't have an Azure AI Search service, you can create one from the [Azure portal](https://portal.azure.com/) or see the instructions [here](/azure/search/search-create-service-portal).
 - Models for embedding:
     - You can use an ada-002 embedding model from Azure OpenAI. The instructions to deploy can be found [here](../deploy-models-openai.md).
-    - OR you can use any another embedding model deployed in your AI Foundry project. In this example we use Cohere multi-lingual embedding. The instructions to deploy this model can be found [here](../deploy-models-cohere-embed.md).
+    - OR you can use any another embedding model deployed in your Azure AI Foundry project. In this example we use Cohere multi-lingual embedding. The instructions to deploy this model can be found [here](../deploy-models-cohere-embed.md).
 
 ## Build and consume an index locally
 
@@ -88,9 +88,9 @@ local_index_aoai=build_index(
 
 The above code builds an index locally. It uses environment variables to get the AI Search service and also to connect to the Azure OpenAI embedding model. 
 
-### Build an index locally using other embedding models deployed in your AI Foundry project
+### Build an index locally using other embedding models deployed in your Azure AI Foundry project
 
-To create an index that uses an embedding model deployed in your AI Foundry project, we configure the connection to the model using a `ConnectionConfig` as shown below. The `subscription`, `resource_group` and `workspace` refers to the project where the embedding model is installed. The `connection_name` refers to the connection name for the model, which can be found in the AI Foundry project settings page.
+To create an index that uses an embedding model deployed in your Azure AI Foundry project, we configure the connection to the model using a `ConnectionConfig` as shown below. The `subscription`, `resource_group` and `workspace` refers to the project where the embedding model is installed. The `connection_name` refers to the connection name for the model, which can be found in the Azure AI Foundry project settings page.
 
 ```python
 from promptflow.rag.config import ConnectionConfig
@@ -142,14 +142,14 @@ retriever.get_relevant_documents("<your search query>")
 retriever=get_langchain_retriever_from_index(local_index_cohere)
 retriever.get_relevant_documents("<your search query>")
 ```
-### Registering the index in your AI Foundry project (Optional)
+### Registering the index in your Azure AI Foundry project (Optional)
 
-Optionally, you can register the index in your AI Foundry project so that you or others who have access to your project can use it from the cloud. Before proceeding [install the required packages](#required-packages-for-remote-index-operations) for remote operations.
+Optionally, you can register the index in your Azure AI Foundry project so that you or others who have access to your project can use it from the cloud. Before proceeding [install the required packages](#required-packages-for-remote-index-operations) for remote operations.
 
 #### Connect to the project
 
 ```python
-# connect to the AI Foundry project
+# connect to the Azure AI Foundry project
 from azure.identity import DefaultAzureCredential
 from azure.ai.ml import MLClient
 
@@ -185,9 +185,9 @@ client.indexes.create_or_update(
 > [!NOTE]
 > Environment variables are intended for convenience in a local environment. However, if you register a local index created using environment variables, the index may not function as expected because secrets from environment variables won't be transferred to the cloud index. To address this issue, you can use a `ConnectionConfig` or `connection_id` to create a local index before registering.
 
-## Build an index (remotely) in your AI Foundry project
+## Build an index (remotely) in your Azure AI Foundry project
 
-We build an index in the cloud in your AI Foundry project. 
+We build an index in the cloud in your Azure AI Foundry project. 
 
 ### Required packages for remote index operations
 
@@ -197,12 +197,12 @@ Install the following packages required for remote index creation.
 pip install azure-ai-ml promptflow-rag langchain langchain-openai
 ```
 
-### Connect to the AI Foundry project
+### Connect to the Azure AI Foundry project
 
 To get started, we connect to the project. The `subscription`, `resource_group` and `workspace` in the code below refers to the project you want to connect to.
 
 ```python
-# connect to the AI Foundry project
+# connect to the Azure AI Foundry project
 from azure.identity import DefaultAzureCredential
 from azure.ai.ml import MLClient
 
@@ -245,7 +245,7 @@ embeddings_model_config = IndexModelConfiguration.from_connection(
     deployment_name="text-embedding-ada-002")
 ```
 
-You can connect to embedding model deployed in your AI Foundry project (non Azure OpenAI models) using the serverless connection. 
+You can connect to embedding model deployed in your Azure AI Foundry project (non Azure OpenAI models) using the serverless connection. 
 
 ```python
 from azure.ai.ml.entities import IndexModelConfiguration
@@ -392,6 +392,6 @@ print(result["answer"])
 
 ## Related content
 
-- [Create and consume an index from the AI Foundry portal UI](../index-add.md)
+- [Create and consume an index from the Azure AI Foundry portal UI](../index-add.md)
 - [Get started building a chat app using the prompt flow SDK](../../quickstarts/get-started-code.md)
 - [Work with projects in VS Code](vscode.md)

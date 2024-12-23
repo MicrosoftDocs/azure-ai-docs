@@ -83,7 +83,7 @@ To create a deployment:
 4. Select the model card of the model you want to deploy. In this article, you select **Cohere-rerank-v3-english** to open the Model Details page.
 
 1. Select **Deploy** to open a serverless API deployment window for the model.
-1. Alternatively, you can initiate a deployment from your project in the AI Foundry portal as follows: 
+1. Alternatively, you can initiate a deployment from your project in the Azure AI Foundry portal as follows: 
 
     1. From the left sidebar of your project, select **Models + Endpoints**.
     1. Select **+ Deploy model** > **Deploy base model**.

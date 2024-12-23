@@ -1,7 +1,7 @@
 ---
 title: Manage, collaborate, and organize with hubs
 titleSuffix: Azure AI Foundry
-description: This article introduces concepts about Azure AI Foundry hubs for your AI Foundry projects.
+description: This article introduces concepts about Azure AI Foundry hubs for your Azure AI Foundry projects.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
@@ -18,7 +18,7 @@ author: Blackmist
 
 # Manage, collaborate, and organize with hubs
 
-Hubs are the primary top-level Azure resource for AI Foundry and provide a central way for a team to govern security, connectivity, and computing resources across playgrounds and projects. Once a hub is created, developers can create projects from it and access shared company resources without needing an IT administrator's repeated help.
+Hubs are the primary top-level Azure resource for Azure AI Foundry and provide a central way for a team to govern security, connectivity, and computing resources across playgrounds and projects. Once a hub is created, developers can create projects from it and access shared company resources without needing an IT administrator's repeated help.
 
 Project workspaces that are created using a hub inherit the same security settings and shared resource access. Teams can create project workspaces as needed to organize their work, isolate data, and/or restrict access. 
 
@@ -36,7 +36,7 @@ Get started by [creating your first hub in Azure AI Foundry portal](../how-to/cr
 
 Often, projects in a business domain require access to the same company resources such as vector indices, model endpoints, or repos. As a team lead, you can preconfigure connectivity with these resources within a hub, so developers can access them from any new project workspace without delay on IT.
 
-[Connections](connections.md) let you access objects in AI Foundry portal that are managed outside of your hub. For example, uploaded data on an Azure storage account, or model deployments on an existing Azure OpenAI resource. A connection can be shared with every project or made accessible to one specific project. Connections can be configured with key-based access or Microsoft Entra ID to authorize access to users on the connected resource. Plus, as an administrator, you can track, audit, and manage connections across projects using your hub.
+[Connections](connections.md) let you access objects in Azure AI Foundry portal that are managed outside of your hub. For example, uploaded data on an Azure storage account, or model deployments on an existing Azure OpenAI resource. A connection can be shared with every project or made accessible to one specific project. Connections can be configured with key-based access or Microsoft Entra ID to authorize access to users on the connected resource. Plus, as an administrator, you can track, audit, and manage connections across projects using your hub.
 
 ## Shared Azure resources and configurations
 
@@ -44,18 +44,18 @@ Various management concepts are available on hubs to support team leads and admi
 
 * **Security configuration** including public network access, [virtual networking](#virtual-networking), customer-managed key encryption, and privileged access to whom can create projects for customization. Security settings configured on the hub automatically pass down to each project. A managed virtual network is shared between all projects that share the same hub.
 * **Connections** are named and authenticated references to Azure and non-Azure resources like data storage providers. Use a connection as a means for making an external resource available to a group of developers without having to expose its stored credential to an individual.
-* **Compute and quota allocation** is managed as shared capacity for all projects in AI Foundry portal that share the same hub. This quota includes compute instance as managed cloud-based workstation for an individual. The same user can use a compute instance across projects.
+* **Compute and quota allocation** is managed as shared capacity for all projects in Azure AI Foundry portal that share the same hub. This quota includes compute instance as managed cloud-based workstation for an individual. The same user can use a compute instance across projects.
 * **AI services access keys** to endpoints for prebuilt AI models are managed on the hub scope. Use these endpoints to access foundation models from Azure OpenAI, Speech, Vision, and Content Safety with one [API key](#azure-ai-services-api-access-keys)
 * **Policy** enforced in Azure on the hub scope applies to all projects managed under it.
-* **Dependent Azure resources** are set up once per hub and associated projects and used to store artifacts you generate while working in AI Foundry portal such as logs or when uploading data. For more information, see [Azure AI dependencies](#azure-ai-dependencies).
+* **Dependent Azure resources** are set up once per hub and associated projects and used to store artifacts you generate while working in Azure AI Foundry portal such as logs or when uploading data. For more information, see [Azure AI dependencies](#azure-ai-dependencies).
 
 ## Organize work in projects for customization
 
-A hub provides the hosting environment for [projects](../how-to/create-projects.md) in AI Foundry portal. A project is an organizational container that has tools for AI customization and orchestration. It lets you organize your work, save state across different tools like prompt flow, and collaborate with others. For example, you can share uploaded files and connections to data sources.
+A hub provides the hosting environment for [projects](../how-to/create-projects.md) in Azure AI Foundry portal. A project is an organizational container that has tools for AI customization and orchestration. It lets you organize your work, save state across different tools like prompt flow, and collaborate with others. For example, you can share uploaded files and connections to data sources.
 
 Multiple projects can use a hub, and multiple users can use a project. A project also helps you keep track of billing, and manage access and provides data isolation. Every project uses dedicated storage containers to let you upload files and share it with only other project members when using the 'data' experiences.
 
-Projects let you create and group reusable components that can be used across tools in AI Foundry portal:
+Projects let you create and group reusable components that can be used across tools in Azure AI Foundry portal:
 
 | Asset | Description |
 | --- | --- |
@@ -72,11 +72,11 @@ Projects also have specific settings that only hold for that project:
 | Prompt flow runtime | Prompt flow is a feature that can be used to generate, customize, or run a flow. To use prompt flow, you need to create a runtime on top of a compute instance. |
 
 > [!NOTE]
-> In AI Foundry portal you can also manage language and notification settings that apply to all projects that you can access regardless of the hub or project.
+> In Azure AI Foundry portal you can also manage language and notification settings that apply to all projects that you can access regardless of the hub or project.
 
 ## Azure AI services API access keys
 
-The hub allows you to set up connections to existing Azure OpenAI or Azure AI Services resource types, which can be used to host model deployments. You can access these model deployments from connected resources in AI Foundry portal. Keys to connected resources can be listed from the AI Foundry portal or Azure portal. For more information, see [Find Azure AI Foundry resources in the Azure portal](#find-azure-ai-foundry-resources-in-the-azure-portal).
+The hub allows you to set up connections to existing Azure OpenAI or Azure AI Services resource types, which can be used to host model deployments. You can access these model deployments from connected resources in Azure AI Foundry portal. Keys to connected resources can be listed from the Azure AI Foundry portal or Azure portal. For more information, see [Find Azure AI Foundry resources in the Azure portal](#find-azure-ai-foundry-resources-in-the-azure-portal).
 
 ### Virtual networking
 
@@ -97,11 +97,11 @@ Connections can be set up as shared with all projects in the same hub, or create
 
 ## Azure AI dependencies
 
-Azure AI Foundry layers on top of existing Azure services including Azure AI and Azure Machine Learning services. While it might not be visible on the display names in Azure portal, AI Foundry, or when using the SDK or CLI, some of these architectural details become apparent when you work with the Azure REST APIs, use Azure cost reporting, or use infrastructure-as-code templates such as Azure Bicep or Azure Resource Manager. From an Azure Resource Provider perspective, Azure AI Foundry resource types map to the following resource provider kinds:
+Azure AI Foundry layers on top of existing Azure services including Azure AI and Azure Machine Learning services. While it might not be visible on the display names in Azure portal, Azure AI Foundry, or when using the SDK or CLI, some of these architectural details become apparent when you work with the Azure REST APIs, use Azure cost reporting, or use infrastructure-as-code templates such as Azure Bicep or Azure Resource Manager. From an Azure Resource Provider perspective, Azure AI Foundry resource types map to the following resource provider kinds:
 
 [!INCLUDE [Resource provider kinds](../includes/resource-provider-kinds.md)]
 
-When you create a new hub, a set of dependent Azure resources are required to store data that you upload or get generated when working in AI Foundry portal. If not provided by you, and required, these resources are automatically created.
+When you create a new hub, a set of dependent Azure resources are required to store data that you upload or get generated when working in Azure AI Foundry portal. If not provided by you, and required, these resources are automatically created.
 
 [!INCLUDE [Dependent Azure resources](../includes/dependent-resources.md)]
 
@@ -124,7 +124,7 @@ In the Azure portal, you can find resources that correspond to your project in A
 1. In [Azure AI Foundry](https://ai.azure.com), go to a project and select **Management center** to view your project resources.
 1. From the management center, select the overview for either your hub or project and then select the link to **Manage in Azure portal**.
     
-    :::image type="content" source="../media/concepts/azureai-project-view-ai-studio.png" alt-text="Screenshot of the AI Foundry project overview page with links to the Azure portal." lightbox="../media/concepts/azureai-project-view-ai-studio.png"::: 
+    :::image type="content" source="../media/concepts/azureai-project-view-ai-studio.png" alt-text="Screenshot of the Azure AI Foundry project overview page with links to the Azure portal." lightbox="../media/concepts/azureai-project-view-ai-studio.png"::: 
 
 ## Next steps
 

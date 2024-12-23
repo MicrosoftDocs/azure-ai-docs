@@ -59,7 +59,7 @@ To fix this error, take the following steps to manually assign the ML Data scien
 1. Select your endpoint's name.
 1. Select **Select**.
 1. Select **Review + Assign**.
-1. Return to your project in AI Foundry portal and select **Deployments** from the left navigation menu. 
+1. Return to your project in Azure AI Foundry portal and select **Deployments** from the left navigation menu. 
 1. Select your deployment.
 1. Test the prompt flow deployment.
 

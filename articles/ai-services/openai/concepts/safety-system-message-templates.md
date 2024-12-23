@@ -35,7 +35,7 @@ Below are examples of recommended system message components you can include to p
 The following steps show how to leverage safety system messages in Azure AI Foundry portal.  
 
 1. Go to Azure AI Foundry and navigate to Azure OpenAI and the Chat playground.
-    :::image type="content" source="../media/navigate-chat-playground.PNG" alt-text="Screenshot of the AI Foundry portal selection.":::
+    :::image type="content" source="../media/navigate-chat-playground.PNG" alt-text="Screenshot of the Azure AI Foundry portal selection.":::
 1. Navigate to the default safety system messages integrated in the studio.
     :::image type="content" source="../media/navigate-system-message.PNG" alt-text="Screenshot of the system message navigation.":::
 1. Select the system message(s) that are applicable to your scenario. 
