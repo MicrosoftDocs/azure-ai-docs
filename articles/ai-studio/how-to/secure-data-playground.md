@@ -18,7 +18,7 @@ zone_pivot_groups: azure-ai-studio-sdk-cli
 Use this article to learn how to securely use Azure AI Foundry's playground chat on your data. The following sections provide our recommended configuration to protect your data and resources by using Microsoft Entra ID role-based access control, a managed network, and private endpoints. We recommend disabling public network access for Azure OpenAI resources, Azure AI Search resources, and storage accounts. Using selected networks with IP rules isn't supported because the services' IP addresses are dynamic.
 
 > [!NOTE]
-> AI Foundry's managed virtual network settings apply only to AI Foundry's managed compute resources, not platform as a service (PaaS) services like Azure OpenAI or Azure AI Search. When using PaaS services, there is no data exfiltration risk because the services are managed by Microsoft.
+> Azure AI Foundry's managed virtual network settings apply only to Azure AI Foundry's managed compute resources, not platform as a service (PaaS) services like Azure OpenAI or Azure AI Search. When using PaaS services, there is no data exfiltration risk because the services are managed by Microsoft.
 
 The following table summarizes the changes made in this article:
 
@@ -31,13 +31,13 @@ The following table summarizes the changes made in this article:
 
 ## Prerequisites
 
-Ensure that the AI Foundry hub is deployed with the __Identity-based access__ setting for the Storage account. This configuration is required for the correct access control and security of your AI Foundry Hub. You can verify this configuration using one of the following methods:
+Ensure that the Azure AI Foundry hub is deployed with the __Identity-based access__ setting for the Storage account. This configuration is required for the correct access control and security of your Azure AI Foundry Hub. You can verify this configuration using one of the following methods:
 
 - In the Azure portal, select the hub and then select __Settings__, __Properties__, and __Options__. At the bottom of the page, verify that __Storage account access type__ is set to __Identity-based access__.
 - If deploying using Azure Resource Manager or Bicep templates, include the `systemDatastoresAuthMode: 'identity'` property in your deployment template.
 - You must be familiar with using Microsoft Entra ID role-based access control to assign roles to resources and users. For more information, visit the [Role-based access control](/azure/role-based-access-control/overview) article.
 
-## Configure Network Isolated AI Foundry Hub
+## Configure Network Isolated Azure AI Foundry Hub
 
 If you're __creating a new Azure AI Foundry hub__, use one of the following documents to create a hub with network isolation:
 
@@ -214,9 +214,9 @@ For more information on assigning roles, see [Tutorial: Grant a user access to r
 | Azure Storage Account | Storage File Data Privileged Contributor | Developer's Microsoft Entra ID | Needed to Access File Share in Storage for Promptflow data. |
 | The resource group or Azure subscription where the developer need to deploy the web app to | Contributor | Developer's Microsoft Entra ID | Deploy web app to the developer's Azure subscription. |
 
-## Use your data in AI Foundry portal  
+## Use your data in Azure AI Foundry portal  
 
-Now, the data you add to AI Foundry is secured to the isolated network provided by your Azure AI Foundry hub and project. For an example of using data, visit the [build a question and answer copilot](../tutorials/deploy-copilot-ai-studio.md) tutorial.
+Now, the data you add to Azure AI Foundry is secured to the isolated network provided by your Azure AI Foundry hub and project. For an example of using data, visit the [build a question and answer copilot](../tutorials/deploy-copilot-ai-studio.md) tutorial.
 
 ## Deploy web apps
 

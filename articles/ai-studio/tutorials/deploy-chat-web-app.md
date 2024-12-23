@@ -20,7 +20,7 @@ author: sdgilley
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you deploy an enterprise chat web app that uses your own data with a large language model in AI Foundry portal.
+In this article, you deploy an enterprise chat web app that uses your own data with a large language model in Azure AI Foundry portal.
 
 Your data source is used to help ground the model with specific data. Grounding means that the model uses your data to help it understand the context of your question. You're not changing the deployed model itself. Your data is stored separately and securely in your original data source
 
@@ -34,7 +34,7 @@ The steps in this tutorial are:
 ## Prerequisites
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- A [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model. Complete the [AI Foundry playground quickstart](../quickstarts/get-started-playground.md) to create this resource if you haven't already.
+- A [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model. Complete the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md) to create this resource if you haven't already.
 
 - An [Azure AI Search service connection](../how-to/connections-add.md#create-a-new-connection) to index the sample product data.
 
@@ -44,7 +44,7 @@ The steps in this tutorial are:
 
 ## Add your data and try the chat model again
 
-In the [AI Foundry playground quickstart](../quickstarts/get-started-playground.md) (that's a prerequisite for this tutorial), observe how your model responds without your data. Now you add your data to the model to help it answer questions about your products.
+In the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md) (that's a prerequisite for this tutorial), observe how your model responds without your data. Now you add your data to the model to help it answer questions about your products.
 
 [!INCLUDE [Chat with your data](../includes/chat-with-data.md)] 
 
@@ -54,7 +54,7 @@ Once you're satisfied with the experience in Azure AI Foundry portal, you can de
 
 ### Find your resource group in the Azure portal
 
-In this tutorial, your web app is deployed to the same resource group as your [AI Foundry hub](../how-to/create-secure-ai-hub.md). Later you configure authentication for the web app in the Azure portal.
+In this tutorial, your web app is deployed to the same resource group as your [Azure AI Foundry hub](../how-to/create-secure-ai-hub.md). Later you configure authentication for the web app in the Azure portal.
 
 Follow these steps to navigate from Azure AI Foundry to your resource group in the Azure portal:
 
@@ -78,7 +78,7 @@ To deploy the web app:
 1. Complete the steps in the previous section to [add your data](#add-your-data-and-try-the-chat-model-again) to the playground. 
 
     > [!NOTE]
-    > You can deploy a web app with or without your own data, but at least you need a deployed model as described in the [AI Foundry playground quickstart](../quickstarts/get-started-playground.md).
+    > You can deploy a web app with or without your own data, but at least you need a deployed model as described in the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md).
 
 1. Select **Deploy > ...as a web app**.
 

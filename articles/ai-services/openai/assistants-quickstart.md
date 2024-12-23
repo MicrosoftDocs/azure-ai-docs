@@ -20,7 +20,7 @@ Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [AI Foundry portal](includes/assistants-ai-studio.md)]
+[!INCLUDE [Azure AI Foundry portal](includes/assistants-ai-studio.md)]
 
 ::: zone-end
 

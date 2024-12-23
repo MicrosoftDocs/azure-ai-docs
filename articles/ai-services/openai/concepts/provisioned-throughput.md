@@ -54,7 +54,7 @@ To help with simplifying the sizing effort, the following table outlines the TPM
 |Max Output TPM per PTU| 833|12,333|
 |Latency Target Value |25 Tokens Per Second|33 Tokens Per Second|
 
-For a full list see the [AOAI Foundry calculator](https://oai.azure.com/portal/calculator).
+For a full list see the [AOAzure AI Foundry calculator](https://oai.azure.com/portal/calculator).
 
 
 > [!NOTE]
@@ -116,7 +116,7 @@ Azure OpenAI is a highly sought-after service where customer demand might exceed
 
 #### Regional capacity guidance
 
-To find the capacity needed for their deployments, use the capacity API or the AI Foundry deployment experience to provide real-time information on capacity availability.
+To find the capacity needed for their deployments, use the capacity API or the Azure AI Foundry deployment experience to provide real-time information on capacity availability.
 
 In Azure AI Foundry, the deployment experience identifies when a region lacks the capacity needed to deploy the model. This looks at the desired model, version and number of PTUs. If capacity is unavailable, the experience directs  users to a select an alternative region.
 
@@ -128,7 +128,7 @@ If an acceptable region isn't available to support the desire model, version and
 
 - Attempt the deployment with a smaller number of PTUs.
 - Attempt the deployment at a different time. Capacity availability changes dynamically based on customer demand and more capacity might become available later.
-- Ensure that quota is available in all acceptable regions. The [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP&preserve-view=true) and AI Foundry experience consider quota availability in returning alternative regions for creating a deployment.
+- Ensure that quota is available in all acceptable regions. The [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP&preserve-view=true) and Azure AI Foundry experience consider quota availability in returning alternative regions for creating a deployment.
 
 ### Determining the number of PTUs needed for a workload
 

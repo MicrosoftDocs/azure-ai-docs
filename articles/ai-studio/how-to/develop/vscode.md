@@ -46,7 +46,7 @@ Azure AI Foundry supports developing in VS Code - Desktop and Web. In each scena
 
 Our prebuilt development environments are based on a docker container that has Azure AI SDKs, the prompt flow SDK, and other tools. The environment is configured to run VS Code remotely inside of the container. The container is defined in a similar way to [this Dockerfile](https://github.com/Azure-Samples/aistudio-python-quickstart-sample/blob/main/.devcontainer/Dockerfile), and is based on [Microsoft's Python 3.10 Development Container Image](https://mcr.microsoft.com/product/devcontainers/python/about).
 
-Your file explorer is opened to the specific project directory you launched from in AI Foundry portal. 
+Your file explorer is opened to the specific project directory you launched from in Azure AI Foundry portal. 
 
 The container is configured with the Azure AI folder hierarchy (`afh` directory), which is designed to orient you within your current development context, and help you work with your code, data, and shared files most efficiently. This `afh` directory houses your Azure AI Foundry projects, and each project has a dedicated project directory that includes `code`, `data`, and `shared` folders. 
 

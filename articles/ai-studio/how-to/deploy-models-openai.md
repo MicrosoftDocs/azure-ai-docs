@@ -34,7 +34,7 @@ To modify and interact with an Azure OpenAI model in the [Azure AI Foundry](http
 
 ## Deploy an Azure OpenAI model from the model catalog
 
-Follow the steps below to deploy an Azure OpenAI model such as `gpt-4o-mini` to a real-time endpoint from the AI Foundry portal [model catalog](./model-catalog-overview.md):
+Follow the steps below to deploy an Azure OpenAI model such as `gpt-4o-mini` to a real-time endpoint from the Azure AI Foundry portal [model catalog](./model-catalog-overview.md):
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
@@ -52,9 +52,9 @@ Follow the steps below to deploy an Azure OpenAI model such as `gpt-4o-mini` to 
 
 ## Deploy an Azure OpenAI model from your project
 
-Alternatively, you can initiate deployment by starting from your project in AI Foundry portal.
+Alternatively, you can initiate deployment by starting from your project in Azure AI Foundry portal.
 
-1. Go to your project in AI Foundry portal.
+1. Go to your project in Azure AI Foundry portal.
 1. From the left sidebar of your project, go to **My assets** > **Models + endpoints**.
 1. Select **+ Deploy model** > **Deploy base model**.
 1. In the **Collections** filter, select **Azure OpenAI**.

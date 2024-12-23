@@ -821,7 +821,7 @@ pytorch.org
 
 Private endpoints are currently supported for the following Azure services:
 
-* AI Foundry hub
+* Azure AI Foundry hub
 * Azure AI Search
 * Azure AI services
 * Azure API Management
@@ -902,4 +902,4 @@ The hub managed virtual network feature is free. However, you're charged for the
 
 ## Related content
 
-- [Create AI Foundry hub and project using the SDK](./develop/create-hub-project-sdk.md)
+- [Create Azure AI Foundry hub and project using the SDK](./develop/create-hub-project-sdk.md)

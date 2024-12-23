@@ -18,7 +18,7 @@ To access your non-Azure resources located in a different virtual network or loc
 
 Azure Application Gateway is a load balancer that makes routing decisions based on the URL of an HTTPS request. Azure Machine Learning supports using an application gateway to securely communicate with non-Azure resources. For more on Application Gateway, see [What is Azure Application Gateway](/azure/application-gateway/overview).
 
-To access on-premises or custom virtual network resources from the managed virtual network, you configure an Application Gateway on your Azure virtual network. The application gateway is used for inbound access to the AI Foundry portal's hub. Once configured, you then create a private endpoint from the Azure AI Foundry hub's managed virtual network to the Application Gateway. With the private endpoint, the full end to end path is secured and not routed through the Internet.
+To access on-premises or custom virtual network resources from the managed virtual network, you configure an Application Gateway on your Azure virtual network. The application gateway is used for inbound access to the Azure AI Foundry portal's hub. Once configured, you then create a private endpoint from the Azure AI Foundry hub's managed virtual network to the Application Gateway. With the private endpoint, the full end to end path is secured and not routed through the Internet.
 
 :::image type="content" source="../media/how-to/network/ai-studio-app-gateway.png" alt-text="Diagram of a managed network using Application Gateway to communicate with on-premises resources." lightbox="../media/how-to/network/ai-studio-app-gateway.png":::
 
