@@ -17,7 +17,7 @@ zone_pivot_groups: selection-function-calling
 
 ::: zone pivot="overview"
 
-The Azure AI Agents service integrates with Azure Functions, enabling you to create intelligent, event-driven applications with minimal overhead. This combination allows AI-driven workflows to leverage the scalability and flexibility of serverless computing, making it easier to build and deploy solutions that respond to real-time events or complex workflows. 
+The Azure AI Agent Service integrates with Azure Functions, enabling you to create intelligent, event-driven applications with minimal overhead. This combination allows AI-driven workflows to leverage the scalability and flexibility of serverless computing, making it easier to build and deploy solutions that respond to real-time events or complex workflows. 
  
 Azure Functions provide support for triggers and bindings, which simplify how your AI Agents interact with external systems and services. Triggers determine when a function executes—such as an HTTP request, message from a queue, or a file upload to Azure Blob Storage and allows agents to act dynamically based on incoming events. 
  
@@ -31,7 +31,7 @@ Meanwhile, bindings facilitate streamlined connections to input or output data s
 
 ## Prepare your local environment
 
-The following examples highlight how to use the Azure AI Agent service function calling where function calls are placed on a storage queue by the Agent service to be processed by an Azure Function listening to that queue.
+The following examples highlight how to use the Azure AI Agent Service function calling where function calls are placed on a storage queue by the Agent Service to be processed by an Azure Function listening to that queue.
 
 You can find the template and code used here on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python).
 
@@ -136,7 +136,7 @@ Start by defining an Azure Function queue trigger function that will process fun
 
 ```python
 # Function to get the weather from an Azure Storage queue where the AI Agent will send function call information
-# It returns the mock weather to an output queue with the correlation id for the AI Agent service to pick up the result of the function call
+# It returns the mock weather to an output queue with the correlation id for the AI Agent Service to pick up the result of the function call
 @app.function_name(name="GetWeather")
 @app.queue_trigger(arg_name="msg", queue_name="input", connection="STORAGE_CONNECTION")  
 def process_queue_message(msg: func.QueueMessage) -> None:
@@ -245,7 +245,7 @@ print(f"Created message, message ID: {message.id}")
 
 # Run the agent
 run = project_client.agents.create_run(thread_id=thread.id, assistant_id=agent.id)
-# Monitor and process the run status. The function call should be placed on the input queue by the Agent service for the Azure Function to pick up when requires_action is returned
+# Monitor and process the run status. The function call should be placed on the input queue by the Agent Service for the Azure Function to pick up when requires_action is returned
 while run.status in ["queued", "in_progress", "requires_action"]:
     time.sleep(1)
     run = project_client.agents.get_run(thread_id=thread.id, run_id=run.id)

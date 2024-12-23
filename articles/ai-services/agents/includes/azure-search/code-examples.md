@@ -22,7 +22,7 @@ from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects.models import AzureAISearchTool
 
-# Create an Azure AI Client from a connection string, copied from your AI Studio project.
+# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
 # At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
 # HostName can be found by navigating to your discovery_url and removing the leading "https://" and trailing "/discovery" 
 # To find your discovery_url, run the CLI command: az ml workspace show -n {project_name} --resource-group {resource_group_name} --query discovery_url
@@ -45,7 +45,7 @@ using Azure.Core.TestFramework;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-// Create an Azure AI Client from a connection string, copied from your AI Studio project.
+// Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
 // At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
 // Customer needs to login to Azure subscription via Azure CLI and set the environment variables
 var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;

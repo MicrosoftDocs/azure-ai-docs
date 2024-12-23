@@ -29,7 +29,7 @@ To use your own resources, you can edit the parameters in the provided deploymen
 
 ## Basic agent setup: use an existing AI Services/Azure OpenAI resource 
 
-Replace the parameter value for `aiServiceAccountResourceId` with the full arm resource ID of the AI Services/Azure OpenAI resource you want to use.
+Replace the parameter value for `aiServiceAccountResourceId` with the full arm resource ID of the AI Services or Azure OpenAI resource you want to use.
 
 1. To get the AI Services account resource ID, sign in to the Azure CLI and select the subscription with your AI Services account:
        
@@ -55,7 +55,7 @@ Replace the parameter value for `aiServiceAccountResourceId` with the full arm r
 
 Use an existing AI Search, storage account, and/or Azure AI Search resource by providing the full arm resource ID in the standard agent template file.
 
-Use an existing AI Services/Azure OpenAI resource:
+Use an existing AI Services or Azure OpenAI resource:
 1. Follow the steps in basic agent setup to get the AI Services account resource ID.
 2. In the standard agent template file, replace the following placeholders:
     

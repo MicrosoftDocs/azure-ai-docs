@@ -1,5 +1,5 @@
 ---
-title: 'How to use Azure AI Agent service with OpenAPI Specified Tools'
+title: 'How to use Azure AI Agent Service with OpenAPI Specified Tools'
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure AI Agents with OpenAPI Specified Tools.
 services: cognitive-services
@@ -12,7 +12,7 @@ ms.author: aahi
 zone_pivot_groups: selection-function-calling
 ms.custom: azure-ai-agents
 ---
-# How to use Azure AI Agent service with OpenAPI Specified Tools
+# How to use Azure AI Agent Service with OpenAPI Specified Tools
 
 ::: zone pivot="overview"
 
@@ -94,7 +94,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects.models import OpenApiTool, OpenApiAnonymousAuthDetails
 
 
-# Create an Azure AI Client from a connection string, copied from your AI Studio project.
+# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
 # At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
 # Customer needs to login to Azure subscription via Azure CLI and set the environment variables
 

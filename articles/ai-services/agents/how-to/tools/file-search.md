@@ -45,7 +45,7 @@ The file search tool uses the Azure AI Search and Azure Blob Storage resources y
 - Vector stores get created using your connected Azure AI Search resource 
 <br> </br>
 
-For both agent setups, OpenAI handles the entire ingestion process, which includes:
+For both agent setups, Azure OpenAI handles the entire ingestion process, which includes:
 - Automatically parsing and chunking documents
 - Generating and storing embeddings
 - Utilizing both vector and keyword searches to retrieve relevant content for user queries. 

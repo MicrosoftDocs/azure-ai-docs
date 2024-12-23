@@ -1,5 +1,5 @@
 ---
-title: 'How to use Grounding with Bing Search in Azure AI Agent service'
+title: 'How to use Grounding with Bing Search in Azure AI Agent Service'
 titleSuffix: Azure OpenAI
 description: Learn how to ground Azure AI Agents using Bing Search results.
 services: cognitive-services
@@ -109,7 +109,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects.models import BingGroundingTool
 
 
-# Create an Azure AI Client from a connection string, copied from your AI Studio project.
+# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
 # At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
 # Customer needs to login to Azure subscription via Azure CLI and set the environment variables
 

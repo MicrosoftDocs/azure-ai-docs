@@ -24,9 +24,9 @@ Azure AI Agent Service is now available in public preview. The service makes it 
 
 Previously, building custom AI agents needed heavy lifting even for experienced developers. While many APIs are lightweight and powerful like Azure OpenAI's chat completions API, it's inherently stateless which means that developers had to manage conversation state and chat threads, tool integrations, retrieval documents and indexes, and execute code manually.
 
-Azure AI Agents Service, as the evolution of the chat completion API and Assistants, provides a solution for these challenges. Agents support persistent automatically managed threads. This means that as a developer you no longer need to develop conversation state management systems and work around a model’s context window constraints. Agents will automatically handle the optimizations to keep the thread below the max context window of your chosen model. Once you create a thread, you can append new messages to it as users respond. Agents can also access multiple [tools](../how-to/tools/overview.md) in parallel.
+Azure AI Agent Service, as the evolution of the chat completion API and Assistants, provides a solution for these challenges. Agents support persistent automatically managed threads. This means that as a developer you no longer need to develop conversation state management systems and work around a model’s context window constraints. Agents will automatically handle the optimizations to keep the thread below the max context window of your chosen model. Once you create a thread, you can append new messages to it as users respond. Agents can also access multiple [tools](../how-to/tools/overview.md) in parallel.
 
-Azure AI Agents Service is built on the same capabilities that power Azure OpenAI's assistants. Some possible use cases range from AI-powered product recommender, sales analyst app, coding assistant, employee Q&A chatbot, and more.
+Azure AI Agent Service is built on the same capabilities that power Azure OpenAI's assistants. Some possible use cases range from AI-powered product recommender, sales analyst app, coding assistant, employee Q&A chatbot, and more.
 
 > [!IMPORTANT]
 > Retrieving untrusted data using Function Calling, Code Interpreter or File Search with file input, and agent threads functionalities could compromise the security of your agent, or the application that uses the agent.
@@ -75,7 +75,7 @@ When using the File Search tool, we recommend setting the `max_prompt_tokens` to
 
 ## Truncation strategy
 
-You can also specify a truncation strategy to control how your thread should be rendered into the model's context window. Using a truncation strategy of type `auto` will use OpenAI's default truncation strategy. Using a truncation strategy of type `last_messages` will allow you to specify the number of the most recent messages to include in the context window.
+You can also specify a truncation strategy to control how your thread should be rendered into the model's context window. Using a truncation strategy of type `auto` will use Azure OpenAI's default truncation strategy. Using a truncation strategy of type `last_messages` will allow you to specify the number of the most recent messages to include in the context window.
 
 ## See also
 * Learn more about [agents](../overview.md). <!--and [File Search](../how-to/tools/file-search.md)-->

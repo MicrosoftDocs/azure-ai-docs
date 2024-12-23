@@ -67,7 +67,7 @@ What originally took hundreds of lines of code can now be done in just a few wit
 
 Both services enable you to build agents using the same API and SDKs, but if you have additional enterprise requirements, you may want to consider using Azure AI Agent Service. Azure AI Agent Service provides all the capabilities of assistants in addition to:
 
-**Flexible model selection** - Create agents that leverage OpenAI models, or others such as Llama 3, Mistral and Cohere. Choose the most suitable model to meet your business needs.
+**Flexible model selection** - Create agents that use Azure OpenAI models, or others such as Llama 3, Mistral and Cohere. Choose the most suitable model to meet your business needs.
 
 **Extensive data integrations** - Ground your AI agents with relevant, secure enterprise knowledge from various data sources, such as Microsoft Bing, Microsoft SharePoint, Microsoft Fabric, Azure AI Search, and other APIs. 
 
