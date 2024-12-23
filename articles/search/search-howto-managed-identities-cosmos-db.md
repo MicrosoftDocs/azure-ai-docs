@@ -178,7 +178,7 @@ Connection information and permissions on the remote service are validated at ru
 
 ## Troubleshooting
 
-* For Azure Cosmos DB for NoSQL, check whether the account has its access restricted to select networks. You can rule out any firewall issues by trying the connection without restrictions in place. Refer to [Indexer access to content protected by Azure network security](search-indexer-securing-resources) for more information
+* For Azure Cosmos DB for NoSQL, check whether the account has its access restricted to select networks. You can rule out any firewall issues by trying the connection without restrictions in place. Refer to [Indexer access to content protected by Azure network security](search-indexer-securing-resources.md) for more information
 
 * For Azure Cosmos DB for NoSQL, if the indexer fails due to authentication issues, ensure that the role assignments have been done **both** on the control plane and data plane of the Cosmos DB account.
 
