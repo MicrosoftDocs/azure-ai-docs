@@ -52,7 +52,7 @@ You can create a flow by either cloning the samples available in the gallery or 
 To create a prompt flow from the gallery in Azure AI Foundry portal:
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com) and select your project. 
-1. If you're in the Management center, select **Go to project**.
+1. If you're in the Management center, select **Go to project** to return to your project.
 1. From the collapsible left menu, select **Prompt flow**.
 1. Select **+ Create**.
 1. In the **Standard flow** tile, select **Create**.
