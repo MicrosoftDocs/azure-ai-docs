@@ -173,8 +173,9 @@ By default, the web app is only accessible to you. In this tutorial, you add aut
 
     :::image type="content" source="../media/tutorials/chat/azure-portal-app-service.png" alt-text="Screenshot of web app authentication menu item under settings in the Azure portal." lightbox="../media/tutorials/chat/azure-portal-app-service.png":::
 
+1. If you see **Microsoft** listed an Identity provider on this page, you can skip the next step.
 1. Add an identity provider with the following settings:
-    - **Identity provider**: Select Microsoft as the identity provider. The default settings on this page restrict the app to your tenant only, so you don't need to change anything else here. 
+    - **Identity provider**: Select Microsoft as the identity provider. The default settings on this page restrict the app to your tenant only, so you don't need to change anything else here.
     - **Tenant type**: Workforce
     - **App registration**: Create a new app registration
     - **Name**: *The name of your web app service*
@@ -211,6 +212,10 @@ You can enable chat history when you [deploy the web app](#deploy-the-web-app). 
 Once you enable chat history, your users are able to show and hide it in the top right corner of the app. When the history is shown, they can rename, or delete conversations. As they're logged into the app, conversations are automatically ordered from newest to oldest, and named based on the first query in the conversation.
 
 If you delete the Cosmos DB resource but keep the chat history option enabled on the studio, your users are notified of a connection error, but can continue to use the web app without access to the chat history.
+
+## Update the web app
+
+Use the playground to add more data or test the model with different scenarios. When you're ready to update the web app with the new model, select **Deploy > ...as a web app** again. Select **updat an existing web app** and choose the existing web app from the list. The new model deploys to the existing web app.
 
 ## Clean up resources
 
