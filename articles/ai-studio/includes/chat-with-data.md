@@ -37,13 +37,7 @@ Follow these steps to add your data in the chat playground to help the assistant
 
    :::image type="content" source="../media/tutorials/chat/add-your-data-uploaded.png" alt-text="Screenshot of the dialog to select and upload files." lightbox="../media/tutorials/chat/add-your-data-uploaded.png":::
 
-1. Select an Azure AI Search service. In this example we select **Connect other Azure AI Search resource** from the **Select Azure AI Search service** dropdown. If you don't have a search resource, you can create one by selecting **Create a new Azure AI Search resource**. Then return to this step to connect and select it.
-
-    :::image type="content" source="../media/tutorials/chat/add-your-data-connect-search.png" alt-text="Screenshot of the search resource selection options." lightbox="../media/tutorials/chat/add-your-data-connect-search.png":::
-
-1. Browse for your Azure AI Search service, and select **Add connection**. 
-
-    :::image type="content" source="../media/tutorials/chat/add-your-data-connect-search-add.png" alt-text="Screenshot of the page to add a search service connection." lightbox="../media/tutorials/chat/add-your-data-connect-search-add.png":::
+1. Select your Azure AI Search service.
 
 1. For the **Vector index name**, enter *product-info* and select **Next**.
 
