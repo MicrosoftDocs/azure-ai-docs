@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: tutorial
-ms.date: 11/14/2024
+ms.date: 12/27/2024
 ms.reviewer: tgokal
 ms.author: sgilley
 author: sdgilley
@@ -42,11 +42,8 @@ The steps in this tutorial are:
 
 - A **Microsoft.Web** resource provider registered in the selected subscription, to be able to deploy to a web app. For more information on registering a resource provide, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1).
 
-## Add your data and try the chat model again
+- To complete this tutorial, you must have the necessary permissions to add role assignments in your Azure subscription. Granting permissions by role assignment is only allowed by the Owner of the specific Azure resources. You might need to ask your Azure subscription owner (who might be your IT admin) to complete the [Configure resources](#configure-resources) section for you.
 
-In the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md) (that's a prerequisite for this tutorial), observe how your model responds without your data. Now you add your data to the model to help it answer questions about your products.
-
-[!INCLUDE [Chat with your data](../includes/chat-with-data.md)] 
 
 ## Configure resources
 
@@ -55,11 +52,65 @@ In the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playg
 
 In order for the resources you're about to deploy to work correctly, you need to configure them with the correct permissions. This work is done in the Azure portal.  
 
-You'll configure three separate resources: the Azure AI Search service, the Azure OpenAI service, and the Azure Blob storage for your workspaceblobstore.  
+To start, find the resources you need to configure in the Azure AI Foundry portal.
 
-Find each of these services:
+1. Open the [Azure AI Foundry portal](https://ai.azure.com) and select the project where you deployed the Azure OpenAI model.
+1. Select **Management center** from the left pane.
+1. Select **Connected resources** under your project.
+1. Identify the three resources you need to configure: the **Azure AI Search service**, the **Azure OpenAI service**, and the **Azure Blob storage** for your workspaceblobstore.
 
-1. In the 
+    :::image type="content" source="../media/tutorials/deploy-chat-web-app/resources.png" alt-text="Screenshot shows the connected resources that need to be configured.":::
+
+1. For each resource, select the link to open the resource details.  From the details page, select the resource name to open the resource in the Azure portal.  (For the workspaceblobstore, select **View in Azure Portal**). 
+1. After the tab opens, go back to the Azure AI Foundry portal and repeat the process for the next resource. 
+1. Keep all three new tabs open as you'll go back and forth between them to configure the resources.
+
+### Enable managed identity
+
+Both the **Azure AI Search service** and the **Azure OpenAI service** need managed identity enabled.  For each of these two resources, follow these steps in their respective Azure portal pages:
+
+1. From the left pane, under **Settings**, select **Identity**.
+1. Switch **Status** to **On**.
+1. Select **Save**.
+
+### Set access control for search
+
+On the tab for the **Azure AI Search service** resource in the Azure portal, set the API Access policy:
+
+1. From the left pane, under **Settings**, select **Keys**.
+1. Under **API Access control**, select **Both**.
+1. When prompted, select **Yes** to confirm the change.
+
+### Assign roles
+
+You'll repeat this pattern multiple times in the bulleted items below.
+
+[!INCLUDE [Assign RBAC](../includes/assign-rbac.md)]
+
+Use these steps to assign roles for the resources you're configuring in this tutorial:
+
+* Assign the following roles on the tab for **Azure AI Search service** in the Azure portal:
+    * **Search Index Data Reader** to the **Azure OpenAI service** managed identity
+    * **Search Service Contributor** to the **Azure OpenAI service** managed identity
+    * **Contributor** to yourself (to find **Contributor**, switch to the **Privileged administrator roles** tab at the top.  All other roles are in the **Job function roles** tab.)
+
+* Assign the following roles on the tab for **Azure OpenAI service** in the Azure portal:
+
+    * **Cognitive Services OpenAI Contributor** to the **Azure AI Search service** managed identity
+    * **Contributor** to yourself.
+
+* Assign the following roles on the tab for **Azure Blob storage** in the Azure portal:
+
+    * **Storage Blob Data Contributor** to the **Azure OpenAI service** managed identity
+    * **Storage Blob Data Reader** to the **Azure AI Search service** managed identity
+    * **Contributor** to yourself
+
+## Add your data and try the chat model again
+
+In the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md) (that's a prerequisite for this tutorial), observe how your model responds without your data. Now add your data to the model to help it answer questions about your products.
+
+[!INCLUDE [Chat with your data](../includes/chat-with-data.md)] 
+
 ## Deploy your web app
 
 Once you're satisfied with the experience in Azure AI Foundry portal, you can deploy the model as a standalone web application. 
@@ -102,7 +153,7 @@ To deploy the web app:
     - **Resource group**: Select a resource group in which to deploy the web app. You can use the same resource group as the hub.
     - **Location**: Select a location in which to deploy the web app. You can use the same location as the hub.
     - **Pricing plan**: Choose a pricing plan for the web app.
-    - **Enable chat history in the web app**: For the tutorial, the chat history box isn't selected. If you enable the feature, your users will have access to their individual previous queries and responses. For more information, see [chat history remarks](#understand-chat-history).
+    - **Enable chat history in the web app**: For the tutorial, the chat history box isn't selected. If you enable the feature, your users have access to their individual previous queries and responses. For more information, see [chat history remarks](#understand-chat-history).
 
 1. Select **Deploy**.
 
@@ -112,9 +163,9 @@ To deploy the web app:
 
 ### Configure web app authentication
 
-By default, the web app will only be accessible to you. In this tutorial, you add authentication to restrict access to the app to members of your Azure tenant. Users are asked to sign in with their Microsoft Entra account to be able to access your app. You can follow a similar process to add another identity provider if you prefer. The app doesn't use the user's sign in information in any other way other than verifying they're a member of your tenant.
+By default, the web app is only accessible to you. In this tutorial, you add authentication to restrict access to the app to members of your Azure tenant. Users are asked to sign in with their Microsoft Entra account to be able to access your app. You can follow a similar process to add another identity provider if you prefer. The app doesn't use the user's sign in information in any other way other than verifying they're a member of your tenant.
 
-1. Return to the browser tab containing the Azure portal (or re-open the [Azure portal](https://portal.azure.com?azure-portal=true) in a new browser tab) and view the contents of the resource group where you deployed the hub and web app (you might need to refresh the view the see the web app).
+1. Return to the browser tab containing the Azure portal (or reopen the [Azure portal](https://portal.azure.com?azure-portal=true) in a new browser tab) and view the contents of the resource group where you deployed the hub and web app (you might need to refresh the view the see the web app).
 
 1. Select the **App Service** resource from the list of resources in the resource group.
 
@@ -133,7 +184,7 @@ By default, the web app will only be accessible to you. In this tutorial, you ad
 
 ### Use the web app
 
-You're almost there! Now you can test the web app.
+You're almost there. Now you can test the web app.
 
 1. Wait 10 minutes or so for the authentication settings to take effect.
 1. Return to the browser tab containing the chat playground page in Azure AI Foundry portal.
@@ -147,7 +198,7 @@ You're almost there! Now you can test the web app.
 
 ## Understand chat history
 
-With the chat history feature, your users will have access to their individual previous queries and responses.
+With the chat history feature, your users have access to their individual previous queries and responses.
 
 You can enable chat history when you [deploy the web app](#deploy-the-web-app). Select the **Enable chat history in the web app** checkbox.
 
@@ -157,9 +208,9 @@ You can enable chat history when you [deploy the web app](#deploy-the-web-app). 
 > Enabling chat history will create a [Cosmos DB instance](/azure/cosmos-db/introduction) in your resource group, and incur [additional charges](https://azure.microsoft.com/pricing/details/cosmos-db/autoscale-provisioned/) for the storage used.
 > Deleting your web app does not delete your Cosmos DB instance automatically. To delete your Cosmos DB instance, along with all stored chats, you need to navigate to the associated resource in the Azure portal and delete it.
 
-Once you've enabled chat history, your users will be able to show and hide it in the top right corner of the app. When the history is shown, they can rename, or delete conversations. As they're logged into the app, conversations will be automatically ordered from newest to oldest, and named based on the first query in the conversation.
+Once you enable chat history, your users are able to show and hide it in the top right corner of the app. When the history is shown, they can rename, or delete conversations. As they're logged into the app, conversations are automatically ordered from newest to oldest, and named based on the first query in the conversation.
 
-If you delete the Cosmos DB resource but keep the chat history option enabled on the studio, your users will be notified of a connection error, but can continue to use the web app without access to the chat history.
+If you delete the Cosmos DB resource but keep the chat history option enabled on the studio, your users are notified of a connection error, but can continue to use the web app without access to the chat history.
 
 ## Clean up resources
 
