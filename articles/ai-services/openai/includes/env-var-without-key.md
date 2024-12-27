@@ -1,3 +1,11 @@
+---
+author: eric-urban 
+ms.author: eur 
+ms.service: azure-ai-openai
+ms.topic: include
+ms.date: 12/27/2024
+---
+
 |Variable name | Value |
 |--------------------------|-------------|
 | `AZURE_OPENAI_ENDPOINT`               | This value can be found in the **Keys and Endpoint** section when examining your resource from the Azure portal. |
