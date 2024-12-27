@@ -36,7 +36,7 @@ The steps in this tutorial are:
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - A [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model. Complete the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md) to create this resource if you haven't already.
 
-- An Azure AI Search service connection to index the sample product data.  If you don't have one, follow the steps to [create](copilot-sdk-create-resources.md#create-search) and [connect](copilot-sdk-create-resources.md#connect-search) a search service.
+- An Azure AI Search service connection to index the sample product data.  If you don't have one, follow the steps to [create](copilot-sdk-create-resources.md#create-search) and [connect](copilot-sdk-create-resources.md#connect) a search service.
 
 - A local copy of product data. The [Azure-Samples/rag-data-openai-python-promptflow repository on GitHub](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/) contains sample retail product information that's relevant for this tutorial scenario. Specifically, the `product_info_11.md` file contains product information about the TrailWalker hiking shoes that's relevant for this tutorial example. [Download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/raw/refs/heads/main/tutorial/data/product-info.zip) to your local machine.
 
