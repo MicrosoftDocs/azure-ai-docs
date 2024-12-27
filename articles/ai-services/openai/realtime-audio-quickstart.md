@@ -5,7 +5,7 @@ description: Learn how to use GPT-4o Realtime API for speech and audio with Azur
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 10/3/2024
+ms.date: 12/11/2024
 author: eric-urban
 ms.author: eur
 ms.custom: references_regions, ignite-2024
@@ -14,6 +14,8 @@ recommendations: false
 ---
 
 # GPT-4o Realtime API for speech and audio (Preview)
+
+[!INCLUDE [Feature preview](includes/preview-feature.md)]
 
 Azure OpenAI GPT-4o Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. The GPT-4o audio `realtime` API is designed to handle real-time, low-latency conversational interactions, making it a great fit for use cases involving live interactions between a user and a model, such as customer support agents, voice assistants, and real-time translators.
 
@@ -44,14 +46,14 @@ Support for the Realtime API was first added in API version `2024-10-01-preview`
 
 Before you can use GPT-4o real-time audio, you need a deployment of the `gpt-4o-realtime-preview` model in a supported region as described in the [supported models](#supported-models) section.
 
-1. Go to the [AI Foundry home page](https://ai.azure.com) and make sure you're signed in with the Azure subscription that has your Azure OpenAI Service resource (with or without model deployments.)
+1. Go to the [Azure AI Foundry home page](https://ai.azure.com) and make sure you're signed in with the Azure subscription that has your Azure OpenAI Service resource (with or without model deployments.)
 1. Select the **Real-time audio** playground from under **Resource playground** in the left pane.
 1. Select **+ Create a deployment** to open the deployment window. 
 1. Search for and select the `gpt-4o-realtime-preview` model and then select **Confirm**.
 1. In the deployment wizard, make sure to select the `2024-10-01` model version.
 1. Follow the wizard to deploy the model.
 
-Now that you have a deployment of the `gpt-4o-realtime-preview` model, you can interact with it in real time in the AI Foundry portal **Real-time audio** playground or Realtime API.
+Now that you have a deployment of the `gpt-4o-realtime-preview` model, you can interact with it in real time in the Azure AI Foundry portal **Real-time audio** playground or Realtime API.
 
 ## Use the GPT-4o real-time audio
 
@@ -62,7 +64,7 @@ Now that you have a deployment of the `gpt-4o-realtime-preview` model, you can i
 
 To chat with your deployed `gpt-4o-realtime-preview` model in the [Azure AI Foundry](https://ai.azure.com) **Real-time audio** playground, follow these steps:
 
-1. the [Azure OpenAI Service page](https://ai.azure.com/resource/overview) in AI Foundry portal. Make sure you're signed in with the Azure subscription that has your Azure OpenAI Service resource and the deployed `gpt-4o-realtime-preview` model.
+1. the [Azure OpenAI Service page](https://ai.azure.com/resource/overview) in Azure AI Foundry portal. Make sure you're signed in with the Azure subscription that has your Azure OpenAI Service resource and the deployed `gpt-4o-realtime-preview` model.
 1. Select the **Real-time audio** playground from under **Resource playground** in the left pane.
 1. Select your deployed `gpt-4o-realtime-preview` model from the **Deployment** dropdown. 
 1. Select **Enable microphone** to allow the browser to access your microphone. If you already granted permission, you can skip this step.
@@ -125,5 +127,6 @@ You can run the sample code locally on your machine by following these steps. Re
 
 ## Related content
 
-* Learn more about Azure OpenAI [deployment types](./how-to/deployment-types.md)
+* Learn more about [How to use the Realtime API](./how-to/realtime-audio.md)
+* See the [Realtime API reference](./realtime-audio-reference.md)
 * Learn more about Azure OpenAI [quotas and limits](quotas-limits.md)

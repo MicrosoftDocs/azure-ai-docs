@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 01/17/2024
+ms.date: 12/10/2024
 ---
 
 # Simple query syntax in Azure AI Search
@@ -70,7 +70,7 @@ You can embed Boolean operators in a query string to improve the precision of a 
 
 ## Prefix queries
 
-For "starts with" queries, add a suffix operator (`*`) as the placeholder for the remainder of a term. A prefix query must begin with at least one alphanumeric character before you can add the suffix operator.
+For "starts with" queries, add a suffix operator (`*`) as the placeholder for the remainder of a term. A prefix query must begin with at least one plain text character before you can add the suffix operator.
 
 | Character | Example | Usage |
 |----------- |--------|-------|

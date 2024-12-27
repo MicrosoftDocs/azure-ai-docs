@@ -17,7 +17,7 @@ customer intent: As a developer, I want to use wizards for index creation so tha
 
 Azure AI Search has two import wizards that automate indexing and object creation so that you can begin querying immediately. If you're new to Azure AI Search, these wizards are one of the most powerful features at your disposal. With minimal effort, you can create an indexing or enrichment pipeline that exercises most of the functionality of Azure AI Search.
 
-+ **Import data wizard** supports nonvector workflows. You can extract alphanumeric text from raw documents. You can also configure applied AI and built-in skills that infer structure and generate text searchable content from image files and unstructured data.
++ **Import data wizard** supports nonvector workflows. You can extract text and numbers from raw documents. You can also configure applied AI and built-in skills that infer structure and generate text searchable content from image files and unstructured data.
 
 + **Import and vectorize data wizard** adds chunking and vectorization. You must specify an existing deployment of an embedding model, but the wizard makes the connection, formulates the request, and handles the response. It generates vector content from text or image content.
 
@@ -72,7 +72,7 @@ Here are some points to keep in mind about the skills in the following list:
 |------|--------------------|----------------------------------|
 | [AI Vision multimodal](cognitive-search-skill-vision-vectorize.md)  | ❌ | ✅ |
 | [Azure OpenAI embedding](cognitive-search-skill-azure-openai-embedding.md)  | ❌ | ✅ |
-| [Azure Machine Learning (AI Foundry model catalog)](cognitive-search-aml-skill.md)  | ❌ | ✅ |
+| [Azure Machine Learning (Azure AI Foundry model catalog)](cognitive-search-aml-skill.md)  | ❌ | ✅ |
 | [Document layout](cognitive-search-skill-document-intelligence-layout.md)  | ❌ | ✅ |
 | [Entity recognition](cognitive-search-skill-entity-recognition-v3.md)  | ✅ | ❌ |
 | [Image analysis (applies to blobs, default parsing, whole file indexing](cognitive-search-skill-image-analysis.md)  | ✅ | ❌ |

@@ -223,8 +223,7 @@ Local development using roles includes these steps:
 As a local developer, your Azure identity needs full control over data plane operations. These are the suggested roles:
 
 - Search Service Contributor, create and manage objects
-- Search Index Data Contributor, load an index
-- Search Index Data Reader, query an index
+- Search Index Data Contributor, load and query an index
 
 Find your personal identity with one of the following tools. Use that identity as the `<identity-id>` value.
 

@@ -224,11 +224,11 @@ app_insights_config = ApplicationInsightsConfiguration(
     service_name=SERVICE_NAME
 )
 
-# Connect to your AOAI resource, you must use an AOAI GPT model
+# Connect to your Azure OpenAI Service resource. You must use a GPT model deployment for this example.
 deployment_name = "gpt-4"
 api_version = "2024-08-01-preview"
 
-# This is your AOAI connection name, which can be found in your AI Foundry project under the 'Models + Endpoints' tab
+# This is your Azure OpenAI Service connection name, which can be found in your Azure AI Foundry project under the 'Models + Endpoints' tab.
 default_connection = project_client.connections._get_connection(
     "aoai_connection_name"
 )
@@ -245,7 +245,7 @@ Next, configure the evaluators you wish to use:
 
 ```python
 # RelevanceEvaluator
-# id for each evaluator can be found in your AI Foundry registry - please see documentation for more information
+# id for each evaluator can be found in your Azure AI Foundry registry - please see documentation for more information
 # init_params is the configuration for the model to use to perform the evaluation
 # data_mapping is used to map the output columns of your query to the names required by the evaluator
 relevance_evaluator_config = EvaluatorConfiguration(

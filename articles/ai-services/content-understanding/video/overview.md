@@ -90,5 +90,5 @@ As with all the Azure AI services, developers using the Content Understanding se
 
 ## Next steps
 
-* Try processing your video content using Content Understanding in [Azure AI Foundry](https://ai.azure.com/).
+ * Try processing your video content using Content Understanding in [Azure portal](https://ai.azure.com/).
 * Learn more about video [**analyzer templates**](../quickstart/use-ai-foundry.md).

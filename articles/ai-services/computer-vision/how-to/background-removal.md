@@ -5,6 +5,7 @@ description: Learn how to call the Segment API to isolate and remove the backgro
 #services: cognitive-services
 manager: nitinme
 author: PatrickFarley
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ms.service: azure-ai-vision
 ms.topic: how-to

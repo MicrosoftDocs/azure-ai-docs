@@ -7,7 +7,7 @@ author: mattgotteiner
 ms.author: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/23/2024
+ms.date: 12/10/2024
 ---
 
 # Create a shared private link for a SQL managed instance from Azure AI Search
@@ -151,9 +151,9 @@ This article assumes a [REST client](search-get-started-rest.md) and uses the RE
      }
     ```
 
-1. [Create the indexer definition](search-howto-create-indexers.md), setting the indexer execution environment to "private".
+1. [Create the indexer definition](search-howto-create-indexers.md), setting the indexer `executionEnvironment` to "private".
 
-   [Indexer execution](search-indexer-securing-resources.md#indexer-execution-environment) occurs in either a private environment that's specific to the search service, or a multi-tenant environment that's used internally to offload expensive skillset processing for multiple customers. **When connecting over a private endpoint, indexer execution must be private.**
+   [Indexer execution](search-howto-run-reset-indexers.md#indexer-execution-environment) occurs in either a private execution environment that's specific to your search service, or a multi-tenant environment hosted by Microsoft and used to offload expensive skillset processing for multiple customers. **When connecting over a private endpoint, indexer execution must be private.**
 
    ```http
     POST https://myservice.search.windows.net/indexers?api-version=2024-07-01

@@ -8,19 +8,19 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 10/04/2024
+ms.date: 12/18/2024
 
 ---
 
 # Tutorial: Design an index for RAG in Azure AI Search
 
-An index contains searchable text and vector content, plus configurations. In a RAG pattern that uses a chat model for responses, you want an index that contains chunks of content that can be passed to an LLM at query time. 
+An index contains searchable text and vector content, plus configurations. In a RAG pattern that uses a chat model for responses, you want an index designed around chunks of content that can be passed to an LLM at query time. 
 
 In this tutorial, you:
 
 > [!div class="checklist"]
 > - Learn the characteristics of an index schema built for RAG
-> - Create an index that accommodate vectors and hybrid queries
+> - Create an index that accommodates vector and hybrid queries
 > - Add vector profiles and configurations
 > - Add structured data
 > - Add filtering

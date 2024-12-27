@@ -1,5 +1,5 @@
 ---
-title: How to deploy and use CXRReportGen healthcare AI model with AI Foundry
+title: How to deploy and use CXRReportGen healthcare AI model with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn how to use CXRReportGen Healthcare AI Model with Azure AI Foundry.
 ms.service: azure-ai-studio

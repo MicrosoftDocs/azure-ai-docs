@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 06/25/2024
+ms.date: 12/10/2024
 ---
 
 # Indexer troubleshooting guidance for Azure AI Search
@@ -115,7 +115,7 @@ To update the policy and allow indexer access to the document library:
 
 1. Get the IP address ranges for the indexer execution environment for your region.
 
-    Extra IP addresses are used for requests that originate from the indexer's [multitenant execution environment](search-indexer-securing-resources.md#indexer-execution-environment). You can get this IP address range from the service tag.
+    Extra IP addresses are used for requests that originate from the indexer's [multitenant execution environment](search-indexer-securing-resources.md#network-access-and-indexer-execution-environments). You can get this IP address range from the service tag.
 
     The IP address ranges for the `AzureCognitiveSearch` service tag can be either obtained via the [discovery API](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api) or the [downloadable JSON file](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files).
 

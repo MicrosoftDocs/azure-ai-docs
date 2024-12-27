@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 11/20/2024
+ms.date: 12/18/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -19,10 +19,9 @@ Structured outputs make a model follow a [JSON Schema](https://json-schema.org/o
 > [!NOTE]
 > * Currently structured outputs is not supported on [bring your own data](../concepts/use-your-data.md) scenario.
 
-
-
 ## Supported models
 
+- `o1` version: `2024-12-17`
 - `gpt-4o-mini` version: `2024-07-18`
 - `gpt-4o` version: `2024-08-06`
 

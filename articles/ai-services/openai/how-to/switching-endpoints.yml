@@ -218,8 +218,8 @@ relatedContent:
   - text: Learn more about how to work with chat completions models with our how-to guide
     url: ../how-to/chatgpt.md
   - text: For more examples, check out the Azure OpenAI Samples GitHub repository
-    url: https://aka.ms/AOAICodeSamples
+    url: https://github.com/Azure-Samples/openai
 
 
 # Learn more about how to work with GPT-35-Turbo and the GPT-4 models with [our how-to guide](../how-to/chatgpt.md).
-# For more examples, check out the [Azure OpenAI Samples GitHub repository](https://aka.ms/AOAICodeSamples)
+# For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai)

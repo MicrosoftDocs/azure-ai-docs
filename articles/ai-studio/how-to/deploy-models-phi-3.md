@@ -5,9 +5,9 @@ description: Learn how to use Phi-3 family chat models with Azure AI Foundry.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
-ms.date: 09/18/2024
-ms.reviewer: kritifaujdar
-reviewer: fkriti
+ms.date: 12/20/2024
+ms.reviewer: v-vkonjarla 
+reviewer: VindyaKonjarla
 ms.author: mopeakande
 author: msakande
 ms.custom: references_regions, generated

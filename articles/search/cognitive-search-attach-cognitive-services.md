@@ -110,7 +110,9 @@ POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-ver
 
 Azure AI Search can also charge for transaction using the Azure AI multi-service resource key. This approach is the default and is generally available. You can use the Azure portal, REST API, or an Azure SDK to add the key to a skillset.
 
-You only need to add the key, not the subdomain or endpoint. If you leave the `cognitiveServices` property unspecified, your search service attempts to use the free enrichments available to your indexer on a daily basis. Execution of billable skills stops at 20 transactions per indexer invocation and a "Time Out" message appears in indexer execution history.
+There are two supported key types: `#Microsoft.Azure.Search.CognitiveServicesByKey` which calls the regional endpoint and `"#Microsoft.Azure.Search.AIServicesByKey` which calls the subdomain. We recommend using `AIServicesByKey` for its shared private link support and ability to function with no regional requirements relative to the search service.
+
+If you leave the `cognitiveServices` property unspecified, your search service attempts to use the free enrichments available to your indexer on a daily basis. Execution of billable skills stops at 20 transactions per indexer invocation and a "Time Out" message appears in indexer execution history.
 
 ### [**Azure portal**](#tab/portal)
 
@@ -128,12 +130,15 @@ You only need to add the key, not the subdomain or endpoint. If you leave the `c
 
   :::image type="content" source="media/cognitive-search-attach-cognitive-services/attach-existing2.png" alt-text="Screenshot of the key page." border="true":::
 
+> [!NOTE]
+> Azure portal currently automatically attaches key of type `#Microsoft.Azure.Search.CognitiveServicesByKey`.
+
 ### [**REST**](#tab/cogkey-rest)
 
 1. Use the [Create or Update Skillset](/rest/api/searchservice/skillsets/create-or-update) API, specifying `cognitiveServices` section in the body of the request:
 
 ```http
-PUT https://[servicename].search.windows.net/skillsets/[skillset name]?api-version=2024-07-01
+PUT https://[servicename].search.windows.net/skillsets/[skillset name]?api-version=2024-11-01-Preview
 api-key: [admin key]
 Content-Type: application/json
 {
@@ -157,8 +162,9 @@ Content-Type: application/json
       }
     ],
     "cognitiveServices": {
-        "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
+        "@odata.type": "#Microsoft.Azure.Search.AIServicesByKey",
         "description": "mycogsvcs",
+        "subdomainUrl": “https://[subdomain-name].cognitiveservices.azure.com",
         "key": "<your key goes here>"
     }
 }
@@ -268,7 +274,7 @@ Billing goes into effect when API calls to Azure AI services resources exceed 20
 
 Keyless and key-based connections are used for billing, but not for enrichment operations' connections. For connections, a search service [connects over the internal network](search-security-overview.md#internal-traffic) to an Azure AI services resource that's located in the [same physical region](search-region-support.md). Most regions that offer Azure AI Search also offer other Azure AI services such as Language. If you attempt AI enrichment in a region that doesn't have both services, you'll see this message: "Provided key isn't a valid CognitiveServices type key for the region of your search service."
 
-Indexers can be configured to run in a [private execution environment](search-howto-run-reset-indexers.md#indexer-execution) for dedicated processing using just the search nodes of your own search service. Even if you're using private execution environment, Azure AI Search still uses its internally provisioned Azure AI multiservice resource to perform all skill enrichments.
+Indexers can be configured to run in a [private execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment) for dedicated processing using just the search nodes of your own search service. Even if you're using private execution environment, Azure AI Search still uses its internally provisioned Azure AI multiservice resource to perform all skill enrichments.
 
 > [!NOTE]
 > Some built-in skills are based on non-regional Azure AI services (for example, the [Text Translation Skill](cognitive-search-skill-text-translation.md)). Using a non-regional skill means that your request might be serviced in a region other than the Azure AI Search region. For more information on non-regional services, see the [Azure AI services product by region](https://aka.ms/allinoneregioninfo) page.

@@ -2,9 +2,33 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 08/01/2024
+ms.date: 12/17/2024
 ms.author: eur
 ---
+
+### Speech SDK 1.42.0: 2024-December release
+
+#### New features
+ * Java: Added Diagnostics logging APIs using classes of FileLogger, MemoryLogger, EventLogger and SpxTrace.
+ * Support sending JSON property "details" of meeting participant to service
+ * Go: Added public property id SpeechServiceConnection_ProxyHostBypass to specify hosts for which proxy is not used.
+ * JavaScript, Go: Added public property id Speech_SegmentationStrategy to determine when a spoken phrase has ended and a final recognized result should be generated(including semantic segmentation)
+ * JavaScript, Go: Added public property id Speech_SegmentationMaximumTimeMs determine the end of a spoken phrase based on time in Java, Python, C#, C++
+  
+#### Bug fixes
+ * Fixed embedded TTS voice (re)loaded for every synthesis if the voice name is not set.
+ * Fixed offset calculation problems when using MeetingTranscriber in some scenarios.
+ * Fixed potential deadlock when registering multiple Diagnostic event listeners in parallel.
+ * (JavaScript) Fixed possible lost NoMatch results when at the end of audio. This fix also aligns the behavior at the end of speech with the other SDK languages and may result in some empty events no longer being raised.
+ * (JavaScript) Fixup offsets in result JSON to align with the offset on result objects. Previously only the result object's offset property was fixed up to account for service reconnections.
+ * Go language: Fixed a compilation error https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2639
+ * Fixed result offsets in meeting transcription when a reconnection to the service occurs.
+ * Fixed a deadlock in logging.
+  
+#### Samples
+ * Updated C# samples to use .NET 8.0.
+ * Java sample use Diagnostics logging API showing usage of the new Diagnostics Logging classes.
+
 ### 2024-November release
 
 #### Azure AI Speech Toolkit extension for Visual Studio Code
@@ -36,7 +60,7 @@ We added text to speech avatar code samples for [Android](https://github.com/Azu
   * Fixed not being able to fetch the list of TTS voices when using a custom endpoint.
   * Fixed embedded TTS re-initializing for every speak request when the voice is specified by a short name.
   * Fixed the API reference documentation for the max duration of RecognizeOnce audio.
-  * Fixed error handling arbitary sampling rates in JavaScript
+  * Fixed error handling arbitrary sampling rates in JavaScript
     * Thanks to [rseanhall](https://github.com/rseanhall) for this contribution.
   * Fixed error calculating the audio offset in JavaScript
     * Thanks to [motamed](https://github.com/motamed) for this contribution.

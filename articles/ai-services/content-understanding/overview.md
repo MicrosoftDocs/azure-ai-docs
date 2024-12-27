@@ -1,7 +1,7 @@
 ---
 title: What is Azure AI Content Understanding?
 titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding solutions
+description: Learn about Azure AI Content Understanding solutions, processes, workflows, use-cases, and field extractions.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -9,9 +9,11 @@ ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.date: 11/19/2024
 ms.custom: ignite-2024-understanding-release
+
+#customer intent: As a user, I want to learn more about Content Understanding solutions.
 ---
 
-# What is Azure AI Content Understanding?
+# What is Azure AI Content Understanding (preview)?
 
 > [!IMPORTANT]
 >
@@ -23,7 +25,7 @@ Azure AI Content Understanding is a new Generative AI based [**Azure AI Service*
 
 Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into automation and analytical workflows.
 
-:::image type="content" source="media/overview/content-understanding-overview.png" alt-text="Screenshot of Content Understanding overview.":::
+:::image type="content" source="media/overview/overview-flow.png" alt-text="Screenshot of Content Understanding overview, process, and workflow.":::
 
 ## Why process with Content Understanding?
 
@@ -42,6 +44,7 @@ Content Understanding offers a streamlined process to reason over large amounts 
 * **Analytics and reporting**: Content Understanding's extracted field outputs enhance analytics and reporting, allowing businesses to gain valuable insights, conduct deeper analysis, and make informed decisions based on accurate reports.
 
 ## Applications
+
 Common applications for Content Understanding include:
 
 |Application|Description|Quickstart|
@@ -79,7 +82,7 @@ Developers using the Content Understanding service should review Microsoft's pol
 ## Getting started
 Our quickstart guides help you quickly start using the Content Understanding service:
 
-* [**Azure AI Foundry Quickstart**](quickstart/use-ai-foundry.md)
+* [**Azure AI Foundry portal Quickstart**](quickstart/use-ai-foundry.md)
 * [**Rest API Quickstart**](quickstart/use-rest-api.md)
 
 

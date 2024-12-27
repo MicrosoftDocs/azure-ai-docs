@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: overview
-ms.date: 11/05/2024
+ms.date: 12/11/2024
 ms.custom:
   - references_regions
   - ignite-2024
@@ -19,6 +19,12 @@ ms.custom:
 
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
+
+## December 2024
+
+| Item&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Type |  Description |
+|-----------------------------|------|--------------|
+| [**RAG chat with Azure AI Search + Python**](https://azure.github.io/ai-app-templates/repo/azure-samples/azure-search-openai-demo/) | Template | An AI application template for building a RAG solution using Azure AI Search and Python. |
 
 ## November 2024
 

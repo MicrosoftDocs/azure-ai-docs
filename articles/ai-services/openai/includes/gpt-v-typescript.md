@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use GPT-4 Turbo with Vision on your images and videos with the JavaScript SDK'
+title: 'Quickstart: Use GPT-4 Turbo with Vision on your images with the JavaScript SDK'
 titleSuffix: Azure OpenAI
 description: Get started using the OpenAI JavaScript SDK to deploy and use the GPT-4 Turbo with Vision model.
 services: cognitive-services

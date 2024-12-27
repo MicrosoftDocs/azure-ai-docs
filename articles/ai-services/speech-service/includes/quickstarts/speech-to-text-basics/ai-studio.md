@@ -19,7 +19,7 @@ In this quickstart, you try real-time speech to text in [Azure AI Foundry](https
 
 ## Try real-time speech to text
 
-1. Go to your AI Foundry project. If you need to create a project, see [Create an AI Foundry project](../../../../../ai-studio/how-to/create-projects.md).
+1. Go to your Azure AI Foundry project. If you need to create a project, see [Create an Azure AI Foundry project](../../../../../ai-studio/how-to/create-projects.md).
 1. Select **Playgrounds** from the left pane and then select a playground to use. In this example, select **Try the Speech playground**.
 
     :::image type="content" source="../../../../../ai-studio/media/ai-services/playgrounds/azure-ai-services-playgrounds.png" alt-text="Screenshot of the project level playgrounds that you can use." lightbox="../../../../../ai-studio/media/ai-services/playgrounds/azure-ai-services-playgrounds.png":::

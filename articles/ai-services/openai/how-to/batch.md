@@ -82,7 +82,7 @@ The following aren't currently supported:
 
 ### Global batch deployment
 
-In the AI Foundry portal the deployment type will appear as `Global-Batch`.
+In the Azure AI Foundry portal the deployment type will appear as `Global-Batch`.
 
 :::image type="content" source="../media/how-to/global-batch/global-batch.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Foundry portal with Global-Batch deployment type highlighted." lightbox="../media/how-to/global-batch/global-batch.png":::
 
@@ -91,7 +91,7 @@ In the AI Foundry portal the deployment type will appear as `Global-Batch`.
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [AI Foundry portal](../includes/batch/batch-studio.md)]
+[!INCLUDE [Azure AI Foundry portal](../includes/batch/batch-studio.md)]
 
 ::: zone-end
 
@@ -154,7 +154,7 @@ Yes. Similar to other deployment types, you can create content filters and assoc
 
 ### Can I request additional quota?
 
-Yes, from the quota page in the AI Foundry portal. Default quota allocation can be found in the [quota and limits article](../quotas-limits.md#global-batch-quota).
+Yes, from the quota page in the Azure AI Foundry portal. Default quota allocation can be found in the [quota and limits article](../quotas-limits.md#global-batch-quota).
 
 ### What happens if the API doesn't complete my request within the 24 hour time frame?
 
@@ -221,7 +221,7 @@ When a job failure occurs, you'll find details about the failure in the `errors`
 |`model_not_found`|The Azure OpenAI model deployment name that was specified in the `model` property of the input file wasn't found.<br><br> Please ensure this name points to a valid Azure OpenAI model deployment.|
 | `duplicate_custom_id` | The custom ID for this request is a duplicate of the custom ID in another request. |
 |`empty_batch` | Please check your input file to ensure that the custom ID parameter is unique for each request in the batch.|
-|`model_mismatch`| The Azure OpenAI model deployment name that was specified in the `model` property of this request in the input file doesn't match the rest of the file.<br><br>Please ensure that all requests in the batch point to the same AOAI model deployment in the `model` property of the request.|
+|`model_mismatch`| The Azure OpenAI model deployment name that was specified in the `model` property of this request in the input file doesn't match the rest of the file.<br><br>Please ensure that all requests in the batch point to the same Azure OpenAI Service model deployment in the `model` property of the request.|
 |`invalid_request`| The schema of the input line is invalid or the deployment SKU is invalid. <br><br>Please ensure the properties of the request in your input file match the expected input properties, and that the Azure OpenAI deployment SKU is `globalbatch` for batch API requests.|
 
 ### Known issues

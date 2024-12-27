@@ -120,7 +120,7 @@ groups:
   prompt: Choose your preferred usage method
   pivots:
   - id: ai-foundry-portal
-    title: AI Foundry portal
+    title: Portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-javascript
@@ -184,7 +184,7 @@ groups:
   prompt: Choose your preferred usage method
   pivots:
   - id: ai-foundry-portal
-    title: AI Foundry portal
+    title: Portal
   - id: programming-language-javascript
     title: JavaScript
   - id: programming-language-dotnet
@@ -201,7 +201,7 @@ groups:
   prompt: Choose your preferred usage method
   pivots:
   - id: ai-foundry-portal
-    title: AI Foundry portal
+    title: Portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-go
@@ -388,7 +388,7 @@ groups:
   prompt: Choose a programming language or tool
   pivots:
   - id: ai-studio
-    title: AI Foundry portal
+    title: Portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-cpp
@@ -778,7 +778,7 @@ groups:
   prompt: Choose your preferred usage method
   pivots:
   - id: ai-foundry-portal
-    title: AI Foundry portal
+    title: Portal
   - id: programming-language-python
     title: Python
   - id: rest-api
@@ -815,7 +815,7 @@ groups:
   prompt: Choose your preferred fine-tuning method
   pivots:
   - id: programming-language-studio
-    title: AI Foundry portal
+    title: Portal
   - id: programming-language-python
     title: Python
   - id: rest-api
@@ -901,9 +901,71 @@ groups:
   prompt: Choose your preferred usage method
   pivots:
   - id: ai-foundry-portal
-    title: AI Foundry portal
+    title: Portal
   - id: programming-language-javascript
     title: JavaScript
+- id: programming-languages-agents
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-python-azure
+    title: Python (Azure SDK)
+  - id: programming-language-python-openai
+    title: Python (OpenAI SDK) 
+# owner: aahi
+- id: selection-code-interpreter
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: overview
+    title: Overview
+  - id: code-example
+    title: Code examples
+  - id: supported-filetypes
+    title: Supported file types
+# owner: fosteramanda
+- id: selection-file-search
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: overview
+    title: Overview
+  - id: upload-files-code-examples
+    title: Upload files code examples
+  - id: azure-blob-storage-code-examples
+    title: Azure Blob Storage code examples
+  - id: supported-filetypes
+    title: Supported file types
+  - id: deep-dive
+    title: Deep dive
+# owner: fosteramanda
+- id: selection-azure-ai-search
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: overview-azure-ai-search
+    title: Overview
+  - id: code-examples
+    title: Code examples
+# owner: zhuoqunli
+- id: selection-bing-grounding
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: overview
+    title: Overview
+  - id: code-example
+    title: Code examples
+- id: selection-function-calling
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: overview
+    title: Overview
+  - id: code-example
+    title: Code examples
 # owner: sgilley
 - id: programming-languages-sdk-overview
   title: Programming languages

@@ -24,7 +24,7 @@ The Azure AI Foundry SDK is a comprehensive toolchain designed to simplify the d
 - Easily combine together models, data, and AI services to build AI-powered applications
 - Evaluate, debug, and improve application quality & safety across development, testing, and production environments
  
-The AI Foundry SDK is a set of packages and services designed to work together. You can use the [Azure AI Projects client library](/python/api/overview/azure/ai-projects-readme) to easily use multiple services through a single project client and connection string. You can also use services and SDKs on their own and connect directly to your services.
+The Azure AI Foundry SDK is a set of packages and services designed to work together. You can use the [Azure AI Projects client library](/python/api/overview/azure/ai-projects-readme) to easily use multiple services through a single project client and connection string. You can also use services and SDKs on their own and connect directly to your services.
 
 If you want to jump right in and start building an app, check out:
 
@@ -173,7 +173,7 @@ If you have existing code that uses the OpenAI SDK, you can use the project clie
 
 ::: zone-end
 
-If you’re already using the [Azure OpenAI SDK](../../../ai-services/openai/chatgpt-quickstart.md) directly against the Azure OpenAI Service, the project provides a convenient way to use Azure OpenAI Service capabilities alongside the rest of the AI Foundry capabilities.
+If you’re already using the [Azure OpenAI SDK](../../../ai-services/openai/chatgpt-quickstart.md) directly against the Azure OpenAI Service, the project provides a convenient way to use Azure OpenAI Service capabilities alongside the rest of the Azure AI Foundry capabilities.
 
 ## Azure AI model inference service
 
@@ -415,6 +415,8 @@ pip install azure-monitor-opentelemetry
 Use the following code to enable instrumentation of the Azure AI Inference SDK and logging to your AI project:
 
 ```Python
+from azure.monitor.opentelemetry import configure_azure_monitor
+
 # Enable instrumentation of AI packages (inference, agents, openai, langchain)
 project.telemetry.enable()
 
@@ -428,7 +430,7 @@ if application_insights_connection_string:
 
 ::: zone pivot="programming-language-csharp"
 
-Tracing is not yet integrated into the projects package. For instructions on how to instrument and log traces from the Azure AI Inferencing package, see [azure-sdk-for-dotnet](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Inference/samples/Sample8_ChatCompletionsWithOpenTelemetry.md.).
+Tracing is not yet integrated into the projects package. For instructions on how to instrument and log traces from the Azure AI Inferencing package, see [azure-sdk-for-dotnet](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Inference/samples/Sample8_ChatCompletionsWithOpenTelemetry.md).
 
 ::: zone-end
 

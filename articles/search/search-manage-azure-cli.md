@@ -11,7 +11,7 @@ ms.custom:
   - devx-track-azurecli
   - ignite-2023
 ms.topic: how-to
-ms.date: 04/05/2024
+ms.date: 12/10/2024
 ---
 
 # Manage your Azure AI Search service with the Azure CLI

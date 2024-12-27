@@ -20,7 +20,7 @@ ms.custom: include, build-2024
 - An [Azure AI project](../../../ai-studio/how-to/create-projects.md) in Azure AI Foundry portal.
 - An [Azure OpenAI connection](/azure/ai-studio/how-to/connections-add?tabs=azure-openai#connection-details) to a resource in a [region where fine-tuning is supported](/azure/ai-services/openai/concepts/models#fine-tuning-models).
     > [!NOTE]
-    > The supported regions might vary if you use Azure OpenAI models in an AI Foundry project versus outside a project.
+    > The supported regions might vary if you use Azure OpenAI models in an Azure AI Foundry project versus outside a project.
 - Fine-tuning access requires **Cognitive Services OpenAI Contributor** role on the Azure OpenAI resource.
 - If you don't already have access to view quota and deploy models in Azure AI Foundry portal you need [more permissions](../how-to/role-based-access-control.md).
 
@@ -221,6 +221,7 @@ Optionally, configure parameters for your fine-tuning job. The following are ava
 | `learning_rate_multiplier` | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate may be useful to avoid overfitting. |
 |`n_epochs` | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. If set to -1, the number of epochs is determined dynamically based on the input data. |
 |`seed` | integer | The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be generated for you. |
+| `Beta`| integer | Temperature parameter for the dpo loss, typically in the range 0.1 to 0.5. This controls how much attention we pay to the reference model. The smaller the beta, the more we allow the model to drift away from the reference model. As beta gets smaller the more, we ignore the reference model.  |
 
 You can choose to leave the default configuration or customize the values to your preference. After you finish making your configurations, select **Next**. 
 

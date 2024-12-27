@@ -26,14 +26,14 @@ ms.custom: ignite-2023, build-2024, ignite-2024
 - Explore, build, test, and deploy using cutting-edge AI tools and ML models, grounded in responsible AI practices.
 - Collaborate with a team for the full life-cycle of application development.
 
-With AI Foundry, you can explore a wide variety of models, services and capabilities, and get to building AI applications that best serve your goals. The Azure AI Foundry platform facilitates scalability for transforming proof of concepts into full-fledged production applications with ease. Continuous monitoring and refinement support long-term success.  
+With Azure AI Foundry, you can explore a wide variety of models, services and capabilities, and get to building AI applications that best serve your goals. The Azure AI Foundry platform facilitates scalability for transforming proof of concepts into full-fledged production applications with ease. Continuous monitoring and refinement support long-term success.  
 
 :::image type="content" source="./media/explore/ai-studio-home.png" alt-text="Screenshot of the Azure AI Foundry home page with links to get started." lightbox="./media/explore/ai-studio-home.png":::
 
-When you come to the Azure AI Foundry portal, you find that all paths lead to a project. Projects are easy-to-manage containers for your work—and the key to collaboration, organization, and connecting data and other services. Before you create your first project, you can explore models from many providers, and try out AI services and capabilities. When you're ready to move forward with a model or service, AI Foundry guides you to create a project. Once you are in a project, all of the Azure AI capabilities come to life.
+When you come to the Azure AI Foundry portal, you find that all paths lead to a project. Projects are easy-to-manage containers for your work—and the key to collaboration, organization, and connecting data and other services. Before you create your first project, you can explore models from many providers, and try out AI services and capabilities. When you're ready to move forward with a model or service, Azure AI Foundry guides you to create a project. Once you are in a project, all of the Azure AI capabilities come to life.
 
 > [!NOTE]
-> If you want to focus only on Azure OpenAI models and capabilities, we have a place where you can work with your Azure OpenAI resource instead of a project. For more information, see [What is Azure OpenAI in Azure AI Foundry?](azure-openai-in-ai-studio.md). However, for most situations, we recommend an AI Foundry project to build with a wide range of AI models, functionalities and tools as you build, test, and deploy AI solutions.
+> If you want to focus only on Azure OpenAI models and capabilities, we have a place where you can work with your Azure OpenAI resource instead of a project. For more information, see [What is Azure OpenAI in Azure AI Foundry?](azure-openai-in-ai-studio.md). However, for most situations, we recommend an Azure AI Foundry project to build with a wide range of AI models, functionalities and tools as you build, test, and deploy AI solutions.
 
 ## Work in an Azure AI Foundry project
 
@@ -45,7 +45,7 @@ Once you're in a project, you'll see an overview of what you can do with it on t
 
 :::image type="content" source="media/explore/project-view-current.png" alt-text="Screenshot shows the project overview in Azure AI Foundry." lightbox="media/explore/project-view-current.png":::
 
-The AI Foundry portal is organized around your goals. Generally, as you develop with Azure AI, you'll likely go through a few distinct stages of project development:
+The Azure AI Foundry portal is organized around your goals. Generally, as you develop with Azure AI, you'll likely go through a few distinct stages of project development:
 
 * **Define and explore**. In this stage you define your project goals, and then explore and test models and services against your use case to find the ones that enable you to achieve your goals.
 * **Build and customize**. In this stage, you're actively building solutions and applications with the models, tools, and capabilities you selected. You can also customize models to perform better for your use case by fine-tuning, grounding in your data, and more. Building and customizing might be something you choose to do in the Azure AI Foundry portal, or through code and the Azure AI Foundry SDKs. Either way, a project provides you with everything you need.
@@ -70,17 +70,17 @@ For more information, see [Management center overview](./concepts/management-cen
 
 Azure AI Foundry is monetized through individual products customer access and consume in the platform, including API and models, complete AI toolchain, and responsible AI and enterprise grade production at scale products. Each product has its own billing model and price. 
 
-The platform is free to use and explore. Pricing occurs at deployment level. For more information abut AI Foundry pricing, see [AI Foundry pricing](https://aka.ms/Azure-AI-Foundry-New-Pricing-Page).
+The platform is free to use and explore. Pricing occurs at deployment level. 
 
-Using AI Foundry also incurs cost associated with the underlying services. To learn more, read [Plan and manage costs for Azure AI services](./how-to/costs-plan-manage.md).
+Using Azure AI Foundry also incurs cost associated with the underlying services. To learn more, read [Plan and manage costs for Azure AI services](./how-to/costs-plan-manage.md).
 
 ## Region availability
 
-AI Foundry is available in most regions where Azure AI services are available. For more information, see [region support for AI Foundry](reference/region-support.md).
+Azure AI Foundry is available in most regions where Azure AI services are available. For more information, see [region support for Azure AI Foundry](reference/region-support.md).
 
 ## How to get access
 
-You can [explore AI Foundry portal (including the model catalog)](./how-to/model-catalog.md) without signing in. 
+You can [explore Azure AI Foundry portal (including the model catalog)](./how-to/model-catalog.md) without signing in. 
 
 But for full functionality there are some requirements:
 

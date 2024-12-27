@@ -5,7 +5,7 @@ description: Learn how to consume deployed serverless API endpoints from a diffe
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 12/20/2024
 ms.author: mopeakande
 author: msakande
 ms.reviewer: fasantia
@@ -41,7 +41,7 @@ The need to consume a serverless API endpoint in a different project or hub than
 
 - You need to install the following software to work with Azure AI Foundry:
 
-    # [AI Foundry portal](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
     You can use any compatible web browser to navigate [Azure AI Foundry](https://ai.azure.com).
 
@@ -88,7 +88,7 @@ Follow these steps to create a connection:
 
 1. Connect to the project or hub where the endpoint is deployed:
 
-    # [AI Foundry portal](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
     Go to [Azure AI Foundry](https://ai.azure.com) and navigate to the project where the endpoint you want to connect to is deployed.
 
@@ -116,9 +116,9 @@ Follow these steps to create a connection:
 
 1. Get the endpoint's URL and credentials for the endpoint you want to connect to. In this example, you get the details for an endpoint name **meta-llama3-8b-qwerty**.
 
-    # [AI Foundry portal](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
-    1. From the left sidebar of your project in AI Foundry portal, go to **My assets** > **Models + endpoints** to see the list of deployments in the project.
+    1. From the left sidebar of your project in Azure AI Foundry portal, go to **My assets** > **Models + endpoints** to see the list of deployments in the project.
 
     1. Select the deployment you want to connect to.
 
@@ -141,7 +141,7 @@ Follow these steps to create a connection:
 
 1. Now, connect to the project or hub **where you want to create the connection**:
 
-    # [AI Foundry portal](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
     Go to the project where the connection needs to be created to.
 
@@ -169,9 +169,9 @@ Follow these steps to create a connection:
 
 1. Create the connection in the project:
 
-    # [AI Foundry portal](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
-    1. From the left sidebar of your project in AI Foundry portal, select **Management center**.
+    1. From your project in Azure AI Foundry portal, go to the bottom part of the left sidebar and select **Management center**.
 
     1. From the left sidebar of the management center, select **Connected resources**.
     
@@ -218,7 +218,7 @@ Follow these steps to create a connection:
 
 1. To validate that the connection is working:
 
-    1. Return to your project in AI Foundry portal.
+    1. Return to your project in Azure AI Foundry portal.
 
     1. From the left sidebar of your project, go to **Build and customize** > **Prompt flow**.
 

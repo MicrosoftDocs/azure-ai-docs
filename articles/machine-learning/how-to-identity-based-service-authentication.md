@@ -53,7 +53,6 @@ This table lists the support matrix when authenticating to __Azure Container Reg
 | ---- | :----: | :----: |
 | Admin user | ✓ | ✓ |
 | Workspace system-assigned managed identity | ✓ | ✓ |
-| Workspace user-assigned managed identity</br>with the ACRPull role assigned to the identity |  | ✓ |
 
 ## User-assigned managed identity
 

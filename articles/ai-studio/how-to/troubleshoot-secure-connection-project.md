@@ -131,6 +131,6 @@ Try the following steps to troubleshoot:
 1. In Azure Portal, check the network settings of the storage account that is associated to your hub.
   * If public network access is set to __Enabled from selected virtual networks and IP addresses__, ensure the correct IP address ranges are added to access your storage account.
   * If public network access is set to __Disabled__, ensure you have a private endpoint configured from your Azure virtual network to your storage account with Target sub-resource as blob. In addition, you must grant the [Reader](/azure/role-based-access-control/built-in-roles#reader) role for the storage account private endpoint to the managed identity.
-2. In Azure Portal, navigate to your AI Foundry hub. Ensure the managed virtual network is provisioned and the outbound private endpoint to blob storage is Active. For more on provisioning the managed virtual network, see [How to configure a managed network for Azure AI Foundry hubs](configure-managed-network.md).
-3. Navigate to AI Foundry > your project > project settings. 
+2. In Azure Portal, navigate to your Azure AI Foundry hub. Ensure the managed virtual network is provisioned and the outbound private endpoint to blob storage is Active. For more on provisioning the managed virtual network, see [How to configure a managed network for Azure AI Foundry hubs](configure-managed-network.md).
+3. Navigate to Azure AI Foundry > your project > project settings. 
 4. Refresh the page. A number of connections should be created including 'workspaceblobstore'.

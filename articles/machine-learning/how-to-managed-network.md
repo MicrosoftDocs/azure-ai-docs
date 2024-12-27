@@ -70,6 +70,8 @@ If you want to use the integrated notebook or create datasets in the default sto
 
 Part of Azure Machine Learning studio runs locally in the client's web browser, and communicates directly with the default storage for the workspace. Creating a private endpoint or service endpoint (for the default storage account) in the client's virtual network ensures that the client can communicate with the storage account.
 
+If the workspace associated Azure storage account has public network access disabled, ensure the private endpoint created in the client virtual network is granted the Reader role to your workspace managed identity. This applies to both blog and file storage private endpoints. The role is not required for the private endpoint created by the managed virtual network. 
+
 For more information on creating a private endpoint or service endpoint, see the [Connect privately to a storage account](/azure/storage/common/storage-private-endpoints) and [Service Endpoints](/azure/virtual-network/virtual-network-service-endpoints-overview) articles.
 
 ### Secured associated resources
@@ -993,25 +995,27 @@ ml_client._workspace_outbound_rules.begin_remove(resource_group, ws_name, rule_n
 
 ## List of required rules
 
-> [!TIP]
-> These  rules are automatically added to the managed VNet.
-
 __Private endpoints__:
 * When the isolation mode for the managed virtual network is `Allow internet outbound`, private endpoint outbound rules are automatically created as required rules from the managed virtual network for the workspace and associated resources __with public network access disabled__ (Key Vault, Storage Account, Container Registry, Azure Machine Learning workspace).
 * When the isolation mode for the managed virtual network is `Allow only approved outbound`, private endpoint outbound rules are automatically created as required rules from the managed virtual network for the workspace and associated resources __regardless of public network access mode for those resources__ (Key Vault, Storage Account, Container Registry, Azure Machine Learning workspace).
+* These rules are automatically added to the managed virtual network. 
 
-__Outbound__ service tag rules:
+For Azure Machine Learning to run normally, there are a set of required service tags, required in either a managed or custom virtual network set-up. There are no alternatives to replacing certain required service tags. Below is a table of each required service tag and its purpose within Azure Machine Learning.
 
-* `AzureActiveDirectory`
-* `AzureMachineLearning`
-* `BatchNodeManagement.region`
-* `AzureResourceManager`
-* `AzureFrontDoor.FirstParty`
-* `MicrosoftContainerRegistry`
-* `AzureMonitor`
+| Service tag rule | Inbound or Outbound | Purpose |
+| ----------- | ----- | ----- |
+| `AzureMachineLearning` | Inbound | Create, update, and delete of Azure Machine Learning compute instance/cluster. |  
+| `AzureMachineLearning`| Outbound | Using Azure Machine Learning services. Python intellisense in notebooks uses port 18881. Creating, updating, and deleting an Azure Machine Learning compute instance uses port 5831. |
+| `AzureActiveDirectory` | Outbound | Authentication using Microsoft Entra ID. |
+| `BatchNodeManagement.region` | Outbound | Communication with Azure Batch back-end for Azure Machine Learning compute instances/clusters. |
+| `AzureResourceManager` | Outbound | Creation of Azure resources with Azure Machine Learning, Azure CLI, and Azure Machine Learning SDK. |
+| `AzureFrontDoor.FirstParty` | Outbound | Access docker images provided by Microsoft. |
+| `MicrosoftContainerRegistry` | Outbound | Access docker images provided by Microsoft. Setup of the Azure Machine Learning router for Azure Kubernetes Service. |		
+| `AzureMonitor` | Outbound | Used to log monitoring and metrics to Azure Monitor. Only needed if you haven't secured Azure Monitor for the workspace. This outbound is also used to log information for support incidents. |
+| `VirtualNetwork` | Outbound | Required when private endpoints are present in the virtual network or peered virtual networks. |
 
-__Inbound__ service tag rules:
-* `AzureMachineLearning`
+> [!NOTE]
+> Service tags as the ONLY security boundary is not sufficient. For tenant level isolation, use private endpoints when possible.
 
 ## List of scenario specific outbound rules
 
@@ -1172,10 +1176,9 @@ The Azure Machine Learning managed virtual network feature is free. However, you
 
 ## Limitations
 
-* Azure AI Foundry doesn't support using your own Azure Virtual Network to secure the hub, project, or compute resources. You can only use the managed network feature to secure these resources.
 * Once you enable managed virtual network isolation of your workspace (either allow internet outbound or allow only approved outbound), you can't disable it.
 * Managed virtual network uses private endpoint connection to access your private resources. You can't have a private endpoint and a service endpoint at the same time for your Azure resources, such as a storage account. We recommend using private endpoints in all scenarios.
-* The managed virtual network is deleted when the workspace is deleted. 
+* The managed virtual network is deleted when the workspace is deleted. When deleting Azure Machine Learning resources in your Azure subscription, disable any resource locks or locks which prevent deletion of resources you created, or were created by Microsoft for the managed virtual network.
 * Data exfiltration protection is automatically enabled for the only approved outbound mode. If you add other outbound rules, such as to FQDNs, Microsoft can't guarantee that you're protected from data exfiltration to those outbound destinations.
 * Creating a compute cluster in a different region than the workspace isn't supported when using a managed virtual network.
 * Kubernetes and attached VMs aren't supported in an Azure Machine Learning managed virtual network.
@@ -1186,6 +1189,7 @@ The Azure Machine Learning managed virtual network feature is free. However, you
 * Managed network isolation can't establish a private connection from the managed virtual network to a user's on-premises resources.
 For the list of supported private connections, see [Private Endpoints](/azure/machine-learning/how-to-managed-network?view=azureml-api-2&tabs=azure-cli&preserve-view=true#private-endpoints).
 * If your managed network is configured to __allow only approved outbound__, you can't use an FQDN rule to access Azure Storage Accounts. You must use a private endpoint instead.
+* Ensure to allowlist Microsoft-managed private endpoints created for the managed virtual network in your custom policy.
 
 ### Migration of compute resources
 

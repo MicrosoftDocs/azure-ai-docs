@@ -27,7 +27,7 @@ In this article, you learn to enable tracing, collect aggregated metrics, and co
 ## Prerequisites
 
 - The Azure CLI and the Azure Machine Learning extension to the Azure CLI. 
-- An AI Foundry project. If you don't already have a project, you can [create one here](../../how-to/create-projects.md).
+- An Azure AI Foundry project. If you don't already have a project, you can [create one here](../../how-to/create-projects.md).
 - An Application Insights. If you don't already have an Application Insights resource, you can [create one here](/azure/azure-monitor/app/create-workspace-resource).
 - Azure role-based access controls are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, you must have **Owner** or **Contributor** permissions on the selected resource group. For more information, see [Role-based access control in Azure AI Foundry portal](../../concepts/rbac-ai-studio.md).
 
@@ -42,7 +42,7 @@ You can also [deploy to other platforms, such as Docker container, Kubernetes cl
 
 ## Enable trace and collect system metrics for your deployment
 
-If you're using AI Foundry portal to deploy, then you can turn-on **Application Insights diagnostics** in **Advanced settings** > **Deployment** step in the deployment wizard, in which way the tracing data and system metrics are collected to the project linked to Application Insights.
+If you're using Azure AI Foundry portal to deploy, then you can turn-on **Application Insights diagnostics** in **Advanced settings** > **Deployment** step in the deployment wizard, in which way the tracing data and system metrics are collected to the project linked to Application Insights.
 
 If you're using SDK or CLI, you can by adding a property `app_insights_enabled: true` in the deployment yaml file that collects data to the project linked to application insights. 
 

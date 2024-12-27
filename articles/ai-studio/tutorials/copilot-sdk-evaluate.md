@@ -29,6 +29,7 @@ This tutorial is part three of a three-part tutorial.
 ## Prerequisites
 
 - Complete [part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
+- Make sure you've completed the steps to [add telemetry logging](copilot-sdk-build-rag.md#logging) from part 2.
 
 
 ## <a name="evaluate"></a> Evaluate the quality of the chat app responses
@@ -46,7 +47,7 @@ Use the following evaluation dataset, which contains example questions and expec
 1. Create a file called **chat_eval_data.jsonl** in your **assets** folder.
 1. Paste this dataset into the file:
 
-    :::code language="jsonl" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/assets/chat_eval_data.jsonl":::
+    :::code language="jsonl" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/assets/chat_eval_data.jsonl":::
 
 ## Evaluate with Azure AI evaluators
 
@@ -65,15 +66,15 @@ The script also logs the evaluation results to the cloud project so that you can
 1. Create a file called **evaluate.py** in your main folder.
 1. Add the following code to import the required libraries, create a project client, and configure some settings: 
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="imports_and_config":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/evaluate.py" id="imports_and_config":::
 
 1. Add code to create a wrapper function that implements the evaluation interface for query and response evaluation:
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="evaluate_wrapper":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/evaluate.py" id="evaluate_wrapper":::
 
-1. Finally, add code to run the evaluation, view the results locally, and gives you a link to the evaluation results in AI Foundry portal:
+1. Finally, add code to run the evaluation, view the results locally, and gives you a link to the evaluation results in Azure AI Foundry portal:
  
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/evaluate.py" id="run_evaluation":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/evaluate.py" id="run_evaluation":::
 
 ### Configure the evaluation model
 
@@ -98,7 +99,7 @@ In Part 1 of this tutorial series, you created an **.env** file that specifies t
 1. Install the required package:
 
     ```bash
-    pip install azure_ai-evaluation[prompts]
+    pip install azure-ai-evaluation
     ```
 
 1. Now run the evaluation script:
@@ -138,12 +139,12 @@ If you weren't able to increase the tokens per minute limit for your model, you 
 12  Sorry, I only can answer queries related to ou...  ...          12
 
 [13 rows x 8 columns]
-('View evaluation results in AI Foundry portal: '
+('View evaluation results in Azure AI Foundry portal: '
  'https://xxxxxxxxxxxxxxxxxxxxxxx')
 ```
 
 
-### View evaluation results in AI Foundry portal
+### View evaluation results in Azure AI Foundry portal
 
 Once the evaluation run completes, follow the link to view the evaluation results on the **Evaluation** page in the Azure AI Foundry portal.
 
@@ -153,7 +154,7 @@ You can also look at the individual rows and see metric scores per row, and view
 
 :::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/eval-studio-rows.png" alt-text="Screenshot shows rows of evaluation results in Azure AI Foundry portal.":::
 
-For more information about evaluation results in AI Foundry portal, see [How to view evaluation results in AI Foundry portal](../how-to/evaluate-results.md).
+For more information about evaluation results in Azure AI Foundry portal, see [How to view evaluation results in Azure AI Foundry portal](../how-to/evaluate-results.md).
 
 ## Iterate and improve
 

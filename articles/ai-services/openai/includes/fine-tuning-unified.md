@@ -11,7 +11,12 @@ author: mrbullwinkle
 ms.author: mbullwin
 ---
 
-There are two unique fine-tuning experiences in Azure AI Foundry portal. Both allow you to fine-tune Azure OpenAI models, but only the Hub/Project view supports fine-tuning non Azure OpenAI models. If you are only using the Azure OpenAI fine-tuning experience which is available anytime you select a resource in a region where fine-tuning is supported.
+There are two unique fine-tuning experiences in the Azure AI Foundry portal:
+
+* [Hub/Project view](https://ai.azure.com) - supports fine-tuning models from multiple providers including Azure OpenAI, Meta Llama, Microsoft Phi, etc.
+* [Azure OpenAI centric view](https://oai.azure.com) - only supports fine-tuning Azure OpenAI models, but has support for additional features like the [Weights & Biases (W&B) preview integration](../how-to/weights-and-biases-integration.md). 
+
+If you are only fine-tuning Azure OpenAI models, we recommend the Azure OpenAI centric fine-tuning experience which is available by navigating to [https://oai.azure.com](https://oai.azure.com). 
 
 # [Azure OpenAI](#tab/azure-openai)
 

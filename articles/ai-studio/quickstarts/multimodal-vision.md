@@ -31,7 +31,7 @@ Extra usage fees might apply when using GPT-4 Turbo with Vision and Azure AI Vis
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - Once you have your Azure subscription, <a href="/azure/ai-services/openai/how-to/create-resource?pivots=web-portal"  title="Create an Azure OpenAI resource."  target="_blank">create an Azure OpenAI resource </a>.
-- An [AI Foundry hub](../how-to/create-azure-ai-resource.md) with your Azure OpenAI resource added as a connection. 
+- An [Azure AI Foundry hub](../how-to/create-azure-ai-resource.md) with your Azure OpenAI resource added as a connection. 
 
 ## Prepare your media
 

@@ -1,11 +1,11 @@
 ---
-title: "Part 2: Build a ca custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK"
+title: "Part 2: Build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK"
 titleSuffix: Azure AI Foundry
 description:  Learn how to build a RAG-based chat app using the Azure AI Foundry SDK. This tutorial is part 2 of a 3-part tutorial series.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: tutorial
-ms.date: 11/11/2024
+ms.date: 12/18/2024
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
@@ -42,7 +42,7 @@ If you already have a search index with data, you can skip to [Get product docum
 
 Create an **assets** directory and add this example data to a **products.csv** file:
 
-:::code language="csv" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/assets/products.csv":::
+:::code language="csv" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/assets/products.csv":::
 
 ## Create a search index
 
@@ -52,19 +52,19 @@ The search index is used to store vectorized data from the embeddings model. The
 1. Copy and paste the following code into your **create_search_index.py** file.
 1. Add the code to import the required libraries, create a project client, and configure some settings: 
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/create_search_index.py" id="imports_and_config":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/create_search_index.py" id="imports_and_config":::
 
 1. Now add the function to define a search index:
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/create_search_index.py" id="create_search_index":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/create_search_index.py" id="create_search_index":::
 
 1. Create the function to add a csv file to the index:
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/create_search_index.py" id="add_csv_to_index":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/create_search_index.py" id="add_csv_to_index":::
 
 1. Finally, run the functions to build the index and register it to the cloud project:
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/create_search_index.py" id="test_create_index":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/create_search_index.py" id="test_create_index":::
 
 1. From your console, log in to your Azure account and follow instructions for authenticating your account:
 
@@ -95,15 +95,15 @@ When the chat gets a request, it searches through your data to find relevant inf
 
 1. Start with code to import the required libraries, create a project client, and configure settings: 
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/get_product_documents.py" id="imports_and_config":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/get_product_documents.py" id="imports_and_config":::
 
 1. Add the function to get product documents:
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/get_product_documents.py" id="get_product_documents":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/get_product_documents.py" id="get_product_documents":::
 
 1. Finally, add code to test the function when you run the script directly:
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/get_product_documents.py" id="test_get_documents":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/get_product_documents.py" id="test_get_documents":::
 
 ### Create prompt template for intent mapping
 
@@ -111,7 +111,7 @@ The **get_product_documents.py** script uses a prompt template to convert the co
 
 Before you run the script, create the prompt template. Add the file **intent_mapping.prompty** to your **assets** folder:
 
-:::code language="prompty" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/assets/intent_mapping.prompty":::
+:::code language="prompty" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/assets/intent_mapping.prompty":::
 
 ### Test the product document retrieval script
 
@@ -130,15 +130,15 @@ Next you create custom code to add retrieval augmented generation (RAG) capabili
 1. In your main folder, create a new file called **chat_with_products.py**. This script retrieves product documents and generates a response to a user's question.
 1. Add the code to import the required libraries, create a project client, and configure settings: 
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/chat_with_products.py" id="imports_and_config":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/chat_with_products.py" id="imports_and_config":::
 
 1. Create the chat function that uses the RAG capabilities:
 
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/chat_with_products.py" id="chat_function":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/chat_with_products.py" id="chat_function":::
 
 1. Finally, add the code to run the chat function:
     
-    :::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/chat_with_products.py" id="test_function":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/chat_with_products.py" id="test_function":::
 
 ### Create a grounded chat prompt template
 
@@ -146,7 +146,7 @@ The **chat_with_products.py** script calls a prompt template to generate a respo
 
 In your **assets** folder, add the file **grounded_chat.prompty**:
 
-:::code language="prompty" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/assets/grounded_chat.prompty":::
+:::code language="prompty" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/assets/grounded_chat.prompty":::
 
 ### Run the chat script with RAG capabilities
 
@@ -156,7 +156,13 @@ Now that you have both the script and the template, run the script to test your 
 python chat_with_products.py --query "I need a new tent for 4 people, what would you recommend?"
 ```
 
+### <a name="logging"></a> Add telemetry logging
+
 To enable logging of telemetry to your project:
+
+1. Add an Application Insights resource to your project.  Navigate to the **Tracing** tab in the [Azure AI Foundry portal](https://ai.azure.com/), and create a new resource if you don't already have one.
+
+    :::image type="content" source="../../ai-services/agents/media/ai-foundry-tracing.png" alt-text="A screenshot of the tracing screen in the Azure AI Foundry portal." lightbox="../../ai-services/agents/media/ai-foundry-tracing.png":::
 
 1. Install `azure-monitor-opentelemetry`:
 
@@ -167,8 +173,9 @@ To enable logging of telemetry to your project:
 1. Add the `--enable-telemetry` flag when you use the `chat_with_products.py` script:
 
    ```bash
-   python chat_with_products.py --query "I need a new tent for 4 people, what would you recommend?" --enable-telemetry
+   python chat_with_products.py --query "I need a new tent for 4 people, what would you recommend?" --enable-telemetry 
    ```
+
 
 ## Clean up resources
 

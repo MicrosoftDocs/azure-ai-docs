@@ -271,7 +271,7 @@ So far you have already setup each resource work independently. Next you need to
 | `Storage Blob Data Contributor` | Azure OpenAI | Storage Account | Reads from the input container, and writes the preprocessed result to the output container. |
 | `Cognitive Services OpenAI Contributor` | Azure AI Search | Azure OpenAI | Custom skill. |
 | `Storage Blob Data Reader` | Azure AI Search | Storage Account | Reads document blobs and chunk blobs. |
-| `Reader` | Azure AI Foundry Project | Azure Storage Private Endpoints (Blob & File) | Read search indexes created in blob storage within an AI Foundry Project. |
+| `Reader` | Azure AI Foundry Project | Azure Storage Private Endpoints (Blob & File) | Read search indexes created in blob storage within an Azure AI Foundry Project. |
 | `Cognitive Services OpenAI User` | Web app | Azure OpenAI | Inference. |
 
 
@@ -286,7 +286,6 @@ To enable the developers to use these resources to build applications, the admin
 |Role| Resource | Description |
 |--|--|--|
 | `Cognitive Services OpenAI Contributor` | Azure OpenAI | Call public ingestion API from Azure OpenAI Studio. The `Contributor` role is not enough, because if you only have `Contributor` role, you cannot call data plane API via Microsoft Entra ID authentication, and Microsoft Entra ID authentication is required in the secure setup described in this article. |
-| `Cognitive Services User` | Azure OpenAI | List API-Keys from Azure OpenAI Studio.|
 | `Contributor` | Azure AI Search | List API-Keys to list indexes from Azure OpenAI Studio.|
 | `Contributor` | Storage Account | List Account SAS to upload files from Azure OpenAI Studio.|
 | `Contributor` | The resource group or Azure subscription where the developer need to deploy the web app to | Deploy web app to the developer's Azure subscription.|

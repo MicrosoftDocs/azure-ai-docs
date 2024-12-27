@@ -47,7 +47,7 @@ To create a custom analyzer, specify it in the `analyzers` section of an index a
 
 An analyzer definition includes a name, type, one or more character filters, a maximum of one tokenizer, and one or more token filters for post-tokenization processing. Character filters are applied before tokenization. Token filters and character filters are applied from left to right.
 
-- Names in a custom analyzer must be unique and can't be the same as any of the built-in analyzers, tokenizers, token filters, or characters filters. It must only contain letters, digits, spaces, dashes or underscores, can only start and end with alphanumeric characters, and is limited to 128 characters. 
+- Names in a custom analyzer must be unique and can't be the same as any of the built-in analyzers, tokenizers, token filters, or characters filters. Names consist of letters, digits, spaces, dashes or underscores. Names must start and end with plain text characters. Names must be under 128 characters in length.
 
 - Type must be #Microsoft.Azure.Search.CustomAnalyzer.
 

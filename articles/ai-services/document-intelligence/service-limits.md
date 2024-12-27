@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 09/26/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ---
@@ -78,7 +78,7 @@ Document Intelligence billing is calculated monthly based on the model type and 
 >
 > * [**Document Intelligence SDKs**](quickstarts/get-started-sdks-rest-api.md)
 > * [**Document Intelligence REST API**](quickstarts/get-started-sdks-rest-api.md)
-> * [**Document Intelligence Studio v3.0**](quickstarts/try-document-intelligence-studio.md)
+> * [**Document Intelligence Studio v3.0**](studio-overview.md)
 ::: moniker-end
 
 ::: moniker range="doc-intel-2.1.0"
@@ -116,7 +116,6 @@ Document Intelligence billing is calculated monthly based on the model type and 
 >
 > * [**Custom template model**](train/custom-template.md)
 > * [**Custom neural model**](train/custom-neural.md)
-> * [**Custom generative model**](train/custom-generative-extraction.md)
 > * [**Composed classification models**](train/custom-classifier.md)
 > * [**Composed custom models**](train/composed-models.md)
 
@@ -247,7 +246,7 @@ Document Intelligence billing is calculated monthly based on the model type and 
 > <sup>4</sup> This limit applies to all documents found in your training dataset folder prior to any labeling-related updates.
 ::: moniker-end
 ::: moniker range=">=doc-intel-4.0.0"
-> <sup>5</sup> This limit applies for `v 4.0 (2024-07-31)` custom neural models only. Starting from `v 4.0`, we support training larger documents for longer durations (up to 10 hours for free, and incurring charges after). For more information, please refer to [custom nerual model page](train/custom-neural.md).
+> <sup>5</sup> This limit applies for `v 4.0 (2024-11-30 GA)` custom neural models only. Starting from `v 4.0`, we support training larger documents for longer durations (up to 10 hours for free, and incurring charges after). For more information, please refer to [custom neural model page](train/custom-neural.md).
 ::: moniker-end
 
 ## Detailed description, Quota adjustment, and best practices

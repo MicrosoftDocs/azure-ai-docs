@@ -17,7 +17,7 @@ author: sdgilley
 
 # Connections in Azure AI Foundry portal
 
-Connections in Azure AI Foundry portal are a way to authenticate and consume both Microsoft and non-Microsoft resources within your AI Foundry projects. For example, connections can be used for prompt flow, training data, and deployments. [Connections can be created](../how-to/connections-add.md) exclusively for one project or shared with all projects in the same hub. 
+Connections in Azure AI Foundry portal are a way to authenticate and consume both Microsoft and non-Microsoft resources within your Azure AI Foundry projects. For example, connections can be used for prompt flow, training data, and deployments. [Connections can be created](../how-to/connections-add.md) exclusively for one project or shared with all projects in the same hub. 
 
 ## Connections to Azure AI services
 
@@ -46,7 +46,7 @@ A data connection offers these benefits:
 
 - A common, easy-to-use API that interacts with different storage types including Microsoft OneLake, Azure Blob, and Azure Data Lake Gen2.
 - Easier discovery of useful connections in team operations.
-- For credential-based access (service principal/SAS/key), AI Foundry connection secures credential information. This way, you won't need to place that information in your scripts.
+- For credential-based access (service principal/SAS/key), Azure AI Foundry connection secures credential information. This way, you won't need to place that information in your scripts.
 
 When you create a connection with an existing Azure storage account, you can choose between two different authentication methods:
 

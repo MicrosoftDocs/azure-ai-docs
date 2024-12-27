@@ -80,7 +80,7 @@ To create an outbound private endpoint rule to the data source, use the followin
 1. Select __Networking__, then __Workspace managed outbound access__.
 1. To add an outbound rule, select __Add user-defined outbound rules__. From the __Workspace outbound rules__ sidebar, provide the following information:
     
-    - __Rule name__: A name for the rule. The name must be unique for the AI Foundry hub.
+    - __Rule name__: A name for the rule. The name must be unique for the Azure AI Foundry hub.
     - __Destination type__: Private Endpoint.
     - __Subscription__: The subscription that contains the Azure resource you want to connect to.
     - __Resource type__: `Microsoft.Storage/storageAccounts`. This resource provider is used for Azure Storage, Azure Data Lake Storage Gen2, and Microsoft OneLake.

@@ -6,7 +6,7 @@ author: vkurpad
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 09/26/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ms.custom:
   - references_regions
@@ -16,21 +16,20 @@ monikerRange: '>=doc-intel-3.1.0'
 
 # Document Intelligence custom classification model
 
-::: moniker range="doc-intel-4.0.0"
-[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
 
-**This content applies to:**![checkmark](../media/yes-icon.png) **v4.0 (preview)** | **Previous version:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru)
+:::moniker range=">=doc-intel-4.0.0"
+**This content applies to:**![checkmark](../media/yes-icon.png) **v4.0 (GA)** | **Previous version:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru)
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0"
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** | **Latest version:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (preview)**](?view=doc-intel-4.0.0&preserve-view=true)
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** | **Latest version:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true)
 :::moniker-end
 
 ::: moniker range=">=doc-intel-4.0.0"
 
 > [!IMPORTANT]
 >
-> * The `2024-07-31-preview` API, custom classification model won't split documents by default during the analyzing process.
+> * The `v4.0 2024-11-30 (GA)` API, custom classification model won't split documents by default during the analyzing process.
 > * You need to explicitly set the ``splitMode`` property to auto to preserve the behavior from previous releases. The default for `splitMode` is `none`.
 > * If your input file contains multiple documents, you need to enable splitting by setting the ``splitMode`` to ``auto``.
 
@@ -44,7 +43,8 @@ Custom classification models are deep-learning-model types that combine layout a
 
 > [!NOTE]
 >
-> * Starting with the `2024-02-29-preview` API, custom clasification models support incremental training. You can add new samples to existing classes or add new classes by referencing an existing classifier.
+> * Custom classification v4.0 2024-11-30 (GA) models support incremental training. You can add new samples to existing classes or add new classes by referencing an existing classifier.
+> * Custom classification v3.1 2023-07-31 (GA) model does not support model copy. To use the model copy feature, please train the model using the latest v4.0 GA model.
 
 Custom classification models can analyze a single- or multi-file documents to identify if any of the trained document types are contained within an input file. Here are the currently supported scenarios:
 
@@ -55,17 +55,17 @@ Custom classification models can analyze a single- or multi-file documents to id
 
 ✔️ Training a custom classifier requires at least `two` distinct classes and a minimum of `five` document samples per class. The model response contains the page ranges for each of the classes of documents identified.
 
-✔️ The maximum allowed number of classes is `500`. The maximum allowed number of document samples per class is `100`.
+✔️ The maximum allowed number of classes is `1,000`. The maximum allowed number of document samples per class is `100`.
 
 The model classifies each page of the input document, unless specified, to one of the classes in the labeled dataset. You can specify the page numbers to analyze in the input document as well. To set the threshold for your application, use the confidence score from the response.
 
 ### Incremental training
 
-With custom models, you need to maintain access to the training dataset to update your classifier with new samples for an existing class, or add new classes. Classifier models now support incremental training where you can reference an existing classifier and append new samples for an existing class or add new classes with samples. Incremental training enables scenarios where data retention is a challenge and the classifier needs to be updated to align with changing business needs. Incremental training is supported with models trained with API version `2024-02-29-preview` and later.
+With custom models, you need to maintain access to the training dataset to update your classifier with new samples for an existing class, or add new classes. Classifier models now support incremental training where you can reference an existing classifier and append new samples for an existing class or add new classes with samples. Incremental training enables scenarios where data retention is a challenge and the classifier needs to be updated to align with changing business needs. Incremental training is supported with models trained with API version `v4.0 2024-11-30 (GA)`.
 
 > [!IMPORTANT]
 >
-> Incremental training is only supported with models trained with the same API version. If you are trying to extend a model, use the API version the original model was trained with to extend the model. Incremental training is only supported with API version **2024-07-31-preview** or later.
+> Incremental training is only supported with models trained with the same API version. If you are trying to extend a model, use the API version the original model was trained with to extend the model. Incremental training is only supported with API version **v4.0 2024-11-30 (GA)** or later.
 
 Incremental training requires that you provide the original model ID as the `baseClassifierId`. See [incremental training](../concept/incremental-classifier.md) to learn more about how to use incremental training.
 
@@ -100,11 +100,11 @@ Supported file formats:
 |Model | PDF |Image:<br>`jpeg/jpg`, `png`, `bmp`, `tiff`, `heif`| Microsoft Office:<br> Word (docx), Excel (xlxs), PowerPoint (pptx)|
 |--------|:----:|:-----:|:---------------:|
 |Read            | ✔    | ✔    | ✔  |
-|Layout          | ✔  | ✔ | ✔ (2024-02-29-preview, 2023-10-31-preview, and later)  |
+|Layout          | ✔  | ✔ | ✔  |
 |General&nbsp;Document| ✔  | ✔ |   |
 |Prebuilt        |  ✔  | ✔ |   |
 |Custom extraction|  ✔  | ✔ |   |
-|Custom classification|  ✔  | ✔ | ✔ |
+|Custom classification|  ✔  | ✔ | ✔ (not supported in the studio)|
 
 * For best results, provide five clear photos or high-quality scans per document type.
 
@@ -122,7 +122,7 @@ Supported file formats:
 
 * For custom extraction model training, the total size of training data is 50 MB for template model and 1G-MB for the neural model.
 
-* For custom classification model training, the total size of training data is 1 GB with a maximum of 10,000 pages.
+* For custom classification model training, the total size of training data is 2 GB with a maximum of 25,000 pages.
 
 ## Document splitting
 
@@ -145,7 +145,7 @@ The classifier attempts to assign each document to one of the classes, if you ex
 
 ## Training a model
 
-Custom classification models are supported by **v4.0: 2024-02-29-preview, 2024-07-31-preview** and **v3.1: 2023-07-31 (GA)** APIs. [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio) provides a no-code user interface to interactively train a custom classifier. Follow the [how to guide](../how-to-guides/build-a-custom-classifier.md) to get started.
+Custom classification models are supported by the **v4.0 2024-11-30 (GA)** API. [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio) provides a no-code user interface to interactively train a custom classifier. Follow the [how to guide](../how-to-guides/build-a-custom-classifier.md) to get started.
 
 When using the REST API, if you organize your documents by folders, you can use the `azureBlobSource` property of the request to train a classification model.
 
@@ -262,7 +262,7 @@ As an example, the file list `car-maint.jsonl` contains the following files.
 ## Overwriting a model
 
 > [!NOTE]
-> Starting with the `2024-07-31-preview` API, custom classification models support overwriting a model in-place.
+> The v4.0 2024-11-30 (GA) custom classification model supports overwriting a model in-place.
 
 You can now update the custom classification in-place. Directly overwriting the model would lose you the ability to compare model quality before deciding to replace the existing model. Model overwriting is allowed when the `allowOverwrite` property is explicitly specified in the request body. It's impossible to recover the overwritten, original model once this action is performed.
 
@@ -280,20 +280,20 @@ You can now update the custom classification in-place. Directly overwriting the 
 ## Copy a model
 
 > [!NOTE]
-> Starting with the `2024-07-31-preview` API, custom classification models support copying a model to and from any of the following regions:
+> The custom classification v4.0 2024-11-30 (GA) model supports copying a model to and from any of the following regions:
 >
 > * **East US**
 > * **West US2**
 > * **West Europe**
 >
-> Use the [**REST API**](/rest/api/aiservices/operation-groups?view=rest-aiservices-2024-07-31-preview&preserve-view=true) or [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com/studio/document-classifier/projects) to copy a model to another region.
+> Use the [**REST API**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) or [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com/studio/document-classifier/projects) to copy a model to another region.
 
 ### Generate Copy authorization request
 
 The following HTTP request gets copy authorization from your target resource. You need to enter the endpoint and key of your target resource as headers.
 
 ```http
-POST https://myendpoint.cognitiveservices.azure.com/documentintelligence/documentClassifiers:authorizeCopy?api-version=2024-07-31-preview
+POST https://myendpoint.cognitiveservices.azure.com/documentintelligence/documentClassifiers:authorizeCopy?api-version=2024-11-30
 Ocp-Apim-Subscription-Key: {<your-key>}
 ```
 
@@ -324,7 +324,7 @@ You receive a `200` response code with response body that contains the JSON payl
 The following HTTP request starts the copy operation on the source resource. You need to enter the endpoint and key of your source resource as the url and header. Notice that the request URL contains the classifier ID of the source classifier you want to copy.
 
 ```http
-POST {endpoint}/documentintelligence/documentClassifiers/{classifierId}:copyTo?api-version=2024-07-31-preview
+POST {endpoint}/documentintelligence/documentClassifiers/{classifierId}:copyTo?api-version=2024-11-30
 Ocp-Apim-Subscription-Key: {<your-key>}
 ```
 
@@ -353,7 +353,7 @@ Analyze an input file with the document classification model.
 https://{endpoint}/documentintelligence/documentClassifiers/{classifier}:analyze?api-version=2024-02-29-preview
 ```
 
-Starting with the `2024-07-31-preview` API, you can specify pages to analyze from the input document using the `pages` query parameter in the request.
+The `v4.0 2024-11-30 (GA)` API enables you to specify pages to analyze from the input document using the `pages` query parameter in the request.
 
 :::moniker-end
 

@@ -1,21 +1,20 @@
 ---
 title: "Part 1: Set up project and development environment to build a custom knowledge retrieval (RAG) app"
 titleSuffix: Azure AI Foundry
-description:  Build a custom chat app using the Azure AI Foundry SDK. Part 1 of a 3-part tutorial series, which shows how to create the resources you'll need for parts 2 and 3.
+description:  Build a custom chat app using the Azure AI Foundry SDK. Part 1 of a 3-part tutorial series, which shows how to create the resources you need for parts 2 and 3.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
   - ignite-2024
 ms.topic: tutorial
-ms.date: 11/11/2024
+ms.date: 12/18/2024
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
-#customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can build a RAG-based chat app.
+#customer intent: As a developer, I want to create a project and set up my development environment to build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK.
 ---
 
 # Tutorial:  Part 1 - Set up project and development environment to build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK
-
 
 In this tutorial, you use the Azure AI Foundry SDK (and other libraries) to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
@@ -46,7 +45,7 @@ To create a project in [Azure AI Foundry](https://ai.azure.com), follow these st
 1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com).
 1. Select **+ Create project**.
 1. Enter a name for the project.  Keep all the other settings as default.
-1. Projects are created in hubs.  For this tutorial, create a new hub. If you see **Create a new hub** select it and specify a name.  Then select **Next**. (If you don't see **Create new hub**, it's because a new one is being created for you.) 
+1. Projects are created in hubs.  If you see **Create a new hub** select it and specify a name.  Then select **Next**. (If you don't see **Create new hub**, don't worry; it's because a new one is being created for you.) 
 1. Select **Customize** to specify properties of the hub.
 1. Use any values you want, except for **Region**.  We recommend you use either **East US2** or **Sweden Central** for the region for this tutorial series.
 1. Select **Next**.
@@ -56,7 +55,7 @@ To create a project in [Azure AI Foundry](https://ai.azure.com), follow these st
 
 You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-4o-mini`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Foundry project, using this set of steps for each model.
 
-These steps deploy a model to a real-time endpoint from the AI Foundry portal [model catalog](../how-to/model-catalog-overview.md):
+These steps deploy a model to a real-time endpoint from the Azure AI Foundry portal [model catalog](../how-to/model-catalog-overview.md):
 
 1. On the left navigation pane, select **Model catalog**.
 1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
@@ -106,12 +105,10 @@ In the Azure AI Foundry portal, check for an Azure AI Search connected resource.
 1. Find your Azure AI Search service in the options and select **Add connection**.
 1. Use **API key** for **Authentication**.
 
-    > [!NOTE]
-    > You can instead use **Microsoft Entra ID** for **Authentication**. If you do this, you must also configure access control for the Azure AI Search service. Assign the **Search Index Data Contributor** and **Search Service Contributor** roles to your user account. If you don't know how to do this, or don't have the necessary permissions, use the **API key** for **Authentication**.
+    > [!IMPORTANT]
+    > The **API key** option isn't recommended for production. To select and use the recommended **Microsoft Entra ID** authentication option, you must also configure access control for the Azure AI Search service. Assign the *Search Index Data Contributor* and *Search Service Contributor* roles to your user account. For more information, see [Connect to Azure AI Search using roles](../../search/search-security-rbac.md) and [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).
 
 1. Select **Add connection**.  
-
-
 
 ## <a name="installs"></a> Install the Azure CLI and sign in 
 
@@ -127,7 +124,7 @@ Install `azure-ai-projects`(preview) and `azure-ai-inference` (preview), along w
 
 1. First, create a file named **requirements.txt** in your project folder. Add the following packages to the file:
 
-    :::code language="txt" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/requirements.txt":::
+    :::code language="txt" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/requirements.txt":::
 
 1. Install the required packages:
 
@@ -139,7 +136,7 @@ Install `azure-ai-projects`(preview) and `azure-ai-inference` (preview), along w
 
 Create a folder for your work. Create a file called **config.py** in this folder. This helper script is used in the next two parts of the tutorial series. Add the following code:
 
-:::code language="python" source="~/azureai-samples-nov2024/scenarios/rag/custom-rag-app/config.py":::
+:::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/config.py":::
 
 
 ## Configure environment variables

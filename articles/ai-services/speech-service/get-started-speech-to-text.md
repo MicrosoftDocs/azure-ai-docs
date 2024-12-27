@@ -17,7 +17,7 @@ zone_pivot_groups: programming-languages-speech-services-studio
 # Quickstart: Recognize and convert speech to text
 
 ::: zone pivot="ai-studio"
-[!INCLUDE [AI Foundry include](includes/quickstarts/speech-to-text-basics/ai-studio.md)]
+[!INCLUDE [Azure AI Foundry include](includes/quickstarts/speech-to-text-basics/ai-studio.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
