@@ -60,15 +60,23 @@ To start, find the resources you need to configure in the Azure AI Foundry porta
 
     :::image type="content" source="../media/tutorials/deploy-chat-web-app/resources.png" alt-text="Screenshot shows the connected resources that need to be configured.":::
 
+    If you have multiple **Azure OpenAI service** resources, select the one that has your deployed model in it.
+
 1. For each resource, select the link to open the resource details.  From the details page, select the resource name to open the resource in the Azure portal.  (For the workspaceblobstore, select **View in Azure Portal**). 
 1. After the tab opens, go back to the Azure AI Foundry portal and repeat the process for the next resource. 
 1. Keep all three new tabs open as you'll go back and forth between them to configure the resources.
 
 ### Enable managed identity
 
-Both the **Azure AI Search service** and the **Azure OpenAI service** need managed identity enabled.  For each of these two resources, follow these steps in their respective Azure portal pages:
+On the tab for the **Azure AI Search service** resource in the Azure portal, enable the managed identity:
 
 1. From the left pane, under **Settings**, select **Identity**.
+1. Switch **Status** to **On**.
+1. Select **Save**.
+
+On the tab for the **Azure OpenAI service** resource in the Azure portal, enable the managed identity:
+
+1. From the left pane, under **Resource Management**, select **Identity**.
 1. Switch **Status** to **On**.
 1. Select **Save**.
 
@@ -103,6 +111,8 @@ Use these steps to assign roles for the resources you're configuring in this tut
     * **Storage Blob Data Contributor** to the **Azure OpenAI service** managed identity
     * **Storage Blob Data Reader** to the **Azure AI Search service** managed identity
     * **Contributor** to yourself
+
+You're done configuring resources. You can close the Azure portal tabs now if you wish.
 
 ## Add your data and try the chat model again
 
