@@ -36,7 +36,7 @@ The steps in this tutorial are:
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - A [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model. Complete the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md) to create this resource if you haven't already.
 
-- An Azure AI Search service connection to index the sample product data.  If you don't have one, follow the steps to [create](copilot-sdk-create-resources.md#create-search) and [connect](copilot-sdk-create-resources.md#connect) a search service.
+- An Search service connection to index the sample product data.  If you don't have one, follow the steps to [create](copilot-sdk-create-resources.md#create-search) and [connect](copilot-sdk-create-resources.md#connect) a search service.
 
 - A local copy of product data. The [Azure-Samples/rag-data-openai-python-promptflow repository on GitHub](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/) contains sample retail product information that's relevant for this tutorial scenario. Specifically, the `product_info_11.md` file contains product information about the TrailWalker hiking shoes that's relevant for this tutorial example. [Download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/raw/refs/heads/main/tutorial/data/product-info.zip) to your local machine.
 
@@ -49,32 +49,32 @@ The steps in this tutorial are:
 > [!IMPORTANT]
 > You must have the necessary permissions to add role assignments in your Azure subscription. Granting permissions by role assignment is only allowed by the Owner of the specific Azure resources. You might need to ask your Azure subscription owner (who might be your IT admin) to complete this section for you.
 
-In order for the resources you're about to deploy to work correctly, you need to configure them with the correct permissions. This work is done in the Azure portal.  
+In order for the resources you're about to deploy to work correctly, you need to configure them with the correct permissions. This work is done in the Azure portal. The Azure portal is a place to manage all Azure resources, including Azure AI Foundry resources.
 
-To start, find the resources you need to configure in the Azure AI Foundry portal.
+To start, identify the resources you need to configure from the Azure AI Foundry portal.
 
-1. Open the [Azure AI Foundry portal](https://ai.azure.com) and select the project where you deployed the Azure OpenAI model.
+1. Open the [Azure AI Foundry portal](https://ai.azure.com) and select the project you used to deploy the Azure OpenAI chat model.
 1. Select **Management center** from the left pane.
 1. Select **Connected resources** under your project.
-1. Identify the three resources you need to configure: the **Azure AI Search service**, the **Azure OpenAI service**, and the **Azure Blob storage** for your workspaceblobstore.
+1. Identify the three resources you need to configure: the **Azure AI Search**, the **Azure OpenAI**, and the **Azure Blob storage** that corresponds to your **workspaceblobstore**.
 
     :::image type="content" source="../media/tutorials/deploy-chat-web-app/resources.png" alt-text="Screenshot shows the connected resources that need to be configured.":::
 
-    If you have multiple **Azure OpenAI service** resources, select the one that has your deployed model in it.
+    If you have multiple **Azure OpenAI** resources, select the one that has your deployed chat model in it.
 
 1. For each resource, select the link to open the resource details.  From the details page, select the resource name to open the resource in the Azure portal.  (For the workspaceblobstore, select **View in Azure Portal**). 
 1. After the tab opens, go back to the Azure AI Foundry portal and repeat the process for the next resource. 
-1. Keep all three new tabs open as you'll go back and forth between them to configure the resources.
+1. When you're done, you should have three new browser tabs open, for **Search service**, **Azure AI services**, and **blobstore Container**. Keep all three new tabs open as you'll go back and forth between them to configure the resources.
 
 ### Enable managed identity
 
-On the tab for the **Azure AI Search service** resource in the Azure portal, enable the managed identity:
+On the tab for the **Search service** resource in the Azure portal, enable the managed identity:
 
 1. From the left pane, under **Settings**, select **Identity**.
 1. Switch **Status** to **On**.
 1. Select **Save**.
 
-On the tab for the **Azure OpenAI service** resource in the Azure portal, enable the managed identity:
+On the tab for the **Azure AI services** resource in the Azure portal, enable the managed identity:
 
 1. From the left pane, under **Resource Management**, select **Identity**.
 1. Switch **Status** to **On**.
@@ -82,7 +82,7 @@ On the tab for the **Azure OpenAI service** resource in the Azure portal, enable
 
 ### Set access control for search
 
-On the tab for the **Azure AI Search service** resource in the Azure portal, set the API Access policy:
+On the tab for the **Search service** resource in the Azure portal, set the API Access policy:
 
 1. From the left pane, under **Settings**, select **Keys**.
 1. Under **API Access control**, select **Both**.
@@ -96,20 +96,20 @@ You'll repeat this pattern multiple times in the bulleted items below.
 
 Use these steps to assign roles for the resources you're configuring in this tutorial:
 
-* Assign the following roles on the tab for **Azure AI Search service** in the Azure portal:
-    * **Search Index Data Reader** to the **Azure OpenAI service** managed identity
-    * **Search Service Contributor** to the **Azure OpenAI service** managed identity
+* Assign the following roles on the tab for **Search service** in the Azure portal:
+    * **Search Index Data Reader** to the **Azure AI services** managed identity
+    * **Search Service Contributor** to the **Azure AI services** managed identity
     * **Contributor** to yourself (to find **Contributor**, switch to the **Privileged administrator roles** tab at the top.  All other roles are in the **Job function roles** tab.)
 
-* Assign the following roles on the tab for **Azure OpenAI service** in the Azure portal:
+* Assign the following roles on the tab for **Azure AI services** in the Azure portal:
 
-    * **Cognitive Services OpenAI Contributor** to the **Azure AI Search service** managed identity
+    * **Cognitive Services OpenAI Contributor** to the **Search service** managed identity
     * **Contributor** to yourself.
 
 * Assign the following roles on the tab for **Azure Blob storage** in the Azure portal:
 
-    * **Storage Blob Data Contributor** to the **Azure OpenAI service** managed identity
-    * **Storage Blob Data Reader** to the **Azure AI Search service** managed identity
+    * **Storage Blob Data Contributor** to the **Azure AI services** managed identity
+    * **Storage Blob Data Reader** to the **Search service** managed identity
     * **Contributor** to yourself
 
 You're done configuring resources. You can close the Azure portal tabs now if you wish.
