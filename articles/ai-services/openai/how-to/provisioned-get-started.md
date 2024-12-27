@@ -226,7 +226,7 @@ client.with_options(max_retries=5).chat.completions.create(
 ## Run a benchmark
 The exact performance and throughput capabilities of your instance depends on the kind of requests you make and the exact workload. The best way to determine the throughput for your workload is to run a benchmark on your own data. 
 
-To assist you in this work, the benchmarking tool provides a way to easily run benchmarks on your deployment. The tool comes with several possible preconfigured workload shapes and outputs key performance metrics. Learn more about the tool and configuration settings in our GitHub Repo: [https://aka.ms/aoai/benchmarking](https://aka.ms/aoai/benchmarking). 
+To assist you in this work, the benchmarking tool provides a way to easily run benchmarks on your deployment. The tool comes with several possible preconfigured workload shapes and outputs key performance metrics. Learn more about the tool and configuration settings in our GitHub Repo: [https://github.com/Azure/azure-openai-benchmark](https://github.com/Azure/azure-openai-benchmark). 
 
 We recommend the following workflow:
 1. Estimate your throughput PTUs using the capacity calculator.

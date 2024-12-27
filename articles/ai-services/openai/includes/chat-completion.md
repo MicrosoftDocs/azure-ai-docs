@@ -565,4 +565,4 @@ Some customers try to use the [legacy ChatML syntax](../how-to/chat-markup-langu
 
 * [Learn more about Azure OpenAI](../overview.md).
 * Get started with the GPT-35-Turbo model with [the GPT-35-Turbo quickstart](../chatgpt-quickstart.md).
-* For more examples, see the [Azure OpenAI Samples GitHub repository](https://aka.ms/AOAICodeSamples).
+* For more examples, see the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai).
