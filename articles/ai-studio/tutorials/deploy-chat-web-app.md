@@ -40,7 +40,7 @@ The steps in this tutorial are:
 
 - A local copy of product data. The [Azure-Samples/rag-data-openai-python-promptflow repository on GitHub](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/) contains sample retail product information that's relevant for this tutorial scenario. Specifically, the `product_info_11.md` file contains product information about the TrailWalker hiking shoes that's relevant for this tutorial example. [Download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/raw/refs/heads/main/tutorial/data/product-info.zip) to your local machine.
 
-- A **Microsoft.Web** resource provider registered in the selected subscription, to be able to deploy to a web app.
+- A **Microsoft.Web** resource provider registered in the selected subscription, to be able to deploy to a web app. For more information on registering a resource provide, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1).
 
 ## Add your data and try the chat model again
 
@@ -48,6 +48,18 @@ In the [AI Foundry playground quickstart](../quickstarts/get-started-playground.
 
 [!INCLUDE [Chat with your data](../includes/chat-with-data.md)] 
 
+## Configure resources
+
+> [!IMPORTANT]
+> You must have the necessary permissions to add role assignments in your Azure subscription. Granting permissions by role assignment is only allowed by the Owner of the specific Azure resources. You might need to ask your Azure subscription owner (who might be your IT admin) to complete this section for you.
+
+In order for the resources you're about to deploy to work correctly, you need to configure them with the correct permissions. This work is done in the Azure portal.  
+
+You'll configure three separate resources: the Azure AI Search service, the Azure OpenAI service, and the Azure Blob storage for your workspaceblobstore.  
+
+Find each of these services:
+
+1. In the 
 ## Deploy your web app
 
 Once you're satisfied with the experience in Azure AI Foundry portal, you can deploy the model as a standalone web application. 
