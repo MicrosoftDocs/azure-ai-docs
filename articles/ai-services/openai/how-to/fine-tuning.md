@@ -44,12 +44,12 @@ We use LoRA, or low rank approximation, to fine-tune models in a way that reduce
 
 ::: zone-end
 
-## Global Standard
+## Global Standard (preview)
 
-Azure OpenAI fine-tuning supports [global standard deployments](./deployment-types.md#global-standard) in East US2, North Central US, and Sweden Central for:
+Azure OpenAI fine-tuning supports, [global standard deployments](./deployment-types.md#global-standard) in East US2, North Central US, and Sweden Central for:
 
-- `gpt-4o-2024-08-06`
 - `gpt-4o-mini-2024-07-18`
+- `gpt-4o-2024-08-06` (currently unavailable for new deployments, until January 2025)
 
 Global standard fine-tuned deployments offer [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), but custom model weights may temporarily be stored outside the geography of your Azure OpenAI resource.
 
