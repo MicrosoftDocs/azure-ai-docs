@@ -91,7 +91,7 @@ This example uses `train.yml` [in the 1b_e2e_registered_components directory](ht
 
     :::image type="content" source="./media/how-to-create-component-pipelines-ui/asset-library.png" alt-text="Screenshot showing registered component in asset library." lightbox ="./media/how-to-create-component-pipelines-ui/asset-library.png":::
 
-    Find the *train*, *score*, and *eval* components registered in previous section then drag-and-drop them on the canvas. By default it uses the default version of the component, and you can change to a specific version in the right pane of component. The component right pane is invoked by double click on the component.
+    Find the *train*, *score*, and *eval* components registered in previous section then drag-and-drop them on the canvas. By default it uses the default version of the component. To change to a specific version, double click on the component to open the component pane.
 
     :::image type="content" source="./media/how-to-create-component-pipelines-ui/change-component-version.png" alt-text="Screenshot showing changing version of component." lightbox ="./media/how-to-create-component-pipelines-ui/change-component-version.png":::
 
