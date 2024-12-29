@@ -904,6 +904,18 @@ groups:
     title: Portal
   - id: programming-language-javascript
     title: JavaScript
+- id: openai-portal-js-python-ts
+  title: Programming languages
+  prompt: Choose your preferred usage method
+  pivots:
+  - id: ai-foundry-portal
+    title: Portal
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-typescript
+    title: TypeScript
 - id: programming-languages-agents
   title: Programming languages
   prompt: Choose a programming language
