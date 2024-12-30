@@ -142,7 +142,7 @@ Follow these steps to navigate to your resource group in the Azure portal:
 
 1. Go to your project in [Azure AI Foundry](https://ai.azure.com). Then select **Management center** from the left pane.
 1. Under the **Project** heading, select **Overview**.
-1. Select the resource group name to open the resource group in the Azure portal. In this example, the resource group is named `rg-contoso`.
+1. Select the resource group name to open the resource group in the Azure portal. In this example, the resource group is named `rg-sdg-ai`.
 
     :::image type="content" source="../media/tutorials/chat/resource-group-manage-page.png" alt-text="Screenshot of the resource group in the Azure AI Foundry portal." lightbox="../media/tutorials/chat/resource-group-manage-page.png":::
 
