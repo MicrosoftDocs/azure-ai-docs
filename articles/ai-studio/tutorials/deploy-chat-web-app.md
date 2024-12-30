@@ -27,10 +27,10 @@ Your data source is used to help ground the model with specific data. Grounding 
 The steps in this tutorial are:
 
 > [!div class="checklist"]
-> 1. Configure resources.
-> 1. Add your data.
-> 1. Test the model with your data.
-> 1. Deploy your web app.
+> * Configure resources.
+> * Add your data.
+> * Test the model with your data.
+> * Deploy your web app.
 
 ## Prerequisites
 
