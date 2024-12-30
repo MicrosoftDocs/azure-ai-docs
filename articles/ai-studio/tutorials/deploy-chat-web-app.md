@@ -155,13 +155,10 @@ Publishing creates an Azure App Service in your subscription. It might incur cos
 
 To deploy the web app:
 
-> [!NOTE]
+> [!IMPORTANT]
 > You need to [register **Microsoft.Web** as a resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1) before you can deploy to a web app. 
 
-1. Complete the steps in the previous section to [add your data](#add-your-data-and-try-the-chat-model-again) to the playground. 
-
-    > [!NOTE]
-    > You can deploy a web app with or without your own data, but at least you need a deployed model as described in the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md).
+1. Complete the steps in the previous section to [add your data](#add-your-data-and-try-the-chat-model-again) to the playground.  (You can deploy a web app with or without your own data, but at least you need a deployed model as described in the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md)).
 
 1. Select **Deploy > ...as a web app**.
 
