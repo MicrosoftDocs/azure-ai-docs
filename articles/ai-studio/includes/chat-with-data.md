@@ -37,7 +37,7 @@ Follow these steps to add your data in the chat playground to help the assistant
 
    :::image type="content" source="../media/tutorials/chat/add-your-data-uploaded.png" alt-text="Screenshot of the dialog to select and upload files." lightbox="../media/tutorials/chat/add-your-data-uploaded.png":::
 
-1. Select your Azure AI Search service.
+1. Select your **Azure AI Search** service.
 
 1. For the **Vector index name**, enter *product-info* and select **Next**.
 
