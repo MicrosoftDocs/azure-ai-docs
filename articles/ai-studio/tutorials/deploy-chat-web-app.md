@@ -26,10 +26,11 @@ Your data source is used to help ground the model with specific data. Grounding 
 
 The steps in this tutorial are:
 
-1. Deploy and test a chat model without your data.
-1. Add your data.
-1. Test the model with your data.
-1. Deploy your web app.
+> [!div class="checklist"]
+> 1. Configure resources.
+> 1. Add your data.
+> 1. Test the model with your data.
+> 1. Deploy your web app.
 
 ## Prerequisites
 
@@ -64,26 +65,26 @@ To start, identify the resources you need to configure from the Azure AI Foundry
 1. Open the [Azure AI Foundry portal](https://ai.azure.com) and select the project you used to deploy the Azure OpenAI chat model.
 1. Select **Management center** from the left pane.
 1. Select **Connected resources** under your project.
-1. Identify the three resources you need to configure: the **Azure AI Search**, the **Azure OpenAI**, and the **Azure Blob storage** that corresponds to your **workspaceblobstore**.
+1. Identify the three resources you need to configure:  the **Azure OpenAI**, the **Azure AI Search**, and the **Azure Blob storage** that corresponds to your **workspaceblobstore**.
 
     :::image type="content" source="../media/tutorials/deploy-chat-web-app/resources.png" alt-text="Screenshot shows the connected resources that need to be configured.":::
 
     > [!TIP]
-    > If you have multiple **Azure OpenAI** resources, select the one that contains your deployed chat model.
+    > If you have multiple **Azure OpenAI** resources, use the one that contains your deployed chat model.
 
 1. For each resource, select the link to open the resource details.  From the details page, select the resource name to open the resource in the Azure portal.  (For the workspaceblobstore, select **View in Azure Portal**). 
-1. After the tab opens, go back to the Azure AI Foundry portal and repeat the process for the next resource. 
+1. After the browser tab opens, go back to the Azure AI Foundry portal and repeat the process for the next resource. 
 1. When you're done, you should have three new browser tabs open, for **Search service**, **Azure AI services**, and **blobstore Container**. Keep all three new tabs open as you'll go back and forth between them to configure the resources.
 
 ### Enable managed identity
 
-On the tab for the **Search service** resource in the Azure portal, enable the managed identity:
+On the browser tab for the **Search service** resource in the Azure portal, enable the managed identity:
 
 1. From the left pane, under **Settings**, select **Identity**.
 1. Switch **Status** to **On**.
 1. Select **Save**.
 
-On the tab for the **Azure AI services** resource in the Azure portal, enable the managed identity:
+On the browser tab for the **Azure AI services** resource in the Azure portal, enable the managed identity:
 
 1. From the left pane, under **Resource Management**, select **Identity**.
 1. Switch **Status** to **On**.
@@ -91,7 +92,7 @@ On the tab for the **Azure AI services** resource in the Azure portal, enable th
 
 ### Set access control for search
 
-On the tab for the **Search service** resource in the Azure portal, set the API Access policy:
+On the browser tab for the **Search service** resource in the Azure portal, set the API Access policy:
 
 1. From the left pane, under **Settings**, select **Keys**.
 1. Under **API Access control**, select **Both**.
@@ -105,23 +106,23 @@ You'll repeat this pattern multiple times in the bulleted items below.
 
 Use these steps to assign roles for the resources you're configuring in this tutorial:
 
-* Assign the following roles on the tab for **Search service** in the Azure portal:
+* Assign the following roles on the browser tab for **Search service** in the Azure portal:
     * **Search Index Data Reader** to the **Azure AI services** managed identity
     * **Search Service Contributor** to the **Azure AI services** managed identity
     * **Contributor** to yourself (to find **Contributor**, switch to the **Privileged administrator roles** tab at the top.  All other roles are in the **Job function roles** tab.)
 
-* Assign the following roles on the tab for **Azure AI services** in the Azure portal:
+* Assign the following roles on the browser tab for **Azure AI services** in the Azure portal:
 
     * **Cognitive Services OpenAI Contributor** to the **Search service** managed identity
     * **Contributor** to yourself.
 
-* Assign the following roles on the tab for **Azure Blob storage** in the Azure portal:
+* Assign the following roles on the browser tab for **Azure Blob storage** in the Azure portal:
 
     * **Storage Blob Data Contributor** to the **Azure AI services** managed identity
     * **Storage Blob Data Reader** to the **Search service** managed identity
     * **Contributor** to yourself
 
-You're done configuring resources. You can close the Azure portal tabs now if you wish.
+You're done configuring resources. You can close the Azure portal browser tabs now if you wish.
 
 ## Add your data and try the chat model again
 
@@ -131,13 +132,13 @@ In the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playg
 
 ## Deploy your web app
 
-Once you're satisfied with the experience in Azure AI Foundry portal, you can deploy the model as a standalone web application. 
+Once you're satisfied with the experience in the Azure AI Foundry portal, you can deploy the model as a standalone web application. 
 
 ### Find your resource group in the Azure portal
 
 In this tutorial, your web app is deployed to the same resource group as your [Azure AI Foundry hub](../how-to/create-secure-ai-hub.md). Later you configure authentication for the web app in the Azure portal.
 
-Follow these steps to navigate from Azure AI Foundry to your resource group in the Azure portal:
+Follow these steps to navigate to your resource group in the Azure portal:
 
 1. Go to your project in [Azure AI Foundry](https://ai.azure.com). Then select **Management center** from the left pane.
 1. Under the **Project** heading, select **Overview**.
@@ -145,7 +146,8 @@ Follow these steps to navigate from Azure AI Foundry to your resource group in t
 
     :::image type="content" source="../media/tutorials/chat/resource-group-manage-page.png" alt-text="Screenshot of the resource group in the Azure AI Foundry portal." lightbox="../media/tutorials/chat/resource-group-manage-page.png":::
 
-1. You should now be in the Azure portal, viewing the contents of the resource group where you deployed the hub. Keep this page open in a browser tab. You return to it later.
+1. You should now be in the Azure portal, viewing the contents of the resource group where you deployed the hub. Notice the resource group name and location, you'll use this information in the next section.
+1. Keep this page open in a browser tab. You'll return to it later.
 
 ### Deploy the web app
 
@@ -154,7 +156,7 @@ Publishing creates an Azure App Service in your subscription. It might incur cos
 To deploy the web app:
 
 > [!NOTE]
-> You need to have **Microsoft.Web** resource provider registered in the selected subscription, to be able to deploy to a web app.
+> You need to [register **Microsoft.Web** as a resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1) before you can deploy to a web app. 
 
 1. Complete the steps in the previous section to [add your data](#add-your-data-and-try-the-chat-model-again) to the playground. 
 
@@ -167,9 +169,9 @@ To deploy the web app:
 
 1. On the **Deploy to a web app** page, enter the following details:
     - **Name**: A unique name for your web app.
-    - **Subscription**: Your Azure subscription.
-    - **Resource group**: Select a resource group in which to deploy the web app. You can use the same resource group as the hub.
-    - **Location**: Select a location in which to deploy the web app. You can use the same location as the hub.
+    - **Subscription**: Your Azure subscription. If you don't see any available subscriptions, first [register **Microsoft.Web** as a resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1).
+    - **Resource group**: Select a resource group in which to deploy the web app. Use the same resource group as the hub.
+    - **Location**: Select a location in which to deploy the web app. Use the same location as the hub.
     - **Pricing plan**: Choose a pricing plan for the web app.
     - **Enable chat history in the web app**: For the tutorial, the chat history box isn't selected. If you enable the feature, your users have access to their individual previous queries and responses. For more information, see [chat history remarks](#understand-chat-history).
 
@@ -177,13 +179,13 @@ To deploy the web app:
 
 1. Wait for the app to be deployed, which might take a few minutes. 
 
-1. When it's ready, the **Launch** button is enabled on the toolbar. But don't launch the app yet and don't close the chat playground page - you return to it later.
+1. When it's ready, the **Launch** button is enabled on the toolbar. But don't launch the app yet and don't close the chat playground page - you'll return to it later.
 
 ### Configure web app authentication
 
 By default, the web app is only accessible to you. In this tutorial, you add authentication to restrict access to the app to members of your Azure tenant. Users are asked to sign in with their Microsoft Entra account to be able to access your app. You can follow a similar process to add another identity provider if you prefer. The app doesn't use the user's sign in information in any other way other than verifying they're a member of your tenant.
 
-1. Return to the browser tab containing the Azure portal (or reopen the [Azure portal](https://portal.azure.com?azure-portal=true) in a new browser tab) and view the contents of the resource group where you deployed the hub and web app (you might need to refresh the view the see the web app).
+1. Return to the browser tab containing the Azure portal (or reopen the [Azure portal](https://portal.azure.com?azure-portal=true) in a new browser tab) and view the contents of the resource group where you deployed the web app (you might need to refresh the view the see the web app).
 
 1. Select the **App Service** resource from the list of resources in the resource group.
 
@@ -191,7 +193,7 @@ By default, the web app is only accessible to you. In this tutorial, you add aut
 
     :::image type="content" source="../media/tutorials/chat/azure-portal-app-service.png" alt-text="Screenshot of web app authentication menu item under settings in the Azure portal." lightbox="../media/tutorials/chat/azure-portal-app-service.png":::
 
-1. If you see **Microsoft** listed an Identity provider on this page, you can skip the next step.
+1. If you see **Microsoft** listed an Identity provider on this page, nothing further is needed.  You can skip the next step.
 1. Add an identity provider with the following settings:
     - **Identity provider**: Select Microsoft as the identity provider. The default settings on this page restrict the app to your tenant only, so you don't need to change anything else here.
     - **Tenant type**: Workforce
@@ -205,11 +207,11 @@ By default, the web app is only accessible to you. In this tutorial, you add aut
 
 You're almost there. Now you can test the web app.
 
-1. Wait 10 minutes or so for the authentication settings to take effect.
-1. Return to the browser tab containing the chat playground page in Azure AI Foundry portal.
+1. If you changed settings, wait 10 minutes or so for the authentication settings to take effect.
+1. Return to the browser tab containing the chat playground page in the Azure AI Foundry portal.
 1. Select **Launch** to launch the deployed web app. If prompted, accept the permissions request.
 
-    *If the authentication settings haven't yet taken effect, close the browser tab for your web app and return to the chat playground in Azure AI Foundry portal. Then wait a little longer and try again.*
+    *If the authentication settings haven't yet taken effect, close the browser tab for your web app and return to the chat playground in the Azure AI Foundry portal. Then wait a little longer and try again.*
 
 1. In your web app, you can ask the same question as before ("How much are the TrailWalker hiking shoes"), and this time it uses information from your data to construct the response. You can expand the **reference** button to see the data that was used.
 
@@ -233,7 +235,7 @@ If you delete the Cosmos DB resource but keep the chat history option enabled on
 
 ## Update the web app
 
-Use the playground to add more data or test the model with different scenarios. When you're ready to update the web app with the new model, select **Deploy > ...as a web app** again. Select **updat an existing web app** and choose the existing web app from the list. The new model deploys to the existing web app.
+Use the playground to add more data or test the model with different scenarios. When you're ready to update the web app with the new model, select **Deploy > ...as a web app** again. Select **Update an existing web app** and choose the existing web app from the list. The new model deploys to the existing web app.
 
 ## Clean up resources
 
