@@ -70,7 +70,7 @@ These steps deploy a model to a real-time endpoint from the Azure AI Foundry por
 
 After you deploy the **gpt-4o-mini**, repeat the steps to deploy the **text-embedding-ada-002** model.
 
-## Create an Azure AI Search service
+## <a name="create-search"></a> Create an Azure AI Search service
 
 The goal with this application is to ground the model responses in your custom data. The search index is used to retrieve relevant documents based on the user's question.
 
