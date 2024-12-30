@@ -42,14 +42,22 @@ The steps in this tutorial are:
 
 - A **Microsoft.Web** resource provider registered in the selected subscription, to be able to deploy to a web app. For more information on registering a resource provide, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1).
 
-- Necessary permissions to add role assignments in your Azure subscription. 
+- Necessary permissions to add role assignments in your Azure subscription. Granting permissions by role assignment is only allowed by the Owner of the specific Azure resources.
+
+## Azure AI Foundry portal and Azure portal 
+
+In this tutorial, you perform some tasks in the Azure AI Foundry portal and some tasks in the Azure portal.
+
+The Azure AI Foundry portal is a web-based environment for building, training, and deploying AI models. As a developer, it's where you will build and deploy your chat web application.
+
+The Azure portal allows an administrator to manage and monitor Azure resources. As an administrator, you'll use the portal to configure settings for various Azure services required for access from the web app.
 
 ## Configure resources
 
 > [!IMPORTANT]
 > You must have the necessary permissions to add role assignments in your Azure subscription. Granting permissions by role assignment is only allowed by the Owner of the specific Azure resources. You might need to ask your Azure subscription owner (who might be your IT admin) to complete this section for you.
 
-In order for the resources you're about to deploy to work correctly, you need to configure them with the correct permissions. This work is done in the Azure portal. The Azure portal is a place to manage all Azure resources, including Azure AI Foundry resources.
+In order for the resources to work correctly inside a web app, you need to configure them with the correct permissions. This work is done in the Azure portal.
 
 To start, identify the resources you need to configure from the Azure AI Foundry portal.
 
@@ -60,7 +68,8 @@ To start, identify the resources you need to configure from the Azure AI Foundry
 
     :::image type="content" source="../media/tutorials/deploy-chat-web-app/resources.png" alt-text="Screenshot shows the connected resources that need to be configured.":::
 
-    If you have multiple **Azure OpenAI** resources, select the one that has your deployed chat model in it.
+    > [!TIP]
+    > If you have multiple **Azure OpenAI** resources, select the one that contains your deployed chat model.
 
 1. For each resource, select the link to open the resource details.  From the details page, select the resource name to open the resource in the Azure portal.  (For the workspaceblobstore, select **View in Azure Portal**). 
 1. After the tab opens, go back to the Azure AI Foundry portal and repeat the process for the next resource. 
