@@ -444,7 +444,7 @@ Sometimes a large language model isn't needed for certain evaluation metrics. Th
 class AnswerLengthEvaluator:
     def __init__(self):
         pass
-
+    # A class is made a callable my implementing the special method __call__
     def __call__(self, *, answer: str, **kwargs):
         return {"answer_length": len(answer)}
 ```
@@ -452,12 +452,10 @@ class AnswerLengthEvaluator:
 Then run the evaluator on a row of data by importing a callable class:
 
 ```python
-with open("answer_len/answer_length.py") as fin:
-    print(fin.read())
-
 from answer_len.answer_length import AnswerLengthEvaluator
 
-answer_length = AnswerLengthEvaluator()(answer="What is the speed of light?")
+answer_length_evaluator = AnswerLengthEvaluator()
+answer_length = answer_length_evaluator(answer="What is the speed of light?")
 
 print(answer_length)
 ```
