@@ -172,6 +172,8 @@ import mlflow
 
 mlflow.config.enable_async_logging()
 ```
+It is recommended to use above global flag when you want to enable asynchronous logging of metrics throughout your code
+and/or you are using some wrapper library that wraps mlflow for logging actual metrics.
 
 The same property can be set, using an environment variable:
 
@@ -179,14 +181,29 @@ The same property can be set, using an environment variable:
 export MLFLOW_ENABLE_ASYNC_LOGGING=True
 ```
 
-To log specific metrics asynchronously, use the MLflow logging API as you typically would, but add the extra parameter `synchronous=False`.
+To log specific metrics asynchronously, use the MLflow logging API as you typically would, but add the extra parameter `synchronous=False`. 
+
+Setting up `synchronous=False` is optional if you set global flag to log in asynchronous way using `mlflow.enable_async_logging()`.
 
 ```python
 import mlflow
 
 with mlflow.start_run():
     # (...)
+    # when global async logging flag is not set using - mlflow.enable_async_logging()
     mlflow.log_metric("metric1", 9.42, synchronous=False)
+    # (...)
+```
+
+```python
+import mlflow
+# Set global async logging flag
+mlflow.enable_async_logging()
+
+with mlflow.start_run():
+    # (...)
+    # You can use all fluent syntax or MlflowClient APIs and all of them will log metrics in asynchronous fashion.
+    mlflow.log_metric("metric1", 9.42)
     # (...)
 ```
 
@@ -225,6 +242,7 @@ with mlflow.start_run() as current_run:
     run_operation = mlflow_client.log_batch(
         run_id=current_run.info.run_id,
         metrics=metrics_arr,
+        #Optional when global async logging flag is set using - mlflow.enable_async_logging()
         synchronous=False,
     )
 ```
