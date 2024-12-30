@@ -142,12 +142,12 @@ If you created the associated endpoint with **User Assigned Identity**, the user
 |Azure AI Foundry project|**Azure Machine Learning Workspace Connection Secrets Reader** role **OR** a customized role with `Microsoft.MachineLearningServices/workspaces/connections/listsecrets/action` | Get project connections|
 |Azure AI Foundry project container registry |**ACR pull** |Pull container image |
 |Azure AI Foundry project default storage| **Storage Blob Data Reader**| Load model from storage |
-|Azure AI Foundry project|**Workspace metrics writer**| After you deploy then endpoint, if you want to monitor the endpoint related metrics like CPU/GPU/Disk/Memory utilization, you need to give this permission to the identity.<br/><br/>Optional|
+|Azure AI Foundry project|**AzureML Metrics Writer (preview)**| After you deploy then endpoint, if you want to monitor the endpoint related metrics like CPU/GPU/Disk/Memory utilization, you need to give this permission to the identity.<br/><br/>Optional|
 
 See detailed guidance about how to grant permissions to the endpoint identity in [Grant permissions to the endpoint](#grant-permissions-to-the-endpoint).
 
 > [!IMPORTANT]
-> If your flow uses Microsoft Entra ID based authentication connections, no matter you use system-assigned identity or user-assigned identity, you always need to grant the managed identity appropriate roles of the corresponding resources so that it can make API calls to that resource. For example, if your Azure OpenAI connection uses Microsoft Entra ID based authentication, you need to grant your endpoint managed identity **Cognitive Services OpenAI User or Cognitive Services OpenAI Contributor role** of the corresponding Azure OpenAI resources.
+> If your flow uses Microsoft Entra ID based authentication connections, whether you use system-assigned identity or user-assigned identity, you always need to grant the managed identity appropriate roles of the corresponding resources so that it can make API calls to that resource. For example, if your Azure OpenAI connection uses Microsoft Entra ID based authentication, you need to grant your endpoint managed identity **Cognitive Services OpenAI User or Cognitive Services OpenAI Contributor role** of the corresponding Azure OpenAI resources.
 
 ### Advanced settings - Outputs & Connections
 
