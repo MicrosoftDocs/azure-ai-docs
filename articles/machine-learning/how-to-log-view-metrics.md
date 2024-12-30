@@ -172,8 +172,8 @@ import mlflow
 
 mlflow.config.enable_async_logging()
 ```
-It is recommended to use above global flag when you want to influence the logging behavior at all places and/or you are using some 
-wrapper library that wraps mlflow for logging actual metrics.
+It is recommended to use above global flag when you want to enable asynchronous logging of metrics throughout your code
+and/or you are using some wrapper library that wraps mlflow for logging actual metrics.
 
 The same property can be set, using an environment variable:
 
