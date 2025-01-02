@@ -76,7 +76,7 @@ Another way to view the metrics page for an endpoint or deployment is to go dire
 
    Online endpoints and deployments are Azure Resource Manager resources. You can find them by going to their resource group and then looking for the resource types **Machine Learning online endpoint** and **Machine Learning online deployment**.
 
-1. Under **Monitoring**, select **Metrics**.
+1. On the resource page, under **Monitoring**, select **Metrics**.
 
    :::image type="content" source="media/how-to-monitor-online-endpoints/endpoint-metrics-azure-portal.png" alt-text="Screenshot of the Azure portal that shows the Metrics page for a deployment. Monitoring and Metrics are highlighted." lightbox="media/how-to-monitor-online-endpoints/endpoint-metrics-azure-portal.png":::
 
@@ -136,7 +136,7 @@ The options for code are the Azure Machine Learning CLI and the Azure Machine Le
 - For the names of endpoint metrics to use in code, see the values in the **Name in REST API** column in the table in [Supported metrics for Microsoft.MachineLearningServices/workspaces/onlineEndpoints](monitor-azure-machine-learning-reference.md#supported-metrics-for-microsoftmachinelearningservicesworkspacesonlineendpoints).
 - For the names of deployment metrics to use in code, see the values in the **Name in REST API** column in the tables in [Supported metrics for Microsoft.MachineLearningServices/workspaces/onlineEndpoints/deployments](monitor-azure-machine-learning-reference.md#supported-metrics-for-microsoftmachinelearningservicesworkspacesonlineendpointsdeployments).
 
-For more information, see [Autoscaling online endpoints](how-to-autoscale-endpoints.md).
+For more information, see [Autoscale online endpoints in Azure Machine Learning](how-to-autoscale-endpoints.md).
 
 ## Use logs
 
@@ -173,7 +173,7 @@ There are three logs that you can turn on for online endpoints:
 ### Turn on logs
 
 > [!IMPORTANT]
-> Logging uses the Log Analytics feature of Monitor. If you don't currently have a Log Analytics workspace, you can create one by following the steps in [Create a Log Analytics workspace in the Azure portal](/azure/azure-monitor/logs/quick-create-workspace#create-a-workspace).
+> Logging uses the Log Analytics feature of Monitor. If you don't currently have a Log Analytics workspace, you can create one by following the steps in [Create a workspace](/azure/azure-monitor/logs/quick-create-workspace#create-a-workspace).
 
 1. In the [Azure portal](https://portal.azure.com), go to the resource group that contains your endpoint, and then select the endpoint.
 
