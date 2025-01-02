@@ -8,7 +8,7 @@ ms.reviewer: None
 author: msakande
 ms.author: mopeakande
 ms.subservice: mlops
-ms.date: 12/30/2024
+ms.date: 01/02/2025
 ms.topic: how-to
 ms.custom: how-to, devplatv2
 # customer intent: As a developer, I want to see how to use metrics, logs, and Application Insights to monitor my Azure Machine Learning online endpoints so that I can track and analyze endpoint behavior.
