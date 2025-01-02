@@ -222,11 +222,11 @@ The following procedure runs the server locally with [sample files](https://gith
 
 1. Create and activate a virtual environment with [conda](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html):
 
-   In this example, the `azureml-inference-server-http` package is automatically installed. The package is included as a dependent library of the `azureml-defaults` package in the _conda.yml_ file:
+   In this example, the `azureml-inference-server-http` package is automatically installed. The package is included as a dependent library of the `azureml-defaults` package in the _conda.yaml_ file:
 
    ```bash
    # Create the environment from the YAML file
-   conda env create --name model-env -f ./environment/conda.yml
+   conda env create --name model-env -f ./environment/conda.yaml
    # Activate the new environment
    conda activate model-env
    ```
@@ -318,19 +318,24 @@ There are two ways to obtain log data for the inference HTTP server test:
 When the server starts, the logs show the initial server settings as follows:
 
 ```console
-Azure Machine Learning Inferencing HTTP server <version>
+Azure ML Inferencing HTTP server <version>
+
 
 Server Settings
 ---------------
-Entry Script Name: <entry_script>
-Model Directory: <model_dir>
-Worker Count: <worker_count>
+Entry Script Name: <entry-script>
+Model Directory: <model-directory>
+Config File: <configuration-file>
+Worker Count: <worker-count>
 Worker Timeout (seconds): None
 Server Port: <port>
+Health Port: <port>
 Application Insights Enabled: false
-Application Insights Key: <appinsights_instrumentation_key>
+Application Insights Key: <Application-Insights-instrumentation-key>
 Inferencing HTTP server version: azmlinfsrv/<version>
-CORS for the specified origins: <access_control_allow_origins>
+CORS for the specified origins: <access-control-allow-origins>
+Create dedicated endpoint for health: <health-check-endpoint>
+
 
 Server Routes
 ---------------
@@ -343,19 +348,23 @@ Score:          POST  127.0.0.1:<port>/score
 For example, when you launch the server by following the [end-to-end example](#use-an-end-to-end-example), the log displays as follows:
 
 ```console
-Azure Machine Learning Inferencing HTTP server v0.8.0
+Azure ML Inferencing HTTP server v1.2.2
+
 
 Server Settings
 ---------------
 Entry Script Name: /home/user-name/azureml-examples/cli/endpoints/online/model-1/onlinescoring/score.py
 Model Directory: ./
+Config File: None
 Worker Count: 1
 Worker Timeout (seconds): None
 Server Port: 5001
+Health Port: 5001
 Application Insights Enabled: false
 Application Insights Key: None
-Inferencing HTTP server version: azmlinfsrv/0.8.0
+Inferencing HTTP server version: azmlinfsrv/1.2.2
 CORS for the specified origins: None
+Create dedicated endpoint for health: None
 
 Server Routes
 ---------------
@@ -373,14 +382,15 @@ Initializing logger
 2022-12-24 07:37:54,518 I [32756] azmlinfsrv.user_script - Invoking user's init function
 2022-12-24 07:37:55,974 I [32756] azmlinfsrv.user_script - Users's init has completed successfully
 2022-12-24 07:37:55,976 I [32756] azmlinfsrv.swagger - Swaggers are prepared for the following versions: [2, 3, 3.1].
-2022-12-24 07:37:55,977 I [32756] azmlinfsrv - AML_FLASK_ONE_COMPATIBILITY is set, but patching is not necessary.
+2022-12-24 07:37:55,976 I [32756] azmlinfsrv - Scoring timeout is set to 3600000
+2022-12-24 07:37:55,976 I [32756] azmlinfsrv - Worker with pid 32756 ready for serving traffic
 ```
 
 ### Understand log data format
 
 All logs from the inference HTTP server, except for the launcher script, present data in the following format:
 
-`<UTC Time> | <level> [<pid>] <logger name> - <message>`
+`<UTC Time> <level> [<pid>] <logger name> - <message>`
 
 The entry consists of the following components:
 
