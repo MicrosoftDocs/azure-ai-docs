@@ -18,8 +18,6 @@ ms.custom: ignite-2023, build-2024, ignite-2024
 
 [Azure AI Foundry](https://ai.azure.com) is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way.
 
-[!INCLUDE [new-name](includes/new-name.md)]
-
 [Azure AI Foundry](https://ai.azure.com) is designed for developers to:
 
 - Build generative AI applications on an enterprise-grade platform.
