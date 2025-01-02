@@ -104,7 +104,7 @@ To debug your scoring script locally, you have several options for testing the s
 1. Create your entry script. The following example creates a basic entry script and saves it to a file named _score.py_:
 
    ```bash
-   echo -e "import time def init(): \n\t time.sleep(1) \n\n def run(input_data): \n\t return {"message":"Hello, World!"}" > score.py
+   echo -e 'import time\ndef init(): \n\ttime.sleep(1) \n\ndef run(input_data): \n\treturn {"message":"Hello, World!"}' > score.py
    ```
 
 1. Start the server with the `azmlinfsrv` command and set the _score.py_ file as the entry script:
