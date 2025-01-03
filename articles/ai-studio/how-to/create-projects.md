@@ -45,6 +45,7 @@ For more information about the projects and hubs model, see [Azure AI Foundry hu
 - [Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli).
 - An Azure AI Foundry hub. If you don't have a hub, see [Create a hub using the Azure Machine Learning SDK and CLI](develop/create-hub-project-sdk.md).
 
+---
 
 ## Create a project
 
