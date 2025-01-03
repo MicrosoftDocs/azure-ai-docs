@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
 ms.date: 9/20/2024
-ms.reviewer: v-baolianzou
+ms.reviewer: eur
 ms.custom: references_regions
 #customer intent: As a user who implements text to speech, I want to understand the options and differences between available OpenAI text to speech voices in Azure AI services.
 ---
