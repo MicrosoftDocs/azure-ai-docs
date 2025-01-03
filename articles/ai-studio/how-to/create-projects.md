@@ -26,7 +26,7 @@ For more information about the projects and hubs model, see [Azure AI Foundry hu
 
 ## Prerequisites
 
-
+Use the following tabs to select the method you plan to use to create a project:
 
 # [Azure AI Foundry portal](#tab/ai-studio)
 
@@ -49,7 +49,6 @@ For more information about the projects and hubs model, see [Azure AI Foundry hu
 
 ## Create a project
 
-Use the following tabs to select the method you plan to use to create a project:
 
 # [Azure AI Foundry portal](#tab/ai-studio)
 
