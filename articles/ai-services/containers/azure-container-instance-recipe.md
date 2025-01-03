@@ -44,9 +44,9 @@ All variables in angle brackets, `<>`, need to be replaced with your own values.
 
 [!INCLUDE [Azure portal instructions for creating an ACI instance](includes/create-container-instances-resource.md)]
 
-# [CLI](#tab/cli)
+# [Azure CLI](#tab/cli)
 
-[!INCLUDE [CLI instructions for creating an ACI instance](../containers/includes/create-container-instances-resource-from-azure-cli.md)]
+[!INCLUDE [Azure CLI instructions for creating an ACI instance](../containers/includes/create-container-instances-resource-from-azure-cli.md)]
 
 ---
 
@@ -68,7 +68,7 @@ All variables in angle brackets, `<>`, need to be replaced with your own values.
 
     You have successfully created and used Azure AI containers in Azure Container Instance.
 
-# [CLI](#tab/cli)
+# [Azure CLI](#tab/cli)
 
 [!INCLUDE [API documentation](../includes/cognitive-services-containers-api-documentation.md)]
 

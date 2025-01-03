@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 10/01/2024
+ms.date: 01/03/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -26,13 +26,29 @@ For more information about the projects and hubs model, see [Azure AI Foundry hu
 
 ## Prerequisites
 
+Use the following tabs to select the method you plan to use to create a project:
+
+# [Azure AI Foundry portal](#tab/ai-studio)
+
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- For Python SDK or CLI steps, an Azure AI Foundry hub. If you don't have a hub, see [How to create and manage an Azure AI Foundry hub](create-azure-ai-resource.md). 
-- For Azure AI Foundry, a hub isn't required. It is created for you when needed.
+
+# [Python SDK](#tab/python)
+
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- [Azure Machine Learning SDK v2](https://aka.ms/sdk-v2-install).
+- An Azure AI Foundry hub. If you don't have a hub, see [Create a hub using the Azure Machine Learning SDK and CLI](develop/create-hub-project-sdk.md).
+
+
+# [Azure CLI](#tab/azurecli)
+
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- [Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli).
+- An Azure AI Foundry hub. If you don't have a hub, see [Create a hub using the Azure Machine Learning SDK and CLI](develop/create-hub-project-sdk.md).
+
+---
 
 ## Create a project
 
-Use the following tabs to select the method you plan to use to create a project:
 
 # [Azure AI Foundry portal](#tab/ai-studio)
 
@@ -78,8 +94,10 @@ The code in this section assumes you have an existing hub.  If you don't have a 
 1. Once the extension is installed and authenticated to your Azure subscription, use the following command to create a new Azure AI Foundry project from an existing Azure AI Foundry hub:
 
     ```azurecli
-    az ml workspace create --kind project --hub-id {my_hub_ARM_ID} --resource-group {my_resource_group} --name {my_project_name}
+    az ml workspace create --kind project --hub-id {my_hub_ID} --resource-group {my_resource_group} --name {my_project_name}
     ```
+
+    Form `my_hub_ID` with this syntax: `/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{hub_name}`.
 
 ---
 

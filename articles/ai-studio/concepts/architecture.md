@@ -18,8 +18,6 @@ author: Blackmist
     
 Azure AI Foundry provides a unified experience for AI developers and data scientists to build, evaluate, and deploy AI models through a web portal, SDK, or CLI. Azure AI Foundry is built on capabilities and services provided by other Azure services.
 
-[!INCLUDE [new-name](../includes/new-name.md)]
-
 :::image type="content" source="../media/concepts/ai-studio-architecture.png" alt-text="Diagram of the high-level architecture of Azure AI Foundry." lightbox="../media/concepts/ai-studio-architecture.png":::
 
 At the top level, Azure AI Foundry provides access to the following resources:
