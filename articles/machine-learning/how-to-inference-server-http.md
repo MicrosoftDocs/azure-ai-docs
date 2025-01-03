@@ -1,5 +1,5 @@
 ---
-title: Debug with Azure Machine Learning inference server
+title: Debug with the Azure Machine Learning inference server
 titleSuffix: Azure Machine Learning
 description: Learn how to enable local development with Azure Machine Learning inference HTTP server, and debug scoring scripts or endpoints before you deploy to the cloud.
 author: msakande
@@ -15,33 +15,27 @@ ms.date: 08/21/2024
 #customer intent: As a developer, I want to work with the Azure Machine Learning inference HTTP server so I can debug scoring scripts or endpoints before deployment.
 ---
 
-# Debug scoring scripts with Azure Machine Learning inference HTTP server
+# Debug scoring scripts by using the Azure Machine Learning inference HTTP server
 
-The Azure Machine Learning inference HTTP server is a Python package that exposes your scoring function as an HTTP endpoint and wraps the Flask server code and dependencies into a singular package. The server is included in the [prebuilt Docker images for inference](concept-prebuilt-docker-images-inference.md) that are used when deploying a model with Azure Machine Learning. Using the package alone, you can deploy the model locally for production, and easily validate your scoring (entry) script in a local development environment. If there's a problem with the scoring script, the server returns an error and the location of the error.
+The Azure Machine Learning inference HTTP server is a Python package that exposes your scoring function as an HTTP endpoint and wraps the Flask server code and dependencies into a singular package. The server is included in the [prebuilt Docker images for inference](concept-prebuilt-docker-images-inference.md) that are used when you deploy a model in Azure Machine Learning. When you use the package alone, you can deploy the model locally for production, and easily validate your scoring (entry) script in a local development environment. If there's a problem with the scoring script, the server returns an error and the location of the error.
 
-The server can also be used to create validation gates in a continuous integration and deployment pipeline. For example, you can start the server with the candidate script and run the test suite against the local endpoint.
+You can also use the server to create validation gates in a continuous integration and deployment pipeline. For example, you can start the server with the candidate script and run the test suite against the local endpoint.
 
-This article supports developers who want to use the inference server to debug locally and describes how to use the inference server with online endpoints on Windows.
+This article supports developers who want to use the inference server to debug locally. The Azure Machine Learning inference HTTP server runs on Windows and Linux based operating systems.
 
 ## Prerequisites
 
-To use the Azure Machine Learning inference HTTP server for local debugging, your configuration must include the following components:
-
 - Python 3.8 or later
 - Anaconda
-
-The Azure Machine Learning inference HTTP server runs on Windows and Linux based operating systems.
 
 ## Explore local debugging options for online endpoints
 
 By debugging endpoints locally before you deploy to the cloud, you can catch errors in your code and configuration earlier. To debug endpoints locally, you have several options, including:
 
-- The Azure Machine Learning inference HTTP server
-- A [local endpoint](how-to-debug-managed-online-endpoints-visual-studio-code.md)
+- The Azure Machine Learning inference HTTP server.
+- A [local endpoint](how-to-debug-managed-online-endpoints-visual-studio-code.md).
 
-This article describes how to work with the Azure Machine Learning inference HTTP server on Windows.
-
-The following table provides an overview of scenarios to help you choose the best option:
+The following table provides an overview of the support in each option for various debugging scenarios:
 
 | Scenario | Inference HTTP server | Local endpoint |
 | --- | :---: | :---: |
@@ -50,38 +44,30 @@ The following table provides an overview of scenarios to help you choose the bes
 | Update deployment configurations (deployment, environment, code, model) | No  | Yes |
 | Integrate Microsoft Visual Studio Code (VS Code) Debugger               | Yes | Yes |
 
+This article describes how to use the Azure Machine Learning inference HTTP server with online endpoints on Windows.
+
 When you run the inference HTTP server locally, you can focus on debugging your scoring script without concern for deployment container configurations.
-
-## Install azureml-inference-server-http package
-
-To install the `azureml-inference-server-http` package, run the following command:
-
-```bash
-python -m pip install azureml-inference-server-http
-```
-
-> [!NOTE]
-> To avoid package conflicts, install the inference HTTP server in a virtual environment.
-> You can use the `pip install virtualenv` command to enable virtual environments for your configuration.
 
 ## Debug your scoring script locally
 
 To debug your scoring script locally, you have several options for testing the server behavior:
 
-- Try a dummy scoring script.
+- Use a dummy scoring script.
 - Use Visual Studio Code to debug with the [azureml-inference-server-http](https://pypi.org/project/azureml-inference-server-http/) package.
-- Run an actual scoring script, model file, and environment file from our [examples repo](https://github.com/Azure/azureml-examples).
+- Run an actual scoring script, model file, and environment file from the [examples repo](https://github.com/Azure/azureml-examples).
 
-### Test server behavior with dummy scoring script
+The following sections provide information about each option.
 
-1. Create a directory named _server\_quickstart_ to hold your files:
+### Use a dummy scoring script to test server behavior
+
+1. Create a directory named server\_quickstart to hold your files:
 
    ```bash
    mkdir server_quickstart
    cd server_quickstart
    ```
 
-1. To avoid package conflicts, create a virtual environment, such as _myenv_, and activate it:
+1. To avoid package conflicts, create a virtual environment, such as `myenv`, and activate it:
 
    ```bash
    python -m virtualenv myenv
@@ -89,9 +75,6 @@ To debug your scoring script locally, you have several options for testing the s
 
    > [!NOTE]
    > On Linux, run the `source myenv/bin/activate` command to activate the virtual environment.
-
-   <!-- Reviewer: The 'source' command appears to apply to Linux only. 
-        I found that the 'python -m virtualenv...' command (as opposed to 'python -m venv ...') both creates and activates the env. -->
 
    After you test the server, you can run the `deactivate` command to deactivate the Python virtual environment.
 
@@ -101,16 +84,13 @@ To debug your scoring script locally, you have several options for testing the s
    python -m pip install azureml-inference-server-http
    ```
 
-1. Create your entry script. The following example creates a basic entry script and saves it to a file named _score.py_:
+1. Create your entry script. The following example creates a basic entry script and saves it to a file named score.py:
 
    ```bash
    echo -e 'import time\ndef init(): \n\ttime.sleep(1) \n\ndef run(input_data): \n\treturn {"message":"Hello, World!"}' > score.py
    ```
 
-1. Start the server with the `azmlinfsrv` command and set the _score.py_ file as the entry script:
-
-   <!-- Reviewer: The following command doesn't fully succeed.
-        I'll add a screenshot of the output in the PR comments. -->
+1. Use the `azmlinfsrv` command to start the server and set the score.py file as the entry script:
 
    ```bash
    azmlinfsrv --entry_script score.py
@@ -119,9 +99,7 @@ To debug your scoring script locally, you have several options for testing the s
    > [!NOTE]
    > The server is hosted on 0.0.0.0, which means it listens to all IP addresses of the hosting machine.
 
-1. Send a scoring request to the server by using the `curl` utility:
-
-   <!-- Reviewer: Because the previous command doesn't fully succeed, I can't verify the output. -->
+1. Use the `curl` utility to send a scoring request to the server:
 
    ```bash
    curl -p 127.0.0.1:5001/score
@@ -133,121 +111,130 @@ To debug your scoring script locally, you have several options for testing the s
    {"message": "Hello, World!"}
    ```
 
-1. After testing, select Ctrl + C to terminate the server. 
+1. After testing, select **Ctrl**+**C** to stop the server.
 
-Now you can modify the scoring script file (_score.py_) and test your changes by running the server again with the `azmlinfsrv --entry_script score.py` command.
+You can modify the score.py scoring script file and test your changes by using the `azmlinfsrv --entry_script score.py` command to run the server again.
 
 ### Integrate with Visual Studio Code
 
-To use VS Code and the [Python Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) for debugging with the [azureml-inference-server-http](https://pypi.org/project/azureml-inference-server-http/) package, you can use the [Launch and Attach modes](https://code.visualstudio.com/docs/editor/debugging#_launch-versus-attach-configurations). 
+In VS Code, you can use the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) for debugging with the [azureml-inference-server-http](https://pypi.org/project/azureml-inference-server-http/) package. VS Code offers two modes for debugging: [launch and attach](https://code.visualstudio.com/docs/editor/debugging#_launch-versus-attach-configurations).
 
-- For **Launch mode**, set up the _launch.json_ file in VS Code and start the Azure Machine Learning inference HTTP server within VS Code:
+Before you use either mode, install the `azureml-inference-server-http` package by running the following command:
 
-   1. Start VS Code and open the folder containing the script (_score.py_).
+```bash
+python -m pip install azureml-inference-server-http
+```
 
-   1. Add the following configuration to the _launch.json_ file for that workspace in VS Code:
+> [!NOTE]
+> To avoid package conflicts, install the inference HTTP server in a virtual environment. You can use the `pip install virtualenv` command to turn on virtual environments for your configuration.
 
-      **launch.json**
+#### Launch mode
 
-      ```json
-      {
-          "version": "0.2.0",
-          "configurations": [
-              {
-                  "name": "Debug score.py",
-                  "type": "python",
-                  "request": "launch",
-                  "module": "azureml_inference_server_http.amlserver",
-                  "args": [
-                      "--entry_script",
-                      "score.py"
-                  ]
-              }
-          ]
-        }
-      ```
+For launch mode, take the following steps to set up the VS Code launch.json configuration file and start the Azure Machine Learning inference HTTP server within VS Code:
 
-   1. Start the debugging session in VS Code by selecting **Run** > **Start Debugging** or use the keyboard shortcut F5.
+1. Start VS Code and open the folder that contains the score.py script.
 
-- For **Attach mode**, start the Azure Machine Learning inference HTTP server in a command window, and use VS Code with the Python Extension to attach to the process:
+1. For that workspace in VS Code, add the following configuration to the launch.json file:
 
-   > [!NOTE]
-   > For Linux, first install the `gdb` package by running the `sudo apt-get install -y gdb` command.
+   ```json
+   {
+       "version": "0.2.0",
+       "configurations": [
+           {
+               "name": "Debug score.py",
+               "type": "debugpy",
+               "request": "launch",
+               "module": "azureml_inference_server_http.amlserver",
+               "args": [
+                   "--entry_script",
+                   "score.py"
+               ]
+           }
+       ]
+     }
+   ```
 
-   1. Add the following configuration to the _launch.json_ file for that workspace in VS Code:
-        
-      **launch.json**
+1. Start the debugging session in VS Code by selecting **Run** > **Start Debugging** or by selecting **F5**.
 
-      ```json
-      {
-          "version": "0.2.0",
-          "configurations": [
-              {
-                  "name": "Python: Attach using Process Id",
-                  "type": "python",
-                  "request": "attach",
-                  "processId": "${command:pickProcess}",
-                  "justMyCode": true
-              }
-          ]
-        }
-      ```
+#### Attach mode
 
-   1. In a command window, start the inference HTTP server by using the `azmlinfsrv --entry_script score.py` command.
+For attach mode, take the following steps to use VS Code with the Python extension to attach to the Azure Machine Learning inference HTTP server process:
 
-   1. Start the debugging session in VS Code:
+> [!NOTE]
+> For Linux, first install the `gdb` package by running the `sudo apt-get install -y gdb` command.
 
-      1. Select **Run** > **Start Debugging** or use the keyboard shortcut F5.
+1. Start VS Code and open the folder that contains the score.py script.
 
-      1. In the command window, view the logs from the inference server and locate the process ID of the `azmlinfsrv` command (not the `gunicorn`):
+1. For that workspace in VS Code, add the following configuration to the launch.json file:
 
-         :::image type="content" source="./media/how-to-inference-server-http/debug-attach-pid.png" border="false" alt-text="Screenshot that shows a command window displaying logs from the inference HTTP server and the process ID of the azmlinfsrv command highlighted.":::
+   ```json
+   {
+       "version": "0.2.0",
+       "configurations": [
+           {
+               "name": "Python: Attach using Process Id",
+               "type": "debugpy",
+               "request": "attach",
+               "processId": "${command:pickProcess}",
+               "justMyCode": true
+           }
+       ]
+     }
+   ```
 
-      1. In the VS Code Debugger, enter the process ID of the `azmlinfsrv` command.
+1. In a command window, start the inference HTTP server by running the `azmlinfsrv --entry_script score.py` command.
+
+1. Take the following steps to start the debugging session in VS Code:
+
+   1. Select **Run** > **Start Debugging**, or select **F5**.
+
+   1. In the command window, search the logs from the inference server to locate the process ID of the `azmlinfsrv` process, not the `gunicorn` process:
+
+      :::image type="content" source="./media/how-to-inference-server-http/debug-attach-pid.png" border="false" alt-text="Screenshot of a command window that shows inference HTTP server logs. In one log statement, the process ID of the azmlinfsrv command is highlighted.":::
+
+   1. In the VS Code debugger, enter the process ID of the `azmlinfsrv` process.
       
-         If you don't see the VS Code process picker, you can manually enter the process ID in the `processId` field of the _launch.json_ file for that workspace.
+      If you don't see the VS Code process picker, manually enter the process ID in the `processId` field of the launch.json file for the workspace.
 
-For both modes, you can set [breakpoints](https://code.visualstudio.com/docs/editor/debugging#_breakpoints) and debug the script step by step.
+For launch and attach modes, you can set [breakpoints](https://code.visualstudio.com/docs/editor/debugging#_breakpoints) and debug the script step by step.
 
 ### Use an end-to-end example
 
 The following procedure runs the server locally with [sample files](https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/online/model-1) (scoring script, model file, and environment) from the Azure Machine Learning example repository. For more examples of how to use these sample files, see [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md).
 
-1. Clone the sample repository:
+1. Clone the sample repository and go to the folder that contains the relevant sample files:
 
    ```bash
    git clone --depth 1 https://github.com/Azure/azureml-examples
    cd azureml-examples/cli/endpoints/online/model-1/
    ```
 
-1. Create and activate a virtual environment with [conda](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html):
+1. Use [conda](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html) to create and activate a virtual environment:
 
-   In this example, the `azureml-inference-server-http` package is automatically installed. The package is included as a dependent library of the `azureml-defaults` package in the _conda.yaml_ file:
+   In this example, the `azureml-inference-server-http` package is automatically installed. The package is included as a dependent library of the `azureml-defaults` package in the conda.yaml file:
 
    ```bash
-   # Create the environment from the YAML file
+   # Create the environment from the YAML file.
    conda env create --name model-env -f ./environment/conda.yaml
-   # Activate the new environment
+   # Activate the new environment.
    conda activate model-env
    ```
 
-1. Review your scoring script:
-
-   **onlinescoring/score.py**
+1. Review the scoring script, onlinescoring/score.py:
 
    :::code language="python" source="~/azureml-examples-main/cli/endpoints/online/model-1/onlinescoring/score.py":::
 
-1. Run the inference HTTP server by specifying the scoring script and model file:
+1. Run the inference HTTP server by specifying the scoring script and model file.
 
-   The model directory specified in the `model_dir` parameter is defined by using the `AZUREML_MODEL_DIR` variable and retrieved in the scoring script. 
+   The model directory specified in the `model_dir` parameter is defined by using the `AZUREML_MODEL_DIR` variable and retrieved in the scoring script.
 
-   In this case, you specify the current directory _./_ because the subdirectory is specified in the scoring script as _model/sklearn\_regression\_model.pkl_.
+   In this case, you use the current directory, `./`, as the `model_dir` value, because the scoring script specifies the subdirectory as `model/sklearn\_regression\_model.pkl`.
 
    ```bash
    azmlinfsrv --entry_script ./onlinescoring/score.py --model_dir ./
    ```
 
-   When the server launches and successfully invokes the scoring script, the example [startup log](#view-startup-logs) opens. Otherwise, the log shows error messages.
+   When the server starts and successfully invokes the scoring script, the example [startup log](#view-startup-logs) opens. Otherwise, the log shows error messages.
 
 1. Test the scoring script with sample data:
 
