@@ -26,20 +26,22 @@ For more information about the projects and hubs model, see [Azure AI Foundry hu
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+
 
 # [Azure AI Foundry portal](#tab/ai-studio)
 
-No other prerequisites are needed to create a project in the Azure AI Foundry portal. When you create a project, a default hub is automatically created if you don't yet have a hub.
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 
 # [Python SDK](#tab/python)
 
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 - [Azure Machine Learning SDK v2](https://aka.ms/sdk-v2-install).
 - An Azure AI Foundry hub. If you don't have a hub, see [Create a hub using the Azure Machine Learning SDK and CLI](develop/create-hub-project-sdk.md).
 
 
 # [Azure CLI](#tab/azurecli)
 
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 - [Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli).
 - An Azure AI Foundry hub. If you don't have a hub, see [Create a hub using the Azure Machine Learning SDK and CLI](develop/create-hub-project-sdk.md).
 
