@@ -98,7 +98,7 @@ The code in this section assumes you have an existing hub.  If you don't have a 
     az ml workspace create --kind project --hub-id {my_hub_ID} --resource-group {my_resource_group} --name {my_project_name}
     ```
 
-    `my_hub_ID` follows this syntax: `/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{hub_name}`.
+    Form `my_hub_ID` with this syntax: `/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{hub_name}`.
 
 ---
 
