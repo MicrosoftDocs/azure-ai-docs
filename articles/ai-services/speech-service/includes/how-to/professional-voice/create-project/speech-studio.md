@@ -5,8 +5,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 12/1/2023
-ms.custom: include
+ms.date: 1/6/2025
 ---
 
 Content for [Custom neural voice](https://aka.ms/customvoice) like data, models, tests, and endpoints are organized into projects in Speech Studio. Each project is specific to a country/region and language, and the gender of the voice you want to create. For example, you might create a project for a female voice for your call center's chat bots that use English in the United States.
@@ -30,7 +29,7 @@ To create a custom neural voice Pro project, follow these steps:
 1. Select **Custom neural voice Pro** > **Next**. 
 1. Follow the instructions provided by the wizard to create your project. 
 
-Select the new project by name or select **Go to project**. You'll see these menu items in the left panel: **Set up voice talent**, **Prepare training data**, **Train model**, and **Deploy model**. 
+Select the new project by name or select **Go to project**. You see these menu items in the left panel: **Set up voice talent**, **Prepare training data**, **Train model**, and **Deploy model**. 
 
 ## Next steps
 
