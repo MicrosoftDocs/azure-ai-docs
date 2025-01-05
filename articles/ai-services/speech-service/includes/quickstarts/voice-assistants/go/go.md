@@ -17,7 +17,7 @@ Before you get started:
 > * Make sure that you have access to a microphone for audio capture
 >
   > [!NOTE]
-  > Please refer to [the list of supported regions for voice assistants](~/articles/ai-services/speech-service/regions.md#voice-assistants) and ensure your resources are deployed in one of those regions.
+  > Please refer to [the list of supported regions for voice assistants](~/articles/ai-services/speech-service/regions.md#regions) and ensure your resources are deployed in one of those regions.
 
 ## Setup your environment
 
@@ -100,7 +100,7 @@ Replace the `YOUR_SUBSCRIPTION_KEY` and `YOUR_BOT_REGION` values with actual val
     - Use the Region identifier as the `YOUR_BOT_REGION` value replacement, for example: `"westus"` for **West US**
 
    > [!NOTE]
-   > Please refer to [the list of supported regions for voice assistants](~/articles/ai-services/speech-service/regions.md#voice-assistants) and ensure your resources are deployed in one of those regions.
+   > Please refer to [the list of supported regions for voice assistants](~/articles/ai-services/speech-service/regions.md#regions) and ensure your resources are deployed in one of those regions.
 
    > [!NOTE]
    > For information on configuring your bot, see the Bot Framework documentation for [the Direct Line Speech channel](/azure/bot-service/bot-service-channel-connect-directlinespeech).
