@@ -29,7 +29,7 @@ Keep in mind the following points:
 
 The regions in this table support most of the core features of the Speech service, such as speech to text, text to speech, pronunciation assessment, and translation. Some features, such as fast transcription and batch synthesis API, require specific regions. For the features that require specific regions, the table indicates the regions that support them.
 
-| **Region** | **Fast transcription** | **Batch synthesis API** | **Custom speech** | **Custom speech training with audio**<sup>1</sup> | **Custom neural voice** | **Custom neural voice training**<sup>2</sup> | **Custom neural voice high performance endpoint** | **Personal voice** | **Text to speech avatar** | **Video translation** | **Custom keyword advanced models** | **Keyword verification** | **Speaker recognition** | **Intent recognition**<sup>3</sup> | **Voice assistants**<sup>4</sup> |
+| **Region** | **Fast transcription** | **Batch synthesis API** | **Custom speech** | **Custom speech training with audio**<sup>1</sup> | **Custom neural voice** | **Custom neural voice training**<sup>2</sup> | **Custom neural voice high performance endpoint** | **Personal voice** | **Text to speech avatar** | **Video translation** | **Custom keyword advanced models** | **Keyword verification** | **Speaker recognition** | **Intent recognition**<sup>3</sup> | **Voice assistants**<sup>3</sup> |
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | australiaeast      | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  |  |  | ✅ |  | ✅ | ✅ |  |
 | brazilsouth        | ✅ | ✅ | ✅ |  | ✅ |  |  |  |  |  |  |  |  | ✅ |  |
@@ -66,9 +66,7 @@ The regions in this table support most of the core features of the Speech servic
 
 <sup>2</sup> The region is available for custom neural voice training. You can copy a trained neural voice model to other regions for deployment.
 
-<sup>3</sup> For intent recognition, the [Speech SDK](speech-sdk.md) supports voice assistant capabilities through [Direct Line Speech](./direct-line-speech.md) for regions in the following table.
-
-<sup>4</sup> The [Speech SDK](speech-sdk.md) supports voice assistant capabilities through [Direct Line Speech](./direct-line-speech.md) for regions in the following table.
+<sup>3</sup> The [Speech SDK](speech-sdk.md) supports intent recognition and voice assistant capabilities through [Direct Line Speech](./direct-line-speech.md).
 
 ## Related content
 
