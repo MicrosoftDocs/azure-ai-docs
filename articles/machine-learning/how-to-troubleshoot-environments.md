@@ -741,7 +741,7 @@ The following base images are deprecated:
 **Troubleshooting steps**
 
 Upgrade your base image to a latest version of supported images
-* See available [base images](https://github.com/Azure/AzureML-Containers/tree/master/base)
+* See available [base images](https://github.com/Azure/AzureML-Containers/tree/master/images)
 
 ### No tag or digest
 <!--issueDescription-->
