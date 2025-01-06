@@ -520,113 +520,113 @@ The index schema in this example is organized around hotel content. Sample data 
 
 1. Select **Send request**. You should have an `HTTP/1.1 201 Created` response. 
 
-***
+---
 
 The response body should include the JSON representation of the index schema.
 
-    ```json
+```json
+{
+    "@odata.context": "https://contoso-search-centralus.search.windows.net/$metadata#indexes/$entity",
+    "@odata.etag": "\"0x8DD2E70E6C36D8E\"",
+    "name": "hotels-vector-quickstart",
+    "defaultScoringProfile": null,
+    "fields": [
     {
-      "@odata.context": "https://contoso-search-centralus.search.windows.net/$metadata#indexes/$entity",
-      "@odata.etag": "\"0x8DD2E70E6C36D8E\"",
-      "name": "hotels-vector-quickstart",
-      "defaultScoringProfile": null,
-      "fields": [
+        "name": "HotelId",
+        "type": "Edm.String",
+        "searchable": false,
+        "filterable": true,
+        "retrievable": true,
+        "sortable": false,
+        "facetable": false,
+        "key": true,
+        "indexAnalyzer": null,
+        "searchAnalyzer": null,
+        "analyzer": null,
+        "dimensions": null,
+        "vectorSearchProfile": null,
+        "synonymMaps": []
+    },
+    [MORE FIELD DEFINITIONS OMITTED FOR BREVITY]
+    ],
+    "scoringProfiles": [],
+    "corsOptions": null,
+    "suggesters": [],
+    "analyzers": [],
+    "tokenizers": [],
+    "tokenFilters": [],
+    "charFilters": [],
+    "encryptionKey": null,
+    "similarity": {
+    "@odata.type": "#Microsoft.Azure.Search.BM25Similarity",
+    "k1": null,
+    "b": null
+    },
+    "vectorSearch": {
+    "algorithms": [
         {
-          "name": "HotelId",
-          "type": "Edm.String",
-          "searchable": false,
-          "filterable": true,
-          "retrievable": true,
-          "sortable": false,
-          "facetable": false,
-          "key": true,
-          "indexAnalyzer": null,
-          "searchAnalyzer": null,
-          "analyzer": null,
-          "dimensions": null,
-          "vectorSearchProfile": null,
-          "synonymMaps": []
+        "name": "my-hnsw-vector-config-1",
+        "kind": "hnsw",
+        "hnswParameters": {
+            "metric": "cosine",
+            "m": 4,
+            "efConstruction": 400,
+            "efSearch": 500
         },
-        [MORE FIELD DEFINITIONS OMITTED FOR BREVITY]
-      ],
-      "scoringProfiles": [],
-      "corsOptions": null,
-      "suggesters": [],
-      "analyzers": [],
-      "tokenizers": [],
-      "tokenFilters": [],
-      "charFilters": [],
-      "encryptionKey": null,
-      "similarity": {
-        "@odata.type": "#Microsoft.Azure.Search.BM25Similarity",
-        "k1": null,
-        "b": null
-      },
-      "vectorSearch": {
-        "algorithms": [
-          {
-            "name": "my-hnsw-vector-config-1",
-            "kind": "hnsw",
-            "hnswParameters": {
-              "metric": "cosine",
-              "m": 4,
-              "efConstruction": 400,
-              "efSearch": 500
+        "exhaustiveKnnParameters": null
+        },
+        {
+        "name": "my-hnsw-vector-config-2",
+        "kind": "hnsw",
+        "hnswParameters": {
+            "metric": "euclidean",
+            "m": 4,
+            "efConstruction": 400,
+            "efSearch": 500
+        },
+        "exhaustiveKnnParameters": null
+        },
+        {
+        "name": "my-eknn-vector-config",
+        "kind": "exhaustiveKnn",
+        "hnswParameters": null,
+        "exhaustiveKnnParameters": {
+            "metric": "cosine"
+        }
+        }
+    ],
+    "profiles": [
+        {
+        "name": "my-vector-profile",
+        "algorithm": "my-hnsw-vector-config-1"
+        }
+    ]
+    },
+    "semantic": {
+    "defaultConfiguration": null,
+    "configurations": [
+        {
+        "name": "my-semantic-config",
+        "prioritizedFields": {
+            "titleField": {
+            "fieldName": "HotelName"
             },
-            "exhaustiveKnnParameters": null
-          },
-          {
-            "name": "my-hnsw-vector-config-2",
-            "kind": "hnsw",
-            "hnswParameters": {
-              "metric": "euclidean",
-              "m": 4,
-              "efConstruction": 400,
-              "efSearch": 500
-            },
-            "exhaustiveKnnParameters": null
-          },
-          {
-            "name": "my-eknn-vector-config",
-            "kind": "exhaustiveKnn",
-            "hnswParameters": null,
-            "exhaustiveKnnParameters": {
-              "metric": "cosine"
+            "prioritizedContentFields": [
+            {
+                "fieldName": "Description"
             }
-          }
-        ],
-        "profiles": [
-          {
-            "name": "my-vector-profile",
-            "algorithm": "my-hnsw-vector-config-1"
-          }
-        ]
-      },
-      "semantic": {
-        "defaultConfiguration": null,
-        "configurations": [
-          {
-            "name": "my-semantic-config",
-            "prioritizedFields": {
-              "titleField": {
-                "fieldName": "HotelName"
-              },
-              "prioritizedContentFields": [
-                {
-                  "fieldName": "Description"
-                }
-              ],
-              "prioritizedKeywordsFields": [
-                {
-                  "fieldName": "Category"
-                }
-              ]
+            ],
+            "prioritizedKeywordsFields": [
+            {
+                "fieldName": "Category"
             }
-          }
-        ]
-      }
+            ]
+        }
+        }
+    ]
     }
-    ```
+}
+```
 
 Key takeaways about the [Create Index](/rest/api/searchservice/indexes/create) REST API:
 
