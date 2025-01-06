@@ -192,7 +192,7 @@ For attach mode, take the following steps to use VS Code with the Python extensi
 
    1. In the command window, search the logs from the inference server to locate the process ID of the `azmlinfsrv` process:
 
-      :::image type="content" source="./media/how-to-inference-server-http/debug-attach-pid.png" border="false" alt-text="Screenshot of a command window that shows inference server logs. In one log statement, the process ID of the azmlinfsrv command is highlighted.":::
+      :::image type="content" source="media/how-to-inference-server-http/debug-attach-pid.png" border="false" alt-text="Screenshot of a command window that shows inference server logs. In one log statement, the process ID of the azmlinfsrv command is highlighted." lightbox="media/how-to-inference-server-http/debug-attach-pid.png":::
 
       Be sure to locate the ID of the `azmlinfsrv` process, not the `gunicorn` process.
 
@@ -232,7 +232,7 @@ The following procedure runs the inference server locally with [sample files](ht
 
    During deployment, the `AZUREML_MODEL_DIR` variable is defined to store the path to the model folder. You specify that value in the `model_dir` parameter. When the scoring script runs, it retrieves the value from the `AZUREML_MODEL_DIR` variable.
 
-   In this case, use the current directory, `./`, as the `model_dir` value, because the scoring script specifies the subdirectory as `model/sklearn\_regression\_model.pkl`.
+   In this case, use the current directory, `./`, as the `model_dir` value, because the scoring script specifies the subdirectory as `model/sklearn_regression_model.pkl`.
 
    ```bash
    azmlinfsrv --entry_script ./onlinescoring/score.py --model_dir ./
@@ -266,12 +266,12 @@ The inference server accepts the following parameters:
 
 | Parameter | Required | Default | Description |
 | --- | --- | :---: | --- |
-| `entry_script`                    | True     | N/A   | Identifies the relative or absolute path to the scoring script. |
-| `model_dir`                       | False    | N/A   | Identifies the relative or absolute path to the directory that holds the model used for inferencing. |
-| `port`                            | False    | 5001  | Specifies the serving port of the inference server. |
-| `worker_count`                    | False    | 1     | Provides the number of worker threads to process concurrent requests. |
-| `appinsights_instrumentation_key` | False    | N/A   | Provides the instrumentation key for the instance of Application Insights where the logs are published. |
-| `access_control_allow_origins`    | False    | N/A   | Turns on cross-origin resource sharing (CORS) for the specified origins, where multiple origins are separated by a comma (,), such as `microsoft.com, bing.com`. |
+| `entry_script`                    | True     | N/A   | Identifies the relative or absolute path to the scoring script |
+| `model_dir`                       | False    | N/A   | Identifies the relative or absolute path to the directory that holds the model used for inferencing |
+| `port`                            | False    | 5001  | Specifies the serving port of the inference server |
+| `worker_count`                    | False    | 1     | Provides the number of worker threads to process concurrent requests |
+| `appinsights_instrumentation_key` | False    | N/A   | Provides the instrumentation key for the instance of Application Insights where the logs are published |
+| `access_control_allow_origins`    | False    | N/A   | Turns on cross-origin resource sharing (CORS) for the specified origins, where multiple origins are separated by a comma (,), such as `microsoft.com, bing.com` |
 
 ## Explore inference server request processing
 
@@ -290,7 +290,7 @@ The following steps demonstrate how the inference server, `azmlinfsrv`, handles 
 
 1. Your entry script receives the request. The entry script makes an inference call to the loaded model and returns a response.
 
-:::image type="content" source="./media/how-to-inference-server-http/inference-server-architecture.png" border="false" alt-text="Diagram that shows how the inference server processes incoming requests." lightbox="./media/how-to-inference-server-http/inference-server-architecture.png":::
+:::image type="content" source="./media/how-to-inference-server-http/inference-server-architecture.png" border="false" alt-text="Diagram that shows how the inference server starts and how a request flows to a Flask worker app and then to user code." lightbox="./media/how-to-inference-server-http/inference-server-architecture.png":::
 
 ## Explore inference server logs
 
@@ -334,7 +334,7 @@ Score:          POST  127.0.0.1:<port>/score
 <logs>
 ```
 
-For example, when you run the inference server by taking the [end-to-end example](#use-an-end-to-end-example) steps, the log displays the following information:
+For example, when you run the inference server by taking the [end-to-end example](#use-an-end-to-end-example) steps, the logs contain the following information:
 
 ```console
 Azure ML Inferencing HTTP server v1.2.2
@@ -381,13 +381,13 @@ All logs from the inference server, except the launcher script, present data in 
 
 `<UTC-time> <level> [<process-ID>] <logger-name> - <message>`
 
-The entry consists of the following components:
+Each entry consists of the following components:
 
-- `<UTC-time>`: The time when the entry is entered into the log.
-- `<level>`: The first character of the [logging level](https://docs.python.org/3/library/logging.html#logging-levels) for the entry, such as `E` for ERROR, `I` for INFO, and so on.
-- `<process-ID>`: The ID of the process associated with the entry. 
-- `<logger-name>`: The name of the resource associated with the log entry.
-- `<message>`: The contents of the log message.
+- `<UTC-time>`: The time when the entry is entered into the log
+- `<level>`: The first character of the [logging level](https://docs.python.org/3/library/logging.html#logging-levels) for the entry, such as `E` for ERROR, `I` for INFO, and so on
+- `<process-ID>`: The ID of the process associated with the entry
+- `<logger-name>`: The name of the resource associated with the log entry
+- `<message>`: The contents of the log message
 
 There are six levels of logging in Python. Each level has an assigned numeric value according to its severity:
 
