@@ -98,7 +98,7 @@ When you're connecting with a system-assigned managed identity, the only change 
 Here's an example using the [Create Data Source](/rest/api/searchservice/data-sources/create) REST API that exercises the _recommended_ approach.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2024-07-01
+POST https://[service name].search.windows.net/datasources?api-version=2024-11-01-preview
 {
     "name": "my-cosmosdb-ds",
     "type": "cosmosdb",
@@ -110,7 +110,7 @@ POST https://[service name].search.windows.net/datasources?api-version=2024-07-0
 ```
 
 >[!NOTE]
-> If the `IdentityAuthType` property is not part of the connection string, then Azure AI Search defaults to the _legacy_ approach to ensure backward compatibility.
+> If the `IdentityAuthType` property isn't part of the connection string, then Azure AI Search defaults to the _legacy_ approach to ensure backward compatibility.
 
 #### Connect through user-assigned identity
 
@@ -119,8 +119,7 @@ You need to add an "identity" property to the data source definition, where you 
 Here's an example using user-assigned identity via the _recommended_ approach.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2024-07-01
-
+POST https://[service name].search.windows.net/datasources?api-version=2024-11-01-preview
 {
     "name": "[my-cosmosdb-ds]",
     "type": "cosmosdb",
@@ -150,7 +149,7 @@ Follow the same steps as before to assign the appropriate roles on the control p
 Here's an example to connect to MongoDB collections using system-assigned identity via the REST API
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2024-07-01
+POST https://[service name].search.windows.net/datasources?api-version=2024-11-01-preview
 {
     "name": "my-cosmosdb-ds",
     "type": "cosmosdb",
@@ -162,11 +161,10 @@ POST https://[service name].search.windows.net/datasources?api-version=2024-07-0
 }
 ```
 
-Here's an example to connect to Gremline graphs using user-assigned identity.
+Here's an example to connect to Gremlin graphs using user-assigned identity.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2024-07-01
-
+POST https://[service name].search.windows.net/datasources?api-version=2024-11-01-preview
 {
     "name": "[my-cosmosdb-ds]",
     "type": "cosmosdb",
