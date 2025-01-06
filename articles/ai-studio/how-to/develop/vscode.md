@@ -84,6 +84,10 @@ AI app templates are linked from the right side of the **Code** tab of your proj
 
 To provision an entirely new set of resources, including a new hub and project, and deploy these sample applications, you can use the [Azure Developer CLI](/azure/developer/azure-developer-cli/) (AZD) in your local development environment. 
 
+## Use network isolation
+
+If your Azure AI Foundry project is configured for network isolation you may need to open ports to the internet, For more information, visit [How to configure network isolation](../configure-managed-network.md#scenario-use-visual-studio-code).
+
 ## Remarks
 
 If you plan to work across multiple code and data directories, or multiple repositories, you can use the split root file explorer feature in VS Code. To try this feature, follow these steps:
