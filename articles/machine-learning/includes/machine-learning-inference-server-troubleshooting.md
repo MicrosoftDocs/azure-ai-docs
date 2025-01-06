@@ -23,7 +23,7 @@ Follow these steps to address issues with installed packages:
    - The `flask` package is listed as a dependency in the inference server package. The best approach is to allow the inference server to install the `flask` package.
    - When the inference server is configured to support new versions of Flask, the inference server automatically receives the package updates as they become available.
 
-### Check inference server version
+### Check the inference server version
 
 The `azureml-inference-server-http` server package is published to PyPI. The [PyPI page](https://pypi.org/project/azureml-inference-server-http/) lists the changelog and all versions of the package.
 
