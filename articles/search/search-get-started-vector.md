@@ -30,29 +30,38 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
     - You can use the *Free* tier for most of this quickstart, but *Basic* or higher is recommended for larger data files. 
     - To run the query example that invokes [semantic reranking](semantic-search-overview.md), your search service must be the *Basic* tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
-- Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.rest](https://raw.githubusercontent.com/Azure-Samples/azure-search-rest-samples/refs/heads/main/Quickstart-vectors/az-search-vector-quickstart.rest) file into a new file in Visual Studio Code. Save the file with a `.rest` or `.http` extension. For example, `az-search-vector-quickstart.rest`. This file contains the REST API calls you run in this quickstart.
+- Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.rest](https://raw.githubusercontent.com/Azure-Samples/azure-search-rest-samples/refs/heads/main/Quickstart-vectors/az-search-vector-quickstart.rest) file into a new file in Visual Studio Code. This file contains the REST API calls you run in this quickstart. Save the file with a `.rest` or `.http` extension. For example, `az-search-vector-quickstart.rest`. You can also start a new file on your local system and create requests manually by using the instructions in this article.
 
-## Download files
+## Retrieve resource information
 
-[Download a REST sample](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-vectors) from GitHub to send the requests in this quickstart. For more information, see [Downloading files from GitHub](https://docs.github.com/get-started/start-your-journey/downloading-files-from-github).
+Requests to the search endpoint must be authenticated and authorized. You can use API keys or roles for this task. We recommend [using a keyless connection via Microsoft Entra ID](search-get-started-rbac.md).
 
-You can also start a new file on your local system and create requests manually by using the instructions in this article.
-
-## Get a search endpoint and an API key
-
-You can find the search service endpoint and API keys in the Azure portal. You're pasting these values into a `.rest` or `.http` file in the next step.
-
-Requests to the search endpoint must be authenticated and authorized. You can use API keys or roles for this task. Keys are easier to start with, but roles are more secure. Although we use API keys for this quickstart, we recommend [switching to a keyless connection](search-get-started-rbac.md).
-
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch).
 
 1. On the **Overview** home page, find the URL. An example endpoint might look like `https://mydemo.search.windows.net`. 
 
    :::image type="content" source="media/search-get-started-rest/get-endpoint.png" lightbox="media/search-get-started-rest/get-endpoint.png" alt-text="Screenshot of the URL property on the overview page.":::
 
+
+#### [Microsoft Entra ID](#tab/keyless)
+
+Follow the steps in the [keyless quickstart](./search-get-started-rbac.md) to get your Microsoft Entra token. 
+
+You get the token when you run the `az account get-access-token` command in step 3 of the previous quickstart.
+
+```bash
+az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
+```
+
+#### [API key](#tab/api-key)
+
+1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch).
+
 1. Select **Settings** > **Keys**. Either **API keys** or **Both** must be enabled. [Admin API keys](search-security-api-keys.md) are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
 
    :::image type="content" source="media/search-get-started-rest/get-api-key.png" lightbox="media/search-get-started-rest/get-api-key.png" alt-text="Screenshot that shows the API keys in the Azure portal.":::
+
+---
 
 ## Create a vector index
 
