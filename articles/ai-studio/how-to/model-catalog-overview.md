@@ -165,7 +165,7 @@ Pay-per-token billing is available only to users whose Azure subscription belong
 
 ### Network isolation for models deployed via serverless APIs
 
-Managed computes for models deployed as serverless APIs follow the public network access flag setting of the Azure AI Foundry hub that has the project in which the deployment exists. To help secure your managed compute, disable the public network access flag on your Azure AI Foundry hub. You can help secure inbound communication from a client to your managed compute by using a private endpoint for the hub.
+Endpoints for models deployed as serverless APIs follow the public network access flag setting of the Azure AI Foundry hub that has the project in which the deployment exists. To help secure your serverless API endpoint, disable the public network access flag on your Azure AI Foundry hub. You can help secure inbound communication from a client to your endpoint by using a private endpoint for the hub.
 
 To set the public network access flag for the Azure AI Foundry hub:
 
