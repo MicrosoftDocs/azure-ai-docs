@@ -17,7 +17,7 @@ One of the most important aspects of learning a new language is speaking and lis
 
 ## Pronunciation assessment
 
-The [pronunciation assessment](pronunciation-assessment-tool.md) feature provides comprehensive feedback to users on the accuracy, fluency, prosody, vocabulary usage, grammar correctness, and topic understanding of their speech. Language learners can apply the assessment results to speak and present in a new language with confidence. For information about availability of pronunciation assessment, see [supported languages](language-support.md?tabs=pronunciation-assessment) and [available regions](regions.md#speech-service).
+The [pronunciation assessment](pronunciation-assessment-tool.md) feature provides comprehensive feedback to users on the accuracy, fluency, prosody, vocabulary usage, grammar correctness, and topic understanding of their speech. Language learners can apply the assessment results to speak and present in a new language with confidence. For information about availability of pronunciation assessment, see [supported languages](language-support.md?tabs=pronunciation-assessment) and [available regions](regions.md#regions).
 
 The Pronunciation Assessment feature offers several benefits for educators, service providers, and students. 
 - For educators, it provides instant feedback, eliminates the need for time-consuming oral language assessments, and offers consistent and comprehensive assessments. 
