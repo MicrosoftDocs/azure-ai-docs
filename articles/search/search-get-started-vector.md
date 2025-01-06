@@ -26,11 +26,11 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 - [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
-- [Azure AI Search](search-what-is-azure-search.md), in any region and on any tier. You can use the Free tier for this quickstart, but Basic or higher is recommended for larger data files. [Create](search-create-service-portal.md) or [find an existing Azure AI Search resource](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription.
+- [Azure AI Search](search-what-is-azure-search.md), in any region and on any tier. [Create](search-create-service-portal.md) or [find an existing Azure AI Search resource](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch) under your current subscription.
+    - You can use the *Free* tier for most of this quickstart, but *Basic* or higher is recommended for larger data files. 
+    - To run the query example that invokes [semantic reranking](semantic-search-overview.md), your search service must be the *Basic* tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
-  Most existing services support vector search. For a small subset of services created prior to January 2019, an index that contains vector fields fails on creation. In this situation, a new service must be created.
-
-- Optionally, to run the query example that invokes [semantic reranking](semantic-search-overview.md), your search service must be the Basic tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md).
+- Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.rest](https://raw.githubusercontent.com/Azure-Samples/azure-search-rest-samples/refs/heads/main/Quickstart-vectors/az-search-vector-quickstart.rest) file into a new file in Visual Studio Code. Save the file with a `.rest` or `.http` extension. For example, `az-search-vector-quickstart.rest`. This file contains the REST API calls you run in this quickstart.
 
 ## Download files
 
@@ -56,29 +56,36 @@ Requests to the search endpoint must be authenticated and authorized. You can us
 
 ## Create a vector index
 
-[Create Index (REST)](/rest/api/searchservice/indexes/create) creates a vector index and sets up the physical data structures on your search service.
+You use the [Create Index](/rest/api/searchservice/indexes/create) REST API to create a vector index and set up the physical data structures on your search service.
 
-The index schema is organized around hotel content. Sample data consists of vector and nonvector names and descriptions of seven fictitious hotels. This schema includes configurations for vector indexing and queries, and for semantic ranking.
+The index schema in this example is organized around hotel content. Sample data consists of vector and nonvector names and descriptions of fictitious hotels. This schema includes configurations for vector indexing and queries, and for semantic ranking.
 
-1. Create a new text file in Visual Studio Code.
+#### [Microsoft Entra ID](#tab/keyless)
 
-1. At the top of the file, add variables for the values you collected earlier.
+1. In Visual Studio Code, create a new file with a `.rest` or `.http` file extension. For example, `az-search-vector-quickstart.rest`. Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.rest](https://raw.githubusercontent.com/Azure-Samples/azure-search-rest-samples/refs/heads/main/Quickstart-vectors/az-search-vector-quickstart.rest) file into this new file. If you already did this in the [prerequisites](#prerequisites) section, you can skip this step.
+
+1. At the top of the file, replace the placeholder values with your search service URL and Microsoft Entra token.
+
+    > [!IMPORTANT]
+    > For the **recommended** keyless authentication via Microsoft Entra ID, you need to replace `@apiKey` with `@token` in the request headers.
 
    ```http
    @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
-   @apiKey = PUT-YOUR-ADMIN-KEY-HERE
+   @token = PUT-YOUR-MICROSOFT-ENTRA-TOKEN-HERE
    ```
 
-1. Save the file with a `.rest` or `.http` file extension.
 
-1. Paste in the following example to create the `hotels-vector-quickstart` index on your search service.
+1. Paste in the following example to create the `hotels-vector-quickstart` index on your search service. This HTTP request is an excerpt from the example [that you downloaded in the prerequisites](#prerequisites) section.
+    
+    > [!IMPORTANT]
+    > For the **recommended** keyless authentication via Microsoft Entra ID, you need to replace `Authorization: Bearer {{token}}` with `Authorization: Bearer {{token}}` in the request headers.
 
     ```http
     ### Create a new index
-    POST {{baseUrl}}/indexes?api-version=2023-11-01  HTTP/1.1
-        Content-Type: application/json
-        api-key: {{apiKey}}
-    
+    POST  {{baseUrl}}/indexes?api-version=2023-11-01  HTTP/1.1
+    Content-Type: application/json
+    Authorization: Bearer {{token}}
+
     {
         "name": "hotels-vector-quickstart",
         "fields": [
@@ -126,6 +133,24 @@ The index schema is organized around hotel content. Sample data consists of vect
                 "dimensions": 1536,
                 "vectorSearchProfile": "my-vector-profile"
             },
+                    {
+                "name": "Description_fr", 
+                "type": "Edm.String",
+                "searchable": true, 
+                "filterable": false, 
+                "retrievable": true, 
+                "sortable": false, 
+                "facetable": false,
+                "analyzer": "en.microsoft"
+            },
+            {
+                "name": "Description_frvector",
+                "type": "Collection(Edm.Single)",
+                "searchable": true,
+                "retrievable": true,
+                "dimensions": 1536,
+                "vectorSearchProfile": "my-vector-profile"
+            },
             {
                 "name": "Category", 
                 "type": "Edm.String",
@@ -144,16 +169,55 @@ The index schema is organized around hotel content. Sample data consists of vect
                 "sortable": false,
                 "facetable": true
             },
+                    {
+                "name": "ParkingIncluded",
+                "type": "Edm.Boolean",
+                "searchable": false,
+                "filterable": true,
+                "retrievable": true,
+                "sortable": true,
+                "facetable": true
+            },
+            {
+                "name": "LastRenovationDate",
+                "type": "Edm.DateTimeOffset",
+                "searchable": false,
+                "filterable": true,
+                "retrievable": true,
+                "sortable": true,
+                "facetable": true
+            },
+            {
+                "name": "Rating",
+                "type": "Edm.Double",
+                "searchable": false,
+                "filterable": true,
+                "retrievable": true,
+                "sortable": true,
+                "facetable": true
+            },
             {
                 "name": "Address", 
                 "type": "Edm.ComplexType",
                 "fields": [
+                    {
+                        "name": "StreetAddress", "type": "Edm.String",
+                        "searchable": true, "filterable": false, "retrievable": true, "sortable": false, "facetable": false
+                    },
                     {
                         "name": "City", "type": "Edm.String",
                         "searchable": true, "filterable": true, "retrievable": true, "sortable": true, "facetable": true
                     },
                     {
                         "name": "StateProvince", "type": "Edm.String",
+                        "searchable": true, "filterable": true, "retrievable": true, "sortable": true, "facetable": true
+                    },
+                    {
+                        "name": "PostalCode", "type": "Edm.String",
+                        "searchable": true, "filterable": true, "retrievable": true, "sortable": true, "facetable": true
+                    },
+                    {
+                        "name": "Country", "type": "Edm.String",
                         "searchable": true, "filterable": true, "retrievable": true, "sortable": true, "facetable": true
                     }
                 ]
@@ -180,6 +244,23 @@ The index schema is organized around hotel content. Sample data consists of vect
                         "efSearch": 500,
                         "metric": "cosine"
                     }
+                },
+                {
+                    "name": "my-hnsw-vector-config-2",
+                    "kind": "hnsw",
+                    "hnswParameters": 
+                    {
+                        "m": 4,
+                        "metric": "euclidean"
+                    }
+                },
+                {
+                    "name": "my-eknn-vector-config",
+                    "kind": "exhaustiveKnn",
+                    "exhaustiveKnnParameters": 
+                    {
+                        "metric": "cosine"
+                    }
                 }
             ],
             "profiles": [      
@@ -201,7 +282,7 @@ The index schema is organized around hotel content. Sample data consists of vect
                             { "fieldName": "Description" }
                         ],
                         "prioritizedKeywordsFields": [
-                            { "fieldName": "Tags" }
+                            { "fieldName": "Category" }
                         ]
                     }
                 }
@@ -210,9 +291,344 @@ The index schema is organized around hotel content. Sample data consists of vect
     }
     ```
 
-1. Save the file again, and then select **Send request**. You should have an `HTTP/1.1 201 Created` response. The response body should include the JSON representation of the index schema.
+1. Select **Send request**. You should have an `HTTP/1.1 201 Created` response. 
 
-    Key takeaways about this REST API:
+
+#### [API key](#tab/api-key)
+
+1. In Visual Studio Code, create a new file with a `.rest` or `.http` file extension. For example, `az-search-vector-quickstart.rest`.
+
+1. At the top of the file, add variables for the values you collected earlier.
+
+   ```http
+   @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
+   @apiKey = PUT-YOUR-ADMIN-KEY-HERE
+   ```
+
+1. Paste in the following example to create the `hotels-vector-quickstart` index on your search service. This HTTP request is an excerpt from the example [that you downloaded in the prerequisites](#prerequisites) section.
+
+    ```http
+    ### Create a new index
+    POST  {{baseUrl}}/indexes?api-version=2023-11-01  HTTP/1.1
+    Content-Type: application/json
+    api-key: {{apiKey}}
+
+    {
+        "name": "hotels-vector-quickstart",
+        "fields": [
+            {
+                "name": "HotelId", 
+                "type": "Edm.String",
+                "searchable": false, 
+                "filterable": true, 
+                "retrievable": true, 
+                "sortable": false, 
+                "facetable": false,
+                "key": true
+            },
+            {
+                "name": "HotelName", 
+                "type": "Edm.String",
+                "searchable": true, 
+                "filterable": false, 
+                "retrievable": true, 
+                "sortable": true, 
+                "facetable": false
+            },
+            {
+                "name": "HotelNameVector",
+                "type": "Collection(Edm.Single)",
+                "searchable": true,
+                "retrievable": true,
+                "dimensions": 1536,
+                "vectorSearchProfile": "my-vector-profile"
+            },
+            {
+                "name": "Description", 
+                "type": "Edm.String",
+                "searchable": true, 
+                "filterable": false, 
+                "retrievable": true, 
+                "sortable": false, 
+                "facetable": false
+            },
+            {
+                "name": "DescriptionVector",
+                "type": "Collection(Edm.Single)",
+                "searchable": true,
+                "retrievable": true,
+                "dimensions": 1536,
+                "vectorSearchProfile": "my-vector-profile"
+            },
+                    {
+                "name": "Description_fr", 
+                "type": "Edm.String",
+                "searchable": true, 
+                "filterable": false, 
+                "retrievable": true, 
+                "sortable": false, 
+                "facetable": false,
+                "analyzer": "en.microsoft"
+            },
+            {
+                "name": "Description_frvector",
+                "type": "Collection(Edm.Single)",
+                "searchable": true,
+                "retrievable": true,
+                "dimensions": 1536,
+                "vectorSearchProfile": "my-vector-profile"
+            },
+            {
+                "name": "Category", 
+                "type": "Edm.String",
+                "searchable": true, 
+                "filterable": true, 
+                "retrievable": true, 
+                "sortable": true, 
+                "facetable": true
+            },
+            {
+                "name": "Tags",
+                "type": "Collection(Edm.String)",
+                "searchable": true,
+                "filterable": true,
+                "retrievable": true,
+                "sortable": false,
+                "facetable": true
+            },
+                    {
+                "name": "ParkingIncluded",
+                "type": "Edm.Boolean",
+                "searchable": false,
+                "filterable": true,
+                "retrievable": true,
+                "sortable": true,
+                "facetable": true
+            },
+            {
+                "name": "LastRenovationDate",
+                "type": "Edm.DateTimeOffset",
+                "searchable": false,
+                "filterable": true,
+                "retrievable": true,
+                "sortable": true,
+                "facetable": true
+            },
+            {
+                "name": "Rating",
+                "type": "Edm.Double",
+                "searchable": false,
+                "filterable": true,
+                "retrievable": true,
+                "sortable": true,
+                "facetable": true
+            },
+            {
+                "name": "Address", 
+                "type": "Edm.ComplexType",
+                "fields": [
+                    {
+                        "name": "StreetAddress", "type": "Edm.String",
+                        "searchable": true, "filterable": false, "retrievable": true, "sortable": false, "facetable": false
+                    },
+                    {
+                        "name": "City", "type": "Edm.String",
+                        "searchable": true, "filterable": true, "retrievable": true, "sortable": true, "facetable": true
+                    },
+                    {
+                        "name": "StateProvince", "type": "Edm.String",
+                        "searchable": true, "filterable": true, "retrievable": true, "sortable": true, "facetable": true
+                    },
+                    {
+                        "name": "PostalCode", "type": "Edm.String",
+                        "searchable": true, "filterable": true, "retrievable": true, "sortable": true, "facetable": true
+                    },
+                    {
+                        "name": "Country", "type": "Edm.String",
+                        "searchable": true, "filterable": true, "retrievable": true, "sortable": true, "facetable": true
+                    }
+                ]
+            },
+            {
+                "name": "Location",
+                "type": "Edm.GeographyPoint",
+                "searchable": false, 
+                "filterable": true, 
+                "retrievable": true, 
+                "sortable": true, 
+                "facetable": false
+            }
+        ],
+        "vectorSearch": {
+            "algorithms": [
+                {
+                    "name": "my-hnsw-vector-config-1",
+                    "kind": "hnsw",
+                    "hnswParameters": 
+                    {
+                        "m": 4,
+                        "efConstruction": 400,
+                        "efSearch": 500,
+                        "metric": "cosine"
+                    }
+                },
+                {
+                    "name": "my-hnsw-vector-config-2",
+                    "kind": "hnsw",
+                    "hnswParameters": 
+                    {
+                        "m": 4,
+                        "metric": "euclidean"
+                    }
+                },
+                {
+                    "name": "my-eknn-vector-config",
+                    "kind": "exhaustiveKnn",
+                    "exhaustiveKnnParameters": 
+                    {
+                        "metric": "cosine"
+                    }
+                }
+            ],
+            "profiles": [      
+                {
+                    "name": "my-vector-profile",
+                    "algorithm": "my-hnsw-vector-config-1"
+                }
+          ]
+        },
+        "semantic": {
+            "configurations": [
+                {
+                    "name": "my-semantic-config",
+                    "prioritizedFields": {
+                        "titleField": {
+                            "fieldName": "HotelName"
+                        },
+                        "prioritizedContentFields": [
+                            { "fieldName": "Description" }
+                        ],
+                        "prioritizedKeywordsFields": [
+                            { "fieldName": "Category" }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+    ```
+
+1. Select **Send request**. You should have an `HTTP/1.1 201 Created` response. 
+
+---
+
+The response body should include the JSON representation of the index schema.
+
+    ```json
+    {
+      "@odata.context": "https://contoso-search-centralus.search.windows.net/$metadata#indexes/$entity",
+      "@odata.etag": "\"0x8DD2E70E6C36D8E\"",
+      "name": "hotels-vector-quickstart",
+      "defaultScoringProfile": null,
+      "fields": [
+        {
+          "name": "HotelId",
+          "type": "Edm.String",
+          "searchable": false,
+          "filterable": true,
+          "retrievable": true,
+          "sortable": false,
+          "facetable": false,
+          "key": true,
+          "indexAnalyzer": null,
+          "searchAnalyzer": null,
+          "analyzer": null,
+          "dimensions": null,
+          "vectorSearchProfile": null,
+          "synonymMaps": []
+        },
+        [MORE FIELD DEFINITIONS OMITTED FOR BREVITY]
+      ],
+      "scoringProfiles": [],
+      "corsOptions": null,
+      "suggesters": [],
+      "analyzers": [],
+      "tokenizers": [],
+      "tokenFilters": [],
+      "charFilters": [],
+      "encryptionKey": null,
+      "similarity": {
+        "@odata.type": "#Microsoft.Azure.Search.BM25Similarity",
+        "k1": null,
+        "b": null
+      },
+      "vectorSearch": {
+        "algorithms": [
+          {
+            "name": "my-hnsw-vector-config-1",
+            "kind": "hnsw",
+            "hnswParameters": {
+              "metric": "cosine",
+              "m": 4,
+              "efConstruction": 400,
+              "efSearch": 500
+            },
+            "exhaustiveKnnParameters": null
+          },
+          {
+            "name": "my-hnsw-vector-config-2",
+            "kind": "hnsw",
+            "hnswParameters": {
+              "metric": "euclidean",
+              "m": 4,
+              "efConstruction": 400,
+              "efSearch": 500
+            },
+            "exhaustiveKnnParameters": null
+          },
+          {
+            "name": "my-eknn-vector-config",
+            "kind": "exhaustiveKnn",
+            "hnswParameters": null,
+            "exhaustiveKnnParameters": {
+              "metric": "cosine"
+            }
+          }
+        ],
+        "profiles": [
+          {
+            "name": "my-vector-profile",
+            "algorithm": "my-hnsw-vector-config-1"
+          }
+        ]
+      },
+      "semantic": {
+        "defaultConfiguration": null,
+        "configurations": [
+          {
+            "name": "my-semantic-config",
+            "prioritizedFields": {
+              "titleField": {
+                "fieldName": "HotelName"
+              },
+              "prioritizedContentFields": [
+                {
+                  "fieldName": "Description"
+                }
+              ],
+              "prioritizedKeywordsFields": [
+                {
+                  "fieldName": "Category"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+    ```
+
+    Key takeaways about the [Create Index](/rest/api/searchservice/indexes/create) REST API:
 
     - The `fields` collection includes a required key field and text and vector fields (such as `Description` and `DescriptionVector`) for text and vector search. Colocating vector and nonvector fields in the same index enables hybrid queries. For instance, you can combine filters, text search with semantic ranking, and vectors into a single query operation.
 
@@ -220,7 +636,7 @@ The index schema is organized around hotel content. Sample data consists of vect
 
     - The `vectorSearch` section is an array of approximate nearest neighbor algorithm configurations and profiles. Supported algorithms include hierarchical navigable small world and exhaustive k-nearest neighbor. For more information, see [Relevance scoring in vector search](vector-search-ranking.md).
 
-    - [Optional]: The `semantic` configuration enables reranking of search results. You can rerank results in queries of type `semantic` for string fields that are specified in the configuration. To learn more, see [Semantic ranking overview](semantic-search-overview.md).
+    - The (optional) `semantic` configuration enables reranking of search results. You can rerank results in queries of type `semantic` for string fields that are specified in the configuration. To learn more, see [Semantic ranking overview](semantic-search-overview.md).
 
 ## Upload documents
 
