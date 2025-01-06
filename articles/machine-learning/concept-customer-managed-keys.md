@@ -17,13 +17,7 @@ monikerRange: 'azureml-api-2 || azureml-api-1'
 
 Azure Machine Learning is built on top of multiple Azure services. Although the stored data is encrypted through encryption keys that Microsoft provides, you can enhance security by also providing your own (customer-managed) keys. The keys that you provide are stored in Azure Key Vault. Your data is can be stored on a set of other resources that you manage in your Azure subscription, or [(preview) server-side on Microsoft managed resources](#preview-service-side-encryption-of-metadata).
 
-In addition to customer-managed keys (CMK), Azure Machine Learning provides an [hbi_workspace flag](/python/api/azure-ai-ml/azure.ai.ml.entities.workspace). Enabling this flag reduces the amount of data that Microsoft collects for diagnostic purposes and enables [extra encryption in Microsoft-managed environments](/azure/security/fundamentals/encryption-atrest). This flag also enables the following behaviors:
-
-* Starts encrypting the local scratch disk in your Azure Machine Learning compute cluster, if you didn't create any previous clusters in that subscription. Otherwise, you need to raise a support ticket to enable encryption of the scratch disk for your compute clusters.
-* Cleans up your local scratch disk between jobs.
-* Securely passes credentials for your storage account, container registry, and Secure Shell (SSH) account from the execution layer to your compute clusters by using your key vault.
-
-The `hbi_workspace` flag doesn't affect encryption in transit. It affects only encryption at rest.
+In addition to customer-managed keys (CMK), Azure Machine Learning provides an [high business impact configuration](/python/api/azure-ai-ml/azure.ai.ml.entities.workspace) for highly sensitive data workloads. Enabling this configuration reduces the amount of data that Microsoft collects for diagnostic purposes and enables [extra encryption in Microsoft-managed environments](/azure/security/fundamentals/encryption-atrest). 
 
 ## Prerequisites
 
@@ -136,7 +130,17 @@ For templates that create a workspace with service-side encryption of metadata, 
 - [Bicep template for creating default workspace](https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/machine-learning-workspace-cmk-service-side-encryption).
 - [Bicep template for creating hub workspace](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-cmk-service-side-encryption).
   
-## hbi_workspace flag
+## High business impact (HBI) configuration
+
+In standard workspace configurations, Azure Machine Learning collects diagnostic information for performance monitoring and improvement, as well as the troubleshooting of your compute clusters. For example, when two jobs are run on the same compute cluster using the same docker image, then the same image will be reusable between jobs without having to be rebuild or pulled twice reducing job start times.
+
+When handling highly sensitive data workloads, you may opt-out from the above behavior by setting the `hbi` flag on your workspace. This flag enables the following behaviors:
+* It reduces the amount of data that Microsoft collects for diagnostic purposes from your compute clusters and enables [extra encryption in Microsoft-managed environments](/azure/security/fundamentals/encryption-atrest). 
+* Starts encrypting the local scratch disk in your Azure Machine Learning compute cluster. This behavior is only enforced if you didn't create any previous clusters in that subscription. Otherwise, you are required to raise a support ticket to enable encryption of the scratch disk for your compute clusters.
+* Cleans up your local scratch disk between jobs. For example, this cleans up cached docker images and may affect job startup speed.
+* Passes credentials for your storage account, container registry, and Secure Shell (SSH) account from the execution layer to your compute clusters by using your Azure key vault.
+
+Note that `hbi_workspace` flag doesn't affect encryption in transit. It affects only encryption at rest.
 
 You can set the `hbi_workspace` flag only when you create a workspace. You can't change it for an existing workspace.
 
