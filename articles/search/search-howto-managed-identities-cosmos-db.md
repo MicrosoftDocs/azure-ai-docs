@@ -27,9 +27,9 @@ You can use a system-assigned managed identity or a user-assigned managed identi
 
 Azure AI Search supports two mechanisms to connect to Azure Cosmos DB using managed identity. 
 
-* The _legacy_ approach requires configuring the managed identity to have reader permissions on the management plane of the target Azure Cosmos DB account. Azure AI Search utilizes that identity to fetch the account keys of Cosmos DB account in the background to access the data. This approach won't work if the Cosmos DB account has `"disableLocalAuth": true`.
+* The _legacy_ approach requires configuring the managed identity to have reader permissions on the control plane of the target Azure Cosmos DB account. Azure AI Search utilizes that identity to fetch the account keys of Cosmos DB account in the background to access the data. This approach won't work if the Cosmos DB account has `"disableLocalAuth": true`.
 
-* The _modern_ approach requires configuring the managed identity appropriate roles on the management and data plane of the target Azure Cosmos DB account. Azure AI Search will then request an access token to access the data in the Cosmos DB account. This approach works even if the Cosmos DB account has `"disableLocalAuth": true`.
+* The _modern_ approach requires configuring the managed identity appropriate roles on the control and data plane of the target Azure Cosmos DB account. Azure AI Search will then request an access token to access the data in the Cosmos DB account. This approach works even if the Cosmos DB account has `"disableLocalAuth": true`.
 
 Indexers that connect to Azure Cosmos DB for NoSQL support both the _legacy_ and the _modern_ approach - the _modern_ approach is highly recommended.
 

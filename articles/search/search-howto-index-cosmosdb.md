@@ -149,7 +149,7 @@ Avoid port numbers in the endpoint URL. If you include the port number, the conn
 |`{ "connectionString" : "AccountEndpoint=https://<Cosmos DB account name>.documents.azure.com;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>`" }` |
 | You can get the connection string from the Azure Cosmos DB account page in the Azure portal by selecting **Keys** in the left navigation pane. Make sure to select a full connection string and not just a key. |
 
-| (Recommended approach) Managed identity connection string for NoSQL accounts |
+| (Modern approach) Managed identity connection string for NoSQL accounts |
 |------------------------------------------------------------------------------|
 |`{ "connectionString" : "ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.DocumentDB/databaseAccounts/<your cosmos db account name>/;(ApiKind=[api-kind];)/(IdentityAuthType=AccessToken)" }`|
 |This connection string, supported only for Azure Cosmos DB for NoSQL accounts, ensures that the search service will never use account keys (even in the background) when attempting to access data from Cosmos DB. This is recommended, as it works even if the NoSQL account has account keys disabled. For more information, see [Setting up an indexer connection to an Azure Cosmos DB database using a managed identity](search-howto-managed-identities-cosmos-db.md)|
