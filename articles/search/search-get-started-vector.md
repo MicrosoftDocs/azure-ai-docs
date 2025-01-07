@@ -30,7 +30,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
     - You can use the *Free* tier for most of this quickstart, but *Basic* or higher is recommended for larger data files. 
     - To run the query example that invokes [semantic reranking](semantic-search-overview.md), your search service must be the *Basic* tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
-- Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.http](https://raw.githubusercontent.com/Azure-Samples/azure-search-rest-samples/refs/heads/main/Quickstart-vectors/az-search-vector-quickstart.http) file into a new file in Visual Studio Code. This file contains the REST API calls you run in this quickstart. Save the file with a `.rest` or `.http` extension. For example, `az-search-vector-quickstart.http`. 
+- Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.rest](https://raw.githubusercontent.com/Azure-Samples/azure-search-rest-samples/refs/heads/main/Quickstart-vectors/az-search-vector-quickstart.rest) file into a new file in Visual Studio Code. This file contains the REST API calls you run in this quickstart. Save the file with a `.rest` or `.http` extension. For example, `az-search-vector-quickstart.rest`. 
 
 ## Retrieve resource information
 
@@ -77,7 +77,7 @@ The index schema in this example is organized around hotel content. Sample data 
 
 #### [Microsoft Entra ID](#tab/keyless)
 
-1. In Visual Studio Code, create a new file with a `.rest` or `.http` file extension. For example, `az-search-vector-quickstart.http`. Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.http](https://raw.githubusercontent.com/Azure-Samples/azure-search-rest-samples/refs/heads/main/Quickstart-vectors/az-search-vector-quickstart.http) file into this new file. If you already did this in the [prerequisites](#prerequisites) section, you can skip this step.
+1. In Visual Studio Code, create a new file with a `.rest` or `.http` file extension. For example, `az-search-vector-quickstart.rest`. Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.rest](https://raw.githubusercontent.com/Azure-Samples/azure-search-rest-samples/refs/heads/main/Quickstart-vectors/az-search-vector-quickstart.rest) file into this new file. If you already did this in the [prerequisites](#prerequisites) section, you can skip this step.
 
 1. At the top of the file, replace the placeholder values with your search service URL and Microsoft Entra token.
 
@@ -310,7 +310,7 @@ The index schema in this example is organized around hotel content. Sample data 
 
 #### [API key](#tab/api-key)
 
-1. In Visual Studio Code, create a new file with a `.rest` or `.http` file extension. For example, `az-search-vector-quickstart.http`. Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.http](https://raw.githubusercontent.com/Azure-Samples/azure-search-rest-samples/refs/heads/main/Quickstart-vectors/az-search-vector-quickstart.http) file into this new file. If you already did this in the [prerequisites](#prerequisites) section, you can skip this step.
+1. In Visual Studio Code, create a new file with a `.rest` or `.http` file extension. For example, `az-search-vector-quickstart.rest`. Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.rest](https://raw.githubusercontent.com/Azure-Samples/azure-search-rest-samples/refs/heads/main/Quickstart-vectors/az-search-vector-quickstart.rest) file into this new file. If you already did this in the [prerequisites](#prerequisites) section, you can skip this step.
 
 1. At the top of the file, replace the placeholder values with your search service URL and API key.
 
@@ -658,12 +658,12 @@ Creating and loading the index are separate steps. You created the index schema 
  
 In Azure AI Search, the index contains all searchable data and queries run on the search service. For REST calls, the data is provided as JSON documents. Use [Documents- Index REST API](/rest/api/searchservice/documents/) for this task. The URI is extended to include the `docs` collection and the `index` operation.
 
-1. In Visual Studio Code, open the `az-search-vector-quickstart.http` file you created earlier.
+1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you created earlier.
 
 1. Find the `### Upload documents` code block in the file. This block contains the request to upload documents to the `hotels-vector-quickstart` index on your search service.
 
     > [!IMPORTANT]
-    > The code in this example isn't runable. Several lines are removed for brevity. Use the code in your `az-search-vector-quickstart.http` file to run the request.
+    > The code in this example isn't runable. Several lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
     ```http
     ### Upload documents
@@ -796,6 +796,7 @@ In Azure AI Search, the index contains all searchable data and queries run on th
         ]
     }
     ```
+
 1. Select **Send request**. You should have an `HTTP/1.1 201 Created` response. The response body should include the JSON representation of the search documents.
 
 Key takeaways about the [Documents - Index REST API](/rest/api/searchservice/documents/) request:
@@ -824,12 +825,12 @@ The vector query string is semantically similar to the search string, but it inc
 
 ### Single vector search
 
-1. In Visual Studio Code, open the `az-search-vector-quickstart.http` file you created earlier.
+1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you created earlier.
 
 1. Find the `### Run a query` code block in the file. This block contains the request to query the search index.
 
     > [!IMPORTANT]
-    > The code in this example isn't runable. Several lines are removed for brevity. Use the code in your `az-search-vector-quickstart.http` file to run the request.
+    > The code in this example isn't runable. Several lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
     ```http
     ### Run a query
@@ -859,7 +860,6 @@ The vector query string is semantically similar to the search string, but it inc
     The vector query string is `classic lodging near running trails, eateries, retail`, which is vectorized into 1,536 embeddings for this query.
 
 1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
-   
 
 The response for the vector equivalent of `classic lodging near running trails, eateries, retail` includes seven results. Each result provides a search score and the fields listed in `select`. In a similarity search, the response always includes `k` results ordered by the value similarity score.
 
@@ -911,12 +911,12 @@ The response for the vector equivalent of `classic lodging near running trails, 
 
 You can add filters, but the filters are applied to the nonvector content in your index. In this example, the filter applies to the `Tags` field to filter out any hotels that don't provide free Wi-Fi.
 
-1. In Visual Studio Code, open the `az-search-vector-quickstart.http` file you created earlier.
+1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you created earlier.
 
 1. Find the `### Run a vector query with a filter` code block in the file. This block contains the request to query the search index.
 
     > [!IMPORTANT]
-    > The code in this example isn't runable. Several lines are removed for brevity. Use the code in your `az-search-vector-quickstart.http` file to run the request.
+    > The code in this example isn't runable. Several lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
     ```http
     ### Run a vector query with a filter
@@ -991,12 +991,12 @@ Hybrid search consists of keyword queries and vector queries in a single search 
 - **Search string**: `historic hotel walk to restaurants and shopping`
 - **Vector query string** (vectorized into a mathematical representation): `classic lodging near running trails, eateries, retail`
 
-1. In Visual Studio Code, open the `az-search-vector-quickstart.http` file you created earlier.
+1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you created earlier.
 
 1. Find the `### Run a hybrid query` code block in the file. This block contains the request to query the search index.
 
     > [!IMPORTANT]
-    > The code in this example isn't runable. Several lines are removed for brevity. Use the code in your `az-search-vector-quickstart.http` file to run the request.
+    > The code in this example isn't runable. Several lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
     ```http
     ### Run a hybrid query
@@ -1021,7 +1021,9 @@ Hybrid search consists of keyword queries and vector queries in a single search 
     }
     ```
 
-   Because this is a hybrid query, results are [ranked by Reciprocal Rank Fusion (RRF)](hybrid-search-ranking.md). RRF evaluates search scores of multiple search results, takes the inverse, and then merges and sorts the combined results. The `top` number of results are returned.
+1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
+   
+Because this is a hybrid query, results are [ranked by Reciprocal Rank Fusion (RRF)](hybrid-search-ranking.md). RRF evaluates search scores of multiple search results, takes the inverse, and then merges and sorts the combined results. The `top` number of results are returned.
 
 Review the response:
 
@@ -1068,87 +1070,87 @@ Review the response:
 }
 ```
 
-    Because RRF merges results, it helps to review the inputs. The following results are from only the full-text query. The top two results are Sublime Palace Hotel and History Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score.
+Because RRF merges results, it helps to review the inputs. The following results are from only the full-text query. The top two results are Sublime Palace Hotel and History Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score.
 
 ```json
-        {
-            "@search.score": 2.2626662,
-            "HotelName": "Sublime Palace Hotel",
-            "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace."
-        },
-        {
-            "@search.score": 0.86421645,
-            "HotelName": "Luxury Lion Resort",
-            "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort"
-            },
+{
+    "@search.score": 2.2626662,
+    "HotelName": "Sublime Palace Hotel",
+    "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace."
+},
+{
+    "@search.score": 0.86421645,
+    "HotelName": "Luxury Lion Resort",
+    "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort"
+},
 ```
 
 In the vector-only query, which uses HNSW for finding matches, the Sublime Palace Hotel drops to fourth position. Historic Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
 
 ```json
-    "value": [
-        {
-            "@search.score": 0.857736,
-            "HotelId": "48",
-            "HotelName": "Nordick's Valley Motel",
-            "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer.  Hiking? Wine Tasting? Exploring the caverns?  It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.",
-            "Category": "Boutique"
-        },
-        {
-            "@search.score": 0.8399129,
-            "HotelId": "49",
-            "HotelName": "Swirling Currents Hotel",
-            "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center.",
-            "Category": "Luxury"
-        },
-        {
-            "@search.score": 0.8383954,
-            "HotelId": "13",
-            "HotelName": "Luxury Lion Resort",
-            "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort",
-            "Category": "Resort and Spa"
-        },
-        {
-            "@search.score": 0.8254346,
-            "HotelId": "4",
-            "HotelName": "Sublime Palace Hotel",
-            "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.",
-            "Category": "Boutique"
-        },
-        {
-            "@search.score": 0.82380056,
-            "HotelId": "1",
-            "HotelName": "Stay-Kay City Hotel",
-            "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York.",
-            "Category": "Boutique"
-        },
-        {
-            "@search.score": 0.81514084,
-            "HotelId": "2",
-            "HotelName": "Old Century Hotel",
-            "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
-            "Category": "Boutique"
-        },
-        {
-            "@search.score": 0.8133763,
-            "HotelId": "3",
-            "HotelName": "Gastronomic Landscape Hotel",
-            "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
-            "Category": "Resort and Spa"
-        }
-    ]
+"value": [
+    {
+        "@search.score": 0.857736,
+        "HotelId": "48",
+        "HotelName": "Nordick's Valley Motel",
+        "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer.  Hiking? Wine Tasting? Exploring the caverns?  It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.",
+        "Category": "Boutique"
+    },
+    {
+        "@search.score": 0.8399129,
+        "HotelId": "49",
+        "HotelName": "Swirling Currents Hotel",
+        "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center.",
+        "Category": "Luxury"
+    },
+    {
+        "@search.score": 0.8383954,
+        "HotelId": "13",
+        "HotelName": "Luxury Lion Resort",
+        "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort",
+        "Category": "Resort and Spa"
+    },
+    {
+        "@search.score": 0.8254346,
+        "HotelId": "4",
+        "HotelName": "Sublime Palace Hotel",
+        "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.",
+        "Category": "Boutique"
+    },
+    {
+        "@search.score": 0.82380056,
+        "HotelId": "1",
+        "HotelName": "Stay-Kay City Hotel",
+        "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York.",
+        "Category": "Boutique"
+    },
+    {
+        "@search.score": 0.81514084,
+        "HotelId": "2",
+        "HotelName": "Old Century Hotel",
+        "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
+        "Category": "Boutique"
+    },
+    {
+        "@search.score": 0.8133763,
+        "HotelId": "3",
+        "HotelName": "Gastronomic Landscape Hotel",
+        "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
+        "Category": "Resort and Spa"
+    }
+]
 ```
 
 ### Semantic hybrid search with a filter
 
 Here's the last query in the collection. This hybrid query with semantic ranking is filtered to show only the hotels within a 500-kilometer radius of Washington D.C. You can set `vectorFilterMode` to null, which is equivalent to the default (`preFilter` for newer indexes and `postFilter` for older ones).
 
-1. In Visual Studio Code, open the `az-search-vector-quickstart.http` file you created earlier.
+1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you created earlier.
 
 1. Find the `### Run a hybrid query with semantic reranking` code block in the file. This block contains the request to query the search index.
 
     > [!IMPORTANT]
-    > The code in this example isn't runable. Several lines are removed for brevity. Use the code in your `az-search-vector-quickstart.http` file to run the request.
+    > The code in this example isn't runable. Several lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
     ```http
     ### Run a hybrid query with semantic reranking
@@ -1179,6 +1181,8 @@ Here's the last query in the collection. This hybrid query with semantic ranking
         ]
     }
     ```
+
+1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
 
 Review the response. The response is three hotels, which are filtered by location and faceted by `StateProvince` and semantically reranked to promote results that are closest to the search string query (`historic hotel walk to restaurants and shopping`).
 
@@ -1255,7 +1259,7 @@ When you're working in your own subscription, it's a good idea at the end of a p
 
 You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
-If you want to keep the search service, but delete the index and documents, you can use the `DELETE` command in the REST client. This command (at the end of your `az-search-vector-quickstart.http` file) deletes the `hotels-vector-quickstart` index:
+If you want to keep the search service, but delete the index and documents, you can use the `DELETE` command in the REST client. This command (at the end of your `az-search-vector-quickstart.rest` file) deletes the `hotels-vector-quickstart` index:
 
 #### [Microsoft Entra ID](#tab/keyless)
 
