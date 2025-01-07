@@ -24,19 +24,9 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Ja
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 
-
 ## Retrieve resource information
 
-#### [Microsoft Entra ID](#tab/keyless)
-
-[!INCLUDE [keyless-environment-variables](env-var-without-key.md)]
-
-
-#### [API key](#tab/api-key)
-
-[!INCLUDE [key-environment-variables](env-var-key.md)]
-
----
+[!INCLUDE [resource authentication](resource-auth.md)]
 
 > [!CAUTION]
 > To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 

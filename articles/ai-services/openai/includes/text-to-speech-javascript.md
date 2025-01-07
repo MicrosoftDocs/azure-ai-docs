@@ -22,20 +22,10 @@ recommendations: false
 
 ## Retrieve resource information
 
-#### [Microsoft Entra ID](#tab/keyless)
-
-[!INCLUDE [keyless-environment-variables](env-var-without-key.md)]
-
-
-#### [API key](#tab/api-key)
-
-[!INCLUDE [key-environment-variables](env-var-key.md)]
-
----
+[!INCLUDE [resource authentication](resource-auth.md)]
 
 > [!CAUTION]
 > To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
-
 
 ## Create a Node application
 

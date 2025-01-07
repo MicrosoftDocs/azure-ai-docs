@@ -24,15 +24,17 @@ ms.date: 10/22/2024
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI Service resource with the `gpt-35-turbo-instruct` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
-## Set up
 
-[!INCLUDE [get-key-endpoint](get-key-endpoint.md)]
+## Retrieve resource information
 
-[!INCLUDE [environment-variables](environment-variables.md)]
+[!INCLUDE [resource authentication](resource-auth.md)]
 
-In a console window (such as cmd, PowerShell, or Bash), create a new directory for your app, and navigate to it.
+> [!CAUTION]
+> To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
 
 ## Install the client library
+
+In a console window (such as cmd, PowerShell, or Bash), create a new directory for your app, and navigate to it.
 
 Install the required packages for JavaScript with npm from within the context of your new directory:
 

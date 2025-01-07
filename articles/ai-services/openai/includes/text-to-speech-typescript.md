@@ -20,23 +20,12 @@ recommendations: false
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
-
 ## Retrieve resource information
 
-#### [Microsoft Entra ID](#tab/keyless)
-
-[!INCLUDE [keyless-environment-variables](env-var-without-key.md)]
-
-
-#### [API key](#tab/api-key)
-
-[!INCLUDE [key-environment-variables](env-var-key.md)]
-
----
+[!INCLUDE [resource authentication](resource-auth.md)]
 
 > [!CAUTION]
 > To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
-
 
 ## Create a Node application
 
