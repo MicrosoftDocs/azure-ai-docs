@@ -86,14 +86,12 @@ You use one `.rest` or `.http` file to run all the requests in this quickstart. 
     For the **recommended** keyless authentication via Microsoft Entra ID, you need to replace `@apiKey` with the `@token` variable.
 
    ```http
-   @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
    @token = PUT-YOUR-MICROSOFT-ENTRA-TOKEN-HERE
    ```
 
     If you prefer to use an API key, replace `@apiKey` with the key you copied from the Azure portal.
 
     ```http
-    @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
     @apiKey = PUT-YOUR-ADMIN-KEY-HERE
     ```
 
@@ -101,6 +99,7 @@ You use one `.rest` or `.http` file to run all the requests in this quickstart. 
 
 
 ## Create a vector index
+
 You use the [Create Index](/rest/api/searchservice/indexes/create) REST API to create a vector index and set up the physical data structures on your search service.
 
 The index schema in this example is organized around hotel content. Sample data consists of vector and nonvector names and descriptions of fictitious hotels. This schema includes configurations for vector indexing and queries, and for semantic ranking.
@@ -327,7 +326,7 @@ The response body should include the JSON representation of the index schema.
 
 ```json
 {
-    "@odata.context": "https://contoso-search-centralus.search.windows.net/$metadata#indexes/$entity",
+    "@odata.context": "https://my-demo-search.search.windows.net/$metadata#indexes/$entity",
     "@odata.etag": "\"0x8DD2E70E6C36D8E\"",
     "name": "hotels-vector-quickstart",
     "defaultScoringProfile": null,
@@ -584,7 +583,7 @@ In Azure AI Search, the index contains all searchable data and queries run on th
     > [!IMPORTANT]
     > The code in this example isn't runable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
-1. Select **Send request**. You should have an `HTTP/1.1 201 Created` response. The response body should include the JSON representation of the search documents.
+1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search documents.
 
 Key takeaways about the [Documents - Index REST API](/rest/api/searchservice/documents/) request:
 
@@ -614,11 +613,11 @@ The vector query string is semantically similar to the search string, but it inc
 
 1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you created earlier.
 
-1. Find the `### Run a query` code block in the file. This block contains the request to query the search index.
+1. Find the `### Run a single vector query` code block in the file. This block contains the request to query the search index.
 
 
     ```http
-    ### Run a query
+    ### Run a single vector query
     POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-11-01  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
@@ -653,45 +652,59 @@ The response for the vector equivalent of `classic lodging near running trails, 
 
 ```json
 {
-    "@odata.context": "https://my-demo-search.search.windows.net/indexes('hotels-vector-quickstart')/$metadata#docs(*)",
-    "@odata.count": 7,
-    "value": [
-        {
-            "@search.score": 0.857736,
-            "HotelName": "Nordick's Valley Motel",
-            "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer.  Hiking? Wine Tasting? Exploring the caverns?  It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley."
-        },
-        {
-            "@search.score": 0.8399129,
-            "HotelName": "Swirling Currents Hotel",
-            "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center."
-        },
-        {
-            "@search.score": 0.8383954,
-            "HotelName": "Luxury Lion Resort",
-            "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort"
-        },
-        {
-            "@search.score": 0.8254346,
-            "HotelName": "Sublime Palace Hotel",
-            "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace."
-        },
-        {
-            "@search.score": 0.82380056,
-            "HotelName": "Stay-Kay City Hotel",
-            "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York."
-        },
-        {
-            "@search.score": 0.81514084,
-            "HotelName": "Old Century Hotel",
-            "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts."
-        },
-        {
-            "@search.score": 0.8133763,
-            "HotelName": "Gastronomic Landscape Hotel",
-            "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services."
-        }
-    ]
+  "@odata.context": "https://my-demo-search.search.windows.net/indexes('hotels-vector-quickstart')/$metadata#docs(*)",
+  "@odata.count": 7,
+  "value": [
+    {
+      "@search.score": 0.85773647,
+      "HotelId": "48",
+      "HotelName": "Nordick's Motel",
+      "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer.  Hiking? Wine Tasting? Exploring the caverns?  It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.",
+      "Category": "Boutique"
+    },
+    {
+      "@search.score": 0.8399132,
+      "HotelId": "49",
+      "HotelName": "Old Carrabelle Hotel",
+      "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center.",
+      "Category": "Luxury"
+    },
+    {
+      "@search.score": 0.83839583,
+      "HotelId": "13",
+      "HotelName": "Historic Lion Resort",
+      "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort",
+      "Category": "Resort and Spa"
+    },
+    {
+      "@search.score": 0.82543474,
+      "HotelId": "4",
+      "HotelName": "Sublime Cliff Hotel",
+      "Description": "Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 1800 palace.",
+      "Category": "Boutique"
+    },
+    {
+      "@search.score": 0.82380104,
+      "HotelId": "1",
+      "HotelName": "Secret Point Hotel",
+      "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York.",
+      "Category": "Boutique"
+    },
+    {
+      "@search.score": 0.8151413,
+      "HotelId": "2",
+      "HotelName": "Twin Dome Hotel",
+      "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
+      "Category": "Boutique"
+    },
+    {
+      "@search.score": 0.8133767,
+      "HotelId": "3",
+      "HotelName": "Triple Landscape Hotel",
+      "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel\u2019s restaurant services.",
+      "Category": "Resort and Spa"
+    }
+  ]
 }
 ```
 
@@ -736,40 +749,47 @@ The query was the same as the previous [single vector search example](#single-ve
 
 ```json
 {
-
-    "@odata.count": 3,
-    "value": [
-        {
-            "@search.score": 0.857736,
-            "HotelName": "Nordick's Valley Motel",
-            "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer.  Hiking? Wine Tasting? Exploring the caverns?  It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.",
-            "Tags": [
-                "continental breakfast",
-                "air conditioning",
-                "free wifi"
-            ]
-        },
-        {
-            "@search.score": 0.8383954,
-            "HotelName": "Luxury Lion Resort",
-            "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort",
-            "Tags": [
-                "view",
-                "free wifi",
-                "pool"
-            ]
-        },
-        {
-            "@search.score": 0.81514084,
-            "HotelName": "Old Century Hotel",
-            "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
-            "Tags": [
-                "pool",
-                "free wifi",
-                "concierge"
-            ]
-        }
-    ]
+  "@odata.context": "https://my-demo-search.search.windows.net/indexes('hotels-vector-quickstart')/$metadata#docs(*)",
+  "@odata.count": 3,
+  "value": [
+    {
+      "@search.score": 0.85773647,
+      "HotelId": "48",
+      "HotelName": "Nordick's Motel",
+      "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer.  Hiking? Wine Tasting? Exploring the caverns?  It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.",
+      "Category": "Boutique",
+      "Tags": [
+        "continental breakfast",
+        "air conditioning",
+        "free wifi"
+      ]
+    },
+    {
+      "@search.score": 0.83839583,
+      "HotelId": "13",
+      "HotelName": "Historic Lion Resort",
+      "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort",
+      "Category": "Resort and Spa",
+      "Tags": [
+        "view",
+        "free wifi",
+        "pool"
+      ]
+    },
+    {
+      "@search.score": 0.8151413,
+      "HotelId": "2",
+      "HotelName": "Twin Dome Hotel",
+      "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
+      "Category": "Boutique",
+      "Tags": [
+        "pool",
+        "free wifi",
+        "air conditioning",
+        "concierge"
+      ]
+    }
+  ]
 }
 ```
 
@@ -980,58 +1000,43 @@ The Swirling Currents Hotel now moves into the top spot. Without semantic rankin
 
 ```json
 {
-    "@odata.count": 3,
-    "@search.facets": {
-        "Address/StateProvince": [
-            {
-                "count": 1,
-                "value": "NY"
-            },
-            {
-                "count": 1,
-                "value": "VA"
-            }
-        ]
-    },
-    "@search.answers": [],
-    "value": [
-        {
-            "@search.score": 0.03306011110544205,
-            "@search.rerankerScore": 2.5094974040985107,
-            "HotelId": "49",
-            "HotelName": "Swirling Currents Hotel",
-            "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center.",
-            "Category": "Luxury",
-            "Address": {
-                "City": "Arlington",
-                "StateProvince": "VA"
-            }
-        },
-        {
-            "@search.score": 0.03306011110544205,
-            "@search.rerankerScore": 2.0370211601257324,
-            "HotelId": "48",
-            "HotelName": "Nordick's Valley Motel",
-            "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer.  Hiking? Wine Tasting? Exploring the caverns?  It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.",
-            "Category": "Boutique",
-            "Address": {
-                "City": "Washington D.C.",
-                "StateProvince": null
-            }
-        },
-        {
-            "@search.score": 0.032258063554763794,
-            "@search.rerankerScore": 1.6706111431121826,
-            "HotelId": "1",
-            "HotelName": "Stay-Kay City Hotel",
-            "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York.",
-            "Category": "Boutique",
-            "Address": {
-                "City": "New York",
-                "StateProvince": "NY"
-            }
-        }
+  "@odata.context": "https://my-demo-search.search.windows.net/indexes('hotels-vector-quickstart')/$metadata#docs(*)",
+  "@odata.count": 2,
+  "@search.facets": {
+    "Address/StateProvince": [
+      {
+        "count": 1,
+        "value": "VA"
+      }
     ]
+  },
+  "@search.answers": [],
+  "value": [
+    {
+      "@search.score": 0.03306011110544205,
+      "@search.rerankerScore": 2.8773112297058105,
+      "HotelId": "49",
+      "HotelName": "Old Carrabelle Hotel",
+      "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center.",
+      "Category": "Luxury",
+      "Address": {
+        "City": "Arlington",
+        "StateProvince": "VA"
+      }
+    },
+    {
+      "@search.score": 0.03306011110544205,
+      "@search.rerankerScore": 2.1703834533691406,
+      "HotelId": "48",
+      "HotelName": "Nordick's Motel",
+      "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer.  Hiking? Wine Tasting? Exploring the caverns?  It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.",
+      "Category": "Boutique",
+      "Address": {
+        "City": "Washington D.C.",
+        "StateProvince": null
+      }
+    }
+  ]
 }
 ```
 
