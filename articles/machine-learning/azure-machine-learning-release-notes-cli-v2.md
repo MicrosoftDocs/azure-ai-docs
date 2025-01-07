@@ -29,11 +29,11 @@ __RSS feed__: Get notified when this page is updated by copying and pasting the 
 ### Azure Machine Learning CLI (v2) v2.33.0
 
 - `az ml workspace create --provision-network-now`
-  - Added `--provision-network-now` property to trigger the provisioning of the managed network when creating a workspace with the managed network enabled, or else it does nothing
+  - Added `--provision-network-now` property to trigger the provisioning of the managed network when creating a workspace with the managed network enabled, or else it does nothing.
 - `az ml capability-host`
-  - Added create operation
-  - Added get operation
-  - Added delete operation
+  - Added create operation.
+  - Added get operation.
+  - Added delete operation.
 
 ## 2024-09-18
 
