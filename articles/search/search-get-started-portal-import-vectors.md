@@ -193,12 +193,12 @@ The wizard supports Azure AI Vision image retrieval through multimodal embedding
 
 1. Make sure your Azure AI Search service is in the same region.
 
-1. After the service is deployed, go to the resource and select **Access control** to assign the **Cognitive Services OpenAI User** role to your search service's managed identity. Optionally, you can use key-based authentication for the connection.
+1. After the service is deployed, go to the resource and select **Access control** to assign the **Cognitive Services User** role to your search service's managed identity. Optionally, you can use key-based authentication for the connection.
 
 After you finish these steps, you should be able to select the Azure AI Vision vectorizer in the **Import and vectorize data** wizard.
 
 > [!NOTE]
-> If you can't select an Azure AI Vision vectorizer, make sure you have an Azure AI Vision resource in a supported region. Also make sure that your search service's managed identity has **Cognitive Services OpenAI User** permissions.
+> If you can't select an Azure AI Vision vectorizer, make sure you have an Azure AI Vision resource in a supported region. Also make sure that your search service's managed identity has **Cognitive Services User** permissions.
 
 ### [Azure AI Foundry model catalog](#tab/model-catalog)
 
@@ -331,7 +331,7 @@ Chunking is built in and nonconfigurable. The effective settings are:
 
 1. Specify whether you want your search service to authenticate using an API key or managed identity.
 
-   + The identity should have a **Cognitive Services OpenAI User** role on the Azure AI multi-services account.
+   + The identity should have a **Cognitive Services User** role on the Azure AI multi-services account.
 
 1. Select the checkbox that acknowledges the billing effects of using these resources.
 
