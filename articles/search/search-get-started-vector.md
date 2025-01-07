@@ -30,7 +30,6 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
     - You can use the *Free* tier for most of this quickstart, but *Basic* or higher is recommended for larger data files. 
     - To run the query example that invokes [semantic reranking](semantic-search-overview.md), your search service must be the *Basic* tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
-- Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.rest](https://raw.githubusercontent.com/Azure-Samples/azure-search-rest-samples/refs/heads/main/Quickstart-vectors/az-search-vector-quickstart.rest) file into a new file in Visual Studio Code. This file contains the REST API calls you run in this quickstart. Save the file with a `.rest` or `.http` extension. For example, `az-search-vector-quickstart.rest`. 
 
 ## Retrieve resource information
 
@@ -69,30 +68,47 @@ Select the tab that corresponds to your preferred authentication method. Use the
 
 ---
 
-## Create a vector index
+## Create or download the code file
 
-You use the [Create Index](/rest/api/searchservice/indexes/create) REST API to create a vector index and set up the physical data structures on your search service.
+You use one `.rest` or `.http` file to run all the requests in this quickstart. You can download the REST file that contains the code for this quickstart, or you can create a new file in Visual Studio Code and copy the code into it.
 
-The index schema in this example is organized around hotel content. Sample data consists of vector and nonvector names and descriptions of fictitious hotels. This schema includes configurations for vector indexing and queries, and for semantic ranking.
+1. In Visual Studio Code, create a new file with a `.rest` or `.http` file extension. For example, `az-search-vector-quickstart.rest`. Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.rest](https://raw.githubusercontent.com/Azure-Samples/azure-search-rest-samples/refs/heads/main/Quickstart-vectors/az-search-vector-quickstart.rest) file into this new file. 
 
-#### [Microsoft Entra ID](#tab/keyless)
+1. At the top of the file, replace the placeholder value for `@baseUrl` with your search service URL. See the [Retrieve resource information](#retrieve-resource-information) section for instructions on how to find your search service URL.
 
-1. In Visual Studio Code, create a new file with a `.rest` or `.http` file extension. For example, `az-search-vector-quickstart.rest`. Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.rest](https://raw.githubusercontent.com/Azure-Samples/azure-search-rest-samples/refs/heads/main/Quickstart-vectors/az-search-vector-quickstart.rest) file into this new file. If you already did this in the [prerequisites](#prerequisites) section, you can skip this step.
 
-1. At the top of the file, replace the placeholder values with your search service URL and Microsoft Entra token.
+   ```http
+   @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
+   ```
 
-    > [!IMPORTANT]
-    > For the **recommended** keyless authentication via Microsoft Entra ID, you need to replace `@apiKey` with `@token` in the request headers.
+1. At the top of the file, replace the placeholder value for authentication. See the [Retrieve resource information](#retrieve-resource-information) section for instructions on how to get your Microsoft Entra token or API key.
+
+    For the **recommended** keyless authentication via Microsoft Entra ID, you need to replace `@apiKey` with the `@token` variable.
 
    ```http
    @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
    @token = PUT-YOUR-MICROSOFT-ENTRA-TOKEN-HERE
    ```
 
+    If you prefer to use an API key, replace `@apiKey` with the key you copied from the Azure portal.
+
+    ```http
+    @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
+    @apiKey = PUT-YOUR-ADMIN-KEY-HERE
+    ```
+
+1. For the **recommended** keyless authentication via Microsoft Entra ID, you need to replace `api-key: {{apiKey}}` with `Authorization: Bearer {{token}}` in the request headers. Replace all instances of `api-key: {{apiKey}}` that you find in the file.
+
+
+## Create a vector index
+You use the [Create Index](/rest/api/searchservice/indexes/create) REST API to create a vector index and set up the physical data structures on your search service.
+
+The index schema in this example is organized around hotel content. Sample data consists of vector and nonvector names and descriptions of fictitious hotels. This schema includes configurations for vector indexing and queries, and for semantic ranking.
+
+1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you created earlier.
+
 1. Find the `### Create a new index` code block in the file. This block contains the request to create the `hotels-vector-quickstart` index on your search service. 
     
-    > [!IMPORTANT]
-    > For the **recommended** keyless authentication via Microsoft Entra ID, you need to replace `Authorization: Bearer {{token}}` with `Authorization: Bearer {{token}}` in the request headers.
 
     ```http
     ### Create a new index
@@ -307,235 +323,6 @@ The index schema in this example is organized around hotel content. Sample data 
 
 1. Select **Send request**. You should have an `HTTP/1.1 201 Created` response. 
 
-
-#### [API key](#tab/api-key)
-
-1. In Visual Studio Code, create a new file with a `.rest` or `.http` file extension. For example, `az-search-vector-quickstart.rest`. Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.rest](https://raw.githubusercontent.com/Azure-Samples/azure-search-rest-samples/refs/heads/main/Quickstart-vectors/az-search-vector-quickstart.rest) file into this new file. If you already did this in the [prerequisites](#prerequisites) section, you can skip this step.
-
-1. At the top of the file, replace the placeholder values with your search service URL and API key.
-
-   ```http
-   @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
-   @apiKey = PUT-YOUR-ADMIN-KEY-HERE
-   ```
-
-1. Find the `### Create a new index` code block in the file. This block contains the request to create the `hotels-vector-quickstart` index on your search service. 
-
-    ```http
-    ### Create a new index
-    POST  {{baseUrl}}/indexes?api-version=2023-11-01  HTTP/1.1
-    Content-Type: application/json
-    api-key: {{apiKey}}
-
-    {
-        "name": "hotels-vector-quickstart",
-        "fields": [
-            {
-                "name": "HotelId", 
-                "type": "Edm.String",
-                "searchable": false, 
-                "filterable": true, 
-                "retrievable": true, 
-                "sortable": false, 
-                "facetable": false,
-                "key": true
-            },
-            {
-                "name": "HotelName", 
-                "type": "Edm.String",
-                "searchable": true, 
-                "filterable": false, 
-                "retrievable": true, 
-                "sortable": true, 
-                "facetable": false
-            },
-            {
-                "name": "HotelNameVector",
-                "type": "Collection(Edm.Single)",
-                "searchable": true,
-                "retrievable": true,
-                "dimensions": 1536,
-                "vectorSearchProfile": "my-vector-profile"
-            },
-            {
-                "name": "Description", 
-                "type": "Edm.String",
-                "searchable": true, 
-                "filterable": false, 
-                "retrievable": true, 
-                "sortable": false, 
-                "facetable": false
-            },
-            {
-                "name": "DescriptionVector",
-                "type": "Collection(Edm.Single)",
-                "searchable": true,
-                "retrievable": true,
-                "dimensions": 1536,
-                "vectorSearchProfile": "my-vector-profile"
-            },
-                    {
-                "name": "Description_fr", 
-                "type": "Edm.String",
-                "searchable": true, 
-                "filterable": false, 
-                "retrievable": true, 
-                "sortable": false, 
-                "facetable": false,
-                "analyzer": "en.microsoft"
-            },
-            {
-                "name": "Description_frvector",
-                "type": "Collection(Edm.Single)",
-                "searchable": true,
-                "retrievable": true,
-                "dimensions": 1536,
-                "vectorSearchProfile": "my-vector-profile"
-            },
-            {
-                "name": "Category", 
-                "type": "Edm.String",
-                "searchable": true, 
-                "filterable": true, 
-                "retrievable": true, 
-                "sortable": true, 
-                "facetable": true
-            },
-            {
-                "name": "Tags",
-                "type": "Collection(Edm.String)",
-                "searchable": true,
-                "filterable": true,
-                "retrievable": true,
-                "sortable": false,
-                "facetable": true
-            },
-                    {
-                "name": "ParkingIncluded",
-                "type": "Edm.Boolean",
-                "searchable": false,
-                "filterable": true,
-                "retrievable": true,
-                "sortable": true,
-                "facetable": true
-            },
-            {
-                "name": "LastRenovationDate",
-                "type": "Edm.DateTimeOffset",
-                "searchable": false,
-                "filterable": true,
-                "retrievable": true,
-                "sortable": true,
-                "facetable": true
-            },
-            {
-                "name": "Rating",
-                "type": "Edm.Double",
-                "searchable": false,
-                "filterable": true,
-                "retrievable": true,
-                "sortable": true,
-                "facetable": true
-            },
-            {
-                "name": "Address", 
-                "type": "Edm.ComplexType",
-                "fields": [
-                    {
-                        "name": "StreetAddress", "type": "Edm.String",
-                        "searchable": true, "filterable": false, "retrievable": true, "sortable": false, "facetable": false
-                    },
-                    {
-                        "name": "City", "type": "Edm.String",
-                        "searchable": true, "filterable": true, "retrievable": true, "sortable": true, "facetable": true
-                    },
-                    {
-                        "name": "StateProvince", "type": "Edm.String",
-                        "searchable": true, "filterable": true, "retrievable": true, "sortable": true, "facetable": true
-                    },
-                    {
-                        "name": "PostalCode", "type": "Edm.String",
-                        "searchable": true, "filterable": true, "retrievable": true, "sortable": true, "facetable": true
-                    },
-                    {
-                        "name": "Country", "type": "Edm.String",
-                        "searchable": true, "filterable": true, "retrievable": true, "sortable": true, "facetable": true
-                    }
-                ]
-            },
-            {
-                "name": "Location",
-                "type": "Edm.GeographyPoint",
-                "searchable": false, 
-                "filterable": true, 
-                "retrievable": true, 
-                "sortable": true, 
-                "facetable": false
-            }
-        ],
-        "vectorSearch": {
-            "algorithms": [
-                {
-                    "name": "my-hnsw-vector-config-1",
-                    "kind": "hnsw",
-                    "hnswParameters": 
-                    {
-                        "m": 4,
-                        "efConstruction": 400,
-                        "efSearch": 500,
-                        "metric": "cosine"
-                    }
-                },
-                {
-                    "name": "my-hnsw-vector-config-2",
-                    "kind": "hnsw",
-                    "hnswParameters": 
-                    {
-                        "m": 4,
-                        "metric": "euclidean"
-                    }
-                },
-                {
-                    "name": "my-eknn-vector-config",
-                    "kind": "exhaustiveKnn",
-                    "exhaustiveKnnParameters": 
-                    {
-                        "metric": "cosine"
-                    }
-                }
-            ],
-            "profiles": [      
-                {
-                    "name": "my-vector-profile",
-                    "algorithm": "my-hnsw-vector-config-1"
-                }
-          ]
-        },
-        "semantic": {
-            "configurations": [
-                {
-                    "name": "my-semantic-config",
-                    "prioritizedFields": {
-                        "titleField": {
-                            "fieldName": "HotelName"
-                        },
-                        "prioritizedContentFields": [
-                            { "fieldName": "Description" }
-                        ],
-                        "prioritizedKeywordsFields": [
-                            { "fieldName": "Category" }
-                        ]
-                    }
-                }
-            ]
-        }
-    }
-    ```
-
-1. Select **Send request**. You should have an `HTTP/1.1 201 Created` response. 
-
----
-
 The response body should include the JSON representation of the index schema.
 
 ```json
@@ -662,14 +449,11 @@ In Azure AI Search, the index contains all searchable data and queries run on th
 
 1. Find the `### Upload documents` code block in the file. This block contains the request to upload documents to the `hotels-vector-quickstart` index on your search service.
 
-    > [!IMPORTANT]
-    > The code in this example isn't runable. Several lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
-
     ```http
     ### Upload documents
     POST {{baseUrl}}/indexes/hotels-quickstart-vectors/docs/index?api-version=2023-11-01  HTTP/1.1
     Content-Type: application/json
-    api-key: {{apiKey}}
+    Authorization: Bearer {{token}}
     
     {
         "value": [
@@ -797,6 +581,9 @@ In Azure AI Search, the index contains all searchable data and queries run on th
     }
     ```
 
+    > [!IMPORTANT]
+    > The code in this example isn't runable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
+
 1. Select **Send request**. You should have an `HTTP/1.1 201 Created` response. The response body should include the JSON representation of the search documents.
 
 Key takeaways about the [Documents - Index REST API](/rest/api/searchservice/documents/) request:
@@ -829,14 +616,12 @@ The vector query string is semantically similar to the search string, but it inc
 
 1. Find the `### Run a query` code block in the file. This block contains the request to query the search index.
 
-    > [!IMPORTANT]
-    > The code in this example isn't runable. Several lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
     ```http
     ### Run a query
     POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-11-01  HTTP/1.1
         Content-Type: application/json
-        api-key: {{apiKey}}
+        Authorization: Bearer {{token}}
         
         {
             "count": true,
@@ -858,6 +643,9 @@ The vector query string is semantically similar to the search string, but it inc
     This vector query is shortened for brevity. The `vectorQueries.vector` contains the vectorized text of the query input, `fields` determines which vector fields are searched, and `k` specifies the number of nearest neighbors to return.
 
     The vector query string is `classic lodging near running trails, eateries, retail`, which is vectorized into 1,536 embeddings for this query.
+
+    > [!IMPORTANT]
+    > The code in this example isn't runable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
 1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
 
@@ -915,14 +703,12 @@ You can add filters, but the filters are applied to the nonvector content in you
 
 1. Find the `### Run a vector query with a filter` code block in the file. This block contains the request to query the search index.
 
-    > [!IMPORTANT]
-    > The code in this example isn't runable. Several lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
     ```http
     ### Run a vector query with a filter
     POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-11-01  HTTP/1.1
         Content-Type: application/json
-        api-key: {{apiKey}}
+        Authorization: Bearer {{token}}
     
         {
             "count": true,
@@ -940,6 +726,9 @@ You can add filters, but the filters are applied to the nonvector content in you
         ]
     }
     ``` 
+
+    > [!IMPORTANT]
+    > The code in this example isn't runable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
 1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
 
@@ -995,14 +784,12 @@ Hybrid search consists of keyword queries and vector queries in a single search 
 
 1. Find the `### Run a hybrid query` code block in the file. This block contains the request to query the search index.
 
-    > [!IMPORTANT]
-    > The code in this example isn't runable. Several lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
     ```http
     ### Run a hybrid query
     POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-11-01  HTTP/1.1
         Content-Type: application/json
-        api-key: {{apiKey}}
+        Authorization: Bearer {{token}}
         
     {
         "count": true,
@@ -1020,6 +807,9 @@ Hybrid search consists of keyword queries and vector queries in a single search 
         ]
     }
     ```
+
+    > [!IMPORTANT]
+    > The code in this example isn't runable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
 1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
    
@@ -1149,14 +939,11 @@ Here's the last query in the collection. This hybrid query with semantic ranking
 
 1. Find the `### Run a hybrid query with semantic reranking` code block in the file. This block contains the request to query the search index.
 
-    > [!IMPORTANT]
-    > The code in this example isn't runable. Several lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
-
     ```http
     ### Run a hybrid query with semantic reranking
     POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-11-01  HTTP/1.1
         Content-Type: application/json
-        api-key: {{apiKey}}
+        Authorization: Bearer {{token}}
 
     {
         "count": true,
@@ -1181,6 +968,9 @@ Here's the last query in the collection. This hybrid query with semantic ranking
         ]
     }
     ```
+
+    > [!IMPORTANT]
+    > The code in this example isn't runable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
 1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
 
@@ -1261,25 +1051,12 @@ You can find and manage resources in the Azure portal by using the **All resourc
 
 If you want to keep the search service, but delete the index and documents, you can use the `DELETE` command in the REST client. This command (at the end of your `az-search-vector-quickstart.rest` file) deletes the `hotels-vector-quickstart` index:
 
-#### [Microsoft Entra ID](#tab/keyless)
-
 ```http
 ### Delete an index
 DELETE  {{baseUrl}}/indexes/hotels-vector-quickstart?api-version=2023-11-01 HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
 ```
-
-#### [API key](#tab/api-key)
-
-```http
-### Delete an index
-DELETE  {{baseUrl}}/indexes/hotels-vector-quickstart?api-version=2023-11-01 HTTP/1.1
-    Content-Type: application/json
-    api-key: {{apiKey}}
-```
-
----
 
 ## Next steps
 
