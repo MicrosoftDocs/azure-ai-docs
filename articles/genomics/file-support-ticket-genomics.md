@@ -7,6 +7,7 @@ ms.author: vigunase
 ms.service: genomics
 ms.topic: conceptual
 ms.date: 05/23/2018
+ms.hidden: true
 
 ---
 # How to contact Microsoft Genomics for support
