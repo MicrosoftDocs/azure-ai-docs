@@ -39,7 +39,7 @@ You're setting up two clients, so you need permissions on both resources.
 
 Azure AI Search is receiving the query request from your local system. Assign yourself the **Search Index Data Reader** role assignment for that task. If you're also creating and loading the hotel sample index, add **Search Service Contributor** and **Search Index Data Contributor** roles as well.
 
-Azure OpenAI is receiving the (query) "Can you recommend a few hotels" from your local system, plus its receiving the search results (source) from the search service. Assign yourself and the search service the **Cognitive Services OpenAI User** role.
+Azure OpenAI is receiving the (query) "Can you recommend a few hotels" from your local system, plus its receiving the search results (source) from the search service. Assign yourself the **Cognitive Services OpenAI User** role.
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
@@ -66,7 +66,7 @@ Azure OpenAI is receiving the (query) "Can you recommend a few hotels" from your
        - **Search Index Data Contributor**
        - **Search Service Contributor**
 
-    1. On Azure OpenAI, select **Access control (IAM)** to assign yourself and the search service identity permissions on Azure OpenAI. The code for this quickstart runs locally. Requests to Azure OpenAI originate from your system. Also, search results from the search engine are passed to Azure OpenAI. For these reasons, both you and the search service need permissions on Azure OpenAI.
+    1. On Azure OpenAI, select, make sure you have permission to view, use, and interact with deployed models on the resource:
 
        - **Cognitive Services OpenAI User**
 
