@@ -104,7 +104,7 @@ You use the [Create Index](/rest/api/searchservice/indexes/create) REST API to c
 
 The index schema in this example is organized around hotel content. Sample data consists of vector and nonvector names and descriptions of fictitious hotels. This schema includes configurations for vector indexing and queries, and for semantic ranking.
 
-1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you created earlier.
+1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you [created earlier](#create-or-download-the-code-file).
 
 1. Find the `### Create a new index` code block in the file. This block contains the request to create the `hotels-vector-quickstart` index on your search service. 
     
@@ -444,7 +444,7 @@ Creating and loading the index are separate steps. You created the index schema 
  
 In Azure AI Search, the index contains all searchable data and queries run on the search service. For REST calls, the data is provided as JSON documents. Use [Documents- Index REST API](/rest/api/searchservice/documents/) for this task. The URI is extended to include the `docs` collection and the `index` operation.
 
-1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you created earlier.
+1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you [created earlier](#create-or-download-the-code-file).
 
 1. Find the `### Upload documents` code block in the file. This block contains the request to upload documents to the `hotels-vector-quickstart` index on your search service.
 
@@ -611,7 +611,7 @@ The vector query string is semantically similar to the search string, but it inc
 
 ### Single vector search
 
-1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you created earlier.
+1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you [created earlier](#create-or-download-the-code-file).
 
 1. Find the `### Run a single vector query` code block in the file. This block contains the request to query the search index.
 
@@ -712,7 +712,7 @@ The response for the vector equivalent of `classic lodging near running trails, 
 
 You can add filters, but the filters are applied to the nonvector content in your index. In this example, the filter applies to the `Tags` field to filter out any hotels that don't provide free Wi-Fi.
 
-1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you created earlier.
+1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you [created earlier](#create-or-download-the-code-file).
 
 1. Find the `### Run a vector query with a filter` code block in the file. This block contains the request to query the search index.
 
@@ -800,7 +800,7 @@ Hybrid search consists of keyword queries and vector queries in a single search 
 - **Search string**: `historic hotel walk to restaurants and shopping`
 - **Vector query string** (vectorized into a mathematical representation): `classic lodging near running trails, eateries, retail`
 
-1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you created earlier.
+1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you [created earlier](#create-or-download-the-code-file).
 
 1. Find the `### Run a hybrid query` code block in the file. This block contains the request to query the search index.
 
@@ -955,7 +955,7 @@ In the vector-only query, which uses HNSW for finding matches, the Sublime Palac
 
 Here's the last query in the collection. This hybrid query with semantic ranking is filtered to show only the hotels within a 500-kilometer radius of Washington D.C. You can set `vectorFilterMode` to null, which is equivalent to the default (`preFilter` for newer indexes and `postFilter` for older ones).
 
-1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you created earlier.
+1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you [created earlier](#create-or-download-the-code-file).
 
 1. Find the `### Run a hybrid query with semantic reranking` code block in the file. This block contains the request to query the search index.
 
