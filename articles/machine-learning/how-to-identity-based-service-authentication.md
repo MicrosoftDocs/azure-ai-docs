@@ -45,15 +45,6 @@ The Azure Machine Learning workspace uses a __managed identity__ to communicate 
 Once a workspace is created with SAI identity type, it can be updated to SAI+UAI, but not back from SAI+UAI to SAI. You may assign multiple user-assigned identities to the same workspace. 
 
 
-## Azure Container Registry and identity types
-
-This table lists the support matrix when authenticating to __Azure Container Registry__, depending on the authentication method and the __Azure Container Registry's__ [public network access configuration](/azure/container-registry/container-registry-access-selected-networks).
-
-| Authentication method | Public network access</br>disabled | Azure Container Registry</br>Public network access enabled |
-| ---- | :----: | :----: |
-| Admin user | ✓ | ✓ |
-| Workspace system-assigned managed identity | ✓ | ✓ |
-
 ## User-assigned managed identity
 
 ### Workspace
