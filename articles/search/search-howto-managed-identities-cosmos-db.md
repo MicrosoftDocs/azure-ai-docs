@@ -25,13 +25,19 @@ You can use a system-assigned managed identity or a user-assigned managed identi
 
 * You can optionally [enforce role-based access as the only authentication method](/azure/cosmos-db/how-to-setup-rbac#disable-local-auth) for data connections by setting `disableLocalAuth` to `true` for your Azure Cosmos DB for NoSQL account.
 
-## Limitations
+## Supported approaches for managed identity authentication
 
 Azure AI Search supports two mechanisms to connect using managed identity. 
 
-1. The _legacy_ approach requires configuring the managed identity to have reader permissions on the management plane of the target Azure Cosmos DB account. Azure AI Search utilizes that identity to fetch the account keys of Cosmos DB account in the background to access the data. This approach won't work if the Cosmos DB account has `"disableLocalAuth": true`. Indexers that connect to Azure Cosmos DB for Gremlin and MongoDB (currently in preview) __only__ support this approach. Indexers that connect to Azure Cosmos DB for NoSQL also support this approach, but it isn't recommended.
+1. The _legacy_ approach requires configuring the managed identity to have reader permissions on the management plane of the target Azure Cosmos DB account. Azure AI Search utilizes that identity to fetch the account keys of Cosmos DB account in the background to access the data. This approach won't work if the Cosmos DB account has `"disableLocalAuth": true`.
 
-1. The _recommended_ approach requires configuring the managed identity appropriate roles on the management and data plane of the target Azure Cosmos DB account. Azure AI Search will then request an access token to access the data in the Cosmos DB account. This approach works even if the Cosmos DB account has `"disableLocalAuth": true`. Indexers that connect to Azure Cosmos DB for NoSQL should be configured with this approach.
+1. The _modern_ approach requires configuring the managed identity appropriate roles on the management and data plane of the target Azure Cosmos DB account. Azure AI Search will then request an access token to access the data in the Cosmos DB account. This approach works even if the Cosmos DB account has `"disableLocalAuth": true`.
+
+Indexers that connect to Azure Cosmos DB for NoSQL support both the _legacy_ and the _modern_ approach - the _modern_ approach is highly recommended.
+
+## Limitations
+
+* Indexers that connect to Azure Cosmos DB for Gremlin and MongoDB (currently in preview) only support the _legacy_ approach.
 
 ## Connect to Azure Cosmos DB for NoSQL
 
@@ -95,7 +101,7 @@ The [REST API](/rest/api/searchservice/data-sources/create), Azure portal, and t
 
 When you're connecting with a system-assigned managed identity, the only change to the data source definition is the format of the "credentials" property. Provide a database name and a ResourceId that has no account key or password. The ResourceId must include the subscription ID of Azure Cosmos DB, the resource group, and the Azure Cosmos DB account name.
 
-Here's an example using the [Create Data Source](/rest/api/searchservice/data-sources/create) REST API that exercises the _recommended_ approach.
+Here's an example using the [Create Data Source](/rest/api/searchservice/data-sources/create) REST API that exercises the _modern_ approach.
 
 ```http
 POST https://[service name].search.windows.net/datasources?api-version=2024-11-01-preview
@@ -116,7 +122,7 @@ POST https://[service name].search.windows.net/datasources?api-version=2024-11-0
 
 You need to add an "identity" property to the data source definition, where you specify the specific identity (out of several that can be assigned to the search service), that will be used to connect to the Azure Cosmos DB account.
 
-Here's an example using user-assigned identity via the _recommended_ approach.
+Here's an example using user-assigned identity via the _modern_ approach.
 
 ```http
 POST https://[service name].search.windows.net/datasources?api-version=2024-11-01-preview
