@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 12/09/2024
+ms.date: 01/07/2025
 ms.custom:
   - references_regions
   - build-2024
@@ -69,7 +69,7 @@ Maximum number of documents per index are:
 + 288 billion on L1
 + 576 billion on L2
 
-Each instance of a complex collection counts as a separate document in terms of these limits.
+You can check the number of documents in the Azure portal and through REST calls that include `search=*` and `count=true`.
 
 Maximum size of each document is approximately 16 megabytes. Document size is actually a limit on the size of the indexing API request payload, which is 16 megabytes. That payload can be a single document, or a batch of documents. For a batch with a single document, the maximum document size is 16 MB of JSON. 
 
