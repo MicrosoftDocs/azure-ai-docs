@@ -64,16 +64,17 @@ For _keyless_ authentication, you need to
     npm install @azure/identity
     ```
 
+
 ## Retrieve resource information
 
-#### [Microsoft Entra ID](#tab/javascript-keyless)
+#### [Microsoft Entra ID](#tab/keyless)
 
-[!INCLUDE [assistants-keyless-environment-variables](assistants-env-var-without-key.md)]
+[!INCLUDE [keyless-environment-variables](env-var-without-key.md)]
 
 
-#### [API key](#tab/javascript-key)
+#### [API key](#tab/api-key)
 
-[!INCLUDE [assistants-key-environment-variables](assistants-env-var-key.md)]
+[!INCLUDE [key-environment-variables](env-var-key.md)]
 
 ---
 
@@ -98,7 +99,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     
 ## Create a new JavaScript application
 
-#### [Microsoft Entra ID](#tab/javascript-keyless)
+#### [Microsoft Entra ID](#tab/keyless)
 
 1. Create the `index.js` file with the following code:
 
@@ -205,7 +206,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
 
 
 
-#### [API key](#tab/javascript-key)
+#### [API key](#tab/api-key)
 
 1. Create the `index.js` file with the following code:
 

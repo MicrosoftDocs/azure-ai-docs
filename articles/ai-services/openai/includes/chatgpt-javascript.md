@@ -24,11 +24,22 @@ ms.date: 10/22
 - An Azure OpenAI Service resource with either a `gpt-35-turbo` or `gpt-4` series models deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 
-## Set up
+## Retrieve resource information
 
-[!INCLUDE [get-key-endpoint](get-key-endpoint.md)]
+#### [Microsoft Entra ID](#tab/keyless)
 
-[!INCLUDE [environment-variables](environment-variables.md)]
+[!INCLUDE [keyless-environment-variables](env-var-without-key.md)]
+
+
+#### [API key](#tab/api-key)
+
+[!INCLUDE [key-environment-variables](env-var-key.md)]
+
+---
+
+> [!CAUTION]
+> To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
+
 
 ## Create a Node application
 

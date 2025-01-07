@@ -28,9 +28,23 @@ This SDK is provided by OpenAI with Azure specific types provided by Azure.
 > [!NOTE]
 > This library is maintained by OpenAI. Refer to the [release history](https://github.com/openai/openai-node/releases) to track the latest updates to the library.
 
-[!INCLUDE [get-key-endpoint](get-key-endpoint.md)]
 
-[!INCLUDE [environment-variables](environment-variables.md)]
+## Retrieve resource information
+
+#### [Microsoft Entra ID](#tab/keyless)
+
+[!INCLUDE [keyless-environment-variables](env-var-without-key.md)]
+
+
+#### [API key](#tab/api-key)
+
+[!INCLUDE [key-environment-variables](env-var-key.md)]
+
+---
+
+> [!CAUTION]
+> To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
+
 
 
 ## Create a Node application

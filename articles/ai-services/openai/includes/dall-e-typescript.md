@@ -26,11 +26,22 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Ja
 
 
 
-## Setup
 
-[!INCLUDE [get-key-endpoint](get-key-endpoint.md)]
+## Retrieve resource information
 
-[!INCLUDE [environment-variables](environment-variables.md)]
+#### [Microsoft Entra ID](#tab/keyless)
+
+[!INCLUDE [keyless-environment-variables](env-var-without-key.md)]
+
+
+#### [API key](#tab/api-key)
+
+[!INCLUDE [key-environment-variables](env-var-key.md)]
+
+---
+
+> [!CAUTION]
+> To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
 
 
 ## Create a Node application

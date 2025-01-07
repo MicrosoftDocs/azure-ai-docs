@@ -60,11 +60,12 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Retrieve resource information
 
-#### [Microsoft Entra ID](#tab/javascript-keyless)
+#### [Microsoft Entra ID](#tab/keyless)
 
 [!INCLUDE [keyless-environment-variables](env-var-without-key.md)]
 
-#### [API key](#tab/javascript-key)
+
+#### [API key](#tab/api-key)
 
 [!INCLUDE [key-environment-variables](env-var-key.md)]
 
@@ -72,10 +73,10 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 > [!CAUTION]
 > To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
-    
+
 ## Text in audio out
 
-#### [Microsoft Entra ID](#tab/typescript-keyless)
+#### [Microsoft Entra ID](#tab/keyless)
 
 1. Create the `text-in-audio-out.ts` file with the following code:
 
@@ -170,7 +171,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     node text-in-audio-out.js
     ```
 
-#### [API key](#tab/typescript-key)
+#### [API key](#tab/api-key)
 
 1. Create the `text-in-audio-out.ts` file with the following code:
 

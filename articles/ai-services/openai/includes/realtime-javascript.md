@@ -59,11 +59,12 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Retrieve resource information
 
-#### [Microsoft Entra ID](#tab/javascript-keyless)
+#### [Microsoft Entra ID](#tab/keyless)
 
 [!INCLUDE [keyless-environment-variables](env-var-without-key.md)]
 
-#### [API key](#tab/javascript-key)
+
+#### [API key](#tab/api-key)
 
 [!INCLUDE [key-environment-variables](env-var-key.md)]
 
@@ -74,7 +75,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Text in audio out
 
-#### [Microsoft Entra ID](#tab/javascript-keyless)
+#### [Microsoft Entra ID](#tab/keyless)
 
 1. Create the `text-in-audio-out.js` file with the following code:
 
@@ -143,7 +144,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     ```
 
 
-#### [API key](#tab/javascript-key)
+#### [API key](#tab/api-key)
 
 1. Create the `text-in-audio-out.js` file with the following code:
 

@@ -65,17 +65,17 @@ For passwordless authentication, you need to
     npm install @azure/identity
     ```
 
+
 ## Retrieve resource information
 
+#### [Microsoft Entra ID](#tab/keyless)
 
-#### [Microsoft Entra ID](#tab/typescript-keyless)
-
-[!INCLUDE [assistants-keyless-environment-variables](assistants-env-var-without-key.md)]
+[!INCLUDE [keyless-environment-variables](env-var-without-key.md)]
 
 
-#### [API key](#tab/typescript-key)
+#### [API key](#tab/api-key)
 
-[!INCLUDE [assistants-key-environment-variables](assistants-env-var-key.md)]
+[!INCLUDE [key-environment-variables](env-var-key.md)]
 
 ---
 
