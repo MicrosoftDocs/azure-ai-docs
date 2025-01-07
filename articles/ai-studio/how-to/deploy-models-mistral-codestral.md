@@ -18,7 +18,7 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn about Codestral chat model and how to use it.
+In this article, you learn about Codestral chat model and how to use it. Mistral AI offers two categories of models. Premium models including Mistral Large, Mistral Small, and Ministral 3B, available as serverless APIs with pay-as-you-go token-based billing. Open models including Codestral, Mistral Nemo, Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01; available to also download and run on self-hosted managed endpoints.
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
