@@ -1035,19 +1035,17 @@ If you plan to use __Visual Studio Code__ with Azure Machine Learning, add outbo
 > [!WARNING]
 > FQDN outbound rules are implemented using Azure Firewall. If you use outbound FQDN rules, charges for Azure Firewall are added to your billing. For more information, see [Pricing](#pricing).
 
-* `*.vscode.dev`
-* `vscode.blob.core.windows.net`
-* `*.gallerycdn.vsassets.io`
-* `raw.githubusercontent.com`
-* `*.vscode-unpkg.net`
-* `*.vscode-cdn.net`
-* `*.vscodeexperiments.azureedge.net`
-* `default.exp-tas.com`
-* `code.visualstudio.com`
-* `update.code.visualstudio.com`
-* `*.vo.msecnd.net`
-* `marketplace.visualstudio.com`
-* `vscode.download.prss.microsoft.com`
+> [!NOTE]
+> This is not a complete list of the hosts required for all Visual Studio Code resources on the internet, only the most commonly used. For example, if you need access to a GitHub repository or other host, you must identify and add the required hosts for that scenario. For a complete list of host names, see [Network Connections in Visual Studio Code](https://code.visualstudio.com/docs/setup/network).
+
+| __Host name__ | __Purpose__ |
+| ---- | ---- |
+| `*.vscode.dev`<br>`*.vscode-unpkg.net`<br>`*.vscode-cdn.net`<br>`*.vscodeexperiments.azureedge.net`<br>`default.exp-tas.com` | Required to access vscode.dev (Visual Studio Code for the Web) |
+| `code.visualstudio.com` | Required to download and install VS Code desktop. This host isn't required for VS Code Web. |
+| `update.code.visualstudio.com`<br>`*.vo.msecnd.net` | Used to retrieve VS Code server bits that are installed on the compute instance through a setup script. |
+| `marketplace.visualstudio.com`<br>`vscode.blob.core.windows.net`<br>`*.gallerycdn.vsassets.io` | Required to download and install VS Code extensions. These hosts enable the remote connection to compute instances. For more information, see [Get started with Azure AI Foundry projects in VS Code](./develop/vscode.md). |
+| `https://github.com/microsoft/vscode-tools-for-ai/tree/master/azureml_remote_websocket_server/*`<br>`raw.githubusercontent.com` | Used to retrieve websocket server bits that are installed on the compute instance. The websocket server is used to transmit requests from Visual Studio Code client (desktop application) to Visual Studio Code server running on the compute instance. |
+| `vscode.download.prss.microsoft.com` | Used for Visual Studio Code download CDN |
 
 ### Scenario: Use batch endpoints or ParallelRunStep
 
