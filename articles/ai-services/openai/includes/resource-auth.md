@@ -6,6 +6,8 @@ ms.topic: include
 ms.date: 1/7/2025
 ---
 
+You need to retrieve the following information to authenticate your application with your Azure OpenAI resource:
+
 #### [Microsoft Entra ID](#tab/keyless)
 
 |Variable name | Value |
