@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5, devx-track-python, devx-track-azurecli, sdkv1, buil
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 Learn how to configure a Python development environment for Azure Machine Learning.
 
 The following table shows each development environment covered in this article, along with pros and cons.
