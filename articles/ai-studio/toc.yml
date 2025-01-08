@@ -344,7 +344,7 @@ items:
   - name: Deploy and monitor generative AI apps
     items:
     - name: Continuously monitor your applications
-      href: how-to/monitor-application.md
+      href: how-to/monitor-applications.md
     - name: Deploy and monitor flows
       items:
       - name: Deploy a flow for real-time inference
