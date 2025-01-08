@@ -196,7 +196,7 @@ embedding_skill = AzureOpenAIEmbeddingSkill(
     resource_url=AZURE_OPENAI_ACCOUNT,  
     deployment_name="text-embedding-3-large",  
     model_name="text-embedding-3-large",
-    dimensions=1536,
+    dimensions=1024,
     inputs=[  
         InputFieldMappingEntry(name="text", source="/document/pages/*"),  
     ],  
