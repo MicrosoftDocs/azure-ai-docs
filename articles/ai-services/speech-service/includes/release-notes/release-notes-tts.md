@@ -293,7 +293,7 @@ Text to speech avatar is now generally available. For more information, see [tex
   | `pt-PT`| Portuguese (Portugal)|
   | `sv-SE`| Swedish (Sweden)|
   | `th-TH`| Thai (Thailand)|
-  | `tr-TR`| Turkish (Turkey)|
+  | `tr-TR`| Turkish (Türkiye)|
   | `zh-CN`| Chinese (Mandarin, Simplified)|
   | `zh-HK`| Chinese (Cantonese, Traditional)|
   | `zh-TW`| Chinese (Taiwanese Mandarin, Traditional)|
