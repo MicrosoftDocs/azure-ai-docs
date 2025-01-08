@@ -18,8 +18,12 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn about Mistral Nemo chat model and how to use them.
-Mistral AI offers two categories of models. Premium models including [Mistral Large and Mistral Small](deploy-models-mistral.md), available as serverless APIs with pay-as-you-go token-based billing. Open models including [Mistral Nemo](deploy-models-mistral-nemo.md), [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](deploy-models-mistral-open.md); available to also download and run on self-hosted managed endpoints.
+In this article, you learn about Mistral Nemo chat model and how to use it.
+Mistral AI offers two categories of models, namely:
+
+- _Premium models_: These include [Mistral Large, Mistral Small, and Ministral 3B](deploy-models-mistral.md) models, and are available as serverless APIs with pay-as-you-go token-based billing.  
+- _Open models_: These include [Codestral](deploy-models-mistral-codestral.md) and Mistral Nemo (that are available as serverless APIs with pay-as-you-go token-based billing), and [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](deploy-models-mistral-open.md)(that are available to download and run on self-hosted managed endpoints).
+
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
