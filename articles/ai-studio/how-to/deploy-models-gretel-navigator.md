@@ -1321,14 +1321,8 @@ For more examples of how to use Gretel models, see the following examples and tu
 
 | Description                               | Language          | Sample                                                          |
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|
-| CURL request                              | Bash              | [Link](https://aka.ms/mistral-large/webrequests-sample)         |
 | Azure AI Inference package for JavaScript | JavaScript        | [Link](https://aka.ms/azsdk/azure-ai-inference/javascript/samples)  |
-| Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)  |
-| Python web requests                       | Python            | [Link](https://aka.ms/mistral-large/webrequests-sample)         |
-| OpenAI SDK (experimental)                 | Python            | [Link](https://aka.ms/mistral-large/openaisdk)                  |
-| LangChain                                 | Python            | [Link](https://aka.ms/mistral-large/langchain-sample)           |
-| Mistral AI                                | Python            | [Link](https://aka.ms/mistral-large/mistralai-sample)           |
-| LiteLLM                                   | Python            | [Link](https://aka.ms/mistral-large/litellm-sample)             | 
+| Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)  | 
 
 
 ## Cost and quota considerations for Gretel models deployed as serverless API endpoints
