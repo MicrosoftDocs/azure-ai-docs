@@ -69,7 +69,7 @@ The sample app is written using JavaScript and the React Native framework. It ca
 
 Now that you've set up the sample app, you can tailor it to your own needs.
 
-For example, you may want to add situation-specific information on your consent page:
+For example, you might want to add situation-specific information on your consent page:
 
 > [!div class="mx-imgBorder"]
 > ![app consent page](../media/enrollment-app/1-consent-1.jpg)

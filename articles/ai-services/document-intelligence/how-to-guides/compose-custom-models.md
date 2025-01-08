@@ -111,7 +111,7 @@ To create custom models, start with configuring your project:
 
 :::image type="content" source="../media/studio/create-project.gif" alt-text="Animation showing create a custom project in Document Intelligence Studio.":::
 
-While creating your custom models, you may need to extract data collections from your documents. The collections may appear one of two formats. Using tables as the visual pattern:
+While creating your custom models, you might need to extract data collections from your documents. The collections may appear one of two formats. Using tables as the visual pattern:
 
 * Dynamic or variable count of values (rows) for a given set of fields (columns)
 
@@ -474,7 +474,7 @@ Using the programming language of your choice to analyze a form or document with
 
 ---
 
-Test your newly trained models by [analyzing forms](build-a-custom-model.md?view=doc-intel-2.1.0&preserve-view=true#test-the-model) that weren't part of the training dataset. Depending on the reported accuracy, you may want to do further training to improve the model. You can continue further training to [improve results](../label-tool.md#improve-results).
+Test your newly trained models by [analyzing forms](build-a-custom-model.md?view=doc-intel-2.1.0&preserve-view=true#test-the-model) that weren't part of the training dataset. Depending on the reported accuracy, you might want to do further training to improve the model. You can continue further training to [improve results](../label-tool.md#improve-results).
 
 ## Manage your custom models
 
