@@ -68,7 +68,7 @@ To correct this problem, include a variety of images to ensure that your model c
 
 ## Negative images (classifiers only)
 
-If you're using an image classifier, you may need to add _negative samples_ to help make your classifier more accurate. Negative samples are images that don't match any of the other tags. When you upload these images, apply the special **Negative** label to them.
+If you're using an image classifier, you might need to add _negative samples_ to help make your classifier more accurate. Negative samples are images that don't match any of the other tags. When you upload these images, apply the special **Negative** label to them.
 
 Object detectors handle negative samples automatically, because any image areas outside of the drawn bounding boxes are considered negative.
 

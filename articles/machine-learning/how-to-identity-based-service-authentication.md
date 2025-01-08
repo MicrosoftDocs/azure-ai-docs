@@ -170,7 +170,7 @@ To delete one or more existing UAIs, you can put the UAI IDs which needs to be p
 
 ### Add a user-assigned managed identity to a workspace in addition to a system-assigned identity
 
-In some scenarios, you may need to use a user-assigned managed identity in addition to the default system-assigned workspace identity. To add a user-assigned managed identity, without changing the existing workspace identity, use the following steps:
+In some scenarios, you might need to use a user-assigned managed identity in addition to the default system-assigned workspace identity. To add a user-assigned managed identity, without changing the existing workspace identity, use the following steps:
 
 1. [Create a user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities). Save the ID for the managed identity that you create.
 1. To attach the managed identity to your workspace, you need a YAML file that specifies the identity. The following is an example of the YAML file contents. Replace the `<TENANT_ID>`, `<RESOURCE_GROUP>`, and `<USER_MANAGED_ID>` with your values.
@@ -411,7 +411,7 @@ The following steps outline how to set up data access with user identity for tra
     ```
 
 > [!IMPORTANT] 
-> During job submission with authentication with user identity enabled, the code snapshots are protected against tampering by checksum validation. If you have existing pipeline components and intend to use them with authentication with user identity enabled, you may need to re-upload them. Otherwise the job may fail during checksum validation. 
+> During job submission with authentication with user identity enabled, the code snapshots are protected against tampering by checksum validation. If you have existing pipeline components and intend to use them with authentication with user identity enabled, you might need to re-upload them. Otherwise the job may fail during checksum validation. 
 
 ### Work with virtual networks
 

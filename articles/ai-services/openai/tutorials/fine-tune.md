@@ -35,10 +35,10 @@ In this tutorial you learn how to:
 - [Jupyter Notebooks](https://jupyter.org/)
 - An Azure OpenAI resource in a [region where `gpt-4o-mini-2024-07-18` fine-tuning is available](../concepts/models.md). If you don't have a resource the process of creating one is documented in our resource [deployment guide](../how-to/create-resource.md).
 - Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
-- If you do not already have access to view quota, and deploy models in Azure OpenAI Studio you will require [additional permissions](../how-to/role-based-access-control.md).
+- If you don't already have access to view quota and deploy models in Azure AI Foundry portal, then you need [more permissions](../how-to/role-based-access-control.md).
 
 > [!IMPORTANT]
-> We recommend reviewing the [pricing information](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing) for fine-tuning to familiarize yourself with the associated costs. In testing, this tutorial resulted in 48,000 tokens being billed (4,800 training tokens * 10 epochs of training). Training costs are in addition to the costs that are associated with fine-tuning inference, and the hourly hosting costs of having a fine-tuned model deployed. Once you have completed the tutorial, you should delete your fine-tuned model deployment otherwise you will continue to incur the hourly hosting cost.
+> We recommend reviewing the [pricing information](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing) for fine-tuning to familiarize yourself with the associated costs. Testing of this tutorial resulted in 48,000 tokens being billed (4,800 training tokens * 10 epochs of training). Training costs are in addition to the costs that are associated with fine-tuning inference, and the hourly hosting costs of having a fine-tuned model deployed. Once you have completed the tutorial, you should delete your fine-tuned model deployment otherwise you continue to incur the hourly hosting cost.
 
 ## Set up
 
@@ -46,7 +46,7 @@ In this tutorial you learn how to:
 
 # [OpenAI Python 1.x](#tab/python-new)
 
-This tutorial provides examples of some of the latest OpenAI features include seed/events/checkpoints. In order to take advantage of these features you may need to run `pip install openai --upgrade` to upgrade to the latest release.
+This tutorial provides examples of some of the latest OpenAI features include seed/events/checkpoints. In order to take advantage of these features, you might need to run `pip install openai --upgrade` to upgrade to the latest release.
 
 ```cmd
 pip install openai requests tiktoken numpy
@@ -113,7 +113,7 @@ Fine-tuning `gpt-4o-mini-2024-07-18` requires a specially formatted JSONL traini
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "How far is the Moon from Earth?"}, {"role": "assistant", "content": "Around 384,400 kilometers. Give or take a few, like that really matters."}]}
 ```
 
-For this example we'll modify this slightly by changing to:
+For this example we modify this slightly by changing to:
 
 ```json
 {"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital of France?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already."}]}
@@ -123,7 +123,7 @@ For this example we'll modify this slightly by changing to:
 
 While these three examples are helpful to give you the general format, if you want to steer your custom fine-tuned model to respond in a similar way you would need more examples. Generally you want **at least 50 high quality examples** to start out. However, it's entirely possible to have a use case that might require 1,000's of high quality training examples to be successful.
 
-In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind, low quality examples can negatively impact performance. If you train the model on a large amount of internal data, without first pruning the dataset for only the highest quality examples, you could end up with a model that performs much worse than expected.
+In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind, low quality examples can negatively affect performance. If you train the model on a large amount of internal data without first pruning the dataset for only the highest quality examples, you could end up with a model that performs worse than expected.
 
 You'll need to create two files `training_set.jsonl` and `validation_set.jsonl`.
 
@@ -134,7 +134,7 @@ Create the files in the same directory that you're running the Jupyter Notebook,
 ```json
 {"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "Who discovered Antarctica?"}, {"role": "assistant", "content": "Some chaps named Fabian Gottlieb von Bellingshausen and Mikhail Lazarev, as if they don't teach that in every school!"}]}
 {"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What is the biggest ocean?"}, {"role": "assistant", "content": "The Pacific Ocean. It's not like it's a small pond or anything."}]}
-{"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What is the largest planet?"}, {"role": "assistant", "content": "It's called Jupiter, you may have heard of it...or not."}]}
+{"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What is the largest planet?"}, {"role": "assistant", "content": "It's called Jupiter, you might have heard of it...or not."}]}
 {"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "Who painted the Mona Lisa?"}, {"role": "assistant", "content": "Oh, some obscure artist named Leonardo da Vinci. Not that he is famous or anything."}]}
 {"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the boiling point of water?"}, {"role": "assistant", "content": "Exciting fact of the day: it's 100 degrees Celsius. Life-changing, isn't it?"}]}
 {"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "Who wrote 'The Odyssey'?"}, {"role": "assistant", "content": "Oh, just some poet named Homer. Nothing special, really."}]}
@@ -203,12 +203,12 @@ First example in validation set:
 {'role': 'assistant', 'content': "It's Canberra, not Sydney. Shocking, I know!"}
 ```
 
-In this case we only have 10 training and 10 validation examples so while this will demonstrate the basic mechanics of fine-tuning a model this in unlikely to be a large enough number of examples to produce a consistently noticeable impact.
+In this case we only have 10 training and 10 validation examples so while this demonstrates the basic mechanics of fine-tuning a model this in unlikely to be a large enough number of examples to produce a consistently noticeable effect.
 
-Now you can then run some additional code from OpenAI using the tiktoken library to validate the token counts. Token counting using this method is not going to give you the exact token counts that will be used for fine-tuning, but should provide a good estimate.
+Now you can use the tiktoken library to validate the token counts. Token counting using this method isn't going to give you the exact token counts that are used for fine-tuning, but should provide a good estimate.
 
 > [!NOTE]
-> Individual examples need to remain under the `gpt-4o-mini-2024-07-18` model's current training example context legnth of: 64,536 tokens. The model's input token limit remains 128,000 tokens.
+> Individual examples need to remain under the `gpt-4o-mini-2024-07-18` model's current training example context length of: 64,536 tokens. The model's input token limit remains 128,000 tokens.
 
 ```python
 # Validate token counts
@@ -371,11 +371,11 @@ Validation file ID: file-8556c3bb41b7416bb7519b47fcd1dd6b
 
 ## Begin fine-tuning
 
-Now that the fine-tuning files have been successfully uploaded you can submit your fine-tuning training job:
+Now that the fine-tuning files are successfully uploaded you can submit your fine-tuning training job:
 
 # [OpenAI Python 1.x](#tab/python-new)
 
-In this example we're also passing the seed parameter. The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but can differ in rare cases. If a seed isn't specified, one will be generated for you.
+In this example, we're also passing the seed parameter. The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but can differ in rare cases. If a seed isn't specified, one is generated for you.
 
 ```python
 # Submit fine-tuning training job
@@ -556,7 +556,7 @@ Status: pending
 }
 ```
 
-It isn't unusual for training to take more than an hour to complete. Once training is completed the output message will change to something like:
+It isn't unusual for training to take more than an hour to complete. Once training is completed the output message changes to something like:
 
 ```output
 Fine-tuning job ftjob-900fcfc7ea1d4360a9f0cb1697b4eaa6 finished with status: succeeded
@@ -568,7 +568,7 @@ Found 4 fine-tune jobs.
 
 API version: `2024-08-01-preview` or later is required for this command.
 
-While not necessary to complete fine-tuning it can be helpful to examine the individual fine-tuning events that were generated during training. The full training results can also be examined after training is complete in the [training results file](../how-to/fine-tuning.md#analyze-your-customized-model).
+While not necessary to complete fine-tuning, it can be helpful to examine the individual fine-tuning events that were generated during training. The full training results can also be examined after training is complete in the [training results file](../how-to/fine-tuning.md#analyze-your-customized-model).
 
 # [OpenAI Python 1.x](#tab/python-new)
 
@@ -732,7 +732,7 @@ This command isn't available in the 0.28.1 OpenAI Python library. Upgrade to the
 
 API version: `2024-08-01-preview` or later is required for this command.
 
-When each training epoch completes a checkpoint is generated. A checkpoint is a fully functional version of a model which can both be deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be particularly useful, as they can provide a snapshot of your model prior to overfitting having occurred. When a fine-tuning job completes you will have the three most recent versions of the model available to deploy. The final epoch will be represented by your fine-tuned model, the previous two epochs will be available as checkpoints.
+When each training epoch completes a checkpoint is generated. A checkpoint is a fully functional version of a model which can both be deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be useful, as they can provide a snapshot of your model prior to overfitting having occurred. When a fine-tuning job completes, you have the three most recent versions of the model available to deploy. The final epoch will be represented by your fine-tuned model, the previous two epochs are available as checkpoints.
 
 # [OpenAI Python 1.x](#tab/python-new)
 
@@ -841,7 +841,7 @@ fine_tuned_model = response["fine_tuned_model"]
 
 Unlike the previous Python SDK commands in this tutorial, since the introduction of the quota feature, model deployment must be done using the [REST API](/rest/api/aiservices/accountmanagement/deployments/create-or-update?tabs=HTTP), which requires separate authorization, a different API path, and a different API version.
 
-Alternatively, you can deploy your fine-tuned model using any of the other common deployment methods like [Azure OpenAI Studio](https://oai.azure.com/), or [Azure CLI](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-create()).
+Alternatively, you can deploy your fine-tuned model using any of the other common deployment methods like [Azure AI Foundry portal](https://ai.azure.com/), or [Azure CLI](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-create()).
 
 |variable      | Definition|
 |--------------|-----------|
@@ -849,8 +849,8 @@ Alternatively, you can deploy your fine-tuned model using any of the other commo
 | subscription | The subscription ID for the associated Azure OpenAI resource |
 | resource_group | The resource group name for your Azure OpenAI resource |
 | resource_name | The Azure OpenAI resource name |
-| model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
-| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4o-mini-2024-07-18.ft-0e208cf33a6a466994aff31a08aba678`. You'll need to add that value to the deploy_data json. |
+| model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that is referenced in your code when making chat completion calls. |
+| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It looks like `gpt-4o-mini-2024-07-18.ft-0e208cf33a6a466994aff31a08aba678`. You need to add that value to the deploy_data json. |
 
 [!INCLUDE [Fine-tuning deletion](../includes/fine-tune.md)]
 
@@ -892,15 +892,13 @@ print(r.reason)
 print(r.json())
 ```
 
-You can check on your deployment progress in the Azure OpenAI Studio:
-
-:::image type="content" source="../media/tutorials/fine-tuning/studio-deployment-status.png" alt-text="Screenshot of Deployment progress on Azure OpenAI Studio." lightbox="../media/tutorials/fine-tuning/studio-deployment-status.png":::
+You can check on your deployment progress in the Azure AI Foundry portal.
 
 It isn't uncommon for this process to take some time to complete when dealing with deploying fine-tuned models.
 
 ## Use a deployed customized model
 
-After your fine-tuned model is deployed, you can use it like any other deployed model in either the [Chat Playground of Azure OpenAI Studio](https://oai.azure.com), or via the chat completion API. For example, you can send a chat completion call to your deployed model, as shown in the following Python example. You can continue to use the same parameters with your customized model, such as temperature and max_tokens, as you can with other deployed models.
+After your fine-tuned model is deployed, you can use it like any other deployed model in either the [Chat Playground of Azure AI Foundry portal](https://ai.azure.com), or via the chat completion API. For example, you can send a chat completion call to your deployed model, as shown in the following Python example. You can continue to use the same parameters with your customized model, such as temperature and max_tokens, as you can with other deployed models.
 
 # [OpenAI Python 1.x](#tab/python-new)
 
@@ -964,11 +962,11 @@ Unlike other types of Azure OpenAI models, fine-tuned/customized models have [an
 
 Deleting the deployment won't affect the model itself, so you can re-deploy the fine-tuned model that you trained for this tutorial at any time.
 
-You can delete the deployment in [Azure OpenAI Studio](https://oai.azure.com/), via [REST API](/rest/api/aiservices/accountmanagement/deployments/delete?tabs=HTTP), [Azure CLI](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-delete()), or other supported deployment methods.
+You can delete the deployment in [Azure AI Foundry portal](https://ai.azure.com/), via [REST API](/rest/api/aiservices/accountmanagement/deployments/delete?tabs=HTTP), [Azure CLI](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-delete()), or other supported deployment methods.
 
 ## Troubleshooting
 
-### How do I enable fine-tuning? Create a custom model is grayed out in Azure OpenAI Studio
+### How do I enable fine-tuning? Create a custom model is grayed out.
 
 In order to successfully access fine-tuning you need **Cognitive Services OpenAI Contributor assigned**. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information please review the [role-based access control guidance](/azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-openai-contributor).
 

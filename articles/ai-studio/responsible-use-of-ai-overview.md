@@ -96,7 +96,7 @@ Recommended System Message Framework:
     - **Define the scope and limitations** of the model's performance by providing clear instructions.
     - **Define the posture and tone** the model should exhibit in its responses.
 - Define the model's output format.
-    - **Define the language and syntax** of the output format. For example, if you want the output to be machine parse-able, you may want tot structure the output to be in JSON, XSON orXML.
+    - **Define the language and syntax** of the output format. For example, if you want the output to be machine parse-able, you might want tot structure the output to be in JSON, XSON orXML.
     - **Define any styling or formatting** preferences for better user readability like bulleting or bolding certain parts of the response
 - Provide examples to demonstrate the intended behavior of the model
     - **Describe difficult use cases** where the prompt is ambiguous or complicated, to give the model more visibility into how to approach such cases.

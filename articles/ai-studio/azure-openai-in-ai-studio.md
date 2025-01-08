@@ -28,7 +28,7 @@ You can also use [https://ai.azure.com/resource](https://ai.azure.com/resource) 
 
 ## Focus on Azure OpenAI Service
 
-If you've been using Azure OpenAI Studio, all your work, such as your deployments, content filters, batch jobs or fine-tuned models, is still available. All the features and functionality are still here, though the look and feel of some features are updated.
+If you've been using Azure OpenAI Studio, all your work, such as your deployments, content filters, batch jobs or fine-tuned models, is still available in Azure AI Foundry portal. All the features and functionality are still here, though the look and feel of some features are updated.
 
 :::image type="content" source="media/azure-openai-in-ai-studio/studio-home.png" alt-text="Screenshot shows the new Azure OpenAI in Azure AI Foundry portal." lightbox="media/azure-openai-in-ai-studio/studio-home.png":::
 

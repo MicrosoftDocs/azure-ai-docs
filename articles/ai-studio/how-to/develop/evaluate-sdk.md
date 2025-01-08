@@ -740,7 +740,7 @@ result = evaluate(
 
 ## Cloud evaluation on test datasets
 
-After local evaluations of your generative AI applications, you may want to run evaluations in the cloud for pre-deployment testing, and [continuously evaluate](https://aka.ms/GenAIMonitoringDoc) your applications for post-deployment monitoring. Azure AI Projects SDK offers such capabilities via a Python API and supports almost all of the features available in local evaluations. Follow the steps below to submit your evaluation to the cloud on your data using built-in or custom evaluators.
+After local evaluations of your generative AI applications, you might want to run evaluations in the cloud for pre-deployment testing, and [continuously evaluate](https://aka.ms/GenAIMonitoringDoc) your applications for post-deployment monitoring. Azure AI Projects SDK offers such capabilities via a Python API and supports almost all of the features available in local evaluations. Follow the steps below to submit your evaluation to the cloud on your data using built-in or custom evaluators.
 
 ### Prerequisites
 

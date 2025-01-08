@@ -25,7 +25,7 @@ If the QnA Maker knowledge base manager is not the Active Directory manager, you
 
 ## Add supported file types to knowledge base
 
-You can add all QnA Maker-supported [file types](../concepts/data-sources-and-content.md#file-and-url-data-types) from a SharePoint site to your knowledge base. You may have to grant [permissions](#permissions) if the file resource is secured.
+You can add all QnA Maker-supported [file types](../concepts/data-sources-and-content.md#file-and-url-data-types) from a SharePoint site to your knowledge base. You might have to grant [permissions](#permissions) if the file resource is secured.
 
 1. From the library with the SharePoint site, select the file's ellipsis menu, `...`.
 1. Copy the file's URL.

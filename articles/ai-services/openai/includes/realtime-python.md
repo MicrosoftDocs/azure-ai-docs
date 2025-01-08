@@ -76,19 +76,11 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Retrieve resource information
 
-#### [Microsoft Entra ID](#tab/javascript-keyless)
-
-[!INCLUDE [keyless-environment-variables](env-var-without-key.md)]
-
-#### [API key](#tab/javascript-key)
-
-[!INCLUDE [key-environment-variables](env-var-key.md)]
-
----
+[!INCLUDE [resource authentication](resource-auth.md)]
 
 ## Text in audio out
 
-## [Microsoft Entra ID](#tab/javascript-keyless)
+## [Microsoft Entra ID](#tab/keyless)
 
 1. Create the `text-in-audio-out.py` file with the following code:
 
@@ -149,7 +141,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     python text-in-audio-out.py
     ```
 
-## [API key](#tab/javascript-key)
+## [API key](#tab/api-key)
 
 1. Create the `text-in-audio-out.py` file with the following code:
 

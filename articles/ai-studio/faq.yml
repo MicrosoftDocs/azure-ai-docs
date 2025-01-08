@@ -39,10 +39,6 @@ sections:
         answer: |
           Yes. Azure AI Foundry includes a robust and growing catalog of frontier and open-source models from OpenAI, Hugging Face, Meta and more that can be applied over your data. You can even compare models by task using open-source datasets and evaluate the model with your own test data to see how the pre-trained model would perform to fit your own use case.
       - question: |
-          How is the playground in Azure AI Foundry portal different from the Azure OpenAI Studio playground? 
-        answer: |
-          The playground experiences in both Azure AI Foundry and Azure OpenAI Studio are similar; however, Azure AI Foundry provides playground experience for models in addition to those provisioned via Azure OpenAI Studio.
-      - question: |
           Will there be multiple varying model benchmarks in Azure AI Foundry portal based on individual projects and data sources? 
         answer: |
           In the model benchmarks view, customers can view varying model benchmarks published by Azure AI. 
