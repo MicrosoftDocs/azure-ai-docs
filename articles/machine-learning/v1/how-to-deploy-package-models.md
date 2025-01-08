@@ -15,6 +15,8 @@ ms.custom: UpdateFrequency5, deploy
 
 # How to package a registered model with Docker
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 This article shows how to package a registered Azure Machine Learning model with Docker.
 
 ## Prerequisites
