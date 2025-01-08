@@ -1,7 +1,7 @@
 ---
 title: 'Quickstart: Generate images with Azure OpenAI Service'
 titleSuffix: Azure OpenAI
-description: Learn how to get started generating images with Azure OpenAI Service by using the Python SDK, the REST APIs, or Azure OpenAI Studio.
+description: Learn how to get started generating images with Azure OpenAI Service by using the Python SDK, the REST APIs, or Azure AI Foundry portal.
 #services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
@@ -20,7 +20,7 @@ zone_pivot_groups: openai-quickstart-dall-e
 
 ::: zone pivot="programming-language-studio"
 
-[!INCLUDE [Studio quickstart](includes/dall-e-studio.md)]
+[!INCLUDE [Portal quickstart](includes/dall-e-studio.md)]
 
 ::: zone-end
 
