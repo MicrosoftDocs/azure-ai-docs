@@ -1,5 +1,5 @@
 ---
-title: Continuously Monitor your Generative AI Applications
+title: Run evaluations online in Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to use online and remote evaluation to continuously monitor Generative AI Applications.
 manager: scottpolly
@@ -13,7 +13,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Continuously monitor your generative AI applications
+# Run evaluations online
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -122,7 +122,7 @@ Using the [Kusto Query Language (KQL)](/kusto/query/?view=microsoft-fabric&prese
 > [!IMPORTANT]
 > The KQL query used by the Online Evaluation service must output the following columns: `operation_Id`, `operation_ParentId`, and `gen_ai_response_id`. Additionally, each evaluator has its own input data requirements. The KQL query must output these columns to be used as inputs to the evaluators themselves. For a list of data requirements for evaluators, see [data requirements for built-in evaluators](./develop/evaluate-sdk.md#data-requirements-for-built-in-evaluators).
 
-```SQL
+```kusto
 let gen_ai_spans = (
     dependencies
     | where isnotnull(customDimensions["gen_ai.system"])
@@ -324,44 +324,6 @@ Disable (soft-delete) Online Evaluation schedule:
 name = "<my-online-evaluation-name>"
 project_client.evaluations.disable_schedule(name)
 ```
-
-## Monitor your generative AI application
-
-In this section, you'll learn how Azure AI integrates with Azure Monitor Application Insights to give you an out-of-the-box dashboard view that is tailored with insights regarding your generative AI app so you can stay updated with the latest status of your application.
-
-### Insights for your generative AI application  
-
-If you haven’t set this up, here are some quick steps:
-
-1. Navigate to your project in [Azure AI Foundry](https://ai.azure.com).
-1. Select the Tracing page on the left-hand side.
-1. Connect your Application Insights resource to your project.
-
-If you already set up tracing in Azure AI Foundry portal, all you need to do is select the link to **Check out your Insights for Generative AI application dashboard**.
-
-Once you have your data streaming into your Application Insights resource, you automatically can see it get populated in this customized dashboard.
-
-:::image type="content" source="../media/how-to/online-evaluation/open-generative-ai-workbook.gif" alt-text="Animation of an Azure workbook showing Application Insights." lightbox="../media/how-to/online-evaluation/open-generative-ai-workbook.gif":::
-
-This view is a great place for you to get started with your monitoring needs.
-
-- You can view token consumption over time to understand if you need to increase your usage limits or do additional cost analysis.
-- You can view evaluation metrics as trend lines to understand the quality of your app on a daily basis.
-- You can debug when exceptions take place and drill into traces using the **Azure Monitor End-to-end transaction details view** to figure out what went wrong.
-
-:::image type="content" source="../media/how-to/online-evaluation/custom-generative-ai-workbook.gif" alt-text="Animation of an Azure workbook showing graphs and end to end transaction details." lightbox="../media/how-to/online-evaluation/custom-generative-ai-workbook.gif":::
-
-This is an Azure Workbook that is querying data stored in your Application Insights resource. You can customize this workbook and tailor this to fit your business needs.
-To learn more, see [editing Azure Workbooks](/azure/azure-monitor/visualize/workbooks-create-workbook).
-
-This allows you to add additional custom evaluators that you might have logged or other markdown text to share summaries and use for reporting purposes.
-
-You can also share this workbook with your team so they stay informed with the latest!
-
-:::image type="content" source="../media/how-to/online-evaluation/share-azure-workbook.png" alt-text="Screenshot of an Azure Workbook showing the share button and share tab." lightbox="../media/how-to/online-evaluation/share-azure-workbook.png":::
-
-> [!NOTE]
-> When sharing this workbook with your team members, they must have atleast 'Reader' role to the connected Application Insights resource to view the displayed information.
 
 ## Related content
 

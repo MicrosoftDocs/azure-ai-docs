@@ -331,6 +331,8 @@ items:
     - name: View evaluation results in the portal
       href: how-to/evaluate-results.md
       displayName: accuracy,metrics
+    - name: Run evaluations online
+      href: how-to/online-evaluation.md
     - name: Evaluate flows in the portal
       items:
         - name: Submit batch run and evaluate a flow
@@ -342,7 +344,7 @@ items:
   - name: Deploy and monitor generative AI apps
     items:
     - name: Continuously monitor your applications
-      href: how-to/online-evaluation.md
+      href: how-to/monitor-application.md
     - name: Deploy and monitor flows
       items:
       - name: Deploy a flow for real-time inference
