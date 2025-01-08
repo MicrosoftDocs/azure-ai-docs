@@ -50,7 +50,7 @@ Use-cases for Codestral 2501 include:
 
 You can learn more about the models in their respective model card:
 
-* [Codesral-2501](https://aka.ms/azureai/landing/Codesral-2501)
+* [Codestral-2501](https://aka.ms/azureai/landing/Codestral-2501)
 
 
 > [!TIP]
@@ -129,7 +129,7 @@ print("Model provider name:", model_info.model_provider_name)
 ```
 
 ```console
-Model name: Codesral-2501
+Model name: Codestral-2501
 Model type: chat-completions
 Model provider name: MistralAI
 ```
@@ -163,7 +163,7 @@ print("\tCompletion tokens:", response.usage.completion_tokens)
 
 ```console
 Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
-Model: Codesral-2501
+Model: Codestral-2501
 Usage: 
   Prompt tokens: 19
   Total tokens: 91
@@ -494,7 +494,7 @@ Use-cases for Codestral 2501 include:
 
 You can learn more about the models in their respective model card:
 
-* [Codesral-2501](https://aka.ms/azureai/landing/Codesral-2501)
+* [Codestral-2501](https://aka.ms/azureai/landing/Codestral-2501)
 
 
 > [!TIP]
@@ -571,7 +571,7 @@ console.log("Model provider name: ", model_info.body.model_provider_name)
 ```
 
 ```console
-Model name: Codesral-2501
+Model name: Codestral-2501
 Model type: chat-completions
 Model provider name: MistralAI
 ```
@@ -611,7 +611,7 @@ console.log("\tCompletion tokens:", response.body.usage.completion_tokens);
 
 ```console
 Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
-Model: Codesral-2501
+Model: Codestral-2501
 Usage: 
   Prompt tokens: 19
   Total tokens: 91
@@ -957,7 +957,7 @@ Use-cases for Codestral 2501 include:
 
 You can learn more about the models in their respective model card:
 
-* [Codesral-2501](https://aka.ms/azureai/landing/Codesral-2501)
+* [Codestral-2501](https://aka.ms/azureai/landing/Codestral-2501)
 
 
 > [!TIP]
@@ -1053,7 +1053,7 @@ Console.WriteLine($"Model provider name: {modelInfo.Value.ModelProviderName}");
 ```
 
 ```console
-Model name: Codesral-2501
+Model name: Codestral-2501
 Model type: chat-completions
 Model provider name: MistralAI
 ```
@@ -1088,7 +1088,7 @@ Console.WriteLine($"\tCompletion tokens: {response.Value.Usage.CompletionTokens}
 
 ```console
 Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
-Model: Codesral-2501
+Model: Codestral-2501
 Usage: 
   Prompt tokens: 19
   Total tokens: 91
@@ -1442,7 +1442,7 @@ Use-cases for Codestral 2501 include:
 
 You can learn more about the models in their respective model card:
 
-* [Codesral-2501](https://aka.ms/azureai/landing/Codesral-2501)
+* [Codestral-2501](https://aka.ms/azureai/landing/Codestral-2501)
 
 
 > [!TIP]
@@ -1497,7 +1497,7 @@ The response is as follows:
 
 ```json
 {
-    "model_name": "Codesral-2501",
+    "model_name": "Codestral-2501",
     "model_type": "chat-completions",
     "model_provider_name": "MistralAI"
 }
@@ -1530,7 +1530,7 @@ The response is as follows, where you can see the model's usage statistics:
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718726686,
-    "model": "Codesral-2501",
+    "model": "Codestral-2501",
     "choices": [
         {
             "index": 0,
@@ -1587,7 +1587,7 @@ You can visualize how streaming generates content:
     "id": "23b54589eba14564ad8a2e6978775a39",
     "object": "chat.completion.chunk",
     "created": 1718726371,
-    "model": "Codesral-2501",
+    "model": "Codestral-2501",
     "choices": [
         {
             "index": 0,
@@ -1610,7 +1610,7 @@ The last message in the stream has `finish_reason` set, indicating the reason fo
     "id": "23b54589eba14564ad8a2e6978775a39",
     "object": "chat.completion.chunk",
     "created": 1718726371,
-    "model": "Codesral-2501",
+    "model": "Codestral-2501",
     "choices": [
         {
             "index": 0,
@@ -1661,7 +1661,7 @@ Explore other parameters that you can specify in the inference client. For a ful
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718726686,
-    "model": "Codesral-2501",
+    "model": "Codestral-2501",
     "choices": [
         {
             "index": 0,
@@ -1711,7 +1711,7 @@ Codestral chat model can create JSON outputs. Set `response_format` to `json_obj
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718727522,
-    "model": "Codesral-2501",
+    "model": "Codestral-2501",
     "choices": [
         {
             "index": 0,
@@ -1893,7 +1893,7 @@ You can inspect the response to find out if a tool needs to be called. Inspect t
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718726007,
-    "model": "Codesral-2501",
+    "model": "Codestral-2501",
     "choices": [
         {
             "index": 0,
