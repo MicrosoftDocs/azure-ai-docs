@@ -32,7 +32,7 @@ setx LANGUAGE_ENDPOINT your-endpoint
 > [!NOTE]
 > If you only need to access the environment variables in the current running console, you can set the environment variable with `set` instead of `setx`.
 
-After you add the environment variables, you may need to restart any running programs that will need to read the environment variables, including the console window. For example, if you are using Visual Studio as your editor, restart Visual Studio before running the example.
+After you add the environment variables, you might need to restart any running programs that will need to read the environment variables, including the console window. For example, if you are using Visual Studio as your editor, restart Visual Studio before running the example.
 
 #### [Linux](#tab/linux)
 

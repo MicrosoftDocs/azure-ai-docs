@@ -108,7 +108,7 @@ In this diagram, the compute instances, compute clusters, and AKS Clusters are l
 
 ### Required inbound and outbound configurations
 
-Azure Machine Learning has [several required inbound and outbound configurations](how-to-access-azureml-behind-firewall.md) with your virtual network. If you have a standalone virtual network, the configuration is straightforward using network security group. However, you may have a hub-spoke or mesh network architecture, firewall, network virtual appliance, proxy, and user defined routing. In either case, make sure to allow inbound and outbound with your network security components.
+Azure Machine Learning has [several required inbound and outbound configurations](how-to-access-azureml-behind-firewall.md) with your virtual network. If you have a standalone virtual network, the configuration is straightforward using network security group. However, you might have a hub-spoke or mesh network architecture, firewall, network virtual appliance, proxy, and user defined routing. In either case, make sure to allow inbound and outbound with your network security components.
 
 :::image type="content" source="media/how-to-network-isolation-planning/hub-spoke-network-diagram.png" alt-text="Diagram of hub-spoke network with outbound through firewall.":::
 

@@ -13,7 +13,7 @@ ms.author: lajanuar
 
 # How to prevent translation of content with the Translator
 
-The Translator allows you to tag content so that it isn't translated. For example, you may want to tag code, a brand name, or a word/phrase that doesn't make sense when localized.
+The Translator allows you to tag content so that it isn't translated. For example, you might want to tag code, a brand name, or a word/phrase that doesn't make sense when localized.
 
 ## Methods for preventing translation
 

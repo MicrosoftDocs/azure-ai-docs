@@ -101,7 +101,7 @@ This section contains implementation details, tips, and answers to frequently as
 
      By default, most string columns are handled as string features, so you must explicitly mark them as categorical using [Edit Metadata](edit-metadata.md).  
 
--   There is no limit on the number of columns that you can convert to indicator columns. However, because each column of values can yield multiple indicator columns, you may want to convert and review just a few columns at a time.  
+-   There is no limit on the number of columns that you can convert to indicator columns. However, because each column of values can yield multiple indicator columns, you might want to convert and review just a few columns at a time.  
 
 -   If the column contains missing values, a separate indicator column is created for the missing category, with this name: *\<source column>- Missing*  
 

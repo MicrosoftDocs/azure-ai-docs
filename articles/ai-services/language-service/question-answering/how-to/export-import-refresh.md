@@ -11,7 +11,7 @@ ms.date: 11/21/2024
 ---
 # Export-import-refresh in custom question answering
 
-You may want to create a copy of your custom question answering project or related question and answer pairs for several reasons:
+You might want to create a copy of your custom question answering project or related question and answer pairs for several reasons:
 
 * To implement a backup and restore process
 * To integrate with your CI/CD pipeline
