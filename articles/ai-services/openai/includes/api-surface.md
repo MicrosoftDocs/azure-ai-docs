@@ -5,7 +5,7 @@ description: Information on the division of control plane and data plane API sur
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 101/08/2024
+ms.date: 01/08/2024
 ---
 
 
