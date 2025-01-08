@@ -1472,8 +1472,8 @@ Create an assistant with a model and instructions.
 
 | Name | Type | Description | Default |
 |------|------|-------------|--------|
-| vector_store_ids | array | The vector store attached to this assistant. There can be a maximum of 1 vector store attached to the assistant.<br> |  |
-| vector_stores | array | A helper to create a vector store with file_ids and attach it to this assistant. There can be a maximum of 1 vector store attached to the assistant.<br> |  |
+| vector_store_ids | array | The vector store attached to this assistant. There can be a maximum of one vector store attached to the assistant.<br> |  |
+| vector_stores | array | A helper to create a vector store with file_ids and attach it to this assistant. There can be a maximum of one vector store attached to the assistant.<br> |  |
 
 ### Responses
 
@@ -1652,7 +1652,7 @@ Modifies an assistant.
 
 | Name | Type | Description | Default |
 |------|------|-------------|--------|
-| vector_store_ids | array | Overrides the vector store attached to this assistant. There can be a maximum of 1 vector store attached to the assistant.<br> |  |
+| vector_store_ids | array | Overrides the vector store attached to this assistant. There can be a maximum of one vector store attached to the assistant.<br> |  |
 
 ### Responses
 
@@ -1814,8 +1814,8 @@ Create a thread.
 
 | Name | Type | Description | Default |
 |------|------|-------------|--------|
-| vector_store_ids | array | The vector store attached to this thread. There can be a maximum of 1 vector store attached to the thread.<br> |  |
-| vector_stores | array | A helper to create a vector store with file_ids and attach it to this thread. There can be a maximum of 1 vector store attached to the thread.<br> |  |
+| vector_store_ids | array | The vector store attached to this thread. There can be a maximum of one vector store attached to the thread.<br> |  |
+| vector_stores | array | A helper to create a vector store with file_ids and attach it to this thread. There can be a maximum of one vector store attached to the thread.<br> |  |
 
 ### Responses
 
@@ -1956,7 +1956,7 @@ Modifies a thread.
 
 | Name | Type | Description | Default |
 |------|------|-------------|--------|
-| vector_store_ids | array | The vector store attached to this thread. There can be a maximum of 1 vector store attached to the thread.<br> |  |
+| vector_store_ids | array | The vector store attached to this thread. There can be a maximum of one vector store attached to the thread.<br> |  |
 
 ### Responses
 
@@ -2465,7 +2465,7 @@ Create a thread and run it in one request.
 
 | Name | Type | Description | Default |
 |------|------|-------------|--------|
-| vector_store_ids | array | The ID of the vector store attached to this assistant. There can be a maximum of 1 vector store attached to the assistant.<br> |  |
+| vector_store_ids | array | The ID of the vector store attached to this assistant. There can be a maximum of one vector store attached to the assistant.<br> |  |
 
 ### Responses
 
@@ -6176,7 +6176,7 @@ Represents an `assistant` that can call the model and use tools.
 
 | Name | Type | Description | Default |
 |------|------|-------------|--------|
-| vector_store_ids | array | The ID of the vector store attached to this assistant. There can be a maximum of 1 vector store attached to the assistant.<br> |  |
+| vector_store_ids | array | The ID of the vector store attached to this assistant. There can be a maximum of one vector store attached to the assistant.<br> |  |
 
 
 
@@ -6217,8 +6217,8 @@ Represents an `assistant` that can call the model and use tools.
 
 | Name | Type | Description | Default |
 |------|------|-------------|--------|
-| vector_store_ids | array | The vector store attached to this assistant. There can be a maximum of 1 vector store attached to the assistant.<br> |  |
-| vector_stores | array | A helper to create a vector store with file_ids and attach it to this assistant. There can be a maximum of 1 vector store attached to the assistant.<br> |  |
+| vector_store_ids | array | The vector store attached to this assistant. There can be a maximum of one vector store attached to the assistant.<br> |  |
+| vector_stores | array | A helper to create a vector store with file_ids and attach it to this assistant. There can be a maximum of one vector store attached to the assistant.<br> |  |
 
 
 ### modifyAssistantRequest
@@ -6251,7 +6251,7 @@ Represents an `assistant` that can call the model and use tools.
 
 | Name | Type | Description | Default |
 |------|------|-------------|--------|
-| vector_store_ids | array | Overrides the vector store attached to this assistant. There can be a maximum of 1 vector store attached to the assistant.<br> |  |
+| vector_store_ids | array | Overrides the vector store attached to this assistant. There can be a maximum of one vector store attached to the assistant.<br> |  |
 
 
 ### deleteAssistantResponse
@@ -6669,7 +6669,7 @@ Tool call objects
 
 | Name | Type | Description | Default |
 |------|------|-------------|--------|
-| vector_store_ids | array | The ID of the vector store attached to this assistant. There can be a maximum of 1 vector store attached to the assistant.<br> |  |
+| vector_store_ids | array | The ID of the vector store attached to this assistant. There can be a maximum of one vector store attached to the assistant.<br> |  |
 
 
 ### threadObject
@@ -6697,7 +6697,7 @@ Represents a thread that contains messages.
 
 | Name | Type | Description | Default |
 |------|------|-------------|--------|
-| vector_store_ids | array | The vector store attached to this thread. There can be a maximum of 1 vector store attached to the thread.<br> |  |
+| vector_store_ids | array | The vector store attached to this thread. There can be a maximum of one vector store attached to the thread.<br> |  |
 
 
 
@@ -6731,8 +6731,8 @@ Represents a thread that contains messages.
 
 | Name | Type | Description | Default |
 |------|------|-------------|--------|
-| vector_store_ids | array | The vector store attached to this thread. There can be a maximum of 1 vector store attached to the thread.<br> |  |
-| vector_stores | array | A helper to create a vector store with file_ids and attach it to this thread. There can be a maximum of 1 vector store attached to the thread.<br> |  |
+| vector_store_ids | array | The vector store attached to this thread. There can be a maximum of one vector store attached to the thread.<br> |  |
+| vector_stores | array | A helper to create a vector store with file_ids and attach it to this thread. There can be a maximum of one vector store attached to the thread.<br> |  |
 
 
 ### modifyThreadRequest
@@ -6757,7 +6757,7 @@ Represents a thread that contains messages.
 
 | Name | Type | Description | Default |
 |------|------|-------------|--------|
-| vector_store_ids | array | The vector store attached to this thread. There can be a maximum of 1 vector store attached to the thread.<br> |  |
+| vector_store_ids | array | The vector store attached to this thread. There can be a maximum of one vector store attached to the thread.<br> |  |
 
 
 ### deleteThreadResponse
