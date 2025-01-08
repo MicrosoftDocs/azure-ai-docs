@@ -16,7 +16,7 @@ zone_pivot_groups: openai-quickstart-dall-e
 # Quickstart: Generate images with Azure OpenAI Service
 
 > [!NOTE]
-> The image generation API creates an image from a text prompt. It does not edit or create variations from existing images.
+> The image generation API creates an image from a text prompt. It doesn't edit or create variations from existing images.
 
 ::: zone pivot="programming-language-studio"
 
