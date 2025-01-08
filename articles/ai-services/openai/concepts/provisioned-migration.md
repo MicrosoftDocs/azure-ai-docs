@@ -51,7 +51,7 @@ Provisioned quota granularity is changing from model-specific to model-independe
 
 ## Model-independent quota
 
-Starting on August 12, 2024, existing customers' current, model-specific quota has been converted to model-independent. This happens automatically. No quota is lost in the transition. Existing quota limits are summed and assigned to a new model-independent quota item.
+As of August 12, 2024, existing customers' current, model-specific quota has been converted to model-independent. This happens automatically. No quota is lost in the transition. Existing quota limits are summed and assigned to a new model-independent quota item.
 
 :::image type="content" source="../media/provisioned/consolidation.png" alt-text="Diagram showing quota consolidation." lightbox="../media/provisioned/consolidation.png":::
 
@@ -67,7 +67,7 @@ For existing customers, if the region already contains a quota assignment, the q
 
 Customers no longer obtain quota by contacting their sales teams. Instead, they use the self-service quota request form and specify the PTU-Managed quota type. The form is accessible from a link to the right of the quota item. The target is to respond to all quota requests within two business days.  
 
-The following quota screenshot shows model-independent quota being used by deployments of different types, as well as the link for requesting additional quota. 
+The following quota screenshot shows model-independent quota being used by deployments of different types, and the link for requesting additional quota. 
 
 :::image type="content" source="../media/provisioned/quota-request-type.png" alt-text="Screenshot of new request type UI for Azure OpenAI provisioned for requesting more quota." lightbox="../media/provisioned/quota-request-type.png":::
 
@@ -75,7 +75,7 @@ The following quota screenshot shows model-independent quota being used by deplo
 
 Prior to the August update, Azure OpenAI Provisioned was only available to a few customers, and quota was allocated to maximize the ability for them to deploy and use it. With these changes, the process of acquiring quota is simplified for all users, and there is a greater likelihood of running into service capacity limitations when deployments are attempted. A new API and portal experience are available to help users find regions where the subscription has quota and the service has capacity to support deployments of a desired model.
 
-We also recommend that customers using commitments now create their deployments before creating or expanding commitments to cover them. This guarantees that capacity is available before creating a commitment and prevents over-purchase of the commitment. To support this, the restriction that prevented deployments from being created larger than their commitments has been removed. This new approach to quota, capacity availability and commitments matches what is provided under the hourly/reservation model, and the guidance to deploy before purchasing a commitment (or reservation, for the hourly model) is the same for both.
+We also recommend that customers using commitments now create their deployments before creating or expanding commitments to cover them. This guarantees that capacity is available before creating a commitment and prevents over-purchase of the commitment. To support this, the restriction that prevented deployments from being created larger than their commitments has been removed. This new approach to quota, capacity availability, and commitments matches what is provided under the hourly/reservation model, and the guidance to deploy before purchasing a commitment (or reservation, for the hourly model) is the same for both.
 
 See the following links for more information. The guidance for reservations and commitments is the same:
 
@@ -85,7 +85,7 @@ See the following links for more information. The guidance for reservations and 
 ## New hourly reservation payment model
 
 > [!NOTE]
-> The following description of payment models does not apply to the older "Provisioned Classic (PTU-C)" offering. They only affect the Provisioned (aka Provisioned Managed) offering. Provisioned Classic continues to be governed by the unchanged monthly commitment payment model.
+> The following description of payment models doesn't apply to the older "Provisioned Classic (PTU-C)" offering. They only affect the Provisioned (also known as Provisioned Managed) offering. Provisioned Classic continues to be governed by the unchanged monthly commitment payment model.
 
 Microsoft has introduced a new "Hourly/reservation" payment model for provisioned deployments. This is in addition to the current **Commitment** payment model, which will continue to be supported at least through the end of 2024.
 
@@ -93,7 +93,7 @@ Microsoft has introduced a new "Hourly/reservation" payment model for provisione
 
 - A regional, monthly commitment is required to use provisioned (longer terms available contractually).
 
-- Commitments are bound to Azure OpenAI resources, which makes moving deployments across resources difficult.
+- Commitments are bound to Azure OpenAI resources, which will make moving deployments across resources difficult.
 
 - Commitments can't be canceled or altered during their term, except to add new PTUs.
 
@@ -149,9 +149,9 @@ Steps 1 and 2 are the same in all cases. The difference is whether a commitment 
 * The best practice is to create deployments first, and then to apply discounts. This is to guarantee that service. capacity is available to support your deployments prior to creating a term commitment for PTUs you cannot use. 
 
 > [!NOTE] 
-> When you follow best practices, you may receive hourly charges between the time you create the deployment and increase your discount (commitment or reservation).   
+> When you follow best practices, you might receive hourly charges between the time you create the deployment and increase your discount (commitment or reservation).   
 >
-> For this reason, we recommend that you be prepared to increase your discount immediately following the deployment. The prerequisites for purchasing an Azure reservations are different than for commitments, and we recommend you validate them prior to deployment if you intend to use them to discount your deployment.  For more information, see [Permissions to view and manage Azure reservations](/azure/cost-management-billing/reservations/view-reservations) 
+> For this reason, we recommend that you be prepared to increase your discount immediately following the deployment. The prerequisites for purchasing an Azure reservations are different than for commitments, and we recommend you validate them prior to deployment if you intend to use them to discount your deployment. For more information, see [Permissions to view and manage Azure reservations](/azure/cost-management-billing/reservations/view-reservations) 
 
 ## Mapping deployments to discounting method 
 
@@ -206,7 +206,7 @@ An alternative approach to self-service migration is to switch the reservation p
 * There will be a short period of double-billing or hourly charges during the switchover from committed to hourly/reservation billing.
 
 > [!IMPORTANT]
-> Both self-service approaches generate some additional charges as the payment mode is switched from Committed to Hourly/Reservation.  These are characteristics of the migration approaches and customers aren't credited for these charges.  Customers may choose to use the managed migration approach described below to avoid them.
+> Both self-service approaches generate some additional charges as the payment mode is switched from Committed to Hourly/Reservation. These are characteristics of the migration approaches and customers aren't credited for these charges.  Customers can choose to use the managed migration approach described below to avoid them.
 
 ### Managed migration
 
@@ -273,11 +273,11 @@ For each new commitment you need to create, follow these steps:
 :::image type="content" source="../media/how-to/provisioned-onboarding/commitment-tier.png" alt-text="Screenshot of commitment purchase UI." lightbox="../media/how-to/provisioned-onboarding/commitment-tier.png":::
 
 > [!IMPORTANT]
-> A new commitment is billed up-front for the entire term.  If the renewal settings are set to auto-renew, then you will be billed again on each renewal date based on the renewal settings.
+> A new commitment is billed up-front for the entire term. If the renewal settings are set to auto-renew, then you will be billed again on each renewal date based on the renewal settings.
 
 ### Edit an existing Provisioned Throughput commitment
 
-From the Manage Commitments view, you can also edit an existing commitment. There are two types of changes you can make to an existing commitment:
+From the **Manage Commitments** view, you can also edit an existing commitment. There are two types of changes you can make to an existing commitment:
 
 - You can add PTUs to the commitment.
 - You can change the renewal settings.
@@ -291,14 +291,14 @@ Adding PTUs to an existing commitment will allow you to create larger or more nu
 :::image type="content" source="../media/how-to/provisioned-onboarding/increase-commitment.png" alt-text="Screenshot of commitment purchase UI with an increase in the amount to commit value." lightbox="../media/how-to/provisioned-onboarding/increase-commitment.png":::
 
 > [!IMPORTANT]
-> When you add PTUs to a commitment, they will be billed immediately, at a pro-rated amount from the current date to the end of the existing commitment term.  Adding PTUs does not reset the commitment term.
+> When you add PTUs to a commitment, they will be billed immediately, at a pro-rated amount from the current date to the end of the existing commitment term. Adding PTUs doesn't reset the commitment term.
 
 ### Changing renewal settings
 
-Commitment renewal settings can be changed at any time before the expiration date of your commitment.  Reasons you might want to change the renewal settings include ending your use of provisioned throughput by setting the commitment to not autorenew, or to decrease usage of provisioned throughput by lowering the number of PTUs that will be committed in the next period.
+Commitment renewal settings can be changed at any time before the expiration date of your commitment. Reasons you might want to change the renewal settings include ending your use of provisioned throughput by setting the commitment to not autorenew, or to decrease usage of provisioned throughput by lowering the number of PTUs that will be committed in the next period.
 
 > [!IMPORTANT]
-> If you allow a commitment to expire or decrease in size such that the deployments under the resource require more PTUs than you have in your resource commitment, you will receive hourly overage charges for any excess PTUs.  For example, a resource that has deployments that total 500 PTUs and a commitment for 300 PTUs will generate hourly overage charges for 200 PTUs.
+> If you allow a commitment to expire or decrease in size such that the deployments under the resource require more PTUs than you have in your resource commitment, you will receive hourly overage charges for any excess PTUs. For example, a resource that has deployments that total 500 PTUs and a commitment for 300 PTUs will generate hourly overage charges for 200 PTUs.
 
 ## Monitor commitments and prevent unexpected billings
 
