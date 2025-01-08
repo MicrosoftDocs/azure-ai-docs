@@ -7,9 +7,9 @@ ms.service: azure-ai-openai
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/11/2024
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 01/08/2025
+author: aahill
+ms.author: aahi
 recommendations: false
 ---
 
