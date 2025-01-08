@@ -18,6 +18,8 @@ ms.date: 04/01/2024
   
 [!INCLUDE [cli-version-info](../includes/machine-learning-cli-v1-deprecation.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 > [!IMPORTANT]
 > Support for training computer vision models with automated ML in Azure Machine Learning is an experimental public preview feature. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 

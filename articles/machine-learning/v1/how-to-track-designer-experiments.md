@@ -15,6 +15,7 @@ ms.custom: UpdateFrequency5, designer, sdkv1, devx-track-python
 
 # Enable logging in Azure Machine Learning designer pipelines
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In this article, you learn how to add logging code to designer pipelines. You also learn how to view those logs using the Azure Machine Learning studio web portal.
 

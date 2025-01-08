@@ -18,6 +18,8 @@ ms.custom: UpdateFrequency5, data4ml, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you learn how to work with [Azure Machine Learning datasets](/python/api/azureml-core/azureml.core.dataset%28class%29) to train machine learning models.  You can use datasets in your local or remote compute target without worrying about connection strings or data paths.
 
 * For structured data, see [Consume datasets in machine learning training scripts](#consume-datasets-in-machine-learning-training-scripts).
