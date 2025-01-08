@@ -280,7 +280,7 @@ The following extra parameters can be passed to Mistral Nemo chat model:
 
 ### Safe mode
 
-Mistral Nemo chat model support the parameter `safe_prompt`. You can toggle the safe prompt to prepend your messages with the following system prompt:
+Mistral Nemo chat model supports the parameter `safe_prompt`. You can toggle the safe prompt to prepend your messages with the following system prompt:
 
 > Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.
 
@@ -301,7 +301,7 @@ response = client.complete(
 
 ### Use tools
 
-Mistral Nemo chat model support the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
+Mistral Nemo chat model supports the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
 
 The following code example creates a tool definition that is able to look from flight information from two different cities.
 
@@ -739,7 +739,7 @@ The following extra parameters can be passed to Mistral Nemo chat model:
 
 ### Safe mode
 
-Mistral Nemo chat model support the parameter `safe_prompt`. You can toggle the safe prompt to prepend your messages with the following system prompt:
+Mistral Nemo chat model supports the parameter `safe_prompt`. You can toggle the safe prompt to prepend your messages with the following system prompt:
 
 > Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.
 
@@ -765,7 +765,7 @@ var response = await client.path("/chat/completions").post({
 
 ### Use tools
 
-Mistral Nemo chat model support the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
+Mistral Nemo chat model supports the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
 
 The following code example creates a tool definition that is able to look from flight information from two different cities.
 
@@ -1218,7 +1218,7 @@ The following extra parameters can be passed to Mistral Nemo chat model:
 
 ### Safe mode
 
-Mistral Nemo chat model support the parameter `safe_prompt`. You can toggle the safe prompt to prepend your messages with the following system prompt:
+Mistral Nemo chat model supports the parameter `safe_prompt`. You can toggle the safe prompt to prepend your messages with the following system prompt:
 
 > Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.
 
@@ -1241,7 +1241,7 @@ Console.WriteLine($"Response: {response.Value.Choices[0].Message.Content}");
 
 ### Use tools
 
-Mistral Nemo chat model support the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
+Mistral Nemo chat model supports the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
 
 The following code example creates a tool definition that is able to look from flight information from two different cities.
 
@@ -1756,7 +1756,7 @@ The following extra parameters can be passed to Mistral Nemo chat model:
 
 ### Safe mode
 
-Mistral Nemo chat model support the parameter `safe_prompt`. You can toggle the safe prompt to prepend your messages with the following system prompt:
+Mistral Nemo chat model supports the parameter `safe_prompt`. You can toggle the safe prompt to prepend your messages with the following system prompt:
 
 > Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.
 
@@ -1789,7 +1789,7 @@ extra-parameters: pass-through
 
 ### Use tools
 
-Mistral Nemo chat model support the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
+Mistral Nemo chat model supports the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
 
 The following code example creates a tool definition that is able to look from flight information from two different cities.
 
@@ -2033,11 +2033,11 @@ For more examples of how to use Mistral models, see the following examples and t
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
-Mistral models deployed as a serverless API are offered by MistralAI through the Azure Marketplace and integrated with Azure AI Foundry for use. You can find the Azure Marketplace pricing when deploying the model.
+Mistral models deployed as a serverless API are offered by MistralAI through Azure Marketplace and integrated with Azure AI Foundry for use. You can find Azure Marketplace pricing when deploying the model.
 
-Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
+Each time a project subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
 
-For more information on how to track costs, see [Monitor costs for models offered through the Azure Marketplace](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
+For more information on how to track costs, see [Monitor costs for models offered through Azure Marketplace](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
 
 ## Related content
 
