@@ -53,6 +53,10 @@ Post deployment you can adjust your TPM allocation by selecting and editing your
 > [!IMPORTANT]
 > Quotas and limits are subject to change, for the most up-date-information consult our [quotas and limits article](../quotas-limits.md).
 
+## Request more quota
+
+Quota increase requests can be submitted via the [quota increase request form](https://aka.ms/oai/stuquotarequest). Due to high demand, quota increase requests are being accepted and will be filled in the order they're received. Priority is given to customers who generate traffic that consumes the existing quota allocation, and your request might be denied if this condition isn't met.
+
 ## Model specific settings
 
 Different model deployments, also called model classes have unique max TPM values that you're now able to control. **This represents the maximum amount of TPM that can be allocated to that type of model deployment in a given region.** 
@@ -71,7 +75,7 @@ For an all up view of your quota allocations across deployments in a given regio
 - **Deployment**: Model deployments divided by model class.
 - **Quota type**: There's one quota value per region for each model type. The quota covers all versions of that model.  
 - **Quota allocation**: For the quota name, this shows how much quota is used by deployments and the total quota approved for this subscription and region. This amount of quota used is also represented in the bar graph.
-- **Request Quota**: The icon navigates to a form where requests to increase quota can be submitted.
+- **Request Quota**: The icon navigates to [this form](https://aka.ms/oai/stuquotarequest) where requests to increase quota can be submitted.
 
 ## Migrating existing deployments
 
