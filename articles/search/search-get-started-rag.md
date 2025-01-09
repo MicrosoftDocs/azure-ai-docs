@@ -8,12 +8,12 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: quickstart
-ms.date: 10/14/2024
+ms.date: 01/07/2025
 ---
 
 # Quickstart: Generative search (RAG) with grounding data from Azure AI Search
 
-This quickstart shows you how to send basic and complex queries to a Large Language Model (LLM) for a conversational search experience over your indexed content on Azure AI Search. You use the Azure portal to set up the resources, and then run Python code to call the APIs. 
+This quickstart shows you how to send queries to a chat completion model for a conversational search experience over your indexed content on Azure AI Search. You use the Azure portal to set up the resources, and then run Python code to call the APIs. 
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ This quickstart shows you how to send basic and complex queries to a Large Langu
 
 - [Azure AI Search](search-create-service-portal.md), Basic tier or higher so that you can [enable semantic ranker](semantic-how-to-enable-disable.md). Region must be the same one used for Azure OpenAI.
 
-- [Azure OpenAI](https://aka.ms/oai/access) resource with a deployment of `gpt-4o`, `gpt-4o-mini`, or equivalent LLM, in the same region as Azure AI Search.
+- [Azure OpenAI](https://aka.ms/oai/access) resource with a deployment of `gpt-4o`, `gpt-4o-mini`, or equivalent chat completion model, in the same region as Azure AI Search.
 
 - [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and the [Jupyter package](https://pypi.org/project/jupyter/). For more information, see [Python in Visual Studio Code](https://code.visualstudio.com/docs/languages/python).
 
@@ -90,7 +90,17 @@ We recommend the hotels-sample-index, which can be created in minutes and runs o
 
 1. Select **Edit JSON**. 
 
-1. Search for "semantic" to find the section in the index for a semantic configuration. Replace the empty `"semantic": {}` line with the following semantic configuration. This example specifies a `"defaultConfiguration"`, which is important to the running of this quickstart.
+1. Scroll to the end of the index, where you can find placeholders for constructs that can be added to an index.
+
+   ```json
+   "analyzers": [],
+   "tokenizers": [],
+   "tokenFilters": [],
+   "charFilters": [],
+   "normalizers": [],
+   ```
+
+1. On a new line after "normalizers", paste in the following semantic configuration. This example specifies a `"defaultConfiguration"`, which is important to the running of this quickstart.
 
     ```json
     "semantic":{
