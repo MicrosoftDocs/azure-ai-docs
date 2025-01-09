@@ -31,8 +31,7 @@ This quickstart shows you how to send queries to a chat completion model for a c
   - Same region as Azure OpenAI.
   - Basic tier or higher is recommended.
   - [Enable semantic ranking](semantic-how-to-enable-disable.md).
-  - Enable role-based access control.
-  - Enable a system identity for Azure AI Search.
+  - [Enable role-based access control (see below)](#configure-access).
 
 To meet the same-region requirement, start by reviewing the [regions for the chat model](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) you want to use. Once you identify a region, confirm that Azure AI Search is available in the [same region](search-region-support.md#azure-public-regions).
 
@@ -79,7 +78,7 @@ It can take several minutes for permissions to take effect.
 
 ## Create an index
 
-We recommend the hotels-sample-index, which can be created in minutes and runs on any search service tier. This index is created using built-in sample data.
+A search index provides grounding data for the chat model. We recommend the hotels-sample-index, which can be created in minutes and runs on any search service tier. This index is created using built-in sample data.
 
 1. In the Azure portal, [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
