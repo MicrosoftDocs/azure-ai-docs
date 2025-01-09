@@ -49,15 +49,15 @@ Using the Azure portal or newer preview REST APIs and beta SDK packages, you can
 
 1. Using the Azure portal, or the [Skillset 2024-11-01-preview REST API](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-11-01-preview&preserve-view=true), or an Azure SDK beta package that provides the syntax, configure a skillset to use an identity:
 
-   + The managed identity used on the connection belongs to the search service.
-   + The identity can be system managed or user assigned.
+   + The managed identity used on the connection belongs to the search service. It can be system managed or user assigned.
+
    + The identity must have **Cognitive Services User** permissions on the Azure AI resource.
+
    + `@odata.type` is always `#Microsoft.Azure.Search.AIServicesByIdentity`.
-   + `subdomainUrl` is the endpoint of your Azure AI multi-service resource. It can be in [any region that's jointly supported](search-region-support.md#azure-public-regions) by Azure AI Search and Azure AI services.
+
+   + `subdomainUrl` is the endpoint of your Azure AI multi-service resource. The subdomain URL must include a unique name (for example, `https://hereismyuniquename.cognitiveservices.azure.com`). If the service was created through the Azure portal, a unique subdomain is automatically generated as part of your service setup. Ensure that your service includes a unique subdomain before using it with the Azure AI Search integration.
 
 As with keys, the details you provide about the Azure AI Services resource are used for billing, not connections.  All API requests made by Azure AI Search to Azure AI services for built-in skills processing continue to be internal and managed by Microsoft.
-
-The subdomain URL must include a unique name (for example, `https://hereismyuniquename.cognitiveservices.azure.com`). If the service was created through the Azure portal, a unique subdomain is automatically generated as part of your service setup. Ensure that your service includes a unique subdomain before using it with the Azure AI Search integration.
 
 ### Example: system-assigned managed identity
 
@@ -113,6 +113,8 @@ POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-ver
 Azure AI Search can also charge for transaction using the Azure AI multi-service resource key. This approach is the default and is generally available. You can use the Azure portal, REST API, or an Azure SDK to add the key to a skillset.
 
 There are two supported key types: `#Microsoft.Azure.Search.CognitiveServicesByKey` which calls the regional endpoint and `"#Microsoft.Azure.Search.AIServicesByKey` which calls the subdomain. We recommend using `AIServicesByKey` for its shared private link support and ability to function with no regional requirements relative to the search service.
+
+The Azure AI multi-service account must be in the same region as Azure AI Search. For more information, see [Regions supported by Azure AI Search](search-region-support.md#azure-public-regions) and choose a region that provides AI services integration.
 
 If you leave the `cognitiveServices` property unspecified, your search service attempts to use the free enrichments available to your indexer on a daily basis. Execution of billable skills stops at 20 transactions per indexer invocation and a "Time Out" message appears in indexer execution history.
 
