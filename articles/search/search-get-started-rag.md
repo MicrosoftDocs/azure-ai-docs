@@ -21,12 +21,12 @@ This quickstart shows you how to send queries to a chat completion model for a c
 
 - An Azure subscription with permissions to assign roles. [Create one for free](https://azure.microsoft.com/free/).
 
-- [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource)
+- [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource)
 
-  - [Choose a region](https://learn.microsoft.com/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#global-standard-model-availability) that supports the chat completion model you want to use (gpt-4o, gpt-4o-mini, or equivalent model). 
-  - [Deploy the chat completion model](https://learn.microsoft.com/azure/ai-studio/how-to/deploy-models-openai) in Azure AI Foundry or [use another approach](https://learn.microsoft.com/azure/ai-services/openai/how-to/working-with-models?tabs=powershell).
+  - [Choose a region](/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#global-standard-model-availability) that supports the chat completion model you want to use (gpt-4o, gpt-4o-mini, or equivalent model). 
+  - [Deploy the chat completion model](/azure/ai-studio/how-to/deploy-models-openai) in Azure AI Foundry or [use another approach](/azure/ai-services/openai/how-to/working-with-models).
 
-- [Azure AI Search](https://learn.microsoft.com/azure/search/search-create-service-portal)
+- [Azure AI Search](search-create-service-portal.md)
 
   - Same region as Azure OpenAI.
   - Basic tier or higher is recommended.
@@ -34,7 +34,7 @@ This quickstart shows you how to send queries to a chat completion model for a c
   - Enable role-based access control.
   - Enable a system identity for Azure AI Search.
 
-To meet the same-region requirement, start by reviewing the [regions for the chat model](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) you want to use. Once you identify a region, confirm that Azure AI Search is available in the [same region](https://learn.microsoft.com/azure/search/search-region-support#azure-public-regions).
+To meet the same-region requirement, start by reviewing the [regions for the chat model](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) you want to use. Once you identify a region, confirm that Azure AI Search is available in the [same region](search-region-support.md#azure-public-regions).
 
 Make sure you know the name of the deployed model, and have the endpoints for both Azure resources at hand. You'll provide this information in the steps that follow.
 
@@ -230,7 +230,7 @@ It takes several minutes to create the environment. When the environment is read
 
 ## Sign in to Azure
 
-You're using Microsoft Entra ID and role assignments for the connection. Make sure you're logged in to the same tenant and subscription as Azure AI Search and Azure OpenAI. You can use the Azure CLI on the command line to show current properties, change properties, and to sign in. For more information, see [Connect without keys](https://learn.microsoft.com/azure/search/search-get-started-rbac). 
+You're using Microsoft Entra ID and role assignments for the connection. Make sure you're logged in to the same tenant and subscription as Azure AI Search and Azure OpenAI. You can use the Azure CLI on the command line to show current properties, change properties, and to sign in. For more information, see [Connect without keys](search-get-started-rbac.md). 
 
 Run each of the following commands in sequence.
 
