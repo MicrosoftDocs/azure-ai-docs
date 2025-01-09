@@ -5,7 +5,7 @@ author: travisw
 ms.author: travisw
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 03/07/2024
+ms.date: 01/09/2025
 ---
 
 [!INCLUDE [Set up required variables](./use-your-data-common-variables.md)]
@@ -17,11 +17,11 @@ From the project directory, open the *Program.cs* file and replace its contents 
 ### Without response streaming
 
 ```csharp
-using Azure;
+using System;
 using Azure.AI.OpenAI;
+using System.ClientModel;
 using Azure.AI.OpenAI.Chat;
 using OpenAI.Chat;
-using System.Text.Json;
 using static System.Environment;
 
 string azureOpenAIEndpoint = GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
@@ -31,36 +31,38 @@ string searchEndpoint = GetEnvironmentVariable("AZURE_AI_SEARCH_ENDPOINT");
 string searchKey = GetEnvironmentVariable("AZURE_AI_SEARCH_API_KEY");
 string searchIndex = GetEnvironmentVariable("AZURE_AI_SEARCH_INDEX");
 
-#pragma warning disable AOAI001
 AzureOpenAIClient azureClient = new(
-    new Uri(azureOpenAIEndpoint),
-    new AzureKeyCredential(azureOpenAIKey));
+			new Uri(azureOpenAIEndpoint),
+			new ApiKeyCredential(azureOpenAIKey));
 ChatClient chatClient = azureClient.GetChatClient(deploymentName);
+
+// Extension methods to use data sources with options are subject to SDK surface changes. Suppress the
+// warning to acknowledge and this and use the subject-to-change AddDataSource method.
+#pragma warning disable AOAI001
 
 ChatCompletionOptions options = new();
 options.AddDataSource(new AzureSearchChatDataSource()
 {
-    Endpoint = new Uri(searchEndpoint),
-    IndexName = searchIndex,
-    Authentication = DataSourceAuthentication.FromApiKey(searchKey),
+	Endpoint = new Uri(searchEndpoint),
+	IndexName = searchIndex,
+	Authentication = DataSourceAuthentication.FromApiKey(searchKey),
 });
 
 ChatCompletion completion = chatClient.CompleteChat(
-    [
-        new UserChatMessage("What are my available health plans?"),
-    ], options);
+	[
+		new UserChatMessage("What health plans are available?"),
+			],
+	options);
 
-Console.WriteLine(completion.Content[0].Text);
-
-AzureChatMessageContext onYourDataContext = completion.GetAzureMessageContext();
+ChatMessageContext onYourDataContext = completion.GetMessageContext();
 
 if (onYourDataContext?.Intent is not null)
 {
-    Console.WriteLine($"Intent: {onYourDataContext.Intent}");
+	Console.WriteLine($"Intent: {onYourDataContext.Intent}");
 }
-foreach (AzureChatCitation citation in onYourDataContext?.Citations ?? [])
+foreach (ChatCitation citation in onYourDataContext?.Citations ?? [])
 {
-    Console.WriteLine($"Citation: {citation.Content}");
+	Console.WriteLine($"Citation: {citation.Content}");
 }
 ```
 
