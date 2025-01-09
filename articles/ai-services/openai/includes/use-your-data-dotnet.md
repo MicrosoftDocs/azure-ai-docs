@@ -86,5 +86,4 @@ Thank you for your interest in the Contoso electronics plan and benefit packages
 learn more about the various options available to you...// Omitted for brevity
 ```
 
-This will wait until the model has generated its entire response before printing the results. Alternatively, if you want to asynchronously stream the response and print the results, you can replace the contents of *Program.cs* with the code in the next example.
-
+This will wait until the model has generated its entire response before printing the results.
