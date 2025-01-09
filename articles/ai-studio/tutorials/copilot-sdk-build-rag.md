@@ -186,4 +186,4 @@ But don't delete them yet, if you want to deploy your chat app to Azure in [the 
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Part 3: Evaluate and deploy your chat app to Azure](copilot-sdk-evaluate-deploy.md)
+> [Part 3: Evaluate your chat app to Azure](copilot-sdk-evaluate-deploy.md)
