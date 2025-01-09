@@ -165,7 +165,7 @@ If you're an existing customer looking for information about these models, see [
 
 ## January 9, 2025
 
-- `o1` (2024-12-17) added.
+- `o1` added.
 - `gpt-35-turbo instruct` updated to no earlier than April 1, 2025.
 - `gpt-35-turbo` (0125) updated to no earlier than May 31, 2025.
 
