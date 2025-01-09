@@ -58,7 +58,7 @@ Which vector query types are supported by the Azure AI Foundry model catalog vec
 
 ## Expected field dimensions
 
-The expected field dimensions for a field configured with an Azure AI Foundry model catalog vectorizer depend on the `modelName` that is configured.
+The expected field dimensions for a vector field configured with an Azure AI Foundry model catalog vectorizer depend on the `modelName` that is configured.
 
 | `modelName` | Expected dimensions |
 |--------------------|-------------|
