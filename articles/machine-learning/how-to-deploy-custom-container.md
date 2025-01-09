@@ -48,9 +48,9 @@ This article focuses on serving a TensorFlow model with TensorFlow (TF) Serving.
 
 * To deploy locally, you must have [Docker engine](https://docs.docker.com/engine/install/) running locally. This step is **highly recommended**. It helps you debug issues.
 
-## Download source code
+## Download the source code
 
-To follow along with this tutorial, clone the source code from GitHub.
+To follow along with the steps in this article, clone the source code from GitHub.
 
 # [Azure CLI](#tab/cli)
 
@@ -63,7 +63,7 @@ cd azureml-examples/cli
 
 ```azurecli
 git clone https://github.com/Azure/azureml-examples --depth 1
-cd azureml-examples/cli
+cd azureml-examples/sdk/python
 ```
 
 See also [the example notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/online/custom-container/online-endpoints-custom-container.ipynb), but note that `3. Test locally` section in the notebook assumes that it runs under the `azureml-examples/sdk` directory.
@@ -110,17 +110,42 @@ Next, deploy your online endpoint to Azure.
 
 # [Azure CLI](#tab/cli)
 
-### Create a YAML file for your endpoint and deployment
+### Create YAML files for your endpoint and deployment
 
-You can configure your cloud deployment using YAML. Take a look at the sample YAML for this example:
-
-__tfserving-endpoint.yml__
+You can configure your cloud deployment by using YAML. For instance, to configure your endpoint, you can create a YAML file named tfserving-endpoint.yml that contains the following lines:
 
 :::code language="yaml" source="~/azureml-examples-main/cli/endpoints/online/custom-container/tfserving/half-plus-two/tfserving-endpoint.yml":::
 
-__tfserving-deployment.yml__
+To configure your deployment, you can create a YAML file named tfserving-deployment.yml that contains the following lines:
 
-:::code language="yaml" source="~/azureml-examples-main/cli/endpoints/online/custom-container//tfserving/half-plus-two/tfserving-deployment.yml":::
+```yml
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
+name: tfserving-deployment
+endpoint_name: tfserving-endpoint
+model:
+  name: tfserving-mounted
+  version: <model-version>
+  path: ./half_plus_two
+environment_variables:
+  MODEL_BASE_PATH: /var/azureml-app/azureml-models/tfserving-mounted/<model-version>
+  MODEL_NAME: half_plus_two
+environment:
+  #name: tfserving
+  #version: 1
+  image: docker.io/tensorflow/serving:latest
+  inference_config:
+    liveness_route:
+      port: 8501
+      path: /v1/models/half_plus_two
+    readiness_route:
+      port: 8501
+      path: /v1/models/half_plus_two
+    scoring_route:
+      port: 8501
+      path: /v1/models/half_plus_two:predict
+instance_type: Standard_DS3_v2
+instance_count: 1
+```
 
 # [Python SDK](#tab/python)
 
@@ -251,17 +276,20 @@ The liveness and readiness routes will be determined by the API server of your c
 The API server you choose would provide a way to receive the payload to work on. In the context of machine learning inferencing, a server would receive the input data via a specific route. Identify this route for your API server as you test the container locally in earlier step, and specify it when you define the deployment to create.
 Note that the successful creation of the deployment will update the scoring_uri parameter of the endpoint as well, which you can verify with `az ml online-endpoint show -n <name> --query scoring_uri`.
 
-#### Locating the mounted model
+#### Locate the mounted model
 
-When you deploy a model as an online endpoint, Azure Machine Learning _mounts_ your model to your endpoint. Model mounting allows you to deploy new versions of the model without having to create a new Docker image. By default, a model registered with the name *foo* and version *1* would be located at the following path inside of your deployed container: */var/azureml-app/azureml-models/foo/1*
+When you deploy a model as an online endpoint, Azure Machine Learning *mounts* your model to your endpoint. When the model is mounted, you can deploy new versions of the model without having to create a new Docker image. By default, a model registered with the name *my-model* and version *1* is located on the following path inside your deployed container: */var/azureml-app/azureml-models/my-model/1*.
 
-For example, if you have a directory structure of */azureml-examples/cli/endpoints/online/custom-container* on your local machine, where the model is named *half_plus_two*:
+For example, consider the following setup:
+
+- A directory structure on your local machine of /azureml-examples/cli/endpoints/online/custom-container
+- A model name of `half_plus_two`
 
 :::image type="content" source="./media/how-to-deploy-custom-container/local-directory-structure.png" alt-text="Diagram showing a tree view of the local directory structure.":::
 
 # [Azure CLI](#tab/cli)
 
-And *tfserving-deployment.yml* contains:
+Suppose your tfserving-deployment.yml file contains the following lines in its `model` section. Note that in this section, the `name` value refers to the name that you use to register the model in Azure Machine Learning.
 
 ```yaml
 model:
@@ -272,7 +300,7 @@ model:
 
 # [Python SDK](#tab/python)
 
-And `Model` class contains:
+Suppose you use the following code to create a `Model` class. Note that in this code, the `name` value refers to the name that you use to register the model in Azure Machine Learning.
 
 ```python
 model = Model(name="tfserving-mounted", version="1", path="half_plus_two")
@@ -280,18 +308,20 @@ model = Model(name="tfserving-mounted", version="1", path="half_plus_two")
 
 ---
 
-Then your model will be located under */var/azureml-app/azureml-models/tfserving-deployment/1* in your deployment:
+In this case, when you create a deployment, your model is located under the following folder: /var/azureml-app/azureml-models/tfserving-mounted/1.
 
 :::image type="content" source="./media/how-to-deploy-custom-container/deployment-location.png" alt-text="Diagram showing a tree view of the deployment directory structure.":::
 
-You can optionally configure your `model_mount_path`. It lets you change the path where the model is mounted.
+You can optionally configure your `model_mount_path` value. By adjusting this setting, you can change the path where the model is mounted.
 
 > [!IMPORTANT]
-> The `model_mount_path` must be a valid absolute path in Linux (the OS of the container image).
+> The `model_mount_path` value must be a valid absolute path in Linux (the OS of the container image).
+
+When you change the value of `model_mount_path`, you also need to update the `MODEL_BASE_PATH` environment variable. Set `MODEL_BASE_PATH` to the same value as `model_mount_path` to avoid a failed deployment due to an error about the base path not being found.
 
 # [Azure CLI](#tab/cli)
 
-For example, you can have `model_mount_path` parameter in your *tfserving-deployment.yml*:
+For example, you can add the `model_mount_path` parameter to your tfserving-deployment.yml file. You can also update the `MODEL_BASE_PATH` value in that file:
 
 ```YAML
 name: tfserving-deployment
@@ -301,12 +331,14 @@ model:
   version: 1
   path: ./half_plus_two
 model_mount_path: /var/tfserving-model-mount
-.....
+environment_variables:
+  MODEL_BASE_PATH: /var/tfserving-model-mount
+...
 ```
 
 # [Python SDK](#tab/python)
 
-For example, you can have `model_mount_path` parameter in your `ManagedOnlineDeployment` class:
+For example, you can add the `model_mount_path` parameter to your `ManagedOnlineDeployment` class. You can also update the `MODEL_BASE_PATH` value in that code:
 
 ```python
 blue_deployment = ManagedOnlineDeployment(
@@ -315,13 +347,15 @@ blue_deployment = ManagedOnlineDeployment(
     model=model,
     environment=env,
     model_mount_path="/var/tfserving-model-mount",
+    environment_variables={
+        "MODEL_BASE_PATH": "/var/tfserving-model-mount",
     ...
 )
 ```
 
 ---
 
-Then your model is located at */var/tfserving-model-mount/tfserving-deployment/1* in your deployment. Note that it's no longer under *azureml-app/azureml-models*, but under the mount path you specified:
+Then in your deployment, your model is located at /var/tfserving-model-mount/tfserving-mounted/1. It's no longer under azureml-app/azureml-models, but under the mount path that you specify:
 
 :::image type="content" source="./media/how-to-deploy-custom-container/mount-path-deployment-location.png" alt-text="Diagram showing a tree view of the deployment directory structure when using mount_model_path.":::
 
@@ -329,27 +363,27 @@ Then your model is located at */var/tfserving-model-mount/tfserving-deployment/1
 
 # [Azure CLI](#tab/cli)
 
-Now that you understand how the YAML was constructed, create your endpoint.
+Now that you understand how the YAML file is constructed, create your endpoint.
 
 ```azurecli
-az ml online-endpoint create --name tfserving-endpoint -f endpoints/online/custom-container/tfserving-endpoint.yml
+az ml online-endpoint create --name tfserving-endpoint -f endpoints/online/custom-container/tfserving/half-plus-two/tfserving-endpoint.yml
 ```
 
-Creating a deployment might take a few minutes.
+Create your deployment. This step might run for a few minutes.
 
 ```azurecli
-az ml online-deployment create --name tfserving-deployment -f endpoints/online/custom-container/tfserving-deployment.yml --all-traffic
+az ml online-deployment create --name tfserving-deployment -f endpoints/online/custom-container/tfserving/half-plus-two/tfserving-deployment.yml --all-traffic
 ```
 
 # [Python SDK](#tab/python)
 
-Using the `MLClient` created earlier, create the endpoint in the workspace. This command starts the endpoint creation and returns a confirmation response while the endpoint creation continues.
+Use the instance of `MLClient` that you created earlier to create the endpoint in the workspace. This code starts the endpoint creation and returns a confirmation response while the endpoint creation continues.
 
 ```python
 ml_client.begin_create_or_update(endpoint)
 ```
 
-Create the deployment by running:
+Create the deployment by running the following code:
 
 ```python
 ml_client.begin_create_or_update(blue_deployment)
@@ -359,7 +393,7 @@ ml_client.begin_create_or_update(blue_deployment)
 
 ### Invoke the endpoint
 
-Once your deployment completes, see if you can make a scoring request to the deployed endpoint.
+After your deployment is complete, make a scoring request to the deployed endpoint.
 
 # [Azure CLI](#tab/cli)
 
@@ -367,16 +401,17 @@ Once your deployment completes, see if you can make a scoring request to the dep
 
 # [Python SDK](#tab/python)
 
-Using the `MLClient` created earlier, you get a handle to the endpoint. The endpoint can be invoked using the `invoke` command with the following parameters:
-- `endpoint_name` - Name of the endpoint
-- `request_file` - File with request data
-- `deployment_name` - Name of the specific deployment to test in an endpoint
+Use the instance of `MLClient` that you created earlier to get a handle to the endpoint. Then use the `invoke` method and the following parameters to invoke the endpoint:
 
-Send a sample request using a JSON file. The sample JSON is in the [example repository](https://github.com/Azure/azureml-examples/tree/main/sdk/python/endpoints/online/custom-container).
+- `endpoint_name`: The name of the endpoint
+- `request_file`: The file that contains the request data
+- `deployment_name`: The name of the deployment to test in the endpoint
+
+For the request data, you can use a sample JSON file from the [example repository](https://github.com/Azure/azureml-examples/tree/main/sdk/python/endpoints/online/custom-container).
 
 ```python
-# test the blue deployment with some sample data
-ml_client.online_endpoints.invoke(
+# Test the blue deployment by using some sample data.
+response = ml_client.online_endpoints.invoke(
     endpoint_name=online_endpoint_name,
     deployment_name="blue",
     request_file="sample-request.json",
