@@ -14,8 +14,6 @@ ms.date: 01/09/2025
 
 From the project directory, open the *Program.cs* file and replace its contents with the following code:
 
-### Without response streaming
-
 ```csharp
 using System;
 using Azure.AI.OpenAI;
@@ -89,71 +87,4 @@ learn more about the various options available to you...// Omitted for brevity
 ```
 
 This will wait until the model has generated its entire response before printing the results. Alternatively, if you want to asynchronously stream the response and print the results, you can replace the contents of *Program.cs* with the code in the next example.
-
-### Async with streaming
-
-```csharp
-using Azure;
-using Azure.AI.OpenAI;
-using Azure.AI.OpenAI.Chat;
-using OpenAI.Chat;
-using static System.Environment;
-
-string azureOpenAIEndpoint = GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
-string azureOpenAIKey = GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
-string deploymentName = GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT_ID");
-string searchEndpoint = GetEnvironmentVariable("AZURE_AI_SEARCH_ENDPOINT");
-string searchKey = GetEnvironmentVariable("AZURE_AI_SEARCH_API_KEY");
-string searchIndex = GetEnvironmentVariable("AZURE_AI_SEARCH_INDEX");
-
-#pragma warning disable AOAI001
-
-AzureOpenAIClient azureClient = new(
-    new Uri(azureOpenAIEndpoint),
-    new AzureKeyCredential(azureOpenAIKey));
-ChatClient chatClient = azureClient.GetChatClient(deploymentName);
-
-ChatCompletionOptions options = new();
-options.AddDataSource(new AzureSearchChatDataSource()
-{
-    Endpoint = new Uri(searchEndpoint),
-    IndexName = searchIndex,
-    Authentication = DataSourceAuthentication.FromApiKey(searchKey),
-});
-
-var chatUpdates = chatClient.CompleteChatStreamingAsync(
-    [
-        new UserChatMessage("What are my available health plans?"),
-    ], options);
-
-AzureChatMessageContext onYourDataContext = null;
-await foreach (var chatUpdate in chatUpdates)
-{
-    if (chatUpdate.Role.HasValue)
-    {
-        Console.WriteLine($"{chatUpdate.Role}: ");
-    }
-
-    foreach (var contentPart in chatUpdate.ContentUpdate)
-    {
-        Console.Write(contentPart.Text);
-    }
-
-    if (onYourDataContext == null)
-    {
-        onYourDataContext = chatUpdate.GetAzureMessageContext();
-    }
-}
-
-Console.WriteLine();
-if (onYourDataContext?.Intent is not null)
-{
-    Console.WriteLine($"Intent: {onYourDataContext.Intent}");
-}
-foreach (AzureChatCitation citation in onYourDataContext?.Citations ?? [])
-{
-    Console.Write($"Citation: {citation.Content}");
-}
-```
-
 
