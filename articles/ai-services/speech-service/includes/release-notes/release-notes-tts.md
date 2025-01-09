@@ -166,7 +166,7 @@ Added support and general availability for new voices in the following locales:
 | Locale (BCP-47) | Language | Text to speech voices |
 | ----- | ----- | ----- |
 | `as-IN` | Assamese (India) | `as-IN-YashicaNeural` (Female)<br/>`as-IN-PriyomNeural` (Male) |
-| `or-IN` | Oriya (India) | `or-IN-SubhasiniNeural` (Female)<br/>`or-IN-SukantNeural` (Male) |
+| `or-IN` | Odia (India) | `or-IN-SubhasiniNeural` (Female)<br/>`or-IN-SukantNeural` (Male) |
 | `pa-IN` | Punjabi (India) | `pa-IN-OjasNeural` (Male)<br/>`pa-IN-VaaniNeural` (Female) |
 
 The one voice in this table is generally available and supports only the 'en-IN' locale.
@@ -293,7 +293,7 @@ Text to speech avatar is now generally available. For more information, see [tex
   | `pt-PT`| Portuguese (Portugal)|
   | `sv-SE`| Swedish (Sweden)|
   | `th-TH`| Thai (Thailand)|
-  | `tr-TR`| Turkish (Turkey)|
+  | `tr-TR`| Turkish (Türkiye)|
   | `zh-CN`| Chinese (Mandarin, Simplified)|
   | `zh-HK`| Chinese (Cantonese, Traditional)|
   | `zh-TW`| Chinese (Taiwanese Mandarin, Traditional)|
@@ -306,8 +306,8 @@ Text to speech avatar is now generally available. For more information, see [tex
   
   | Locale | Language    | Text to speech voices  |
   |--------|-----------------|-------------------------|
-  | `or-IN`  | Oriya (India)   | `or-IN-SubhasiniNeural` (Female) |
-  | `or-IN`  | Oriya (India)   | `or-IN-SukantNeural` (Male)      | 
+  | `or-IN`  | Odia (India)   | `or-IN-SubhasiniNeural` (Female) |
+  | `or-IN`  | Odia (India)   | `or-IN-SukantNeural` (Male)      | 
   | `pa-IN`  | Punjabi (India) | `pa-IN-VaaniNeural` (Female)     |
   | `pa-IN`  | Punjabi (India) | `pa-IN-OjasNeural` (Male)        | 
   | `as-IN`  | Assamese (India)| `as-IN-YashicaNeural` (Female)   | 
