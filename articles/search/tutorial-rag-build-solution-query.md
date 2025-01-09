@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: tutorial
-ms.date: 10/04/2024
+ms.date: 01/09/2025
 ---
 
 # Tutorial: Search your data using a chat model (RAG in Azure AI Search)
