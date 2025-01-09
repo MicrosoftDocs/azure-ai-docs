@@ -179,7 +179,7 @@ To minimize issues related to rate limits, it's a good idea to use the following
 - Test different load increase patterns.
 - Increase the quota assigned to your deployment. Move quota from another deployment, if necessary.
 
-## How to request increases to the default quotas and limits
+## How to request quota increases
 
 Quota increase requests can be submitted via the [quota increase request form](https://aka.ms/oai/stuquotarequest). Due to high demand, quota increase requests are being accepted and will be filled in the order they're received. Priority is given to customers who generate traffic that consumes the existing quota allocation, and your request might be denied if this condition isn't met.
 
