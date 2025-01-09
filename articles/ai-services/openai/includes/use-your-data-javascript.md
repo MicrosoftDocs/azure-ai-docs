@@ -11,7 +11,6 @@ ms.date: 10/22/2024
 [!INCLUDE [Set up required variables](./use-your-data-common-variables.md)]
 
 
-
 ## Initialize a Node.js application
 
 In a console window (such as cmd, PowerShell, or Bash), create a new directory for your app, and navigate to it. Then run the `npm init` command to create a node application with a _package.json_ file.

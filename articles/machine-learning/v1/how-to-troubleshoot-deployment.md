@@ -209,7 +209,7 @@ There are two things that can help prevent 503 status codes:
     ```
 
     > [!NOTE]
-    > If you receive request spikes larger than the new minimum replicas can handle, you may receive 503s again. For example, as traffic to your service increases, you may need to increase the minimum replicas.
+    > If you receive request spikes larger than the new minimum replicas can handle, you may receive 503s again. For example, as traffic to your service increases, you might need to increase the minimum replicas.
 
 For more information on setting `autoscale_target_utilization`, `autoscale_max_replicas`, and `autoscale_min_replicas` for, see the [AksWebservice](/python/api/azureml-core/azureml.core.webservice.akswebservice) module reference.
 
@@ -233,7 +233,7 @@ Take these actions for the following errors:
 
 ## Advanced debugging
 
-You may need to interactively debug the Python code contained in your model deployment. For example, if the entry script is failing and the reason can't be determined with extra logging. By using Visual Studio Code and the debugpy, you can attach to the code running inside the Docker container.
+You might need to interactively debug the Python code contained in your model deployment. For example, if the entry script is failing and the reason can't be determined with extra logging. By using Visual Studio Code and the debugpy, you can attach to the code running inside the Docker container.
 
 For more information, visit the [interactive debugging in VS Code guide](how-to-debug-visual-studio-code.md#debug-and-troubleshoot-deployments).
 
