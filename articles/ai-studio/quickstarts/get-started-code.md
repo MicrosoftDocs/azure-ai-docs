@@ -42,7 +42,7 @@ pip install azure-ai-projects azure-ai-inference azure-identity
 
 Create a file named **chat.py**.  Copy and paste the following code into it.
 
-:::code language="python" source=""~/azureai-samples-main/scenarios/project/basic/chat-simple.py":::
+:::code language="python" source="~/azureai-samples-main/scenarios/project/basic/chat-simple.py":::
 
 ## Insert your connection string
 
@@ -72,7 +72,7 @@ Let's change the script to take input from a client application and generate a s
 
 1. Now define a `get_chat_response` function that takes messages and context, generates a system message using a prompt template, and calls a model.  Add this code to your  existing **chat.py** file:
 
-    :::code language="python" source=""~/azureai-samples-main/scenarios/project/basic/chat-template.py" id="chat_function":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/project/basic/chat-template.py" id="chat_function":::
 
     > [!NOTE]
     > The prompt template uses mustache format.
