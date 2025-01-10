@@ -1,5 +1,5 @@
 ---
-title: Transparency Note for Azure AI Foundry safety evaluations
+title:  Azure AI Foundry risk and safety evaluations (preview) Transparency Note
 titleSuffix: Azure AI Foundry
 description: Azure AI Foundry safety evaluations intended purpose, capabilities, limitations and how to achieve the best performance.
 manager: scottpolly
@@ -13,7 +13,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Azure AI Foundry risk and safety evaluations Transparency Note
+# Azure AI Foundry risk and safety evaluations (preview) Transparency Note
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
