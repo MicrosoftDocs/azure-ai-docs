@@ -52,7 +52,7 @@ Use an embedding model on an Azure AI platform in the [same region as Azure AI S
 
 If you use the Azure OpenAI Service, the endpoint must have an associated [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains). A custom subdomain is an endpoint that includes a unique name (for example, `https://hereismyuniquename.cognitiveservices.azure.com`). If the service was created through the Azure portal, this subdomain is automatically generated as part of your service setup. Ensure that your service includes a custom subdomain before using it with the Azure AI Search integration.
 
-Azure OpenAI Service resources (with access to embedding models) that were created in AI Foundry portal aren't supported. Only the Azure OpenAI Service resources created in the Azure portal are compatible with the **Azure OpenAI Embedding** skill integration.
+Azure OpenAI Service resources (with access to embedding models) that were created in Azure AI Foundry portal aren't supported. Only the Azure OpenAI Service resources created in the Azure portal are compatible with the **Azure OpenAI Embedding** skill integration.
 
 ### Public endpoint requirements
 
@@ -193,12 +193,12 @@ The wizard supports Azure AI Vision image retrieval through multimodal embedding
 
 1. Make sure your Azure AI Search service is in the same region.
 
-1. After the service is deployed, go to the resource and select **Access control** to assign the **Cognitive Services OpenAI User** role to your search service's managed identity. Optionally, you can use key-based authentication for the connection.
+1. After the service is deployed, go to the resource and select **Access control** to assign the **Cognitive Services User** role to your search service's managed identity. Optionally, you can use key-based authentication for the connection.
 
 After you finish these steps, you should be able to select the Azure AI Vision vectorizer in the **Import and vectorize data** wizard.
 
 > [!NOTE]
-> If you can't select an Azure AI Vision vectorizer, make sure you have an Azure AI Vision resource in a supported region. Also make sure that your search service's managed identity has **Cognitive Services OpenAI User** permissions.
+> If you can't select an Azure AI Vision vectorizer, make sure you have an Azure AI Vision resource in a supported region. Also make sure that your search service's managed identity has **Cognitive Services User** permissions.
 
 ### [Azure AI Foundry model catalog](#tab/model-catalog)
 
@@ -323,7 +323,7 @@ Chunking is built in and nonconfigurable. The effective settings are:
 
    + For Azure OpenAI, choose an existing deployment of text-embedding-ada-002, text-embedding-3-large, or text-embedding-3-small.
 
-   + For AI Foundry catalog, choose an existing deployment of an Azure or Cohere embedding model.
+   + For Azure AI Foundry catalog, choose an existing deployment of an Azure or Cohere embedding model.
 
    + For AI Vision multimodal embeddings, select the account.
 
@@ -331,7 +331,7 @@ Chunking is built in and nonconfigurable. The effective settings are:
 
 1. Specify whether you want your search service to authenticate using an API key or managed identity.
 
-   + The identity should have a **Cognitive Services OpenAI User** role on the Azure AI multi-services account.
+   + The identity should have a **Cognitive Services User** role on the Azure AI multi-services account.
 
 1. Select the checkbox that acknowledges the billing effects of using these resources.
 

@@ -13,7 +13,7 @@ manager: nitinme
 > [!NOTE]
 > `gpt-35-turbo` - Fine-tuning of this model is limited to a subset of regions, and isn't available in every region the base model is available. 
 >
-> The supported regions for fine-tuning might vary if you use Azure OpenAI models in an AI Foundry project versus outside a project.
+> The supported regions for fine-tuning might vary if you use Azure OpenAI models in an Azure AI Foundry project versus outside a project.
 
 |  Model ID  | Fine-tuning regions | Max request (tokens) | Training Data (up to) |
 |  --- | --- | :---: | :---: |

@@ -18,17 +18,17 @@ ms.author: eur
 With custom speech, you can enhance speech recognition accuracy for your applications by using a custom model for real-time speech to text, speech translation, and batch transcription. The base model, trained with Microsoft-owned data, handles common spoken language well, but a custom model can improve domain-specific vocabulary and audio conditions by providing text and audio data for training. Additionally, you can train the model with structured text for custom pronunciations, display text formatting, and profanity filtering.
 
 > [!TIP]
-> You can bring your custom speech models from [Speech Studio](https://speech.microsoft.com) to the [Azure AI Foundry portal](https://ai.azure.com). In AI Foundry, you can pick up where you left off by connecting to your existing Speech resource. For more information about connecting to an existing Speech resource, see [Connect to an existing Speech resource](../../ai-studio/ai-services/how-to/connect-ai-services.md#connect-azure-ai-services-after-you-create-a-project).
+> You can bring your custom speech models from [Speech Studio](https://speech.microsoft.com) to the [Azure AI Foundry portal](https://ai.azure.com). In Azure AI Foundry, you can pick up where you left off by connecting to your existing Speech resource. For more information about connecting to an existing Speech resource, see [Connect to an existing Speech resource](../../ai-studio/ai-services/how-to/connect-ai-services.md#connect-azure-ai-services-after-you-create-a-project).
 
-In [AI Foundry portal](https://ai.azure.com), you create a custom speech model by fine-tuning an Azure AI Speech base model with your own data. You can upload your data, test and train a custom model, compare accuracy between models, and deploy a model to a custom endpoint.
+In [Azure AI Foundry portal](https://ai.azure.com), you create a custom speech model by fine-tuning an Azure AI Speech base model with your own data. You can upload your data, test and train a custom model, compare accuracy between models, and deploy a model to a custom endpoint.
 
-This article shows you how to use fine-tuning in AI Foundry to create a custom speech model. For more information about custom speech, see the [custom speech overview](./custom-speech-overview.md) documentation.
+This article shows you how to use fine-tuning in Azure AI Foundry to create a custom speech model. For more information about custom speech, see the [custom speech overview](./custom-speech-overview.md) documentation.
 
 ## Start fine-tuning a model with your data
 
-In AI Foundry, you can fine-tune some Azure AI services models. For example, you can fine-tune a model for custom speech. Each custom model is specific to a [locale](language-support.md?tabs=stt). For example, you might fine-tune a model for English in the United States.
+In Azure AI Foundry, you can fine-tune some Azure AI services models. For example, you can fine-tune a model for custom speech. Each custom model is specific to a [locale](language-support.md?tabs=stt). For example, you might fine-tune a model for English in the United States.
 
-1. Go to your AI Foundry project. If you need to create a project, see [Create an AI Foundry project](../../ai-studio/how-to/create-projects.md).
+1. Go to your Azure AI Foundry project. If you need to create a project, see [Create an Azure AI Foundry project](../../ai-studio/how-to/create-projects.md).
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning** > **+ Fine-tune**.
 
@@ -40,7 +40,7 @@ In AI Foundry, you can fine-tune some Azure AI services models. For example, you
     :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-select-connection.png" alt-text="Screenshot of the page to select the connected service resource that you want to use for fine-tuning." lightbox="./media/ai-studio/custom-speech/new-fine-tune-select-connection.png":::
 
     In this example, we can choose from the following options:
-    - **AI Service**: The Azure AI Services multi-service resource that [came with the AI Foundry project](../../ai-studio/ai-services/how-to/connect-ai-services.md#connect-azure-ai-services-when-you-create-a-project-for-the-first-time).
+    - **AI Service**: The Azure AI Services multi-service resource that [came with the Azure AI Foundry project](../../ai-studio/ai-services/how-to/connect-ai-services.md#connect-azure-ai-services-when-you-create-a-project-for-the-first-time).
     - **Speech Service**: An Azure AI Speech resource that was [connected after the project was created](../../ai-studio/ai-services/how-to/connect-ai-services.md#connect-azure-ai-services-after-you-create-a-project). 
 
 1. Enter a name and description for the fine-tuning job. Then select **Next**.

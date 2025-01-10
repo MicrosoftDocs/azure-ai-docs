@@ -27,7 +27,7 @@ Parameters are case-sensitive. Which parameters you choose to use depends on wha
 | Parameter name | Description |
 |--------------------|-------------|
 | `uri` | (Required) The [URI of the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md) to which the _JSON_ payload is sent. Only the **https** URI scheme is allowed. |
-| `modelName` | (Required) The model ID from the AI Foundry model catalog that is deployed at the provided endpoint. Supported models are: <ul><li>Facebook-DinoV2-Image-Embeddings-ViT-Base </li><li>Facebook-DinoV2-Image-Embeddings-ViT-Giant </li><li>Cohere-embed-v3-english </li><li>Cohere-embed-v3-multilingual</ul> |
+| `modelName` | (Required) The model ID from the Azure AI Foundry model catalog that is deployed at the provided endpoint. Supported models are: <ul><li>Facebook-DinoV2-Image-Embeddings-ViT-Base </li><li>Facebook-DinoV2-Image-Embeddings-ViT-Giant </li><li>Cohere-embed-v3-english </li><li>Cohere-embed-v3-multilingual</ul> |
 | `key` | (Required for [key authentication](#WhatParametersToUse)) The [key for the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md). |
 | `resourceId` | (Required for [token authentication](#WhatParametersToUse)). The Azure Resource Manager resource ID of the AML online endpoint. It should be in the format subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.MachineLearningServices/workspaces/{workspace-name}/onlineendpoints/{endpoint_name}. |
 | `region` | (Optional for [token authentication](#WhatParametersToUse)). The [region](https://azure.microsoft.com/global-infrastructure/regions/) the AML online endpoint is deployed in. Needed if the region is different from the region of the search service. |
@@ -47,7 +47,7 @@ Which authentication parameters are required depends on what authentication your
 
 ## Supported vector query types
 
-Which vector query types are supported by the AI Foundry model catalog vectorizer depends on the `modelName` that is configured.
+Which vector query types are supported by the Azure AI Foundry model catalog vectorizer depends on the `modelName` that is configured.
 
 | Embedding model | Supports `text` query | Supports `imageUrl` query | Supports `imageBinary` query |
 |--------------------|-------------|-------------|-------------|
@@ -58,7 +58,7 @@ Which vector query types are supported by the AI Foundry model catalog vectorize
 
 ## Expected field dimensions
 
-The expected field dimensions for a field configured with an AI Foundry model catalog vectorizer depend on the `modelName` that is configured.
+The expected field dimensions for a vector field configured with an Azure AI Foundry model catalog vectorizer depend on the `modelName` that is configured.
 
 | `modelName` | Expected dimensions |
 |--------------------|-------------|

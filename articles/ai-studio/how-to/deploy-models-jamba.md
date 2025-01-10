@@ -61,7 +61,7 @@ To get started with Jamba 1.5 mini deployed as a serverless API, explore our int
 
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. Alternatively, your account can be assigned a custom role that has the following permissions:
 
-    - On the Azure subscription—to subscribe the AI Foundry project to the Azure Marketplace offering, once for each project, per offering:
+    - On the Azure subscription—to subscribe the Azure AI Foundry project to the Azure Marketplace offering, once for each project, per offering:
       - `Microsoft.MarketplaceOrdering/agreements/offers/plans/read`
       - `Microsoft.MarketplaceOrdering/agreements/offers/plans/sign/action`
       - `Microsoft.MarketplaceOrdering/offerTypes/publishers/offers/plans/agreements/read`
@@ -72,7 +72,7 @@ To get started with Jamba 1.5 mini deployed as a serverless API, explore our int
       - `Microsoft.SaaS/resources/read`
       - `Microsoft.SaaS/resources/write`
  
-    - On the AI Foundry project—to deploy endpoints (the Azure AI Developer role contains these permissions already):
+    - On the Azure AI Foundry project—to deploy endpoints (the Azure AI Developer role contains these permissions already):
       - `Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*`  
       - `Microsoft.MachineLearningServices/workspaces/serverlessEndpoints/*`
 
@@ -89,7 +89,7 @@ These steps demonstrate the deployment of `AI21 Jamba 1.5 Large` or `AI21 Jamba 
 
 1. Select **Deploy** to open a serverless API deployment window for the model.
 
-1. Alternatively, you can initiate a deployment by starting from the **Models + endpoints** page in AI Foundry portal.
+1. Alternatively, you can initiate a deployment by starting from the **Models + endpoints** page in Azure AI Foundry portal.
 
     1. From the left navigation pane of your project, select **My assets** > **Models + endpoints**.
     1. Select **+ Deploy model** > **Deploy base model**.

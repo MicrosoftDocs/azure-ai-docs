@@ -1,7 +1,7 @@
 ---
-title: How to use the GPT-4 Turbo with Vision model
+title: How to use vision-enabled chat models
 titleSuffix: Azure OpenAI Service
-description: Learn about the options for using GPT-4 Turbo with Vision
+description: Learn about the options for using vision-enabled chat models
 author: PatrickFarley #dereklegenzoff
 ms.author: pafarley #delegenz
 ms.service: azure-ai-openai
@@ -10,15 +10,15 @@ ms.date: 08/21/2024
 manager: nitinme
 ---
 
-# Use GPT-4 Turbo with Vision
+# Use vision-enabled chat models
 
 
-GPT-4 Turbo with Vision is a large multimodal model (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. It incorporates both natural language processing and visual understanding.
+Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. The current vision-enabled models are GPT-4 Turbo with Vision, GPT-4o, and GPT-4o-mini.
 
-The GPT-4 Turbo with Vision model answers general questions about what's present in images.
+The vision-enabled models answer general questions about what's present in the images you upload.
 
 > [!TIP]
-> To use GPT-4 Turbo with Vision, you call the Chat Completion API on a GPT-4 Turbo with Vision model that you have deployed. If you're not familiar with the Chat Completion API, see the [GPT-4 Turbo & GPT-4 how-to guide](/azure/ai-services/openai/how-to/chatgpt?tabs=python&pivots=programming-language-chat-completions).
+> To use vision-enabled models, you call the Chat Completion API on a supported model that you have deployed. If you're not familiar with the Chat Completion API, see the [Vision-enabled chat how-to guide](/azure/ai-services/openai/how-to/chatgpt?tabs=python&pivots=programming-language-chat-completions).
 
 ## GPT-4 Turbo model upgrade
 
@@ -290,7 +290,7 @@ Every response includes a `"finish_reason"` field. It has the following possible
 - `length`: Incomplete model output due to the `max_tokens` input parameter or model's token limit.
 - `content_filter`: Omitted content due to a flag from our content filters.
 
-
+<!--
 
 ### Create a video retrieval index
 
@@ -366,11 +366,11 @@ Every response includes a `"finish_reason"` field. It has the following possible
     ```bash
     curl.exe -v -X GET "https://<YOUR_ENDPOINT_URL>/computervision/retrieval/indexes/my-video-index/ingestions?api-version=2023-05-01-preview&$top=20" -H "ocp-apim-subscription-key: <YOUR_SUBSCRIPTION_KEY>"
     ```
-
+-->
 
 ## Next steps
 
 * [Learn more about Azure OpenAI](../overview.md).
-* [GPT-4 Turbo with Vision quickstart](../gpt-v-quickstart.md)
+* [Vision-enabled chats quickstart](../gpt-v-quickstart.md)
 * [GPT-4 Turbo with Vision frequently asked questions](../faq.yml#gpt-4-turbo-with-vision)
 * [GPT-4 Turbo with Vision API reference](https://aka.ms/gpt-v-api-ref)

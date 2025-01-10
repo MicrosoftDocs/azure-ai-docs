@@ -157,7 +157,7 @@ In Azure AI Foundry portal, you can use vector indexes and retrieval-augmented g
 
 ### Regional availability of offers and models
 
-Pay-per-token billing is available only to users whose Azure subscription belongs to a billing account in a country where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable. See [Region availability for models in serverless API endpoints | Azure AI Foundry](deploy-models-serverless-availability.md) for detailed information.
+Pay-per-token billing is available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable. See [Region availability for models in serverless API endpoints | Azure AI Foundry](deploy-models-serverless-availability.md) for detailed information.
 
 ### Content safety for models deployed via serverless APIs
 
@@ -165,23 +165,23 @@ Pay-per-token billing is available only to users whose Azure subscription belong
 
 ### Network isolation for models deployed via serverless APIs
 
-Managed computes for models deployed as serverless APIs follow the public network access flag setting of the AI Foundry hub that has the project in which the deployment exists. To help secure your managed compute, disable the public network access flag on your AI Foundry hub. You can help secure inbound communication from a client to your managed compute by using a private endpoint for the hub.
+Endpoints for models deployed as serverless APIs follow the public network access flag setting of the Azure AI Foundry hub that has the project in which the deployment exists. To help secure your serverless API endpoint, disable the public network access flag on your Azure AI Foundry hub. You can help secure inbound communication from a client to your endpoint by using a private endpoint for the hub.
 
-To set the public network access flag for the AI Foundry hub:
+To set the public network access flag for the Azure AI Foundry hub:
 
 * Go to the [Azure portal](https://ms.portal.azure.com/).
-* Search for the resource group to which the hub belongs, and select your AI Foundry hub from the resources listed for this resource group.
+* Search for the resource group to which the hub belongs, and select your Azure AI Foundry hub from the resources listed for this resource group.
 * On the hub overview page, on the left pane, go to **Settings** > **Networking**.
 * On the **Public access** tab, you can configure settings for the public network access flag.
 * Save your changes. Your changes might take up to five minutes to propagate.
 
 #### Limitations
 
-* If you have an AI Foundry hub with a managed compute created before July 11, 2024, managed computes added to projects in this hub won't follow the networking configuration of the hub. Instead, you need to create a new managed compute for the hub and create new serverless API deployments in the project so that the new deployments can follow the hub's networking configuration.
+* If you have an Azure AI Foundry hub with a private endpoint created before July 11, 2024, serverless API endpoints added to projects in this hub won't follow the networking configuration of the hub. Instead, you need to create a new private endpoint for the hub and create new serverless API deployments in the project so that the new deployments can follow the hub's networking configuration.
 
-* If you have an AI Foundry hub with MaaS deployments created before July 11, 2024, and you enable a managed compute on this hub, the existing MaaS deployments won't follow the hub's networking configuration. For serverless API deployments in the hub to follow the hub's networking configuration, you need to create the deployments again.
+* If you have an Azure AI Foundry hub with MaaS deployments created before July 11, 2024, and you enable a private endpoint on this hub, the existing serverless API deployments won't follow the hub's networking configuration. For serverless API deployments in the hub to follow the hub's networking configuration, you need to create the deployments again.
 
-* Currently, [Azure OpenAI On Your Data](/azure/ai-services/openai/concepts/use-your-data) support isn't available for MaaS deployments in private hubs, because private hubs have the public network access flag disabled.
+* Currently, [Azure OpenAI On Your Data](/azure/ai-services/openai/concepts/use-your-data) support isn't available for serverless API deployments in private hubs, because private hubs have the public network access flag disabled.
 
 * Any network configuration change (for example, enabling or disabling the public network access flag) might take up to five minutes to propagate.
 

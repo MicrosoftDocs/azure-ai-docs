@@ -25,7 +25,7 @@ Azure Machine Learning registry enables you to collaborate across workspaces wit
 
 ### Key scenario addressed by data sharing using Azure Machine Learning registry 
 
-You may want to have data shared across multiple teams, projects, or workspaces in a central location. Such data doesn't have sensitive access controls and can be broadly used in the organization. 
+You might want to have data shared across multiple teams, projects, or workspaces in a central location. Such data doesn't have sensitive access controls and can be broadly used in the organization. 
 
 Examples include: 
 * A team wants to share a public dataset that is preprocessed and ready to use in experiments. 

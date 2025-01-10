@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn how to use Agents Azure AI Search tool.
 services: azure-ai-agent-service
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: how-to
 ms.date: 12/11/2024
 author: aahill

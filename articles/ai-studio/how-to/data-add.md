@@ -34,11 +34,11 @@ Data can help when you need these capabilities:
 To create and work with data, you need:
 
 - An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
-- An [AI Foundry project](../how-to/create-projects.md).
+- An [Azure AI Foundry project](../how-to/create-projects.md).
 
 ## Create data
 
-When you create your data, you need to set the data type. AI Foundry supports these data types:
+When you create your data, you need to set the data type. Azure AI Foundry supports these data types:
 
 |Type  |**Canonical Scenarios**|
 |---------|---------|
@@ -119,9 +119,9 @@ A Folder (`uri_folder`) data source type points to a *folder* on a storage resou
 ### Delete data
 
 > [!IMPORTANT]
-> Data deletion is not supported. Data is immutable in AI Foundry portal. Once you create a data version, it can't be modified or deleted. This immutability provides a level of protection when working in a team that creates production workloads.
+> Data deletion is not supported. Data is immutable in Azure AI Foundry portal. Once you create a data version, it can't be modified or deleted. This immutability provides a level of protection when working in a team that creates production workloads.
 
-If AI Foundry allowed data deletion, it would have the following adverse effects:
+If Azure AI Foundry allowed data deletion, it would have the following adverse effects:
 - Production jobs that consume data that is later deleted would fail.
 - Machine learning experiment reproduction would become more difficult.
 - Job lineage would break, because it would become impossible to view the deleted data version.
@@ -182,7 +182,7 @@ You can add tags to existing data.
 
 You can browse the folder structure and preview the file in the Data details page. We support data preview for the following types:
 - Data file types that are supported via preview API: ".tsv", ".csv", ".parquet", ".jsonl".
-- Other file types, AI Foundry portal attempts to preview the file in the browser natively. The supported file types might depend on the browser itself.
+- Other file types, Azure AI Foundry portal attempts to preview the file in the browser natively. The supported file types might depend on the browser itself.
 Normally for images, these file image types are supported: ".png", ".jpg", ".gif". Normally, these file types are supported: ".ipynb", ".py", ".yml", ".html".
 
 ## Next steps

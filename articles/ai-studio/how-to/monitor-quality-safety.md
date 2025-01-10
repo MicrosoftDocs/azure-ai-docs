@@ -206,7 +206,7 @@ credential = DefaultAzureCredential()
 # Update your azure resources details
 subscription_id = "INSERT YOUR SUBSCRIPTION ID"
 resource_group = "INSERT YOUR RESOURCE GROUP NAME"
-project_name = "INSERT YOUR PROJECT NAME" # This is the same as your AI Foundry project name
+project_name = "INSERT YOUR PROJECT NAME" # This is the same as your Azure AI Foundry project name
 endpoint_name = "INSERT YOUR ENDPOINT NAME" # This is your deployment name without the suffix (e.g., deployment is "contoso-chatbot-1", endpoint is "contoso-chatbot")
 deployment_name = "INSERT YOUR DEPLOYMENT NAME"
 aoai_deployment_name ="INSERT YOUR AOAI DEPLOYMENT NAME"
@@ -373,7 +373,7 @@ credential = DefaultAzureCredential()
 # Update your azure resources details
 subscription_id = "INSERT YOUR SUBSCRIPTION ID"
 resource_group = "INSERT YOUR RESOURCE GROUP NAME"
-project_name = "INSERT YOUR PROJECT NAME" # This is the same as your AI Foundry project name
+project_name = "INSERT YOUR PROJECT NAME" # This is the same as your Azure AI Foundry project name
 endpoint_name = "INSERT YOUR ENDPOINT NAME" # This is your deployment name without the suffix (e.g., deployment is "contoso-chatbot-1", endpoint is "contoso-chatbot")
 deployment_name = "INSERT YOUR DEPLOYMENT NAME"
 
@@ -450,7 +450,7 @@ credential = DefaultAzureCredential()
 # Update your azure resources details
 subscription_id = "INSERT YOUR SUBSCRIPTION ID"
 resource_group = "INSERT YOUR RESOURCE GROUP NAME"
-project_name = "INSERT YOUR PROJECT NAME" # This is the same as your AI Foundry project name
+project_name = "INSERT YOUR PROJECT NAME" # This is the same as your Azure AI Foundry project name
 endpoint_name = "INSERT YOUR ENDPOINT NAME" # This is your deployment name without the suffix (e.g., deployment is "contoso-chatbot-1", endpoint is "contoso-chatbot")
 deployment_name = "INSERT YOUR DEPLOYMENT NAME"
 aoai_deployment_name ="INSERT YOUR AOAI DEPLOYMENT NAME"
@@ -535,7 +535,7 @@ model_monitor = MonitorSchedule(
 ml_client.schedules.begin_create_or_update(model_monitor)
 ```
 
-After you create your monitor from the SDK, you can [consume the monitoring results](#consume-monitoring-results) in AI Foundry portal. 
+After you create your monitor from the SDK, you can [consume the monitoring results](#consume-monitoring-results) in Azure AI Foundry portal. 
 
 ## Related content
 

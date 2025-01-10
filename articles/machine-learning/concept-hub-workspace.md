@@ -33,11 +33,11 @@ In the transition from proving feasibility of an idea, to a funded project, many
 
 The goal of hubs is to take away this bottleneck, by letting IT set up a secure, preconfigured, and reusable environment for a team to prototype, build, and operate machine learning models.
 
-## Interoperability between ML studio and AI Foundry
+## Interoperability between ML studio and Azure AI Foundry
 
-Hubs can be used as your team's collaboration environment for both ML studio and [AI Foundry](/azure/ai-studio/what-is-ai-studio). Use ML Studio for training and operationalizing custom machine learning models. Use AI Foundry as experience for building and operating AI applications responsibly.
+Hubs can be used as your team's collaboration environment for both ML studio and [Azure AI Foundry](/azure/ai-studio/what-is-ai-studio). Use ML Studio for training and operationalizing custom machine learning models. Use Azure AI Foundry as experience for building and operating AI applications responsibly.
 
-| Workspace Kind | ML Studio | AI Foundry |
+| Workspace Kind | ML Studio | Azure AI Foundry |
 | --- | --- | --- |
 | Default | Supported | - |
 | Hub | Supported | Supported |
@@ -54,7 +54,7 @@ Project workspaces that are created using a hub obtain the hub's security settin
 | Network settings | One [managed virtual network](how-to-managed-network.md) is shared between hub and project workspaces. To access content in the hub and project workspaces, create a single private link endpoint on the hub workspace. |
 | Encryption settings | Encryption settings pass down from hub to project. |
 | Storage for encrypted data | When you bring your customer-managed keys for encryption, hub and project workspaces share the same managed resource group for storing encrypted service data. |
-| Connections | Project workspaces can consume shared connections created on the hub. This feature is currently only supported in [AI Foundry]()  |
+| Connections | Project workspaces can consume shared connections created on the hub. This feature is currently only supported in [Azure AI Foundry]()  |
 | Compute instance | Reuse a compute instance across all project workspaces associated to the same hub. |
 | Compute quota | Any compute quota consumed by project workspaces is deducted from the hub workspace quota balance. |
 | Storage | Associated resource for storing workspace data. Project workspaces use designated containers starting with a prefix {workspaceGUID}, and have a conditional [Azure Attribute Based Access](/azure/role-based-access-control/conditions-overview) role assignment for the workspace identity for accessing these containers only. |
@@ -69,7 +69,7 @@ Data that is uploaded in one project workspace, is stored in isolation from data
 Once a hub is created, there are multiple ways to create a project workspace using it:
 
 1. [Using ML Studio](how-to-manage-workspace.md?tabs=mlstudio)
-1. [Using AI Foundry](/azure/ai-studio/how-to/create-projects)
+1. [Using Azure AI Foundry](/azure/ai-studio/how-to/create-projects)
 2. [Using Azure SDK](how-to-manage-workspace.md?tabs=python)
 4. [Using automation templates](how-to-create-workspace-template.md)
 
@@ -93,11 +93,11 @@ Features that are supported using hub/project workspaces differ from regular wor
 | Feature | Default workspace | Hub workspace | Project workspace | Note |
 |--|--|--|--|--|
 |Self-serve create project workspaces from Studio| - | X | X | - |
-|Create shared connections on hub | |X|X| Only in AI Foundry portal |
+|Create shared connections on hub | |X|X| Only in Azure AI Foundry portal |
 |Consume shared connections from hub | |X|X| - |
 |Reuse compute instance across workspaces|-|X|X| |
 |Share compute quota across workspaces|-|X|X||
-|Build GenAI apps in AI Foundry portal|-|X|X||
+|Build GenAI apps in Azure AI Foundry portal|-|X|X||
 |Single private link endpoint across workspaces|-|X|X||
 |Managed virtual network|X|X|X|-|
 |BYO virtual network|X|-|-|Use alternative [managed virtual network](how-to-managed-network.md)|
@@ -115,6 +115,6 @@ To learn more about setting up Azure Machine Learning, see:
 + [Create and manage a workspace](how-to-manage-workspace.md)
 + [Get started with Azure Machine Learning](quickstart-create-resources.md)
 
-To learn more about hub workspace support in AI Foundry portal, see:
+To learn more about hub workspace support in Azure AI Foundry portal, see:
 
 + [How to configure a managed network for hubs](/azure/ai-studio/how-to/configure-managed-network)

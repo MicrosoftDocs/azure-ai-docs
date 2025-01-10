@@ -32,7 +32,7 @@ items:
     - name: Chat
       href: chatgpt-quickstart.md  
       displayName: ChatGPT, chatgpt
-    - name: GPT-4 Turbo with Vision
+    - name: Vision-enabled chats
       href: gpt-v-quickstart.md
     - name: DALL-E
       href: dall-e-quickstart.md
@@ -64,7 +64,7 @@ items:
       href: ./concepts/understand-embeddings.md
     - name: Fine-tuning
       href: ./concepts/fine-tuning-considerations.md
-    - name: GPT-4 Turbo with Vision
+    - name: Vision-enabled models
       href: ./concepts/gpt-with-vision.md
     - name: Red teaming large language models (LLMs)
       href: ./concepts/red-teaming.md
@@ -119,10 +119,12 @@ items:
     href: ./how-to/batch.md
   - name: Completions & chat completions
     items:
+    - name: Reasoning models
+      href: ./how-to/reasoning.md
     - name: GPT-35-Turbo & GPT-4 
       href: ./how-to/chatgpt.md
       displayName: ChatGPT, chatgpt
-    - name: GPT-4 Turbo with Vision
+    - name: Vision-enabled chats
       href: ./how-to/gpt-with-vision.md
     - name: DALL-E
       href: ./how-to/dall-e.md
@@ -170,6 +172,8 @@ items:
         displayName: fine-tuning, finetuning
       - name: Weights & Biases integration (preview)
         href: ./how-to/weights-and-biases-integration.md
+  - name: Stored completions
+    href: ./how-to/stored-completions.md
   - name: Use your data
     items:
       - name: Text data
@@ -348,7 +352,7 @@ items:
               displayName: RAG, rag
     - name: Azure OpenAI monitoring data reference
       href: monitor-openai-reference.md
-    - name: Realtime API (preview) WebSocket reference
+    - name: Realtime API (preview) events reference
       href: realtime-audio-reference.md
 - name: Resources
   items: 
@@ -357,7 +361,7 @@ items:
     - name: Intro to Azure OpenAI training
       href: /training/modules/explore-azure-openai/
     - name: Azure OpenAI Samples
-      href: https://aka.ms/AOAICodeSamples
+      href: https://github.com/Azure-Samples/openai
     - name: Region support
       href: https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services
     - name: Terms of use

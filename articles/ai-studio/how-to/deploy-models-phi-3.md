@@ -5,9 +5,9 @@ description: Learn how to use Phi-3 family chat models with Azure AI Foundry.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
-ms.date: 09/18/2024
-ms.reviewer: kritifaujdar
-reviewer: fkriti
+ms.date: 12/20/2024
+ms.reviewer: v-vkonjarla 
+reviewer: VindyaKonjarla
 ms.author: mopeakande
 author: msakande
 ms.custom: references_regions, generated
@@ -1458,7 +1458,8 @@ For more examples of how to use Phi-3 family models, see the following examples 
 | Description                               | Language          | Sample                                                          |
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|
 | CURL request                              | Bash              | [Link](https://aka.ms/phi-3/webrequests-sample)         |
-| Azure AI Inference package for JavaScript | JavaScript        | [Link](https://aka.ms/azsdk/azure-ai-inference/javascript/samples)  |
+| Azure AI Inference package for C#         | C#                | [Link](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Inference/samples)   |  
+| Azure AI Inference package for JavaScript | JavaScript        | [Link](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples)  |
 | Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)  |
 | Python web requests                       | Python            | [Link](https://aka.ms/phi-3/webrequests-sample)         |
 | OpenAI SDK (experimental)                 | Python            | [Link](https://aka.ms/phi-3/openaisdk)                  |

@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 12/18/2024
 ms.reviewer: wenxwei
 ms.author: lagayhar
 author: lgayhardt
@@ -17,7 +17,7 @@ author: lgayhardt
 
 # How to view evaluation results in Azure AI Foundry portal
 
-The Azure AI Foundry portal evaluation page is a versatile hub that not only allows you to visualize and assess your results but also serves as a control center for optimizing, troubleshooting, and selecting the ideal AI model for your deployment needs. It's a one-stop solution for data-driven decision-making and performance enhancement in your AI Foundry projects. You can seamlessly access and interpret the results from various sources, including your flow, the playground quick test session, evaluation submission UI, and SDK. This flexibility ensures that you can interact with your results in a way that best suits your workflow and preferences.
+The Azure AI Foundry portal evaluation page is a versatile hub that not only allows you to visualize and assess your results but also serves as a control center for optimizing, troubleshooting, and selecting the ideal AI model for your deployment needs. It's a one-stop solution for data-driven decision-making and performance enhancement in your Azure AI Foundry projects. You can seamlessly access and interpret the results from various sources, including your flow, the playground quick test session, evaluation submission UI, and SDK. This flexibility ensures that you can interact with your results in a way that best suits your workflow and preferences.
 
 Once you've visualized your evaluation results, you can dive into a thorough examination. This includes the ability to not only view individual results but also to compare these results across multiple evaluation runs. By doing so, you can identify trends, patterns, and discrepancies, gaining invaluable insights into the performance of your AI system under various conditions.
 
@@ -91,6 +91,16 @@ For multi-turn conversation scenario, you can select “View evaluation results 
 :::image type="content" source="../media/evaluations/view-results/multi-turn-chat.png" alt-text="Screenshot showing view evaluation results per turn link in input message." lightbox="../media/evaluations/view-results/multi-turn-chat.png":::
 
 :::image type="content" source="../media/evaluations/view-results/metric-per-turn.png" alt-text="Screenshot of evaluation results per turn." lightbox="../media/evaluations/view-results/metric-per-turn.png":::
+
+For a safety evaluation in a multi-modal scenario (text + images), you can review the images from both the input and output in the detailed metrics result table to better understand the evaluation result. Since multi-modal evaluation is currently supported only for conversation scenarios, you can select "View evaluation results per turn" to examine the input and output for each turn.  
+
+:::image type="content" source="../media/evaluations/view-results/image-detail-table.png" alt-text="Screenshot of detailed metrics results." lightbox="../media/evaluations/view-results/image-detail-table.png":::
+
+:::image type="content" source="../media/evaluations/view-results/image-per-turn-pop-up.png" alt-text="Screenshot of the image popup from conversation column." lightbox="../media/evaluations/view-results/image-per-turn-pop-up.png":::
+
+Select the image to expand and view it. By default, all images are blurred to protect you from potentially harmful content. To view the image clearly, turn on the "Check Blur Image" toggle.
+
+:::image type="content" source="../media/evaluations/view-results/image-check-blur-image.png" alt-text="Screenshot of blurred image that shows the check blue image toggle." lightbox="../media/evaluations/view-results/image-check-blur-image.png":::
 
 For risk and safety metrics, the evaluation provides a severity score and reasoning for each score. Here are some examples of risk and safety metrics results for the question answering scenario:
 

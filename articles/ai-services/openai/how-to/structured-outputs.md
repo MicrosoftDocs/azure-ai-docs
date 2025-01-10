@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 11/20/2024
+ms.date: 12/18/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -19,10 +19,9 @@ Structured outputs make a model follow a [JSON Schema](https://json-schema.org/o
 > [!NOTE]
 > * Currently structured outputs is not supported on [bring your own data](../concepts/use-your-data.md) scenario.
 
-
-
 ## Supported models
 
+- `o1` version: `2024-12-17`
 - `gpt-4o-mini` version: `2024-07-18`
 - `gpt-4o` version: `2024-08-06`
 
@@ -34,7 +33,7 @@ Support for structured outputs was first added in API version `2024-08-01-previe
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
-You can use [`Pydantic`](https://docs.pydantic.dev/latest/) to define object schemas in Python. Depending on what version of the [OpenAI](https://pypi.org/project/openai/) and [`Pydantic` libraries](https://pypi.org/project/pydantic/) you're running you may need to upgrade to a newer version. These examples were tested against `openai 1.42.0` and `pydantic 2.8.2`.
+You can use [`Pydantic`](https://docs.pydantic.dev/latest/) to define object schemas in Python. Depending on what version of the [OpenAI](https://pypi.org/project/openai/) and [`Pydantic` libraries](https://pypi.org/project/pydantic/) you're running you might need to upgrade to a newer version. These examples were tested against `openai 1.42.0` and `pydantic 2.8.2`.
 
 ```cmd
 pip install openai pydantic --upgrade
@@ -121,7 +120,7 @@ name='Science Fair' date='Friday' participants=['Alice', 'Bob']
 
 # [Python (key-based auth)](#tab/python)
 
-You can use [`Pydantic`](https://docs.pydantic.dev/latest/) to define object schemas in Python. Depending on what version of the [OpenAI](https://pypi.org/project/openai/) and [`Pydantic` libraries](https://pypi.org/project/pydantic/) you're running you may need to upgrade to a newer version. These examples were tested against `openai 1.42.0` and `pydantic 2.8.2`.
+You can use [`Pydantic`](https://docs.pydantic.dev/latest/) to define object schemas in Python. Depending on what version of the [OpenAI](https://pypi.org/project/openai/) and [`Pydantic` libraries](https://pypi.org/project/pydantic/) you're running you might need to upgrade to a newer version. These examples were tested against `openai 1.42.0` and `pydantic 2.8.2`.
 
 ```cmd
 pip install openai pydantic --upgrade

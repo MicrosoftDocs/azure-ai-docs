@@ -1,10 +1,10 @@
 ---
-title: 'How to use Azure AI Agent service Code Interpreter'
+title: 'How to use Azure AI Agent Service Code Interpreter'
 titleSuffix: Azure OpenAI
-description: Learn how to use Azure AI Agent service Code Interpreter
+description: Learn how to use Azure AI Agent Service Code Interpreter
 services: cognitive-services
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: how-to
 ms.date: 12/11/2024
 author: aahill
@@ -13,7 +13,7 @@ ms.custom: azure-ai-agents
 zone_pivot_groups: selection-code-interpreter
 ---
 
-# Azure AI Agent service Code Interpreter
+# Azure AI Agent Service Code Interpreter
 
 
 
@@ -49,7 +49,7 @@ from azure.ai.projects.models import FilePurpose
 from azure.identity import DefaultAzureCredential
 from pathlib import Path
 
-# Create an Azure AI Client from a connection string, copied from your AI Foundry project.
+# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
 # At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
 # Customer needs to login to Azure subscription via Azure CLI and set the environment variables
 project_client = AIProjectClient.from_connection_string(
@@ -175,7 +175,7 @@ project_client.agents.delete_file(file.id)
 print("Deleted file")
 
 # print the messages from the agent
-messages = project_client.agents.get_messages(thread_id=thread.id)
+messages = project_client.agents.list_messages(thread_id=thread.id)
 print(f"Messages: {messages}")
 
 # get the most recent message from the assistant

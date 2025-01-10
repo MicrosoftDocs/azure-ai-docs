@@ -1,10 +1,10 @@
 ---
-title: 'How to use Azure AI Agent service with function calling'
+title: 'How to use Azure AI Agent Service with function calling'
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure AI Agents with function calling.
 services: cognitive-services
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: how-to
 ms.date: 12/11/2024
 author: aahill
@@ -34,11 +34,15 @@ To use all features of function calling including parallel functions, you need t
 
 ## Define a function for your agent to call
 
-Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure of it with any required parameters. 
+Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure of it with any required parameters in a docstring. Include all your function definitions in a single file, `user_functions.py` which you can then import into your main script.
 
 # [Python](#tab/python)
 
 ```python
+import json
+import datetime
+from typing import Any, Callable, Set, Dict, List, Optional
+
 def fetch_weather(location: str) -> str:
     """
     Fetches the weather information for the specified location.
@@ -53,6 +57,11 @@ def fetch_weather(location: str) -> str:
     weather = mock_weather_data.get(location, "Weather data not available for this location.")
     weather_json = json.dumps({"weather": weather})
     return weather_json
+    
+    # Statically defined user functions for fast reference
+user_functions: Set[Callable[..., Any]] = {
+    fetch_weather,
+}
 ```
 
 
@@ -124,6 +133,8 @@ ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
 
 In the sample below we create a client and define a `toolset` which will be used to process the functions defined in `user_functions`.
 
+`toolset`: When using the toolset parameter, you provide not only the function definitions and descriptions but also their implementations. The SDK will execute these functions within create_and_run_process or streaming. These functions will be invoked based on their definitions.
+
 ```python
 import os
 from azure.ai.projects import AIProjectClient
@@ -131,7 +142,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects.models import FunctionTool, ToolSet
 from user_functions import user_functions # user functions which can be found in a user_functions.py file.
 
-# Create an Azure AI Client from a connection string, copied from your AI Studio project.
+# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
 # It should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
 # Customers need to login to Azure subscription via Azure CLI and set the environment variables
 

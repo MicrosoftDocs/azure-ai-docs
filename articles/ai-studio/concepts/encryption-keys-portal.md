@@ -39,8 +39,8 @@ The following data is stored on the managed resources.
 |Service|What it's used for|Example|
 |-----|-----|-----|
 |Azure Cosmos DB|Stores metadata for your Azure AI projects and tools|Index names, tags; Flow creation timestamps; deployment tags; evaluation metrics|
-|Azure AI Search|Stores indices that are used to help query your AI Foundry content.|An index based off your model deployment names|
-|Azure Storage Account|Stores instructions for how customization tasks are orchestrated|JSON representation of flows you create in AI Foundry portal|
+|Azure AI Search|Stores indices that are used to help query your Azure AI Foundry content.|An index based off your model deployment names|
+|Azure Storage Account|Stores instructions for how customization tasks are orchestrated|JSON representation of flows you create in Azure AI Foundry portal|
 
 >[!IMPORTANT]
 > Azure AI Foundry uses Azure compute that is managed in the Microsoft subscription, for example when you fine-tune models or or build flows. Its disks are encrypted with Microsoft-managed keys. Compute is ephemeral, meaning after a task is completed the virtual machine is deprovisioned, and the OS disk is deleted. Compute instance machines used for 'Code' experiences are persistant. Azure Disk Encryption isn't supported for the OS disk. 

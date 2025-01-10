@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
 ms.date: 9/24/2024
-ms.reviewer: sally-baolian
+ms.reviewer: eur
 ms.author: eur
 author: eric-urban
 ms.custom: references_regions

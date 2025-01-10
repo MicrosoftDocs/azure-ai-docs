@@ -22,7 +22,7 @@ The Speech service allows you to [convert text into synthesized speech](#convert
 The text to speech REST API supports neural text to speech voices in many locales. Each available endpoint is associated with a region. A Speech resource key for the endpoint or region that you plan to use is required. Here are links to more information:
 
 - For a complete list of voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
-- For information about regional availability, see [Speech service supported regions](regions.md#speech-service).
+- For information about regional availability, see [Speech service supported regions](regions.md#regions).
 - For Azure Government and Microsoft Azure operated by 21Vianet endpoints, see [this article about sovereign clouds](sovereign-clouds.md).
 
 > [!IMPORTANT]
@@ -258,6 +258,7 @@ The HTTP status code for each response indicates success or common errors:
 | 415 | Unsupported media type | It's possible that the wrong `Content-Type` value was provided. `Content-Type` should be set to `application/ssml+xml`. |
 | 429 | Too many requests | You exceeded the quota or rate of requests allowed for your resource. |
 | 502 | Bad gateway    | There's a network or server-side problem. This status might also indicate invalid headers. |
+| 503 | Service Unavailable    | There's a server-side problem for various reasons. |
 
 If the HTTP status is `200 OK`, the body of the response contains an audio file in the requested format. This file can be played as it's transferred, saved to a buffer, or saved to a file.
 

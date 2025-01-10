@@ -53,7 +53,7 @@ Azure AI Foundry is currently not available in Azure Government regions or air-g
 For information on the availability of Azure OpenAI models, see [Azure OpenAI Model summary table and region availability](../../ai-services/openai/concepts/models.md#model-summary-table-and-region-availability).
 
 > [!NOTE]
-> Some models might not be available within the AI Foundry model catalog.
+> Some models might not be available within the Azure AI Foundry model catalog.
 
 For more information, see [Azure OpenAI quotas and limits](/azure/ai-services/openai/quotas-limits).
 

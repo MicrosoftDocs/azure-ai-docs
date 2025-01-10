@@ -2,7 +2,7 @@
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: include
 ms.date: 11/13/2024
 ---
@@ -13,8 +13,9 @@ ms.date: 11/13/2024
 ## Prerequisites
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
-* [Python 3.13 or later](https://www.python.org/)
+* [Python 3.8 or later](https://www.python.org/)
 * Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio.md) assigned at the appropriate level.
+* You need the **Cognitive Services OpenAI User** role assigned to use the Azure AI Services resource.
 * Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
 
 [!INCLUDE [bicep-setup](bicep-setup.md)]
@@ -69,7 +70,10 @@ with AIProjectClient.from_connection_string(
 ) as project_client:
 
     # Explicit type hinting for IntelliSense
-    client: AzureOpenAI = project_client.inference.get_azure_openai_client()
+    client: AzureOpenAI = project_client.inference.get_azure_openai_client(
+        # The latest API version is 2024-10-01-preview
+        api_version = os.environ.get("AZURE_OPENAI_API_VERSION"),
+    )
 
     with client:
         agent = client.beta.assistants.create(

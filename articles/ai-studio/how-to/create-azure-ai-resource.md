@@ -1,7 +1,7 @@
 ---
 title: How to create and manage an Azure AI Foundry hub
 titleSuffix: Azure AI Foundry
-description: Learn how to create and manage an Azure AI Foundry hub from the Azure portal or from the AI Foundry portal. Your developers can then create projects from the hub.
+description: Learn how to create and manage an Azure AI Foundry hub from the Azure portal or from the Azure AI Foundry portal. Your developers can then create projects from the hub.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
@@ -18,24 +18,24 @@ author: Blackmist
 
 # How to create and manage an Azure AI Foundry hub
 
-In AI Foundry portal, hubs provide the environment for a team to collaborate and organize work, and help you as a team lead or IT admin centrally set up security settings and govern usage and spend. You can create and manage a hub from the Azure portal or from the AI Foundry portal, and then your developers can create projects from the hub.
+In Azure AI Foundry portal, hubs provide the environment for a team to collaborate and organize work, and help you as a team lead or IT admin centrally set up security settings and govern usage and spend. You can create and manage a hub from the Azure portal or from the Azure AI Foundry portal, and then your developers can create projects from the hub.
 
-In this article, you learn how to create and manage a hub in AI Foundry portal with the default settings so you can get started quickly. Do you need to customize security or the dependent resources of your hub? Then use [Azure portal](create-secure-ai-hub.md) or [template options](create-azure-ai-hub-template.md). 
+In this article, you learn how to create and manage a hub in Azure AI Foundry portal with the default settings so you can get started quickly. Do you need to customize security or the dependent resources of your hub? Then use [Azure portal](create-secure-ai-hub.md) or [template options](create-azure-ai-hub-template.md). 
 
 > [!TIP]
-> If you're an individual developer and not an admin, dev lead, or part of a larger effort that requires a hub, you can create a project directly from the AI Foundry portal without creating a hub first. For more information, see [Create a project](create-projects.md).
+> If you're an individual developer and not an admin, dev lead, or part of a larger effort that requires a hub, you can create a project directly from the Azure AI Foundry portal without creating a hub first. For more information, see [Create a project](create-projects.md).
 > 
 > If you're an admin or dev lead and would like to create your Azure AI Foundry hub using a template, see the articles on using [Bicep](create-azure-ai-hub-template.md) or [Terraform](create-hub-terraform.md).
 
-## Create a hub in AI Foundry portal
+## Create a hub in Azure AI Foundry portal
 
-To create a new hub, you need either the Owner or Contributor role on the resource group or on an existing hub. If you're unable to create a hub due to permissions, reach out to your administrator. If your organization is using [Azure Policy](/azure/governance/policy/overview), don't create the resource in AI Foundry portal. Create the hub [in the Azure portal](#create-a-secure-hub-in-the-azure-portal) instead.
+To create a new hub, you need either the Owner or Contributor role on the resource group or on an existing hub. If you're unable to create a hub due to permissions, reach out to your administrator. If your organization is using [Azure Policy](/azure/governance/policy/overview), don't create the resource in Azure AI Foundry portal. Create the hub [in the Azure portal](#create-a-secure-hub-in-the-azure-portal) instead.
 
 [!INCLUDE [Create Azure AI Foundry hub](../includes/create-hub.md)] 
 
 ## Create a secure hub in the Azure portal
 
-If your organization is using [Azure Policy](/azure/governance/policy/overview), set up a hub that meets your organization's requirements instead of using AI Foundry for resource creation. 
+If your organization is using [Azure Policy](/azure/governance/policy/overview), set up a hub that meets your organization's requirements instead of using Azure AI Foundry for resource creation. 
 
 1. From the Azure portal, search for `Azure AI Foundry` and create a new hub by selecting **+ New Azure AI hub**
 1. Enter your hub name, subscription, resource group, and location details.
@@ -152,7 +152,7 @@ az ml workspace update -n "myexamplehub" -g "{MY_RESOURCE_GROUP}" -a "APPLICATIO
 
 ### Choose how credentials are stored
 
-Select scenarios in AI Foundry portal store credentials on your behalf. For example when you create a connection in AI Foundry portal to access an Azure Storage account with stored account key, access Azure Container Registry with admin password, or when you create a compute instance with enabled SSH keys. No credentials are stored with connections when you choose Microsoft Entra ID identity-based authentication.
+Select scenarios in Azure AI Foundry portal store credentials on your behalf. For example when you create a connection in Azure AI Foundry portal to access an Azure Storage account with stored account key, access Azure Container Registry with admin password, or when you create a compute instance with enabled SSH keys. No credentials are stored with connections when you choose Microsoft Entra ID identity-based authentication.
 
 You can choose where credentials are stored:
 

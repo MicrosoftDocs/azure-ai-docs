@@ -4,11 +4,11 @@ titleSuffix: Azure OpenAI
 description: Learn how to use resources that you already have with the Azure AI Agent Service. 
 services: cognitive-services
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: how-to
 ms.date: 12/11/2024
-author: aahill
-ms.author: aahi
+author: fosteramanda
+ms.author: fosteramanda
 ms.custom: azure-ai-agents
 ---
 
@@ -17,7 +17,7 @@ ms.custom: azure-ai-agents
 Use this article if you want to use the Azure Agent Service with resources you already have. 
 
 > [!NOTE]
-> If you use an existing AI Services/AOAI resource, no model will be deployed. You can deploy a model to the resource after the agent setup is complete. 
+> If you use an existing AI Services / Azure OpenAI Service resource, no model will be deployed. You can deploy a model to the resource after the agent setup is complete. 
 
 ## Choose basic or standard agent setup
 
@@ -27,9 +27,9 @@ To use your own resources, you can edit the parameters in the provided deploymen
 
 **Standard Setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage. You can use your own AI services account, storage account, and/or Azure AI Search resource with this option. 
 
-## Basic agent setup: use an existing AI Services resource 
+## Basic agent setup: use an existing AI Services/Azure OpenAI resource 
 
-Replace the parameter value for `aiServiceAccountResourceId` with the full arm resource ID of the AI Services account you want to use.
+Replace the parameter value for `aiServiceAccountResourceId` with the full arm resource ID of the AI Services or Azure OpenAI resource you want to use.
 
 1. To get the AI Services account resource ID, sign in to the Azure CLI and select the subscription with your AI Services account:
        
@@ -44,18 +44,25 @@ Replace the parameter value for `aiServiceAccountResourceId` with the full arm r
     
     ```
     aiServiceAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
+
+    [Azure OpenAI Only] aiServiceKind: AzureOpenAI
     ```
 
-## Standard agent setup: use an existing AI Services, storage, and/or Azure AI Search resource 
+    If you want to use an existing Azure OpenAI resource, you will need to update the `aiServiceAccountResourceId` and the `aiServiceKind` parameters in the parameter file. The aiServiceKind parameter should be set to AzureOpenAI.
+
+
+## Standard agent setup: use an existing AI Services/Azure OpenAI, storage, and/or Azure AI Search resource 
 
 Use an existing AI Search, storage account, and/or Azure AI Search resource by providing the full arm resource ID in the standard agent template file.
 
-Use an existing AI Services resource:
+Use an existing AI Services or Azure OpenAI resource:
 1. Follow the steps in basic agent setup to get the AI Services account resource ID.
 2. In the standard agent template file, replace the following placeholders:
     
     ```
     aiServiceAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
+    
+    [Azure OpenAI Only] aiServiceKind: AzureOpenAI
     ```
 
 ### Use an existing storage account
@@ -68,7 +75,7 @@ Use an existing AI Services resource:
     ```az search service show --resource-group  <your-resource-group> --name <your-storage-account>  --query "id" --output tsv```
     
      The output is the `aiStorageAccountResourceID` you need to use in the template.
-3. In the standard agent template file, In the basic agent template file, replace the following placeholders:
+3. In the standard agent template file, replace the following placeholders:
     
     ```
     aiStorageAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}

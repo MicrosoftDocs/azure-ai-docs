@@ -1,7 +1,7 @@
 ---
-title: 'Quickstart: Use GPT-4 Turbo with Vision on your images and videos with the Azure OpenAI Service'
+title: 'Quickstart: Use vision-enabled models with the Azure OpenAI Service'
 titleSuffix: Azure OpenAI
-description: Use this article to get started using Azure OpenAI to deploy and use the GPT-4 Turbo with Vision model. 
+description: Use this article to get started using Azure OpenAI to deploy and use the GPT-4 Turbo with Vision model or other vision-enabled models. 
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
@@ -24,7 +24,7 @@ Get started using GPT-4 Turbo with images with the Azure OpenAI Service.
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [AI Foundry portal quickstart](includes/gpt-v-studio.md)]
+[!INCLUDE [Azure AI Foundry portal quickstart](includes/gpt-v-studio.md)]
 
 ::: zone-end
 
@@ -60,6 +60,6 @@ Get started using GPT-4 Turbo with images with the Azure OpenAI Service.
 
 ## Next steps
 
-* Learn more about these APIs in the [GPT-4 Turbo with Vision how-to guide](./gpt-v-quickstart.md)
+* Learn more about these APIs in the [Vision-enabled models how-to guide](./gpt-v-quickstart.md)
 * [GPT-4 Turbo with Vision frequently asked questions](./faq.yml#gpt-4-turbo-with-vision)
 * [GPT-4 Turbo with Vision API reference](https://aka.ms/gpt-v-api-ref)

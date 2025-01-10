@@ -1,11 +1,11 @@
 ---
-title: Distillation in AI Foundry portal (preview)
+title: Distillation in Azure AI Foundry portal (preview)
 titleSuffix: Azure AI Foundry
 description: Learn how to do distillation in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
-ms.date: 07/23/2024
+ms.date: 12/15/2024
 ms.reviewer: vkann
 reviewer: anshirga
 ms.author: ssalgado
@@ -33,7 +33,7 @@ The main steps in knowledge distillation are:
 
 ## Sample notebook
 
-Distillation in AI Foundry portal is currently only available through a notebook experience. You can use the [sample notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/system/distillation) to see how to perform distillation. Model distillation is available for Microsoft models and a selection of OSS (open-source software) models available in the model catalog. In this sample notebook, the teacher model uses the Meta Llama 3.1 405B instruction model, and the student model uses the Meta Llama 3.1 8B instruction model.
+Distillation in Azure AI Foundry portal is currently only available through a notebook experience. You can use the [sample notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/system/distillation) to see how to perform distillation. Model distillation is available for Microsoft models and a selection of OSS (open-source software) models available in the model catalog. In this sample notebook, the teacher model uses the Meta Llama 3.1 405B instruction model, and the student model uses the Meta Llama 3.1 8B instruction model.
 
 
 

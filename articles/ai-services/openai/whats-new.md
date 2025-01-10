@@ -11,7 +11,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: whats-new
-ms.date: 11/12/2024
+ms.date: 11/18/2024
 recommendations: false
 ---
 
@@ -20,6 +20,42 @@ recommendations: false
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
 ## December 2024
+
+### o1 reasoning model released for limited access
+
+The latest `o1` model is now available for API access and model deployment. **Registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who previously applied and received access to `o1-preview`, don't need to reapply as they are automatically on the wait-list for the latest model.
+
+Request access: [limited access model application](https://aka.ms/OAI/o1access)
+
+To learn more about the advanced `o1` series models see, [getting started with o1 series reasoning models](./how-to/reasoning.md).
+
+### Region availability
+
+| Model | Region |
+|---|---|
+|`o1` <br>(Version: 2024-12-17)| East US2 (Global Standard) <br> Sweden Central (Global Standard) |
+
+### Preference fine-tuning (preview)
+
+[Direct preference optimization (DPO)](./how-to/fine-tuning.md#direct-preference-optimization-dpo-preview) is a new alignment technique for large language models, designed to adjust model weights based on human preferences. Unlike reinforcement learning from human feedback (RLHF), DPO does not require fitting a reward model and uses simpler data (binary preferences) for training. This method is computationally lighter and faster, making it equally effective at alignment while being more efficient. DPO is especially useful in scenarios where subjective elements like tone, style, or specific content preferences are important. We’re excited to announce the public preview of DPO in Azure OpenAI Service, starting with the `gpt-4o-2024-08-06` model.
+
+For fine-tuning model region availability, see the [models page](./concepts/models.md#fine-tuning-models).
+
+### Stored completions & distillation
+
+[Stored completions](./how-to/stored-completions.md) allow you to capture the conversation history from chat completions sessions to use as datasets for [evaluations](./how-to/evaluations.md) and [fine-tuning](./how-to/fine-tuning.md).
+
+### GPT-4o 2024-11-20
+
+`gpt-4o-2024-11-20` is now available for [global standard deployment](./how-to/deployment-types.md) in:
+
+- East US
+- East US 2
+- North Central US
+- South Central US
+- West US
+- West US 3
+- Sweden Central
 
 ### NEW data zone provisioned deployment type
 
@@ -109,7 +145,7 @@ Global batch now supports GPT-4o (2024-08-06). See the [global batch getting sta
 
 ### Azure OpenAI Studio UX updates
 
-On September 19, when you access the [Azure OpenAI Studio](https://oai.azure.com/) you'll begin to no longer see the legacy AI Foundry portal by default. If needed you'll still be able to go back to the previous experience by using the **Switch to the old look** toggle in the top bar of the UI for the next couple of weeks. If you switch back to legacy AI Foundry portal, it helps if you fill out the feedback form to let us know why. We're actively monitoring this feedback to improve the new experience.
+As of September 19, 2024, when you go to the [Azure OpenAI Studio](https://oai.azure.com/) you no longer see the legacy Azure OpenAI Studio by default. If needed you'll still be able to go back to the previous experience by using the **Switch to the old look** toggle in the top bar of the UI for the next couple of weeks. If you switch back to legacy Azure AI Foundry portal, it helps if you fill out the feedback form to let us know why. We're actively monitoring this feedback to improve the new experience.
 
 
 ### GPT-4o 2024-08-06 provisioned deployments
@@ -152,7 +188,7 @@ OpenAI has incorporated additional safety measures into the `o1` models, includi
 
 ### Availability
 
-The `o1-preview` and `o1-mini` are available in the East US2 region for limited access through the [AI Foundry portal](https://ai.azure.com) early access playground. Data processing for the `o1` models might occur in a different region than where they are available for use.
+The `o1-preview` and `o1-mini` are available in the East US2 region for limited access through the [Azure AI Foundry portal](https://ai.azure.com) early access playground. Data processing for the `o1` models might occur in a different region than where they are available for use.
 
 To try the `o1-preview` and `o1-mini` models in the early access playground **registration is required, and access will be granted based on Microsoft’s eligibility criteria.**
 
@@ -208,9 +244,9 @@ On August 6, 2024, OpenAI [announced](https://openai.com/index/introducing-struc
 * An enhanced ability to support complex structured outputs.
 * Max output tokens have been increased from 4,096 to 16,384.
 
-Azure customers can test out GPT-4o `2024-08-06` today in the new AI Foundry early access playground (preview).
+Azure customers can test out GPT-4o `2024-08-06` today in the new Azure AI Foundry early access playground (preview).
 
-Unlike the previous early access playground, the AI Foundry portal early access playground (preview) doesn't require you to have a resource in a specific region.
+Unlike the previous early access playground, the Azure AI Foundry portal early access playground (preview) doesn't require you to have a resource in a specific region.
 
 > [!NOTE]
 > Prompts and completions made through the early access playground (preview) might be processed in any Azure OpenAI region, and are currently subject to a 10 request per minute per Azure subscription limit. This limit might change in the future.

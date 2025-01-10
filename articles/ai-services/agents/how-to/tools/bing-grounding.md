@@ -1,12 +1,12 @@
 ---
-title: 'How to use Grounding with Bing Search in Azure AI Agent service'
+title: 'How to use Grounding with Bing Search in Azure AI Agent Service'
 titleSuffix: Azure OpenAI
 description: Learn how to ground Azure AI Agents using Bing Search results.
 services: cognitive-services
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 12/11/2024
+ms.date: 01/07/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-bing-grounding
@@ -35,13 +35,13 @@ Developers and end users don't have access to raw content returned from Groundin
 
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
 
-1. Register the Bing Search provider.
+1. Manually [register](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) Bing Search as an Azure resource provider. You must have permission to perform the `/register/action` operation for the resource provider. The permission is included in the **Contributor** and **Owner** roles.
 
    ```console
        az provider register --namespace 'Microsoft.Bing'
    ```
 
-1. Create a new Grounding with Bing Search resource in the [Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingSearch), and select the different fields in the creation form. Make sure you create this Grounding with Bing Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.
+1. Developers can create a new Grounding with Bing Search resource. Create a new Grounding with Bing Search resource in the [Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingSearch), and select the different fields in the creation form. Make sure you create this Grounding with Bing Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.
 
 1. After you have created a Grounding with Bing Search resource, you can find it in [Azure portal](https://portal.azure.com/#home). Navigate to the resource group you've created the resource in, search for the Grounding with Bing Search resource you have created.
 
@@ -109,7 +109,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects.models import BingGroundingTool
 
 
-# Create an Azure AI Client from a connection string, copied from your AI Studio project.
+# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
 # At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
 # Customer needs to login to Azure subscription via Azure CLI and set the environment variables
 

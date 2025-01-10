@@ -307,7 +307,7 @@ Augment and accelerate your red-teaming operation by using Azure AI Foundry safe
 from azure.ai.evaluation.simulator import AdversarialSimulator
 ```
 
-The adversarial simulator works by setting up a service-hosted GPT large language model to simulate an adversarial user and interact with your application. An AI Foundry project is required to run the adversarial simulator:
+The adversarial simulator works by setting up a service-hosted GPT large language model to simulate an adversarial user and interact with your application. An Azure AI Foundry project is required to run the adversarial simulator:
 
 ```python
 from azure.identity import DefaultAzureCredential

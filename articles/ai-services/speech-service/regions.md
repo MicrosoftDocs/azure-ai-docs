@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 9/23/2024
+ms.date: 1/6/2025
 ms.author: eur
 ms.custom: references_regions
 #Customer intent: As a developer, I want to learn about the available regions and endpoints for the Speech service.
@@ -14,7 +14,7 @@ ms.custom: references_regions
 
 # Speech service supported regions
 
-The Speech service allows your application to convert audio to text, perform speech translation, and convert text to speech. The service is available in multiple regions with unique endpoints for the Speech SDK and REST APIs. You can perform custom configurations to your speech experience, for all regions, at the [Speech Studio](https://aka.ms/speechstudio/).
+The Speech service allows your application to convert audio to text, perform speech translation, and convert text to speech. The service is available in multiple regions with unique endpoints for the Speech SDK and REST APIs. 
 
 Keep in mind the following points:
 
@@ -23,104 +23,52 @@ Keep in mind the following points:
 - Keys created for a region are valid only in that region. If you attempt to use them with other regions, you get authentication errors.
 
 > [!NOTE]
-> Speech service doesn't store or process customer data outside the region the customer deploys the service instance in.
+> Speech service doesn't store or process your data outside the region of your Speech resource. The data is only stored or processed in the region where the resource is created. For example, if you create a Speech resource in the `westus` region, the data is only in the `westus` region.
 
-## Speech service
+## Regions
 
-The following regions are supported for Speech service features such as speech to text, text to speech, pronunciation assessment, and translation. The geographies are listed in alphabetical order.
+The regions in this table support most of the core features of the Speech service, such as speech to text, text to speech, pronunciation assessment, and translation. Some features, such as fast transcription and batch synthesis API, require specific regions. For the features that require specific regions, the table indicates the regions that support them.
 
-| Geography     | Region               | Region identifier                       |
-| ------------- | -------------------- | --------------------------------------- |
-| Africa        | South Africa North   | `southafricanorth` <sup>6</sup>         |
-| Asia Pacific  | East Asia            | `eastasia` <sup>5</sup>                 |
-| Asia Pacific  | Southeast Asia       | `southeastasia` <sup>1,2,4,5,7,9,10,12</sup>  |
-| Asia Pacific  | Australia East       | `australiaeast` <sup>1,2,4,7,12</sup>      |
-| Asia Pacific  | Central India        | `centralindia` <sup>1,2,4,5,12</sup>       |
-| Asia Pacific  | Japan East           | `japaneast` <sup>2,5,12</sup>              |
-| Asia Pacific  | Japan West           | `japanwest` <sup>3</sup>                |
-| Asia Pacific  | Korea Central        | `koreacentral` <sup>2</sup>             |
-| Canada        | Canada Central       | `canadacentral` <sup>1</sup>            |
-| Europe        | North Europe         | `northeurope` <sup>1,2,4,5,7,10,12</sup>   |
-| Europe        | West Europe          | `westeurope` <sup>1,2,4,5,7,9,10,12</sup>  |
-| Europe        | France Central       | `francecentral` <sup>12</sup>           |
-| Europe        | Germany West Central | `germanywestcentral`                    |
-| Europe        | Norway East          | `norwayeast`                            |
-| Europe        | Sweden Central       | `swedencentral`<sup>8,10,12</sup>       |
-| Europe        | Switzerland North    | `switzerlandnorth` <sup>6</sup>         |
-| Europe        | Switzerland West     | `switzerlandwest` <sup>3</sup>          |
-| Europe        | UK South             | `uksouth` <sup>1,2,4,7</sup>            |
-| Middle East   | UAE North            | `uaenorth` <sup>6</sup>                 |
-| South America | Brazil South         | `brazilsouth` <sup>6,12</sup>           |
-| Qatar         | Qatar Central        | `qatarcentral`<sup>3</sup>            |
-| US            | Central US           | `centralus`                             |
-| US            | East US              | `eastus` <sup>1,2,4,5,7,9,11,12</sup>   |
-| US            | East US 2            | `eastus2` <sup>1,2,4,5,10,12</sup>         |
-| US            | North Central US     | `northcentralus` <sup>4,6,12</sup>      |
-| US            | South Central US     | `southcentralus` <sup>1,2,4,5,6,7,10,12</sup> |
-| US            | West Central US      | `westcentralus` <sup>3,5</sup>          |
-| US            | West US              | `westus` <sup>2,5,12</sup>              |
-| US            | West US 2            | `westus2` <sup>1,2,4,5,7,10,12</sup>    |
-| US            | West US 3            | `westus3` <sup>3,12</sup>               |
+| **Region** | **Fast transcription** | **Batch synthesis API** | **Custom speech** | **Custom speech training with audio**<sup>1</sup> | **Custom neural voice** | **Custom neural voice training**<sup>2</sup> | **Custom neural voice high performance endpoint** | **Personal voice** | **Text to speech avatar** | **Video translation** | **Custom keyword advanced models** | **Keyword verification** | **Speaker recognition** | **Intent recognition**<sup>3</sup> | **Voice assistants**<sup>3</sup> |
+|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+| australiaeast      | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  |  |  | ✅ |  | ✅ | ✅ |  |
+| brazilsouth        | ✅ | ✅ | ✅ |  | ✅ |  |  |  |  |  |  |  |  | ✅ |  |
+| canadacentral      |  | ✅ | ✅ | ✅ | ✅ |  |  |  |  |  |  |  | ✅ |  |  |
+| centralindia       | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  |  |  |  | ✅ | ✅ | ✅ |  | ✅ |
+| centralus          |  | ✅ | ✅ |  | ✅ |  |  |  |  |  |  |  | ✅ |  |  |
+| eastasia           |  | ✅ | ✅ |  | ✅ |  |  |  |  |  |  | ✅ | ✅ | ✅ | ✅ |
+| eastus             | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| eastus2            | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  |  | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ |
+| francecentral      | ✅ | ✅ | ✅ |  | ✅ |  |  |  |  |  |  |  | ✅ |  |  |
+| germanywestcentral |  | ✅ | ✅ |  | ✅ |  |  |  |  |  |  |  | ✅ |  |  |
+| japaneast          | ✅ | ✅ | ✅ |  | ✅ | ✅ |  |  |  |  |  | ✅ | ✅ |  |  |
+| japanwest          |  |  | ✅ |  | ✅ |  |  |  |  |  |  |  | ✅ |  |  |
+| koreacentral       |  | ✅ | ✅ |  | ✅ |  |  |  |  |  |  |  | ✅ |  |  |
+| northcentralus     | ✅ | ✅ | ✅ |  | ✅ |  |  |  |  |  | ✅ |  |  |  |  |
+| northeurope        | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ |
+| norwayeast         |  | ✅ | ✅ |  | ✅ |  |  |  |  |  |  |  | ✅ |  |  |
+| qatarcentral       |  |  | ✅ |  | ✅ |  |  |  |  |  |  |  | ✅ |  |  |
+| southafricanorth   |  | ✅ | ✅ |  | ✅ |  |  |  |  |  |  |  |  |  |  |
+| southcentralus     | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  | ✅ |  | ✅ | ✅ |  | ✅ | ✅ |
+| southeastasia      | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ |
+| swedencentral      | ✅ | ✅ | ✅ |  |  |  |  |  | ✅ |  |  |  | ✅ |  |  |
+| switzerlandnorth   |  | ✅ | ✅ |  | ✅ |  |  |  |  |  |  |  |  |  |  |
+| switzerlandwest    |  |  | ✅ |  | ✅ |  |  |  |  |  |  |  | ✅ |  |  |
+| uaenorth           |  | ✅ | ✅ |  | ✅ |  |  |  |  |  |  |  |  |  |  |
+| uksouth            |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  |  |  | ✅ |  | ✅ |  |  |
+| westcentralus      |  |  | ✅ |  | ✅ |  |  |  |  |  |  | ✅ | ✅ | ✅ | ✅ |
+| westeurope         | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ |
+| westus             | ✅ | ✅ | ✅ |  | ✅ | ✅ |  |  |  |  |  | ✅ | ✅ | ✅ | ✅ |
+| westus2            | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ |
+| westus3            | ✅ |  | ✅ |  | ✅ |  |  |  |  |  |  |  | ✅ |  |  |
 
 <sup>1</sup> The region has dedicated hardware for custom speech training. If you plan to train a custom model with audio data, you must use one of the regions with dedicated hardware. Then you can [copy the trained model](how-to-custom-speech-train-model.md#copy-a-model) to another region.
 
 <sup>2</sup> The region is available for custom neural voice training. You can copy a trained neural voice model to other regions for deployment.
 
-<sup>3</sup> The region doesn't support Batch Synthesis API.
+<sup>3</sup> The [Speech SDK](speech-sdk.md) supports intent recognition and voice assistant capabilities through [Direct Line Speech](./direct-line-speech.md).
 
-<sup>4</sup> The region supports custom keyword advanced models.
+## Related content
 
-<sup>5</sup> The region supports keyword verification.
-
-<sup>6</sup> The region doesn't support Speaker Recognition.
-
-<sup>7</sup> The region supports the [high performance](professional-voice-deploy-endpoint.md#add-a-deployment-endpoint) endpoint type for custom neural voice.
-
-<sup>8</sup> The region doesn't support Custom Neural Voice.
-
-<sup>9</sup> The region supports personal voice.
-
-<sup>10</sup> The region supports text to speech avatar.
-
-<sup>11</sup> The region supports video translation.
-
-<sup>12</sup> The region supports fast transcription.
-
-## Intent recognition
-
-Available regions for intent recognition via the Speech SDK are in the following table.
-
-| Global region | Region           | Region identifier |
-| ------------- | ---------------- | ----------------- |
-| Asia          | East Asia        | `eastasia`        |
-| Asia          | Southeast Asia   | `southeastasia`   |
-| Australia     | Australia East   | `australiaeast`   |
-| Europe        | North Europe     | `northeurope`     |
-| Europe        | West Europe      | `westeurope`      |
-| North America | East US          | `eastus`          |
-| North America | East US 2        | `eastus2`         |
-| North America | South Central US | `southcentralus`  |
-| North America | West Central US  | `westcentralus`   |
-| North America | West US          | `westus`          |
-| North America | West US 2        | `westus2`         |
-| South America | Brazil South     | `brazilsouth`     |
-
-This is a subset of the publishing regions supported by the [Language Understanding service (LUIS)](../luis/luis-reference-regions.md).
-
-## Voice assistants
-
-The [Speech SDK](speech-sdk.md) supports voice assistant capabilities through [Direct Line Speech](./direct-line-speech.md) for regions in the following table.
-
-| Global region | Region           | Region identifier |
-| ------------- | ---------------- | ----------------- |
-| North America | West US          | `westus`          |
-| North America | West US 2        | `westus2`         |
-| North America | East US          | `eastus`          |
-| North America | East US 2        | `eastus2`         |
-| North America | West Central US  | `westcentralus`   |
-| North America | South Central US | `southcentralus`  |
-| Europe        | West Europe      | `westeurope`      |
-| Europe        | North Europe     | `northeurope`     |
-| Asia          | East Asia        | `eastasia`        |
-| Asia          | Southeast Asia   | `southeastasia`   |
-| India         | Central India    | `centralindia`    |
+- [Language and voice support](./language-support.md)
+- [Quotas and limits](./speech-services-quotas-and-limits.md)

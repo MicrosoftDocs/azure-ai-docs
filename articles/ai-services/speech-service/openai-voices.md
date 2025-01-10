@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
 ms.date: 9/20/2024
-ms.reviewer: v-baolianzou
+ms.reviewer: eur
 ms.custom: references_regions
 #customer intent: As a user who implements text to speech, I want to understand the options and differences between available OpenAI text to speech voices in Azure AI services.
 ---
@@ -32,7 +32,7 @@ You can choose from the following text to speech voices in Azure AI services:
 
 - OpenAI text to speech voices in [Azure OpenAI Service](../openai/reference.md#text-to-speech). Available in the following regions: North Central US and Sweden Central.
 - OpenAI text to speech voices in [Azure AI Speech](./language-support.md?tabs=tts#multilingual-voices). Available in the following regions: North Central US and Sweden Central.
-- Azure AI Speech service [text to speech voices](./language-support.md?tabs=tts#prebuilt-neural-voices). Available in dozens of regions. See the [region list](regions.md#speech-service).
+- Azure AI Speech service [text to speech voices](./language-support.md?tabs=tts#prebuilt-neural-voices). Available in dozens of regions. See the [region list](regions.md#regions).
 
 ## OpenAI text to speech voices via Azure OpenAI Service or via Azure AI Speech?
 
@@ -42,7 +42,7 @@ Here's a comparison of features between OpenAI text to speech voices in Azure Op
 
 | Feature | Azure OpenAI Service (OpenAI voices) | Azure AI Speech (OpenAI voices) | Azure AI Speech voices |
 |---------|---------------|------------------------|------------------------|
-| **Region** | North Central US, Sweden Central | North Central US, Sweden Central | Available in dozens of regions. See the [region list](regions.md#speech-service).|
+| **Region** | North Central US, Sweden Central | North Central US, Sweden Central | Available in dozens of regions. See the [region list](regions.md#regions).|
 | **Voice variety** | 6 | 12 | More than 500 |
 | **Multilingual voice number** | 6 | 12 | 49 |
 | **Max multilingual language coverage** | 57 | 57 | 77 |

@@ -2,21 +2,11 @@
 manager: nitinme
 author: fosteramanda
 ms.author: fosteramanda
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: include
 ms.date: 12/10/2024
 ---
 ## Creating vector stores and adding files 
-
-You can create a vector store and add files to it in a single API call:
-
-```python
-vector_store = project_client.agents.create_vector_store_file_batch_and_poll(
-  name="my_vector_store",
-  file_ids=['file_path_1', 'file_path_2', 'file_path_3', 'file_path_4', 'file_path_5']
-)
-```
-
 Adding files to vector stores is an async operation. To ensure the operation is complete, we recommend that you use the 'create and poll' helpers in our official SDKs. If you're not using the SDKs, you can retrieve the `vector_store` object and monitor its `file_counts` property to see the result of the file ingestion operation.
 
 Files can also be added to a vector store after it's created by creating vector store files.
@@ -40,7 +30,7 @@ Alternatively, you can add several files to a vector store by creating batches o
 ```python
 batch = project_client.agents.create_vector_store_file_batch_and_poll(
   vector_store_id=vector_store.id,
-  file_ids=['file_1', 'file_2', 'file_3', 'file_4', 'file_5']
+  file_ids=[file_1.id, file_2.id, file_3.id, file_4.id, file_5.id]
 )
 ```
 
@@ -83,7 +73,7 @@ To help you manage the costs associated with these vector_store objects, we adde
 ```python
 vector_store = project_client.agents.create_vector_store_and_poll(
   name="Product Documentation",
-  file_ids=['file_1', 'file_2', 'file_3', 'file_4', 'file_5'],
+  file_ids=[file_1.id],
   expires_after={
       "anchor": "last_active_at",
       "days": 7

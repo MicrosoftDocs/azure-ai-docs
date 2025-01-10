@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use GPT-4 Turbo with Vision on your images and videos with the JavaScript SDK'
+title: 'Quickstart: Use GPT-4 Turbo with Vision on your images with the JavaScript SDK'
 titleSuffix: Azure OpenAI
 description: Get started using the OpenAI JavaScript SDK to deploy and use the GPT-4 Turbo with Vision model.
 services: cognitive-services
@@ -24,14 +24,21 @@ This SDK is provided by OpenAI with Azure specific types provided by Azure.
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
-
 > [!NOTE]
 > This library is maintained by OpenAI. Refer to the [release history](https://github.com/openai/openai-node/releases) to track the latest updates to the library.
 
-[!INCLUDE [get-key-endpoint](get-key-endpoint.md)]
+### Microsoft Entra ID prerequisites
 
-[!INCLUDE [environment-variables](environment-variables.md)]
+For the recommended keyless authentication with Microsoft Entra ID, you need to:
+- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
+## Retrieve resource information
+
+[!INCLUDE [resource authentication](resource-auth.md)]
+
+> [!CAUTION]
+> To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
 
 ## Create a Node application
 

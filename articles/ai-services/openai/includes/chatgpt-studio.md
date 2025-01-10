@@ -24,7 +24,7 @@ From the Azure OpenAI Studio landing page, select **Chat playground**.
 
 ## Playground
 
-Start exploring OpenAI capabilities with a no-code approach through the Azure OpenAI Studio Chat playground. From this page, you can quickly iterate and experiment with the capabilities.
+Start exploring Azure OpenAI Service capabilities with a no-code approach through the Azure OpenAI Studio Chat playground. From this page, you can quickly iterate and experiment with the capabilities.
 
 :::image type="content" source="../media/quickstarts/chatgpt-playground-load-new.png" alt-text="Screenshot of the Chat playground page." lightbox="../media/quickstarts/chatgpt-playground-load-new.png":::
 
@@ -78,4 +78,4 @@ Once you're done testing out the Chat playground, if you want to clean up and re
 ## Next steps
 
 * Learn more about how to work with the new `gpt-35-turbo` model with the [GPT-35-Turbo & GPT-4 how-to guide](../how-to/chatgpt.md).
-* For more examples check out the [Azure OpenAI Samples GitHub repository](https://aka.ms/AOAICodeSamples)
+* For more examples check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai)

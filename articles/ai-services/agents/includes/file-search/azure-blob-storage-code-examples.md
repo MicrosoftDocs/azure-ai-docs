@@ -2,7 +2,7 @@
 manager: nitinme
 author: fosteramanda
 ms.author: fosteramanda
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: include
 ms.date: 12/10/2024
 ---
@@ -28,7 +28,7 @@ from azure.ai.projects.models import FileSearchTool, VectorStoreDataSource, Vect
 from azure.identity import DefaultAzureCredential
 
 
-# Create an Azure AI Client from a connection string, copied from your AI Studio project.
+# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
 # At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
 # Customer needs to login to Azure subscription via Azure CLI and set the environment variables
 

@@ -2,7 +2,7 @@
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: include
 ms.date: 11/13/2024
 ---
@@ -13,7 +13,7 @@ ms.date: 11/13/2024
 ## Prerequisites
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
-* [Python 3.13 or later](https://www.python.org/)
+* [Python 3.8 or later](https://www.python.org/)
 * Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio.md) assigned at the appropriate level.
 * Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
 
@@ -63,7 +63,7 @@ from azure.identity import DefaultAzureCredential
 from typing import Any
 from pathlib import Path
 
-# Create an Azure AI Client from a connection string, copied from your AI Studio project.
+# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
 # At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
 # HostName can be found by navigating to your discovery_url and removing the leading "https://" and trailing "/discovery"
 # To find your discovery_url, run the CLI command: az ml workspace show -n {project_name} --resource-group {resource_group_name} --query discovery_url
@@ -109,7 +109,7 @@ with project_client:
         print(f"Run failed: {run.last_error}")
 
     # Get messages from the thread
-    messages = project_client.agents.get_messages(thread_id=thread.id)
+    messages = project_client.agents.list_messages(thread_id=thread.id)
     print(f"Messages: {messages}")
 
     # Get the last message from the sender

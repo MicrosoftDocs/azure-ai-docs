@@ -166,7 +166,7 @@ Added support and general availability for new voices in the following locales:
 | Locale (BCP-47) | Language | Text to speech voices |
 | ----- | ----- | ----- |
 | `as-IN` | Assamese (India) | `as-IN-YashicaNeural` (Female)<br/>`as-IN-PriyomNeural` (Male) |
-| `or-IN` | Oriya (India) | `or-IN-SubhasiniNeural` (Female)<br/>`or-IN-SukantNeural` (Male) |
+| `or-IN` | Odia (India) | `or-IN-SubhasiniNeural` (Female)<br/>`or-IN-SukantNeural` (Male) |
 | `pa-IN` | Punjabi (India) | `pa-IN-OjasNeural` (Male)<br/>`pa-IN-VaaniNeural` (Female) |
 
 The one voice in this table is generally available and supports only the 'en-IN' locale.
@@ -293,7 +293,7 @@ Text to speech avatar is now generally available. For more information, see [tex
   | `pt-PT`| Portuguese (Portugal)|
   | `sv-SE`| Swedish (Sweden)|
   | `th-TH`| Thai (Thailand)|
-  | `tr-TR`| Turkish (Turkey)|
+  | `tr-TR`| Turkish (Türkiye)|
   | `zh-CN`| Chinese (Mandarin, Simplified)|
   | `zh-HK`| Chinese (Cantonese, Traditional)|
   | `zh-TW`| Chinese (Taiwanese Mandarin, Traditional)|
@@ -306,8 +306,8 @@ Text to speech avatar is now generally available. For more information, see [tex
   
   | Locale | Language    | Text to speech voices  |
   |--------|-----------------|-------------------------|
-  | `or-IN`  | Oriya (India)   | `or-IN-SubhasiniNeural` (Female) |
-  | `or-IN`  | Oriya (India)   | `or-IN-SukantNeural` (Male)      | 
+  | `or-IN`  | Odia (India)   | `or-IN-SubhasiniNeural` (Female) |
+  | `or-IN`  | Odia (India)   | `or-IN-SukantNeural` (Male)      | 
   | `pa-IN`  | Punjabi (India) | `pa-IN-VaaniNeural` (Female)     |
   | `pa-IN`  | Punjabi (India) | `pa-IN-OjasNeural` (Male)        | 
   | `as-IN`  | Assamese (India)| `as-IN-YashicaNeural` (Female)   | 
@@ -317,7 +317,7 @@ Text to speech avatar is now generally available. For more information, see [tex
   
 #### Text to speech avatar
 
-- Text to speech avatar now supports the following regions: Southeast Asia, North Europe, West Europe, Sweden Central, South Central US, and West US 2. For more information, see [Speech service regions](../../regions.md#speech-service).
+- Text to speech avatar now supports the following regions: Southeast Asia, North Europe, West Europe, Sweden Central, South Central US, and West US 2. For more information, see [Speech service regions](../../regions.md#regions).
 
 ### May 2024 release
 
@@ -354,7 +354,7 @@ Personal voice is now generally available. With personal voice, you can get AI g
 #### Text to speech avatar
 
 - Removed dependency on [Azure Communication Services (ACS) TURN](/azure/communication-services/quickstarts/relay-token) for real-time avatar. The [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar) has been updated accordingly to reflect this change.
-- Published text to speech avatar pricing. For more details, see the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Note that avatar pricing will only be visible for service [regions](../../regions.md#speech-service) where the feature is available.
+- Published text to speech avatar pricing. For more details, see the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Note that avatar pricing will only be visible for service [regions](../../regions.md#regions) where the feature is available.
 
 ### February 2024 release
 
@@ -840,7 +840,7 @@ For more information, see the [language and voice list](../../language-support.m
 * Enabled to clone model (rename voice model). Learn more on [how to rename your voice model](../../professional-voice-train-voice.md#rename-your-model).
 * Enabled to test your voice model by adding your own test script. Learn more on [how to upload your test script](../../professional-voice-train-voice.md#test-your-voice-model).
 * Enabled to update engine version for your voice model. Learn more on [how to update the model engine version](../../professional-voice-train-voice.md#update-engine-version-for-your-voice-model).
-* Supported more training regions. See [region support](../../regions.md#speech-service).
+* Supported more training regions. See [region support](../../regions.md#regions).
 * Supported 10 locales for custom neural voice lite (preview). See [language support](../../language-support.md?tabs=tts).
 
 #### Audio Content Creation tool
@@ -872,7 +872,7 @@ For more information, see the [language and voice list](../../language-support.m
 
 * Released custom neural voice lite in public preview. Learn more about [what is custom neural voice lite](../../custom-neural-voice-lite.md).
 * Extended language support to 49 locales. See [language support](../../language-support.md?tabs=tts).
-* Supported more regions/datacenters. See [region support](../../regions.md#speech-service).
+* Supported more regions/datacenters. See [region support](../../regions.md#regions).
 
 #### Audio Content Creation tool
 
@@ -1003,13 +1003,13 @@ Adri in `af-ZA` Afrikaans (South Africa), Willem in `af-ZA` Afrikaans (South Afr
 
 - **Eleven new en-US voices in preview** - 11 new en-US voices in preview are added to American English, they are Ashley, Amber, Ana, Brandon, Christopher, Cora, Elizabeth, Eric, Michelle, Monica, Jacob.
 
-- **Five `zh-CN` Chinese (Mandarin, Simplified) voices are generally available** - 5 Chinese (Mandarin, Simplified) voices are changed from preview to generally available. They are Yunxi, Xiaomo, Xiaoman, Xiaoxuan, Xiaorui. Now, these voices are available in all [regions](../../regions.md#speech-service). Yunxi is added with a new 'assistant' style, which is suitable for chat bot and voice agent. Xiaomo's voice styles are refined to be more natural and featured.
+- **Five `zh-CN` Chinese (Mandarin, Simplified) voices are generally available** - 5 Chinese (Mandarin, Simplified) voices are changed from preview to generally available. They are Yunxi, Xiaomo, Xiaoman, Xiaoxuan, Xiaorui. Now, these voices are available in all [regions](../../regions.md#regions). Yunxi is added with a new 'assistant' style, which is suitable for chat bot and voice agent. Xiaomo's voice styles are refined to be more natural and featured.
 
 ### April 2021 release
 
 **Neural text to speech is available across 21 regions**
 
-- **Twelve new regions added** - Neural text to speech is now available in these new 12 regions: `Japan East`, `Japan West`, `Korea Central`, `North Central US`, `North Europe`, `South Central US`, `Southeast Asia`, `UK South`, `west Central US`, `West Europe`, `West US`, `West US 2`. Check [here](../../regions.md#speech-service) for full list of 21 supported regions.
+- **Twelve new regions added** - Neural text to speech is now available in these new 12 regions: `Japan East`, `Japan West`, `Korea Central`, `North Central US`, `North Europe`, `South Central US`, `Southeast Asia`, `UK South`, `west Central US`, `West Europe`, `West US`, `West US 2`. Check [here](../../regions.md#regions) for full list of 21 supported regions.
 
 ### March 2021 release
 
