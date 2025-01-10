@@ -306,4 +306,4 @@ You can delete a fine-tuned model on the **Fine-tuning** page in Azure AI Foundr
 
 ### Delete your training files
 
-You can optionally delete training and validation files that you uploaded for training, and result files generated during training. For this you need to go to Azure OpenAI Studio and navigate to the **Management** > **Data files** pane. Select the file to delete, and then select **Delete** to delete the file.
+You can optionally delete training and validation files that you uploaded for training, and result files generated during training. For this you need to go to Azure AI Foundry portal and navigate to the **Management** > **Data + indexes** pane. Select the file to delete, and then select **Delete** to delete the file.

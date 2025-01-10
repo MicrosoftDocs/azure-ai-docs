@@ -19,7 +19,7 @@ keywords: content moderator, Azure Content Moderator, online moderator, content 
 
 Azure Content Moderator is an AI service that lets you handle content that is potentially offensive, risky, or otherwise undesirable. It includes the AI-powered content moderation service which scans text, image, and videos and applies content flags automatically.
 
-You may want to build content filtering software into your app to comply with regulations or maintain the intended environment for your users.
+You might want to build content filtering software into your app to comply with regulations or maintain the intended environment for your users.
 
 This documentation contains the following article types:  
 

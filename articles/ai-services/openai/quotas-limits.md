@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: conceptual
-ms.date: 11/11/2024
+ms.date: 01/09/2025
 ms.author: mbullwin
 ---
 
@@ -61,26 +61,26 @@ The following sections provide you with a quick guide to the default quotas and 
 
 [!INCLUDE [Quota](./includes/global-batch-limits.md)]
 
-## o1-preview & o1-mini rate limits
+## o1 & o1-mini rate limits
 
 > [!IMPORTANT]
 > The ratio of RPM/TPM for quota with o1-series models works differently than older chat completions models:
 >
 > - **Older chat models:** 1 unit of capacity = 6 RPM and 1,000 TPM.
-> - **o1-preview:** 1 unit of capacity = 1 RPM and 6,000 TPM.
+> - **o1 & o1-preview:** 1 unit of capacity = 1 RPM and 6,000 TPM.
 > - **o1-mini:** 1 unit of capacity = 1 RPM per 10,000 TPM.
 >
 > This is particularly important for programmatic model deployment as this change in RPM/TPM ratio can result in accidental under allocation of quota if one is still assuming the 1:1000 ratio followed by older chat completion models.
 >
-> There is a known issue with the [quota/usages API](/rest/api/aiservices/accountmanagement/usages/list?view=rest-aiservices-accountmanagement-2024-06-01-preview&tabs=HTTP&preserve-view=true) where it assumes the old ratio applies to the new o1-series models. The API returns the correct base capacity number, but does not apply the correct ratio for the accurate calculation of TPM.
+> There is a known issue with the [quota/usages API](/rest/api/aiservices/accountmanagement/usages/list?view=rest-aiservices-accountmanagement-2024-06-01-preview&tabs=HTTP&preserve-view=true) where it assumes the old ratio applies to the new o1-series models. The API returns the correct base capacity number, but doesn't apply the correct ratio for the accurate calculation of TPM.
 
-### o1-preview & o1-mini global standard
+### o1 & o1-mini global standard
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
-| `o1-preview` | Enterprise agreement | 30 M | 5 K |
+| `o1` & `o1-preview` | Enterprise agreement | 30 M | 5 K |
 | `o1-mini`| Enterprise agreement | 50 M | 5 K |
-| `o1-preview` | Default | 3 M | 500 |
+| `o1` & `o1-preview` | Default | 3 M | 500 |
 | `o1-mini`| Default | 5 M | 500 |
 
 ### o1-preview & o1-mini standard
@@ -134,12 +134,12 @@ M = million | K = thousand
 
 #### Usage tiers
 
-Global standard deployments use Azure's global infrastructure, dynamically routing customer traffic to the data center with best availability for the customer’s inference requests. Similarly, Data zone standard deployments allow you to leverage Azure global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. This enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see more variability in response latency.
+Global standard deployments use Azure's global infrastructure, dynamically routing customer traffic to the data center with best availability for the customer’s inference requests. Similarly, Data zone standard deployments allow you to leverage Azure global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. This enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see greater variability in response latency.
 
 The Usage Limit determines the level of usage above which customers might see larger variability in response latency. A customer’s usage is defined per model and is the total tokens consumed across all deployments in all subscriptions in all regions for a given tenant.
 
 > [!NOTE]
-> Usage tiers only apply to standard, data zone standard, and global standard deployment types. Usage tiers do not apply to global batch and provisioned throughput deployments.
+> Usage tiers only apply to standard, data zone standard, and global standard deployment types. Usage tiers don't apply to global batch and provisioned throughput deployments.
 
 #### GPT-4o global standard, data zone standard, & standard
 
@@ -179,9 +179,9 @@ To minimize issues related to rate limits, it's a good idea to use the following
 - Test different load increase patterns.
 - Increase the quota assigned to your deployment. Move quota from another deployment, if necessary.
 
-### How to request increases to the default quotas and limits
+## How to request quota increases
 
-Quota increase requests can be submitted from the [Quotas](./how-to/quota.md) page in the Azure AI Foundry portal. Due to high demand, quota increase requests are being accepted and will be filled in the order they're received. Priority is given to customers who generate traffic that consumes the existing quota allocation, and your request might be denied if this condition isn't met.
+Quota increase requests can be submitted via the [quota increase request form](https://aka.ms/oai/stuquotarequest). Due to high demand, quota increase requests are being accepted and will be filled in the order they're received. Priority is given to customers who generate traffic that consumes the existing quota allocation, and your request might be denied if this condition isn't met.
 
 For other rate limits, [submit a service request](../cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context).
 

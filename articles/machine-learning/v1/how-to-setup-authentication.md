@@ -181,7 +181,7 @@ Most examples in the documentation and samples use interactive authentication. F
     ```
 
 > [!TIP]
-> If you have access to multiple tenants, you may need to import the class and explicitly define what tenant you are targeting. Calling the constructor for `InteractiveLoginAuthentication` will also prompt you to login similar to the calls above.
+> If you have access to multiple tenants, you might need to import the class and explicitly define what tenant you are targeting. Calling the constructor for `InteractiveLoginAuthentication` will also prompt you to login similar to the calls above.
 >
 > ```python
 > from azureml.core.authentication import InteractiveLoginAuthentication
