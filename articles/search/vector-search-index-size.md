@@ -67,17 +67,17 @@ A request for vector metrics is a data plane operation. You can use the Azure po
 
 ### [**Portal**](#tab/portal-vector-quota)
 
-#### Vectors per index
+#### Vector size per index
 
-To get vector index size per index, select **Search management** > **Indexes** to view a list of indexes, along with the document count, the size of in-memory vector indexes, and total index size as stored on disk.
+To get vector index size per index, select **Search management** > **Indexes** to view a list of indexes and the document count, the size of in-memory vector indexes, and total index size as stored on disk.
 
-Recall that vector quota is based on memory constraints. For vector indexes created using the HNSW algorithm, all searchable vector indexes are loaded into memory. For indexes created using the exhaustive KNN algorithm, vector indexes aren't loaded until query time. There's no memory residency requirement for exhaustive KNN indexes.
+Recall that vector quota is based on memory constraints. For vector indexes created using the HNSW algorithm, all searchable vector indexes are permanently loaded into memory. For indexes created using the exhaustive KNN algorithm, vector indexes are loaded in chunks, sequentially, during query time. There's no memory residency requirement for exhaustive KNN indexes. The lifetime of the loaded pages in memory is similar to text search and there are no other metrics applicable to exhaustive KNN indexes other than total storage. 
 
 The following screenshot shows two versions of the same vector index. One version is created using HNSW algorithm, where the vector graph is memory resident. Another version is created using exhaustive KNN algorithm. With exhaustive KNN, there's no specialized in-memory vector index, so the portal shows 0 MB for vector index size. Those vectors still exist and are counted in overall storage size, but they don’t occupy the in-memory resource that the vector index size metric is tracking.
 
 :::image type="content" source="media/vector-search-index-size/vector-index-size-by-algorithm.png" lightbox="media/vector-search-index-size/vector-index-size-by-algorithm.png" alt-text="Screenshot of the index portal page showing vector index size based on different algorithms.":::
 
-#### Vectors per service
+#### Vector size per service
 
 To get vector index size for the search service as a whole, select the **Overview** page's **Usage** tab. Portal pages refresh every few minutes so if you recently updated an index, wait a bit before checking results.
 
