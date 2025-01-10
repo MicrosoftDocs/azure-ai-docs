@@ -84,7 +84,8 @@ curl -i -X POST $AZURE_OPENAI_ENDPOINT/openai/deployments/$AZURE_OPENAI_DEPLOYME
         "prompt_tokens": 3779,
         "completion_tokens": 105,
         "total_tokens": 3884
-    }
+    },
+    "system_fingerprint": "fp_65792305e4"
 }
 ```
 
