@@ -42,7 +42,7 @@ pip install azure-ai-projects azure-ai-inference azure-identity
 
 Create a file named **chat.py**.  Copy and paste the following code into it.
 
-:::code language="python" source="~/azureai-samples-main/scenarios/project/basic/chat-simple.py":::
+:::code language="python" source="~/azureai-samples-main/scenarios/projects/basic/chat-simple.py":::
 
 ## Insert your connection string
 
