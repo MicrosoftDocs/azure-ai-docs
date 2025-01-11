@@ -81,7 +81,7 @@ Let's change the script to take input from a client application and generate a s
 
 1. Now simulate passing information from a frontend application to this function.  Add the following code to the end of your **chat.py** file.  Feel free to play with the message and add your own name.
 
-    :::code language="python" source=""~/azureai-samples-main/scenarios/projects/basic/chat-template.py" id="create_response":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/projects/basic/chat-template.py" id="create_response":::
 
 Run the revised script to see the response from the model with this new input.
 
