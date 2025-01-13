@@ -104,7 +104,7 @@ Before following the steps in this article, make sure you have the following pre
 * The [Azure CLI](/cli/azure/) and the `ml` extension to the Azure CLI. For more information, see [Install, set up, and use the CLI (v2)](how-to-configure-cli.md).
 
     >[!TIP]
-    > Azure Machine Learning managed VNet was introduced on May 23rd, 2023. If you have an older version of the ml extension, you may need to update it for the examples in this article work. To update the extension, use the following Azure CLI command:
+    > Azure Machine Learning managed VNet was introduced on May 23rd, 2023. If you have an older version of the ml extension, you might need to update it for the examples in this article work. To update the extension, use the following Azure CLI command:
     >
     > ```azurecli
     > az extension update -n ml
@@ -130,7 +130,7 @@ Before following the steps in this article, make sure you have the following pre
 * The Azure Machine Learning Python SDK v2. For more information on the SDK, see [Install the Python SDK v2 for Azure Machine Learning](/python/api/overview/azure/ai-ml-readme).
 
     > [!TIP]
-    > Azure Machine learning managed VNet was introduced on May 23rd, 2023. If you have an older version of the SDK installed, you may need to update it for the examples in this article to work. To update the SDK, use the following command:
+    > Azure Machine learning managed VNet was introduced on May 23rd, 2023. If you have an older version of the SDK installed, you might need to update it for the examples in this article to work. To update the SDK, use the following command:
     >
     > ```bash
     > pip install --upgrade azure-ai-ml azure-identity
@@ -892,7 +892,7 @@ During workspace creation, select __Provision managed network proactively at cre
 When the Azure Container Registry for your workspace is behind a virtual network, it can't be used to directly build Docker images. Instead, configure your workspace to use a compute cluster or compute instance to build images.
 
 > [!IMPORTANT]
-> The compute resource used to build Docker images needs to be able to access the package repositories that are used to train and deploy your models. If you're using a network configured to allow only approved outbound, you may need to add [rules that allow access to public repos](#scenario-access-public-machine-learning-packages) or [use private Python packages](concept-vulnerability-management.md#using-a-private-package-repository).
+> The compute resource used to build Docker images needs to be able to access the package repositories that are used to train and deploy your models. If you're using a network configured to allow only approved outbound, you might need to add [rules that allow access to public repos](#scenario-access-public-machine-learning-packages) or [use private Python packages](concept-vulnerability-management.md#using-a-private-package-repository).
 
 # [Azure CLI](#tab/azure-cli)
 

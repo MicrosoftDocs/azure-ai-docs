@@ -332,7 +332,7 @@ gradle init --type basic
 >
 > For the code samples, you'll hard-code your Shared Access Signature (SAS) URL where indicated. Remember to remove the SAS URL from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Managed Identity](create-use-managed-identities.md). For more information, _see_ Azure Storage [security](/azure/storage/common/authorize-data-access).
 
-> You may need to update the following fields, depending upon the operation:
+> You might need to update the following fields, depending upon the operation:
 >>>
 >> * `endpoint`
 >> * `basePath`

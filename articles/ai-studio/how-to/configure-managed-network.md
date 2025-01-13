@@ -634,7 +634,7 @@ During hub creation, select __Provision managed network proactively at creation_
 The following example shows how to provision a managed virtual network during hub creation. The `--provision-network-now` flag is in preview.
     
 ```azurecli
-az ml workspace create -n myworkspace -g my_resource_group --kind hub --managed-network AllowInternetOutbound --provision-network-now
+az ml workspace create -n myworkspace -g my_resource_group --kind hub --managed-network AllowInternetOutbound --provision-network-now true
 ```
 
 The following example shows how to provision a managed virtual network.
@@ -654,7 +654,7 @@ az ml workspace show -n my_ai_hub_name -g my_resource_group --query managed_netw
 The following example shows how to provision a managed virtual network during hub creation. The `--provision-network-now` flag is in preview.
     
 ```azurecli
-az ml workspace create -n myworkspace -g my_resource_group --managed-network AllowInternetOutbound --provision-network-now
+az ml workspace create -n myworkspace -g my_resource_group --managed-network AllowInternetOutbound --provision-network-now true
 ```
 
 The following example shows how to provision a managed virtual network:

@@ -12,7 +12,7 @@ ms.author: pafarley
 
 # Copy and back up your Custom Vision projects
 
-After you've created and trained a Custom Vision project, you may want to copy your project to another resource. If your app or business depends on a Custom Vision project, we recommend you copy your model to another Custom Vision account in another region. Then if a regional outage occurs, you can access your project in the region where it was copied.
+After you've created and trained a Custom Vision project, you might want to copy your project to another resource. If your app or business depends on a Custom Vision project, we recommend you copy your model to another Custom Vision account in another region. Then if a regional outage occurs, you can access your project in the region where it was copied.
 
 The **[ExportProject](/rest/api/customvision/projects/export)** and **[ImportProject](/rest/api/customvision/projects/import)** APIs enable this scenario by allowing you to copy projects from one Custom Vision account into others. This guide shows you how to use these REST APIs with cURL. You can also use an HTTP request service, like the [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for Visual Studio Code, to issue the requests.
 

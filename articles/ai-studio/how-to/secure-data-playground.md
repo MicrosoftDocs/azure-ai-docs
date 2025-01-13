@@ -204,12 +204,12 @@ For more information on assigning roles, see [Tutorial: Grant a user access to r
 
 | Resource | Role | Assignee | Description |
 |----------|------|----------|-------------|
-| Azure AI Search | Search Services Contributor | Developer's Microsoft Entra ID | List API-Keys to list indexes from Azure OpenAI Studio. |
+| Azure AI Search | Search Services Contributor | Developer's Microsoft Entra ID | List API-Keys to list indexes from Azure AI Foundry portal. |
 | Azure AI Search | Search Index Data Contributor | Developer's Microsoft Entra ID | Required for the indexing scenario. |
-| Azure AI services/OpenAI | Cognitive Services OpenAI Contributor | Developer's Microsoft Entra ID | Call public ingestion API from Azure OpenAI Studio. |
-| Azure AI services/OpenAI | Cognitive Services Contributor | Developer's Microsoft Entra ID | List API-Keys from Azure OpenAI Studio. |
+| Azure AI services/OpenAI | Cognitive Services OpenAI Contributor | Developer's Microsoft Entra ID | Call public ingestion API from Azure AI Foundry portal. |
+| Azure AI services/OpenAI | Cognitive Services Contributor | Developer's Microsoft Entra ID | List API-Keys from Azure AI Foundry portal. |
 | Azure AI services/OpenAI | Contributor | Developer's Microsoft Entra ID | Allows for calls to the control plane. |
-| Azure Storage Account | Contributor | Developer's Microsoft Entra ID | List Account SAS to upload files from Azure OpenAI Studio. |
+| Azure Storage Account | Contributor | Developer's Microsoft Entra ID | List Account SAS to upload files from Azure AI Foundry portal. |
 | Azure Storage Account | Storage Blob Data Contributor | Developer's Microsoft Entra ID | Needed for developers to read and write to blob storage. |
 | Azure Storage Account | Storage File Data Privileged Contributor | Developer's Microsoft Entra ID | Needed to Access File Share in Storage for Promptflow data. |
 | The resource group or Azure subscription where the developer need to deploy the web app to | Contributor | Developer's Microsoft Entra ID | Deploy web app to the developer's Azure subscription. |
