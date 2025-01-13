@@ -274,7 +274,7 @@ To minimize issues related to throttling (Response Code 429), we recommend using
 *Example.* Your application is using Document Intelligence and your current workload is 10 TPS (transactions per second). The next second you increase the load to 40 TPS. The result is a 429 response code for some requests as you are over the 15 TPS limit for submitting analyze operations. You could either back off the processing to stay under the 15 TPS or request an increase on the TPS to support your higher volumes.
 
 The next sections describe specific cases of adjusting quotas.
-Jump to [Document Intelligence: increasing concurrent request limit](#create-and-submit-support-request-for-tps-increase)
+ Jump to [Document Intelligence: increasing concurrent request limit](#create-and-submit-support-request-for-tps-increase)
 
 ### Increasing transactions per second request limit
 
