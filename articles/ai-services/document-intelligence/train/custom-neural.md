@@ -311,7 +311,7 @@ GET /documentModels/{myCustomModel}
 ```
 
 > [!NOTE]
-> For Document Intelligence versions `v3.1 (2023-07-31)` and `v3.0 (2022-08-31)`, custom neural model's paid training is not enabled. For the two older versions, you will get a maximum of 30 minutes training duration per model. If you would like to train more than 20 model instances, you can create an [Azure support ticket](../service-limits.md#create-and-submit-support-request) to increase in the training limit.
+> For Document Intelligence versions `v3.1 (2023-07-31)` and `v3.0 (2022-08-31)`, custom neural model's paid training is not enabled. For the two older versions, you will get a maximum of 30 minutes training duration per model. If you would like to train more than 20 model instances, you can create an [Azure support ticket](../service-limits.md#create-and-submit-support-request-for-tps-increase) to increase in the training limit.
 
 :::moniker-end
 
@@ -319,7 +319,7 @@ GET /documentModels/{myCustomModel}
 
 ## Billing
 
-For Document Intelligence versions `v3.1 (2023-07-31) and v3.0 (2022-08-31)`, you receive a maximum 30 minutes of training duration per model, and a maximum of 20 trainings for free per month. If you would like to train more than 20 model instances, you can create an [Azure support ticket](../service-limits.md#create-and-submit-support-request) to increase in the training limit. For Azure support ticket, enter in the `summary` field: `Increase Document Intelligence custom neural training (TPS) limit`. 
+For Document Intelligence versions `v3.1 (2023-07-31) and v3.0 (2022-08-31)`, you receive a maximum 30 minutes of training duration per model, and a maximum of 20 trainings for free per month. If you would like to train more than 20 model instances, you can create an [Azure support ticket](../service-limits.md#create-and-submit-support-request-for-tps-increase) to increase in the training limit. For Azure support ticket, enter in the `summary` field: `Increase Document Intelligence custom neural training (TPS) limit`. 
 
 > [!IMPORTANT]
 >
@@ -334,7 +334,7 @@ If you want to train models for longer durations than 30 minutes, we support **p
 
 ## Billing
 
-For Document Intelligence versions `v3.1 (2023-07-31) and v3.0 (2022-08-31)`, you receive a maximum 30 minutes of training duration per model, and a maximum of 20 trainings for free per month. If you would like to train more than 20 model instances, you can create an [Azure support ticket](../service-limits.md#create-and-submit-support-request) to increase in the training limit. For Azure support ticket, enter in the `summary` field: `Increase Document Intelligence custom neural training (TPS) limit`. 
+For Document Intelligence versions `v3.1 (2023-07-31) and v3.0 (2022-08-31)`, you receive a maximum 30 minutes of training duration per model, and a maximum of 20 trainings for free per month. If you would like to train more than 20 model instances, you can create an [Azure support ticket](../service-limits.md#create-and-submit-support-request-for-tps-increase) to increase in the training limit. For Azure support ticket, enter in the `summary` field: `Increase Document Intelligence custom neural training (TPS) limit`. 
 
 > [!IMPORTANT]
 >
