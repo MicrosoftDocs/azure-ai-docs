@@ -146,7 +146,7 @@ groups:
   prompt: Choose your preferred usage method
   pivots:
   - id: programming-language-studio
-    title: Studio
+    title: Portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-go
