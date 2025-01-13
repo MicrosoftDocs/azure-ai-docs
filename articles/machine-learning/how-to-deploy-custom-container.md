@@ -195,7 +195,7 @@ To configure your Azure Machine Learning workspace, take the following steps:
     )
     ```
 
-For more information, see [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md?view=azureml-api-2&tabs=python).
+For more information, see [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md?view=azureml-api-2&tabs=python&preserve-view=true).
 
 ### Configure an online endpoint
 
@@ -292,9 +292,9 @@ For more information about liveness and readiness probes, see [Configure Livenes
 
 The API server that you choose determines the liveness and readiness routes. You identify that server in an earlier step when you test the container locally. In this article, the example deployment uses the same path for the liveness and readiness routes, because TF Serving only defines a liveness route. For other ways of defining the routes, see other examples.
 
-#### Scoring route
+#### Scoring routes
 
-The API server that you use provides a way to receive the payload to work on. In the context of machine learning inferencing, a server receives the input data via a specific route. Identify that route for your API server when you test the container locally in an earlier step. Specify that route when you define the deployment to create.
+The API server that you use provides a way to receive the payload to work on. In the context of machine learning inferencing, a server receives the input data via a specific route. Identify that route for your API server when you test the container locally in an earlier step. Specify that route as the scoring route when you define the deployment to create.
 
 The successful creation of the deployment also updates the `scoring_uri` parameter of the endpoint. You can verify this fact by running the following command: `az ml online-endpoint show -n <endpoint-name> --query scoring_uri`.
 
