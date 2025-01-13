@@ -6,14 +6,14 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 01/09/2025
+ms.date: 01/13/2025
 ms.author: lajanuar
 ---
 
 <!-- markdownlint-disable MD051 -->
 <!-- markdownlint-disable MD024 -->
 
-# Document Intelligence layout model
+# What is Document Intelligence layout model?
 
 <!---------------------- v4.0 content ---------------------->
 
