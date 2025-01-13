@@ -50,7 +50,7 @@ Use-cases for Codestral 2501 include:
 
 You can learn more about the models in their respective model card:
 
-* [Codestral-2501](https://aka.ms/azureai/landing/Codestral-2501)
+* [Codestral-2501](https://aka.ms/aistudio/landing/mistral-codestral-2501)
 
 
 > [!TIP]
@@ -494,7 +494,7 @@ Use-cases for Codestral 2501 include:
 
 You can learn more about the models in their respective model card:
 
-* [Codestral-2501](https://aka.ms/azureai/landing/Codestral-2501)
+* [Codestral-2501](https://aka.ms/aistudio/landing/mistral-codestral-2501)
 
 
 > [!TIP]
@@ -957,7 +957,7 @@ Use-cases for Codestral 2501 include:
 
 You can learn more about the models in their respective model card:
 
-* [Codestral-2501](https://aka.ms/azureai/landing/Codestral-2501)
+* [Codestral-2501](https://aka.ms/aistudio/landing/mistral-codestral-2501)
 
 
 > [!TIP]
@@ -1442,7 +1442,7 @@ Use-cases for Codestral 2501 include:
 
 You can learn more about the models in their respective model card:
 
-* [Codestral-2501](https://aka.ms/azureai/landing/Codestral-2501)
+* [Codestral-2501](https://aka.ms/aistudio/landing/mistral-codestral-2501)
 
 
 > [!TIP]
