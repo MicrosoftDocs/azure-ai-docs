@@ -84,7 +84,7 @@ To upload training data, follow these steps:
 1. Sign in to the [Speech Studio](https://speech.microsoft.com).
 1. Select **Custom avatar** > Your project name > **Prepare training data** > **Upload data**.
 
-    :::image type="content" source="./media/custom-avatar/new-empty-project.png" alt-text="Screenshot of the training data preparation page with the button to upload training data." lightbox="./media/custom-avatar/new-empty-project.png":::
+    :::image type="content" source="./media/custom-avatar/upload-training-data.png" alt-text="Screenshot of the training data preparation page with the button to upload training data." lightbox="./media/custom-avatar/upload-training-data.png":::
 
 1. In the **Upload data** wizard, choose a data type and then select **Next**. For more information about the data types (including **Naturally speaking**, **Silent**, **Gesture**, and **Status 0 speaking**), see [what video clips to record](./custom-avatar-record-video-samples.md#what-video-clips-to-record).
 1. Select local files from your computer or enter the Azure Blob storage URL where your data is stored.
@@ -100,7 +100,7 @@ After you upload the data, you can check the data overview which indicates wheth
 ## Step 4: Train your avatar model
 
 > [!IMPORTANT]
-> All the training data in the project is included in the training. The model quality is highly dependent on the data you provided, and you're responsible for the video quality. Make sure you recorded the training videos according to the [how to record video samples guide](./custom-avatar-record-video-samples.md). 
+> All the training data in the project is included in the training. The model quality is highly dependent on the data you provided, and you're responsible for the video quality. Make sure you record the training videos according to the [how to record video samples guide](./custom-avatar-record-video-samples.md). 
 
 To create a custom avatar in Speech Studio, follow these steps for one of the following methods:
 1. Sign in to the [Speech Studio](https://speech.microsoft.com).
