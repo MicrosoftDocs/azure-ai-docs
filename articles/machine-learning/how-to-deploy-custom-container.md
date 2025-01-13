@@ -1,17 +1,18 @@
 ---
 title: Deploy a model in a custom container to an online endpoint
 titleSuffix: Azure Machine Learning
-description: Learn how to use a custom container with an open-source server to deploy a model in Azure Machine Learning.
+description: See how to use a custom container with an open-source server to deploy a model in Azure Machine Learning.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
-ms.date: 03/26/2024
+ms.date: 01/13/2025
 ms.topic: how-to
 ms.custom: deploy, devplatv2, devx-track-azurecli, cliv2, sdkv2
 ms.devlang: azurecli
+# customer intent: As a developer, I want to see how to use a custom container to deploy a model to an online endpoint so that I can use a variety of web servers to serve machine learning models.
 ---
 
 # Use a custom container to deploy a model to an online endpoint
@@ -22,10 +23,10 @@ In Azure Machine Learning, you can use a custom container to deploy a model to a
 
 When you use a custom deployment, you can:
 
-- Use various tools and technologies, such as TensorFlow Serving, TorchServe, Triton Inference Server, the Plumber R package, and the Azure Machine Learning inference minimal image.
+- Use various tools and technologies, such as TensorFlow Serving (TF Serving), TorchServe, Triton Inference Server, the Plumber R package, and the Azure Machine Learning inference minimal image.
 - Still take advantage of the built-in monitoring, scaling, alerting, and authentication that Azure Machine Learning offers.
 
-This article shows you how to use a TensorFlow (TF) Serving image to serve a TF model.
+This article shows you how to use a TF Serving image to serve a TensorFlow model.
 
 ## Prerequisites
 
@@ -45,8 +46,8 @@ The following table lists [deployment examples](https://github.com/Azure/azureml
 |[minimal/single-model](https://github.com/Azure/azureml-examples/blob/main/cli/endpoints/online/custom-container/minimal/single-model)|[deploy-custom-container-minimal-single-model](https://github.com/Azure/azureml-examples/blob/main/cli/deploy-custom-container-minimal-single-model.sh)|Deploys a single model by extending the Azure Machine Learning inference minimal image.|
 |[mlflow/multideployment-scikit](https://github.com/Azure/azureml-examples/blob/main/cli/endpoints/online/custom-container/mlflow/multideployment-scikit)|[deploy-custom-container-mlflow-multideployment-scikit](https://github.com/Azure/azureml-examples/blob/main/cli/deploy-custom-container-mlflow-multideployment-scikit.sh)|Deploys two MLFlow models with different Python requirements to two separate deployments behind a single endpoint. Uses the Azure Machine Learning inference minimal image.|
 |[r/multimodel-plumber](https://github.com/Azure/azureml-examples/blob/main/cli/endpoints/online/custom-container/r/multimodel-plumber)|[deploy-custom-container-r-multimodel-plumber](https://github.com/Azure/azureml-examples/blob/main/cli/deploy-custom-container-r-multimodel-plumber.sh)|Deploys three regression models to one endpoint. Uses the Plumber R package.|
-|[tfserving/half-plus-two](https://github.com/Azure/azureml-examples/blob/main/cli/endpoints/online/custom-container/tfserving/half-plus-two)|[deploy-custom-container-tfserving-half-plus-two](https://github.com/Azure/azureml-examples/blob/main/cli/deploy-custom-container-tfserving-half-plus-two.sh)|Deploys a Half Plus Two model by using a TensorFlow Serving custom container. Uses the standard model registration process.|
-|[tfserving/half-plus-two-integrated](https://github.com/Azure/azureml-examples/blob/main/cli/endpoints/online/custom-container/tfserving/half-plus-two-integrated)|[deploy-custom-container-tfserving-half-plus-two-integrated](https://github.com/Azure/azureml-examples/blob/main/cli/deploy-custom-container-tfserving-half-plus-two-integrated.sh)|Deploys a Half Plus Two model by using a TensorFlow Serving custom container with the model integrated into the image.|
+|[tfserving/half-plus-two](https://github.com/Azure/azureml-examples/blob/main/cli/endpoints/online/custom-container/tfserving/half-plus-two)|[deploy-custom-container-tfserving-half-plus-two](https://github.com/Azure/azureml-examples/blob/main/cli/deploy-custom-container-tfserving-half-plus-two.sh)|Deploys a Half Plus Two model by using a TF Serving custom container. Uses the standard model registration process.|
+|[tfserving/half-plus-two-integrated](https://github.com/Azure/azureml-examples/blob/main/cli/endpoints/online/custom-container/tfserving/half-plus-two-integrated)|[deploy-custom-container-tfserving-half-plus-two-integrated](https://github.com/Azure/azureml-examples/blob/main/cli/deploy-custom-container-tfserving-half-plus-two-integrated.sh)|Deploys a Half Plus Two model by using a TF Serving custom container with the model integrated into the image.|
 |[torchserve/densenet](https://github.com/Azure/azureml-examples/blob/main/cli/endpoints/online/custom-container/torchserve/densenet)|[deploy-custom-container-torchserve-densenet](https://github.com/Azure/azureml-examples/blob/main/cli/deploy-custom-container-torchserve-densenet.sh)|Deploys a single model by using a TorchServe custom container.|
 |[triton/single-model](https://github.com/Azure/azureml-examples/blob/main/cli/endpoints/online/custom-container/triton/single-model)|[deploy-custom-container-triton-single-model](https://github.com/Azure/azureml-examples/blob/main/cli/deploy-custom-container-triton-single-model.sh)|Deploys a Triton model by using a custom container.|
 
@@ -84,7 +85,7 @@ To follow along with the example steps, see a [Jupyter notebook in the examples 
 
 ## Initialize environment variables
 
-To use a TF model, you need several environment variables. Run the following commands to define those variables:
+To use a TensorFlow model, you need several environment variables. Run the following commands to define those variables:
 
 :::code language="azurecli" source="~/azureml-examples-main/cli/deploy-custom-container-tfserving-half-plus-two.sh" id="initialize_variables":::
 
@@ -102,7 +103,7 @@ Use Docker to run your image locally for testing:
 
 ### Send liveness and scoring requests to the image
 
-Send a liveness request to check that the process inside the container is running. You should get a response of 200, or OK.
+Send a liveness request to check that the process inside the container is running. You should get a response status code of 200 OK.
 
 :::code language="azurecli" source="~/azureml-examples-main/cli/deploy-custom-container-tfserving-half-plus-two.sh" id="check_liveness_locally":::
 
@@ -180,7 +181,7 @@ To configure your Azure Machine Learning workspace, take the following steps:
     from azure.identity import DefaultAzureCredential
     ```
 
-2. Configure workspace settings and get a handle to the workspace:
+1. Configure workspace settings and get a handle to the workspace:
 
     ```python
     # Enter information about your Azure Machine Learning workspace.
@@ -200,7 +201,7 @@ For more information, see [Deploy and score a machine learning model by using an
 
 Use the following code to configure an online endpoint. Keep the following points in mind:
 
-- The name of the endpoint must be unique in its Azure region. An endpoint name must start with a letter and only consist of alphanumeric characters and hyphens. For more information about the naming rules, see [Azure Machine Learning online endpoints and batch endpoints](how-to-manage-quotas.md#azure-machine-learning-online-endpoints-and-batch-endpoints).
+- The name of the endpoint must be unique in its Azure region. Also, an endpoint name must start with a letter and only consist of alphanumeric characters and hyphens. For more information about naming rules, see [Azure Machine Learning online endpoints and batch endpoints](how-to-manage-quotas.md#azure-machine-learning-online-endpoints-and-batch-endpoints).
 - For the `auth_mode` value, use `key` for key-based authentication. Use `aml_token` for Azure Machine Learning token-based authentication. A key doesn't expire, but a token does expire. For more information about authentication, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md).
 - The description and tags are optional.
 
@@ -228,7 +229,7 @@ A deployment is a set of resources that are required for hosting the model that 
 - `model`: The model to use for the deployment. This value can be either a reference to an existing versioned model in the workspace or an inline model specification.
 - `environment`: The environment to use for the deployment. This value can be either a reference to an existing versioned environment in the workspace or an inline environment specification.
 - `environment_variables`: Environment variables that are set during deployment.
-  - `MODEL_BASE_PATH`: The parent folder that contains a folder for your model.
+  - `MODEL_BASE_PATH`: The path to the parent folder that contains a folder for your model.
   - `MODEL_NAME`: The name of your model.
 - `instance_type`: The virtual machine size to use for the deployment. For a list of supported sizes, see [Managed online endpoints SKU list](reference-managed-online-endpoints-vm-sku-list.md).
 - `instance_count`: The number of instances to use for the deployment.
@@ -264,32 +265,38 @@ blue_deployment = ManagedOnlineDeployment(
 
 ---
 
-The following sections discuss a few important concepts about the YAML and Python parameters.
+The following sections discuss important concepts about the YAML and Python parameters.
 
 #### Base image
 
 In the `environment` section in YAML, or the `Environment` constructor in Python, you specify the base image as a parameter. This example uses `docker.io/tensorflow/serving:latest` as the `image` value.
 
-If you inspect your container, you can see that this server uses `ENTRYPOINT` commands to start an entry point script. That script takes environment variables such as `MODEL_BASE_PATH` and `MODEL_NAME`, and it exposes ports such as `8501`. These details all pertain to this server, and you can use this information to determine how to define your deployment. For example, if you set the `MODEL_BASE_PATH` and `MODEL_NAME` environment variables in your deployment definition, TF Serving uses those values to initiate the server. Likewise, if you set the port for each route to be `8501` in the deployment definition, user requests to those routes are correctly routed to the TF Serving server.
+If you inspect your container, you can see that this server uses `ENTRYPOINT` commands to start an entry point script. That script takes environment variables such as `MODEL_BASE_PATH` and `MODEL_NAME`, and it exposes ports such as `8501`. These details all pertain to this server, and you can use this information to determine how to define your deployment. For example, if you set the `MODEL_BASE_PATH` and `MODEL_NAME` environment variables in your deployment definition, TF Serving uses those values to initiate the server. Likewise, if you set the port for each route to `8501` in the deployment definition, user requests to those routes are correctly routed to the TF Serving server.
 
-This example is based on the TF Serving case, but you can use any container that stays up and responds to requests that go to liveness, readiness, and scoring routes. To see how to form a Dockerfile to create a container, you can refer to other examples. Some servers use `CMD` instructions instead of `ENTRYPOINT` instructions.
+This example is based on the TF Serving case. But you can use any container that stays up and responds to requests that go to liveness, readiness, and scoring routes. To see how to form a Dockerfile to create a container, you can refer to other examples. Some servers use `CMD` instructions instead of `ENTRYPOINT` instructions.
 
 #### The inference_config parameter
 
 In the `environment` section or the `Environment` class, `inference_config` is a parameter. It specifies the port and path for three types of routes: liveness, readiness, and scoring routes. The `inference_config` parameter is required if you want to run your own container with a managed online endpoint.
 
-#### Readiness route vs liveness route
+#### Readiness routes vs. liveness routes
 
-The API server you choose may provide a way to check the status of the server. There are two types of the route that you can specify: _liveness_ and _readiness_. A liveness route is used to check whether the server is running. A readiness route is used to check whether the server is ready to do work. In the context of machine learning inferencing, a server could respond 200 OK to a liveness request before loading a model, and the server could respond 200 OK to a readiness request only after the model is loaded into the memory.
+Some API servers provide a way to check the status of the server. There are two types of routes that you can specify for checking the status:
 
-For more information about liveness and readiness probes in general, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/).
+- *Liveness* routes: To check whether a server is running, you use a liveness route.
+- *Readiness* routes: To check whether a server is ready to do work, you use a readiness route.
 
-The liveness and readiness routes will be determined by the API server of your choice, as you would have identified when testing the container locally in earlier step. Note that the example deployment in this article uses the same path for both liveness and readiness, since TF Serving only defines a liveness route. Refer to other examples for different patterns to define the routes.
+In the context of machine learning inferencing, a server might respond with a status code of 200 OK to a liveness request before loading a model. The server might respond with a status code of 200 OK to a readiness request only after it loads the model into memory.
+
+For more information about liveness and readiness probes, see [Configure Liveness, Readiness and Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/).
+
+The API server that you choose determines the liveness and readiness routes. You identify that server in an earlier step when you test the container locally. In this article, the example deployment uses the same path for the liveness and readiness routes, because TF Serving only defines a liveness route. For other ways of defining the routes, see other examples.
 
 #### Scoring route
 
-The API server you choose would provide a way to receive the payload to work on. In the context of machine learning inferencing, a server would receive the input data via a specific route. Identify this route for your API server as you test the container locally in earlier step, and specify it when you define the deployment to create.
-Note that the successful creation of the deployment will update the scoring_uri parameter of the endpoint as well, which you can verify with `az ml online-endpoint show -n <name> --query scoring_uri`.
+The API server that you use provides a way to receive the payload to work on. In the context of machine learning inferencing, a server receives the input data via a specific route. Identify that route for your API server when you test the container locally in an earlier step. Specify that route when you define the deployment to create.
+
+The successful creation of the deployment also updates the `scoring_uri` parameter of the endpoint. You can verify this fact by running the following command: `az ml online-endpoint show -n <endpoint-name> --query scoring_uri`.
 
 #### Locate the mounted model
 
@@ -300,11 +307,11 @@ For example, consider the following setup:
 - A directory structure on your local machine of /azureml-examples/cli/endpoints/online/custom-container
 - A model name of `half_plus_two`
 
-:::image type="content" source="./media/how-to-deploy-custom-container/local-directory-structure.png" alt-text="Diagram showing a tree view of the local directory structure.":::
+:::image type="content" source="./media/how-to-deploy-custom-container/local-directory-structure.png" alt-text="Screenshot that shows a tree view of a local directory structure. The /azureml-examples/cli/endpoints/online/custom-container path is visible.":::
 
 # [Azure CLI](#tab/cli)
 
-Suppose your tfserving-deployment.yml file contains the following lines in its `model` section. Note that in this section, the `name` value refers to the name that you use to register the model in Azure Machine Learning.
+Suppose your tfserving-deployment.yml file contains the following lines in its `model` section. In this section, the `name` value refers to the name that you use to register the model in Azure Machine Learning.
 
 ```yaml
 model:
@@ -315,7 +322,7 @@ model:
 
 # [Python SDK](#tab/python)
 
-Suppose you use the following code to create a `Model` class. Note that in this code, the `name` value refers to the name that you use to register the model in Azure Machine Learning.
+Suppose you use the following code to create a `Model` class. In this code, the `name` value refers to the name that you use to register the model in Azure Machine Learning.
 
 ```python
 model = Model(name="tfserving-mounted", version="1", path="half_plus_two")
@@ -325,7 +332,7 @@ model = Model(name="tfserving-mounted", version="1", path="half_plus_two")
 
 In this case, when you create a deployment, your model is located under the following folder: /var/azureml-app/azureml-models/tfserving-mounted/1.
 
-:::image type="content" source="./media/how-to-deploy-custom-container/deployment-location.png" alt-text="Diagram showing a tree view of the deployment directory structure.":::
+:::image type="content" source="./media/how-to-deploy-custom-container/deployment-location.png" alt-text="Screenshot that shows a tree view of the deployment directory structure. The var/azureml-app/azureml-models/tfserving-mounted/1 path is visible.":::
 
 You can optionally configure your `model_mount_path` value. By adjusting this setting, you can change the path where the model is mounted.
 
@@ -370,21 +377,21 @@ blue_deployment = ManagedOnlineDeployment(
 
 ---
 
-Then in your deployment, your model is located at /var/tfserving-model-mount/tfserving-mounted/1. It's no longer under azureml-app/azureml-models, but under the mount path that you specify:
+In your deployment, your model is then located at /var/tfserving-model-mount/tfserving-mounted/1. It's no longer under azureml-app/azureml-models, but under the mount path that you specify:
 
-:::image type="content" source="./media/how-to-deploy-custom-container/mount-path-deployment-location.png" alt-text="Diagram showing a tree view of the deployment directory structure when using mount_model_path.":::
+:::image type="content" source="./media/how-to-deploy-custom-container/mount-path-deployment-location.png" alt-text="Screenshot that shows a tree view of the deployment directory structure. The /var/tfserving-model-mount/tfserving-mounted/1 path is visible.":::
 
 ### Create your endpoint and deployment
 
 # [Azure CLI](#tab/cli)
 
-Now that you understand how the YAML file is constructed, create your endpoint.
+After you construct your YAML file, use the following command to create your endpoint:
 
 ```azurecli
 az ml online-endpoint create --name tfserving-endpoint -f endpoints/online/custom-container/tfserving/half-plus-two/tfserving-endpoint.yml
 ```
 
-Create your deployment. This step might run for a few minutes.
+Use the following command to create your deployment. This step might run for a few minutes.
 
 ```azurecli
 az ml online-deployment create --name tfserving-deployment -f endpoints/online/custom-container/tfserving/half-plus-two/tfserving-deployment.yml --all-traffic
@@ -392,7 +399,7 @@ az ml online-deployment create --name tfserving-deployment -f endpoints/online/c
 
 # [Python SDK](#tab/python)
 
-Use the instance of `MLClient` that you created earlier to create the endpoint in the workspace. This code starts the endpoint creation and returns a confirmation response while the endpoint creation continues.
+Use the following code to create the endpoint in the workspace. This code uses the instance of `MLClient` that you created earlier. The `begin_create_or_update` method starts the endpoint creation. It then returns a confirmation response while the endpoint creation continues.
 
 ```python
 ml_client.begin_create_or_update(endpoint)
@@ -408,7 +415,7 @@ ml_client.begin_create_or_update(blue_deployment)
 
 ### Invoke the endpoint
 
-After your deployment is complete, make a scoring request to the deployed endpoint.
+When your deployment is complete, make a scoring request to the deployed endpoint.
 
 # [Azure CLI](#tab/cli)
 
@@ -437,7 +444,7 @@ response = ml_client.online_endpoints.invoke(
 
 ### Delete the endpoint
 
-Now that you successfully scored with your endpoint, you can delete it:
+If you no longer need your endpoint, run the following command to delete it:
 
 # [Azure CLI](#tab/cli)
 
@@ -455,6 +462,6 @@ ml_client.online_endpoints.begin_delete(name=online_endpoint_name)
 
 ## Related content
 
-- [Safe rollout for online endpoints](how-to-safely-rollout-online-endpoints.md)
-- [Troubleshooting online endpoints deployment](./how-to-troubleshoot-online-endpoints.md)
+- [Perform safe rollout of new deployments for real-time inference](how-to-safely-rollout-online-endpoints.md)
+- [Troubleshoot online endpoint deployment and scoring](./how-to-troubleshoot-online-endpoints.md)
 - [Torch serve sample](https://github.com/Azure/azureml-examples/blob/main/cli/deploy-custom-container-torchserve-densenet.sh)
