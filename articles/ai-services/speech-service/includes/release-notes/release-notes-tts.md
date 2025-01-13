@@ -2,10 +2,18 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 11/11/2024
+ms.date: 1/13/2025
 ms.author: eur
 ms.custom: references_regions
 ---
+
+### January 2025 release
+P
+##### Custom avatar training
+
+You can now train custom avatars in [Speech Studio](https://speech.microsoft.com/portal/talkingavatar). Previously, you had to wait for Microsoft to train your custom avatar. 
+
+For more details about how to create a custom avatar, see [create a custom text to speech avatar](../../text-to-speech-avatar/custom-avatar-create.md).
 
 ### October 2024 release
 
