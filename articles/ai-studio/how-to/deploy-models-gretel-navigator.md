@@ -11,7 +11,7 @@ reviewer: anupamawalaus
 ms.author: mopeakande
 author: msakande
 ms.custom: references_regions, generated
-zone_pivot_groups: azure-ai-model-catalog-samples-chat
+zone_pivot_groups: azure-ai-model-catalog-sub-group-samples
 ---
 
 # How to use Gretel Navigator chat model
