@@ -207,7 +207,9 @@ To enable feature importance with any of your signals (such as data drift or dat
  
 After enabling feature importance, you'll see a feature importance for each feature you're monitoring in the Azure Machine Learning model monitoring studio UI.
 
-You can use Azure CLI, the Python SDK, or the studio for advanced setup of model monitoring. You can enable/disable alerts for each signal by setting alert_enabled property while using SDK or CLI.
+You can enable/disable alerts for each signal by setting `alert_enabled` property while using SDK or CLI.
+
+You can use Azure CLI, the Python SDK, or the studio for advanced setup of model monitoring.
 
 # [Azure CLI](#tab/azure-cli)
 
