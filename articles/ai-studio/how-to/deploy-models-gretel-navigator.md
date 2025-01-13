@@ -41,7 +41,7 @@ Top use cases:
 
 You can learn more about the models in their respective model card:
 
-* [gretel-navigator](https://aka.ms/azureai/landing/gretel-navigator)
+* [gretel-navigator](https://aka.ms/aistudio/landing/gretel-navigator-tabular-v1)
 
 
 > [!TIP]
@@ -287,7 +287,7 @@ Top use cases:
 
 You can learn more about the models in their respective model card:
 
-* [gretel-navigator](https://aka.ms/azureai/landing/gretel-navigator)
+* [gretel-navigator](https://aka.ms/aistudio/landing/gretel-navigator-tabular-v1)
 
 
 > [!TIP]
