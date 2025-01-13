@@ -30,7 +30,7 @@ The function app authenticates through the SDK to the cloud-based Azure AI Searc
 
 ## Configure secrets in a local.settings.json file
 
-:::code language="json" source="~/azure-search-static-web-app/api/local.settings.json":::
+:::code language="json" source="~/azure-search-static-web-app/api/sample.local.settings.json":::
 
 ## Azure Function: Search the catalog
 
