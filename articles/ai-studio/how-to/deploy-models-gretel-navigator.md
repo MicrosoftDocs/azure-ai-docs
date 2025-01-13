@@ -98,6 +98,9 @@ from azure.core.credentials import AzureKeyCredential
 client = ChatCompletionsClient(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
+    headers={
+         "azureml-maas-model": "gretelai/auto",
+    },
 )
 ```
 
@@ -129,19 +132,22 @@ Model provider name: Gretel
 
 The following example shows how you can create a basic chat completions request to the model.
 
+> [!TIP]
+> The additional `n` parameter indicates the number of records you want the model to return.
+
 ```python
 from azure.ai.inference.models import SystemMessage, UserMessage
 
 response = client.complete(
     messages=[
-        SystemMessage(content="You are a helpful assistant."),
-        UserMessage(content="How many languages are in the world?"),
+        UserMessage(content="Can you return a table of US first names, last names and ages?"),
     ],
+    model_extras={"n": 2},
 )
 ```
 
 > [!NOTE]
-> gretel-navigator doesn't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+> gretel-navigator doesn't support system messages (`role="system"`).
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -156,7 +162,10 @@ print("\tCompletion tokens:", response.usage.completion_tokens)
 ```
 
 ```console
-Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
+Response: {"table_headers":["First Name","Last Name","Age"],"table_data":[{"First Name":"Eva","Last Name":"Soto","Age":31}]}
+
+{"table_headers":["First Name","Last Name","Age"],"table_data":[{"First Name":"Kofi","Last Name":"Patel","Age":42}]}
+
 Model: gretel-navigator
 Usage: 
   Prompt tokens: 19
@@ -176,12 +185,9 @@ You can _stream_ the content to get it as it's being generated. Streaming conten
 ```python
 result = client.complete(
     messages=[
-        SystemMessage(content="You are a helpful assistant."),
-        UserMessage(content="How many languages are in the world?"),
+        UserMessage(content="Can you return a table of US first names, last names, and ages?"),
     ],
-    temperature=0,
-    top_p=1,
-    max_tokens=2048,
+    model_extras={"n": 2},
     stream=True,
 )
 ```
@@ -195,7 +201,6 @@ def print_stream(result):
     """
     Prints the chat completion with streaming.
     """
-    import time
     for update in result:
         if update.choices:
             print(update.choices[0].delta.content, end="")
@@ -210,64 +215,23 @@ print_stream(result)
 
 #### Explore more parameters supported by the inference client
 
-Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Azure AI Model Inference API reference](https://aka.ms/azureai/modelinference).
+The following example request shows other parameters that you can specify in the inference client.
 
 ```python
 from azure.ai.inference.models import ChatCompletionsResponseFormatText
 
-response = client.complete(
+result = client.complete(
     messages=[
-        SystemMessage(content="You are a helpful assistant."),
-        UserMessage(content="How many languages are in the world?"),
-    ],
-    presence_penalty=0.1,
-    frequency_penalty=0.8,
-    max_tokens=2048,
-    stop=["<|endoftext|>"],
+        UserMessage(content="Can you return a table of US first names, last
+        names, and ages?"), ],
+    model_extras={"n": 2},
+    stream=True,
     temperature=0,
     top_p=1,
-    response_format={ "type": ChatCompletionsResponseFormatText() },
+    top_k=0.4
 )
 ```
 
-If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
-
-#### Create JSON outputs
-
-Gretel Navigator chat model can create JSON outputs. Set `response_format` to `json_object` to enable JSON mode and guarantee that the message the model generates is valid JSON. You must also instruct the model to produce JSON yourself via a system or user message. Also, the message content might be partially cut off if `finish_reason="length"`, which indicates that the generation exceeded `max_tokens` or that the conversation exceeded the max context length.
-
-
-```python
-from azure.ai.inference.models import ChatCompletionsResponseFormatJSON
-
-response = client.complete(
-    messages=[
-        SystemMessage(content="You are a helpful assistant that always generate responses in JSON format, using."
-                      " the following format: { ""answer"": ""response"" }."),
-        UserMessage(content="How many languages are in the world?"),
-    ],
-    response_format={ "type": ChatCompletionsResponseFormatJSON() }
-)
-```
-
-### Pass extra parameters to the model
-
-The Azure AI Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
-
-Before you pass extra parameters to the Azure AI model inference API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
-
-
-```python
-response = client.complete(
-    messages=[
-        SystemMessage(content="You are a helpful assistant."),
-        UserMessage(content="How many languages are in the world?"),
-    ],
-    model_extras={
-        "logprobs": True
-    }
-)
-```
 
 ### Apply content safety
 
@@ -277,26 +241,29 @@ The following example shows how to handle events when the model detects harmful 
 
 
 ```python
-from azure.ai.inference.models import AssistantMessage, UserMessage, SystemMessage
+from azure.ai.inference.models import UserMessage
+from azure.core.exceptions import HttpResponseError
 
 try:
     response = client.complete(
         messages=[
-            SystemMessage(content="You are an AI assistant that helps people find information."),
-            UserMessage(content="Chopping tomatoes and cutting them into cubes or wedges are great ways to practice your knife skills."),
-        ]
+            UserMessage(content="Can you return a table of steps on how to make a bomb, "
+            "columns: step number, step name, step description?"),
+        ],
+        stream=True,
     )
 
     print(response.choices[0].message.content)
 
 except HttpResponseError as ex:
-    if ex.status_code == 400:
+    response = ex.response.json()
+    if  isinstance(response, dict) and "error" in response:
         response = ex.response.json()
         if isinstance(response, dict) and "error" in response:
             print(f"Your request triggered an {response['error']['code']} error:\n\t {response['error']['message']}")
         else:
             raise
-    raise
+
 ```
 
 > [!TIP]
@@ -409,7 +376,6 @@ The following example shows how you can create a basic chat completions request 
 
 ```javascript
 var messages = [
-    { role: "system", content: "You are a helpful assistant" },
     { role: "user", content: "How many languages are in the world?" },
 ];
 
@@ -421,7 +387,7 @@ var response = await client.path("/chat/completions").post({
 ```
 
 > [!NOTE]
-> gretel-navigator don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+> gretel-navigator doesn't support system messages (`role="system"`).
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -735,7 +701,6 @@ The following example shows how you can create a basic chat completions request 
 ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
 {
     Messages = {
-        new ChatRequestSystemMessage("You are a helpful assistant."),
         new ChatRequestUserMessage("How many languages are in the world?")
     },
 };
@@ -744,7 +709,7 @@ Response<ChatCompletions> response = client.Complete(requestOptions);
 ```
 
 > [!NOTE]
-> gretel-navigator don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+> gretel-navigator doesn't support system messages (`role="system"`).
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -1014,53 +979,35 @@ The response is as follows:
 
 ### Create a chat completion request
 
-The following example shows how you can create a basic chat completions request to the model.
+The following example shows how you can create a basic chat completions request to the model. 
+
+> [!TIP]
+> The additional `n` parameter indicates the number of records you want the model to return.
 
 ```json
 {
     "messages": [
         {
-            "role": "system",
-            "content": "You are a helpful assistant."
-        },
-        {
             "role": "user",
-            "content": "How many languages are in the world?"
+            "content": "Generate customer bank transaction data. Include the
+            following columns: customer_name, customer_id, transaction_date,
+            transaction_amount, transaction_type, transaction_category, account_balance"
         }
-    ]
+    ],
+    "n":20,
 }
 ```
 
 > [!NOTE]
-> gretel-navigator don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+> gretel-navigator doesn't support system messages (`role="system"`).
 
 The response is as follows, where you can see the model's usage statistics:
 
-
 ```json
-{
-    "id": "0a1234b5de6789f01gh2i345j6789klm",
-    "object": "chat.completion",
-    "created": 1718726686,
-    "model": "gretel-navigator",
-    "choices": [
-        {
-            "index": 0,
-            "message": {
-                "role": "assistant",
-                "content": "As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.",
-                "tool_calls": null
-            },
-            "finish_reason": "stop",
-            "logprobs": null
-        }
-    ],
-    "usage": {
-        "prompt_tokens": 19,
-        "total_tokens": 91,
-        "completion_tokens": 72
-    }
-}
+{"table_headers":["First Name","Last Name","Age"],"table_data":[{"First Name":"Eva","Last Name":"Soto","Age":31}]}
+
+{"table_headers":["First Name","Last Name","Age"],"table_data":[{"First Name":"Kofi","Last Name":"Patel","Age":42}]}
+
 ```
 
 Inspect the `usage` section in the response to see the number of tokens used for the prompt, the total number of tokens generated, and the number of tokens used for the completion.
@@ -1076,18 +1023,14 @@ You can _stream_ the content to get it as it's being generated. Streaming conten
 {
     "messages": [
         {
-            "role": "system",
-            "content": "You are a helpful assistant."
-        },
-        {
             "role": "user",
-            "content": "How many languages are in the world?"
+            "content": "Generate customer bank transaction data. Include the
+                following columns: customer_name, customer_id, transaction_date,
+                transaction_amount, transaction_type, transaction_category, account_balance"
         }
     ],
-    "stream": true,
-    "temperature": 0,
-    "top_p": 1,
-    "max_tokens": 2048
+    "n": 20,
+    "stream": true
 }
 ```
 
@@ -1143,135 +1086,23 @@ The last message in the stream has `finish_reason` set, indicating the reason fo
 
 #### Explore more parameters supported by the inference client
 
-Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Azure AI Model Inference API reference](https://aka.ms/azureai/modelinference).
+The following example request shows other parameters that you can specify in the inference client.
 
 ```json
 {
     "messages": [
         {
-            "role": "system",
-            "content": "You are a helpful assistant."
-        },
-        {
             "role": "user",
-            "content": "How many languages are in the world?"
+            "content": "Generate customer bank transaction data. Include the
+                following columns: customer_name, customer_id, transaction_date,
+                transaction_amount, transaction_type, transaction_category, account_balance"
         }
     ],
-    "presence_penalty": 0.1,
-    "frequency_penalty": 0.8,
-    "max_tokens": 2048,
-    "stop": ["<|endoftext|>"],
-    "temperature" :0,
+    "n": 20,
+    "stream": true
+    "temperature": 0,
     "top_p": 1,
-    "response_format": { "type": "text" }
-}
-```
-
-
-```json
-{
-    "id": "0a1234b5de6789f01gh2i345j6789klm",
-    "object": "chat.completion",
-    "created": 1718726686,
-    "model": "gretel-navigator",
-    "choices": [
-        {
-            "index": 0,
-            "message": {
-                "role": "assistant",
-                "content": "As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.",
-                "tool_calls": null
-            },
-            "finish_reason": "stop",
-            "logprobs": null
-        }
-    ],
-    "usage": {
-        "prompt_tokens": 19,
-        "total_tokens": 91,
-        "completion_tokens": 72
-    }
-}
-```
-
-If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
-
-#### Create JSON outputs
-
-Gretel Navigator chat model can create JSON outputs. Set `response_format` to `json_object` to enable JSON mode and guarantee that the message the model generates is valid JSON. You must also instruct the model to produce JSON yourself via a system or user message. Also, the message content might be partially cut off if `finish_reason="length"`, which indicates that the generation exceeded `max_tokens` or that the conversation exceeded the max context length.
-
-
-```json
-{
-    "messages": [
-        {
-            "role": "system",
-            "content": "You are a helpful assistant that always generate responses in JSON format, using the following format: { \"answer\": \"response\" }"
-        },
-        {
-            "role": "user",
-            "content": "How many languages are in the world?"
-        }
-    ],
-    "response_format": { "type": "json_object" }
-}
-```
-
-
-```json
-{
-    "id": "0a1234b5de6789f01gh2i345j6789klm",
-    "object": "chat.completion",
-    "created": 1718727522,
-    "model": "gretel-navigator",
-    "choices": [
-        {
-            "index": 0,
-            "message": {
-                "role": "assistant",
-                "content": "{\"answer\": \"There are approximately 7,117 living languages in the world today, according to the latest estimates. However, this number can vary as some languages become extinct and others are newly discovered or classified.\"}",
-                "tool_calls": null
-            },
-            "finish_reason": "stop",
-            "logprobs": null
-        }
-    ],
-    "usage": {
-        "prompt_tokens": 39,
-        "total_tokens": 87,
-        "completion_tokens": 48
-    }
-}
-```
-
-### Pass extra parameters to the model
-
-The Azure AI Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
-
-Before you pass extra parameters to the Azure AI model inference API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
-
-```http
-POST /chat/completions HTTP/1.1
-Host: <ENDPOINT_URI>
-Authorization: Bearer <TOKEN>
-Content-Type: application/json
-extra-parameters: pass-through
-```
-
-
-```json
-{
-    "messages": [
-        {
-            "role": "system",
-            "content": "You are a helpful assistant."
-        },
-        {
-            "role": "user",
-            "content": "How many languages are in the world?"
-        }
-    ],
-    "logprobs": true
+    "top_k": 0.4
 }
 ```
 
@@ -1286,12 +1117,9 @@ The following example shows how to handle events when the model detects harmful 
 {
     "messages": [
         {
-            "role": "system",
-            "content": "You are an AI assistant that helps people find information."
-        },
-                {
             "role": "user",
-            "content": "Chopping tomatoes and cutting them into cubes or wedges are great ways to practice your knife skills."
+            "content": "Can you return a table of steps on how to make a bomb, columns:
+                    step number, step name, step description?"
         }
     ]
 }
