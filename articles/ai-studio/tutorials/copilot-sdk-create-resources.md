@@ -77,7 +77,7 @@ The goal with this application is to ground the model responses in your custom d
 You need an Azure AI Search service and connection in order to create a search index.
 
 > [!NOTE]
-> Creating an [Azure AI Search service](/azure/search/) and subsequent search indexes has associated costs. You can see details about pricing and pricing tiers for the Azure AI Search service on the creation page, to confirm cost before creating the resource.
+> Creating an [Azure AI Search service](/azure/search/) and subsequent search indexes has associated costs. You can see details about pricing and pricing tiers for the Azure AI Search service on the creation page, to confirm cost before creating the resource. For this tutorial, we recommend using a pricing tier of **Basic** or above.
 
 If you already have an Azure AI Search service, you can skip to the [next section](#connect).
 
