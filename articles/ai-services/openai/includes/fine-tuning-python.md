@@ -346,7 +346,7 @@ To examine the individual fine-tuning events that were generated during training
 
 # [OpenAI Python 1.x](#tab/python-new)
 
-You may need to upgrade your OpenAI client library to the latest version with `pip install openai --upgrade` to run this command.
+You might need to upgrade your OpenAI client library to the latest version with `pip install openai --upgrade` to run this command.
 
 ```python
 response = client.fine_tuning.jobs.list_events(fine_tuning_job_id=job_id, limit=10)
@@ -367,7 +367,7 @@ You can run the list checkpoints command to retrieve the list of checkpoints ass
 
 # [OpenAI Python 1.x](#tab/python-new)
 
-You may need to upgrade your OpenAI client library to the latest version with `pip install openai --upgrade` to run this command.
+You might need to upgrade your OpenAI client library to the latest version with `pip install openai --upgrade` to run this command.
 
 ```python
 response = client.fine_tuning.jobs.list_events(fine_tuning_job_id=job_id, limit=10)

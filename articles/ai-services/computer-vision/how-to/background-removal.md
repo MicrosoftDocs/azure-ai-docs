@@ -77,7 +77,7 @@ Authentication is done by adding the HTTP request header **Ocp-Apim-Subscription
 
 ## Select the image to analyze
 
-The code in this guide uses remote images referenced by URL. You may want to try different images on your own to see the full capability of the Image Analysis features.
+The code in this guide uses remote images referenced by URL. You might want to try different images on your own to see the full capability of the Image Analysis features.
 
 <!--
 #### [C#](#tab/csharp)

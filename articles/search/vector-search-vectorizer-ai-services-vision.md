@@ -38,7 +38,7 @@ The Azure AI Vision vectorizer supports `text`, `imageUrl`, and `imageBinary` ve
 
 ## Expected field dimensions
 
-A field configured with the Azure AI Vision vectorizer should have a dimensions value of 1024.
+A vector field configured with the Azure AI Vision vectorizer should have a dimensions value of 1024.
 
 ## Sample definition
 

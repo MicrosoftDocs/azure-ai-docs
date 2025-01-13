@@ -8,22 +8,34 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: quickstart
-ms.date: 10/14/2024
+ms.date: 01/09/2025
 ---
 
 # Quickstart: Generative search (RAG) with grounding data from Azure AI Search
 
-This quickstart shows you how to send basic and complex queries to a Large Language Model (LLM) for a conversational search experience over your indexed content on Azure AI Search. You use the Azure portal to set up the resources, and then run Python code to call the APIs. 
+This quickstart shows you how to send queries to a chat completion model for a conversational search experience over your indexed content on Azure AI Search. You use the Azure portal to set up the resources, and then run Python code to call the APIs. 
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
-
-- [Azure AI Search](search-create-service-portal.md), Basic tier or higher so that you can [enable semantic ranker](semantic-how-to-enable-disable.md). Region must be the same one used for Azure OpenAI.
-
-- [Azure OpenAI](https://aka.ms/oai/access) resource with a deployment of `gpt-4o`, `gpt-4o-mini`, or equivalent LLM, in the same region as Azure AI Search.
-
 - [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and the [Jupyter package](https://pypi.org/project/jupyter/). For more information, see [Python in Visual Studio Code](https://code.visualstudio.com/docs/languages/python).
+
+- An Azure subscription with permissions to assign roles. [Create one for free](https://azure.microsoft.com/free/).
+
+- [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource)
+
+  - [Choose a region](/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#global-standard-model-availability) that supports the chat completion model you want to use (gpt-4o, gpt-4o-mini, or equivalent model). 
+  - [Deploy the chat completion model](/azure/ai-studio/how-to/deploy-models-openai) in Azure AI Foundry or [use another approach](/azure/ai-services/openai/how-to/working-with-models).
+
+- [Azure AI Search](search-create-service-portal.md)
+
+  - Same region as Azure OpenAI.
+  - Basic tier or higher is recommended.
+  - [Enable semantic ranking](semantic-how-to-enable-disable.md).
+  - [Enable role-based access control (see below)](#configure-access).
+
+To meet the same-region requirement, start by reviewing the [regions for the chat model](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) you want to use. Once you identify a region, confirm that Azure AI Search is available in the [same region](search-region-support.md#azure-public-regions).
+
+Make sure you know the name of the deployed model, and have the endpoints for both Azure resources at hand. You'll provide this information in the steps that follow.
 
 ## Download file
 
@@ -37,19 +49,11 @@ Requests to the search endpoint must be authenticated and authorized. You can us
 
 You're setting up two clients, so you need permissions on both resources.
 
-Azure AI Search is receiving the query request from your local system. Assign yourself the **Search Index Data Reader** role assignment for that task. If you're also creating and loading the hotel sample index, add **Search Service Contributor** and **Search Index Data Contributor** roles as well.
+Azure AI Search is receiving the query request from your local system. Assign yourself the **Search Index Data Reader** role assignment if the hotels sample index already exists. If it doesn't exist, assign yourself **Search Service Contributor** and **Search Index Data Contributor** roles so that you can create and query the index.
 
-Azure OpenAI is receiving the (query) "Can you recommend a few hotels" from your local system, plus its receiving the search results (source) from the search service. Assign yourself and the search service the **Cognitive Services OpenAI User** role.
+Azure OpenAI is receiving the query and the search results from your local system. Assign yourself the **Cognitive Services OpenAI User** role on Azure OpenAI.
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
-
-1. Configure Azure AI Search to use a system-assigned managed identity so that you can you give it role assignments:
-
-    1. In the Azure portal, [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
- 
-    1. On the left menu, select **Settings** > **Identity**.
-
-    1. On the System assigned tab, set status to **On**.
 
 1. Configure Azure AI Search for role-based access:
 
@@ -61,12 +65,12 @@ Azure OpenAI is receiving the (query) "Can you recommend a few hotels" from your
 
     1. On the left menu, select **Access control (IAM)**.
 
-    1. On Azure AI Search, make sure you have permissions to create, load, and query a search index:
+    1. On Azure AI Search, select these roles to create, load, and query a search index, and then assign them to your Microsoft Entra ID user identity:
 
        - **Search Index Data Contributor**
        - **Search Service Contributor**
 
-    1. On Azure OpenAI, select **Access control (IAM)** to assign yourself and the search service identity permissions on Azure OpenAI. The code for this quickstart runs locally. Requests to Azure OpenAI originate from your system. Also, search results from the search engine are passed to Azure OpenAI. For these reasons, both you and the search service need permissions on Azure OpenAI.
+    1. On Azure OpenAI, select **Access control (IAM)** to assign this role to yourself on Azure OpenAI:
 
        - **Cognitive Services OpenAI User**
 
@@ -74,7 +78,7 @@ It can take several minutes for permissions to take effect.
 
 ## Create an index
 
-We recommend the hotels-sample-index, which can be created in minutes and runs on any search service tier. This index is created using built-in sample data.
+A search index provides grounding data for the chat model. We recommend the hotels-sample-index, which can be created in minutes and runs on any search service tier. This index is created using built-in sample data.
 
 1. In the Azure portal, [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
@@ -90,7 +94,17 @@ We recommend the hotels-sample-index, which can be created in minutes and runs o
 
 1. Select **Edit JSON**. 
 
-1. Search for "semantic" to find the section in the index for a semantic configuration. Replace the empty `"semantic": {}` line with the following semantic configuration. This example specifies a `"defaultConfiguration"`, which is important to the running of this quickstart.
+1. Scroll to the end of the index, where you can find placeholders for constructs that can be added to an index.
+
+   ```json
+   "analyzers": [],
+   "tokenizers": [],
+   "tokenFilters": [],
+   "charFilters": [],
+   "normalizers": [],
+   ```
+
+1. On a new line after "normalizers", paste in the following semantic configuration. This example specifies a `"defaultConfiguration"`, which is important to the running of this quickstart.
 
     ```json
     "semantic":{
@@ -201,6 +215,34 @@ In the remaining sections, you set up API calls to Azure OpenAI and Azure AI Sea
 
 1. On the **Overview** home page, select the link to view the endpoints. Copy the URL. An example endpoint might look like `https://example.openai.azure.com/`.
 
+## Create a virtual environment
+
+In this step, switch back to your local system and Visual Studio Code. We recommend that you create a virtual environment so that you can install the dependencies in isolation.
+
+1. In Visual Studio Code, open the folder containing Quickstart-RAG.ipynb.
+
+1. Press Ctrl-shift-P to open the command palette, search for "Python: Create Environment", and then select `Venv` to create a virtual environment in the current workspace.
+
+1. Select Quickstart-RAG\requirements.txt for the dependencies.
+
+It takes several minutes to create the environment. When the environment is ready, continue to the next step.
+
+## Sign in to Azure
+
+You're using Microsoft Entra ID and role assignments for the connection. Make sure you're logged in to the same tenant and subscription as Azure AI Search and Azure OpenAI. You can use the Azure CLI on the command line to show current properties, change properties, and to sign in. For more information, see [Connect without keys](search-get-started-rbac.md). 
+
+Run each of the following commands in sequence.
+
+```azure-cli
+az account show
+
+az account set --subscription <PUT YOUR SUBSCRIPTION ID HERE>
+
+az login --tenant <PUT YOUR TENANT ID HERE>
+```
+
+You should now be logged in to Azure from your local device.
+
 ## Set up the query and chat thread
 
 This section uses Visual Studio Code and Python to call the chat completion APIs on Azure OpenAI.
@@ -261,11 +303,12 @@ This section uses Visual Studio Code and Python to call the chat completion APIs
     Sources:\n{sources}
     """
     
-    # Query is the question being asked. It's sent to the search engine and the LLM.
+    # Query is the question being asked. It's sent to the search engine and the chat model
     query="Can you recommend a few hotels with complimentary breakfast?"
     
-    # Set up the search results and the chat thread.
-    # Retrieve the selected fields from the search index related to the question.
+    # Search results are created by the search client
+    # Search results are composed of the top 5 results and the fields selected from the search index
+    # Search results include the top 5 matches to your query
     search_results = search_client.search(
         search_text=query,
         top=5,
@@ -273,6 +316,7 @@ This section uses Visual Studio Code and Python to call the chat completion APIs
     )
     sources_formatted = "\n".join([f'{document["HotelName"]}:{document["Description"]}:{document["Tags"]}' for document in search_results])
     
+    # Send the search results and the query to the LLM to generate a response based on the prompt.
     response = openai_client.chat.completions.create(
         messages=[
             {
@@ -283,6 +327,7 @@ This section uses Visual Studio Code and Python to call the chat completion APIs
         model=AZURE_DEPLOYMENT_MODEL
     )
     
+    # Here is the response from the chat model.
     print(response.choices[0].message.content)
     ```
 
@@ -311,6 +356,8 @@ This section uses Visual Studio Code and Python to call the chat completion APIs
 
     If you get an **Authorization failed** error message, wait a few minutes and try again. It can take several minutes for role assignments to become operational.
 
+    If you get a **Resource not found** error message, check the resource URIs and make sure the API version on the chat model is valid.
+
     Otherwise, to experiment further, change the query and rerun the last step to better understand how the model works with the grounding data.
 
     You can also modify the prompt to change the tone or structure of the output.
@@ -321,7 +368,7 @@ This section uses Visual Studio Code and Python to call the chat completion APIs
 
 Azure AI Search supports [complex types](search-howto-complex-data-types.md) for nested JSON structures. In the hotels-sample-index, `Address` is an example of a complex type, consisting of `Address.StreetAddress`, `Address.City`, `Address.StateProvince`, `Address.PostalCode`, and `Address.Country`. The index also has complex collection of `Rooms` for each hotel.
 
-If your index has complex types, your query can provide those fields if you first convert the search results output to JSON, and then pass the JSON to the LLM. The following example adds complex types to the request. The formatting instructions include a JSON specification.
+If your index has complex types, your query can provide those fields if you first convert the search results output to JSON, and then pass the JSON to the chat model. The following example adds complex types to the request. The formatting instructions include a JSON specification.
 
 ```python
 import json

@@ -126,7 +126,7 @@ If you'd like to compare the performances of different recognition models on you
 1. Train your **PersonGroup**s using the [Train Person Group] API.
 1. Test with [Identify From Person Group] on all four **PersonGroup**s and compare the results.
 
-If you normally specify a confidence threshold (a value between zero and one that determines how confident the model must be to identify a face), you may need to use different thresholds for different models. A threshold for one model isn't meant to be shared to another and won't necessarily produce the same results.
+If you normally specify a confidence threshold (a value between zero and one that determines how confident the model must be to identify a face), you might need to use different thresholds for different models. A threshold for one model isn't meant to be shared to another and won't necessarily produce the same results.
 
 ## Next steps
 

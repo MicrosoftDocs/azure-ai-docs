@@ -495,7 +495,7 @@ For more information, see the documentation for [Model.deploy()](/python/api/azu
 
 ## Call your remote webservice
 
-When you deploy remotely, you may have key authentication enabled. The example below shows how to get your service key with Python in order to make an inference request.
+When you deploy remotely, you might have key authentication enabled. The example below shows how to get your service key with Python in order to make an inference request.
 
 [!Notebook-python[] (~/azureml-examples-archive/v1/python-sdk/tutorials/deploy-local/1.deploy-local.ipynb?name=call-remote-web-service-code)]
 

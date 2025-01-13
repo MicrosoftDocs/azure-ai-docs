@@ -12,12 +12,12 @@ ms.date: 11/06/2024
 recommendations: false
 ---
 
-## Add your data using Azure OpenAI Studio
+## Add your data using Azure AI Foundry portal
 
 > [!TIP]
 > You can [use the Azure Developer CLI](../how-to/azure-developer-cli.md) to programmatically create the resources needed for Azure OpenAI On Your Data 
 
-Navigate to [Azure AI Foundry](https://ai.azure.com/) and sign-in with credentials that have access to your Azure OpenAI resource. 
+Navigate to [Azure AI Foundry portal](https://ai.azure.com/) and sign-in with credentials that have access to your Azure OpenAI resource. 
 
 1. You can either [create an Azure AI Foundry project](../../../ai-studio/how-to/create-projects.md) by clicking **Create project**, or continue directly by clicking the button on the **Focused on Azure OpenAI Service** tile.  
 
@@ -41,7 +41,7 @@ Navigate to [Azure AI Foundry](https://ai.azure.com/) and sign-in with credentia
 
     1. Select your Azure AI Search resource, and select the acknowledgment that connecting it will incur usage on your account. Then select **Next**.
 
-    :::image type="content" source="../media/quickstarts/add-your-data-source.png" alt-text="A screenshot showing options for selecting a data source in Azure OpenAI Studio." lightbox="../media/quickstarts/add-your-data-source.png":::
+    :::image type="content" source="../media/quickstarts/add-your-data-source.png" alt-text="A screenshot showing options for selecting a data source in Azure AI Foundry portal." lightbox="../media/quickstarts/add-your-data-source.png":::
 
 
 1. On the **Upload files** pane, select **Browse for a file** and select the files you downloaded from the [prerequisites](#prerequisites) section, or your own data. Then select **Upload files**. Then select **Next**.
