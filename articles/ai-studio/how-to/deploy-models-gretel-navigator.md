@@ -5,7 +5,7 @@ description: Learn how to use Gretel Navigator chat model with Azure AI Foundry.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
-ms.date: 01/08/2025
+ms.date: 01/13/2025
 ms.reviewer: anupamawal
 reviewer: anupamawalaus
 ms.author: mopeakande
@@ -29,7 +29,7 @@ Gretel Navigator uses prompts, schema definitions, or seed examples to generate 
 
 ## Gretel Navigator chat model
 
-Unlike single large language model (single-LLM) approaches to data generation, Gretel Navigator employs a compound AI architecture specifically engineered for synthetic data, by combining top open-source small language models (SLMs) fine-tuned across more than ten industry domains. This purpose-built system creates diverse, domain-specific datasets at scales of hundreds to millions of examples. The system also preserves complex statistical relationships and offers increased speed and accuracy compared to manual data creation.
+Unlike single large language model (single-LLM) approaches to data generation, Gretel Navigator employs a compound AI architecture specifically engineered for synthetic data, by combining top open-source small language models (SLMs) fine-tuned across more than 10 industry domains. This purpose-built system creates diverse, domain-specific datasets at scales of hundreds to millions of examples. The system also preserves complex statistical relationships and offers increased speed and accuracy compared to manual data creation.
 
 Top use cases:
 
@@ -133,7 +133,7 @@ Model provider name: Gretel
 The following example shows how you can create a basic chat completions request to the model.
 
 > [!TIP]
-> The additional `n` parameter indicates the number of records you want the model to return.
+> The extra `n` parameter indicates the number of records you want the model to return.
 
 ```python
 from azure.ai.inference.models import SystemMessage, UserMessage
@@ -147,7 +147,7 @@ response = client.complete(
 ```
 
 > [!NOTE]
-> gretel-navigator doesn't support system messages (`role="system"`).
+> Gretel-navigator doesn't support system messages (`role="system"`).
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -276,7 +276,7 @@ except HttpResponseError as ex:
 
 ## Gretel Navigator chat model
 
-Unlike single large language model (single-LLM) approaches to data generation, Gretel Navigator employs a compound AI architecture specifically engineered for synthetic data, by combining top open-source small language models (SLMs) fine-tuned across more than ten industry domains. This purpose-built system creates diverse, domain-specific datasets at scales of hundreds to millions of examples. The system also preserves complex statistical relationships and offers increased speed and accuracy compared to manual data creation.
+Unlike single large language model (single-LLM) approaches to data generation, Gretel Navigator employs a compound AI architecture specifically engineered for synthetic data, by combining top open-source small language models (SLMs) fine-tuned across more than 10 industry domains. This purpose-built system creates diverse, domain-specific datasets at scales of hundreds to millions of examples. The system also preserves complex statistical relationships and offers increased speed and accuracy compared to manual data creation.
 
 Top use cases:
 
@@ -387,7 +387,7 @@ var response = await client.path("/chat/completions").post({
 ```
 
 > [!NOTE]
-> gretel-navigator doesn't support system messages (`role="system"`).
+> Gretel-navigator doesn't support system messages (`role="system"`).
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -580,7 +580,7 @@ catch (error) {
 
 ## Gretel Navigator chat model
 
-Unlike single large language model (single-LLM) approaches to data generation, Gretel Navigator employs a compound AI architecture specifically engineered for synthetic data, by combining top open-source small language models (SLMs) fine-tuned across more than ten industry domains. This purpose-built system creates diverse, domain-specific datasets at scales of hundreds to millions of examples. The system also preserves complex statistical relationships and offers increased speed and accuracy compared to manual data creation.
+Unlike single large language model (single-LLM) approaches to data generation, Gretel Navigator employs a compound AI architecture specifically engineered for synthetic data, by combining top open-source small language models (SLMs) fine-tuned across more than 10 industry domains. This purpose-built system creates diverse, domain-specific datasets at scales of hundreds to millions of examples. The system also preserves complex statistical relationships and offers increased speed and accuracy compared to manual data creation.
 
 Top use cases:
 
@@ -709,7 +709,7 @@ Response<ChatCompletions> response = client.Complete(requestOptions);
 ```
 
 > [!NOTE]
-> gretel-navigator doesn't support system messages (`role="system"`).
+> Gretel-navigator doesn't support system messages (`role="system"`).
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -904,7 +904,7 @@ catch (RequestFailedException ex)
 
 ## Gretel Navigator chat model
 
-Unlike single large language model (single-LLM) approaches to data generation, Gretel Navigator employs a compound AI architecture specifically engineered for synthetic data, by combining top open-source small language models (SLMs) fine-tuned across more than ten industry domains. This purpose-built system creates diverse, domain-specific datasets at scales of hundreds to millions of examples. The system also preserves complex statistical relationships and offers increased speed and accuracy compared to manual data creation.
+Unlike single large language model (single-LLM) approaches to data generation, Gretel Navigator employs a compound AI architecture specifically engineered for synthetic data, by combining top open-source small language models (SLMs) fine-tuned across more than 10 industry domains. This purpose-built system creates diverse, domain-specific datasets at scales of hundreds to millions of examples. The system also preserves complex statistical relationships and offers increased speed and accuracy compared to manual data creation.
 
 Top use cases:
 
@@ -982,7 +982,7 @@ The response is as follows:
 The following example shows how you can create a basic chat completions request to the model. 
 
 > [!TIP]
-> The additional `n` parameter indicates the number of records you want the model to return.
+> The extra `n` parameter indicates the number of records you want the model to return.
 
 ```json
 {
@@ -999,7 +999,7 @@ The following example shows how you can create a basic chat completions request 
 ```
 
 > [!NOTE]
-> gretel-navigator doesn't support system messages (`role="system"`).
+> Gretel-navigator doesn't support system messages (`role="system"`).
 
 The response is as follows, where you can see the model's usage statistics:
 
