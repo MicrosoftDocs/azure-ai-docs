@@ -14,7 +14,7 @@ ms.custom: references_regions
 
 # Speech service supported regions
 
-The Speech service allows your application to convert audio to text, perform speech translation, and convert text to speech. The service is available in multiple regions with unique endpoints for the Speech SDK and REST APIs. 
+The Speech service allows your application to convert audio to text, perform speech translation, and convert text to speech. The service is available in multiple regions with unique endpoints for the Speech SDK and REST APIs.
 
 Keep in mind the following points:
 
@@ -67,7 +67,7 @@ The regions in these tables support most of the core features of the Speech serv
 
 # [Speech to text](#tab/stt)
 
-| **Region** | **Fast transcription** | **Custom speech** | **Custom speech training with audio**<sup>1</sup> | 
+| **Region** | **Fast transcription** | **Custom speech** | **Custom speech training with audio**<sup>1</sup> |
 |-----|-----|-----|-----|
 | australiaeast      | ✅ | ✅ | ✅ |
 | brazilsouth        | ✅ | ✅ |  |
@@ -249,38 +249,38 @@ The regions in these tables support most of the core features of the Speech serv
 
 # [Scenarios](#tab/scenarios)
 
-| **Region** | **Speaker recognition** | **Voice assistants** |
-|-----|-----|-----|
-| australiaeast      | ✅ |  |
-| brazilsouth        |  |  |
-| canadacentral      | ✅ | ✅ |
-| centralindia       | ✅ |  |
-| centralus          | ✅ |  |
-| eastasia           | ✅ | ✅ |
-| eastus             | ✅ | ✅ |
-| eastus2            | ✅ | ✅ |
-| francecentral      | ✅ |  |
-| germanywestcentral | ✅ |  |
-| japaneast          | ✅ |  |
-| japanwest          | ✅ |  |
-| koreacentral       | ✅ |  |
-| northcentralus     |  |  |
-| northeurope        | ✅ | ✅ |
-| norwayeast         | ✅ |  |
-| qatarcentral       | ✅ |  |
-| southafricanorth   |  |  |
-| southcentralus     |  | ✅ |
-| southeastasia      | ✅ | ✅ |
-| swedencentral      | ✅ |  |
-| switzerlandnorth   |  |  |
-| switzerlandwest    | ✅ |  |
-| uaenorth           |  |  |
-| uksouth            | ✅ |  |
-| westcentralus      | ✅ | ✅ |
-| westeurope         | ✅ | ✅ |
-| westus             | ✅ | ✅ |
-| westus2            | ✅ | ✅ |
-| westus3            | ✅ |  |
+| **Region** | **Pronunciation Assessment** | **Speaker recognition** | **Voice assistants** |
+|-----|-----|-----|-----|
+| australiaeast      | ✅ | ✅ |  |
+| brazilsouth        | ✅ |  |  |
+| canadacentral      | ✅ | ✅ | ✅ |
+| centralindia       | ✅ | ✅ |  |
+| centralus          | ✅ | ✅ |  |
+| eastasia           | ✅ | ✅ | ✅ |
+| eastus             | ✅ | ✅ | ✅ |
+| eastus2            | ✅ | ✅ | ✅ |
+| francecentral      | ✅ | ✅ |  |
+| germanywestcentral | ✅ | ✅ |  |
+| japaneast          | ✅ | ✅ |  |
+| japanwest          | ✅ | ✅ |  |
+| koreacentral       | ✅ | ✅ |  |
+| northcentralus     | ✅ |  |  |
+| northeurope        | ✅ | ✅ | ✅ |
+| norwayeast         | ✅ | ✅ |  |
+| qatarcentral       | ✅ | ✅ |  |
+| southafricanorth   | ✅ |  |  |
+| southcentralus     | ✅ |  | ✅ |
+| southeastasia      | ✅ | ✅ | ✅ |
+| swedencentral      | ✅ | ✅ |  |
+| switzerlandnorth   | ✅ |  |  |
+| switzerlandwest    | ✅ | ✅ |  |
+| uaenorth           | ✅ |  |  |
+| uksouth            | ✅ | ✅ |  |
+| westcentralus      | ✅ | ✅ | ✅ |
+| westeurope         | ✅ | ✅ | ✅ |
+| westus             | ✅ | ✅ | ✅ |
+| westus2            | ✅ | ✅ | ✅ |
+| westus3            | ✅ | ✅ |  |
 
 > [!NOTE]
 > The [Speech SDK](speech-sdk.md) supports voice assistant capabilities through [Direct Line Speech](./direct-line-speech.md).
