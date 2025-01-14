@@ -231,6 +231,12 @@ All deployments can perform the exact same inference operations, however the bil
 
 [!INCLUDE [Global data zone provisioned managed](../includes/model-matrix/datazone-provisioned-managed.md)]
 
+# [Data Zone Batch](#tab/datazone-batch)
+
+### Data zone batch model availability
+
+[!INCLUDE [Data zone batch](../includes/model-matrix/global-batch-datazone.md)]
+
 # [Standard](#tab/standard)
 
 ### Standard deployment model availability
