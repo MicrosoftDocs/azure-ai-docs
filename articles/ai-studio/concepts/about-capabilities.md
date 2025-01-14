@@ -29,4 +29,4 @@ Azure AI Foundry is a comprehensive platform for AI development, integrating wit
 ## Related content
 
 
-- [Azure AI Services ](https://learn.microsoft.com/en-us/azure/ai-services/)
+- [Azure AI Services ](../../ai-services/index.yml)
