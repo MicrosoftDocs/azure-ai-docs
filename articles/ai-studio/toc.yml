@@ -153,6 +153,8 @@ items:
       items:
         - name: Mistral premium models
           href: how-to/deploy-models-mistral.md
+        - name: Codestral model
+          href: how-to/deploy-models-mistral-codestral.md
         - name: Mistral Nemo model
           href: how-to/deploy-models-mistral-nemo.md
         - name: Mistral-7B and Mixtral models

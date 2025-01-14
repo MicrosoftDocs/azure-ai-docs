@@ -5,7 +5,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 01/08/2024
+ms.date: 01/10/2024
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -25,7 +25,10 @@ This article is to help you understand the support lifecycle for the Azure OpenA
 Azure OpenAI API latest release:
 
 - Inference: [2024-12-01-preview](reference-preview.md)
-- Authoring: [2024-12-01-preview](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/authoring/preview/2024-10-01-preview/azureopenai.json)
+- Authoring: [2024-10-01-preview](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/authoring/preview/2024-10-01-preview/azureopenai.json)
+
+> [!IMPORTANT]
+> For features that are part of the dataplane authoring API such as batch, fine-tuning, and assistants files, continue to use API version `2024-10-01-preview` to take advantage of the latest preview features.
 
 This version contains support for the latest Azure OpenAI features including:
 
