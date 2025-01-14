@@ -25,6 +25,68 @@ highlightedContent:
       itemType: concept
       url: ../ai-services/responsible-use-of-ai-overview.md
 # =============================================================================    
+# conceptualContent section (optional)
+conceptualContent:
+  # itemType: architecture | concept | deploy | download |
+  #           get-started | how-to-guide | learn | overview |
+  #           quickstart | reference | tutorial | video |
+  #           whats-new
+    sections:
+      - title: Get Started # < 60 chars (optional)
+        # summary:  # < 160 chars (optional)
+        items:
+          # Card
+          - title: Set up your environment
+            links:
+              - url: ../ai-services/openai/index.yml
+                itemType: overview
+                text: Text1
+  
+              - url: ../ai-services/openai/index.yml
+                itemType: reference
+                text: Text2
+          # Card
+          - title: Step 2
+            links:
+              - itemType: reference
+                text: Text1
+                url: ../ai-services/openai/index.yml
+  
+              - itemType: reference
+                text: Text2
+                url: ../ai-services/openai/index.yml
+  
+              - itemType: reference
+                text: Text3
+                url: ../ai-services/openai/index.yml
+          # Card
+          - title: Step 3
+            links:
+              - itemType: reference
+                text: Text1
+                url: ../ai-services/openai/index.yml
+  
+              - itemType: reference
+                text: Text2
+                url: ../ai-services/openai/index.yml
+  
+              - itemType: reference
+                text: Text3
+                url: ../ai-services/openai/index.yml
+          # Card
+          - title: Step 4
+            links:
+              - itemType: reference
+                text: Text1
+                url: ../ai-services/openai/index.yml
+  
+              - itemType: reference
+                text: Text2
+                url: ../ai-services/openai/index.yml
+  
+              - itemType: reference
+                text: Text3
+                url: ../ai-services/openai/index.yml
 # productDirectory section  
 productDirectory: 
   title:  Key Capabilities
