@@ -97,6 +97,7 @@ Alternatively, use infrastructure-as-code options for automation. Example Bicep 
 * At the time of creation, you can't provide or modify resources that are created in the Microsoft-managed Azure resource group in your subscription.
 * You can't delete Microsoft-managed resources used for customer-managed keys without also deleting your hub.
 * [Azure AI services Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) is still required for Speech and Content Moderator.
+* If you are using the [server-side preview](#preview-service-side-storage-of-encrypted-data-when-using-customer-managed-keys)charges will continue to accrue during the soft delete retention period.
 
 ## Related content
 

@@ -36,6 +36,7 @@ For example, the managed identity for Azure Cosmos DB would need to have those p
 
 * After workspace creation, the customer-managed encryption key for resources that the workspace depends on can only be updated to another key in the original Azure Key Vault resource.
 * Unless you are using the [server-side preview](#preview-service-side-encryption-of-metadata), the encrypted data is stored on resources in a Microsoft-managed resource group in your subscription. You can't create these resources up front or transfer ownership of them to you. The data lifecycle is managed indirectly via the Azure Machine Learning APIs as you create objects in the Azure Machine Learning service.
+* If you are using the [server-side preview](#preview-service-side-encryption-of-metadata), Azure charges will continue to accrue during the soft delete retention period.
 * You can't delete Microsoft-managed resources that you use for customer-managed keys without also deleting your workspace.
 * You can't encrypt the compute cluster's OS disk by using your customer-managed keys. You must use Microsoft-managed keys.
 
