@@ -45,7 +45,7 @@ Custom neural models share the same labeling format and strategy as [custom temp
 ## Model capabilities
 
  > [!IMPORTANT]
- > Custom neural v4.0 2024-11-30 (GA) model supports overlapping fields and table cell confidence.
+ > Custom neural v4.0 `2024-11-30` (GA) model supports overlapping fields and table cell confidence.
 
 Custom neural models currently support key-value pairs and selection marks and structured fields (tables).
 
@@ -64,7 +64,7 @@ Neural models support documents that have the same information, but different pa
 
 ### Overlapping fields
 
-Custom neural v4.0 2024-11-30 (GA) model supports overlapping fields:
+Custom neural v4.0 `2024-11-30` (GA) model supports overlapping fields:
 
 To use the overlapping fields, your dataset needs to contain at least one sample with the expected overlap. To label an overlap, use **region labeling** to designate each of the spans of content (with the overlap) for each field. Labeling an overlap with field selection (highlighting a value) fails in the Studio as region labeling is the only supported labeling tool for indicating field overlaps. Overlap support includes:
 
@@ -294,9 +294,9 @@ POST https://{endpoint}/documentintelligence/documentModels:build?api-version=20
 
 > [!IMPORTANT]
 >
-> * If you would like to train additional neural models or train models for a longer time period that **exceed 10 hours**, billing charges apply. For details on the billing charges, refer to the [pricing page](https://azure.microsoft.com/pricing/details/ai-document-intelligence/).
-> * You can opt in for this paid training service by setting the `maxTrainingHours` to the desired maximum number of hours. API calls with no budget but with the `maxTrainingHours` set as over 10 hours will fail.
-> * As each build takes different amount of time depending on the type and size of the training dataset, billing is calculated for the actual time spent training the neural model, with a minimum of 30 minutes per training job.
+> * If you would like to train more neural models or train models for a longer time period that **exceed 10 hours**, billing charges apply. For details on the billing charges, refer to the [pricing page](https://azure.microsoft.com/pricing/details/ai-document-intelligence/).
+> * You can opt in for this paid training service by setting the `maxTrainingHours` to the desired maximum number of hours. API calls with no budget but with the `maxTrainingHours` set to over 10 hours fail.
+> * Each build takes a different amount of time depending on the type and size of the training dataset. Billing is calculated for the actual time spent training the neural model with a minimum of 30 minutes per training job.
 > * This paid training feature enables you to train larger data sets for longer durations with flexibility in the training hours.
 
 ```bash
@@ -311,7 +311,7 @@ GET /documentModels/{myCustomModel}
 ```
 
 > [!NOTE]
-> For Document Intelligence versions `v3.1 (2023-07-31)` and `v3.0 (2022-08-31)`, custom neural model's paid training is not enabled. For the two older versions, you will get a maximum of 30 minutes training duration per model. If you would like to train more than 20 model instances, you can create an [Azure support ticket](../service-limits.md#create-and-submit-support-request) to increase in the training limit.
+> For Document Intelligence versions `v3.1 (2023-07-31)` and `v3.0 (2022-08-31)`, custom neural model's paid training isn't enabled. For the two older versions, there's a maximum of 30-minutes training duration per model. If you would like to train more than 20 model instances, you can create an [Azure support ticket](../service-limits.md#create-and-submit-support-request-for-tps-increase) to increase in the training limit.
 
 :::moniker-end
 
@@ -319,11 +319,11 @@ GET /documentModels/{myCustomModel}
 
 ## Billing
 
-For Document Intelligence versions `v3.1 (2023-07-31) and v3.0 (2022-08-31)`, you receive a maximum 30 minutes of training duration per model, and a maximum of 20 trainings for free per month. If you would like to train more than 20 model instances, you can create an [Azure support ticket](../service-limits.md#create-and-submit-support-request) to increase in the training limit. For Azure support ticket, enter in the `summary` field: `Increase Document Intelligence custom neural training (TPS) limit`. 
+For Document Intelligence versions `v3.1 (2023-07-31) and v3.0 (2022-08-31)`, you receive a maximum 30 minutes of training duration per model, and a maximum of 20 trainings for free per month. If you would like to train more than 20 model instances, you can create an [Azure support ticket](../service-limits.md#create-and-submit-support-request-for-tps-increase) to increase in the training limit. For Azure support ticket, enter in the `summary` field: `Increase Document Intelligence custom neural training (TPS) limit`. 
 
 > [!IMPORTANT]
 >
-> * When increasing the training limit, note that 2 custom neural model training sessions will be considered as 1 training hour. For more information on the pricing for increasing the number of training sessions, *see** the [pricing page](https://azure.microsoft.com/pricing/details/ai-document-intelligence/).
+> * When you increase the training limit, two custom neural model training sessions is considered as one training hour. For more information on the pricing for increasing the number of training sessions, *see** the [pricing page](https://azure.microsoft.com/pricing/details/ai-document-intelligence/).
 > * Azure support ticket for training limit increase can only apply at a **resource-level**, not a subscription level. You can request a training limit increase for a single Document Intelligence resource by specifying your resource ID and region in the support ticket.
 
 If you want to train models for longer durations than 30 minutes, we support **paid training** with version `v4.0 2024-11-30 (GA)`. Using the latest version, you can train your model for a longer duration to process larger documents. For more information about paid training, *see* [Billing v4.0](../service-limits.md#billing).
@@ -334,11 +334,11 @@ If you want to train models for longer durations than 30 minutes, we support **p
 
 ## Billing
 
-For Document Intelligence versions `v3.1 (2023-07-31) and v3.0 (2022-08-31)`, you receive a maximum 30 minutes of training duration per model, and a maximum of 20 trainings for free per month. If you would like to train more than 20 model instances, you can create an [Azure support ticket](../service-limits.md#create-and-submit-support-request) to increase in the training limit. For Azure support ticket, enter in the `summary` field: `Increase Document Intelligence custom neural training (TPS) limit`. 
+For Document Intelligence versions `v3.1 (2023-07-31) and v3.0 (2022-08-31)`, you receive a maximum 30 minutes of training duration per model, and a maximum of 20 trainings for free per month. If you would like to train more than 20 model instances, you can create an [Azure support ticket](../service-limits.md#create-and-submit-support-request-for-tps-increase) to increase in the training limit. For Azure support ticket, enter in the `summary` field: `Increase Document Intelligence custom neural training (TPS) limit`. 
 
 > [!IMPORTANT]
 >
-> * When increasing the training limit, note that 2 custom neural model training sessions will be considered as 1 training hour. For more information on the pricing for increasing the number of training sessions, *see* the [pricing page](https://azure.microsoft.com/pricing/details/ai-document-intelligence/).
+> * When you increase the training limit, two custom neural model training sessions is considered as one training hour. For more information on the pricing for increasing the number of training sessions, *see* the [pricing page](https://azure.microsoft.com/pricing/details/ai-document-intelligence/).
 > * Azure support ticket for training limit increase can only apply at a **resource-level**, not a subscription level. You can request a training limit increase for a single Document Intelligence resource by specifying your resource ID and region in the support ticket.
 
 If you want to train models for longer durations than 30 minutes, we support **paid training** with our newest version, `v4.0 (2024-11-30)`. Using the latest version, you can train your model for a longer duration to process larger documents. For more information about paid training, *see* [Billing v4.0](../service-limits.md#billing).
