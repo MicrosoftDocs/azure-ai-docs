@@ -115,18 +115,28 @@ items:
     items: 
     - name: What is the Speech service?
       href: ../ai-services/speech-service/overview.md?context=/azure/ai-studio/context/context
-    - name: Speech to text 
-      items:
-      - name: Overview
-        href: ../ai-services/speech-service/speech-to-text.md?context=/azure/ai-studio/context/context
-      - name: Recognize and convert speech to text
-        href: ../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-studio/context/context
-    - name: Text to speech 
-      items:
-      - name: Overview
-        href: ../ai-services/speech-service/text-to-speech.md?context=/azure/ai-studio/context/context
-      - name: Convert text to speech
-        href: ../ai-services/speech-service/get-started-text-to-speech.md?context=/azure/ai-studio/context/context
+    - name: Real-time speech to text
+      href: ../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-studio/context/context
+    - name: Fast transcription
+      href: ../ai-services/speech-service/fast-transcription-create.md?context=/azure/ai-studio/context/context
+    - name: Pronunciation assessment
+      href: ../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/ai-studio/context/context
+    - name: Speech translation
+      href: ../ai-services/speech-service/get-started-speech-translation.md?context=/azure/ai-studio/context/context
+    - name: Audio content creation
+      href: ../ai-services/speech-service/how-to-audio-content-creation.md?context=/azure/ai-studio/context/context
+    - name: Hear and speak with chat in the playground
+      href: quickstarts/hear-speak-playground.md
+    - name:  Customizations
+      items: 
+      - name: Custom speech fine-tuning
+        href: ../ai-services/speech-service/custom-speech-ai-foundry-portal.md?context=/azure/ai-studio/context/context
+      - name: Custom voice fine-tuning
+        href: ../ai-services/speech-service/professional-voice-create-project.md?context=/azure/ai-studio/context/context
+      - name: Personal voice
+        href: ../ai-services/speech-service/personal-voice-create-project.md?context=/azure/ai-studio/context/context
+      - name: Custom avatar fine-tuning
+        href: ../ai-services/speech-service/text-to-speech-avatar/custom-avatar-create.md?context=/azure/ai-studio/context/context
   - name:  Language
     items: 
     - name: What is Azure AI Language?
