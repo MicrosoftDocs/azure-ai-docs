@@ -1,11 +1,11 @@
 ---
 title: Understanding capabilities in Azure AI Foundry
-description: #Required; Keep the description within 100- and 165-characters including spaces 
-author: #Required; your GitHub user alias, with correct capitalization
-ms.author: #Required; microsoft alias of author
-ms.service: #Required; use the name-string related to slug in ms.product/ms.service
-ms.topic: concept-article #Required; leave this attribute/value as-is.
-ms.date: #Required; mm/dd/yyyy format.
+description: Understand how the capabilities in Azure AI Foundry can help you build AI solutions.
+author: scott-polly
+ms.author: scottpolly
+ms.service: azure-ai-studio
+ms.topic: concept-article  
+ms.date: 1/14/2025
 
 #CustomerIntent: As an AI developer, i want to understand how to bring in additional functionality to Azure AI Foundry.
 ---
