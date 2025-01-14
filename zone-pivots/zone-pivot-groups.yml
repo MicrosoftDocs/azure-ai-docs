@@ -38,6 +38,15 @@ groups:
       title: C#
     - id: programming-language-rest
       title: REST
+- id: azure-ai-model-catalog-sub-group-samples
+# Owner: mopeakande
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+    - id: programming-language-python
+      title: Python
+    - id: programming-language-rest
+      title: REST
 - id: programming-languages-set-conmod
 # Owner: pafarley
   title: Programming languages
