@@ -5,7 +5,7 @@ description: Learn how to create text to speech avatar batch synthesis.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/11/2024
+ms.date: 1/13/2025
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
