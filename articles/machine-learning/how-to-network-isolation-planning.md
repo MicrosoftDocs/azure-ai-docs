@@ -33,7 +33,7 @@ The following diagram breaks down the inbound and outbound.
 
 ### Inbound access to Azure Machine Learning
 
-Inbound access to a secured Azure Machine Learning workspace is set using the public network access (PNA) flag. The PNA flag setting decides if your workspace requires a private endpoint or not to access the workspace. There's an extra setting between public and private: Enabled from selected IP addresses. This setting allows access to your workspace from the IP addresses you specify. For more on this feature, see [Enable Public Access only from internet IP ranges (preview)](how-to-configure-private-link.md#enable-public-access-only-from-internet-ip-ranges-preview).  
+Inbound access to a secured Azure Machine Learning workspace is set using the public network access (PNA) flag. The PNA flag setting decides if your workspace requires a private endpoint or not to access the workspace. There's an extra setting between public and private: Enabled from selected IP addresses. This setting allows access to your workspace from the IP addresses you specify. For more on this feature, see [Enable Public Access only from internet IP ranges](how-to-configure-private-link.md#enable-public-access-only-from-internet-ip-ranges).
 
 ### Outbound access
 
