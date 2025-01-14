@@ -5,7 +5,7 @@ description: Azure OpenAI model global batch limits
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 10/14/2024
+ms.date: 01/14/2025
 ---
 
 ## Batch limits

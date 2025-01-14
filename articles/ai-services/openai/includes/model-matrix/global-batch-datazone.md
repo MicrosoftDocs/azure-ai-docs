@@ -5,7 +5,7 @@ description: Regional availability for Global Batch models
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 01/14/2024
+ms.date: 01/14/2025
 ---
 
 
