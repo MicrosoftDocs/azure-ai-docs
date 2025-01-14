@@ -39,7 +39,6 @@ items:
       href: how-to/concept-data-privacy.md
     - name: Featured models
       items:
-   
       - name: Microsoft Phi family models
         items:
           - name: Phi-3 chat models
