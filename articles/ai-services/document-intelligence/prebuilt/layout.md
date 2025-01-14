@@ -34,7 +34,7 @@ The following illustration shows the typical components in an image of a sample 
 
 :::image type="content" source="../media/document-layout-example-new.png" alt-text="Illustration of document layout example."::: 
 
-## Development support
+## Development options
 
 
 Document Intelligence v4.0: **2024-11-30** (GA) supports the following tools, applications, and libraries:
@@ -42,6 +42,10 @@ Document Intelligence v4.0: **2024-11-30** (GA) supports the following tools, ap
 | Feature | Resources | Model ID |
 |----------|-------------|-----------|
 |**Layout model**|&bullet; [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com)</br>&bullet;  [**REST API**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)</br>&bullet;  [**C# SDK**](../versioning/sdk-overview-v4-0.md)</br>&bullet;  [**Python SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Java SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**JavaScript SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|**prebuilt-layout**|
+
+## Language support
+
+*See* our [Language Support—document analysis models](../language-support/ocr.md) page for a complete list of supported languages.
 
 ## Input requirements 
 
@@ -53,32 +57,33 @@ See how data, including text, tables, table headers, selection marks, and struct
 
 * An Azure subscription—you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
 
-* A [Document Intelligence instance](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) in the Azure portal. You can use the free pricing tier (`F0`) to try the service. After your resource deploys, select **Go to resource** to get your key and endpoint.
+* A [Document Intelligence instance](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) in the Azure portal. You can use the free pricing tier (`F0`) to try the service. After your resource deploys, select **Go to resource** to get your key and endpoint. You need the key and endpoint from the resource you create to connect your application to the Document Intelligence API.
 
-    :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal."::: 
+    :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
 
-> [!NOTE]
-> Document Intelligence Studio is available with v3.0 APIs and later versions.
+* After you retrieve you key and endpoint, you can use the following development options to build and deploy your Document Intelligence applications:
 
-***Sample document processed with [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/layout)***
+# [REST API](#tab/rest)
 
-:::image type="content" source="../media/studio/form-recognizer-studio-layout-newspaper.png" alt-text="Screenshot of `Layout` processing a newspaper page in Document Intelligence Studio."::: 
+* [Document Intelligence REST API](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true&tabs=HTTP&)
 
-1. On the [Document Intelligence Studio home page](https://documentintelligence.ai.azure.com/studio), select **Layout**.
+* [How to guide](../how-to-guides/use-sdk-rest-api.md&pivots=programming-language-rest-api#analyze-documents-and-get-results)
 
-1. You can analyze the sample document or upload your own files.
+# [Client libraries](#tab/sdks)
 
-1. Select the **Run analysis** button and, if necessary, configure the **Analyze options**:
+* [**C# SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#layout-model)
+* [**Python SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#layout-model)
+* [**Java SDK**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#layout-model)
+* [**JavaScript**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#layout-model)
 
-    :::image type="content" source="../media/studio/run-analysis-analyze-options.png" alt-text="Screenshot of Run analysis and Analyze options buttons in the Document Intelligence Studio."::: 
+# [Document Intelligence Studio](#tab/studio)
 
-     > [!div class="nextstepaction"]
-     > [Try Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/layout).
-     >
+* [Studio](https://documentintelligence.ai.azure.com/studio)
 
-## Language support
+* [How to guide](../studio-overview.md#authentication-in-studio)
 
-*See* our [Language Support—document analysis models](../language-support/ocr.md) page for a complete list of supported languages.
+---
+
 
 ## Data extraction 
 
