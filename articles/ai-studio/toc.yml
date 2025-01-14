@@ -17,6 +17,8 @@ items:
         href: ai-services/how-to/connect-ai-services.md
       - name: Use Azure OpenAI Service in AI Foundry portal
         href: ai-services/how-to/connect-azure-openai.md
+      - name: Use Azure AI Search in AI Foundry portal
+        href: /azure/search/search-what-is-azure-search
     - name: Plan and manage costs for Azure AI Foundry
       href: how-to/costs-plan-manage.md
     - name: Region support
@@ -110,6 +112,8 @@ items:
       href: concepts/retrieval-augmented-generation.md
     - name: Chat with Azure OpenAI models using your own data
       href: ../ai-services/openai/use-your-data-quickstart.md?context=/azure/ai-studio/context/context
+    - name: Index your data in Azure AI Search
+      href: /azure/search/search-what-is-azure-search
   - name:  Speech
     items: 
     - name: What is the Speech service?
@@ -276,6 +280,8 @@ items:
       href:  /how-to/develop/index-build-consume-sdk.md
     - name: Azure OpenAI on your data
       href: ../ai-services/openai/concepts/use-your-data.md?context=/azure/ai-studio/context/context
+    - name: Buil a RAG solution using Azure AI Search
+      href: /azure/search/tutorial-rag-build-solution
   - name: Management center 
     items:
     - name: Management center overview 
