@@ -280,7 +280,7 @@ items:
       href:  /how-to/develop/index-build-consume-sdk.md
     - name: Azure OpenAI on your data
       href: ../ai-services/openai/concepts/use-your-data.md?context=/azure/ai-studio/context/context
-    - name: Buil a RAG solution using Azure AI Search
+    - name: Build a RAG solution using Azure AI Search
       href: /azure/search/tutorial-rag-build-solution
   - name: Management center 
     items:
