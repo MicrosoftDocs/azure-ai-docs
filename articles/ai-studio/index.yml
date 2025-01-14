@@ -1,5 +1,6 @@
 ### YamlMime:Hub
 
+#root section
 title: Azure AI Foundry documentation
 summary: Azure AI Foundry offers a unified AI platform that includes Azure AI Foundry portal (formerly Azure AI Studio) and the Azure AI Foundry SDK, a unified SDK with pre-built app templates enabling developers to access our most popular models through a single interface to easily integrate Azure AI into their apps. 
 brand: azure
