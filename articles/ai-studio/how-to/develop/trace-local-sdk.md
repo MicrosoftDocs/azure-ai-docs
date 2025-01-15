@@ -14,13 +14,11 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# How to trace your application with Azure AI Inference SDK
+# How to trace your application with Azure AI Foundry SDK
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-In this article you'll learn how to trace your application with Azure AI Inference SDK with your choice between using Python, JavaScript, or C#. The Azure AI Inference client library provides support for tracing with OpenTelemetry.
-
-## Enable trace in your application
+In this article you'll learn how to trace your application with Azure AI Foundry SDK with your choice between using Python, JavaScript, or C#. This provides support for tracing with OpenTelemetry.
 
 ### Prerequisites
 
@@ -30,9 +28,73 @@ In this article you'll learn how to trace your application with Azure AI Inferen
 - If using Python, you need Python 3.8 or later installed, including pip.
 - If using JavaScript, the supported environments are LTS versions of Node.js.
 
+## Tracing using Azure AI Foundry Project
+# [Python](#tab/python)
+The best way to get started using the Azure AI Foundry SDK is by using a project. AI projects connect together different data, assets, and services you need to build AI applications. The AI project client allows you to easily access these project components from your code by using a single connection string. First follow steps to [create an AI Project](../create-projects.md) if you don't have one already.
+To enable tracing, first ensure your project has an attached Application Insights resource. Go to the **Tracing** page of your project and follow instructions to create or attach Application Insights. If one was enabled, you can get the Application Insights connection string, and observe the full execution path through Azure Monitor. 
+
+Make sure to install following packages via
+
+```
+pip install opentelemetry-sdk
+pip install azure-core-tracing-opentelemetry
+pip install azure-monitor-opentelemetry
+```
+
+Use the following code to enable instrumentation of the Azure AI Foundry SDK and logging to your AI project:
+
+```Python
+from azure.monitor.opentelemetry import configure_azure_monitor
+
+# Enable instrumentation of AI packages (inference, agents, openai, langchain)
+project.telemetry.enable()
+
+# Log traces to the project's application insights resource
+application_insights_connection_string = project.telemetry.get_connection_string()
+if application_insights_connection_string:
+    configure_azure_monitor(connection_string=application_insights_connection_string)
+```
+In additional, you might find helpful to see the tracing logs in console. You can achieve by the following code:
+
+```Python
+project_client.telemetry.enable(destination=sys.stdout)
+```
+
+# [JavaScript](#tab/javascript)
+
+Tracing is not yet integrated into the projects package. For instructions on how to instrument and log traces from the Azure AI Inferencing package, see [JavaScript samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples/v1-beta/typescript/src).
+
+# [C#](#tab/csharp)
+
+Tracing is not yet integrated into the projects package. For instructions on how to instrument and log traces from the Azure AI Inferencing package, see [azure-sdk-for-dotnet](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Inference/samples/Sample8_ChatCompletionsWithOpenTelemetry.md).
+
+## Enable Tracing for Azure Open AI
+The Azure OpenAI Service provides access to OpenAI's models including the GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, DALLE-3, Whisper, and Embeddings model series with the data residency, scalability, safety, security and enterprise capabilities of Azure. Refer this to learn more on how to get started with [Azure OpenAI Service](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/develop/sdk-overview?tabs=sync&pivots=programming-language-python#azure-openai-service)
+
+### [Python](#tab/python)
+Tracing in Azure Open AI follows Opentelemetry standards as per [opentelemetry-instrumentation-openai-v2 2.0b0](https://pypi.org/project/opentelemetry-instrumentation-openai-v2/) To enable tracing for Azure Open AI, follow following steps:
+
+Install the package `opentelemetry-instrumentation-openai-v2 2.0b0` using your package manager, like pip:
+
+```bash
+  pip install opentelemetry-instrumentation-openai-v2
+```
+
+Once necessary packages are installed, you can easily enable tracing via Azure AI Foundry SDK (refer this: ## Tracing using Azure AI Foundry Project)
+
+### [JavaScript](#tab/javascript)
+Currently this is supported in Python only. 
+
+### [C#](#tab/csharp)
+Currently this is supported in Python only. 
+
+----
+
+## Tracing using Azure AI Inference SDK
+
 ### Installation
 
-# [Python](#tab/python)
+### [Python](#tab/python)
 
 Install the package `azure-ai-inference` using your package manager, like pip:
 
@@ -43,7 +105,7 @@ Install the package `azure-ai-inference` using your package manager, like pip:
 Install the Azure Core OpenTelemetry Tracing plugin, OpenTelemetry, and the OTLP exporter for sending telemetry to your observability backend. To install the necessary packages for Python, use the following pip commands:
 
 ```bash
-pip install opentelemetry 
+pip install opentelemetry-sdk
 
 pip install opentelemetry-exporter-otlp 
 ```
@@ -206,6 +268,37 @@ To configure OpenTelemetry and enable Azure AI Inference tracing follow these st
 ### Tracing your own functions
 
 To trace your own custom functions, you can leverage OpenTelemetry, you'll need to instrument your code with the OpenTelemetry SDK. This involves setting up a tracer provider and creating spans around the code you want to trace. Each span represents a unit of work and can be nested to form a trace tree. You can add attributes to spans to enrich the trace data with additional context. Once instrumented, configure an exporter to send the trace data to a backend for analysis and visualization. For detailed instructions and advanced usage, refer to the [OpenTelemetry documentation](https://opentelemetry.io/docs/). This will help you monitor the performance of your custom functions and gain insights into their execution.
+
+### Using service name in trace data
+
+To identify your service via a unique ID in Application Insights, you can use the service name OpenTelemetry property in your trace data. This is particularly useful if you're logging data from multiple applications to the same Application Insights resource, and you want to differentiate between them. For example, lets say you have two applications: **App-1** and **App-2**, with tracing configured to log data to the same Application Insights resource. Perhaps you'd like to set up **App-1** to be evaluated continuously by **Relevance** and **App-2** to be evaluated continuously by **Groundedness**. You can use the service name to differentiate between the applications in your Online Evaluation configurations.
+
+To set up the service name property, you can do so directly in your application code by following the steps, see  [Using multiple tracer providers with different Resource](https://opentelemetry.io/docs/languages/python/cookbook/#using-multiple-tracer-providers-with-different-resource). Alternatively, you can set the environment variable `OTEL_SERVICE_NAME` prior to deploying your app. To learn more about working with the service name, see [OTEL Environment Variables](https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/#general-sdk-configuration) and [Service Resource Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/resource/#service).
+
+To query trace data for a given service name, query for the `cloud_roleName` property. In case you are leveraging Online Evaluation, add the following line to the KQL query you use within your Online Evaluation set-up:
+
+```sql
+| where cloud_RoleName == "service_name"
+```
+
+## Enable Tracing for Langchain
+
+### [Python](#tab/python)
+You can enable tracing for Langchain that follows Opentelemetry standards as per [opentelemetry-instrumentation-langchain](https://pypi.org/project/opentelemetry-instrumentation-langchain/) To enable tracing for Langchain, follow following steps:
+
+Install the package `opentelemetry-instrumentation-langchain` using your package manager, like pip:
+
+```bash
+  pip install opentelemetry-instrumentation-langchain
+```
+
+Once necessary packages are installed, you can easily enable tracing via Azure AI Foundry SDK (refer this: ## ) [link text](#Tracing-using-Azure-AI-Foundry-Project)
+
+### [JavaScript](#tab/javascript)
+Currently this is supported in Python only. 
+
+### [C#](#tab/csharp)
+Currently this is supported in Python only. 
 
 ## Attach User feedback to traces
 
