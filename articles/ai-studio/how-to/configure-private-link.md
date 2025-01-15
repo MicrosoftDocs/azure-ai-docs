@@ -37,16 +37,28 @@ You get several hub default resources in your resource group. You need to config
 
 ## Create a hub that uses a private endpoint
 
-Use one of the following methods to create a hub with a private endpoint. Each of these methods __requires an existing virtual network__:
+If you are creating a new hub, use the following tabs to select how you are creating the hub (Azure portal or Azure CLI.) Each of these methods __requires an existing virtual network__:
 
 # [Azure portal](#tab/azure-portal)
 
-1. From the [Azure portal](https://portal.azure.com), go to Azure AI Foundry and choose __+ New Azure AI__.
-1. Choose network isolation mode in __Networking__ tab.
+> [!NOTE]
+> The information in this document is only about configuring a private link. For a walkthrough of creating a secure hub in the portal, see [Create a secure hub in the Azure portal](create-secure-ai-hub.md).
+
+1. From the [Azure portal](https://portal.azure.com), search for __Azure AI Foundry__ and create a new resource by selecting __+ New Azure AI__.
+1. After configuring the __Basics__ and __Storage__ tabs, select the __Networking__ tab and pick the __Network isolation__ option that best suits your needs.
+
+    :::image type="content" source="../media/how-to/network/ai-hub-networking.png" alt-text="Screenshot of the Create a hub with the option to set network isolation information." lightbox="../media/how-to/network/ai-hub-networking.png":::
+
 1. Scroll down to __Workspace Inbound access__ and choose __+ Add__.
+
+    :::image type="content" source="../media/how-to/network/workspace-inbound-access.png" alt-text="Screenshot of the workspace inbound access section." lightbox="../media/how-to/network/workspace-inbound-access.png":::
+
 1. Input required fields. When selecting the __Region__, select the same region as your virtual network.
 
 # [Azure CLI](#tab/cli)
+
+> [!NOTE]
+> The information in this section doesn't cover basic hub configuration. For more information, see [Create a hub using the Azure CLI](./develop/create-hub-project-sdk.md?tabs=azurecli).
 
 After creating the hub, use the [Azure networking CLI commands](/cli/azure/network/private-endpoint#az-network-private-endpoint-create) to create a private link endpoint for the hub.
 
