@@ -111,7 +111,7 @@ items:
     - name: Retrieval Augmented Generation (RAG) overview
       href: concepts/retrieval-augmented-generation.md
     - name: Azure OpenAI On Your Data
-      href: ../ai-services/openai/concepts/use-your-data
+      href: ../ai-services/openai/concepts/use-your-data?context=/azure/ai-studio/context/context
     - name: Chat with your data using Azure OpenAI models
       href: ../ai-services/openai/use-your-data-quickstart.md?context=/azure/ai-studio/context/context
     - name: Index your data in Azure AI Search
