@@ -187,6 +187,22 @@ The number of concurrent calls you can achieve depends on each call's shape (pro
 
 ## What models and regions are available for provisioned throughput?
 
+# [Global Provisioned Managed](#tab/global-ptum)
+
+### Global provisioned managed model availability
+
+[!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
+
+# [Data Zone Provisioned Managed](#tab/datazone-provisioned-managed)
+
+### Data zone provisioned managed model availability
+
+[!INCLUDE [Global data zone provisioned managed](../includes/model-matrix/datazone-provisioned-managed.md)]
+
+# [Provisioned Managed](#tab/provisioned)
+
+### Provisioned deployment model availability
+
 [!INCLUDE [Provisioned](../includes/model-matrix/provisioned-models.md)]
 
 > [!NOTE]
