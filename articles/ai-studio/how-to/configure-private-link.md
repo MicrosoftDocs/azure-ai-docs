@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
 ms.topic: how-to
-ms.date: 12/05/2024
+ms.date: 01/15/2025
 ms.reviewer: meerakurup
 ms.author: larryfr
 author: Blackmist
@@ -125,12 +125,17 @@ Use one of the following methods to add a private endpoint to an existing hub:
 # [Azure portal](#tab/azure-portal)
 
 1. From the [Azure portal](https://portal.azure.com), select your hub.
-1. From the left side of the page, select __Networking__ and then select the __Private endpoint connections__ tab.
-1. When selecting the __Region__, select the same region as your virtual network.
-1. When selecting __Resource type__, use `azuremlworkspace`.
-1. Set the __Resource__ to your workspace name.
+1. From the left side of the page, select __Settings__, __Networking__, and then select the __Private endpoint connections__ tab. Select __+ Private endpoint__.
 
-Finally, select __Create__ to create the private endpoint.
+    :::image type="content" source="../media/how-to/network/add-private-endpoint.png" alt-text="Screenshot of the private endpoint connections tab":::
+
+1. When going through the forms to create a private endpoint, be sure to:
+
+    - From __Basics__, select the same the __Region__ as your virtual network.
+    - From __Resource__, select `amlworkspace` as the __target sub-resource__.
+    - From the __Virtual Network__ form, select the virtual network and subnet that you want to connect to.
+ 
+1. After populating the forms with any additional network configurations you require, use the __Review + create__ tab to review your settings and select __Create__ to create the private endpoint.
 
 # [Azure CLI](#tab/cli)
 
@@ -204,8 +209,10 @@ To remove a private endpoint, use the following information:
 # [Azure portal](#tab/azure-portal)
 
 1. From the [Azure portal](https://portal.azure.com), select your hub.
-1. From the left side of the page, select __Networking__ and then select the __Private endpoint connections__ tab.
+1. From the left side of the page, select __Settings__, __Networking__, and then select the __Private endpoint connections__ tab.
 1. Select the endpoint to remove and then select __Remove__.
+
+    :::image type="content" source="../media/how-to/network/remove-private-endpoint.png" alt-text="Screenshot of a selected private endpoint with the remove option highlighted.":::
 
 # [Azure CLI](#tab/cli)
 
