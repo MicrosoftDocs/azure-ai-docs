@@ -64,7 +64,7 @@ As with all the Azure AI services, developers using the Content Understanding se
 ## Next steps
 
 * Try processing your video content using Content Understanding in [Azure AI Foundry portal](https://ai.azure.com/).
-* Learn more about video [**analyzer templates**](../quickstart/use-ai-foundry.md).
+* Learn to analyze video content [**analyzer templates**](../quickstart/use-ai-foundry.md).
 * Review code samples: [**image, text, and table, content extraction**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples).
 * Review code sample: [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
 
