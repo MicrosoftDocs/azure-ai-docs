@@ -107,7 +107,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/cognitive-services-development-options.md",
-      "redirect_url": "/azure/ai-services/ai-services-and-ecosystem",
+      "redirect_url": "/azure/ai-services/what-are-ai-services",
       "redirect_document_id": false
     },
     {
@@ -192,7 +192,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/cognitive-services-and-machine-learning.md",
-      "redirect_url": "/azure/ai-services/ai-services-and-ecosystem",
+      "redirect_url": "/azure/ai-services/what-are-ai-services",
       "redirect_document_id": true
     },
     {
@@ -809,6 +809,11 @@
       "source_path_from_root": "/articles/ai-services/openai/how-to/integrate-synapseml.md",
       "redirect_url": "/azure/ai-services/openai/overview",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/ai-services-and-ecosystem.md",
+      "redirect_url": "/azure/ai-services/what-are-ai-services",
+      "redirect_document_id": false
     }
   ]
 }
