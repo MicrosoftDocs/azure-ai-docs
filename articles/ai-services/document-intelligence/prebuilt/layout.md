@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 01/13/2025
+ms.date: 01/15/2025
 ms.author: lajanuar
 ---
 
@@ -32,7 +32,7 @@ Document structure layout analysis is the process of analyzing a document to ext
 
 The following illustration shows the typical components in an image of a sample page.
 
-:::image type="content" source="../media/document-layout-example-new.png" alt-text="Illustration of document layout example."::: 
+:::image type="content" source="../media/document-layout-example-new.png" alt-text="Illustration of document layout example.":::
 
 ## Development options
 
@@ -47,9 +47,36 @@ Document Intelligence v4.0: **2024-11-30** (GA) supports the following tools, ap
 
 *See* our [Language Support—document analysis models](../language-support/ocr.md) page for a complete list of supported languages.
 
-## Input requirements 
+## Supported file types
 
-[!INCLUDE [input requirements](./../includes/input-requirements.md)]
+Document Intelligence v4.0: **2024-11-30** (GA) layout model supports the following file formats:
+
+    |Model | PDF |Image: </br>`JPEG/JPG`, `PNG`, `BMP`, `TIFF`, `HEIF` | Microsoft Office: </br> Word (`DOCX`), Excel (`XLSX`), PowerPoint (`PPTX`), HTML|
+    |--------|:----:|:-----:|:---------------:|
+    |Layout          | ✔  | ✔ | ✔  |
+
+## Input guidance
+
+* For best results, provide one clear photo or high-quality scan per document.
+
+* For PDF and TIFF, up to 2,000 pages can be processed (with a free tier subscription, only the first two pages are processed).
+
+* If your PDFs are password-locked, you must remove the lock before submission.
+
+* The file size for analyzing documents is 500 MB for paid (S0) tier and `4` MB for free (F0) tier.
+
+* Image dimensions must be between 50 pixels x 50 pixels and 10,000 pixels x 10,000 pixels.
+
+* The minimum height of the text to be extracted is 12 pixels for a 1024 x 768 pixel image. This dimension corresponds to about `8` point text at 150 dots per inch (DPI).
+
+* For custom model training, the maximum number of pages for training data is 500 for the custom template model and 50,000 for the custom neural model.
+
+  * For custom extraction model training, the total size of training data is 50 MB for template model and `1` GB for the neural model.
+
+  * For custom classification model training, the total size of training data is `1` GB  with a maximum of 10,000 pages. For `2024-11-30` (GA), the total size of training data is `2` GB with a maximum of 10,000 pages.
+
+For more information on model usage, quotas, and service limits, *see* [service limits](../service-limits.md).
+
 
 ### Get started with Layout model
 
@@ -80,22 +107,9 @@ See how data, including text, tables, table headers, selection marks, and struct
 
 * [Studio](https://documentintelligence.ai.azure.com/studio)
 
-* [How to guide](../studio-overview.md#authentication-in-studio)
+* [How-to guide](../studio-overview.md#authentication-in-studio)
 
 ---
-
-
-## Data extraction 
-
-The layout model extracts text, selection marks, tables, paragraphs, and paragraph types (`roles`) from your documents.
-
-> [!NOTE]
-> Document Intelligence v4.0 (2024-11-30 (GA)) and later support Microsoft office (DOCX, XLSX, PPTX) and HTML files. The following features are not supported:
->
-> * There are no angle, width/height and unit with each page object.
-> * For each object detected, there is no bounding polygon or bounding region.
-> * Page range (`pages`) is not supported as a parameter.
-> * No `lines` object.
 
 #### Pages
 
@@ -122,7 +136,7 @@ print(f"Page has width: {page.width} and height: {page.height}, measured with un
 ```
 
 > [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Layout_model/sample_analyze_layout.py) 
+> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Layout_model/sample_analyze_layout.py)
 
 #### [Output](#tab/output)
 
@@ -199,7 +213,7 @@ The new machine-learning based page object detection extracts logical roles like
 
 The document layout model in Document Intelligence extracts print and handwritten style text as `lines` and `words`. The `styles` collection ../includes any handwritten style for lines if detected along with the spans pointing to the associated text. This feature applies to [supported handwritten languages](../language-support/prebuilt.md).
 
-For Microsoft Word, Excel, PowerPoint, and HTML, Document Intelligence v4.0 2024-11-30 (GA) Layout model extract all embedded text as is. Texts are extracted as words and paragraphs. Embedded images aren't supported.
+For Microsoft Word, Excel, PowerPoint, and HTML, Document Intelligence v4.0 `2024-11-30` (GA) Layout model extract all embedded text as is. Texts are extracted as words and paragraphs. Embedded images aren't supported.
 
 #### [Sample code](#tab/sample-code)
 
@@ -220,7 +234,7 @@ if page.lines:
 ```
 
 > [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Layout_model/sample_analyze_layout.py) 
+> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Layout_model/sample_analyze_layout.py)
 
 #### [Output](#tab/output)
 
@@ -282,7 +296,7 @@ if page.selection_marks:
 ```
 
 > [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Layout_model/sample_analyze_layout.py) 
+> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Layout_model/sample_analyze_layout.py)
 
 #### [Output](#tab/output)
 
@@ -320,8 +334,8 @@ Here are a few factors to consider when using the Document Intelligence bale ext
 
 > [!NOTE]
 >
-> * Table analysis is not supported if the input file is XLSX.
-> * For *2024-11-30 (GA)*, the bounding regions for figures and tables cover only the core content and exclude associated caption and footnotes.
+> * Table analysis isn't supported if the input file is XLSX.
+> * For `2024-11-30` (GA), the bounding regions for figures and tables cover only the core content and exclude associated caption and footnotes.
 
 #### [Sample code](#tab/sample-code)
 
@@ -342,7 +356,7 @@ if result.tables:
 ```
 
 > [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Layout_model/sample_analyze_layout.py) 
+> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Layout_model/sample_analyze_layout.py)
 
 #### [Output](#tab/output)
 
@@ -376,7 +390,7 @@ if result.tables:
 The Layout API can output the extracted text in markdown format. Use the `outputContentFormat=markdown` to specify the output format in markdown. The markdown content is output as part of the `content` section.
 
 > [!NOTE]
-> For v4.0 *2024-11-30 (GA)*, the representation of tables is changed to HTML tables to enable rendering of merged cells, multi-row headers, etc. Another related change is to use Unicode checkbox characters ☒ and ☐ for selection marks instead of :selected: and :unselected:.  Note that this means that the content of selection mark fields will contain :selected: even though their spans refer to Unicode characters in the top-level span.
+> For v4.0 `2024-11-30` (GA), the representation of tables is changed to HTML tables to enable rendering of merged cells, multi-row headers, etc. Another related change is to use Unicode checkbox characters ☒ and ☐ for selection marks instead of `:selected:` and `:unselected:`. Thus, the content of selection mark fields contains `:selected:` even though their spans refer to Unicode characters in the top-level span.
 
 #### [Sample code](#tab/sample-code)
 
@@ -391,12 +405,12 @@ poller = document_intelligence_client.begin_analyze_document(
 ```
 
 > [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/samples/sample_analyze_documents_output_in_markdown.py) 
+> [View samples on GitHub.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/samples/sample_analyze_documents_output_in_markdown.py)
 
 #### [Output](#tab/output)
 
 ```Markdown
-PageHeader="This is the header of the document." 
+PageHeader="This is the header of the document."
 
 This is title
 ===
@@ -418,7 +432,7 @@ Figure 1: Here is a figure with text
 </figcaption>
 
 ![](figures/0)
-FigureContent="500 450 400 400 350 250 200 200 200- Feb" 
+FigureContent="500 450 400 400 350 250 200 200 200- Feb"
 </figure>
 
 # 3\. Others
@@ -435,8 +449,8 @@ coherent
 Incomprehensible
 Turn documents into usable data and shift your focus to acting on information rather than compiling it. Start with prebuilt models or create custom models tailored to your documents both on premises and in the cloud with the Al Document Intelligence studio or SDK.
 Learn how to accelerate your business processes by automating text extraction with Al Document Intelligence. This webinar features hands-on demos for key use cases such as document processing, knowledge mining, and industry-specific Al model customization.
-PageFooter="This is the footer of the document." 
-PageFooter="1 | Page" 
+PageFooter="This is the footer of the document."
+PageFooter="1 | Page"
 ```
 
 ---
@@ -449,7 +463,7 @@ When *output=figures* is specified during the initial analyze operation, the ser
 `FigureId` is included in each figure object, following an undocumented convention of `{pageNumber}.{figureIndex}` where `figureIndex` resets to one per page.
 
 > [!NOTE]
-> For v4.0 *2024-11-30 (GA)*, the bounding regions for figures and tables cover only the core content and exclude associated caption and footnotes.
+> For v4.0 `2024-11-30` (GA), the bounding regions for figures and tables cover only the core content and exclude associated caption and footnotes.
 
 #### [Sample code](#tab/sample-code)
 
@@ -463,7 +477,7 @@ if result.figures:
 ```
 
 > [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Layout_model/sample_analyze_layout.py) 
+> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Layout_model/sample_analyze_layout.py)
 
 #### [Output](#tab/output)
 
@@ -491,7 +505,7 @@ if result.figures:
 }
 ```
 
-:::image type="content" source="../media/document-layout-example-figures.png" alt-text="Screenshot of examples of document figures."::: 
+:::image type="content" source="../media/document-layout-example-figures.png" alt-text="Screenshot of examples of document figures.":::
 
 ---
 
@@ -512,7 +526,7 @@ poller = document_intelligence_client.begin_analyze_document(
 ```
 
 > [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/samples/sample_analyze_documents_output_in_markdown.py) 
+> [View samples on GitHub.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/samples/sample_analyze_documents_output_in_markdown.py)
 
 #### [Output](#tab/output)
 
@@ -532,7 +546,7 @@ poller = document_intelligence_client.begin_analyze_document(
 }
 ```
 
-:::image type="content" source="../media/document-layout-example-section.png" alt-text="Screenshot of examples of document sections."::: 
+:::image type="content" source="../media/document-layout-example-section.png" alt-text="Screenshot of examples of document sections.":::
 
 ---
 
@@ -563,7 +577,7 @@ Document structure layout analysis is the process of analyzing a document to ext
 
 The following illustration shows the typical components in an image of a sample page.
 
-:::image type="content" source="../media/document-layout-example-new.png" alt-text="Illustration of document layout example."::: 
+:::image type="content" source="../media/document-layout-example-new.png" alt-text="Illustration of document layout example.":::
 
 ## Development options
 
@@ -621,7 +635,7 @@ See how data, including text, tables, table headers, selection marks, and struct
 
 * A [Document Intelligence instance](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) in the Azure portal. You can use the free pricing tier (`F0`) to try the service. After your resource deploys, select **Go to resource** to get your key and endpoint.
 
-:::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal."::: 
+:::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
 
 :::moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
 
@@ -630,7 +644,7 @@ See how data, including text, tables, table headers, selection marks, and struct
 
 ***Sample document processed with [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/layout)***
 
-:::image type="content" source="../media/studio/form-recognizer-studio-layout-newspaper.png" alt-text="Screenshot of `Layout` processing a newspaper page in Document Intelligence Studio."::: 
+:::image type="content" source="../media/studio/form-recognizer-studio-layout-newspaper.png" alt-text="Screenshot of `Layout` processing a newspaper page in Document Intelligence Studio.":::
 
 1. On the [Document Intelligence Studio home page](https://documentintelligence.ai.azure.com/studio), select **Layout**.
 
@@ -641,7 +655,7 @@ See how data, including text, tables, table headers, selection marks, and struct
     :::image type="content" source="../media/studio/run-analysis-analyze-options.png" alt-text="Screenshot of Run analysis and Analyze options buttons in the Document Intelligence Studio.":::
 
    > [!div class="nextstepaction"]
-   > [Try Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/layout). 
+   > [Try Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/layout).
 
 :::moniker-end
 
@@ -696,11 +710,11 @@ Document Intelligence v2.1 supports the following tools, applications, and libra
 The layout model extracts text, selection marks, tables, paragraphs, and paragraph types (`roles`) from your documents.
 
 > [!NOTE]
-> Document Intelligence v4.0 *2024-11-30 (GA)* supports Microsoft office (DOCX, XLSX, PPTX) and HTML files. The following features are not supported:
+> Document Intelligence v4.0 `2024-11-30` (GA) supports Microsoft office (DOCX, XLSX, PPTX) and HTML files. The following features aren't supported:
 >
-> * There are no angle, width/height and unit with each page object.
-> * For each object detected, there is no bounding polygon or bounding region.
-> * Page range (`pages`) is not supported as a parameter.
+> * There's no angle, width/height, or unit with each page object.
+> * For each object detected, there isn't a bounding polygon or bounding region.
+> * Page range (`pages`) isn't supported as a parameter.
 > * No `lines` object.
 
 ### Pages
@@ -753,7 +767,7 @@ for page in result.pages:
 ```
 
 > [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/v3.1(2023-07-31-GA)/Python(v3.1)/Layout_model/sample_analyze_layout.py) 
+> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/v3.1(2023-07-31-GA)/Python(v3.1)/Layout_model/sample_analyze_layout.py)
 
 #### [Output](#tab/output)
 
@@ -833,7 +847,7 @@ The new machine-learning based page object detection extracts logical roles like
 
 The document layout model in Document Intelligence extracts print and handwritten style text as `lines` and `words`. The `styles` collection ../includes any handwritten style for lines if detected along with the spans pointing to the associated text. This feature applies to [supported handwritten languages](../language-support/prebuilt.md).
 
-For Microsoft Word, Excel, PowerPoint, and HTML, Document Intelligence v4.0 2024-11-30 (GA) Layout model extract all embedded text as is. Texts are extracted as words and paragraphs. Embedded images aren't supported.
+For Microsoft Word, Excel, PowerPoint, and HTML, Document Intelligence v4.0 `2024-11-30` (GA) Layout model extract all embedded text as is. Texts are extracted as words and paragraphs. Embedded images aren't supported.
 
 :::moniker-end
 
@@ -881,7 +895,7 @@ for line_idx, line in enumerate(page.lines):
 ```
 
 > [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/v3.1(2023-07-31-GA)/Python(v3.1)/Layout_model/sample_analyze_layout.py) 
+> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/v3.1(2023-07-31-GA)/Python(v3.1)/Layout_model/sample_analyze_layout.py)
 
 #### [Output](#tab/output)
 
@@ -969,7 +983,7 @@ for selection_mark in page.selection_marks:
 ```
 
 > [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/v3.1(2023-07-31-GA)/Python(v3.1)/Layout_model/sample_analyze_layout.py) 
+> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/v3.1(2023-07-31-GA)/Python(v3.1)/Layout_model/sample_analyze_layout.py)
 
 #### [Output](#tab/output)
 
@@ -1010,8 +1024,8 @@ Here are a few factors to consider when using the Document Intelligence bale ext
 
 > [!NOTE]
 >
-> * Table analysis is not supported if the input file is XLSX.
- > * Document Intelligence v4.0 2024-11-30 (GA) supports bounding regions for figures and tables that cover only the core content and exclude associated caption and footnotes.
+> * Table analysis isn't supported if the input file is XLSX.
+ > * Document Intelligence v4.0 `2024-11-30` (GA) supports bounding regions for figures and tables that cover only the core content and exclude associated caption and footnotes.
 
 :::moniker-end
 
@@ -1069,7 +1083,7 @@ for table_idx, table in enumerate(result.tables):
 ```
 
 > [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/v3.1(2023-07-31-GA)/Python(v3.1)/Layout_model/sample_analyze_layout.py) 
+> [View samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/v3.1(2023-07-31-GA)/Python(v3.1)/Layout_model/sample_analyze_layout.py)
 
 #### [Output](#tab/output)
 
