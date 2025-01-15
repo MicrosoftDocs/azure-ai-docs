@@ -519,13 +519,13 @@ services:
       apikey: ${FORM_RECOGNIZER_KEY}
       billing: ${FORM_RECOGNIZER_ENDPOINT_URI}
       Logging:Console:LogLevel:Default: Information
-      SharedRootFolder: /shared
-      Mounts:Shared: /shared
+      SharedRootFolder: /share
+      Mounts:Shared: /share
       Mounts:Output: /logs
     volumes:
       - type: bind
         source: ${SHARED_MOUNT_PATH}
-        target: /shared
+        target: /share
       - type: bind
         source: ${OUTPUT_MOUNT_PATH}
         target: /logs
@@ -544,13 +544,13 @@ services:
       apikey: ${FORM_RECOGNIZER_KEY}
       billing: ${FORM_RECOGNIZER_ENDPOINT_URI}
       Logging:Console:LogLevel:Default: Information
-      SharedRootFolder: /shared
-      Mounts:Shared: /shared
+      SharedRootFolder: /share
+      Mounts:Shared: /share
       Mounts:Output: /logs
     volumes:
       - type: bind
         source: ${SHARED_MOUNT_PATH}
-        target: /shared
+        target: /share
       - type: bind
         source: ${OUTPUT_MOUNT_PATH}
         target: /logs
