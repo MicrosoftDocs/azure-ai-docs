@@ -67,6 +67,3 @@ As with all the Azure AI services, developers using the Content Understanding se
 * Learn to analyze video content [**analyzer templates**](../quickstart/use-ai-foundry.md).
 * Review code samples: [**image, text, and table, content extraction**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples).
 * Review code sample: [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
-
-
-

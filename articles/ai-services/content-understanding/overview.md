@@ -85,7 +85,3 @@ Our quickstart guides help you quickly start using the Content Understanding ser
 * [**Azure AI Foundry portal Quickstart**](quickstart/use-ai-foundry.md)
 * [**Rest API Quickstart**](quickstart/use-rest-api.md)
 
-
-
-
-
