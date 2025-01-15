@@ -231,6 +231,12 @@ All deployments can perform the exact same inference operations, however the bil
 
 [!INCLUDE [Global data zone provisioned managed](../includes/model-matrix/datazone-provisioned-managed.md)]
 
+# [Data Zone Batch](#tab/datazone-batch)
+
+### Data zone batch model availability
+
+[!INCLUDE [Data zone batch](../includes/model-matrix/global-batch-datazone.md)]
+
 # [Standard](#tab/standard)
 
 ### Standard deployment model availability
@@ -264,7 +270,7 @@ This table doesn't include fine-tuning regional availability information.  Consu
 
 #### Select customer access
 
-In addition to the regions above which are available to all Azure OpenAI customers, some select pre-existing customers have been granted access to versions of GPT-4 in additional regions:
+In addition to the regions above which are available to all Azure OpenAI customers, some select preexisting customers have been granted access to versions of GPT-4 in additional regions:
 
 | Model | Region |  
 |---|:---|  
