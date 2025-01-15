@@ -55,9 +55,11 @@ az network private-endpoint create \
     --name <private-endpoint-name> \
     --vnet-name <vnet-name> \
     --subnet <subnet-name> \
-    --private-connection-resource-id "/subscriptions/<subscription>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>" \
+    --private-connection-resource-id "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>" \
     --group-id amlworkspace \
-    --connection-name workspace -l <location>
+    --connection-name workspace \
+    --location <location> \
+    --resource-group <resource-group-name>
 ```
 
 To create the private DNS zone entries for the workspace, use the following commands:
@@ -127,9 +129,11 @@ az network private-endpoint create \
     --name <private-endpoint-name> \
     --vnet-name <vnet-name> \
     --subnet <subnet-name> \
-    --private-connection-resource-id "/subscriptions/<subscription>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>" \
+    --private-connection-resource-id "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>" \
     --group-id amlworkspace \
-    --connection-name workspace -l <location>
+    --connection-name workspace \
+    --location <location> \
+    --resource-group <resource-group-name>
 ```
 
 To create the private DNS zone entries for the workspace, use the following commands:

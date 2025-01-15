@@ -5,11 +5,10 @@ author: glharper
 ms.author: glharper
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 10/22/2024
+ms.date: 01/10/2025
 ---
 
 [!INCLUDE [Set up required variables](./use-your-data-common-variables.md)]
-
 
 
 ## Initialize a Node.js application
@@ -25,7 +24,7 @@ npm init
 Install the Azure OpenAI client and Azure Identity libraries for JavaScript with npm:
 
 ```console
-npm install @azure/openai @azure/identity
+npm install openai @azure/identity
 ```
 
 Your app's _package.json_ file will be updated with the dependencies.
@@ -52,7 +51,7 @@ Your app's _package.json_ file will be updated with the dependencies.
 
     // Required Azure OpenAI deployment name and API version
     const deploymentName = "gpt-4";
-    const apiVersion = "2024-07-01-preview";
+    const apiVersion = "2024-10-21";
     
     function getClient() {
       return new AzureOpenAI({
@@ -140,7 +139,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     
     // Required Azure OpenAI deployment name and API version
     const deploymentName = "gpt-4";
-    const apiVersion = "2024-07-01-preview";
+    const apiVersion = "2024-10-21";
     
     function getClient() {
       return new AzureOpenAI({

@@ -134,7 +134,7 @@ Azure AI Foundry enables users to make use of Vector Indexes and Retrieval Augme
 
 ### Regional availability of offers and models 
 
-PPay-as-you-go billing is available only to users whose Azure subscription belongs to a billing account in a country where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a Hub/Project in the Azure region where the model is available for deployment or fine-tuning, as applicable. See [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md) for detailed information.
+PPay-as-you-go billing is available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a Hub/Project in the Azure region where the model is available for deployment or fine-tuning, as applicable. See [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md) for detailed information.
 
 
 

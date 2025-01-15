@@ -53,7 +53,7 @@ You can run multiple feature evaluations over various periods of time that your 
 
 ### Features with a high importance score
 
-Features with higher importance scores were more influential to the model during the evaluation period as compared to the other features. Important features can provide inspiration for designing additional features to be included in the model. For example, if you see the context features "IsWeekend" or "IsWeekday" have high importance for grocery shopping, it may be the case that holidays or long-weekends may also be important factors, so you may want to consider adding features that capture this information.
+Features with higher importance scores were more influential to the model during the evaluation period as compared to the other features. Important features can provide inspiration for designing additional features to be included in the model. For example, if you see the context features "IsWeekend" or "IsWeekday" have high importance for grocery shopping, it may be the case that holidays or long-weekends may also be important factors, so you might want to consider adding features that capture this information.
 
 ### Features with a low importance score
 

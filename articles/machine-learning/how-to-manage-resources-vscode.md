@@ -208,7 +208,7 @@ Alternatively, use the `> Azure ML: View Experiment in Studio` command respectiv
 
 ### Track job progress
 
-As you're running your job, you may want to see its progress. To track the progress of a job in Azure Machine Learning studio from the extension:
+As you're running your job, you might want to see its progress. To track the progress of a job in Azure Machine Learning studio from the extension:
 
 1. Expand the subscription node that contains your workspace.
 1. Expand the **Experiments** node inside your workspace.
@@ -218,7 +218,7 @@ As you're running your job, you may want to see its progress. To track the progr
 
 ### Download job logs & outputs
 
-Once a job is complete, you may want to download the logs and assets such as the model generated as part of a job.
+Once a job is complete, you might want to download the logs and assets such as the model generated as part of a job.
 
 1. Expand the subscription node that contains your workspace.
 1. Expand the **Experiments** node inside your workspace.

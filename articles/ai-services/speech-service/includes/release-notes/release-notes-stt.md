@@ -49,7 +49,7 @@ Language learning is now available in public preview. Interactive language learn
 
 #### Pronunciation assessment
 
-Speech [pronunciation assessment](../../how-to-pronunciation-assessment.md) now supports 33 languages generally available, and each language is available on all Speech to text [regions](../../regions.md#speech-service). For more information, see the full [language list for Pronunciation assessment](../../language-support.md?tabs=pronunciation-assessment).
+Speech [pronunciation assessment](../../how-to-pronunciation-assessment.md) now supports 33 languages generally available, and each language is available on all Speech to text [regions](../../regions.md#regions). For more information, see the full [language list for Pronunciation assessment](../../language-support.md?tabs=pronunciation-assessment).
 
 | Language | Locale (BCP-47) | 
 |--|--|

@@ -248,7 +248,7 @@ To find the internal IP addresses for the FQDNs in the VNet, use one of the foll
         The value returned will follow the format `https://<project-workspace-id>.workspace.<region>.api.azureml.ms/mlflow/<version>/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<project-workspace-name>`.
 
     1. Take the FQDNs returned from the hub workspace that end in `workspace.<region>.api.azureml.ms` and `workspace.<region>.cert.api.azureml.ms`. Replace the GUID value at the beginning of these FQDNs with the project workspace ID. These FQDNs are in addition to the hub workspace FQDNs.
-    1. Take the FQDN returned from the hub workspace that follows the format in `<workspace-name>-<region>-<GUID>.<region>.notebooks.azure.net`. Replace the GUID value with the project workspace ID. Replace the hub workspace name with the project workspace name. You may need to truncate the workspace name to keep this entry at 63 characters or less. This FQDN is in addition to the hub workspace FQDN.
+    1. Take the FQDN returned from the hub workspace that follows the format in `<workspace-name>-<region>-<GUID>.<region>.notebooks.azure.net`. Replace the GUID value with the project workspace ID. Replace the hub workspace name with the project workspace name. You might need to truncate the workspace name to keep this entry at 63 characters or less. This FQDN is in addition to the hub workspace FQDN.
     
 # [Azure PowerShell](#tab/azure-powershell)
 
@@ -635,7 +635,7 @@ For more information on the `hosts` file, see [https://wikipedia.org/wiki/Hosts_
 
 ## Dependency services DNS resolution
 
-The services that your workspace relies on may also be secured using a private endpoint. If so, then you may need to create a custom DNS record if you need to directly communicate with the service. For example, if you want to directly work with the data in an Azure Storage Account used by your workspace.
+The services that your workspace relies on may also be secured using a private endpoint. If so, then you might need to create a custom DNS record if you need to directly communicate with the service. For example, if you want to directly work with the data in an Azure Storage Account used by your workspace.
 
 > [!NOTE]
 > Some services have multiple private-endpoints for sub-services or features. For example, an Azure Storage Account may have individual private endpoints for Blob, File, and DFS. If you need to access both Blob and File storage, then you must enable resolution for each specific private endpoint.

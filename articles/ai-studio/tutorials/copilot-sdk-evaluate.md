@@ -1,5 +1,5 @@
 ---
-title: "Part 3: Evaluate and deploy chat app with the Azure AI SDK"
+title: "Part 3: Evaluate a chat app with the Azure AI SDK"
 titleSuffix: Azure AI Foundry
 description: Evaluate and deploy a custom chat app with the prompt flow SDK. This tutorial is part 3 of a 3-part tutorial series.
 manager: scottpolly
@@ -99,7 +99,7 @@ In Part 1 of this tutorial series, you created an **.env** file that specifies t
 1. Install the required package:
 
     ```bash
-    pip install azure-ai-evaluation
+    pip install azure-ai-evaluation[remote]
     ```
 
 1. Now run the evaluation script:

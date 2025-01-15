@@ -151,6 +151,10 @@ response_json = json.loads(response)
 print(json.dumps(response_json, indent=2))
 ```
 
+## Configure Autoscaling
+
+To configure autoscaling for deployments, you can go to Azure Portal, locate the Azure resource typed `Machine learning online deployment` in the resource group of the AI project, and use Scaling menu under Setting. For more information on autoscaling, see [Autoscale online endpoints](/azure/machine-learning/how-to-autoscale-endpoints) in the Azure Machine Learning documentation. 
+
 ## Delete the deployment endpoint
 
 To delete deployments in Azure AI Foundry portal, select the **Delete** button on the top panel of the deployment details page.

@@ -42,7 +42,7 @@ Learn what's new in the service. These items may be release notes, videos, blog 
 
 ### Subset training
 
-* When training an object detection project, you can optionally train on only a subset of your applied tags. You may want to do this if you haven't applied enough of certain tags yet, but you do have enough of others. Follow the [Client library quickstart](./quickstarts/object-detection.md) for C# or Python to learn more.
+* When training an object detection project, you can optionally train on only a subset of your applied tags. You might want to do this if you haven't applied enough of certain tags yet, but you do have enough of others. Follow the [Client library quickstart](./quickstarts/object-detection.md) for C# or Python to learn more.
 
 ### Azure storage notifications
 

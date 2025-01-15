@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: tutorial
-ms.date: 10/04/2024
+ms.date: 01/09/2025
 ---
 
 # Tutorial: Search your data using a chat model (RAG in Azure AI Search)
@@ -167,16 +167,10 @@ search_results = search_client.search(
     vector_queries= [vector_query],
     filter="search.ismatch('ice*', 'locations', 'full', 'any')",
     select=["title", "chunk", "locations"],
-    top=5,
+    top=5
 )
 
 sources_formatted = "=================\n".join([f'TITLE: {document["title"]}, CONTENT: {document["chunk"]}, LOCATIONS: {document["locations"]}' for document in search_results])
-
-search_results = search_client.search(
-    search_text=query,
-    top=10,
-    filter="search.ismatch('ice*', 'locations', 'full', 'any')",
-    select="title, chunk, locations"
 ```
 
 Results from the filtered query should now look similar to the following response. Notice the emphasis on ice cover.

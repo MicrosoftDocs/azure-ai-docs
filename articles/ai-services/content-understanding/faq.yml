@@ -66,4 +66,4 @@ sections:
       - question: |
          What are the pricing tier options for Content Understanding
         answer: |
-          Content Understanding only supports Standard S0 pricing tier. See more details on the pricing page.
+          Content Understanding only supports Standard S0 pricing tier. See more details on the [**Content Understanding pricing page**](https://azure.microsoft.com/pricing/details/content-understanding/).

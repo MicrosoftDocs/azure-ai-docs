@@ -1,9 +1,9 @@
 ---
-author: trrwilson
+author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 05/25/2020
-ms.author: trrwilson
+ms.date: 1/6/2025
+ms.author: eur
 ---
 
 ## Prerequisites
@@ -17,9 +17,9 @@ Before you get started:
 > * Make sure that you have access to a microphone for audio capture
 >
   > [!NOTE]
-  > Please refer to [the list of supported regions for voice assistants](~/articles/ai-services/speech-service/regions.md#voice-assistants) and ensure your resources are deployed in one of those regions.
+  > Refer to [the list of supported regions for voice assistants](~/articles/ai-services/speech-service/regions.md#regions) and ensure your resources are deployed in one of those regions.
 
-## Setup your environment
+## Set up your environment
 
 Update the go.mod file with the latest SDK version by adding this line
 ```sh
@@ -29,11 +29,11 @@ require (
 ```
 
 ## Start with some boilerplate code
-Replace the contents of your source file (e.g. `quickstart.go`) with the below, which includes:
+Replace the contents of your source file (for example, `quickstart.go`) with the below, which includes:
 
 - "main" package definition
 - importing the necessary modules from the Speech SDK
-- variables for storing the bot information that will be replaced later in this quickstart
+- variables for storing the bot information that is replaced later in this quickstart
 - a simple implementation using the microphone for audio input
 - event handlers for various events that take place during a speech interaction
 
@@ -100,7 +100,7 @@ Replace the `YOUR_SUBSCRIPTION_KEY` and `YOUR_BOT_REGION` values with actual val
     - Use the Region identifier as the `YOUR_BOT_REGION` value replacement, for example: `"westus"` for **West US**
 
    > [!NOTE]
-   > Please refer to [the list of supported regions for voice assistants](~/articles/ai-services/speech-service/regions.md#voice-assistants) and ensure your resources are deployed in one of those regions.
+   > Refer to [the list of supported regions for voice assistants](~/articles/ai-services/speech-service/regions.md#regions) and ensure your resources are deployed in one of those regions.
 
    > [!NOTE]
    > For information on configuring your bot, see the Bot Framework documentation for [the Direct Line Speech channel](/azure/bot-service/bot-service-channel-connect-directlinespeech).
@@ -108,16 +108,16 @@ Replace the `YOUR_SUBSCRIPTION_KEY` and `YOUR_BOT_REGION` values with actual val
 ## Code explanation
 The Speech subscription key and region are required to create a speech configuration object. The configuration object is needed to instantiate a speech recognizer object.
 
-The recognizer instance exposes multiple ways to recognize speech. In this example, speech is continuously recognized. This functionality lets the Speech service know that you're sending many phrases for recognition, and when the program terminates to stop recognizing speech. As results are yielded, the code will write them to the console.
+The recognizer instance exposes multiple ways to recognize speech. In this example, speech is continuously recognized. This functionality lets the Speech service know that you're sending many phrases for recognition, and when the program terminates to stop recognizing speech. As results are yielded, the code writes them to the console.
 
 ## Build and run
 You're now set up to build your project and test your custom voice assistant using the Speech service.
-1. Build your project, e.g. **"go build"**
+1. Build your project, for example **"go build"**
 2. Run the module and speak a phrase or sentence into your device's microphone. Your speech is transmitted to the Direct Line Speech channel and transcribed to text, which appears as output.
 
 
 > [!NOTE]
-> The Speech SDK will default to recognizing using en-us for the language, see [How to recognize speech](../../../../how-to-recognize-speech.md) for information on choosing the source language.
+> The Speech SDK defaults to recognizing using en-us for the language, see [How to recognize speech](../../../../how-to-recognize-speech.md) for information on choosing the source language.
 
 ## Next steps
 
