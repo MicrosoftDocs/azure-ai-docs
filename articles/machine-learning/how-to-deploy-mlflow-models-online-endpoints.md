@@ -8,7 +8,7 @@ ms.subservice: inferencing
 author: msakande
 ms.author: mopeakande
 ms.reviewer: fasantia
-ms.date: 01/31/2024
+ms.date: 01/16/2025
 ms.topic: how-to
 ms.custom: deploy, mlflow, devplatv2, no-code-deployment, devx-track-azurecli, cliv2, update-code
 ---
