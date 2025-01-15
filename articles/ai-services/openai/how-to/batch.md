@@ -40,7 +40,7 @@ Key use cases include:
 
 ## Batch support
 
-# [Batch](#tab/global-batch)
+# [Global Batch](#tab/global-batch)
 
 ### Global batch model availability
 
@@ -90,7 +90,8 @@ The following aren't currently supported:
 
 ### Batch deployment
 
-In the Azure AI Foundry portal the deployment the batch deployment types will appear as `Global-Batch` and `Data Zone Batch`.
+> [!NOTE]
+> In the Azure AI Foundry portal the batch deployment types will appear as `Global-Batch` and `Data Zone Batch`. To learn more about Azure OpenAI deployment types, see our [deployment types guide](../how-to/deployment-types.md).
 
 :::image type="content" source="../media/how-to/global-batch/global-batch.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Foundry portal with Global-Batch deployment type highlighted." lightbox="../media/how-to/global-batch/global-batch.png":::
 
