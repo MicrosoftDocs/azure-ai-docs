@@ -19,6 +19,8 @@ ms.date: 11/13/2024
 
 [!INCLUDE [bicep-setup](bicep-setup.md)]
 
+[!INCLUDE [rbac-roles](rbac-roles.md)]
+
 ## Configure and run an agent
 
 | Component | Description                                                                                                                                                                                                                               |
