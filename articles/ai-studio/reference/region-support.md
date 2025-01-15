@@ -5,7 +5,7 @@ description: This article lists Azure AI Foundry feature availability across clo
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: conceptual
-ms.date: 5/21/2024
+ms.date: 01/15/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -14,13 +14,11 @@ ms.custom: references_regions, build-2024
 
 # Azure AI Foundry feature availability across clouds regions
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
-
 Azure AI Foundry brings together various Azure AI capabilities that previously were only available as standalone Azure services. While we strive to make all features available in all regions where Azure AI Foundry is supported at the same time, feature availability may vary by region. In this article, you'll learn what Azure AI Foundry features are available across cloud regions.  
 
 ## Azure Public regions
 
-Azure AI Foundry is currently available in the following Azure regions. You can create [Azure AI Foundry hubs](../how-to/create-azure-ai-resource.md) and Azure AI Foundry projects in these regions.
+Azure AI Foundry is currently available in the following Azure regions. You can create [projects in Azure AI Foundry portal](../how-to/create-projects.md) in these regions.
 
 - Australia East
 - Brazil South
