@@ -121,7 +121,7 @@ Both managed network isolation and custom network isolation are similar offering
 | --- | --- |
 | - Network is dedicated to you and not shared with any other customers. </br>- Data is protected in the virtual network. </br>- Full control on egress with outbound rules. </br>- Required ServiceTags. | - Where the virtual network is hosted; in your tenant for custom network isolation or in the Microsoft tenant for managed network isolation. |
 
-To make the right decision on which networking set-up works best for your scenario, consider what features within Azure Machine Learning you want to use. For more information regarding the differences between our network isolation offerings, see [Insert new doc link here].
+To make the right decision on which networking set-up works best for your scenario, consider what features within Azure Machine Learning you want to use. For more information regarding the differences between our network isolation offerings, see [Compare network isolation configurations](concept-network-isolation-configurations.md).
 
 ### Comparison of configurations
 
@@ -173,7 +173,7 @@ In this diagram, your main virtual network requires the IPs for private endpoint
 
 ### Network policy enforcement
 
-You can use built-in policies if you want to control network isolation parameters with self-service workspace and computing resources creation or create a custom policy for more fine-grained controls. For more on policies, see [insert link for built-in policies in Azure Machine Learning].  
+You can use built-in policies if you want to control network isolation parameters with self-service workspace and computing resources creation or create a custom policy for more fine-grained controls. For more on policies, see [Azure Policy regulatory compliance controls](security-controls-policy.md).  
 
 ## Related content
 
