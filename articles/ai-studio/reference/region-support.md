@@ -69,6 +69,10 @@ Some models in the model catalog can be deployed as a serverless API with pay-as
 
 To use the Content Safety APIs, you must create your Azure AI Content Safety resource in a supported region. For a list of supported regions, see [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md#region-availability)
 
+## Azure AI Agent Service
+
+Azure AI Agent Service supports the same models as the chat completions API in Azure OpenAI.  For a list of supported regions, see [Azure AI Agent Service region availability](../../ai-services/agents/concepts/model-region-support.md#azure-openai-models).
+
 ## Next steps
 
 - See [Azure global infrastructure products by region](https://azure.microsoft.com/global-infrastructure/services/).
