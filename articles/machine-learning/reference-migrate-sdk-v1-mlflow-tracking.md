@@ -388,13 +388,13 @@ run_id = finished_mlflow_run.info.run_id
 
 ## View run artifacts
 
-To view the artifacts of a run, use [MlFlowClient.list_artifacts](https://mlflow.org/docs/latest/python_api/mlflow.tracking.html#mlflow.tracking.MlflowClient.list_artifacts):
+To view the artifacts of a run, use [MlFlowClient.list_artifacts](https://mlflow.org/docs/latest/python_api/mlflow.artifacts.html#mlflow.artifacts.list_artifacts):
 
 ```python
 client.list_artifacts(finished_mlflow_run.info.run_id)
 ```
 
-To download an artifact, use [mlflow.artifacts.download_artifacts](https://www.mlflow.org/docs/latest/python_api/mlflow.tracking.html#mlflow.tracking.MlflowClient.download_artifacts):
+To download an artifact, use [mlflow.artifacts.download_artifacts](https://mlflow.org/docs/latest/python_api/mlflow.artifacts.html#mlflow.artifacts.download_artifacts):
 
 ```python
 mlflow.artifacts.download_artifacts(run_id=finished_mlflow_run.info.run_id, artifact_path="Azure.png")
