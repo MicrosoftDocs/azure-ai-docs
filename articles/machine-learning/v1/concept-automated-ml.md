@@ -197,7 +197,7 @@ You can also inspect the logged job information, which [contains metrics](../how
 
 While model building is automated, you can also [learn how important or relevant features are](../how-to-configure-auto-train.md) to the generated models.
 
-> [!VIDEO https://www.microsoft.com/videoplayer/embed/RE2Xc9t]
+> [!VIDEO eddb2bd4-407e-470d-8fe9-6e60585b9910]
 
 <a name="local-remote"></a>
 

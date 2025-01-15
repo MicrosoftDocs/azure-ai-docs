@@ -36,7 +36,7 @@ This article highlights the best methods for labeling custom model datasets in t
 
 * We examine best practices for labeling your selected documents. With semantically relevant and consistent labeling, you should see an improvement in model performance.
 
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE5fZKB]
+> [!VIDEO cae72200-eeca-4897-8ca7-2e91696cac83]
 
 ### Search
 
