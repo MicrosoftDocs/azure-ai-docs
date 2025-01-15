@@ -23,17 +23,19 @@ Azure AI Foundry is currently available in the following Azure regions. You can 
 - Australia East
 - Brazil South
 - Canada Central
+- Canada East
 - East US
 - East US 2
 - France Central
 - Germany West Central
-- India South
 - Japan East
+- Korea Central
 - North Central US
 - Norway East
 - Poland Central
 - South Africa North
 - South Central US
+- South India
 - Sweden Central
 - Switzerland North
 - UAE North
@@ -62,6 +64,10 @@ Azure AI Speech capabilities including custom neural voice vary in regional avai
 ## Serverless API deployments
 
 Some models in the model catalog can be deployed as a serverless API with pay-as-you-go billing. For information on the regions where each model is available, see [Region availability for models in Serverless API endpoints](../how-to/deploy-models-serverless-availability.md).
+
+## Azure AI Content Safety
+
+To use the Content Safety APIs, you must create your Azure AI Content Safety resource in a supported region. For a list of supported regions, see [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md#region-availability)
 
 ## Next steps
 
