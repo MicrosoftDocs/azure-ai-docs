@@ -578,9 +578,9 @@ deployment_client.predict(endpoint=endpoint_name, df=samples)
 
 MLflow models can use the __Test__ tab to create invocations to the created endpoints:
 
-1. Go to the __Endpoints__ tab and select the endpoint you created.
+1. Select __Endpoints__, and then select the endpoint that you created.
 1. Go to the __Test__ tab.
-1. Paste the content of the file `sample-request-sklearn.json`.
+1. In the __Input__ box, paste the contents of the cli/endpoints/online/ncd/sample-request-sklearn.json file.
 1. Select __Test__.
 1. The box on the right displays the predictions.
 
@@ -651,7 +651,7 @@ To deploy an MLflow model with a custom scoring script:
     
     ```pythonS
     environment = Environment(
-        conda_file="sklearn-diabetes/environment/conda.yml",
+        conda_file="sklearn-diabetes/environment/conda.yaml",
         image="mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest",
     )
     ```
@@ -715,6 +715,9 @@ To deploy an MLflow model with a custom scoring script:
         instance_type="Standard_F4s_v2",
         instance_count=1,
     )
+
+    ml_client.online_deployments.begin_create_or_update(blue_deployment)
+
     ```
 
     # [Python (MLflow SDK)](#tab/mlflow)
@@ -745,8 +748,24 @@ To deploy an MLflow model with a custom scoring script:
 
 1. When your deployment is complete, it's ready to serve requests. One way to test the deployment is to use the `invoke` method with a sample request file such as the following file, sample-request-sklearn.json:
     
+    # [Azure CLI](#tab/cli)
+
+    :::code language="json" source="~/azureml-examples-main/cli/endpoints/online/ncd/sample-request-sklearn.json":::
+    
+    # [Python (Azure Machine Learning SDK)](#tab/sdk)
+    
+    :::code language="json" source="~/azureml-examples-main/sdk/python/endpoints/online/mlflow/sample-request-sklearn.json":::
+
+    # [Python (MLflow SDK)](#tab/mlflow)
+
+    This operation isn't supported in the MLflow SDK.
+
+    # [Studio](#tab/studio)
+
     :::code language="json" source="~/azureml-examples-main/cli/endpoints/online/ncd/sample-request-sklearn.json":::
 
+    ---
+    
     Submit a request to the endpoint:
     
     # [Azure CLI](#tab/cli)
@@ -756,7 +775,7 @@ To deploy an MLflow model with a custom scoring script:
     # [Python (Azure Machine Learning SDK)](#tab/sdk)
     
     ```python
-    ml_client.online_endpoints.invoke(
+    response = ml_client.online_endpoints.invoke(
         endpoint_name=endpoint_name,
         deployment_name=deployment.name,
         request_file="sample-request-sklearn.json",
@@ -769,24 +788,53 @@ To deploy an MLflow model with a custom scoring script:
 
     # [Studio](#tab/studio)
 
-    1. Go to the __Endpoints__ tab and select the endpoint that you created.
+    1. Select __Endpoints__, and then select the endpoint that you created.
     1. Go to the __Test__ tab.
-    1. Paste the contents of the `sample-request-sklearn.json` file into the __Input data to test endpoint__ box.
+    1. In the __Input__ box, paste the contents of the cli/endpoints/online/ncd/sample-request-sklearn.json file.
     1. Select __Test__.
-    1. The predictions are displayed under "Test results" on the right side of the box.
+    1. The box on the right displays the predictions.
 
     ---
     
     The response should be similar to the following text:
     
+    # [Azure CLI](#tab/cli)
+
     ```json
     {
       "predictions": [ 
-        11633.100167144921,
-        8522.117402884991
+        1095.2797413413252,
+        1134.585328803727
       ]
     }
     ```
+    
+    # [Python (Azure Machine Learning SDK)](#tab/sdk)
+    
+    ```json
+    {
+      "predictions": [ 
+        1095.2797413413252
+      ]
+    }
+    ```
+
+    # [Python (MLflow SDK)](#tab/mlflow)
+
+    This operation isn't supported in the MLflow SDK.
+
+    # [Studio](#tab/studio)
+
+    ```json
+    {
+      "predictions": [ 
+        1095.2797413413252,
+        1134.585328803727
+      ]
+    }
+    ```
+
+    ---
 
     > [!WARNING]
     > __MLflow 2.0 advisory__: In MLflow 1.X, the response doesn't contain the `predictions` key.
