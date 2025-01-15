@@ -50,8 +50,7 @@ To help with simplifying the sizing effort, the following table outlines the TPM
 |Global & data zone provisioned scale increment|5|5|
 |Regional provisioned minimum deployment | 50 | 25|
 |Regional provisioned scale increment|50|25|
-|Max Input TPM per PTU | 2,500 | 37,000  |
-|Max Output TPM per PTU| 833|12,333|
+|TPM per PTU | 2,500 | 37,000  |
 |Latency Target Value |25 Tokens Per Second|33 Tokens Per Second|
 
 For a full list see the [Azure OpenAI Service in Azure AI Foundry portal calculator](https://oai.azure.com/portal/calculator).
