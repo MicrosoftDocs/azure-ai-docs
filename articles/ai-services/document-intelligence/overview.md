@@ -261,9 +261,6 @@ Document Intelligence supports optional features that can be enabled and disable
 
 ## Models and development options
 
-> [!NOTE]
->The following document understanding models and development options are supported by the Document Intelligence service v3.0.
-
 You can use Document Intelligence to automate document processing in applications and workflows, enhance data-driven strategies, and enrich document search capabilities. Use the links in the table to learn more about each model and browse development options.
 
 ### Read
@@ -616,12 +613,9 @@ Azure AI Document Intelligence is a cloud-based [Azure AI service](../../ai-serv
 
  >[!TIP]
  >
- > * For an enhanced experience and advanced model quality, try the [Document Intelligence v3.0 Studio](https://formrecognizer.appliedai.azure.com/studio).
- > * The v3.0 Studio supports any model trained with v2.1 labeled data.
- > * You can refer to the API migration guide for detailed information about migrating from v2.1 to v3.0.
-
-> [!NOTE]
-> The following models  and development options are supported by the Document Intelligence service v2.1.
+ > * For an enhanced experience and advanced model quality, try the [Document Intelligence v3.0 Studio](https://formrecognizer.appliedai.azure.com/studio):
+ >   * The v3.0 Studio supports any model trained with v2.1 labeled data.
+ >   * You can refer to the API migration guide for detailed information about migrating from v2.1 to v3.0.
 
 Use the links in the table to learn more about each model and browse the API references:
 

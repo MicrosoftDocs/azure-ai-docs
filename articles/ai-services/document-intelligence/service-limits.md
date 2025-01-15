@@ -37,10 +37,10 @@ This article contains both a quick reference and detailed description of Azure A
 ✔️ = supported
 ✖️ = Not supported
 
-For Document Intelligence v4.0 2024-11-30 (GA) supports page and line features with the following restrictions:
+For Document Intelligence v4.0 `2024-11-30` (GA) supports page and line features with the following restrictions:
 
 * Angle, width/height, and unit aren't supported.
-* For each object detected, bounding polygon or bounding region aren't supported.
+* For each object detected, bounding polygon or bounding regions aren't supported.
 * Page range (`pages`) isn't supported as a parameter.
 * The `lines` object isn't supported.
 :::moniker-end
