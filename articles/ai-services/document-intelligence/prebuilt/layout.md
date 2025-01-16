@@ -116,7 +116,7 @@ The layout model extracts structural elements from your documents. To follow are
 * [**Text, lines, and words**](#text-lines-and-words)
 * [**Selection marks**](#selection-marks)
 * [**Tables**](#tables)
-* [**Output response to markdown**]
+* [**Output response to markdown**](#output-response-to-markdown-format)
 * [**Figures**](#figures)
 * [**Sections**](#sections)
 
@@ -711,18 +711,38 @@ Document Intelligence v2.1 supports the following tools, applications, and libra
 
 :::moniker-end
 
-:::moniker range="<=doc-intel-3.1.0"
+:::moniker range="doc-intel-3.0.0 || doc-intel-3.1.0"
 
 ## Extract data
 
 TThe layout model extracts structural elements from your documents. To follow are descriptions of these structural elements with guidance on how to extract them from your document input:
 
-* [**Pages**](#page)
-* [**Paragraphs**](#paragraph)
+* [**Page**](#page)
+* [**Paragraph**](#paragraph)
 * [**Text, line, and word**](#text-lines-and-words)
 * [**Selection mark**](#selection-marks)
 * [**Table**](#tables)
 * [**Annotations**](#annotations)
+
+:::moniker-end
+
+:::moniker range="doc-intel-2.1.0"
+
+## Extract data
+
+TThe layout model extracts structural elements from your documents. To follow are descriptions of these structural elements with guidance on how to extract them from your document input:
+
+* [**Page**](#page)
+* [**Paragraph**](#paragraph)
+* [**Text, line, and word**](#text-lines-and-words)
+* [**Selection mark**](#selection-marks)
+* [**Table**](#tables)
+* [**Natural reading order**](#natural-reading-order-output-latin-only)
+* [**Select page number or range**](#select-page-number-or-range-for-text-extraction)
+
+:::moniker-end
+
+:::moniker range="<=doc-intel-3.1.0"
 
 ### Page
 
@@ -1152,7 +1172,7 @@ You can specify the order in which the text lines are output with the `readingOr
 
 :::image type="content" source="../media/layout-reading-order-example.png" alt-text="Screenshot of `layout` model reading order processing." lightbox="../../../ai-services/Computer-vision/Images/ocr-reading-order-example.png":::
 
-### Select page numbers or ranges for text extraction
+### Select page number or range for text extraction
 
 For large multi-page documents, use the `pages` query parameter to indicate specific page numbers or page ranges for text extraction. The following example shows a document with 10 pages, with text extracted for both cases - all pages (1-10) and selected pages (3-6).
 
