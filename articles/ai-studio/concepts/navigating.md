@@ -1,6 +1,6 @@
 ---
-title: Understanding capabilities in Azure AI Foundry
-description: Understand how the capabilities in Azure AI Foundry can help you build AI solutions.
+title: Azure AI Foundry and related resources
+description: Roadmap of various AI resource documentation
 author: sdgilley
 ms.author: sgilley
 ms.service: azure-ai-studio
