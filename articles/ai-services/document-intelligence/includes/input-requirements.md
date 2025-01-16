@@ -9,14 +9,14 @@ ms.author: lajanuar
 
 Supported file formats:
 
-    |Model | PDF |Image: </br>`JPEG/JPG`, `PNG`, `BMP`, `TIFF`, `HEIF` | Microsoft Office: </br> Word (`DOCX`), Excel (`XLSX`), PowerPoint (`PPTX`), HTML|
-    |--------|:----:|:-----:|:---------------:|
-    |Read            | ✔    | ✔    | ✔  |
-    |Layout          | ✔  | ✔ | ✔  |
-    |General&nbsp;Document| ✔  | ✔ |   |
-    |Prebuilt        |  ✔  | ✔ |   |
-    |Custom extraction |  ✔  | ✔ |   |
-    |Custom classification  |  ✔  | ✔ | ✔  |
+|Model | PDF |Image: </br>`JPEG/JPG`, `PNG`, `BMP`, `TIFF`, `HEIF` | Microsoft Office: </br> Word (`DOCX`), Excel (`XLSX`), PowerPoint (`PPTX`), HTML|
+|--------|:----:|:-----:|:---------------:|
+|Read            | ✔    | ✔    | ✔  |
+|Layout          | ✔  | ✔ | ✔  |
+|General&nbsp;Document| ✔  | ✔ |   |
+|Prebuilt        |  ✔  | ✔ |   |
+|Custom extraction |  ✔  | ✔ |   |
+|Custom classification  |  ✔  | ✔ | ✔  |
 
 * For best results, provide one clear photo or high-quality scan per document.
 
