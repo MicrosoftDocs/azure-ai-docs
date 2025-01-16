@@ -14,7 +14,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# How to trace your application with Azure AI Foundry SDK
+# How to trace your application with Azure AI Foundry Project
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -23,14 +23,14 @@ In this article you'll learn how to trace your application with Azure AI Foundry
 ### Prerequisites
 
 - An [Azure Subscription](https://azure.microsoft.com/).
-- An Azure AI project, see [Create a project in Azure AI Foundry portal](../create-projects.md).
+- An Azure AI project, see [Create a project in Azure AI Foundry portal](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/create-projects?tabs=ai-studio).
 - An AI model supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed through Azure AI Foundry.
 - If using Python, you need Python 3.8 or later installed, including pip.
 - If using JavaScript, the supported environments are LTS versions of Node.js.
 
 ## Tracing using Azure AI Foundry Project
 # [Python](#tab/python)
-The best way to get started using the Azure AI Foundry SDK is by using a project. AI projects connect together different data, assets, and services you need to build AI applications. The AI project client allows you to easily access these project components from your code by using a single connection string. First follow steps to [create an AI Project](../create-projects.md) if you don't have one already.
+The best way to get started using the Azure AI Foundry SDK is by using a project. AI projects connect together different data, assets, and services you need to build AI applications. The AI project client allows you to easily access these project components from your code by using a single connection string. First follow steps to [create an AI Project](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/create-projects?tabs=ai-studio) if you don't have one already.
 To enable tracing, first ensure your project has an attached Application Insights resource. Go to the **Tracing** page of your project and follow instructions to create or attach Application Insights. If one was enabled, you can get the Application Insights connection string, and observe the full execution path through Azure Monitor. 
 
 Make sure to install following packages via
