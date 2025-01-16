@@ -2,9 +2,20 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 11/19/2024
+ms.date: 01/15/2025
 ms.author: eur
 ---
+### January 2025 release
+
+#### Real-time speech to text -New English Model Release
+
+Announcing the release of the latest English speech model (en-US, en-CA), which brings substantial improvements across various performance metrics. Below are the key highlights of this release:
+1. Accessibility Enhancements
+Achieved a 36% reduction in Word Error Rate (WER) on Microsoft internal accessibility test sets, making speech recognition more accurate and reliable for recognizing speech from individuals with speech disabilities.
+2. Ghost Word Reduction
+A remarkable 90% reduction in ghost words on the ghost word development set and reductions range from 63% to 100% across other ghost word datasets, significantly enhancing the clarity and accuracy of transcriptions.
+The new model also improved overall performance, including entity recognition and better recognition of spelled-out letters.
+These advancements are expected to provide a more accurate, efficient, and satisfying experience for all users. The new model is available through the API and AI Foundry playground, and feedback is encouraged to further refine its capabilities.
 
 ### November 2024 release
 
