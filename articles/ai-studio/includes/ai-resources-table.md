@@ -12,6 +12,7 @@ ms.custom: include
 
 | Service | Description |
 | --- | --- |
+| ![Azure AI Agent Service icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-agents.png) [Azure AI Agent Service](../ai-services/aiaas/index.yml) | Develop AI agents to automate and xecute business processes. |
 | ![Azure AI Search icon](~/reusable-content/ce-skilling/azure/media/ai-services/search.svg) [Azure AI Search](/azure/search/) | Bring AI-powered cloud search to your mobile and web apps. |
 | ![Azure OpenAI Service icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](../../ai-services/openai/index.yml) | Perform a wide variety of natural language tasks. |
 | ![Bot service icon](~/reusable-content/ce-skilling/azure/media/ai-services/bot-services.svg) [Bot Service](/composer/) | Create bots and connect them across channels. |

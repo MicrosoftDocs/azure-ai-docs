@@ -25,7 +25,7 @@ Draft content to not have a blank page. The idea is to explain that this section
 
 Azure AI Foundry is a comprehensive platform for AI development, integrating with various Azure AI Services to expand its capabilities. The information presented in this section is imported from individual AI Service documentation sets and is intended to serve as an introduction the capability as it relates to Azure AI Foundry. For complete details about specific services, refer to the full documentation for that service.
 
-[!INCLUDE [ai-services-table](../includes/ai-services-table.md)]
+[!INCLUDE [ai-resources-table](../includes/ai-resources-table.md)]
 
 
 ## Related content

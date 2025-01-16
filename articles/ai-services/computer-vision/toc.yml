@@ -6,7 +6,7 @@ items:
   items:
   - name: What is Azure AI Vision?
     href: overview.md
-  - Related content
+  - name: Related content
     href: ../../ai-studio/concepts/navigating.md?context=/azure/ai-services/anomaly-detector/context/context
   - name: Vision Studio
     href: overview-vision-studio.md

@@ -6,9 +6,8 @@ items:
   items:
     - name: What is Azure OpenAI?
       href: overview.md
-    - Related content
+    - name: Related content
       href: ../../ai-studio/concepts/navigating.md?context=/azure/ai-services/openai/context/context
-
     - name: Quotas and limits
       href: quotas-limits.md
     - name: Deployment types

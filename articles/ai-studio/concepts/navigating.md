@@ -21,6 +21,6 @@ Documentation for AI resources is available in multiple places. This article pro
 
 Individual services are documented in the following areas:
 
-[!INCLUDE [ai-services-table](../includes/ai-services-table.md)]
+[!INCLUDE [ai-resources-table](../includes/ai-resources-table.md)]
 
 
