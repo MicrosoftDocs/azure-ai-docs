@@ -33,6 +33,8 @@ Or, you can try out the capabilities of Face service quickly and easily in your 
 
 [!INCLUDE [Gate notice](./includes/identity-gate-notice.md)]
 
+[!INCLUDE [GDPR-related guidance](./includes/identity-data-notice.md)]
+
 
 This documentation contains the following types of articles:
 * The [quickstarts](./quickstarts-sdk/identity-client-library.md) are step-by-step instructions that let you make calls to the service and get results in a short period of time. 
@@ -101,7 +103,6 @@ Face liveness SDK reference docs:
 
 Modern enterprises and apps can use the Face recognition technologies, including Face verification ("one-to-one" matching) and Face identification ("one-to-many" matching) to confirm that a user is who they claim to be.
 
-[!INCLUDE [GDPR-related guidance](./includes/identity-data-notice.md)]
 
 ### Identification
 
