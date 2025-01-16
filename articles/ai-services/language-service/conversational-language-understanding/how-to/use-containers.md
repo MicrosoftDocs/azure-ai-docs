@@ -56,7 +56,7 @@ Before you proceed with running the docker image, you will need to export your o
 |Placeholder |Value|Format or example|
 |------------|-----|-----------------|
 |**{API_KEY}** |The key for your Language resource. You can find it on your resource's **Key and endpoint** page, on the Azure portal.|xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|
-|**{ENDPOINT_URI}**|The endpoint for accessing the Conversational Language Understanding API. You can find it on your resource's **Key and endpoint** page, on the Azure portal.|https://<your-custom-subdomain>.cognitiveservices.azure.com|
+|**{ENDPOINT_URI}**|The endpoint for accessing the Conversational Language Understanding API. You can find it on your resource's **Key and endpoint** page, on the Azure portal.|`https://<your-custom-subdomain>.cognitiveservices.azure.com`|
 |**{PROJECT_NAME}**|The name of the project containing the model that you want to export. You can find it on your projects tab in the Language Studio portal.|myProject|
 |**{TRAINED_MODEL_NAME}** |The name of the trained model you want to export. You can find your trained models on your model evaluation tab under your project in the Language Studio portal|myTrainedModel 
 |**{EXPORTED_MODEL_NAME}** |The name to assign for the new exported model created.|myExportedModel |
@@ -88,15 +88,15 @@ docker pull mcr.microsoft.com/azure-cognitive-services/language/clu:latest
 
 After creating the exported model in the section above, users will have to run the container in order to download the deployment package that was created specifically for their exported models. 
 
-|Placeholder|Value|Format or example|
-|-----------|-----|-----------------|
-|**{API_KEY}** |The key for your Language resource. You can find it on your resource's **Key and endpoint** page, on the Azure portal. |xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|  
-|**{ENDPOINT_URI}** |The endpoint for accessing the API. You can find it on your resource's **Key and endpoint** page, on the Azure portal.  |https://<your-custom-subdomain>.cognitiveservices.azure.com  |
-|**{IMAGE_TAG}** |The image tag representing the language of the container you want to run. Make sure this matches the `docker pull` command you used.  |latest  |
-|**{LOCAL_CLU_PORT}** |Port number assigned for the container in local machine. |5000 |
-|**{LOCAL_MODEL_DIRECTORY}** |Absolute directory in host machine where exported models will be saved in. |C:\usr\local\myDeploymentPackage |
-|**{PROJECT_NAME}** |Name of the project that the exported model belongs to |myProject |
-|**{EXPORTED_MODEL_NAME}** |Exported model to be downloaded |myExportedModel |
+|Placeholder                 |Value                                                                                                                                 |Format or example|
+|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------|-----------------|
+|**{API_KEY}**               |The key for your Language resource. You can find it on your resource's **Key and endpoint** page, on the Azure portal.                |xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|  
+|**{ENDPOINT_URI}**          |The endpoint for accessing the API. You can find it on your resource's **Key and endpoint** page, on the Azure portal.                |`https://<your-custom-subdomain>.cognitiveservices.azure.com`  |
+|**{IMAGE_TAG}**             |The image tag representing the language of the container you want to run. Make sure this matches the `docker pull` command you used.  |latest  |
+|**{LOCAL_CLU_PORT}**        |Port number assigned for the container in local machine.                                                                              |5000 |
+|**{LOCAL_MODEL_DIRECTORY}** |Absolute directory in host machine where exported models will be saved in.                                                            |`C:\usr\local\myDeploymentPackage` |
+|**{PROJECT_NAME}**          |Name of the project that the exported model belongs to                                                                                |myProject |
+|**{EXPORTED_MODEL_NAME}**   |Exported model to be downloaded                                                                                                       |myExportedModel |
 
 ```bash
 docker run --rm -it -p {LOCAL_CLU_PORT}:80 \ 
@@ -131,8 +131,8 @@ To run the CLU container, execute the following `docker run` command. Replace th
 | **{IMAGE_TAG}** | The image tag representing the language of the container you want to run. Make sure this matches the `docker pull` command you used. | `latest` |
 |**{LOCAL_CLU_PORT}** |Port number assigned for the container in local machine. |5000 |
 |**{LOCAL_NER_PORT}** |Port number of the NER container. See Run NER Container section below. |5001 (Has to be different that the above port number) |
-|**{LOCAL_LOGGING_DIRECTORY}** |Absolute directory in host machine where that logs will be saved in. |C:\usr\local\mylogs |
-|**{LOCAL_MODEL_DIRECTORY}** |Absolute directory in host machine where exported models are saved in. |C:\usr\local\myDeploymentPackage |
+|**{LOCAL_LOGGING_DIRECTORY}** |Absolute directory in host machine where that logs will be saved in. |`C:\usr\local\mylogs` |
+|**{LOCAL_MODEL_DIRECTORY}** |Absolute directory in host machine where exported models are saved in. |`C:\usr\local\myDeploymentPackage` |
 
 ```bash
 docker run --rm -it -p 5000:5000 --memory 8g --cpus 1 \
