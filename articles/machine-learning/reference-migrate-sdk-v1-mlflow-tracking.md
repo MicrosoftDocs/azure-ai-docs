@@ -1,7 +1,7 @@
 ---
 title: Migrate logging from SDK v1 to MLflow
 titleSuffix: Azure Machine Learning
-description: Comparison of SDK v1 logging APIs and MLflow tracking
+description: Comparison of Azure Machine Learning SDK v1 logging APIs and MLflow tracking in Azure Machine Learning SDK v2.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
@@ -18,7 +18,7 @@ ms.reviewer: kritifaujdar
 
 Azure Machine Learning uses MLflow Tracking for metric logging and artifact storage for your experiments, whether you created the experiments via the Azure Machine Learning Python SDK, the Azure Machine Learning CLI, or Azure Machine Learning studio. We recommend using MLflow for tracking experiments. 
 
-If you're migrating from SDK v1 to SDK v2, use the information in this section to understand the MLflow equivalents of SDK v1 logging APIs.
+If you're upgrading from SDK v1 to SDK v2, use the information in this section to understand the MLflow equivalents of SDK v1 logging APIs.
 
 ## Why MLflow?
 
