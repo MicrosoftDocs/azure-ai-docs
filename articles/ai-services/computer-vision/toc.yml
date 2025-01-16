@@ -356,7 +356,7 @@ items:
     - name: Limited Access features
       href: /legal/cognitive-services/computer-vision/limited-access-identity?context=/azure/ai-services/computer-vision/context/context
     - name: Shared Responsibility for Face Liveness Detection
-      href: /legal/cognitive-services/face/shared-responsibility-for-liveness-detection?context=/azure/ai-services/computer-vision/context/context
+      href: liveness-detection-shared-responsibility.md
 
   - name: Reference
     items:
