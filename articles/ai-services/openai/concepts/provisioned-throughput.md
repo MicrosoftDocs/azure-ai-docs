@@ -205,6 +205,8 @@ The number of concurrent calls you can achieve depends on each call's shape (pro
 
 [!INCLUDE [Provisioned](../includes/model-matrix/provisioned-models.md)]
 
+---
+
 > [!NOTE]
 > The provisioned version of `gpt-4` **Version:** `turbo-2024-04-09` is currently limited to text only.
 
