@@ -18,7 +18,7 @@ items:
       - name: Use Azure OpenAI Service in AI Foundry portal
         href: ai-services/how-to/connect-azure-openai.md
       - name: Use Azure AI Search in AI Foundry portal
-        href: /azure/search/search-what-is-azure-search
+        href: /azure/search/search-what-is-azure-search?context=/azure/ai-studio/context/context
     - name: Plan and manage costs for Azure AI Foundry
       href: how-to/costs-plan-manage.md
     - name: Region support
@@ -108,12 +108,14 @@ items:
       href:  ../ai-services/openai/gpt-v-quickstart.md?context=/azure/ai-studio/context/context
   - name:  On your data (RAG)
     items: 
-    - name: Overview of retrieval augmented generation (RAG)
+    - name: Retrieval Augmented Generation (RAG) overview
       href: concepts/retrieval-augmented-generation.md
-    - name: Chat with Azure OpenAI models using your own data
+    - name: Azure OpenAI On Your Data
+      href: ../ai-services/openai/concepts/use-your-data.md?context=/azure/ai-studio/context/context
+    - name: Chat with your data using Azure OpenAI models
       href: ../ai-services/openai/use-your-data-quickstart.md?context=/azure/ai-studio/context/context
     - name: Index your data in Azure AI Search
-      href: /azure/search/search-what-is-azure-search
+      href: /azure/search/search-what-is-azure-search?context=/azure/ai-studio/context/context
   - name:  Speech
     items: 
     - name: What is the Speech service?
@@ -275,9 +277,9 @@ items:
     - name: Add and manage data in Azure AI Foundry
       href: how-to/data-add.md
     - name: Build and consume vector indexes (Portal)
-      href: /how-to/index-add.md
+      href: how-to/index-add.md
     - name: Build and consume vector indexes (Code)
-      href:  /how-to/develop/index-build-consume-sdk.md
+      href: how-to/develop/index-build-consume-sdk.md
     - name: Azure OpenAI on your data
       href: ../ai-services/openai/concepts/use-your-data.md?context=/azure/ai-studio/context/context
     - name: Build a RAG solution using Azure AI Search
