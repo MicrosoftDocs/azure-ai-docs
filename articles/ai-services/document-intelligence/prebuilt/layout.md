@@ -36,8 +36,6 @@ The following illustration shows the typical components in an image of a sample 
 
 ## Development options
 
-:::moniker range="doc-intel-4.0.0"
-
 Document Intelligence v4.0: **2024-11-30** (GA) supports the following tools, applications, and libraries:
 
 | Feature | Resources | Model ID |
@@ -78,7 +76,6 @@ Document Intelligence v4.0: **2024-11-30** (GA) layout model supports the follow
 
 For more information on model usage, quotas, and service limits, *see* [service limits](../service-limits.md).
 
-
 ### Get started with Layout model
 
 See how data, including text, tables, table headers, selection marks, and structure information is extracted from documents using  Document Intelligence. You need the following resources:
@@ -91,7 +88,7 @@ See how data, including text, tables, table headers, selection marks, and struct
 
 * After you retrieve you key and endpoint, you can use the following development options to build and deploy your Document Intelligence applications:
 
-# [REST API](#tab/rest)
+### [REST API](#tab/rest)
 
 * [Document Intelligence REST API](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true&tabs=HTTP&)
 
@@ -103,11 +100,13 @@ See how data, including text, tables, table headers, selection marks, and struct
 * [**Java SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#layout-model)
 * [**JavaScript**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#layout-model)
 
-# [Document Intelligence Studio](#tab/studio)
+### [Document Intelligence Studio](#tab/studio)
 
 * [Studio](https://documentintelligence.ai.azure.com/studio)
 
 * [How-to guide](../studio-overview.md#authentication-in-studio)
+
+---
 
 ## Data extraction
 
@@ -633,6 +632,8 @@ Document Intelligence v2.1 supports the following tools, applications, and libra
 
 :::moniker-end
 
+:::moniker range="<=doc-intel-3.1.0"
+
 ### Get started with Layout model
 
 See how data, including text, tables, table headers, selection marks, and structure information is extracted from documents using  Document Intelligence. You need the following resources:
@@ -643,8 +644,6 @@ See how data, including text, tables, table headers, selection marks, and struct
 
 :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
 
-:::moniker range="{range}"
-    {content}
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
