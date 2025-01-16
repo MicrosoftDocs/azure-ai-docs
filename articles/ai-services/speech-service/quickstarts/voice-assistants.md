@@ -6,7 +6,7 @@ author: trrwilson
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 2/24/2024
+ms.date: 1/15/2025
 ms.author: travisw
 ms.devlang: csharp
 ms.custom: cogserv-non-critical-speech, devx-track-csharp, mode-other, devx-track-extended-java, devx-track-go
