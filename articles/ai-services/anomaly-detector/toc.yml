@@ -5,7 +5,8 @@
   items:
     - name: What is Anomaly Detector? 
       href: overview.md
-    - name: Pricing
+    - Related content
+      href: ../../ai-studio/concepts/navigating.md?context=/azure/ai-services/anomaly-detector/context/context
       href: https://aka.ms/adpricing
     - name: What's new
       href: whats-new.md
