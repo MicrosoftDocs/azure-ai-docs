@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: conceptual
-ms.date: 01/09/2025
+ms.date: 1/17/2025
 ms.author: mbullwin
 ---
 
@@ -132,6 +132,8 @@ M = million | K = thousand
 M = million | K = thousand
 
 ## gpt-4o audio
+
+The rate limits for each `gpt-4o-realtime-preview` model deployment are 100K TPM and 1K RPM. Azure AI Foundry portal and APIs might show different rate limits, but the actual rate limits are 100K TPM and 1K RPM.
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
