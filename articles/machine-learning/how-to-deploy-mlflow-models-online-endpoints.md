@@ -216,14 +216,14 @@ version = registered_model.version
 
 To create a model in Azure Machine Learning studio:
 
-1. In the studio, open the __Models__ page.
+1. In the studio, select __Models__.
 1. Select __Register__, and then select where your model is located. For this example, select __From local files__.
-1. On the __Upload model__ page, for the model type, select __MLflow__.
+1. On the __Upload model__ page, under __Model type__, select __MLflow__.
 1. Select __Browse__ to select the model folder, and then select __Next__.
-1. On the __Model settings__ page, next to __Name__, enter a name for the model, and then select __Next__.
-1. On the __Review__ page, review the uploaded model fines and model settings, and then select __Register__.
+1. On the __Model settings__ page, under __Name__, enter a name for the model, and then select __Next__.
+1. On the __Review__ page, review the model files and model settings, and then select __Register__.
 
-:::image type="content" source="media/how-to-deploy-mlflow-models-online-endpoints/register-model-in-studio.png" alt-text="Screenshot of the UI to register a model." lightbox="media/how-to-deploy-mlflow-models-online-endpoints/register-model-in-studio.png":::
+:::image type="content" source="media/how-to-deploy-mlflow-models-online-endpoints/register-model-in-studio.png" alt-text="Screenshot of the Review page in the studio. Five uploaded model files are listed, and model settings like the name are visible." lightbox="media/how-to-deploy-mlflow-models-online-endpoints/register-model-in-studio.png":::
 
 ---
 
@@ -468,17 +468,21 @@ version = registered_model.version
 
     # [Studio](#tab/studio)
 
-    1. On the __Endpoints__ page, go to the **Real-time endpoints** tab, and then select **Create**.
+    1. Select __Endpoints__. Go to the **Real-time endpoints** tab, and then select **Create**.
 
         :::image type="content" source="media/how-to-deploy-mlflow-models-online-endpoints/create-from-endpoints.png" lightbox="media/how-to-deploy-mlflow-models-online-endpoints/create-from-endpoints.png" alt-text="Screenshot showing create option on the Endpoints UI page.":::
 
-    1. Select the MLflow model that you registered previously, then select **Select**.
+    1. Select the MLflow model that you registered previously, and then select **Select**.
     
         > [!NOTE]
         > The configuration page includes a note to inform you that the scoring script and environment are automatically generated for your selected MLflow model.
 
-    1. Select **New** to deploy to a new endpoint.
-    1. Provide a name for the endpoint and deployment or keep the default names.
+    1. Under **Endpoint**, select **New** to deploy to a new endpoint.
+    
+    1. Under **Endpoint name**, enter a name for the endpoint or keep the default name.
+    
+    1. Under **Deployment name**, enter a name for the deployment or keep the default name.
+    
     1. Select __Deploy__ to deploy the model to the endpoint.
 
         :::image type="content" source="media/how-to-deploy-mlflow-models-online-endpoints/deployment-wizard.png" lightbox="media/how-to-deploy-mlflow-models-online-endpoints/deployment-wizard.png" alt-text="Screenshot showing no code and environment needed for MLflow models.":::
