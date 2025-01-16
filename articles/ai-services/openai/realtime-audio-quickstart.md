@@ -23,12 +23,11 @@ Most users of the Realtime API need to deliver and receive audio from an end-use
 
 ## Supported models
 
-Currently only `gpt-4o-realtime-preview` version: `2024-10-01-preview` supports real-time audio.
+The GPT 4o realtime models are available for global deployments in [East US 2 and Sweden Central regions](./concepts/models.md#global-standard-model-availability).
+- `gpt-4o-realtime-preview` (2024-12-17)
+- `gpt-4o-realtime-preview` (2024-10-01)
 
-The `gpt-4o-realtime-preview` model is available for global deployments in [East US 2 and Sweden Central regions](./concepts/models.md#global-standard-model-availability).
-
-> [!IMPORTANT]
-> The system stores your prompts and completions as described in the "Data Use and Access for Abuse Monitoring" section of the service-specific Product Terms for Azure OpenAI Service, except that the Limited Exception does not apply. Abuse monitoring will be turned on for use of the `gpt-4o-realtime-preview` API even for customers who otherwise are approved for modified abuse monitoring.
+See the [models and versions documentation](./concepts/models.md#gpt-4o-realtime-preview) for more information.
 
 ## API support
 

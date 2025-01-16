@@ -1508,8 +1508,14 @@ Currently, only 'function' tools are supported.
 **Allowed Values:**
 
 * `alloy` 
-* `shimmer` 
-* `echo` 
+* `ash`
+* `ballad`
+* `coral`
+* `echo`
+* `sage`
+* `shimmer`
+* `verse`
+ 
 
 ## Related content
 
