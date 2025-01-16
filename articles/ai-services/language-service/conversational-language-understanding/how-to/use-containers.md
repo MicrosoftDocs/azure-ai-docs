@@ -17,7 +17,7 @@ keywords: on-premises, Docker, container
 # Install and run Conversational Language Understanding (CLU) containers
 
 > [!NOTE]
-> The data limits in a single synchronous API call for the CLU container are 5120 characters per document and up to 10 documents per call.
+> The data limits in a single synchronous API call for the CLU container are 5,120 characters per document and up to 10 documents per call.
 
 Containers enable you to host the CLU API on your own infrastructure. If you have security or data governance requirements that can't be fulfilled by calling CLU remotely, then containers might be a good option.
 
@@ -41,17 +41,17 @@ You must meet the following prerequisites before using CLU containers.
 
 The following table describes the minimum and recommended specifications for the available container. Each CPU core must be at least 2.6 gigahertz (GHz) or faster.
 
-It is recommended to have a CPU with AVX-512 instruction set, for the best experience (performance and accuracy).
+It's recommended to have a CPU with AVX-512 instruction set, for the best experience (performance and accuracy).
 
 |                     | Minimum host specs     | Recommended host specs |
 |---------------------|------------------------|------------------------|
-| **CLU**             | 1 core, 2GB memory     | 4 cores, 8GB memory    |
+| **CLU**             | 1 core, 2 GB memory     | 4 cores, 8 GB memory    |
 
 CPU core and memory correspond to the `--cpus` and `--memory` settings, which are used as part of the `docker run` command.
 
 ## Export your Conversational Language Understanding model 
 
-Before you proceed with running the docker image, you will need to export your own trained model to expose it to your container. Use the following command to extract your model and replace the placeholders below with your own values: 
+Before you proceed with running the docker image, you need to export your own trained model to expose it to your container. Use the following command to extract your model and replace the placeholders below with your own values: 
 
 |Placeholder |Value|Format or example|
 |------------|-----|-----------------|
@@ -86,7 +86,7 @@ docker pull mcr.microsoft.com/azure-cognitive-services/language/clu:latest
 
 ## Run the container in download model mode 
 
-After creating the exported model in the section above, users will have to run the container in order to download the deployment package that was created specifically for their exported models. 
+After creating the exported model in the section above, users have to run the container in order to download the deployment package that was created specifically for their exported models. 
 
 | Placeholder                 | Value                                                                                                                                 |Format or example                                              |
 |-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------|
@@ -94,7 +94,7 @@ After creating the exported model in the section above, users will have to run t
 | **{ENDPOINT_URI}**          | The endpoint for accessing the API. You can find it on your resource's **Key and endpoint** page, on the Azure portal.                | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
 | **{IMAGE_TAG}**             | The image tag representing the language of the container you want to run. Make sure this matches the `docker pull` command you used.  | latest                                                        |
 | **{LOCAL_CLU_PORT}**        | Port number assigned for the container in local machine.                                                                              | 5000                                                          |
-| **{LOCAL_MODEL_DIRECTORY}** | Absolute directory in host machine where exported models will be saved in.                                                            | `C:\usr\local\myDeploymentPackage`                            |
+| **{LOCAL_MODEL_DIRECTORY}** | Absolute directory in host machine where exported models are be saved in.                                                            | `C:\usr\local\myDeploymentPackage`                            |
 | **{PROJECT_NAME}**          | Name of the project that the exported model belongs to                                                                                | myProject                                                     |
 | **{EXPORTED_MODEL_NAME}**   | Exported model to be downloaded                                                                                                       | myExportedModel                                               |
 
@@ -115,7 +115,7 @@ Repeat those steps to download as many models as you'd like to test. They can be
 
 ## Run the container with `docker run`
 
-Once the container is on the host computer, use the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command to run the containers. The container will continue to run until you stop it. Replace the placeholders below with your own values:
+Once the container is on the host computer, use the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command to run the containers. The container continues to run until you stop it. Replace the placeholders below with your own values:
 
 
 > [!IMPORTANT]
@@ -131,7 +131,7 @@ To run the CLU container, execute the following `docker run` command. Replace th
 | **{IMAGE_TAG}** | The image tag representing the language of the container you want to run. Make sure this matches the `docker pull` command you used. | `latest` |
 |**{LOCAL_CLU_PORT}** |Port number assigned for the container in local machine. |5000 |
 |**{LOCAL_NER_PORT}** |Port number of the NER container. See Run NER Container section below. |5001 (Has to be different that the above port number) |
-|**{LOCAL_LOGGING_DIRECTORY}** |Absolute directory in host machine where that logs will be saved in. |`C:\usr\local\mylogs` |
+|**{LOCAL_LOGGING_DIRECTORY}** |Absolute directory in host machine where that logs are saved in. |`C:\usr\local\mylogs` |
 |**{LOCAL_MODEL_DIRECTORY}** |Absolute directory in host machine where exported models are saved in. |`C:\usr\local\myDeploymentPackage` |
 
 ```bash
@@ -152,9 +152,9 @@ This command:
 [!INCLUDE [Running multiple containers on the same host](../../../includes/cognitive-services-containers-run-multiple-same-host.md)]
 
 ## Running NER Container 
-CLU relies on NER to handle prebuilt entities. The CLU container will work properly without NER if users decide not to integrate it. NER billing is disabled when it’s used through CLU, no extra charges are generated unless a call is made directly to NER’s container. 
+CLU relies on NER to handle prebuilt entities. The CLU container works properly without NER if users decide not to integrate it. NER billing is disabled when it’s used through CLU, no extra charges are generated unless a call is made directly to NER’s container. 
  
-To set NER up in CLU container 
+To set up NER in CLU container 
 - Follow the [NER container documentation](../../named-entity-recognition/how-to/use-containers.md). 
 - When running CLU container, make sure to set the parameter `Ner_Url `so that `Ner_Url=http://host.docker.internal:{LOCAL_NER_PORT}` 
 
@@ -202,7 +202,7 @@ In this article, you learned concepts and workflow for downloading, installing, 
 * You must specify billing information when instantiating a container.
 
 > [!IMPORTANT]
-> Azure AI containers are not licensed to run without being connected to Azure for metering. Customers need to enable the containers to communicate billing information with the metering service at all times. Azure AI containers do not send customer data (e.g. text that is being analyzed) to Microsoft.
+> Azure AI containers aren't licensed to run without being connected to Azure for metering. Customers need to enable the containers to communicate billing information with the metering service at all times. Azure AI containers don't send customer data (for example, text that is being analyzed) to Microsoft.
 
 ## Next steps
 
