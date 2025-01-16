@@ -21,6 +21,8 @@ ms.author: lajanuar
 
 [!INCLUDE [applies to v4.0](../includes/applies-to-v40.md)]
 
+:::moniker-end
+
 Document Intelligence layout model is an advanced machine-learning based document analysis API available in the Document Intelligence cloud. It enables you to take documents in various formats and return structured data representations of the documents. It combines an enhanced version of our powerful [Optical Character Recognition (OCR)](../../../ai-services/computer-vision/overview-ocr.md) capabilities with deep learning models to extract text, tables, selection marks, and document structure.
 
 ## Document structure layout analysis
@@ -34,17 +36,18 @@ The following illustration shows the typical components in an image of a sample 
 
 :::image type="content" source="../media/document-layout-example-new.png" alt-text="Illustration of document layout example.":::
 
+
 ## Development options
 
 :::moniker range="doc-intel-4.0.0"
 
-Document Intelligence v4.0: **2024-11-30** (GA) supports the following tools, applications, and libraries:
+ Document Intelligence v4.0: **2024-11-30** (GA) supports the following tools, applications, and libraries:
+ 
+ | Feature | Resources | Model ID |
+ |----------|-------------|-----------|
+ |**Layout model**|&bullet; [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com)</br>&bullet;  [**REST API**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)</br>&bullet;  [**C# SDK**](../versioning/sdk-overview-v4-0.md)</br>&bullet;  [**Python SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Java SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**JavaScript SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|**prebuilt-layout**|
 
-| Feature | Resources | Model ID |
-|----------|-------------|-----------|
-|**Layout model**|&bullet; [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com)</br>&bullet;  [**REST API**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)</br>&bullet;  [**C# SDK**](../versioning/sdk-overview-v4-0.md)</br>&bullet;  [**Python SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Java SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**JavaScript SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|**prebuilt-layout**|
-
-::: moniker-end
+:::moniker-end
 
 :::moniker range="doc-intel-3.1.0"
 
