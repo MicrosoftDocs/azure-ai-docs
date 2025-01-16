@@ -91,8 +91,8 @@ See how data, including text, tables, table headers, selection marks, and struct
 ### [REST API](#tab/rest)
 
 * [Document Intelligence REST API](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true&tabs=HTTP&)
-
 * [How to guide](../how-to-guides/use-sdk-rest-api.md#use-document-intelligence-models)
+
 # [Client libraries](#tab/sdks)
 
 * [**C# SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#layout-model)
@@ -103,14 +103,22 @@ See how data, including text, tables, table headers, selection marks, and struct
 ### [Document Intelligence Studio](#tab/studio)
 
 * [Studio](https://documentintelligence.ai.azure.com/studio)
-
 * [How-to guide](../studio-overview.md#authentication-in-studio)
 
 ---
 
 ## Data extraction
 
-The layout model extracts text, selection marks, tables, paragraphs, and paragraph types (`roles`) from your documents.
+The layout model extracts text, selection marks, tables, paragraphs, and paragraph types (`roles`) from your documents. To follow are descriptions of page layout structural elements with guidance on how to extract them:
+
+* [**Pages**](#pages)
+* [**Paragraphs**](#paragraphs)
+* [**Text, lines, and words**](#text-lines-and-words)
+* [**Handwritten style**](#handwritten-style-for-text-lines)
+* [**Selection marks**](#selection-marks)
+* [**Tables**](#tables)
+* [**Figures**](#figures)
+* [**Sections**](#sections)
 
 ### Pages
 
@@ -158,7 +166,7 @@ print(f"Page has width: {page.width} and height: {page.height}, measured with un
 
 ---
 
-### Extract selected pages from documents
+#### Extract selected pages
 
 For large multi-page documents, use the `pages` query parameter to indicate specific page numbers or page ranges for text extraction.
 
@@ -177,7 +185,7 @@ The Layout model extracts all identified blocks of text in the `paragraphs` coll
 ]
 ```
 
-### Paragraph roles
+#### Paragraph roles
 
 The new machine-learning based page object detection extracts logical roles like titles, section headings, page headers, page footers, and more. The Document Intelligence Layout model assigns certain text blocks in the `paragraphs` collection with their specialized role or type predicted by the model. It's best to use paragraph roles with unstructured documents to help understand the layout of the extracted content for a richer semantic analysis. The following paragraph roles are supported:
 
@@ -582,7 +590,11 @@ The following illustration shows the typical components in an image of a sample 
 
 :::image type="content" source="../media/document-layout-example-new.png" alt-text="Illustration of document layout example.":::
 
-## Development options
+## Supported languages and locales
+
+*See* our [Language Support—document analysis models](../language-support/ocr.md) page for a complete list of supported languages.
+
+## Tool and development options
 
 :::moniker-end
 
@@ -616,15 +628,17 @@ Document Intelligence v2.1 supports the following tools, applications, and libra
 
 :::moniker-end
 
-## Input guidance
-
 :::moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
+
+## Input guidance
 
 [!INCLUDE [input requirements](./../includes/input-requirements.md)]
 
 :::moniker-end
 
 :::moniker range="doc-intel-2.1.0"
+
+## Input guide
 
 * Supported file formats: JPEG, PNG, PDF, and TIFF.
 * Supported number of pages: For PDF and TIFF, up to 2,000 pages are processed. For free tier subscribers, only the first two pages are processed.
@@ -634,7 +648,7 @@ Document Intelligence v2.1 supports the following tools, applications, and libra
 
 :::moniker range="<=doc-intel-3.1.0"
 
-### Get started with Layout model
+### Get started
 
 See how data, including text, tables, table headers, selection marks, and structure information is extracted from documents using  Document Intelligence. You need the following resources:
 
@@ -698,10 +712,6 @@ See how data, including text, tables, table headers, selection marks, and struct
 
 :::moniker-end
 
-## Supported languages and locales
-
-*See* our [Language Support—document analysis models](../language-support/ocr.md) page for a complete list of supported languages.
-
 :::moniker range="doc-intel-2.1.0"
 
 Document Intelligence v2.1 supports the following tools, applications, and libraries:
@@ -714,7 +724,7 @@ Document Intelligence v2.1 supports the following tools, applications, and libra
 
 :::moniker range="<=doc-intel-3.1.0"
 
-## Data extraction
+## Extract data
 
 The layout model extracts text, selection marks, tables, paragraphs, and paragraph types (`roles`) from your documents.
 
@@ -726,7 +736,7 @@ The layout model extracts text, selection marks, tables, paragraphs, and paragra
 > * Page range (`pages`) is not supported as a parameter.
 > * No `lines` object.
 
-### Pages
+### Page
 
 The pages collection is a list of pages within the document. Each page is represented sequentially within the document and ../includes the orientation angle indicating if the page is rotated and the width and height (dimensions in pixels). The page units in the model output are computed as shown:
 
@@ -804,7 +814,7 @@ for page in result.pages:
 
 For large multi-page documents, use the `pages` query parameter to indicate specific page numbers or page ranges for text extraction.
 
-### Paragraphs
+### Paragraph
 
 The Layout model extracts all identified blocks of text in the `paragraphs` collection as a top level object under `analyzeResults`. Each entry in this collection represents a text block and ../includes the extracted text as`content`and the bounding `polygon` coordinates. The `span` information points to the text fragment within the top level `content` property that contains the full text from the document.
 
@@ -819,7 +829,7 @@ The Layout model extracts all identified blocks of text in the `paragraphs` coll
 ]
 ```
 
-### Paragraph roles
+#### Paragraph role
 
 The new machine-learning based page object detection extracts logical roles like titles, section headings, page headers, page footers, and more. The Document Intelligence Layout model assigns certain text blocks in the `paragraphs` collection with their specialized role or type predicted by the model. It's best to use paragraph roles with unstructured documents to help understand the layout of the extracted content for a richer semantic analysis. The following paragraph roles are supported:
 
@@ -852,7 +862,7 @@ The new machine-learning based page object detection extracts logical roles like
 
 ```
 
-### Text, lines, and words
+### Text, line, and word
 
 The document layout model in Document Intelligence extracts print and handwritten style text as `lines` and `words`. The `styles` collection ../includes any handwritten style for lines if detected along with the spans pointing to the associated text. This feature applies to [supported handwritten languages](../language-support/prebuilt.md).
 
@@ -931,7 +941,7 @@ for line_idx, line in enumerate(page.lines):
 
 :::moniker range="<=doc-intel-3.1.0"
 
-### Handwritten style for text lines
+### Handwritten style
 
 The response ../includes classifying whether each text line is of handwriting style or not, along with a confidence score. For more information. See [Handwritten language support](../language-support/ocr.md). The following example shows an example JSON snippet.
 
@@ -951,7 +961,7 @@ The response ../includes classifying whether each text line is of handwriting st
 
 If you enable the [font/style addon capability](../concept-add-on-capabilities.md#font-property-extraction), you also get the font/style result as part of the `styles` object.
 
-### Selection marks
+### Selection mark
 
 The Layout model also extracts selection marks from documents. Extracted selection marks appear within the `pages` collection for each page. They include the bounding `polygon`, `confidence`, and selection `state` (`selected/unselected`). The text representation (that is, `:selected:` and `:unselected`) is also included as the starting index (`offset`) and `length` that references the top level `content` property that contains the full text from the document.
 
@@ -1017,7 +1027,7 @@ for selection_mark in page.selection_marks:
 
 :::moniker range="<=doc-intel-3.1.0"
 
-### Tables
+### Table
 
 Extracting tables is a key requirement for processing documents containing large volumes of data typically formatted as tables. The Layout model extracts tables in the `pageResults` section of the JSON output. Extracted table information ../includes the number of columns and rows, row span, and column span. Each cell with its bounding polygon is output along with information whether the area is recognized as a `columnHeader` or not. The model supports extracting tables that are rotated. Each table cell contains the row and column index and bounding polygon coordinates. For the cell text, the model outputs the `span` information containing the starting index (`offset`). The model also outputs the `length` within the top-level content that contains the full text from the document.
 
@@ -1200,7 +1210,7 @@ Layout API extracts tables in the `pageResults` section of the JSON output. Docu
 
 ![Tables example](../media/layout-table-header-demo.gif)
 
-### Selection marks
+### Selection marks (documents)
 
 Layout API also extracts selection marks from documents. Extracted selection marks include the bounding box, confidence, and state (selected/unselected). Selection mark information is extracted in the `readResults` section of the JSON output.
 
