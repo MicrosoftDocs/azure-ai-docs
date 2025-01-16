@@ -1788,6 +1788,9 @@ items:
         - name: "Pipelines"
           displayName: migration, v1, v2
           href: migrate-to-v2-execution-pipeline.md
+        - name: "Logging"
+          displayName: migration, v1, v2
+          href: reference-migrate-sdk-v1-mlflow-tracking.md
     - name: Upgrade endpoints
       items:
         - name: "Online endpoints"
