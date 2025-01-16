@@ -6,6 +6,8 @@ items:
   items:
     - name: What is Azure AI Agent Service?
       href: overview.md
+    - name: Related content
+      href: ../../../ai-studio/concepts/navigating.md?context=/azure/ai-services/agents/context/context
     - name: Quotas and limits
       href: quotas-limits.md
     - name: Model and region support
