@@ -19,7 +19,7 @@ Documentation for AI resources is available in multiple places. This article pro
 
 * [Azure AI Services](../../ai-services/index.yml) are a collection of services that connect to Azure AI Foundry to provide additional functionality. 
 
-Individual services are documented in the following articles:
+Individual services are documented in the following areas:
 
 [!INCLUDE [ai-services-table](../includes/ai-services-table.md)]
 
