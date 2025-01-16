@@ -116,6 +116,7 @@ The layout model extracts structural elements from your documents. To follow are
 * [**Text, lines, and words**](#text-lines-and-words)
 * [**Selection marks**](#selection-marks)
 * [**Tables**](#tables)
+* [**Output response to markdown**]
 * [**Figures**](#figures)
 * [**Sections**](#sections)
 
@@ -393,7 +394,7 @@ if result.tables:
 
 ---
 
-#### Output response to markdown format
+### Output response to markdown format
 
 The Layout API can output the extracted text in markdown format. Use the `outputContentFormat=markdown` to specify the output format in markdown. The markdown content is output as part of the `content` section.
 
@@ -734,15 +735,14 @@ Document Intelligence v2.1 supports the following tools, applications, and libra
 
 ## Extract data
 
-The layout model extracts text, selection marks, tables, paragraphs, and paragraph types (`roles`) from your documents.
+TThe layout model extracts structural elements from your documents. To follow are descriptions of these structural elements with guidance on how to extract them from your document input:
 
-> [!NOTE]
-> Document Intelligence v4.0 *2024-11-30 (GA)* supports Microsoft office (DOCX, XLSX, PPTX) and HTML files. The following features are not supported:
->
-> * There are no angle, width/height and unit with each page object.
-> * For each object detected, there is no bounding polygon or bounding region.
-> * Page range (`pages`) is not supported as a parameter.
-> * No `lines` object.
+* [**Pages**](#page)
+* [**Paragraphs**](#paragraph)
+* [**Text, line, and word**](#text-lines-and-words)
+* [**Selection mark**](#selection-marks)
+* [**Table**](#tables)
+* [**Annotations**](#annotations)
 
 ### Page
 
@@ -1142,7 +1142,7 @@ for table_idx, table in enumerate(result.tables):
 
 :::moniker range="doc-intel-3.1.0"
 
-### Annotations (available only in ``2023-02-28-preview`` API.)
+### Annotations
 
 The Layout model extracts annotations in documents, such as checks and crosses. The response ../includes the kind of annotation, along with a confidence score and bounding polygon.
 
