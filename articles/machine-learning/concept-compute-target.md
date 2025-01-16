@@ -62,12 +62,12 @@ You can use any of the following resources for a training compute target for mos
 |[Azure Machine Learning compute cluster](~/articles/machine-learning/how-to-create-attach-compute-cluster.md)| Yes | Yes | Yes |
 |[Azure Machine Learning compute instance](~/articles/machine-learning/how-to-create-compute-instance.md) | Yes (through SDK)  | Yes | Yes |
 |[Azure Machine Learning Kubernetes](~/articles/machine-learning/v1/how-to-create-attach-kubernetes.md) | | Yes | Yes |
-|[Remote VM](~/articles/machine-learning/how-to-create-attach-compute-studio.md#attach-other-compute-targets) | Yes  | Yes | &nbsp; |
+|[Remote VM](~/articles/machine-learning/how-to-create-attach-compute-studio.md#other-compute-targets) | Yes  | Yes | &nbsp; |
 |[Apache Spark pools (preview)](~/articles/machine-learning/how-to-manage-synapse-spark-pool.md)| Yes (SDK local mode only) | Yes | &nbsp; |
-|[Azure&nbsp;Databricks](~/articles/machine-learning/how-to-create-attach-compute-studio.md#attach-other-compute-targets)| Yes (SDK local mode only) | Yes | &nbsp; |
-|[Azure Data Lake Analytics](~/articles/machine-learning/how-to-create-attach-compute-studio.md#attach-other-compute-targets) | &nbsp; | Yes | &nbsp; |
-|[Azure HDInsight](~/articles/machine-learning/how-to-create-attach-compute-studio.md#attach-other-compute-targets) | &nbsp; | Yes | &nbsp; |
-|[Azure Batch](~/articles/machine-learning/how-to-create-attach-compute-studio.md#attach-other-compute-targets) | &nbsp; | Yes | &nbsp; |
+|[Azure&nbsp;Databricks](~/articles/machine-learning/how-to-create-attach-compute-studio.md#other-compute-targets)| Yes (SDK local mode only) | Yes | &nbsp; |
+|[Azure Data Lake Analytics](~/articles/machine-learning/how-to-create-attach-compute-studio.md#other-compute-targets) | &nbsp; | Yes | &nbsp; |
+|[Azure HDInsight](~/articles/machine-learning/how-to-create-attach-compute-studio.md#other-compute-targets) | &nbsp; | Yes | &nbsp; |
+|[Azure Batch](~/articles/machine-learning/how-to-create-attach-compute-studio.md#other-compute-targets) | &nbsp; | Yes | &nbsp; |
 :::moniker-end
 
 > [!TIP]
