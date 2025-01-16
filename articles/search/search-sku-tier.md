@@ -59,9 +59,9 @@ Currently, several regions are capacity-constrained for specific tiers and can't
 
 | Region | Disabled tier (SKU) due to over-capacity | Suggested alternative |
 |--------|------------------------------------------|-----------------------|
-| France Central | Basic, S1| Switzerland North |
-| North Europe | All tiers | Switzerland North |
-| West Europe | All tiers | Switzerland North |
+| France Central | Basic, S1| Sweden Central, Switzerland North|
+| North Europe | All tiers | Sweden Central, Switzerland North|
+| West Europe | All tiers | Sweden Central, Switzerland North|
 | US Gov Virginia | All tiers | US Gov Arizona |
 
 ## Feature availability by tier
