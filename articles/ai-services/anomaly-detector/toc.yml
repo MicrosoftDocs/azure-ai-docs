@@ -5,7 +5,7 @@
   items:
     - name: What is Anomaly Detector? 
       href: overview.md
-    -name: Pricing  
+    - name: Pricing
       href: https://aka.ms/adpricing
     - name: What's new
       href: whats-new.md
