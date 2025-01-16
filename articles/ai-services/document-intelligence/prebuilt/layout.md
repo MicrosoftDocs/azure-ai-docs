@@ -42,7 +42,7 @@ The following illustration shows the typical components in an image of a sample 
 :::moniker range="doc-intel-4.0.0"
 
  Document Intelligence v4.0: **2024-11-30** (GA) supports the following tools, applications, and libraries:
- 
+
  | Feature | Resources | Model ID |
  |----------|-------------|-----------|
  |**Layout model**|&bullet; [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com)</br>&bullet;  [**REST API**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)</br>&bullet;  [**C# SDK**](../versioning/sdk-overview-v4-0.md)</br>&bullet;  [**Python SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Java SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**JavaScript SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|**prebuilt-layout**|
@@ -83,6 +83,8 @@ Document Intelligence v2.1 supports the following tools, applications, and libra
 
 *See* our [Language Support—document analysis models](../language-support/ocr.md) page for a complete list of supported languages.
 
+:::moniker range="doc-intel-4.0.0"
+
 ## Supported file types
 
 Document Intelligence v4.0: **2024-11-30** (GA) layout model supports the following file formats:
@@ -91,7 +93,12 @@ Document Intelligence v4.0: **2024-11-30** (GA) layout model supports the follow
 |--------|:----:|:-----:|:---------------:|
 |Layout          | ✔  | ✔ | ✔  |
 
+:::moniker-end
+
 ## Input guidance
+
+:::moniker range="doc-intel-4.0.0"
+
 
 * For best results, provide one clear photo or high-quality scan per document.
 
@@ -113,6 +120,23 @@ Document Intelligence v4.0: **2024-11-30** (GA) layout model supports the follow
 
 For more information on model usage, quotas, and service limits, *see* [service limits](../service-limits.md).
 
+:::moniker-end
+
+:::moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
+
+[!INCLUDE [input requirements](./../includes/input-requirements.md)]
+
+:::moniker-end
+
+:::moniker range="doc-intel-2.1.0"
+
+* Supported file formats: JPEG, PNG, PDF, and TIFF.
+* Supported number of pages: For PDF and TIFF, up to 2,000 pages are processed. For free tier subscribers, only the first two pages are processed.
+* Supported file size: the file size must be less than 50 MB and dimensions at least 50 x 50 pixels and at most 10,000 x 10,000 pixels.
+
+:::moniker-end
+
+:::moniker range="doc-intel-4.0.0"
 
 ### Get started with Layout model
 
@@ -601,6 +625,8 @@ poller = document_intelligence_client.begin_analyze_document(
 [!INCLUDE [applies to v2.1](../includes/applies-to-v21.md)]
 :::moniker-end
 
+:::moniker range="<=doc-intel-3.1.0"
+
 Document Intelligence layout model is an advanced machine-learning based document analysis API available in the Document Intelligence cloud. It enables you to take documents in various formats and return structured data representations of the documents. It combines an enhanced version of our powerful [Optical Character Recognition (OCR)](../../../ai-services/computer-vision/overview-ocr.md) capabilities with deep learning models to extract text, tables, selection marks, and document structure.
 
 ## Document layout analysis
@@ -614,22 +640,6 @@ The following illustration shows the typical components in an image of a sample 
 
 :::image type="content" source="../media/document-layout-example-new.png" alt-text="Illustration of document layout example.":::
 
-## Input requirements
-
-:::moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
-
-[!INCLUDE [input requirements](./../includes/input-requirements.md)]
-
-:::moniker-end
-
-:::moniker range="doc-intel-2.1.0"
-
-* Supported file formats: JPEG, PNG, PDF, and TIFF.
-* Supported number of pages: For PDF and TIFF, up to 2,000 pages are processed. For free tier subscribers, only the first two pages are processed.
-* Supported file size: the file size must be less than 50 MB and dimensions at least 50 x 50 pixels and at most 10,000 x 10,000 pixels.
-
-:::moniker-end
-
 ### Get started with Layout model
 
 See how data, including text, tables, table headers, selection marks, and structure information is extracted from documents using  Document Intelligence. You need the following resources:
@@ -639,6 +649,8 @@ See how data, including text, tables, table headers, selection marks, and struct
 * A [Document Intelligence instance](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) in the Azure portal. You can use the free pricing tier (`F0`) to try the service. After your resource deploys, select **Go to resource** to get your key and endpoint.
 
 :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
+
+:::moniker-end
 
 :::moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
 
