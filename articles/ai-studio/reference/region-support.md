@@ -44,9 +44,13 @@ Azure AI Foundry is currently available in the following Azure regions. You can 
 - West US
 - West US 3
 
-### Azure Government regions
+## Azure Government regions
 
 Azure AI Foundry is currently not available in Azure Government regions or air-gap regions.
+
+## Availability of Azure AI Foundry features
+ 
+You can add features from different regions to your project. You may need to use a different region for a particular feature, based on the region availability of that feature.
 
 The following table lists the availability of Azure AI Foundry features across Azure regions.
 
