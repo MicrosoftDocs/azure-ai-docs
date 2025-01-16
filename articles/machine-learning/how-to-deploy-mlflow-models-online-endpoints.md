@@ -543,7 +543,23 @@ version = registered_model.version
 
 When your deployment is ready, you can use it to serve requests. One way to test the deployment is by using the built-in invocation capability in the deployment client that you use. In the examples repository, the sample-request-sklearn.json file contains the following JSON code. You can use it as a sample request file for the deployment.
 
+# [Azure CLI](#tab/cli)
+
 :::code language="json" source="~/azureml-examples-main/cli/endpoints/online/ncd/sample-request-sklearn.json":::
+
+# [Python (Azure Machine Learning SDK)](#tab/sdk)
+
+:::code language="json" source="~/azureml-examples-main/sdk/python/endpoints/online/mlflow/sample-request-sklearn.json":::
+
+# [Python (MLflow SDK)](#tab/mlflow)
+
+:::code language="json" source="~/azureml-examples-main/sdk/python/endpoints/online/mlflow/sample-request-sklearn.json":::
+
+# [Studio](#tab/studio)
+
+:::code language="json" source="~/azureml-examples-main/cli/endpoints/online/ncd/sample-request-sklearn.json":::
+
+---
 
 > [!NOTE]
 > This file uses the `input_data` key instead of `inputs`, which MLflow serving uses. Azure Machine Learning requires a different input format to be able to automatically generate the swagger contracts for the endpoints. For more information about expected input formats, see [Deployment in the MLflow built-in server vs. deployment in Azure Machine Learning inferencing server](how-to-deploy-mlflow-models.md#models-deployed-in-azure-machine-learning-vs-models-deployed-in-the-mlflow-built-in-server).
@@ -557,7 +573,7 @@ Submit a request to the endpoint:
 # [Python (Azure Machine Learning SDK)](#tab/sdk)
 
 ```python
-ml_client.online_endpoints.invoke(
+response = ml_client.online_endpoints.invoke(
     endpoint_name=endpoint_name,
     request_file="sample-request-sklearn.json",
 )
@@ -588,12 +604,41 @@ MLflow models can use the __Test__ tab to create invocations to the created endp
 
 The response should be similar to the following text:
 
+# [Azure CLI](#tab/cli)
+
 ```json
 [ 
   11633.100167144921,
   8522.117402884991
 ]
 ```
+
+# [Python (Azure Machine Learning SDK)](#tab/sdk)
+
+```json
+[ 
+  11633.100167144921
+]
+```
+
+# [Python (MLflow SDK)](#tab/mlflow)
+
+```json
+[ 
+  11633.100167144921
+]
+```
+
+# [Studio](#tab/studio)
+
+```json
+[ 
+  11633.100167144921,
+  8522.117402884991
+]
+```
+
+---
 
 > [!IMPORTANT]
 > For MLflow no-code-deployment, **[testing via local endpoints](how-to-deploy-online-endpoints.md#deploy-and-debug-locally-by-using-a-local-endpoint)** is currently not supported.
