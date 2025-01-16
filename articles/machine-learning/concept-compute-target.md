@@ -34,7 +34,30 @@ The compute resources you use for your compute targets are attached to a [worksp
 
 As you scale up your training on larger datasets or perform [distributed training](how-to-train-distributed-gpu.md), use Azure Machine Learning compute to create a single- or multi-node cluster that autoscales each time you submit a job. You can also attach your own compute resource, although support for different scenarios might vary.
 
-[!INCLUDE [aml-compute-target-train](includes/aml-compute-target-train.md)]
+**Compute targets can be reused from one training job to the next.** For example, after you attach a remote VM to your workspace, you can reuse it for multiple jobs.
+:::moniker range="azureml-api-1"
+For machine learning pipelines, use the appropriate [pipeline step](/python/api/azureml-pipeline-steps/azureml.pipeline.steps) for each compute target.
+:::moniker-end
+
+You can use any of the following resources for a training compute target for most jobs. Not all resources can be used for automated machine learning, machine learning pipelines, or designer. Azure Databricks can be used as a training resource for local runs and machine learning pipelines, but not as a remote target for other training.
+
+|Training &nbsp;targets|[Automated machine learning](~/articles/machine-learning/concept-automated-ml.md) | [Machine learning pipelines](~/articles/machine-learning/concept-ml-pipelines.md) | [Azure Machine Learning designer](~/articles/machine-learning/concept-designer.md)
+|----|:----:|:----:|:----:|
+|[Local computer (SDK v1)](~/articles/machine-learning/v1/how-to-train-model.md#local-computer)| Yes | &nbsp; | &nbsp; |
+|[Azure Machine Learning compute cluster](~/articles/machine-learning/how-to-create-attach-compute-cluster.md)| Yes | Yes | Yes |
+|[Azure Machine Learning serverless compute](~/articles/machine-learning/how-to-use-serverless-compute.md)| Yes | Yes | Yes |
+|[Azure Machine Learning compute instance](~/articles/machine-learning/how-to-create-compute-instance.md) | Yes (through SDK)  | Yes | Yes |
+|[Azure Machine Learning Kubernetes](~/articles/machine-learning/how-to-attach-kubernetes-anywhere.md) | | Yes | Yes |
+|[Remote VM (SDK v1)](~/articles/machine-learning/v1/how-to-train-model.md#remote-virtual-machines) | Yes  | Yes | &nbsp; |
+|[Apache Spark pools (preview, SDK v1)](~/articles/machine-learning/v1/how-to-train-model.md#synapse)| Yes (SDK local mode only) | Yes | &nbsp; |
+|[Azure&nbsp;Databricks (SDK v1)](~/articles/machine-learning/v1/how-to-train-model.md#azure-databricks)| Yes (SDK local mode only) | Yes | &nbsp; |
+|[Azure Data Lake Analytics (SDK v1)](~/articles/machine-learning/v1/how-to-train-model.md#azure-data-lake-analytics) | &nbsp; | Yes | &nbsp; |
+|[Azure HDInsight (SDK v1)](~/articles/machine-learning/v1/how-to-train-model.md#azure-hdinsight) | &nbsp; | Yes | &nbsp; |
+|[Azure Batch (SDK v1)](~/articles/machine-learning/v1/how-to-train-model.md#azbatch) | &nbsp; | Yes | &nbsp; |
+
+> [!TIP]
+> The compute instance has 120GB OS disk. If you run out of disk space, [use the terminal](~/articles/machine-learning/how-to-access-terminal.md) to clear at least 1-2 GB before you [stop or restart](~/articles/machine-learning/how-to-manage-compute-instance.md#manage) the compute instance.
+
 
 ## Compute targets for inference
 
