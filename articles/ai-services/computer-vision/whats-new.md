@@ -34,7 +34,7 @@ These Image Analysis 4.0 preview APIs will be retired on March 31, 2025:
 - `2023-07-01-preview`
 - `v4.0-preview.1`
 
-These features will no longer be available with the retirement of the preview API versions:
+The following features will no longer be available upon retirement of the preview API versions, and they are removed from the Studio experience as of January 10, 2025:
 - Model customization
 - Background removal
 - Product recognition

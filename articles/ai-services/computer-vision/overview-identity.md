@@ -33,6 +33,8 @@ Or, you can try out the capabilities of Face service quickly and easily in your 
 
 [!INCLUDE [Gate notice](./includes/identity-gate-notice.md)]
 
+[!INCLUDE [GDPR-related guidance](./includes/identity-data-notice.md)]
+
 
 This documentation contains the following types of articles:
 * The [quickstarts](./quickstarts-sdk/identity-client-library.md) are step-by-step instructions that let you make calls to the service and get results in a short period of time. 
@@ -58,7 +60,7 @@ The following are common use cases for the Face service:
 See the [customer checkin management](https://github.com/Azure-Samples/azure-ai-vision/tree/main/face/Scenario-CustomerCheckinManagement) and [face photo tagging](https://github.com/Azure-Samples/azure-ai-vision/tree/main/face/Scenario-FacePhotoTagging) scenarios on GitHub for working examples of facial recognition technology.
 
 > [!WARNING]
-> On June 11, 2020, Microsoft announced that it will not sell facial recognition technology to police departments in the United States until strong regulation, grounded in human rights, has been enacted. As such, customers may not use facial recognition features or functionality included in Azure Services, such as Face or Video Indexer, if a customer is, or is allowing use of such services by or for, a police department in the United States. When you create a new Face resource, you must acknowledge and agree in the Azure Portal that you will not use the service by or for a police department in the United States and that you have reviewed the Responsible AI documentation and will use this service in accordance with it.
+> On June 11, 2020, Microsoft announced that it will not sell facial recognition technology to police departments in the United States until strong regulation, grounded in human rights, has been enacted. As such, customers may not use facial recognition features or functionality included in Azure Services, such as Face or Video Indexer, if a customer is, or is allowing use of such services by or for, a police department in the United States. When you create a new Face resource, you must acknowledge and agree in the Azure portal that you will not use the service by or for a police department in the United States and that you have reviewed the Responsible AI documentation and will use this service in accordance with it.
 
 ## Face detection and analysis
 
@@ -101,7 +103,6 @@ Face liveness SDK reference docs:
 
 Modern enterprises and apps can use the Face recognition technologies, including Face verification ("one-to-one" matching) and Face identification ("one-to-many" matching) to confirm that a user is who they claim to be.
 
-[!INCLUDE [GDPR-related guidance](./includes/identity-data-notice.md)]
 
 ### Identification
 
