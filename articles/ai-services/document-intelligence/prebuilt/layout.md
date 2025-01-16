@@ -109,12 +109,11 @@ See how data, including text, tables, table headers, selection marks, and struct
 
 ## Data extraction
 
-The layout model extracts text, selection marks, tables, paragraphs, and paragraph types (`roles`) from your documents. To follow are descriptions of page layout structural elements with guidance on how to extract them:
+The layout model extracts structural elements from your documents. To follow are descriptions of these structural elements with guidance on how to extract them from your document input:
 
 * [**Pages**](#pages)
 * [**Paragraphs**](#paragraphs)
 * [**Text, lines, and words**](#text-lines-and-words)
-* [**Handwritten style**](#handwritten-style-for-text-lines)
 * [**Selection marks**](#selection-marks)
 * [**Tables**](#tables)
 * [**Figures**](#figures)
@@ -122,7 +121,7 @@ The layout model extracts text, selection marks, tables, paragraphs, and paragra
 
 ### Pages
 
-The pages collection is a list of pages within the document. Each page is represented sequentially within the document and ../includes the orientation angle indicating if the page is rotated and the width and height (dimensions in pixels). The page units in the model output are computed as shown:
+The pages collection is a list of pages within the document. Each page is represented sequentially within the document and includes the orientation angle indicating if the page is rotated and the width and height (dimensions in pixels). The page units in the model output are computed as shown:
 
 | **File format**   | **Computed page unit**   | **Total pages**  |
 | --- | --- | --- |
@@ -267,7 +266,7 @@ if page.lines:
 
 ---
 
-### Handwritten style for text lines
+#### Handwritten style for text lines
 
 The response ../includes classifying whether each text line is of handwriting style or not, along with a confidence score. For more information. See [Handwritten language support](../language-support/ocr.md). The following example shows an example JSON snippet.
 
@@ -394,7 +393,7 @@ if result.tables:
 
 ---
 
-### Output to markdown format
+#### Output table response to markdown format
 
 The Layout API can output the extracted text in markdown format. Use the `outputContentFormat=markdown` to specify the output format in markdown. The markdown content is output as part of the `content` section.
 
@@ -665,24 +664,33 @@ See how data, including text, tables, table headers, selection marks, and struct
 > [!NOTE]
 > Document Intelligence Studio is available with v3.0 APIs and later versions.
 
-***Sample document processed with [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/layout)***
+### [REST API](#tab/rest)
 
-:::image type="content" source="../media/studio/form-recognizer-studio-layout-newspaper.png" alt-text="Screenshot of `Layout` processing a newspaper page in Document Intelligence Studio.":::
 
-1. On the [Document Intelligence Studio home page](https://documentintelligence.ai.azure.com/studio), select **Layout**.
+* [2023-07-31 GA (v3.1)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)
+* [2022-08-31 GA (v3.0)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)
 
-1. You can analyze the sample document or upload your own files.
+# [Client libraries](#tab/sdks)
 
-1. Select the **Run analysis** button and, if necessary, configure the **Analyze options**:
+* [**C# SDK**](/dotnet/api/overview/azure/ai.documentintelligence-readme?view=azure-dotnet-preview&preserve-view=true)
+* [**Java SDK**](/java/api/overview/azure/ai-documentintelligence-readme?view=azure-java-preview&preserve-view=true)
+* [**JavaScript**](/javascript/api/overview/azure/ai-document-intelligence-rest-readme?view=azure-node-preview&preserve-view=true)
+* [**Python SDK**](/python/api/overview/azure/ai-documentintelligence-readme?view=azure-python-preview&preserve-view=true)
 
-    :::image type="content" source="../media/studio/run-analysis-analyze-options.png" alt-text="Screenshot of Run analysis and Analyze options buttons in the Document Intelligence Studio.":::
+### [Document Intelligence Studio](#tab/studio)
 
-   > [!div class="nextstepaction"]
-   > [Try Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/layout).
+* [Studio](https://documentintelligence.ai.azure.com/studio)
+* [How-to guide](../studio-overview.md#authentication-in-studio)
+
+---
 
 :::moniker-end
 
 :::moniker range="doc-intel-2.1.0"
+
+## REST API
+
+* [Document Intelligence v2.1 (Form Recognizer)](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)
 
 ## Document Intelligence Sample Labeling tool
 

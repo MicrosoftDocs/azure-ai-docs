@@ -7,7 +7,7 @@ ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD041 -->
 
-* Supported file formats:
+Supported file formats:
 
     |Model | PDF |Image: </br>`JPEG/JPG`, `PNG`, `BMP`, `TIFF`, `HEIF` | Microsoft Office: </br> Word (`DOCX`), Excel (`XLSX`), PowerPoint (`PPTX`), HTML|
     |--------|:----:|:-----:|:---------------:|
