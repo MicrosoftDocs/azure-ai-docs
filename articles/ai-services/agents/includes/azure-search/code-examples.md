@@ -97,8 +97,7 @@ conn_id =  "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-
 
 # Initialize agent AI search tool and add the search index connection ID and index name
 # TO DO: replace <your-index-name> with the name of the index you want to use
-ai_search = AzureAISearchTool()
-ai_search.add_index(conn_id, "<your-index-name>")
+ai_search = AzureAISearchTool(index_connection_id=conn_id, index_name="<your-index-name>")
 ```
 # [C#](#tab/csharp)
 ```csharp
