@@ -18,7 +18,7 @@ Microsoft regularly updates the liveness detection client SDK and service to imp
 
 Liveness detection client-side SDKs use `major.minor.patch` format to indicate the software version.
 - A patch version update is an optional reliability fix to the client SDK that doesn't affect compatibility with the service.
-- A minor version update is an important security and reliability improvement. We try to extend support for a minor update as long as possible, and Azure will announce the retirement of a minor update six months in advance.
+- A minor version update is an important security and reliability improvement. We try to extend support for a minor update as long as possible, and Azure announces the retirement of a minor update six months in advance.
 - A major version update is a critical security or breaking API update. Customers should update their application as soon as possible. Azure service will block the previous major version after six months.
 
 ## Azure Face API version development pattern
