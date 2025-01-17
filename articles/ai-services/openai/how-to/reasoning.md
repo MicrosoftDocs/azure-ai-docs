@@ -48,10 +48,12 @@ Once access has been granted, you'll need to create a deployment for each model.
 | **[Context Window](../concepts/models.md#o1-and-o1-mini-models-limited-access)** | Input: 200,000 <br> Output: 100,000 | Input: 128,000  <br> Output: 32,768 | Input: 128,000  <br> Output: 65,536 |
 | **[Reasoning effort](#reasoning-effort)** | ✅ | - | - |
 | System Messages | - | - | - |
-| Functions/Tools | ✅ | - | - |
 | `max_completion_tokens` |✅ |✅ |✅ |
 
 **o1 series** models will only work with the `max_completion_tokens` parameter.
+
+> [!IMPORTANT]
+> There is a known issue with the `o1` model and the `tool_choice` parameter. Currently function calls that include the optional `tool_choice` parameter will fail. this page will be updated once the issue is resolved.
 
 ### Not Supported
 
