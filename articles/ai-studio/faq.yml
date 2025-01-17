@@ -8,7 +8,7 @@ metadata:
   ms.custom:
     - build-2024
   ms.topic: faq
-  ms.date: 5/21/2024
+  ms.date: 01/17/2025
   ms.reviewer: sgilley
   ms.author: sgilley
   author: sdgilley
@@ -25,7 +25,7 @@ sections:
       - question: |
           How can customers access Azure AI Foundry? 
         answer: |
-          Customers can explore Azure AI Foundry unauthenticated - including its cutting-edge AI capabilities. When they're ready to begin using templates, tools, and the robust model catalog to stitch together their own AI solutions, they'll be prompted to register or sign in to their Azure account. During preview, there's no extra charge for using Azure AI Foundry. When deploying solutions, Azure AI services, Azure Machine Learning, and other Azure resources used inside of Azure AI Foundry will be billed at their existing rates. Pricing is subject to change when Azure AI Foundry is generally available.
+          Customers can explore Azure AI Foundry unauthenticated - including its cutting-edge AI capabilities. When they're ready to begin using templates, tools, and the robust model catalog to stitch together their own AI solutions, they'll be prompted to register or sign in to their Azure account. Currently, there's no extra charge for using Azure AI Foundry. When deploying solutions, Azure AI services, Azure Machine Learning, and other Azure resources used inside of Azure AI Foundry will be billed at their existing rates.
       - question: |
           What regions is Azure AI Foundry available in?
         answer: | 
