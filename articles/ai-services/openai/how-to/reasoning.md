@@ -49,8 +49,9 @@ Once access has been granted, you'll need to create a deployment for each model.
 | **[Reasoning effort](#reasoning-effort)** | ✅ | - | - |
 | System Messages | - | - | - |
 | Functions/Tools | ✅ | - | - |
+| `max_completion_tokens` |✅ |✅ |✅ |
 
-`max_tokens` parameter has been replaced with the new `max_completion_tokens` parameter. **o1 series** models will only work with the `max_completion_tokens` parameter.
+**o1 series** models will only work with the `max_completion_tokens` parameter.
 
 ### Not Supported
 
@@ -59,7 +60,7 @@ The following are currently unsupported with o1-series models:
 - System Messages
 - Streaming
 - Parallel tool calling
-- `temperature`, `top_p`, `presence_penalty`, `frequency_penalty`, `logprobs`, `top_logprobs`, `logit_bias`
+- `temperature`, `top_p`, `presence_penalty`, `frequency_penalty`, `logprobs`, `top_logprobs`, `logit_bias`, `max_tokens`
 
 ## Usage
 
