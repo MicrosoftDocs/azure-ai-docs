@@ -115,7 +115,7 @@ items:
   - name: Azure CLI
     href: /cli/azure/cognitiveservices
   - name: Azure PowerShell
-    href: /powershell/module/azurerm.cognitiveservices/
+    href: /powershell/module/az.cognitiveservices/
   - name: Azure Policy built-ins
     displayName: samples, policies, definitions
     href: ./policy-reference.md
