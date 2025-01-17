@@ -320,7 +320,7 @@ project_client.evaluations.disable_schedule(name)
 
 ## Related content
 
-- [Monitor your generative AI applications](./monitor.applications.md)
+- [Monitor your generative AI applications](./monitor-applications.md)
 - [Trace your application with Azure AI Inference SDK](./develop/trace-local-sdk.md)
 - [Visualize your traces](./develop/visualize-traces.md)
 - [Evaluation of Generative AI Models & Applications](../concepts/evaluation-approach-gen-ai.md)
