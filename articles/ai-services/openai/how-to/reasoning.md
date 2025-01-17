@@ -64,17 +64,17 @@ The following are currently unsupported with o1-series models:
 
 ## Usage
 
-These models do [not currently support](#api--feature-support) the same set of parameters as other models that use the chat completions API. 
+These models [don't currently support the same set of parameters](#api--feature-support) as other models that use the chat completions API. 
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
-You will need to upgrade your OpenAI client library for access to the latest parameters.
+You'll need to upgrade your OpenAI client library for access to the latest parameters.
 
 ```cmd
 pip install openai --upgrade
 ```
 
-If you are new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](../how-to/managed-identity.md).
+If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](../how-to/managed-identity.md).
 
 ```python
 from openai import AzureOpenAI
@@ -233,7 +233,7 @@ print(response.model_dump_json(indent=2))
 ## Reasoning effort
 
 > [!NOTE]
-> Reasoning models have `reasoning_tokens` as part of `completion_tokens_details` in the model response. These are hidden tokens that are not returned as part of the message response content but are used by the model to help generate a final answer to your request. `2024-12-01-preview` adds an additional new parameter `reasoning_effort` which can be set to `low`, `medium`, or `high` with the latest `o1` model. The higher the effort setting, the longer the model will spend processing the request, which will generally result in a larger number of `reasoning_tokens`.
+> Reasoning models have `reasoning_tokens` as part of `completion_tokens_details` in the model response. These are hidden tokens that aren't returned as part of the message response content but are used by the model to help generate a final answer to your request. `2024-12-01-preview` adds an additional new parameter `reasoning_effort` which can be set to `low`, `medium`, or `high` with the latest `o1` model. The higher the effort setting, the longer the model will spend processing the request, which will generally result in a larger number of `reasoning_tokens`.
 
 ## Developer messages
 
@@ -246,7 +246,7 @@ Adding a developer message to the previous code example would look as follows:
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
-You will need to upgrade your OpenAI client library for access to the latest parameters.
+You'll need to upgrade your OpenAI client library for access to the latest parameters.
 
 ```cmd
 pip install openai --upgrade
