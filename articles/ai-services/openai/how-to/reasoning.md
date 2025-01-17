@@ -53,7 +53,7 @@ Once access has been granted, you'll need to create a deployment for each model.
 **o1 series** models will only work with the `max_completion_tokens` parameter.
 
 > [!IMPORTANT]
-> There is a known issue with the `o1` model and the `tool_choice` parameter. Currently function calls that include the optional `tool_choice` parameter will fail. this page will be updated once the issue is resolved.
+> There is a known issue with the `o1` model and the `tool_choice` parameter. Currently function calls that include the optional `tool_choice` parameter will fail. This page will be updated once the issue is resolved.
 
 ### Not Supported
 
