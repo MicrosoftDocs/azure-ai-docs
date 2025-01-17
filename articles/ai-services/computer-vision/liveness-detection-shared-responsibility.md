@@ -1,7 +1,7 @@
 ---
-title: Shared Responsibility For Face Liveness Detection 
+title: Shared responsibility for Face liveness detection 
 titleSuffix: Azure AI services
-description: Azure and customers share responsibility for liveness detection solutions, covering connections, client apps, devices, and abuse monitoring
+description: Azure and customers share responsibility for liveness detection solutions, covering connections, client apps, devices, and abuse monitoring.
 author: JinyuID
 ms.author: lijiny
 manager: nitinme
@@ -10,9 +10,9 @@ ms.date: 01/15/2025
 ms.topic: security
 ---
 
-# Shared Responsibility for Face Liveness Detection
+# Shared responsibility for Face liveness detection
 
-It's the shared responsibility between Azure and the customer to build a secure and compliance solution. You can learn more about Azure shared responsibility model at here: [Shared responsibility in the cloud - Microsoft Azure](/azure/security/fundamentals/shared-responsibility). Understanding the shared responsibility model is especially important for liveness detection solutions, this document covers three aspects about how to secure the solution and monitor the solution.
+It's the shared responsibility between Azure and its customers to build a secure and compliant face liveness solution. You can learn more about Azure's shared responsibility model here: [Shared responsibility in the cloud - Microsoft Azure](/azure/security/fundamentals/shared-responsibility). Understanding the shared responsibility model is especially important for liveness detection solutions, this document covers three aspects about how to secure the solution and monitor the solution.
 
 ## Secure the Connections
 
