@@ -4,6 +4,8 @@
   items:
   - name: What is Immersive Reader?
     href: overview.md
+  - name: Related content
+    href: ../../ai-studio/concepts/related-content.md?context=/azure/ai-services/immersive-reader/context/context
   - name: Language support
     href: language-support.md
   - name: Pricing

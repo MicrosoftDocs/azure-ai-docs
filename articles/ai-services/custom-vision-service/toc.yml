@@ -6,6 +6,8 @@ items:
   items:
   - name: What is Custom Vision?
     href: overview.md
+  - name: Related content
+    href: ../../ai-studio/concepts/related-content.md?context=/azure/ai-services/custom-vision-service/context/context
   - name: Pricing and limits
     href: limits-and-quotas.md
   - name: What's new
