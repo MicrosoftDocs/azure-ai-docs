@@ -1,6 +1,6 @@
 ---
 title: Azure AI Foundry and related resources
-description: Roadmap of various AI resource documentation
+description: Roadmap of various AI resource documentations
 author: sdgilley
 ms.author: sgilley
 ms.service: azure-ai-studio
@@ -17,7 +17,7 @@ Documentation for AI resources is available in multiple places. This article pro
 
 * [Azure AI Foundry](../what-is-ai-studio.md) is a comprehensive platform for AI development, integrating with various Azure AI Services to expand its capabilities. 
 
-* [Azure AI Services](../../ai-services/what-are-ai-services.md) are a collection of services that connect to Azure AI Foundry to provide additional functionality. 
+* [Azure AI Services](../../ai-services/what-are-ai-services.md) are a collection of services that connect to Azure AI Foundry to provide more functionality. 
 
 Individual services are documented in the following areas:
 
