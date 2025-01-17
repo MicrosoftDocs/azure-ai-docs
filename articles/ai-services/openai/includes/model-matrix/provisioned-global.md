@@ -11,28 +11,28 @@ ms.date: 01/15/2025
 
 | **Region**     | **gpt-4o**, **2024-05-13**   | **gpt-4o**, **2024-08-06**   | **gpt-4o-mini**, **2024-07-18**   |
 |:-------------------|:--------------------------:|:--------------------------:|:-------------------------------:|
-| australiaeast      | -                      | ✅                       | ✅                            |
-| brazilsouth        | -                      | ✅                       | ✅                            |
-| canadacentral      | -                      | ✅                       | ✅                            |
-| canadaeast         | -                      | ✅                       | ✅                            |
+| australiaeast      | ✅                       | ✅                       | ✅                            |
+| brazilsouth        | ✅                       | ✅                       | ✅                            |
+| canadacentral      | ✅                       | ✅                       | ✅                            |
+| canadaeast         | ✅                       | ✅                       | ✅                            |
 | eastus             | ✅                       | ✅                       | ✅                            |
 | eastus2            | ✅                       | ✅                       | ✅                            |
 | francecentral      | ✅                       | ✅                       | ✅                            |
-| germanywestcentral | -                      | ✅                       | ✅                            |
-| japaneast          | -                      | ✅                       | ✅                            |
-| koreacentral       | -                      | ✅                       | ✅                            |
-| northcentralus     | -                      | ✅                       | ✅                            |
-| norwayeast         | -                      | ✅                       | ✅                            |
-| polandcentral      | -                      | ✅                       | ✅                            |
-| southafricanorth   | -                      | ✅                       | ✅                            |
+| germanywestcentral | ✅                       | ✅                       | ✅                            |
+| japaneast          | ✅                       | ✅                       | ✅                            |
+| koreacentral       | ✅                       | ✅                       | ✅                            |
+| northcentralus     | ✅                       | ✅                       | ✅                            |
+| norwayeast         | ✅                       | ✅                       | ✅                            |
+| polandcentral      | ✅                       | ✅                       | ✅                            |
+| southafricanorth   | ✅                       | ✅                       | ✅                            |
 | southcentralus     | ✅                       | ✅                       | ✅                            |
-| southindia         | -                      | ✅                       | ✅                            |
-| spaincentral       | -                      | ✅                       | ✅                            |
+| southindia         | ✅                       | ✅                       | ✅                            |
+| spaincentral       | ✅                       | ✅                       | ✅                            |
 | swedencentral      | ✅                       | ✅                       | ✅                            |
-| switzerlandnorth   | -                      | ✅                       | ✅                            |
-| switzerlandwest    | -                      | ✅                       | ✅                            |
+| switzerlandnorth   | ✅                       | ✅                       | ✅                            |
+| switzerlandwest    | ✅                       | ✅                       | ✅                            |
 | uaenorth           | ✅                       | ✅                       | ✅                            |
-| uksouth            | -                      | ✅                       | ✅                            |
+| uksouth            | ✅                       | ✅                       | ✅                            |
 | westeurope         | ✅                       | ✅                       | ✅                            |
 | westus             | ✅                       | ✅                       | ✅                            |
 | westus3            | ✅                       | ✅                       | ✅                            |
