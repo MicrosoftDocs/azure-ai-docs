@@ -1,5 +1,5 @@
 ---
-title: Understand Liveness Client-side SDK versions 
+title: Understand liveness client-side SDK versions 
 titleSuffix: Azure AI services
 description: Explains the importance of updating the Liveness SDK for security and reliability, detailing versioning and update policies
 author: JinyuID
@@ -7,26 +7,26 @@ ms.author: lijiny
 manager: qingflin
 ms.service: azure-ai-vision
 ms.date: 01/15/2025
-ms.topic: reference
+ms.topic: conceptual
 ---
 
-# Understand the Liveness Client-side SDK versions
+# Understand the liveness client-side SDK versions
 
-Microsoft regularly upgrades the liveness detection client SDK and service to improve security, reliability, and user convenience. Staying current with these updates is crucial because the liveness detection field faces active and sophisticated attacks.
+Microsoft regularly updates the liveness detection client SDK and service to improve security, reliability, and user convenience. It's important to stay current with these updates because the liveness detection field faces active and sophisticated attacks.
 
-## Client-side SDK Versions
+## Client-side SDK version numbers
 
-Liveness detection client-side SDK uses major.minor.patch format to indicate software version.   
-- A patch version update is an optional reliability fix on the client SDK that doesn't affect compatibility with the service.
-- A minor version update is important security and reliability improvement. We'll try to extend support for  a minor update as long as possible, Azure service might announce retirement of minor update after six months
-- A major version update is critical security or breaking API updates. Customers should make client update as soon as possible. Azure service will block the previous major version after six months.    
+Liveness detection client-side SDKs use `major.minor.patch` format to indicate the software version.
+- A patch version update is an optional reliability fix to the client SDK that doesn't affect compatibility with the service.
+- A minor version update is an important security and reliability improvement. We try to extend support for a minor update as long as possible, and Azure will announce the retirement of a minor update six months in advance.
+- A major version update is a critical security or breaking API update. Customers should update their application as soon as possible. Azure service will block the previous major version after six months.
 
-## Azure Face API Service Version
+## Azure Face API version development pattern
 
-Face liveness detection feature is generally available from version 1.2. Face API follows the Azure development cycle where newer API versions add new features during the preview release before becoming generally available. A newer service version might require a newer minimal client SDK version. The requirement is announced when new service version is available.
+The Face liveness detection feature is generally available from version `1.2`. Face API follows the Azure development cycle in which newer API versions add new features during the preview release before becoming generally available. A newer service version might require a newer minimal client SDK version. The requirement is announced when a new service version is available.
 
-## Service Model Version
+## Service model version
 
-In the "Create Liveness Session" operation, customers can specify a liveness model version to classify the session. Azure service is also progressively updating  new models. We strongly recommend customers always use the latest model version, which means simply leaving the model version parameter empty.
-- The latest model version (default version) remains compatible with all supported client versions.
-- Azure announces the retirement of a service model six months in advance, giving customers buffer time to update their backend service.
+In the **Create Liveness Session** operation, customers can specify a liveness model version to use within the session. Azure Face service continually adds or updates models. We strongly recommend customers always use the latest model version, which entails leaving the `model-version` parameter empty in API calls.
+- The latest model version (default) remains compatible with all supported client versions.
+- Azure announces the retirement of a service model six months in advance, giving customers time to update their backend service.

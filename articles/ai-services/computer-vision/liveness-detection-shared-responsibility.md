@@ -7,7 +7,7 @@ ms.author: lijiny
 manager: nitinme
 ms.service: azure-ai-vision
 ms.date: 01/15/2025
-ms.topic: security
+ms.topic: conceptual
 ---
 
 # Shared responsibility for Face liveness detection
