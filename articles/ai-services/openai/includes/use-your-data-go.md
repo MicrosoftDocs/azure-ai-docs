@@ -19,7 +19,7 @@ ms.date: 01/17/2025
    cd openai-go
    ```
 
-## Create the Go app
+## Create the app
 
 1. From the project directory, open the *sample.go* file and add the following code:
 
