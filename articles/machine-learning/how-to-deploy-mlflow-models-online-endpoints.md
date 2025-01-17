@@ -332,7 +332,7 @@ version = registered_model.version
     }
     ```
 
-    Write this configuration information to a `JSON` file:
+    Use the following code to write this configuration information to a `JSON` file:
 
     ```python
     endpoint_config_path = "endpoint_config.json"
@@ -420,7 +420,7 @@ version = registered_model.version
     > [!NOTE]
     > For details about the full specification of this configuration, see [Managed online deployment schema (v2)](reference-yaml-deployment-managed-online.md).
     
-    Write the configuration to a file:
+    Use the following code to write the configuration to a file:
 
     ```python
     deployment_config_path = "deployment_config.json"
@@ -468,20 +468,20 @@ version = registered_model.version
 
     # [Studio](#tab/studio)
 
-    1. Select __Endpoints__. Go to the **Real-time endpoints** tab, and then select **Create**.
+    1. Select __Endpoints__. Go to the __Real-time endpoints__ tab, and then select __Create__.
 
         :::image type="content" source="media/how-to-deploy-mlflow-models-online-endpoints/create-from-endpoints.png" lightbox="media/how-to-deploy-mlflow-models-online-endpoints/create-from-endpoints.png" alt-text="Screenshot showing create option on the Endpoints UI page.":::
 
-    1. Select the MLflow model that you registered previously, and then select **Select**.
+    1. Select the MLflow model that you registered previously, and then select __Select__.
     
         > [!NOTE]
         > The configuration page includes a note to inform you that the scoring script and environment are automatically generated for your selected MLflow model.
 
-    1. Under **Endpoint**, select **New** to deploy to a new endpoint.
+    1. Under __Endpoint__, select __New__ to deploy to a new endpoint.
     
-    1. Under **Endpoint name**, enter a name for the endpoint or keep the default name.
+    1. Under __Endpoint name__, enter a name for the endpoint or keep the default name.
     
-    1. Under **Deployment name**, enter a name for the deployment or keep the default name.
+    1. Under __Deployment name__, enter a name for the deployment or keep the default name.
     
     1. Select __Deploy__ to deploy the model to the endpoint.
 
@@ -645,7 +645,7 @@ The response should be similar to the following text:
 ---
 
 > [!IMPORTANT]
-> For MLflow no-code-deployment, **[testing via local endpoints](how-to-deploy-online-endpoints.md#deploy-and-debug-locally-by-using-a-local-endpoint)** is currently not supported.
+> For MLflow no-code-deployment, __[testing via local endpoints](how-to-deploy-online-endpoints.md#deploy-and-debug-locally-by-using-a-local-endpoint)__ is currently not supported.
 
 
 ## Customize MLflow model deployments
@@ -712,12 +712,12 @@ To deploy an MLflow model with a custom scoring script:
     # [Studio](#tab/studio)
 
     1. On the side menu, select __Environments__.
-    1. Select __Custom environments__ > __Create__.
-    1. Enter the name of the environment, in this case `sklearn-mlflow-online-py37`.
-    1. For __Select environment source__, select __Use existing docker image with optional conda file__.
-    1. For __Container registry image path__, enter `mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04`.
+    1. Go to the __Custom environments__ tab, and then select __Create__.
+    1. Under __Name__, enter the name of the environment. In this case, enter **sklearn-mlflow-online-py37**.
+    1. Under __Select environment source__, select __Use existing docker image with optional conda file__.
+    1. Under __Container registry image path__, enter **mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04**.
     1. Select __Next__ to go to the __Customize__ section.
-    1. Copy the content of the `sklearn-diabetes/environment/conda.yml` file and paste it in the text box. 
+    1. Copy the contents of the sklearn-diabetes/environment/conda.yaml file and paste it in the text box. 
     1. Select __Next__ to go to the __Tags__ page, and then select __Next__ again.
     1. On the __Review__ page, select __Create__. The environment is ready for use.
     ---
@@ -775,23 +775,24 @@ To deploy an MLflow model with a custom scoring script:
 
     # [Studio](#tab/studio)
 
-    1. On the __Endpoints__ page, Select **+Create**.
-    1. Select the MLflow model that you registered previously.
+    1. On the __Endpoints__ page, Select __Create__.
+    1. Select the MLflow model that you registered previously, and then select __Select__.
     1. In the endpoint creation wizard, select __More options__ to open up advanced options.
 
         :::image type="content" source="media/how-to-deploy-mlflow-models-online-endpoints/select-advanced-deployment-options.png" lightbox="media/how-to-deploy-mlflow-models-online-endpoints/select-advanced-deployment-options.png" alt-text="Screenshot showing how to select advanced deployment options when creating an endpoint."::: 
 
-    1. Provide a name and authentication type for the endpoint, and then select __Next__ to see that the model you selected is being used for your deployment.
-    1. Select __Next__ to continue to the ___Deployment__ page.
-    1. Select __Next__ to go to the __Code + environment__ page.
-    1. Select the slider next to __Customize environment and scoring script__.
+    1. Enter a name and authentication type for the endpoint, and then select __Next__.
+    1. Check to see that the model you selected is being used for your deployment, and then select __Next__ to continue to the ___Deployment__ page.
+    1. Select __Next__.
+    1. On the __Code and environment for inferencing__ page, next to __Customize environment and scoring script__, select the slider. When you select a model that's registered in MLflow format, you don't need to specify a scoring script or an environment. But in this case, you want to specify both.
 
         :::image type="content" source="media/how-to-deploy-mlflow-models-online-endpoints/configure-scoring-script-mlflow.png" lightbox="media/how-to-deploy-mlflow-models-online-endpoints/configure-scoring-script-mlflow.png" alt-text="Screenshot showing how to indicate an environment and scoring script for MLflow models.":::
 
-    1. Browse to select the scoring script you created previously.
-    1. For the environment type, select __Custom environments__.
+    1. Under __Select a scoring script for inferencing__, select __Browse__ to select the scoring script you created previously.
+    1. Under __Select environment type__, select __Custom environments__.
     1. Select the custom environment you created previously, and then select __Next__.
-    1. Complete the wizard to deploy the model to the endpoint.
+    1. On the __Compute__ and __Live Traffic__ pages, select __Next__.
+    1. On the __Review__ page, select __Create__ to deploy the model to the endpoint.
 
     ---
 
@@ -911,8 +912,8 @@ deployment_client.delete_endpoint(endpoint_name)
 
 # [Studio](#tab/studio)
 
-1. In the studio, go to the __Endpoints__ tab.
-1. Select the __Real-time endpoints__ tab.
+1. In the studio, select __Endpoints__.
+1. Go to the __Real-time endpoints__ tab.
 1. Select the endpoint that you want to delete.
 1. Select __Delete__. The endpoint and all its deployments are deleted.
 
