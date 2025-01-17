@@ -92,6 +92,13 @@ Nixtla | Not available | TimeGEN-1
 
 :::image type="content" source="../media/explore/platform-service-cycle.png" alt-text="Diagram that shows models as a service and the service cycle of managed computes." lightbox="../media/explore/platform-service-cycle.png":::
 
+## Model life cycle: deprecation & retirement
+AI models are evolving fast, and when a new version or a new model with updated capabilities in the same model family become available, older models may be retired on the AI Foundry model catalog. For some models, users can opt in for automatic update to a newer version for a smooth transition.
+
+See below to learn more about the model life cycle of different models, upcoming model retirement dates, and suggested replacement models and versions:
+- [Azure OpenAI Service model deprecations and retirements](../../ai-services/openai/concepts/model-retirements.md)
+- [Severless API model deprecations and retirements](../../ai-studio/concepts/model-lifecycle-retirement.md)
+
 ## Managed compute
 
 The capability to deploy models as managed compute builds on platform capabilities of Azure Machine Learning to enable seamless integration of the wide collection of models in the model catalog across the entire life cycle of large language model (LLM) operations.
