@@ -15,9 +15,9 @@ ms.date: 1/14/2025
 
 Documentation for AI resources is available in multiple places. This article provides a roadmap to help you navigate the various resources.
 
-* [Azure AI Foundry](../index.yml) is a comprehensive platform for AI development, integrating with various Azure AI Services to expand its capabilities. 
+* [Azure AI Foundry](../what-is-ai-studio.md) is a comprehensive platform for AI development, integrating with various Azure AI Services to expand its capabilities. 
 
-* [Azure AI Services](../../ai-services/index.yml) are a collection of services that connect to Azure AI Foundry to provide additional functionality. 
+* [Azure AI Services](../../ai-services/what-are-ai-services.md) are a collection of services that connect to Azure AI Foundry to provide additional functionality. 
 
 Individual services are documented in the following areas:
 
