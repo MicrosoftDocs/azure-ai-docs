@@ -21,7 +21,7 @@ ms.custom:
 Creates an embedding vector representing the input text.
 
 ```http
-POST /embeddings?api-version=2024-04-01-preview
+POST /embeddings?api-version=2024-05-01-preview
 ```
 
 ## URI Parameters
