@@ -98,7 +98,7 @@ The solution is to capture the room detail as nested JSON, and then insert the J
 
 1. Run `SELECT * FROM dbo.HotelRooms` to retrieve the row set. This query returns 50 rows, one per hotel, with associated room information as a JSON collection. 
 
-   ![Rowset from HotelRooms view](media/index-sql-relational-data/hotelrooms-rowset.png "Screeshot of the rowset from the HotelRooms view.")
+   ![Rowset from HotelRooms view](media/index-sql-relational-data/hotelrooms-rowset.png "Screenshot of the rowset from the HotelRooms view.")
 
 This rowset is now ready for import into Azure AI Search.
 
