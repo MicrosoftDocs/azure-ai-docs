@@ -74,6 +74,7 @@ In this section, create a cluster, install the `synapseml` library, and create a
    1. Select **Maven**.
 
    1. In Coordinates, enter `com.microsoft.azure:synapseml_2.12:1.0.4`
+<!-- com.microsoft.azure:synapseml:0.9.3 -->
 
    1. Select **Install**.
 
@@ -93,7 +94,9 @@ In this section, create a cluster, install the `synapseml` library, and create a
 
 Paste the following code into the first cell of your notebook. 
 
-Replace the placeholders with endpoints and access keys for each resource. Provide a name for a new search index. No other modifications are required, so run the code when you're ready.
+Replace the placeholders with endpoints and access keys for each resource. Provide a name for a new search index. No other modifications are required, so run the code when you're ready. 
+
+The first execution also starts up the cluster. Wait several minutes for this task to complete.
 
 This code imports multiple packages and sets up access to the Azure resources used in this workflow.
 
@@ -103,12 +106,12 @@ from pyspark.sql.functions import udf, trim, split, explode, col, monotonically_
 from pyspark.sql.types import StringType
 from synapse.ml.core.spark import FluentAPI
 
-cognitive_services_key = "placeholder-cognitive-services-multi-service-key"
-cognitive_services_region = "placeholder-cognitive-services-region"
+cognitive_services_key = "placeholder-azure-ai-multi-service-key"
+cognitive_services_region = "placeholder-auzre-ai-multi-service-account-region"
 
 search_service = "placeholder-search-service-name"
-search_key = "placeholder-search-service-api-key"
-search_index = "placeholder-search-index-name"
+search_key = "placeholder-search-service-adin-api-key"
+search_index = "placeholder-for-new-search-index-name"
 ```
 
 ## Step 3: Load data into Spark
