@@ -202,7 +202,7 @@ Use the reference section to explore the API design and which parameters are ava
 __Request__
 
 ```HTTP/1.1
-POST /chat/completions?api-version=2024-04-01-preview
+POST /chat/completions?api-version=2024-05-01-preview
 Authorization: Bearer <bearer-token>
 Content-Type: application/json
 ```
@@ -277,7 +277,7 @@ Console.WriteLine($"Response: {response.Value.Choices[0].Message.Content}");
 __Request__
 
 ```HTTP/1.1
-POST /chat/completions?api-version=2024-04-01-preview
+POST /chat/completions?api-version=2024-05-01-preview
 Authorization: Bearer <bearer-token>
 Content-Type: application/json
 extra-parameters: pass-through
@@ -411,7 +411,7 @@ catch (RequestFailedException ex)
 __Request__
 
 ```HTTP/1.1
-POST /chat/completions?api-version=2024-04-01-preview
+POST /chat/completions?api-version=2024-05-01-preview
 Authorization: Bearer <bearer-token>
 Content-Type: application/json
 ```
@@ -552,7 +552,7 @@ catch (RequestFailedException ex)
 __Request__
 
 ```HTTP/1.1
-POST /chat/completions?api-version=2024-04-01-preview
+POST /chat/completions?api-version=2024-05-01-preview
 Authorization: Bearer <bearer-token>
 Content-Type: application/json
 ```
