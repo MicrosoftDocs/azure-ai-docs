@@ -94,7 +94,7 @@ The solution is to capture the room detail as nested JSON, and then insert the J
 
    The following screenshot shows the resulting view, with the *Rooms* nvarchar field at the bottom. The *Rooms* field exists only in the HotelRooms view.
 
-   ![HotelRooms view](media/index-sql-relational-data/hotelsrooms-view.png "Screenshot of the hoteRooms view.")
+   ![HotelRooms view](media/index-sql-relational-data/hotelsrooms-view.png "Screenshot of the HotelRooms view.")
 
 1. Run `SELECT * FROM dbo.HotelRooms` to retrieve the row set. This query returns 50 rows, one per hotel, with associated room information as a JSON collection. 
 
