@@ -21,7 +21,7 @@ ms.custom:
 Creates an embedding vector representing the input image and text pair.
 
 ```http
-POST /images/embeddings?api-version=2024-04-01-preview
+POST /images/embeddings?api-version=2024-05-01-preview
 ```
 
 ## URI Parameters
