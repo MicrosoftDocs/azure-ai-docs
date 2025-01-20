@@ -14,14 +14,14 @@ ms.custom:
 
 # Authenticate to Azure Functions using "EasyAuth" (Azure AI Search)
 
-This article explains how to set up an indexer connection to an Azure function app using the [built-in authentication capabilities of App services](/azure/app-service/overview-authentication-authorization.md), also known as "EasyAuth". Azure function apps are a great solution for hosting Custom Web APIs that an Azure AI Search service can use either to enrich content ingested during an indexer run, or to vectorize content in a search query.
+This article explains how to set up an indexer connection to an Azure function app using the [built-in authentication capabilities of App services](/azure/app-service/overview-authentication-authorization), also known as "EasyAuth". Azure function apps are a great solution for hosting Custom Web APIs that an Azure AI Search service can use either to enrich content ingested during an indexer run, or to vectorize content in a search query.
 
 You can use either a system-assigned or a user-assigned identity of the search service to authenticate against the Azure function app.
 
 ## Prerequisites
 
 * [Create a managed identity](search-howto-managed-identities-data-sources.md) for your search service.
-* Configure Azure function app with [Microsoft Entra sign-in](/azure/app-service/configure-authentication-provider-aad.md).
+* Configure Azure function app with [Microsoft Entra sign-in](/azure/app-service/configure-authentication-provider-aad).
 
 ## Limitations
 
@@ -38,7 +38,7 @@ Regardless of either option, ensure that the app registration is configured per 
 
 The app registration should be configured with an application ID URI, which can then be used as the token audience with Azure functions and Azure AI Search. Configure it in the format `api://<applicationId>`
 
-![Configure application ID URI](./media\/search-howto-managed-identities-azure-functions/app-registration-overview.png "Configure application ID URI")
+![Configure application ID URI](./media/search-howto-managed-identities-azure-functions/app-registration-overview.png "Configure application ID URI")
 
 ### Set supported account types for authentication
 
@@ -64,7 +64,7 @@ Once the delegated permissions scope is set up, you should notice the "API permi
 
 ## Configure Microsoft Entra authentication provider in Azure function app
 
-With the client application registered with the exact specifications above, Microsoft Entra authentication for the Azure function application can be set up by following the [guide from App Services](/azure/app-service/configure-authentication-provider-aad.md). Ensure the following settings are configured to ensure that Azure AI Search can successfully authenticate to the function app.
+With the client application registered with the exact specifications above, Microsoft Entra authentication for the Azure function application can be set up by following the [guide from App Services](/azure/app-service/configure-authentication-provider-aad). Ensure the following settings are configured to ensure that Azure AI Search can successfully authenticate to the function app.
 
 ### Configure authentication settings
 
@@ -98,7 +98,7 @@ The following screenshot highlights these specific settings for a sample Azure f
 >[!NOTE]
 > This step is the most important configuration on the Azure function app and doing it wrongly can result in the indexer being forbidden from accessing the function app. Ensure that you perform the lookup of the identity's enterprise application details correctly, and you specify the "Application ID" and "Object (principal) ID" in the right places.
 
-* For the **"Tenant requirement"**, choose any of the options that aligns with your security posture. Check out the [Azure App service documentation](/azure/app-service/configure-authentication-provider-aad.md) for more details.
+* For the **"Tenant requirement"**, choose any of the options that aligns with your security posture. Check out the [Azure App service documentation](/azure/app-service/configure-authentication-provider-aad) for more details.
 
 ## Configure Custom Web API skill/vectorizer to connect to the Azure function application
 
