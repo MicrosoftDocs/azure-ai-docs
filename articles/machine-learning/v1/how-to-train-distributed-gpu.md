@@ -192,7 +192,7 @@ run = Experiment(ws, 'experiment_name').submit(run_config)
 > arguments=['--epochs', 50, '--local_rank', $LOCAL_RANK]
 > ```
 
-### Pytorch per-process-launch example
+### PyTorch per-process-launch example
 
 - [azureml-examples: Distributed training with PyTorch on CIFAR-10](https://github.com/Azure/azureml-examples/tree/v1-archive/v1/python-sdk/workflows/train/pytorch/cifar-distributed)
 
