@@ -88,6 +88,7 @@ Below are some general guidelines that you can follow to create a good corpus (r
 
    > [!NOTE] 
    > Short words/phrases should be separated with a commas. They help remind your voice talent to pause briefly when reading them.
+   >
    > Question and exclamations are required if you want the generated voice to accurately convey questions or exclamations.
 
    Best practices include:
