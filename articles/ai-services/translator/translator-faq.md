@@ -64,4 +64,4 @@ Machine translation is used as a first pass, before using human translation, by 
 
 ---
 > [!TIP]
-> If you can't find answers to your questions in this FAQ, try asking the Translator API community on [StackOverflow](https://stackoverflow.com/search?q=%5Bmicrosoft-cognitive%5D+or+%5Bmicrosoft-cognitive%5D+translator&s=34bf0ce2-b6b3-4355-86a6-d45a1121fe27).
+> If you can't find answers to your questions in this FAQ, try asking the Translator API community on [Stack Overflow](https://stackoverflow.com/search?q=%5Bmicrosoft-cognitive%5D+or+%5Bmicrosoft-cognitive%5D+translator&s=34bf0ce2-b6b3-4355-86a6-d45a1121fe27).
