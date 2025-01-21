@@ -41,24 +41,11 @@ pip install azure-core-tracing-opentelemetry
 pip install azure-monitor-opentelemetry
 ```
 
-Use the following code to enable instrumentation of the Azure AI Foundry SDK and logging to your AI project:
+Refer the following samples to get started with tracing using Azure AI Project SDK:
+- [Python Sample with console tracing](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-inference/samples/sample_chat_completions_with_tracing.py) containing fully runnable Python code for tracing using synchronous and asynchronous clients.
+- [Python Sample with Azure Monitor](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-inference/samples/sample_chat_completions_with_tracing.py) containing fully runnable Python code for tracing using synchronous and asynchronous clients.
 
-```Python
-from azure.monitor.opentelemetry import configure_azure_monitor
 
-# Enable instrumentation of AI packages (inference, agents, openai, langchain)
-project.telemetry.enable()
-
-# Log traces to the project's application insights resource
-application_insights_connection_string = project.telemetry.get_connection_string()
-if application_insights_connection_string:
-    configure_azure_monitor(connection_string=application_insights_connection_string)
-```
-In additional, you might find helpful to see the tracing logs in console. You can achieve by the following code:
-
-```Python
-project_client.telemetry.enable(destination=sys.stdout)
-```
 
 # [JavaScript](#tab/javascript)
 
@@ -82,7 +69,10 @@ Install the package `opentelemetry-instrumentation-openai-v2 2.0b0` using your p
   pip install opentelemetry-instrumentation-openai-v2
 ```
 
-Once necessary packages are installed, you can easily enable tracing via [Tracing using Azure AI Foundry Project](#tracing-using-azure-ai-foundry-project)
+Refer the following samples to get started with tracing using Azure AI Project SDK:
+- [Python Sample with console tracing](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/inference/sample_chat_completions_with_azure_openai_client_and_console_tracing.py) containing fully runnable Python code for tracing using synchronous and asynchronous clients.
+- [Python Sample with Azure Monitor](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/inference/sample_chat_completions_with_azure_openai_client_and_azure_monitor_tracing.py) containing fully runnable Python code for tracing using synchronous and asynchronous clients.
+
 
 ### [JavaScript](#tab/javascript)
 Currently this is supported in Python only. 
