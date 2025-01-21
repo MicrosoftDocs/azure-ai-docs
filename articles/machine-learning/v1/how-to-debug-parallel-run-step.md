@@ -160,13 +160,17 @@ parallelrun_step = ParallelRunStep(
 
 The transition from debugging a scoring script locally to debugging a scoring script in an actual pipeline can be a difficult leap. For information on finding your logs in the portal, see  [machine learning pipelines section on debugging scripts from a remote context](how-to-debug-pipelines.md). The information in that section also applies to a ParallelRunStep.
 
-For example, the log file `70_driver_log.txt` contains information from the controller that launches the ParallelRunStep code.
-
 Because of the distributed nature of ParallelRunStep jobs, there are logs from several different sources. However, two consolidated files are created that provide high-level information:
 
 - `~/logs/job_progress_overview.txt`: This file provides a high-level info about the number of mini-batches (also known as tasks) created so far and number of mini-batches processed so far. At this end, it shows the result of the job. If the job failed, it will show the error message and where to start the troubleshooting.
 
+- `~/logs/job_result.txt`: Tt shows the result of the job. If the job failed, it will show the error message and where to start the troubleshooting.
+
+- `~/logs/job_error.txt`: This file will try to summarize the errors in your script.
+
 - `~/logs/sys/master_role.txt`: This file provides the principal node (also known as the orchestrator) view of the running job. Includes task creation, progress monitoring, the run result.
+
+- `~/logs/sys/job_report/processed_mini-batches.csv`: A table of all minibatches that has been processed. It shows result of each run of minibatch, its execution agent node id and process name. Also, the elapsed time and error messages are included. Logs for each run of minibatches can be found by following the node id and process name.
 
 Logs generated from entry script using EntryScript helper and print statements will be found in following files:
 
@@ -176,15 +180,13 @@ Logs generated from entry script using EntryScript helper and print statements w
 
 - `~/logs/user/stderr/<node_id>/<process_name>.stderr.txt`: These files are the logs from stderr of entry_script.
 
-For a concise understanding of errors in your script there is:
 
-- `~/logs/user/error.txt`: This file will try to summarize the errors in your script.
+For example, as the screenshot shows minibatch 0 failed on node 1 process000. The corresponding logs for your entry script can be found in `~/logs/user/entry_script_log/1/process000.log.txt`, `~/logs/user/stdout/1/process000.log.txt` and  `~/logs/user/stderr/1/process000.log.txt`
 
-For more information on errors in your script, there is:
+![Sample processed_mini-batches.csv file](media/how-to-debug-parallel-run-step/processed_mini_batches_csv_screenshot.png)
 
-- `~/logs/user/error/`: Contains full stack traces of exceptions thrown while loading and running entry script.
 
-When you need a full understanding of how each node executed the score script, look at the individual process logs for each node. The process logs can be found in the `sys/node` folder, grouped by worker nodes:
+When you need a full understanding of how each node executed the score script, look at the individual process logs for each node. The process logs can be found in the `~/logs/sys/node` folder, grouped by worker nodes:
 
 - `~/logs/sys/node/<node_id>/<process_name>.txt`: This file provides detailed info about each mini-batch as it's picked up or completed by a worker. For each mini-batch, this file includes:
 
@@ -202,6 +204,9 @@ You can also view the results of periodical checks of the resource usage for eac
     - `node_disk_usage.csv`: Detailed disk usage of the node.
     - `node_resource_usage.csv`: Resource usage overview of the node.
     - `processes_resource_usage.csv`: Resource usage overview of each process.
+
+## My job failed with SystemExit: 42. What does it mean?
+This is PRS designed exit code. The failure reason can be found in `~/logs/job_result.txt`. You can follow previous section to debug your job.
 
 ## How do I log from my user script from a remote context?
 
