@@ -205,16 +205,39 @@ You can also view the results of periodical checks of the resource usage for eac
     - `node_resource_usage.csv`: Resource usage overview of the node.
     - `processes_resource_usage.csv`: Resource usage overview of each process.
 
-## Common job failure reason
+## Common job failure reasons
 
 ### SystemExit: 42
 This is PRS designed exit code. The failure reason can be found in `~/logs/job_result.txt`. You can follow previous section to debug your job.
 
 ### Data Permission
-Error of job indicates the compute cannot access input data. TODO: links to access data
+Error of the job indicates the compute cannot access input data. TODO: links to access data with identity doc
 
-### Out of Memory
-`~logs/perf` logs usage of computation resources. Job monitor tab has chart to show the status of compute nodes. We suggest to reduce the number of processes per node if the compute reso
+### Processes terminated unexpectly
+Processes may crash due to unexpected or unhandled exceptions. Or they may be killed by system due to Out of Memory exceptions.
+
+#### Out of Memory
+`~/logs/perf` logs computation resource comsuptions of each processes. The memory usage of each task processor can be found. You can estimate the total memory usage on the node. 
+
+Out of Memory error can be found in `~/system_logs/lifecycler/<node-id>/execution-wrapper.txt`.
+
+We suggest to reduce the number of processes per node if the compute resources is close the limits.
+
+#### Unhandled Exceptions
+In some cases the python processes cannot catch the failing stack. In PRS system logs `~/logs/sys/node/<node-id>/_main.txt`, errors like below can be found.
+
+```
+<process-name> exits with returncode -9.
+```
+
+You can add an environment variable ```env["PYTHONFAULTHANDLER"]="true"``` to enable the builtin faulthandler.
+
+### Minibatch Timeout
+You can adjust `run_invocation_timeout` argument according to your minibatch tasks. When you are seeing the run() functions take much more time than expected, here are some tips.
+
+- Check the elapsed time and process time of the minibatch. The process time measures CPU time of the process. When process time is much shorter than elapsed, please check if there are some heavy IO or network operations in the tasks. 
+
+- If timeout happens on several specific minibatches only, please check your task input to see if they need more time to process. And try balance your input data partitions to prevent from this issue.
 
 
 ## How do I log from my user script from a remote context?
