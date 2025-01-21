@@ -8,7 +8,7 @@ ms.author: manashg
 ms.reviewer: ssalgado
 ms.service: azure-machine-learning
 ms.subservice: automl
-ms.date: 10/21/2021
+ms.date: 01/21/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5
 monikerRange: 'azureml-api-1'
