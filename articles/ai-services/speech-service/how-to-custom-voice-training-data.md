@@ -93,9 +93,6 @@ In some cases, you might not have segmented audio available. The Speech Studio c
 
 During the processing of the segmentation, your audio files and the transcripts are also sent to the custom speech service to refine the recognition model so the accuracy can be improved for your data. No data is retained during this process. After the segmentation is done, only the utterances segmented and their mapping transcripts will be stored for your downloading and training.
 
-> [!NOTE]
-> This service will be charged toward your speech to text subscription usage. The long-audio segmentation service is only supported with standard (S0) Speech resources. 
-
 ### Audio data for Long audio + transcript
 
 Follow these guidelines when preparing audio for segmentation.
@@ -112,6 +109,8 @@ Follow these guidelines when preparing audio for segmentation.
 
 > [!NOTE]
 > The default sampling rate for a custom neural voice is 24 KHz. Audio files with a sampling rate lower than 16,000 Hz will be rejected. Your audio files with a sampling rate higher than 16,000 Hz and lower than 24 KHz will be up-sampled to 24 KHz to train a neural voice. It's recommended that you should use a sample rate of 24 KHz and higher for your training data.
+>
+> For optimal segmentation results, it is recommended to include pauses of 0.5 to 1 second every 5 to 15 seconds of speech.
 
 All audio files should be grouped into a zip file. It's OK to put .wav files and .mp3 files into the same zip file. For example, you can upload a 45-second audio file named 'kingstory.wav' and a 200-second long audio file named 'queenstory.mp3' in the same zip file. All .mp3 files will be transformed into the .wav format after processing.
 
@@ -140,9 +139,6 @@ If you don't have transcriptions for your audio recordings, use the **Audio only
 
 Follow these guidelines when preparing audio.
 
-> [!NOTE]
-> The long-audio segmentation service will leverage the batch transcription feature of speech to text, which only supports standard subscription (S0) users.
-
 | Property | Value |
 | -------- | ----- |
 | File format | RIFF (.wav) or .mp3, grouped into a .zip file |
@@ -155,6 +151,8 @@ Follow these guidelines when preparing audio.
 
 > [!NOTE]
 > The default sampling rate for a custom neural voice is 24 KHz. Your audio files with a sampling rate higher than 16,000 Hz and lower than 24 KHz will be up-sampled to 24 KHz to train a neural voice. It's recommended that you should use a sample rate of 24 KHz and higher for your training data.
+>
+> For optimal segmentation results, it is recommended to include pauses of 0.5 to 1 second every 5 to 15 seconds of speech.
 
 All audio files should be grouped into a zip file. Once your dataset is successfully uploaded, the Speech service helps you segment the audio file into utterances based on our speech batch transcription service. Unique IDs are assigned to the segmented utterances automatically. Matching transcripts are generated through speech recognition. All .mp3 files will be transformed into the .wav format after processing. You can check the segmented utterances and the matching transcripts by downloading the dataset.
 
