@@ -164,9 +164,9 @@ Because of the distributed nature of ParallelRunStep jobs, there are logs from s
 
 - `~/logs/job_progress_overview.txt`: This file provides a high-level info about the number of mini-batches (also known as tasks) created so far and number of mini-batches processed so far. At this end, it shows the result of the job. If the job failed, it will show the error message and where to start the troubleshooting.
 
-- `~/logs/job_result.txt`: Tt shows the result of the job. If the job failed, it will show the error message and where to start the troubleshooting.
+- `~/logs/job_result.txt`: It shows the result of the job. If the job failed, it will show the error message and where to start the troubleshooting.
 
-- `~/logs/job_error.txt`: This file will try to summarize the errors in your script.
+- `~/logs/job_error.txt`: A summarization of the errors in your script.
 
 - `~/logs/sys/master_role.txt`: This file provides the principal node (also known as the orchestrator) view of the running job. Includes task creation, progress monitoring, the run result.
 
@@ -181,7 +181,7 @@ Logs generated from entry script using EntryScript helper and print statements w
 - `~/logs/user/stderr/<node_id>/<process_name>.stderr.txt`: These files are the logs from stderr of entry_script.
 
 
-For example, as the screenshot shows minibatch 0 failed on node 1 process000. The corresponding logs for your entry script can be found in `~/logs/user/entry_script_log/1/process000.log.txt`, `~/logs/user/stdout/1/process000.log.txt` and  `~/logs/user/stderr/1/process000.log.txt`
+For example, the screenshot below shows minibatch 0 failed on node 1 process000. The corresponding logs for your entry script can be found in `~/logs/user/entry_script_log/1/process000.log.txt`, `~/logs/user/stdout/1/process000.log.txt` and  `~/logs/user/stderr/1/process000.log.txt`
 
 ![Sample processed_mini-batches.csv file](media/how-to-debug-parallel-run-step/processed_mini_batches_csv_screenshot.png)
 
@@ -205,8 +205,17 @@ You can also view the results of periodical checks of the resource usage for eac
     - `node_resource_usage.csv`: Resource usage overview of the node.
     - `processes_resource_usage.csv`: Resource usage overview of each process.
 
-## My job failed with SystemExit: 42. What does it mean?
+## Common job failure reason
+
+### SystemExit: 42
 This is PRS designed exit code. The failure reason can be found in `~/logs/job_result.txt`. You can follow previous section to debug your job.
+
+### Data Permission
+Error of job indicates the compute cannot access input data. TODO: links to access data
+
+### Out of Memory
+`~logs/perf` logs usage of computation resources. Job monitor tab has chart to show the status of compute nodes. We suggest to reduce the number of processes per node if the compute reso
+
 
 ## How do I log from my user script from a remote context?
 
