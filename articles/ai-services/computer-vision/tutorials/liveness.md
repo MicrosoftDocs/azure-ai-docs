@@ -383,7 +383,7 @@ The high-level steps involved in liveness orchestration are illustrated below:
 
     #### [JavaScript](#tab/javascript)
     ```javascript
-    const deleteLivenessSessionResponse = await client.path('/detectliveness-sessions/{sessionId}', createLivenessSessionResponse.body.sessionId).delete();
+    const deleteLivenessSessionResponse = await client.path('/detectLiveness/singleModal/sessions/{sessionId}', createLivenessSessionResponse.body.sessionId).delete();
     if (isUnexpected(deleteLivenessSessionResponse)) {
         throw new Error(deleteLivenessSessionResponse.body.error.message);
     }
@@ -460,8 +460,8 @@ The high-level steps involved in liveness with verification orchestration are il
         Console.WriteLine($"Session id: {sessionId}");
         Console.WriteLine($"Auth token: {createResponse.Value.AuthToken}");
         Console.WriteLine("The reference image:");
-        Console.WriteLine($"  Face rectangle: {createResponse.Value.Results.VerifyReferences[0].FaceRectangle.Top}, {createResponse.Value.Results.VerifyReferences[0].FaceRectangle.Left}, {createResponse.Value.Results.VerifyReferences[0].FaceRectangle.Width}, {createResponse.Value.Results.VerifyReferences[0].FaceRectangle.Height}");
-        Console.WriteLine($"  The quality for recognition: {createResponse.Value.Results.VerifyReferences[0].QualityForRecognition}");
+        Console.WriteLine($"  Face rectangle: {createResponse.Value.VerifyImage.FaceRectangle.Top}, {createResponse.Value.VerifyImage.FaceRectangle.Left}, {createResponse.Value.VerifyImage.FaceRectangle.Width}, {createResponse.Value.VerifyImage.FaceRectangle.Height}");
+        Console.WriteLine($"  The quality for recognition: {createResponse.Value.VerifyImage.QualityForRecognition}");
         ```
 
         #### [Java](#tab/java)
@@ -487,7 +487,7 @@ The high-level steps involved in liveness with verification orchestration are il
         System.out.println("Auth token: " + creationResult.getAuthToken());
         System.out.println("The reference image:");
         System.out.println("  Face rectangle: " + creationResult.getVerifyImage().getFaceRectangle().getTop() + " " + creationResult.getVerifyImage().getFaceRectangle().getLeft() + " " + creationResult.getVerifyImage().getFaceRectangle().getWidth() + " " + creationResult.getVerifyImage().getFaceRectangle().getHeight());
-        System.out.println("  The quality for recognition: " + creationResult.getVerifyImage().getQualityForRecognition());
+        System.out.println("  The quality for recognition: " + creationResult.getVerifyImage().getQualityForRecognition());        
         ```
 
         #### [Python](#tab/python)
@@ -513,8 +513,8 @@ The high-level steps involved in liveness with verification orchestration are il
         print(f"Session id: {created_session.session_id}")
         print(f"Auth token: {created_session.auth_token}")
         print("The reference image:")
-        print(f"  Face rectangle: {created_session.results.verifyReferences[0].face_rectangle}")
-        print(f"  The quality for recognition: {created_session.results.verifyReferences[0].quality_for_recognition}")
+        print(f"  Face rectangle: {created_session.verify_image.face_rectangle}")
+        print(f"  The quality for recognition: {created_session.verify_image.quality_for_recognition}")
         ```
 
         #### [JavaScript](#tab/javascript)
@@ -553,8 +553,8 @@ The high-level steps involved in liveness with verification orchestration are il
         console.log(`Session ID: ${createLivenessSessionResponse.body.sessionId}`);
         console.log(`Auth token: ${createLivenessSessionResponse.body.authToken}`);
         console.log('The reference image:');
-        console.log(`  Face rectangle: ${createLivenessSessionResponse.body.results.verifyReferences[0].faceRectangle}`);
-        console.log(`  The quality for recognition: ${createLivenessSessionResponse.body.results.verifyReferences[0].qualityForRecognition}`)
+        console.log(`  Face rectangle: ${createLivenessSessionResponse.body.verifyImage.faceRectangle}`);
+        console.log(`  The quality for recognition: ${createLivenessSessionResponse.body.verifyImage.qualityForRecognition}`)
         ```
 
         #### [REST API (Windows)](#tab/cmd)
@@ -712,45 +712,45 @@ The high-level steps involved in liveness with verification orchestration are il
     An example of the response body:
     ```json
     {
-        "sessionId": "3835769c-364d-467f-a727-e11048fce781",
+        "sessionId": "93fd6f13-4161-41df-8a22-80a38ef53836",
         "authToken": "",
         "status": "Succeeded",
         "modelVersion": "2024-11-15",
         "results": {
             "attempts": [
-            {
-                "attemptId": 1,
-                "attemptStatus": "Succeeded",
-                "result": {
-                "livenessDecision": "realface",
-                "targets": {
-                    "color": {
-                    "faceRectangle": {
-                            "top": 669,
-                            "left": 203,
-                            "width": 646,
-                            "height": 724
+                {
+                    "attemptId": 1,
+                    "attemptStatus": "Succeeded",
+                    "result": {
+                    "livenessDecision": "realface",
+                    "targets": {
+                        "color": {
+                            "faceRectangle": {
+                                "top": 669,
+                                "left": 203,
+                                "width": 646,
+                                "height": 724
+                            }
+                        }
+                    },
+                    "digest": "EE664438FDF0535C6344A468181E4DDD4A34AC89582D4FD6E9E8954B843C7AA7",
+                    "verifyResult": {
+                            "matchConfidence": 0.08172279,
+                            "isIdentical": false
                         }
                     }
-                },
-                "digest": "AD3B7F889C75F0E377F2BB249656405FE12721FE597C13D21BC434A556667546",
-                "verifyResult": {
-                        "matchConfidence": 0.08172279,
-                        "isIdentical": false
-                    }
                 }
-            }
             ],
             "verifyReferences": [
-                {
-                    "faceRectangle": {
+            {
+                "faceRectangle": {
                     "top": 98,
                     "left": 131,
                     "width": 233,
                     "height": 300
                     },
-                    "qualityForRecognition": "high"
-                }
+                "qualityForRecognition": "high"
+            }
             ]
         }
     }
