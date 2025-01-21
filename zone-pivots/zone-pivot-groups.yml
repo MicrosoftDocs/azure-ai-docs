@@ -925,7 +925,11 @@ groups:
   - id: programming-language-python-azure
     title: Python (Azure SDK)
   - id: programming-language-python-openai
-    title: Python (OpenAI SDK) 
+    title: Python (OpenAI SDK)
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-typescript
+    title: TypeScript
 # owner: aahi
 - id: selection-code-interpreter
   title: Selections
