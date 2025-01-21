@@ -9,7 +9,7 @@ ms.custom: devx-track-ts
 ---
 
 
-| [Reference documentation](https://aka.ms/azsdk/azure-ai-projects/javascript/reference) | [Samples](https://aka.ms/azsdk/azure-ai-projects/javascript/samples/) | [Library source code](https://aka.ms/azsdk/azure-ai-projects/javascript/code) | [Package (npm)](https://aka.ms/azsdk/azure-ai-projects/javascript/package) |
+| [Reference documentation](https://learn.microsoft.com/en-us/javascript/api/overview/azure/ai-projects-readme?view=azure-node-preview) | [Samples](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/README.md) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-projects) | [Package (npm)](https://www.npmjs.com/package/@azure/ai-projects) |
 
 ## Prerequisites
 
