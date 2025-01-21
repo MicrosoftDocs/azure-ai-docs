@@ -31,7 +31,7 @@ In this article you'll learn how to trace your application with Azure AI Foundry
 ## Tracing using Azure AI Foundry Project
 # [Python](#tab/python)
 The best way to get started using the Azure AI Foundry SDK is by using a project. AI projects connect together different data, assets, and services you need to build AI applications. The AI project client allows you to easily access these project components from your code by using a single connection string. First follow steps to [create an AI Project](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/create-projects?tabs=ai-studio) if you don't have one already.
-To enable tracing, first ensure your project has an attached Application Insights resource. Go to the **Tracing** page of your project and follow instructions to create or attach Application Insights. If one was enabled, you can get the Application Insights connection string, and observe the full execution path through Azure Monitor. 
+To enable tracing, first ensure your project has an attached Application Insights resource. Go to the **Tracing** page of your project in Azure AI Foundry portal and follow instructions to create or attach Application Insights. If one was enabled, you can get the Application Insights connection string, and observe the full execution path through Azure Monitor. 
 
 Make sure to install following packages via
 
@@ -62,11 +62,11 @@ project_client.telemetry.enable(destination=sys.stdout)
 
 # [JavaScript](#tab/javascript)
 
-Tracing is not yet integrated into the projects package. For instructions on how to instrument and log traces from the Azure AI Inferencing package, see [JavaScript samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples/v1-beta/typescript/src).
+Tracing is not yet integrated into the Azure AI Projects SDK for JS. For instructions on how to instrument and log traces from the Azure AI Inference package, see [JavaScript samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples/v1-beta/typescript/src).
 
 # [C#](#tab/csharp)
 
-Tracing is not yet integrated into the projects package. For instructions on how to instrument and log traces from the Azure AI Inferencing package, see [azure-sdk-for-dotnet](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Inference/samples/Sample8_ChatCompletionsWithOpenTelemetry.md).
+Tracing is not yet integrated into the Azure AI Projects SDK for C#. For instructions on how to instrument and log traces from the Azure AI Inference package, see [azure-sdk-for-dotnet](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Inference/samples/Sample8_ChatCompletionsWithOpenTelemetry.md).
 
 ----
 
@@ -92,7 +92,7 @@ Currently this is supported in Python only.
 
 ----
 
-## Tracing using Azure AI Inference SDK
+## Enable Tracing using Azure AI Inference SDK
 
 ### Installation
 
@@ -195,7 +195,7 @@ AIInferenceInstrumentor().instrument()
 
 ```
 
-It's also possible to uninstrument the Azure AI Inferencing API by using the uninstrument call. After this call, the traces will no longer be emitted by the Azure AI Inferencing API until instrument is called again:
+It's also possible to uninstrument the Azure AI Inference API by using the uninstrument call. After this call, the traces will no longer be emitted by the Azure AI Inference API until instrument is called again:
 
 ```python
 AIInferenceInstrumentor().uninstrument() 
@@ -306,7 +306,32 @@ Currently this is supported in Python only.
 
 ## Attach User feedback to traces
 
+
 To attach user feedback to traces and visualize them in Azure AI Foundry portal using OpenTelemetry's semantic conventions, you can instrument your application enabling tracing and logging user feedback. By correlating feedback traces with their respective chat request traces using the response ID, you can use view and manage these traces in Azure AI Foundry portal. OpenTelemetry's specification allows for standardized and enriched trace data, which can be analyzed in Azure AI Foundry portal for performance optimization and user experience insights. This approach helps you use the full power of OpenTelemetry for enhanced observability in your applications.  
+Please follow the following format to log user feedback:
+The user feedback evaluation event can be captured if and only if user provided a reaction to GenAI model response.
+It SHOULD, when possible, be parented to the GenAI span describing such response.
+
+<!-- prettier-ignore-start -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+The event name MUST be `gen_ai.evaluation.user_feedback`.
+
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`gen_ai.response.id`](/docs/attributes-registry/gen-ai.md) | string | The unique identifier for the completion. | `chatcmpl-123` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.evaluation.score`](/docs/attributes-registry/gen-ai.md) | double | Quantified score calculated based on the user reaction in [-1.0, 1.0] range with 0 representing a neutral reaction. | `0.42` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+
+The user feedback event body has the following structure:
+
+| Body Field | Type | Description | Examples | Requirement Level |
+|---|---|---|---|---|
+| `comment` | string | Additional details about the user feedback | `"I did not like it"` | `Opt-in` |
 
 ## Related content
 
