@@ -76,18 +76,19 @@ Below are some general guidelines that you can follow to create a good corpus (r
 
 -  Balance your script to cover different sentence types in your domain including statements, questions, exclamations, long sentences, and short sentences.
 
-   Each sentence should contain four words to 30 words, and no duplicate sentences should be included in your script.<br>
+   Each sentence should be between 2 and 15 seconds long, containing 5 to 30 words for Latin-based languages or 10 to 60 words for non-Latin languages. Ensure your script does not include any duplicate sentences.<br>
    For how to balance the different sentence types, refer to the following table:
    
    | Sentence types | Coverage |
    | :--------- | :--------------------------- |
    | Statement sentences | Statement sentences should be 70-80% of the script.|
-   | Question sentences | Question sentences should be about 10%-20% of your domain script, including 5%-10% of rising and 5%-10% of falling tones. |
-   | Exclamation sentences| Exclamation sentences should be about 10%-20% of your script.|
    | Short word/phrase| Short word/phrase scripts should be about 10% of total utterances, with 5 to 7 words per case. |
+   | Question sentences (Optional) | Question sentences should be about 10%-20% of your domain script, including 5%-10% of rising and 5%-10% of falling tones. |
+   | Exclamation sentences (Optional) | Exclamation sentences should be about 10%-20% of your script.|
 
-   > [!NOTE]
+   > [!NOTE] 
    > Short words/phrases should be separated with a commas. They help remind your voice talent to pause briefly when reading them.
+   > Question and exclamations are required if you want the generated voice to accurately convey questions or exclamations.
 
    Best practices include:
     - Balanced coverage for Parts of Speech, like verbs, nouns, adjectives, and so on.  
