@@ -40,7 +40,7 @@ You can use Azure Databricks:
 
 ## Set up Databricks compute
 
-Create a [Databricks compute resource](/databricks/compute/configure#create-a-new-all-purpose-compute-resource). Some settings apply only if you install the SDK for automated machine learning on Databricks.
+Create a [Databricks compute resource](/azure/databricks/compute/configure#create-a-new-all-purpose-compute-resource). Some settings apply only if you install the SDK for automated machine learning on Databricks.
 
 **It takes few minutes to create the compute resource.**
 
