@@ -151,7 +151,7 @@ The high-level steps involved in liveness orchestration are illustrated below:
     const credential = new AzureKeyCredential(apikey);
     const client = createFaceClient(endpoint, credential);
 
-    const createLivenessSessionResponse = await client.path('/detectliveness-sessions').post({
+    const createLivenessSessionResponse = await client.path('/detectLiveness-sessions').post({
         body: {
             livenessOperationMode: 'Passive',
             deviceCorrelationId: '723d6d03-ef33-40a8-9682-23a1feb7bccd',
@@ -170,7 +170,7 @@ The high-level steps involved in liveness orchestration are illustrated below:
 
     #### [REST API (Windows)](#tab/cmd)
     ```console
-    curl --request POST --location "%FACE_ENDPOINT%/face/v1.2/detectliveness-sessions" ^
+    curl --request POST --location "%FACE_ENDPOINT%/face/v1.2/detectLiveness-sessions" ^
     --header "Ocp-Apim-Subscription-Key: %FACE_APIKEY%" ^
     --header "Content-Type: application/json" ^
     --data ^
@@ -183,7 +183,7 @@ The high-level steps involved in liveness orchestration are illustrated below:
 
     #### [REST API (Linux)](#tab/bash)
     ```bash
-    curl --request POST --location "${FACE_ENDPOINT}/face/v1.2/detectlivenesswithverify-sessions" \
+    curl --request POST --location "${FACE_ENDPOINT}/face/v1.2/detectLivenesswithVerify-sessions" \
     --header "Ocp-Apim-Subscription-Key: ${FACE_APIKEY}" \
     --header "Content-Type: application/json" \
     --data \
@@ -313,13 +313,13 @@ The high-level steps involved in liveness orchestration are illustrated below:
 
     #### [REST API (Windows)](#tab/cmd)
     ```console
-    curl --request GET --location "%FACE_ENDPOINT%/face/v1.2/detectliveness-sessions/<session-id>" ^
+    curl --request GET --location "%FACE_ENDPOINT%/face/v1.2/detectLiveness-sessions/<session-id>" ^
     --header "Ocp-Apim-Subscription-Key: %FACE_APIKEY%"
     ```
 
     #### [REST API (Linux)](#tab/bash)
     ```bash
-    curl --request GET --location "${FACE_ENDPOINT}/face/v1.2/detectliveness-sessions/<session-id>" \
+    curl --request GET --location "${FACE_ENDPOINT}/face/v1.2/detectLiveness-sessions/<session-id>" \
     --header "Ocp-Apim-Subscription-Key: ${FACE_APIKEY}"
     ```
 
@@ -392,13 +392,13 @@ The high-level steps involved in liveness orchestration are illustrated below:
 
     #### [REST API (Windows)](#tab/cmd)
     ```console
-    curl --request DELETE --location "%FACE_ENDPOINT%/face/v1.2/detectliveness-sessions/<session-id>" ^
+    curl --request DELETE --location "%FACE_ENDPOINT%/face/v1.2/detectLiveness-sessions/<session-id>" ^
     --header "Ocp-Apim-Subscription-Key: %FACE_APIKEY%"
     ```
 
     #### [REST API (Linux)](#tab/bash)
     ```bash
-    curl --request DELETE --location "${FACE_ENDPOINT}/face/v1.2/detectliveness-sessions/<session-id>" \
+    curl --request DELETE --location "${FACE_ENDPOINT}/face/v1.2/detectLiveness-sessions/<session-id>" \
     --header "Ocp-Apim-Subscription-Key: ${FACE_APIKEY}"
     ```
 
@@ -525,7 +525,7 @@ The high-level steps involved in liveness with verification orchestration are il
         const credential = new AzureKeyCredential(apikey);
         const client = createFaceClient(endpoint, credential);
 
-        const createLivenessSessionResponse = await client.path('/detectlivenesswithverify-sessions').post({
+        const createLivenessSessionResponse = await client.path('/detectLivenesswithVerify-sessions').post({
             contentType: 'multipart/form-data',
             body: [
                 {
@@ -559,7 +559,7 @@ The high-level steps involved in liveness with verification orchestration are il
 
         #### [REST API (Windows)](#tab/cmd)
         ```console
-        curl --request POST --location "%FACE_ENDPOINT%/face/v1.2/detectlivenesswithverify-sessions" ^
+        curl --request POST --location "%FACE_ENDPOINT%/face/v1.2/detectLivenesswithVerify-sessions" ^
         --header "Ocp-Apim-Subscription-Key: %FACE_APIKEY%" ^
         --form "Parameters=""{\\\""livenessOperationMode\\\"": \\\""passive\\\"", \\\""deviceCorrelationId\\\"": \\\""723d6d03-ef33-40a8-9682-23a1feb7bccd\\\"", ""enableSessionImage"": ""true""}""" ^
         --form "VerifyImage=@""test.png"""
@@ -567,7 +567,7 @@ The high-level steps involved in liveness with verification orchestration are il
 
         #### [REST API (Linux)](#tab/bash)
         ```bash
-        curl --request POST --location "${FACE_ENDPOINT}/face/v1.2/detectlivenesswithverify-sessions" \
+        curl --request POST --location "${FACE_ENDPOINT}/face/v1.2/detectLivenesswithVerify-sessions" \
         --header "Ocp-Apim-Subscription-Key: ${FACE_APIKEY}" \
         --form 'Parameters="{
             \"livenessOperationMode\": \"passive\",
@@ -683,7 +683,7 @@ The high-level steps involved in liveness with verification orchestration are il
 
     #### [JavaScript](#tab/javascript)
     ```javascript
-    const getLivenessSessionResultResponse = await client.path('/detectLivenessWithVerify/singleModal/sessions/{sessionId}', createLivenessSessionResponse.body.sessionId).get();
+    const getLivenessSessionResultResponse = await client.path('/detectLivenesswithVerify/singleModal/sessions/{sessionId}', createLivenessSessionResponse.body.sessionId).get();
     if (isUnexpected(getLivenessSessionResultResponse)) {
         throw new Error(getLivenessSessionResultResponse.body.error.message);
     }
@@ -697,13 +697,13 @@ The high-level steps involved in liveness with verification orchestration are il
 
     #### [REST API (Windows)](#tab/cmd)
     ```console
-    curl --request GET --location "%FACE_ENDPOINT%/face/v1.2/detectlivenesswithverify-sessions/<session-id>" ^
+    curl --request GET --location "%FACE_ENDPOINT%/face/v1.2/detectLivenesswithVerify-sessions/<session-id>" ^
     --header "Ocp-Apim-Subscription-Key: %FACE_APIKEY%"
     ```
 
     #### [REST API (Linux)](#tab/bash)
     ```bash
-    curl --request GET --location "${FACE_ENDPOINT}/face/v1.2/detectlivenesswithverify-sessions/<session-id>" \
+    curl --request GET --location "${FACE_ENDPOINT}/face/v1.2/detectLivenesswithVerify-sessions/<session-id>" \
     --header "Ocp-Apim-Subscription-Key: ${FACE_APIKEY}"
     ```
 
@@ -781,7 +781,7 @@ The high-level steps involved in liveness with verification orchestration are il
 
     #### [JavaScript](#tab/javascript)
     ```javascript
-    const deleteLivenessSessionResponse = await client.path('/detectLivenessWithVerify/singleModal/sessions/{sessionId}', createLivenessSessionResponse.body.sessionId).delete();
+    const deleteLivenessSessionResponse = await client.path('/detectLivenesswithVerify/singleModal/sessions/{sessionId}', createLivenessSessionResponse.body.sessionId).delete();
     if (isUnexpected(deleteLivenessSessionResponse)) {
         throw new Error(deleteLivenessSessionResponse.body.error.message);
     }
@@ -790,13 +790,13 @@ The high-level steps involved in liveness with verification orchestration are il
 
     #### [REST API (Windows)](#tab/cmd)
     ```console
-    curl --request DELETE --location "%FACE_ENDPOINT%/face/v1.2/detectlivenesswithverify-sessions/<session-id>" ^
+    curl --request DELETE --location "%FACE_ENDPOINT%/face/v1.2/detectLivenesswithVerify-sessions/<session-id>" ^
     --header "Ocp-Apim-Subscription-Key: %FACE_APIKEY%"
     ```
 
     #### [REST API (Linux)](#tab/bash)
     ```bash
-    curl --request DELETE --location "${FACE_ENDPOINT}/face/v1.2/detectlivenesswithverify-sessions/<session-id>" \
+    curl --request DELETE --location "${FACE_ENDPOINT}/face/v1.2/detectLivenesswithVerify-sessions/<session-id>" \
     --header "Ocp-Apim-Subscription-Key: ${FACE_APIKEY}"
     ```
 
