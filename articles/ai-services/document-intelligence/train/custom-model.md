@@ -95,7 +95,7 @@ If the language of your documents and extraction scenarios supports custom neura
 
 * For custom model training, the maximum number of pages for training data is 500 for the custom template model and 50,000 for the custom neural model.
 
-* For custom extraction model training, the total size of training data is 50 MB for template model and 1G-MB for the neural model.
+* For custom extraction model training, the total size of training data is 50 MB for template model and 1GB for the neural model.
 
 * For custom classification model training, the total size of training data is `1GB`  with a maximum of 10,000 pages.
 
