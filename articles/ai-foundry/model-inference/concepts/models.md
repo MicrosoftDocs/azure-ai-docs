@@ -10,7 +10,7 @@ ms.topic: how-to
 ms.date: 01/02/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
-ms.custom: references_regions, generated
+ms.custom: references_regions, tool_generated
 ---
 
 # Models available in Azure AI model inference
