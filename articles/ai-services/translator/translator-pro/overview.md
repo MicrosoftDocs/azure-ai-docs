@@ -18,7 +18,7 @@ Microsoft Translator Pro is a paid mobile application available on the commercia
 
   > [!IMPORTANT]
   >
-  > To use Microsoft Translator Pro, you must complete and submit the [**Microsoft Translator Pro Limited Access**](https://aka.ms/TranslatorProGatingForm) online request form and have it approved for access.
+  > To use Microsoft Translator Pro, you must complete and submit the [**Microsoft Translator Pro Limited Access**](https://aka.ms/TranslatorProGatingForm) online request for approval.
   >
 
 ## Specifications and service limits
@@ -47,15 +47,15 @@ Microsoft Translator Pro is a paid mobile application available on the commercia
 
 ## Region availability
 
-The app is currently available in the following regions within the respective clouds. Please ensure you onboard the app in these specified regions.
+The app is currently available in the following regions within the respective clouds. Ensure you onboard the app in these specified regions.
 
 **Azure Cloud (Public)**
 
 |Geography|Region|
 |---|---|
-|United States|East US (eastus)|
-|Europe|UK South (uksouth)|
-|Australia| Australia (australia)|
+|United States|East US (`eastus`)|
+|Europe|UK South (`uksouth`)|
+|Australia| Australia (`australia`)|
 
 **Azure US Government Cloud**
 

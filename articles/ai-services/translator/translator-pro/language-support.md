@@ -15,7 +15,7 @@ ms.author: lajanuar
 
 Microsoft Translator Pro provides real-time multilingual speech-to-speech support. Our language support capabilities enable users to converse naturally and empower global communication. The following table lists the available language and locale support.
 
-| Language | Online | On-device (does not require internet connection) |
+| Language | Online | On-device (doesn't require internet connection) |
 | --- | --- | --- |
 | Afrikaans (South Africa) | ✔️ |  |
 | Albanian (Albania) | ✔️ |  |

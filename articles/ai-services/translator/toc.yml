@@ -290,10 +290,10 @@ items:
     - name: What is Microsoft Translator Pro?
       displayName: app service, mobile app, ios, speech-to-speech
       href: translator-pro/overview.md
-    - name: Language support  
+    - name: Language support
       displayName: iso,language code, locale
       href: translator-pro/language-support.md
-    - name: faq
+    - name: FAQ
       href: translator-pro/faq.yml
     - name: Responsible AI and compliance
       items:
