@@ -8,7 +8,7 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 01/19/2024
+ms.date: 01/22/2025
 ms.author: pafarley
 ---
 
@@ -79,6 +79,7 @@ The following JSON response illustrates what the Analysis 4.0 API returns when d
 
 The people detection feature is part of the [Analyze Image 4.0 API](https://aka.ms/vision-4-0-ref). Include `People` in the **features** query parameter. Then, when you get the full JSON response, parse the string for the contents of the `"people"` section.
 
-## Next steps
+## Next step
 
-* [Call the Analyze Image API](./how-to/call-analyze-image-40.md)
+> [!div class="nextstepaction"]
+> [Call the Analyze Image API](./how-to/call-analyze-image-40.md)
