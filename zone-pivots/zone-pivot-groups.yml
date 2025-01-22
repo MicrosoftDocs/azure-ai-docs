@@ -996,3 +996,18 @@ groups:
     title: Python
   - id: programming-language-csharp
     title: C#
+- id: audio-completions-quickstart
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: ai-foundry-portal
+    title: Portal
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-typescript
+    title: TypeScript
+  - id: rest-api
+    title: REST
