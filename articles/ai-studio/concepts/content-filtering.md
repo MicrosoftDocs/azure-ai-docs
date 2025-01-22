@@ -13,6 +13,7 @@ ms.date: 01/10/2025
 ms.reviewer: eur
 ms.author: pafarley
 author: PatrickFarley
+---
 
 # Content filtering in Azure AI Foundry portal
 

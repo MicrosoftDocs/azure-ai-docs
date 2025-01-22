@@ -99,7 +99,7 @@ The errors `429` and `503` may occur on your Face API calls for various reasons.
  
 |HTTP error code  | Description |Recommendation  |
 |---------|---------|---------|
-|  `429`   |   Throttling    |    You may encounter a rate limit with concurrent calls. You should decrease the frequency of calls and retry with exponential backoff. Avoid immediate retries and avoid re-sending numerous requests simultaneously. </br></br>If you want to increase the limit, see the [Request an increase](../identity-quotas-limits.md#how-to-request-an-increase-to-the-default-limits) section of the quotas guide.  |
+|  `429`   |   Throttling    |    You may encounter a rate limit with concurrent calls. You should decrease the frequency of calls and retry with exponential backoff. Avoid immediate retries and avoid re-sending numerous requests simultaneously. </br></br>If you want to increase the limit, see the [Request an increase](../identity-quotas-limits.md#request-an-increase-to-the-default-limits) section of the quotas guide.  |
 | `503` |   Service unavailable    |   The service may be busy and unable to respond to your request immediately. You should adopt a back-off strategy similar to the one for error `429`.   |
 
 ## Ensure reliability and support 
