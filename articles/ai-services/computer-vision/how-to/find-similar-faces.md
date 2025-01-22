@@ -40,11 +40,11 @@ string baseUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-serv
 
 The following face detection method is optimized for comparison operations. It doesn't extract detailed face attributes, and it uses an optimized recognition model.
 
-[!code-csharp[](~/cognitive-services-quickstart-code/dotnet/Face/FindSimilar.cs?name=snippet_face_detect_recognize)]
+[!Code-csharp[](~/cognitive-services-quickstart-code/dotnet/Face/FindSimilar.cs?name=snippet_face_detect_recognize)]
 
 The following code uses the above method to get face data from a series of images.
 
-[!code-csharp[](~/cognitive-services-quickstart-code/dotnet/Face/FindSimilar.cs?name=snippet_loadfaces)]
+[!Code-csharp[](~/cognitive-services-quickstart-code/dotnet/Face/FindSimilar.cs?name=snippet_loadfaces)]
 
 
 #### [REST API](#tab/rest)
@@ -73,11 +73,11 @@ In this guide, the face detected in the *Family1-Dad1.jpg* image should be retur
 
 The following code calls the Find Similar API on the saved list of faces.
 
-[!code-csharp[](~/cognitive-services-quickstart-code/dotnet/Face/FindSimilar.cs?name=snippet_find_similar)]
+[!Code-csharp[](~/cognitive-services-quickstart-code/dotnet/Face/FindSimilar.cs?name=snippet_find_similar)]
 
 The following code prints the match details to the console:
 
-[!code-csharp[](~/cognitive-services-quickstart-code/dotnet/Face/FindSimilar.cs?name=snippet_find_similar_print)]
+[!Code-csharp[](~/cognitive-services-quickstart-code/dotnet/Face/FindSimilar.cs?name=snippet_find_similar_print)]
 
 
 #### [REST API](#tab/rest)
