@@ -20,7 +20,7 @@ This article explains how to use embeddings API with models deployed to Azure AI
 
 ## Prerequisites
 
-To use embedding models in you application, you need:
+To use embedding models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 

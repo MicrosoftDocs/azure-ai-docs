@@ -30,7 +30,7 @@ You can add models to the Azure AI model inference endpoint using the following 
 
 5. For model providers that require more terms of contract, you'll be asked to accept those terms. This is the case for Mistral models for instance. Accept the terms on those cases by selecting **Subscribe and deploy**.
 
-   :::image type="content" source="../../media/add-model-deployments/models-deploy-agree.png" alt-text="An screenshot showing how to agree the terms and conditions of a Mistral-Large model." lightbox="../../media/add-model-deployments/models-deploy-agree.png":::
+   :::image type="content" source="../../media/add-model-deployments/models-deploy-agree.png" alt-text="Screenshot showing how to agree the terms and conditions of a Mistral-Large model." lightbox="../../media/add-model-deployments/models-deploy-agree.png":::
 
 6. You can configure the deployment settings at this time. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for request to route to this particular model deployment. This allows you to also configure specific names for your models when you attach specific configurations. For instance `o1-preview-safe` for a model with a strict content safety content filter.
 
@@ -39,7 +39,7 @@ You can add models to the Azure AI model inference endpoint using the following 
 
 5. We automatically select an Azure AI Services connection depending on your project. Use the **Customize** option to change the connection based on your needs. If you're deploying under the **Standard** deployment type, the models need to be available in the region of the Azure AI Services resource.
    
-   :::image type="content" source="../../media/add-model-deployments/models-deploy-customize.png" alt-text="An screenshot showing how to customize the deployment if needed." lightbox="../../media/add-model-deployments/models-deploy-customize.png":::
+   :::image type="content" source="../../media/add-model-deployments/models-deploy-customize.png" alt-text="Screenshot showing how to customize the deployment if needed." lightbox="../../media/add-model-deployments/models-deploy-customize.png":::
 
    > [!TIP]
    > If the desired resource isn't listed, you might need to create a connection to it. See [Configure Azure AI model inference service in my project](../../how-to/configure-project-connection.md) in Azure AI Foundry portal.
@@ -56,7 +56,7 @@ You can manage the existing model deployments in the resource using Azure AI Fou
 
 2. Scroll to the connection to your Azure AI Services resource. Model deployments are grouped and displayed per connection.
 
-   :::image type="content" source="../../media/quickstart-ai-project/endpoints-ai-services-connection.png" alt-text="An screenshot showing the list of models available under a given connection." lightbox="../../media/quickstart-ai-project/endpoints-ai-services-connection.png":::
+   :::image type="content" source="../../media/quickstart-ai-project/endpoints-ai-services-connection.png" alt-text="Screenshot showing the list of models available under a given connection." lightbox="../../media/quickstart-ai-project/endpoints-ai-services-connection.png":::
 
 3. You see a list of models available under each connection. Select the model deployment you're interested in.
 
@@ -76,7 +76,7 @@ You can interact with the new model in Azure AI Foundry portal using the playgro
 
 3. In the **Deployment** drop down, under **Setup** select the name of the model deployment you have created.
 
-   :::image type="content" source="../../media/add-model-deployments/playground-chat-models.png" alt-text="An screenshot showing how to select a model deployment to use in playground." lightbox="../../media/add-model-deployments/playground-chat-models.png":::
+   :::image type="content" source="../../media/add-model-deployments/playground-chat-models.png" alt-text="Screenshot showing how to select a model deployment to use in playground." lightbox="../../media/add-model-deployments/playground-chat-models.png":::
 
 4. Type your prompt and see the outputs.
 

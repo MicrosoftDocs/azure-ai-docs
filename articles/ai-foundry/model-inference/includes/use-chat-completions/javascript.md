@@ -20,7 +20,7 @@ This article explains how to use chat completions API with models deployed to Az
 
 ## Prerequisites
 
-To use chat completion models in you application, you need:
+To use chat completion models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 

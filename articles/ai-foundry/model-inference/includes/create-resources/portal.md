@@ -29,7 +29,7 @@ To create a project with an Azure AI Services account, follow these steps:
 
 6. The wizard updates with details about the resources that are going to be created. Select **Azure resources to be created** to see the details.
 
-    :::image type="content" source="../../media/create-resources/create-project-with-hub-details.png" alt-text="An screenshot showing the details of the project and hub to be created." lightbox="../../media/create-resources/create-project-with-hub-details.png":::    
+    :::image type="content" source="../../media/create-resources/create-project-with-hub-details.png" alt-text="Screenshot showing the details of the project and hub to be created." lightbox="../../media/create-resources/create-project-with-hub-details.png":::    
 
 7. You can see that the following resources are created:
 

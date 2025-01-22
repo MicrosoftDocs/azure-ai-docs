@@ -32,7 +32,7 @@ You can create a connection to an Azure AI services resource using the following
 
 8. Return to the project's landing page to continue and now select the new created connection. Refresh the page if it doesn't show up immediately. 
 
-   :::image type="content" source="../../media/quickstart-ai-project/overview-endpoint-and-key.png" alt-text="An screenshot of the landing page for the project, highlighting the location of the connected resource and the associated inference endpoint." lightbox="../../media/quickstart-ai-project/overview-endpoint-and-key.png":::
+   :::image type="content" source="../../media/quickstart-ai-project/overview-endpoint-and-key.png" alt-text="Screenshot of the landing page for the project, highlighting the location of the connected resource and the associated inference endpoint." lightbox="../../media/quickstart-ai-project/overview-endpoint-and-key.png":::
 
 ## See model deployments in the connected resource
 
@@ -44,7 +44,7 @@ You can see the model deployments available in the connected resource by followi
 
 3. The page displays the model deployments available to your, grouped by connection name. Locate the connection you have just created, which should be of type **Azure AI Services**.
 
-   :::image type="content" source="../../media/quickstart-ai-project/endpoints-ai-services-connection.png" alt-text="An screenshot showing the list of models available under a given connection." lightbox="../../media/quickstart-ai-project/endpoints-ai-services-connection.png":::
+   :::image type="content" source="../../media/quickstart-ai-project/endpoints-ai-services-connection.png" alt-text="Screenshot showing the list of models available under a given connection." lightbox="../../media/quickstart-ai-project/endpoints-ai-services-connection.png":::
 
 4. Select any model deployment you want to inspect.
 
