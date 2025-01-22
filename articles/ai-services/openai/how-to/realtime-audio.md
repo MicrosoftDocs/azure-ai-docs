@@ -145,11 +145,11 @@ An example `session.update` that configures several aspects of the session, incl
 
 The server responds with a [`session.updated`](../realtime-audio-reference.md#realtimeservereventsessionupdated) event to confirm the session configuration.
 
-## Out of band responses
+## Out-of-band responses
 
 By default, responses generated during a session are added to the default conversation state. In some cases, you might want to generate responses outside the default conversation. This can be useful for generating multiple responses concurrently or for generating responses that don't affect the default conversation state. For example, you can limit the number of turns considered by the model when generating a response.
 
-You can create responses outside the default conversation by setting the [`response.conversation`](../realtime-audio-reference.md#realtimeresponseoptions) field to the string `none` when creating a response with the [`response.create`](../realtime-audio-reference.md#realtimeclienteventresponsecreate) client event.
+You can create out-of-band responses by setting the [`response.conversation`](../realtime-audio-reference.md#realtimeresponseoptions) field to the string `none` when creating a response with the [`response.create`](../realtime-audio-reference.md#realtimeclienteventresponsecreate) client event.
 
 In the same [`response.create`](../realtime-audio-reference.md#realtimeclienteventresponsecreate) client event, you can also set the [`response.metadata`](../realtime-audio-reference.md#realtimeresponseoptions) field to help you identify which response is being generated for this client-sent event.
 

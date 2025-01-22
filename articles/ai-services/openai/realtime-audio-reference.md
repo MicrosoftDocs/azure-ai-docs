@@ -1080,7 +1080,7 @@ The server `session.updated` event is returned when a session is updated by the 
 | Field | Type | Description | 
 |-------|------|-------------|
 | type | [RealtimeClientEventType](#realtimeclienteventtype) | The type of the client event. |
-| event_id | string | The unique ID of the event. The ID can be specified by the client to help identify the event. |
+| event_id | string | The unique ID of the event. The client can specify the ID to help identify the event. |
 
 ### RealtimeClientEventType
 
@@ -1119,16 +1119,16 @@ The server `session.updated` event is returned when a session is updated by the 
 
 The item to add to the conversation.
 
-This table describes all `RealtimeConversationItem` propertiest. The properties that are applicable per event depend on the [RealtimeItemType](#realtimeitemtype). 
+This table describes all `RealtimeConversationItem` properties. The properties that are applicable per event depend on the [RealtimeItemType](#realtimeitemtype). 
 
 | Field | Type | Description | 
 |-------|------|-------------|
-| id | string | The unique ID of the item. The ID can be specified by the client to help manage server-side context. If the client doesn't provide an ID, the server generates one. |
+| id | string | The unique ID of the item. The client can specify the ID to help manage server-side context. If the client doesn't provide an ID, the server generates one. |
 | type | [RealtimeItemType](#realtimeitemtype) | The type of the item.<br><br>Allowed values: `message`, `function_call`, `function_call_output` |
-| object | string | Identifier for the API object being returned - always `realtime.item`. |
-| status | [RealtimeItemStatus](#realtimeitemstatus) | The status of the item (`completed`, `incomplete`). These have no effect on the conversation, but are accepted for consistency with the `conversation.item.created` event. |
-| role | [RealtimeMessageRole](#realtimemessagerole) | The role of the message sender (`user`, `assistant`, `system`), only applicable for `message` items. |
-| content | array of [RealtimeContentPart](#realtimecontentpart) | The content of the message, applicable for `message` items.<br><br>- Message items of role `system` support only `input_text` content<br>- Message items of role `user` support `input_text` and `input_audio` content<br>- Message items of role `assistant` support `text` content. |
+| object | string | The identifier for the API object being returned. The value will always be `realtime.item`. |
+| status | [RealtimeItemStatus](#realtimeitemstatus) | The status of the item. This field doesn't affect the conversation, but it's accepted for consistency with the `conversation.item.created` event.<br><br>Allowed values: `completed`, `incomplete` |
+| role | [RealtimeMessageRole](#realtimemessagerole) | The role of the message sender. This property is only applicable for `message` items. <br><br>Allowed values: `system`, `user`, `assistant` |
+| content | array of [RealtimeContentPart](#realtimecontentpart) | The content of the message. This property is only applicable for `message` items.<br><br>- Message items of role `system` support only `input_text` content.<br>- Message items of role `user` support `input_text` and `input_audio` content.<br>- Message items of role `assistant` support `text` content. |
 | call_id | string | The ID of the function call (for `function_call` and `function_call_output` items). If passed on a `function_call_output` item, the server will check that a `function_call` item with the same ID exists in the conversation history. |
 | name | string | The name of the function being called (for `function_call` items). |
 | arguments | string | The arguments of the function call (for `function_call` items). |
@@ -1141,7 +1141,7 @@ You use the `RealtimeConversationRequestItem` object to create a new item in the
 | Field | Type | Description | 
 |-------|------|-------------|
 | type | [RealtimeItemType](#realtimeitemtype) | The type of the item. |
-| id | string | The unique ID of the item. The ID can be specified by the client to help manage server-side context. If the client doesn't provide an ID, the server generates one. |
+| id | string | The unique ID of the item. The client can specify the ID to help manage server-side context. If the client doesn't provide an ID, the server generates one. |
 
 ### RealtimeConversationResponseItem
 
@@ -1157,7 +1157,7 @@ The `RealtimeConversationResponseItem` object represents an item in the conversa
 |-------|------|-------------|
 | object | string | The identifier for the returned API object.<br><br>Allowed values: `realtime.item` |
 | type | [RealtimeItemType](#realtimeitemtype) | The type of the item.<br><br>Allowed values: `message`, `function_call`, `function_call_output` | 
-| id | string | The unique ID of the item. The ID can be specified by the client to help manage server-side context. If the client doesn't provide an ID, the server generates one.<br><br>This property is nullable. |
+| id | string | The unique ID of the item. The client can specify the ID to help manage server-side context. If the client doesn't provide an ID, the server generates one.<br><br>This property is nullable. |
 
 ### RealtimeFunctionTool
 
@@ -1352,7 +1352,7 @@ The response resource.
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
 | max__output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br><br>Defaults to `"inf"`. |
-| conversation | string | Controls which conversation the response is added to. Currently supports auto and none, with auto as the default value. The auto value means that the contents of the response will be added to the default conversation. Set this to none to create an out-of-band response which will not add items to the default conversation. |
+| conversation | string | Controls which conversation the response is added to. The supported values are `auto` and `none`.<br><br>The `auto` value (or not setting this property) ensures that the contents of the response are added to the session's default conversation.<br><br>Set this property to `none` to create an out-of-band response where items won't be added to the default conversation. For more information, see the [how-to guide](./how-to/realtime-audio.md#out-of-band-responses).<br><br>Defaults to `"auto"` |
 | metadata | map | Set of up to 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.<br/><br/>For example: `metadata: { topic: "classification" }` |
 | input | array | Input items to include in the prompt for the model. Creates a new context for this response, without including the default conversation. Can include references to items from the default conversation.<br><br>Array items: [RealtimeConversationItemBase](#realtimeconversationitembase) |
 
