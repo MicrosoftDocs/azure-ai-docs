@@ -180,19 +180,17 @@ items:
       - name: Azure AI model inference
         items:
         - name: What is the Azure AI model inference service?
-          href: ai-services/model-inference.md
+          href: ../ai-foundry/model-inference/overview.md?context=/azure/ai-studio/context/context
         - name: Upgrade from GitHub Models
-          href: ai-services/how-to/quickstart-github-models.md
+          href: ../ai-foundry/model-inference/how-to/quickstart-github-models.md?context=/azure/ai-studio/context/context
         - name: Add and configure models
-          href: ai-services/how-to/create-model-deployments.md
+          href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-studio/context/context
         - name: Deployment types
-          href: ai-services/concepts/deployment-types.md
+          href: ../ai-foundry/model-inference/concepts/deployment-types.md?context=/azure/ai-studio/context/context
         - name: Use the inference endpoint
-          href: ai-services/concepts/endpoints.md
+          href: ../ai-foundry/model-inference/concepts/endpoints.md?context=/azure/ai-studio/context/context
         - name: Quotas and limits
-          href: ai-services/concepts/quotas-limits.md
-        - name: Azure AI model inference FAQ
-          href: ai-services/faq.yml
+          href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-studio/context/context
       - name: Serverless API
         items:
         - name: Deploy models as serverless API
