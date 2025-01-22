@@ -73,7 +73,6 @@ The API indicates how developers can consume predictions for the following modal
 
 * [Get info](reference-model-inference-info.md): Returns the information about the model deployed under the endpoint.
 * [Text embeddings](reference-model-inference-embeddings.md): Creates an embedding vector representing the input text.
-* [Text completions](reference-model-inference-completions.md): Creates a completion for the provided prompt and parameters.
 * [Chat completions](reference-model-inference-chat-completions.md): Creates a model response for the given chat conversation.
 * [Image embeddings](reference-model-inference-images-embeddings.md): Creates an embedding vector representing the input text and image.
 
@@ -203,7 +202,7 @@ Use the reference section to explore the API design and which parameters are ava
 __Request__
 
 ```HTTP/1.1
-POST /chat/completions?api-version=2024-04-01-preview
+POST /chat/completions?api-version=2024-05-01-preview
 Authorization: Bearer <bearer-token>
 Content-Type: application/json
 ```
@@ -278,7 +277,7 @@ Console.WriteLine($"Response: {response.Value.Choices[0].Message.Content}");
 __Request__
 
 ```HTTP/1.1
-POST /chat/completions?api-version=2024-04-01-preview
+POST /chat/completions?api-version=2024-05-01-preview
 Authorization: Bearer <bearer-token>
 Content-Type: application/json
 extra-parameters: pass-through
@@ -412,7 +411,7 @@ catch (RequestFailedException ex)
 __Request__
 
 ```HTTP/1.1
-POST /chat/completions?api-version=2024-04-01-preview
+POST /chat/completions?api-version=2024-05-01-preview
 Authorization: Bearer <bearer-token>
 Content-Type: application/json
 ```
@@ -553,7 +552,7 @@ catch (RequestFailedException ex)
 __Request__
 
 ```HTTP/1.1
-POST /chat/completions?api-version=2024-04-01-preview
+POST /chat/completions?api-version=2024-05-01-preview
 Authorization: Bearer <bearer-token>
 Content-Type: application/json
 ```

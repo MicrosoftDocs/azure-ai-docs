@@ -10,7 +10,7 @@ author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
 ms.date: 07/29/2024
-ms.custom: devplatv2
+ms.custom: devplatv2, update-code
 
 #customer intent: As a developer, I want to use the Azure Machine Learning REST APIs so that I can deploy models by using online endpoints.
 ---

@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 05/23/2024
+ms.date: 01/16/2025
 ---
 
 # Add language analyzers to string fields in an Azure AI Search index

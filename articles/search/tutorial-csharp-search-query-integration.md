@@ -7,7 +7,7 @@ author: diberry
 ms.author: diberry
 ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 08/16/2024
+ms.date: 01/17/2025
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
@@ -30,7 +30,7 @@ The function app authenticates through the SDK to the cloud-based Azure AI Searc
 
 ## Configure secrets in a local.settings.json file
 
-:::code language="json" source="~/azure-search-static-web-app/api/local.settings.json":::
+:::code language="json" source="~/azure-search-static-web-app/api/sample.local.settings.json":::
 
 ## Azure Function: Search the catalog
 

@@ -7,7 +7,7 @@ author: diberry
 ms.author: diberry
 ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 10/21/2024
+ms.date: 01/17/2025
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
@@ -48,7 +48,7 @@ The [sample code](https://github.com/Azure-Samples/azure-search-static-web-app) 
 Create services and install the following software for your local development environment. 
 
 - [Azure AI Search](search-create-service-portal.md), any region or tier
-- [.NET 6](https://dotnet.microsoft.com/download/dotnet/6.0) or later
+- [.NET 9](https://dotnet.microsoft.com/download/dotnet) or latest version
 - [Git](https://git-scm.com/downloads)
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [C# Dev Tools extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)

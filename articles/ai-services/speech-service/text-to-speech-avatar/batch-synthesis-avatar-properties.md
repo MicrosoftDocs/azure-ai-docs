@@ -5,7 +5,7 @@ description: Learn about the batch synthesis properties that are available for t
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/11/2024
+ms.date: 1/13/2025
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
@@ -26,7 +26,7 @@ The following table describes the avatar properties.
 | avatarConfig.talkingAvatarCharacter      | The character name of the talking avatar.<br/><br/>The supported avatar characters can be found [here](avatar-gestures-with-ssml.md#supported-prebuilt-avatar-characters-styles-and-gestures).<br/><br/>This property is required.|
 | avatarConfig.talkingAvatarStyle          | The style name of the talking avatar.<br/><br/>The supported avatar styles can be found [here](avatar-gestures-with-ssml.md#supported-prebuilt-avatar-characters-styles-and-gestures).<br/><br/>This property is required for prebuilt avatar, and optional for customized avatar.|
 | avatarConfig.customized                  | A bool value indicating whether the avatar to be used is customized avatar or not. True for customized avatar, and false for prebuilt avatar.<br/><br/>This property is optional, and the default value is `false`.|
-| avatarConfig.videoFormat                 | The format for output video file, could be mp4 or webm.<br/><br/>The `webm` format is required for transparent background.<br/><br/>This property is optional, and the default value is mp4.|
+| avatarConfig.videoFormat                 | The format for output video file could be mp4 or webm.<br/><br/>The `webm` format is required for transparent background.<br/><br/>This property is optional, and the default value is mp4.|
 | avatarConfig.videoCodec                  | The codec for output video, could be h264, hevc, vp9 or av1.<br/><br/>Vp9 is required for transparent background. The synthesis speed will be slower with vp9 codec, as vp9 encoding is slower.<br/><br/>This property is optional, and the default value is hevc.|
 | avatarConfig.bitrateKbps                 | The bitrate for output video, which is integer value, with unit kbps.<br/><br/>This property is optional, and the default value is 2000.|
 | avatarConfig.videoCrop                   | This property allows you to crop the video output, which means, to output a rectangle subarea of the original video. This property has two fields, which define the top-left vertex and bottom-right vertex of the rectangle.<br/><br/>This property is optional, and the default behavior is to output the full video.|

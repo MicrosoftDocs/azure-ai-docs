@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 01/14/2025
 ms.author: lajanuar
 ms.custom:
   - references_regions
@@ -20,8 +20,7 @@ monikerRange: '>=doc-intel-3.0.0'
 
 # Document Intelligence custom neural model
 
-
-
+:::moniker range="doc-intel-4.0.0"
 **This content applies to:**![checkmark](../media/yes-icon.png) **v4.0 (GA)** | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru) ![blue-checkmark](../media/blue-yes-icon.png) [**v3.0 (GA)**](?view=doc-intel-3.0.0&preserve-view=tru)
 ::: moniker-end
 
@@ -45,7 +44,7 @@ Custom neural models share the same labeling format and strategy as [custom temp
 ## Model capabilities
 
  > [!IMPORTANT]
- > Custom neural v4.0 2024-11-30 (GA) model supports overlapping fields and table cell confidence.
+ > Custom neural v4.0 `2024-11-30` (GA) model supports signature detection, table cell confidence, and overlapping fields.
 
 Custom neural models currently support key-value pairs and selection marks and structured fields (tables).
 
@@ -61,6 +60,34 @@ Custom neural models currently support key-value pairs and selection marks and s
 The `Build` operation supports *template* and *neural* custom models. Previous versions of the REST API and client libraries only supported a single build mode that is now known as the *template* mode.
 
 Neural models support documents that have the same information, but different page structures. Examples of these documents include United States W2 forms, which share the same information, but can vary in appearance across companies. For more information, *see* [Custom model build mode](custom-model.md#build-mode).
+
+### Signature detection
+
+Custom neural v4.0 2024-11-30 (GA) model supports signature detection. To label a signature, use field type as Signature and draw the regions for signature. Signature field only supports one draw region per field. To train a custom neural model with signature detection, you need to use at least **five samples** with signature labeled along with variations to get the most accurate results.
+
+## Tabular fields
+
+Custom neural v4.0 **2024-11-30 (GA)** model supports tabular fields (tables) to analyze table, row, and cell data with added confidence:
+
+* Models trained with API version 2022-06-30-preview, or later will accept tabular field labels.
+* Documents analyzed with custom neural models using API version 2022-06-30-preview or later will produce tabular fields aggregated across the tables.
+* The results can be found in the ```analyzeResult``` object's ```documents``` array that is returned following an analysis operation.
+
+Tabular fields support **cross page tables** by default:
+
+* To label a table that spans multiple pages, label each row of the table across the different pages in a single table.
+* As a best practice, ensure that your dataset contains a few samples of the expected variations. For example, include samples where the entire table is on a single page and where tables span two or more pages.
+
+Tabular fields are also useful when extracting repeating information within a document that isn't recognized as a table. For example, a repeating section of work experiences in a resume can be labeled and extracted as a tabular field.
+
+Tabular fields provide **table, row and cell confidence** with the `2024-11-30 (GA)` API:
+
+* Fixed or dynamic tables add confidence support for the following elements:
+  * Table confidence, a measure of how accurately the entire table is recognized.
+  * Row confidence, a measure of recognition of an individual row.
+  * Cell confidence, a measure of recognition of an individual cell.
+
+* The recommended approach is to review the accuracy in a top-down manner starting with the table first, followed by the row and then the cell. See  [confidence and accuracy scores](../concept/accuracy-confidence.md) to learn more about table, row, and cell confidence.
 
 ### Overlapping fields
 
@@ -78,30 +105,6 @@ Overlapping fields have some limits:
 * Overlapping fields can only be recognized if at least one sample in the dataset contains overlapping labels for those fields.
 
 To use overlapping fields, label your dataset with the overlaps and train the model with the API version ``**2024-11-30 (GA)**``.
-
-## Tabular fields
-
-Custom neural v4.0 **2024-11-30 (GA)** model supports tabular fields (tables) to analyze table, row, and cell data with added confidence:
-
-* Models trained with API version 2022-06-30-preview, or later will accept tabular field labels.
-* Documents analyzed with custom neural models using API version 2022-06-30-preview or later will produce tabular fields aggregated across the tables.
-* The results can be found in the ```analyzeResult``` object's ```documents``` array that is returned following an analysis operation.
-
-Tabular fields support **cross page tables** by default:
-
-* To label a table that spans multiple pages, label each row of the table across the different pages in a single table.
-* As a best practice, ensure that your dataset contains a few samples of the expected variations. For example, include samples where the entire table is on a single page and where tables span two or more pages.
-
-Tabular fields are also useful when extracting repeating information within a document that isn't recognized as a table. For example, a repeating section of work experiences in a resume can be labeled and extracted as a tabular field.
-
-Tabular fields provide **table, row and cell confidence** with the ``**2024-11-30 (GA)**`` API:
-
-* Fixed or dynamic tables add confidence support for the following elements:
-  * Table confidence, a measure of how accurately the entire table is recognized.
-  * Row confidence, a measure of recognition of an individual row.
-  * Cell confidence, a measure of recognition of an individual cell.
-
-* The recommended approach is to review the accuracy in a top-down manner starting with the table first, followed by the row and then the cell. See  [confidence and accuracy scores](../concept/accuracy-confidence.md) to learn more about table, row, and cell confidence.
 
 ### Supported languages and locales
 
@@ -203,7 +206,7 @@ Custom neural models differ from custom template models in a few different ways.
 
 * Custom neural model doesn't recognize values split across page boundaries.
 * Custom neural unsupported field types are ignored if a dataset labeled for custom template models is used to train a custom neural model.
-* Custom neural models are limited to 20 build operations per month. Open a support request if you need the limit increased. For more information, see [Document Intelligence service quotas and limits](../service-limits.md).
+* Custom neural models are limited to 20 build operations per month for versions 3.x. Open a support request if you need the limit increased. For more information, see [Document Intelligence service quotas and limits](../service-limits.md).
 
 ## Training a model
 
@@ -294,9 +297,9 @@ POST https://{endpoint}/documentintelligence/documentModels:build?api-version=20
 
 > [!IMPORTANT]
 >
-> * If you would like to train additional neural models or train models for a longer time period that **exceed 10 hours**, billing charges apply. For details on the billing charges, refer to the [pricing page](https://azure.microsoft.com/pricing/details/ai-document-intelligence/).
-> * You can opt in for this paid training service by setting the `maxTrainingHours` to the desired maximum number of hours. API calls with no budget but with the `maxTrainingHours` set as over 10 hours will fail.
-> * As each build takes different amount of time depending on the type and size of the training dataset, billing is calculated for the actual time spent training the neural model, with a minimum of 30 minutes per training job.
+> * If you would like to train more neural models or train models for a longer time period that **exceed 10 hours**, billing charges apply. For details on the billing charges, refer to the [pricing page](https://azure.microsoft.com/pricing/details/ai-document-intelligence/).
+> * You can opt in for this paid training service by setting the `maxTrainingHours` to the desired maximum number of hours. API calls with no budget but with the `maxTrainingHours` set to over 10 hours fail.
+> * Each build takes a different amount of time depending on the type and size of the training dataset. Billing is calculated for the actual time spent training the neural model with a minimum of 30 minutes per training job.
 > * This paid training feature enables you to train larger data sets for longer durations with flexibility in the training hours.
 
 ```bash
@@ -311,7 +314,7 @@ GET /documentModels/{myCustomModel}
 ```
 
 > [!NOTE]
-> For Document Intelligence versions `v3.1 (2023-07-31)` and `v3.0 (2022-08-31)`, custom neural model's paid training is not enabled. For the two older versions, you will get a maximum of 30 minutes training duration per model. If you would like to train more than 20 model instances, you can create an [Azure support ticket](../service-limits.md#create-and-submit-support-request) to increase in the training limit.
+> For Document Intelligence versions `v3.1 (2023-07-31)` and `v3.0 (2022-08-31)`, custom neural model's paid training isn't enabled. For the two older versions, there's a maximum of 30-minutes training duration per model. If you would like to train more than 20 model instances, you can create an [Azure support ticket](../service-limits.md#create-and-submit-support-request-for-tps-increase) to increase in the training limit.
 
 :::moniker-end
 
@@ -319,11 +322,11 @@ GET /documentModels/{myCustomModel}
 
 ## Billing
 
-For Document Intelligence versions `v3.1 (2023-07-31) and v3.0 (2022-08-31)`, you receive a maximum 30 minutes of training duration per model, and a maximum of 20 trainings for free per month. If you would like to train more than 20 model instances, you can create an [Azure support ticket](../service-limits.md#create-and-submit-support-request) to increase in the training limit. For Azure support ticket, enter in the `summary` field: `Increase Document Intelligence custom neural training (TPS) limit`. 
+For Document Intelligence versions `v3.1 (2023-07-31) and v3.0 (2022-08-31)`, you receive a maximum 30 minutes of training duration per model, and a maximum of 20 trainings for free per month. If you would like to train more than 20 model instances, you can create an [Azure support ticket](../service-limits.md#create-and-submit-support-request-for-tps-increase) to increase in the training limit. For Azure support ticket, enter in the `summary` field: `Increase Document Intelligence custom neural training (TPS) limit`. 
 
 > [!IMPORTANT]
 >
-> * When increasing the training limit, note that 2 custom neural model training sessions will be considered as 1 training hour. For more information on the pricing for increasing the number of training sessions, *see** the [pricing page](https://azure.microsoft.com/pricing/details/ai-document-intelligence/).
+> * When you increase the training limit, two custom neural model training sessions is considered as one training hour. For more information on the pricing for increasing the number of training sessions, *see** the [pricing page](https://azure.microsoft.com/pricing/details/ai-document-intelligence/).
 > * Azure support ticket for training limit increase can only apply at a **resource-level**, not a subscription level. You can request a training limit increase for a single Document Intelligence resource by specifying your resource ID and region in the support ticket.
 
 If you want to train models for longer durations than 30 minutes, we support **paid training** with version `v4.0 2024-11-30 (GA)`. Using the latest version, you can train your model for a longer duration to process larger documents. For more information about paid training, *see* [Billing v4.0](../service-limits.md#billing).
@@ -334,11 +337,11 @@ If you want to train models for longer durations than 30 minutes, we support **p
 
 ## Billing
 
-For Document Intelligence versions `v3.1 (2023-07-31) and v3.0 (2022-08-31)`, you receive a maximum 30 minutes of training duration per model, and a maximum of 20 trainings for free per month. If you would like to train more than 20 model instances, you can create an [Azure support ticket](../service-limits.md#create-and-submit-support-request) to increase in the training limit. For Azure support ticket, enter in the `summary` field: `Increase Document Intelligence custom neural training (TPS) limit`. 
+For Document Intelligence versions `v3.1 (2023-07-31) and v3.0 (2022-08-31)`, you receive a maximum 30 minutes of training duration per model, and a maximum of 20 trainings for free per month. If you would like to train more than 20 model instances, you can create an [Azure support ticket](../service-limits.md#create-and-submit-support-request-for-tps-increase) to increase in the training limit. For Azure support ticket, enter in the `summary` field: `Increase Document Intelligence custom neural training (TPS) limit`. 
 
 > [!IMPORTANT]
 >
-> * When increasing the training limit, note that 2 custom neural model training sessions will be considered as 1 training hour. For more information on the pricing for increasing the number of training sessions, *see* the [pricing page](https://azure.microsoft.com/pricing/details/ai-document-intelligence/).
+> * When you increase the training limit, two custom neural model training sessions is considered as one training hour. For more information on the pricing for increasing the number of training sessions, *see* the [pricing page](https://azure.microsoft.com/pricing/details/ai-document-intelligence/).
 > * Azure support ticket for training limit increase can only apply at a **resource-level**, not a subscription level. You can request a training limit increase for a single Document Intelligence resource by specifying your resource ID and region in the support ticket.
 
 If you want to train models for longer durations than 30 minutes, we support **paid training** with our newest version, `v4.0 (2024-11-30)`. Using the latest version, you can train your model for a longer duration to process larger documents. For more information about paid training, *see* [Billing v4.0](../service-limits.md#billing).

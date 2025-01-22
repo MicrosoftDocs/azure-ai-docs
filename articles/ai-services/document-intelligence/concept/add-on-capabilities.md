@@ -6,7 +6,7 @@ author: jaep3347
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 01/15/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.1.0'
 ---
@@ -64,14 +64,14 @@ Document Intelligence supports more sophisticated and modular analysis capabilit
 
 |Add-on Capability| Add-On/Free|**2024-11-30 (GA)**|[`2023-07-31` (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)|[`2022-08-31` (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)|[v2.1 (GA)](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|
 |----------------|-----------|---|--|---|---|
-|Font property extraction|Add-On| ✔️| ✔️| n/a| n/a|
-|Formula extraction|Add-On| ✔️| ✔️| n/a| n/a|
-|High resolution extraction|Add-On| ✔️| ✔️| n/a| n/a|
 |Barcode extraction|Free| ✔️| ✔️| n/a| n/a|
 |Language detection|Free| ✔️| ✔️| n/a| n/a|
 |Key value pairs|Free| ✔️|n/a|n/a| n/a|
-|Query fields|Add-On*| ✔️|n/a|n/a| n/a|
-|Searhable pdf|Add-On**| ✔️|n/a|n/a| n/a|
+|Searchable PDF|Free| ✔️|n/a|n/a| n/a|
+|Font property extraction|**Add-On**| ✔️| ✔️| n/a| n/a|
+|Formula extraction|**Add-On**| ✔️| ✔️| n/a| n/a|
+|High resolution extraction|**Add-On**| ✔️| ✔️| n/a| n/a|
+|Query fields|**Add-On**| ✔️|n/a|n/a| n/a|
 
 ✱ Add-On - Query fields are priced differently than the other add-on features. See [pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/) for details. </br>
 ** Add-On - Searchable pdf is available only with Read model as an add-on feature. 

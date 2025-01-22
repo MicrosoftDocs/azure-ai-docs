@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 11/19/2024
+ms.date: 01/14/2025
 ms.custom: ignite-2024-understanding-release
 ---
 
@@ -17,7 +17,7 @@ ms.custom: ignite-2024-understanding-release
 > [!IMPORTANT]
 >
 > * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes may change or have constrained capabilities, prior to General Availability (GA).
+> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 Content Understanding audio analyzers enable transcription and diarization of conversational audio, extracting structured fields such as summaries, sentiments, and key topics. Customize an audio analyzer template to your business needs using [Azure AI Foundry portal](https://ai.azure.com/) to start generating results.
@@ -82,5 +82,7 @@ Developers using Content Understanding should review Microsoft's policies on cus
 
 ## Next steps
 
-* Try processing your audio content using Content Understanding in [Azure AI Foundry portal](https://ai.azure.com/).
-* Learn more about audio [**analyzer templates**](../quickstart/use-ai-foundry.md).
+* Try processing your audio content using Content Understanding in [**Azure AI Foundry portal**](https://ai.azure.com/).
+* Learn how to analyze audio content [**analyzer templates**](../quickstart/use-ai-foundry.md).
+* Review code sample: [**audio content extraction**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/notebooks/content_extraction.ipynb).
+* Review code sample: [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).

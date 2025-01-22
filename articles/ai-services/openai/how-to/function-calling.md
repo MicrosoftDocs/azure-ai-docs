@@ -7,7 +7,7 @@ ms.author: mbullwin #delegenz
 ms.service: azure-ai-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 06/28/2024
+ms.date: 01/17/2025
 manager: nitinme
 ---
 
@@ -29,24 +29,30 @@ At a high level you can break down working with functions into three steps:
 
 ### Parallel function calling
 
-* `gpt-35-turbo` (1106)
-* `gpt-35-turbo` (0125)
-* `gpt-4` (1106-Preview)
-* `gpt-4` (0125-Preview)
-* `gpt-4` (vision-preview)
-* `gpt-4` (2024-04-09)
-* `gpt-4o` (2024-05-13)
-* `gpt-4o-mini` (2024-07-18)
+* `gpt-35-turbo` (`1106`)
+* `gpt-35-turbo` (`0125`)
+* `gpt-4` (`1106-Preview`)
+* `gpt-4` (`0125-Preview`)
+* `gpt-4` (`vision-preview`)
+* `gpt-4` (`2024-04-09`)
+* `gpt-4o` (`2024-05-13`)
+* `gpt-4o` (`2024-08-06`)
+* `gpt-4o` (`2024-11-20`)
+* `gpt-4o-mini` (`2024-07-18`)
 
 Support for parallel function was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 
 ### Basic function calling with tools
 
 * All the models that support parallel function calling
-* `gpt-4` (0613)
-* `gpt-4-32k` (0613)
-* `gpt-35-turbo-16k` (0613)
-* `gpt-35-turbo` (0613)
+* `o1` (`2024-12-17`)
+* `gpt-4` (`0613`)
+* `gpt-4-32k` (`0613`)
+* `gpt-35-turbo-16k` (`0613`)
+* `gpt-35-turbo` (`0613`)
+
+> [!IMPORTANT]
+> There is a known issue with the `o1` model and the `tool_choice` parameter. Currently function calls that include the optional `tool_choice` parameter will fail. This page will be updated once the issue is resolved. For more information on what parameters are supported with the o1-series models see, the [reasoning models guide](./reasoning.md).
 
 ## Single tool/function calling example
 
@@ -225,7 +231,7 @@ For example in our simple time app we retrieved multiple times at the same time.
 To force the model to call a specific function set the `tool_choice` parameter with a specific function name. You can also force the model to generate a user-facing message by setting `tool_choice: "none"`.
 
 > [!NOTE]
-> The default behavior (`tool_choice: "auto"`) is for the model to decide on its own whether to call a function and if so which function to call.
+> The default behavior (`tool_choice: "auto"`) is for the model to decide on its own if it should call a function and if so which function to call.
 
 ## Parallel function calling with multiple functions
 

@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: conceptual
-ms.date: 01/09/2025
+ms.date: 1/17/2025
 ms.author: mbullwin
 ---
 
@@ -51,7 +51,7 @@ The following sections provide you with a quick guide to the default quotas and 
 | GPT-4o max images per request (# of images in the messages array/conversation history) | 50 |
 | GPT-4 `vision-preview` & GPT-4 `turbo-2024-04-09` default max tokens | 16 <br><br> Increase the `max_tokens` parameter value to avoid truncated responses. GPT-4o max tokens defaults to 4096. |
 | Max number of custom headers in API requests<sup>1</sup> | 10 |
-| Max number requests per minute<br/><br/>Current rate limits for real time audio (`gpt-4o-realtime-preview`) are defined as the number of new websocket connections per minute. For example, 100 requests per minute (RPM) means 100 new connections per minute. | 100 new connections per minute |
+| Message character limit | 1048576 |
 
 <sup>1</sup> Our current APIs allow up to 10 custom headers, which are passed through the pipeline, and returned. Some customers now exceed this header count resulting in HTTP 431 errors. There's no solution for this error, other than to reduce header volume. **In future API versions we will no longer pass through custom headers**. We recommend customers not depend on custom headers in future system architectures.
 
@@ -129,6 +129,16 @@ M = million | K = thousand
 |`gpt-4o-mini` | Enterprise agreement | 2 M | 12 K |
 |`gpt-4o`|Default | 150 K | 900 |
 |`gpt-4o-mini` | Default | 450 K | 2.7 K |
+
+M = million | K = thousand
+
+## gpt-4o audio
+
+The rate limits for each `gpt-4o-realtime-preview` model deployment are 100K TPM and 1K RPM. During the preview, Azure AI Foundry portal and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit will be 100K TPM and 1K RPM.
+
+| Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
+|---|---|:---:|:---:|
+|`gpt-4o-realtime-preview` | Default | 100 K | 1 K |
 
 M = million | K = thousand
 
