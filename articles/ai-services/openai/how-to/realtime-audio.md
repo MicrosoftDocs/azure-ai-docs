@@ -172,6 +172,37 @@ When the server responds with a [`response.done`](../realtime-audio-reference.md
 > [!IMPORTANT]
 > If you create any responses outside the default conversation, be sure to always check the `response.metadata` field to help you identify the corresponding response for the client-sent event. You should even check the `response.metadata` field for responses that are part of the default conversation. That way, you can ensure that you're handling the correct response for the client-sent event.
 
+### Custom context for out-of-band responses
+
+You can also construct a custom context that the model will use outside of the session's default conversation. To create a response with custom context, set the `conversation` field to `none` and provide the custom context in the `input` array. The `input` array can contain new inputs or references to existing conversation items.
+
+```json
+{
+  "type": "response.create",
+  "response": {
+    "conversation": "none",
+    "modalities": ["text"],
+    "prompt": "What is the capital of France?",
+    "input": [
+      {
+        "type": "item_reference",
+        "id": "existing_conversation_item_id"
+      },
+      {
+        "type": "message",
+        "role": "user",
+        "content": [
+          {
+            "type": "input_text",
+            "text": "The capital of France is Paris."
+          },
+        ],
+      },
+    ]
+  }
+}
+```
+
 ## Voice activity detection (VAD) and the audio buffer
 
 The server maintains an input audio buffer containing client-provided audio that has not yet been committed to the conversation state.

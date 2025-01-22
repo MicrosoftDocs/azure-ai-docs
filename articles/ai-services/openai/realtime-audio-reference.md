@@ -1100,11 +1100,11 @@ The server `session.updated` event is returned when a session is updated by the 
 
 | Field | Type | Description | 
 |-------|------|-------------|
-| type | [RealtimeContentPartType](#realtimecontentparttype) | The content type (`input_text`, `input_audio`, `item_reference`, `text`).<br><br>A property of the `function` object. |
-| text | string | The text content, used for `input_text` and `text` content types. |
-| id | string | ID of a previous conversation item to reference (for `item_reference` content types in `response.create` events). These can reference both client and server created items. |
-| audio | string | Base64-encoded audio bytes, used for `input_audio` content type. |
-| transcript | string | The transcript of the audio, used for `input_audio` content type. |
+| type | [RealtimeContentPartType](#realtimecontentparttype) | The content type.<br><br>A property of the `function` object.<br/><br>Allowed values: `input_text`, `input_audio`, `item_reference`, `text`. |
+| text | string | The text content. This property is applicable for the `input_text` and `text` content types. |
+| id | string | ID of a previous conversation item to reference in both client and server created items. This property is applicable for the `item_reference` content type in `response.create` events. |
+| audio | string | The base64-encoded audio bytes. This property is applicable for the `input_audio` content type. |
+| transcript | string | The transcript of the audio. This property is applicable for the `input_audio` content type. |
 
 ### RealtimeContentPartType
 
