@@ -1100,7 +1100,11 @@ The server `session.updated` event is returned when a session is updated by the 
 
 | Field | Type | Description | 
 |-------|------|-------------|
-| type | [RealtimeContentPartType](#realtimecontentparttype) | The type of the content part. |
+| type | [RealtimeContentPartType](#realtimecontentparttype) | The content type (`input_text`, `input_audio`, `item_reference`, `text`).<br><br>A property of the `function` object. |
+| text | string | The text content, used for `input_text` and `text` content types. |
+| id | string | ID of a previous conversation item to reference (for `item_reference` content types in `response.create` events). These can reference both client and server created items. |
+| audio | string | Base64-encoded audio bytes, used for `input_audio` content type. |
+| transcript | string | The transcript of the audio, used for `input_audio` content type. |
 
 ### RealtimeContentPartType
 
@@ -1114,6 +1118,21 @@ The server `session.updated` event is returned when a session is updated by the 
 ### RealtimeConversationItemBase
 
 The item to add to the conversation.
+
+This table describes all `RealtimeConversationItem` propertiest. The properties that are applicable per event depend on the [RealtimeItemType](#realtimeitemtype). 
+
+| Field | Type | Description | 
+|-------|------|-------------|
+| id | string | The unique ID of the item. The ID can be specified by the client to help manage server-side context. If the client doesn't provide an ID, the server generates one. |
+| type | [RealtimeItemType](#realtimeitemtype) | The type of the item.<br><br>Allowed values: `message`, `function_call`, `function_call_output` |
+| object | string | Identifier for the API object being returned - always `realtime.item`. |
+| status | [RealtimeItemStatus](#realtimeitemstatus) | The status of the item (`completed`, `incomplete`). These have no effect on the conversation, but are accepted for consistency with the `conversation.item.created` event. |
+| role | [RealtimeMessageRole](#realtimemessagerole) | The role of the message sender (`user`, `assistant`, `system`), only applicable for `message` items. |
+| content | array of [RealtimeContentPart](#realtimecontentpart) | The content of the message, applicable for `message` items.<br><br>- Message items of role `system` support only `input_text` content<br>- Message items of role `user` support `input_text` and `input_audio` content<br>- Message items of role `assistant` support `text` content. |
+| call_id | string | The ID of the function call (for `function_call` and `function_call_output` items). If passed on a `function_call_output` item, the server will check that a `function_call` item with the same ID exists in the conversation history. |
+| name | string | The name of the function being called (for `function_call` items). |
+| arguments | string | The arguments of the function call (for `function_call` items). |
+| output | string | The output of the function call (for `function_call_output` items). |
 
 ### RealtimeConversationRequestItem
 
@@ -1333,6 +1352,9 @@ The response resource.
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
 | max__output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br><br>Defaults to `"inf"`. |
+| conversation | string | Controls which conversation the response is added to. Currently supports auto and none, with auto as the default value. The auto value means that the contents of the response will be added to the default conversation. Set this to none to create an out-of-band response which will not add items to the default conversation. |
+| metadata | map | Set of up to 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.<br/><br/>For example: `metadata: { topic: "classification" }` |
+| input | array | Input items to include in the prompt for the model. Creates a new context for this response, without including the default conversation. Can include references to items from the default conversation.<br><br>Array items: [RealtimeConversationItemBase](#realtimeconversationitembase) |
 
 ### RealtimeResponseSession
 
