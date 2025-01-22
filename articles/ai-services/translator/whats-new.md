@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: build-2023
 ms.topic: overview
-ms.date: 06/19/2024
+ms.date: 01/21/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD024 -->
@@ -21,6 +21,10 @@ Bookmark this page to stay up to date with release notes, feature enhancements, 
 Translator is a language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages.
 
 Translator service supports language translation for more than 100 languages. If your language community is interested in partnering with Microsoft to add your language to Translator, contact us via the [Translator community partner onboarding form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR-riVR3Xj0tOnIRdZOALbM9UOU1aMlNaWFJOOE5YODhRR1FWVzY0QzU1OS4u).
+
+## January 2025
+
+[**Microsoft Translator Pro**](/translator-pro/overview.md), a speech-to-speech translation mobile app, is now generally available (GA).
 
 ## May 2024
 
