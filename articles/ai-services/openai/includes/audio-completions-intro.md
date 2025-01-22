@@ -29,6 +29,8 @@ The `gpt-4o-audio-preview` model is available for global deployments in [East US
 
 Currently the following voices are supported for audio out: Alloy, Echo, and Shimmer.
 
+The maximum audio file size is 20 MB.
+
 > [!NOTE]
 > The [Realtime API](../realtime-audio-quickstart.md) uses the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions.
 
