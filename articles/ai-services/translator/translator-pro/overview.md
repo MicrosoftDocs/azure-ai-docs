@@ -6,7 +6,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 01/21/2025
+ms.date: 01/22/2025
 ms.custom: FY25Q1-Linter, ignite-2024
 ---
 
