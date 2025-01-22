@@ -1,7 +1,7 @@
 ---
 title: Models available in Azure AI model inference
 titleSuffix: Azure AI Foundry
-description: Explore the models available in the Azure AI model inference and their capabilities
+description: Explore the models available via the Azure AI model inference and their capabilities.
 manager: scottpolly
 author: msakande
 reviewer: santiagxf
@@ -26,16 +26,16 @@ Learn more about specific deployment capabilities for Azure OpenAI at [Azure Ope
 > [!TIP]
 > The Azure AI model catalog offers a larger selection of models, from a bigger range of providers. However, those models might require you to host them on your infrastructure, including the creation of an AI hub and project. Azure AI model service provides a way to consume the models as APIs without hosting them on your infrastructure, with a pay-as-you-go billing. Learn more about the [Azure AI model catalog](../../../ai-studio/how-to/model-catalog-overview.md).
 
-You can see all the models available to you in the [model catalog for Azure AI Foundry](https://ai.azure.com/explore/models).
+You can see all the models available to you in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
 
 ### AI21 Labs
 
 The Jamba family models are AI21's production-grade Mamba-based large language model (LLM) which uses AI21's hybrid Mamba-Transformer architecture. It's an instruction-tuned version of AI21's hybrid structured state space model (SSM) transformer Jamba model. The Jamba family models are built for reliable commercial use with respect to quality and performance.
 
-| Model  | Type | SKU | Capabilities |
+| Model  | Type | Tier | Capabilities |
 | ------ | ---- | --- | ------------ |
-| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21) | chat-completion | Global standard | - **Input:** text (262,144 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Languages:** en, fr, es, pt, de, ar, and he <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
-| [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) | chat-completion | Global standard | - **Input:** text (262,144 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Languages:** en, fr, es, pt, de, ar, and he <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
+| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21) | chat-completion | Global standard | - **Input:** text (262,144 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `pt`, `de`, `ar`, and `he` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
+| [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) | chat-completion | Global standard | - **Input:** text (262,144 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `pt`, `de`, `ar`, and `he` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
 
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=ai21).
@@ -48,16 +48,16 @@ Azure OpenAI Service offers a diverse set of models with different capabilities 
 - Models that can understand and generate natural language and code
 - Models that can transcribe and translate speech to text
 
-| Model  | Type | SKU | Capabilities |
+| Model  | Type | Tier | Capabilities |
 | ------ | ---- | --- | ------------ |
-| [o1](https://ai.azure.com/explore/models/o1/version/2024-12-17/registry/azure-openai) | chat-completion | Global standard | - **Input:** text and image (200,000 tokens) <br /> - **Output:** text (100,000 tokens) <br /> - **Languages:** en, it, af, es, de, fr, id, ru, pl, uk, el, lv, zh, ar, tr, ja, sw, cy, ko, is, bn, ur, ne, th, pa, mr, and te <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
-| [o1-preview](https://ai.azure.com/explore/models/o1-preview/version/1/registry/azure-openai) | chat-completion | Global standard <br />Standard<br /> | - **Input:** text (128,000 tokens) <br /> - **Output:**  (32,768 tokens) <br /> - **Languages:** en, it, af, es, de, fr, id, ru, pl, uk, el, lv, zh, ar, tr, ja, sw, cy, ko, is, bn, ur, ne, th, pa, mr, and te <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
-| [o1-mini](https://ai.azure.com/explore/models/o1-mini/version/1/registry/azure-openai) | chat-completion | Global standard <br />Standard | - **Input:** text (128,000 tokens) <br /> - **Output:**  (65,536 tokens) <br /> - **Languages:** en, it, af, es, de, fr, id, ru, pl, uk, el, lv, zh, ar, tr, ja, sw, cy, ko, is, bn, ur, ne, th, pa, mr, and te <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
+| [o1](https://ai.azure.com/explore/models/o1/version/2024-12-17/registry/azure-openai) | chat-completion | Global standard | - **Input:** text and image (200,000 tokens) <br /> - **Output:** text (100,000 tokens) <br /> - **Languages:** `en`, `it`, `af`, `es`, `de`, `fr`, `id`, `ru`, `pl`, `uk`, `el`, `lv`, `zh`, `ar`, `tr`, `ja`, `sw`, `cy`, `ko`, `is`, `bn`, `ur`, `ne`, `th`, `pa`, `mr`, and `te`. <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
+| [o1-preview](https://ai.azure.com/explore/models/o1-preview/version/1/registry/azure-openai) | chat-completion | Global standard <br />Standard<br /> | - **Input:** text (128,000 tokens) <br /> - **Output:**  (32,768 tokens) <br /> - **Languages:** `en`, `it`, `af`, `es`, `de`, `fr`, `id`, `ru`, `pl`, `uk`, `el`, `lv`, `zh`, `ar`, `tr`, `ja`, `sw`, `cy`, `ko`, `is`, `bn`, `ur`, `ne`, `th`, `pa`, `mr`, and `te`. <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
+| [o1-mini](https://ai.azure.com/explore/models/o1-mini/version/1/registry/azure-openai) | chat-completion | Global standard <br />Standard | - **Input:** text (128,000 tokens) <br /> - **Output:**  (65,536 tokens) <br /> - **Languages:** `en`, `it`, `af`, `es`, `de`, `fr`, `id`, `ru`, `pl`, `uk`, `el`, `lv`, `zh`, `ar`, `tr`, `ja`, `sw`, `cy`, `ko`, `is`, `bn`, `ur`, `ne`, `th`, `pa`, `mr`, and `te`. <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
 | [gpt-4o-realtime-preview](https://ai.azure.com/explore/models/gpt-4o-realtime-preview/version/2024-10-01/registry/azure-openai) | real-time | Global standard | - **Input:** control, text, and audio (131,072 tokens) <br /> - **Output:** text and audio (16,384 tokens) <br /> - **Languages:** en <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
-| [gpt-4o](https://ai.azure.com/explore/models/gpt-4o/version/2024-11-20/registry/azure-openai) | chat-completion | Global standard <br />Standard<br />Batch<br />Provisioned<br />Global provisioned<br />Data Zone | - **Input:** text and image (131,072 tokens) <br /> - **Output:** text (16,384 tokens) <br /> - **Languages:** en, it, af, es, de, fr, id, ru, pl, uk, el, lv, zh, ar, tr, ja, sw, cy, ko, is, bn, ur, ne, th, pa, mr, and te <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
-| [gpt-4o-mini](https://ai.azure.com/explore/models/gpt-4o-mini/version/2024-07-18/registry/azure-openai) | chat-completion | Global standard <br />Standard<br />Batch<br />Provisioned<br />Global provisioned<br />Data Zone | - **Input:** text, image, and audio (131,072 tokens) <br /> - **Output:**  (16,384 tokens) <br /> - **Languages:** en, it, af, es, de, fr, id, ru, pl, uk, el, lv, zh, ar, tr, ja, sw, cy, ko, is, bn, ur, ne, th, pa, mr, and te <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
-| [text-embedding-3-large](https://ai.azure.com/explore/models/text-embedding-3-large/version/1/registry/azure-openai) | embeddings | Global standard <br />Standard<br />Provisioned<br />Global provisioned | - **Input:** text (8,191 tokens) <br /> - **Output:** Vector (3,072 dim.) <br /> - **Languages:** en |
-| [text-embedding-3-small](https://ai.azure.com/explore/models/text-embedding-3-small/version/1/registry/azure-openai) | embeddings | Global standard <br />Standard<br />Provisioned<br />Global provisioned | - **Input:** text (8,191 tokens) <br /> - **Output:** Vector (1,536 dim.) <br /> - **Languages:** en |
+| [gpt-4o](https://ai.azure.com/explore/models/gpt-4o/version/2024-11-20/registry/azure-openai) | chat-completion | Global standard <br />Standard<br />Batch<br />Provisioned<br />Global provisioned<br />Data Zone | - **Input:** text and image (131,072 tokens) <br /> - **Output:** text (16,384 tokens) <br /> - **Languages:** `en`, `it`, `af`, `es`, `de`, `fr`, `id`, `ru`, `pl`, `uk`, `el`, `lv`, `zh`, `ar`, `tr`, `ja`, `sw`, `cy`, `ko`, `is`, `bn`, `ur`, `ne`, `th`, `pa`, `mr`, and `te`. <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
+| [gpt-4o-mini](https://ai.azure.com/explore/models/gpt-4o-mini/version/2024-07-18/registry/azure-openai) | chat-completion | Global standard <br />Standard<br />Batch<br />Provisioned<br />Global provisioned<br />Data Zone | - **Input:** text, image, and audio (131,072 tokens) <br /> - **Output:**  (16,384 tokens) <br /> - **Languages:** `en`, `it`, `af`, `es`, `de`, `fr`, `id`, `ru`, `pl`, `uk`, `el`, `lv`, `zh`, `ar`, `tr`, `ja`, `sw`, `cy`, `ko`, `is`, `bn`, `ur`, `ne`, `th`, `pa`, `mr`, and `te`. <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
+| [text-embedding-3-large](https://ai.azure.com/explore/models/text-embedding-3-large/version/1/registry/azure-openai) | embeddings | Global standard <br />Standard<br />Provisioned<br />Global provisioned | - **Input:** text (8,191 tokens) <br /> - **Output:** Vector (3,072 dim.) <br /> - **Languages:** `en` |
+| [text-embedding-3-small](https://ai.azure.com/explore/models/text-embedding-3-small/version/1/registry/azure-openai) | embeddings | Global standard <br />Standard<br />Provisioned<br />Global provisioned | - **Input:** text (8,191 tokens) <br /> - **Output:** Vector (1,536 dim.) <br /> - **Languages:** `en` |
 
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=aoai).
@@ -67,7 +67,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 The Cohere family of models includes various models optimized for different use cases, including chat completions and embeddings. Cohere models are optimized for various use cases that include reasoning, summarization, and question answering.
 
-| Model  | Type | SKU | Capabilities |
+| Model  | Type | Tier | Capabilities |
 | ------ | ---- | --- | ------------ |
 | [Cohere-embed-v3-english](https://ai.azure.com/explore/models/Cohere-embed-v3-english/version/1/registry/azureml-cohere) | embeddings | Global standard | - **Input:** text (512 tokens) <br /> - **Output:** Vector (1,024 dim.) <br /> - **Languages:** en |
 | [Cohere-embed-v3-multilingual](https://ai.azure.com/explore/models/Cohere-embed-v3-multilingual/version/1/registry/azureml-cohere) | embeddings | Global standard | - **Input:** text (512 tokens) <br /> - **Output:** Vector (1,024 dim.) <br /> - **Languages:** en, fr, es, it, de, pt-br, ja, ko, zh-cn, and ar |
@@ -83,7 +83,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 Core42 includes autoregressive bi-lingual LLMs for Arabic & English with state-of-the-art capabilities in Arabic.
 
-| Model  | Type | SKU | Capabilities |
+| Model  | Type | Tier | Capabilities |
 | ------ | ---- | --- | ------------ |
 | [jais-30b-chat](https://ai.azure.com/explore/models/jais-30b-chat/version/1/registry/azureml-core42) | chat-completion | Global standard | - **Input:** text (8,192 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Languages:** en and ar <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 
@@ -98,7 +98,7 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 - Mid-size large language models (LLMs) like 7B, 8B, and 70B Base and Instruct models
 - High-performant models like Meta Llama 3.1-405B Instruct for synthetic data generation and distillation use cases.
 
-| Model  | Type | SKU | Capabilities |
+| Model  | Type | Tier | Capabilities |
 | ------ | ---- | --- | ------------ |
 | [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta) | chat-completion | Global standard | - **Input:** text (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** en, de, fr, it, pt, hi, es, and th <br />  - **Tool calling:** No* <br /> - **Response formats:** Text |
 | [Llama-3.2-11B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-11B-Vision-Instruct/version/1/registry/azureml-meta) | chat-completion | Global standard | - **Input:** text and image (128,000 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** en <br />  - **Tool calling:** No* <br /> - **Response formats:** Text |
@@ -116,7 +116,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 Phi is a family of lightweight, state-of-the-art open models. These models were trained with Phi-3 datasets. The datasets include both synthetic data and the filtered, publicly available websites data, with a focus on high quality and reasoning-dense properties. The models underwent a rigorous enhancement process, incorporating both supervised fine-tuning, proximal policy optimization, and direct preference optimization to ensure precise instruction adherence and robust safety measures.
 
-| Model  | Type | SKU | Capabilities |
+| Model  | Type | Tier | Capabilities |
 | ------ | ---- | --- | ------------ |
 | [Phi-3-mini-128k-instruct](https://ai.azure.com/explore/models/Phi-3-mini-128k-instruct/version/12/registry/azureml) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Languages:** en <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 | [Phi-3-mini-4k-instruct](https://ai.azure.com/explore/models/Phi-3-mini-4k-instruct/version/14/registry/azureml) | chat-completion | Global standard | - **Input:** text (4,096 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Languages:** en <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
@@ -137,7 +137,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 Mistral AI offers two categories of models: premium models including Mistral Large and Mistral Small and open models including Mistral Nemo.
 
-| Model  | Type | SKU | Capabilities |
+| Model  | Type | Tier | Capabilities |
 | ------ | ---- | --- | ------------ |
 | [Ministral-3B](https://ai.azure.com/explore/models/Ministral-3B/version/1/registry/azureml-mistral) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** fr, de, es, it, and en <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Mistral-large](https://ai.azure.com/explore/models/Mistral-large/version/1/registry/azureml-mistral) | chat-completion | Global standard | - **Input:** text (32,768 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Languages:** fr, de, es, it, and en <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
@@ -153,7 +153,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 **Tsuzumi** is an autoregressive language optimized transformer. The tuned versions use supervised fine-tuning (SFT). Tsuzumi is handles both Japanese and English language with high efficiency.
 
-| Model  | Type | SKU | Capabilities |
+| Model  | Type | Tier | Capabilities |
 | ------ | ---- | --- | ------------ |
 | [Tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata) | chat-completion | Global standard | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** en and jp <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 
