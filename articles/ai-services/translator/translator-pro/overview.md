@@ -31,7 +31,7 @@ Microsoft Translator Pro is a paid mobile application available on the commercia
 
 * The app is available only to enterprises in the United States, Europe, United Kingdom, and Australia that meet certain criteria. For more information, *see* [Region availability](#region-availability)
 
-* Offline translation is limited to a select number of languages. For more information, *see* [Language support](#language-support)
+* Offline translation is limited to a select number of languages. For more information, *see* [Language support](language-support.md)
 
 ## Core features and capabilities
 
@@ -49,9 +49,8 @@ Microsoft Translator Pro is a paid mobile application available on the commercia
 
 The app is currently available in the following regions within the respective clouds. Please ensure you onboard the app in these specified regions.
 
-
-
 **Azure Cloud (Public)**
+
 |Geography|Region|
 |---|---|
 |United States|East US (eastus)|
@@ -59,6 +58,7 @@ The app is currently available in the following regions within the respective cl
 |Australia| Australia (australia)|
 
 **Azure US Government Cloud**
+
 |Geography|Region|
 |---|---|
 |United States|US Gov Virginia|

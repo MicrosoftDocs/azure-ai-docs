@@ -24,7 +24,7 @@ Translator service supports language translation for more than 100 languages. If
 
 ## January 2025
 
-[**Microsoft Translator Pro**](/translator-pro/overview.md), a speech-to-speech translation mobile app, is now generally available (GA).
+[**Microsoft Translator Pro**](translator-pro/overview.md), a speech-to-speech translation mobile app, is now generally available (GA).
 
 ## May 2024
 
