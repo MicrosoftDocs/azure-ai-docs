@@ -324,7 +324,7 @@ To deploy between the same subscription, but different regions, you would just h
 
 ### Cross tenant deployment
 
-The accounts used to generate access tokens with `az account get-access-token --tenant` should have Cognitive Services OpenAI Contributor permissions to the associated Azure OpenAI resources.
+The account used to generate access tokens with `az account get-access-token --tenant` should have Cognitive Services OpenAI Contributor permissions to both the source and destination Azure OpenAI resources. You will need to generate two different tokens, one for the source tenant and one for the destination tenant.
 
 
 ```bash
