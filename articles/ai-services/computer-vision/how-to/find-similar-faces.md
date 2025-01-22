@@ -101,4 +101,4 @@ Run the command, and the returned JSON should show the correct face ID as a simi
 In this guide, you learned how to call the Find Similar API to do a face search by similarity in a larger group of faces. Next, learn more about the different recognition models available for face comparison operations.
 
 > [!div class="nextstepaction"]
-> [Specify a face recognition model](specify-recognition-model.md)
+> [Specify a face recognition model](./specify-recognition-model.md)

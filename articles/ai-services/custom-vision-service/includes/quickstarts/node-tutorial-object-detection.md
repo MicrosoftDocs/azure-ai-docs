@@ -12,14 +12,6 @@ This guide provides instructions and sample code to help you get started using t
 > [!NOTE]
 > If you want to build and train an object detection model _without_ writing code, see the [browser-based guidance](../../get-started-build-detector.md) instead.
 
-Use the Custom Vision client library for .NET to:
-
-* Create a new Custom Vision project
-* Add tags to the project
-* Upload and tag images
-* Train the project
-* Publish the current iteration
-* Test the prediction endpoint
 
 Reference documentation [(training)](/javascript/api/@azure/cognitiveservices-customvision-training/) [(prediction)](/javascript/api/@azure/cognitiveservices-customvision-prediction/) | Package (npm) [(training)](https://www.npmjs.com/package/@azure/cognitiveservices-customvision-training) [(prediction)](https://www.npmjs.com/package/@azure/cognitiveservices-customvision-prediction) | [Samples](/samples/browse/?products=azure&terms=custom%20vision&languages=javascript)
 

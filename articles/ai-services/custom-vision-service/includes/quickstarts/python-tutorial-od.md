@@ -11,14 +11,6 @@ Get started with the Custom Vision client library for Python. Follow these steps
 > [!NOTE]
 > If you want to build and train an object detection model _without_ writing code, see the [browser-based guidance](../../get-started-build-detector.md) instead.
 
-Use the Custom Vision client library for Python to:
-
-* Create a new Custom Vision project
-* Add tags to the project
-* Upload and tag images
-* Train the project
-* Publish the current iteration
-* Test the prediction endpoint
 
 [Reference documentation](/python/api/overview/azure/cognitiveservices-vision-computervision-readme) | [Library source code](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/cognitiveservices/azure-cognitiveservices-vision-customvision/azure/cognitiveservices/vision/customvision) | [Package (PyPI)](https://pypi.org/project/azure-cognitiveservices-vision-customvision/) | [Samples](/samples/browse/?languages=python&products=azure&term=vision&terms=vision)
 
