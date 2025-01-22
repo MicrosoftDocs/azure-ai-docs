@@ -272,13 +272,13 @@ services:
         - AzureCognitiveServiceReadHost=http://azure-cognitive-service-read:5000
     ports:
           - "5000:5050"
-    azure-cognitive-service-read:
-      container_name: azure-cognitive-service-read
-      image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/read-3.1
-      environment:
-          - EULA=accept
-          - billing={FORM_RECOGNIZER_ENDPOINT_URI}
-          - apiKey={FORM_RECOGNIZER_KEY}
+  azure-cognitive-service-read:
+    container_name: azure-cognitive-service-read
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/read-3.1
+    environment:
+      - EULA=accept
+        - billing={FORM_RECOGNIZER_ENDPOINT_URI}
+        - apiKey={FORM_RECOGNIZER_KEY}
 ```
 
 Now, you can start the service with the [**docker compose**](https://docs.docker.com/compose/) command:
@@ -344,6 +344,7 @@ services:
         - billing={FORM_RECOGNIZER_ENDPOINT_URI}
         - apiKey={FORM_RECOGNIZER_KEY}
 ```
+
 
 ### [Custom](#tab/custom)
 
@@ -443,6 +444,10 @@ http {
             proxy_pass http://docker-custom/swagger;
         }
 
+        location /api-docs {
+            proxy_pass http://docker-custom/api-docs;
+        }
+
         location /formrecognizer/documentModels/prebuilt-layout {
             proxy_set_header Host $host:$server_port;
             proxy_set_header Referer $scheme://$host:$server_port;
@@ -491,7 +496,93 @@ http {
 }
 
 ```
+:::moniker range="<=doc-intel-3.0.0"
+#### Create a **docker compose** file
 
+1. Name this file **docker-compose.yml**
+
+2. The following code sample is a self-contained `docker compose` example to run Document Intelligence Layout, Studio, and Custom template containers together. With `docker compose`, you use a YAML file to configure your application's services. Then, with `docker-compose up` command, you create and start all the services from your configuration.
+
+```yml
+version: '3.3'
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: reverseproxy
+    depends_on:
+      - layout
+      - custom-template  
+    volumes:
+      - ${NGINX_CONF_FILE}:/etc/nginx/nginx.conf
+    ports:
+      - "5000:5000"
+  layout:
+    container_name: azure-cognitive-service-layout
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-3.0:latest
+    environment:
+      eula: accept
+      apikey: ${FORM_RECOGNIZER_KEY}
+      billing: ${FORM_RECOGNIZER_ENDPOINT_URI}
+      Logging:Console:LogLevel:Default: Information
+      SharedRootFolder: /share
+      Mounts:Shared: /share
+      Mounts:Output: /logs
+    volumes:
+      - type: bind
+        source: ${SHARED_MOUNT_PATH}
+        target: /share
+      - type: bind
+        source: ${OUTPUT_MOUNT_PATH}
+        target: /logs
+    expose:
+      - "5000"
+
+  custom-template:
+    container_name: azure-cognitive-service-custom-template
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/custom-template-3.0:latest
+    restart: always
+    depends_on:
+      - layout
+    environment:
+      AzureCognitiveServiceLayoutHost: http://azure-cognitive-service-layout:5000
+      eula: accept
+      apikey: ${FORM_RECOGNIZER_KEY}
+      billing: ${FORM_RECOGNIZER_ENDPOINT_URI}
+      Logging:Console:LogLevel:Default: Information
+      SharedRootFolder: /share
+      Mounts:Shared: /share
+      Mounts:Output: /logs
+    volumes:
+      - type: bind
+        source: ${SHARED_MOUNT_PATH}
+        target: /share
+      - type: bind
+        source: ${OUTPUT_MOUNT_PATH}
+        target: /logs
+    expose:
+      - "5000"
+
+  studio:
+    container_name: form-recognizer-studio
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/studio:3.0
+    environment:
+      ONPREM_LOCALFILE_BASEPATH: /onprem_folder
+      STORAGE_DATABASE_CONNECTION_STRING: /onprem_db/Application.db
+    volumes:
+      - type: bind
+        source: ${FILE_MOUNT_PATH} # path to your local folder
+        target: /onprem_folder
+      - type: bind
+        source: ${DB_MOUNT_PATH} # path to your local folder
+        target: /onprem_db
+    ports:
+      - "5001:5001"
+    user: "1000:1000" # echo $(id -u):$(id -g)
+
+ ```
+::: moniker-end
+
+:::moniker range=">=doc-intel-3.1.0"
 #### Create a **docker compose** file
 
 1. Name this file **docker-compose.yml**
@@ -559,7 +650,7 @@ services:
 
   studio:
     container_name: form-recognizer-studio
-    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/studio:3.0
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/studio:3.1
     environment:
       ONPREM_LOCALFILE_BASEPATH: /onprem_folder
       STORAGE_DATABASE_CONNECTION_STRING: /onprem_db/Application.db
@@ -575,6 +666,7 @@ services:
     user: "1000:1000" # echo $(id -u):$(id -g)
 
  ```
+::: moniker-end
 
 The custom template container and Layout container can use Azure Storage queues or in memory queues. The `Storage:ObjectStore:AzureBlob:ConnectionString` and `queue:azure:connectionstring` environment variables only need to be set if you're using Azure Storage queues. When running locally, delete these variables.
 
