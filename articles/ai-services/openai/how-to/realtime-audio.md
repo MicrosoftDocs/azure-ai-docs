@@ -22,7 +22,7 @@ Most users of the Realtime API need to deliver and receive audio from an end-use
 
 ## Supported models
 
-The GPT 4o realtime models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
+The GPT 4o real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
 - `gpt-4o-realtime-preview` (2024-12-17)
 - `gpt-4o-realtime-preview` (2024-10-01)
 
@@ -116,7 +116,7 @@ Often, the first event sent by the caller on a newly established `/realtime` ses
 
 The [`session.update`](../realtime-audio-reference.md#realtimeclienteventsessionupdate) event can be used to configure the following aspects of the session:
 - Transcription of user input audio is opted into via the session's `input_audio_transcription` property. Specifying a transcription model (`whisper-1`) in this configuration enables the delivery of [`conversation.item.audio_transcription.completed`](../realtime-audio-reference.md#realtimeservereventconversationiteminputaudiotranscriptioncompleted) events.
-- Turn handling is controlled by the `turn_detection` property. This property can be set to `none` or `server_vad` as described in the [input audio buffer and turn handling](#input-audio-buffer-and-turn-handling) section.
+- Turn handling is controlled by the `turn_detection` property. This property's type can be set to `none` or `server_vad` as described in the [voice activity detection (VAD) and the audio buffer](#voice-activity-detection-vad-and-the-audio-buffer) section.
 - Tools can be configured to enable the server to call out to external services or functions to enrich the conversation. Tools are defined as part of the `tools` property in the session configuration.
 
 An example `session.update` that configures several aspects of the session, including tools, follows. All session parameters are optional and can be omitted if not needed.
@@ -135,7 +135,8 @@ An example `session.update` that configures several aspects of the session, incl
       "type": "server_vad",
       "threshold": 0.5,
       "prefix_padding_ms": 300,
-      "silence_duration_ms": 200
+      "silence_duration_ms": 200,
+      "create_response": true
     },
     "tools": []
   }
@@ -144,15 +145,75 @@ An example `session.update` that configures several aspects of the session, incl
 
 The server responds with a [`session.updated`](../realtime-audio-reference.md#realtimeservereventsessionupdated) event to confirm the session configuration.
 
-## Input audio buffer and turn handling
+## Out-of-band responses
 
-The server maintains an input audio buffer containing client-provided audio that has not yet been committed to the conversation state.
+By default, responses generated during a session are added to the default conversation state. In some cases, you might want to generate responses outside the default conversation. This can be useful for generating multiple responses concurrently or for generating responses that don't affect the default conversation state. For example, you can limit the number of turns considered by the model when generating a response.
+
+You can create out-of-band responses by setting the [`response.conversation`](../realtime-audio-reference.md#realtimeresponseoptions) field to the string `none` when creating a response with the [`response.create`](../realtime-audio-reference.md#realtimeclienteventresponsecreate) client event.
+
+In the same [`response.create`](../realtime-audio-reference.md#realtimeclienteventresponsecreate) client event, you can also set the [`response.metadata`](../realtime-audio-reference.md#realtimeresponseoptions) field to help you identify which response is being generated for this client-sent event.
+
+```json
+{
+  "type": "response.create",
+  "response": {
+    "conversation": "none",
+    "metadata": {
+      "topic": "world_capitals"
+    },
+    "modalities": ["text"],
+    "prompt": "What is the capital of France?"
+  }
+}
+```
+
+When the server responds with a [`response.done`](../realtime-audio-reference.md#realtimeservereventresponsecreated) event, the response contains the metadata you provided. You can identify the corresponding response for the client-sent event via the `response.metadata` field.
+
+> [!IMPORTANT]
+> If you create any responses outside the default conversation, be sure to always check the `response.metadata` field to help you identify the corresponding response for the client-sent event. You should even check the `response.metadata` field for responses that are part of the default conversation. That way, you can ensure that you're handling the correct response for the client-sent event.
+
+### Custom context for out-of-band responses
+
+You can also construct a custom context that the model uses outside of the session's default conversation. To create a response with custom context, set the `conversation` field to `none` and provide the custom context in the `input` array. The `input` array can contain new inputs or references to existing conversation items.
+
+```json
+{
+  "type": "response.create",
+  "response": {
+    "conversation": "none",
+    "modalities": ["text"],
+    "prompt": "What is the capital of France?",
+    "input": [
+      {
+        "type": "item_reference",
+        "id": "existing_conversation_item_id"
+      },
+      {
+        "type": "message",
+        "role": "user",
+        "content": [
+          {
+            "type": "input_text",
+            "text": "The capital of France is Paris."
+          },
+        ],
+      },
+    ]
+  }
+}
+```
+
+## Voice activity detection (VAD) and the audio buffer
+
+The server maintains an input audio buffer containing client-provided audio that hasn't yet been committed to the conversation state.
 
 One of the key [session-wide](#session-configuration) settings is `turn_detection`, which controls how data flow is handled between the caller and model. The `turn_detection` setting can be set to `none` or `server_vad` (to use [server-side voice activity detection](#server-decision-mode)).
 
+By default, voice activity detection (VAD) is enabled, and the server automatically generates responses when it detects the end of speech in the input audio buffer. You can change the behavior by setting the `turn_detection` property in the session configuration.
+
 ### Without server decision mode
 
-By default, the session is configured with the `turn_detection` type effectively set to `none`. 
+By default, the session is configured with the `turn_detection` type effectively set to `none`. Voice activity detection (VAD) is disabled, and the server doesn't automatically generate responses when it detects the end of speech in the input audio buffer.
 
 The session relies on caller-initiated [`input_audio_buffer.commit`](../realtime-audio-reference.md#realtimeclienteventinputaudiobuffercommit) and [`response.create`](../realtime-audio-reference.md#realtimeclienteventresponsecreate) events to progress conversations and produce output. This setting is useful for push-to-talk applications or situations that have external audio flow control (such as caller-side VAD component). These manual signals can still be used in `server_vad` mode to supplement VAD-initiated response generation.
 
@@ -177,7 +238,9 @@ sequenceDiagram
 
 ### Server decision mode
 
-The session can be configured with the `turn_detection` type set to `server_vad`. In this case, the server evaluates user audio from the client (as sent via [`input_audio_buffer.append`](../realtime-audio-reference.md#realtimeclienteventinputaudiobufferappend)) using a voice activity detection (VAD) component. The server automatically uses that audio to initiate response generation on applicable conversations when an end of speech is detected. Silence detection for the VAD can be configured when specifying `server_vad` detection mode.
+You can configure the session to use server-side voice activity detection (VAD). Set the `turn_detection` type to `server_vad` to enable VAD. 
+
+In this case, the server evaluates user audio from the client (as sent via [`input_audio_buffer.append`](../realtime-audio-reference.md#realtimeclienteventinputaudiobufferappend)) using a voice activity detection (VAD) component. The server automatically uses that audio to initiate response generation on applicable conversations when an end of speech is detected. Silence detection for the VAD can also be configured when specifying `server_vad` detection mode.
 
 - The server sends the [`input_audio_buffer.speech_started`](../realtime-audio-reference.md#realtimeservereventinputaudiobufferspeechstarted) event when it detects the start of speech.
 - At any time, the client can optionally append audio to the buffer by sending the [`input_audio_buffer.append`](../realtime-audio-reference.md#realtimeclienteventinputaudiobufferappend) event.
@@ -201,9 +264,27 @@ sequenceDiagram
     Server->>Client: conversation.item.created
 -->
 
+### VAD without automatic response generation
+
+You can use server-side voice activity detection (VAD) without automatic response generation. This approach can be useful when you want to implement some degree of moderation. 
+
+Set [`turn_detection.create_response`](../realtime-audio-reference.md#realtimeturndetection) to `false` via the [session.update](../realtime-audio-reference.md#realtimeclienteventsessionupdate) event. VAD detects the end of speech but the server doesn't generate a response until you send a [`response.create`](../realtime-audio-reference.md#realtimeclienteventresponsecreate) event.
+
+```json
+{
+  "turn_detection": {
+    "type": "server_vad",
+    "threshold": 0.5,
+    "prefix_padding_ms": 300,
+    "silence_duration_ms": 200,
+    "create_response": false
+  }
+}
+```
+
 ## Conversation and response generation
 
-The Realtime API is designed to handle real-time, low-latency conversational interactions. The API is built on a series of events that allow the client to send and receive messages, control the flow of the conversation, and manage the state of the session.
+The GPT-4o real-time audio models are designed for real-time, low-latency conversational interactions. The API is built on a series of events that allow the client to send and receive messages, control the flow of the conversation, and manage the state of the session.
 
 ### Conversation sequence and items
 
@@ -256,7 +337,7 @@ A user might want to interrupt the assistant's response or ask the assistant to 
 
 Here's an example of the event sequence for a simple text-in, audio-out conversation:
 
-When you connect to the `/realtime` endpoint, the server responds with a [`session.created`](../realtime-audio-reference.md#realtimeservereventsessioncreated) event.
+When you connect to the `/realtime` endpoint, the server responds with a [`session.created`](../realtime-audio-reference.md#realtimeservereventsessioncreated) event. The maximum session duration is 30 minutes.
 
 ```json
 {
