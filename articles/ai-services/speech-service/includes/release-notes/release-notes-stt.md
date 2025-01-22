@@ -31,7 +31,7 @@ Supported Locales:
 <li>Thai (th-TH)</li>
 <li>Indonesian (id-ID)</li>
 
-For implementation details, please refer to the documentation: [How to Recognize Speech](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/how-to-recognize-speech?pivots=programming-language-csharp) in section "Semantic Segmentation".
+For implementation details, please refer to the documentation: [How to Recognize Speech](https://learn.microsoft.com/azure/ai-services/speech-service/how-to-recognize-speech?pivots=programming-language-csharp) in section "Semantic Segmentation".
 
 #### Real-time speech to text - New English model release
 
