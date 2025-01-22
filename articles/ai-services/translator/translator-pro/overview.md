@@ -14,7 +14,7 @@ ms.custom: FY25Q1-Linter, ignite-2024
 
 Microsoft Translator Pro is an advanced mobile application that enables seamless speech-to-speech translation in real time. Translator Pro is designed specifically for enterprises seeking to eliminate language barriers within the workplace by delivering a standalone, native experience within the enterprise ecosystem.
 
-Microsoft Translator Pro is a paid mobile application available on the commercial cloud platform. To utilize the application, enterprise users must authenticate their identities and set up translator resources within the commercial cloud environment.
+Microsoft Translator Pro is a paid mobile application available on the Azure public and US government cloud platform. To utilize the application, enterprise users must authenticate their identities and set up translator resources within the commercial cloud environment.
 
   > [!IMPORTANT]
   >
@@ -25,17 +25,17 @@ Microsoft Translator Pro is a paid mobile application available on the commercia
 
 * The Microsoft Translator Pro app can be accessed on iOS devices and requires iOS 15 or newer versions.
 
-* Enterprise users must set up identities and translator resources within commercial or US Government cloud environments; the app doesn't support hybrid use across these environments. For example, an identity created in the commercial cloud can't be used to access an Azure resource in the government cloud via this app.
+* Enterprise users must set up identities and translator resources within Azure public or US Government cloud environments; the app doesn't support hybrid use across these environments. For example, an identity created in the commercial cloud can't be used to access an Azure resource in the government cloud via this app.
 
 * This app operates as a paid offering, necessitating payment before use.
 
-* The app is available only to enterprises in the United States, Europe, United Kingdom, and Australia that meet certain criteria. For more information, *see* [Region availability](#region-availability)
+* The app is available only to enterprises in the United States, Europe, United Kingdom, and Australia that meet certain criteria. For more information, *see* [Region availability](#region-availability).
 
-* Offline translation is limited to a select number of languages. For more information, *see* [Language support](language-support.md)
+* Offline translation is limited to a select number of languages. For more information, *see* [Language support](language-support.md).
 
 ## Core features and capabilities
 
-* **Eliminate language barriers**. Real-time speech-to-speech translation allows seamless communication between individuals speaking different languages.
+* **Eliminates language barriers**. Real-time speech-to-speech translation allows seamless communication between individuals speaking different languages.
 
 * **Unified efficient experience**. Both transcription and translation can be viewed or heard simultaneously on a single device, ensuring smooth and efficient conversations.
 
@@ -49,7 +49,7 @@ Microsoft Translator Pro is a paid mobile application available on the commercia
 
 The app is currently available in the following regions within the respective clouds. Ensure you onboard the app in these specified regions.
 
-**Azure Cloud (Public)**
+**Azure Cloud (public)**
 
 |Geography|Region|
 |---|---|
