@@ -1,3 +1,12 @@
+---
+manager: nitinme
+author: mrbullwinkle
+ms.author: fasantia 
+ms.service: azure-ai-model-inference
+ms.date: 1/21/2025
+ms.topic: include
+---
+
 ## Account for content filtering in your code
 
 Once content filtering has been applied to your model deployment, request may be intercepted by the service depending on the inputs and outputs. When a content filter is triggered, a 400 error code is returned with the description of the rule triggered.

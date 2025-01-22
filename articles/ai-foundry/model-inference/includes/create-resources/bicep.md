@@ -3,7 +3,7 @@ manager: nitinme
 author: mrbullwinkle
 ms.author: fasantia 
 ms.service: azure-ai-model-inference
-ms.date: 12/15/2024
+ms.date: 1/21/2025
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
 ---
