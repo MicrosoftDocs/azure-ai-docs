@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-models-deployment
     az extension add -n cognitiveservices
     ```
 
-* Some of the commands in this tutorial use the `jq` tool, which may not be installed in your system. For installation instructions, see [Download `jq`](https://stedolan.github.io/jq/download/).
+* Some of the commands in this tutorial use the `jq` tool, which might not be installed in your system. For installation instructions, see [Download `jq`](https://stedolan.github.io/jq/download/).
 
 * Identify the following information:
 
@@ -77,7 +77,7 @@ To add a model, you first need to identify the model that you want to deploy. Yo
     }
     ```
 
-6. Identify the model you want to deploy. You need the properties `name`, `format`, `version`, and `sku`. Capacity may also be needed depending on the type of deployment.
+6. Identify the model you want to deploy. You need the properties `name`, `format`, `version`, and `sku`. Capacity might also be needed depending on the type of deployment.
    
    > [!TIP]
    > Notice that not all the models are available in all the SKUs.
@@ -98,7 +98,7 @@ To add a model, you first need to identify the model that you want to deploy. Yo
 
 8. The model is ready to be consumed.
 
-You can deploy the same model multiple times if needed as long as it's under a different deployment name. This capability may be useful in case you want to test different configurations for a given model, including content safety.
+You can deploy the same model multiple times if needed as long as it's under a different deployment name. This capability might be useful in case you want to test different configurations for a given model, including content safety.
 
 ## Manage deployments
 

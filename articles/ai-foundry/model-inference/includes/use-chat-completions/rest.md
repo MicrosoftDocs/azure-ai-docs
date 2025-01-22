@@ -603,7 +603,7 @@ The response is as follows, where you can see the model's usage statistics:
             "index": 0,
             "message": {
                 "role": "assistant",
-                "content": "The chart illustrates that larger models tend to perform better in quality, as indicated by their size in billions of parameters. However, there are exceptions to this trend, such as Phi-3-medium and Phi-3-small, which outperform smaller models in quality. This suggests that while larger models generally have an advantage, there may be other factors at play that influence a model's performance.",
+                "content": "The chart illustrates that larger models tend to perform better in quality, as indicated by their size in billions of parameters. However, there are exceptions to this trend, such as Phi-3-medium and Phi-3-small, which outperform smaller models in quality. This suggests that while larger models generally have an advantage, there might be other factors at play that influence a model's performance.",
                 "tool_calls": null
             },
             "finish_reason": "stop",
