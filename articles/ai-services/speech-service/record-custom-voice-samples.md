@@ -76,7 +76,7 @@ Below are some general guidelines that you can follow to create a good corpus (r
 
 -  Balance your script to cover different sentence types in your domain including statements, questions, exclamations, long sentences, and short sentences.
 
-   Each sentence should be between 2 and 15 seconds long, containing 5 to 30 words for Latin-based languages or 10 to 60 words for non-Latin languages. Ensure your script does not include any duplicate sentences.<br>
+   Each sentence is recommended to be between 2 and 15 seconds long, with 5 to 30 words for Latin-based languages or 4 to 80 words for non-Latin languages. Ensure your script does not include any duplicate sentences.<br>
    For how to balance the different sentence types, refer to the following table:
    
    | Sentence types | Coverage |
@@ -88,6 +88,8 @@ Below are some general guidelines that you can follow to create a good corpus (r
 
    > [!NOTE] 
    > Short words/phrases should be separated with a commas. They help remind your voice talent to pause briefly when reading them.
+   >
+   > You can estimate the number of words in a sentence by assuming a speech rate in words per second based on your language. And the range can be extended to 1 to 100 words to better accommodate short or long sentence scenarios.
    >
    > Question and exclamations are required if you want the generated voice to accurately convey questions or exclamations.
 
