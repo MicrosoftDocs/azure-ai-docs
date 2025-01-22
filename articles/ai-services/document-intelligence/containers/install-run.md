@@ -1,12 +1,12 @@
 ---
-title: Install and run Docker containers for Document Intelligence 
+title: Install and run Docker containers for Document Intelligence
 titleSuffix: Azure AI services
 description: Use the Docker containers for Document Intelligence on-premises to identify and extract key-value pairs, selection marks, tables, and structure from forms and documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 01/22/2025
 ms.author: lajanuar
 ---
 
@@ -386,7 +386,9 @@ In addition to the [prerequisites](#prerequisites), you need to do the following
 
   1. Declare the following environment variables:
 
-  ```text
+```bash
+
+
 SHARED_MOUNT_PATH="./share"
 OUTPUT_MOUNT_PATH="./output"
 FILE_MOUNT_PATH="./files"
@@ -394,7 +396,7 @@ DB_MOUNT_PATH="./db"
 FORM_RECOGNIZER_ENDPOINT_URI="YourFormRecognizerEndpoint"
 FORM_RECOGNIZER_KEY="YourFormRecognizerKey"
 NGINX_CONF_FILE="./nginx.conf"
-  ```
+```
 
 #### Create an **nginx** file
 
@@ -402,7 +404,7 @@ NGINX_CONF_FILE="./nginx.conf"
 
   1. Enter the following configuration:
 
-```text
+```bash
 worker_processes 1;
 
 events { worker_connections 1024; }
@@ -496,7 +498,10 @@ http {
 }
 
 ```
+::: moniker-end
+
 :::moniker range="<=doc-intel-3.0.0"
+
 #### Create a **docker compose** file
 
 1. Name this file **docker-compose.yml**
@@ -511,7 +516,7 @@ services:
     container_name: reverseproxy
     depends_on:
       - layout
-      - custom-template  
+      - custom-template
     volumes:
       - ${NGINX_CONF_FILE}:/etc/nginx/nginx.conf
     ports:
@@ -583,6 +588,7 @@ services:
 ::: moniker-end
 
 :::moniker range=">=doc-intel-3.1.0"
+
 #### Create a **docker compose** file
 
 1. Name this file **docker-compose.yml**
@@ -597,7 +603,7 @@ services:
     container_name: reverseproxy
     depends_on:
       - layout
-      - custom-template  
+      - custom-template
     volumes:
       - ${NGINX_CONF_FILE}:/etc/nginx/nginx.conf
     ports:
@@ -727,20 +733,21 @@ $b64String = [System.Convert]::ToBase64String($bytes, [System.Base64FormattingOp
 Use the build model API to post the request.
 
 ```http
-POST http://localhost:5000/formrecognizer/documentModels:build?api-version=2023-07-31
 
-{
-    "modelId": "mymodel",
-    "description": "test model",
-    "buildMode": "template",
+  POST http://localhost:5000/formrecognizer/documentModels:build?api-version=2023-07-31
 
-    "base64Source": "<Your base64 encoded string>",
-    "tags": {
-       "additionalProp1": "string",
-       "additionalProp2": "string",
-       "additionalProp3": "string"
-     }
-}
+  {
+      "modelId": "mymodel",
+      "description": "test model",
+      "buildMode": "template",
+
+      "base64Source": "<Your base64 encoded string>",
+      "tags": {
+         "additionalProp1": "string",
+         "additionalProp2": "string",
+         "additionalProp3": "string"
+       }
+  }
 ```
 
 ---
@@ -812,4 +819,4 @@ That's it! In this article, you learned concepts and workflows for downloading, 
 * [Document Intelligence container configuration settings](configuration.md)
 
 * [Azure container instance recipe](../../../ai-services/containers/azure-container-instance-recipe.md)
-::: moniker-end
+
