@@ -30,12 +30,12 @@ For general tips on troubleshooting a pipeline, see [Troubleshooting machine lea
 ## Entry script requirements
 
 The entry script for a `ParallelRunStep` *must contain* a `run()` function and optionally contains an `init()` function:
-- `init()`: Use this function for any costly or common preparation for later processing. For example, use it to load the model into a global object. This function will be called only once at beginning of process.
+- `init()`: Use this function for any costly or common preparation for later processing. For example, use it to load the model into a global object. This function is called only once at beginning of process.
     > [!NOTE]
     > If your `init` method creates an output directory, specify that `parents=True` and `exist_ok=True`. The `init` method is called from each worker process on every node on which the job is running.
--  `run(mini_batch)`: The function will run for each `mini_batch` instance.
-    -  `mini_batch`: `ParallelRunStep` will invoke run method and pass either a list or pandas `DataFrame` as an argument to the method. Each entry in mini_batch will be a file path if input is a `FileDataset` or a pandas `DataFrame` if input is a `TabularDataset`.
-    -  `response`: run() method should return a pandas `DataFrame` or an array. For append_row output_action, these returned elements are appended into the common output file. For summary_only, the contents of the elements are ignored. For all output actions, each returned output element indicates one successful run of input element in the input mini-batch. Make sure that enough data is included in run result to map input to run output result. Run output will be written in output file and not guaranteed to be in order, you should use some key in the output to map it to input.
+-  `run(mini_batch)`: The function runs for each `mini_batch` instance.
+    -  `mini_batch`: `ParallelRunStep` invokes run method and pass either a list or pandas `DataFrame` as an argument to the method. Each entry in mini_batch can be a file path if input is a `FileDataset` or a pandas `DataFrame` if input is a `TabularDataset`.
+    -  `response`: run() method should return a pandas `DataFrame` or an array. For append_row output_action, these returned elements are appended into the common output file. For summary_only, the contents of the elements are ignored. For all output actions, each returned output element indicates one successful run of input element in the input mini-batch. Make sure that enough data is included in run result to map input to run output result. Run outputs are written in output file and not guaranteed to be in order, you should use some key in the output to map it to input.
         > [!NOTE]
         > One output element is expected for one input element.
 
@@ -103,15 +103,15 @@ from <your_package> import <your_class>
 - `entry_script`: A user script as a local file path that will be run in parallel on multiple nodes. If `source_directory` is present, use a relative path. Otherwise, use any path that's accessible on the machine.
 - `mini_batch_size`: The size of the mini-batch passed to a single `run()` call. (optional; the default value is `10` files for `FileDataset` and `1MB` for `TabularDataset`.)
     - For `FileDataset`, it's the number of files with a minimum value of `1`. You can combine multiple files into one mini-batch.
-    - For `TabularDataset`, it's the size of data. Example values are `1024`, `1024KB`, `10MB`, and `1GB`. The recommended value is `1MB`. The mini-batch from `TabularDataset` will never cross file boundaries. For example, if you have .csv files with various sizes, the smallest file is 100 KB and the largest is 10 MB. If you set `mini_batch_size = 1MB`, then files with a size smaller than 1 MB will be treated as one mini-batch. Files with a size larger than 1 MB will be split into multiple mini-batches.
+    - For `TabularDataset`, it's the size of data. Example values are `1024`, `1024KB`, `10MB`, and `1GB`. The recommended value is `1MB`. The mini-batch from `TabularDataset` will never cross file boundaries. For example, if you have .csv files with various sizes, the smallest file is 100 KB and the largest is 10 MB. If `mini_batch_size = 1MB` is set, the files smaller than 1 MB will be treated as one mini-batch. Files larger than 1 MB will be split into multiple mini-batches.
         > [!NOTE]
         > TabularDatasets backed by SQL cannot be partitioned.
         > TabularDatasets from a single parquet file and single row group cannot be partitioned.
 
-- `error_threshold`: The number of record failures for `TabularDataset` and file failures for `FileDataset` that should be ignored during processing. If the error count for the entire input goes above this value, the job will be aborted. The error threshold is for the entire input and not for individual mini-batch sent to the `run()` method. The range is `[-1, int.max]`. The `-1` part indicates ignoring all failures during processing.
+- `error_threshold`: The number of record failures for `TabularDataset` and file failures for `FileDataset` that should be ignored during processing. If the error count for the entire input goes above this value, the job will be aborted. The error threshold is for the entire input and not for individual mini-batch sent to the `run()` method. The range is `[-1, int.max]`. The `-1` indicates ignoring all failures during processing.
 - `output_action`: One of the following values indicates how the output will be organized:
-    - `summary_only`: The user script will store the output. `ParallelRunStep` will use the output only for the error threshold calculation.
-    - `append_row`: For all inputs, only one file will be created in the output folder to append all outputs separated by line.
+    - `summary_only`: The user script needs to store the output files. The outputs of `run()` are used for the error threshold calculation only.
+    - `append_row`: For all inputs, `ParallelRunStep` creates a single file in the output folder to append all outputs separated by line.
 - `append_row_file_name`: To customize the output file name for append_row output_action (optional; default value is `parallel_run_step.txt`).
 - `source_directory`: Paths to folders that contain all files to execute on the compute target (optional).
 - `compute_target`: Only `AmlCompute` is supported.
@@ -122,10 +122,10 @@ from <your_package> import <your_class>
 - `run_invocation_timeout`: The `run()` method invocation timeout in seconds. (optional; default value is `60`)
 - `run_max_try`: Maximum try count of `run()` for a mini-batch. A `run()` is failed if an exception is thrown, or nothing is returned when `run_invocation_timeout` is reached (optional; default value is `3`).
 
-You can specify `mini_batch_size`, `node_count`, `process_count_per_node`, `logging_level`, `run_invocation_timeout`, and `run_max_try` as `PipelineParameter`, so that when you resubmit a pipeline run, you can fine-tune the parameter values. In this example, you use `PipelineParameter` for `mini_batch_size` and `Process_count_per_node` and you will change these values when you resubmit another run.
+You can specify `mini_batch_size`, `node_count`, `process_count_per_node`, `logging_level`, `run_invocation_timeout`, and `run_max_try` as `PipelineParameter`, so that when you resubmit a pipeline run, you can fine-tune the parameter values. 
 
 #### CUDA devices visibility
-For compute targets equipped with GPUs, the environment variable `CUDA_VISIBLE_DEVICES` will be set in worker processes. In AmlCompute, you can find the total number of GPU devices in the environment variable `AZ_BATCHAI_GPU_COUNT_FOUND`, which is set automatically. If you want each worker process to have a dedicated GPU, set `process_count_per_node` equal to the number of GPU devices on a machine. Each worker process will assign a unique index to `CUDA_VISIBLE_DEVICES`. If a worker process stops for any reason, the next started worker process will use the released GPU index.
+For compute targets equipped with GPUs, the environment variable `CUDA_VISIBLE_DEVICES` will be set in worker processes. In AmlCompute, you can find the total number of GPU devices in the environment variable `AZ_BATCHAI_GPU_COUNT_FOUND`, which is set automatically. If you want each worker process to have a dedicated GPU, set `process_count_per_node` equal to the number of GPU devices on a machine. Then, each worker process will be assigned with a unique index to `CUDA_VISIBLE_DEVICES`. If a worker process stops for any reason, the next started worker process will use the released GPU index.
 
 If the total number of GPU devices is less than `process_count_per_node`, the worker processes will be assigned GPU index until all have been used.
 
