@@ -5,7 +5,7 @@ description: Learn how to use blocklists with Azure AI model inference service i
 manager: nitinme
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 10/03/2024
+ms.date: 1/21/2025
 author: PatrickFarley
 ms.author: pafarley
 ms.custom: ignite-2024, github-universe-2024

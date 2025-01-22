@@ -5,7 +5,7 @@ description: Learn how to use and configure the content filters that come with A
 manager: nitinme
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 10/04/2024
+ms.date: 1/21/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false

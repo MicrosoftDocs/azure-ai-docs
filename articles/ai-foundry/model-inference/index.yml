@@ -1,6 +1,6 @@
 ### YamlMime:Landing
 
-title: Azure AI model inference documentation # < 60 chars
+title: Azure AI Model Inference Documentation # < 60 chars
 summary: Azure AI model inference provides access to the most powerful models available in the Azure AI model catalog. The models come from key model providers in the industry, including OpenAI, Microsoft, Meta, Mistral, Cohere, G42, and AI21 Labs. These models can be integrated with software solutions to deliver a wide range of tasks that include content generation, summarization, image understanding, semantic search, and code generation.
   
 metadata:
@@ -11,7 +11,7 @@ metadata:
   ms.topic: landing-page
   author: mrbullwinkle
   ms.author: mbullwin
-  ms.date: 10/18/2024
+  ms.date: 1/21/2025
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 # Limits: https://review.learn.microsoft.com/help/contribute/contribute-how-to-write-landing-page?branch=main#limits

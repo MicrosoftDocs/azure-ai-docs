@@ -1,5 +1,5 @@
 items:
-- name: Azure AI Model Inference in AI Foundry Documentation
+- name: Azure AI Model Inference Documentation
   href: index.yml
 - name: Overview
   expanded: true

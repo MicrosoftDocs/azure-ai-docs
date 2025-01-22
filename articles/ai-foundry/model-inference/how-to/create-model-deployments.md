@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: Learn how to add and configure new models to the Azure AI model's inference endpoint in Azure AI services.
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 10/01/2024
+ms.date: 1/21/2025
 ms.custom: ignite-2024, github-universe-2024
 manager: nitinme
 author: mrbullwinkle

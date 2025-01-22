@@ -6,7 +6,7 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 10/11/2024
+ms.date: 1/21/2025
 ms.author: fasantia
 ms.custom: ignite-2024, github-universe-2024
 ---

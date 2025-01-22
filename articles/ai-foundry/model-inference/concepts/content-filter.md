@@ -6,7 +6,7 @@ author: santiagxf
 ms.author: fasantia
 ms.service: azure-ai-model-inference
 ms.topic: conceptual 
-ms.date: 10/11/2024
+ms.date: 1/21/2025
 ms.custom: ignite-2024, github-universe-2024
 manager: nitinme
 ---

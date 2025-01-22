@@ -6,7 +6,7 @@ ms.author: mbullwin
 ms.custom: subject-cost-optimization
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 05/08/2024
+ms.date: 1/21/2025
 ---
 
 
