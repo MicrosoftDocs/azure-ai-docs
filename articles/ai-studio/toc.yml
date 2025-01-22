@@ -33,6 +33,24 @@ items:
       href: quickstarts/get-started-playground.md
     - name: Build a basic chat app in Python using Azure AI Foundry SDK
       href: quickstarts/get-started-code.md
+  - name: Tutorials
+    items:
+      - name: Build a custom chat app with the Azure AI Foundry SDK
+        items:
+        - name: "Part 1: Set up project and install SDK"
+          href: tutorials/copilot-sdk-create-resources.md
+        - name: "Part 2: Build with data retrieval"
+          href: tutorials/copilot-sdk-build-rag.md
+          displayName: code,sdk
+        - name: "Part 3: Evaluate the chat app"
+          href: tutorials/copilot-sdk-evaluate.md
+          displayName: code,sdk
+      - name: Deploy an enterprise chat web app
+        href: tutorials/deploy-chat-web-app.md
+      - name: Hear and speak with chat in the playground
+        href: quickstarts/hear-speak-playground.md
+      - name: Analyze images and video with GPT-4 for Vision in the playground
+        href: quickstarts/multimodal-vision.md
   - name:  Discover foundation models
     items: 
     - name: Use the model catalog
@@ -226,24 +244,8 @@ items:
   items:
   - name: Cookbooks
     items:
-      - name: Build a custom chat app with the Azure AI Foundry SDK
-        items:
-        - name: "Part 1: Set up project and install SDK"
-          href: tutorials/copilot-sdk-create-resources.md
-        - name: "Part 2: Build with data retrieval"
-          href: tutorials/copilot-sdk-build-rag.md
-          displayName: code,sdk
-        - name: "Part 3: Evaluate the chat app"
-          href: tutorials/copilot-sdk-evaluate.md
-          displayName: code,sdk
-      - name: Deploy an enterprise chat web app
-        href: tutorials/deploy-chat-web-app.md
       - name: Start with an AI template
         href: how-to/develop/ai-template-get-started.md
-      - name: Hear and speak with chat in the playground
-        href: quickstarts/hear-speak-playground.md
-      - name: Analyze images and video with GPT-4 for Vision in the playground
-        href: quickstarts/multimodal-vision.md
       - name: Develop with LangChain
         href: how-to/develop/langchain.md
       - name: Develop with LlamaIndex
@@ -329,8 +331,6 @@ items:
         href: how-to/quota.md
       - name: Increase rate limit
         href: how-to/autoscale.md
-- name: Resources
-  items:
   - name: Security & Governance
     items:
      - name: Identity & access management
@@ -370,6 +370,8 @@ items:
          href: how-to/disaster-recovery.md
        - name: Security baseline
          href: /security/benchmark/azure/baselines/azure-ai-studio-security-baseline
+- name: Resources
+  items:
   - name: Responsible AI 
     items:
     - name: Responsible AI overview
