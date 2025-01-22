@@ -37,7 +37,6 @@ sections:
          What standard compliance frameworks and industry best practice measures are in place to ensure the security, confidentiality, and protection of personal data when using Microsoft Translator Pro?
 
         answer: |
-         
          Customer data submitted for translation to Microsoft Translator Pro is not stored permanently. There is no record of the submitted text, voice, or speech in any Microsoft data center. All organizational data remains within your organization’s Azure subscription, ensuring that no data is shared with Microsoft. You maintain full control over your data, which remains your exclusive business. This control is further strengthened by Microsoft’s adherence to extensive privacy laws, such as GDPR, and privacy standards, including the ISO/IEC 27018—the world's first international code of practice for cloud privacy. For more information,*see* [Microsoft Translator Confidentiality](https://www.microsoft.com/translator/business/notrace/#compliance).
 
       - question: |
