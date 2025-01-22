@@ -26,7 +26,7 @@ ms.date: 10/22/2024
 
 ## Retrieve resource information
 
-[!INCLUDE [resource authentication](resource-auth.md)]
+[!INCLUDE [resource authentication](resource-authentication.md)]
 
 > [!CAUTION]
 > To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
@@ -49,7 +49,7 @@ Your app's _package.json_ file is updated with the dependencies.
 Open a command prompt where you created the new project, and create a new file named Completion.js. Copy the following code into the Completion.js file.
 
 
-## [Microsoft Entra ID](#tab/javascript-keyless)
+## [Microsoft Entra ID](#tab/keyless)
 
 ```javascript
 const { AzureOpenAI } = require("openai");
@@ -96,7 +96,7 @@ node.exe Completion.js
 ```
 
 
-## [API key](#tab/javascript-key)
+## [API key](#tab/api-key)
 
 ```javascript
 const { AzureOpenAI } = require("openai");
