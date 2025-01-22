@@ -112,7 +112,7 @@ AI service integration refers to internal connections to an Azure AI multi-servi
 |--|--|--|--|--|
 | Arizona | ✅ | ✅  | | |
 | Texas |  | ✅ |  | |
-| Virginia | ✅ | ✅  | ✅ | All Tiers |
+| Virginia | ✅ | ✅  | ✅ | |
 
 ## Azure operated by 21Vianet
 
