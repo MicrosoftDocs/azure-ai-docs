@@ -34,7 +34,7 @@ The function app authenticates through the SDK to the cloud-based Azure AI Searc
 
 ## Azure Function: Search the catalog
 
-The [Search API](https://github.com/Azure-Samples/azure-search-static-web-app/blob/main/api/Search.cs) takes a search term and searches across the documents in the search index, returning a list of matches. As the user types, the partial string is sent to the search engine, suggesting search terms such as book titles and authors across the documents in the search index, and returning a small list of matches. 
+The [Search API](https://github.com/Azure-Samples/azure-search-static-web-app/blob/main/api/Search.cs) takes a search term and searches across the documents in the search index, returning a list of matches. Though the Suggest API, partial strings are sent to the search engine as the user types, suggesting search terms such as book titles and authors across the documents in the search index, and returning a small list of matches. 
 
 The search suggester, `sg`, is defined in the [schema file](https://github.com/Azure-Samples/azure-search-static-web-app/blob/main/bulk-insert/BookSearchIndex.cs) used during bulk upload.
 
@@ -47,15 +47,6 @@ The Azure function pulls in the search configuration information, and fulfills t
 Call the Azure Function in the React client with the following code. 
 
 :::code language="csharp" source="~/azure-search-static-web-app/client/src/pages/Search/Search.js" :::
-
-<!-- ## Azure Function: Suggestions from the catalog
-
-The [Suggest API](https://github.com/Azure-Samples/azure-search-static-web-app/blob/main/api/Suggest.cs) takes a search term while a user is typing and suggests search terms such as book titles and authors across the documents in the search index, returning a small list of matches. 
-
-The search suggester, `sg`, is defined in the [schema file](https://github.com/Azure-Samples/azure-search-static-web-app/blob/main/bulk-insert/BookSearchIndex.cs) used during bulk upload.
-
-:::code language="csharp" source="~/azure-search-static-web-app/api/Suggest.cs"  :::
- -->
 
 ## Client: Suggestions from the catalog
 
