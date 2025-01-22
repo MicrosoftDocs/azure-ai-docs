@@ -367,7 +367,7 @@ This section is about how to check the progress of a ParallelRunStep job and che
 Besides looking at the overall status of the StepRun, the count of scheduled/processed mini-batches and the progress of generating output can be viewed in `~/logs/job_progress_overview.<timestamp>.txt`. The file rotates on daily basis, you can check the one with the largest timestamp for the latest information.
 
 ### What should I check if there is no progress for a while?
-You can go into `~/logs/sys/errror` to see if there's any exception. If there is none, it's likely that your entry script is taking a long time, you can print out progress information in your code to locate the time-consuming part, or add `"--profiling_module", "cProfile"` to the `arguments` of `ParallelRunStep` to generate a profile file named as `<process_name>.profile` under `~/logs/sys/node/<node_id>` folder.
+You can go into `~/logs/sys/error` to see if there's any exception. If there is none, it's likely that your entry script is taking a long time, you can print out progress information in your code to locate the time-consuming part, or add `"--profiling_module", "cProfile"` to the `arguments` of `ParallelRunStep` to generate a profile file named as `<process_name>.profile` under `~/logs/sys/node/<node_id>` folder.
 
 ### When will a job stop?
 if not canceled, the job will stop with status:
