@@ -137,7 +137,7 @@ class UserTotalSpendProfileTransformer(Transformer):
            .withColumn("is_low_spend_user", col("total_spend") < 20.0)
 ```
 
-This feature set has three features, with data types as shown:
+The feature set has three features, with data types as shown:
 
 - `total_spend`: double
 - `is_high_spend_user`: bool
@@ -338,7 +338,7 @@ Define `source_lookback` as a time delta value, which presents the range of sour
 | Transformation type | `source_lookback` |
 |---|---|
 | Row-level transformation | 0 (default) |
-| Sliding window | size of the largest window range in the transformer.<br> e.g.<br> `source_lookback` = 3 days when the feature set defines 3 day rolling features <br> `source_lookback` = 7 days when the feature set defines both 3 day and 7 day rolling features |
+| Sliding window | size of the largest window range in the transformer.<br> e.g.<br> `source_lookback` = 3 days when the feature set defines three day rolling features <br> `source_lookback` = 7 days when the feature set defines both three day and seven day rolling features |
 | Tumbling/stagger window | value of `windowDuration` in `window` definition. e.g. source_lookback = 1day when using `window("timestamp", windowDuration="1 day",slideDuration="6 hours)` |
 
 Incorrect `source_lookback` settings can lead to incorrect calculated/materialized feature values.
