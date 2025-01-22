@@ -715,7 +715,7 @@ Document Intelligence v2.1 supports the following tools, applications, and libra
 
 ## Extract data
 
-TThe layout model extracts structural elements from your documents. To follow are descriptions of these structural elements with guidance on how to extract them from your document input:
+The layout model extracts structural elements from your documents. To follow are descriptions of these structural elements with guidance on how to extract them from your document input:
 
 * [**Page**](#page)
 * [**Paragraph**](#paragraph)
@@ -730,7 +730,7 @@ TThe layout model extracts structural elements from your documents. To follow ar
 
 ## Extract data
 
-TThe layout model extracts structural elements from your documents. To follow are descriptions of these structural elements with guidance on how to extract them from your document input:
+The layout model extracts structural elements from your documents. To follow are descriptions of these structural elements with guidance on how to extract them from your document input:
 
 * [**Page**](#page)
 * [**Paragraph**](#paragraph)
