@@ -57,6 +57,6 @@ Azure works closely with model providers to release new model versions. When a n
 
 New model versions might result in a new model ID being published. For example, `Llama-3.3-70B-Instruct`, `Meta-Llama-3.1-70B-Instruct`, and `Meta-Llama-3-70B-Instruct`. In some cases, all the model versions might be available in the same API version. In other cases, you might also need to adjust the API version used to consume the model in case the API contract has changed from one model to another.
 
-## Next Step
+## Related content
 
 - [Learn more about working with Azure OpenAI models](../../../ai-services/openai/how-to/working-with-models.md)

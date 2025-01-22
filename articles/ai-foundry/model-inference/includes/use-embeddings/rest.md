@@ -28,7 +28,7 @@ To use embedding models in your application, you need:
 
 ## Use embeddings
 
-To use the text embeddings, use the route `/embeddings` along with you credential indicated in `api-key`. `Authorization` header is also supported with the format `Bearer <key>`.
+To use the text embeddings, use the route `/embeddings` along with your credential indicated in `api-key`. `Authorization` header is also supported with the format `Bearer <key>`.
 
 ```http
 POST /embeddings

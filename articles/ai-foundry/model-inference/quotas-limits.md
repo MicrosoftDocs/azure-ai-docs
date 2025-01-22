@@ -45,7 +45,7 @@ The following sections provide you with a quick guide to the default quotas and 
 
 ## Usage tiers
 
-Global Standard deployments use Azure's global infrastructure, dynamically routing customer traffic to the data center with best availability for the customer's inference requests. This enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see more variability in response latency.
+Global Standard deployments use Azure's global infrastructure, dynamically routing customer traffic to the data center with best availability for the customer's inference requests. This enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see more variabilities in response latency.
 
 The Usage Limit determines the level of usage above which customers might see larger variability in response latency. A customer's usage is defined per model and is the total tokens consumed across all deployments in all subscriptions in all regions for a given tenant.
 

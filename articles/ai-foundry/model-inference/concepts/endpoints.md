@@ -42,7 +42,7 @@ The Azure AI inference endpoint allows customers to use a single endpoint with t
 
 You can see the endpoint URL and credentials in the **Overview** section:
 
-:::image type="content" source="../media/overview/overview-endpoint-and-key.png" alt-text="An screenshot showing how to get the URL and key associated with the resource." lightbox="../media/overview/overview-endpoint-and-key.png":::
+:::image type="content" source="../media/overview/overview-endpoint-and-key.png" alt-text="Screenshot showing how to get the URL and key associated with the resource." lightbox="../media/overview/overview-endpoint-and-key.png":::
 
 ### Routing
 
