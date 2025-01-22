@@ -9,7 +9,7 @@ zone_pivot_groups: programming-languages-set-face
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.topic: quickstart
-ms.date: 06/01/2024
+ms.date: 01/22/2025
 ms.author: pafarley
 ms.devlang: csharp
 # ms.devlang: csharp, golang, javascript, python

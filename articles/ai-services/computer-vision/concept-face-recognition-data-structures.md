@@ -1,7 +1,7 @@
 ---
 title: "Face recognition data structures - Face"
 titleSuffix: Azure AI services
-description: Learn about the Face recognition data structures, which hold data on faces and persons.
+description: Learn about the Face recognition data structures, which store data on faces and persons.
 #services: cognitive-services
 author: PatrickFarley
 manager: nitinme
@@ -11,7 +11,7 @@ ms.subservice: azure-ai-face
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 11/04/2023
+ms.date: 01/22/2025
 ms.author: pafarley
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
@@ -73,14 +73,15 @@ Unlike the Identify API, the Find Similar API is designed to be used in applicat
 
 ### FaceList 
 
-**FaceList** represent a flat list of persisted faces. It can hold up 1,000 faces.
+**FaceList** represents a flat list of persisted faces. It can hold up 1,000 faces.
 
 ### LargeFaceList 
 
 **LargeFaceList** is a later version which can hold up to 1,000,000 faces.
 
-## Next steps
+## Next step
 
 Now that you're familiar with the face data structures, write a script that uses them in the Identify operation.
 
-* [Face quickstart](./quickstarts-sdk/identity-client-library.md)
+> [!div class="nextstepaction"]
+> [Face quickstart](./quickstarts-sdk/identity-client-library.md)
