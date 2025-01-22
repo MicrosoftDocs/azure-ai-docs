@@ -26,9 +26,6 @@ zone_pivot_groups: azure-ai-models-deployment
 
   * The resource group where the Azure AI Services resource is deployed.
 
-> [!TIP]
-> For a complete tutorial to deploy Azure AI model inference, Azure AI Services, and Azure AI projects with Bicep, see [../../how-to/quickstart-deploy-and-configure.md].
-
 ## Add a connection
 
 1. Use the template `ai-services-connection-template.bicep` to describe connection:

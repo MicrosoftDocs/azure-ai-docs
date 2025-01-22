@@ -14,7 +14,7 @@ recommendations: false
 
 # Configure your AI project to use Azure AI model inference
 
-If you already have an AI project in an existing AI Hub, Models as a Service models are by default deployed inside of your project as stand alone endpoints. Each model deployment has its own set of URI and credentials to access it. Azure OpenAI models are deployed to Azure AI Services resource or to the Azure OpenAI Service resource.
+If you already have an AI project in an existing AI Hub, models via "Models as a Service" are by default deployed inside of your project as stand-alone endpoints. Each model deployment has its own set of URI and credentials to access it. Azure OpenAI models are deployed to Azure AI Services resource or to the Azure OpenAI Service resource.
 
 You can configure the AI project to connect with the Azure AI model inference in Azure AI services. Once configured, **deployments of Models as a Service models happen to the connected Azure AI Services resource** instead to the project itself, giving you a single set of endpoint and credential to access all the models deployed in Azure AI Foundry. 
 
@@ -39,7 +39,7 @@ To complete this tutorial, you need:
 * An Azure AI project and Azure AI Hub.
 
     > [!TIP]
-    > When you provision an Azure AI Hub, an Azure AI Services is created with it and the two resources connected. To see which Azure AI Services resource is connected to your project go to the [Azure AI Foundry portal](https://ai.azure.com) > **Management center** > **Connected resources**, and find the connections of type **AI Services**. 
+    > When your AI hub is provisioned, an Azure AI services resource is created with it and the two resources connected. To see which Azure AI services resource is connected to your project, go to the [Azure AI Foundry portal](https://ai.azure.com) > **Management center** > **Connected resources**, and find the connections of type **AI Services**. 
 
 
 ## Configure the project to use Azure AI model inference
@@ -56,9 +56,9 @@ To configure the project to use the Azure AI model inference capability in Azure
 
 1. Close the panel.
 
-2. In the landing page of your project, identify the Azure AI Services resource connected to your project. Use the drop down to change the resource you are connected if you need to.
+2. In the landing page of your project, identify the Azure AI Services resource connected to your project. Use the drop-down to change the resource you're connected if you need to.
 
-3. If no resource is listed in the drop down, your AI Hub doesn't have an Azure AI Services resource connected to it. Create a new connection by:
+3. If no resource is listed in the drop-down, your AI Hub doesn't have an Azure AI Services resource connected to it. Create a new connection by:
 
    1. In the lower left corner of the screen, select **Management center**.
 
@@ -90,7 +90,7 @@ For each model you want to deploy under Azure AI model inference, follow these s
 
 1. Go to **Model catalog** section in [Azure AI Foundry portal](https://ai.azure.com/explore/models).
 
-2. Scroll to the model you are interested in and select it.
+2. Scroll to the model you're interested in and select it.
 
     :::image type="content" source="../media/add-model-deployments/models-search-and-deploy.gif" alt-text="An animation showing how to search models in the model catalog and select one for viewing its details." lightbox="../media/add-model-deployments/models-search-and-deploy.gif":::
 
@@ -98,13 +98,13 @@ For each model you want to deploy under Azure AI model inference, follow these s
 
 4. Select **Deploy**.
 
-5. For models providers that require additional terms of contract, you're asked to accept those terms. Accept the terms on those cases by selecting **Subscribe and deploy**.
+5. For models providers that require more terms of contract, you're asked to accept those terms. Accept the terms on those cases by selecting **Subscribe and deploy**.
 
     :::image type="content" source="../media/add-model-deployments/models-deploy-agree.png" alt-text="Screenshot showing how to agree the terms and conditions of a Mistral-Large model." lightbox="../media/add-model-deployments/models-deploy-agree.png":::
 
-6. You can configure the deployment settings at this time. By default, the deployment receives the name of the model you are deploying. The deployment name is used in the `model` parameter for request to route to this particular model deployment. It allows you to configure specific names for your models when you attach specific configurations. For instance, `o1-preview-safe` for a model with a strict content safety content filter.
+6. You can configure the deployment settings at this time. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for request to route to this particular model deployment. It allows you to configure specific names for your models when you attach specific configurations. For instance, `o1-preview-safe` for a model with a strict content safety content filter.
 
-7. We automatically select an Azure AI Services connection depending on your project because you have turned on the feature **Deploy models to Azure AI model inference service**. Use the **Customize** option to change the connection based on your needs. If you are deploying under the **Standard** deployment type, the models needs to be available in the region of the Azure AI Services resource.
+7. We automatically select an Azure AI Services connection depending on your project because you have turned on the feature **Deploy models to Azure AI model inference service**. Use the **Customize** option to change the connection based on your needs. If you're deploying under the **Standard** deployment type, the models need to be available in the region of the Azure AI Services resource.
 
     :::image type="content" source="../media/add-model-deployments/models-deploy-customize.png" alt-text="Screenshot showing how to customize the deployment if needed." lightbox="../media/add-model-deployments/models-deploy-customize.png":::
 
@@ -141,13 +141,13 @@ Use the parameter `model="<deployment-name>` to route your request to this deplo
 
 ## Move from Serverless API Endpoints to Azure AI model inference
 
-Although your configured the project to use the Azure AI model inference, existing model deployments continue to exit within the project as Serverless API Endpoints. Those deployments aren't moved for you. Hence, you can progressively upgrade any existing code that reference previous model deployments. To start moving the model deployments, we recommend the following workflow:
+Although you configured the project to use the Azure AI model inference, existing model deployments continue to exit within the project as Serverless API Endpoints. Those deployments aren't moved for you. Hence, you can progressively upgrade any existing code that reference previous model deployments. To start moving the model deployments, we recommend the following workflow:
 
 1. Recreate the model deployment in Azure AI model inference. This model deployment is accessible under the **Azure AI model inference endpoint**.
 
 2. Upgrade your code to use the new endpoint.
 
-3. Clean-up the project by removing the Serverless API Endpoint.
+3. Clean up the project by removing the Serverless API Endpoint.
 
 
 ### Upgrade your code with the new endpoint
@@ -165,7 +165,7 @@ The following table summarizes the changes you have to introduce:
 
 ### Clean-up existing Serverless API endpoints from your project
 
-After you refactored your code, you may want to delete the existing Serverless API endpoints inside of the project (if any).
+After you refactored your code, you might want to delete the existing Serverless API endpoints inside of the project (if any).
 
 For each model deployed as Serverless API Endpoints, follow these steps:
 
@@ -178,11 +178,11 @@ For each model deployed as Serverless API Endpoints, follow these steps:
 4. Select the option **Delete**.
 
     > [!WARNING]
-    > This operation can't not be reverted. Ensure that the endpoint isn't currently used by any other user or piece of code.
+    > This operation can't be reverted. Ensure that the endpoint isn't currently used by any other user or piece of code.
 
 5. Confirm the operation by selecting **Delete**.
 
-6. If you created a **Serverless API connection** to this endpoint from other projects, such connection aren't removed and continue to point to the inexistent endpoint. Delete any of those connections for avoiding errors.
+6. If you created a **Serverless API connection** to this endpoint from other projects, such connections aren't removed and continue to point to the inexistent endpoint. Delete any of those connections for avoiding errors.
 
 ## Limitations
 

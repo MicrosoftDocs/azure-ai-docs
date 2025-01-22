@@ -45,7 +45,7 @@ items:
   - name: Create resources
     href: ./how-to/quickstart-create-resources.md
   - name: Add and configure models
-    href: ./how-to/create-model-deployments.md
+    href: ./how-to/github/create-model-deployments.md
   - name: Connect your AI project
     href: ./how-to/configure-project-connection.md
   - name: Safety and compliance

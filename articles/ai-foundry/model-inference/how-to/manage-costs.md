@@ -24,7 +24,7 @@ Although this article is about planning for and managing costs for model inferen
 
 ## Understand model inference billing model
 
-Models deployed in Azure AI Services are charged per 1,000 tokens. Language models understand and process text by breaking it down into tokens. For reference, each token is roughly four characters for typical English text. Costs per token vary depending on which model series you choose. Models that can process images break down images in tokens too. The amount of tokens per image depends on the model and the resolution of the input image.
+Models deployed in Azure AI Services are charged per 1,000 tokens. Language models understand and process text by breaking it down into tokens. For reference, each token is roughly four characters for typical English text. Costs per token vary depending on which model series you choose. Models that can process images break down images in tokens too. The number of tokens per image depends on the model and the resolution of the input image.
 
 Token costs are for both input and output. For example, suppose you have a 1,000 token JavaScript code sample that you ask a model to convert to Python. You would be charged approximately 1,000 tokens for the initial input request sent, and 1,000 more tokens for the output that is received in response for a total of 2,000 tokens.
 
@@ -36,7 +36,7 @@ To understand the breakdown of what makes up the cost, it can be helpful to use 
 
 1. Go to [Azure AI Foundry Portal](https://ai.azure.com).
 
-2. In the upper right corner of the screen, click on the name of your Azure AI Services resource, or if you are working on an AI project, on the name of the project.
+2. In the upper right corner of the screen, select on the name of your Azure AI Services resource, or if you're working on an AI project, on the name of the project.
 
 3. Select the name of the project. Azure portal opens in a new window.
 
@@ -47,7 +47,7 @@ To understand the breakdown of what makes up the cost, it can be helpful to use 
 5. By default, cost analysis is scoped to the selected resource group.
 
     > [!IMPORTANT]
-    > It's important to scope *Cost Analysis* to the resource group where the Azure AI Services resource is deployed. Cost meters associated with third-party model providers, like Mistral AI or Cohere, are displayed under the resource group instead of the Azure AI Services resource.
+    > It's important to scope *Cost Analysis* to the resource group where the Azure AI Services resource is deployed. Cost meters associated with some provider model providers, like Mistral AI or Cohere, are displayed under the resource group instead of the Azure AI Services resource.
 
 6. Modify **Group by** to **Meter**. You can now see that for this particular resource group, the source of the costs comes from different models series.  
 
@@ -61,20 +61,20 @@ Azure OpenAI and Microsoft's family of models (like Phi) are charged directly an
 
 :::image type="content" source="../media/manage-cost/cost-by-meter-1p.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Azure AI Services resource is deployed, highlighting the meters for Azure OpenAI and Microsoft's models. Cost is group by meter." lightbox="../media/manage-cost/cost-by-meter-1p.png":::
 
-### Third party models
+### Provider models
 
-Models provided by a third party, like Mistral AI, Cohere, Meta AI, or AI21 Labs, are billed using the Azure Marketplace. As opposite to Microsoft billing meters, those entries are associated with the resource group where your Azure AI services is deployed instead of to the Azure AI Services resource itself. You see entries under the **Service Name** *SaaS* accounting for inputs and outputs for each consumed model.
+Models provided by another provider, like Mistral AI, Cohere, Meta AI, or AI21 Labs, are billed using Azure Marketplace. As opposite to Microsoft billing meters, those entries are associated with the resource group where your Azure AI services is deployed instead of to the Azure AI Services resource itself. You see entries under the **Service Name** *SaaS* accounting for inputs and outputs for each consumed model.
 
-:::image type="content" source="../media/manage-cost/cost-by-meter-saas.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Azure AI Services resource is deployed, highlighting the meters for models billed throughout the Azure Marketplace. Cost is group by meter." lightbox="../media/manage-cost/cost-by-meter-saas.png":::
+:::image type="content" source="../media/manage-cost/cost-by-meter-saas.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Azure AI Services resource is deployed, highlighting the meters for models billed throughout Azure Marketplace. Cost is group by meter." lightbox="../media/manage-cost/cost-by-meter-saas.png":::
 
 ### Using Azure Prepayment
 
-You can pay for Azure OpenAI and Microsoft's models charges with your Azure Prepayment credit. However, you can't use Azure Prepayment credit to pay for charges for third party models given they are billed through the Azure Marketplace.
+You can pay for Azure OpenAI and Microsoft's models charges with your Azure Prepayment credit. However, you can't use Azure Prepayment credit to pay for charges for other provider models given they're billed through Azure Marketplace.
 
 ### HTTP Error response code and billing status
 
-If the service performs processing, you are charged even if the status code is not successful (not 200).
-For example, a 400 error due to a content filter or input limit, or a 408 error due to a timeout.
+If the service performs processing, you're charged even if the status code isn't successful (not 200).
+For example, a 400 error due to a content filter or input limit, or a 408 error due to a time-out.
 
 If the service doesn't perform processing, you aren't charged. For example, a 401 error due to authentication or a 429 error due to exceeding the Rate Limit.
 
@@ -92,7 +92,7 @@ To understand the breakdown of what makes up that cost, it can be helpful to use
 
 1. Go to [Azure AI Foundry Portal](https://ai.azure.com).
 
-2. In the upper right corner of the screen, click on the name of your Azure AI Services resource, or if you are working on an AI project, on the name of the project.
+2. In the upper right corner of the screen, select on the name of your Azure AI Services resource, or if you're working on an AI project, on the name of the project.
 
 3. Select the name of the project. Azure portal opens in a new window.
 
@@ -100,7 +100,7 @@ To understand the breakdown of what makes up that cost, it can be helpful to use
 
 5. By default, cost analysis is scoped to the resource group you have selected.
 
-6. Since we are seeing the cost of all the resource group, it's useful to see the cost by resource. In that case, select **View** > **Cost by resource**.
+6. Since we're seeing the cost of all the resource group, it's useful to see the cost by resource. In that case, select **View** > **Cost by resource**.
 
     :::image type="content" source="../media/manage-cost/cost-by-resource.png" alt-text="Screenshot of how to see the cost by each resource in the resource group." lightbox="../media/manage-cost/cost-by-resource.png":::
 
@@ -110,9 +110,9 @@ To understand the breakdown of what makes up that cost, it can be helpful to use
 
     :::image type="content" source="../media/manage-cost/cost-by-resource-1p.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Azure AI Services resource is deployed, highlighting the meters for Azure OpenAI and Microsoft's models. Cost is group by resource." lightbox="../media/manage-cost/cost-by-resource-1p.png":::
 
-9. Third-party models are displayed as meters under Global resources. Notice that the word *Global* **isn't** related to the SKU of the model deployment (for instance, *Global standard*). If you have multiple Azure AI services resources, your bill contains one entry **for each model for each Azure AI services resource**. The resource meters have the format *[model-name]-[GUID]* where *[GUID]* is an identifier unique an associated with a given Azure AI Services resource. You notice billing meters accounting for inputs and outputs for each model you have consumed.
+9. Some providers' models are displayed as meters under Global resources. Notice that the word *Global* **isn't** related to the SKU of the model deployment (for instance, *Global standard*). If you have multiple Azure AI services resources, your bill contains one entry **for each model for each Azure AI services resource**. The resource meters have the format *[model-name]-[GUID]* where *[GUID]* is an identifier unique an associated with a given Azure AI Services resource. You notice billing meters accounting for inputs and outputs for each model you have consumed.
 
-    :::image type="content" source="../media/manage-cost/cost-by-resource-saas.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Azure AI Services resource is deployed, highlighting the meters for models billed throughout the Azure Marketplace. Cost is group by resource." lightbox="../media/manage-cost/cost-by-resource-saas.png":::
+    :::image type="content" source="../media/manage-cost/cost-by-resource-saas.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Azure AI Services resource is deployed, highlighting the meters for models billed throughout Azure Marketplace. Cost is group by resource." lightbox="../media/manage-cost/cost-by-resource-saas.png":::
 
 It's important to understand scope when you evaluate costs associated with Azure AI Services. If your resources are part of the same resource group, you can scope Cost Analysis at that level to understand the effect on costs. If your resources are spread across multiple resource groups, you can scope to the subscription level.
 

@@ -37,8 +37,6 @@ To use it:
 
 1. Get the Azure AI model's inference endpoint URL and keys from the **deployment page** or the **Overview** page. If you're using Microsoft Entra ID authentication, you don't need a key.
 
-    :::image type="content" source="../../media/add-model-deployments/models-deploy-endpoint-url.png" alt-text="Screenshot showing how to get the URL and key associated with the deployment." lightbox="../../media/add-model-deployments/models-deploy-endpoint-url.png":::
-
 2. When constructing your request, indicate the parameter `model` and insert the model deployment name you created.
 
     [!INCLUDE [code-create-chat-completion](../../includes/code-create-chat-completion.md)]

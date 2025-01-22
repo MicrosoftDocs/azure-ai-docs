@@ -53,8 +53,6 @@ To obtain the key and endpoint:
 
 8. Once it's deployed, your model's API Key and endpoint are shown in the Overview. Use these values in your code to use the model in your production environment.
 
-    :::image type="content" source="../media/add-model-deployments/models-deploy-endpoint-url.png" alt-text="Screenshot showing how to get the URL and key associated with the deployment." lightbox="../media/add-model-deployments/models-deploy-endpoint-url.png":::
-
 At this point, the model you selected is ready to consume.
 
 ## Upgrade your code to use the new endpoint
