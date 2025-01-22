@@ -95,12 +95,12 @@ sections:
       - question: |
          How does Microsoft Translator Pro ensure the quality and accuracy of translations in real-world, high-stakes environments?
         answer: |
-          There are no universally recognized standard translation test sets for benchmarking. We refrain from publishing the absolute scores from our assessments of machine translation systems. Nevertheless, we continuously monitor quality and find that human evaluation yields the most significant and reliable results.
+          There are no universally recognized standard translation test sets for benchmarking and we refrain from publishing the absolute scores from our assessments of machine translation systems. Nevertheless, we continuously monitor quality and find that human evaluation yields the most significant and reliable results.
 
       - question: |
          What measures are in place to ensure that translations are accurate and reliable in real-world scenarios?
         answer: |
-          "In addition to ongoing testing and evaluation, we also utilize speech and translation services trusted by customers for years in practical, real-world applications. For more information, *see* [Customer story: Berlitz empowered 500,000 language learners using Azure AI Speech](https://www.microsoft.com/customers/story/1650519804730300378-berlitz-language-azure-ai-speech-usa)."
+          In addition to ongoing testing and evaluation, we also utilize speech and translation services trusted by customers for years in practical, real-world applications. For more information, *see* [Customer story: Berlitz empowered 500,000 language learners using Azure AI Speech](https://www.microsoft.com/customers/story/1650519804730300378-berlitz-language-azure-ai-speech-usa).
 
   - name: Ongoing Monitoring, Accountability, and Transparency
     questions:
@@ -112,10 +112,10 @@ sections:
       - question: |
           What transparency measures are implemented to document and communicate model limitations, recurring issues, or risks associated with translations?
         answer: |
-          Microsoft's Transparency Notes aim to clarify the workings of our AI technology, highlighting the choices available to system owners that can impact system performance and behavior. They emphasize the importance of considering the entire system, encompassing the technology, the people, and the environment. These notes can be a valuable resource when developing or deploying your own system. For more information, *see* [Microsoft Translator Pro Transparency Note]/legal/cognitive-services/translator/translator-pro-transparency-note#limitations).
+          Microsoft's Transparency Notes aim to clarify the workings of our AI technology, highlighting the choices available to system owners that can impact system performance and behavior. They emphasize the importance of considering the entire system, encompassing the technology, the people, and the environment. These notes can be a valuable resource when developing or deploying your own system. For more information, *see* [Microsoft Translator Pro Transparency Note](/legal/cognitive-services/translator/translator-pro-transparency-note#limitations).
 
       - question: |
-         How is the quality differ when the app utilizes on-device models v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUME5BUDBVWUlaNDlUN0FRODRIQ082SjFVUCQlQCN0PWcu online models.
+         How does the quality differ when the app utilizes on-device models versus online models.
         answer: |
          The on-device models utilized by the Microsoft Translator Pro app for offline processing differ from the cloud models, leading to a variation in quality. The models implemented on the device are smaller compared to models used in the cloud.
 
