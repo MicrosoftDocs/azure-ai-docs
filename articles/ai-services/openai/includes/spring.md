@@ -42,28 +42,28 @@ spring init -a ai-completion-demo -n AICompletion --force --build maven -x
 
 The generated files and folders resemble the following structure:
 
-	```
-	ai-completion-demo/
-	|-- pom.xml
-	|-- mvn
-	|-- mvn.cmd
-	|-- HELP.md
-	|-- src/
-		|-- main/
-		|   |-- resources/
-		|   |   |-- application.properties
-		|   |-- java/
-		|       |-- com/
-		|           |-- example/
-		|               |-- aicompletiondemo/
-		|                   |-- AiCompletionApplication.java
-		|-- test/
-			|-- java/
-					|-- com/
-						|-- example/
-							|-- aicompletiondemo/
-									|-- AiCompletionApplicationTests.java
-	```
+```
+    ai-completion-demo/
+    |-- pom.xml
+    |-- mvn
+    |-- mvn.cmd
+    |-- HELP.md
+    |-- src/
+        |-- main/
+        |   |-- resources/
+        |   |   |-- application.properties
+        |   |-- java/
+        |       |-- com/
+        |           |-- example/
+        |               |-- aicompletiondemo/
+        |                   |-- AiCompletionApplication.java
+        |-- test/
+            |-- java/
+                    |-- com/
+                        |-- example/
+                            |-- aicompletiondemo/
+                                    |-- AiCompletionApplicationTests.java
+```
 
 ## Edit the Spring application
 
@@ -72,111 +72,111 @@ The generated files and folders resemble the following structure:
    From the root of the project directory, open the *pom.xml* file in your preferred editor or IDE and overwrite the file with following content:
 
    ```xml
-	<?xml version="1.0" encoding="UTF-8"?>
-	<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-		<modelVersion>4.0.0</modelVersion>
-		<parent>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-parent</artifactId>
-			<version>3.3.4</version>
-			<relativePath/> <!-- lookup parent from repository -->
-		</parent>
-		<groupId>com.example</groupId>
-		<artifactId>ai-completion-demo</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-		<name>AICompletion</name>
-		<description>Demo project for Spring Boot</description>
-		<properties>
-			<java.version>17</java.version>
-			<spring-ai.version>1.0.0-M5</spring-ai.version>
-		</properties>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter</artifactId>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.ai</groupId>
-				<artifactId>spring-ai-azure-openai-spring-boot-starter</artifactId>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-test</artifactId>
-				<scope>test</scope>
-			</dependency>
-		</dependencies>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+        <modelVersion>4.0.0</modelVersion>
+        <parent>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-parent</artifactId>
+            <version>3.3.4</version>
+            <relativePath/> <!-- lookup parent from repository -->
+        </parent>
+        <groupId>com.example</groupId>
+        <artifactId>ai-completion-demo</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <name>AICompletion</name>
+        <description>Demo project for Spring Boot</description>
+        <properties>
+            <java.version>17</java.version>
+            <spring-ai.version>1.0.0-M5</spring-ai.version>
+        </properties>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-azure-openai-spring-boot-starter</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
 
-		<dependencyManagement>
-			<dependencies>
-				<dependency>
-					<groupId>org.springframework.ai</groupId>
-					<artifactId>spring-ai-bom</artifactId>
-					<version>${spring-ai.version}</version>
-					<type>pom</type>
-					<scope>import</scope>
-				</dependency>
-			</dependencies>
-		</dependencyManagement>
+        <dependencyManagement>
+            <dependencies>
+                <dependency>
+                    <groupId>org.springframework.ai</groupId>
+                    <artifactId>spring-ai-bom</artifactId>
+                    <version>${spring-ai.version}</version>
+                    <type>pom</type>
+                    <scope>import</scope>
+                </dependency>
+            </dependencies>
+        </dependencyManagement>
 
-		<build>
-			<plugins>
-				<plugin>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-maven-plugin</artifactId>
-				</plugin>
-			</plugins>
-		</build>
-		<repositories>
-			<repository>
-				<id>spring-milestones</id>
-				<name>Spring Milestones</name>
-				<url>https://repo.spring.io/milestone</url>
-				<snapshots>
-					<enabled>false</enabled>
-				</snapshots>
-			</repository>
-		</repositories>
-	</project>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+            </plugins>
+        </build>
+        <repositories>
+            <repository>
+                <id>spring-milestones</id>
+                <name>Spring Milestones</name>
+                <url>https://repo.spring.io/milestone</url>
+                <snapshots>
+                    <enabled>false</enabled>
+                </snapshots>
+            </repository>
+        </repositories>
+    </project>
    ```
 
 1. From the *src/main/java/com/example/aicompletiondemo* folder, open *AiCompletionApplication.java* in your preferred editor or IDE and paste in the following code:
 
-	```java
-	package com.example.aicompletiondemo;
+   ```java
+    package com.example.aicompletiondemo;
 
-	import org.slf4j.Logger;
-	import org.slf4j.LoggerFactory;
-	import org.springframework.ai.chat.client.ChatClient;
-	import org.springframework.boot.CommandLineRunner;
-	import org.springframework.boot.SpringApplication;
-	import org.springframework.boot.autoconfigure.SpringBootApplication;
-	import org.springframework.context.annotation.Bean;
+    import org.slf4j.Logger;
+    import org.slf4j.LoggerFactory;
+    import org.springframework.ai.chat.client.ChatClient;
+    import org.springframework.boot.CommandLineRunner;
+    import org.springframework.boot.SpringApplication;
+    import org.springframework.boot.autoconfigure.SpringBootApplication;
+    import org.springframework.context.annotation.Bean;
 
-	@SpringBootApplication
-	public class AiCompletionApplication {
+    @SpringBootApplication
+    public class AiCompletionApplication {
 
-		private static final Logger log = LoggerFactory.getLogger(AiCompletionApplication.class);
+        private static final Logger log = LoggerFactory.getLogger(AiCompletionApplication.class);
 
-		public static void main(String[] args) {
-			SpringApplication.run(AiCompletionApplication.class, args);
-		}
+        public static void main(String[] args) {
+            SpringApplication.run(AiCompletionApplication.class, args);
+        }
 
-		@Bean
-		CommandLineRunner commandLineRunner(ChatClient.Builder builder) {
-			return args -> {
-					var chatClient = builder.build();
-					log.info("Sending completion prompt to AI service. One moment please...");
-					var response = chatClient.prompt()
-							.user("When was Microsoft founded?")
-							.call()
-							.content();
+        @Bean
+        CommandLineRunner commandLineRunner(ChatClient.Builder builder) {
+            return args -> {
+                    var chatClient = builder.build();
+                    log.info("Sending completion prompt to AI service. One moment please...");
+                    var response = chatClient.prompt()
+                            .user("When was Microsoft founded?")
+                            .call()
+                            .content();
 
-					log.info("Response: {}", response);
-			};
-		}
-	}
-	```
+                    log.info("Response: {}", response);
+            };
+        }
+    }
+   ```
 
    > [!IMPORTANT]
    > For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
@@ -189,22 +189,22 @@ The generated files and folders resemble the following structure:
 
 ## Output
 
-	```output
-	.   ____          _            __ _ _
-	/\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-	( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
-	\\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-	'  |____| .__|_| |_|_| |_\__, | / / / /
-	=========|_|==============|___/=/_/_/_/
+```output
+.   ____          _            __ _ _
+/\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+\\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+'  |____| .__|_| |_|_| |_\__, | / / / /
+=========|_|==============|___/=/_/_/_/
 
-	:: Spring Boot ::                (v3.3.4)
+:: Spring Boot ::                (v3.3.4)
 
-	2025-01-09T13:51:48.426-05:00  INFO 8264 --- [AICompletion] [           main] c.e.a.AiCompletionApplication            : Starting AiCompletionApplication using Java 17.0.12 with PID 8264 (/Users/vega/dev/msft/spring-ai-samples/ai-completion-demo/target/classes started by vega in /Users/vega/dev/msft/spring-ai-samples/ai-completion-demo)
-	2025-01-09T13:51:48.427-05:00  INFO 8264 --- [AICompletion] [           main] c.e.a.AiCompletionApplication            : No active profile set, falling back to 1 default profile: "default"
-	2025-01-09T13:51:48.781-05:00  INFO 8264 --- [AICompletion] [           main] c.e.a.AiCompletionApplication            : Started AiCompletionApplication in 0.465 seconds (process running for 0.624)
-	2025-01-09T13:51:48.782-05:00  INFO 8264 --- [AICompletion] [           main] c.e.a.AiCompletionApplication            : Sending completion prompt to AI service. One moment please...
-	2025-01-09T13:51:50.447-05:00  INFO 8264 --- [AICompletion] [           main] c.e.a.AiCompletionApplication            : Response: Microsoft was founded on April 4, 1975, by Bill Gates and Paul Allen.
-	```
+2025-01-09T13:51:48.426-05:00  INFO 8264 --- [AICompletion] [           main] c.e.a.AiCompletionApplication            : Starting AiCompletionApplication using Java 17.0.12 with PID 8264 (/Users/vega/dev/msft/spring-ai-samples/ai-completion-demo/target/classes started by vega in /Users/vega/dev/msft/spring-ai-samples/ai-completion-demo)
+2025-01-09T13:51:48.427-05:00  INFO 8264 --- [AICompletion] [           main] c.e.a.AiCompletionApplication            : No active profile set, falling back to 1 default profile: "default"
+2025-01-09T13:51:48.781-05:00  INFO 8264 --- [AICompletion] [           main] c.e.a.AiCompletionApplication            : Started AiCompletionApplication in 0.465 seconds (process running for 0.624)
+2025-01-09T13:51:48.782-05:00  INFO 8264 --- [AICompletion] [           main] c.e.a.AiCompletionApplication            : Sending completion prompt to AI service. One moment please...
+2025-01-09T13:51:50.447-05:00  INFO 8264 --- [AICompletion] [           main] c.e.a.AiCompletionApplication            : Response: Microsoft was founded on April 4, 1975, by Bill Gates and Paul Allen.
+```
 
 
 ## Clean up resources
