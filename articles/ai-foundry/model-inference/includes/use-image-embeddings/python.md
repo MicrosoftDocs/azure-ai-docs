@@ -56,6 +56,18 @@ model = ImageEmbeddingsClient(
 
 If you configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
+```python
+import os
+from azure.ai.inference import ImageEmbeddingsClient
+from azure.identity import DefaultAzureCredential
+
+model = ImageEmbeddingsClient(
+    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
+    credential=DefaultAzureCredential(),
+    model="Cohere-embed-v3-english"
+)
+```
+
 ### Create embeddings
 
 To create image embeddings, you need to pass the image data as part of your request. Image data should be in PNG format and encoded as base64.

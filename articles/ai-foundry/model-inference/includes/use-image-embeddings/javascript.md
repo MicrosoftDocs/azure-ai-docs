@@ -56,6 +56,18 @@ const client = new ModelClient(
 
 If you configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
+```javascript
+import ModelClient from "@azure-rest/ai-inference";
+import { isUnexpected } from "@azure-rest/ai-inference";
+import { DefaultAzureCredential } from "@azure/identity";
+
+const client = new ModelClient(
+    process.env.AZURE_INFERENCE_ENDPOINT,
+    new DefaultAzureCredential(),
+    "Cohere-embed-v3-english"
+);
+```
+
 ### Create embeddings
 
 To create image embeddings, you need to pass the image data as part of your request. Image data should be in PNG format and encoded as base64.
