@@ -103,20 +103,20 @@ from <your_package> import <your_class>
 - `entry_script`: A user script as a local file path that to be run in parallel on multiple nodes. If `source_directory` is present, relative path should be used. Otherwise, use any path that's accessible on the machine.
 - `mini_batch_size`: The size of the mini-batch passed to a single `run()` call. (optional; the default value is `10` files for `FileDataset` and `1MB` for `TabularDataset`.)
     - For `FileDataset`, it's the number of files with a minimum value of `1`. You can combine multiple files into one mini-batch.
-    - For `TabularDataset`, it's the size of data. Example values are `1024`, `1024KB`, `10MB`, and `1GB`. The recommended value is `1MB`. The mini-batch from `TabularDataset` will never cross file boundaries. For example, if there are multiple .csv files with various sizes, the smallest one is 100 KB and the largest is 10 MB. If `mini_batch_size = 1MB` is set, the files smaller than 1 MB will be treated as one mini-batch and the files larger than 1 MB will be split into multiple mini-batches.
+    - For `TabularDataset`, it's the size of data. Example values are `1024`, `1024KB`, `10MB`, and `1GB`. The recommended value is `1MB`. The mini-batch from `TabularDataset` will never cross file boundaries. For example, if there are multiple .csv files with various sizes, the smallest one is 100 KB and the largest is 10 MB. If `mini_batch_size = 1MB` is set, the files smaller than 1 MB will be treated as one mini-batch and the files larger than 1 MB will be splitted into multiple mini-batches.
         > [!NOTE]
         > TabularDatasets backed by SQL cannot be partitioned.
         > TabularDatasets from a single parquet file and single row group cannot be partitioned.
 
 - `error_threshold`: The number of record failures for `TabularDataset` and file failures for `FileDataset` that should be ignored during processing. Once the error count for the entire input goes above this value, the job will be aborted. The error threshold is for the entire input and not for individual mini-batch sent to the `run()` method. The range is `[-1, int.max]`. The `-1` indicates ignoring all failures during processing.
-- `output_action`: One of the following values indicates how the output will be organized:
+- `output_action`: One of the following values indicates how the output is organized:
     - `summary_only`: The user script needs to store the output files. The outputs of `run()` are used for the error threshold calculation only.
     - `append_row`: For all inputs, `ParallelRunStep` creates a single file in the output folder to append all outputs separated by line.
 - `append_row_file_name`: To customize the output file name for append_row output_action (optional; default value is `parallel_run_step.txt`).
 - `source_directory`: Paths to folders that contain all files to execute on the compute target (optional).
 - `compute_target`: Only `AmlCompute` is supported.
 - `node_count`: The number of compute nodes to be used for running the user script.
-- `process_count_per_node`: The number of worker processes per node to run the entry script in parallel. For a GPU machine, the default value is 1. For a CPU machine, the default value is the number of cores per node. A worker process will call `run()` repeatedly by passing the mini batch it gets. The total number of worker processes in your job is `process_count_per_node * node_count`, which decides the max number of `run()` to execute in parallel.
+- `process_count_per_node`: The number of worker processes per node to run the entry script in parallel. For a GPU machine, the default value is 1. For a CPU machine, the default value is the number of cores per node. A worker process calls `run()` repeatedly by passing the mini batch it gets as a parameter. The total number of worker processes in your job is `process_count_per_node * node_count`, which decides the max number of `run()` to execute in parallel.
 - `environment`: The Python environment definition. You can configure it to use an existing Python environment or to set up a temporary environment. The definition is also responsible for setting the required application dependencies (optional).
 - `logging_level`: Log verbosity. Values in increasing verbosity are: `WARNING`, `INFO`, and `DEBUG`. (optional; the default value is `INFO`)
 - `run_invocation_timeout`: The `run()` method invocation timeout in seconds. (optional; default value is `60`)
@@ -125,11 +125,11 @@ from <your_package> import <your_class>
 You can specify `mini_batch_size`, `node_count`, `process_count_per_node`, `logging_level`, `run_invocation_timeout`, and `run_max_try` as `PipelineParameter`, so that when you resubmit a pipeline run, you can fine-tune the parameter values. 
 
 #### CUDA devices visibility
-For compute targets equipped with GPUs, the environment variable `CUDA_VISIBLE_DEVICES` will be set in worker processes. In AmlCompute, you can find the total number of GPU devices in the environment variable `AZ_BATCHAI_GPU_COUNT_FOUND`, which is set automatically. If you want each worker process to have a dedicated GPU, set `process_count_per_node` equal to the number of GPU devices on a machine. Then, each worker process will be assigned with a unique index to `CUDA_VISIBLE_DEVICES`. If a worker process stops for any reason, the next started worker process will use the released GPU index.
+For compute targets equipped with GPUs, the environment variable `CUDA_VISIBLE_DEVICES` is set in worker processes. In AmlCompute, you can find the total number of GPU devices in the environment variable `AZ_BATCHAI_GPU_COUNT_FOUND`, which is set automatically. If you would like each worker process to have a dedicated GPU, set `process_count_per_node` equal to the number of GPU devices on a machine. Then, each worker process will be assigned with a unique index to `CUDA_VISIBLE_DEVICES`. When a worker process stops for any reason, the next started worker process will adopt the released GPU index.
 
-If the total number of GPU devices is less than `process_count_per_node`, the worker processes will be assigned GPU index until all have been used.
+When the total number of GPU devices is less than `process_count_per_node`, the worker processes will be assigned GPU index until it is used up.
 
-Given the total GPU devices is 2 and `process_count_per_node = 4` as an example, process 0 and process 1 will have index 0 and 1. Process 2 and 3 won't have an environment variable. For a library using this environment variable for GPU assignment, process 2 and 3 won't have GPUs and won't try to acquire GPU devices. If process 0 stops, it will release GPU index 0. The next process, which is process 4, will have GPU index 0 assigned.
+Given the total GPU devices is 2 and `process_count_per_node = 4` as an example, process 0 and process 1 will have index 0 and 1. Process 2 and 3 can not have the environment variable. For a library using this environment variable for GPU assignment, process 2 and 3 won't have GPUs and won't try to acquire GPU devices. Process 0 will release GPU index 0 when it stops. The next process if applicable, which is process 4, will have GPU index 0 assigned.
 
 For more information, see [CUDA Pro Tip: Control GPU Visibility with CUDA_VISIBLE_DEVICES](https://developer.nvidia.com/blog/cuda-pro-tip-control-gpu-visibility-cuda_visible_devices/).
 
@@ -375,10 +375,10 @@ if not canceled, the job will stop with status:
 - Failed. If `error_threshold` in [`Parameters for ParallelRunConfig`](#parameters-for-parallelrunconfig)  is exceeded, or system error occurs during the job.
 
 ### Where to find the root cause of failure?
-You can follow the lead in `~logs/job_result.txt` to find the cause and detailed error log.
+You can follow the lead in `~/logs/job_result.txt` to find the cause and detailed error log.
 
 ### Will node failure impact the job result?
-Not if there are other available nodes in the designated compute cluster. The orchestrator will start a new node as replacement, and ParallelRunStep is resilient to such operation.
+Not if there are other available nodes in the designated compute cluster. ParallelRunStep can run independently on each node. Single node failure does not fail the whole job.
 
 ### What happens if `init` function in entry script fails?
 ParallelRunStep has mechanism to retry for a certain time to give chance for recovery from transient issues without delaying the job failure for too long, the mechanism is as follows:
