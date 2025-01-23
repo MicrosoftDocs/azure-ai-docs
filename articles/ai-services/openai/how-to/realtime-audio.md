@@ -26,7 +26,7 @@ The GPT 4o real-time models are available for global deployments in [East US 2 a
 - `gpt-4o-realtime-preview` (2024-12-17)
 - `gpt-4o-realtime-preview` (2024-10-01)
 
-See the [models and versions documentation](../concepts/models.md#gpt-4o-realtime-preview) for more information.
+See the [models and versions documentation](../concepts/models.md#gpt-4o-audio) for more information.
 
 ## Get started
 
@@ -248,7 +248,7 @@ In this case, the server evaluates user audio from the client (as sent via [`inp
 - The server commits the input audio buffer by sending the [`input_audio_buffer.committed`](../realtime-audio-reference.md#realtimeservereventinputaudiobuffercommitted) event.
 - The server sends the [`conversation.item.created`](../realtime-audio-reference.md#realtimeservereventconversationitemcreated) event with the user message item created from the audio buffer.
 
-:::image type="content" source="../media/how-to/real-time/input-audio-buffer-server-vad.png" alt-text="Diagram of the Realtime API input audio sequence with server decision mode." lightbox="../media/how-to/real-time/input-audio-buffer-server-vad.png":::
+:::image type="content" source="../media/how-to/real-time/input-audio-buffer-server-vad.png" alt-text="Diagram of the real time API input audio sequence with server decision mode." lightbox="../media/how-to/real-time/input-audio-buffer-server-vad.png":::
 
 
 <!-- 
@@ -300,7 +300,7 @@ Optionally, the client can truncate or delete items in the conversation:
 - The client deletes an item in the conversation with a [`conversation.item.delete`](../realtime-audio-reference.md#realtimeclienteventconversationitemdelete) event.
 - The server [`conversation.item.deleted`](../realtime-audio-reference.md#realtimeservereventconversationitemdeleted) event is returned to sync the client and server state.
 
-:::image type="content" source="../media/how-to/real-time/conversation-item-sequence.png" alt-text="Diagram of the Realtime API conversation item sequence." lightbox="../media/how-to/real-time/conversation-item-sequence.png":::
+:::image type="content" source="../media/how-to/real-time/conversation-item-sequence.png" alt-text="Diagram of the real-time API conversation item sequence." lightbox="../media/how-to/real-time/conversation-item-sequence.png":::
 
 <!-- 
 sequenceDiagram
@@ -324,11 +324,11 @@ To get a response from the model:
 - The client sends a [`response.create`](../realtime-audio-reference.md#realtimeclienteventresponsecreate) event. The server responds with a [`response.created`](../realtime-audio-reference.md#realtimeservereventresponsecreated) event. The response can contain one or more items, each of which can contain one or more content parts.
 - Or, when using server-side voice activity detection (VAD), the server automatically generates a response when it detects the end of speech in the input audio buffer. The server sends a [`response.created`](../realtime-audio-reference.md#realtimeservereventresponsecreated) event with the generated response.
 
-### Response interuption
+### Response interruption
 
 The client [`response.cancel`](../realtime-audio-reference.md#realtimeclienteventresponsecancel) event is used to cancel an in-progress response. 
 
-A user might want to interrupt the assistant's response or ask the assistant to stop talking. The server produces audio faster than realtime. The client can send a [`conversation.item.truncate`](../realtime-audio-reference.md#realtimeclienteventconversationitemtruncate) event to truncate the audio before it's played. 
+A user might want to interrupt the assistant's response or ask the assistant to stop talking. The server produces audio faster than real-time. The client can send a [`conversation.item.truncate`](../realtime-audio-reference.md#realtimeclienteventconversationitemtruncate) event to truncate the audio before it's played. 
 - The server's understanding of the audio with the client's playback is synchronized. 
 - Truncating audio deletes the server-side text transcript to ensure there isn't text in the context that the user doesn't know about.
 - The server responds with a [`conversation.item.truncated`](../realtime-audio-reference.md#realtimeservereventconversationitemtruncated) event.
