@@ -14,14 +14,12 @@ summary: |
    Microsoft Translator Pro is an advanced mobile application that enables seamless, real-time, speech-to-speech translation within the enterprise ecosystem.
 sections:
   - name: General
-    questions: |
-    
-      - question: |
-      
+    questions:
+     - question: |
+        
+         What is Microsoft Translator Pro?
        answer: |
 
-         **What is Microsoft Translator Pro?**
-         
           Microsoft Translator Pro is an advanced mobile application that enables seamless, real-time, speech-to-speech translation within the enterprise ecosystem. The app is designed to help organizations communicate effectively across languages and cultures, enabling employees to collaborate, share ideas, and engage with customers and partners in their preferred language.
 
      - question: |
@@ -118,11 +116,7 @@ sections:
           Microsoft's Transparency Notes aim to clarify the workings of our AI technology, highlighting the choices available to system owners that can impact system performance and behavior. They emphasize the importance of considering the entire system, encompassing the technology, the people, and the environment. These notes can be a valuable resource when developing or deploying your own system. For more information, *see* [Microsoft Translator Pro Transparency Note](/legal/cognitive-services/translator/translator-pro-transparency-note#limitations).
 
       - question: |
-         How does the quality differ when the app utilizes on-device models versus online models.
+         How does the quality differ when the app utilizes on-device models versus online models?
         answer: |
          The on-device models utilized by the Microsoft Translator Pro app for offline processing differ from the cloud models, leading to a variation in quality. The models implemented on the device are smaller compared to models used in the cloud.
-
-
-
-
 
