@@ -100,15 +100,15 @@ from <your_package> import <your_class>
 ### Parameters for ParallelRunConfig
 
 `ParallelRunConfig` is the major configuration for `ParallelRunStep` instance within the Azure Machine Learning pipeline. You use it to wrap your script and configure necessary parameters, including all of the following entries:
-- `entry_script`: A user script as a local file path that will be run in parallel on multiple nodes. If `source_directory` is present, use a relative path. Otherwise, use any path that's accessible on the machine.
+- `entry_script`: A user script as a local file path that to be run in parallel on multiple nodes. If `source_directory` is present, relative path should be used. Otherwise, use any path that's accessible on the machine.
 - `mini_batch_size`: The size of the mini-batch passed to a single `run()` call. (optional; the default value is `10` files for `FileDataset` and `1MB` for `TabularDataset`.)
     - For `FileDataset`, it's the number of files with a minimum value of `1`. You can combine multiple files into one mini-batch.
-    - For `TabularDataset`, it's the size of data. Example values are `1024`, `1024KB`, `10MB`, and `1GB`. The recommended value is `1MB`. The mini-batch from `TabularDataset` will never cross file boundaries. For example, if you have .csv files with various sizes, the smallest file is 100 KB and the largest is 10 MB. If `mini_batch_size = 1MB` is set, the files smaller than 1 MB will be treated as one mini-batch. Files larger than 1 MB will be split into multiple mini-batches.
+    - For `TabularDataset`, it's the size of data. Example values are `1024`, `1024KB`, `10MB`, and `1GB`. The recommended value is `1MB`. The mini-batch from `TabularDataset` will never cross file boundaries. For example, if there are multiple .csv files with various sizes, the smallest one is 100 KB and the largest is 10 MB. If `mini_batch_size = 1MB` is set, the files smaller than 1 MB will be treated as one mini-batch and the files larger than 1 MB will be split into multiple mini-batches.
         > [!NOTE]
         > TabularDatasets backed by SQL cannot be partitioned.
         > TabularDatasets from a single parquet file and single row group cannot be partitioned.
 
-- `error_threshold`: The number of record failures for `TabularDataset` and file failures for `FileDataset` that should be ignored during processing. If the error count for the entire input goes above this value, the job will be aborted. The error threshold is for the entire input and not for individual mini-batch sent to the `run()` method. The range is `[-1, int.max]`. The `-1` indicates ignoring all failures during processing.
+- `error_threshold`: The number of record failures for `TabularDataset` and file failures for `FileDataset` that should be ignored during processing. Once the error count for the entire input goes above this value, the job will be aborted. The error threshold is for the entire input and not for individual mini-batch sent to the `run()` method. The range is `[-1, int.max]`. The `-1` indicates ignoring all failures during processing.
 - `output_action`: One of the following values indicates how the output will be organized:
     - `summary_only`: The user script needs to store the output files. The outputs of `run()` are used for the error threshold calculation only.
     - `append_row`: For all inputs, `ParallelRunStep` creates a single file in the output folder to append all outputs separated by line.
@@ -158,7 +158,7 @@ parallelrun_step = ParallelRunStep(
 
 ## Debugging scripts from remote context
 
-The transition from debugging a scoring script locally to debugging a scoring script in an actual pipeline can be a difficult leap. For information on finding your logs in the portal, see  [machine learning pipelines section on debugging scripts from a remote context](how-to-debug-pipelines.md). The information in that section also applies to a ParallelRunStep.
+The transition from debugging a scoring script locally to debugging a scoring script in an actual pipeline can be a difficult leap. For information on finding your logs in the portal, see  [machine learning pipelines section on debugging scripts from a remote context](how-to-debug-pipelines.md). Information in that section also applies to a ParallelRunStep.
 
 For example, the log file `70_driver_log.txt` contains information from the controller that launches the ParallelRunStep code.
 
@@ -168,7 +168,7 @@ Because of the distributed nature of ParallelRunStep jobs, there are logs from s
 
 - `~/logs/sys/master_role.txt`: This file provides the principal node (also known as the orchestrator) view of the running job. Includes task creation, progress monitoring, the run result.
 
-Logs generated from entry script using EntryScript helper and print statements will be found in following files:
+Logs generated from entry script using EntryScript helper and print statements can be found in following files:
 
 - `~/logs/user/entry_script_log/<node_id>/<process_name>.log.txt`: These files are the logs written from entry_script using EntryScript helper.
 
@@ -178,7 +178,7 @@ Logs generated from entry script using EntryScript helper and print statements w
 
 For a concise understanding of errors in your script there is:
 
-- `~/logs/user/error.txt`: This file will try to summarize the errors in your script.
+- `~/logs/user/error.txt`: This file summarizes the errors in your script.
 
 For more information on errors in your script, there is:
 
@@ -220,7 +220,7 @@ def init():
 
 def run(mini_batch):
     """Call once for a mini batch. Accept and return the list back."""
-    # This class is in singleton pattern and will return same instance as the one in init()
+    # This class is in singleton pattern. It returns the same instance as the one in init()
     entry_script = EntryScript()
     logger = entry_script.logger
     logger.info(f"{__file__}: {mini_batch}.")
@@ -258,7 +258,7 @@ You can spawn new processes in your entry script with [`subprocess`](https://doc
 
 The recommended approach is to use the [`run()`](https://docs.python.org/3/library/subprocess.html#subprocess.run) function with `capture_output=True`. Errors will show up in `logs/user/error/<node_id>/<process_name>.txt`.
 
-If you want to use `Popen()`, you should redirect stdout/stderr to files, like:
+If you would like to use `Popen()`, stdout/stderr should be redirect to files, like:
 ```python
 from pathlib import Path
 from subprocess import Popen
@@ -288,7 +288,7 @@ def init():
 >
 > If no `stdout` or `stderr` specified, a subprocess created with `Popen()` in your entry script will inherit the setting of the worker process.
 >
-> `stdout` will write to `logs/sys/node/<node_id>/processNNN.stdout.txt` and `stderr` to `logs/sys/node/<node_id>/processNNN.stderr.txt`.
+> `stdout` will write to `~/logs/sys/node/<node_id>/processNNN.stdout.txt` and `stderr` to `~/logs/sys/node/<node_id>/processNNN.stderr.txt`.
 
 
 ## How do I write a file to the output directory, and then view it in the portal?
@@ -372,7 +372,7 @@ You can go into `~/logs/sys/error` to see if there's any exception. If there is 
 ### When will a job stop?
 if not canceled, the job will stop with status:
 - Completed. If all mini-batches have been processed and output has been generated for `append_row` mode.
-- Failed. If `error_threshold` in [`Parameters for ParallelRunConfig`](#parameters-for-parallelrunconfig)  is exceeded, or system error occurred during the job.
+- Failed. If `error_threshold` in [`Parameters for ParallelRunConfig`](#parameters-for-parallelrunconfig)  is exceeded, or system error occurs during the job.
 
 ### Where to find the root cause of failure?
 You can follow the lead in `~logs/job_result.txt` to find the cause and detailed error log.
