@@ -102,9 +102,40 @@ The app is currently available for Azure AI Translator resources created in the 
 
 |Geography|Region|
 |---|---|
-|United States|East US (`eastus`)|
-|Europe|UK South (`uksouth`)|
-|Australia| Australia (`australia`)|
+| Africa | South Africa North (`southafricanorth`) |
+| Asia Pacific | East Asia (`eastasia`) |
+| Asia Pacific | Southeast Asia (`southeastasia`) |
+| Australia| Australia East (`australiaeast`) |
+| Brazil | Brazil South (`brazilsouth`) |
+| Canada | Canada Central (`canadacentral`) |
+| Canada | Canada East (`canadaeast`) |
+| Europe | North Europe (`northeurope`) |
+| Europe | West Europe (`westeurope`) |
+| France | France Central (`francecentral`) |
+| Germany | Germany West Central (`germanywestcentral`) |
+| Global | Global (`global`) |
+| India | Central India (`centralindia`) |
+| Italy | Italy North (`italynorth`) |
+| Japan | Japan East (`japaneast`) |
+| Japan | Japan West (`japanwest`) |
+| Korea | Korea Central (`koreacentral`) |
+| Norway | Norway East (`norwayeast`) |
+| Qatar | Qatar Central (`qatarcentral`) |
+| Sweden | Sweden Central (`swedencentral`) |
+| Switzerland | Switzerland North (`switzerlandnorth`) |
+| Switzerland | Switzerland West (`switzerlandwest`) |
+| United Kingdom | UK South (`uksouth`) |
+| United Kingdom | UK West (`ukwest`) |
+| United Arab Emirates | UAE North (`uaenorth`) |
+| United States| Central US (`centralus`) |
+| United States| East US (`eastus`) |
+| United States| East US 2 (`eastus2`) |
+| United States| North Central US (`northcentralus`) |
+| United States| South Central US (`southcentralus`) |
+| United States| West Central US (`westcentralus`) |
+| United States| West US (`westus`) |
+| United States| West US 2 (`westus2`) |
+| United States| West US 3 (`westus3`) |
 
 **Azure US Government Cloud**
 
