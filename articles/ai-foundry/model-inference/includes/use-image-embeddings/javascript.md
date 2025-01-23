@@ -20,7 +20,7 @@ This article explains how to use image embeddings API with models deployed to Az
 
 ## Prerequisites
 
-To use embedding models in you application, you need:
+To use embedding models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
@@ -54,7 +54,7 @@ const client = new ModelClient(
 );
 ```
 
-If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+If you configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
 ### Create embeddings
 
@@ -89,7 +89,7 @@ console.log(response.body.usage);
 ```
 
 > [!IMPORTANT]
-> Computing embeddings in batches may not be supported for all the models. This is the case of the `cohere-embed-v3` model. In this case, you need to send one image at a time.
+> Computing embeddings in batches may not be supported for all the models. For example, for `cohere-embed-v3` model, you need to send one image at a time.
 
 #### Embedding images and text pairs
 

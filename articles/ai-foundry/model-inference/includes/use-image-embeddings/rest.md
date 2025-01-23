@@ -20,7 +20,7 @@ This article explains how to use image embeddings API with models deployed to Az
 
 ## Prerequisites
 
-To use embedding models in you application, you need:
+To use embedding models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
@@ -30,7 +30,7 @@ To use embedding models in you application, you need:
 
 ## Use embeddings
 
-To use the text embeddings, use the route `/images/embeddings` along with you credential indicated in `api-key`. `Authorization` header is also supported with the format `Bearer <key>`.
+To use the text embeddings, use the route `/images/embeddings` along with your credential indicated in `api-key`. `Authorization` header is also supported with the format `Bearer <key>`.
 
 ```http
 POST /images/embeddings
@@ -38,7 +38,7 @@ Content-Type: application/json
 api-key: <key>
 ```
 
-If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header:
+If you configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header:
 
 ```http
 POST /images/embeddings
@@ -94,7 +94,7 @@ The response is as follows, where you can see the model's usage statistics:
 ```
 
 > [!IMPORTANT]
-> Computing embeddings in batches may not be supported for all the models. This is the case of the `cohere-embed-v3` model. In this case, you need to send one image at a time.
+> Computing embeddings in batches may not be supported for all the models. For example, for `cohere-embed-v3` model, you need to send one image at a time.
 
 #### Embedding images and text pairs
 

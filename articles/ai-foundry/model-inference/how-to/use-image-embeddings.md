@@ -1,7 +1,7 @@
 ---
-title: How to generate embeddings with Azure AI model inference service
+title: How to generate image embeddings with Azure AI model inference service
 titleSuffix: Azure AI Foundry
-description: Learn how to generate embeddings with Azure AI model inference
+description: Learn how to generate image embeddings with Azure AI model inference
 manager: scottpolly
 author: msakande
 reviewer: santiagxf
