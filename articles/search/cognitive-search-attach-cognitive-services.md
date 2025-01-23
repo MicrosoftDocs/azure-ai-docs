@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2023
   - ignite-2024
 ms.topic: how-to
-ms.date: 01/09/2025
+ms.date: 01/22/2025
 ---
 
 # Attach an Azure AI multi-service resource to a skillset in Azure AI Search
@@ -37,7 +37,7 @@ To attach an Azure AI multi-resource, you must provide connection information in
 + Connectivity over a public endpoint, unless your search service meets the creation date, tier, and region requirements for private connections to an Azure AI multi-service account.
 
 > [!NOTE]
-> If your Azure AI resource is configured to use a private endpoint, Azure AI Search can connect [using a shared private link](search-indexer-howto-access-private.md) if the search service was created after April 3, 2024 and is in a region that provides higher capacity computing power and is on a supported tier. For more information, see the requirements for using shared private links.
+> If your Azure AI resource is configured to use a private endpoint, Azure AI Search can connect [using a shared private link](search-indexer-howto-access-private.md) For more information, see the [requirements and limits for using shared private links](search-limits-quotas-capacity.md#shared-private-link-resource-limits).
 
 ## Bill through a keyless connection
 
