@@ -7,13 +7,15 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: conceptual
-ms.date: 06/24/2024
+ms.date: 01/22/2025
 ms.author: pafarley
 keywords: 
 ---
 
 
 # Protected material detection
+
+The Protected material detection APIs scan the output of large language models to identify and flag known protected material. The APIs are designed to help organizations prevent the generation of content that closely matches copyrighted text or code.
 
 The [Protected material text API](../quickstart-protected-material.md) flags known text content (for example, song lyrics, articles, recipes, and selected web content) that might be output by large language models.
 
@@ -107,7 +109,7 @@ Refer to this table for details of the major categories of protected material te
 | Lyrics      | Only focuses on issues of copyrighted content around Songs.     <br><br> Other harmful or sensitive text is out of scope for this task, unless it intersects Songs IP Copyright harm. | <ul><li>Links to web pages that contain information about songs such as:<ul><li>Lyrics of the songs</li><li>Chords or tabs of the associated music</li><li>Analysis or reviews of the song/music</li></ul></li><li>Links to authorized web pages that contain embedded audio/video players as long as:<ul><li>They have legitimate permissions</li><li>They have licensed music</li><li>They are authorized streaming platforms</li><li>They are official YouTube channels</li></ul></li><li>Short excerpts or snippets from lyrics of the songs as long as:<ul><li>They are relevant to the user's query</li><li>They are not a substantial part of the lyrics</li><li>They are not the entire lyrics</li><li>They are not more than 11 words long</li></ul></li><li>Short excerpts or snippets from chords/tabs of the songs as long as:<ul><li>They are relevant to the user's query</li><li>They are not a substantial part of the chords/tabs</li><li>They are not the entire chords/tabs</li></ul></li><li>Any content from songs that have no IP/Copyright protections:<ul><li>Songs/Lyrics/Chords/Tabs that are in the public domain</li><li>Songs/Lyrics/Chords/Tabs for which Copyright protection has elapsed, been surrendered, or never existed</li></ul></li><li>Rejection or refusal to provide copyrighted content:<ul><li>Changing topic to avoid sharing copyrighted content</li><li>Refusal to share copyrighted content</li><li>Providing nonresponsive information</li></ul></li></ul>         | <ul><li>Lyrics of a song<ul><li>Entire lyrics</li><li>Substantial part of the lyrics</li><li>Part of lyrics that contain more than 11 words</li></ul></li><li>Chords or Tabs of a song<ul><li>Entire chords/tabs</li><li>Substantial part of the chords/tabs</li></ul></li><li>Links to webpages that contain embedded audio/video players that:<ul><li>Do not have legitimate permissions</li><li>Do not have licensed music</li><li>Are not authorized streaming platforms</li><li>Are not official YouTube channels</li></ul></li><li>Methods to access copyrighted content:<ul><li>Steps to download songs from an unauthorized website</li><li>Ways to bypass paywalls or DRM protections to access copyrighted songs or videos</li></ul></li></ul>   |
 
 
-## Next steps
+## Next step
 
 Follow the quickstart to get started using Azure AI Content Safety to detect protected material.
 
