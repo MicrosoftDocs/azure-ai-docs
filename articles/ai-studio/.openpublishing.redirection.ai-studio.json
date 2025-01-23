@@ -189,6 +189,11 @@
             "source_path_from_root": "/articles/ai-studio/quickstarts/content-safety.md",
             "redirect_url": "/azure/ai-studio/concepts/content-filtering",
             "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/data-image-add.md",
+            "redirect_url": "/azure/ai-studio/quickstarts/multimodal-vision",
+            "redirect_document_id": false
         }
     ]
 }
