@@ -126,10 +126,10 @@ POST models/chat/completions?api-version=2024-04-01-preview
 Authorization: Bearer <bearer-token>
 Content-Type: application/json
 ```
----
 
 For testing purposes, the easiest way to get a valid token for your user account is to use the Azure CLI. In a console, run the following Azure CLI command:
 
 ```azurecli
 az account get-access-token --resource https://cognitiveservices.azure.com --query "accessToken" --output tsv
 ```
+---

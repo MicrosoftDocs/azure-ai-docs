@@ -1,5 +1,5 @@
 ---
-title: Configure key-less access with Microsoft Entra ID
+title: Configure key-less authentication with Microsoft Entra ID
 titleSuffix: Azure AI Foundry
 description: Learn how to configure key-less authorization to use Azure AI model inference with Microsoft Entra ID.
 ms.service: azure-ai-model-inference
@@ -13,7 +13,7 @@ recommendations: false
 zone_pivot_groups: azure-ai-models-deployment
 ---
 
-# Configure key-less access with Microsoft Entra ID
+# Configure key-less authentication with Microsoft Entra ID
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [portal](../includes/configure-entra-id/portal.md)]
