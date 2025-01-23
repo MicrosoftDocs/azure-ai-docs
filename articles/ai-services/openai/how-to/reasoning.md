@@ -47,9 +47,10 @@ Once access has been granted, you'll need to create a deployment for each model.
 | **[Structured Outputs](./structured-outputs.md)** | ✅ | - | - |
 | **[Context Window](../concepts/models.md#o1-and-o1-mini-models-limited-access)** | Input: 200,000 <br> Output: 100,000 | Input: 128,000  <br> Output: 32,768 | Input: 128,000  <br> Output: 65,536 |
 | **[Reasoning effort](#reasoning-effort)** | ✅ | - | - |
-| System Messages | - | - | - |
+| **[Vision Support](./gpt-with-vision.md)** |✅ | - | - |
 | Functions/Tools | ✅  | -  |  - |
 | `max_completion_tokens` |✅ |✅ |✅ |
+| System Messages | - | - | - |
 
 **o1 series** models will only work with the `max_completion_tokens` parameter.
 
