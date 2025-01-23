@@ -28,6 +28,6 @@ To complete this article, you need:
 
 * An Azure subscription. If you are using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI model inference](../../how-to/quickstart-github-models.md) if it's your case.
 
-* An Azure AI services resource. For more information, see [Create an Azure AI Services resource](/articles/ai-foundry/model-inference/how-to/quickstart-create-resources.md).
+* An Azure AI services resource. For more information, see [Create an Azure AI Services resource](/articles/ai-foundry/model-inference/how-to/quickstart-create-resources).
 
 * Administrator roles for the scope of the Azure AI Services resource or the resource group.
