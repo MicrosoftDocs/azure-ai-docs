@@ -66,6 +66,8 @@ items:
       href: ./supported-languages.md
     - name: Work with embedding models
       href: ./how-to/use-embeddings.md
+    - name: Work with image embedding models
+      href: ./how-to/use-image-embeddings.md
     - name: Work with chat completion models
       href: ./how-to/use-chat-completions.md
     - name: Develop with LangChain and LangGraph
