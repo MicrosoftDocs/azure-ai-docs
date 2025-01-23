@@ -74,6 +74,8 @@ landingContent:
         links:
           - text: Work with embeddings
             url: ./how-to/use-embeddings.md
+          - text: Work with image embeddings
+            url: ./how-to/use-image-embeddings.md
           - text: Work with chat completions
             url: ./how-to/use-chat-completions.md
           - text: Develop with LangChain or LangGraph
