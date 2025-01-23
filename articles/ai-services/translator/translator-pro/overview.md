@@ -25,7 +25,7 @@ Microsoft Translator Pro is a paid mobile application available on the Azure pub
 
 * The Microsoft Translator Pro app can be accessed on iOS devices and requires iOS 15 or newer versions.
 
-* Enterprise users must set up identities and translator resources within Azure public or US Government cloud environments; the app doesn't support hybrid use across these environments. For example, an identity created in the commercial cloud can't be used to access an Azure resource in the government cloud via this app.
+* Enterprise users must set up identities and translator resources within Azure public or US Government cloud environments; the app doesn't support hybrid use across these environments. For example, an identity created in the Azure public cloud can't be used to access an Azure resource in the government cloud via this app.
 
 * This app operates as a paid offering, necessitating payment before use.
 
@@ -55,7 +55,7 @@ Microsoft Translator Pro is a paid mobile application available on the Azure pub
 
 ## Country availability
 
-Microsoft Translator Pro is available for download in the following countries:
+Microsoft Translator Pro is available for download in the following countries from your app store:
 
 | Country |
 | --- |
@@ -96,7 +96,7 @@ Microsoft Translator Pro is available for download in the following countries:
 
 ## Region availability
 
-The app is currently available in the following regions within the respective clouds. Ensure you onboard the app in these specified regions.
+The app is currently available for Azure AI Translator resources created in the following regions within the respective clouds. Ensure you onboard the app to your resource located in these specified regions.
 
 **Azure Cloud (public)**
 
