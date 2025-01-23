@@ -27,9 +27,6 @@ zone_pivot_groups: azure-ai-models-deployment
     * **Version**: `2`
     * **Deployment type**: Global standard
 
-> [!TIP]
-> For a complete tutorial to deploy Azure AI model inference, Azure AI Services, and Azure AI projects with Bicep, see [../../how-to/quickstart-deploy-and-configure.md].
-
 ## Add a model deployment with custom content filtering
 
 1. Use the template `ai-services-content-filter-template.bicep` to describe the content filter policy:
