@@ -229,6 +229,11 @@
             "source_path_from_root": "/articles/ai-studio/ai-services/faq.yml",
             "redirect_url": "/azure/ai-foundry/model-inference/faq",
             "redirect_document_id": false
+          },
+          {
+              "source_path_from_root": "/articles/ai-studio/how-to/data-image-add.md",
+              "redirect_url": "/azure/ai-studio/quickstarts/multimodal-vision",
+              "redirect_document_id": false
           }
     ]
 }
