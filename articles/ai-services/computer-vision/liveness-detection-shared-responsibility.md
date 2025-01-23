@@ -18,7 +18,7 @@ It's the shared responsibility between Azure and its customers to build a secure
 
 The following diagram shows how customers work with Azure to secure the connections end-to-end. 
 
-:::image type="content" source="media/secure-connection.png" alt-text="Azure liveness solution connection diagram":::
+:::image type="content" source="media/secure-connection.png" alt-text="Diagram that shows connections in an azure liveness solution." border="false":::
 
 Follow these guidelines to secure the connections:
 - Ensure your backend service acts as the orchestrator in liveness detection applications, using Azure's security infrastructure to initiate liveness detection sessions and examine the results. The customer is responsible for securing their backend service.

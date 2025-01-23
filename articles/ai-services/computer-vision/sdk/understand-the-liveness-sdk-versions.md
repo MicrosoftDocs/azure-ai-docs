@@ -10,7 +10,7 @@ ms.date: 01/15/2025
 ms.topic: conceptual
 ---
 
-# Understand the liveness client-side SDK versions
+# Understand the liveness versions
 
 Microsoft regularly updates the liveness detection client SDK and service to improve security, reliability, and user convenience. It's important to stay current with these updates because the liveness detection field faces active and sophisticated attacks.
 
