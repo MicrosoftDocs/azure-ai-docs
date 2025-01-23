@@ -12,19 +12,19 @@ zone_pivot_groups: azure-ai-models-deployment
 
 ## Configure Microsoft Entra ID for inference
 
-Follow these steps to configure Microsoft Entra ID for inference if you are using **projects or hubs** in Azure AI Foundry. If your are not using them, Start from step 5 using the Azure portal.
+Follow these steps to configure Microsoft Entra ID for inference if you're using **projects or hubs** in Azure AI Foundry. If your are not using them, Start from step 5 using the Azure portal.
 
-1. Go to the [Azure portal](https://portal.azure.com) and locate the Azure AI Services resource you are using. If you are using Azure AI Foundry with projects or hubs, you can navigate to it by:
+1. Go to the [Azure portal](https://portal.azure.com) and locate the Azure AI Services resource you're using. If you're using Azure AI Foundry with projects or hubs, you can navigate to it by:
 
    1. Go to [Azure AI Foundry portal](https://ai.azure.com).
 
    2. On the landing page, select **Open management center**.
 
-   3. Go to the section **Connected resources** and select the connection to the Azure AI Services resource that you want to configure. If it's not listed, select **View all** to see the full list.
+   3. Go to the section **Connected resources** and select the connection to the Azure AI Services resource that you want to configure. If it isn't listed, select **View all** to see the full list.
 
    4. On the **Connection details** section, under **Resource**, select the name of the Azure resource. A new page opens.
 
-   5. You are now in [Azure portal](https://portal.azure.com) where you can manage all the aspects of the resource itself.
+   5. You're now in [Azure portal](https://portal.azure.com) where you can manage all the aspects of the resource itself.
 
 2. On the left navigation bar, select **Access control (IAM)**.
 
@@ -51,7 +51,7 @@ Notice that key-based access is still possible for users that already have keys 
 
 ## Use Microsoft Entra ID in your code
 
-Once Microsoft Entra ID has been configured in your resource, you need to update your code to use it when consuming the inference endpoint. The following example shows how to use a chat completions model:
+Once you configured Microsoft Entra ID in your resource, you need to update your code to use it when consuming the inference endpoint. The following example shows how to use a chat completions model:
 
 [!INCLUDE [code](../code-create-chat-client-entra.md)]
 
@@ -79,6 +79,6 @@ Even when your resource has Microsoft Entra ID configured, your projects may sti
 
 ## Disable key-based authentication in the resource
 
-Disabling key-based authentication is advisable when you’ve implemented Microsoft Entra ID and fully addressed compatibility or fallback concerns in all the applications that consume the service.
+Disabling key-based authentication is advisable when you implemented Microsoft Entra ID and fully addressed compatibility or fallback concerns in all the applications that consume the service.
 
 

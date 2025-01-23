@@ -61,9 +61,9 @@ In your console, follow these steps:
 
 1. Define the main deployment:
 
-    __deploy-simple-entra-id.bicep__
+    __deploy-entra-id.bicep__
 
-    :::code language="bicep" source="~/azureai-model-inference-bicep/infra/deploy-simple-entra-id.bicep":::
+    :::code language="bicep" source="~/azureai-model-inference-bicep/infra/deploy-entra-id.bicep":::
 
 2. Log into Azure:
 
@@ -86,7 +86,7 @@ In your console, follow these steps:
     az deployment group create \
       --resource-group $RESOURCE_GROUP \
       --securityPrincipalId $SECURITY_PRINCIPAL_ID
-      --template-file deploy-simple-entra-id.bicep
+      --template-file deploy-entra-id.bicep
     ```
 
 7. The template outputs the Azure AI model inference endpoint that you can use to consume any of the model deployments you have created.
