@@ -17,6 +17,9 @@ ms.date: 07/26/2024
 
 [!INCLUDE [dev v1](../includes/machine-learning-dev-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
+[!INCLUDE [cli v1 deprecation](../includes/machine-learning-cli-v1-deprecation.md)]
 
 In this document, you learn how to configure a private endpoint for your Azure Machine Learning workspace. For information on creating a virtual network for Azure Machine Learning, see [Virtual network isolation and privacy overview](../how-to-network-security-overview.md).
 
@@ -179,7 +182,7 @@ The Azure CLI [extension 1.0 for machine learning](reference-azure-machine-learn
 
 ## Enable public access
 
-In some situations, you may want to allow someone to connect to your secured workspace over a public endpoint, instead of through the VNet. Or you may want to remove the workspace from the VNet and re-enable public access.
+In some situations, you might want to allow someone to connect to your secured workspace over a public endpoint, instead of through the VNet. Or you might want to remove the workspace from the VNet and re-enable public access.
 
 > [!IMPORTANT]
 > Enabling public access doesn't remove any private endpoints that exist. All communications between components behind the VNet that the private endpoint(s) connect to are still secured. It enables public access only to the workspace, in addition to the private access through any private endpoints.

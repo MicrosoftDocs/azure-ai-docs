@@ -19,6 +19,8 @@ adobe-target: true
 
 [!INCLUDE [sdk & cli v1](../includes/machine-learning-dev-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 Learn how to deploy your machine learning or deep learning model as a web service in the Azure cloud.
 
 [!INCLUDE [endpoints-option](../includes/machine-learning-endpoints-preview-note.md)]
@@ -495,7 +497,7 @@ For more information, see the documentation for [Model.deploy()](/python/api/azu
 
 ## Call your remote webservice
 
-When you deploy remotely, you may have key authentication enabled. The example below shows how to get your service key with Python in order to make an inference request.
+When you deploy remotely, you might have key authentication enabled. The example below shows how to get your service key with Python in order to make an inference request.
 
 [!Notebook-python[] (~/azureml-examples-archive/v1/python-sdk/tutorials/deploy-local/1.deploy-local.ipynb?name=call-remote-web-service-code)]
 

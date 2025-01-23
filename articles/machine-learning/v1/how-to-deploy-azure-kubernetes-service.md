@@ -16,6 +16,8 @@ ms.date: 09/09/2024
 
 # Deploy a model to an Azure Kubernetes Service cluster with v1
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 > [!IMPORTANT]
 > This article explains how to use the Azure Machine Learning CLI (v1) and Azure Machine Learning SDK for Python (v1) to deploy a model. For the recommended approach for v2, see [Deploy and score a machine learning model by using an online endpoint](/azure/machine-learning/how-to-deploy-managed-online-endpoints).
 

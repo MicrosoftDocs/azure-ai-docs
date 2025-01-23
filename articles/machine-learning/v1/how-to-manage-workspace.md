@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5, fasttrack-edit, sdkv1, devx-track-python
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you create, view, and delete [**Azure Machine Learning workspaces**](../concept-workspace.md) for [Azure Machine Learning](../overview-what-is-azure-machine-learning.md), using the [SDK for Python](/python/api/overview/azure/ml/).  
 
 As your needs change or requirements for automation increase you can also manage workspaces [using the CLI](reference-azure-machine-learning-cli.md),  or [via the VS Code extension](../how-to-setup-vs-code.md).

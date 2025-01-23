@@ -15,6 +15,8 @@ ms.date: 11/04/2022
 
 # Troubleshoot "cannot import name 'SerializationError'"
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 When using Azure Machine Learning, you may receive one of the following errors:
 
 * `cannot import name 'SerializationError'`

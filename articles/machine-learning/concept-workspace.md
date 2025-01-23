@@ -101,31 +101,45 @@ There are multiple ways to create a workspace. To get started, use one of the fo
 * Use the [VS Code extension](how-to-manage-resources-vscode.md#create-a-workspace) if you work in Visual Studio Code.
 
 To automate workspace creation using your preferred security settings:
-* [Azure Resource Manager / Bicep templates](how-to-create-workspace-template.md) provide a declarative syntax to deploy Azure resources. An alternative option is to use [Terraform](how-to-manage-workspace-terraform.md). Also see the [Bicep template](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/) or [Terraform template](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure).
+
 :::moniker range="azureml-api-2"
+* [Azure Resource Manager / Bicep templates](how-to-create-workspace-template.md) provide a declarative syntax to deploy Azure resources. An alternative option is to use [Terraform](how-to-manage-workspace-terraform.md). Also see the [Bicep template](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/) or [Terraform template](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure).
 * Use the [Azure Machine Learning CLI](how-to-configure-cli.md) or [Azure Machine Learning SDK for Python](how-to-manage-workspace.md?tabs=python#create-a-workspace) for prototyping and as part of your [MLOps workflows](concept-model-management-and-deployment.md).
+* Use [REST APIs](how-to-manage-rest.md) directly in scripting environment, for platform integration or in MLOps workflows.
 :::moniker-end
 :::moniker range="azureml-api-1"
-* Use the [Azure Machine Learning CLI](./v1/reference-azure-machine-learning-cli.md) or [Azure Machine Learning SDK for Python](how-to-manage-workspace.md?tabs=python#create-a-workspace) for prototyping and as part of your [MLOps workflows](concept-model-management-and-deployment.md).
-:::moniker-end
+* [Azure Resource Manager / Bicep templates](how-to-create-workspace-template.md) provide a declarative syntax to deploy Azure resources. An alternative option is to use [Terraform](how-to-manage-workspace-terraform.md). Also see the [Bicep template](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/) or [Terraform template](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure).
+* Use the [Azure Machine Learning CLI v1](./v1/reference-azure-machine-learning-cli.md) or [Azure Machine Learning SDK v1 for Python](how-to-manage-workspace.md?tabs=python#create-a-workspace) for prototyping and as part of your [MLOps workflows](concept-model-management-and-deployment.md).
+
+    [!INCLUDE [v1 deprecation](includes/sdk-v1-deprecation.md)]
+
+    [!INCLUDE [v1 cli deprecation](includes/machine-learning-cli-v1-deprecation.md)]
+
 * Use [REST APIs](how-to-manage-rest.md) directly in scripting environment, for platform integration or in MLOps workflows.
+:::moniker-end
 
 ## Tools for workspace interaction and management
 
 Once your workspace is set up, you can interact with it in the following ways:
 
+:::moniker range="azureml-api-2"
 + On the web:
     + [Azure Machine Learning studio ](https://ml.azure.com) 
     + [Azure Machine Learning designer](concept-designer.md) 
-:::moniker range="azureml-api-2"
 + In any Python environment with the [Azure Machine Learning SDK](https://aka.ms/sdk-v2-install).
 + On the command line, using the Azure Machine Learning [CLI extension v2](how-to-configure-cli.md)
++ [Azure Machine Learning VS Code Extension](how-to-manage-resources-vscode.md#workspaces)
 :::moniker-end
 :::moniker range="azureml-api-1"
-+ In any Python environment with the [Azure Machine Learning SDK](/python/api/overview/azure/ml/)
++ On the web:
+    + [Azure Machine Learning studio ](https://ml.azure.com) 
+    + [Azure Machine Learning designer](concept-designer.md) 
++ In any Python environment with the [Azure Machine Learning SDK v1](/python/api/overview/azure/ml/)
+    [!INCLUDE [v1 deprecation](includes/sdk-v1-deprecation.md)]
 + On the command line, using the Azure Machine Learning [CLI extension v1](./v1/reference-azure-machine-learning-cli.md)
-:::moniker-end
+    [!INCLUDE [v1 cli deprecation](includes/machine-learning-cli-v1-deprecation.md)]
 + [Azure Machine Learning VS Code Extension](how-to-manage-resources-vscode.md#workspaces)
+:::moniker-end
 
 The following workspace management tasks are available in each interface.
 

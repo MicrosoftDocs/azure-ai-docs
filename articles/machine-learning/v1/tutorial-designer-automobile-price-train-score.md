@@ -15,6 +15,8 @@ ms.custom: UpdateFrequency5, designer, build-2023
 
 # Tutorial: Designer - train a no-code regression model
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 Train a linear regression model that predicts car prices using the Azure Machine Learning designer. This tutorial is part one of a two-part series.
 
 This tutorial uses the Azure Machine Learning designer, for more information, see [What is Azure Machine Learning designer?](concept-designer.md)

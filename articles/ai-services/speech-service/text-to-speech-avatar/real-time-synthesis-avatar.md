@@ -5,7 +5,7 @@ description: Learn how to use text to speech avatar with real-time synthesis.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 11/19/2024
+ms.date: 1/13/2025
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban

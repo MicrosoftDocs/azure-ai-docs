@@ -19,6 +19,10 @@ monikerRange: 'azureml-api-1'
 
 [!INCLUDE [dev v1](../includes/machine-learning-dev-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
+[!INCLUDE [cli v1 deprecation](../includes/machine-learning-cli-v1-deprecation.md)]
+
 This article applies to the first version (v1) of the Azure Machine Learning CLI & SDK. For version two (v2), see  [How Azure Machine Learning works (v2)](../concept-azure-machine-learning-v2.md).
 
 Learn about the architecture and concepts for [Azure Machine Learning](../overview-what-is-azure-machine-learning.md).  This article gives you a high-level understanding of the components and how they work together to assist in the process of building, deploying, and maintaining machine learning models.  

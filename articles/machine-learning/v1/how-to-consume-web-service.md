@@ -18,6 +18,7 @@ ms.custom: UpdateFrequency5, devx-track-python, devx-track-csharp, cliv1, sdkv1,
 
 # Consume an Azure Machine Learning model deployed as a web service
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 Deploying an Azure Machine Learning model as a web service creates a REST API endpoint. You can send data to this endpoint and receive the prediction returned by the model. In this document, learn how to create clients for the web service by using C#, Go, Java, and Python.
 

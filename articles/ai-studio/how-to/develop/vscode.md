@@ -86,7 +86,7 @@ To provision an entirely new set of resources, including a new hub and project, 
 
 ## Use network isolation
 
-If your Azure AI Foundry project is configured for network isolation you may need to open ports to the internet, For more information, visit [How to configure network isolation](../configure-managed-network.md#scenario-use-visual-studio-code).
+If your Azure AI Foundry project is configured for network isolation you might need to open ports to the internet, For more information, visit [How to configure network isolation](../configure-managed-network.md#scenario-use-visual-studio-code).
 
 ## Remarks
 

@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5, devx-track-python, automl, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 Azure Machine Learning's automated ML capability helps you discover high-performing models without you reimplementing every possible approach. Combined with Azure Machine Learning pipelines, you can create deployable workflows that can quickly discover the algorithm that works best for your data. This article will show you how to efficiently join a data preparation step to an automated ML step. Automated ML can quickly discover the algorithm that works best for your data, while putting you on the road to MLOps and model lifecycle operationalization with pipelines.
 
 ## Prerequisites
@@ -418,7 +420,7 @@ model_output_port.download('.', show_progress=True)
 
 Downloaded files are written to the subdirectory `azureml/{run.id}/`. The metrics file is JSON-formatted and can be converted into a Pandas dataframe for examination.
 
-For local processing, you may need to install relevant packages, such as Pandas, Pickle, the Azure Machine Learning SDK, and so forth. For this example, it's likely that the best model found by automated ML will depend on XGBoost.
+For local processing, you might need to install relevant packages, such as Pandas, Pickle, the Azure Machine Learning SDK, and so forth. For this example, it's likely that the best model found by automated ML will depend on XGBoost.
 
 ```bash
 !pip install xgboost==0.90

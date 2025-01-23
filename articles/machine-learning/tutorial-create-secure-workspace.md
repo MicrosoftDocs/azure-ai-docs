@@ -51,7 +51,7 @@ The following table lists several other ways that you might connect to the secur
 Use the following steps to create an Azure Virtual Machine to use as a jump box. From the VM desktop, you can then use the browser on the VM to connect to resources inside the managed virtual network, such as Azure Machine Learning studio. Or you can install development tools on the VM. 
 
 > [!TIP]
-> The following steps create a Windows 11 enterprise VM. Depending on your requirements, you may want to select a different VM image. The Windows 11 (or 10) enterprise image is useful if you need to join the VM to your organization's domain.
+> The following steps create a Windows 11 enterprise VM. Depending on your requirements, you might want to select a different VM image. The Windows 11 (or 10) enterprise image is useful if you need to join the VM to your organization's domain.
 
 1. In the [Azure portal](https://portal.azure.com), select the portal menu in the upper left corner. From the menu, select __+ Create a resource__ and then enter __Virtual Machine__. Select the __Virtual Machine__ entry, and then select __Create__.
 

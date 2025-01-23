@@ -17,6 +17,7 @@ ms.custom: UpdateFrequency5, tracking-python, references_regions, build-2023
 
 [!INCLUDE [SDK v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In this article, you learn how to secure training environments with a virtual network in Azure Machine Learning using the Python SDK v1.
 
@@ -159,7 +160,7 @@ To create a compute instance or compute cluster with no public IP, use the Azure
 
 The following configurations are in addition to those listed in the [Prerequisites](#prerequisites) section, and are specific to **creating** compute instances/clusters that have a public IP:
 
-+ If you put multiple compute instances/clusters in one virtual network, you may need to request a quota increase for one or more of your resources. The Machine Learning compute instance or cluster automatically allocates networking resources __in the resource group that contains the virtual network__. For each compute instance or cluster, the service allocates the following resources:
++ If you put multiple compute instances/clusters in one virtual network, you might need to request a quota increase for one or more of your resources. The Machine Learning compute instance or cluster automatically allocates networking resources __in the resource group that contains the virtual network__. For each compute instance or cluster, the service allocates the following resources:
 
     * A network security group (NSG) is automatically created. This NSG allows inbound TCP traffic on port 44224 from the `AzureMachineLearning` service tag.
 

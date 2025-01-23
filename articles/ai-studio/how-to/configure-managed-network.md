@@ -634,7 +634,7 @@ During hub creation, select __Provision managed network proactively at creation_
 The following example shows how to provision a managed virtual network during hub creation. The `--provision-network-now` flag is in preview.
     
 ```azurecli
-az ml workspace create -n myworkspace -g my_resource_group --kind hub --managed-network AllowInternetOutbound --provision-network-now
+az ml workspace create -n myworkspace -g my_resource_group --kind hub --managed-network AllowInternetOutbound --provision-network-now true
 ```
 
 The following example shows how to provision a managed virtual network.
@@ -654,7 +654,7 @@ az ml workspace show -n my_ai_hub_name -g my_resource_group --query managed_netw
 The following example shows how to provision a managed virtual network during hub creation. The `--provision-network-now` flag is in preview.
     
 ```azurecli
-az ml workspace create -n myworkspace -g my_resource_group --managed-network AllowInternetOutbound --provision-network-now
+az ml workspace create -n myworkspace -g my_resource_group --managed-network AllowInternetOutbound --provision-network-now true
 ```
 
 The following example shows how to provision a managed virtual network:
@@ -786,7 +786,7 @@ The hosts in this section are used to install Visual Studio Code packages to est
 | `code.visualstudio.com` | Required to download and install VS Code desktop. This host isn't required for VS Code Web. |
 | `update.code.visualstudio.com`<br>`*.vo.msecnd.net` | Used to retrieve VS Code server bits that are installed on the compute instance through a setup script. |
 | `marketplace.visualstudio.com`<br>`vscode.blob.core.windows.net`<br>`*.gallerycdn.vsassets.io` | Required to download and install VS Code extensions. These hosts enable the remote connection to compute instances. For more information, see [Get started with Azure AI Foundry projects in VS Code](./develop/vscode.md). |
-| `https://github.com/microsoft/vscode-tools-for-ai/tree/master/azureml_remote_websocket_server/*` | Used to retrieve websocket server bits that are installed on the compute instance. The websocket server is used to transmit requests from Visual Studio Code client (desktop application) to Visual Studio Code server running on the compute instance. |
+| `https://github.com/microsoft/vscode-tools-for-ai/tree/master/azureml_remote_websocket_server/*`<br>`raw.githubusercontent.com` | Used to retrieve websocket server bits that are installed on the compute instance. The websocket server is used to transmit requests from Visual Studio Code client (desktop application) to Visual Studio Code server running on the compute instance. |
 | `vscode.download.prss.microsoft.com` | Used for Visual Studio Code download CDN |
 
 #### Ports

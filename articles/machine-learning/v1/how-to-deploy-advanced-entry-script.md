@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5, deploy, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 This article explains how to write entry scripts for specialized use cases.
 
 ## Prerequisites

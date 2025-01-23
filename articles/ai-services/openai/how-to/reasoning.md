@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's advanced o1 series reasoning models
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 12/17/2024
+ms.date: 01/16/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 ---
@@ -38,31 +38,47 @@ Once access has been granted, you'll need to create a deployment for each model.
 | `o1-preview` | See [models page](../concepts/models.md#global-standard-model-availability). |
 | `o1-mini` | See [models page](../concepts/models.md#global-standard-model-availability). |
 
-## API support
+## API & feature support
 
-Initial support for the **o1-preview** and **o1-mini** preview models was added in API version `2024-09-01-preview`. 
+| **Feature**     | **o1**, **2024-12-17**   | **o1-preview**, **2024-09-12**   | **o1-mini**, **2024-09-12**   |
+|:-------------------|:--------------------------:|:--------------------------:|:-------------------------------:|
+| **API Version**       | `2024-12-01-preview` | `2024-09-01-preview`  <br> `2024-10-01-preview` <br> `2024-12-01-preview`    | `2024-09-01-preview`  <br> `2024-10-01-preview` <br> `2024-12-01-preview`    |
+| **[Developer Messages](#developer-messages)** | ✅ | - | - |
+| **[Structured Outputs](./structured-outputs.md)** | ✅ | - | - |
+| **[Context Window](../concepts/models.md#o1-and-o1-mini-models-limited-access)** | Input: 200,000 <br> Output: 100,000 | Input: 128,000  <br> Output: 32,768 | Input: 128,000  <br> Output: 65,536 |
+| **[Reasoning effort](#reasoning-effort)** | ✅ | - | - |
+| **[Vision Support](./gpt-with-vision.md)** |✅ | - | - |
+| Functions/Tools | ✅  | -  |  - |
+| `max_completion_tokens` |✅ |✅ |✅ |
+| System Messages | - | - | - |
 
-As part of this release, the `max_tokens` parameter was deprecated and replaced with the new `max_completion_tokens` parameter. **o1 series** models will only work with the `max_completion_tokens` parameter.
+**o1 series** models will only work with the `max_completion_tokens` parameter.
 
-The latest most capable **o1 series** model is `o1` **Version: 2024-12-17**. This  general availability (GA) model should be used with API version `2024-12-01-preview`.
+> [!IMPORTANT]
+> There is a known issue with the `o1` model and the `tool_choice` parameter. Currently function calls that include the optional `tool_choice` parameter will fail. This page will be updated once the issue is resolved.
 
-### 2024-12-01-preview
+### Not Supported
 
-`2024-12-01-preview` adds support for the new `reasoning_effort` parameter, [structured outputs](./structured-outputs.md), and developer messages. The older preview reasoning models do not currently support these features. For reasoning models, these features are currently only available with `o1` **Version: 2024-12-17**.
+The following are currently unsupported with o1-series models:
+
+- System Messages
+- Streaming
+- Parallel tool calling
+- `temperature`, `top_p`, `presence_penalty`, `frequency_penalty`, `logprobs`, `top_logprobs`, `logit_bias`, `max_tokens`
 
 ## Usage
 
-These models do not currently support the same set of parameters as other models that use the chat completions API. Only a limited subset is currently supported. Using standard parameters like `temperature` and `top_p` will result in errors.
+These models [don't currently support the same set of parameters](#api--feature-support) as other models that use the chat completions API. 
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
-You will need to upgrade your OpenAI client library for access to the latest parameters.
+You'll need to upgrade your OpenAI client library for access to the latest parameters.
 
 ```cmd
 pip install openai --upgrade
 ```
 
-If you are new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](../how-to/managed-identity.md).
+If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](../how-to/managed-identity.md).
 
 ```python
 from openai import AzureOpenAI
@@ -218,10 +234,10 @@ print(response.model_dump_json(indent=2))
 }
 ```
 
-
+## Reasoning effort
 
 > [!NOTE]
-> Reasoning models have `reasoning_tokens` as part of `completion_tokens_details` in the model response. These are hidden tokens that are not returned as part of the message response content but are used by the model to help generate a final answer to your request. `2024-12-01-preview` adds an additional new parameter `reasoning_effort` which can be set to `low`, `medium`, or `high` with the latest `o1` model. The higher the effort setting, the longer the model will spend processing the request, which will generally result in a larger number of `reasoning_tokens`.
+> Reasoning models have `reasoning_tokens` as part of `completion_tokens_details` in the model response. These are hidden tokens that aren't returned as part of the message response content but are used by the model to help generate a final answer to your request. `2024-12-01-preview` adds an additional new parameter `reasoning_effort` which can be set to `low`, `medium`, or `high` with the latest `o1` model. The higher the effort setting, the longer the model will spend processing the request, which will generally result in a larger number of `reasoning_tokens`.
 
 ## Developer messages
 
@@ -234,7 +250,7 @@ Adding a developer message to the previous code example would look as follows:
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
-You will need to upgrade your OpenAI client library for access to the latest parameters.
+You'll need to upgrade your OpenAI client library for access to the latest parameters.
 
 ```cmd
 pip install openai --upgrade

@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5, devx-track-python, data4ml, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you learn how to collect data from models deployed to web service endpoints in Azure Kubernetes Service (AKS) or Azure Container Instances (ACI). Use [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview) to collect the following data from an endpoint:
 * Output data
 * Responses
@@ -172,7 +174,7 @@ service = Webservice(name="service-name", workspace=ws)
 logs = service.get_logs()
 ```
 
-If you have multiple Tenants, you may need to add the following authenticate code before `ws = Workspace.from_config()`
+If you have multiple Tenants, you might need to add the following authenticate code before `ws = Workspace.from_config()`
 
 ```python
 from azureml.core.authentication import InteractiveLoginAuthentication

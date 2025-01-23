@@ -15,6 +15,8 @@ ms.custom: UpdateFrequency5, designer
 
 # Use pipeline parameters in the designer to build versatile pipelines
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 Use pipeline parameters to build flexible pipelines in the designer. Pipeline parameters let you dynamically set values at runtime to encapsulate pipeline logic and reuse assets.
 
 Pipeline parameters are especially useful when resubmitting a pipeline job, [retraining models](how-to-retrain-designer.md), or [performing batch predictions](how-to-run-batch-predictions-designer.md).

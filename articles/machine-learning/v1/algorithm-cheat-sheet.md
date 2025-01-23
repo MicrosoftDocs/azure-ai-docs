@@ -14,6 +14,8 @@ adobe-target: true
 ---
 # Machine Learning Algorithm Cheat Sheet for Azure Machine Learning designer
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 The **Azure Machine Learning Algorithm Cheat Sheet** helps you choose the right algorithm from the designer for a predictive analytics model.
 
 >[!Note]

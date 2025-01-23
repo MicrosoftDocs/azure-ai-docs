@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5, devx-track-python, responsible-ml, mktng-kw-nov2021
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this how-to guide, you learn to use the interpretability package of the Azure Machine Learning Python SDK to perform the following tasks:
 
 

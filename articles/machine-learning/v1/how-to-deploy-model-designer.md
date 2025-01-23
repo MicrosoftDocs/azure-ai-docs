@@ -15,6 +15,8 @@ ms.custom: UpdateFrequency5, deploy, studio, designer
 
 # Use the studio to deploy models trained in the designer
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you learn how to deploy a designer model as an online (real-time) endpoint in Azure Machine Learning studio.
 
 Once registered or downloaded, you can use designer trained models just like any other model. Exported models can be deployed in use cases such as internet of things (IoT) and local deployments.
@@ -38,7 +40,7 @@ Models trained in the designer can also be deployed through the SDK or command-l
     - [Train Model Component](../algorithm-module-reference/train-model.md)
     - [Train Anomaly Detection Model component](../algorithm-module-reference/train-anomaly-detection-model.md)
     - [Train Clustering Model component](../algorithm-module-reference/train-clustering-model.md)
-    - [Train Pytorch Model component](../algorithm-module-reference/train-pytorch-model.md)
+    - [Train PyTorch Model component](../algorithm-module-reference/train-pytorch-model.md)
     - [Train SVD Recommender component](../algorithm-module-reference/train-svd-recommender.md)
     - [Train Vowpal Wabbit Model component](../algorithm-module-reference/train-vowpal-wabbit-model.md)
     - [Train Wide & Deep Model component](../algorithm-module-reference/train-wide-and-deep-recommender.md)
@@ -176,7 +178,7 @@ image_transform = [
 ]
 transform = ImageTransformationDirectory.create(transforms=image_transform).torch_transform
 
-# download _samples.json file under Outputs+logs tab in the right pane of Train Pytorch Model component
+# download _samples.json file under Outputs+logs tab in the right pane of Train PyTorch Model component
 sample_file_path = '_samples.json'
 with open(sample_file_path, 'r') as f:
     sample_data = json.load(f)

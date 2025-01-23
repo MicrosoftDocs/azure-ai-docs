@@ -1,7 +1,7 @@
 ---
 title: 'Customize a model with Azure OpenAI Service'
 titleSuffix: Azure OpenAI
-description: Learn how to create your own customized model with Azure OpenAI Service by using Python, the REST APIs, or Azure OpenAI Studio.
+description: Learn how to create your own customized model with Azure OpenAI Service by using Python, the REST APIs, or Azure AI Foundry portal.
 #services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
@@ -28,7 +28,7 @@ We use LoRA, or low rank approximation, to fine-tune models in a way that reduce
 
 ::: zone pivot="programming-language-studio"
 
-[!INCLUDE [Azure OpenAI Studio fine-tuning](../includes/fine-tuning-unified.md)]
+[!INCLUDE [Azure AI Foundry portal fine-tuning](../includes/fine-tuning-unified.md)]
 
 ::: zone-end
 
@@ -159,7 +159,7 @@ In order to successfully access fine-tuning, you need **Cognitive Services OpenA
 
 ### Why did my upload fail?
 
-If your file upload fails in Azure OpenAI Studio, you can view the error message under “data files” in Azure OpenAI Studio. Hover your mouse over where it says “error” (under the status column) and an explanation of the failure will be displayed.
+If your file upload fails in Azure AI Foundry portal, you can view the error message under **Data files** in Azure AI Foundry portal. Hover your mouse over where it says “error” (under the status column) and an explanation of the failure will be displayed.
 
 :::image type="content" source="../media/fine-tuning/error.png" alt-text="Screenshot of fine-tuning error message." lightbox="../media/fine-tuning/error.png":::
 

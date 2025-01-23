@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5, devx-track-python, contperf-fy21q, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 
 This tutorial shows you how to train a machine learning model in Azure Machine Learning. This tutorial is *part 2 of a two-part tutorial series*.
 

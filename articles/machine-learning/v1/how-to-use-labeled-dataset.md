@@ -15,6 +15,8 @@ ms.date: 08/17/2022
 
 # Create and explore Azure Machine Learning dataset with labels
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you'll learn how to export the data labels from an Azure Machine Learning data labeling project and load them into popular formats such as, a pandas dataframe for data exploration. 
 
 ## What are datasets with labels 

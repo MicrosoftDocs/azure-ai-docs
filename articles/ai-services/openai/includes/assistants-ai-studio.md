@@ -1,7 +1,7 @@
 ---
 title: Quickstart - getting started with Azure OpenAI assistants (preview) in Azure AI Foundry portal
 titleSuffix: Azure OpenAI
-description: Walkthrough on how to get started with Azure OpenAI assistants with new features like code interpreter in Azure AI Foundry portal (Preview).
+description: Walkthrough on how to get started with Azure OpenAI assistants with new features like code interpreter in Azure AI Foundry portal.
 manager: nitinme
 ms.service: azure-ai-studio
 ms.custom:
@@ -21,7 +21,7 @@ ms.author: aahi
 - An [Azure AI hub resource](../../../ai-studio/how-to/create-azure-ai-resource.md) with a model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 - An [Azure AI project](../../../ai-studio/how-to/create-projects.md) in Azure AI Foundry portal.
 
-## Go to the Azure AI Foundry portal (Preview)
+## Go to the Azure AI Foundry portal
 
 [Azure AI Foundry](https://ai.azure.com) lets you use Assistants v2 which provides several upgrades such as the [file search](../how-to/file-search.md) tool which is faster and supports more files.
 
