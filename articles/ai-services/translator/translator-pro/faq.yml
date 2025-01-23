@@ -16,9 +16,11 @@ sections:
   - name: General
     questions: |
     
-       ####  What is Microsoft Translator Pro?
+      
        answer: |
 
+         **What is Microsoft Translator Pro?**
+         
           Microsoft Translator Pro is an advanced mobile application that enables seamless, real-time, speech-to-speech translation within the enterprise ecosystem. The app is designed to help organizations communicate effectively across languages and cultures, enabling employees to collaborate, share ideas, and engage with customers and partners in their preferred language.
 
      - question: |
