@@ -395,6 +395,7 @@ items:
   - name: Reference
     items:
     - name: Azure AI Projects SDK
+      href: /python/api/overview/azure/ai-projects-readme
     - name: Azure AI services SDKs
       displayName: client library libraries development kit
       href: ../ai-services/reference/sdk-package-resources.md?context=/azure/ai-studio/context/context
