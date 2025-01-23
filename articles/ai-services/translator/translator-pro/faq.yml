@@ -16,7 +16,8 @@ sections:
   - name: General
     questions: |
     
-      -
+      - question: |
+      
        answer: |
 
          **What is Microsoft Translator Pro?**
