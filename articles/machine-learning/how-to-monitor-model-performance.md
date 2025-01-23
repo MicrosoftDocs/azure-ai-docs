@@ -10,7 +10,7 @@ author: msakande
 ms.author: mopeakande
 ms.reviewer: alehughes
 ms.date: 01/29/2024
-ms.custom: devplatv2, update-code, devx-track-azurecli
+ms.custom: devplatv2, update-code2, devx-track-azurecli
 ---
 
 # Monitor performance of models deployed to production
@@ -207,6 +207,8 @@ To enable feature importance with any of your signals (such as data drift or dat
  
 After enabling feature importance, you'll see a feature importance for each feature you're monitoring in the Azure Machine Learning model monitoring studio UI.
 
+You can enable/disable alerts for each signal by setting `alert_enabled` property while using SDK or CLI.
+
 You can use Azure CLI, the Python SDK, or the studio for advanced setup of model monitoring.
 
 # [Azure CLI](#tab/azure-cli)
@@ -316,7 +318,8 @@ metric_thresholds = DataDriftMetricThreshold(
 advanced_data_drift = DataDriftSignal(
     reference_data=reference_data_training,
     features=features,
-    metric_thresholds=metric_thresholds
+    metric_thresholds=metric_thresholds,
+    alert_enabled=True
 )
 
 # create an advanced prediction drift signal
@@ -328,7 +331,8 @@ metric_thresholds = PredictionDriftMetricThreshold(
 
 advanced_prediction_drift = PredictionDriftSignal(
     reference_data=reference_data_training,
-    metric_thresholds=metric_thresholds
+    metric_thresholds=metric_thresholds,
+    alert_enabled=True
 )
 
 # create an advanced data quality signal
@@ -347,7 +351,7 @@ advanced_data_quality = DataQualitySignal(
     reference_data=reference_data_training,
     features=features,
     metric_thresholds=metric_thresholds,
-    alert_enabled=False
+    alert_enabled=True
 )
 
 # create feature attribution drift signal
@@ -356,7 +360,7 @@ metric_thresholds = FeatureAttributionDriftMetricThreshold(normalized_discounted
 feature_attribution_drift = FeatureAttributionDriftSignal(
     reference_data=reference_data_training,
     metric_thresholds=metric_thresholds,
-    alert_enabled=False
+    alert_enabled=True
 )
 
 # put all monitoring signals in a dictionary
@@ -648,7 +652,8 @@ metric_thresholds = ModelPerformanceMetricThreshold(
 model_performance = ModelPerformanceSignal(
     production_data=production_data,
     reference_data=reference_data_ground_truth,
-    metric_thresholds=metric_thresholds
+    metric_thresholds=metric_thresholds,
+    alert_enabled=True
 )
 
 # put all monitoring signals in a dictionary
@@ -844,7 +849,8 @@ advanced_data_drift = DataDriftSignal(
     production_data=production_data,
     reference_data=reference_data_training,
     features=features,
-    metric_thresholds=metric_thresholds
+    metric_thresholds=metric_thresholds,
+    alert_enabled=True
 )
 
 
@@ -864,7 +870,7 @@ advanced_data_quality = DataQualitySignal(
     reference_data=reference_data_training,
     features=features,
     metric_thresholds=metric_thresholds,
-    alert_enabled="False"
+    alert_enabled=True
 )
 
 # put all monitoring signals in a dictionary

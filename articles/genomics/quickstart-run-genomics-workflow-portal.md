@@ -7,6 +7,7 @@ ms.service: genomics
 ms.topic: quickstart
 ms.date: 01/11/2019
 ms.custom: devx-track-python, mode-other
+ms.hidden: true
 ---
 
 # Quickstart: Run a workflow through the Microsoft Genomics service

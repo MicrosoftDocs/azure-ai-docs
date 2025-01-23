@@ -22,7 +22,7 @@ Models in the model catalog are continually refreshed with newer and more capabl
 > This article describes deprecation and retirement only for models that can be deployed to __serverless APIs__, not managed compute. To learn more about the differences between deployment to serverless APIs and managed computes, see [Model Catalog and Collections](concept-model-catalog.md).
 
 > [!NOTE]
-> Azure OpenAI models in the model catalog are provided through Azure OpenAI Service. For information about Azure Open AI model deprecation and retirement, see the [Azure OpenAI service product documentation](/azure/ai-services/openai/concepts/model-retirements).
+> Azure OpenAI models in the model catalog are provided through Azure OpenAI Service. For information about Azure OpenAI model deprecation and retirement, see the [Azure OpenAI service product documentation](/azure/ai-services/openai/concepts/model-retirements).
 
 ## Model lifecycle stages
 

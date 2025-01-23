@@ -97,7 +97,7 @@ items:
     - name: Azure CLI
       href: /cli/azure/cognitiveservices#az_cognitiveservices_list
     - name: Azure PowerShell
-      href: /powershell/module/azurerm.cognitiveservices/
+      href: /powershell/module/az.cognitiveservices/
 - name: Image Analysis
   items:
   - name: Image Analysis overview
@@ -275,7 +275,7 @@ items:
     - name: Azure CLI
       href: /cli/azure/cognitiveservices#az_cognitiveservices_list
     - name: Azure PowerShell
-      href: /powershell/module/azurerm.cognitiveservices/
+      href: /powershell/module/az.cognitiveservices/
 - name: Face
   items:
   - name: Face overview

@@ -43,22 +43,22 @@ AI service integration refers to internal connections to an Azure AI multi-servi
 | Canada Central​​ | ✅ | ✅ | ✅ |  |
 | Canada East​​ ​ |  | ✅ | |  |
 | East US​ | ✅ | ✅ | ✅ |  |
-| East US 2 ​ | ✅ | ✅ | ✅ | Basic, S1 |
-| ​Central US​​ | ✅ | ✅ | ✅ |  |
+| East US 2 ​ | ✅ | ✅ | ✅ | |
+| ​Central US​​ | ✅ | ✅ | ✅ | |
 | North Central US​ ​ | ✅ | ✅ | |  | 
-| South Central US​  | ✅ | ✅ | ✅ | All Tiers |
+| South Central US​  | ✅ | ✅ | ✅ | |
 | West US​ ​ | ✅ | ✅ | |  |
 | West US 2​ ​ | ✅ | ✅ | ✅ | |
-| West US 3​ | ✅ | ✅ |✅ | Basic, S1 |
+| West US 3​ | ✅ | ✅ |✅ | |
 | West Central US​ ​ | ✅ | ✅ | | |
 
 ### Europe
 
 | Region | AI service integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
-| North Europe​​ | ✅ | ✅ | ✅ | S2, S3, S3, S3 HD, L1, L2 |
+| North Europe​​ | ✅ | ✅ | ✅ | All tiers|
 | West Europe​​ <sup>1</sup>| ✅ | ✅ | ✅ | All Tiers |
-| France Central​​ | ✅ | ✅ | ✅ | |
+| France Central​​ | ✅ | ✅ | ✅ | Basic, S1|
 | Germany West Central​ <sup>1</sup>​| ✅ |  | ✅ | |
 | Italy North​​ |  |  | ✅ | |
 | Norway East​​ | ✅ |  | ✅ |  |
@@ -112,7 +112,7 @@ AI service integration refers to internal connections to an Azure AI multi-servi
 |--|--|--|--|--|
 | Arizona | ✅ | ✅  | | |
 | Texas |  | ✅ |  | |
-| Virginia | ✅ | ✅  | ✅ | All Tiers |
+| Virginia | ✅ | ✅  | ✅ | |
 
 ## Azure operated by 21Vianet
 

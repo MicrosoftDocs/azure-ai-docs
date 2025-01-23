@@ -24,7 +24,7 @@ There are restrictions and limits with respect to file size, model training, and
 
 ## When should I request deployment for a trained translation system?
 
-It may take several trainings to create the optimal translation system for your project. You may want to try using more training data or more carefully filtered data, if the `BLEU` score and/ or the test results aren't satisfactory. You should be strict and careful in designing your tuning set and your test set. Make certain your sets fully represent the terminology and style of material you want to translate. You can be more liberal in composing your training data, and experiment with different options. Request a system deployment when the translations in your system test results are satisfactory and you don't have more data to add to improve your trained system.
+It may take several trainings to create the optimal translation system for your project. You might want to try using more training data or more carefully filtered data, if the `BLEU` score and/ or the test results aren't satisfactory. You should be strict and careful in designing your tuning set and your test set. Make certain your sets fully represent the terminology and style of material you want to translate. You can be more liberal in composing your training data, and experiment with different options. Request a system deployment when the translations in your system test results are satisfactory and you don't have more data to add to improve your trained system.
 
 ## How many trained systems can be deployed in a project?
 

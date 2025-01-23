@@ -69,7 +69,7 @@ Get the connection ID of the Azure AI Search connection in the project. You can 
 conn_list = project_client.connections.list()
 conn_id = ""
 for conn in conn_list:
-    if conn.connection_type == "CognitiveSearch":
+    if conn.connection_type == "AZURE_AI_SEARCH":
         print(f"Connection ID: {conn.id}")
 ```
 # [C#](#tab/csharp)
@@ -97,8 +97,7 @@ conn_id =  "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-
 
 # Initialize agent AI search tool and add the search index connection ID and index name
 # TO DO: replace <your-index-name> with the name of the index you want to use
-ai_search = AzureAISearchTool()
-ai_search.add_index(conn_id, "<your-index-name>")
+ai_search = AzureAISearchTool(index_connection_id=conn_id, index_name="<your-index-name>")
 ```
 # [C#](#tab/csharp)
 ```csharp

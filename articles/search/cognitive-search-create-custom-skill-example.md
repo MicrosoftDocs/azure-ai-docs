@@ -6,7 +6,7 @@ author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 03/18/2024
+ms.date: 01/18/2025
 ms.custom:
   - devx-track-csharp
   - ignite-2023
@@ -308,7 +308,7 @@ namespace SampleSkills
 }
 ```
 
-Make sure to enter your own *key* value in the `key` constant based on the key you got when signing up for the Bing entity search API.
+Make sure to enter your own *key* value in the `key` constant based on the key you got when signing up for the Bing Entity search API.
 
 ## Test the function from Visual Studio
 

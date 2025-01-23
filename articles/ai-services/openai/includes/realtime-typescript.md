@@ -4,7 +4,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 12/26/2024
+ms.date: 1/21/2025
 ---
 
 ## Prerequisites
@@ -15,7 +15,7 @@ ms.date: 12/26/2024
 - An Azure OpenAI resource created in the East US 2 or Sweden Central regions. See [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).
 - Then, you need to deploy a `gpt-4o-realtime-preview` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md). 
 
-## Microsoft Entra ID prerequisites
+### Microsoft Entra ID prerequisites
 
 For the recommended keyless authentication with Microsoft Entra ID, you need to:
 - Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
@@ -60,22 +60,14 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Retrieve resource information
 
-#### [Microsoft Entra ID](#tab/javascript-keyless)
-
-[!INCLUDE [keyless-environment-variables](env-var-without-key.md)]
-
-#### [API key](#tab/javascript-key)
-
-[!INCLUDE [key-environment-variables](env-var-key.md)]
-
----
+[!INCLUDE [resource authentication](resource-authentication.md)]
 
 > [!CAUTION]
 > To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
-    
+
 ## Text in audio out
 
-#### [Microsoft Entra ID](#tab/typescript-keyless)
+#### [Microsoft Entra ID](#tab/keyless)
 
 1. Create the `text-in-audio-out.ts` file with the following code:
 
@@ -170,7 +162,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     node text-in-audio-out.js
     ```
 
-#### [API key](#tab/typescript-key)
+#### [API key](#tab/api-key)
 
 1. Create the `text-in-audio-out.ts` file with the following code:
 

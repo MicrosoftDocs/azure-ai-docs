@@ -123,7 +123,7 @@ This method trains the model on the tagged images you uploaded and returns an ID
 > [!TIP]
 > Train with selected tags
 >
-> You can optionally train on only a subset of your applied tags. You may want to do this if you haven't applied enough of certain tags yet, but you do have enough of others. Add the optional JSON content to the body of your request. Populate the `"selectedTags"` array with the IDs of the tags you want to use.
+> You can optionally train on only a subset of your applied tags. You might want to do this if you haven't applied enough of certain tags yet, but you do have enough of others. Add the optional JSON content to the body of your request. Populate the `"selectedTags"` array with the IDs of the tags you want to use.
 > ```json
 > {
 >   "selectedTags": [

@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 06/25/2024
+ms.date: 01/17/2025
 ---
 
 # Incremental enrichment and caching in Azure AI Search
@@ -40,7 +40,7 @@ The following example illustrates an indexer with caching enabled. See [Enable e
 To use the cache property, you can use 2020-06-30-preview or later when you [create or update an indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true). We recommend the latest preview API.
 
 ```json
-POST https://[search service name].search.windows.net/indexers?api-version=2024-05-01-rreview
+POST https://[YOUR-SEARCH-SERVICE-NAME].search.windows.net/indexers?api-version=2024-05-01-preview
     {
         "name": "myIndexerName",
         "targetIndexName": "myIndex",

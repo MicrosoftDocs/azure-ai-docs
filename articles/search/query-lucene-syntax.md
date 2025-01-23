@@ -175,7 +175,7 @@ Suffix matching requires the regular expression forward slash `/` delimiters. Ge
 
 During query parsing, queries that are formulated as prefix, suffix, wildcard, or regular expressions are passed as-is to the query tree, bypassing [lexical analysis](search-lucene-query-architecture.md#stage-2-lexical-analysis). Matches will only be found if the index contains the strings in the format your query specifies. In most cases, you need an analyzer during indexing that preserves string integrity so that partial term and pattern matching succeeds. For more information, see [Partial term search in Azure AI Search queries](search-query-partial-matching.md).
 
-Consider a situation where you may want the search query `terminal*` to return results that contain terms such as `terminate`, `termination`, and `terminates`.
+Consider a situation where you might want the search query `terminal*` to return results that contain terms such as `terminate`, `termination`, and `terminates`.
 
 If you were to use the en.lucene (English Lucene) analyzer, it would apply aggressive stemming of each term. For example, `terminate`, `termination`, `terminates` will all be tokenized down to the token `termi` in your index. On the other side, terms in queries using wildcards or fuzzy search aren't analyzed at all, so there would be no results that would match the `terminat*` query.
 
@@ -187,7 +187,7 @@ Azure AI Search uses frequency-based scoring ([BM25](https://en.wikipedia.org/wi
 
 ## Special characters
 
-In some circumstances, you may want to search for a special character, like an '❤' emoji or the '€' sign. In such cases, make sure that the analyzer you use doesn't filter those characters out. The standard analyzer bypasses many special characters, excluding them from your index.
+In some circumstances, you might want to search for a special character, like an '❤' emoji or the '€' sign. In such cases, make sure that the analyzer you use doesn't filter those characters out. The standard analyzer bypasses many special characters, excluding them from your index.
 
 Analyzers that tokenize special characters include the whitespace analyzer, which takes into consideration any character sequences separated by whitespaces as tokens (so the `❤` string would be considered a token). Also, a language analyzer like the Microsoft English analyzer ("en.microsoft"), would take the "€" string as a token. You can [test an analyzer](/rest/api/searchservice/indexes/analyze) to see what tokens it generates for a given query.
 
