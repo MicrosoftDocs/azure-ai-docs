@@ -1,0 +1,33 @@
+[!INCLUDE [Feature preview](../../../../ai-studio/includes/feature-preview.md)]
+
+Models deployed to Azure AI model inference in Azure AI Services support key-less authorization using Microsoft Entra ID. It enhances security, simplifies the user experience, reduces operational complexity, and provides robust compliance support for modern development. This makes it a strong choice for organizations adopting secure and scalable identity management solutions. You can [configure Microsoft Entra ID authorization in the resource](#configure-microsoft-entra-id-for-inferenced) and, optionally, [disable key-based authentication to prevent any user to still use keys to access the service](#disable-key-based-authentication-in-the-resource).
+
+This article explains how to configure Microsoft Entra ID for inference in Azure AI model inference.
+
+## Understand roles in the context of resource in Azure
+
+Microsoft Entra ID uses the idea of Role-based Access Control (RBAC) for authorization. Roles are central to managing access to your cloud resources. A role is essentially a collection of permissions that define what actions can be performed on specific Azure resources. By assigning roles to users, groups, service principals, or managed identities—collectively known as security principals—you control their access within your Azure environment to specific resources.
+
+When you assign a role, you specify the security principal, the role definition, and the scope. This combination is known as a role assignment. Azure AI model inference is a capability of the Azure AI Services resources, and hence, access to the service is controlled by the roles assigned to that particular resource.
+
+You identify two different types of access to the resources:
+
+* **Administration access**: The actions that are related with the administration of the resources. These type of operations usually change the state of the resource and its configuration. In Azure, those operations are usually considered control-plane operations and can be executed using the Azure Portal, the Azure CLI, or with infrastructure as code. Examples of these are create new model deployments, change content filtering configurations, change the version of the model served, change SKU of a deployment.
+* **Developer access**: The actions that are related with the consumption of the resources. These type of operations consumes the capabilities of the resource. For example, invoking the chat completions API. However, the user can't change the state of the resource and its configuration.
+
+In Azure, administration operations are always performed using Microsoft Entra ID. Roles like **Cognitive Services Contributor** allow you to perform those operations. On the other hand, developer operations can be performed using either access keys or/and Microsoft Entra ID. Roles like **Cognitive Services User** allow you to perform those operations.
+
+> [!IMPORTANT]
+> Having administration access to a resource doesn't necessarily grants developer access to it. Explicit access by granting roles is still required. This is analogous to how database servers work. Having administrator access to the database server doesn't mean you can read the data inside of a database.
+
+Follow these steps to configure developer access to Azure AI model inference in the Azure AI Services resource.
+
+## Prerequisites
+
+To complete this article, you need:
+
+* An Azure subscription. If you are using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI model inference](../../how-to/quickstart-github-models.md) if it's your case.
+
+* An Azure AI services resource. For more information, see [Create an Azure AI Services resource](/articles/ai-foundry/model-inference/how-to/quickstart-create-resources.md).
+
+* Administrator roles for the scope of the Azure AI Services resource or the resource group where it's deployed.
