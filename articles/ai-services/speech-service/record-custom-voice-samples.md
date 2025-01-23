@@ -13,7 +13,7 @@ ms.author: eur
 
 # Recording voice samples for custom neural voice
 
-This article provides you with instructions on preparing high-quality voice samples for creating a professional voice model using the custom neural voice Pro project. To understand how the data is processed and the minimum requirements for data acceptance, please refer to [upload your data](professional-voice-create-training-set.md#upload-your-data).
+This article provides you with best practices on preparing high-quality voice samples for creating a professional voice model using the custom neural voice Pro project. To understand how the data is processed and the minimum requirements for data acceptance, please refer to [upload your data](professional-voice-create-training-set.md#upload-your-data).
 
 Creating a high-quality production custom neural voice from scratch isn't a casual undertaking. The central component of a custom neural voice is a large collection of audio samples of human speech. It's vital that these audio recordings be of high quality. Choose a voice talent who has experience making these kinds of recordings, and have them recorded by a recording engineer using professional equipment.
 
