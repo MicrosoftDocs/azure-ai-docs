@@ -50,7 +50,7 @@ from azure.core.credentials import AzureKeyCredential
 model = ImageEmbeddingsClient(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
-    model="text-embedding-3-small"
+    model="Cohere-embed-v3-english"
 )
 ```
 

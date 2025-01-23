@@ -50,7 +50,7 @@ import { AzureKeyCredential } from "@azure/core-auth";
 const client = new ModelClient(
     process.env.AZURE_INFERENCE_ENDPOINT,
     new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL),
-    "text-embedding-3-small"
+    "Cohere-embed-v3-english"
 );
 ```
 

@@ -84,7 +84,7 @@ The response is as follows, where you can see the model's usage statistics:
             ]
         }
     ],
-    "model": "text-embedding-3-small",
+    "model": "Cohere-embed-v3-english",
     "usage": {
         "prompt_tokens": 9,
         "completion_tokens": 0,
