@@ -28,7 +28,7 @@ This quickstart has steps for the following SDKs:
 + [Azure SDK for .NET](?tabs=dotnet#create-load-and-query-an-index)
 + [Azure SDK for Python](?tabs=python#create-load-and-query-an-index)
 + [Azure SDK for Java](?tabs=java#create-load-and-query-an-index)
-+ [Azure SDK for JavaScript/Typescript](?tabs=javascript#create-load-and-query-an-index)
++ [Azure SDK for JavaScript/TypeScript](?tabs=javascript#create-load-and-query-an-index)
 
 ## Prerequisites
 
@@ -46,7 +46,7 @@ This quickstart has steps for the following SDKs:
 
 ## Create, load, and query an index
 
-Choose a programming language for the next step. The **Azure.Search.Documents** client libraries are available in Azure SDKs for .NET, Python, Java, and JavaScript/Typescript.
+Choose a programming language for the next step. The **Azure.Search.Documents** client libraries are available in Azure SDKs for .NET, Python, Java, and JavaScript/TypeScript.
 
 ## [**.NET**](#tab/dotnet)
 
