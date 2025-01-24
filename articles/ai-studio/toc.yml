@@ -9,30 +9,22 @@ items:
     items: 
     - name: What is Azure AI Foundry?
       href: what-is-ai-studio.md
-    - name: Related content
+    - name: Azure AI Foundry and AI services
       href: concepts/related-content.md
-    - name: Using AI Services in Azure AI Foundry 
-      items: 
-      - name: Connections in Azure AI Foundry
-        href: concepts/connections.md
-      - name: Use Azure AI services in AI Foundry portal
-        href: ai-services/how-to/connect-ai-services.md
-      - name: Use Azure OpenAI Service in AI Foundry portal
-        href: ai-services/how-to/connect-azure-openai.md
-      - name: Use Azure AI Search in AI Foundry portal
-        href: /azure/search/search-what-is-azure-search?context=/azure/ai-studio/context/context
+    - name: Azure AI Foundry FAQ
+      href: faq.yml
     - name: Plan and manage costs for Azure AI Foundry
       href: how-to/costs-plan-manage.md
-    - name: Region support
-      href: reference/region-support.md    
   - name:  Quickstart
     items: 
-    - name: Get started with Azure AI Foundry SDK
-      href: how-to/develop/sdk-overview.md
     - name: Use the chat playground in Azure AI Foundry portal
       href: quickstarts/get-started-playground.md
     - name: Build a basic chat app in Python using Azure AI Foundry SDK
       href: quickstarts/get-started-code.md
+    - name: Get started with Azure AI Foundry SDK
+      href: how-to/develop/sdk-overview.md
+    - name: Start with an AI template
+      href: how-to/develop/ai-template-get-started.md
   - name: Tutorials
     items:
       - name: Build a custom chat app with the Azure AI Foundry SDK
@@ -116,10 +108,16 @@ items:
             href: how-to/healthcare-ai/deploy-cxrreportgen.md
           - name: MedImageParse - prompted segmentation model
             href: how-to/healthcare-ai/deploy-medimageparse.md
-- name: Capabilities
+- name: Azure AI services
   items:
   - name: About this section
     href:  concepts/about-capabilities.md
+  - name: Using AI Services in Azure AI Foundry 
+    items: 
+    - name: Use Azure AI services in AI Foundry portal
+      href: ai-services/how-to/connect-ai-services.md
+    - name: Use Azure OpenAI Service in AI Foundry portal
+      href: ai-services/how-to/connect-azure-openai.md
   - name:  Chat
     items: 
     - name: Use GPT-35-Turbo and GPT-4 with Azure OpenAI Service
@@ -242,16 +240,6 @@ items:
       href: ai-services/how-to/content-safety.md
 - name: Best practices
   items:
-  - name: Cookbooks
-    items:
-      - name: Start with an AI template
-        href: how-to/develop/ai-template-get-started.md
-      - name: Develop with LangChain
-        href: how-to/develop/langchain.md
-      - name: Develop with LlamaIndex
-        href: how-to/develop/llama-index.md
-      - name: Develop with Semantic Kernel 
-        href: how-to/develop/semantic-kernel.md
   - name: Prompt engineering
     items:
     - name: Prompt engineering techniques
@@ -370,8 +358,6 @@ items:
          href: how-to/disaster-recovery.md
        - name: Security baseline
          href: /security/benchmark/azure/baselines/azure-ai-studio-security-baseline
-- name: Resources
-  items:
   - name: Responsible AI 
     items:
     - name: Responsible AI overview
@@ -392,32 +378,34 @@ items:
       href: ../ai-services/openai/concepts/system-message.md?context=/azure/ai-studio/context/context
     - name: Transparency Note for safety evaluations
       href: ./concepts/safety-evaluations-transparency-note.md
-  - name: Reference
+- name: Reference
+  items:
+  - name: Azure AI Projects SDK
+    href: /python/api/overview/azure/ai-projects-readme
+  - name: Azure AI services SDKs
+    displayName: client library libraries development kit
+    href: ../ai-services/reference/sdk-package-resources.md?context=/azure/ai-studio/context/context
+  - name: Azure AI services REST APIs
+    displayName: swagger http
+    href: ../ai-services/reference/rest-api-resources.md?context=/azure/ai-studio/context/context
+  - name: Azure AI Model Inference API
     items:
-    - name: Azure AI Projects SDK
-      href: /python/api/overview/azure/ai-projects-readme
-    - name: Azure AI services SDKs
-      displayName: client library libraries development kit
-      href: ../ai-services/reference/sdk-package-resources.md?context=/azure/ai-studio/context/context
-    - name: Azure AI services REST APIs
-      displayName: swagger http
-      href: ../ai-services/reference/rest-api-resources.md?context=/azure/ai-studio/context/context
-    - name: Azure AI Model Inference API
-      items:
-        - name: What's the Azure AI Model Inference API?
-          href: reference/reference-model-inference-api.md
-        - name: Reference
-          items:
-          - name: Get Info
-            href: reference/reference-model-inference-info.md
-          - name: Embeddings
-            href: reference/reference-model-inference-embeddings.md
-          - name: Completions
-            href: reference/reference-model-inference-completions.md
-          - name: Chat Completions
-            href: reference/reference-model-inference-chat-completions.md
-          - name: Images Embeddings
-            href: reference/reference-model-inference-images-embeddings.md
-    - name: Azure Policy built-ins
-      displayName: samples, policies, definitions
-      href: ../ai-services/policy-reference.md?context=/azure/ai-studio/context/context
+      - name: What's the Azure AI Model Inference API?
+        href: reference/reference-model-inference-api.md
+      - name: Reference
+        items:
+        - name: Get Info
+          href: reference/reference-model-inference-info.md
+        - name: Embeddings
+          href: reference/reference-model-inference-embeddings.md
+        - name: Completions
+          href: reference/reference-model-inference-completions.md
+        - name: Chat Completions
+          href: reference/reference-model-inference-chat-completions.md
+        - name: Images Embeddings
+          href: reference/reference-model-inference-images-embeddings.md
+  - name: Azure Policy built-ins
+    displayName: samples, policies, definitions
+    href: ../ai-services/policy-reference.md?context=/azure/ai-studio/context/context
+  - name: Region support
+    href: reference/region-support.md 

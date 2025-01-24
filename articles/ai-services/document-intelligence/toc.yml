@@ -7,7 +7,7 @@ items:
   - name: What is Azure AI Document Intelligence?
     displayName: models, develop, development, cognitive, applied, form recognizer, form, recognizer
     href: overview.md
-  - name: Related content
+  - name: Azure AI Foundry and AI services
     href: ../../ai-studio/concepts/related-content.md?context=/azure/ai-services/document-intelligence/context/context
   - name: What's new
     displayName: changelog, release, updates, previews, beta, packages, ga, cognitive, applied, form recognizer, form, recognizer

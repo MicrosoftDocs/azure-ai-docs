@@ -6,7 +6,7 @@ items:
   items:
     - name: What is Azure AI Agent Service?
       href: overview.md
-    - name: Related content
+    - name: Azure AI Foundry and AI services
       href: ../../ai-studio/concepts/related-content.md?context=/azure/ai-services/agents/context/context
     - name: Quotas and limits
       href: quotas-limits.md

@@ -6,7 +6,7 @@ items:
   items:
   - name: What is Azure AI Language?
     href: overview.md
-  - name: Related content
+  - name: Azure AI Foundry and AI services
     href: ../../ai-studio/concepts/related-content.md?context=/azure/ai-services/language-service/context/context
   - name: Pricing
     href: https://aka.ms/unifiedLanguagePricing
