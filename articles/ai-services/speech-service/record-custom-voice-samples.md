@@ -83,16 +83,12 @@ Below are some general guidelines that you can follow to create a good corpus (r
    | Sentence types | Coverage |
    | :--------- | :--------------------------- |
    | Statement sentences | Statement sentences should be 70-80% of the script.|
-   | Short word/phrase| Short word/phrase scripts should be about 10% of total utterances, with 5 to 7 words per case. |
-   | Question sentences (Optional) | Question sentences should be about 10%-20% of your domain script, including 5%-10% of rising and 5%-10% of falling tones. |
-   | Exclamation sentences (Optional) | Exclamation sentences should be about 10%-20% of your script.|
+   | Short word/phrase| Short word/phrase scripts should be about 10% of total utterances, with 5 to 7 words per case.<br> Short words or phrases should be separated by commas to help remind voice talent to pause briefly while reading.|
+   | Question sentences (Optional) | Question sentences should be about 10%-20% of your domain script, including 5%-10% of rising and 5%-10% of falling tones.<br> These sentences are required if you want the generated voice to accurately convey questions.|
+   | Exclamation sentences (Optional) | Exclamation sentences should be about 10%-20% of your script.<br> These sentences are required if you want the generated voice to accurately convey exclamations.|
 
    > [!NOTE] 
-   > Short words/phrases should be separated with a commas. They help remind your voice talent to pause briefly when reading them.
-   >
    > You can estimate the number of words in a sentence by assuming a speech rate in words per second based on your language.
-   >
-   > Question and exclamations are required if you want the generated voice to accurately convey questions or exclamations.
 
    Best practices include:
     - Balanced coverage for Parts of Speech, like verbs, nouns, adjectives, and so on.  
