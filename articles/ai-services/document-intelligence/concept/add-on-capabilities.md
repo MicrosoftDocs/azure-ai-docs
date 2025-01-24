@@ -55,9 +55,9 @@ Document Intelligence supports more sophisticated and modular analysis capabilit
 
 > [!NOTE]
 >
-> * Not all add-on capabilities are supported by all models. For more information, *see* [model data extraction](../model-overview.md#model-analysis-features).
+> Not all models or Microsoft Office file types support add-on capabilities. For more information, *see* [model data extraction](../model-overview.md#model-analysis-features).
 >
-> * Add-on capabilities are currently not supported for Microsoft Office file types.
+
 :::moniker-end
 
 ## Version availability
@@ -73,7 +73,7 @@ Document Intelligence supports more sophisticated and modular analysis capabilit
 |High resolution extraction|**Add-On**| ✔️| ✔️| n/a| n/a|
 |Query fields|**Add-On**| ✔️|n/a|n/a| n/a|
 
-✱ Add-On - Query fields are priced differently than the other add-on features. See [pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/) for details. </br>
+✱ Add-On - Query fields are priced differently than the other add-on features. See [pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/) for details.</br>
 ** Add-On - Searchable pdf is available only with Read model as an add-on feature. 
 
 ## Supported file formats
@@ -759,7 +759,7 @@ The `ocr.barcode` capability extracts all identified barcodes in the `barcodes` 
 | `Databar` |:::image type="content" source="../media/barcodes/databar.png" alt-text="Screenshot of the Data bar.":::|
 | `Databar` Expanded |:::image type="content" source="../media/barcodes/databar-expanded.gif" alt-text="Screenshot of the Data bar Expanded.":::|
 | `ITF` |:::image type="content" source="../media/barcodes/interleaved-two-five.png" alt-text="Screenshot of the interleaved-two-of-five barcode (ITF).":::|
-| `Data Matrix` |:::image type="content" source="../media/barcodes/datamatrix.gif" alt-text="Screenshot of the Data Matrix.":::|
+| `Data Matrix` |:::image type="content" source="../media/barcodes/data-matrix.png" alt-text="Screenshot of the Data Matrix.":::|
 
 ::: moniker range="doc-intel-4.0.0"
 
@@ -983,8 +983,8 @@ The searchable PDF capability enables you to convert an analog PDF, such as scan
 
   > [!IMPORTANT]
   >
-  > * Currently, the searchable PDF capability is only supported by Read OCR model `prebuilt-read`. When using this feature, please specify the `modelId` as `prebuilt-read`.
-  > * Searchable PDF is included with the 2024-11-30 (GA) `prebuilt-read` model with no usage cost for general PDF consumption.
+  > * Currently, only the Read model `prebuilt-read` supports the searchable PDF capability. When using this feature, specify the `modelId` as `prebuilt-read`.
+  > * Searchable PDF is included with the `2024-11-30` (GA) `prebuilt-read` model with no usage cost for general PDF consumption.
 
 ### Use searchable PDF
 
@@ -1044,7 +1044,7 @@ Query fields are an add-on capability to extend the schema extracted from any pr
 
 > [!NOTE]
 >
-> Document Intelligence Studio query field extraction is currently available with the Layout and Prebuilt models `2024-11-30 (GA) API with the exception of the `US tax` models (W2, 1098s, and 1099s models).
+> Document Intelligence Studio query field extraction is currently available with the Layout and Prebuilt models `2024-11-30` (GA) API except for US tax models W2, 1098, and 1099.
 
 ### Query field extraction
 
