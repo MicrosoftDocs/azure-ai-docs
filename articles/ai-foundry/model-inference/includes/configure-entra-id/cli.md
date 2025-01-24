@@ -23,7 +23,7 @@ zone_pivot_groups: azure-ai-models-deployment
 
 ## Configure Microsoft Entra ID for inference
 
-Follow these steps to configure Microsoft Entra ID for inference in you Azure AI Services resource:
+Follow these steps to configure Microsoft Entra ID for inference in your Azure AI Services resource:
 
 
 1. Log in into your Azure subscription:
@@ -32,7 +32,7 @@ Follow these steps to configure Microsoft Entra ID for inference in you Azure AI
     az login
     ```
 
-2. If you have more than 1 subscription, select the subscription where your resource is located:
+2. If you have more than one subscription, select the subscription where your resource is located:
 
     ```azurecli
     az account set --subscription "<subscription-id>"
@@ -80,12 +80,12 @@ Follow these steps to configure Microsoft Entra ID for inference in you Azure AI
 8.  The selected user can now use Microsoft Entra ID for inference.
 
     > [!TIP]
-    > Keep in mind that Azure role assignments may take up to five minutes to propagate. When working with security groups, adding or removing users from the security group propagates immediately.
+    > Keep in mind that Azure role assignments may take up to five minutes to propagate. Adding or removing users from a security group propagates immediately.
 
 
 ## Use Microsoft Entra ID in your code
 
-Once Microsoft Entra ID has been configured in your resource, you need to update your code to use it when consuming the inference endpoint. The following example shows how to use a chat completions model:
+Once Microsoft Entra ID is configured in your resource, you need to update your code to use it when consuming the inference endpoint. The following example shows how to use a chat completions model:
 
 [!INCLUDE [code](../code-create-chat-client-entra.md)]
 

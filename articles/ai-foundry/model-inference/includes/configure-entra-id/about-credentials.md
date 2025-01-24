@@ -13,4 +13,4 @@ When deployed to Azure, this same code can also authenticate your app to other A
   * A specific `TokenCredential` implementation, such as `ManagedIdentityCredential`. See the [Derived list for options](/dotnet/api/azure.core.tokencredential#definition).
   * A pared-down `ChainedTokenCredential` implementation optimized for the Azure environment in which your app runs. `ChainedTokenCredential` essentially creates a specific allow-list of acceptable credential options, such as `ManagedIdentity` for production and `VisualStudioCredential` for development.
 
-* If your application in running on Azure, configure system-assigned or user-assigned managed identities to the resources where your code is running and configure Microsoft Entra ID access to those specific identities. 
+* Configure system-assigned or user-assigned managed identities to the Azure resources where your code is running if possible. Configure Microsoft Entra ID access to those specific identities. 
