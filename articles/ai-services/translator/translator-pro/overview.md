@@ -43,7 +43,7 @@ Microsoft Translator Pro is a paid mobile application available on the Azure pub
 
 * **Customized phrasebook**. Administrators can upload a list of commonly used phrases specific to their organization. These phrases can then be quickly accessed and translated during conversations, ensuring communication remains efficient and accurate.
 
-* **International availability**. The app is now accessible in selected countries outside of the United States. For more information, *see* [Region availability](#region-availability).
+* **International availability**. The app is now accessible in selected countries outside of the United States. For more information, *see* [Country availability](#country-availability).
 
 * **US Government cloud availability**. US Government agencies can now operate the app within selected regions of the US Government cloud. For more information, *see* [Region availability](#region-availability).
 
