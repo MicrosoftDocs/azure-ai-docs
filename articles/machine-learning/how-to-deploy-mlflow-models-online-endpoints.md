@@ -51,9 +51,9 @@ For no-code-deployment, Azure Machine Learning:
 
     Install the Azure Machine Learning SDK for Python.
 
-        ```bash
-        pip install azure-ai-ml azure-identity
-        ```
+    ```bash
+    pip install azure-ai-ml azure-identity
+    ```
 
     # [Python (MLflow SDK)](#tab/mlflow)
 
@@ -440,7 +440,7 @@ version = registered_model.version
     ```
     
     > [!NOTE]
-    > For details about the full specification of this configuration, see [Managed online deployment schema (v2)](reference-yaml-deployment-managed-online.md).
+    > For information about the full specification of this configuration, see [CLI (v2) managed online deployment YAML schema](reference-yaml-deployment-managed-online.md).
     
     Use the following code to write the configuration to a file:
 
@@ -623,7 +623,7 @@ deployment_client.predict(endpoint=endpoint_name, df=samples)
 
 # [Studio](#tab/studio)
 
-MLflow models can use the __Test__ tab to create invocations to the created endpoints:
+When you use an MLflow model, you can use the __Test__ tab to create invocations to created endpoints:
 
 1. Select __Endpoints__, and then select the endpoint that you created.
 
@@ -631,9 +631,7 @@ MLflow models can use the __Test__ tab to create invocations to the created endp
 
 1. In the __Input__ box, paste the contents of the cli/endpoints/online/ncd/sample-request-sklearn.json file.
 
-1. Select __Test__.
-
-1. The output box displays the predictions.
+1. Select __Test__. The output box displays the predictions.
 
 ---
 
@@ -686,7 +684,7 @@ You don't have to specify a scoring script in the deployment definition of an ML
 You typically want to customize your MLflow model deployment in the following cases:
 
 - The model doesn't have a `PyFunc` flavor.
-- You need to customize the way the model is run. For instance, you need to use `mlflow.<flavor>.load_model()` to use a specific flavor to load the model.
+- You need to customize the way you run the model. For instance, you need to use `mlflow.<flavor>.load_model()` to use a specific flavor to load the model.
 - You need to do preprocessing or postprocessing in your scoring routine, because the model doesn't do this processing.
 - The output of the model can't be nicely represented in tabular data. For instance, the output is a tensor that represents an image.
 
