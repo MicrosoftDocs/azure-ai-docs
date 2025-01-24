@@ -1,5 +1,5 @@
 ---
-title: Use Azure Policies to audit and govern
+title: Use Azure Policies with hubs and projects
 titleSuffix: Azure AI Foundry
 description: Learn how to use Azure Policy with Azure AI Foundry to make sure your hubs and projects are compliant with your requirements.
 author: Blackmist
@@ -10,11 +10,11 @@ ms.topic: how-to
 # Customer Intent: As an admin, I want to understand how I can use Azure Policy to audit and govern Azure AI Foundry resources so that I can ensure compliance with my organization's requirements.
 ---
 
-# Audit and manage Azure AI Foundry
+# Audit and manage Azure AI Foundry hubs and projects
 
 As a platform administrator, you can use policies to lay out guardrails for teams to manage their own resources. [Azure Policy](/azure/governance/policy/) helps audit and govern resource state. This article explains how you can use audit controls and governance practices for Azure AI Foundry.
 
-## Policies for Azure AI Foundry
+## Policies for Azure AI Foundry hubs and projects
 
 [Azure Policy](/azure/governance/policy/) is a governance tool that allows you to ensure that Azure resources are compliant with your policies.
 
