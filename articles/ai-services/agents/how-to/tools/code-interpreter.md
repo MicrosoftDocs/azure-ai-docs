@@ -30,6 +30,23 @@ The [models page](../../quotas-limits.md) contains the most up-to-date informati
 
 We recommend using Agents with the latest models to take advantage of the new features, larger context windows, and more up-to-date training data.
 
+
+## Using the function calling tool with an agent
+
+you can add the function calling tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal:
+
+1. In the **Create and debug** screen for your agent, scroll down the **Setup** pane on the right to **action**. Then select **Add**.
+
+    :::image type="content" source="../../media/tools/action-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/action-tools.png":::
+
+1. Select **Code interpreter** and follow the prompts to add the tool. 
+
+    :::image type="content" source="../../media/tools/action-tools-list.png" alt-text="A screenshot showing the available action tools in the Azure AI Foundry portal." lightbox="../../media/tools/action-tools-list.png":::
+
+1. You can optionally upload files for your agent to read and interpret information from datasets, generate code, and create graphs and charts using your data. 
+
+    :::image type="content" source="../../media/tools/code-interpreter.png" alt-text="A screenshot showing the available action tools in the Azure AI Foundry portal." lightbox="../../media/tools/code-interpreter.png":::
+
 ::: zone-end
 
 ::: zone pivot="code-example"
