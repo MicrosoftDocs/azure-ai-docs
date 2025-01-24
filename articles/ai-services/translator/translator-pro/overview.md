@@ -147,7 +147,7 @@ The app is currently available for Azure AI Translator resources created in the 
 
 ## Next steps
 
-Use the following link to sign up for and try Microsoft Translator Pro:
+Use the following link to sign up for, try, and learn more about Microsoft Translator Pro:
 
 * [**Microsoft Translator Pro Limited Access**](https://aka.ms/TranslatorProGatingForm)
 * [**Language support**](language-support.md)
