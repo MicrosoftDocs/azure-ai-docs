@@ -103,12 +103,12 @@ from <your_package> import <your_class>
 - `entry_script`: A user script as a local file path that to be run in parallel on multiple nodes. If `source_directory` is present, relative path should be used. Otherwise, use any path that's accessible on the machine.
 - `mini_batch_size`: The size of the mini-batch passed to a single `run()` call. (optional; the default value is `10` files for `FileDataset` and `1MB` for `TabularDataset`.)
     - For `FileDataset`, it's the number of files with a minimum value of `1`. You can combine multiple files into one mini-batch.
-    - For `TabularDataset`, it's the size of data. Example values are `1024`, `1024KB`, `10MB`, and `1GB`. The recommended value is `1MB`. The mini-batch from `TabularDataset` will never cross file boundaries. For example, if there are multiple .csv files with various sizes, the smallest one is 100 KB and the largest is 10 MB. If `mini_batch_size = 1MB` is set, the files smaller than 1 MB will be treated as one mini-batch and the files larger than 1 MB will be splitted into multiple mini-batches.
+    - For `TabularDataset`, it's the size of data. Example values are `1024`, `1024KB`, `10MB`, and `1GB`. The recommended value is `1MB`. The mini-batch from `TabularDataset` will never cross file boundaries. For example, if there are multiple .csv files with various sizes, the smallest one is 100 KB and the largest is 10 MB. If `mini_batch_size = 1MB` is set, the files smaller than 1 MB will be treated as one mini-batch and the files larger than 1 MB will be split into multiple mini-batches.
         > [!NOTE]
         > TabularDatasets backed by SQL cannot be partitioned.
         > TabularDatasets from a single parquet file and single row group cannot be partitioned.
 
-- `error_threshold`: The number of record failures for `TabularDataset` and file failures for `FileDataset` that should be ignored during processing. Once the error count for the entire input goes above this value, the job will be aborted. The error threshold is for the entire input and not for individual mini-batch sent to the `run()` method. The range is `[-1, int.max]`. The `-1` indicates ignoring all failures during processing.
+- `error_threshold`: The number of record failures for `TabularDataset` and file failures for `FileDataset` that should be ignored during processing. Once the error count for the entire input goes above this value, the job is aborted. The error threshold is for the entire input and not for individual mini-batch sent to the `run()` method. The range is `[-1, int.max]`. `-1` indicates ignoring all failures during processing.
 - `output_action`: One of the following values indicates how the output is organized:
     - `summary_only`: The user script needs to store the output files. The outputs of `run()` are used for the error threshold calculation only.
     - `append_row`: For all inputs, `ParallelRunStep` creates a single file in the output folder to append all outputs separated by line.
@@ -125,11 +125,11 @@ from <your_package> import <your_class>
 You can specify `mini_batch_size`, `node_count`, `process_count_per_node`, `logging_level`, `run_invocation_timeout`, and `run_max_try` as `PipelineParameter`, so that when you resubmit a pipeline run, you can fine-tune the parameter values. 
 
 #### CUDA devices visibility
-For compute targets equipped with GPUs, the environment variable `CUDA_VISIBLE_DEVICES` is set in worker processes. In AmlCompute, you can find the total number of GPU devices in the environment variable `AZ_BATCHAI_GPU_COUNT_FOUND`, which is set automatically. If you would like each worker process to have a dedicated GPU, set `process_count_per_node` equal to the number of GPU devices on a machine. Then, each worker process will be assigned with a unique index to `CUDA_VISIBLE_DEVICES`. When a worker process stops for any reason, the next started worker process will adopt the released GPU index.
+For compute targets equipped with GPUs, the environment variable `CUDA_VISIBLE_DEVICES` is set in worker processes. In AmlCompute, you can find the total number of GPU devices in the environment variable `AZ_BATCHAI_GPU_COUNT_FOUND`, which is set automatically. If you would like each worker process to have a dedicated GPU, set `process_count_per_node` equal to the number of GPU devices on a machine. Then, each worker process get assigned with a unique index to `CUDA_VISIBLE_DEVICES`. When a worker process stops for any reason, the next started worker process will adopt the released GPU index.
 
-When the total number of GPU devices is less than `process_count_per_node`, the worker processes will be assigned GPU index until it is used up.
+When the total number of GPU devices is less than `process_count_per_node`, the worker processes with smaller index can be assigned GPU index until all GPUs have been occupied.
 
-Given the total GPU devices is 2 and `process_count_per_node = 4` as an example, process 0 and process 1 will have index 0 and 1. Process 2 and 3 can not have the environment variable. For a library using this environment variable for GPU assignment, process 2 and 3 won't have GPUs and won't try to acquire GPU devices. Process 0 will release GPU index 0 when it stops. The next process if applicable, which is process 4, will have GPU index 0 assigned.
+Given the total GPU devices is 2 and `process_count_per_node = 4` as an example, process 0 and process 1 will have index 0 and 1. Process 2 and 3 cannot have the environment variable. For a library using this environment variable for GPU assignment, process 2 and 3 won't have GPUs and won't try to acquire GPU devices. Process 0 will release GPU index 0 when it stops. The next process if applicable, which is process 4, will have GPU index 0 assigned.
 
 For more information, see [CUDA Pro Tip: Control GPU Visibility with CUDA_VISIBLE_DEVICES](https://developer.nvidia.com/blog/cuda-pro-tip-control-gpu-visibility-cuda_visible_devices/).
 
@@ -140,7 +140,7 @@ Create the ParallelRunStep by using the script, environment configuration, and p
 - `parallel_run_config`: A `ParallelRunConfig` object, as defined earlier.
 - `inputs`: One or more single-typed Azure Machine Learning datasets to be partitioned for parallel processing.
 - `side_inputs`: One or more reference data or datasets used as side inputs without need to be partitioned.
-- `output`: An `OutputFileDatasetConfig` object that represents the directory path at which the output data will be stored.
+- `output`: An `OutputFileDatasetConfig` object that represents the directory path at which the output data should be stored.
 - `arguments`: A list of arguments passed to the user script. Use unknown_args to retrieve them in your entry script (optional).
 - `allow_reuse`: Whether the step should reuse previous results when run with the same settings/inputs. If this parameter is `False`, a new run will always be generated for this step during pipeline execution. (optional; the default value is `True`.)
 
@@ -164,7 +164,7 @@ For example, the log file `70_driver_log.txt` contains information from the cont
 
 Because of the distributed nature of ParallelRunStep jobs, there are logs from several different sources. However, two consolidated files are created that provide high-level information:
 
-- `~/logs/job_progress_overview.txt`: This file provides a high-level info about the number of mini-batches (also known as tasks) created so far and number of mini-batches processed so far. At this end, it shows the result of the job. If the job failed, it will show the error message and where to start the troubleshooting.
+- `~/logs/job_progress_overview.txt`: This file provides a high-level info about the number of mini-batches (also known as tasks) created so far and number of mini-batches processed so far. At this end, it shows the result of the job. If the job fails, it shows the error message and where to start the troubleshooting.
 
 - `~/logs/sys/master_role.txt`: This file provides the principal node (also known as the orchestrator) view of the running job. Includes task creation, progress monitoring, the run result.
 
@@ -186,7 +186,7 @@ For more information on errors in your script, there is:
 
 When you need a full understanding of how each node executed the score script, look at the individual process logs for each node. The process logs can be found in the `sys/node` folder, grouped by worker nodes:
 
-- `~/logs/sys/node/<node_id>/<process_name>.txt`: This file provides detailed info about each mini-batch as it's picked up or completed by a worker. For each mini-batch, this file includes:
+- `~/logs/sys/node/<node_id>/<process_name>.txt`: This file provides detailed info about each mini-batch that has been picked up or completed by a worker. For each mini-batch, this file includes:
 
     - The IP address and the PID of the worker process.
     - The total number of items, successfully processed items count, and failed item count.
@@ -205,7 +205,7 @@ You can also view the results of periodical checks of the resource usage for eac
 
 ## How do I log from my user script from a remote context?
 
-ParallelRunStep may run multiple processes on one node based on process_count_per_node. In order to organize logs from each process on node and combine print and log statement, we recommend using ParallelRunStep logger as shown below. You get a logger from EntryScript and make the logs show up in **logs/user** folder in the portal.
+ParallelRunStep may run multiple processes on one node based on process_count_per_node. In order to organize logs from each process on node and combine print and log statement, ParallelRunStep logger shown as below is recommended. You get a logger from EntryScript and make the logs show up in **logs/user** folder in the portal.
 
 **A sample entry script using the logger:**
 ```python
@@ -235,7 +235,7 @@ ParallelRunStep sets a handler on the root logger, which sinks the message to `l
 `logging` defaults to `INFO` level. By default, levels below `INFO` won't show up, such as `DEBUG`.
 
 ## How could I write to a file to show up in the portal?
-Files in `logs` folder will be uploaded and show up in the portal.
+Files written to `/logs` folder will be uploaded and show up in the portal.
 You can get the folder `logs/user/entry_script_log/<node_id>` like below and compose your file path to write:
 
 ```python
@@ -256,7 +256,7 @@ def init():
 ## How to handle log in new processes?
 You can spawn new processes in your entry script with [`subprocess`](https://docs.python.org/3/library/subprocess.html) module, connect to their input/output/error pipes and obtain their return codes.
 
-The recommended approach is to use the [`run()`](https://docs.python.org/3/library/subprocess.html#subprocess.run) function with `capture_output=True`. Errors will show up in `logs/user/error/<node_id>/<process_name>.txt`.
+The recommended approach is to use the [`run()`](https://docs.python.org/3/library/subprocess.html#subprocess.run) function with `capture_output=True`. Errors show up in `logs/user/error/<node_id>/<process_name>.txt`.
 
 If you would like to use `Popen()`, stdout/stderr should be redirect to files, like:
 ```python
@@ -286,7 +286,7 @@ def init():
 > [!NOTE]
 > A worker process runs "system" code and the entry script code in the same process.
 >
-> If no `stdout` or `stderr` specified, a subprocess created with `Popen()` in your entry script will inherit the setting of the worker process.
+> If no `stdout` or `stderr` specified, the setting of the worker process will be inheritted by subprocesses created with `Popen()` in your entry script will.
 >
 > `stdout` will write to `~/logs/sys/node/<node_id>/processNNN.stdout.txt` and `stderr` to `~/logs/sys/node/<node_id>/processNNN.stderr.txt`.
 
@@ -307,7 +307,7 @@ def run(mini_batch):
     (Path(output_dir) / res2).write...
 ```
 
-## How can I pass a side input such as, a file or file(s) containing a lookup table, to all my workers?
+## How can I pass a side input, such as a file or file(s) containing a lookup table, to all my workers?
 
 User can pass reference data to script using side_inputs parameter of ParalleRunStep. All datasets provided as side_inputs will be mounted on each worker node. User can get the location of mount by passing argument.
 
@@ -370,7 +370,7 @@ Besides looking at the overall status of the StepRun, the count of scheduled/pro
 You can go into `~/logs/sys/error` to see if there's any exception. If there is none, it's likely that your entry script is taking a long time, you can print out progress information in your code to locate the time-consuming part, or add `"--profiling_module", "cProfile"` to the `arguments` of `ParallelRunStep` to generate a profile file named as `<process_name>.profile` under `~/logs/sys/node/<node_id>` folder.
 
 ### When will a job stop?
-if not canceled, the job will stop with status:
+If not canceled, the job may stop with status:
 - Completed. If all mini-batches have been processed and output has been generated for `append_row` mode.
 - Failed. If `error_threshold` in [`Parameters for ParallelRunConfig`](#parameters-for-parallelrunconfig)  is exceeded, or system error occurs during the job.
 
