@@ -55,10 +55,13 @@ Once you configured Microsoft Entra ID in your resource, you need to update your
 
 [!INCLUDE [code](../code-create-chat-client-entra.md)]
 
+[!INCLUDE [about-credentials](about-credentials.md)]
 
 ## Use Microsoft Entra ID in your project
 
-Even when your resource has Microsoft Entra ID configured, your projects may still be using keys to consume predictions from the resource. To change this behavior, you have to update the connections from your projects to use Microsoft Entra ID. Follow these steps:
+Even when your resource has Microsoft Entra ID configured, your projects may still be using keys to consume predictions from the resource. When using the Azure AI Foundry playground, the credentials associated with the connection your project has are used. 
+
+To change this behavior, you have to update the connections from your projects to use Microsoft Entra ID. Follow these steps:
 
 1. Go to [Azure AI Foundry portal](https://ai.azure.com).
 

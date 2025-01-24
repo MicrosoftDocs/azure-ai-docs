@@ -53,19 +53,19 @@ Follow these steps to configure Microsoft Entra ID for inference in you Azure AI
 
 5. Get the object ID of the security principal you want to assign permissions to. The following example shows how to get the object ID associated with:
     
-    __Your own logged in account__
+    __Your own logged in account:__
 
     ```azurecli
     OBJECT_ID=$(az ad signed-in-user show --query id --output tsv)
     ```
 
-    __A security group__
+    __A security group:__
 
     ```azurecli
     OBJECT_ID=$(az ad group show --group "<group-name>" --query id --output tsv)
     ```
 
-    __A service principal__
+    __A service principal:__
 
     ```azurecli
     OBJECT_ID=$(az ad sp show --id "<service-principal-guid>" --query id --output tsv)
@@ -88,3 +88,5 @@ Follow these steps to configure Microsoft Entra ID for inference in you Azure AI
 Once Microsoft Entra ID has been configured in your resource, you need to update your code to use it when consuming the inference endpoint. The following example shows how to use a chat completions model:
 
 [!INCLUDE [code](../code-create-chat-client-entra.md)]
+
+[!INCLUDE [about-credentials](about-credentials.md)]

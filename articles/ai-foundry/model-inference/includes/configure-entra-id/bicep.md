@@ -90,3 +90,18 @@ In your console, follow these steps:
     ```
 
 7. The template outputs the Azure AI model inference endpoint that you can use to consume any of the model deployments you have created.
+
+
+## Use Microsoft Entra ID in your code
+
+Once you configured Microsoft Entra ID in your resource, you need to update your code to use it when consuming the inference endpoint. The following example shows how to use a chat completions model:
+
+[!INCLUDE [code](../code-create-chat-client-entra.md)]
+
+[!INCLUDE [about-credentials](about-credentials.md)]
+
+
+
+## Disable key-based authentication in the resource
+
+Disabling key-based authentication is advisable when you implemented Microsoft Entra ID and fully addressed compatibility or fallback concerns in all the applications that consume the service.
