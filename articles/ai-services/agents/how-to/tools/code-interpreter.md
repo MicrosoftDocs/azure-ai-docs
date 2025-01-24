@@ -45,7 +45,7 @@ you can add the function calling tool to an agent programatically using the code
 
 1. You can optionally upload files for your agent to read and interpret information from datasets, generate code, and create graphs and charts using your data. 
 
-    :::image type="content" source="../../media/tools/code-interpreter.png" alt-text="A screenshot showing the available action tools in the Azure AI Foundry portal." lightbox="../../media/tools/code-interpreter.png":::
+    :::image type="content" source="../../media/tools/code-interpreter.png" alt-text="A screenshot showing the code interpreter upload page." lightbox="../../media/tools/code-interpreter.png":::
 
 ::: zone-end
 

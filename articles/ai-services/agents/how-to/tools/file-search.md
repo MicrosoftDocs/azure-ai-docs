@@ -96,7 +96,7 @@ you can add the Bing Search tool to an agent programatically using the code exam
 
     :::image type="content" source="../../media/tools/knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools-list.png":::
 
-    :::image type="content" source="../../media/tools/file-upload.png" alt-text="A screenshot showing the available knowledge tools in the Azure AI Foundry portal." lightbox="../../media/tools/file-upload.png":::
+    :::image type="content" source="../../media/tools/file-upload.png" alt-text="A screenshot showing the file upload page." lightbox="../../media/tools/file-upload.png":::
 
 ::: zone-end
 
