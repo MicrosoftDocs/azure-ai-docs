@@ -28,7 +28,7 @@ items:
     href: /azure/ai-services/openai/use-your-data-quickstart?context=/azure/search/context/context
   - name: Connect without keys
     href: search-get-started-rbac.md
-  - name: Portal
+  - name: Azure portal
     items:
     - name: Keyword search wizard
       href: search-get-started-portal.md
@@ -108,6 +108,8 @@ items:
       href: tutorial-rag-build-solution-query.md
     - name: Maximize relevance
       href: tutorial-rag-build-solution-maximize-relevance.md
+    - name: Minimize storage and costs
+      href: tutorial-rag-build-solution-minimize-storage.md
   - name: Skills tutorials
     items:
     - name: C#
@@ -211,7 +213,7 @@ items:
       href: search-modeling-multitenant-saas-applications.md
     - name: Manage
       items:
-      - name: Manage in the portal
+      - name: Manage in the Azure portal
         href: search-manage.md
       - name: Manage with PowerShell
         href: search-manage-powershell.md
@@ -227,7 +229,7 @@ items:
       href: search-how-to-create-search-index.md
     - name: Load an index
       href: search-how-to-load-search-index.md
-    - name: Portal indexing (import data wizards)
+    - name: Index via import data wizards
       href: search-import-data-portal.md
     - name: Update or rebuild an index
       href: search-howto-reindex.md
@@ -412,7 +414,7 @@ items:
         href: search-normalizers.md
     - name: Search results 
       items:
-      - name: Paging, sorting, and formatting
+      - name: Page, sort, and shape results
         href: search-pagination-page-layout.md
       - name: Return a semantic answer
         href: semantic-answers.md
@@ -428,20 +430,20 @@ items:
     href: hybrid-search-how-to-query.md
   - name: Ranking and relevance
     items:
+    - name: Add a scoring profile
+      href: index-add-scoring-profiles.md
+    - name: Configure BM25 ranking
+      href: index-ranking-similarity.md
     - name: Enable or disable semantic ranker
       href: semantic-how-to-enable-disable.md      
     - name: Configure semantic ranker
       href: semantic-how-to-configure.md
     - name: Add semantic ranking to queries
-      displayName: query
       href: semantic-how-to-query-request.md
     - name: Rewrite queries with semantic ranker
-      displayName: query
       href: semantic-how-to-query-rewrite.md
-    - name: Add a scoring profile
-      href: index-add-scoring-profiles.md
-    - name: Configure BM25 ranking
-      href: index-ranking-similarity.md
+    - name: Migrate semantic ranking code
+      href: semantic-code-migration.md
   - name: Security
     items:
     - name: Configure network access
@@ -468,6 +470,8 @@ items:
           href: search-howto-managed-identities-sql.md
         - name: SQL Managed Instance
           href: search-index-azure-sql-managed-instance-with-managed-identity.md
+        - name: Connect to an Azure function
+          href: search-howto-managed-identities-azure-functions.md
       - name: Connect through a firewall
         href: search-indexer-howto-access-ip-restricted.md
       - name: Connect using Network Security Perimeter

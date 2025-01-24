@@ -1,7 +1,7 @@
 ### YamlMime:Landing
 
 title: Azure AI Foundry documentation # < 60 chars
-summary:  Build cutting-edge, market-ready, responsible applications for your organization with AI.
+summary:  Safely design, customize, and manage AI applications and agents at scale.
 metadata:
   title: Azure AI Foundry documentation
   description: Azure AI Foundry helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and pre-built and customizable APIs and models. Example applications include generative AI, natural language processing for conversations, search, monitoring, translation, speech, vision, and decision-making.
@@ -14,7 +14,7 @@ metadata:
   ms.reviewer: sgilley
   ms.author: sgilley
   author: sdgilley
-  ms.date: 5/21/2024
+  ms.date: 12/12/2024
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
 landingContent:
@@ -66,13 +66,13 @@ landingContent:
         links:
           - text: Get started with the Azure AI SDKs
             url: how-to/develop/sdk-overview.md
-          - text: Work with AI Foundry projects in VS Code
+          - text: Work with Azure AI Foundry projects in VS Code
             url: how-to/develop/vscode.md
 
       - linkListType: tutorial
         links:
           - text: Build a custom chat app with the Azure AI SDK
-            url: tutorials/copilot-sdk-build-rag.md
+            url: tutorials/copilot-sdk-create-resources.md
 
       - linkListType: concept
         links:

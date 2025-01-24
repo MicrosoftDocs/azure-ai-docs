@@ -5,6 +5,7 @@ ms.service: ai-services
 ms.subservice: computer-vision
 ms.topic: include
 ms.date: 08/01/2023
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 

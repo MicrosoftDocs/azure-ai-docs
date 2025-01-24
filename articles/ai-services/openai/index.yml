@@ -40,7 +40,7 @@ landingContent:
         links:
            - text: Chat completions
              url: chatgpt-quickstart.md
-           - text: GPT-4 Turbo with Vision
+           - text: Vision-enabled models
              url: gpt-v-quickstart.md  
            - text: DALL-E
              url: dall-e-quickstart.md
@@ -98,7 +98,7 @@ landingContent:
                url: ./how-to/role-based-access-control.md 
              - text: GPT-3.5 Turbo & GPT-4
                url:  ./how-to/chatgpt.md
-             - text: GPT-4 Turbo with Vision
+             - text: Vision-enabled models
                url:  ./how-to/gpt-with-vision.md
              - text: Provisioned Throughput Units (PTU) 
                url: ./how-to/provisioned-throughput-onboarding.md

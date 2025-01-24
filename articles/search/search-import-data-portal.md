@@ -17,7 +17,7 @@ customer intent: As a developer, I want to use wizards for index creation so tha
 
 Azure AI Search has two import wizards that automate indexing and object creation so that you can begin querying immediately. If you're new to Azure AI Search, these wizards are one of the most powerful features at your disposal. With minimal effort, you can create an indexing or enrichment pipeline that exercises most of the functionality of Azure AI Search.
 
-+ **Import data wizard** supports nonvector workflows. You can extract alphanumeric text from raw documents. You can also configure applied AI and built-in skills that infer structure and generate text searchable content from image files and unstructured data.
++ **Import data wizard** supports nonvector workflows. You can extract text and numbers from raw documents. You can also configure applied AI and built-in skills that infer structure and generate text searchable content from image files and unstructured data.
 
 + **Import and vectorize data wizard** adds chunking and vectorization. You must specify an existing deployment of an embedding model, but the wizard makes the connection, formulates the request, and handles the response. It generates vector content from text or image content.
 
@@ -72,7 +72,7 @@ Here are some points to keep in mind about the skills in the following list:
 |------|--------------------|----------------------------------|
 | [AI Vision multimodal](cognitive-search-skill-vision-vectorize.md)  | ❌ | ✅ |
 | [Azure OpenAI embedding](cognitive-search-skill-azure-openai-embedding.md)  | ❌ | ✅ |
-| [Azure Machine Learning (AI Foundry model catalog)](cognitive-search-aml-skill.md)  | ❌ | ✅ |
+| [Azure Machine Learning (Azure AI Foundry model catalog)](cognitive-search-aml-skill.md)  | ❌ | ✅ |
 | [Document layout](cognitive-search-skill-document-intelligence-layout.md)  | ❌ | ✅ |
 | [Entity recognition](cognitive-search-skill-entity-recognition-v3.md)  | ✅ | ❌ |
 | [Image analysis (applies to blobs, default parsing, whole file indexing](cognitive-search-skill-image-analysis.md)  | ✅ | ❌ |
@@ -96,7 +96,7 @@ You can [generate a knowledge store](knowledge-store-create-portal.md) for secon
 
 ## What the wizards create
 
-The import wizards create the objects described in the following table. After the objects are created, you can review their JSON definitions in the portal or call them from code.
+The import wizards create the objects described in the following table. After the objects are created, you can review their JSON definitions in the Azure portal or call them from code.
 
 To view these objects after the wizard runs:
 
@@ -132,19 +132,19 @@ The import wizards aren't without limitations. Constraints are summarized as fol
 
 + Sampling is over a subset of source data. For large data sources, it's possible for the wizard to miss fields. You might need to extend the schema, or correct the inferred data types, if sampling is insufficient.
 
-+ AI enrichment, as exposed in the portal, is limited to a subset of built-in skills. 
++ AI enrichment, as exposed in the Azure portal, is limited to a subset of built-in skills. 
 
 + A [knowledge store](knowledge-store-concept-intro.md), which can be created by the **Import data** wizard, is limited to a few default projections and uses a default naming convention. If you want to customize names or projections, you'll need to create the knowledge store through REST API or the SDKs.
 
 ## Secure connections
 
-The import wizards make outbound connections using the portal controller and public endpoints. You can't use the wizards if Azure resources are accessed over a private connection or through a shared private link. 
+The import wizards make outbound connections using the Azure portal controller and public endpoints. You can't use the wizards if Azure resources are accessed over a private connection or through a shared private link. 
 
 You can use the wizards over restricted public connections, but not all functionality is available.
 
 + On a search service, importing the built-in sample data requires a public endpoint and no firewall rules.
 
-  Sample data is hosted by Microsoft on specific Azure resources. The portal controller connects to those resources over a public endpoint. If you put your search service behind a firewall, you get this error when attempting to retrieve the builtin sample data: `Import configuration failed, error creating Data Source`, followed by `"An error has occured."`.
+  Sample data is hosted by Microsoft on specific Azure resources. the Azure portal controller connects to those resources over a public endpoint. If you put your search service behind a firewall, you get this error when attempting to retrieve the builtin sample data: `Import configuration failed, error creating Data Source`, followed by `"An error has occured."`.
 
 + On supported Azure data sources protected by firewalls, you can retrieve data if you have the right firewall rules in place. 
 
@@ -248,7 +248,7 @@ Because sampling is an imprecise exercise, review the index for the following co
 
 1. Do you need [lexical analysis](search-lucene-query-architecture.md#stage-2-lexical-analysis)? For Edm.string fields that are **Searchable**, you can set an **Analyzer** if you want language-enhanced indexing and querying. 
 
-   The default is *Standard Lucene* but you could choose *Microsoft English* if you wanted to use Microsoft's analyzer for advanced lexical processing, such as resolving irregular noun and verb forms. Only language analyzers can be specified in the portal. If you use a custom analyzer or a non-language analyzer like Keyword, Pattern, and so forth, you must create it programmatically. For more information about analyzers, see [Add language analyzers](search-language-support.md).
+   The default is *Standard Lucene* but you could choose *Microsoft English* if you wanted to use Microsoft's analyzer for advanced lexical processing, such as resolving irregular noun and verb forms. Only language analyzers can be specified in the Azure portal. If you use a custom analyzer or a non-language analyzer like Keyword, Pattern, and so forth, you must create it programmatically. For more information about analyzers, see [Add language analyzers](search-language-support.md).
 
 1. Do you need typeahead functionality in the form of autocomplete or suggested results? Select the **Suggester** the checkbox to enable [typeahead query suggestions and autocomplete](index-add-suggesters.md) on selected fields. Suggesters add to the number of tokenized terms in your index, and thus consume more storage.
 

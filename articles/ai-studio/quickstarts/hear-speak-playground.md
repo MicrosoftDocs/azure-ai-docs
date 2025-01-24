@@ -15,7 +15,7 @@ ms.author: eur
 author: eric-urban
 ---
 
-# Quickstart: Hear and speak with chat models in the AI Foundry portal chat playground
+# Quickstart: Hear and speak with chat models in the Azure AI Foundry portal chat playground
 
 In the chat playground in Azure AI Foundry portal, you can use speech to text and text to speech features to interact with chat models. You can try the same model that you use for text-based chat in a speech-based chat. It's just another way to interact with the model.
 
@@ -24,12 +24,12 @@ In this quickstart, you use Azure OpenAI Service and Azure AI Speech to:
 - Speak to the assistant via speech to text.
 - Hear the assistant's response via text to speech.
 
-The speech to text and text to speech features can be used together or separately in the AI Foundry portal chat playground. You can use the playground to test your chat model before deploying it. 
+The speech to text and text to speech features can be used together or separately in the Azure AI Foundry portal chat playground. You can use the playground to test your chat model before deploying it. 
 
 ## Prerequisites
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- An [AI Foundry project](../how-to/create-projects.md).
+- An [Azure AI Foundry project](../how-to/create-projects.md).
 - A deployed [Azure OpenAI](../how-to/deploy-models-openai.md) chat model. This guide is tested with a `gpt-4o-mini` model.
 
 ## Configure the chat playground
@@ -37,7 +37,7 @@ The speech to text and text to speech features can be used together or separatel
 Before you can start a chat session, you need to configure the chat playground to use the speech to text and text to speech features.
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
-1. Go to your AI Foundry project. If you need to create a project, see [Create an AI Foundry project](../how-to/create-projects.md).
+1. Go to your Azure AI Foundry project. If you need to create a project, see [Create an Azure AI Foundry project](../how-to/create-projects.md).
 1. Select **Playgrounds** from the left pane and then select a playground to use. In this example, select **Try the chat playground**.
 1. Select your deployed chat model from the **Deployment** dropdown. 
 

@@ -18,6 +18,8 @@ items:
     href: service-limits.md
   - name: Language and region support
     href: language-region-support.md
+  - name: Pricing
+    href: https://azure.microsoft.com/pricing/details/content-understanding/
   - name: FAQ
     displayName: FAQ, definition, updates, previews
     href: faq.yml
@@ -29,7 +31,7 @@ items:
   - name: Content Understanding REST API
     displayName: quickstart, extract, text, images, OCR, optical character recognition
     href: quickstart/use-rest-api.md
-  - name: Content Understanding Azure AI Foundry
+  - name: Content Understanding Azure AI Foundry portal
     displayName: quickstart, extract, text, images, OCR, optical character recognition
     href: quickstart/use-ai-foundry.md
 - name: Capabilities

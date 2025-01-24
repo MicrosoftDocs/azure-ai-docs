@@ -8,6 +8,7 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: how-to
 ms.date: 06/26/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 keywords: on-premises, OCR, Docker, container
 ---
@@ -101,7 +102,7 @@ Once the container is on the [host computer](#host-computer-requirements), use t
 
 Use the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command to run the container. Refer to [gather required parameters](#gather-required-parameters) for details on how to get the `{ENDPOINT_URI}` and `{API_KEY}` values.
 
-[Examples](computer-vision-resource-container-config.md#example-docker-run-commands) of the `docker run` command are available.
+[Examples](computer-vision-resource-container-config.md#example-docker-commands) of the `docker run` command are available.
 
 ```bash
 docker run --rm -it -p 5000:5000 --memory 16g --cpus 8 \
@@ -129,7 +130,7 @@ mcr.microsoft.com/azure-cognitive-services/vision/read:3.2-model-2022-04-30
 ```
 
 
-More [examples](./computer-vision-resource-container-config.md#example-docker-run-commands) of the `docker run` command are available. 
+More [examples](./computer-vision-resource-container-config.md#example-docker-commands) of the `docker run` command are available. 
 
 > [!IMPORTANT]
 > The `Eula`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container won't start.  For more information, see [Billing](#billing).

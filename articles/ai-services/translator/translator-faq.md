@@ -60,7 +60,7 @@ If attribution is present, it must conform to the [Translator attribution guidel
 
 No, both have their place as essential tools for communication. Use machine translation where the quantity of content, speed of creation, and budget constraints make it impossible to use human translation.
 
-Machine translation os used as a first pass, before using human translation, by several of our [language service provider (LSP)](https://www.microsoft.com/translator/business/partners/) partners and can improve productivity by up to 50 percent. For a list of LSP partners, visit the Translator partner page.
+Machine translation is used as a first pass, before using human translation, by several of our [language service provider (LSP)](https://www.microsoft.com/translator/business/partners/) partners and can improve productivity by up to 50 percent. For a list of LSP partners, visit the Translator partner page.
 
 ---
 > [!TIP]

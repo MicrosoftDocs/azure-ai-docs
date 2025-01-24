@@ -63,6 +63,12 @@ Trace exporters are responsible for sending trace data to a backend system for s
 
 Trace visualization refers to the graphical representation of trace data. Azure AI integrates with visualization tools like Azure AI Foundry Tracing, Aspire dashboard, and Prompty Trace viewer  to provide developers with an intuitive way to explore and analyze traces, helping them to quickly identify issues and understand the behavior of their applications.
 
+## Enable tracing
+
+In order to enable tracing, you need to add an Application Insights resource to your Azure AI Foundry project. To add an Application Insights resource, navigate to the **Tracing** tab in the [Azure AI Foundry portal](https://ai.azure.com/), and create a new resource if you don't already have one.
+
+:::image type="content" source="../../ai-services/agents/media/ai-foundry-tracing.png" alt-text="A screenshot of the tracing screen in the Azure AI Foundry portal." lightbox="../../ai-services/agents/media/ai-foundry-tracing.png":::
+
 ## Conclusion
 
 Azure AI's tracing capabilities are designed to empower developers with the tools they need to gain deep insights into their AI applications. By providing a robust, intuitive, and scalable tracing feature, Azure AI helps reduce debugging time, enhance application reliability, and improve overall performance. With a focus on user experience and system observability, Azure AI's tracing solution is set to revolutionize the way developers interact with and understand their Gen AI applications.

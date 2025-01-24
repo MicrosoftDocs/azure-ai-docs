@@ -22,13 +22,11 @@ ms.custom: passwordless-ts, devex-track-js
 - We recommend reviewing the [Responsible AI transparency note](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=text) and other [Responsible AI resources](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) to familiarize yourself with the capabilities and limitations of the Azure OpenAI Service.
 - An Azure OpenAI resource with the `gpt-4 (1106-preview)` model deployed was used testing this example. 
 
-## Microsoft Entra ID authentication is recommended
+### Microsoft Entra ID prerequisites
 
-For _keyless_ authentication, you need to 
-
-1. Use the `@azure/identity` package.
-1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal under **Access control (IAM)** > **Add role assignment**.
-1. Sign in with the Azure CLI such as `az login`.
+For the recommended keyless authentication with Microsoft Entra ID, you need to:
+- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
 ## Set up
 
@@ -64,18 +62,10 @@ For _keyless_ authentication, you need to
     npm install @azure/identity
     ```
 
+
 ## Retrieve resource information
 
-#### [Microsoft Entra ID](#tab/javascript-keyless)
-
-[!INCLUDE [assistants-keyless-environment-variables](assistants-env-var-without-key.md)]
-
-
-#### [API key](#tab/javascript-key)
-
-[!INCLUDE [assistants-key-environment-variables](assistants-env-var-key.md)]
-
----
+[!INCLUDE [resource authentication](resource-authentication.md)]
 
 > [!CAUTION]
 > To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
@@ -98,7 +88,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     
 ## Create a new JavaScript application
 
-#### [Microsoft Entra ID](#tab/javascript-keyless)
+#### [Microsoft Entra ID](#tab/keyless)
 
 1. Create the `index.js` file with the following code:
 
@@ -205,7 +195,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
 
 
 
-#### [API key](#tab/javascript-key)
+#### [API key](#tab/api-key)
 
 1. Create the `index.js` file with the following code:
 

@@ -5,7 +5,7 @@ description: Learn how to fine-tune Meta Llama models in Azure AI Foundry portal
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
-ms.date: 7/23/2024
+ms.date: 12/16/2024
 ms.reviewer: rasavage
 reviewer: shubhirajMsft
 ms.author: ssalgado
@@ -66,7 +66,7 @@ Fine-tuning of Llama 2 models is currently supported in projects located in West
 - An [Azure AI Foundry project](../how-to/create-projects.md) in Azure AI Foundry portal.
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. Alternatively, your account can be assigned a custom role that has the following permissions:
 
-    - On the Azure subscription—to subscribe the AI Foundry project to the Azure Marketplace offering, once for each project, per offering:
+    - On the Azure subscription—to subscribe the Azure AI Foundry project to the Azure Marketplace offering, once for each project, per offering:
       - `Microsoft.MarketplaceOrdering/agreements/offers/plans/read`
       - `Microsoft.MarketplaceOrdering/agreements/offers/plans/sign/action`
       - `Microsoft.MarketplaceOrdering/offerTypes/publishers/offers/plans/agreements/read`
@@ -77,7 +77,7 @@ Fine-tuning of Llama 2 models is currently supported in projects located in West
       - `Microsoft.SaaS/resources/read`
       - `Microsoft.SaaS/resources/write`
  
-    - On the AI Foundry project—to deploy endpoints (the Azure AI Developer role contains these permissions already):
+    - On the Azure AI Foundry project—to deploy endpoints (the Azure AI Developer role contains these permissions already):
       - `Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*`  
       - `Microsoft.MachineLearningServices/workspaces/serverlessEndpoints/*`
 
@@ -87,15 +87,15 @@ Fine-tuning of Llama 2 models is currently supported in projects located in West
 # [Meta Llama 2](#tab/llama-two)
 
  An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
-- An [AI Foundry hub](../how-to/create-azure-ai-resource.md).
+- An [Azure AI Foundry hub](../how-to/create-azure-ai-resource.md).
 
     > [!IMPORTANT]
     > For Meta Llama 2 models, the pay-as-you-go model fine-tune offering is only available with hubs created in the **West US 3** region.
 
-- An [AI Foundry project](../how-to/create-projects.md) in Azure AI Foundry portal.
+- An [Azure AI Foundry project](../how-to/create-projects.md) in Azure AI Foundry portal.
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. Alternatively, your account can be assigned a custom role that has the following permissions:
 
-    - On the Azure subscription—to subscribe the AI Foundry project to the Azure Marketplace offering, once for each project, per offering:
+    - On the Azure subscription—to subscribe the Azure AI Foundry project to the Azure Marketplace offering, once for each project, per offering:
       - `Microsoft.MarketplaceOrdering/agreements/offers/plans/read`
       - `Microsoft.MarketplaceOrdering/agreements/offers/plans/sign/action`
       - `Microsoft.MarketplaceOrdering/offerTypes/publishers/offers/plans/agreements/read`
@@ -106,7 +106,7 @@ Fine-tuning of Llama 2 models is currently supported in projects located in West
       - `Microsoft.SaaS/resources/read`
       - `Microsoft.SaaS/resources/write`
  
-    - On the AI Foundry project—to deploy endpoints (the Azure AI Developer role contains these permissions already):
+    - On the Azure AI Foundry project—to deploy endpoints (the Azure AI Developer role contains these permissions already):
       - `Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*`  
       - `Microsoft.MachineLearningServices/workspaces/serverlessEndpoints/*`
 

@@ -44,7 +44,7 @@ Parallel documents included in the testing set are used to compute the BLEU (Bil
 
 The BLEU score is a measurement of the delta between the automatic translation and the reference translation. Its value ranges from 0 to 100. A score of 0 indicates that not a single word of the reference appears in the translation. A score of 100 indicates that the automatic translation exactly matches the reference: the same word is in the exact same position. The score you receive is the BLEU score average for all sentences of the testing data.
 
-The test data should include parallel documents where the target language sentences are the most desirable translations of the corresponding source language sentences in the source-target pair. You may want to use the same criteria you used to compose the tuning data. However, the testing data has no influence over the quality of the translation system and is used exclusively to generate the BLEU score for you.
+The test data should include parallel documents where the target language sentences are the most desirable translations of the corresponding source language sentences in the source-target pair. You might want to use the same criteria you used to compose the tuning data. However, the testing data has no influence over the quality of the translation system and is used exclusively to generate the BLEU score for you.
 
 You don't need more than 2,500 sentences as the testing data. When you let the system choose the testing set automatically, it uses a random subset of sentences from your bilingual training documents, and exclude these sentences from the training material itself.
 

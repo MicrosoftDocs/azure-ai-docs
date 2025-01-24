@@ -7,7 +7,7 @@ author: diberry
 ms.author: diberry
 ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 08/16/2024
+ms.date: 01/21/2025
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
@@ -30,13 +30,15 @@ The function app authenticates through the SDK to the cloud-based Azure AI Searc
 
 ## Configure secrets in a local.settings.json file
 
-:::code language="json" source="~/azure-search-static-web-app/api/local.settings.json":::
+:::code language="json" source="~/azure-search-static-web-app/api/sample.local.settings.json":::
 
 ## Azure Function: Search the catalog
 
-The [Search API](https://github.com/Azure-Samples/azure-search-static-web-app/blob/main/api/Search.cs) takes a search term and searches across the documents in the search index, returning a list of matches. 
+The [Search API](https://github.com/Azure-Samples/azure-search-static-web-app/blob/main/api/Search.cs) takes a search term and searches across the documents in the search index, returning a list of matches. Through the Suggest API, partial strings are sent to the search engine as the user types, suggesting search terms such as book titles and authors across the documents in the search index, and returning a small list of matches. 
 
-The Azure function pulls in the search configuration information, and fulfills the query.
+The Azure function pulls in the search configuration information, and fulfills the query. 
+
+The search suggester, `sg`, is defined in the [schema file](https://github.com/Azure-Samples/azure-search-static-web-app/blob/main/bulk-insert/BookSearchIndex.cs) used during bulk upload.
 
 :::code language="csharp" source="~/azure-search-static-web-app/api/Search.cs" :::
 
@@ -46,17 +48,9 @@ Call the Azure Function in the React client with the following code.
 
 :::code language="csharp" source="~/azure-search-static-web-app/client/src/pages/Search/Search.js" :::
 
-## Azure Function: Suggestions from the catalog
-
-The [Suggest API](https://github.com/Azure-Samples/azure-search-static-web-app/blob/main/api/Suggest.cs) takes a search term while a user is typing and suggests search terms such as book titles and authors across the documents in the search index, returning a small list of matches. 
-
-The search suggester, `sg`, is defined in the [schema file](https://github.com/Azure-Samples/azure-search-static-web-app/blob/main/bulk-insert/BookSearchIndex.cs) used during bulk upload.
-
-:::code language="csharp" source="~/azure-search-static-web-app/api/Suggest.cs"  :::
-
 ## Client: Suggestions from the catalog
 
-The Suggest function API is called in the React app at `\client\src\components\SearchBar\SearchBar.js` as part of component initialization:
+The Suggest function API is called in the React app at `\client\src\components\SearchBar\SearchBar.js` as part of the [Material UI's Autocomplete component](https://mui.com/material-ui/react-autocomplete/). This component uses the input text to search for authors and books that match the input text then displays those possible matches at selectable items in the drop-down list. 
 
 :::code language="csharp" source="~/azure-search-static-web-app/client/src/components/SearchBar/SearchBar.js" :::
 

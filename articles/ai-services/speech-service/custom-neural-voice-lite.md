@@ -60,7 +60,7 @@ To create a custom neural voice lite project, follow these steps:
 Record at least 20 voice samples (up to 50) with provided scripts online. Voice samples recorded here are used to create a synthetic version of your voice.
 
 > [!NOTE]
-> Custom neural voice training is currently only available in some regions. See footnotes in the [regions](regions.md#speech-service) table for more information.
+> Custom neural voice training is currently only available in some regions. See footnotes in the [regions](regions.md#regions) table for more information.
 
 Here are some tips to help you record your voice samples:
 - Use a good microphone. Increase the clarity of your samples by using a high-quality microphone. Speak about 8 inches away from the microphone to avoid mouth noises.

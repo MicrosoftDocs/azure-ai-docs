@@ -36,7 +36,7 @@ You need this step if you have more than one subscription or tenant.
 
    1. Now select the subscription name to show the parent management group (tenant ID) on the next page.
 
-      :::image type="content" source="media/search-get-started-rbac/select-subscription-name.png" lightbox="media/search-get-started-rbac/select-subscription-name.png" alt-text="Screenshot of the portal page providing the subscription name":::
+      :::image type="content" source="media/search-get-started-rbac/select-subscription-name.png" lightbox="media/search-get-started-rbac/select-subscription-name.png" alt-text="Screenshot of the Azure portal page providing the subscription name":::
 
 1. You now know which subscription and tenant Azure AI Search is under. Switch to your local device and a command prompt, and identify the active Azure subscription and tenant on your device:
 
@@ -62,7 +62,7 @@ You need this step if you have more than one subscription or tenant.
 
    1. Choose **Role-based control** or **Both** if you need time to transition clients to role-based access control.
 
-      If you choose **Role-based control**, make sure that you assign yourself *all* roles named in the next instruction or you won't be able to complete tasks in the portal or through a  local client.
+      If you choose **Role-based control**, make sure that you assign yourself *all* roles named in the next instruction or you won't be able to complete tasks in the Azure portal or through a  local client.
 
 1. Assign roles in the Azure portal:
 
@@ -72,11 +72,11 @@ You need this step if you have more than one subscription or tenant.
 
    1. Select **+ Add** > **Add role assignment**.
 
-   1. Choose a role (Search Service Contributor, Search Index Data Contributor, Search Index Data Reader) and assign it to your Microsoft Entra user or group identity.
+   1. Choose a role (**Search Service Contributor**, **Search Index Data Contributor**, **Search Index Data Reader**) and assign it to your Microsoft Entra user or group identity.
 
       Repeat for each role.
 
-      You need all three roles for creating, loading, and querying objects on Azure AI Search. For more information, see [Connect using roles](search-security-rbac.md).
+      You need **Search Service Contributor** plus **Search Index Data Contributor** to create, load, and query objects on Azure AI Search. For more information, see [Connect using roles](search-security-rbac.md).
 
 > [!TIP]
 > Later, if you get authentication failure errors, recheck the settings in this section. There could be policies at the subscription or resource group level that override any API settings you specify.
@@ -120,7 +120,7 @@ Several quickstarts and tutorials use a REST client, such as Visual Studio Code 
 
 You should have a `.rest` or `.http` file, similar to the one described in [Quickstart: Vector search](search-get-started-vector.md).
 
-1. Get an access token:
+1. Generate an access token.
 
    ```azurecli
    az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
@@ -149,13 +149,22 @@ You should have a `.rest` or `.http` file, similar to the one described in [Quic
          }
    ```
 
-If the call fails, revisit the previous steps to make sure you didn't skip any. You might also want to restart your device.
+### Troubleshoot 401 errors
+
+- Check the active subscription and tenant (`az account show`) and make sure it's valid for your search service.
+
+- Check the search service **Settings** > **Keys** options in the Azure portal and confirm the service is configured for **Both"** or **Role-based access control**.
+
+- For the REST client only: Check the token and endpoint specified in your file and make sure there's no surrounding quotes or extra spaces.
+
+If all else fails, restart your device to remove any cached tokens, and then repeat the steps in this section, starting with `az login`.
 
 ## Additional configuration
 
 Configure a managed identity for outbound connections:
 
 - [Configure a system-assigned or user-assigned managed identity](search-howto-managed-identities-data-sources.md) for your search service.
+
 - [Use role assignments](keyless-connections.md) to authorize access to other Azure resources.
 
 Network access configuration:

@@ -57,7 +57,7 @@ Debug sessions work with all generally available [indexer data sources](search-d
 
 1. On the action bar at the top, select **Add debug session**.
 
-   :::image type="content" source="media/cognitive-search-debug/new-debug-session.png" lightbox="media/cognitive-search-debug/new-debug-session.png" alt-text="Screenshot of the debug sessions commands in the portal page." border="true":::
+   :::image type="content" source="media/cognitive-search-debug/new-debug-session.png" lightbox="media/cognitive-search-debug/new-debug-session.png" alt-text="Screenshot of the debug sessions commands in the Azure portal page." border="true":::
 
 1. In **Debug session name**, provide a name that will help you remember which skillset, indexer, and data source the debug session is about.
 
@@ -65,7 +65,7 @@ Debug sessions work with all generally available [indexer data sources](search-d
 
 1. In **Document to debug**, choose the first document in the index or select a specific document. If you select a specific document, depending on the data source, you're asked for a URI or a row ID.
 
-   If your specific document is a blob, provide the blob URI. You can find the URI in the blob property page in the portal.
+   If your specific document is a blob, provide the blob URI. You can find the URI in the blob property page in the Azure portal.
 
    :::image type="content" source="media/cognitive-search-debug/copy-blob-url.png" lightbox="media/cognitive-search-debug/copy-blob-url.png" alt-text="Screenshot of the URI property in blob storage." border="true":::
 
@@ -87,7 +87,7 @@ It's expected for a debug session to take longer to execute than the indexer sin
 
 ## Start with errors and warnings
 
-Indexer execution history in the portal gives you the full error and warning list for all documents. In a debug session, the errors and warnings are limited to one document. You can work through this list, make your changes, and then return to the list to verify whether issues are resolved. 
+Indexer execution history in the Azure portal gives you the full error and warning list for all documents. In a debug session, the errors and warnings are limited to one document. You can work through this list, make your changes, and then return to the list to verify whether issues are resolved. 
 
 Remember that a debug session is based on one document from the entire index. If an input or output looks wrong, the problem could be specific to that document. You can choose a different document to confirm whether errors and warnings are pervasive or specific to a single document.
 

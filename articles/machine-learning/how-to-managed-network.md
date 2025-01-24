@@ -70,6 +70,8 @@ If you want to use the integrated notebook or create datasets in the default sto
 
 Part of Azure Machine Learning studio runs locally in the client's web browser, and communicates directly with the default storage for the workspace. Creating a private endpoint or service endpoint (for the default storage account) in the client's virtual network ensures that the client can communicate with the storage account.
 
+If the workspace associated Azure storage account has public network access disabled, ensure the private endpoint created in the client virtual network is granted the Reader role to your workspace managed identity. This applies to both blog and file storage private endpoints. The role is not required for the private endpoint created by the managed virtual network. 
+
 For more information on creating a private endpoint or service endpoint, see the [Connect privately to a storage account](/azure/storage/common/storage-private-endpoints) and [Service Endpoints](/azure/virtual-network/virtual-network-service-endpoints-overview) articles.
 
 ### Secured associated resources
@@ -102,7 +104,7 @@ Before following the steps in this article, make sure you have the following pre
 * The [Azure CLI](/cli/azure/) and the `ml` extension to the Azure CLI. For more information, see [Install, set up, and use the CLI (v2)](how-to-configure-cli.md).
 
     >[!TIP]
-    > Azure Machine Learning managed VNet was introduced on May 23rd, 2023. If you have an older version of the ml extension, you may need to update it for the examples in this article work. To update the extension, use the following Azure CLI command:
+    > Azure Machine Learning managed VNet was introduced on May 23rd, 2023. If you have an older version of the ml extension, you might need to update it for the examples in this article work. To update the extension, use the following Azure CLI command:
     >
     > ```azurecli
     > az extension update -n ml
@@ -128,7 +130,7 @@ Before following the steps in this article, make sure you have the following pre
 * The Azure Machine Learning Python SDK v2. For more information on the SDK, see [Install the Python SDK v2 for Azure Machine Learning](/python/api/overview/azure/ai-ml-readme).
 
     > [!TIP]
-    > Azure Machine learning managed VNet was introduced on May 23rd, 2023. If you have an older version of the SDK installed, you may need to update it for the examples in this article to work. To update the SDK, use the following command:
+    > Azure Machine learning managed VNet was introduced on May 23rd, 2023. If you have an older version of the SDK installed, you might need to update it for the examples in this article to work. To update the SDK, use the following command:
     >
     > ```bash
     > pip install --upgrade azure-ai-ml azure-identity
@@ -788,7 +790,7 @@ To enable the [serverless Spark jobs](how-to-submit-spark-jobs.md) for the manag
 2. Provision the managed virtual network.
 
     > [!NOTE]
-    > If your workspace has [public network access enabled](/azure/machine-learning/how-to-configure-private-link?view=azureml-api-2#enable-public-access), you must disable it before provisioning the managed VNet. If you don't disable public network access when provisioning the managed VNet, the private endpoints for the workspace may not be created automatically in the managed VNet. Otherwise, you would have to manually configure the private endpoint outbound rule for the workspace after the provisioning.
+    > If your workspace has [public network access enabled](/azure/machine-learning/how-to-configure-private-link#enable-public-access), you must disable it before provisioning the managed VNet. If you don't disable public network access when provisioning the managed VNet, the private endpoints for the workspace may not be created automatically in the managed VNet. Otherwise, you would have to manually configure the private endpoint outbound rule for the workspace after the provisioning.
 
     # [Azure CLI](#tab/azure-cli)
 
@@ -890,7 +892,7 @@ During workspace creation, select __Provision managed network proactively at cre
 When the Azure Container Registry for your workspace is behind a virtual network, it can't be used to directly build Docker images. Instead, configure your workspace to use a compute cluster or compute instance to build images.
 
 > [!IMPORTANT]
-> The compute resource used to build Docker images needs to be able to access the package repositories that are used to train and deploy your models. If you're using a network configured to allow only approved outbound, you may need to add [rules that allow access to public repos](#scenario-access-public-machine-learning-packages) or [use private Python packages](concept-vulnerability-management.md#using-a-private-package-repository).
+> The compute resource used to build Docker images needs to be able to access the package repositories that are used to train and deploy your models. If you're using a network configured to allow only approved outbound, you might need to add [rules that allow access to public repos](#scenario-access-public-machine-learning-packages) or [use private Python packages](concept-vulnerability-management.md#using-a-private-package-repository).
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -993,25 +995,27 @@ ml_client._workspace_outbound_rules.begin_remove(resource_group, ws_name, rule_n
 
 ## List of required rules
 
-> [!TIP]
-> These  rules are automatically added to the managed VNet.
-
 __Private endpoints__:
 * When the isolation mode for the managed virtual network is `Allow internet outbound`, private endpoint outbound rules are automatically created as required rules from the managed virtual network for the workspace and associated resources __with public network access disabled__ (Key Vault, Storage Account, Container Registry, Azure Machine Learning workspace).
 * When the isolation mode for the managed virtual network is `Allow only approved outbound`, private endpoint outbound rules are automatically created as required rules from the managed virtual network for the workspace and associated resources __regardless of public network access mode for those resources__ (Key Vault, Storage Account, Container Registry, Azure Machine Learning workspace).
+* These rules are automatically added to the managed virtual network. 
 
-__Outbound__ service tag rules:
+For Azure Machine Learning to run normally, there are a set of required service tags, required in either a managed or custom virtual network set-up. There are no alternatives to replacing certain required service tags. Below is a table of each required service tag and its purpose within Azure Machine Learning.
 
-* `AzureActiveDirectory`
-* `AzureMachineLearning`
-* `BatchNodeManagement.region`
-* `AzureResourceManager`
-* `AzureFrontDoor.FirstParty`
-* `MicrosoftContainerRegistry`
-* `AzureMonitor`
+| Service tag rule | Inbound or Outbound | Purpose |
+| ----------- | ----- | ----- |
+| `AzureMachineLearning` | Inbound | Create, update, and delete of Azure Machine Learning compute instance/cluster. |  
+| `AzureMachineLearning`| Outbound | Using Azure Machine Learning services. Python intellisense in notebooks uses port 18881. Creating, updating, and deleting an Azure Machine Learning compute instance uses port 5831. |
+| `AzureActiveDirectory` | Outbound | Authentication using Microsoft Entra ID. |
+| `BatchNodeManagement.region` | Outbound | Communication with Azure Batch back-end for Azure Machine Learning compute instances/clusters. |
+| `AzureResourceManager` | Outbound | Creation of Azure resources with Azure Machine Learning, Azure CLI, and Azure Machine Learning SDK. |
+| `AzureFrontDoor.FirstParty` | Outbound | Access docker images provided by Microsoft. |
+| `MicrosoftContainerRegistry` | Outbound | Access docker images provided by Microsoft. Setup of the Azure Machine Learning router for Azure Kubernetes Service. |		
+| `AzureMonitor` | Outbound | Used to log monitoring and metrics to Azure Monitor. Only needed if you haven't secured Azure Monitor for the workspace. This outbound is also used to log information for support incidents. |
+| `VirtualNetwork` | Outbound | Required when private endpoints are present in the virtual network or peered virtual networks. |
 
-__Inbound__ service tag rules:
-* `AzureMachineLearning`
+> [!NOTE]
+> Service tags as the ONLY security boundary is not sufficient. For tenant level isolation, use private endpoints when possible.
 
 ## List of scenario specific outbound rules
 
@@ -1031,19 +1035,16 @@ If you plan to use __Visual Studio Code__ with Azure Machine Learning, add outbo
 > [!WARNING]
 > FQDN outbound rules are implemented using Azure Firewall. If you use outbound FQDN rules, charges for Azure Firewall are added to your billing. For more information, see [Pricing](#pricing).
 
-* `*.vscode.dev`
-* `vscode.blob.core.windows.net`
-* `*.gallerycdn.vsassets.io`
-* `raw.githubusercontent.com`
-* `*.vscode-unpkg.net`
-* `*.vscode-cdn.net`
-* `*.vscodeexperiments.azureedge.net`
-* `default.exp-tas.com`
-* `code.visualstudio.com`
-* `update.code.visualstudio.com`
-* `*.vo.msecnd.net`
-* `marketplace.visualstudio.com`
-* `vscode.download.prss.microsoft.com`
+> [!NOTE]
+> This is not a complete list of the hosts required for all Visual Studio Code resources on the internet, only the most commonly used. For example, if you need access to a GitHub repository or other host, you must identify and add the required hosts for that scenario. For a complete list of host names, see [Network Connections in Visual Studio Code](https://code.visualstudio.com/docs/setup/network).
+
+| __Host name__ | __Purpose__ |
+| ---- | ---- |
+| `*.vscode.dev`<br>`*.vscode-unpkg.net`<br>`*.vscode-cdn.net`<br>`*.vscodeexperiments.azureedge.net`<br>`default.exp-tas.com` | Required to access vscode.dev (Visual Studio Code for the Web) |
+| `code.visualstudio.com` | Required to download and install VS Code desktop. This host isn't required for VS Code Web. |
+| `update.code.visualstudio.com`<br>`*.vo.msecnd.net` | Used to retrieve VS Code server bits that are installed on the compute instance through a setup script. |
+| `marketplace.visualstudio.com`<br>`vscode.blob.core.windows.net`<br>`*.gallerycdn.vsassets.io` | Required to download and install VS Code extensions. These hosts enable the remote connection to compute instances. For more information, see [Manage Azure Machine Learning resources in VS Code](how-to-manage-resources-vscode.md). |
+| `vscode.download.prss.microsoft.com` | Used for Visual Studio Code download CDN |
 
 ### Scenario: Use batch endpoints or ParallelRunStep
 
@@ -1172,10 +1173,9 @@ The Azure Machine Learning managed virtual network feature is free. However, you
 
 ## Limitations
 
-* Azure AI Foundry doesn't support using your own Azure Virtual Network to secure the hub, project, or compute resources. You can only use the managed network feature to secure these resources.
 * Once you enable managed virtual network isolation of your workspace (either allow internet outbound or allow only approved outbound), you can't disable it.
 * Managed virtual network uses private endpoint connection to access your private resources. You can't have a private endpoint and a service endpoint at the same time for your Azure resources, such as a storage account. We recommend using private endpoints in all scenarios.
-* The managed virtual network is deleted when the workspace is deleted. 
+* The managed virtual network is deleted when the workspace is deleted. When deleting Azure Machine Learning resources in your Azure subscription, disable any resource locks or locks which prevent deletion of resources you created, or were created by Microsoft for the managed virtual network.
 * Data exfiltration protection is automatically enabled for the only approved outbound mode. If you add other outbound rules, such as to FQDNs, Microsoft can't guarantee that you're protected from data exfiltration to those outbound destinations.
 * Creating a compute cluster in a different region than the workspace isn't supported when using a managed virtual network.
 * Kubernetes and attached VMs aren't supported in an Azure Machine Learning managed virtual network.
@@ -1186,6 +1186,7 @@ The Azure Machine Learning managed virtual network feature is free. However, you
 * Managed network isolation can't establish a private connection from the managed virtual network to a user's on-premises resources.
 For the list of supported private connections, see [Private Endpoints](/azure/machine-learning/how-to-managed-network?view=azureml-api-2&tabs=azure-cli&preserve-view=true#private-endpoints).
 * If your managed network is configured to __allow only approved outbound__, you can't use an FQDN rule to access Azure Storage Accounts. You must use a private endpoint instead.
+* Ensure to allowlist Microsoft-managed private endpoints created for the managed virtual network in your custom policy.
 
 ### Migration of compute resources
 

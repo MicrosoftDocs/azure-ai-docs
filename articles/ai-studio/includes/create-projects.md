@@ -6,7 +6,7 @@ ms.reviewer: deeikele
 ms.author: sgilley
 ms.service: azure-ai-studio
 ms.topic: include
-ms.date: 11/19/2024
+ms.date: 01/03/2025
 ms.custom: include, build-2024, ignite-2024
 ---
 
@@ -23,7 +23,7 @@ To create a project in [Azure AI Foundry](https://ai.azure.com), follow these st
 
 1. If you don't have a hub, a default one is created for you.  If you want to customize the default values, see the next section.
 
-1. Select **Create a project**.  Or, if you want to customize a new hub, follow the steps in the next section.
+1. Select **Create**.  Or, if you want to customize a new hub, follow the steps in the next section.
 
 ### Customize the hub
 

@@ -24,7 +24,7 @@ You can use the management center to create and configure hubs and projects with
 
 :::image type="content" source="../media/management-center/manage-hub-project.png" alt-text="Screenshot of the all resources, hub, and project sections of the management studio selected." lightbox="../media/management-center/manage-hub-project.png":::
 
-For more information, see the articles on creating a [hub](../how-to/create-azure-ai-resource.md#create-a-hub-in-ai-foundry-portal) and [project](../how-to/create-projects.md).
+For more information, see the articles on creating a [hub](../how-to/create-azure-ai-resource.md#create-a-hub-in-azure-ai-foundry-portal) and [project](../how-to/create-projects.md).
 
 ## Manage resource utilization
 
@@ -40,7 +40,7 @@ Assign roles, manage users, and ensure that all settings comply with organizatio
 
 :::image type="content" source="../media/management-center/user-management.png" alt-text="Screenshot of the user management section of the management center." lightbox="../media/management-center/user-management.png":::
 
-For more information, see [Role-based access control](rbac-ai-studio.md#assigning-roles-in-ai-foundry-portal).
+For more information, see [Role-based access control](rbac-ai-studio.md#assigning-roles-in-azure-ai-foundry-portal).
 
 ## Related content
 

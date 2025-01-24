@@ -4,9 +4,13 @@ titleSuffix: Azure AI Foundry
 description: This article introduces fine-tuning Phi-3 models in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-studio
-ms.custom:
+ms.custom: references_regions
 ms.topic: how-to
-ms.date: 7/16/2024
+ms.date: 12/16/2024
+ms.reviewer: v-vkonjarla
+reviewer: VindyaKonjarla
+ms.author: ssalgado
+author: ssalgadodev
 ---
 
 # Fine-tune Phi-3 models in Azure AI Foundry portal
@@ -60,12 +64,12 @@ The models underwent a rigorous enhancement process, incorporating both supervis
 ### Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
-- An [AI Foundry hub](../how-to/create-azure-ai-resource.md).
+- An [Azure AI Foundry hub](../how-to/create-azure-ai-resource.md).
 
     > [!IMPORTANT]
     > For Phi-3 family models, the pay-as-you-go model fine-tune offering is only available with hubs created in **East US 2** regions.
 
-- An [AI Foundry project](../how-to/create-projects.md).
+- An [Azure AI Foundry project](../how-to/create-projects.md).
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group.
 
     For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).

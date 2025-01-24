@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 9/12/2024
+ms.date: 1/13/2025
 ms.author: eur
 keywords: how to record video samples for custom text to speech avatar
 ---
@@ -15,7 +15,7 @@ keywords: how to record video samples for custom text to speech avatar
 
 This article provides instructions on preparing high-quality video samples for creating a custom text to speech avatar.
 
-Custom text to speech avatar model building requires training on a video recording of a real human speaking. This person is the avatar talent. You must get sufficient consent under all relevant laws and regulations from the avatar talent to create a custom avatar from their talent's image or likeness. To learn about requirements of the consent statement video, see [Get consent file from the avatar talent](custom-avatar-create.md#get-consent-file-from-the-avatar-talent).
+Custom text to speech avatar model building requires training on a video recording of a real human speaking. This person is the avatar talent. You must get sufficient consent under all relevant laws and regulations from the avatar talent to create a custom avatar from their talent's image or likeness. To learn about requirements of the consent statement video, see [Get consent file from the avatar talent](./custom-avatar-create.md#step-2-add-avatar-talent-consent).
 
 ## Recording environment
 
@@ -60,14 +60,23 @@ The custom text to speech avatar doesn't support customization of clothes or loo
 
 ## What video clips to record
 
-You need three types of basic video clips:
+You need several types of basic video clips:
 
-**Status 0 speaking:**
+**Consent Video (Required)**
+The consent video is required for creating a custom avatar. 
+   - The consent video must represent the same avatar talent speaking, following the requirement of the consent statement. Make sure the statement is correctly recorded, and each word is clearly spoken. You can select any one of the languages supported. To learn about requirements of the consent statement video, see [Get consent file from the avatar talent](./custom-avatar-create.md#step-2-add-avatar-talent-consent).
+   - The avatar talent should always face the front of the camera, without large movements. 
+   - The video should be taken in a quiet environment, and the voice should be recorded at a reasonable volume. Try to keep the signal-to-noise ratio higher than 20. For voice recording guidance, see the [Recording custom voice samples](../record-custom-voice-samples.md#recording-your-script) guide.
+   - Ensure that the head part will not be occluded in each frame of the video. 
+   - Make sure no other objects appear in the camera, including filming equipment, mobile phone, etc. 
+
+**Status 0 speaking (Required for gestures)**
+The status 0 speaking video clip is required for gestures with the avatar.
    - Status 0 represents the posture you can naturally maintain most of the time while speaking. For example, arms crossed in front of the body or hanging down naturally at the sides. 
    - Maintain a front-facing pose. The actor can move slightly to show a relaxed status, like moving the head or shoulder slightly, but don't move the body too much.
    - Length: keep speaking in status 0 for 3-5 minutes.
      
-**Samples of status 0 speaking:**
+**Samples of status 0 speaking**
 
 ![Animated graphic depicting Lisa speaking in status 0, representing the posture naturally maintained while speaking.](media/status-0-lisa.gif) 
 
@@ -75,13 +84,14 @@ You need three types of basic video clips:
 
 ![Animated graphic depicting Lori speaking in status 0, representing the posture naturally maintained while speaking.](media/status-0-lori.gif)
 
-**Naturally speaking:**
+**Naturally speaking (Required)**
+The naturally speaking video clip is required for the avatar to speak naturally.
    - Actor speaks in status 0 but with natural hand gestures from time to time.
    - Hands should start from status 0 and return after making gestures.
    - Use natural and common gestures when speaking. Avoid meaningful gestures like pointing, applause, or thumbs up.
    - Length: Minimum 5 minutes, maximum 30 minutes in total. At least one piece of 5-minute continuous video recording is required. If recording multiple video clips, keep each clip under 10 minutes.
      
-**Samples of natural speaking:** 
+**Samples of natural speaking** 
 
 ![Animated graphic depicting sample of Lisa speaking in status 0 with natural hand gestures, representing the posture naturally maintained while speaking.](media/natural-lisa.gif)
 
@@ -89,9 +99,8 @@ You need three types of basic video clips:
 
 ![Animated graphic depicting sample of Lori speaking in status 0 with natural hand gestures, representing the posture naturally maintained while speaking.](media/natural-lori.gif)
 
-**Silent status:**
-
-This video clip is important if you build a real-time conversation with the custom avatar. The video clip is used as the main template for both speaking and listening status for a chatbot.
+**Silent status (Required)**
+The silent status video clip is required. It's important if you build a real-time conversation with the custom avatar. The video clip is used as the main template for both speaking and listening status for a chatbot.
 
   - Maintain status 0, don't speak, but still feel relaxed.
   - Even remaining in status 0, don't keep still; you can move slightly but not too much. Perform like you're waiting.
@@ -99,7 +108,7 @@ This video clip is important if you build a real-time conversation with the cust
   - Avoid nodding frequently.
   - Length: 1 minute.
     
-**Samples of silent status:** 
+**Samples of silent status** 
 
 ![Animated graphic depicting sample of Lisa maintaining silent status without speaking but still feeling relaxed.](media/silent-lisa.gif)
 
@@ -107,17 +116,17 @@ This video clip is important if you build a real-time conversation with the cust
 
 ![Animated graphic depicting sample of Lori maintaining silent status without speaking but still feeling relaxed.](media/silent-lori.gif)
 
-**Gestures (optional):**
+**Gestures (optional)**
 
 Gesture video clips are optional, and customers who have the need to insert certain gestures in the avatar speaking can follow this guideline to take gesture videos. Gesture insertion is only enabled for batch mode avatar; real-time avatar doesn't support gesture insertion at this point. Each custom avatar model can support no more than 10 gestures.
 
-**Gesture tips:**
+**Gesture tips**
 - Each gesture clip should be within 10 seconds.
 - Gestures should start from status 0 and end with status 0. It's essential that the character maintains the same position as in status 0, which is in the middle of the screen, throughout the gesture. Otherwise, the gesture clip can't be smoothly inserted into the avatar video. 
 - The gesture clip only captures the body gestures; the actor doesn't have to speak during making gestures.
 - We recommend designing a list of gestures before recording; here are some examples of gesture video clips:
 
-**Samples of gesture:**
+**Samples of gesture**
 
 | Gestures                       | Samples                |
 |--------------------------------|------------------------|
@@ -138,20 +147,20 @@ Creating a high-quality interaction video clip is essential if you're building a
 
 Here are some tips for each phase:
 
-**Asking phase:**
+**Asking phase**
 - Maintain status 0, don't speak, but still feel relaxed.
 - Even remaining in status 0, don't keep still. Perform like you're waiting.
 - Maintain a smile as if listening or waiting patiently.
 - Avoid nodding frequently.
 - Length: Each asking slot should last around 3–5 seconds.
 
-**Answering phase:**
+**Answering phase**
 - Speak naturally with natural hand gestures from time to time.
 - Use natural and common gestures when speaking. Avoid meaningful gestures like pointing, applause, or thumbs up.
 - Begin gestures after starting to speak, and stop them before you finish.
 - Length: Each answering slot should last around 5 seconds.
 
-**Total video length:**
+**Total video length**
 - Aim for a total video length of 1–5 minutes.
 
 ## Data requirements
@@ -167,7 +176,7 @@ Doing some basic processing of your video data is helpful for model training eff
 
 **Frame rate per second:** At least 25 FPS.
 
-## Next steps
+## Related content
 
 * [What is text to speech avatar](what-is-text-to-speech-avatar.md)
 * [What is custom text to speech avatar](what-is-custom-text-to-speech-avatar.md)

@@ -52,7 +52,7 @@ If you've been using the previous version of the .NET SDK and you'd like to upgr
 
 + Visual Studio 2019 or later.
 
-+ Your own Azure AI Search service. In order to use the SDK, you need the name of your service and one or more API keys. [Create a service in the portal](search-create-service-portal.md) if you don't have one.
++ Your own Azure AI Search service. In order to use the SDK, you need the name of your service and one or more API keys. [Create a service in the Azure portal](search-create-service-portal.md) if you don't have one.
 
 + Download the [NuGet package](https://www.nuget.org/packages/Azure.Search.Documents) using **Tools** > **NuGet Package Manager** > **Manage NuGet Packages for Solution** in Visual Studio. Search for the package name `Azure.Search.Documents`.
 

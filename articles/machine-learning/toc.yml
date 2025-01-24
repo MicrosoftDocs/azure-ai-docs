@@ -6,7 +6,7 @@ items:
     - name: What is Azure Machine Learning?
       displayName: AML, services, overview, introduction
       href: overview-what-is-azure-machine-learning.md
-    - name: "AI Foundry or Azure Machine Learning studio: Which should I choose?"
+    - name: "Azure AI Foundry or Azure Machine Learning studio: Which should I choose?"
       href: /ai/ai-studio-experiences-overview?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
     - name: Azure Machine Learning CLI and Python SDK
       href: concept-v2.md
@@ -1008,7 +1008,7 @@ items:
               href: how-to-image-processing-batch.md
             - name: Deploy language models with batch model deployments
               href: how-to-nlp-processing-batch.md
-            - name: Run OpenAI models in batch endpoints to compute embeddings
+            - name: Run Azure OpenAI models in batch endpoints to compute embeddings
               href: how-to-use-batch-model-openai-embeddings.md
         - name: Deploy pipeline components
           items:
@@ -1788,6 +1788,9 @@ items:
         - name: "Pipelines"
           displayName: migration, v1, v2
           href: migrate-to-v2-execution-pipeline.md
+        - name: "Logging"
+          displayName: migration, v1, v2
+          href: reference-migrate-sdk-v1-mlflow-tracking.md
     - name: Upgrade endpoints
       items:
         - name: "Online endpoints"

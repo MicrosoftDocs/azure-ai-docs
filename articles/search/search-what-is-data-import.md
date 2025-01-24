@@ -98,11 +98,11 @@ Use the following tools and APIs for indexer-based indexing:
 
 Indexer functionality is exposed in the [Azure portal], the [REST API](/rest/api/searchservice/indexers/create), and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.searchindexerclient).
 
-An advantage to using the portal is that Azure AI Search can usually generate a default index schema by reading the metadata of the source dataset. 
+An advantage to using the Azure portal is that Azure AI Search can usually generate a default index schema by reading the metadata of the source dataset. 
 
 ## Verify data import with Search explorer
 
-A quick way to perform a preliminary check on the document upload is to use [**Search explorer**](search-explorer.md) in the portal.
+A quick way to perform a preliminary check on the document upload is to use [**Search explorer**](search-explorer.md) in the Azure portal.
 
 :::image type="content" source="media/search-explorer/search-explorer-cmd2.png" alt-text="Screenshot of Search Explorer command in the Azure portal." border="true":::
 

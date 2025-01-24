@@ -36,4 +36,4 @@ This is the replacement for the following preview models:
 
 ### Deploying GPT-4 Turbo with Vision GA
 
-To deploy the GA model from the AI Foundry portal, select `GPT-4` and then choose the `turbo-2024-04-09` version from the dropdown menu. The default quota for the `gpt-4-turbo-2024-04-09` model will be the same as current quota for GPT-4-Turbo. See the [regional quota limits.](../quotas-limits.md)
+To deploy the GA model from the Azure AI Foundry portal, select `GPT-4` and then choose the `turbo-2024-04-09` version from the dropdown menu. The default quota for the `gpt-4-turbo-2024-04-09` model will be the same as current quota for GPT-4-Turbo. See the [regional quota limits.](../quotas-limits.md)

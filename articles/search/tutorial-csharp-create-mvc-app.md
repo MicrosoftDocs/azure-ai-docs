@@ -11,7 +11,7 @@ ms.devlang: csharp
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 04/22/2024
+ms.date: 01/17/2025
 ---
 
 # Create a search app in ASP.NET Core
@@ -71,7 +71,7 @@ Modify `appsettings.json` to specify your search service and [query API key](sea
 }
 ```
 
-You can get the service URL and API key from the portal. Because this code is querying an index and not creating one, you can use a query key instead of an admin key.
+You can get the service URL and API key from the Azure portal. Because this code is querying an index and not creating one, you can use a query key instead of an admin key.
 
 Make sure to specify the search service that has the hotels-sample-index.
 

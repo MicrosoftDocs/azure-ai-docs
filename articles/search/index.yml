@@ -67,7 +67,7 @@ landingContent:
     linkLists:
       - linkListType: how-to-guide
         links:
-          - text: Create a vector index in AI Foundry portal
+          - text: Create a vector index in Azure AI Foundry portal
             url: /azure/ai-studio/how-to/index-add
           - text: Chat with your data using Azure OpenAI
             url: /azure/ai-services/openai/use-your-data-quickstart

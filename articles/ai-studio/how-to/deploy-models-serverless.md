@@ -5,7 +5,7 @@ description: Learn to deploy models as serverless APIs, using Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
-ms.date: 07/18/2024
+ms.date: 12/20/2024
 ms.author: mopeakande
 author: msakande
 ms.reviewer: fasantia
@@ -35,7 +35,7 @@ This article uses a Meta Llama model deployment for illustration. However, you c
 
 - You need to install the following software to work with Azure AI Foundry:
 
-    # [AI Foundry portal](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
     You can use any compatible web browser to navigate [Azure AI Foundry](https://ai.azure.com).
 
@@ -132,7 +132,7 @@ Serverless API endpoints can deploy both Microsoft and non-Microsoft offered mod
 
 1. Create the model's marketplace subscription. When you create a subscription, you accept the terms and conditions associated with the model offer.
 
-    # [AI Foundry portal](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
     1. On the model's **Details** page, select **Deploy**. A **Deployment options** window opens up, giving you the choice between serverless API deployment and deployment using a managed compute.
 
@@ -259,7 +259,7 @@ Serverless API endpoints can deploy both Microsoft and non-Microsoft offered mod
 
 1. At any point, you can see the model offers to which your project is currently subscribed:
 
-    # [AI Foundry portal](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
     1. Go to the [Azure portal](https://portal.azure.com).
 
@@ -314,7 +314,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
 
 1. Create the serverless endpoint
 
-    # [AI Foundry portal](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
     1. To deploy a Microsoft model that doesn't require subscribing to a model offering:
         1. Select **Deploy** and then select **Serverless API with Azure AI Content Safety (preview)** to open the deployment wizard.
@@ -466,7 +466,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
 
 1. At any point, you can see the endpoints deployed to your project:
 
-    # [AI Foundry portal](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
     1. Go to your project.
 
@@ -515,7 +515,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
 
 1. The created endpoint uses key authentication for authorization. Use the following steps to get the keys associated with a given endpoint.
 
-    # [AI Foundry portal](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
     You can select the deployment, and note the endpoint's _Target URI_ and _Key_. Use them to call the deployment and generate predictions.
 
@@ -559,7 +559,7 @@ Read more about the [capabilities of this API](../reference/reference-model-infe
 
 ## Network isolation
 
-Endpoints for models deployed as Serverless APIs follow the public network access (PNA) flag setting of the AI Foundry portal Hub that has the project in which the deployment exists. To secure your MaaS endpoint, disable the PNA flag on your AI Foundry Hub. You can secure inbound communication from a client to your endpoint by using a private endpoint for the hub.
+Endpoints for models deployed as Serverless APIs follow the public network access (PNA) flag setting of the Azure AI Foundry portal Hub that has the project in which the deployment exists. To secure your MaaS endpoint, disable the PNA flag on your Azure AI Foundry Hub. You can secure inbound communication from a client to your endpoint by using a private endpoint for the hub.
 
 To set the PNA flag for the Azure AI Foundry hub:
 
@@ -573,7 +573,7 @@ To set the PNA flag for the Azure AI Foundry hub:
 
 You can delete model subscriptions and endpoints. Deleting a model subscription makes any associated endpoint become *Unhealthy* and unusable.
 
-# [AI Foundry portal](#tab/azure-ai-studio)
+# [Azure AI Foundry portal](#tab/azure-ai-studio)
 
 To delete a serverless API endpoint:
 

@@ -11,7 +11,7 @@ ms.custom:
   - mode-arm
   - devx-track-bicep
   - ignite-2023
-ms.date: 02/26/2024
+ms.date: 12/10/2024
 ---
 
 # Quickstart: Deploy Azure AI Search using Bicep
@@ -107,5 +107,5 @@ In this quickstart, you created an Azure AI Search service using a Bicep file, a
 
 - Read an [overview of Azure AI Search](search-what-is-azure-search.md).
 - [Create an index](search-get-started-portal.md) for your search service.
-- [Create a demo app](search-create-app-portal.md) using the portal wizard.
+- [Create a demo app](search-create-app-portal.md) using the Azure portal wizard.
 - [Create a skillset](search-get-started-skillset.md) to extract information from your data.

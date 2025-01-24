@@ -54,7 +54,7 @@ os.environ['AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED'] = 'true'
 application_insights_connection_string = project.telemetry.get_connection_string()
 if not application_insights_connection_string:
     print("Application Insights was not enabled for this project.")
-    print("Enable it via the 'Tracing' tab in your AI Foundry project page.")
+    print("Enable it via the 'Tracing' tab in your Azure AI Foundry project page.")
     exit()
     
 configure_azure_monitor(connection_string=application_insights_connection_string)

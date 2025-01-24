@@ -5,7 +5,7 @@ description: Learn how to fine-tune tsuzumi-7b in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
-ms.date: 7/23/2024
+ms.date: 11/11/2024
 ms.reviewer: rasavage
 reviewer: shubhirajMsft
 ms.author: ssalgado
@@ -38,7 +38,7 @@ In this article, you learn how to fine-tune an NTTDATA tsuzumi-7b model in [Azur
 - An [Azure AI Foundry project](../how-to/create-projects.md) in Azure AI Foundry portal.
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. Alternatively, your account can be assigned a custom role that has the following permissions:
 
-    - On the Azure subscription—to subscribe the AI Foundry project to the Azure Marketplace offering, once for each project, per offering:
+    - On the Azure subscription—to subscribe the Azure AI Foundry project to the Azure Marketplace offering, once for each project, per offering:
       - `Microsoft.MarketplaceOrdering/agreements/offers/plans/read`
       - `Microsoft.MarketplaceOrdering/agreements/offers/plans/sign/action`
       - `Microsoft.MarketplaceOrdering/offerTypes/publishers/offers/plans/agreements/read`
@@ -49,7 +49,7 @@ In this article, you learn how to fine-tune an NTTDATA tsuzumi-7b model in [Azur
       - `Microsoft.SaaS/resources/read`
       - `Microsoft.SaaS/resources/write`
  
-    - On the AI Foundry project—to deploy endpoints (the Azure AI Developer role contains these permissions already):
+    - On the Azure AI Foundry project—to deploy endpoints (the Azure AI Developer role contains these permissions already):
       - `Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*`  
       - `Microsoft.MachineLearningServices/workspaces/serverlessEndpoints/*`
 

@@ -1,7 +1,7 @@
 ---
-title: "Use Azure AI Content Understanding Analyzer templates in Azure AI Foundry"
+title: "Use Azure AI Content Understanding Analyzer templates in Azure AI Foundry portal"
 titleSuffix: Azure AI services
-description: Learn how to use Content Understanding Analyzer templates in Azure AI Foundry
+description: Learn how to use Content Understanding Analyzer templates in Azure AI Foundry portal
 author: laujan
 manager: nitinme
 ms.service: azure-ai-content-understanding
@@ -10,12 +10,14 @@ ms.date: 11/19/2024
 ms.custom: ignite-2024-understanding-release
 ---
 
-# Use Content Understanding in Azure AI Foundry
-[Azure AI Foundry](https://ai.azure.com/) is a comprehensive platform for developing and deploying generative AI applications and APIs responsibly. This guide shows you how to use Content Understanding and build an analyzer, either by creating your own schema from scratch or by using a suggested analyzer template.
+# Use Content Understanding in Azure AI Foundry portal
+[Azure AI Foundry portal](https://ai.azure.com/) is a comprehensive platform for developing and deploying generative AI applications and APIs responsibly. This guide shows you how to use Content Understanding and build an analyzer, either by creating your own schema from scratch or by using a suggested analyzer template.
+
+  :::image type="content" source="../media/quickstarts/ai-foundry-overview.png" alt-text="Screenshot of the Content Understanding workflow in the Azure AI Foundry.":::
 
 ## Steps to create a Content Understanding analyzer
 
-Azure AI Foundry enables you to build a Content Understanding analyzer tailored to your specific needs. An analyzer can extract data from your content based on your scenario.
+Azure AI Foundry portal enables you to build a Content Understanding analyzer tailored to your specific needs. An analyzer can extract data from your content based on your scenario.
 
 Follow these steps to create your own analyzer:
 
@@ -69,7 +71,7 @@ To follow is an example of building an analyzer to extract key data from an invo
 
 Content Understanding analyzer templates give you a head start by allowing you to build your analyzer without creating schemas from scratch. They're fully customizable, allowing you to adjust any fields in the schemas to better fit your needs.
 
-The following analyzer templates are available for use in the [Azure AI Foundry Content Understanding experience](https://ai.azure.com/).
+The following analyzer templates are available for use in the [Azure AI Foundry portal Content Understanding experience](https://ai.azure.com/).
 
 # [Document](#tab/document)
 
@@ -116,5 +118,5 @@ The following analyzer templates are available for use in the [Azure AI Foundry 
 
 ## Next steps
 
-* In this quickstart, you learned how to create an analyzer in Azure AI Foundry. To use [REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true), *see* the [REST API quickstart](use-rest-api.md).
+ * In this quickstart, you learned how to create an analyzer in Azure portal. To use [REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true), *see* the [REST API quickstart](use-rest-api.md).
 

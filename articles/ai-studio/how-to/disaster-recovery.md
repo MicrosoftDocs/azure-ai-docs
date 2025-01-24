@@ -10,7 +10,7 @@ ms.topic: how-to
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: andyaviles
-ms.date: 5/21/2024
+ms.date: 12/05/2024
 ---
 
 # Customer enabled disaster recovery
@@ -84,8 +84,8 @@ Azure AI Foundry builds on top of other services. Some services can be configure
 
 | Azure service | Geo-replicated by | Configuration |
 | ----- | ----- | ----- |
-| AI Foundry hub and projects | You | Create a hub/projects in the selected regions. |
-| AI Foundry compute | You | Create the compute resources in the selected regions. For compute resources that can dynamically scale, make sure that both regions provide sufficient compute quota for your needs. |
+| Azure AI Foundry hub and projects | You | Create a hub/projects in the selected regions. |
+| Azure AI Foundry compute | You | Create the compute resources in the selected regions. For compute resources that can dynamically scale, make sure that both regions provide sufficient compute quota for your needs. |
 | Key Vault | Microsoft | Use the same Key Vault instance with the Azure AI Foundry hub and resources in both regions. Key Vault automatically fails over to a secondary region. For more information, see [Azure Key Vault availability and redundancy](/azure/key-vault/general/disaster-recovery-guidance).|
 | Storage Account | You | Azure Machine Learning doesn't support __default storage-account__ failover using geo-redundant storage (GRS), geo-zone-redundant storage (GZRS), read-access geo-redundant storage (RA-GRS), or read-access geo-zone-redundant storage (RA-GZRS). Configure a storage account according to your needs and then use it for your hub. All subsequent projects use the hub's storage account. For more information, see [Azure Storage redundancy](/azure/storage/common/storage-redundancy). |
 | Container Registry | Microsoft | Configure the Container Registry instance to geo-replicate registries to the paired region for Azure AI Foundry. Use the same instance for both hub instances. For more information, see [Geo-replication in Azure Container Registry](/azure/container-registry/container-registry-geo-replication). |
@@ -120,7 +120,7 @@ For any hubs that are essential to business continuity, deploy resources in two 
 
 In the scenario in which you're connecting with data to customize your AI application, typically your datasets could be used in Azure AI but also outside of Azure AI. Dataset volume could be quite large, so for it might be good practice to keep this data in a separate storage account. Evaluate what data replication strategy makes most sense for your use case.
 
-In AI Foundry portal, make a connection to your data. If you have multiple AI Foundry instances in different regions, you might still point to the same storage account because connections work across regions. 
+In Azure AI Foundry portal, make a connection to your data. If you have multiple Azure AI Foundry instances in different regions, you might still point to the same storage account because connections work across regions. 
 
 ## Initiate a failover
 

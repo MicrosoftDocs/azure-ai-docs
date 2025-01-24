@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 12/19/2024
 ---
 
 # Make outbound connections through a shared private link
@@ -28,7 +28,7 @@ Shared private link is a premium feature that's billed by usage. When you set up
 
 Azure AI Search makes outbound calls to other Azure resources in the following scenarios:
 
-+ Indexer or search engine connections to Azure OpenAI for text-to-vector embeddings
++ Indexer or query connections to Azure OpenAI, Azure AI Vision, or the Azure AI Foundry model catalog for vectorization
 + Indexer connections to supported data sources
 + Indexer (skillset) connections to Azure Storage for caching enrichments, debug session sate, or writing to a knowledge store
 + Indexer (skillset) connections to Azure AI services for billing purposes
@@ -53,7 +53,7 @@ There are two scenarios for using [Azure Private Link](/azure/private-link/priva
 
 + Scenario one: create a shared private link when an *outbound* (indexer) connection to Azure requires a private connection.
 
-+ Scenario two: [configure search for a private *inbound* connection](service-create-private-endpoint.md) from clients that run in a virtual network. 
++ Scenario two: [configure search for a private *inbound* connection](service-create-private-endpoint.md) from clients that run in a virtual network.
 
 Scenario one is covered in this article.
 
@@ -65,7 +65,7 @@ When evaluating shared private links for your scenario, remember these constrain
 
 + Several of the resource types used in a shared private link are in preview. If you're connecting to a preview resource (Azure Database for MySQL or Azure SQL Managed Instance), use a preview version of the Management REST API to create the shared private link. These versions include `2020-08-01-preview`, `2021-04-01-preview`, `2024-03-01-preview`, and `2024-06-01-preview`. We recommend the latest preview API.
 
-+ Indexer execution must use the private execution environment that's specific to your search service. Private endpoint connections aren't supported from the multitenant content processing environment. The configuration setting for this requirement is covered in this article.
++ Indexer execution must use the [private execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment) that's specific to your search service. Private endpoint connections aren't supported from the multitenant content processing environment. The configuration setting for this requirement is covered in this article.
 
 + Review shared private link [resource limits for each tier](search-limits-quotas-capacity.md#shared-private-link-resource-limits).
 
@@ -126,7 +126,7 @@ You can create a shared private link for the following resources.
 
 <sup>7</sup> Shared private link for Azure OpenAI is only supported in public cloud. Other cloud offerings such as [Microsoft Azure Government](https://azure.microsoft.com/explore/global-infrastructure/government/) don't have support for shared private links for `openai_account` Group ID.
 
-<sup>8</sup> Shared private links are now supported (as of November 2024) for connections to Azure AI multiservice accounts. Azure AI Search connects to Azure AI multiservice for [billing purposes](cognitive-search-attach-cognitive-services.md). These connections can now be private through a shared private link. 
+<sup>8</sup> Shared private links are now supported (as of November 2024) for connections to Azure AI multiservice accounts. Azure AI Search connects to Azure AI multiservice for [billing purposes](cognitive-search-attach-cognitive-services.md). These connections can now be private through a shared private link. Shared private link is only supported when configuring [a managed identity (keyless configuration)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) in the skillset definition. 
 
 ## 1 - Create a shared private link
 
@@ -148,7 +148,7 @@ When you complete the steps in this section, you have a shared private link that
 
 1. Select either **Connect to an Azure resource in my directory** or **Connect to an Azure resource by resource ID**.
 
-1. If you select the first option (recommended), the portal helps you pick the appropriate Azure resource and fills in other properties, such as the group ID of the resource and the resource type.
+1. If you select the first option (recommended), the Azure portal helps you pick the appropriate Azure resource and fills in other properties, such as the group ID of the resource and the resource type.
 
    :::image type="content" source="media/search-indexer-howto-secure-access/new-shared-private-link-resource.png" lightbox="media/search-indexer-howto-secure-access/new-shared-private-link-resource.png" alt-text="Screenshot of the Add Shared Private Access page, showing a guided experience for creating a shared private link resource." :::
 
@@ -314,7 +314,7 @@ Using the Azure portal, perform the following steps:
 
     :::image type="content" source="media/search-indexer-howto-secure-access/storage-privateendpoint-approval.png" lightbox="media/search-indexer-howto-secure-access/storage-privateendpoint-approval.png" alt-text="Screenshot of the Azure portal, showing the Private endpoint connections pane.":::
 
-1. Select the connection, and then select **Approve**. It can take a few minutes for the status to be updated in the portal.
+1. Select the connection, and then select **Approve**. It can take a few minutes for the status to be updated in the Azure portal.
 
     :::image type="content" source="media/search-indexer-howto-secure-access/storage-privateendpoint-after-approval.png" lightbox="media/search-indexer-howto-secure-access/storage-privateendpoint-after-approval.png" alt-text="Screenshot of the Azure portal, showing an Approved status on the Private endpoint connections pane.":::
 
@@ -360,11 +360,11 @@ If the provisioning state (`properties.provisioningState`) of the resource is "S
 
 ## 4 - Configure the indexer to run in the private environment
 
-[Indexer execution](search-indexer-securing-resources.md#indexer-execution-environment) occurs in either a private environment that's specific to the search service, or a multitenant environment that's used internally to offload expensive skillset processing for multiple customers. 
+[Indexer execution](search-howto-run-reset-indexers.md#indexer-execution-environment) occurs in either a private environment that's specific to the search service, or a multitenant environment that's used internally to offload expensive skillset processing for multiple customers. 
 
 The execution environment is transparent, but once you start building firewall rules or establishing private connections, you must take indexer execution into account. For a private connection, configure indexer execution to always run in the private environment. 
 
-This step shows you how to configure the indexer to run in the private environment using the REST API. You can also set the execution environment using the JSON editor in the portal.
+This step shows you how to configure the indexer to run in the private environment using the REST API. You can also set the execution environment using the JSON editor in the Azure portal.
 
 > [!NOTE]
 > You can perform this step before the private endpoint connection is approved. However, until the private endpoint connection shows as approved, any existing indexer that tries to communicate with a secure resource (such as the storage account) will end up in a transient failure state and new indexers will fail to be created.
@@ -390,7 +390,7 @@ This step shows you how to configure the indexer to run in the private environme
 After the indexer is created successfully, it should connect to the Azure resource over the private endpoint connection. You can monitor the status of the indexer by using the [Indexer Status API](/rest/api/searchservice/indexers/get-status).
 
 > [!NOTE]
-> If you already have existing indexers, you can update them via the [PUT API](/rest/api/searchservice/indexers/create) by setting the `executionEnvironment` to `private` or using the JSON editor in the portal.
+> If you already have existing indexers, you can update them via the [PUT API](/rest/api/searchservice/indexers/create) by setting the `executionEnvironment` to `private` or using the JSON editor in the Azure portal.
 
 ## 5 - Test the shared private link
 

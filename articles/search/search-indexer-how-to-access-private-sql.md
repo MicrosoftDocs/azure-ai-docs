@@ -7,7 +7,7 @@ author: mattgotteiner
 ms.author: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/23/2024
+ms.date: 12/10/2024
 ---
 
 # Create a shared private link for a SQL managed instance from Azure AI Search
@@ -19,7 +19,7 @@ On a private connection to a managed instance, the fully qualified domain name (
 Although you can call the Management REST API directly, it's easier to use the Azure CLI `az rest` module to send Management REST API calls from a command line. This article uses the Azure CLI with REST to set up the private link.
 
 > [!NOTE]
-> This article refers to Azure portal for obtaining properties and confirming steps. However, when creating the shared private link for SQL Managed Instance, make sure you're using the REST API. Although the Networking tab lists `Microsoft.Sql/managedInstances` as an option, the portal doesn't currently support the extended URL format used by SQL Managed Instance.
+> This article refers to Azure portal for obtaining properties and confirming steps. However, when creating the shared private link for SQL Managed Instance, make sure you're using the REST API. Although the Networking tab lists `Microsoft.Sql/managedInstances` as an option, the Azure portal doesn't currently support the extended URL format used by SQL Managed Instance.
 
 ## Prerequisites
 
@@ -108,7 +108,7 @@ On the SQL Managed Instance side, the resource owner must approve the private co
 
 1. Find the section that lists the private endpoint connections.
 
-1. Select the connection, and then select **Approve**. It can take a few minutes for the status to be updated in the portal.
+1. Select the connection, and then select **Approve**. It can take a few minutes for the status to be updated in the Azure portal.
 
 After the private endpoint is approved, Azure AI Search creates the necessary DNS zone mappings in the DNS zone that's created for it.
 
@@ -151,9 +151,9 @@ This article assumes a [REST client](search-get-started-rest.md) and uses the RE
      }
     ```
 
-1. [Create the indexer definition](search-howto-create-indexers.md), setting the indexer execution environment to "private".
+1. [Create the indexer definition](search-howto-create-indexers.md), setting the indexer `executionEnvironment` to "private".
 
-   [Indexer execution](search-indexer-securing-resources.md#indexer-execution-environment) occurs in either a private environment that's specific to the search service, or a multi-tenant environment that's used internally to offload expensive skillset processing for multiple customers. **When connecting over a private endpoint, indexer execution must be private.**
+   [Indexer execution](search-howto-run-reset-indexers.md#indexer-execution-environment) occurs in either a private execution environment that's specific to your search service, or a multi-tenant environment hosted by Microsoft and used to offload expensive skillset processing for multiple customers. **When connecting over a private endpoint, indexer execution must be private.**
 
    ```http
     POST https://myservice.search.windows.net/indexers?api-version=2024-07-01
