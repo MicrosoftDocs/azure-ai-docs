@@ -148,7 +148,7 @@ Learn more about data processing for MaaS in the [article about data privacy](co
 :::image type="content" source="../media/explore/model-publisher-cycle.png" alt-text="Diagram that shows the model publisher service cycle." lightbox="../media/explore/model-publisher-cycle.png":::
 
 > [!NOTE]
-> CSP subscriptions do not have the ability to purchase serverless API deployments (MaaS) for third-party models.
+> Cloud Solution Provider (CSP) subscriptions do not have the ability to purchase serverless API deployments (MaaS) models.
 
 ### Billing
 
