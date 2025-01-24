@@ -29,7 +29,7 @@ Microsoft Translator Pro is a paid mobile application available on the Azure pub
 
 * This app operates as a paid offering, necessitating payment before use.
 
-* The app is available only to enterprises in the United States, Europe, United Kingdom, and Australia that meet certain criteria. For more information, *see* [Region availability](#region-availability).
+* The app is available for download to enterprises that meet certain criteria in selected countries. For more information, *see* [Country availability](#country-availability).
 
 * Offline translation is limited to a select number of languages. For more information, *see* [Language support](language-support.md).
 
@@ -55,7 +55,7 @@ Microsoft Translator Pro is a paid mobile application available on the Azure pub
 
 ## Country availability
 
-Microsoft Translator Pro is available for download in the following countries from your app store:
+Microsoft Translator Pro is available for download in the following countries from the `iOS` app store:
 
 | Country |
 | --- |
@@ -150,3 +150,4 @@ The app is currently available for Azure AI Translator resources created in the 
 Use the following link to sign up for and try Microsoft Translator Pro:
 
 [**Microsoft Translator Pro Limited Access**](https://aka.ms/TranslatorProGatingForm)
+[**Language support**](language-support.md)
