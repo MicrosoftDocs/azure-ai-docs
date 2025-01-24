@@ -39,7 +39,7 @@ For any [deployment type](/azure/ai-services/openai/how-to/deployment-types) lab
 > [!IMPORTANT]
 > Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure OpenAI location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-**SKU name in code:** GlobalStandard
+**SKU name in code:** `GlobalStandard`
 
 Global deployments are available in the same Azure OpenAI resources as non-global deployment types but allow you to leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request.  Global standard provides the highest default quota and eliminates the need to load balance across multiple resources.  
 
@@ -50,7 +50,7 @@ Customers with high consistent volume may experience greater latency variability
 > [!IMPORTANT]
 > Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure OpenAI location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-**SKU name in code:** GlobalProvisionedManaged
+**SKU name in code:** `GlobalProvisionedManaged`
 
 Global deployments are available in the same Azure OpenAI resources as non-global deployment types but allow you to leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request. Global provisioned deployments provide reserved model processing capacity for high and predictable throughput using Azure global infrastructure.  
 
@@ -61,7 +61,7 @@ Global deployments are available in the same Azure OpenAI resources as non-globa
 
 [Global batch](./batch.md) is designed to handle large-scale and high-volume processing tasks efficiently. Process asynchronous groups of requests with separate quota, with 24-hour target turnaround, at [50% less cost than global standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than send one request at a time you send a large number of requests in a single file. Global batch requests have a separate enqueued token quota avoiding any disruption of your online workloads.  
 
-**SKU name in code:** GlobalBatch
+**SKU name in code:** `GlobalBatch`
 
 Key use cases include:
 
@@ -84,7 +84,7 @@ Key use cases include:
 > [!IMPORTANT]
 > Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure OpenAI location within the Microsoft specified data zone. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-**SKU name in code:** DataZoneStandard
+**SKU name in code:** `DataZoneStandard`
 
 Data zone standard deployments are available in the same Azure OpenAI resource as all other Azure OpenAI deployment types but allow you to leverage Azure global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. Data zone standard provides higher default quotas than our Azure geography-based deployment types. 
 
@@ -95,7 +95,7 @@ Customers with high consistent volume may experience greater latency variability
 > [!IMPORTANT]
 > Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure OpenAI location within the Microsoft specified data zone.[Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-**SKU name in code:** DataZoneProvisionedManaged
+**SKU name in code:** `DataZoneProvisionedManaged`
 
 Data zone provisioned deployments are available in the same Azure OpenAI resource as all other Azure OpenAI deployment types but allow you to leverage Azure global infrastructure to dynamically route traffic to the data center within the Microsoft specified data zone with the best availability for each request. Data zone provisioned deployments provide reserved model processing capacity for high and predictable throughput using Azure infrastructure within the Microsoft specified data zone.  
 
@@ -104,13 +104,13 @@ Data zone provisioned deployments are available in the same Azure OpenAI resourc
 > [!IMPORTANT]
 > Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure OpenAI location within the Microsoft specified data zone. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
  
-**SKU name in code:** DataZoneBatch
+**SKU name in code:** `DataZoneBatch`
 
 Data zone batch deployments provide all the same functionality as [global batch deployments](./batch.md) while allowing you to leverage Azure global infrastructure to dynamically route traffic to only data centers within the Microsoft defined data zone with the best availability for each request. 
 
 ## Standard
 
-**SKU name in code:** Standard
+**SKU name in code:** `Standard`
 
 Standard deployments provide a pay-per-call billing model on the chosen model. Provides the fastest way to get started as you only pay for what you consume. Models available in each region as well as throughput may be limited.  
 
@@ -118,7 +118,7 @@ Standard deployments are optimized for low to medium volume workloads with high 
 
 ## Provisioned
 
-**SKU name in code:** ProvisionedManaged
+**SKU name in code:** `ProvisionedManaged`
 
 Provisioned deployments allow you to specify the amount of throughput you require in a deployment. The service then allocates the necessary model processing capacity and ensures it's ready for you. Throughput is defined in terms of provisioned throughput units (PTU) which is a normalized way of representing the throughput for your deployment. Each model-version pair requires different amounts of PTU to deploy and provide different amounts of throughput per PTU. Learn more from our [Provisioned throughput concepts article](../concepts/provisioned-throughput.md).
 
