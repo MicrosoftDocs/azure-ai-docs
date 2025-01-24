@@ -125,11 +125,11 @@ from <your_package> import <your_class>
 You can specify `mini_batch_size`, `node_count`, `process_count_per_node`, `logging_level`, `run_invocation_timeout`, and `run_max_try` as `PipelineParameter`, so that when you resubmit a pipeline run, you can fine-tune the parameter values. 
 
 #### CUDA devices visibility
-For compute targets equipped with GPUs, the environment variable `CUDA_VISIBLE_DEVICES` is set in worker processes. In AmlCompute, you can find the total number of GPU devices in the environment variable `AZ_BATCHAI_GPU_COUNT_FOUND`, which is set automatically. If you would like each worker process to have a dedicated GPU, set `process_count_per_node` equal to the number of GPU devices on a machine. Then, each worker process get assigned with a unique index to `CUDA_VISIBLE_DEVICES`. When a worker process stops for any reason, the next started worker process adopts the released GPU index.
+For compute targets equipped with GPUs, the environment variable `CUDA_VISIBLE_DEVICES` is set in worker processes. In AmlCompute, you can find the total number of GPU devices in the environment variable `AZ_BATCHAI_GPU_COUNT_FOUND`, which is set automatically. If you would like each worker process to have a dedicated GPU, set `process_count_per_node` equal to the number of GPU devices on a machine. Then, each worker process gets assigned with a unique index to `CUDA_VISIBLE_DEVICES`. When a worker process stops for any reason, the next started worker process adopts the released GPU index.
 
 When the total number of GPU devices is less than `process_count_per_node`, the worker processes with smaller index can be assigned GPU index until all GPUs have been occupied.
 
-Given the total GPU devices is 2 and `process_count_per_node = 4` as an example, process 0 and process 1 takes index 0 and 1. Process 2 and 3 do not have the environment variable. For a library using this environment variable for GPU assignment, process 2 and 3 won't have GPUs and won't try to acquire GPU devices. Process 0 releases GPU index 0 when it stops. The next process if applicable, which is process 4, will have GPU index 0 assigned.
+Given the total GPU devices is 2 and `process_count_per_node = 4` as an example, process 0 and process 1 takes index 0 and 1. Process 2 and 3 does not have the environment variable. For a library using this environment variable for GPU assignment, process 2 and 3 won't have GPUs and won't try to acquire GPU devices. Process 0 releases GPU index 0 when it stops. The next process if applicable, which is process 4, will have GPU index 0 assigned.
 
 For more information, see [CUDA Pro Tip: Control GPU Visibility with CUDA_VISIBLE_DEVICES](https://developer.nvidia.com/blog/cuda-pro-tip-control-gpu-visibility-cuda_visible_devices/).
 
@@ -186,7 +186,7 @@ For more information on errors in your script, there is:
 
 When you need a full understanding of how each node executed the score script, look at the individual process logs for each node. The process logs can be found in the `sys/node` folder, grouped by worker nodes:
 
-- `~/logs/sys/node/<node_id>/<process_name>.txt`: This file provides detailed info about each mini-batch that has been picked up or completed by a worker. For each mini-batch, this file includes:
+- `~/logs/sys/node/<node_id>/<process_name>.txt`: This file provides detailed info about each mini-batch that was picked up or completed by a worker. For each mini-batch, this file includes:
 
     - The IP address and the PID of the worker process.
     - The total number of items, successfully processed items count, and failed item count.
@@ -286,7 +286,7 @@ def init():
 > [!NOTE]
 > A worker process runs "system" code and the entry script code in the same process.
 >
-> If no `stdout` or `stderr` specified, the setting of the worker process will be inheritted by subprocesses created with `Popen()` in your entry script will.
+> If no `stdout` or `stderr` specified, the setting of the worker process will be inherited by subprocesses created with `Popen()` in your entry script will.
 >
 > `stdout` writes to `~/logs/sys/node/<node_id>/processNNN.stdout.txt` and `stderr` to `~/logs/sys/node/<node_id>/processNNN.stderr.txt`.
 
