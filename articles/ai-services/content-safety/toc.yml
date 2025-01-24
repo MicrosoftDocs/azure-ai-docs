@@ -6,7 +6,7 @@ items:
   items:
   - name: Azure AI Content Safety overview
     href: overview.md
-  - name: Related content
+  - name: What are AI services?
     href: ../../ai-studio/concepts/related-content.md?context=/azure/ai-services/content-safety/context/context
   - name: Language support
     href: language-support.md

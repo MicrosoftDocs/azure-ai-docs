@@ -9,7 +9,7 @@ items:
     items: 
     - name: What is Azure AI Foundry?
       href: what-is-ai-studio.md
-    - name: Related content
+    - name: What are AI services?
       href: concepts/related-content.md
     - name: Using AI Services in Azure AI Foundry 
       items: 
@@ -23,16 +23,16 @@ items:
         href: /azure/search/search-what-is-azure-search?context=/azure/ai-studio/context/context
     - name: Plan and manage costs for Azure AI Foundry
       href: how-to/costs-plan-manage.md
-    - name: Region support
-      href: reference/region-support.md    
   - name:  Quickstart
     items: 
-    - name: Get started with Azure AI Foundry SDK
-      href: how-to/develop/sdk-overview.md
     - name: Use the chat playground in Azure AI Foundry portal
       href: quickstarts/get-started-playground.md
     - name: Build a basic chat app in Python using Azure AI Foundry SDK
       href: quickstarts/get-started-code.md
+    - name: Get started with Azure AI Foundry SDK
+      href: how-to/develop/sdk-overview.md
+    - name: Start with an AI template
+      href: how-to/develop/ai-template-get-started.md
   - name: Tutorials
     items:
       - name: Build a custom chat app with the Azure AI Foundry SDK
@@ -242,16 +242,6 @@ items:
       href: ai-services/how-to/content-safety.md
 - name: Best practices
   items:
-  - name: Cookbooks
-    items:
-      - name: Start with an AI template
-        href: how-to/develop/ai-template-get-started.md
-      - name: Develop with LangChain
-        href: how-to/develop/langchain.md
-      - name: Develop with LlamaIndex
-        href: how-to/develop/llama-index.md
-      - name: Develop with Semantic Kernel 
-        href: how-to/develop/semantic-kernel.md
   - name: Prompt engineering
     items:
     - name: Prompt engineering techniques
@@ -421,3 +411,5 @@ items:
     - name: Azure Policy built-ins
       displayName: samples, policies, definitions
       href: ../ai-services/policy-reference.md?context=/azure/ai-studio/context/context
+    - name: Region support
+      href: reference/region-support.md 

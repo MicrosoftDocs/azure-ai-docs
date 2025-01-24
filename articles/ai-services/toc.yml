@@ -7,7 +7,7 @@ items:
   - name: What are Azure AI services?
     href: what-are-ai-services.md
     displayName: applied, cognitive, form
-  - name: Related content
+  - name: What are AI services?
     href: ../ai-studio/concepts/related-content.md?context=/azure/ai-services/context/context
   - name: Language support
     href: language-support.md
