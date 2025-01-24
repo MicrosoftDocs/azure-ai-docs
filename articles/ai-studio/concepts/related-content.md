@@ -1,5 +1,5 @@
 ---
-title: Azure AI Foundry and related resources
+title: Azure AI Foundry and AI services
 description: Roadmap of various AI resource documentations
 author: sdgilley
 ms.author: sgilley
@@ -11,7 +11,7 @@ ms.date: 1/14/2025
 ---
 
 
-# Azure AI Foundry and related resources
+# Azure AI Foundry and AI services
 
 Documentation for AI resources is available in multiple places. This article provides a roadmap to help you navigate the various resources.
 
