@@ -276,57 +276,57 @@ items:
       href: ../ai-services/openai/concepts/use-your-data.md?context=/azure/ai-studio/context/context
     - name: Build a RAG solution using Azure AI Search
       href: /azure/search/tutorial-rag-build-solution
-  - name: Management center 
+  - name: Infrastructure, security & governance
     items:
-    - name: Management center overview 
-      href: concepts/management-center.md
-    - name: Create a project
-      href: how-to/create-projects.md
-    - name: Manage projects and hubs
+    - name: Infrastructure
       items:
-      - name: Hubs and projects overview
-        href: concepts/ai-resources.md
-      - name: Create your first hub
-        href: how-to/create-azure-ai-resource.md
-      - name: Create a hub using the Azure Machine Learning SDK and CLI
-        href: how-to/develop/create-hub-project-sdk.md
-      - name: Create a hub with custom security
+      - name: Management center overview 
+        href: concepts/management-center.md
+      - name: Create a project
+        href: how-to/create-projects.md
+      - name: Manage projects and hubs
         items:
-        - name: Create a hub in the Azure portal
-          href: how-to/create-secure-ai-hub.md
-        - name: Create a hub from template
-          href: how-to/create-azure-ai-hub-template.md
+        - name: Hubs and projects overview
+          href: concepts/ai-resources.md
+        - name: Create your first hub
+          href: how-to/create-azure-ai-resource.md
+        - name: Create a hub using the Azure Machine Learning SDK and CLI
+          href: how-to/develop/create-hub-project-sdk.md
+        - name: Create a hub with custom security
+          items:
+          - name: Create a hub in the Azure portal
+            href: how-to/create-secure-ai-hub.md
+          - name: Create a hub from template
+            href: how-to/create-azure-ai-hub-template.md
+            displayName: code
+          - name: Create a hub using Terraform
+            href: how-to/create-hub-terraform.md
+      - name: Create and manage compute
+        href: how-to/create-manage-compute.md
+      - name: Connections
+        items:
+        - name: Connections overview
+          href: concepts/connections.md
+        - name: Create a connection
+          href: how-to/connections-add.md
+        - name: Create a connection using the Azure Machine Learning SDK
+          href: how-to/develop/connections-add-sdk.md
           displayName: code
-        - name: Create a hub using Terraform
-          href: how-to/create-hub-terraform.md
-    - name: Create and manage compute
-      href: how-to/create-manage-compute.md
-    - name: Connections
+      - name: Costs and quotas
+        items:
+        - name: Plan and manage costs
+          href: how-to/costs-plan-manage.md
+          displayName: pricing, budget, estimate
+        - name: Manage quotas
+          href: how-to/quota.md
+        - name: Increase rate limit
+          href: how-to/autoscale.md
+    - name: Identity & access management
       items:
-      - name: Connections overview
-        href: concepts/connections.md
-      - name: Create a connection
-        href: how-to/connections-add.md
-      - name: Create a connection using the Azure Machine Learning SDK
-        href: how-to/develop/connections-add-sdk.md
-        displayName: code
-    - name: Costs and quotas
-      items:
-      - name: Plan and manage costs
-        href: how-to/costs-plan-manage.md
-        displayName: pricing, budget, estimate
-      - name: Manage quotas
-        href: how-to/quota.md
-      - name: Increase rate limit
-        href: how-to/autoscale.md
-  - name: Security & Governance
-    items:
-     - name: Identity & access management
-       items:
-       - name: Role-based access control in Azure AI Foundry portal
-         href: concepts/rbac-ai-studio.md
-       - name: Network security
-         items:
+      - name: Role-based access control in Azure AI Foundry portal
+        href: concepts/rbac-ai-studio.md
+      - name: Network security
+        items:
           - name: Configure managed network
             href: how-to/configure-managed-network.md
           - name: Configure private link
@@ -338,26 +338,26 @@ items:
             href: how-to/access-on-premises-resources.md
           - name: Troubleshoot secure project connectivity
             href: how-to/troubleshoot-secure-connection-project.md
-     - name: Data protection & encryption
-       items:
-        - name: Configure customer-managed keys
-          href: concepts/encryption-keys-portal.md
-        - name: Rotate keys
-          href: ../ai-services/rotate-keys.md?context=/azure/ai-studio/context/context
-        - name: Disable shared key access to storage
-          href: how-to/disable-local-auth.md
-     - name: Azure policies
-       items:
-       - name: Built-in policy to allow specific models
-         href: how-to/built-in-policy-model-deployment.md
-       - name: Custom policy to allow specific models
-         href: how-to/custom-policy-model-deployment.md
-       - name: Vulnerability management
-         href: concepts/vulnerability-management.md
-       - name: Disaster recovery
-         href: how-to/disaster-recovery.md
-       - name: Security baseline
-         href: /security/benchmark/azure/baselines/azure-ai-studio-security-baseline
+      - name: Data protection & encryption
+        items:
+          - name: Configure customer-managed keys
+            href: concepts/encryption-keys-portal.md
+          - name: Rotate keys
+            href: ../ai-services/rotate-keys.md?context=/azure/ai-studio/context/context
+          - name: Disable shared key access to storage
+            href: how-to/disable-local-auth.md
+    - name: Audit and enforce compliance
+      items:
+      - name: Built-in policy to allow specific models
+        href: how-to/built-in-policy-model-deployment.md
+      - name: Custom policy to allow specific models
+        href: how-to/custom-policy-model-deployment.md
+    - name: Vulnerability management
+      href: concepts/vulnerability-management.md
+    - name: Disaster recovery
+      href: how-to/disaster-recovery.md
+    - name: Security baseline
+      href: /security/benchmark/azure/baselines/azure-ai-studio-security-baseline
   - name: Responsible AI 
     items:
     - name: Responsible AI overview
