@@ -149,7 +149,7 @@ with open('./weather_openapi.json', 'r') as f:
 # Create Auth object for the OpenApiTool (note that connection or managed identity auth setup requires additional setup in Azure)
 auth = OpenApiAnonymousAuthDetails()
 
-# Initialize agent OpenApi tool using the read in OpenAPI spec
+# Initialize agent OpenAPI tool using the read in OpenAPI spec
 openapi = OpenApiTool(name="get_weather", spec=openapi_spec, description="Retrieve weather information for a location", auth=auth)
 ```
 If you want to use connection, which stores API key, for authentication, replace the line with
@@ -184,7 +184,7 @@ An example of the audience would be ```https://cognitiveservices.azure.com/```.
 # [Python](#tab/python)
 
 ```python
-# Create agent with OpenApi tool and process assistant run
+# Create agent with OpenAPI tool and process assistant run
 with project_client:
     agent = project_client.agents.create_agent(
         model="gpt-4o-mini",
