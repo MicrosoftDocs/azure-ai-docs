@@ -105,8 +105,8 @@ from <your_package> import <your_class>
     - For `FileDataset`, it's the number of files with a minimum value of `1`. You can combine multiple files into one mini-batch.
     - For `TabularDataset`, it's the size of data. Example values are `1024`, `1024KB`, `10MB`, and `1GB`. The recommended value is `1MB`. The mini-batch from `TabularDataset` will never cross file boundaries. For example, if there are multiple .csv files with various sizes, the smallest one is 100 KB and the largest is 10 MB. If `mini_batch_size = 1MB` is set, the files smaller than 1 MB will be treated as one mini-batch and the files larger than 1 MB will be split into multiple mini-batches.
         > [!NOTE]
-        > TabularDatasets backed by SQL cannot be partitioned.
-        > TabularDatasets from a single parquet file and single row group cannot be partitioned.
+        > TabularDatasets backed by SQL can't be partitioned.
+        > TabularDatasets from a single parquet file and single row group can't be partitioned.
 
 - `error_threshold`: The number of record failures for `TabularDataset` and file failures for `FileDataset` that should be ignored during processing. Once the error count for the entire input goes above this value, the job is aborted. The error threshold is for the entire input and not for individual mini-batch sent to the `run()` method. The range is `[-1, int.max]`. `-1` indicates ignoring all failures during processing.
 - `output_action`: One of the following values indicates how the output is organized:
@@ -125,11 +125,11 @@ from <your_package> import <your_class>
 You can specify `mini_batch_size`, `node_count`, `process_count_per_node`, `logging_level`, `run_invocation_timeout`, and `run_max_try` as `PipelineParameter`, so that when you resubmit a pipeline run, you can fine-tune the parameter values. 
 
 #### CUDA devices visibility
-For compute targets equipped with GPUs, the environment variable `CUDA_VISIBLE_DEVICES` is set in worker processes. In AmlCompute, you can find the total number of GPU devices in the environment variable `AZ_BATCHAI_GPU_COUNT_FOUND`, which is set automatically. If you would like each worker process to have a dedicated GPU, set `process_count_per_node` equal to the number of GPU devices on a machine. Then, each worker process get assigned with a unique index to `CUDA_VISIBLE_DEVICES`. When a worker process stops for any reason, the next started worker process will adopt the released GPU index.
+For compute targets equipped with GPUs, the environment variable `CUDA_VISIBLE_DEVICES` is set in worker processes. In AmlCompute, you can find the total number of GPU devices in the environment variable `AZ_BATCHAI_GPU_COUNT_FOUND`, which is set automatically. If you would like each worker process to have a dedicated GPU, set `process_count_per_node` equal to the number of GPU devices on a machine. Then, each worker process get assigned with a unique index to `CUDA_VISIBLE_DEVICES`. When a worker process stops for any reason, the next started worker process adopts the released GPU index.
 
 When the total number of GPU devices is less than `process_count_per_node`, the worker processes with smaller index can be assigned GPU index until all GPUs have been occupied.
 
-Given the total GPU devices is 2 and `process_count_per_node = 4` as an example, process 0 and process 1 will have index 0 and 1. Process 2 and 3 cannot have the environment variable. For a library using this environment variable for GPU assignment, process 2 and 3 won't have GPUs and won't try to acquire GPU devices. Process 0 will release GPU index 0 when it stops. The next process if applicable, which is process 4, will have GPU index 0 assigned.
+Given the total GPU devices is 2 and `process_count_per_node = 4` as an example, process 0 and process 1 takes index 0 and 1. Process 2 and 3 do not have the environment variable. For a library using this environment variable for GPU assignment, process 2 and 3 won't have GPUs and won't try to acquire GPU devices. Process 0 releases GPU index 0 when it stops. The next process if applicable, which is process 4, will have GPU index 0 assigned.
 
 For more information, see [CUDA Pro Tip: Control GPU Visibility with CUDA_VISIBLE_DEVICES](https://developer.nvidia.com/blog/cuda-pro-tip-control-gpu-visibility-cuda_visible_devices/).
 
@@ -288,12 +288,12 @@ def init():
 >
 > If no `stdout` or `stderr` specified, the setting of the worker process will be inheritted by subprocesses created with `Popen()` in your entry script will.
 >
-> `stdout` will write to `~/logs/sys/node/<node_id>/processNNN.stdout.txt` and `stderr` to `~/logs/sys/node/<node_id>/processNNN.stderr.txt`.
+> `stdout` writes to `~/logs/sys/node/<node_id>/processNNN.stdout.txt` and `stderr` to `~/logs/sys/node/<node_id>/processNNN.stderr.txt`.
 
 
 ## How do I write a file to the output directory, and then view it in the portal?
 
-You can get the output directory from the `EntryScript` class and write to it. To view the written files, in the step Run view in the Azure Machine Learning portal, select the **Outputs + logs** tab. Select the **Data outputs** link, and then complete the steps that are described in the dialog.
+You can get the output directory from `EntryScript` class and write to it. To view the written files, in the step Run view in the Azure Machine Learning portal, select the **Outputs + logs** tab. Select the **Data outputs** link, and then complete the steps that are described in the dialog.
 
 Use `EntryScript` in your entry script like in this example:
 
@@ -307,9 +307,9 @@ def run(mini_batch):
     (Path(output_dir) / res2).write...
 ```
 
-## How can I pass a side input, such as a file or file(s) containing a lookup table, to all my workers?
+## How can I pass a side input, such as a file or files containing a lookup table, to all my workers?
 
-User can pass reference data to script using side_inputs parameter of ParalleRunStep. All datasets provided as side_inputs will be mounted on each worker node. User can get the location of mount by passing argument.
+User can pass reference data to script using side_inputs parameter of ParalleRunStep. All datasets provided as side_inputs are mounted on each worker node. User can get the location of mount by passing argument.
 
 Construct a [Dataset](/python/api/azureml-core/azureml.core.dataset.dataset) containing the reference data, specify a local mount path and register it with your workspace. Pass it to the `side_inputs` parameter of your `ParallelRunStep`. Additionally, you can add its path in the `arguments` section to easily access its mounted path.
 
@@ -329,7 +329,7 @@ batch_score_step = ParallelRunStep(
 )
 ```
 
-After that you can access it in your inference script (for example, in your init() method) as follows:
+After that you can access it in your script (for example, in your init() method) as follows:
 
 ```python
 parser = argparse.ArgumentParser()
@@ -364,10 +364,10 @@ registered_ds = ds.register(ws, '***dataset-name***', create_new_version=True)
 This section is about how to check the progress of a ParallelRunStep job and check the cause of unexpected behavior.
 
 ### How to check job progress?
-Besides looking at the overall status of the StepRun, the count of scheduled/processed mini-batches and the progress of generating output can be viewed in `~/logs/job_progress_overview.<timestamp>.txt`. The file rotates on daily basis, you can check the one with the largest timestamp for the latest information.
+Besides looking at the overall status of the StepRun, the count of scheduled/processed mini-batches and the progress of generating output can be viewed in `~/logs/job_progress_overview.<timestamp>.txt`. The file rotates on daily basis. You can check the one with the largest timestamp for the latest information.
 
 ### What should I check if there is no progress for a while?
-You can go into `~/logs/sys/error` to see if there's any exception. If there is none, it's likely that your entry script is taking a long time, you can print out progress information in your code to locate the time-consuming part, or add `"--profiling_module", "cProfile"` to the `arguments` of `ParallelRunStep` to generate a profile file named as `<process_name>.profile` under `~/logs/sys/node/<node_id>` folder.
+You can go into `~/logs/sys/error` to see if there's any exception. If there is none, it is likely that your entry script is taking a long time, you can print out progress information in your code to locate the time-consuming part, or add `"--profiling_module", "cProfile"` to the `arguments` of `ParallelRunStep` to generate a profile file named as `<process_name>.profile` under `~/logs/sys/node/<node_id>` folder.
 
 ### When will a job stop?
 If not canceled, the job may stop with status:
@@ -378,7 +378,7 @@ If not canceled, the job may stop with status:
 You can follow the lead in `~/logs/job_result.txt` to find the cause and detailed error log.
 
 ### Will node failure impact the job result?
-Not if there are other available nodes in the designated compute cluster. ParallelRunStep can run independently on each node. Single node failure does not fail the whole job.
+Not if there are other available nodes in the designated compute cluster. ParallelRunStep can run independently on each node. Single node failure doesn't fail the whole job.
 
 ### What happens if `init` function in entry script fails?
 ParallelRunStep has mechanism to retry for a certain time to give chance for recovery from transient issues without delaying the job failure for too long, the mechanism is as follows:
@@ -386,11 +386,11 @@ ParallelRunStep has mechanism to retry for a certain time to give chance for rec
 2. If after job starts, `init` on all agents of all nodes keeps failing, we will stop trying if job runs more than 2 minutes and there're `2 * node_count * process_count_per_node` failures.
 3. If all agents are stuck on `init` for more than `3 * run_invocation_timeout + 30` seconds, the job would fail because of no progress for too long.
 
-### What will happen on OutOfMemory? How can I check the cause?
-ParallelRunStep will set the current attempt to process the mini-batch to failure status and try to restart the failed process. You can check `~logs/perf/<node_id>` to find the memory-consuming process.
+### What happens on OutOfMemory? How can I check the cause?
+The process may be terminated by system. ParallelRunStep sets the current attempt to process the mini-batch to failure status and try to restart the failed process. You can check `~logs/perf/<node_id>` to find the memory-consuming process.
 
-### Why do I have a lot of processNNN files?
-ParallelRunStep will start new worker processes in replace of the ones exited abnormally, and each process will generate a `processNNN` file as log. However, if the process failed because of exception during the `init` function of user script, and that the error repeated continuously for `3 * process_count_per_node` times, no new worker process will be started.
+### Why do I have many processNNN files?
+ParallelRunStep starts new worker processes in replace of the ones exited abnormally. And each process generates a set of `processNNN` files as log. However, if the process failed because of exception during the `init` function of user script, and that the error repeated continuously for `3 * process_count_per_node` times, no new worker process will be started.
 
 ## Next steps
 
