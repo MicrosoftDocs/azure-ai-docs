@@ -13,6 +13,7 @@ ms.custom: include
 | Service | Description |
 | --- | --- |
 | [Azure AI Agent Service](../../ai-services/agents/index.yml) | Develop AI agents to automate and execute business processes. |
+| [Azure AI Content Understanding](../../ai-services/content-understanding/index.yml) | Analyze various media content—such as audio, video, text, and images— and transform it into structured, organized, and searchable data |
 | ![Azure AI Search icon](~/reusable-content/ce-skilling/azure/media/ai-services/search.svg) [Azure AI Search](/azure/search/) | Bring AI-powered cloud search to your mobile and web apps. |
 | ![Azure OpenAI Service icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](../../ai-services/openai/index.yml) | Perform a wide variety of natural language tasks. |
 | ![Content Safety icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg) [Content Safety](../../ai-services/content-safety/index.yml) | An AI service that detects unwanted contents. |
