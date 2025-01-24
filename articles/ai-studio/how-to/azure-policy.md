@@ -70,7 +70,7 @@ To configure this policy, set the effect parameter to __Audit__, __Deny__, or __
 
 ### Compute instances should be recreated to get software updates
 
-Controls whether compute instances should be audited to make sure they're running the latest available software updates. This policy is useful to ensure that compute instances are running the latest software updates to maintain security and performance. For more information, see [Vulnerability management](vulnerability-management.md#compute-instance).
+Controls whether compute instances should be audited to make sure they're running the latest available software updates. This policy is useful to ensure that compute instances are running the latest software updates to maintain security and performance. For more information, see [Vulnerability management](../concepts/vulnerability-management.md#compute-instance).
 
 To configure this policy, set the effect parameter to __Audit__ or __Disabled__. If set to __Audit__, a warning event is created in the activity log when a compute isn't running the latest software updates.
 
@@ -90,7 +90,7 @@ If the policy is set to __Deny__, then you can't create a compute unless SSH is 
 
 ### Hubs should be encrypted with customer-managed key
 
-Controls whether a hub and its projects should be encrypted with a customer-managed key, or with a Microsoft-managed key to encrypt metrics and metadata. For more information on using customer-managed key, see the [Customer-managed keys](encryption-keys-portal.md) article.
+Controls whether a hub and its projects should be encrypted with a customer-managed key, or with a Microsoft-managed key to encrypt metrics and metadata. For more information on using customer-managed key, see the [Customer-managed keys](../concepts/encryption-keys-portal.md) article.
 
 To configure this policy, set the effect parameter to __Audit__ or __Deny__. If set to __Audit__, you can create a hub without a customer-managed key and a warning event is created in the activity log.
 
