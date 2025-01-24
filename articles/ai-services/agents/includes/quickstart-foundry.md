@@ -27,9 +27,11 @@ ms.date: 01/21/2025
 
     :::image type="content" source="../media/quickstart/agents-foundry.png" alt-text="A screenshot of the initial Agents screen." lightbox="../media/quickstart/agents-foundry.png"::: 
  
-1. Select a [model](../concepts/model-region-support.md) deployment for the Agent to use. If you don't have one, you can deploy a new model.
+1. Select a [model](../concepts/model-region-support.md) deployment for the Agent to use. If you don't have one, a screen to deploy a new model will open. Otherwise you can select **Deploy a model**.
 
-    :::image type="content" source="../media/quickstart/select-deploy-model.png" alt-text="A screenshot of the initial Agents screen." lightbox="../media/quickstart/select-deploy-model.png"::: 
+    :::image type="content" source="../media/quickstart/select-deploy-model.png" alt-text="A screenshot of the model selection screen." lightbox="../media/quickstart/select-deploy-model.png"::: 
+
+    :::image type="content" source="../media/quickstart/model-list.png" alt-text="A screenshot of the model selection screen." lightbox="../media/quickstart/model-list.png"::: 
 
 1. In the **Create and debug your agents** screen that appears, select **New agent**. This will create a new agent, and open a **Setup** pane where you can change its parameters and tools. 
 
