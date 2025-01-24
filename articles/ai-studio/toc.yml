@@ -11,16 +11,8 @@ items:
       href: what-is-ai-studio.md
     - name: Azure AI Foundry and AI services
       href: concepts/related-content.md
-    - name: Using AI Services in Azure AI Foundry 
-      items: 
-      - name: Connections in Azure AI Foundry
-        href: concepts/connections.md
-      - name: Use Azure AI services in AI Foundry portal
-        href: ai-services/how-to/connect-ai-services.md
-      - name: Use Azure OpenAI Service in AI Foundry portal
-        href: ai-services/how-to/connect-azure-openai.md
-      - name: Use Azure AI Search in AI Foundry portal
-        href: /azure/search/search-what-is-azure-search?context=/azure/ai-studio/context/context
+    - name: Azure AI Foundry FAQ
+      href: faq.yml
     - name: Plan and manage costs for Azure AI Foundry
       href: how-to/costs-plan-manage.md
   - name:  Quickstart
@@ -116,10 +108,18 @@ items:
             href: how-to/healthcare-ai/deploy-cxrreportgen.md
           - name: MedImageParse - prompted segmentation model
             href: how-to/healthcare-ai/deploy-medimageparse.md
-- name: Capabilities
+- name: Azure AI services
   items:
   - name: About this section
     href:  concepts/about-capabilities.md
+  - name: Using AI Services in Azure AI Foundry 
+    items: 
+    - name: Connections in Azure AI Foundry
+      href: concepts/connections.md
+    - name: Use Azure AI services in AI Foundry portal
+      href: ai-services/how-to/connect-ai-services.md
+    - name: Use Azure OpenAI Service in AI Foundry portal
+      href: ai-services/how-to/connect-azure-openai.md
   - name:  Chat
     items: 
     - name: Use GPT-35-Turbo and GPT-4 with Azure OpenAI Service
@@ -360,8 +360,6 @@ items:
          href: how-to/disaster-recovery.md
        - name: Security baseline
          href: /security/benchmark/azure/baselines/azure-ai-studio-security-baseline
-- name: Resources
-  items:
   - name: Responsible AI 
     items:
     - name: Responsible AI overview
@@ -382,6 +380,7 @@ items:
       href: ../ai-services/openai/concepts/system-message.md?context=/azure/ai-studio/context/context
     - name: Transparency Note for safety evaluations
       href: ./concepts/safety-evaluations-transparency-note.md
+
   - name: Reference
     items:
     - name: Azure AI Projects SDK
