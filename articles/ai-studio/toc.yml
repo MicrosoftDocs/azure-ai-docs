@@ -114,8 +114,6 @@ items:
     href:  concepts/about-capabilities.md
   - name: Using AI Services in Azure AI Foundry 
     items: 
-    - name: Connections in Azure AI Foundry
-      href: concepts/connections.md
     - name: Use Azure AI services in AI Foundry portal
       href: ai-services/how-to/connect-ai-services.md
     - name: Use Azure OpenAI Service in AI Foundry portal
@@ -380,7 +378,6 @@ items:
       href: ../ai-services/openai/concepts/system-message.md?context=/azure/ai-studio/context/context
     - name: Transparency Note for safety evaluations
       href: ./concepts/safety-evaluations-transparency-note.md
-
   - name: Reference
     items:
     - name: Azure AI Projects SDK
