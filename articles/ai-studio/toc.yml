@@ -9,7 +9,7 @@ items:
     items: 
     - name: What is Azure AI Foundry?
       href: what-is-ai-studio.md
-    - name: What are AI services?
+    - name: Azure AI Foundry and AI services
       href: concepts/related-content.md
     - name: Using AI Services in Azure AI Foundry 
       items: 

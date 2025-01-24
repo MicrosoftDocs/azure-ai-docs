@@ -7,7 +7,7 @@ items:
   - name: What is Translator Service?
     displayName: features,develop,development,free
     href: translator-overview.md
-  - name: What are AI services?
+  - name: Azure AI Foundry and AI services
     href: ../../ai-studio/concepts/related-content.md?context=/azure/ai-services/translator/context/context
   - name: Create a Translator resource
     displayName: endpoint,key,portal,azure,authentication,delete,resource
