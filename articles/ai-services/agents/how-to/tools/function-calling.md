@@ -31,7 +31,7 @@ To use all features of function calling including parallel functions, you need t
 
 ## Using the function calling tool with an agent
 
-you can add the function calling tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal:
+You can add the function calling tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal:
 
 1. In the **Create and debug** screen for your agent, scroll down the **Setup** pane on the right to **action**. Then select **Add**.
 
