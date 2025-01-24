@@ -22,6 +22,9 @@ Azure Policy provides a set of policies that you can use for common scenarios wi
 
 The following table lists the built-in policies that apply to both Azure AI Foundry and Azure Machine Learning. For a list of all Azure built-in policies, see [Built-in policies](/azure/governance/policy/samples/built-in-policies).
 
+> [!IMPORTANT]
+> Once a policy is assigned, it's applied to both Azure AI Foundry and Azure Machine Learning workspaces. For example, a policy at the subscription level that disables public network access would apply to all Azure AI Foundry hubs and projects, and Azure Machine Learning workspaces.
+
 |Name<br /><sub>(Azure portal)</sub> |Description |Effects |Version<br /><sub>(GitHub)</sub> |
 |---|---|---|---|
 |[Compute Instance should have idle shutdown.](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F679ddf89-ab8f-48a5-9029-e76054077449) |Having an idle shutdown schedule reduces cost by shutting down computes that are idle after a predetermined period of activity. |Audit, Deny, Disabled |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Machine%20Learning/IdleShutdown_Audit.json) |
