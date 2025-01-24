@@ -470,6 +470,8 @@ items:
           href: search-howto-managed-identities-sql.md
         - name: SQL Managed Instance
           href: search-index-azure-sql-managed-instance-with-managed-identity.md
+        - name: Connect to an Azure function
+          href: search-howto-managed-identities-azure-functions.md
       - name: Connect through a firewall
         href: search-indexer-howto-access-ip-restricted.md
       - name: Connect using Network Security Perimeter
