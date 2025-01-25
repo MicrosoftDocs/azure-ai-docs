@@ -26,15 +26,15 @@ Azure AI services expose multiple endpoints depending on the type of work you're
 > * Azure AI model inference endpoint
 > * Azure OpenAI endpoint
 
-The **Azure AI inference endpoint** allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. All the models support this capability. This endpoint follows the [Azure AI model inference API](../../../ai-studio/reference/reference-model-inference-api.md).
+The **Azure AI inference endpoint** (usually with the form `https://<resource-name>.services.ai.azure.com/models`) allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. All the models support this capability. This endpoint follows the [Azure AI model inference API](../../../ai-studio/reference/reference-model-inference-api.md). 
 
-**Azure OpenAI** models deployed to AI services also support the Azure OpenAI API. This endpoint exposes the full capabilities of OpenAI models and supports more features like assistants, threads, files, and batch inference.
+**Azure OpenAI** models deployed to AI services also support the Azure OpenAI API (usually with the form `https://<resource-name>.openai.azure.com`). This endpoint exposes the full capabilities of OpenAI models and supports more features like assistants, threads, files, and batch inference.
 
 To learn more about how to apply the **Azure OpenAI endpoint** see [Azure OpenAI service documentation](../../../ai-services/openai/overview.md).
 
 ## Using the routing capability in the Azure AI model inference endpoint
 
-The inference endpoint routes requests to a given deployment by matching the parameter `name` inside of the request to the name of the deployment. This means that *deployments work as an alias of a given model under certain configurations*. This flexibility allows you to deploy a given model multiple times in the service but under different configurations if needed. The inference endpoint usually has the form `https://<resource-name>.services.ai.azure.com/models`.
+The inference endpoint routes requests to a given deployment by matching the parameter `name` inside of the request to the name of the deployment. This means that *deployments work as an alias of a given model under certain configurations*. This flexibility allows you to deploy a given model multiple times in the service but under different configurations if needed.
 
 :::image type="content" source="../media/endpoint/endpoint-routing.png" alt-text="An illustration showing how routing works for a Meta-llama-3.2-8b-instruct model by indicating such name in the parameter 'model' inside of the payload request." lightbox="../media/endpoint/endpoint-routing.png":::
 
