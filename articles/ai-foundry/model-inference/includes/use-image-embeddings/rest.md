@@ -30,10 +30,10 @@ To use embedding models in your application, you need:
 
 ## Use embeddings
 
-To use the text embeddings, use the route `/images/embeddings` along with your credential indicated in `api-key`. `Authorization` header is also supported with the format `Bearer <key>`.
+To use the text embeddings, use the route `/images/embeddings` appended to your base URL along with your credential indicated in `api-key`. `Authorization` header is also supported with the format `Bearer <key>`.
 
 ```http
-POST /images/embeddings
+POST https://<resource>.services.ai.azure.com/models/images/embeddings
 Content-Type: application/json
 api-key: <key>
 ```
@@ -41,7 +41,7 @@ api-key: <key>
 If you configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header:
 
 ```http
-POST /images/embeddings
+POST https://<resource>.services.ai.azure.com/models/images/embeddings
 Content-Type: application/json
 Authorization: Bearer <token>
 ```

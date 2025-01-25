@@ -9,7 +9,7 @@ author: santiagxf
 
 * An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI model inference](../how-to/quickstart-github-models.md) if that's your case.
 
-* An Azure AI services resource. For more information, see [Create an Azure AI Services resource](../../../ai-services/multi-service-resource.md?context=/azure/ai-services/model-inference/context/context).
+* An Azure AI services resource. For more information, see [Create an Azure AI Services resource](../how-to/quickstart-create-resources.md).
 
 * The endpoint URL and key.
 

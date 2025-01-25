@@ -122,7 +122,7 @@ try {
 __Request__
 
 ```HTTP/1.1
-POST /chat/completions?api-version=2024-04-01-preview
+POST /chat/completions?api-version=2024-05-01-preview
 Authorization: Bearer <bearer-token>
 Content-Type: application/json
 ```
