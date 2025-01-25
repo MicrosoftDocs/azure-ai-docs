@@ -87,7 +87,7 @@ The API indicates how developers can consume predictions for the following modal
 You can use streamlined inference clients in the language of your choice to consume predictions from models running the Azure AI model inference API.
 
 > [!IMPORTANT]
-> When working with the Azure AI model inference endpoint (preview), the base URL to connect to is of the form `https://<resource-name>.services.ai.azure.com/models`. Use this URL with the parameter `endpoint`. If using REST APIs, such is the base URL you have to append to the modality you want to consume. Read about [how to use the Azure AI model inference endpoint](../../ai-foundry/model-inference/how-to/endpoint.md).
+> When working with the Azure AI model inference endpoint (preview), the base URL to connect to is of the form `https://<resource-name>.services.ai.azure.com/models`. Use this URL with the parameter `endpoint`. If using REST APIs, such is the base URL you have to append to the modality you want to consume. Read about [how to use the Azure AI model inference endpoint](../../ai-foundry/model-inference/how-to/inference.md).
 
 # [Python](#tab/python)
 
