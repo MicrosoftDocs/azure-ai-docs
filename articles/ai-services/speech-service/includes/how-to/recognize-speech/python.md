@@ -118,7 +118,7 @@ Now, create a callback to stop continuous recognition when `evt` is received. Ke
 def stop_cb(evt):
     print('CLOSING on {}'.format(evt))
     speech_recognizer.stop_continuous_recognition()
-    nonlocal done
+    global done
     done = True
 ```
 
