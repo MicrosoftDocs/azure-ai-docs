@@ -36,7 +36,7 @@ Having a uniform way to consume foundational models allow developers to realize 
 
 ## Availability
 
-The Azure AI Model Inference API is available in the following models:
+The Azure AI Model Inference API is available in the following models/systems:
 
 Models deployed to [serverless API endpoints](../how-to/deploy-models-serverless.md):
 
@@ -57,6 +57,11 @@ Models deployed to [managed inference](../concepts/deployments-overview.md):
 > * [Meta Llama 3 instruct](../how-to/deploy-models-llama.md) family of models
 > * [Phi-3](../how-to/deploy-models-phi-3.md), and [Phi-4](../how-to/deploy-models-phi-4.md) family of models
 > * [Mistral](../how-to/deploy-models-mistral-open.md) and [Mixtral](../how-to/deploy-models-mistral-open.md?tabs=mistral-8x7B-instruct) family of models
+
+Models deployed to [Azure AI model inference in Azure AI Services](../../ai-foundry/model-inference/overview.md):
+
+> [!div class="checklist"]
+> * See [supported models](../../ai-foundry/model-inference/concepts/models.md).
 
 The API is compatible with Azure OpenAI model deployments.
 
@@ -80,6 +85,9 @@ The API indicates how developers can consume predictions for the following modal
 ### Inference SDK support
 
 You can use streamlined inference clients in the language of your choice to consume predictions from models running the Azure AI model inference API.
+
+> [!IMPORTANT]
+> When working with the Azure AI model inference endpoint (preview), the base URL to connect to is of the form `https://<resource-name>.services.ai.azure.com/models`. Use this URL with the parameter `endpoint`. If using REST APIs, such is the base URL you have to append to the modality you want to consume. Read about [how to use the Azure AI model inference endpoint](../../ai-foundry/model-inference/how-to/inference.md).
 
 # [Python](#tab/python)
 

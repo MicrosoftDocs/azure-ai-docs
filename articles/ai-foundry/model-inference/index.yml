@@ -58,6 +58,8 @@ landingContent:
             url: ./how-to/configure-content-filters.md
           - text: Configure blocklists (preview)
             url: ./how-to/use-blocklists.md
+          - text: Configure key-less authentication
+            url: ./how-to/configure-entra-id.md
           - text: Manage cost
             url: ./how-to/manage-costs.md
           - text: Create resources
