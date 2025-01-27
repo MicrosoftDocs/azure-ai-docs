@@ -211,10 +211,10 @@ You can also view the results of periodical checks of the resource usage for eac
 Exit 41 and 42 are PRS designed exit code. Worker nodes exit with 41 to notify compute manager that it terminated independently. A leader node may exit with 0 or 41 which indicates the job result. Exit 42 means the job failed. The failure reason can be found in `~/logs/job_result.txt`. You can follow previous section to debug your job.
 
 ### Data Permission
-Error of the job indicates the compute cannot access input data. If identity-based is used for your compute cluster and storage, please refer [Identity-based data authentication](../how-to-administrate-data-authentication.md).
+Error of the job indicates the compute cannot access input data. If identity-based is used for your compute cluster and storage, you can refer [Identity-based data authentication](../how-to-administrate-data-authentication.md).
 
 ### Processes terminated unexpectly
-Processes may crash due to unexpected or unhandled exceptions. Or they may be killed by system due to Out of Memory exceptions. In PRS system logs `~/logs/sys/node/<node-id>/_main.txt`, errors like below can be found.
+Processes may crash due to unexpected or unhandled exceptions, the system kills processes due to Out of Memory exceptions. In PRS system logs `~/logs/sys/node/<node-id>/_main.txt`, errors like below can be found.
 
 ```
 <process-name> exits with returncode -9.
@@ -228,12 +228,12 @@ Out of Memory error can be found in `~/system_logs/lifecycler/<node-id>/executio
 We suggest reducing the number of processes per node or upgrade vm size if the compute resources is close the limits.
 
 #### Unhandled Exceptions
-In some cases the python processes cannot catch the failing stack. You can add an environment variable ```env["PYTHONFAULTHANDLER"]="true"``` to enable python builtin faulthandler.
+In some cases, the python processes cannot catch the failing stack. You can add an environment variable ```env["PYTHONFAULTHANDLER"]="true"``` to enable python builtin faulthandler.
 
 ### Minibatch Timeout
-You can adjust `run_invocation_timeout` argument according to your minibatch tasks. When you are seeing the run() functions take much more time than expected, here are some tips.
+You can adjust `run_invocation_timeout` argument according to your minibatch tasks. When you are seeing the run() functions take more time than expected, here are some tips.
 
-- Check the elapsed time and process time of the minibatch. The process time measures CPU time of the process. When process time is much shorter than elapsed, please check if there are some heavy IO operations or network requests in the tasks. Long latency of those operations are the common reason of minibatch timeout.
+- Check the elapsed time and process time of the minibatch. The process time measures CPU time of the process. When process time is significantly shorter than elapsed, you can check if there are some heavy IO operations or network requests in the tasks. Long latency of those operations are the common reason of minibatch timeout.
 
 - Some specific minibatches take longer time than others. You can either updated the configuration, or try work with input data to balance the minibatch processing time.
 
@@ -401,11 +401,11 @@ This section is about how to check the progress of a ParallelRunStep job and che
 Besides looking at the overall status of the StepRun, the count of scheduled/processed mini-batches and the progress of generating output can be viewed in `~/logs/job_progress_overview.<timestamp>.txt`. The file rotates on daily basis. You can check the one with the largest timestamp for the latest information.
 
 ### What should I check if there is no progress for a while?
-You can go into `~/logs/sys/error` to see if there's any exception. If there is none, it is likely that your entry script is taking a long time, you can print out progress information in your code to locate the time-consuming part, or add `"--profiling_module", "cProfile"` to the `arguments` of `ParallelRunStep` to generate a profile file named as `<process_name>.profile` under `~/logs/sys/node/<node_id>` folder.
+You can go into `~/logs/sys/error` to see if there's any exception. If there is none, it is likely that your entry script is taking a long time, you can print progress information in your code to locate the time-consuming part, or add `"--profiling_module", "cProfile"` to the `arguments` of `ParallelRunStep` to generate a profile file named as `<process_name>.profile` under `~/logs/sys/node/<node_id>` folder.
 
 ### When will a job stop?
 If not canceled, the job may stop with status:
-- Completed. If all mini-batches have been processed and output has been generated for `append_row` mode.
+- Completed. All mini-batches are processed successfully and output is generated for `append_row` mode.
 - Failed. If `error_threshold` in [`Parameters for ParallelRunConfig`](#parameters-for-parallelrunconfig)  is exceeded, or system error occurs during the job.
 
 ### Where to find the root cause of failure?
@@ -415,7 +415,7 @@ You can follow the lead in `~/logs/job_result.txt` to find the cause and detaile
 Not if there are other available nodes in the designated compute cluster. ParallelRunStep can run independently on each node. Single node failure doesn't fail the whole job.
 
 ### What happens if `init` function in entry script fails?
-ParallelRunStep has mechanism to retry for a certain time to give chance for recovery from transient issues without delaying the job failure for too long, the mechanism is as follows:
+ParallelRunStep has mechanism to retry for a certain time to give chance for recovery from transient issues without delaying the job failure for too long. The mechanism is as follows:
 1. If after a node starts, `init` on all agents keeps failing, we will stop trying after `3 * process_count_per_node` failures.
 2. If after job starts, `init` on all agents of all nodes keeps failing, we will stop trying if job runs more than 2 minutes and there're `2 * node_count * process_count_per_node` failures.
 3. If all agents are stuck on `init` for more than `3 * run_invocation_timeout + 30` seconds, the job would fail because of no progress for too long.
