@@ -7,7 +7,7 @@ author: mattgotteiner
 ms.author: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 12/10/2024
+ms.date: 01/27/2025
 ---
 
 # Create a shared private link for a SQL managed instance from Azure AI Search
@@ -122,11 +122,9 @@ On the Azure AI Search side, you can confirm request approval by revisiting the 
 
 You can now configure an indexer and its data source to use an outbound private connection to your managed instance.
 
-You could use the [**Import data**](search-get-started-portal.md) wizard for this step, but the indexer that's generated won't be valid for this scenario. You'll need to modify the indexer JSON property as described in this step to make it compliant for this scenario. You'll then need to [reset and rerun the indexer](search-howto-run-reset-indexers.md) to fully test the pipeline using the updated indexer.
+This article assumes a [REST client](search-get-started-rest.md) and uses the REST APIs.
 
-This article assumes a [REST client](search-get-started-rest.md) and uses the REST APIs to make it easier to see all of the properties. Recall that REST API calls for indexers and data sources use the [Search REST APIs](/rest/api/searchservice/), not the [Management REST APIs](/rest/api/searchmanagement/) used to create the shared private link. The syntax and API versions are different between the two REST APIs.
-
-1. [Create the data source definition](search-how-to-index-sql-database.md) as you would normally for Azure SQL. The format of the connection string is slightly different for a managed instance, but other properties are the same as if you were configuring a data source connection to Azure SQL database.
+1. [Create the data source definition](search-how-to-index-sql-database.md) as you would normally for Azure SQL. A managed instance listens on port 3342, but other properties are similar to Azure SQL database.
 
     Provide the connection string that you copied earlier with an Initial Catalog specified.
 
@@ -139,7 +137,7 @@ This article assumes a [REST client](search-get-started-rest.md) and uses the RE
          "description" : "A database for testing Azure AI Search indexes.",
          "type" : "azuresql",
          "credentials" : { 
-             "connectionString" : "Server=tcp:contoso.public.0000000000.database.windows.net,1433;Persist Security Info=false; User ID=<your user name>; Password=<your password>;MultipleActiveResultsSets=False; Encrypt=True;Connection Timeout=30;Initial Catalog=<your database name>"
+             "connectionString" : "Server=tcp:contoso.0000000000.database.windows.net,3342;Persist Security Info=false; User ID=<your user name>; Password=<your password>;MultipleActiveResultsSets=False; Encrypt=True;Connection Timeout=30;Initial Catalog=<your database name>"
             },
          "container" : { 
              "name" : "Name of table or view to index",
