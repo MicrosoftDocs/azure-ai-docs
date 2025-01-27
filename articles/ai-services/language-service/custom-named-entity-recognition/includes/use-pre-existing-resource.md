@@ -51,7 +51,7 @@ Make sure to enable **Custom text classification / Custom Named Entity Recogniti
 5. Select **Apply**.
 
 >[!Important]
-> Make sure that the user making changes has **storage blob data contributor role** assigned for them.
+> Make sure that the user making changes has **storage blob data contributor** role assigned for them.
 
 ### Add required roles
 
