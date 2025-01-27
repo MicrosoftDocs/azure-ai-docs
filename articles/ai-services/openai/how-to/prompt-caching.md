@@ -75,7 +75,7 @@ A single character difference in the first 1,024 tokens will result in a cache m
 
 ## What is cached?
 
-The o1-series models feature support varies by model. For more details, see our dedicated [reasoning models guide](./reasoning.md). 
+o1-series models feature support varies by model. For more details, see our dedicated [reasoning models guide](./reasoning.md). 
 
 Prompt caching is supported for:
 
