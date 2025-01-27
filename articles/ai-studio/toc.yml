@@ -1,46 +1,73 @@
-items:   
+items:
 - name: Azure AI Foundry documentation
   href: index.yml
-- name: Get Started
+- name: Overview
   expanded: true
   items:
-  - name:  Overview
-    expanded: true
-    items: 
-    - name: What is Azure AI Foundry?
-      href: what-is-ai-studio.md
-    - name: Azure AI Foundry and AI services
-      href: concepts/related-content.md
-    - name: Azure AI Foundry FAQ
-      href: faq.yml
-    - name: Plan and manage costs for Azure AI Foundry
-      href: how-to/costs-plan-manage.md
-  - name:  Quickstart
-    items: 
-    - name: Use the chat playground in Azure AI Foundry portal
-      href: quickstarts/get-started-playground.md
-    - name: Build a basic chat app in Python using Azure AI Foundry SDK
-      href: quickstarts/get-started-code.md
-    - name: Get started with Azure AI Foundry SDK
-      href: how-to/develop/sdk-overview.md
-    - name: Start with an AI template
-      href: how-to/develop/ai-template-get-started.md
-  - name: Tutorials
+  - name: What is Azure AI Foundry?
+    href: what-is-ai-studio.md
+  - name: Azure AI Foundry architecture
+    href: concepts/architecture.md
+  - name: Azure OpenAI in Azure AI Foundry
+    href: azure-openai-in-ai-studio.md
+  - name: Management center
+    href: concepts/management-center.md
+  - name: Azure AI Foundry SDK
+    href: how-to/develop/sdk-overview.md
+    displayName: code, sdk
+  - name: Region support
+    href: reference/region-support.md
+  - name: Azure AI FAQ
+    href: faq.yml
+  - name: Which studio should I choose?
+    href: /ai/ai-studio-experiences-overview?context=/azure/ai-studio/context/context
+- name: Quickstarts
+  items:
+  - name: Use the chat playground
+    href: quickstarts/get-started-playground.md
+  - name: Build a chat app using the Azure AI SDK
+    href: quickstarts/get-started-code.md
+    displayName: code
+  - name: Get started using Azure OpenAI Assistants
+    href: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
+- name: Tutorials
+  items:
+  - name: Deploy an enterprise chat web app
+    href: tutorials/deploy-chat-web-app.md
+  - name: Build a custom chat app with the Azure AI Foundry SDK
     items:
-      - name: Build a custom chat app with the Azure AI Foundry SDK
-        items:
-        - name: "Part 1: Set up project and install SDK"
-          href: tutorials/copilot-sdk-create-resources.md
-        - name: "Part 2: Build with data retrieval"
-          href: tutorials/copilot-sdk-build-rag.md
-          displayName: code,sdk
-        - name: "Part 3: Evaluate the chat app"
-          href: tutorials/copilot-sdk-evaluate.md
-          displayName: code,sdk
-      - name: Deploy an enterprise chat web app
-        href: tutorials/deploy-chat-web-app.md
-      - name: Hear and speak with chat in the playground
-        href: quickstarts/hear-speak-playground.md
+      - name: "Part 1: Set up project and install SDK"
+        href: tutorials/copilot-sdk-create-resources.md
+      - name: "Part 2: Build with data retrieval"
+        href: tutorials/copilot-sdk-build-rag.md
+        displayName: code,sdk
+      - name: "Part 3: Evaluate the chat app"
+        href: tutorials/copilot-sdk-evaluate.md
+        displayName: code,sdk
+- name: How-to
+  expanded: true
+  items:
+  - name: Azure OpenAI and AI services
+    items:
+    - name: What are AI services?
+      href: ../ai-services/what-are-ai-services.md?context=/azure/ai-studio/context/context
+    - name: Use Azure AI services in Azure AI Foundry portal
+      href: ai-services/how-to/connect-ai-services.md
+    - name: Azure OpenAI
+      items:
+      - name: What is Azure OpenAI?
+        href: ../ai-services/openai/overview.md?context=/azure/ai-studio/context/context
+        displayName: cognitive
+      - name: Use Azure OpenAI Service in Azure AI Foundry portal
+        href: ai-services/how-to/connect-azure-openai.md
+      - name: Deploy Azure OpenAI models
+        href: how-to/deploy-models-openai.md
+      - name: Fine-tune Azure OpenAI models
+        href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context
+      - name: Get started using Azure OpenAI Assistants
+        href: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
+      - name: Use GPT-4o in the real-time audio playground
+        href: ../ai-services/openai/realtime-audio-quickstart.md?context=/azure/ai-studio/context/context
       - name: Analyze images and video with GPT-4 for Vision in the playground
         href: quickstarts/multimodal-vision.md
     - name: Azure AI Speech
@@ -57,11 +84,33 @@ items:
     items:
     - name: Model catalog
       href: how-to/model-catalog-overview.md
-    - name: Model benchmarks
-      href: concepts/model-benchmarks.md
     - name: Data, privacy, and security for Model Catalog
       href: how-to/concept-data-privacy.md
-    - name: Featured models
+    - name: Model lifecycle and retirement
+      href: concepts/model-lifecycle-retirement.md
+    - name: Model benchmarking
+      items:
+      - name: Model benchmarks
+        href: concepts/model-benchmarks.md
+      - name: How to use model benchmarking
+        href: how-to/benchmark-model-in-catalog.md
+    - name: Fine-tune models
+      items:
+        - name: Fine-tuning overview
+          href: concepts/fine-tuning-overview.md
+        - name: Fine-tune with user-managed compute
+          href: how-to/fine-tune-managed-compute.md
+        - name: Fine-tune Azure OpenAI models
+          href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context
+    - name: Distillation
+      href: concepts/concept-model-distillation.md
+    - name: Azure OpenAI models
+      items:
+      - name: Deploy Azure OpenAI models
+        href: how-to/deploy-models-openai.md
+      - name: Fine-tune Azure OpenAI models
+        href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context
+    - name: Healthcare AI models
       items:
         - name: Foundational AI models for healthcare
           href: how-to/healthcare-ai/healthcare-ai-models.md
@@ -379,12 +428,18 @@ items:
   items:
   - name: Azure AI Projects SDK
     href: /python/api/overview/azure/ai-projects-readme
+  - name: Azure Machine Learning Python SDK
+    href: /python/api/overview/azure/ai-ml-readme
+  - name: Azure Machine Learning REST API
+    href: /rest/api/azureml
   - name: Azure AI services SDKs
     displayName: client library libraries development kit
     href: ../ai-services/reference/sdk-package-resources.md?context=/azure/ai-studio/context/context
   - name: Azure AI services REST APIs
     displayName: swagger http
     href: ../ai-services/reference/rest-api-resources.md?context=/azure/ai-studio/context/context
+  - name: Prompt flow Python SDK
+    href: https://microsoft.github.io/promptflow/reference/index.html#
   - name: Azure AI Model Inference API
     items:
       - name: What's the Azure AI Model Inference API?
@@ -402,5 +457,29 @@ items:
   - name: Azure Policy built-ins
     displayName: samples, policies, definitions
     href: ../ai-services/policy-reference.md?context=/azure/ai-studio/context/context
+- name: Resources
+  items:
+  - name: Support & help options
+    href: ../ai-services/cognitive-services-support-options.md?context=/azure/ai-studio/context/context
+  - name: Use Azure AI Foundry with a screen reader
+    href: tutorials/screen-reader.md
   - name: Region support
-    href: reference/region-support.md 
+    href: https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services
+  - name: Azure updates
+    href: https://azure.microsoft.com/updates/?query=cognitive%20services
+  - name: Pricing calculator
+    href: https://azure.microsoft.com/pricing/calculator/
+  - name: Compliance
+    href: https://azure.microsoft.com/support/legal/cognitive-services-compliance-and-privacy/
+  - name: Service Level Agreement (SLA)
+    href: https://azure.microsoft.com/support/legal/sla/cognitive-services/v1_1/
+  - name: Azure Government
+    href: /azure/azure-government/compare-azure-government-global-azure
+  - name: Videos
+    href: https://azure.microsoft.com/resources/videos/index/?services=cognitive-services
+  - name: Azure Blog
+    href: https://azure.microsoft.com/blog/
+  - name: Artificial Intelligence and Machine Learning Blog
+    href: https://techcommunity.microsoft.com/t5/artificial-intelligence-and/ct-p/AI
+  - name: LLMOps with Prompt Flow
+    href: https://github.com/microsoft/llmops-promptflow-template
