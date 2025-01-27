@@ -14,7 +14,7 @@ zone_pivot_groups: azure-ai-models-deployment
 
 * The feature **Deploy models to Azure AI model inference service** on.
 
-   :::image type="content" source="../media/quickstart-ai-project/ai-project-inference-endpoint.gif" alt-text="An animation showing how to turn on the Deploy models to Azure AI model inference service feature in Azure AI Foundry portal." lightbox="../media/quickstart-ai-project/ai-project-inference-endpoint.gif":::
+   :::image type="content" source="../../media/quickstart-ai-project/ai-project-inference-endpoint.gif" alt-text="An animation showing how to turn on the Deploy models to Azure AI model inference service feature in Azure AI Foundry portal." lightbox="../../media/quickstart-ai-project/ai-project-inference-endpoint.gif":::
 
 ## Add a connection
 
