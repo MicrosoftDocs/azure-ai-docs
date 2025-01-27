@@ -177,6 +177,12 @@
       "branch_mapping": {}
     },
     {
+      "path_to_root": "azureai-model-inference-bicep",
+      "url": "https://github.com/Azure-Samples/azureai-model-inference-bicep",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
       "path_to_root": "azure-docs-pr-policy-includes",
       "url": "https://github.com/MicrosoftDocs/azure-docs-pr",
       "branch": "main",

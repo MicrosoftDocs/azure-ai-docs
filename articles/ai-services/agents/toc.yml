@@ -56,6 +56,8 @@ items:
       href: how-to/use-your-own-resources.md
 - name: Responsible AI
   items:
+    - name: Transparency note
+      href: /legal/cognitive-services/agents/transparency-note?context=/azure/ai-services/agents/context/context
     - name: Data, privacy, and security For Azure AI Agent Service
       href: /legal/cognitive-services/agents/data-privacy-security?context=/azure/ai-services/agents/context/context
 - name: Reference

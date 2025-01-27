@@ -11,7 +11,7 @@ ms.devlang: csharp
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 04/22/2024
+ms.date: 01/17/2025
 ---
 
 # Create a search app in ASP.NET Core

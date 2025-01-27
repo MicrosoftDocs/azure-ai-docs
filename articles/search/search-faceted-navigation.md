@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 10/31/2024
+ms.date: 01/16/2025
 ---
 
 # Add faceted navigation to a search app
