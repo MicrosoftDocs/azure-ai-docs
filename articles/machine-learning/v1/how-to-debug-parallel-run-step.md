@@ -208,12 +208,12 @@ You can also view the results of periodical checks of the resource usage for eac
 ## Common job failure reasons
 
 ### SystemExit: 42
-Exit 41 and 42 are PRS designed exit code. Worker nodes exit with 41 to notify compute manager that it terminated independently. A leader node may exit with 0 or 41 which indicates the job result. Exit 42 means the job failed. The failure reason can be found in `~/logs/job_result.txt`. You can follow previous section to debug your job.
+Exits 41 and 42 are PRS designed exit codes. Worker nodes exit with 41 to notify compute manager that it terminated independently. It is expected. A leader node may exit with 0 or 42 which indicates the job result. Exit 42 means the job failed. The failure reason can be found in `~/logs/job_result.txt`. You can follow previous section to debug your job.
 
 ### Data Permission
 Error of the job indicates the compute cannot access input data. If identity-based is used for your compute cluster and storage, you can refer [Identity-based data authentication](../how-to-administrate-data-authentication.md).
 
-### Processes terminated unexpectly
+### Processes terminated unexpectedly
 Processes may crash due to unexpected or unhandled exceptions, the system kills processes due to Out of Memory exceptions. In PRS system logs `~/logs/sys/node/<node-id>/_main.txt`, errors like below can be found.
 
 ```
@@ -221,7 +221,7 @@ Processes may crash due to unexpected or unhandled exceptions, the system kills 
 ```
 
 #### Out of Memory
-`~/logs/perf` logs computation resource comsuptions of each processes. The memory usage of each task processor can be found. You can estimate the total memory usage on the node. 
+`~/logs/perf` logs computation resource comsuption of processes. The memory usage of each task processor can be found. You can estimate the total memory usage on the node. 
 
 Out of Memory error can be found in `~/system_logs/lifecycler/<node-id>/execution-wrapper.txt`.
 
@@ -233,9 +233,9 @@ In some cases, the python processes cannot catch the failing stack. You can add 
 ### Minibatch Timeout
 You can adjust `run_invocation_timeout` argument according to your minibatch tasks. When you are seeing the run() functions take more time than expected, here are some tips.
 
-- Check the elapsed time and process time of the minibatch. The process time measures CPU time of the process. When process time is significantly shorter than elapsed, you can check if there are some heavy IO operations or network requests in the tasks. Long latency of those operations are the common reason of minibatch timeout.
+- Check the elapsed time and process time of the minibatch. The process time measures CPU time of the process. When process time is significantly shorter than elapsed, you can check if there are some heavy IO operations or network requests in the tasks. Long latency of those operations is the common reason of minibatch timeout.
 
-- Some specific minibatches take longer time than others. You can either updated the configuration, or try work with input data to balance the minibatch processing time.
+- Some specific minibatches take longer time than others. You can either update the configuration, or try work with input data to balance the minibatch processing time.
 
 ## How do I log from my user script from a remote context?
 
