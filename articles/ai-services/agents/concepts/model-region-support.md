@@ -28,7 +28,7 @@ Azure AI Agent Service supports the same models as the chat completions API in A
 | westus        | ✅                         | ✅                          | ✅                            | -                   | ✅                          | -                           | ✅                               | - | -                          | ✅                         | ✅                          | -                              |
 
 
-## Non-microsoft models
+## Non-Microsoft models
 
 The Azure AI Agent Service also supports the following models from the Azure AI Foundry model catalog.
 
