@@ -21,13 +21,7 @@ Before getting started, determine if you want to perform a basic agent setup or 
 
 **Standard Setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage. Standard setup can only be performed using an automated bicep template.
 
-## [Basic setup](#tab/basic)
-
-## Use a bicep template
-
-| Description and Autodeploy  |  Diagram (click to zoom in) |
-| -----------------------------------------------| -----------------------|
-| Deploy a basic agent setup that uses Managed Identity for authentication. Resources for the AI hub, AI project, storage account, and AI Services are created for you. <br><br> The AI Services account is connected to your project and hub, and a gpt-4o-mini model is deployed in the eastus region. A Microsoft-managed key vault is used by default. <br><br> [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.azure-ai-agent-service%2Fbasic-agent-identity%2Fazuredeploy.json) |  :::image type="content" source="../media/quickstart/basic-agent-setup-resources.png" alt-text="An architecture diagram for basic agent setup." lightbox="../media/quickstart/basic-agent-setup-resources.png"::: |
+## [Basic setup (AI Foundry)](#tab/basic-foundry)
 
 ## Use the Azure AI Foundry portal
 
@@ -45,7 +39,15 @@ Before getting started, determine if you want to perform a basic agent setup or 
 
     :::image type="content" source="../media/quickstart/model-list.png" alt-text="A screenshot of the available models." lightbox="../media/quickstart/model-list.png"::: 
 
-## [Standard setup](#tab/standard)
+## [Basic setup (Bicep template)](#tab/basic-template)
+
+## Use a bicep template
+
+| Description and Autodeploy  |  Diagram (click to zoom in) |
+| -----------------------------------------------| -----------------------|
+| Deploy a basic agent setup that uses Managed Identity for authentication. Resources for the AI hub, AI project, storage account, and AI Services are created for you. <br><br> The AI Services account is connected to your project and hub, and a gpt-4o-mini model is deployed in the eastus region. A Microsoft-managed key vault is used by default. <br><br> [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.azure-ai-agent-service%2Fbasic-agent-identity%2Fazuredeploy.json) |  :::image type="content" source="../media/quickstart/basic-agent-setup-resources.png" alt-text="An architecture diagram for basic agent setup." lightbox="../media/quickstart/basic-agent-setup-resources.png"::: |
+
+## [Standard setup (Bicep template)](#tab/standard-template)
 
 ## Bicep deployment
 
