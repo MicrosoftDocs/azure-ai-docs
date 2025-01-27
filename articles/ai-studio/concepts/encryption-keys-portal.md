@@ -8,7 +8,7 @@ ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 11/21/2024
+ms.date: 01/27/2025
 ms.reviewer: deeikele
 # Customer intent: As an admin, I want to understand how I can use my own encryption keys with Azure AI Foundry.
 ---
@@ -27,10 +27,22 @@ Azure AI services data is encrypted and decrypted using [FIPS 140-2](https://en.
 
 ## Data storage in your subscription when using customer-managed keys
 
-Hub resources store metadata in your Azure subscription when using customer-managed keys. Data is stored in a Microsoft-managed resource group that includes an Azure Storage account, Azure Cosmos DB resource and Azure AI Search. 
+There are two possible configurations you can use for customer-managed keys in Azure AI Foundry. The newer configuration stores encrypted data service-side on Microsoft-managed resources. The older (classic) configuration stores encrypted data in your Azure subscription in a Microsoft-managed resource group.
+
+### Server-side storage of encrypted data
+
+In the new architecture for customer-managed key encryption with hubs, encrypted data is stored service-side on Microsoft-managed resources. Metadata is stored in multitenant resources using document-level CMK encryption. An Azure AI Search instance is hosted on the Microsoft-side per customer, and for each hub. Due to its dedicated resource model, its Azure cost is charged in your subscription via the hub resource.
+
+> [!NOTE]
+> - Key rotation and user-assigned identity capabilities aren't supported. Service-side encryption is currently not supported in reference to an Azure Key Vault for storing your encryption key that has public network access disabled.
+> - If you're using the server-side storage, Azure charges continue to accrue during the soft delete retention period.
+
+### Subscription-side storage of encrypted data (classic configuration)
+
+Hub resources store metadata in your Azure subscription when using customer-managed keys. Data is stored in a Microsoft-managed resource group that includes an Azure Storage account, Azure Cosmos DB resource, and Azure AI Search. 
 
 > [!IMPORTANT]
-> When using a customer-managed key, the costs for your subscription will be higher because encrypted data is stored in your subscription. To estimate the cost, use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
+> When using a customer-managed key, the costs for your subscription are higher because encrypted data is stored in your subscription. To estimate the cost, use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
 
 The encryption key you provide when creating a hub is used to encrypt data that is stored on Microsoft-managed resources. All projects using the same hub store data on the resources in a managed resource group identified by the name `azureml-rg-hubworkspacename_GUID`. Projects use Microsoft Entra ID authentication when interacting with these resources. If your hub has a private link endpoint, network access to the managed resources is restricted. The managed resource group is deleted, when the hub is deleted. 
 
@@ -45,17 +57,9 @@ The following data is stored on the managed resources.
 >[!IMPORTANT]
 > Azure AI Foundry uses Azure compute that is managed in the Microsoft subscription, for example when you fine-tune models or or build flows. Its disks are encrypted with Microsoft-managed keys. Compute is ephemeral, meaning after a task is completed the virtual machine is deprovisioned, and the OS disk is deleted. Compute instance machines used for 'Code' experiences are persistant. Azure Disk Encryption isn't supported for the OS disk. 
 
-## (Preview) Service-side storage of encrypted data when using customer-managed keys
-
-A new architecture for customer-managed key encryption with hubs is available in preview, which resolves the dependency on the managed resource group. In this new model, encrypted data is stored service-side on Microsoft-managed resources instead of in managed resources in your subscription. Metadata is stored in multitenant resources using document-level CMK encryption. An Azure AI Search instance is hosted on the Microsoft-side per customer, and for each hub. Due to its dedicated resource model, its Azure cost is charged in your subscription via the hub resource.
-
-> [!NOTE]
-> - During this preview key rotation and user-assigned identity capabilities are not supported. Service-side encryption is currently not supported in reference to an Azure Key Vault for storing your encryption key that has public network access disabled.
-> - If you are using the preview server-side storage, Azure charges will continue to accrue during the soft delete retention period.
-
 ## Use customer-managed keys with Azure Key Vault
 
-You must use Azure Key Vault to store your customer-managed keys. You can either create your own keys and store them in a key vault, or you can use the Azure Key Vault APIs to generate keys. The Azure AI services resource and the key vault must be in the same region and in the same Microsoft Entra tenant, but they can be in different subscriptions. For more information about Azure Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
+You must use Azure Key Vault to store your customer-managed keys regardless of which configuration you decide to use. You can either create your own keys and store them in a key vault, or you can use the Azure Key Vault APIs to generate keys. The Azure AI services resource and the key vault must be in the same region and in the same Microsoft Entra tenant, but they can be in different subscriptions. For more information about Azure Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
 
 To enable customer-managed keys, the key vault containing your keys must meet these requirements:
 
@@ -64,7 +68,7 @@ To enable customer-managed keys, the key vault containing your keys must meet th
 - You must grant your hub's and Azure AI Services resource's system-assigned managed identity the following permissions on your key vault: *get key*, *wrap key*, *unwrap key*.
 
 The following limitations hold for Azure AI Services:
-- Only Azure Key Vault with [legacy access policies](/azure/key-vault/general/assign-access-policy) are supported.
+- Only Azure Key Vaults with [legacy access policies](/azure/key-vault/general/assign-access-policy) are supported.
 - Only RSA and RSA-HSM keys of size 2048 are supported with Azure AI services encryption. For more information about keys, see **Key Vault keys** in [About Azure Key Vault keys, secrets, and certificates](/azure/key-vault/general/about-keys-secrets-certificates).
 
 ### Enable your Azure AI Services resource's managed identity
@@ -87,8 +91,9 @@ Customer-managed key encryption is configured via Azure portal in a similar way 
 :::image type="content" source="../../machine-learning/media/concept-customer-managed-keys/cmk-service-side-encryption.png" alt-text="Screenshot of the encryption tab with the option for service side encryption selected." lightbox="../../machine-learning/media/concept-customer-managed-keys/cmk-service-side-encryption.png":::
 
 Alternatively, use infrastructure-as-code options for automation. Example Bicep templates for Azure AI Foundry are available on the Azure Quickstart repo:
+
+1. [Service-side CMK encryption for hub](https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-cmk-service-side-encryption).
 1. [CMK encryption for hub](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-cmk).
-1. [Service-side CMK encryption preview for hub](https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-cmk-service-side-encryption).
 
 ## Limitations
 
@@ -98,7 +103,7 @@ Alternatively, use infrastructure-as-code options for automation. Example Bicep 
 * At the time of creation, you can't provide or modify resources that are created in the Microsoft-managed Azure resource group in your subscription.
 * You can't delete Microsoft-managed resources used for customer-managed keys without also deleting your hub.
 * [Azure AI services Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) is still required for Speech and Content Moderator.
-* If you are using the [server-side preview](#preview-service-side-storage-of-encrypted-data-when-using-customer-managed-keys), Azure charges will continue to accrue during the soft delete retention period.
+* If you're using the [server-side](#server-side-storage-of-encrypted-data), Azure charges continue to accrue during the soft delete retention period.
 
 ## Related content
 
