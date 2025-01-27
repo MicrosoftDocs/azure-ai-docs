@@ -39,9 +39,9 @@ Global deployments leverage Azure's global infrastructure to dynamically route t
 
 ## Control deployment options
 
-Administrators can control which model deployment types are available to their users by using Azure Policies. Learn more about [How to control AI model deployment with custom policies](../how-to/custom-policy-model-deployment.md).
+Administrators can control which model deployment types are available to their users by using Azure Policies. Learn more about [How to control AI model deployment with custom policies](../../../ai-studio/how-to/custom-policy-model-deployment.md).
 
 ## Related content
 
 - [Quotas & limits](../quotas-limits.md)
-- [Data privacy, and security for third-party models](../../../ai-studio/how-to/concept-data-privacy.md#generation-of-inferencing-outputs-with-models-as-a-service-under-azure-ai-services)
+- [Data privacy, and security for Models-as-a-Service models](../../../ai-studio/how-to/concept-data-privacy.md)
