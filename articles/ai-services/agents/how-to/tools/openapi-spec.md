@@ -187,7 +187,7 @@ An example of the audience would be ```https://cognitiveservices.azure.com/```.
 # Create agent with OpenAPI tool and process assistant run
 with project_client:
     agent = project_client.agents.create_agent(
-        model="gpt-4o-mini",
+        model="gpt-4o",
         name="my-assistant",
         instructions="You are a helpful assistant",
         tools=openapi.definitions
@@ -201,7 +201,7 @@ with project_client:
 # [C#](#tab/csharp)
 ```csharp
 Response<Agent> agentResponse = await client.CreateAgentAsync(
-            model: "gpt-4",
+            model: "gpt-4o",
             name: "azure-function-agent-foo",
             instructions: "You are a helpful assistant.",
             tools: new List<ToolDefinition> { openapiTool }
