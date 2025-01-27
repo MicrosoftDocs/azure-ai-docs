@@ -13,17 +13,29 @@ ms.date: 01/21/2025
 - An [Azure AI project](../../../ai-studio/how-to/create-projects.md) in Azure AI Foundry portal.
 - Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio.md) assigned.
 
-## Go to the Azure AI Foundry portal (Preview)
+## Choose basic or standard agent setup
+
+Before getting started, determine if you want to perform a basic agent setup or a standard agent setup. 
+
+**Basic Setup**:  Agents use multitenant search and storage resources fully managed by Microsoft. You don't have visibility or control over these underlying Azure resources. A basic setup can be created using the Azure AI Foundry portal or an automated bicep template.
+
+**Standard Setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage. Standard setup can only be performed using an automated bicep template.
+
+## [Basic setup](#tab/basic)
+
+## Use a bicep template
+
+| Description and Autodeploy  |  Diagram (click to zoom in) |
+| -----------------------------------------------| -----------------------|
+| Deploy a basic agent setup that uses Managed Identity for authentication. Resources for the AI hub, AI project, storage account, and AI Services are created for you. <br><br> The AI Services account is connected to your project and hub, and a gpt-4o-mini model is deployed in the eastus region. A Microsoft-managed key vault is used by default. <br><br> [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.azure-ai-agent-service%2Fbasic-agent-identity%2Fazuredeploy.json) |  :::image type="content" source="../media/quickstart/basic-agent-setup-resources.png" alt-text="An architecture diagram for basic agent setup." lightbox="../media/quickstart/basic-agent-setup-resources.png"::: |
+
+## Use the Azure AI Foundry portal
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
 1. Go to your project or [create a new project](../../../ai-studio//how-to/create-projects.md) in Azure AI Foundry portal.
 1. From your project overview, select **Agents**, located under **playgrounds**. The Agents playground allows you to explore, prototype, and test AI Agents without needing to run any code. From this page, you can quickly iterate and experiment with new ideas.
 
-1. Select your Azure OpenAI resource and optionally an Azure AI Search resource. 
-
-    > [!IMPORTANT]
-    > * If you don't select an Azure AI Search resource, A Microsoft-managed storage will be used to contain your data. If you do select an Azure AI Search resource, then customer-managed storage will be used.  
-    > * If you don't select an Azure AI Search resource now, and begin using customer-managed storage later, the data stored in the Microsoft-managed storage will be lost. 
+1. Select your Azure OpenAI resource.
 
     :::image type="content" source="../media/quickstart/agents-foundry.png" alt-text="A screenshot of the initial Agents screen." lightbox="../media/quickstart/agents-foundry.png"::: 
  
@@ -32,6 +44,19 @@ ms.date: 01/21/2025
     :::image type="content" source="../media/quickstart/select-deploy-model.png" alt-text="A screenshot of the model selection screen." lightbox="../media/quickstart/select-deploy-model.png"::: 
 
     :::image type="content" source="../media/quickstart/model-list.png" alt-text="A screenshot of the available models." lightbox="../media/quickstart/model-list.png"::: 
+
+## [Standard setup](#tab/standard)
+
+## Bicep deployment
+
+| Description and Autodeploy  |  Diagram (click to zoom in) |
+| -----------------------------------------------| -----------------------|
+| Deploy a standard agent setup that uses Managed Identity for authentication. <br><br> Resources for the AI hub, AI project, key vault, storage account, AI Services, and AI Search are created for you. <br><br>The AI Services, AI Search, key vault, and storage account are connected to your project and hub. A gpt-4o-mini model is deployed in eastus region. <br><br> [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Frefs%2Fheads%2Fmaster%2Fquickstarts%2Fmicrosoft.azure-ai-agent-service%2Fstandard-agent%2Fazuredeploy.json) | :::image type="content" source="../media/quickstart/standard-agent-setup-resources.png" alt-text="An architecture diagram for standard agent setup." lightbox="../media/quickstart/standard-agent-setup-resources.png"::: |
+
+---
+
+## Go to the Azure AI Foundry portal (Preview)
+
 
 1. In the **Create and debug your agents** screen that appears, select **New agent**. This will create a new agent, and open a **Setup** pane where you can change its parameters and tools. 
 
