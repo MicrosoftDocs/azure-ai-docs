@@ -22,7 +22,7 @@ This article provides a summary of the latest releases and major documentation u
 Azure AI Service is now available in preview. The service builds off of the [Assistants API](../openai/how-to/assistant.md) in Azure OpenAI, and offers several additional features, such as:
 
 * Several [additional tools](./how-to/tools/overview.md) to enhance your AI agents' functionality, such as the ability to use Bing and as a knowledge source and call functions. 
-* The ability to use non Azure OpenAI [models](./concepts/model-region-support.md#more-models): 
+* The ability to use non Azure OpenAI [models](./concepts/model-region-support.md): 
     * Llama 3.1-70B-instruct
     * Mistral-large-2407    
     * Cohere command R+
