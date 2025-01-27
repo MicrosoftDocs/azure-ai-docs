@@ -115,11 +115,11 @@ If you are using an endpoint with support for Entra ID, you can create your clie
 ```python
 import os
 from azure.ai.inference import ChatCompletionsClient
-from azure.identity import AzureDefaultCredential
+from azure.identity import DefaultAzureCredential
 
 model = ChatCompletionsClient(
     endpoint=os.environ["AZUREAI_ENDPOINT_URL"],
-    credential=AzureDefaultCredential(),
+    credential=DefaultAzureCredential(),
 )
 ```
 
@@ -151,11 +151,11 @@ For endpoint with support for Microsoft Entra ID, you can create your client as 
 ```javascript
 import ModelClient from "@azure-rest/ai-inference";
 import { isUnexpected } from "@azure-rest/ai-inference";
-import { AzureDefaultCredential } from "@azure/identity";
+import { DefaultAzureCredential } from "@azure/identity";
 
 const client = new ModelClient(
     process.env.AZUREAI_ENDPOINT_URL, 
-    new AzureDefaultCredential()
+    new DefaultAzureCredential()
 );
 ```
 
