@@ -23,11 +23,11 @@ Then, you can use the package to consume the model. The following example shows 
 ```python
 import os
 from azure.ai.inference import ChatCompletionsClient
-from azure.identity import AzureDefaultCredential
+from azure.identity import DefaultAzureCredential
 
 model = ChatCompletionsClient(
     endpoint="https://<resource>.services.ai.azure.com/models",
-    credential=AzureDefaultCredential(),
+    credential=DefaultAzureCredential(),
     model="mistral-large-2407",
 )
 ```
@@ -45,11 +45,11 @@ Then, you can use the package to consume the model. The following example shows 
 ```javascript
 import ModelClient from "@azure-rest/ai-inference";
 import { isUnexpected } from "@azure-rest/ai-inference";
-import { AzureDefaultCredential } from "@azure/identity";
+import { DefaultAzureCredential } from "@azure/identity";
 
 const client = new ModelClient(
     "https://<resource>.services.ai.azure.com/models", 
-    new AzureDefaultCredential(),
+    new DefaultAzureCredential(),
     "mistral-large-2407"
 );
 ```
@@ -81,7 +81,7 @@ Then, you can use the package to consume the model. The following example shows 
 ```csharp
 ChatCompletionsClient client = new ChatCompletionsClient(
     new Uri("https://<resource>.services.ai.azure.com/models"),
-    new AzureDefaultCredential(includeInteractiveCredentials: true),
+    new DefaultAzureCredential(includeInteractiveCredentials: true),
     "mistral-large-2407"
 );
 ```
