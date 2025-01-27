@@ -164,15 +164,15 @@ Because of the distributed nature of ParallelRunStep jobs, there are logs from s
 
 - `~/logs/job_progress_overview.txt`: This file provides a high-level info about the number of mini-batches (also known as tasks) created so far and number of mini-batches processed so far. At this end, it shows the result of the job. If the job fails, it shows the error message and where to start the troubleshooting.
 
-- `~/logs/job_result.txt`: It shows the result of the job. If the job failed, it will show the error message and where to start the troubleshooting.
+- `~/logs/job_result.txt`: It shows the result of the job. If the job failed, it shows the error message and where to start the troubleshooting.
 
 - `~/logs/job_error.txt`: This file summarizes the errors in your script.
 
 - `~/logs/sys/master_role.txt`: This file provides the principal node (also known as the orchestrator) view of the running job. Includes task creation, progress monitoring, the run result.
 
-- `~/logs/sys/job_report/processed_mini-batches.csv`: A table of all minibatches that has been processed. It shows result of each run of minibatch, its execution agent node id and process name. Also, the elapsed time and error messages are included. Logs for each run of minibatches can be found by following the node id and process name.
+- `~/logs/sys/job_report/processed_mini-batches.csv`: A table of all minibatches that were processed. It shows result of each run of minibatch, its execution agent node id and process name. Also, the elapsed time and error messages are included. Logs for each run of minibatches can be found by following the node id and process name.
 
-Logs generated from entry script using EntryScript helper and print statements will be found in following files:
+Logs generated from entry script using EntryScript helper and print statements can be found in following files:
 
 - `~/logs/user/entry_script_log/<node_id>/<process_name>.log.txt`: These files are the logs written from entry_script using EntryScript helper.
 
@@ -208,10 +208,10 @@ You can also view the results of periodical checks of the resource usage for eac
 ## Common job failure reasons
 
 ### SystemExit: 42
-This is PRS designed exit code. The failure reason can be found in `~/logs/job_result.txt`. You can follow previous section to debug your job.
+Exit 41 and 42 are PRS designed exit code. Worker nodes exit with 41 to notify compute manager that it terminated independently. A leader node may exit with 0 or 41 which indicates the job result. Exit 42 means the job failed. The failure reason can be found in `~/logs/job_result.txt`. You can follow previous section to debug your job.
 
 ### Data Permission
-Error of the job indicates the compute cannot access input data. TODO: links to access data with identity doc
+Error of the job indicates the compute cannot access input data. If identity-based is used for your compute cluster and storage, please refer [Identity-based data authentication](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-administrate-data-authentication?view=azureml-api-2#identity-based-data-authentication).
 
 ### Processes terminated unexpectly
 Processes may crash due to unexpected or unhandled exceptions. Or they may be killed by system due to Out of Memory exceptions. In PRS system logs `~/logs/sys/node/<node-id>/_main.txt`, errors like below can be found.
@@ -225,7 +225,7 @@ Processes may crash due to unexpected or unhandled exceptions. Or they may be ki
 
 Out of Memory error can be found in `~/system_logs/lifecycler/<node-id>/execution-wrapper.txt`.
 
-We suggest to reduce the number of processes per node or upgrade vm size if the compute resources is close the limits.
+We suggest reducing the number of processes per node or upgrade vm size if the compute resources is close the limits.
 
 #### Unhandled Exceptions
 In some cases the python processes cannot catch the failing stack. You can add an environment variable ```env["PYTHONFAULTHANDLER"]="true"``` to enable python builtin faulthandler.
