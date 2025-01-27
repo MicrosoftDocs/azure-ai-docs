@@ -35,7 +35,7 @@ work together, generate client code, create tests, apply design standards, and m
 
 ## Authenticating with API Key
 
-1. Verify that the OpenAPI spec supports API keys: it has `securitySchemes` section and has one scheme of type `apiKey". An example would be:
+1. Verify that the OpenAPI spec supports API keys: it has `securitySchemes` section and has one scheme of type `apiKey`. For example:
    ```json
        "securitySchemes": {
           "apiKeyHeader": {
@@ -56,7 +56,7 @@ work together, generate client code, create tests, apply design standards, and m
 
     1. Select **+ new connection** in the settings page. 
         >[!NOTE]
-        > If you re-generate the API key at a later date, you need to update the connection with the new key.
+        > If you regenerate the API key at a later date, you need to update the connection with the new key.
         
        :::image type="content" source="../../media/tools/bing/project-connections.png" alt-text="A screenshot of the connections screen for the AI project." lightbox="../../media/tools/bing/project-connections.png":::
 
@@ -138,7 +138,7 @@ public partial class Sample_Agent_OpenAPI : SamplesBase<AIProjectsTestEnvironmen
 ---
 
 ## Step 2: Enable the OpenAPI Spec tool
-You might want to store the OpenAPI specification in another file and import the content to initialize the tool. Please note the sample code is using `anonymous` as authentication type.
+You might want to store the OpenAPI specification in another file and import the content to initialize the tool. Note the sample code is using `anonymous` as authentication type.
 
 # [Python](#tab/python)
 
