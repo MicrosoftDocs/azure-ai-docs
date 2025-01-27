@@ -63,5 +63,5 @@ Next, you can add your data to the model to help it answer questions about your 
 
 ## Related content
 
-- [Build a custom chat app in Python using the prompt flow SDK](./get-started-code.md).
+- [Build a custom chat app in Python using the Azure AI Foundry SDK](./get-started-code.md).
 - [Deploy an enterprise chat web app](../tutorials/deploy-chat-web-app.md).

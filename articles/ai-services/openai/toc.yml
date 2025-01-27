@@ -31,6 +31,8 @@ items:
   items:
     - name: Assistants (preview)
       href: assistants-quickstart.md
+    - name: Audio generation
+      href: audio-completions-quickstart.md
     - name: Chat
       href: chatgpt-quickstart.md  
       displayName: ChatGPT, chatgpt

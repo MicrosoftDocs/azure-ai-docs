@@ -7,13 +7,13 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: overview
-ms.date: 12/11/2024
+ms.date: 01/10/2025
 ms.custom: azure-ai-agents
 ---
 
 # What is Azure AI Agent Service?
 
-Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents without needing to manage the underlying compute and storage resources. What originally took hundreds of lines of code to support [client side function calling](/azure/ai-services/openai/how-to/function-calling) can now be done in just a few lines of code with Azure AI Agent Service.
+[Azure AI Agent Service](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/introducing-azure-ai-agent-service/4298357) is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents without needing to manage the underlying compute and storage resources. What originally took hundreds of lines of code to support [client side function calling](/azure/ai-services/openai/how-to/function-calling) can now be done in just a few lines of code with Azure AI Agent Service.
 
 ## What is an AI agent?
 
@@ -69,7 +69,7 @@ Both services enable you to build agents using the same API and SDKs, but if you
 
 **Flexible model selection** - Create agents that use Azure OpenAI models, or others such as Llama 3, Mistral and Cohere. Choose the most suitable model to meet your business needs.
 
-**Extensive data integrations** - Ground your AI agents with relevant, secure enterprise knowledge from various data sources, such as Microsoft Bing, Microsoft SharePoint, Microsoft Fabric, Azure AI Search, and other APIs. 
+**Extensive data integrations** - Ground your AI agents with relevant, secure enterprise knowledge from various data sources, such as Microsoft Bing, Azure AI Search, and other APIs. 
 
 **Enterprise grade security** - Ensure data privacy and compliance with secure data handling, keyless authentication, and no public egress. 
 
