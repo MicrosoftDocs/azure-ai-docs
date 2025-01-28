@@ -11,7 +11,7 @@ ms.custom: ignite-2024-understanding-release, references_regions
 ms.author: lajanuar
 ---
 
-# Create an Azure AI services multi-service resource
+# Create an Azure AI Services multi-service resource
 
 
 To use Content Understanding, you need an Azure AI Services resource. This multi-service resource enables access to multiple Azure AI services with a single set of credentials.
@@ -52,3 +52,11 @@ To use the Azure AI Content Understanding service, you must create your Azure AI
 1. Once the validation banner appears, select the **Create** button from the bottom-left corner.
 
 1. After you select create, you'll be redirected to a new page that says **Deployment in progress**. After a few seconds, you'll see a message that says, **Your deployment is complete**.
+ 
+
+## Next steps: Try out Content Understanding
+
+Now that you've created your Azure AI Services multi-service resource, you're ready to try out the Content Understanding service.
+
+* Check out this Quickstart to [try Content Understanding in the AI Foundry](../quickstart/use-ai-foundry.md).
+* Ready to go straight to code? [Try the Content Understanding REST API](../quickstart/use-rest-api.md).
