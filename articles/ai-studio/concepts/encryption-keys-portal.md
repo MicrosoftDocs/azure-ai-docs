@@ -29,13 +29,12 @@ Azure AI services data is encrypted and decrypted using [FIPS 140-2](https://en.
 
 There are two possible configurations you can use for customer-managed keys in Azure AI Foundry. The newer configuration stores encrypted data service-side on Microsoft-managed resources. The older (classic) configuration stores encrypted data in your Azure subscription in a Microsoft-managed resource group.
 
-### Server-side storage of encrypted data
+### Service-side storage of encrypted data
 
 In the new architecture for customer-managed key encryption with hubs, encrypted data is stored service-side on Microsoft-managed resources. Metadata is stored in multitenant resources using document-level CMK encryption. An Azure AI Search instance is hosted on the Microsoft-side per customer, and for each hub. Due to its dedicated resource model, its Azure cost is charged in your subscription via the hub resource.
 
 > [!NOTE]
-> - Key rotation and user-assigned identity capabilities aren't supported. Service-side encryption is currently not supported in reference to an Azure Key Vault for storing your encryption key that has public network access disabled.
-> - If you're using the server-side storage, Azure charges continue to accrue during the soft delete retention period.
+> - When you use service-side encryption, Azure charges continue to accrue during the soft delete retention period.
 
 ### Subscription-side storage of encrypted data (classic configuration)
 
@@ -103,7 +102,7 @@ Alternatively, use infrastructure-as-code options for automation. Example Bicep 
 * At the time of creation, you can't provide or modify resources that are created in the Microsoft-managed Azure resource group in your subscription.
 * You can't delete Microsoft-managed resources used for customer-managed keys without also deleting your hub.
 * [Azure AI services Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) is still required for Speech and Content Moderator.
-* If you're using the [server-side](#server-side-storage-of-encrypted-data), Azure charges continue to accrue during the soft delete retention period.
+* If you're using the [service-side](#service-side-storage-of-encrypted-data), Azure charges continue to accrue during the soft delete retention period.
 
 ## Related content
 
