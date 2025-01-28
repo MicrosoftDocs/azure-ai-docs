@@ -284,6 +284,7 @@ curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-0
 }
 ```
 ## Managing models on provisioned deployment types
+Provisioned deployments support different 
 
 ## Next steps
 
