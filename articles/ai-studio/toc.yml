@@ -214,9 +214,29 @@ items:
     - name: What is Azure AI Translator?
       href: ../ai-services/translator/translator-overview.md?context=/azure/ai-studio/context/context
   - name:  Vision
-    items: 
-    - name: What is Azure AI Vision?
-      href: ../ai-services/computer-vision/overview.md?context=/azure/ai-studio/context/context
+    items:
+    - name: Azure Image Analysis
+      items:
+      - name: What is Image Analysis?
+        href: /azure/ai-services/computer-vision/overview-image-analysis
+      - name: Quickstart
+        href: /azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library-40
+      - name: Optical Character Recognition concepts
+        href: /azure/ai-services/computer-vision/concept-ocr
+      - name: Image captioning concepts
+        href: /azure/ai-services/computer-vision/concept-describe-images-40
+    - name: Azure AI Face
+      items:
+      - name: What is Azure AI Face service?
+        href: /azure/ai-services/computer-vision/overview-identity
+      - name: Quickstart 
+        href: /azure/ai-services/computer-vision/quickstarts-sdk/identity-client-library
+      - name: Face detection concepts
+        href: /azure/ai-services/computer-vision/concept-face-detection
+      - name: Face recognition concepts
+        href: /azure/ai-services/computer-vision/concept-face-recognition
+      - name: Liveness detection tutorial
+        href: /azure/ai-services/computer-vision/tutorials/liveness
 - name: Solutions and optimizations
   items:
   - name: Agents
