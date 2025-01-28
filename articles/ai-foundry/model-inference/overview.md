@@ -20,7 +20,7 @@ Azure AI model inference provides access to the most powerful models available i
 
 Azure AI model inference provides a way to **consume models as APIs without hosting them on your infrastructure**. Models are hosted in a Microsoft-managed infrastructure, which enables API-based access to the model provider's model. API-based access can dramatically reduce the cost of accessing a model and simplify the provisioning experience.
 
-Azure AI model inference is part of Azure AI Services, and users can access the service through [REST APIs](../../ai-studio/reference/reference-model-inference-api.md), [SDKs in several languages](supported-languages.md) such as Python, C#, JavaScript, and Java. You can also use the Azure AI model inference from [Azure AI Foundry by configuring a connection](how-to/configure-project-connection.md).
+Azure AI model inference is part of Azure AI Services, and users can access the service through [REST APIs](./reference/reference-model-inference-api.md), [SDKs in several languages](supported-languages.md) such as Python, C#, JavaScript, and Java. You can also use the Azure AI model inference from [Azure AI Foundry by configuring a connection](how-to/configure-project-connection.md).
 
 ## Models
 
