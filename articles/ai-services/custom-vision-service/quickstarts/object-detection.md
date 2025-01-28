@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-custom-vision
 ms.topic: quickstart
-ms.date: 01/21/2024
+ms.date: 01/22/2025
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, javascript, python
 ms.custom: devx-track-python, devx-track-js, devx-track-csharp, mode-api, devx-track-extended-java, devx-track-go

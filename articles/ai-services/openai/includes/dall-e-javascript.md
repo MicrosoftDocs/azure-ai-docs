@@ -30,7 +30,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Retrieve resource information
 
-[!INCLUDE [resource authentication](resource-auth.md)]
+[!INCLUDE [resource authentication](resource-authentication.md)]
 
 > [!CAUTION]
 > To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
@@ -59,7 +59,7 @@ Create a new file named _ImageGeneration.js_ and open it in your preferred code 
 
 
 
-#### [Microsoft Entra ID](#tab/javascript-keyless)
+#### [Microsoft Entra ID](#tab/keyless)
 
 ```javascript
 const { AzureOpenAI } = require("openai");
@@ -123,7 +123,7 @@ node ImageGeneration.js
 
 
 
-#### [API key](#tab/javascript-key)
+#### [API key](#tab/api-key)
 
 ```javascript
 const { AzureOpenAI } = require("openai");

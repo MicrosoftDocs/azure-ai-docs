@@ -8,7 +8,7 @@ ms.author: larryfr
 ms.reviewer: meyetman
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.date: 10/04/2024
+ms.date: 01/21/2025
 ms.topic: how-to
 ms.custom: has-adal-ref, subject-rbac-steps, cliv2, sdkv2
 # Customer intent: As a data scientist, I want to learn how to set up authentication for Azure Machine Learning resources and workflows so that I can access the resources I need.
@@ -56,7 +56,7 @@ Once you create the Microsoft Entra accounts, see [Manage access to Azure Machin
 
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
-Interactive authentication uses the [Azure Identity package for Python](/python/api/overview/azure/identity-readme). Most examples use `DefaultAzureCredential` to access your credentials. When a token is needed, it requests one using multiple identities (`EnvironmentCredential`, `ManagedIdentityCredential`, `SharedTokenCacheCredential`, `VisualStudioCodeCredential`, `AzureCliCredential`, `AzurePowerShellCredential`) in turn, stopping when one provides a token. For more information, see the [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential) class reference.
+Interactive authentication uses the [Azure Identity package for Python](/python/api/overview/azure/identity-readme). There are multiple ways to interactively authenticate, however most examples use `DefaultAzureCredential` since it handles most authentication scenarios. The `DefaultAzureCredential` class uses multiple approaches (`EnvironmentCredential`, `ManagedIdentityCredential`, `SharedTokenCacheCredential`, `VisualStudioCodeCredential`, `AzureCliCredential`, `AzurePowerShellCredential`) in turn, stopping when one provides a token. For more information, see the [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential) class reference.
 
 The following code is an example of using `DefaultAzureCredential` to authenticate. If authentication using `DefaultAzureCredential` fails, a fallback of authenticating through your web browser is used instead.
 

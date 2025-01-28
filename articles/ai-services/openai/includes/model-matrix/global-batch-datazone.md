@@ -14,6 +14,7 @@ ms.date: 01/14/2025
 |:-------------------|:--------------------------:|:-------------------------------:|
 | eastus             | ✅                       | ✅                            |
 | eastus2            | ✅                       | ✅                            |
+| francecentral      | ✅                       | ✅                            |
 | germanywestcentral | ✅                       | ✅                            |
 | southcentralus     | ✅                       | ✅                            |
 | swedencentral      | ✅                       | ✅                            |
