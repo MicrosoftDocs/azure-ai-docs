@@ -33,11 +33,11 @@ Diagnostic logging is available through Azure Monitor. Although some logging, li
 
 1. Under **Logs**, choose a category:
 
-   - **audit** to capture information about user and group identity access to content and operations
-   - **Operation Logs** to capture information about operations on a search service.
-   - **allLogs** to collect everything.
+   - **Audit logs** capture user or app interactions with data or the settings of the service, but don't include user or groups identities.
+   - **Operation logs** capture information about operations on a search service.
+   - **allLogs** collect everything.
 
-   Verbose logging can be expensive to store and complex to manage and store. You might want to start with **allLogs** and then switch to more scoped logging if it meets your information requirements.
+   Verbose logging can be expensive to store and complex to manage and store. You might want to start with **allLogs** and then switch to more scoped logging if it meets your information requirements. For more information about these categories, see [Diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/diagnostic-settings).
 
 1. For a destination, we recommend **Send to Log Analytics workspace** so that you can run Kusto queries against the data. There should be a workspace available
 
