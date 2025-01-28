@@ -36,11 +36,11 @@ If you are using an endpoint with support for Entra ID, you can create your clie
 ```python
 import os
 from azure.ai.inference import EmbeddingsClient
-from azure.identity import AzureDefaultCredential
+from azure.identity import DefaultAzureCredential
 
 client = EmbeddingsClient(
     endpoint="https://<resource>.services.ai.azure.com/models",
-    credential=AzureDefaultCredential(),
+    credential=DefaultAzureCredential(),
 )
 ```
 
@@ -72,11 +72,11 @@ For endpoint with support for Microsoft Entra ID, you can create your client as 
 ```javascript
 import ModelClient from "@azure-rest/ai-inference";
 import { isUnexpected } from "@azure-rest/ai-inference";
-import { AzureDefaultCredential } from "@azure/identity";
+import { DefaultAzureCredential } from "@azure/identity";
 
 const client = new ModelClient(
     "https://<resource>.services.ai.azure.com/models", 
-    new AzureDefaultCredential()
+    new DefaultAzureCredential()
 );
 ```
 
