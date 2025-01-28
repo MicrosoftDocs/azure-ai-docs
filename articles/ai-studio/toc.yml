@@ -12,8 +12,7 @@ items:
     - name: Azure AI Foundry and AI services
       href: concepts/related-content.md
       displayName: code, sdk
-    - name: Azure AI FAQ
-      href: faq.yml
+
   - name: Quickstarts
     items:
     - name: Use the chat playground in Azure AI Foundry portal
@@ -488,6 +487,8 @@ items:
     href: reference/region-support.md
 - name: Resources
   items:
+  - name: Azure AI FAQ
+    href: faq.yml
   - name: Azure AI Foundry architecture
     href: concepts/architecture.md
   - name: Support & help options
