@@ -306,6 +306,11 @@ items:
       href: how-to/deploy-models-serverless.md
     - name: Deploy models via managed compute
       href: how-to/deploy-models-managed.md
+    - name: Consume serverless API models from a different project or hub
+      href: how-to/deploy-models-serverless-connect.md
+      displayName: maas, paygo, models-as-a-service
+    - name: Model and region availability for Serverless API deployments
+      href: how-to/deploy-models-serverless-availability.md
     - name: Quotas and limits
       href: ai-services/concepts/quotas-limits.md
     - name: Troubleshoot deployments and monitoring
