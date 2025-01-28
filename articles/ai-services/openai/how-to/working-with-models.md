@@ -26,6 +26,9 @@ Azure OpenAI now supports automatic updates for select model deployments. On mod
 
 You can learn more about Azure OpenAI model versions and how they work in the [Azure OpenAI model versions](../concepts/model-versions.md) article.
 
+> [!NOTE]
+> Automatic model updates are only supported for Standard deployment types.
+
 ### Auto update to default
 
 When you set your deployment to **Auto-update to default**, your model deployment is automatically updated within two weeks of a change in the default version.  For a preview version, it updates automatically when a new preview version is available starting two weeks after the new preview version is released.
@@ -280,6 +283,7 @@ curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-0
   "etag": "\"GUID\""
 }
 ```
+## Managing models on provisioned deployment types
 
 ## Next steps
 
