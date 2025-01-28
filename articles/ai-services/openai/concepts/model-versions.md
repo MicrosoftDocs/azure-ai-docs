@@ -19,6 +19,9 @@ Azure OpenAI Service is committed to providing the best generative AI models for
 
 We want to make it easy for customers to stay up to date as models improve. Customers can choose to start with a particular version and to automatically update as new versions are released.
 
+> [!NOTE]
+> The following upgrade guidance only applies to Standard deployment types. For guidance on updating or migrating provisioned deployment types, review the [model management documentation](../how-to/working-with-models.md).
+
 When you deploy a model you can choose an update policy, which can include the following options:
 
 * Deployments set to **Auto-update to default** automatically update to use the new default version.
