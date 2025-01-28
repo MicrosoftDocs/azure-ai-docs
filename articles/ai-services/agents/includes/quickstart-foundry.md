@@ -31,7 +31,7 @@ To create a new hub, you need either the Owner or Contributor role on the resour
 
 [!INCLUDE [Create Azure AI Foundry hub](../../../ai-studio/includes/create-hub.md)] 
 
-## Use the Azure AI Foundry portal
+## Deploy a model
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
 1. Go to your project or [create a new project](../../../ai-studio//how-to/create-projects.md) in Azure AI Foundry portal.
@@ -69,7 +69,7 @@ If you want to set up your hub, project, and deploy a model in an automated way,
 
 ---
 
-## Go to the Azure AI Foundry portal (Preview)
+## Use the agent playground
 
 
 1. In the **Create and debug your agents** screen that appears, select **New agent**. This will create a new agent, and open a **Setup** pane where you can change its parameters and tools. 
