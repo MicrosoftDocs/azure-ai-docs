@@ -34,23 +34,21 @@ landingContent:
             url: concepts/retrieval-augmented-generation.md
           - text: Evaluation and monitoring metrics for generative AI
             url: concepts/evaluation-metrics-built-in.md
+      - linkListType: quickstart
+        links:
+          - text: Build a chap app in the playground
+            url: quickstarts/get-started-playground.md
+          - text: Build a chat app using the Azure AI SDK
+            url: quickstarts/get-started-code.md
+          - text: Use Azure OpenAI Assistants in the playground
+            url: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
       - linkListType: how-to-guide
         links:
           - text: Select and deploy models from the catalog
             url: how-to/model-catalog.md
           - text: Compare benchmarks across models and datasets
             url: how-to/benchmark-model-in-catalog.md
-
-  # Card
-  - title: 10-minute quickstarts
-    linkLists:
-      - linkListType: quickstart
-        links:
-          - text: Build a chat app using the Azure AI SDK
-            url: quickstarts/get-started-code.md
-          - text: Use Azure OpenAI Assistants in the playground
-            url: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
-
+      
   # Card
   - title: Develop apps
     linkLists:
