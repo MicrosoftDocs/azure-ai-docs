@@ -27,7 +27,7 @@ Azure OpenAI now supports automatic updates for select model deployments. On mod
 You can learn more about Azure OpenAI model versions and how they work in the [Azure OpenAI model versions](../concepts/model-versions.md) article.
 
 > [!NOTE]
-> Automatic model updates are only supported for Standard deployment types. For more information on how to manage model updates and migrations on provisioned deployment types, refer to the section on [managing models on provisioned deployment types](./working-with-models#managing-models-on-provisioned-deployment-types.md)
+> Automatic model updates are only supported for Standard deployment types. For more information on how to manage model updates and migrations on provisioned deployment types, refer to the section on [managing models on provisioned deployment types](./working-with-models.md#managing-models-on-provisioned-deployment-types)
 
 ### Auto update to default
 
