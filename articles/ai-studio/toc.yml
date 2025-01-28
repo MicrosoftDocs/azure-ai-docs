@@ -140,6 +140,8 @@ items:
         href: how-to/deploy-models-cohere-embed.md
       - name: Cohere Rerank models
         href: how-to/deploy-models-cohere-rerank.md
+    - name: Deepseek-R1 reasoning models
+      href: how-to/deploy-models-deepseek-r1.md
     - name: Meta Llama models
       items:
       - name: Meta Llama family models
