@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 05/14/2024
+ms.date: 01/27/2025
 ms.author: lajanuar
 ms.custom: references_regions
 recommendations: false
@@ -60,7 +60,7 @@ The [Get supported document formats method](reference/get-supported-document-for
 |Adobe PDF|`pdf`|Portable document file format. Document Translation uses optical character recognition (OCR) technology to extract and translate text in scanned PDF document while retaining the original layout.|
 |Comma-Separated Values |`csv`| A comma-delimited raw-data file used by spreadsheet programs.|
 |HTML|`html`, `htm`|Hyper Text Markup Language.|
-|Localization Interchange File Format|xlf| A parallel document format, export of Translation Memory systems. The languages used are defined inside the file.|
+|`XML` Localization Interchange File Format|`xlff`| A parallel document format, export of Translation Memory systems. The languages used are defined inside the file.|
 |Markdown| `markdown`, `mdown`, `mkdn`, `md`, `mkd`, `mdwn`, `mdtxt`, `mdtext`, `rmd`| A lightweight markup language for creating formatted text.|
 |M&#8203;HTML|`mthml`, `mht`| A web page archive format used to combine HTML code and its companion resources.|
 |Microsoft Excel|`xls`, `xlsx`|A spreadsheet file for data analysis and documentation.|
@@ -70,8 +70,8 @@ The [Get supported document formats method](reference/get-supported-document-for
 |OpenDocument Text|`odt`|An open-source text document file.|
 |OpenDocument Presentation|`odp`|An open-source presentation file.|
 |OpenDocument Spreadsheet|`ods`|An open-source spreadsheet file.|
-|Rich Text Format|`rtf`|A text document containing formatting.|
-|Tab Separated Values/TAB|`tsv`/`tab`| A tab-delimited raw-data file used by spreadsheet programs.|
+|Rich text format|`rtf`|A text document containing formatting.|
+|Tab separated values/TAB|`tsv`/`tab`| A tab-delimited raw-data file used by spreadsheet programs.|
 |Text|`txt`| An unformatted text document.|
 
 ### Batch Legacy file types
@@ -91,7 +91,7 @@ Document Translation supports the following glossary file types:
 | File type| File extension|Description|
 |---|---|--|
 |Comma-Separated Values| `csv` |A comma-delimited raw-data file used by spreadsheet programs.|
-|Localization Interchange File Format| `xlf` , `xliff`| A parallel document format, export of Translation Memory systems The languages used are defined inside the file.|
+|`XML` Localization Interchange File Format| `xlf` , `xliff`| A parallel document format, export of Translation Memory systems The languages used are defined inside the file.|
 |Tab-Separated Values/TAB|`tsv`, `tab`| A tab-delimited raw-data file used by spreadsheet programs.|
 
 ## Synchronous translation

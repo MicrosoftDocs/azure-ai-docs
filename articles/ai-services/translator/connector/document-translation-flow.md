@@ -1,13 +1,12 @@
 ---
-title: "Use Translator V3 connector to build a Document Translation flow"
+title: "Use Microsoft Azure V3 connector to build a Document Translation flow"
 titleSuffix: Azure AI services
-description: Use Microsoft Translator V3 connector and Power Automate to create a Document Translation flow.
+description: Use Microsoft Azure Translator V3 connector and Power Automate to create a Document Translation flow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.custom: build-2023, build-2023-dataai
 ms.topic: tutorial
-ms.date: 07/09/2024
+ms.date: 01/27/2025
 ms.author: lajanuar
 ---
 
@@ -17,13 +16,13 @@ ms.author: lajanuar
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD001 -->
 
-# Create a Document Translation flow (preview)
+# Create a Azure AI Translator Document Translation flow (preview)
 
 > [!IMPORTANT]
 >
-> The Translator connector is currently available in public preview. Features, approaches and processes may change, prior to General Availability (GA), based on user feedback.
+> The Microsoft Azure Translator connector is currently available in public preview. Features, approaches and processes may change, prior to General Availability (GA), based on user feedback.
 
-This tutorial guides you through configuring a Microsoft Translator V3 connector cloud flow that supports document translation. The Translator V3 connector creates a connection between your Translator Service instance and Microsoft Power Automate enabling you to use one or more prebuilt operations as steps in your apps and workflows.
+This tutorial guides you through configuring a Microsoft Azure Translator V3 connector cloud flow that supports document translation. The Translator V3 connector creates a connection between your Translator Service instance and Microsoft Power Automate enabling you to use one or more prebuilt operations as steps in your apps and workflows.
 
 Document Translation is a cloud-based REST API feature of the Azure AI Translator service. The Document Translation API enables multiple and complex document translations while preserving original document structure and data format.
 
@@ -168,7 +167,7 @@ Here are the steps to translate a file in Azure Blob Storage using the Translato
 > * Translate your document(s) choosing source and target languages.
 > * Get the status of the translation operation.
 
-1. In the **Choose an operation** pop-up window, enter Translator V3 in the **Search connectors and actions** search bar and select the **Microsoft Translator V3** icon.
+1. In the **Choose an operation** pop-up window, enter Translator V3 in the **Search connectors and actions** search bar and select the **Microsoft Azure Translator V3** icon.
 
    :::image type="content" source="../media/connectors/choose-operation.png" alt-text="Screenshot showing the selection of Translator V3 as the next flow step.":::
 
@@ -213,7 +212,7 @@ Now that you submitted your documents for translation, let's check the status of
 
 1. Select **New step**.
 
-1. Enter Translator V3 in the search box and choose **Microsoft Translator V3**.
+1. Enter Translator V3 in the search box and choose **Microsoft Azure Translator V3**.
 
 1. Select **Get documents status** (not the singular Get *document* status action).
 
@@ -313,7 +312,7 @@ Here are the steps to upload a file from your SharePoint site to Azure Blob Stor
 
 1. Select **New step**.
 
-1. Enter Translator V3 in the search box and choose **Microsoft Translator V3**.
+1. Enter Translator V3 in the search box and choose **Microsoft Azure Translator V3**.
 
 1. Select the **Start document translation** action.
 
@@ -359,7 +358,7 @@ Before retrieving the documents status, let's schedule a 30-second delay to ensu
 
    :::image type="content" source="../media/connectors/delay-step.png" alt-text="Screenshot showing the delay step.":::
 
-1. Select **New step**. Enter Translator V3 in the search box and choose **Microsoft Translator V3**.
+1. Select **New step**. Enter Translator V3 in the search box and choose **Microsoft Azure Translator V3**.
 
 1. Select **Get documents status** (not the singular Get *document* status).
 
@@ -461,7 +460,7 @@ Let's check your document translation flow and results.
 
 ---
 
-That's it! You learned to automate document translation processes using the Microsoft Translator V3 connector and Power Automate.
+That's it! You learned to automate document translation processes using the Microsoft Azure Translator V3 connector and Power Automate.
 
 ## Next steps
 
