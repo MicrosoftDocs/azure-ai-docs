@@ -129,6 +129,11 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 
 To use all features of function calling including parallel functions, you need to use a model that was released after November 6, 2023.
 
+## Usage support
+
+|Azure AI foundry support  | Python SDK |	C# SDK | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|
+|  | ✔️ |  | | ✔️ |
 
 ## Define a function for your agent to call
 

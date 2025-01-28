@@ -28,6 +28,12 @@ The [models page](../../concepts/model-region-support.md) contains the most up-t
 
 To use all features of function calling including parallel functions, you need to use a model that was released after November 6, 2023.
 
+### Usage support
+
+|Azure AI foundry support  | Python SDK |	C# SDK | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|
+|      | ✔️ | ✔️ | ✔️ | ✔️ |
+
 ::: zone-end
 
 ::: zone pivot="code-example"
