@@ -35,7 +35,7 @@ Models from third-party model providers with pay-as-you-go billing (collectively
 
 Global deployments leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request. Global standard provides the highest default quota and eliminates the need to load balance across multiple resources. Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure location. Learn more about [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-> [!TIP]
+> [!NOTE]
 > Models-as-a-Service offers regional deployment options under [Serverless API endpoints](../../../ai-studio/how-to/deploy-models-serverless.md) in Azure AI Foundry. Prompts and outputs are processed within the geography specified during deployment. However, those deployments can't be accessed using the Azure AI model inference endpoint in Azure AI Services.
 
 ## Control deployment options
