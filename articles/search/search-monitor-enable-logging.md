@@ -56,15 +56,17 @@ Follow these instructions to explore log analytics data for your resource.
 
 1. Under **Monitoring**, select **Logs**. Query hub opens by default. You can try the available queries, or close the hub and open a query window in KQL mode to run queries written in the [Kusto Query Language (KQL)](/kusto/query).
 
-   :::image type="content" source="media/search-monitor-enable-logging/enable-kql-model.png" alt-text="Screenshot of the KQL mode option in the Azure portal query explorer.":::
+   :::image type="content" source="media/search-monitor-enable-logging/enable-kql-mode.png" alt-text="Screenshot of the KQL mode option in the Azure portal query explorer.":::
 
 1. In a query window, you can run Kusto queries against your logs.
+
+   :::image type="content" source="media/search-monitor-enable-logging/query-example.png" alt-text="Screenshot of a query and results in the Azure portal.":::
 
 ### Sample queries
 
 Here are a few basic Kusto queries you can use to explore your log data.
 
-Run this query for all diagnostic logs from Azure AI services for a specified time period:
+Run this query for all diagnostic logs from Azure AI Search services over the specified time period:
 
 ```kusto
 AzureDiagnostics
