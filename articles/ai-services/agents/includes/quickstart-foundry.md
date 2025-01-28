@@ -13,14 +13,14 @@ ms.date: 01/21/2025
 
 ## Basic agent setup support
 
-Before getting started, determine if you want to perform a basic agent setup or a standard agent setup. 
+Before getting started, determine if you want to perform a basic agent setup or a standard agent setup. Azure AI Foundry only supports basic agent setup. 
 
 **Basic Setup**:  Agents use multitenant search and storage resources fully managed by Microsoft. You don't have visibility or control over these underlying Azure resources. A basic setup can be created using the Azure AI Foundry portal or an automated bicep template.
 
 **Standard Setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage. Standard setup can only be performed using an automated bicep template.
 
 > [!IMPORTANT]
-> The Azure AI Foundry portal only supports basic setup at this time. If you want to perform a standard agent setup, use the other tabs at the top of the article to learn about configuring a standard agent setup.  
+> The Azure AI Foundry portal only supports basic setup at this time. If you want to perform a standard agent setup, use the other tabs at the top of the article to learn about standard agent configuration.  
 
 ## Create a hub and project in Azure AI Foundry portal
 
