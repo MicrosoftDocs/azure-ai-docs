@@ -38,6 +38,12 @@ dotnet add package Azure.AI.Projects
 dotnet add package Azure.Identity
 ```
 
+Next, to authenticate your API requests and run the program, use the [az login](/cli/azure/authenticate-azure-cli-interactively) command to sign into your Azure subscription.
+
+```azurecli
+az login
+```
+
 Use the following code to create and run an agent. To run this code, you will need to create a connection string using information from your project. This string is in the format:
 
 `<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>`
@@ -55,6 +61,7 @@ For example, your connection string may look something like:
 `eastus.api.azureml.ms;12345678-abcd-1234-9fc6-62780b3d3e05;my-resource-group;my-project-name`
 
 Set this connection string as an environment variable named `PROJECT_CONNECTION_STRING`.
+
 
 ```csharp
 // Copyright (c) Microsoft Corporation. All rights reserved.
