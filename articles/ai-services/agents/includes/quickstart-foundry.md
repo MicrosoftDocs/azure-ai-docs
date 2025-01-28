@@ -72,7 +72,9 @@ If you want to set up your hub, project, and deploy a model in an automated way,
 ## Use the agent playground
 
 
-1. In the **Create and debug your agents** screen that appears, select **New agent**. This will create a new agent, and open a **Setup** pane where you can change its parameters and tools. 
+The **Agents playground** allows you to explore, prototype, and test agents without needing to run any code. From this page, you can quickly iterate and experiment with new ideas.
+
+1. If you haven't already, select **Agents** from the navigation menu on the left. In the **Create and debug your agents** screen that appears, select **New agent**. This will create a new agent, and open a **Setup** pane where you can change its parameters and tools. 
 
     You can optionally give your agent a name other than the one generated for it, and add instructions to help improve its performance. Give your agent clear directions on what to do and how to do it. Include specific tasks, their order, and any special instructions like tone or engagement style.
 
@@ -83,26 +85,6 @@ If you want to set up your hub, project, and deploy a model in an automated way,
     > :::image type="content" source="../media/quickstart/portal-tools.png" alt-text="A screenshot of the Agents tool choices." lightbox="../media/quickstart/portal-tools.png":::
 
     
-
-1. At the top of the **Setup** pane, select **Try in playground** to start using your agent.
-
-## Use your agent
-
-The **Agents playground** allows you to explore, prototype, and test agents without needing to run any code. From this page, you can quickly iterate and experiment with new ideas. When you interact with an agent, it:
-
-1. Creates a thread object, which contains the context for a conversation, including individual messages sent between the agent and a user.
-
-1. Appends a message object to the thread. A new message will be added to the thread for each turn of a conversation between an agent and a user. 
-
-1. Creates a run object on the thread to generate a response by calling the model and any tools you've added.     
-
-To interact with your agent:
-
-1. Optionally change the **agent name** if you want, and add **instructions**. Instructions guide the personality of the agent and define its goals. Instructions are similar to [system messages](../../openai/concepts/advanced-prompt-engineering.md). 
-
-1. In the chat area of the playground, enter a message and wait for the agent to respond. 
-    
-:::image type="content" source="../media/quickstart/agents-playground.png" alt-text="A screenshot of the Agents playground." lightbox="../media/quickstart/agents-playground.png":::
 
 ## See also
 
