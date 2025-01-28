@@ -241,10 +241,6 @@ items:
       href: ../ai-services/openai/concepts/prompt-engineering.md?context=/azure/ai-studio/context/context
     - name: Image prompt engineering 
       href: ../ai-services/openai/concepts/gpt-4-v-prompt-engineering.md?context=/azure/ai-studio/context/context
-    - name: Fine-tuning in Azure AI Foundry
-      href: concepts/fine-tuning-overview.md
-    - name: Distillation
-      href: concepts/concept-model-distillation.md
     - name: Synthetic Data Generation
       href: concepts/concept-synthetic-data.md
   - name: Develop with code
@@ -298,6 +294,16 @@ items:
           href: how-to/flow-develop-evaluation.md
     - name: A/B experimentation 
       href: concepts/a-b-experimentation.md
+  - name: Model optimizations
+    items:
+    - name: Fine-tuning in Azure AI Foundry
+      href: concepts/fine-tuning-overview.md
+    - name: Fine-tune with a managed compute
+      href: how-to/fine-tune-managed-compute.md
+    - name: Fine-tune Azure OpenAI models
+      href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context
+    - name: Distillation
+      href: concepts/concept-model-distillation.md
   - name: Deployments
     items:
     - name: Deploying models in Azure AI Foundry
