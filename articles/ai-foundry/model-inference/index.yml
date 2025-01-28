@@ -6,7 +6,7 @@ summary: Azure AI model inference provides access to the most powerful models av
 metadata:
   title: Azure AI model inference documentation - Quickstarts, How-to's, API Reference - Azure AI Foundry | Microsoft Docs
   description: Learn how to use flagship models available in the Azure AI model catalog from the key model providers in the industry, including OpenAI, Microsoft, Meta, Mistral, Cohere, G42, and AI21 Labs.
-  ms.service: azure-ai-models
+  ms.service: azure-ai-model-inference
   ms.custom:
   ms.topic: landing-page
   author: santiagxf
