@@ -34,6 +34,8 @@ landingContent:
             url: concepts/retrieval-augmented-generation.md
           - text: Evaluation and monitoring metrics for generative AI
             url: concepts/evaluation-metrics-built-in.md
+          - text: Model deployment options
+            url: concepts/deployments-overview
 
   # Card
   - title: Get started
@@ -51,6 +53,8 @@ landingContent:
             url: how-to/model-catalog.md
           - text: Compare benchmarks across models and datasets
             url: how-to/benchmark-model-in-catalog.md
+          - text: What is Azure AI Agent service?
+            url: ../ai-services/agents/overview.md?context=/azure/ai-studio/context/context
       
   # Card
   - title: Azure AI Foundry SDK
