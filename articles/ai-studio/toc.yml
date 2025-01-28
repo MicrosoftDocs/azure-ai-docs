@@ -1,38 +1,28 @@
 items:
 - name: Azure AI Foundry documentation
   href: index.yml
-- name: Overview
+- name: Get started
   expanded: true
   items:
-  - name: What is Azure AI Foundry?
-    href: what-is-ai-studio.md
-  - name: Azure AI Foundry architecture
-    href: concepts/architecture.md
-  - name: Azure OpenAI in Azure AI Foundry
-    href: azure-openai-in-ai-studio.md
-  - name: Management center
-    href: concepts/management-center.md
-  - name: Azure AI Foundry SDK
-    href: how-to/develop/sdk-overview.md
-    displayName: code, sdk
-  - name: Azure AI FAQ
-    href: faq.yml
-- name: Get started
-  items:
+  - name: Overview
+    expanded: true
+    items:
+    - name: What is Azure AI Foundry?
+      href: what-is-ai-studio.md
+    - name: Azure AI Foundry and AI services
+      href: concepts/related-content.md
+      displayName: code, sdk
+
   - name: Quickstarts
     items:
     - name: Use the chat playground in Azure AI Foundry portal
       href: quickstarts/get-started-playground.md
-    - name: Create a project
-      href: how-to/create-projects.md
-    - name: Get started with Azure AI Foundry SDK
-      href: how-to/develop/sdk-overview.md
     - name: Build a basic chat app in Python using Azure AI Foundry SDK
       href: quickstarts/get-started-code.md
+    - name: Get started with Azure AI Foundry SDK
+      href: how-to/develop/sdk-overview.md
   - name: Tutorials
     items:
-    - name: Deploy an enterprise chat web app
-      href: tutorials/deploy-chat-web-app.md
     - name: Build a custom chat app with the Azure AI Foundry SDK
       items:
         - name: "Part 1: Set up project and install SDK"
@@ -43,6 +33,8 @@ items:
         - name: "Part 3: Evaluate the chat app"
           href: tutorials/copilot-sdk-evaluate.md
           displayName: code,sdk
+    - name: Deploy an enterprise chat web app
+      href: tutorials/deploy-chat-web-app.md
     - name: Build a RAG solution using Azure AI Search
       href: /azure/search/tutorial-rag-build-solution?context=/azure/ai-studio/context/context
 - name: Explore AI model capabilities
@@ -128,6 +120,8 @@ items:
       href: how-to/fine-tune-models-tsuzumi.md
 - name: Azure OpenAI and AI services
   items:
+  - name: Azure OpenAI in Azure AI Foundry
+    href: azure-openai-in-ai-studio.md
   - name: Use Azure AI services in Azure AI Foundry portal
     href: ai-services/how-to/connect-ai-services.md
   - name: Azure OpenAI
@@ -372,6 +366,8 @@ items:
     href: /concepts/management-center.md
   - name: Manage projects and hubs
     items:
+    - name: Create a project
+      href: how-to/create-projects.md
     - name: Hubs and projects overview
       href: concepts/ai-resources.md
     - name: Create your first hub
@@ -491,6 +487,10 @@ items:
     href: reference/region-support.md
 - name: Resources
   items:
+  - name: Azure AI FAQ
+    href: faq.yml
+  - name: Azure AI Foundry architecture
+    href: concepts/architecture.md
   - name: Support & help options
     href: ../ai-services/cognitive-services-support-options.md?context=/azure/ai-studio/context/context
   - name: Use Azure AI Foundry with a screen reader
