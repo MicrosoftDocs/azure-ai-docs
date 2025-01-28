@@ -155,10 +155,18 @@ items:
         href: ../ai-services/openai/concepts/fine-tuning-considerations.md?context=/azure/ai-studio/context/context
   - name: Content Safety
     items: 
-    - name: What is Azure AI Content Safety?
-      href: ai-services/content-safety-overview.md
-    - name: Use Azure AI Content Safety in AI Foundry portal
-      href: ai-services/how-to/content-safety.md
+    - name: What is Azure AI Content Safety service?
+      href: ../ai-services/content-safety/overview.md
+    - name: Prompt Shields quickstart
+      href: ../ai-services/content-safety/quickstart-jailbreak.md
+    - name: Groundedness detection (preview) quickstart
+      href: ../ai-services/content-safety/quickstart-groundedness.md
+    - name: Protected material detection for text quickstart
+      href: ../ai-services/content-safety/quickstart-protected-material.md
+    - name: Custom categories (preview) quickstart
+      href: ../ai-services/content-safety/quickstart-custom-categories.md
+    - name: Text moderation quickstart
+      href: ../ai-services/content-safety/quickstart-text.md
   - name:  Content Understanding
     items:   
     - name: What is Azure AI Content Understanding (preview)?
@@ -468,10 +476,10 @@ items:
   items:
   - name: Responsible AI overview
     href: responsible-use-of-ai-overview.md
-  - name: What is Azure AI Content Safety?
+  - name: Azure AI Content Safety in AI Foundry portal overview
     href: ai-services/content-safety-overview.md
-  - name: Use Azure AI Content Safety in the portal
-    href: ai-services/how-to/content-safety.md
+  - name: Use Azure AI Content Safety in AI Foundry portal
+    href: ../ai-services/content-safety/how-to/foundry.md
   - name: Content filtering
     href: concepts/content-filtering.md
   - name: Use blocklists
