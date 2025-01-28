@@ -3,7 +3,7 @@ title: Monitor Azure AI Search
 description: Start here to learn how to monitor Azure AI Search.
 ms.date: 01/27/2025
 ms.custom: horz-monitor
-ms.topic: conceptual
+ms.topic: how-to
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
@@ -11,10 +11,34 @@ ms.service: azure-ai-search
 
 # Monitor Azure AI Search
 
-[!INCLUDE [horz-monitor-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-intro.md)]
+This article explains how to configure logging and where to find information about search service operations.
+
+## Enable diagnostic logging
+
+Resource logging is available through Azure Monitor. Although some search service activity is reported automatically with no upfront configuration, resource logs about operations and data access require that you create a diagnostic setting and specify a storage option.
+
+If you create more than one diagnostic setting, you must have different destinations for each one. 
+
+1. Sign in to the [Azure portal](https://portal.azure.com) and navigate to your search service.
+
+1. Under **Monitoring** > **Diagnostic settings**, select **Add diagnostic setting**.
+
+1. Provide a name that identifies the service and level of logging, such as "my-search-service-all-logs" or "my-search-service-audit-logs".
+
+1. Under **Logs**, choose a category:
+
+   - **audit** to capture information about user and group identity access to content and operations
+   - **Operation Logs** to capture information about operations on a search service.
+   - **allLogs** to collect everything.
+
+   Verbose logging can be expensive to store and complex to manage and store. You might want to start with **allLogs** and then switch to more scoped logging if it meets your information requirements.
+
+1. For a destination, we recommend **Send to Log Analytics workspace** so that you can run Kusto queries against the data.
+
+1. Save the settings.
 
 > [!NOTE]
-> Azure AI Search doesn't monitor individual user access to content on the search service. If you require this level of monitoring, you need to implement it in your client application.
+> If you're using [key-based authentication](search-security-api-keys.md), Azure AI Search can't monitor individual user access to content on the search service. If you require this level of monitoring, you need to implement it in your client application.
 
 [!INCLUDE [horz-monitor-resource-types](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-resource-types.md)]
 
@@ -34,6 +58,8 @@ For the available resource log categories, their associated Log Analytics tables
 [!INCLUDE [horz-monitor-activity-log](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-activity-log.md)]
 
 In Azure AI Search, activity logs reflect control plane activity such as service creation and configuration, or API key usage or management. Entries often include **Get Admin Key**, one entry for every call that [provided an admin API key](search-security-api-keys.md) on the request. There are no details about the call itself, just a notification that the admin key was used.
+
+API keys can be disabled for data plane operations, such as creating or querying an index, but on the control plane they're used in the Azure portal to return service information.
 
 The following screenshot shows Azure AI Search activity log signals you can configure in an alert.
 

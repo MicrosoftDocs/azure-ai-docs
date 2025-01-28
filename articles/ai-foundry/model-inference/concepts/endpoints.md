@@ -2,7 +2,7 @@
 title: Model inference endpoint in Azure AI services
 titleSuffix: Azure AI Foundry
 description: Learn about the model inference endpoint in Azure AI services
-author: mrbullwinkle
+author: santiagxf
 manager: nitinme
 ms.service: azure-ai-model-inference
 ms.topic: how-to
