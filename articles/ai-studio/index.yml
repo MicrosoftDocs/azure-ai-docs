@@ -38,12 +38,11 @@ landingContent:
             url: concepts/evaluation-metrics-built-in.md
       - linkListType: how-to-guide
         links:
-          - text: Create a project in Azure AI Foundry portal
-            url: how-to/create-projects.md
-          - text: Get started with prompt flow
-            url: how-to/flow-develop.md
-          - text: Connect to AI services
-            url: ai-services/how-to/connect-ai-services.md
+          - text: Use the model catalog
+            url: how-to/model-catalog-overview.md
+          - text: Compare benchmarks across models and datasets
+            url: how-to/benchmark-model-in-catalog.md
+
   # Card
   - title: 10-minute quickstarts
     linkLists:
@@ -53,19 +52,13 @@ landingContent:
             url: quickstarts/get-started-code.md
           - text: Use Azure OpenAI Assistants in the playground
             url: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
-          - text: Get started using GPT-4 Turbo with Vision
-            url: quickstarts/multimodal-vision.md
-      - linkListType: tutorial
-        links:
-          - text: Deploy an enterprise chat web app
-            url: tutorials/deploy-chat-web-app.md
 
   # Card
   - title: Develop apps
     linkLists:
       - linkListType: how-to-guide
         links:
-          - text: Get started with the Azure AI SDKs
+          - text: Get started with the Azure Foundry SDKs
             url: how-to/develop/sdk-overview.md
           - text: Work with Azure AI Foundry projects in VS Code
             url: how-to/develop/vscode.md
@@ -74,6 +67,8 @@ landingContent:
         links:
           - text: Build a custom chat app with the Azure AI SDK
             url: tutorials/copilot-sdk-create-resources.md
+          - text: Deploy an enterprise chat web app
+            url: tutorials/deploy-chat-web-app.md
 
       - linkListType: concept
         links:
@@ -81,6 +76,7 @@ landingContent:
             url: concepts/connections.md
           - text: Deploy models, flows, and web apps
             url: concepts/deployments-overview.md
+            
       - linkListType: reference
         links:
           - text: Azure AI Foundry SDK
