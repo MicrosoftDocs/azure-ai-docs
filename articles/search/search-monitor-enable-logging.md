@@ -102,7 +102,7 @@ Run this query to view the volume of operations over time split by OperationName
 
 ```kusto
 AzureDiagnostics
-| where ResourceProvider == "MICROSOFT.COGNITIVESERVICES"
+| where ResourceProvider == "MICROSOFT.SEARCH"
 | summarize count()
 by bin(TimeGenerated, 10s), OperationName
 | render areachart kind=unstacked
