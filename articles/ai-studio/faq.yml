@@ -41,7 +41,7 @@ sections:
       - question: |
           Will there be multiple varying model benchmarks in Azure AI Foundry portal based on individual projects and data sources? 
         answer: |
-          In the model benchmarks view, customers can view varying model benchmarks published by Azure AI. 
+          In the model benchmarks view, customers can view varying model benchmarks published by Azure AI Foundry. 
       - question: |
           Is prompt flow Microsoft's equivalent to LangChain? 
         answer: |
