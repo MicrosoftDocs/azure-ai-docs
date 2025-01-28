@@ -37,6 +37,7 @@ To deploy a prompt flow as an online endpoint, you need:
 
 * An Azure subscription. If you don't have one, create a free account before you begin.
 * An Azure AI Foundry project.
+* A **Microsoft.PolicyInsights** resource provider registered in the selected subscription. For more information on registering a resource provide, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1).
 
 ## Create an online deployment
 
