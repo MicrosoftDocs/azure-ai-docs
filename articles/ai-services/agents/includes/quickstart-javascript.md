@@ -91,7 +91,7 @@ export async function main() {
     name: "my-agent",
     instructions: "You are a helpful agent",
     tools: [codeInterpreterTool.definition],
-    toolResources.resources,
+    toolResources: codeInterpreterTool.resources,
   });
 
   // Step 3 a thread
