@@ -6,8 +6,6 @@ items:
   items:
   - name: What's Azure AI Search?
     href: search-what-is-azure-search.md
-  - name: Azure AI Foundry and AI services
-    href: ../ai-studio/concepts/related-content.md?context=/azure/search/context/context
   - name: New in Search
     href: whats-new.md
   - name: Features

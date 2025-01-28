@@ -9,6 +9,8 @@ items:
     items:
     - name: What is Azure AI Foundry?
       href: what-is-ai-studio.md
+    - name: Azure AI Foundry and AI services
+      href: concepts/related-content.md
     - name: Azure AI Foundry architecture
       href: concepts/architecture.md
       displayName: code, sdk

@@ -7,8 +7,6 @@ items:
   - name: What is Azure AI Content Understanding?
     displayName: document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
     href: overview.md
-  - name: Azure AI Foundry and AI services
-    href: ../../ai-studio/concepts/related-content.md?context=/azure/azure/ai-services/content-understanding/context/context
   - name: Create an Azure AI Services resource
     displayName: extract, text, images, OCR, optical character recognition
     href: how-to/create-multi-service-resource.md

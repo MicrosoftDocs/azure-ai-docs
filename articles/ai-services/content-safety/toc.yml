@@ -6,8 +6,6 @@ items:
   items:
   - name: Azure AI Content Safety overview
     href: overview.md
-  - name: Azure AI Foundry and AI services
-    href: ../../ai-studio/concepts/related-content.md?context=/azure/ai-services/content-safety/context/context
   - name: Language support
     href: language-support.md
   - name: Pricing

@@ -6,8 +6,6 @@ items:
   items:
   - name: Speech service overview
     href: overview.md
-  - name: Azure AI Foundry and AI services
-    href: ../../ai-studio/concepts/related-content.md?context=/azure/ai-services/speech-service/context/context
   - name: What's new
     href: releasenotes.md
     displayName: reference, new, change, update
