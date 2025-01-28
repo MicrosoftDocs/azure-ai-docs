@@ -43,7 +43,7 @@ npm init
 
 ### Install the client library
 
-To write an image analysis app with Custom Vision for Node.js, you need the Custom Vision NPM packages. To install them, run the following command in PowerShell:
+To write an image analysis app with Custom Vision for Node.js, you need the Custom Vision npm packages. To install them, run the following command in PowerShell:
 
 ```shell
 npm install @azure/cognitiveservices-customvision-training
