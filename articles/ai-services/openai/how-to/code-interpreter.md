@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 10/15/2024
+ms.date: 01/28/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -32,8 +32,7 @@ We recommend using assistants with the latest models to take advantage of the ne
 
 ### API Versions
 
-- `2024-02-15-preview`
-- `2024-05-01-preview`
+- Starting in `2024-02-15-preview`
 
 ### Supported file types
 
