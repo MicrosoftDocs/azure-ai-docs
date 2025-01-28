@@ -40,8 +40,6 @@ This article highlights just the steps for an indexer connection in Azure AI Sea
 
 1. Copy the connection string to use in the search indexer's data source connection. Be sure to copy the connection string for the **public endpoint** (port 3342, not port 1433).
 
-   ![Public endpoint connection string](media/search-how-to-index-sql-managed-instance/mi-connection-string.png "Screenshot of a public endpoint connection string in the Azure portal.")
-
 ## Next steps
 
 With configuration out of the way, you can now specify a SQL managed instance as an indexer data source using the basic instructions for [setting up an Azure SQL indexer](search-how-to-index-sql-database.md).
