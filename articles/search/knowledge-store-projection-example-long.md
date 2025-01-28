@@ -6,11 +6,11 @@ description: Explore a detailed example that projects the output of a rich skill
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 03/08/2024
+ms.date: 12/10/2024
 ---
 
 # Detailed example of shapes and projections in a knowledge store

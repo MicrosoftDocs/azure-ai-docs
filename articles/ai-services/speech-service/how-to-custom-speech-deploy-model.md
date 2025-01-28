@@ -6,9 +6,10 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 7/15/2024
+ms.date: 9/19/2024
 ms.author: eur
 zone_pivot_groups: speech-studio-cli-rest
+#Customer intent: As a developer, I want to learn how to deploy a custom speech model so that I can use it in my applications.
 ---
 
 # Deploy a custom speech model
@@ -385,7 +386,7 @@ The locations of each log file with more details are returned in the response bo
 
 Logging data is available on Microsoft-owned storage for 30 days, and then it's removed. If your own storage account is linked to the Azure AI services subscription, the logging data isn't automatically deleted.
 
-## Next steps
+## Related content
 
-- [CI/CD for custom speech](how-to-custom-speech-continuous-integration-continuous-deployment.md)
+- [Custom speech overview](custom-speech-overview.md)
 - [Custom speech model lifecycle](how-to-custom-speech-model-and-endpoint-lifecycle.md)

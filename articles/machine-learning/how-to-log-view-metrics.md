@@ -148,7 +148,7 @@ mlflow.log_params(params)
 
 ## Log metrics
 
-Metrics, as opposite to parameters, are always numeric, and they can be logged either synchronously or asynchronously. When metrics are logged, they are immediately available for consumption upon call return. The following table describes how to log specific numeric types:
+Metrics, as opposed to parameters, are always numeric, and they can be logged either synchronously or asynchronously. When metrics are logged, they are immediately available for consumption upon call return. The following table describes how to log specific numeric types:
 
 |Logged value|Example code| Notes|
 |----|----|----|
@@ -172,6 +172,8 @@ import mlflow
 
 mlflow.config.enable_async_logging()
 ```
+It is recommended to use above global flag when you want to enable asynchronous logging of metrics throughout your code
+and/or you are using some wrapper library that wraps mlflow for logging actual metrics.
 
 The same property can be set, using an environment variable:
 
@@ -179,14 +181,29 @@ The same property can be set, using an environment variable:
 export MLFLOW_ENABLE_ASYNC_LOGGING=True
 ```
 
-To log specific metrics asynchronously, use the MLflow logging API as you typically would, but add the extra parameter `synchronous=False`.
+To log specific metrics asynchronously, use the MLflow logging API as you typically would, but add the extra parameter `synchronous=False`. 
+
+Setting up `synchronous=False` is optional if you set global flag to log in asynchronous way using `mlflow.enable_async_logging()`.
 
 ```python
 import mlflow
 
 with mlflow.start_run():
     # (...)
+    # when global async logging flag is not set using - mlflow.enable_async_logging()
     mlflow.log_metric("metric1", 9.42, synchronous=False)
+    # (...)
+```
+
+```python
+import mlflow
+# Set global async logging flag
+mlflow.enable_async_logging()
+
+with mlflow.start_run():
+    # (...)
+    # You can use all fluent syntax or MlflowClient APIs and all of them will log metrics in asynchronous fashion.
+    mlflow.log_metric("metric1", 9.42)
     # (...)
 ```
 
@@ -225,6 +242,7 @@ with mlflow.start_run() as current_run:
     run_operation = mlflow_client.log_batch(
         run_id=current_run.info.run_id,
         metrics=metrics_arr,
+        #Optional when global async logging flag is set using - mlflow.enable_async_logging()
         synchronous=False,
     )
 ```
@@ -261,7 +279,7 @@ MLflow supports two ways of logging images. Both ways persist the given image as
 |Logged value|Example code| Notes|
 |----|----|----|
 |Log numpy metrics or PIL image objects|`mlflow.log_image(img, "figure.png")`| `img` should be an instance of `numpy.ndarray` or `PIL.Image.Image`. `figure.png` is the name of the artifact generated inside of the run. It doesn't have to be an existing file.|
-|Log matlotlib plot or image file|` mlflow.log_figure(fig, "figure.png")`| `figure.png` is the name of the artifact generated inside of the run. It doesn't have to be an existing file. |
+|Log matplotlib plot or image file|` mlflow.log_figure(fig, "figure.png")`| `figure.png` is the name of the artifact generated inside of the run. It doesn't have to be an existing file. |
 
 ## Log files
 
@@ -275,7 +293,7 @@ In general, files in MLflow are called artifacts. You can log artifacts in multi
 |Log all the artifacts in an existing folder | `mlflow.log_artifacts("path/to/folder")`| Folder structure is copied to the run, but the root folder indicated isn't included. |
 
 > [!TIP]
-> When you log large files with `log_artifact` or `log_model`, you might encounter time out errors before the upload of the file is completed. Consider increasing the timeout value by adjusting the environment variable `AZUREML_ARTIFACTS_DEFAULT_TIMEOUT`. It's default value is *300* (seconds).
+> When you log large files with `log_artifact` or `log_model`, you might encounter time-out errors before the upload of the file is completed. Consider increasing the timeout value by adjusting the environment variable `AZUREML_ARTIFACTS_DEFAULT_TIMEOUT`. Its default value is *300* (seconds).
 
 ## Log models
 
@@ -297,7 +315,7 @@ mlflow.autolog()
 ```
 
 > [!TIP]
-> You can control what gets automatically logged with autolog. For instance, if you indicate `mlflow.autolog(log_models=False)`, MLflow logs everything but models for you. Such control is useful in cases where you want to log models manually but still enjoy automatic logging of metrics and parameters. Also notice that some frameworks might disable automatic logging of models if the trained model goes beyond specific boundaries. Such behavior depends on the flavor used and we recommend that you view the documentation if this is your case.
+> You can control what gets automatically logged with autolog. For instance, if you indicate `mlflow.autolog(log_models=False)`, MLflow logs everything but models for you. Such control is useful in cases where you want to log models manually but still enjoy automatic logging of metrics and parameters. Also, notice that some frameworks might disable automatic logging of models if the trained model goes beyond specific boundaries. Such behavior depends on the flavor used and we recommend that you view the documentation if this is your case.
 
 ## View information about jobs or runs with MLflow
 
@@ -366,7 +384,7 @@ Log files are an essential resource for debugging the Azure Machine Learning wor
 
 #### user_logs folder
 
-This folder contains information about the user generated logs. This folder is open by default, and the **std_log.txt** log is selected. The **std_log.txt** is where your code's logs (for example, print statements) show up. This file contains `stdout` log and `stderr` logs from your control script and training script, one per process. In most cases, you monitor the logs here.
+This folder contains information about the user-generated logs. This folder is open by default, and the **std_log.txt** log is selected. The **std_log.txt** is where your code's logs (for example, print statements) show up. This file contains `stdout` log and `stderr` logs from your control script and training script, one per process. In most cases, you monitor the logs here.
 
 #### system_logs folder
 
@@ -374,7 +392,7 @@ This folder contains the logs generated by Azure Machine Learning and it's close
 
 #### Other folders
 
-For jobs training on multi-compute clusters, logs are present for each IP node. The structure for each node is the same as single node jobs. There's one more logs folder for overall execution, stderr, and stdout logs.
+For jobs training on multi-compute clusters, logs are present for each IP node. The structure for each node is the same as single-node jobs. There's one more logs folder for overall execution, stderr, and stdout logs.
 
 Azure Machine Learning logs information from various sources during training, such as AutoML or the Docker container that runs the training job. Many of these logs aren't documented. If you encounter problems and contact Microsoft support, they might be able to use these logs during troubleshooting.
 

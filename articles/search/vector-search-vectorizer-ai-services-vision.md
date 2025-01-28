@@ -2,9 +2,9 @@
 title: Azure AI Vision vectorizer
 titleSuffix: Azure AI Search
 description: Connects to an Azure AI Vision resource to generate embeddings at query time.
-author: careyjmac
-ms.author: chalton
-ms.service: cognitive-search
+author: gmndrg
+ms.author: gimondra
+ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: reference
@@ -38,7 +38,7 @@ The Azure AI Vision vectorizer supports `text`, `imageUrl`, and `imageBinary` ve
 
 ## Expected field dimensions
 
-A field configured with the Azure AI Vision vectorizer should have a dimensions value of 1024.
+A vector field configured with the Azure AI Vision vectorizer should have a dimensions value of 1024.
 
 ## Sample definition
 

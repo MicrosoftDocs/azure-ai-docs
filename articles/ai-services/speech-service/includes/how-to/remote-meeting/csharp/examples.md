@@ -2,16 +2,16 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 07/26/2022
+ms.date: 9/9/2024
 ms.author: eur
 ms.custom: devx-track-csharp
 ---
 
 ## Upload the audio
 
-The first step for asynchronous transcription is to send the audio to the Meeting Transcription Service using the Speech SDK.
+The first step for asynchronous transcription is to send the audio to the conversation transcription service using the Speech SDK.
 
-This example code shows how to create a `MeetingTranscriber` for asynchronous-only mode. In order to stream audio to the transcriber, you add audio streaming code derived from [Transcribe meetings in real-time with the Speech SDK](../../../../how-to-use-meeting-transcription.md). 
+This example code shows how to use conversation transcription in asynchronous-only mode. In order to stream audio to the transcriber, you need to add audio streaming code derived from the [real-time conversation transcription quickstart](../../../../how-to-use-meeting-transcription.md). 
 
 ```csharp
 async Task CompleteContinuousRecognition(MeetingTranscriber recognizer, string meetingId)

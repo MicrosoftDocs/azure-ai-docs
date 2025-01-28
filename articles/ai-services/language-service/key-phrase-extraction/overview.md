@@ -7,7 +7,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 12/19/2023
+ms.date: 09/27/2024
 ms.author: jboback
 ms.custom: language-service-key-phrase
 ---
@@ -24,7 +24,7 @@ This documentation contains the following types of articles:
 [!INCLUDE [Typical workflow for pre-configured language features](../includes/overview-typical-workflow.md)]
 
 
-## Get started with entity linking
+## Get started with Key phrase extraction
 
 [!INCLUDE [development options](./includes/development-options.md)]
 

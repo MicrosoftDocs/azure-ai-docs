@@ -6,12 +6,13 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 08/13/2024
+ms.date: 1/16/2025
 ms.author: eur
 ms.devlang: cpp
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 zone_pivot_groups: programming-languages-speech-services
 keywords: speech to text, speech to text software
+#Customer intent: As a developer, I want to learn how to recognize speech so that I can convert spoken language into text.
 ---
 
 # How to recognize speech

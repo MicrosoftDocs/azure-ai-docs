@@ -18,25 +18,31 @@ Visit the [Data Dictionary](https://www.ncbi.nlm.nih.gov/projects/clinvar/ClinVa
 ## Data source
 
 This dataset is a mirror of the National Library of Medicine ClinVar [FTP resource](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/xml/).
+[FTP resource](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/)
+
+[FTP Overview](https://www.ncbi.nlm.nih.gov/clinvar/docs/ftp_primer/)
 
 ## Data update frequency
 
 This dataset receives daily updates.
 
+## Storage location
+
+This dataset is stored in the West US 2 and West Central US Azure regions. We recommend locating compute resources in West US 2 or West Central US for affinity.
+
 ## Data Access
 
-[FTP resource](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/)
+West US 2:"https://datasetclinvar.blob.core.windows.net/dataset'"
 
-[FTP Overview](https://www.ncbi.nlm.nih.gov/clinvar/docs/ftp_primer/)
+West Central US: "https://datasetclinvar-secondary.blob.core.windows.net/dataset"
 
 ## Use Terms
+
 Data is available without restrictions. More information and citation details, see [Accessing and using data in ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/).
 
 ## Contact
 
 For any questions or feedback about this dataset, contact [clinvar@ncbi.nlm.nih.gov](mailto:clinvar@ncbi.nlm.nih.gov).
-
-## Data access
 
 ### Azure Notebooks
 

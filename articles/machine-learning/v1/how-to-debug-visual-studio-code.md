@@ -90,7 +90,7 @@ Similar to remote experiment runs, you can expand your run node to inspect the l
 
 ## Debug and troubleshoot machine learning pipelines
 
-In some cases, you may need to interactively debug the Python code used in your ML pipeline. By using VS Code and debugpy, you can attach to the code as it runs in the training environment.
+In some cases, you might need to interactively debug the Python code used in your ML pipeline. By using VS Code and debugpy, you can attach to the code as it runs in the training environment.
 
 ### Prerequisites
 
@@ -345,7 +345,7 @@ Save the `ip_address` value. It's used in the next section.
 
 ## Debug and troubleshoot deployments
 
-In some cases, you may need to interactively debug the Python code contained in your model deployment. For example, if the entry script is failing and the reason can't be determined by extra logging. By using VS Code and the debugpy, you can attach to the code running inside the Docker container.
+In some cases, you might need to interactively debug the Python code contained in your model deployment. For example, if the entry script is failing and the reason can't be determined by extra logging. By using VS Code and the debugpy, you can attach to the code running inside the Docker container.
 
 > [!TIP]
 > If you're using managed online endpoints and deployments locally, see [Debug managed online endpoints locally in Visual Studio Code (preview)](../how-to-debug-managed-online-endpoints-visual-studio-code.md).

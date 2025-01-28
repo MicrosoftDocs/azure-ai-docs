@@ -8,11 +8,14 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: conceptual
 ms.date: 01/19/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ms.custom: devx-track-azurecli
 ---
 
 # Install and run the Spatial Analysis container (preview)
+
+[!INCLUDE [spatial-analysis-deprecation](includes/spatial-analysis-deprecation.md)]
 
 The Spatial Analysis container enables you to analyze real-time streaming video to understand spatial relationships between people, their movement, and interactions with objects in physical environments. Containers help you meet specific security and data governance requirements.
 
@@ -567,7 +570,7 @@ In this article, you learned concepts and workflow for downloading, installing, 
 
 ## Next steps
 
-* [Deploy a People Counting web application](spatial-analysis-web-app.md)
+<!--* [Deploy a People Counting web application](spatial-analysis-web-app.md)-->
 * [Configure Spatial Analysis operations](spatial-analysis-operations.md)
 * [Logging and troubleshooting](spatial-analysis-logging.md)
 * [Camera placement guide](spatial-analysis-camera-placement.md)

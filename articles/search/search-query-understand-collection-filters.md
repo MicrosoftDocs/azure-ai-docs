@@ -5,11 +5,11 @@ description: Learn the mechanics of how OData collection filters work in Azure A
 
 author: bevloh
 ms.author: beloh
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 01/11/2024
+ms.date: 12/10/2024
 ---
 
 # Understand how OData collection filters work in Azure AI Search
@@ -188,4 +188,4 @@ For specific examples of which kinds of filters are allowed and which aren't, se
 - [Filters in Azure AI Search](search-filters.md)
 - [OData expression language overview for Azure AI Search](query-odata-filter-orderby-syntax.md)
 - [OData expression syntax reference for Azure AI Search](search-query-odata-syntax-reference.md)
-- [Search Documents &#40;Azure AI Search REST API&#41;](/rest/api/searchservice/Search-Documents)
+- [Search Documents &#40;Azure AI Search REST API&#41;](/rest/api/searchservice/documents/search-post)

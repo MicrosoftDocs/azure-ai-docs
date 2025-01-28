@@ -4,9 +4,9 @@ titleSuffix: Azure AI Search
 description: Demonstrates using the Bing Entity Search service in a custom skill mapped to an AI-enriched indexing pipeline in Azure AI Search.
 author: gmndrg
 ms.author: gimondra
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 03/18/2024
+ms.date: 01/18/2025
 ms.custom:
   - devx-track-csharp
   - ignite-2023
@@ -32,7 +32,7 @@ Although this example uses an Azure Function to host a web API, it isn't require
 
 1. In Visual Studio, select **New** > **Project** from the File menu.
 
-1. Choose **Azure Functions** as the template and select **Next**. Type a name for your project, and select **Create**. The function app name must be valid as a C# namespace, so don't use underscores, hyphens, or any other non-alphanumeric characters.
+1. Choose **Azure Functions** as the template and select **Next**. Type a name for your project, and select **Create**. The function app name must be valid as a C# namespace, so don't use underscores, hyphens, or any other special characters.
 
 1. Select a framework that has long term support.
 
@@ -308,7 +308,7 @@ namespace SampleSkills
 }
 ```
 
-Make sure to enter your own *key* value in the `key` constant based on the key you got when signing up for the Bing entity search API.
+Make sure to enter your own *key* value in the `key` constant based on the key you got when signing up for the Bing Entity search API.
 
 ## Test the function from Visual Studio
 

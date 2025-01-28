@@ -9,10 +9,13 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: conceptual
 ms.date: 01/19/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
 # Measure queue wait time with Spatial Analysis 
+
+[!INCLUDE [spatial-analysis-deprecation](includes/spatial-analysis-deprecation.md)]
 
 Spatial Analysis can generate real-time information about how long users are waiting in a queue in a retail store. The service monitors the length of time customers spend standing inside a checkout zone you specify. A store manager can use this information to manage open checkout stations and employee shifts.
 

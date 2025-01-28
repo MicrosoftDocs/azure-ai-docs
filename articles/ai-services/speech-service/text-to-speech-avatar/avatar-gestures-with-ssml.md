@@ -5,8 +5,8 @@ description: Learn how to edit text to speech avatar gestures with SSML.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 2/24/2024
-ms.reviewer: v-baolianzou
+ms.date: 1/13/2025
+ms.reviewer: eur
 ms.author: eur
 author: eric-urban
 ---

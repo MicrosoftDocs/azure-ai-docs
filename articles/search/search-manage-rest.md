@@ -4,11 +4,11 @@ titleSuffix: Azure AI Search
 description: Create and configure an Azure AI Search service with the Management REST API. The Management REST API is comprehensive in scope, with access to generally available and preview features.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 03/13/2024
+ms.date: 12/10/2024
 ---
 
 # Manage your Azure AI Search service with REST APIs
@@ -27,7 +27,7 @@ The Management REST API is available in stable and preview versions. Be sure to 
 > * [Create or update a service](#create-or-update-a-service)
 > * [Enable Azure role-based access control for data plane](#enable-rbac)
 > * [Enforce a customer-managed key policy](#enforce-cmk)
-> * [Disable semantic ranking](#disable-semantic-search)
+> * [Disable semantic ranker](#disable-semantic-ranker)
 > * [Disable workloads that push data to external resources](#disable-external-access)
 > * [Create a query key](#create-query-api-keys)
 > * [Regenerate an admin key](#regenerate-admin-api-keys)
@@ -221,21 +221,18 @@ PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegrou
      {
         "properties": {
             "encryptionWithCmk": {
-            "enforcement": "Disabled",
-            "encryptionComplianceStatus": "Compliant"
-            },
+                "enforcement": "Enabled"
+            }
         }
     }
 ```
 
-<a name="disable-semantic-search"></a>
+## Disable semantic ranker
 
-## Disable semantic ranking
-
-Although [semantic ranking isn't enabled](semantic-how-to-enable-disable.md) by default, you could lock down the feature at the service level.
+[Semantic ranker is enabled](semantic-how-to-enable-disable.md) by default at the free plan that allows up to 1,000 requests per month at no charge. You can lock down the feature at the service level to prevent usage.
 
 ```http
-### disable semantic ranking
+### disable semantic ranker
 PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01 HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
@@ -324,7 +321,7 @@ GET https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups
 
 ## Next steps
 
-After a search service is configured, next steps include [create an index](search-how-to-create-search-index.md) or [query an index](search-query-overview.md) using the portal, REST APIs, or an Azure SDK.
+After a search service is configured, next steps include [create an index](search-how-to-create-search-index.md) or [query an index](search-query-overview.md) using the Azure portal, REST APIs, or an Azure SDK.
 
 * [Create an Azure AI Search index in the Azure portal](search-get-started-portal.md)
 * [Set up an indexer to load data from other services](search-indexer-overview.md)

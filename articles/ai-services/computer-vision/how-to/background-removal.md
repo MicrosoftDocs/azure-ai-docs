@@ -5,6 +5,7 @@ description: Learn how to call the Segment API to isolate and remove the backgro
 #services: cognitive-services
 manager: nitinme
 author: PatrickFarley
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ms.service: azure-ai-vision
 ms.topic: how-to
@@ -12,6 +13,8 @@ ms.date: 01/19/2024
 ---
 
 # Remove the background in images
+
+[!INCLUDE [segmentation-deprecation](../includes/segmentation-deprecation.md)]
 
 This article demonstrates how to call the Image Analysis 4.0 API to segment an image (separate the foreground from background). It also shows you how to parse the returned information.
 
@@ -74,7 +77,7 @@ Authentication is done by adding the HTTP request header **Ocp-Apim-Subscription
 
 ## Select the image to analyze
 
-The code in this guide uses remote images referenced by URL. You may want to try different images on your own to see the full capability of the Image Analysis features.
+The code in this guide uses remote images referenced by URL. You might want to try different images on your own to see the full capability of the Image Analysis features.
 
 <!--
 #### [C#](#tab/csharp)

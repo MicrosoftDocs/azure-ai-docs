@@ -66,9 +66,9 @@ Here’s an example: A customer wanted to use GPT-3.5-Turbo to turn natural lang
 **If you are ready for fine-tuning you:**
 
 - Have clear examples on how you have approached the challenges in alternate approaches and what’s been tested as possible resolutions to improve performance.
-- You've identified shortcomings using a base model, such as inconsistent performance on edge cases, inability to fit enough few shot prompts in the context window to steer the model, high latency, etc.
+- Identified shortcomings using a base model, such as inconsistent performance on edge cases, inability to fit enough few shot prompts in the context window to steer the model, high latency, etc.
 
-**Common signs you might not be ready for fine-tuning yet:**
+**Common signs you might not be ready for fine-tuning include:**
 
 - Insufficient knowledge from the model or data source.
 - Inability to find the right data to serve the model.
@@ -86,9 +86,9 @@ Another important point is even with high quality data if your data isn't in the
 
 **If you are ready for fine-tuning you:**
 
-- Have identified a dataset for fine-tuning.
-- The dataset is in the appropriate format for training.
-- Some level of curation has been employed to ensure dataset quality.
+- Identified a dataset for fine-tuning.
+- Formatted the dataset appropriately for training.
+- Curated the dataset to ensure quality.
 
 **Common signs you might not be ready for fine-tuning yet:**
 

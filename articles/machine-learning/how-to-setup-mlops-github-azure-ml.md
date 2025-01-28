@@ -44,9 +44,9 @@ In this article, you learn about using Azure Machine Learning to set up an end-t
 > [!IMPORTANT]
 >The CLI commands in this article were tested using Bash. If you use a different shell, you may encounter errors.
 
-## Set up authentication with Azure and DevOps
+## Set up authentication with Azure and GitHub Actions
 
-Before you can set up an MLOps project with Machine Learning, you need to set up authentication for Azure DevOps.
+Before you can set up an MLOps project with Machine Learning, you need to set up authentication for GitHub Actions.
 
 ### Create service principal
    Create one Prod service principal for this demo. You can add more depending on how many environments, you want to work on (Dev or Prod or Both). Service principals can be created using one of the following methods:

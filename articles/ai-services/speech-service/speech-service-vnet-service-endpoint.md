@@ -2,12 +2,14 @@
 title: Use Virtual Network service endpoints with Speech service
 titleSuffix: Azure AI services
 description: This article describes how to use Speech service with an Azure Virtual Network service endpoint.
-author: alexeyo26
+author: eric-urban
+ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/22/2024
-ms.author: alexeyo
+ms.date: 9/24/2024
+ms.reviewer: alexeyo
+#Customer intent: As a developer, I want to learn how to use Speech service with an Azure Virtual Network service endpoint.
 ---
 
 # Use Speech service through a Virtual Network service endpoint

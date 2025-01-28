@@ -34,4 +34,23 @@ sudo apt-get update
 sudo apt-get install build-essential ca-certificates libasound2-dev libssl-dev wget
 ```
 
+# [Amazon Linux 2023](#tab/amazon)
+
+
+Run these commands:
+
+```Bash
+sudo yum update
+sudo yum install alsa-lib ca-certificates openssl wget
+```
+
+# [Azure Linux 3.0](#tab/azure)
+
+Run these commands:
+
+```Bash
+sudo tdnf update
+sudo tdnf install alsa-lib ca-certificates openssl wget
+```
+
 ---

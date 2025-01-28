@@ -2,10 +2,8 @@
 author: laujan
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 11/15/2023
+ms.date: 11/19/2024
 ms.author: lajanuar
-ms.custom:
-  - ignite-2023
 ---
 
 Go to the Azure portal and <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer" title="Create a new Document Intelligence resource" target="_blank">create a new Document Intelligence resource </a>. In the **Create** pane, provide the following information:

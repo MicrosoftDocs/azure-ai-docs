@@ -9,12 +9,15 @@ ms.service: azure-ai-vision
 ms.custom: devx-track-python
 ms.topic: how-to
 ms.date: 01/19/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
 # Check the format of your COCO annotation file
 
 <!-- nbstart https://raw.githubusercontent.com/Azure-Samples/cognitive-service-vision-model-customization-python-samples/main/docs/check_coco_annotation.ipynb -->
+
+[!INCLUDE [model-customization-deprecation](../includes/model-customization-deprecation.md)]
 
 > [!TIP]
 > This article is based on the Jupyter notebook _check_coco_annotation.ipynb_. **[Open in GitHub](https://github.com/Azure-Samples/cognitive-service-vision-model-customization-python-samples/blob/main/docs/check_coco_annotation.ipynb)**.

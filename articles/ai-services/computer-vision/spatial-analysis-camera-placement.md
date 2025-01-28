@@ -8,11 +8,14 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: how-to
 ms.date: 01/20/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
 
 # Spatial Analysis camera placement
+
+[!INCLUDE [spatial-analysis-deprecation](includes/spatial-analysis-deprecation.md)]
 
 This article provides camera placement recommendations for Spatial Analysis (public preview) scenarios. It includes general guidelines as well as specific recommendations for height, angle, and camera-to-focal-point-distance for all the included operations. 
 
@@ -134,7 +137,7 @@ The following illustration provides simulations for the left and right camera vi
 | ---------------------------------- | ----------------------------------- |  
 | ![Left angle for linear queue](./media/spatial-analysis/camera-angle-linear-left.png) | ![Right angle for linear queue](./media/spatial-analysis/camera-angle-linear-right.png) |  
 
-For zig-zag queues, it's best to avoid placing the camera directly facing the queue line direction, as shown in the following illustration. Note that each of the four example camera positions in the illustration provide the ideal view with an acceptable deviation of +/- 15 degrees in each direction.
+For zig-zag queues, it's best to avoid placing the camera directly facing the queue line direction, as shown in the following illustration. Note that each of the four example camera positions in the illustration provides the ideal view with an acceptable deviation of +/- 15 degrees in each direction.
 
 The following illustrations simulate the view from a camera placed in the ideal locations for a zig-zag queue.
 
@@ -152,7 +155,7 @@ Organic queues are lines that form organically. This style of queue is acceptabl
 
 ## Next steps
 
-* [Deploy a People Counting web application](spatial-analysis-web-app.md)
+<!--* [Deploy a People Counting web application](spatial-analysis-web-app.md)-->
 * [Configure Spatial Analysis operations](./spatial-analysis-operations.md)
 * [Logging and troubleshooting](spatial-analysis-logging.md)
 * [Zone and line placement guide](spatial-analysis-zone-line-placement.md)

@@ -27,14 +27,13 @@ This is the replacement for the following preview models:
 
 - Azure AI specific Vision enhancements integration with GPT-4 Turbo with Vision isn't supported for `gpt-4` **Version:** `turbo-2024-04-09`. This includes Optical Character Recognition (OCR), object grounding, video prompts, and improved handling of your data with images.
 
+> [!IMPORTANT]
+> Vision enhancements preview features including Optical Character Recognition (OCR), object grounding, video prompts will be retired and no longer available once `gpt-4` Version: `vision-preview` is upgraded to `turbo-2024-04-09`. If you are currently relying on any of these preview features, this automatic model upgrade will be a breaking change.
+
 ### GPT-4 Turbo provisioned managed availability
 
 - `gpt-4` **Version:** `turbo-2024-04-09` is available for both standard and provisioned deployments. Currently the provisioned version of this model **doesn't support image/vision inference requests**. Provisioned deployments of this model only accept text input. Standard model deployments accept both text and image/vision inference requests.
 
-### Region availability
-
-For information on model regional availability consult the model matrix for [standard](../concepts/models.md#gpt-4-and-gpt-4-turbo-model-availability), and [provisioned deployments](../concepts/models.md#provisioned-deployment-model-availability).
-
 ### Deploying GPT-4 Turbo with Vision GA
 
-To deploy the GA model from the Studio UI, select `GPT-4` and then choose the `turbo-2024-04-09` version from the dropdown menu. The default quota for the `gpt-4-turbo-2024-04-09` model will be the same as current quota for GPT-4-Turbo. See the [regional quota limits.](../concepts/models.md#standard-and-global-standard-deployment-model-quota)
+To deploy the GA model from the Azure AI Foundry portal, select `GPT-4` and then choose the `turbo-2024-04-09` version from the dropdown menu. The default quota for the `gpt-4-turbo-2024-04-09` model will be the same as current quota for GPT-4-Turbo. See the [regional quota limits.](../quotas-limits.md)

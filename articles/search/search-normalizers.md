@@ -5,11 +5,11 @@ description: Specify normalizers to text fields in an index to customize the str
 author: HeidiSteen
 manager: jlembicz
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 01/11/2024
+ms.date: 12/10/2024
 ---
 
 # Text normalization for case-insensitive filtering, faceting and sorting
@@ -45,7 +45,7 @@ Normalizers are specified in an index definition, on a per-field basis, on text 
 
 Normalizers can only be specified when you add a new field to the index, so if possible, try to assess the normalization needs upfront and assign normalizers in the initial stages of development when dropping and recreating indexes is routine. 
 
-1. When creating a field definition in the [index](/rest/api/searchservice/create-index), set the  "normalizer" property to one of the following values: a [predefined normalizer](#predefined-normalizers) such as "lowercase", or a custom normalizer (defined in the same index schema).  
+1. When creating a field definition in the [index](/rest/api/searchservice/indexes/create), set the  "normalizer" property to one of the following values: a [predefined normalizer](#predefined-normalizers) such as "lowercase", or a custom normalizer (defined in the same index schema).  
  
    ```json
    "fields": [
@@ -62,7 +62,7 @@ Normalizers can only be specified when you add a new field to the index, so if p
    ]
    ```
 
-1. Custom normalizers are defined in the "normalizers" section of the index first, and then assigned to the field definition as shown in the previous step. For more information, see [Create Index](/rest/api/searchservice/create-index) and also [Add custom normalizers](#add-custom-normalizers).
+1. Custom normalizers are defined in the "normalizers" section of the index first, and then assigned to the field definition as shown in the previous step. For more information, see [Create Index](/rest/api/searchservice/indexes/create) and also [Add custom normalizers](#add-custom-normalizers).
 
    ```json
    "fields": [
@@ -79,7 +79,7 @@ Normalizers can only be specified when you add a new field to the index, so if p
 > [!NOTE]
 > To change the normalizer of an existing field, [rebuild the index](search-howto-reindex.md) entirely (you cannot rebuild individual fields).
 
-A good workaround for production indexes, where rebuilding indexes is costly, is to create a new field identical to the old one but with the new normalizer, and use it in place of the old one. Use [Update Index](/rest/api/searchservice/update-index) to incorporate the new field and [mergeOrUpload](/rest/api/searchservice/addupdate-or-delete-documents) to populate it. Later, as part of planned index servicing, you can clean up the index to remove obsolete fields.
+A good workaround for production indexes, where rebuilding indexes is costly, is to create a new field identical to the old one but with the new normalizer, and use it in place of the old one. Use [Update Index](/rest/api/searchservice/indexes/create-or-update) to incorporate the new field and [mergeOrUpload](/rest/api/searchservice/documents) to populate it. Later, as part of planned index servicing, you can clean up the index to remove obsolete fields.
 
 ## Predefined and custom normalizers 
 
@@ -131,7 +131,7 @@ The list below shows the token filters supported for normalizers and is a subset
 
 ## Add custom normalizers
 
-Custom normalizers are [defined within the index schema](/rest/api/searchservice/create-index). The definition includes a name, a type, one or more character filters and token filters. The character filters and token filters are the building blocks for a custom normalizer and responsible for the processing of the text. These filters are applied from left to right.
+Custom normalizers are [defined within the index schema](/rest/api/searchservice/indexes/create). The definition includes a name, a type, one or more character filters and token filters. The character filters and token filters are the building blocks for a custom normalizer and responsible for the processing of the text. These filters are applied from left to right.
 
  The `token_filter_name_1` is the name of token filter, and `char_filter_name_1` and `char_filter_name_2` are the names of char filters (see [supported token filters](#supported-token-filters) and [supported char filters](#supported-char-filters)tables below for valid values).
 
@@ -169,7 +169,7 @@ Custom normalizers are [defined within the index schema](/rest/api/searchservice
 ]
 ```
 
-Custom normalizers can be added during index creation or later by updating an existing one. Adding a custom normalizer to an existing index requires the "allowIndexDowntime" flag to be specified in [Update Index](/rest/api/searchservice/update-index) and will cause the index to be unavailable for a few seconds.
+Custom normalizers can be added during index creation or later by updating an existing one. Adding a custom normalizer to an existing index requires the "allowIndexDowntime" flag to be specified in [Update Index](/rest/api/searchservice/indexes/create-or-update) and will cause the index to be unavailable for a few seconds.
 
 ## Custom normalizer example
 
@@ -242,4 +242,4 @@ The example below illustrates a custom normalizer definition with corresponding 
 
 + [Analyzers for linguistic and text processing](search-analyzers.md)
 
-+ [Search Documents REST API](/rest/api/searchservice/search-documents)
++ [Search Documents REST API](/rest/api/searchservice/documents/search-post)

@@ -7,11 +7,11 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 06/25/2024
+ms.date: 01/16/2025
 ---
 
 # Index JSON blobs and files in Azure AI Search
@@ -38,7 +38,6 @@ Within the indexer definition, you can optionally set [field mappings](search-in
 
 > [!NOTE]
 > When a JSON parsing mode is used, Azure AI Search assumes that all blobs use the same parser (either for **`json`**, **`jsonArray`** or **`jsonLines`**). If you have a mix of different file types in the same data source, consider using [file extension filters](search-blob-storage-integration.md#controlling-which-blobs-are-indexed) to control which files are imported.
-
 
 The following sections describe each mode in more detail. If you're unfamiliar with indexer clients and concepts, see [Create a search indexer](search-howto-create-indexers.md). You should also be familiar with the details of [basic blob indexer configuration](search-howto-indexing-azure-blob-storage.md), which isn't repeated here.
 
@@ -76,8 +75,7 @@ api-key: [admin key]
 ```
 
 > [!NOTE]
-> As with all indexers, if fields do not clearly match, you should expect to explicitly specify individual [field mappings](search-indexer-field-mappings.md) unless you are using the implicit fields mappings available for blob content and metadata, as described in [basic blob indexer configuration](search-howto-indexing-azure-blob-storage.md).
-
+> As with all indexers, if fields don't clearly match, you should expect to explicitly specify individual [field mappings](search-indexer-field-mappings.md) unless you're using the implicit fields mappings available for blob content and metadata, as described in [basic blob indexer configuration](search-howto-indexing-azure-blob-storage.md).
 
 ### json example (single hotel JSON files)
 
@@ -208,7 +206,7 @@ You can also refer to individual array elements by using a zero-based index. For
 ```
 
 > [!NOTE]
-> If "sourceFieldName" refers to a property that doesn't exist in the JSON blob, that mapping is skipped without an error. This behavior allows indexing to continue for JSON blobs that have a different schema (which is a common use case). Because there is no validation check, check the mappings carefully for typos so that you aren't losing documents for the wrong reason.
+> If "sourceFieldName" refers to a property that doesn't exist in the JSON blob, that mapping is skipped without an error. This behavior allows indexing to continue for JSON blobs that have a different schema (which is a common use case). Because there's no validation check, check the mappings carefully for typos so that you aren't losing documents for the wrong reason.
 >
 
 ## Next steps

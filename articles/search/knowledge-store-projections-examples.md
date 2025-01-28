@@ -6,11 +6,11 @@ description: Learn how to define table, object, and file projections in a knowle
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 03/18/2024
+ms.date: 12/10/2024
 ---
 
 # Define projections in a knowledge store
@@ -265,9 +265,9 @@ You can process projections by following these steps:
 
 1. Set the knowledge store's `storageConnectionString` property to a valid V2 general purpose storage account connection string.  
 
-1. [Update the skillset](/rest/api/searchservice/update-skillset) by issuing a PUT request with your projection definition in the body of the skillset.
+1. [Update the skillset](/rest/api/searchservice/skillsets/create-or-update) by issuing a PUT request with your projection definition in the body of the skillset.
 
-1. [Run the indexer](/rest/api/searchservice/run-indexer) to put the skillset into execution. 
+1. [Run the indexer](/rest/api/searchservice/indexers/run) to put the skillset into execution. 
 
 1. [Monitor indexer execution](search-howto-monitor-indexers.md) to check progress and catch any errors.
 

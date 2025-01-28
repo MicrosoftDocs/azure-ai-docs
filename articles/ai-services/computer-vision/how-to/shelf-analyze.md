@@ -7,11 +7,14 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: how-to
 ms.date: 02/14/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ms.custom: build-2023, build-2023-dataai
 ---
 
 # Shelf Product Recognition (preview): Analyze shelf images using pretrained model
+
+[!INCLUDE [model-customization-deprecation](../includes/model-customization-deprecation.md)]
 
 The fastest way to start using Product Recognition is to use the built-in pretrained AI models. With the Product Recognition API, you can upload a shelf image and get the locations of products and gaps.
 

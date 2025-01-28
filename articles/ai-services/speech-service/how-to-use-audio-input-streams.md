@@ -6,10 +6,11 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/21/2024
+ms.date: 9/20/2024
 ms.author: eur
 ms.devlang: csharp
 ms.custom: devx-track-csharp
+#Customer intent: As a developer, I want to learn how to use the audio input stream in the Speech SDK so that I can stream audio into the recognizer.
 ---
 
 # How to use the audio input stream

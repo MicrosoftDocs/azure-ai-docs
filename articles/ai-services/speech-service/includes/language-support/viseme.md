@@ -1,5 +1,5 @@
 ---
-author: sally-baolian
+author: eric-urban
 ms.service: azure-ai-speech
 ms.date: 07/06/2023
 ms.topic: include

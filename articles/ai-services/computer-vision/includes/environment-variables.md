@@ -3,6 +3,7 @@ author: PatrickFarley
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 08/07/2023
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
@@ -29,7 +30,7 @@ setx VISION_KEY <your_key>
 setx VISION_ENDPOINT <your_endpoint>
 ```
 
-After you add the environment variables, you may need to restart any running programs that will read the environment variables, including the console window.
+After you add the environment variables, you might need to restart any running programs that will read the environment variables, including the console window.
 
 #### [Linux](#tab/linux)
 

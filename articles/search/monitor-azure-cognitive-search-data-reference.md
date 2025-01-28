@@ -1,12 +1,12 @@
 ---
 title: Monitoring data reference for Azure AI Search
 description: This article contains important reference material you need when you monitor Azure AI Search.
-ms.date: 02/15/2024
+ms.date: 01/27/2025
 ms.custom: horz-monitor
 ms.topic: reference
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ---
 
 # Azure AI Search monitoring data reference
@@ -60,9 +60,9 @@ Depending on your client, a throttled request is indicated in these ways:
 
 + A service returns an error `"You are sending too many requests. Please try again later."` 
 + A service returns a 503 error code indicating the service is currently unavailable. 
-+ If you're using the portal (for example, Search Explorer), the query is dropped silently and you need to select **Search** again.
++ If you're using the Azure portal (for example, Search Explorer), the query is dropped silently and you need to select **Search** again.
 
-To confirm throttled queries, use **Throttled search queries** metric. You can explore metrics in the portal or create an alert metric as described in this article. For queries that were dropped within the sampling interval, use *Total* to get the percentage of queries that didn't execute.
+To confirm throttled queries, use **Throttled search queries** metric. You can explore metrics in the Azure portal or create an alert metric as described in this article. For queries that were dropped within the sampling interval, use *Total* to get the percentage of queries that didn't execute.
 
 | Aggregation type | Throttling |
 |------------------|-----------|
@@ -194,13 +194,13 @@ The following operations can appear in a resource log.
 | Indexers.* | Applies to an indexer. Can be Create, Delete, Get, List, and Status. |
 | Indexes.* | Applies to a search index. Can be Create, Delete, Get, List.  |
 | indexes.Prototype | This index is created by the Import Data wizard. |
-| Indexing.Index  | This operation is a call to [Add, Update or Delete Documents](/rest/api/searchservice/addupdate-or-delete-documents). |
+| Indexing.Index  | This operation is a call to [Index Documents](/rest/api/searchservice/documents). |
 | Metadata.GetMetadata | A request for search service system data.  |
 | Query.Autocomplete | An autocomplete query against an index. See [Query types and composition](search-query-overview.md). |
 | Query.Lookup |  A lookup query against an index. See [Query types and composition](search-query-overview.md). |
 | Query.Search |  A full text search request against an index. See [Query types and composition](search-query-overview.md). |
 | Query.Suggest |  Type ahead query against an index. See [Query types and composition](search-query-overview.md). |
-| ServiceStats | This operation is a routine call to [Get Service Statistics](/rest/api/searchservice/get-service-statistics), either called directly or implicitly to populate a portal overview page when it's loaded or refreshed. |
+| ServiceStats | This operation is a routine call to [Get Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics), either called directly or implicitly to populate a portal overview page when it's loaded or refreshed. |
 | Skillsets.* | Applies to a skillset. Can be Create, Delete, Get, List. |
 
 ## Related content

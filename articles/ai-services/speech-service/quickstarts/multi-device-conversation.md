@@ -2,12 +2,13 @@
 title: 'Quickstart: Multi-device Conversation - Speech service'
 titleSuffix: Azure AI services
 description: In this quickstart, you'll learn how to create and join clients to a multi-device conversation by using the Speech SDK.
-author: ralphe
-manager: cpoulain
+author: eric-urban
+manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 2/24/2024
-ms.author: ralphe
+ms.date: 1/15/2025
+ms.reviewer: ralphe
+ms.author: eur
 zone_pivot_groups: programming-languages-set-nine
 ms.devlang: cpp
 ms.custom: cogserv-non-critical-speech, devx-track-csharp, mode-other

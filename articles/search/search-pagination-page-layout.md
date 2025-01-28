@@ -1,82 +1,124 @@
 ---
-title: How to shape search results
+title: Shape search results
 titleSuffix: Azure AI Search
-description: Define search result composition, get a document count, sort results, and add content navigation to search results in Azure AI Search.
+description: Modify search result composition, get a document count, sort results, and add content navigation to search results in Azure AI Search.
 
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 06/12/2024
+ms.date: 12/09/2024
 ---
 
-# How to shape results in Azure AI Search
+# Shape search results or modify search results composition in Azure AI Search
 
-This article explains how to work with a query response in Azure AI Search. The structure of a response is determined by parameters in the query itself, as described in [Search Documents (REST)](/rest/api/searchservice/Search-Documents) or [SearchResults Class (Azure for .NET)](/dotnet/api/azure.search.documents.models.searchresults-1). 
+This article explains search results composition and how to shape search results to fit your scenarios. Search results are returned in a query response. The shape of a response is determined by parameters in the query itself. These parameters include:
 
-Parameters on the query determine:
-
-+ Field selection
-+ Count of matches found in the index for the query
-+ Paging
-+ Number of results in the response (up to 50, by default)
-+ Sort order
++ Number of matches found in the index (`count`)
++ Number of matches returned in the response (50 by default, configurable through `top`) or per page (`skip` and `top`)
++ A search score for each result, used for ranking (`@search.score`)
++ Fields included in search results (`select`)
++ Sort logic (`orderby`)
 + Highlighting of terms within a result, matching on either the whole or partial term in the body
++ Optional elements from the semantic ranker (`answers` at the top, `captions` for each match)
+
+Search results can include top-level fields, but most of the response consists of matching documents in an array.
+
+## Clients and APIs for defining the query response
+
+You can use the following clients to configure a query response:
+
++ [Search Explorer](search-explorer.md) in the Azure portal, using JSON view so that you can specify any supported parameter
++ [Documents - POST (REST APIs)](/rest/api/searchservice/documents/search-post)
++ [SearchClient.Search Method (Azure SDK for .NET)](/dotnet/api/azure.search.documents.searchclient.search?view=azure-dotnet&preserve-view=true)
++ [SearchClient.Search Method (Azure SDK for Python)](/python/api/azure-search-documents/azure.search.documents.searchclient?view=azure-python#azure-search-documents-searchclient-search&preserve-view=true)
++ [SearchClient.Search Method (Azure for JavaScript)](/javascript/api/@azure/search-documents/searchclient?view=azure-node-latest#@azure-search-documents-searchclient-search&preserve-view=true)
++ [SearchClient.Search Method (Azure for Java)](/java/api/com.azure.search.documents.searchclient?view=azure-java-stable#com-azure-search-documents-searchclient-search(java-lang-string)&preserve-view=true)
 
 ## Result composition
 
-Results are tabular, composed of fields of either all "retrievable" fields, or limited to just those fields specified in the **`$select`** parameters. Rows are the matching documents.
+Results are mostly tabular, composed of fields of either all `retrievable` fields, or limited to just those fields specified in the `select` parameter. Rows are the matching documents, typically ranked in order of relevance unless your query logic precludes relevance ranking.
 
-You can choose which fields are in search results. While a search document might have a large number of fields, typically only a few are needed to represent each document in results. On a query request, append `$select=<field list>` to specify which "retrievable" fields should appear in the response.
+You can choose which fields are in search results. While a search document might have a large number of fields, typically only a few are needed to represent each document in results. On a query request, append `select=<field list>` to specify which `retrievable` fields should appear in the response.
 
-Pick fields that offer contrast and differentiation among documents, providing sufficient information to invite a click-through response on the part of the user. On an e-commerce site, it might be a product name, description, brand, color, size, price, and rating. For the built-in hotels-sample index, it might be the "select" fields in the following example:
+Pick fields that offer contrast and differentiation among documents, providing sufficient information to invite a clickthrough response on the part of the user. On an e-commerce site, it might be a product name, description, brand, color, size, price, and rating. For the built-in hotels-sample index, it might be the "select" fields in the following example:
 
 ```http
 POST /indexes/hotels-sample-index/docs/search?api-version=2024-07-01 
     {  
       "search": "sandy beaches",
-      "select": "HotelId, HotelName, Description, Rating, Address/City"
+      "select": "HotelId, HotelName, Description, Rating, Address/City",
       "count": true
     }
 ```
 
 ### Tips for unexpected results
 
-Occasionally, the content of seaarch results are unexpected. For example, you might find that some results appear to be duplicates, or a result that *should* appear near the top is positioned lower in the results. When query outcomes are unexpected, you can try these query modifications to see if results improve:
+Occasionally, query output isn't what you're expecting to see. For example, you might find that some results appear to be duplicates, or a result that *should* appear near the top is positioned lower in the results. When query outcomes are unexpected, you can try these query modifications to see if results improve:
 
-+ Change **`searchMode=any`** (default) to **`searchMode=all`** to require matches on all criteria instead of any of the criteria. This is especially true when boolean operators are included the query.
++ Change `searchMode=any` (default) to `searchMode=all` to require matches on all criteria instead of any of the criteria. This is especially true when boolean operators are included the query.
 
-+ Experiment with different lexical analyzers or custom analyzers to see if it changes the query outcome. The default analyzer breakz up hyphenated words and reduces words to root forms, which usually improves the robustness of a query response. However, if you need to preserve hyphens, or if strings include special characters, you might need to configure custom analyzers to ensure the index contains tokens in the right format. For more information, see [Partial term search and patterns with special characters (hyphens, wildcard, regex, patterns)](search-query-partial-matching.md).
++ Experiment with different lexical analyzers or custom analyzers to see if it changes the query outcome. The default analyzer breaks up hyphenated words and reduces words to root forms, which usually improves the robustness of a query response. However, if you need to preserve hyphens, or if strings include special characters, you might need to configure custom analyzers to ensure the index contains tokens in the right format. For more information, see [Partial term search and patterns with special characters (hyphens, wildcard, regex, patterns)](search-query-partial-matching.md).
 
 ## Counting matches
 
-The count parameter returns the number of documents in the index that are considered a match for the query. To return the count, add **`$count=true`** to the query request. There's no maximum value imposed by the search service. Depending on your query and the content of your documents, the count could be as high as every document in the index.
+The `count` parameter returns the number of documents in the index that are considered a match for the query. To return the count, add `count=true` to the query request. There's no maximum value imposed by the search service. Depending on your query and the content of your documents, the count could be as high as every document in the index.
 
-Count is accurate when the index is stable. If the system is actively adding, updating, or deleting documents, the count will be approximate, excluding any documents that aren't fully indexed.
+Count is accurate when the index is stable. If the system is actively adding, updating, or deleting documents, the count is approximate, excluding any documents that aren't fully indexed.
 
 Count won't be affected by routine maintenance or other workloads on the search service. However if you have multiple partitions and a single replica, you could experience short-term fluctuations in document count (several minutes) as the partitions are restarted.
 
 > [!TIP]
-> To check indexing operations, you can confirm whether the index contains the expected number of documents by adding `$count=true` on an empty search `search=*` query. The result is the full count of documents in your index.
+> To check indexing operations, you can confirm whether the index contains the expected number of documents by adding `count=true` on an empty search `search=*` query. The result is the full count of documents in your index.
 >
-> When testing query syntax, `$count=true` can quickly tell you whether your modifications are returning greater or fewer results, which can be useful feedback.
+> When testing query syntax, `count=true` can quickly tell you whether your modifications are returning greater or fewer results, which can be useful feedback.
 
-## Paging results
+<a name="paging-results"></a>
 
-By default, the search engine returns up to the first 50 matches. The top 50 are determined by search score, assuming the query is full text search or semantic. Otherwise, the top 50 are an arbitrary order for exact match queries (where uniform "@searchScore=1.0" indicates arbitrary ranking).
+## Number of results in the response
 
-The upper limit is 1,000 documents returned per page of search results, so you can set top to return up to 1000 document in the first result. In newer preview APIs, if you're using a hybrid query, you can [specify maxTextRecallSize](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode-preview) to return up to 10,000 documents.
+Azure AI Search uses server-side paging to prevent queries from retrieving too many documents at once. Query parameters that determine the number of results in a response are `top` and `skip`. `top` refers to the number of search results in a page. `skip` is an interval of `top`, and it tells the search engine how many results to skip before getting the next set.
 
-To control the paging of all documents returned in a result set, add `$top` and `$skip` parameters to the GET query request, or `top` and `skip` to the POST query request. The following list explains the logic.
+The default page size is 50, while the maximum page size is 1,000. If you specify a value greater than 1,000 and there are more than 1,000 results found in your index, only the first 1,000 results are returned. If the number of matches exceed the page size, the response includes information to retrieve the next page of results. For example:
 
-+ Return the first set of 15 matching documents plus a count of total matches: `GET /indexes/<INDEX-NAME>/docs?search=<QUERY STRING>&$top=15&$skip=0&$count=true`
+```json
+"@odata.nextLink": "https://contoso-search-eastus.search.windows.net/indexes/realestate-us-sample-index/docs/search?api-version=2024-07-01"
+```
 
-+ Return the second set, skipping the first 15 to get the next 15: `$top=15&$skip=15`. Repeat for the third set of 15: `$top=15&$skip=30`
+The top matches are determined by search score, assuming the query is full text search or semantic. Otherwise, the top matches are an arbitrary order for exact match queries (where uniform `@search.score=1.0` indicates arbitrary ranking).
 
-The results of paginated queries aren't guaranteed to be stable if the underlying index is changing. Paging changes the value of `$skip` for each page, but each query is independent and operates on the current view of the data as it exists in the index at query time (in other words, there's no caching or snapshot of results, such as those found in a general purpose database).
+Set `top` to override the default of 50. In newer preview APIs, if you're using a hybrid query, you can [specify maxTextRecallSize](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode) to return up to 10,000 documents.
+
+To control the paging of all documents returned in a result set, use `top` and `skip` together. This query returns the first set of 15 matching documents plus a count of total matches.
+
+```http
+POST https://contoso-search-eastus.search.windows.net/indexes/realestate-us-sample-index/docs/search?api-version=2024-07-01
+
+{
+    "search": "condos with a view",
+    "count": true,
+    "top": 15,
+    "skip": 0
+}
+```
+
+This query returns the second set, skipping the first 15 to get the next 15 (16 through 30):
+
+```http
+POST https://contoso-search-eastus.search.windows.net/indexes/realestate-us-sample-index/docs/search?api-version=2024-07-01
+
+{
+    "search": "condos with a view",
+    "count": true,
+    "top": 15,
+    "skip": 15
+}
+```
+
+The results of paginated queries aren't guaranteed to be stable if the underlying index is changing. Paging changes the value of `skip` for each page, but each query is independent and operates on the current view of the data as it exists in the index at query time (in other words, there's no caching or snapshot of results, such as those found in a general purpose database).
 
 Following is an example of how you might get duplicates. Assume an index with four documents:
 
@@ -105,7 +147,7 @@ Notice that document 2 is fetched twice. This is because the new document 5 has 
 
 ### Paging through a large number of results
 
-Using `$top` and `$skip` allows a search query to page through 100,000 results, but what if results are larger than 100,000? To page through a response this large, use a [sort order](search-query-odata-orderby.md) and [range filter](search-query-odata-comparison-operators.md) as a workaround for `$skip`. 
+An alternative technique for paging is to use a [sort order](search-query-odata-orderby.md) and [range filter](search-query-odata-comparison-operators.md) as a workaround for `skip`.
 
 In this workaround, sort and filter are applied to a document ID field or another field that is unique for each document. The unique field must have `filterable` and `sortable` attribution in the search index.
 
@@ -120,7 +162,7 @@ In this workaround, sort and filter are applied to a document ID field or anothe
         }
     ```
 
-1. Choose the last result returned by the search query. An example result with only an "id" value is shown here.
+1. Choose the last result returned by the search query. An example result with only an ID value is shown here.
 
     ```json
     {
@@ -128,7 +170,7 @@ In this workaround, sort and filter are applied to a document ID field or anothe
     }
     ```
 
-1. Use that "id" value in a range query to fetch the next page of results. This "id" field should have unique values, otherwise pagination may include duplicate results.
+1. Use that ID value in a range query to fetch the next page of results. This ID field should have unique values, otherwise pagination might include duplicate results.
 
     ```http
     POST /indexes/good-books/docs/search?api-version=2024-07-01
@@ -143,7 +185,7 @@ In this workaround, sort and filter are applied to a document ID field or anothe
 1. Pagination ends when the query returns zero results.
 
 > [!NOTE]
-> The "filterable" and "sortable" attributes can only be enabled when a field is first added to an index, they cannot be enabled on an existing field.
+> The `filterable` and `sortable` attributes can only be enabled when a field is first added to an index, they cannot be enabled on an existing field.
 
 ## Ordering results
 
@@ -151,37 +193,37 @@ In a full text search query, results can be ranked by:
 
 + a search score
 + a semantic reranker score
-+ a sort order on a "sortable" field
++ a sort order on a `sortable` field
 
 You can also boost any matches found in specific fields by adding a scoring profile.
 
 ### Order by search score
 
-For full text search queries, results are automatically [ranked by a search score](index-similarity-and-scoring.md), calculated based on term frequency and proximity in a document (derived from [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf)), with higher scores going to documents having more or stronger matches on a search term.
+For full text search queries, results are automatically [ranked by a search score](index-similarity-and-scoring.md) using a BM25 algorithm, calculated based on term frequency, document length, and average document length.
 
-The "@search.score" range is either unbounded, or 0 up to (but not including) 1.00 on older services. 
+The `@search.score` range is either unbounded, or 0 up to (but not including) 1.00 on older services. 
 
-For either algorithm, a "@search.score" equal to 1.00 indicates an unscored or unranked result set, where the 1.0 score is uniform across all results. Unscored results occur when the query form is fuzzy search, wildcard or regex queries, or an empty search (`search=*`). If you need to impose a ranking structure over unscored results, consider an **`$orderby`** expression to achieve that objective.
+For either algorithm, a `@search.score` equal to 1.00 indicates an unscored or unranked result set, where the 1.0 score is uniform across all results. Unscored results occur when the query form is fuzzy search, wildcard or regex queries, or an empty search (`search=*`). If you need to impose a ranking structure over unscored results, consider an `orderby` expression to achieve that objective.
 
 ### Order by the semantic reranker
 
-If you're using [semantic ranking](semantic-search-overview.md), the "@search.rerankerScore" determines the sort order of your results. 
+If you're using [semantic ranker](semantic-search-overview.md), the `@search.rerankerScore` determines the sort order of your results.
 
-The "@search.rerankerScore" range is 1 to 4.00, where a higher score indicates a stronger semantic match.
+The `@search.rerankerScore` range is 1 to 4.00, where a higher score indicates a stronger semantic match.
 
-### Order with $orderby
+### Order with orderby
 
-If consistent ordering is an application requirement, you can define an [**`$orderby`** expression](query-odata-filter-orderby-syntax.md) on a field. Only fields that are indexed as "sortable" can be used to order results.
+If consistent ordering is an application requirement, you can define an [`orderby` expression](query-odata-filter-orderby-syntax.md) on a field. Only fields that are indexed as "sortable" can be used to order results.
 
-Fields commonly used in an **`$orderby`** include rating, date, and location. Filtering by location requires that the filter expression calls the [**`geo.distance()` function**](search-query-odata-geo-spatial-functions.md?#order-by-examples), in addition to the field name.
+Fields commonly used in an `orderby` include rating, date, and location. Filtering by location requires that the filter expression calls the [`geo.distance()` function](search-query-odata-geo-spatial-functions.md?#order-by-examples), in addition to the field name.
 
-Numeric fields (Edm.Double, Edm.Int32, Edm.Int64) are sorted in numeric order (for example, 1, 2, 10, 11, 20).
+Numeric fields (`Edm.Double`, `Edm.Int32`, `Edm.Int64`) are sorted in numeric order (for example, 1, 2, 10, 11, 20).
 
-String fields (Edm.String, Edm.ComplexType subfields) are sorted in either [ASCII sort order](https://en.wikipedia.org/wiki/ASCII#Printable_characters) or [Unicode sort order](https://en.wikipedia.org/wiki/List_of_Unicode_characters), depending on the language. You can't sort collections of any type.
+String fields (`Edm.String`, `Edm.ComplexType` subfields) are sorted in either [ASCII sort order](https://en.wikipedia.org/wiki/ASCII#Printable_characters) or [Unicode sort order](https://en.wikipedia.org/wiki/List_of_Unicode_characters), depending on the language.
 
 + Numeric content in string fields is sorted alphabetically (1, 10, 11, 2, 20).
 
-+ Upper case strings are sorted ahead of lower case (APPLE, Apple, BANANA, Banana, apple, banana). You can assign a [text normalizer](search-normalizers.md) to preprocess the text before sorting to change this behavior. Using the lowercase tokenizer on a field will have no effect on sorting behavior because Azure AI Search sorts on a non-analyzed copy of the field.
++ Upper case strings are sorted ahead of lower case (APPLE, Apple, BANANA, Banana, apple, banana). You can assign a [text normalizer](search-normalizers.md) to preprocess the text before sorting to change this behavior. Using the lowercase tokenizer on a field has no effect on sorting behavior because Azure AI Search sorts on a nonanalyzed copy of the field.
 
 + Strings that lead with diacritics appear last (Äpfel, Öffnen, Üben)
 
@@ -193,18 +235,18 @@ Another approach that promotes order consistency is using a [custom scoring prof
 
 Hit highlighting refers to text formatting (such as bold or yellow highlights) applied to matching terms in a result, making it easy to spot the match. Highlighting is useful for longer content fields, such as a description field, where the match isn't immediately obvious. 
 
-Notice that highlighting is applied to individual terms. There's no highlight capability for the contents of an entire field. If you want to highlight over a phrase, you'll have to provide the matching terms (or phrase) in a quote-enclosed query string. This technique is described further on in this section.
+Notice that highlighting is applied to individual terms. There's no highlight capability for the contents of an entire field. If you want to highlight over a phrase, you have to provide the matching terms (or phrase) in a quote-enclosed query string. This technique is described further on in this section.
 
-Hit highlighting instructions are provided on the [query request](/rest/api/searchservice/search-documents). Queries that trigger query expansion in the engine, such as fuzzy and wildcard search, have limited support for hit highlighting.
+Hit highlighting instructions are provided on the [query request](/rest/api/searchservice/documents/search-post). Queries that trigger query expansion in the engine, such as fuzzy and wildcard search, have limited support for hit highlighting.
 
 ### Requirements for hit highlighting
 
 + Fields must be `Edm.String` or `Collection(Edm.String)`
-+ Fields must be attributed at **searchable**
++ Fields must be attributed at `searchable`
 
 ### Specify highlighting in the request
 
-To return highlighted terms, include the "highlight" parameter in the query request. The parameter is set to a comma-delimited list of fields. 
+To return highlighted terms, include the highlight parameter in the query request. The parameter is set to a comma-delimited list of fields. 
 
 By default, the format mark up is `<em>`, but you can override the tag using `highlightPreTag` and `highlightPostTag` parameters. Your client code handles the response (for example, applying a bold font or a yellow background).
 
@@ -218,19 +260,19 @@ POST /indexes/good-books/docs/search?api-version=2024-07-01
     }
 ```
 
-By default, Azure AI Search returns up to five highlights per field. You can adjust this number by appending a dash followed by an integer. For example, `"highlight": "description-10"` returns up to 10 highlighted terms on matching content in the "description" field.
+By default, Azure AI Search returns up to five highlights per field. You can adjust this number by appending a dash followed by an integer. For example, `"highlight": "description-10"` returns up to 10 highlighted terms on matching content in the description field.
 
 ### Highlighted results
 
-When highlighting is added to the query, the response includes an "@search.highlights" for each result so that your application code can target that structure. The list of fields specified for "highlight" are included in the response.
+When highlighting is added to the query, the response includes an `@search.highlights` for each result so that your application code can target that structure. The list of fields specified for "highlight" are included in the response.
 
-In a keyword search, each term is scanned for independently. A query for "divine secrets" will return matches on any document containing either term.
+In a keyword search, each term is scanned for independently. A query for "divine secrets" returns matches on any document containing either term.
 
 :::image type="content" source="media/search-pagination-page-layout/highlighting-example.png" alt-text="Screenshot of highlighting over a phrase query." border="true":::
 
 ### Keyword search highlighting 
 
-Within a highlighted field, formatting is applied to whole terms. For example, on a match against "The Divine Secrets of the Ya-Ya Sisterhood", formatting is applied to each term separately, even though they're consecutive. 
+Within a highlighted field, formatting is applied to whole terms. For example, on a match against "The Divine Secrets of the Ya-Ya Sisterhood", formatting is applied to each term separately, even though they're consecutive.
 
 ```json
 "@odata.count": 39,
@@ -293,7 +335,7 @@ POST /indexes/good-books/docs/search?api-version=2024-07-01
     }
 ```
 
-Because the criteria now has both terms, only one match is found in the search index. The response to the above query looks like this:
+Because the criteria now have both terms, only one match is found in the search index. The response to the previous query looks like this:
 
 ```json
 {
@@ -326,7 +368,7 @@ For the following examples, assume a query string that includes the quote-enclos
      ]
   ```
 
-For search services created after July 2020, only phrases that match the full phrase query will be returned in "@search.highlights":
+For search services created after July 2020, only phrases that match the full phrase query are returned in `@search.highlights`:
 
   ```json
   "@search.highlights": {
@@ -339,8 +381,8 @@ For search services created after July 2020, only phrases that match the full ph
 
 To quickly generate a search page for your client, consider these options:
 
-+ [Create demo app](search-create-app-portal.md), in the portal, creates an HTML page with a search bar, faceted navigation, and results area that includes images.
++ [Create demo app](search-create-app-portal.md), in the Azure portal, creates an HTML page with a search bar, faceted navigation, and a thumbnail area if you have images.
 
 + [Add search to an ASP.NET Core (MVC) app](tutorial-csharp-create-mvc-app.md) is a tutorial and code sample that builds a functional client.
 
-+ [Add search to web apps](tutorial-csharp-overview.md) is a tutorial and code sample that uses the React JavaScript libraries for the user experience. The app is deployed using Azure Static Web Apps.
++ [Add search to web apps](tutorial-csharp-overview.md) is a C# tutorial and code sample that uses the React JavaScript libraries for the user experience. The app is deployed using Azure Static Web Apps and it implements pagination.

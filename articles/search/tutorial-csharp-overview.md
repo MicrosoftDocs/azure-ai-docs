@@ -5,9 +5,9 @@ description: Technical overview and setup for adding search to a website and dep
 manager: nitinme
 author: diberry
 ms.author: diberry
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 08/16/2024
+ms.date: 01/17/2025
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
@@ -21,7 +21,7 @@ This tutorial builds a website to search through a catalog of books and then dep
 
 ## What does the sample do?
 
-This sample website provides access to a catalog of 10,000 books. You can search the catalog by entering text in the search bar. While you enter text, the website uses the search index's [\suggestion feature to autocomplete the text. Once the query finishes, the list of books is displayed with a portion of the details. You can select a book to see all the details, stored in the search index, of the book. 
+This sample website provides access to a catalog of 10,000 books. You can search the catalog by entering text in the search bar. While you enter text, the website uses the search index's suggestion feature to autocomplete the text. Once the query finishes, the list of books is displayed with a portion of the details. You can select a book to see all the details, stored in the search index, of the book. 
 
 :::image type="content" source="media/tutorial-csharp-overview/cognitive-search-enabled-book-website-2.png" alt-text="Screenshot of the sample app in a browser window.":::
 
@@ -48,7 +48,7 @@ The [sample code](https://github.com/Azure-Samples/azure-search-static-web-app) 
 Create services and install the following software for your local development environment. 
 
 - [Azure AI Search](search-create-service-portal.md), any region or tier
-- [.NET 6](https://dotnet.microsoft.com/download/dotnet/6.0) or later
+- [.NET 9](https://dotnet.microsoft.com/download/dotnet) or latest version
 - [Git](https://git-scm.com/downloads)
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [C# Dev Tools extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)

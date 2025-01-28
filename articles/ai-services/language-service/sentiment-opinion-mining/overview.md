@@ -7,7 +7,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 01/25/2024
+ms.date: 09/27/2024
 ms.author: jboback
 ms.custom: language-service-sentiment-opinion-mining
 ---

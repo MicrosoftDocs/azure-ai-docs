@@ -5,9 +5,9 @@ description: Assign analyzers to searchable string fields in an index to replace
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 05/23/2024
+ms.date: 01/16/2025
 ms.custom:
   - devx-track-csharp
   - ignite-2023
@@ -22,9 +22,9 @@ An *analyzer* is a component of the [full text search engine](search-lucene-quer
 + Lower-case any upper-case words
 + Reduce words into primitive root forms for storage efficiency and so that matches can be found regardless of tense
 
-Analysis applies to `Edm.String` fields that are marked as "searchable", which indicates full text search. 
+The output of a lexical analyzer is a sequence of [tokens](https://suif.stanford.edu/dragonbook/lecture-notes/Stanford-CS143/03-Lexical-Analysis.pdf).
 
-For fields of this configuration, analysis occurs during indexing when tokens are created, and then again during query execution when queries are parsed and the engine scans for matching tokens. A match is more likely to occur when the same analyzer is used for both indexing and queries, but you can set the analyzer for each workload independently, depending on your requirements.
+Lexical analysis applies to `Edm.String` fields that are marked as "searchable", which indicates full text search. For fields of this configuration, analysis occurs during indexing when tokens are created, and then again during query execution when queries are parsed and the engine scans for matching tokens. A match is more likely to occur when the same analyzer is used for both indexing and queries, but you can set the analyzer for each workload independently, depending on your requirements.
 
 Query types that are *not* full text search, such as filters or fuzzy search, don't go through the analysis phase on the query side. Instead, the parser sends those strings directly to the search engine, using the pattern that you provide as the basis for the match. Typically, these query forms require whole-string tokens to make pattern matching work. To ensure whole term tokens are preserved during indexing, you might need [custom analyzers](index-add-custom-analyzers.md). For more information about when and why query terms are analyzed, see [Full text search in Azure AI Search](search-lucene-query-architecture.md).
 
@@ -60,7 +60,7 @@ A few built-in analyzers, such as **Pattern** or **Stop**, support a limited set
 
 Setting an analyzer is optional. As a general rule, try using the default standard Lucene analyzer first to see how it performs. If queries fail to return the expected results, switching to a different analyzer is often the right solution.
 
-1. If you're using a custom analyzer, add it to the search index under the "analyzer" section. For more information, see [Create Index](/rest/api/searchservice/create-index) and also [Add custom analyzers](index-add-custom-analyzers.md).
+1. If you're using a custom analyzer, add it to the search index under the "analyzer" section. For more information, see [Create Index](/rest/api/searchservice/indexes/create) and also [Add custom analyzers](index-add-custom-analyzers.md).
 
 1. When defining a field, set it's "analyzer" property to one of the following: a [built-in analyzer](index-add-custom-analyzers.md#built-in-analyzers) such as **keyword**, a [language analyzer](index-add-language-analyzers.md) such as `en.microsoft`, or a custom analyzer (defined in the same index schema).  
  
@@ -100,11 +100,11 @@ The best time to add and assign analyzers is during active development, when dro
 
 Because analyzers are used to tokenize terms, you should assign an analyzer when the field is created. In fact, assigning an analyzer or indexAnalyzer to a field that has already been physically created isn't allowed (although you can change the searchAnalyzer property at any time with no impact to the index).
 
-To change the analyzer of an existing field, you'll have to drop and recreate the entire index (you can't rebuild individual fields). For indexes in production, you can defer a rebuild by creating a new field with the new analyzer assignment, and start using it in place of the old one. Use [Update Index](/rest/api/searchservice/update-index) to incorporate the new field and [mergeOrUpload](/rest/api/searchservice/addupdate-or-delete-documents) to populate it. Later, as part of planned index servicing, you can clean up the index to remove obsolete fields.
+To change the analyzer of an existing field, you'll have to drop and recreate the entire index (you can't rebuild individual fields). For indexes in production, you can defer a rebuild by creating a new field with the new analyzer assignment, and start using it in place of the old one. Use [Update Index](/rest/api/searchservice/indexes/create-or-update) to incorporate the new field and [mergeOrUpload](/rest/api/searchservice/documents) to populate it. Later, as part of planned index servicing, you can clean up the index to remove obsolete fields.
 
-To add a new field to an existing index, call [Update Index](/rest/api/searchservice/update-index) to add the field, and [mergeOrUpload](/rest/api/searchservice/addupdate-or-delete-documents) to populate it.
+To add a new field to an existing index, call [Update Index](/rest/api/searchservice/indexes/create-or-update) to add the field, and [mergeOrUpload](/rest/api/searchservice/documents) to populate it.
 
-To add a custom analyzer to an existing index, pass the "allowIndexDowntime" flag in [Update Index](/rest/api/searchservice/update-index) if you want to avoid this error:
+To add a custom analyzer to an existing index, pass the "allowIndexDowntime" flag in [Update Index](/rest/api/searchservice/indexes/create-or-update) if you want to avoid this error:
 
 `"Index update not allowed because it would cause downtime. In order to add new analyzers, tokenizers, token filters, or character filters to an existing index, set the 'allowIndexDowntime' query parameter to 'true' in the index update request. Note that this operation will put your index offline for at least a few seconds, causing your indexing and query requests to fail. Performance and write availability of the index can be impaired for several minutes after the index is updated, or longer for very large indexes."`
 
@@ -124,7 +124,7 @@ Overriding the standard analyzer requires an index rebuild. If possible, decide 
 
 ### Inspect tokenized terms
 
-If a search fails to return expected results, the most likely scenario is token discrepancies between term inputs on the query, and tokenized terms in the index. If the tokens aren't the same, matches fail to materialize. To inspect tokenizer output, we recommend using the [Analyze API](/rest/api/searchservice/test-analyzer) as an investigation tool. The response consists of tokens, as generated by a specific analyzer.
+If a search fails to return expected results, the most likely scenario is token discrepancies between term inputs on the query, and tokenized terms in the index. If the tokens aren't the same, matches fail to materialize. To inspect tokenizer output, we recommend using the [Analyze API](/rest/api/searchservice/indexes/analyze) as an investigation tool. The response consists of tokens, as generated by a specific analyzer.
 
 <a name="examples"></a>
 

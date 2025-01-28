@@ -56,7 +56,7 @@ are no prerequisites, state that no prerequisites are needed for this tutorial.
 
 ### Create a Metrics Advisor resource
 
-To explore capabilities of Metrics Advisor, you may need to <a href="https://go.microsoft.com/fwlink/?linkid=2142156"  title="Create a Metrics Advisor resource"  target="_blank">create a Metrics Advisor resource </a> in the Azure portal to deploy your Metrics Advisor instance.
+To explore capabilities of Metrics Advisor, you might need to <a href="https://go.microsoft.com/fwlink/?linkid=2142156"  title="Create a Metrics Advisor resource"  target="_blank">create a Metrics Advisor resource </a> in the Azure portal to deploy your Metrics Advisor instance.
 
 <!-- 5. H2s
 Required. Give each H2 a heading that sets expectations for the content that follows. 

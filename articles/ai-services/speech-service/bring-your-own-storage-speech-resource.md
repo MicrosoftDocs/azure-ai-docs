@@ -2,13 +2,14 @@
 title: Set up the Bring your own storage (BYOS) Speech resource
 titleSuffix: Azure AI services
 description: Learn how to set up Bring your own storage (BYOS) Speech resource.
-author: alexeyo26
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-azurepowershell
 ms.topic: how-to
-ms.date: 1/18/2024
-ms.author: alexeyo 
+ms.date: 9/12/2024
+author: eric-urban
+ms.author: eur
+ms.reviewer: alexeyo
 ---
 
 # Set up the Bring your own storage (BYOS) Speech resource
@@ -337,6 +338,11 @@ To achieve high security and privacy of your data, you need to properly configur
 This step is **mandatory** if you didn't use Azure portal to create your BYOS-enabled Speech resource.
 
 BYOS uses the Blob storage of a Storage account. Because of this, BYOS-enabled Speech resource managed identity needs *Storage Blob Data Contributor* role assignment within the scope of BYOS-associated Storage account.
+
+> [!CAUTION]
+> Don't use custom role assignments instead of built-in *Storage Blob Data Contributor* role. 
+>
+> Failure to do so very likely will result in hard to debug service errors and issues related to accessing BYOS-associated Storage account.
 
 If you used Azure portal to create your BYOS-enabled Speech resource, you can skip the rest of this subsection. Your role assignment is already done. Otherwise, follow these steps.
 

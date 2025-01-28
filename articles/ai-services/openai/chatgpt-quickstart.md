@@ -9,7 +9,7 @@ ms.custom: build-2023, build-2023-dataai, devx-track-python, devx-track-dotnet, 
 ms.topic: quickstart
 author: mrbullwinkle
 ms.author: mbullwin
-ms.date: 08/31/2023
+ms.date: 09/20/2024
 zone_pivot_groups: openai-quickstart-new
 recommendations: false
 ---
@@ -51,6 +51,12 @@ Use this article to get started using Azure OpenAI.
 ::: zone pivot="programming-language-javascript"
 
 [!INCLUDE [JavaScript quickstart](includes/chatgpt-javascript.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [TypeScript quickstart](includes/chatgpt-typescript.md)]
 
 ::: zone-end
 

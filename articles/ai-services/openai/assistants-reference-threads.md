@@ -5,9 +5,9 @@ description: Learn how to use Azure OpenAI's Python & REST API threads with Assi
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 05/20/2024
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 09/17/2024
+author: aahill
+ms.author: aahi
 recommendations: false
 ms.custom: devx-track-python
 ---
@@ -21,7 +21,7 @@ This article provides reference documentation for Python and REST for the new As
 ## Create a thread
 
 ```http
-POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads?api-version=2024-05-01-preview
+POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads?api-version=2024-08-01-preview
 ```
 
 Create a thread.
@@ -32,6 +32,22 @@ Create a thread.
 |---  |---   |---       |--- |
 |`messages`|array| Optional | A list of messages to start the thread with. |
 |`metadata`| map | Optional | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. |
+| `tool_resources` | [object](#tool_resources-properties) | Optional | A set of resources that are made available to the assistant's tools in this thread. The resources are specific to the type of tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires a list of vector store IDs. |
+
+### tool_resources properties
+
+**code_interpreter**
+
+| Name | Type | Description | Default |
+|---  |---   |---       |--- |
+| `file_ids` | array | A list of file IDs made available to the code_interpreter tool. There can be a maximum of 20 files associated with the tool. | `[]` |
+
+**file_search** 
+
+| Name | Type | Description | Default |
+|---  |---   |---       |--- |
+| `vector_store_ids` | array | The vector store attached to this thread. There can be a maximum of 1 vector store attached to the thread. | `[]` | 
+| `vector_stores` | array | A helper to create a vector store with file_ids and attach it to this thread. There can be a maximum of 1 vector store attached to the thread. | `[]` |
 
 ### Returns
 
@@ -46,7 +62,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview",
+    api_version="2024-08-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -57,7 +73,7 @@ print(empty_thread)
 # [REST](#tab/rest)
 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads?api-version=2024-05-01-preview \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads?api-version=2024-08-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H 'Content-Type: application/json' \
   -d ''
@@ -68,7 +84,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads?api-version=2024
 ## Retrieve thread
 
 ```http
-GET https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}?api-version=2024-05-01-preview
+GET https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}?api-version=2024-08-01-preview
 ```
 
 Retrieves a thread.
@@ -93,7 +109,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview",
+    api_version="2024-08-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -104,7 +120,7 @@ print(my_thread)
 # [REST](#tab/rest)
 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}?api-version=2024-05-01-preview \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}?api-version=2024-08-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H 'Content-Type: application/json' 
 ```
@@ -114,7 +130,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}?api-
 ## Modify thread
 
 ```http
-POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}?api-version=2024-05-01-preview
+POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}?api-version=2024-08-01-preview
 ```
 
 Modifies a thread.
@@ -129,7 +145,8 @@ Modifies a thread.
 
 |Name | Type | Required | Description |
 |---  |---   |---       |--- |
-| metadata| map | Optional | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.|
+| `metadata` | map | Optional | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.|
+| `tool_resources` | [object](#tool_resources-properties) | Optional | A set of resources that are made available to the assistant's tools in this thread. The resources are specific to the type of tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires a list of vector store IDs. |
 
 ### Returns
 
@@ -144,7 +161,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview",
+    api_version="2024-08-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -161,7 +178,7 @@ print(my_updated_thread)
 # [REST](#tab/rest)
 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}?api-version=2024-05-01-preview \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/{thread_id}?api-version=2024-08-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H 'Content-Type: application/json' \
   -d '{

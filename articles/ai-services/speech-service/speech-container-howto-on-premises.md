@@ -6,8 +6,9 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/21/2024
+ms.date: 9/24/2024
 ms.author: eur
+#Customer intent: As a developer, I want to learn how to use Speech service containers with Kubernetes and Helm.
 ---
 
 # Use Speech service containers with Kubernetes and Helm

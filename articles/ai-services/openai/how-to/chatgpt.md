@@ -7,7 +7,7 @@ ms.author: mbullwin #delegenz
 ms.service: azure-ai-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python
 ms.topic: how-to
-ms.date: 04/05/2024
+ms.date: 09/05/2024
 manager: nitinme
 keywords: ChatGPT
 ---

@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 11/15/2023
+ms.date: 09/12/2024
 ms.author: eur
 ---
 
@@ -17,7 +17,9 @@ This article provides instructions on how to recover or purge an Azure AI servic
 Once you delete a resource, you won't be able to create another one with the same name for 48 hours. To create a resource with the same name, you need to purge the deleted resource.
 
 > [!NOTE]
-> The instructions in this article are applicable to both a multi-service resource and a single-service resource. A multi-service resource enables access to multiple Azure AI services using a single key and endpoint. On the other hand, a single-service resource enables access to just that specific Azure AI service for which the resource was created.
+> * The instructions in this article are applicable to both a multi-service resource and a single-service resource. A multi-service resource enables access to multiple Azure AI services using a single key and endpoint. On the other hand, a single-service resource enables access to just that specific Azure AI service for which the resource was created.
+>
+> * Charges for provisioned deployments on a deleted resource will continue until the resource is purged.  To prevent this, delete a resource's deployment before deleting the resource.
 
 ## Recover a deleted resource
 

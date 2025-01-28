@@ -1,7 +1,7 @@
 ---
 title: Submit batch run and evaluate a flow
-titleSuffix: Azure AI Studio
-description: Learn how to submit batch run and use built-in evaluation methods in prompt flow to evaluate how well your flow performs with a large dataset with Azure AI Studio.
+titleSuffix: Azure AI Foundry
+description: Learn how to submit batch run and use built-in evaluation methods in prompt flow to evaluate how well your flow performs with a large dataset with Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
@@ -16,7 +16,7 @@ author: lgayhardt
 
 # Submit a batch run and evaluate a flow
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 To evaluate how well your flow performs with a large dataset, you can submit batch run and use an evaluation method in prompt flow.
 

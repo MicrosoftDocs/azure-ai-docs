@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.topic: how-to
 author: jboback
 ms.author: jboback
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ms.custom: language-service-question-answering, mode-other
 ---
 
@@ -38,7 +38,7 @@ You can create a custom question answering project from your own content, such a
     > [!div class="mx-imgBorder"]
     > ![Enable custom question answering](../media/create-test-deploy/enable-custom-question-answering.png)
 
-5. Return to the Language Studio tab. You may need to refresh this page for it to register the change to your resource. Select **Create new project**.
+5. Return to the Language Studio tab. You might need to refresh this page for it to register the change to your resource. Select **Create new project**.
 
 6. Choose the option **I want to set the language for all projects created in this resource** > select **English** > Select **Next**.
 

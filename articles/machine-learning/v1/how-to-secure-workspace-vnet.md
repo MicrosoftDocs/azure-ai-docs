@@ -32,7 +32,7 @@ This article is part of a series on securing an Azure Machine Learning workflow.
 * [Use a firewall](../how-to-access-azureml-behind-firewall.md)
 * [API platform network isolation](../how-to-configure-network-isolation-with-v2.md)
 
-For a tutorial on creating a secure workspace, see [Tutorial: Create a secure workspace](../tutorial-create-secure-workspace.md) or [Tutorial: Create a secure workspace using a template](../tutorial-create-secure-workspace-template.md).
+For a tutorial on creating a secure workspace, see [Tutorial: Create a secure workspace](../tutorial-create-secure-workspace.md), [Bicep template](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/), or [Terraform template](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure).
 
 In this article you learn how to enable the following workspaces resources in a virtual network:
 > [!div class="checklist"]
@@ -81,7 +81,7 @@ When your Azure Machine Learning workspace is configured with a private endpoint
 When ACR is behind a virtual network, Azure Machine Learning can't use it to directly build Docker images. Instead, the compute cluster is used to build the images.
 
 > [!IMPORTANT]
-> The compute cluster used to build Docker images needs to be able to access the package repositories that are used to train and deploy your models. You may need to add network security rules that allow access to public repos, [use private Python packages](how-to-use-private-python-packages.md), or use [custom Docker images](how-to-train-with-custom-image.md) that already include the packages.
+> The compute cluster used to build Docker images needs to be able to access the package repositories that are used to train and deploy your models. You might need to add network security rules that allow access to public repos, [use private Python packages](how-to-use-private-python-packages.md), or use [custom Docker images](how-to-train-with-custom-image.md) that already include the packages.
 
 > [!WARNING]
 > If your Azure Container Registry uses a private endpoint or service endpoint to communicate with the virtual network, you cannot use a managed identity with an Azure Machine Learning compute cluster.
@@ -363,5 +363,6 @@ This article is part of a series on securing an Azure Machine Learning workflow.
 * [Use custom DNS](../how-to-custom-dns.md)
 * [Use a firewall](../how-to-access-azureml-behind-firewall.md)
 * [Tutorial: Create a secure workspace](../tutorial-create-secure-workspace.md)
-* [Tutorial: Create a secure workspace using a template](../tutorial-create-secure-workspace-template.md)
+* [Bicep template](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/)
+* [Terraform template](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure).
 * [API platform network isolation](../how-to-configure-network-isolation-with-v2.md)

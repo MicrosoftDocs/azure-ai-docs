@@ -9,10 +9,13 @@ ms.service: azure-ai-vision
 ms.custom: build-2023, build-2023-dataai
 ms.topic: how-to
 ms.date: 02/14/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
 # Shelf product recognition - custom model (preview)
+
+[!INCLUDE [model-customization-deprecation](../includes/model-customization-deprecation.md)]
 
 You can train a custom model to recognize specific retail products for use in a Product Recognition scenario. The out-of-box [Analyze](shelf-analyze.md) operation doesn't differentiate between products, but you can build this capability into your app through custom labeling and training.
 

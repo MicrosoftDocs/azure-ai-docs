@@ -7,7 +7,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ms.author: jboback
 ms.custom: language-service-ner
 ---
@@ -33,6 +33,7 @@ Examples: "10 years old", "23 months old", "sixty Y.O."
 
 ```json
 "metadata": {
+                "metadataKind": "AgeMetadata",
                 "unit": "Year",
                 "value": 10
             }

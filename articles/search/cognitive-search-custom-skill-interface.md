@@ -4,11 +4,11 @@ titleSuffix: Azure AI Search
 description: Integrate a custom skill with an AI enrichment pipeline in Azure AI Search through a web interface that defines compatible inputs and outputs in a skillset.
 author: gmndrg
 ms.author: gimondra
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 05/28/2024
+ms.date: 01/15/2025
 ---
 
 # Add a custom skill to an Azure AI Search enrichment pipeline
@@ -23,13 +23,13 @@ If you're building a custom skill, this article describes the interface you use 
 
 Building a custom skill gives you a way to insert transformations unique to your content. For example, you could build custom classification models to differentiate business and financial contracts and documents, or add a speech recognition skill to reach deeper into audio files for relevant content. For a step-by-step example, see [Example: Creating a custom skill for AI enrichment](cognitive-search-create-custom-skill-example.md).
 
-## Set the endpoint and timeout interval
+## Set the endpoint and time-out interval
 
 The interface for a custom skill is specified through the [Custom Web API skill](cognitive-search-custom-skill-web-api.md).
 
 ```json
 "@odata.type": "#Microsoft.Skills.Custom.WebApiSkill",
-"description": "This skill has a 230 second timeout",
+"description": "This skill has a 230 second time-out",
 "uri": "https://[your custom skill uri goes here]",
 "authResourceId": "[for managed identity connections, your app's client ID goes here]",
 "timeout": "PT230S",
@@ -45,7 +45,7 @@ If instead your function or app uses Azure managed identities and Azure roles fo
 
 + Your [custom skill definition](cognitive-search-custom-skill-web-api.md) must include an `authResourceId` property. This property takes an application (client) ID, in a [supported format](/azure/active-directory/develop/security-best-practices-for-app-registration#application-id-uri): `api://<appId>`.
 
-By default, the connection to the endpoint times out if a response isn't returned within a 30-second window (`PT30S`). The indexing pipeline is synchronous and indexing will produce a timeout error if a response isn't received in that time frame. You can increase the interval to a maximum value of 230 seconds by setting the timeout parameter (`PT230S`).
+By default, the connection to the endpoint times out if a response isn't returned within a 30-second window (`PT30S`). The indexing pipeline is synchronous and indexing will produce a time-out error if a response isn't received in that time frame. You can increase the interval to a maximum value of 230 seconds by setting the `timeout` parameter (`PT230S`).
 
 ## Format Web API inputs
 

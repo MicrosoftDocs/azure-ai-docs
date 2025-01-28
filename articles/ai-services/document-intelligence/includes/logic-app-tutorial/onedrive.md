@@ -1,15 +1,14 @@
 ---
 author: laujan
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: include
-ms.date: 07/24/2023
+ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ---
 
 <!-- markdownlint-disable MD041 -->
+<!-- markdownlint-disable MD029 -->
 
 ## Prerequisites
 
@@ -31,7 +30,7 @@ To complete this tutorial, you need the following resources:
 
 * **A Document Intelligence resource**.  Once you have your Azure subscription, [create a Document Intelligence resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) in the Azure portal to get your key and endpoint. If you have an existing Document Intelligence resource, navigate directly to your resource page. You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production.
 
-  * After the resource deploys, select **Go to resource**. Copy the **Keys and Endpoint** values from your resource in the Azure portal and paste them in a convenient location, such as *Microsoft Notepad*. You need the key and endpoint values to connect your application to the Document Intelligence API. For more information, *see* [**create a Document Intelligence resource**](../../create-document-intelligence-resource.md).
+  * After the resource deploys, select **Go to resource**. Copy the **Keys and Endpoint** values from your resource in the Azure portal and paste them in a convenient location, such as *Microsoft Notepad*. You need the key and endpoint values to connect your application to the Document Intelligence API. For more information, *see* [**create a Document Intelligence resource**](../../how-to-guides/create-document-intelligence-resource.md).
 
       :::image border="true" type="content" source="../../media/containers/keys-and-endpoint.png" alt-text="Screenshot showing how to access resource key and endpoint URL.":::
 
@@ -119,7 +118,7 @@ Now that you have the Logic App connector resource set up and configured, let's 
 
     :::image type="content" source="../../media/logic-apps-tutorial/when-file-created.png" alt-text="Screenshot of the When a file is created window.":::
 
-:::moniker range=">=doc-intel-3.0.0"
+ :::moniker range=">=doc-intel-3.0.0"
 
 4. Next, we're going to add a new step to the workflow. Select the **➕ New step** button underneath the newly created OneDrive node.
 
@@ -178,16 +177,16 @@ Now that you have the Logic App connector resource set up and configured, let's 
 
 1. We're going to use the following expression to complete some of the fields:
 
-    ```powerappsfl
-
-      items('For_each')?['fields']?['FIELD-NAME']?['content']
-    ```
+```powerappsfl
+     
+       items('For_each')?['fields']?['FIELD-NAME']?['content']
+```
 
 1. In order to access a specific field, we select the **add the dynamic content** button and select the **Expression** tab.
 
     :::image type="content" source="../../media/logic-apps-tutorial/function-expression-field.png" alt-text="Screenshot of the expression function field.":::
 
-1. In  the **ƒx** box, copy and paste the above formula and replace **FIELD-NAME** with the name of the field we want to extract. For the full list of available fields, refer to the concept page for the given API. In this case, we use the [prebuilt-invoice model field extraction values](../../concept-invoice.md#field-extraction).
+1. In  the **ƒx** box, copy and paste the above formula and replace **FIELD-NAME** with the name of the field we want to extract. For the full list of available fields, refer to the concept page for the given API. In this case, we use the [prebuilt-invoice model field extraction values](../../prebuilt/invoice.md#field-extraction).
 
 1. We're almost done! Make the following changes to the following fields:
 
@@ -195,40 +194,40 @@ Now that you have the Logic App connector resource set up and configured, let's 
 
     * **Subject**. Enter ***Invoice received from:*** and then add the following expression:
 
-        ```powerappsfl
-
-          items('For_each')?['fields']?['VendorName']?['content']
-        ```
+     ```powerappsfl
+    
+              items('For_each')?['fields']?['VendorName']?['content']
+     ```
 
     * **Body**. We're going to add specific information about the invoice:
 
       * Type ***Invoice ID:*** and, using the same method as before, append the following expression:
 
-         ```powerappsfl
-
-         items('For_each')?['fields']?['InvoiceId']?['content']
-         ```
+       ```powerappsfl
+     
+              items('For_each')?['fields']?['InvoiceId']?['content']
+       ```
 
       * On a new line type ***Invoice due date:*** and append the following expression:
 
-        ```powerappsfl
-
-          items('For_each')?['fields']?['DueDate']?['content']
-        ```
+      ```powerappsfl
+     
+               items('For_each')?['fields']?['DueDate']?['content']
+      ```
 
       * Type ***Amount due:*** and append the following expression:
 
-        ```powerappsfl
-
-          items('For_each')?['fields']?['AmountDue']?['content']
-        ```
+      ```powerappsfl
+     
+               items('For_each')?['fields']?['AmountDue']?['content']
+      ```
 
       * Lastly, because the amount due is an important number, we also want to send the confidence score for this extraction in the email. To do this type ***Amount due (confidence):***  and append the following expression:
 
-        ```powerappsfl
-
-          items('For_each')?['fields']?['AmountDue']?['confidence']
-        ```
+      ```powerappsfl
+     
+               items('For_each')?['fields']?['AmountDue']?['confidence']
+      ```
 
     * When you're done, the window looks similar to the following image:
 
@@ -245,7 +244,7 @@ Now that you have the Logic App connector resource set up and configured, let's 
 
 :::moniker-end
 
-:::moniker range="doc-intel-2.1.0"
+ :::moniker range="doc-intel-2.1.0"
 
 4. Next, we're going to add a new step to the workflow. Select the **➕ New step** button underneath the newly created OneDrive node.
 

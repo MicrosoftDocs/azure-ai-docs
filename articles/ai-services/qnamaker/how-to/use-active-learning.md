@@ -142,7 +142,7 @@ Active learning is off by default. Turn it on to see suggested questions. After 
 1. Find the QnA Maker service then toggle **Active Learning**.
 
     > [!div class="mx-imgBorder"]
-    > [![On the Service settings page, toggle on Active Learning feature. If you are not able to toggle the feature, you may need to upgrade your service.](../media/improve-knowledge-base/turn-active-learning-on-at-service-setting.png)](../media/improve-knowledge-base/turn-active-learning-on-at-service-setting.png#lightbox)
+    > [![On the Service settings page, toggle on Active Learning feature. If you are not able to toggle the feature, you might need to upgrade your service.](../media/improve-knowledge-base/turn-active-learning-on-at-service-setting.png)](../media/improve-knowledge-base/turn-active-learning-on-at-service-setting.png#lightbox)
 
     > [!Note]
     > The exact version on the preceding image is shown as an example only. Your version may be different.

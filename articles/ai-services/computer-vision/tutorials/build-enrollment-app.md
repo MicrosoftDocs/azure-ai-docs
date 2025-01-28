@@ -12,6 +12,7 @@ ms.custom:
 ms.topic: tutorial
 ms.date: 02/14/2024
 ms.author: pafarley
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Build a React Native app to add users to a Face service
@@ -68,7 +69,7 @@ The sample app is written using JavaScript and the React Native framework. It ca
 
 Now that you've set up the sample app, you can tailor it to your own needs.
 
-For example, you may want to add situation-specific information on your consent page:
+For example, you might want to add situation-specific information on your consent page:
 
 > [!div class="mx-imgBorder"]
 > ![app consent page](../media/enrollment-app/1-consent-1.jpg)

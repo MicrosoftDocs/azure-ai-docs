@@ -24,6 +24,8 @@ The Speech SDK for Python supports the following distributions on the x64 and AR
 
 - Ubuntu 20.04/22.04/24.04
 - Debian 11/12
+- Amazon Linux 2023
+- Azure Linux 3.0
 
 [!INCLUDE [Linux distributions](linux-distributions.md)]
 

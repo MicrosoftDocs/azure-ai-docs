@@ -5,11 +5,11 @@ description: Connect an Azure AI Search knowledge store with Power BI for analys
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 03/18/2024
+ms.date: 12/10/2024
 ---
 
 # Connect a knowledge store with Power BI

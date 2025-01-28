@@ -8,7 +8,7 @@ manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/06/2024
+ms.date: 09/26/2024
 ms.author: lajanuar
 ---
 
@@ -266,11 +266,14 @@ Normally, the Translator service retains profanity that is present in the source
 If you want to avoid getting profanity in the translation, regardless of the presence of profanity in the source text, you can use the profanity filtering option. The option allows you to choose whether you want to see profanity deleted, marked with appropriate tags (giving you the option to add your own post-processing), or with no action taken. The accepted values of `ProfanityAction` are `Deleted`, `Marked`, and `NoAction` (default).
 
 
-| ProfanityAction | Action |
-| --- | --- |
-| `NoAction` | NoAction is the default behavior. Profanity passes from source to target.  <br><br>**Example Source (Japanese)**: 彼はジャッカスです。  <br>**Example Translation (English)**: H&#8203;e's a jack---. |
-| `Deleted` | Profane words are removed from the output without replacement.  <br>  <br>**Example Source (Japanese)**: 彼はジャッカスです。  <br>**Example Translation (English)**: H&#8203;e's a** |
-| `Marked` | A marker replaces the marked word in the output. The marker depends on the `ProfanityMarker` parameter.  <br>  <br>For `ProfanityMarker=Asterisk`, profane words are replaced with `***`:  <br>**Example Source (Japanese)**: 彼はジャッカスです。  <br>**Example Translation (English)**: H&#8203;e's a \\*\\*\\*.  <br>  <br>For `ProfanityMarker=Tag`, profane words are surrounded by XML tags &lt;profanity&gt; and &lt;/profanity&gt;:  <br>**Example Source (Japanese)**: 彼はジャッカスです。  <br>**Example Translation (English)**: H&#8203;e's a &lt;profanity&gt;jack---&lt;/profanity&gt;. |
+| Accepted ProfanityAction value | ProfanityMarker value | Action | Example: Source - Spanish| Example: Target - English|
+|:--|:--|:--|:--|:--|
+| NoAction|  | Default. Same as not setting the option. Profanity passes from source to target. | `Que coche de` \<insert-profane-word> | What a \<insert-profane-word> car  |
+| Marked                | Asterisk              | Asterisks replace profane words (default).                               | `Que coche de` \<insert-profane-word> | What a *** car      |
+| Marked                | Tag                   | Profane words are surrounded by XML tags \<profanity\>...\</profanity>.          | `Que coche de` \<insert-profane-word> | What a \<profanity> \<insert-profane-word> \</profanity> car |
+| Deleted               |                       | Profane words are removed from the output without replacement.                   | `Que coche de` \<insert-profane-word> | What a car        |
+
+In the above examples, **\<insert-profane-word>** is a placeholder for profane words.
 
 For example:
 

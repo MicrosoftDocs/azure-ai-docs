@@ -2,15 +2,15 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 04/25/2022
+ms.date: 9/9/2024
 ms.author: eur
 ---
 
 ## Upload the audio
 
-Before asynchronous transcription can be performed, you need to send the audio to Meeting Transcription Service using the Speech SDK.
+Before asynchronous conversation transcription can be performed, you need to send the audio to the conversation transcription service using the Speech SDK.
 
-This example code shows how to create meeting transcriber for asynchronous-only mode. In order to stream audio to the transcriber, you will need to add audio streaming code derived from [Transcribe meetings in real-time with the Speech SDK](../../../../how-to-use-meeting-transcription.md). Refer to the **Limitations** section of that topic to see the supported platforms and languages APIs.
+This example code shows how to use conversation transcription in asynchronous-only mode. In order to stream audio to the transcriber, you need to add audio streaming code derived from the [real-time conversation transcription quickstart](../../../../how-to-use-meeting-transcription.md). Refer to the **Limitations** section of that topic to see the supported platforms and languages APIs.
 
 ```java
 // Create the speech config object
@@ -124,7 +124,7 @@ You can obtain **remote-meeting** by editing your pom.xml file as follows.
 
 ### Sample transcription code
 
-After you have the `meetingId`, create a remote meeting transcription client **RemoteMeetingTranscriptionClient** at the client application to query the status of the asynchronous transcription. Use **GetTranscriptionOperation** method in **RemoteMeetingTranscriptionClient** to get a [PollerFlux](https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/core/azure-core/src/main/java/com/azure/core/util/polling/PollerFlux.java) object. The PollerFlux object will have information about the remote operation status **RemoteMeetingTranscriptionOperation** and the final result **RemoteMeetingTranscriptionResult**. Once the operation has finished, get **RemoteMeetingTranscriptionResult** by calling **getFinalResult** on a [SyncPoller](https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/core/azure-core/src/main/java/com/azure/core/util/polling/SyncPoller.java). In this code we simply print the result contents to system output.
+After you have the `meetingId`, create a remote meeting transcription client **RemoteMeetingTranscriptionClient** at the client application to query the status of the asynchronous transcription. Use **GetTranscriptionOperation** method in **RemoteMeetingTranscriptionClient** to get a [PollerFlux](https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/core/azure-core/src/main/java/com/azure/core/util/polling/PollerFlux.java) object. The PollerFlux object has information about the remote operation status **RemoteMeetingTranscriptionOperation** and the final result **RemoteMeetingTranscriptionResult**. Once the operation is finished, get **RemoteMeetingTranscriptionResult** by calling **getFinalResult** on a [SyncPoller](https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/core/azure-core/src/main/java/com/azure/core/util/polling/SyncPoller.java). In this code, we print the result contents to system output.
 
 ```java
 // Create the speech config object
