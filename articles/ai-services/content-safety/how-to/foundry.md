@@ -112,4 +112,4 @@ For more information, see the [Custom categories conceptual guide](/azure/ai-ser
 
 ## Next step
 
-To use Azure AI Content Safety features with your Generative AI models, see the [Content filtering](/azure/ai-studio/concepts/content-filtering.md) guide.
+To use Azure AI Content Safety features with your Generative AI models, see the [Content filtering](/azure/ai-studio/concepts/content-filtering) guide.
