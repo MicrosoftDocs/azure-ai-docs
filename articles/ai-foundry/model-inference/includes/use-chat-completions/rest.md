@@ -28,10 +28,10 @@ To use chat completion models in your application, you need:
 
 ## Use chat completions
 
-To use the text embeddings, use the route `/chat/completions` along with your credential indicated in `api-key`. `Authorization` header is also supported with the format `Bearer <key>`.
+To use the text embeddings, use the route `/chat/completions` appended to the base URL along with your credential indicated in `api-key`. `Authorization` header is also supported with the format `Bearer <key>`.
 
 ```http
-POST /chat/completions
+POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
 Content-Type: application/json
 api-key: <key>
 ```
@@ -39,7 +39,7 @@ api-key: <key>
 If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header:
 
 ```http
-POST /chat/completions
+POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
 Content-Type: application/json
 Authorization: Bearer <token>
 ```
@@ -287,8 +287,7 @@ Some models can create JSON outputs. Set `response_format` to `json_object` to e
 The Azure AI Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
 
 ```http
-POST /chat/completions HTTP/1.1
-Host: <ENDPOINT_URI>
+POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
 Authorization: Bearer <TOKEN>
 Content-Type: application/json
 extra-parameters: pass-through
@@ -565,7 +564,7 @@ Now, create a chat completion request with the image:
 
 ```json
 {
-    "model": "mistral-large-2407",
+    "model": "phi-3.5-vision-instruct",
     "messages": [
         {
             "role": "user",
@@ -597,7 +596,7 @@ The response is as follows, where you can see the model's usage statistics:
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718726686,
-    "model": "mistral-large-2407",
+    "model": "phi-3.5-vision-instruct",
     "choices": [
         {
             "index": 0,

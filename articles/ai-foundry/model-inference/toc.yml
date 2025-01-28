@@ -34,7 +34,7 @@ items:
       href: ./concepts/deployment-types.md
     - name: Model versions
       href: ./concepts/model-versions.md
-    - name: Safety and compliance
+    - name: Responsible AI
       items:
       - name: Content filtering
         href: ./concepts/content-filter.md
@@ -48,12 +48,18 @@ items:
     href: ./how-to/github/create-model-deployments.md
   - name: Connect your AI project
     href: ./how-to/configure-project-connection.md
-  - name: Safety and compliance
+  - name: Responsible AI
     items:
       - name: Configure content filtering
         href: ./how-to/configure-content-filters.md
       - name: Use blocklists
         href: ./how-to/use-blocklists.md
+  - name: Security & Governance
+    items:
+      - name: Configure key-less authentication
+        href: ./how-to/configure-entra-id.md
+      - name: Control model deployment with custom policies
+        href: /azure/ai-studio/how-to/custom-policy-model-deployment?context=/azure/ai-foundry/model-inference/context/context
   - name: Manage cost
     href: ./how-to/manage-costs.md
   - name: Quotas and limits

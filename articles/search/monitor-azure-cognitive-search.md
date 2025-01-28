@@ -1,7 +1,7 @@
 ---
 title: Monitor Azure AI Search
 description: Start here to learn how to monitor Azure AI Search.
-ms.date: 02/15/2024
+ms.date: 01/27/2025
 ms.custom: horz-monitor
 ms.topic: conceptual
 author: HeidiSteen

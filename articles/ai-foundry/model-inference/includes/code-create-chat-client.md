@@ -26,7 +26,7 @@ from azure.ai.inference import ChatCompletionsClient
 from azure.core.credentials import AzureKeyCredential
 
 model = ChatCompletionsClient(
-    endpoint=os.environ["AZUREAI_ENDPOINT_URL"],
+    endpoint="https://<resource>.services.ai.azure.com/models",
     credential=AzureKeyCredential(os.environ["AZUREAI_ENDPOINT_KEY"]),
 )
 ```
@@ -49,7 +49,7 @@ import { isUnexpected } from "@azure-rest/ai-inference";
 import { AzureKeyCredential } from "@azure/core-auth";
 
 const client = new ModelClient(
-    process.env.AZUREAI_ENDPOINT_URL, 
+    "https://<resource>.services.ai.azure.com/models", 
     new AzureKeyCredential(process.env.AZUREAI_ENDPOINT_KEY)
 );
 ```
@@ -76,7 +76,7 @@ Then, you can use the package to consume the model. The following example shows 
 
 ```csharp
 ChatCompletionsClient client = new ChatCompletionsClient(
-    new Uri(Environment.GetEnvironmentVariable("AZURE_INFERENCE_ENDPOINT")),
+    new Uri("https://<resource>.services.ai.azure.com/models"),
     new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL"))
 );
 ```
@@ -114,7 +114,7 @@ Use the reference section to explore the API design and which parameters are ava
 __Request__
 
 ```HTTP/1.1
-POST models/chat/completions?api-version=2024-04-01-preview
+POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
 Authorization: Bearer <bearer-token>
 Content-Type: application/json
 ```
