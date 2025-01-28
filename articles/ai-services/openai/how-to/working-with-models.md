@@ -284,7 +284,7 @@ curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-0
 }
 ```
 ## Managing models on provisioned deployment types
-Provisioned deployments support different 
+Provisioned deployments support different model management practices than Standard deployments. Provisioned deployment model management practices are intended to give you the greatest control over when and how you migrate between model versions and model families. 
 
 ## Next steps
 
