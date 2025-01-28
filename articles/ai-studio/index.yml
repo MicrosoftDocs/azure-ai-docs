@@ -53,11 +53,11 @@ landingContent:
             url: how-to/benchmark-model-in-catalog.md
       
   # Card
-  - title: Azure Foundry SDK
+  - title: Azure AI Foundry SDK
     linkLists:
       - linkListType: how-to-guide
         links:
-          - text: Get started with the Azure Foundry SDKs
+          - text: Get started with the Azure AI Foundry SDKs
             url: how-to/develop/sdk-overview.md
           - text: Work with Azure AI Foundry projects in VS Code
             url: how-to/develop/vscode.md
