@@ -191,9 +191,49 @@
             "redirect_document_id": false
         },
         {
-            "source_path_from_root": "/articles/ai-studio/how-to/data-image-add.md",
-            "redirect_url": "/azure/ai-studio/quickstarts/multimodal-vision",
+            "source_path_from_root": "/articles/ai-studio/ai-services/model-inference.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/overview",
             "redirect_document_id": false
-        }
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/ai-services/how-to/quickstart-github-models.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/how-to/quickstart-github-models",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/ai-services/how-to/create-model-deployments.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/how-to/create-model-deployments",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/ai-services/how-to/content-safety.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/how-to/configure-content-filters",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/ai-services/concepts/quotas-limits.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/quotas-limits",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/ai-services/concepts/endpoints.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/concepts/endpoints",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/ai-services/concepts/deployment-types.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/concepts/deployment-types",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/ai-services/faq.yml",
+            "redirect_url": "/azure/ai-foundry/model-inference/faq",
+            "redirect_document_id": false
+          },
+          {
+              "source_path_from_root": "/articles/ai-studio/how-to/data-image-add.md",
+              "redirect_url": "/azure/ai-studio/quickstarts/multimodal-vision",
+              "redirect_document_id": false
+          }
     ]
 }

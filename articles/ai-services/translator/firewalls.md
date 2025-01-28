@@ -1,5 +1,5 @@
 ---
-title: Translate behind firewalls - Translator
+title: Use Azure AI Translator to translate behind firewalls.
 titleSuffix: Azure AI services
 description: Azure AI Translator can translate behind firewalls using either domain-name or IP filtering.
 #services: cognitive-services
@@ -7,13 +7,13 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 07/09/2024
+ms.date: 01/27/2025
 ms.author: lajanuar
 ---
 
-# Use Translator behind firewalls
+# Use Azure AI Translator behind firewalls
 
-Translator can translate behind firewalls using either [Domain-name](/azure/firewall/dns-settings#dns-proxy-configuration) or [IP filtering](#configure-firewall). Domain-name filtering is the preferred method.
+Azure AI Translator can translate behind firewalls using either [Domain-name](/azure/firewall/dns-settings#dns-proxy-configuration) or [IP filtering](#configure-firewall). Domain-name filtering is the preferred method.
 
 If you still require IP filtering, you can get the [IP addresses details using service tag](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files). Translator is under the **CognitiveServicesManagement** service tag.
 

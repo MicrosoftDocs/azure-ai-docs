@@ -13,16 +13,12 @@ manager: nitinme
 # Use vision-enabled chat models
 
 
-Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. The current vision-enabled models are GPT-4 Turbo with Vision, GPT-4o, and GPT-4o-mini.
+Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. The current vision-enabled models are [o1](./reasoning.md), GPT-4o, and GPT-4o-mini, GPT-4 Turbo with Vision.
 
 The vision-enabled models answer general questions about what's present in the images you upload.
 
 > [!TIP]
 > To use vision-enabled models, you call the Chat Completion API on a supported model that you have deployed. If you're not familiar with the Chat Completion API, see the [Vision-enabled chat how-to guide](/azure/ai-services/openai/how-to/chatgpt?tabs=python&pivots=programming-language-chat-completions).
-
-## GPT-4 Turbo model upgrade
-
-[!INCLUDE [GPT-4 Turbo](../includes/gpt-4-turbo.md)]
 
 ## Call the Chat Completion APIs
 
@@ -38,8 +34,6 @@ Send a POST request to `https://{RESOURCE_NAME}.openai.azure.com/openai/deployme
 **Required headers**: 
 - `Content-Type`: application/json 
 - `api-key`: {API_KEY} 
-
-
 
 **Body**: 
 The following is a sample request body. The format is the same as the chat completions API for GPT-4, except that the message content can be an array containing text and images (either a valid HTTP or HTTPS URL to an image, or a base-64-encoded image). 
@@ -367,6 +361,11 @@ Every response includes a `"finish_reason"` field. It has the following possible
     curl.exe -v -X GET "https://<YOUR_ENDPOINT_URL>/computervision/retrieval/indexes/my-video-index/ingestions?api-version=2023-05-01-preview&$top=20" -H "ocp-apim-subscription-key: <YOUR_SUBSCRIPTION_KEY>"
     ```
 -->
+
+## GPT-4 Turbo model upgrade
+
+[!INCLUDE [GPT-4 Turbo](../includes/gpt-4-turbo.md)]
+
 
 ## Next steps
 
