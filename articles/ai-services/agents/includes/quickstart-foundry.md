@@ -9,8 +9,10 @@ ms.date: 01/21/2025
 
 ## Prerequisites
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+<!--
 - An [Azure AI hub resource](../../../ai-studio/how-to/create-azure-ai-resource.md) with a model deployed. For more information about model deployment, see the [resource deployment guide](../../../ai-studio/how-to/create-azure-ai-resource.md).
 - An [Azure AI project](../../../ai-studio/how-to/create-projects.md) in Azure AI Foundry portal.
+-->
 - Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio.md) assigned.
 
 ## Choose basic or standard agent setup
@@ -22,6 +24,12 @@ Before getting started, determine if you want to perform a basic agent setup or 
 **Standard Setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage. Standard setup can only be performed using an automated bicep template.
 
 ## [Basic setup (AI Foundry)](#tab/basic-foundry)
+
+## Create a hub in Azure AI Foundry portal
+
+To create a new hub, you need either the Owner or Contributor role on the resource group or on an existing hub. If you're unable to create a hub due to permissions, reach out to your administrator.
+
+[!INCLUDE [Create Azure AI Foundry hub](../../../ai-studio/includes/create-hub.md)] 
 
 ## Use the Azure AI Foundry portal
 
@@ -41,7 +49,9 @@ Before getting started, determine if you want to perform a basic agent setup or 
 
 ## [Basic setup (Bicep template)](#tab/basic-template)
 
-## Use a bicep template
+### Use a bicep template
+
+If you want to set up your hub, project, and deploy a model in an automated way, you can use the following bicep template.
 
 | Description and Autodeploy  |  Diagram (click to zoom in) |
 | -----------------------------------------------| -----------------------|
@@ -49,7 +59,9 @@ Before getting started, determine if you want to perform a basic agent setup or 
 
 ## [Standard setup (Bicep template)](#tab/standard-template)
 
-## Bicep deployment
+### Bicep deployment
+
+If you want to set up your hub, project, and deploy a model in an automated way, you can use the following bicep template.
 
 | Description and Autodeploy  |  Diagram (click to zoom in) |
 | -----------------------------------------------| -----------------------|
