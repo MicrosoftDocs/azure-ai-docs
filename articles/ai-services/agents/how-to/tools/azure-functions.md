@@ -35,6 +35,12 @@ The following examples highlight how to use the Azure AI Agent Service function 
 
 You can find the template and code used here on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python).
 
+## Usage support
+
+|Azure AI foundry support  | Python SDK |	C# SDK | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|
+|  | ✔️ |  | | ✔️ |
+
 ### Create Azure resources for local and cloud dev-test
 
 Once you have your Azure subscription, run the following in a new terminal window to create Azure OpenAI and other resources needed:
@@ -129,11 +135,6 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 
 To use all features of function calling including parallel functions, you need to use a model that was released after November 6, 2023.
 
-## Usage support
-
-|Azure AI foundry support  | Python SDK |	C# SDK | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|
-|  | ✔️ |  | | ✔️ |
 
 ## Define a function for your agent to call
 
