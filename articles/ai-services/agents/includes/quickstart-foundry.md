@@ -9,10 +9,6 @@ ms.date: 01/21/2025
 
 ## Prerequisites
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-<!--
-- An [Azure AI hub resource](../../../ai-studio/how-to/create-azure-ai-resource.md) with a model deployed. For more information about model deployment, see the [resource deployment guide](../../../ai-studio/how-to/create-azure-ai-resource.md).
-- An [Azure AI project](../../../ai-studio/how-to/create-projects.md) in Azure AI Foundry portal.
--->
 - Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio.md) assigned.
 
 ## Basic agent setup support
@@ -23,7 +19,7 @@ Before getting started, determine if you want to perform a basic agent setup or 
 
 **Standard Setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage. Standard setup can only be performed using an automated bicep template.
 
-> [IMPORTANT]
+> [!IMPORTANT]
 > The Azure AI Foundry portal only supports basic setup at this time. If you want to perform a standard agent setup, use the other tabs at the top of the article to learn about configuring a standard agent setup.  
 
 ## Create a hub and project in Azure AI Foundry portal
@@ -46,7 +42,7 @@ To create a project in Azure AI Foundry, follow these steps:
 
     :::image type="content" source="../../../ai-studio/media/how-to/projects/projects-create-details.png" alt-text="Screenshot of the project details page within the create project dialog." lightbox="../../../ai-studio/media/how-to/projects/projects-create-details.png":::
 
-1. Select Create.
+1. Select **Create**.
 
 ## Deploy a model
 
