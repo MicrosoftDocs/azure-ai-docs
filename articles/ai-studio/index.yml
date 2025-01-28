@@ -35,7 +35,7 @@ landingContent:
           - text: Evaluation and monitoring metrics for generative AI
             url: concepts/evaluation-metrics-built-in.md
           - text: Model deployment options
-            url: concepts/deployments-overview
+            url: concepts/deployments-overview.md
 
   # Card
   - title: Get started
