@@ -15,7 +15,7 @@ ms.date: 01/21/2025
 -->
 - Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio.md) assigned.
 
-## Choose basic or standard agent setup
+## Basic agent setup support
 
 Before getting started, determine if you want to perform a basic agent setup or a standard agent setup. 
 
@@ -23,7 +23,8 @@ Before getting started, determine if you want to perform a basic agent setup or 
 
 **Standard Setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage. Standard setup can only be performed using an automated bicep template.
 
-## [Basic setup (AI Foundry)](#tab/basic-foundry)
+> [IMPORTANT]
+> The Azure AI Foundry portal only supports basic setup at this time. If you want to perform a standard agent setup, use the other tabs at the top of the article to learn about configuring a standard agent setup.  
 
 ## Create a hub and project in Azure AI Foundry portal
 
@@ -63,30 +64,7 @@ To create a project in Azure AI Foundry, follow these steps:
 
     :::image type="content" source="../media/quickstart/model-list.png" alt-text="A screenshot of the available models." lightbox="../media/quickstart/model-list.png"::: 
 
-## [Basic setup (Bicep template)](#tab/basic-template)
-
-### Use a bicep template
-
-If you want to set up your hub, project, and deploy a model in an automated way, you can use the following bicep template.
-
-| Description and Autodeploy  |  Diagram (click to zoom in) |
-| -----------------------------------------------| -----------------------|
-| Deploy a basic agent setup that uses Managed Identity for authentication. Resources for the AI hub, AI project, storage account, and AI Services are created for you. <br><br> The AI Services account is connected to your project and hub, and a gpt-4o-mini model is deployed in the eastus region. A Microsoft-managed key vault is used by default. <br><br> [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.azure-ai-agent-service%2Fbasic-agent-identity%2Fazuredeploy.json) |  :::image type="content" source="../media/quickstart/basic-agent-setup-resources.png" alt-text="An architecture diagram for basic agent setup." lightbox="../media/quickstart/basic-agent-setup-resources.png"::: |
-
-## [Standard setup (Bicep template)](#tab/standard-template)
-
-### Bicep deployment
-
-If you want to set up your hub, project, and deploy a model in an automated way, you can use the following bicep template.
-
-| Description and Autodeploy  |  Diagram (click to zoom in) |
-| -----------------------------------------------| -----------------------|
-| Deploy a standard agent setup that uses Managed Identity for authentication. <br><br> Resources for the AI hub, AI project, key vault, storage account, AI Services, and AI Search are created for you. <br><br>The AI Services, AI Search, key vault, and storage account are connected to your project and hub. A gpt-4o-mini model is deployed in eastus region. <br><br> [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Frefs%2Fheads%2Fmaster%2Fquickstarts%2Fmicrosoft.azure-ai-agent-service%2Fstandard-agent%2Fazuredeploy.json) | :::image type="content" source="../media/quickstart/standard-agent-setup-resources.png" alt-text="An architecture diagram for standard agent setup." lightbox="../media/quickstart/standard-agent-setup-resources.png"::: |
-
----
-
 ## Use the agent playground
-
 
 The **Agents playground** allows you to explore, prototype, and test agents without needing to run any code. From this page, you can quickly iterate and experiment with new ideas.
 
@@ -99,8 +77,6 @@ The **Agents playground** allows you to explore, prototype, and test agents with
     > [!TIP]
     > Your agent can access multiple [**tools**](../how-to/tools/overview.md) that extend its capabilities, such as the ability to search the web with Bing, run code, and more. In the **Setup** pane, scroll down to **knowledge** and **action** and select **Add** to see the tools available for use. 
     > :::image type="content" source="../media/quickstart/portal-tools.png" alt-text="A screenshot of the Agents tool choices." lightbox="../media/quickstart/portal-tools.png":::
-
-    
 
 ## See also
 
