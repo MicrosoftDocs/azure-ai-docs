@@ -218,25 +218,25 @@ items:
     - name: Azure Image Analysis
       items:
       - name: What is Image Analysis?
-        href: /azure/ai-services/computer-vision/overview-image-analysis
+        href: /azure/ai-services/computer-vision/overview-image-analysis?context=/azure/ai-studio/context/context
       - name: Quickstart
-        href: /azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library-40
+        href: /azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library-40?context=/azure/ai-studio/context/context
       - name: Optical Character Recognition concepts
-        href: /azure/ai-services/computer-vision/concept-ocr
+        href: /azure/ai-services/computer-vision/concept-ocr?context=/azure/ai-studio/context/context
       - name: Image captioning concepts
-        href: /azure/ai-services/computer-vision/concept-describe-images-40
+        href: /azure/ai-services/computer-vision/concept-describe-images-40?context=/azure/ai-studio/context/context
     - name: Azure AI Face
       items:
       - name: What is Azure AI Face service?
-        href: /azure/ai-services/computer-vision/overview-identity
+        href: /azure/ai-services/computer-vision/overview-identity?context=/azure/ai-studio/context/context
       - name: Quickstart 
-        href: /azure/ai-services/computer-vision/quickstarts-sdk/identity-client-library
+        href: /azure/ai-services/computer-vision/quickstarts-sdk/identity-client-library?context=/azure/ai-studio/context/context
       - name: Face detection concepts
-        href: /azure/ai-services/computer-vision/concept-face-detection
+        href: /azure/ai-services/computer-vision/concept-face-detection?context=/azure/ai-studio/context/context
       - name: Face recognition concepts
-        href: /azure/ai-services/computer-vision/concept-face-recognition
+        href: /azure/ai-services/computer-vision/concept-face-recognition?context=/azure/ai-studio/context/context
       - name: Liveness detection tutorial
-        href: /azure/ai-services/computer-vision/tutorials/liveness
+        href: /azure/ai-services/computer-vision/tutorials/liveness?context=/azure/ai-studio/context/context
 - name: Solutions and optimizations
   items:
   - name: Agents
