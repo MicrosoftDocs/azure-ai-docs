@@ -6,8 +6,9 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-custom-vision
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 01/29/2025
 ms.author: pafarley
+#customer intent: As a user, I want to configure Azure role-based access control for Custom Vision projects so that I can manage individual access to Azure resources.
 ---
 
 # Azure role-based access control
@@ -40,9 +41,9 @@ Use this table to determine access needs for your Custom Vision resources.
 |`Cognitive Services Custom Vision Deployment`     | Ability to publish, unpublish, or export the models. Deployers can view projects but can't update a project, training images, or tags.        |
 |`Cognitive Services Custom Vision Reader`     | Ability to view projects. Readers can't make any changes.        |
 
-## Next steps
+## Next step
 
 Follow a quickstart to get started creating and training a Custom Vision project.
 
-* [Build a classifier](getting-started-build-a-classifier.md)
-* [Build an object detector](get-started-build-detector.md)
+> [!div class="nextstepaction"]
+> [Build a classifier](getting-started-build-a-classifier.md)
