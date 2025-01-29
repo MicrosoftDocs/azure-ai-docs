@@ -8,7 +8,7 @@ ms.topic: how-to
 ms.author: franksolomon
 author: fbsolo-ms1
 ms.reviewer: yogipandey
-ms.date: 12/06/2023
+ms.date: 01/24/2025
 ms.custom: template-concept
 ---
 
@@ -16,12 +16,12 @@ ms.custom: template-concept
 
 ## Understanding the point-in-time join
 
-A *point-in-time*, or temporal, join helps address data leakage. In the model training process, [Data leakage](https://en.wikipedia.org/wiki/Leakage_(machine_learning)), or target leakage, involves the use of information that isn't expected to be available at prediction time. This would cause the predictive scores (metrics) to overestimate the utility of the model when the model runs in a production environment. [This article](https://www.kaggle.com/code/alexisbcook/data-leakage#Target-leakage) explains data leakage.
+A *point-in-time*, or temporal, join helps address data leakage. In the model training process, [Data leakage](https://en.wikipedia.org/wiki/Leakage_(machine_learning)), or target leakage, involves the use of information that isn't expected to be available at prediction time. Target leakage would cause the predictive scores (metrics) to overestimate the utility of the model when the model runs in a production environment. [This article](https://www.kaggle.com/code/alexisbcook/data-leakage#Target-leakage) explains data leakage.
 
 The next illustration explains how feature store point-in-time joins work:
 
-- The observation data has two labeled events, `L0` and `L1`. The two events occurred at times `t0` and `t1` respectively.
-- A training sample is created from this observation data with a point-in-time join. For each observation event, the feature value from its most recent previous event time (`t0` and `t1`) is joined with the event.
+- The observation data has two labeled events: `L0` and `L1`. The two events occurred at times `t0` and `t1` respectively.
+- A training sample is created from this observation data, with a point-in-time join. For each observation event, the feature value from its most recent previous event time (`t0` and `t1`) is joined with the event.
 
 :::image type="content" source="media/offline-retrieval-point-in-time-join/point-in-time-join.png" lightbox="media/offline-retrieval-point-in-time-join/point-in-time-join.png" alt-text="Illustration that shows a simple point-in-time join.":::
 
@@ -40,7 +40,7 @@ Both parameters represent a duration, or time delta. For an observation event th
 
 ### The `source_delay` property
 
-The `source_delay` source data property indicates the acquisition time delay at the moment that data is ready to consume. The time value at that moment is compared to the time value at the moment the data is generated. An event that happened at time `t` lands in the source data table at time `t + x`, due to the latency in the upstream data pipeline. The `x` value is the source delay.
+The `source_delay` source data property indicates the acquisition time delay at the moment that data is ready for consumption. The time value at that moment is compared to the time value at the moment of generation of that data. An event that happened at time `t` lands in the source data table at time `t + x`, due to the latency in the upstream data pipeline. The `x` value is the source delay.
 
 Source delay can lead to [Data leakage](https://en.wikipedia.org/wiki/Leakage_(machine_learning)):
 
@@ -55,7 +55,7 @@ This screenshot shows the output of the `get_offline_features` function that per
 
 :::image type="content" source="media/offline-retrieval-point-in-time-join/point-in-time-join-source-delay-output.png" lightbox="media/offline-retrieval-point-in-time-join/point-in-time-join-source-delay-output.png" alt-text="Illustration that shows output of a point-in-time join with source delay.":::
 
-If users don't set the `source_delay` value in the feature set specification, its default value is `0`. This means that no source delay is involved. The `source_delay` value is also considered in recurrent feature materialization. Visit [this](./feature-set-materialization-concepts.md) resource for more details about feature set materialization.
+If users don't set the `source_delay` value in the feature set specification, its default value is `0`. This means that no source delay is involved. The `source_delay` value is also considered in recurrent feature materialization. Visit [this](./feature-set-materialization-concepts.md) resource for more information about feature set materialization.
 
 ### The `temporal_join_lookback`
 

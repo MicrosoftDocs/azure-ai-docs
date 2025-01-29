@@ -259,8 +259,8 @@ To use a Whisper model for batch transcription, you need to set the `model` prop
 
 > [!IMPORTANT]
 > For Whisper models, you should always use [version 3.2](./migrate-v3-1-to-v3-2.md) of the speech to text API.
-
-Batch transcription using Whisper models is supported in the Australia East, Central US, East US, North Central US, South Central US, Southeast Asia, and West Europe regions.
+>
+> Batch transcription using Whisper models is available in the following regions: Australia East, East US, North Central US, South Central US, Southeast Asia, UK South, and West Europe.
 
 ::: zone pivot="rest-api"
 You can make a [Models_ListBaseModels](/rest/api/speechtotext/models/list-base-models) request to get available base models for all locales.
