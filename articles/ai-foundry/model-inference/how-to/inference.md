@@ -26,7 +26,7 @@ Azure AI services expose multiple endpoints depending on the type of work you're
 > * Azure AI model inference endpoint
 > * Azure OpenAI endpoint
 
-The **Azure AI inference endpoint** (usually with the form `https://<resource-name>.services.ai.azure.com/models`) allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. All the models support this capability. This endpoint follows the [Azure AI model inference API](../../../ai-studio/reference/reference-model-inference-api.md). 
+The **Azure AI inference endpoint** (usually with the form `https://<resource-name>.services.ai.azure.com/models`) allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. All the models support this capability. This endpoint follows the [Azure AI model inference API](.././reference/reference-model-inference-api.md). 
 
 **Azure OpenAI** models deployed to AI services also support the Azure OpenAI API (usually with the form `https://<resource-name>.openai.azure.com`). This endpoint exposes the full capabilities of OpenAI models and supports more features like assistants, threads, files, and batch inference.
 

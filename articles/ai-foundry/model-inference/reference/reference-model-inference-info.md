@@ -5,7 +5,7 @@ description: Reference for Azure AI Model Inference Get Info API
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: conceptual
-ms.date: 5/21/2024
+ms.date: 01/28/2025
 ms.reviewer: fasantia 
 reviewer: santiagxf
 ms.author: mopeakande
