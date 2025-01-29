@@ -356,11 +356,13 @@ curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-0
   },
   "etag": "\"GUID\""
 }
+```
 
 > [!NOTE]
 > There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account?view=azure-cli-latest#az-account-get-access-token&preserve-view=true). You can use this token as your temporary authorization token for API testing.
 
 ### Multi-deployment migrations for provisioned deployments
+For scenarios where you would like more 
 
 ## Next steps
 
