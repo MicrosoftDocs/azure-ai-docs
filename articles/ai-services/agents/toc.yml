@@ -1,10 +1,14 @@
 items:
 - name: Azure AI Agent Service Documentation
   href: index.yml
-- name: Overview
-  href: overview.md
-- name: What's new
-  href: ./whats-new.md
+- name: overview
+  items:
+  - name: What is Azure AI Agent Service?
+    href: overview.md
+  - name: What's new
+    href: ./whats-new.md
+  - name: FAQ
+    href: faq.yml
 - name: Getting started
   expanded: true
   items:
@@ -75,8 +79,6 @@ items:
           href: https://github.com/openai/openai-python/blob/main/README.md
 - name: Resources
   items: 
-    - name: FAQ
-      href: faq.yml
     - name: Support and help options
       href: ../cognitive-services-support-options.md?context=/azure/ai-services/agents/context/context
     - name: Terms of use
