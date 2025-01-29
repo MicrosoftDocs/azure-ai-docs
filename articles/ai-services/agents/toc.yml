@@ -2,6 +2,7 @@ items:
 - name: Azure AI Agent Service Documentation
   href: index.yml
 - name: Overview
+  expanded: true
   items:
   - name: What is Azure AI Agent Service?
     href: overview.md
@@ -20,11 +21,9 @@ items:
       href: ./concepts/model-region-support.md
     - name: Pricing
       href: https://azure.microsoft.com/pricing/details/ai-studio/
-- name: concepts
+- name: Concepts
   expanded: true
   items:
-    - name: Agents
-      href: concepts/agents.md
     - name: Tools
       items:
         - name: Tools overview
