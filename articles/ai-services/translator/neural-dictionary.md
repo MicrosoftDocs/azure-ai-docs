@@ -1,19 +1,19 @@
 ---
-title: Neural dictionary - Translator
+title: Neural dictionary - Azure AI Translator
 titleSuffix: Azure AI services
-description: How to use the neural dictionary feature of the Azure AI Translator.
+description: How to use the Azure AI Translator neural dictionary feature.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 12/06/2023
+ms.date: 01/28/2025
 ms.author: lajanuar
 ---
 
-# Neural dictionary
+# Azure AI Translator neural dictionary
 
-The neural dictionary is an extension to our [dynamic dictionary](dynamic-dictionary.md) and [phrase dictionary](custom-translator/concepts/dictionaries.md#phrase-dictionary) capabilities. Both dynamic and phrase dictionaries allow you to customize the translation output by providing your own translations for specific terms or phrases. The neural dictionary improves translation quality for sentences that include one or more term translations by letting the machine translation model adjust both the term and the context.
+The Azure AI Translator neural dictionary is an extension to our [dynamic dictionary](dynamic-dictionary.md) and [phrase dictionary](custom-translator/concepts/dictionaries.md#phrase-dictionary) capabilities. Both dynamic and phrase dictionaries allow you to customize the translation output by providing your own translations for specific terms or phrases. The neural dictionary improves translation quality for sentences that include one or more term translations by letting the machine translation model adjust both the term and the context.
 
 ## Neural dictionary key features
 
@@ -84,4 +84,4 @@ Neural dictionary is available using [Custom Translator](https://portal.customtr
 
 ## Next steps
 
-To learn more, start with the [Custom Translator beginner's guide](custom-translator/beginners-guide.md).
+To learn more, start with the [Azure AI Custom Translator beginner's guide](custom-translator/beginners-guide.md).
