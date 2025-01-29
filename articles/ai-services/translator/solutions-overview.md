@@ -24,7 +24,7 @@ Azure AI Translator offers the following prebuilt solutions:
 
 * [**Microsoft Translator Pro**](translator-pro/overview.md). Microsoft Translator Pro is an advanced mobile application, designed specifically for enterprises, that enables seamless speech-to-speech translation in real time.
 
-* [**Translator V3 connector for documents**](connector/document-translation-flow.md) and [**Translator V3 connector for text**](connector/text-translation-flow.md). The Microsoft Translator V3 connectors create a link between your Translator Service instance and Microsoft Power Automate enabling you to incorporate one or more prebuilt operations into your apps and workflows.
+* [**Translator V3 connector for documents**](connector/document-translation-flow.md) and [**Translator V3 connector for text**](connector/text-translator-flow.md). The Microsoft Translator V3 connectors create a link between your Translator Service instance and Microsoft Power Automate enabling you to incorporate one or more prebuilt operations into your apps and workflows.
 
 
 ## Next steps
