@@ -7,20 +7,21 @@ author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-studio
 ms.topic: how-to
-ms.date: 01/28/2025
+ms.date: 01/29/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: references_regions, generated
 zone_pivot_groups: azure-ai-model-catalog-samples-chat
 ---
 
-# How to use DeepSeek-R1 reasoning model (preview)
+# How to use DeepSeek-R1
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-In this article, you learn about DeepSeek-R1 and how to use it.
-
+In this article, you learn about DeepSeek-R1 and how to use them.
 DeepSeek-R1 excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks. It features 671B total parameters with 37B active parameters, and 128k context length.
+
+
 
 ::: zone pivot="programming-language-python"
 
@@ -28,7 +29,8 @@ DeepSeek-R1 excels at reasoning tasks using a step-by-step training process, suc
 
 DeepSeek-R1 builds on the progress of earlier reasoning-focused models that improved performance by extending Chain-of-Thought (CoT) reasoning. DeepSeek-R1 takes things further by combining reinforcement learning (RL) with fine-tuning on carefully chosen datasets. It evolved from an earlier version, DeepSeek-R1-Zero, which relied solely on RL and showed strong reasoning skills but had issues like hard-to-read outputs and language inconsistencies. To address these limitations, DeepSeek-R1 incorporates a small amount of cold-start data and follows a refined training pipeline that blends reasoning-oriented RL with supervised fine-tuning on curated datasets, resulting in a model that achieves state-of-the-art performance on reasoning benchmarks.
 
-You can learn more about the models in its respective model card:
+
+You can learn more about the models in their respective model card:
 
 * [DeepSeek-R1](https://aka.ms/azureai/landing/DeepSeek-R1)
 
@@ -43,7 +45,7 @@ To use DeepSeek-R1 with Azure AI Foundry, you need the following prerequisites:
 
 DeepSeek-R1 can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -84,6 +86,7 @@ from azure.core.credentials import AzureKeyCredential
 client = ChatCompletionsClient(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
+    model="DeepSeek-R1"
 )
 ```
 
@@ -149,6 +152,52 @@ Usage:
 
 Inspect the `usage` section in the response to see the number of tokens used for the prompt, the total number of tokens generated, and the number of tokens used for the completion.
 
+#### Understanding reasoning
+
+Some reasoning models, like DeepSeek-R1, generate completions and include the reasoning behind it. The reasoning associated with the completion is included in the response's content within the tags `<think>` and `</think>`. The model may select on which scenarios to generate reasoning content. For example:
+
+
+```python
+response = client.complete(
+    messages=[
+        SystemMessage(content="You are a helpful assistant."),
+        UserMessage(content="How many languages are in the world?"),
+    ],
+)
+```
+
+The response is as follows:
+
+
+```python
+import re
+
+match = re.match(r"<think>(.*?)</think>(.*)", response.choices[0].message.content, re.DOTALL)
+
+print("Response:", )
+if match:
+    print("\tThinking:", match.group(1))
+    print("\tAnswer:", match.group(2))
+else:
+    print("\tAnswer:", response.choices[0].message.content)
+print("Model:", response.model)
+print("Usage:")
+print("\tPrompt tokens:", response.usage.prompt_tokens)
+print("\tTotal tokens:", response.usage.total_tokens)
+print("\tCompletion tokens:", response.usage.completion_tokens)
+```
+
+```console
+Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer. Let's start by recalling the general consensus from linguistic sources. I remember that the number often cited is around 7,000, but maybe I should check some reputable organizations.\n\nEthnologue is a well-known resource for language data, and I think they list about 7,000 languages. But wait, do they update their numbers? It might be around 7,100 or so. Also, the exact count can vary because some sources might categorize dialects differently or have more recent data. \n\nAnother thing to consider is language endangerment. Many languages are endangered, with some having only a few speakers left. Organizations like UNESCO track endangered languages, so mentioning that adds context. Also, the distribution isn't even. Some countries have hundreds of languages, like Papua New Guinea with over 800, while others have just a few. \n\nA user might also wonder why the exact number is hard to pin down. It's because the distinction between a language and a dialect can be political or cultural. For example, Mandarin and Cantonese are considered dialects of Chinese by some, but they're mutually unintelligible, so others classify them as separate languages. Also, some regions are under-researched, making it hard to document all languages. \n\nI should also touch on language families. The 7,000 languages are grouped into families like Indo-European, Sino-Tibetan, Niger-Congo, etc. Maybe mention a few of the largest families. But wait, the question is just about the count, not the families. Still, it's good to provide a bit more context. \n\nI need to make sure the information is up-to-date. Let me think – recent estimates still hover around 7,000. However, languages are dying out rapidly, so the number decreases over time. Including that note about endangerment and language extinction rates could be helpful. For instance, it's often stated that a language dies every few weeks. \n\nAnother point is sign languages. Does the count include them? Ethnologue includes some, but not all sources might. If the user is including sign languages, that adds more to the count, but I think the 7,000 figure typically refers to spoken languages. For thoroughness, maybe mention that there are also over 300 sign languages. \n\nSummarizing, the answer should state around 7,000, mention Ethnologue's figure, explain why the exact number varies, touch on endangerment, and possibly note sign languages as a separate category. Also, a brief mention of Papua New Guinea as the most linguistically diverse country. \n\nWait, let me verify Ethnologue's current number. As of their latest edition (25th, 2022), they list 7,168 living languages. But I should check if that's the case. Some sources might round to 7,000. Also, SIL International publishes Ethnologue, so citing them as reference makes sense. \n\nOther sources, like Glottolog, might have a different count because they use different criteria. Glottolog might list around 7,000 as well, but exact numbers vary. It's important to highlight that the count isn't exact because of differing definitions and ongoing research. \n\nIn conclusion, the approximate number is 7,000, with Ethnologue being a key source, considerations of endangerment, and the challenges in counting due to dialect vs. language distinctions. I should make sure the answer is clear, acknowledges the variability, and provides key points succinctly.
+
+Answer: The exact number of languages in the world is challenging to determine due to differences in definitions (e.g., distinguishing languages from dialects) and ongoing documentation efforts. However, widely cited estimates suggest there are approximately **7,000 languages** globally.
+Model: DeepSeek-R1
+Usage: 
+  Prompt tokens: 11
+  Total tokens: 897
+  Completion tokens: 886
+```
+
 #### Stream content
 
 By default, the completions API returns the entire generated content in a single response. If you're generating long completions, waiting for the response can take many seconds.
@@ -188,184 +237,6 @@ You can visualize how streaming generates content:
 
 ```python
 print_stream(result)
-```
-
-#### Explore more parameters supported by the inference client
-
-Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Azure AI Model Inference API reference](https://aka.ms/azureai/modelinference).
-
-```python
-from azure.ai.inference.models import ChatCompletionsResponseFormatText
-
-response = client.complete(
-    messages=[
-        SystemMessage(content="You are a helpful assistant."),
-        UserMessage(content="How many languages are in the world?"),
-    ],
-    presence_penalty=0.1,
-    frequency_penalty=0.8,
-    max_tokens=2048,
-    stop=["<|endoftext|>"],
-    temperature=0,
-    top_p=1,
-    response_format={ "type": ChatCompletionsResponseFormatText() },
-)
-```
-
-> [!WARNING]
-> Deepseek models don't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
-
-If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
-
-### Pass extra parameters to the model
-
-The Azure AI Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
-
-Before you pass extra parameters to the Azure AI model inference API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
-
-
-```python
-response = client.complete(
-    messages=[
-        SystemMessage(content="You are a helpful assistant."),
-        UserMessage(content="How many languages are in the world?"),
-    ],
-    model_extras={
-        "logprobs": True
-    }
-)
-```
-
-### Use tools
-
-DeepSeek-R1 support the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
-
-The following code example creates a tool definition that is able to look from flight information from two different cities.
-
-
-```python
-from azure.ai.inference.models import FunctionDefinition, ChatCompletionsFunctionToolDefinition
-
-flight_info = ChatCompletionsFunctionToolDefinition(
-    function=FunctionDefinition(
-        name="get_flight_info",
-        description="Returns information about the next flight between two cities. This includes the name of the airline, flight number and the date and time of the next flight",
-        parameters={
-            "type": "object",
-            "properties": {
-                "origin_city": {
-                    "type": "string",
-                    "description": "The name of the city where the flight originates",
-                },
-                "destination_city": {
-                    "type": "string",
-                    "description": "The flight destination city",
-                },
-            },
-            "required": ["origin_city", "destination_city"],
-        },
-    )
-)
-
-tools = [flight_info]
-```
-
-In this example, the function's output is that there are no flights available for the selected route, but the user should consider taking a train.
-
-
-```python
-def get_flight_info(loc_origin: str, loc_destination: str):
-    return { 
-        "info": f"There are no flights available from {loc_origin} to {loc_destination}. You should take a train, specially if it helps to reduce CO2 emissions."
-    }
-```
-
-Prompt the model to book flights with the help of this function:
-
-
-```python
-messages = [
-    SystemMessage(
-        content="You are a helpful assistant that help users to find information about traveling, how to get"
-                " to places and the different transportations options. You care about the environment and you"
-                " always have that in mind when answering inqueries.",
-    ),
-    UserMessage(
-        content="When is the next flight from Miami to Seattle?",
-    ),
-]
-
-response = client.complete(
-    messages=messages, tools=tools, tool_choice="auto"
-)
-```
-
-You can inspect the response to find out if a tool needs to be called. Inspect the finish reason to determine if the tool should be called. Remember that multiple tool types can be indicated. This example demonstrates a tool of type `function`.
-
-
-```python
-response_message = response.choices[0].message
-tool_calls = response_message.tool_calls
-
-print("Finish reason:", response.choices[0].finish_reason)
-print("Tool call:", tool_calls)
-```
-
-To continue, append this message to the chat history:
-
-
-```python
-messages.append(
-    response_message
-)
-```
-
-Now, it's time to call the appropriate function to handle the tool call. The following code snippet iterates over all the tool calls indicated in the response and calls the corresponding function with the appropriate parameters. The response is also appended to the chat history.
-
-
-```python
-import json
-from azure.ai.inference.models import ToolMessage
-
-for tool_call in tool_calls:
-
-    # Get the tool details:
-
-    function_name = tool_call.function.name
-    function_args = json.loads(tool_call.function.arguments.replace("\'", "\""))
-    tool_call_id = tool_call.id
-
-    print(f"Calling function `{function_name}` with arguments {function_args}")
-
-    # Call the function defined above using `locals()`, which returns the list of all functions 
-    # available in the scope as a dictionary. Notice that this is just done as a simple way to get
-    # the function callable from its string name. Then we can call it with the corresponding
-    # arguments.
-
-    callable_func = locals()[function_name]
-    function_response = callable_func(**function_args)
-
-    print("->", function_response)
-
-    # Once we have a response from the function and its arguments, we can append a new message to the chat 
-    # history. Notice how we are telling to the model that this chat message came from a tool:
-
-    messages.append(
-        ToolMessage(
-            tool_call_id=tool_call_id,
-            content=json.dumps(function_response)
-        )
-    )
-```
-
-View the response from the model:
-
-
-```python
-response = client.complete(
-    messages=messages,
-    tools=tools,
-)
 ```
 
 ### Apply content safety
@@ -426,7 +297,7 @@ To use DeepSeek-R1 with Azure AI Foundry, you need the following prerequisites:
 
 DeepSeek-R1 can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -536,6 +407,57 @@ Usage:
 
 Inspect the `usage` section in the response to see the number of tokens used for the prompt, the total number of tokens generated, and the number of tokens used for the completion.
 
+#### Understanding reasoning
+
+Some reasoning models, like DeepSeek-R1, generate completions and include the reasoning behind it. The reasoning associated with the completion is included in the response's content within the tags `<think>` and `</think>`. The model may select on which scenarios to generate reasoning content. For example:
+
+
+```javascript
+var messages = [
+    { role: "system", content: "You are a helpful assistant" },
+    { role: "user", content: "How many languages are in the world?" },
+];
+
+var response = await client.path("/chat/completions").post({
+    body: {
+        messages: messages,
+    }
+});
+```
+
+The response is as follows:
+
+
+```javascript
+var content = response.body.choices[0].message.content
+var match = content.match(/<think>(.*?)<\/think>(.*)/s);
+
+console.log("Response:");
+if (match) {
+    console.log("\tThinking:", match[1]);
+    console.log("\Answer:", match[2]);
+}
+else {
+    console.log("Response:", content);
+}
+console.log("Model: ", response.body.model);
+console.log("Usage:");
+console.log("\tPrompt tokens:", response.body.usage.prompt_tokens);
+console.log("\tTotal tokens:", response.body.usage.total_tokens);
+console.log("\tCompletion tokens:", response.body.usage.completion_tokens);
+```
+
+```console
+Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer. Let's start by recalling the general consensus from linguistic sources. I remember that the number often cited is around 7,000, but maybe I should check some reputable organizations.\n\nEthnologue is a well-known resource for language data, and I think they list about 7,000 languages. But wait, do they update their numbers? It might be around 7,100 or so. Also, the exact count can vary because some sources might categorize dialects differently or have more recent data. \n\nAnother thing to consider is language endangerment. Many languages are endangered, with some having only a few speakers left. Organizations like UNESCO track endangered languages, so mentioning that adds context. Also, the distribution isn't even. Some countries have hundreds of languages, like Papua New Guinea with over 800, while others have just a few. \n\nA user might also wonder why the exact number is hard to pin down. It's because the distinction between a language and a dialect can be political or cultural. For example, Mandarin and Cantonese are considered dialects of Chinese by some, but they're mutually unintelligible, so others classify them as separate languages. Also, some regions are under-researched, making it hard to document all languages. \n\nI should also touch on language families. The 7,000 languages are grouped into families like Indo-European, Sino-Tibetan, Niger-Congo, etc. Maybe mention a few of the largest families. But wait, the question is just about the count, not the families. Still, it's good to provide a bit more context. \n\nI need to make sure the information is up-to-date. Let me think – recent estimates still hover around 7,000. However, languages are dying out rapidly, so the number decreases over time. Including that note about endangerment and language extinction rates could be helpful. For instance, it's often stated that a language dies every few weeks. \n\nAnother point is sign languages. Does the count include them? Ethnologue includes some, but not all sources might. If the user is including sign languages, that adds more to the count, but I think the 7,000 figure typically refers to spoken languages. For thoroughness, maybe mention that there are also over 300 sign languages. \n\nSummarizing, the answer should state around 7,000, mention Ethnologue's figure, explain why the exact number varies, touch on endangerment, and possibly note sign languages as a separate category. Also, a brief mention of Papua New Guinea as the most linguistically diverse country. \n\nWait, let me verify Ethnologue's current number. As of their latest edition (25th, 2022), they list 7,168 living languages. But I should check if that's the case. Some sources might round to 7,000. Also, SIL International publishes Ethnologue, so citing them as reference makes sense. \n\nOther sources, like Glottolog, might have a different count because they use different criteria. Glottolog might list around 7,000 as well, but exact numbers vary. It's important to highlight that the count isn't exact because of differing definitions and ongoing research. \n\nIn conclusion, the approximate number is 7,000, with Ethnologue being a key source, considerations of endangerment, and the challenges in counting due to dialect vs. language distinctions. I should make sure the answer is clear, acknowledges the variability, and provides key points succinctly.
+
+Answer: The exact number of languages in the world is challenging to determine due to differences in definitions (e.g., distinguishing languages from dialects) and ongoing documentation efforts. However, widely cited estimates suggest there are approximately **7,000 languages** globally.
+Model: DeepSeek-R1
+Usage: 
+  Prompt tokens: 11
+  Total tokens: 897
+  Completion tokens: 886
+```
+
 #### Stream content
 
 By default, the completions API returns the entire generated content in a single response. If you're generating long completions, waiting for the response can take many seconds.
@@ -582,180 +504,6 @@ for await (const event of sses) {
         console.log(choice.delta?.content ?? "");
     }
 }
-```
-
-#### Explore more parameters supported by the inference client
-
-Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Azure AI Model Inference API reference](https://aka.ms/azureai/modelinference).
-
-```javascript
-var messages = [
-    { role: "system", content: "You are a helpful assistant" },
-    { role: "user", content: "How many languages are in the world?" },
-];
-
-var response = await client.path("/chat/completions").post({
-    body: {
-        messages: messages,
-        presence_penalty: "0.1",
-        frequency_penalty: "0.8",
-        max_tokens: 2048,
-        stop: ["<|endoftext|>"],
-        temperature: 0,
-        top_p: 1,
-        response_format: { type: "text" },
-    }
-});
-```
-
-> [!WARNING]
-> Deepseek models don't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
-
-If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
-
-### Pass extra parameters to the model
-
-The Azure AI Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
-
-Before you pass extra parameters to the Azure AI model inference API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
-
-
-```javascript
-var messages = [
-    { role: "system", content: "You are a helpful assistant" },
-    { role: "user", content: "How many languages are in the world?" },
-];
-
-var response = await client.path("/chat/completions").post({
-    headers: {
-        "extra-params": "pass-through"
-    },
-    body: {
-        messages: messages,
-        logprobs: true
-    }
-});
-```
-
-### Use tools
-
-DeepSeek-R1 support the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
-
-The following code example creates a tool definition that is able to look from flight information from two different cities.
-
-
-```javascript
-const flight_info = {
-    name: "get_flight_info",
-    description: "Returns information about the next flight between two cities. This includes the name of the airline, flight number and the date and time of the next flight",
-    parameters: {
-        type: "object",
-        properties: {
-            origin_city: {
-                type: "string",
-                description: "The name of the city where the flight originates",
-            },
-            destination_city: {
-                type: "string",
-                description: "The flight destination city",
-            },
-        },
-        required: ["origin_city", "destination_city"],
-    },
-}
-
-const tools = [
-    {
-        type: "function",
-        function: flight_info,
-    },
-];
-```
-
-In this example, the function's output is that there are no flights available for the selected route, but the user should consider taking a train.
-
-
-```javascript
-function get_flight_info(loc_origin, loc_destination) {
-    return {
-        info: "There are no flights available from " + loc_origin + " to " + loc_destination + ". You should take a train, specially if it helps to reduce CO2 emissions."
-    }
-}
-```
-
-Prompt the model to book flights with the help of this function:
-
-
-```javascript
-var result = await client.path("/chat/completions").post({
-    body: {
-        messages: messages,
-        tools: tools,
-        tool_choice: "auto"
-    }
-});
-```
-
-You can inspect the response to find out if a tool needs to be called. Inspect the finish reason to determine if the tool should be called. Remember that multiple tool types can be indicated. This example demonstrates a tool of type `function`.
-
-
-```javascript
-const response_message = response.body.choices[0].message;
-const tool_calls = response_message.tool_calls;
-
-console.log("Finish reason: " + response.body.choices[0].finish_reason);
-console.log("Tool call: " + tool_calls);
-```
-
-To continue, append this message to the chat history:
-
-
-```javascript
-messages.push(response_message);
-```
-
-Now, it's time to call the appropriate function to handle the tool call. The following code snippet iterates over all the tool calls indicated in the response and calls the corresponding function with the appropriate parameters. The response is also appended to the chat history.
-
-
-```javascript
-function applyToolCall({ function: call, id }) {
-    // Get the tool details:
-    const tool_params = JSON.parse(call.arguments);
-    console.log("Calling function " + call.name + " with arguments " + tool_params);
-
-    // Call the function defined above using `window`, which returns the list of all functions 
-    // available in the scope as a dictionary. Notice that this is just done as a simple way to get
-    // the function callable from its string name. Then we can call it with the corresponding
-    // arguments.
-    const function_response = tool_params.map(window[call.name]);
-    console.log("-> " + function_response);
-
-    return function_response
-}
-
-for (const tool_call of tool_calls) {
-    var tool_response = tool_call.apply(applyToolCall);
-
-    messages.push(
-        {
-            role: "tool",
-            tool_call_id: tool_call.id,
-            content: tool_response
-        }
-    );
-}
-```
-
-View the response from the model:
-
-
-```javascript
-var result = await client.path("/chat/completions").post({
-    body: {
-        messages: messages,
-        tools: tools,
-    }
-});
 ```
 
 ### Apply content safety
@@ -822,7 +570,7 @@ To use DeepSeek-R1 with Azure AI Foundry, you need the following prerequisites:
 
 DeepSeek-R1 can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -928,7 +676,7 @@ The response is as follows, where you can see the model's usage statistics:
 
 
 ```csharp
-Console.WriteLine($"Response: {response.Value.Choices[0].Message.Content}");
+Console.WriteLine($"Response: {response.Value.Content}");
 Console.WriteLine($"Model: {response.Value.Model}");
 Console.WriteLine("Usage:");
 Console.WriteLine($"\tPrompt tokens: {response.Value.Usage.PromptTokens}");
@@ -946,6 +694,57 @@ Usage:
 ```
 
 Inspect the `usage` section in the response to see the number of tokens used for the prompt, the total number of tokens generated, and the number of tokens used for the completion.
+
+#### Understanding reasoning
+
+Some reasoning models, like DeepSeek-R1, generate completions and include the reasoning behind it. The reasoning associated with the completion is included in the response's content within the tags `<think>` and `</think>`. The model may select on which scenarios to generate reasoning content. For example:
+
+
+```csharp
+ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
+{
+    Messages = {
+        new ChatRequestSystemMessage("You are a helpful assistant."),
+        new ChatRequestUserMessage("How many languages are in the world?")
+    },
+};
+
+Response<ChatCompletions> response = client.Complete(requestOptions);
+```
+
+The response is as follows:
+
+
+```csharp
+Regex regex = new Regex(pattern, RegexOptions.Singleline);
+Match match = regex.Match(response.Value.Content);
+
+Console.WriteLine("Response:");
+if (match.Success)
+{
+    Console.WriteLine($"\tThinking: {match.Groups[1].Value}");
+    Console.WriteLine($"\tAnswer: {match.Groups[2].Value}");
+else
+{
+    Console.WriteLine($"Response: {response.Value.Content}");
+}
+Console.WriteLine($"Model: {response.Value.Model}");
+Console.WriteLine("Usage:");
+Console.WriteLine($"\tPrompt tokens: {response.Value.Usage.PromptTokens}");
+Console.WriteLine($"\tTotal tokens: {response.Value.Usage.TotalTokens}");
+Console.WriteLine($"\tCompletion tokens: {response.Value.Usage.CompletionTokens}");
+```
+
+```console
+Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer. Let's start by recalling the general consensus from linguistic sources. I remember that the number often cited is around 7,000, but maybe I should check some reputable organizations.\n\nEthnologue is a well-known resource for language data, and I think they list about 7,000 languages. But wait, do they update their numbers? It might be around 7,100 or so. Also, the exact count can vary because some sources might categorize dialects differently or have more recent data. \n\nAnother thing to consider is language endangerment. Many languages are endangered, with some having only a few speakers left. Organizations like UNESCO track endangered languages, so mentioning that adds context. Also, the distribution isn't even. Some countries have hundreds of languages, like Papua New Guinea with over 800, while others have just a few. \n\nA user might also wonder why the exact number is hard to pin down. It's because the distinction between a language and a dialect can be political or cultural. For example, Mandarin and Cantonese are considered dialects of Chinese by some, but they're mutually unintelligible, so others classify them as separate languages. Also, some regions are under-researched, making it hard to document all languages. \n\nI should also touch on language families. The 7,000 languages are grouped into families like Indo-European, Sino-Tibetan, Niger-Congo, etc. Maybe mention a few of the largest families. But wait, the question is just about the count, not the families. Still, it's good to provide a bit more context. \n\nI need to make sure the information is up-to-date. Let me think – recent estimates still hover around 7,000. However, languages are dying out rapidly, so the number decreases over time. Including that note about endangerment and language extinction rates could be helpful. For instance, it's often stated that a language dies every few weeks. \n\nAnother point is sign languages. Does the count include them? Ethnologue includes some, but not all sources might. If the user is including sign languages, that adds more to the count, but I think the 7,000 figure typically refers to spoken languages. For thoroughness, maybe mention that there are also over 300 sign languages. \n\nSummarizing, the answer should state around 7,000, mention Ethnologue's figure, explain why the exact number varies, touch on endangerment, and possibly note sign languages as a separate category. Also, a brief mention of Papua New Guinea as the most linguistically diverse country. \n\nWait, let me verify Ethnologue's current number. As of their latest edition (25th, 2022), they list 7,168 living languages. But I should check if that's the case. Some sources might round to 7,000. Also, SIL International publishes Ethnologue, so citing them as reference makes sense. \n\nOther sources, like Glottolog, might have a different count because they use different criteria. Glottolog might list around 7,000 as well, but exact numbers vary. It's important to highlight that the count isn't exact because of differing definitions and ongoing research. \n\nIn conclusion, the approximate number is 7,000, with Ethnologue being a key source, considerations of endangerment, and the challenges in counting due to dialect vs. language distinctions. I should make sure the answer is clear, acknowledges the variability, and provides key points succinctly.
+
+Answer: The exact number of languages in the world is challenging to determine due to differences in definitions (e.g., distinguishing languages from dialects) and ongoing documentation efforts. However, widely cited estimates suggest there are approximately **7,000 languages** globally.
+Model: DeepSeek-R1
+Usage: 
+  Prompt tokens: 11
+  Total tokens: 897
+  Completion tokens: 886
+```
 
 #### Stream content
 
@@ -1000,182 +799,6 @@ You can visualize how streaming generates content:
 StreamMessageAsync(client).GetAwaiter().GetResult();
 ```
 
-#### Explore more parameters supported by the inference client
-
-Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Azure AI Model Inference API reference](https://aka.ms/azureai/modelinference).
-
-```csharp
-requestOptions = new ChatCompletionsOptions()
-{
-    Messages = {
-        new ChatRequestSystemMessage("You are a helpful assistant."),
-        new ChatRequestUserMessage("How many languages are in the world?")
-    },
-    PresencePenalty = 0.1f,
-    FrequencyPenalty = 0.8f,
-    MaxTokens = 2048,
-    StopSequences = { "<|endoftext|>" },
-    Temperature = 0,
-    NucleusSamplingFactor = 1,
-    ResponseFormat = new ChatCompletionsResponseFormatText()
-};
-
-response = client.Complete(requestOptions);
-Console.WriteLine($"Response: {response.Value.Choices[0].Message.Content}");
-```
-
-> [!WARNING]
-> Deepseek models don't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
-
-If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
-
-### Pass extra parameters to the model
-
-The Azure AI Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
-
-Before you pass extra parameters to the Azure AI model inference API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
-
-
-```csharp
-requestOptions = new ChatCompletionsOptions()
-{
-    Messages = {
-        new ChatRequestSystemMessage("You are a helpful assistant."),
-        new ChatRequestUserMessage("How many languages are in the world?")
-    },
-    AdditionalProperties = { { "logprobs", BinaryData.FromString("true") } },
-};
-
-response = client.Complete(requestOptions, extraParams: ExtraParameters.PassThrough);
-Console.WriteLine($"Response: {response.Value.Choices[0].Message.Content}");
-```
-
-### Use tools
-
-DeepSeek-R1 support the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
-
-The following code example creates a tool definition that is able to look from flight information from two different cities.
-
-
-```csharp
-FunctionDefinition flightInfoFunction = new FunctionDefinition("getFlightInfo")
-{
-    Description = "Returns information about the next flight between two cities. This includes the name of the airline, flight number and the date and time of the next flight",
-    Parameters = BinaryData.FromObjectAsJson(new
-    {
-        Type = "object",
-        Properties = new
-        {
-            origin_city = new
-            {
-                Type = "string",
-                Description = "The name of the city where the flight originates"
-            },
-            destination_city = new
-            {
-                Type = "string",
-                Description = "The flight destination city"
-            }
-        }
-    },
-        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }
-    )
-};
-
-ChatCompletionsFunctionToolDefinition getFlightTool = new ChatCompletionsFunctionToolDefinition(flightInfoFunction);
-```
-
-In this example, the function's output is that there are no flights available for the selected route, but the user should consider taking a train.
-
-
-```csharp
-static string getFlightInfo(string loc_origin, string loc_destination)
-{
-    return JsonSerializer.Serialize(new
-    {
-        info = $"There are no flights available from {loc_origin} to {loc_destination}. You " +
-        "should take a train, specially if it helps to reduce CO2 emissions."
-    });
-}
-```
-
-Prompt the model to book flights with the help of this function:
-
-
-```csharp
-var chatHistory = new List<ChatRequestMessage>(){
-        new ChatRequestSystemMessage(
-            "You are a helpful assistant that help users to find information about traveling, " +
-            "how to get to places and the different transportations options. You care about the" +
-            "environment and you always have that in mind when answering inqueries."
-        ),
-        new ChatRequestUserMessage("When is the next flight from Miami to Seattle?")
-    };
-
-requestOptions = new ChatCompletionsOptions(chatHistory);
-requestOptions.Tools.Add(getFlightTool);
-requestOptions.ToolChoice = ChatCompletionsToolChoice.Auto;
-
-response = client.Complete(requestOptions);
-```
-
-You can inspect the response to find out if a tool needs to be called. Inspect the finish reason to determine if the tool should be called. Remember that multiple tool types can be indicated. This example demonstrates a tool of type `function`.
-
-
-```csharp
-var responseMessage = response.Value.Choices[0].Message;
-var toolsCall = responseMessage.ToolCalls;
-
-Console.WriteLine($"Finish reason: {response.Value.Choices[0].FinishReason}");
-Console.WriteLine($"Tool call: {toolsCall[0].Id}");
-```
-
-To continue, append this message to the chat history:
-
-
-```csharp
-requestOptions.Messages.Add(new ChatRequestAssistantMessage(response.Value.Choices[0].Message));
-```
-
-Now, it's time to call the appropriate function to handle the tool call. The following code snippet iterates over all the tool calls indicated in the response and calls the corresponding function with the appropriate parameters. The response is also appended to the chat history.
-
-
-```csharp
-foreach (ChatCompletionsToolCall tool in toolsCall)
-{
-    if (tool is ChatCompletionsFunctionToolCall functionTool)
-    {
-        // Get the tool details:
-        string callId = functionTool.Id;
-        string toolName = functionTool.Name;
-        string toolArgumentsString = functionTool.Arguments;
-        Dictionary<string, object> toolArguments = JsonSerializer.Deserialize<Dictionary<string, object>>(toolArgumentsString);
-
-        // Here you have to call the function defined. In this particular example we use 
-        // reflection to find the method we definied before in an static class called 
-        // `ChatCompletionsExamples`. Using reflection allows us to call a function 
-        // by string name. Notice that this is just done for demonstration purposes as a 
-        // simple way to get the function callable from its string name. Then we can call 
-        // it with the corresponding arguments.
-
-        var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
-        string toolResponse = (string)typeof(ChatCompletionsExamples).GetMethod(toolName, flags).Invoke(null, toolArguments.Values.Cast<object>().ToArray());
-
-        Console.WriteLine("->", toolResponse);
-        requestOptions.Messages.Add(new ChatRequestToolMessage(toolResponse, callId));
-    }
-    else
-        throw new Exception("Unsupported tool type");
-}
-```
-
-View the response from the model:
-
-
-```csharp
-response = client.Complete(requestOptions);
-```
-
 ### Apply content safety
 
 The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
@@ -1197,7 +820,7 @@ try
     };
 
     response = client.Complete(requestOptions);
-    Console.WriteLine(response.Value.Choices[0].Message.Content);
+    Console.WriteLine(response.Value.Content);
 }
 catch (RequestFailedException ex)
 {
@@ -1240,7 +863,7 @@ To use DeepSeek-R1 with Azure AI Foundry, you need the following prerequisites:
 
 DeepSeek-R1 can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -1336,6 +959,55 @@ The response is as follows, where you can see the model's usage statistics:
 
 Inspect the `usage` section in the response to see the number of tokens used for the prompt, the total number of tokens generated, and the number of tokens used for the completion.
 
+#### Understanding reasoning
+
+Some reasoning models, like DeepSeek-R1, generate completions and include the reasoning behind it. The reasoning associated with the completion is included in the response's content within the tags `<think>` and `</think>`. The model may select on which scenarios to generate reasoning content. For example:
+
+
+```json
+{
+    "model": "DeepSeek-R1",
+    "messages": [
+        {
+            "role": "system",
+            "content": "You are a helpful assistant."
+        },
+        {
+            "role": "user",
+            "content": "How many languages are in the world?"
+        }
+    ]
+}
+```
+
+The response is as follows:
+
+
+```json
+{
+    "id": "0a1234b5de6789f01gh2i345j6789klm",
+    "object": "chat.completion",
+    "created": 1718726686,
+    "model": "DeepSeek-R1",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "<think>\nOkay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer. Let's start by recalling the general consensus from linguistic sources. I remember that the number often cited is around 7,000, but maybe I should check some reputable organizations.\n\nEthnologue is a well-known resource for language data, and I think they list about 7,000 languages. But wait, do they update their numbers? It might be around 7,100 or so. Also, the exact count can vary because some sources might categorize dialects differently or have more recent data. \n\nAnother thing to consider is language endangerment. Many languages are endangered, with some having only a few speakers left. Organizations like UNESCO track endangered languages, so mentioning that adds context. Also, the distribution isn't even. Some countries have hundreds of languages, like Papua New Guinea with over 800, while others have just a few. \n\nA user might also wonder why the exact number is hard to pin down. It's because the distinction between a language and a dialect can be political or cultural. For example, Mandarin and Cantonese are considered dialects of Chinese by some, but they're mutually unintelligible, so others classify them as separate languages. Also, some regions are under-researched, making it hard to document all languages. \n\nI should also touch on language families. The 7,000 languages are grouped into families like Indo-European, Sino-Tibetan, Niger-Congo, etc. Maybe mention a few of the largest families. But wait, the question is just about the count, not the families. Still, it's good to provide a bit more context. \n\nI need to make sure the information is up-to-date. Let me think – recent estimates still hover around 7,000. However, languages are dying out rapidly, so the number decreases over time. Including that note about endangerment and language extinction rates could be helpful. For instance, it's often stated that a language dies every few weeks. \n\nAnother point is sign languages. Does the count include them? Ethnologue includes some, but not all sources might. If the user is including sign languages, that adds more to the count, but I think the 7,000 figure typically refers to spoken languages. For thoroughness, maybe mention that there are also over 300 sign languages. \n\nSummarizing, the answer should state around 7,000, mention Ethnologue's figure, explain why the exact number varies, touch on endangerment, and possibly note sign languages as a separate category. Also, a brief mention of Papua New Guinea as the most linguistically diverse country. \n\nWait, let me verify Ethnologue's current number. As of their latest edition (25th, 2022), they list 7,168 living languages. But I should check if that's the case. Some sources might round to 7,000. Also, SIL International publishes Ethnologue, so citing them as reference makes sense. \n\nOther sources, like Glottolog, might have a different count because they use different criteria. Glottolog might list around 7,000 as well, but exact numbers vary. It's important to highlight that the count isn't exact because of differing definitions and ongoing research. \n\nIn conclusion, the approximate number is 7,000, with Ethnologue being a key source, considerations of endangerment, and the challenges in counting due to dialect vs. language distinctions. I should make sure the answer is clear, acknowledges the variability, and provides key points succinctly.\n</think>\n\nThe exact number of languages in the world is challenging to determine due to differences in definitions (e.g., distinguishing languages from dialects) and ongoing documentation efforts. However, widely cited estimates suggest there are approximately **7,000 languages** globally.",
+                "tool_calls": null
+            },
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 11,
+        "total_tokens": 897,
+        "completion_tokens": 886
+    }
+}
+```
+
 #### Stream content
 
 By default, the completions API returns the entire generated content in a single response. If you're generating long completions, waiting for the response can take many seconds.
@@ -1413,285 +1085,6 @@ The last message in the stream has `finish_reason` set, indicating the reason fo
 }
 ```
 
-#### Explore more parameters supported by the inference client
-
-Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Azure AI Model Inference API reference](https://aka.ms/azureai/modelinference).
-
-```json
-{
-    "model": "DeepSeek-R1",
-    "messages": [
-        {
-            "role": "system",
-            "content": "You are a helpful assistant."
-        },
-        {
-            "role": "user",
-            "content": "How many languages are in the world?"
-        }
-    ],
-    "presence_penalty": 0.1,
-    "frequency_penalty": 0.8,
-    "max_tokens": 2048,
-    "stop": ["<|endoftext|>"],
-    "temperature" :0,
-    "top_p": 1,
-    "response_format": { "type": "text" }
-}
-```
-
-
-```json
-{
-    "id": "0a1234b5de6789f01gh2i345j6789klm",
-    "object": "chat.completion",
-    "created": 1718726686,
-    "model": "DeepSeek-R1",
-    "choices": [
-        {
-            "index": 0,
-            "message": {
-                "role": "assistant",
-                "content": "As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.",
-                "tool_calls": null
-            },
-            "finish_reason": "stop",
-            "logprobs": null
-        }
-    ],
-    "usage": {
-        "prompt_tokens": 19,
-        "total_tokens": 91,
-        "completion_tokens": 72
-    }
-}
-```
-
-> [!WARNING]
-> Deepseek models don't support JSON output formatting (`response_format = { "type": "json_object" }`). You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
-
-If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
-
-### Pass extra parameters to the model
-
-The Azure AI Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
-
-Before you pass extra parameters to the Azure AI model inference API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
-
-```http
-POST /chat/completions HTTP/1.1
-Host: <ENDPOINT_URI>
-Authorization: Bearer <TOKEN>
-Content-Type: application/json
-extra-parameters: pass-through
-```
-
-
-```json
-{
-    "model": "DeepSeek-R1",
-    "messages": [
-        {
-            "role": "system",
-            "content": "You are a helpful assistant."
-        },
-        {
-            "role": "user",
-            "content": "How many languages are in the world?"
-        }
-    ],
-    "logprobs": true
-}
-```
-
-### Use tools
-
-DeepSeek-R1 support the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
-
-The following code example creates a tool definition that is able to look from flight information from two different cities.
-
-
-```json
-{
-    "type": "function",
-    "function": {
-        "name": "get_flight_info",
-        "description": "Returns information about the next flight between two cities. This includes the name of the airline, flight number and the date and time of the next flight",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "origin_city": {
-                    "type": "string",
-                    "description": "The name of the city where the flight originates"
-                },
-                "destination_city": {
-                    "type": "string",
-                    "description": "The flight destination city"
-                }
-            },
-            "required": [
-                "origin_city",
-                "destination_city"
-            ]
-        }
-    }
-}
-```
-
-In this example, the function's output is that there are no flights available for the selected route, but the user should consider taking a train.
-
-Prompt the model to book flights with the help of this function:
-
-
-```json
-{
-    "model": "DeepSeek-R1",
-    "messages": [
-        {
-            "role": "system",
-            "content": "You are a helpful assistant that help users to find information about traveling, how to get to places and the different transportations options. You care about the environment and you always have that in mind when answering inqueries"
-        },
-        {
-            "role": "user",
-            "content": "When is the next flight from Miami to Seattle?"
-        }
-    ],
-    "tool_choice": "auto",
-    "tools": [
-        {
-            "type": "function",
-            "function": {
-                "name": "get_flight_info",
-                "description": "Returns information about the next flight between two cities. This includes the name of the airline, flight number and the date and time of the next flight",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "origin_city": {
-                            "type": "string",
-                            "description": "The name of the city where the flight originates"
-                        },
-                        "destination_city": {
-                            "type": "string",
-                            "description": "The flight destination city"
-                        }
-                    },
-                    "required": [
-                        "origin_city",
-                        "destination_city"
-                    ]
-                }
-            }
-        }
-    ]
-}
-```
-
-You can inspect the response to find out if a tool needs to be called. Inspect the finish reason to determine if the tool should be called. Remember that multiple tool types can be indicated. This example demonstrates a tool of type `function`.
-
-
-```json
-{
-    "id": "0a1234b5de6789f01gh2i345j6789klm",
-    "object": "chat.completion",
-    "created": 1718726007,
-    "model": "DeepSeek-R1",
-    "choices": [
-        {
-            "index": 0,
-            "message": {
-                "role": "assistant",
-                "content": "",
-                "tool_calls": [
-                    {
-                        "id": "abc0dF1gh",
-                        "type": "function",
-                        "function": {
-                            "name": "get_flight_info",
-                            "arguments": "{\"origin_city\": \"Miami\", \"destination_city\": \"Seattle\"}",
-                            "call_id": null
-                        }
-                    }
-                ]
-            },
-            "finish_reason": "tool_calls",
-            "logprobs": null
-        }
-    ],
-    "usage": {
-        "prompt_tokens": 190,
-        "total_tokens": 226,
-        "completion_tokens": 36
-    }
-}
-```
-
-To continue, append this message to the chat history:
-
-Now, it's time to call the appropriate function to handle the tool call. The following code snippet iterates over all the tool calls indicated in the response and calls the corresponding function with the appropriate parameters. The response is also appended to the chat history.
-
-View the response from the model:
-
-
-```json
-{
-    "model": "DeepSeek-R1",
-    "messages": [
-        {
-            "role": "system",
-            "content": "You are a helpful assistant that help users to find information about traveling, how to get to places and the different transportations options. You care about the environment and you always have that in mind when answering inqueries"
-        },
-        {
-            "role": "user",
-            "content": "When is the next flight from Miami to Seattle?"
-        },
-        {
-            "role": "assistant",
-            "content": "",
-            "tool_calls": [
-                {
-                    "id": "abc0DeFgH",
-                    "type": "function",
-                    "function": {
-                        "name": "get_flight_info",
-                        "arguments": "{\"origin_city\": \"Miami\", \"destination_city\": \"Seattle\"}",
-                        "call_id": null
-                    }
-                }
-            ]
-        },
-        {
-            "role": "tool",
-            "content": "{ \"info\": \"There are no flights available from Miami to Seattle. You should take a train, specially if it helps to reduce CO2 emissions.\" }",
-            "tool_call_id": "abc0DeFgH" 
-        }
-    ],
-    "tool_choice": "auto",
-    "tools": [
-        {
-            "type": "function",
-            "function": {
-            "name": "get_flight_info",
-            "description": "Returns information about the next flight between two cities. This includes the name of the airline, flight number and the date and time of the next flight",
-            "parameters":{
-                "type": "object",
-                "properties": {
-                    "origin_city": {
-                        "type": "string",
-                        "description": "The name of the city where the flight originates"
-                    },
-                    "destination_city": {
-                        "type": "string",
-                        "description": "The flight destination city"
-                    }
-                },
-                "required": ["origin_city", "destination_city"]
-            }
-            }
-        }
-    ]
-}
-```
-
 ### Apply content safety
 
 The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
@@ -1753,6 +1146,6 @@ Quota is managed per deployment. Each deployment has a rate limit of 200,000 tok
 
 * [Azure AI Model Inference API](../reference/reference-model-inference-api.md)
 * [Deploy models as serverless APIs](deploy-models-serverless.md)
-* [Consume serverless API endpoints from a different Azure AI Foundry project or hub](deploy-models-serverless-connect.md)
+* [Consume serverless API endpoints from a different Azure AI Studio project or hub](deploy-models-serverless-connect.md)
 * [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)
 * [Plan and manage costs (marketplace)](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace)
