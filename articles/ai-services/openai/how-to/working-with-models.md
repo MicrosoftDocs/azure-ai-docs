@@ -362,7 +362,8 @@ curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-0
 > There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account?view=azure-cli-latest#az-account-get-access-token&preserve-view=true). You can use this token as your temporary authorization token for API testing.
 
 ### Multi-deployment migrations for provisioned deployments
-For scenarios where you would like more 
+Multi-deployment migrations allow you to have greater control over the model migration process. With multi-deployment migrations, you can dictate how quickly you would like to migrate your existing traffic to the target model version or model family on a new provisioned deployment. The process to migrate to a new model version or model family using the multi-deployment migration approach is as follows:
+- Create a new provisioned deployment. For this new deployment, you can choose to maintain the same provisioned deployment type as your existing provisioned deployment or select a new deployment type if de
 
 ## Next steps
 
