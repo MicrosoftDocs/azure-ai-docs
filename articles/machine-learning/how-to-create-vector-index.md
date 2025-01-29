@@ -76,8 +76,8 @@ After you create a vector index, you can add it to a prompt flow from the prompt
 
     :::image type="content" source="media/how-to-create-vector-index/index-lookup-tool.png" alt-text="Screenshot that shows the list of available tools.":::
 
-   a. The Index Lookup tool is added to the canvas. If you don't see the tool immediately, scroll to the bottom of the canvas.
-   b. Enter a name for your vector index.
+  1. The Index Lookup tool is added to the canvas. If you don't see the tool immediately, scroll to the bottom of the canvas.
+  2. Enter a name for your vector index.
 
     :::image type="content" source="media/how-to-create-vector-index/configure-index-lookup-tool.png" alt-text="Screenshot that shows the Vector Index Lookup tool.":::
 
