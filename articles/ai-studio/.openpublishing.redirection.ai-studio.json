@@ -234,6 +234,11 @@
               "source_path_from_root": "/articles/ai-studio/how-to/data-image-add.md",
               "redirect_url": "/azure/ai-studio/quickstarts/multimodal-vision",
               "redirect_document_id": false
-          }
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/quickstarts/multimodal-vision.md",
+            "redirect_url": "/azure/ai-services/openai/gpt-v-quickstart",
+            "redirect_document_id": false
+        }
     ]
 }
