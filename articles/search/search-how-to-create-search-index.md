@@ -64,7 +64,7 @@ Use this checklist to assist the design decisions for your search index.
 
 1. Identify which source fields can be used as filters. Numeric content and short text fields, particularly those with repeating values, are good choices. When working with filters, remember:
 
-   + Filters can be used in vector and nonvector queries, but the filter itself is applied to alphanumeric (nonvector) fields in your index.
+   + Filters can be used in vector and nonvector queries, but the filter itself is applied to human-readable (nonvector) fields in your index.
 
    + Filterable fields can optionally be used in faceted navigation.
 
@@ -110,7 +110,7 @@ Default field attributions for the REST APIs are summarized in the following tab
 
 String fields can also be optionally associated with [analyzers](search-analyzers.md) and [synonym maps](search-synonyms.md). Fields of type `Edm.String` that are filterable, sortable, or facetable can be at most 32 kilobytes in length. This is because values of such fields are treated as a single search term, and the maximum length of a term in Azure AI Search is 32 kilobytes. If you need to store more text than this in a single string field, you should explicitly set filterable, sortable, and facetable to `false` in your index definition.
 
-Vector fields must be associated with [dimensions and vector profiles](vector-search-how-to-create-index.md). Retrievable default is true if you add the vector field using the [Import and vectorize wizard](search-get-started-portal-import-vectors.md) in the portal, otherwise it's false if you use the REST API.
+Vector fields must be associated with [dimensions and vector profiles](vector-search-how-to-create-index.md). Retrievable default is true if you add the vector field using the [Import and vectorize wizard](search-get-started-portal-import-vectors.md) in the Azure portal, otherwise it's false if you use the REST API.
 
 Field attributes are described in the following table.
 
@@ -138,7 +138,7 @@ During development, plan on frequent rebuilds. Because physical structures are c
 
 ### [**Azure portal**](#tab/portal)
 
-Index design through the portal enforces requirements and schema rules for specific data types, such as disallowing full text search capabilities on numeric fields. 
+Index design through the Azure portal enforces requirements and schema rules for specific data types, such as disallowing full text search capabilities on numeric fields. 
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
@@ -158,7 +158,7 @@ The following screenshot highlights where **Add index**, **Import data**, and **
 After an index is created, you can find it again on the **Indexes** page from the left navigation pane.
 
 > [!TIP]
-> After creating an index in the portal, you can copy the JSON representation and add it to your application code.
+> After creating an index in the Azure portal, you can copy the JSON representation and add it to your application code.
 
 ### [**REST**](#tab/index-rest)
 

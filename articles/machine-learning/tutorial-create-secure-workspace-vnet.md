@@ -366,7 +366,7 @@ There are several ways that you can connect to the secured workspace. The steps 
 Use the following steps to create an Azure Virtual Machine to use as a jump box. Azure Bastion enables you to connect to the VM desktop through your browser. From the VM desktop, you can then use the browser on the VM to connect to resources inside the virtual network, such as Azure Machine Learning studio. Or you can install development tools on the VM. 
 
 > [!TIP]
-> The following steps create a Windows 11 enterprise VM. Depending on your requirements, you may want to select a different VM image. The Windows 11 (or 10) enterprise image is useful if you need to join the VM to your organization's domain.
+> The following steps create a Windows 11 enterprise VM. Depending on your requirements, you might want to select a different VM image. The Windows 11 (or 10) enterprise image is useful if you need to join the VM to your organization's domain.
 
 1. In the [Azure portal](https://portal.azure.com), select the portal menu in the upper left corner. From the menu, select __+ Create a resource__ and then enter __Virtual Machine__. Select the __Virtual Machine__ entry, and then select __Create__.
 
@@ -401,6 +401,9 @@ Use the following steps to create an Azure Virtual Machine to use as a jump box.
 
 1. Once the virtual machine is created, select __Go to resource__.
 1. From the top of the page, select __Connect__ and then __Connect via Bastion__.
+
+    > [!TIP]
+    > Azure Bastion uses port 443 for inbound communication. If you have a firewall that restricts outbound traffic, ensure that it allows traffic on port 443 to the Azure Bastion service. For more information, see [Wroking with NSGs and Azure Bastion](/azure/bastion/bastion-nsg).
 
     :::image type="content" source="./media/tutorial-create-secure-workspace-vnet/virtual-machine-connect.png" alt-text="Screenshot of the 'connect' list, with 'Bastion' selected.":::
 

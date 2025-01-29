@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 01/11/2024
+ms.date: 12/10/2024
 ---
 
 # Understand how OData collection filters work in Azure AI Search

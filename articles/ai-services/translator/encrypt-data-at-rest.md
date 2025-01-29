@@ -1,31 +1,31 @@
 ---
-title: Translator encryption of data at rest
+title: Azure AI Translator encryption of data at rest
 titleSuffix: Azure AI services
-description: Microsoft lets you manage your Azure AI services subscriptions with your own keys, called customer-managed keys (CMK). This article covers data encryption at rest for Translator, and how to enable and manage CMK. 
+description: Microsoft lets you manage your Azure AI services subscriptions with your own keys, called customer-managed keys (CMK). This article covers data encryption at rest for Azure AI Translator, and how to enable and manage CMK. 
 author: erindormier
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 07/18/2023
+ms.date: 01/28/2025
 ms.author: egeaney
 #Customer intent: As a user of the Translator service, I want to learn how encryption at rest works.
 ---
 
-# Translator encryption of data at rest
+# Azure AI Translator encryption of data at rest
 
-Translator automatically encrypts your uploaded data when it's persisted to the cloud helping to meet your organizational security and compliance goals.
+Translator automatically encrypts your cloud uploaded data to meet your organizational security and compliance goals.
 
-## About Azure AI services encryption
+## Azure AI services encryption
 
-Data is encrypted and decrypted using [FIPS 140-2](https://en.wikipedia.org/wiki/FIPS_140-2) compliant [256-bit AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption. Encryption and decryption are transparent, meaning encryption and access are managed for you. Your data is secure by default and you don't need to modify your code or applications to take advantage of encryption.
+Data is encrypted and decrypted using [`FIPS` 140-2](https://en.wikipedia.org/wiki/FIPS_140-2) compliant [256-bit `AES`](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption. Encryption and decryption are transparent, meaning encryption and access are managed for you. Your data is secure by default and you don't need to modify your code or applications to take advantage of encryption.
 
-## About encryption key management
+## Encryption key management
 
 By default, your subscription uses Microsoft-managed encryption keys. If you're using a pricing tier that supports Customer-managed keys, you can see the encryption settings for your resource in the **Encryption** section of the [Azure portal](https://portal.azure.com), as shown in the following image.
 
 ![View Encryption settings](../media/cognitive-services-encryption/encryptionblade.png)
 
-For subscriptions that only support Microsoft-managed encryption keys, you won't have an **Encryption** section.
+For subscriptions that only support Microsoft-managed encryption keys, there isn't an **Encryption** section.
 
 ## Customer-managed keys with Azure Key Vault
 
@@ -47,26 +47,26 @@ To learn how to use customer-managed keys with Azure Key Vault for Azure AI serv
 
 - [Configure customer-managed keys with Key Vault for Azure AI services encryption from the Azure portal](../Encryption/cognitive-services-encryption-keys-portal.md)
 
-Enabling customer managed keys will also enable a system assigned managed identity, a feature of Microsoft Entra ID. Once the system assigned managed identity is enabled, this resource will be registered with Microsoft Entra ID. After being registered, the managed identity will be given access to the Key Vault selected during customer managed key setup. You can learn more about [Managed Identities](/azure/active-directory/managed-identities-azure-resources/overview).
+Enabling customer managed keys also enables a system assigned managed identity, a feature of Microsoft Entra ID. Once the system assigned managed identity is enabled, this resource is registered with Microsoft Entra ID. After being registered, the managed identity will be given access to the Key Vault selected during customer managed key setup. You can learn more about [Managed Identities](/azure/active-directory/managed-identities-azure-resources/overview).
 
 > [!IMPORTANT]
-> If you disable system assigned managed identities, access to the key vault will be removed and any data encrypted with the customer keys will no longer be accessible. Any features depended on this data will stop working. Any models that you have deployed will also be undeployed. All uploaded data will be deleted from Custom Translator. If the managed identities are re-enabled, we will not automatically redeploy the model for you.
+> If you disable system assigned managed identities, access to the key vault is removed and any data encrypted with the customer keys are no longer be accessible. Any features that depend on this data stops working. Any models that you deployed are also undeployed. All uploaded data is deleted from Custom Translator. If the managed identities are re-enabled, we don't automatically redeploy the model for you.
 
 > [!IMPORTANT]
-> Managed identities do not currently support cross-directory scenarios. When you configure customer-managed keys in the Azure portal, a managed identity is automatically assigned under the covers. If you subsequently move the subscription, resource group, or resource from one Microsoft Entra directory to another, the managed identity associated with the resource is not transferred to the new tenant, so customer-managed keys may no longer work. For more information, see **Transferring a subscription between Microsoft Entra directories** in [FAQs and known issues with managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/known-issues#transferring-a-subscription-between-azure-ad-directories).  
+> Managed identities don't currently support cross-directory scenarios. When you configure customer-managed keys in the Azure portal, a managed identity is automatically assigned under the covers. Your managed identity and customer-managed keys aren't transferred when you move a subscription, resource group, or resource from one Microsoft Entra directory to another. For more information, see **Transferring a subscription between Microsoft Entra directories** in [FAQs and known issues with managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/known-issues#transferring-a-subscription-between-azure-ad-directories).  
 
 ### Store customer-managed keys in Azure Key Vault
 
 To enable customer-managed keys, you must use an Azure Key Vault to store your keys. You must enable both the **Soft Delete** and **Do Not Purge** properties on the key vault.
 
-Only RSA keys of size 2048 are supported with Azure AI services encryption. For more information about keys, see **Key Vault keys** in [About Azure Key Vault keys, secrets and certificates](/azure/key-vault/general/about-keys-secrets-certificates).
+Only `RSA` keys of size 2048 are supported with Azure AI services encryption. For more information about keys, see **Key Vault keys** in [About Azure Key Vault keys, secrets, and certificates](/azure/key-vault/general/about-keys-secrets-certificates).
 
 > [!NOTE]
-> If the entire key vault is deleted, your data will no longer be displayed and all your models will be undeployed. All uploaded data will be deleted from Custom Translator. 
+> If the entire key vault is deleted, your data is no longer displayed and all your models are undeployed. All uploaded data is deleted from Custom Translator. 
 
 ### Revoke access to customer-managed keys
 
-To revoke access to customer-managed keys, use PowerShell or Azure CLI. For more information, see [Azure Key Vault PowerShell](/powershell/module/az.keyvault//) or [Azure Key Vault CLI](/cli/azure/keyvault). Revoking access effectively blocks access to all data in the Azure AI services resource and your models will be undeployed, as the encryption key is inaccessible by Azure AI services. All uploaded data will also be deleted from Custom Translator.
+To revoke access to customer-managed keys, use PowerShell or Azure CLI. For more information, see [Azure Key Vault PowerShell](/powershell/module/az.keyvault//) or [Azure Key Vault CLI](/cli/azure/keyvault). Revoking access effectively blocks access to all data in the Azure AI services resource and your models are undeployed, as the encryption key is inaccessible by Azure AI services. All uploaded data is also deleted from Azure AI Custom Translator.
 
 ## Next steps
 

@@ -1,7 +1,7 @@
 ---
-title: How to deploy and use MedImageInsight healthcare AI model with AI Studio
-titleSuffix: Azure AI Studio
-description: Learn how to use MedImageInsight Healthcare AI Model with Azure AI Studio.
+title: How to deploy and use MedImageInsight healthcare AI model with Azure AI Foundry
+titleSuffix: Azure AI Foundry
+description: Learn how to use MedImageInsight Healthcare AI Model with Azure AI Foundry.
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
@@ -41,7 +41,7 @@ To use the MedImageInsight model, you need the following prerequisites:
 
 **Deployment to a self-hosted managed compute**
 
-MedImageInsight model can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served. You can deploy the model through the catalog UI (in [AI Studio](https://aka.ms/healthcaremodelstudio) or [Azure Machine Learning studio](https://ml.azure.com/model/catalog)) or deploy programmatically.
+MedImageInsight model can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served. You can deploy the model through the catalog UI (in [Azure AI Foundry](https://aka.ms/healthcaremodelstudio) or [Azure Machine Learning studio](https://ml.azure.com/model/catalog)) or deploy programmatically.
 
 To __deploy the model through the UI__:
 

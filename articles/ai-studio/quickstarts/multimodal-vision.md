@@ -1,63 +1,65 @@
 ---
-title: Get started using GPT-4 Turbo with Vision on your images and videos in Azure AI Studio
-titleSuffix: Azure AI Studio
-description: Get started using GPT-4 Turbo with Vision on your images and videos in Azure AI Studio.
+title: Get started vision-enabled chats in Azure AI Foundry portal
+titleSuffix: Azure AI Foundry
+description: Get started using vision-enabled chats in Azure AI Foundry portal.
 manager: nitinme
 ms.service: azure-ai-studio
 ms.custom:
   - build-2024
 ms.topic: quickstart
-ms.date: 5/21/2024
+ms.date: 01/10/2025
 ms.reviewer: eur
 ms.author: pafarley
 author: PatrickFarley
 ---
 
-# Quickstart: Get started using GPT-4 Turbo with Vision on your images and videos in Azure AI Studio
+# Quickstart: Get started using vision-enabled chats in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Use this article to get started using [Azure AI Studio](https://ai.azure.com) to deploy and test the GPT-4 Turbo with Vision model. 
+Use this article to get started using [Azure AI Foundry](https://ai.azure.com) to deploy and test a chat completion model with image understanding. 
 
+<!--
 GPT-4 Turbo with Vision and [Azure AI Vision](../../ai-services/computer-vision/overview.md) offer advanced functionality including:
 
 - Optical Character Recognition (OCR): Extracts text from images and combines it with the user's prompt and image to expand the context. 
 - Object grounding: Complements the GPT-4 Turbo with Vision text response with object grounding and outlines salient objects in the input images.
 - Video prompts: GPT-4 Turbo with Vision can answer questions by retrieving the video frames most relevant to the user's prompt.
+-->
 
-Extra usage fees might apply when using GPT-4 Turbo with Vision and Azure AI Vision functionality.
+Extra usage fees might apply when using chat completion models with vision functionality.
 
 ## Prerequisites
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - Once you have your Azure subscription, <a href="/azure/ai-services/openai/how-to/create-resource?pivots=web-portal"  title="Create an Azure OpenAI resource."  target="_blank">create an Azure OpenAI resource </a>.
-- An [AI Studio hub](../how-to/create-azure-ai-resource.md) with your Azure OpenAI resource added as a connection. 
+- An [Azure AI Foundry hub](../how-to/create-azure-ai-resource.md) with your Azure OpenAI resource added as a connection. 
 
 ## Prepare your media
 
-You need an image to complete the image quickstarts. You can use this sample image or any other image you have available. 
+You need an image to complete this quickstart. You can use this sample image or any other image you have available.
 
 :::image type="content" source="../media/quickstarts/multimodal-vision/car-accident.png" alt-text="Photo of a car accident that can be used to complete the quickstart." lightbox="../media/quickstarts/multimodal-vision/car-accident.png":::
 
-For video prompts, you need a video that's under three minutes in length.
+## Deploy a vision-enabled chat model
 
-## Deploy a GPT-4 Turbo with Vision model
-
-1. Sign in to [Azure AI Studio](https://ai.azure.com) and select the hub you'd like to work in.
-1. On the left nav menu, select **AI Services**. Select the **Try out GPT-4 Turbo** panel.
-1. On the gpt-4 page, select **Deploy**. In the window that appears, select your Azure OpenAI resource. Select `vision-preview` as the model version.
+1. Sign in to [Azure AI Foundry](https://ai.azure.com) and select the hub you'd like to work in.
+1. On the left nav menu, select **Models + endpoints** and select **+ Deploy model**.
+1. On the model selection page, select a vision-enabled model like GPT-4o. In the window that appears, select a name and deployment type. Make sure your Azure OpenAI resource is connected.
 1. Select **Deploy**.
-1. Next, go to your new model's page and select **Open in playground**. In the chat playground, the GPT-4 deployment you created should be selected in the **Deployment** dropdown.
+1. Next, select your new model and select **Open in playground**. In the chat playground, the deployment you created should be selected in the **Deployment** dropdown.
     
-# [Image prompts](#tab/image-chat)
+<!-- # [Image prompts](#tab/image-chat) -->
 
-In this chat session, you instruct the assistant to aid in understanding images that you input.
+## Image prompts
 
-1. In the **System message** text box on the **System message** tab, provide this prompt to guide the assistant: `"You're an AI assistant that helps people find information."` You can tailor the prompt to your image or scenario.
+In this chat session, you instruct the assistant to aid you in understanding images that you input.
+
+1. In the context text box on the **Setup** panel, provide this prompt to guide the assistant: `"You're an AI assistant that helps people find information."` Or, you can tailor the prompt to your image or scenario.
 1. Select **Apply changes** to save your changes. 
 1. In the chat session pane, select the attachment button and then **Upload image**. Choose your image.
-1. Add the following question in the chat field: `"Describe this image"`, and then select the right arrow icon to send.
-1. The right arrow icon is replaced by a Stop button. If you select it, the assistant stops processing your request. For this quickstart, let the assistant finish its reply.
+1. Add the following prompt in the chat field: `"Describe this image"`, and then select the send icon to submit it.
+1. The send icon is replaced by a stop button. If you select it, the assistant stops processing your request. For this quickstart, let the assistant finish its reply.
 1. The assistant replies with a description of the image.
     <!--:::image type="content" source="../media/quickstarts/multimodal-vision/chat-car-accident-reply-license.png" alt-text="Screenshot of the chat playground with the assistant's reply for basic image analysis." lightbox="../media/quickstarts/multimodal-vision/chat-car-accident-reply-license.png":::-->
 1. Ask a follow-up question related to the analysis of your image. You could enter, `"What should I highlight about this image to my insurance company?"`.
@@ -79,7 +81,7 @@ In this chat session, you instruct the assistant to aid in understanding images 
        
     Remember to be factual and descriptive, avoiding speculation about the cause of the accident, as the insurance company will conduct its own investigation.
     ```
-
+<!--
 # [Image prompt enhancements](#tab/enhanced-image-chat)
 
 In this chat session, you instruct the assistant to aid in understanding images that you input. Try out the capabilities of the augmented vision model.  
@@ -90,7 +92,7 @@ In this chat session, you instruct the assistant to aid in understanding images 
 1. Add the following question in the chat field: `"Describe this image"`, and then select the right arrow icon to send.
 1. The right arrow icon is replaced by a Stop button. If you select it, the assistant stops processing your request. For this quickstart, let the assistant finish its reply.
 1. The assistant replies with a description of the image. It uses the Azure AI Vision service to extract more detail from the image you uploaded.
-    <!--:::image type="content" source="../media/quickstarts/multimodal-vision/chat-image-read-text.png" alt-text="Screenshot of the chat playground with the model output where the text in the image is read and returned." lightbox="../media/quickstarts/multimodal-vision/chat-image-read-text.png":::-->
+
 1. Ask a follow-up question related to the analysis of your image. Enter, `"What should I highlight about this image to my insurance company?" `and then select the right arrow icon to send.
 1. You should receive a relevant response similar to what's shown here:
     ```
@@ -124,17 +126,20 @@ In this chat session, you are instructing the assistant to aid in understanding 
 1. The assistant should reply with a description of the video.
 1. Feel free to ask any follow-up questions related to the analysis of your video.
 
+
 ## Limitations
 
 Below are the known limitations of the video prompt enhancements.
 
 - **Low resolution:** The frames are analyzed using GPT-4 Turbo with Vision's "low resolution" setting, which may affect the accuracy of small object and text recognition in the video.
-- **Video file limits:** Both MP4 and MOV file types are supported. In the Azure AI Studio Playground, videos must be less than 3 minutes long. When you use the API there is no such limitation.
+- **Video file limits:** Both MP4 and MOV file types are supported. In the Azure AI Foundry portal Playground, videos must be less than 3 minutes long. When you use the API there is no such limitation.
 - **Prompt limits:** Video prompts only contain one video and no images. In Playground, you can clear the session to try with another video or images.
 - **Limited frame selection:** Currently the system selects 20 frames from the entire video, which might not capture all critical moments or details. Frame selection can either be evenly spread through the video or focused by a specific Video Retrieval query, depending on the prompt.
 - **Language support:** Currently, the system primarily supports English for grounding with transcripts. Transcripts don't provide accurate information on lyrics from songs.
 
 ---
+-->
+
 
 ## View and export code
 

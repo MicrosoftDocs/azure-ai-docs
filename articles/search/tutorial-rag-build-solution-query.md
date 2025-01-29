@@ -7,14 +7,15 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.custom:
+  - ignite-2024
 ms.topic: tutorial
-ms.date: 10/04/2024
-
+ms.date: 01/09/2025
 ---
 
 # Tutorial: Search your data using a chat model (RAG in Azure AI Search)
 
-The defining characteristic of a RAG solution on Azure AI Search is sending queries to a Large Language Model (LLM) and providing a conversational search experience over your indexed content. It can be surprisingly easy if you implement just the basics.
+The defining characteristic of a RAG solution on Azure AI Search is sending queries to a Large Language Model (LLM) for a conversational search experience over your indexed content. It can be surprisingly easy if you implement just the basics.
 
 In this tutorial, you:
 
@@ -55,6 +56,8 @@ AZURE_OPENAI_ACCOUNT: str = "PUR YOUR AZURE OPENAI ENDPOINT HERE"
 ## Example script for prompt and query
 
 Here's the Python script that instantiates the clients, defines the prompt, and sets up the query. You can run this script in the notebook to generate a response from your chat model deployment.
+
+For the Azure Government cloud, modify the API endpoint on the token provider to `"https://cognitiveservices.azure.us/.default"`.
 
 ```python
 # Import libraries
@@ -164,16 +167,10 @@ search_results = search_client.search(
     vector_queries= [vector_query],
     filter="search.ismatch('ice*', 'locations', 'full', 'any')",
     select=["title", "chunk", "locations"],
-    top=5,
+    top=5
 )
 
 sources_formatted = "=================\n".join([f'TITLE: {document["title"]}, CONTENT: {document["chunk"]}, LOCATIONS: {document["locations"]}' for document in search_results])
-
-search_results = search_client.search(
-    search_text=query,
-    top=10,
-    filter="search.ismatch('ice*', 'locations', 'full', 'any')",
-    select="title, chunk, locations"
 ```
 
 Results from the filtered query should now look similar to the following response. Notice the emphasis on ice cover.

@@ -1,52 +1,58 @@
 ---
-title: 'Run OpenAI models in batch endpoints'
+title: Run Azure OpenAI models in batch endpoints
 titleSuffix: Azure Machine Learning
-description: In this article, learn how to use batch endpoints with OpenAI models.
+description: Find out how to compute embeddings by running Azure OpenAI models in batch endpoints. See how to deploy the text-embedding-ada-002 model in MLflow format.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.topic: conceptual
+ms.topic: how-to
 author: msakande
 ms.author: mopeakande
 ms.reviewer: cacrest
-ms.date: 11/04/2023
+ms.date: 12/16/2024
 ms.custom: how-to, devplatv2, update-code
+# customer intent: As a developer, I want to deploy an Azure OpenAI ADA-002 model to a batch endpoint so I can compute embeddings at scale.
 ---
 
-# Run OpenAI models in batch endpoints to compute embeddings
+# Run Azure OpenAI models in batch endpoints to compute embeddings
 
 [!INCLUDE [cli v2](includes/machine-learning-dev-v2.md)]
 
-Batch Endpoints can deploy models to run inference over large amounts of data, including OpenAI models. In this example, you learn how to create a batch endpoint to deploy ADA-002 model from OpenAI to compute embeddings at scale but you can use the same approach for completions and chat completions models. It uses Microsoft Entra authentication to grant access to the Azure OpenAI resource.
+To run inference over large amounts of data, you can use batch endpoints to deploy models, including Azure OpenAI models. In this article, you see how to create a batch endpoint to deploy the `text-embedding-ada-002` model from Azure OpenAI to compute embeddings at scale. You can use the same approach for completions and chat completions models. 
 
-## About this example
+The example in this article uses Microsoft Entra authentication to grant access to an Azure OpenAI Service resource, but you can also use an access key. The model is registered in MLflow format. It uses the Azure OpenAI flavor, which provides support for calling the Azure OpenAI service at scale.
 
-In this example, we're going to compute embeddings over a dataset using ADA-002 model from OpenAI. We will register the particular model in MLflow format using the OpenAI flavor which has support to orchestrate all the calls to the OpenAI service at scale.
-
-[!INCLUDE [machine-learning-batch-clone](includes/azureml-batch-clone-samples.md)]
-
-The files for this example are in:
-
-```azurecli
-cd endpoints/batch/deploy-models/openai-embeddings
-```
-
-### Follow along in Jupyter Notebooks
-
-You can follow along this sample in the following notebooks. In the cloned repository, open the notebook: [deploy-and-test.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb).
+To follow along with the example steps, see the Jupyter notebook [Score OpenAI models in batch using Batch Endpoints](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb).
 
 ## Prerequisites
 
 [!INCLUDE [machine-learning-batch-prereqs](includes/azureml-batch-prereqs.md)]
 
+## Clone the examples repository
 
-### Ensure you have an OpenAI deployment
+[!INCLUDE [machine-learning-batch-clone](includes/azureml-batch-clone-samples.md)]
 
-The example shows how to run OpenAI models hosted in Azure OpenAI Service. To successfully do it, you need an OpenAI resource correctly deployed in Azure and a deployment for the model you want to use.
+Use the following command to go to the folder for this example:
 
-:::image type="content" source="./media/how-to-use-batch-model-openai-embeddings/aoai-deployments.png" alt-text="An screenshot showing the Azure OpenAI studio with the list of model deployments available.":::
+# [Azure CLI](#tab/cli)
 
-Take note of the OpenAI resource being used. We use the name to construct the URL of the resource. Save the URL for later use on the tutorial.
+```azurecli
+cd endpoints/batch/deploy-models/openai-embeddings
+```
+
+# [Python SDK](#tab/python)
+
+```python
+cd endpoints/batch/deploy-models/openai-embeddings
+```
+
+---
+
+## Create an Azure OpenAI resource
+
+This article shows you how to run OpenAI models hosted in Azure OpenAI. To begin, you need an Azure OpenAI resource that's deployed in Azure. For information about creating an Azure OpenAI resource, see [Create a resource](../ai-services/openai/how-to/create-resource.md#create-a-resource).
+
+The name of your Azure OpenAI resource forms part of the resource URL. Use the following command to save that URL for use in later steps.
 
 # [Azure CLI](#tab/cli)
 
@@ -54,7 +60,7 @@ Take note of the OpenAI resource being used. We use the name to construct the UR
 OPENAI_API_BASE="https://<your-azure-openai-resource-name>.openai.azure.com"
 ```
 
-# [Python](#tab/python)
+# [Python SDK](#tab/python)
 
 ```python
 openai_api_base="https://<your-azure-openai-resource-name>.openai.azure.com"
@@ -62,44 +68,50 @@ openai_api_base="https://<your-azure-openai-resource-name>.openai.azure.com"
 
 ---
 
-### Ensure you have a compute cluster where to deploy the endpoint
+In this article, you see how to create a deployment for an Azure OpenAI model. The following image shows a deployed Azure OpenAI model and highlights the Azure OpenAI resource that it's deployed to:
 
-Batch endpoints use compute cluster to run the models. In this example, we use a compute cluster called **batch-cluster**. We create the compute cluster here but you can skip this step if you already have one:
+:::image type="content" source="./media/how-to-use-batch-model-openai-embeddings/azure-openai-deployments.png" alt-text="Screenshot of the Azure OpenAI page within Azure AI Foundry. A model deployment that's available in a particular Azure OpenAI resource is visible." lightbox="media/how-to-use-batch-model-openai-embeddings/azure-openai-deployments.png":::
+
+For information about managing Azure OpenAI models in Azure OpenAI, see [Focus on Azure OpenAI Service](../ai-studio/azure-openai-in-ai-studio.md#focus-on-azure-openai-service).
+
+## Create a compute cluster
+
+Batch endpoints use a compute cluster to run models. Use the following code to create a compute cluster called **batch-cluster-lp**. If you already have a compute cluster, you can skip this step.
 
 # [Azure CLI](#tab/cli)
 
 ```azurecli
-COMPUTE_NAME="batch-cluster"
-az ml compute create -n batch-cluster --type amlcompute --min-instances 0 --max-instances 5
+COMPUTE_NAME="batch-cluster-lp"
+az ml compute create -n batch-cluster-lp --type amlcompute --min-instances 0 --max-instances 5
 ```
 
-# [Python](#tab/python)
+# [Python SDK](#tab/python)
 
 [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=create_compute)]
 
 ---
 
-### Decide in the authentication mode
+## Choose an authentication mode
 
 You can access the Azure OpenAI resource in two ways:
 
-* Using Microsoft Entra authentication (recommended).
-* Using an access key.
+* Microsoft Entra authentication (recommended)
+* An access key
 
-Using Microsoft Entra is recommended because it helps you avoid managing secrets in the deployments.
+Using Microsoft Entra is recommended because it helps you avoid managing secrets in deployments.
 
 # [Microsoft Entra authentication](#tab/ad)
 
-You can configure the identity of the compute to have access to the Azure OpenAI deployment to get predictions. In this way, you don't need to manage permissions for each of the users using the endpoint. To configure the identity of the compute cluster get access to the Azure OpenAI resource, follow these steps:
+You can configure the identity of the compute cluster to have access to the Azure OpenAI deployment to get predictions. In this way, you don't need to manage permissions for each endpoint user. To give the identity of the compute cluster access to the Azure OpenAI resource, follow these steps:
 
-1. Ensure or assign an identity to the compute cluster your deployment uses. In this example, we use a compute cluster called **batch-cluster** and we assign a system assigned managed identity, but you can use other alternatives.
+1. Assign an identity to the compute cluster that your deployment uses. This example uses a compute cluster called **batch-cluster-lp** and a system-assigned managed identity, but you can use other options. If your compute cluster already has an assigned identity, you can skip this step.
 
     ```azurecli
-    COMPUTE_NAME="batch-cluster"
+    COMPUTE_NAME="batch-cluster-lp"
     az ml compute update --name $COMPUTE_NAME --identity-type system_assigned
     ```
 
-1. Get the managed identity principal ID assigned to the compute cluster you plan to use. 
+1. Get the managed identity principal ID that's assigned to the compute cluster you plan to use. 
 
     ```azurecli
     PRINCIPAL_ID=$(az ml compute show -n $COMPUTE_NAME --query identity.principal_id)
@@ -112,7 +124,7 @@ You can configure the identity of the compute to have access to the Azure OpenAI
     RESOURCE_ID=$(az group show -g $RG --query "id" -o tsv)
     ```
 
-1. Grant the role **Cognitive Services User** to the managed identity:
+1. Assign the Cognitive Services User role to the managed identity:
 
     ```azurecli
     az role assignment create --role "Cognitive Services User" --assignee $PRINCIPAL_ID --scope $RESOURCE_ID
@@ -120,71 +132,61 @@ You can configure the identity of the compute to have access to the Azure OpenAI
 
 # [Access keys](#tab/keys)
 
-You can get an access key and configure the batch deployment to use the access key to get predictions. Grab the access key from your account and keep it for future reference in this tutorial.
+You can configure the batch deployment to use the access key of your Azure OpenAI resource to get predictions. Copy the access key from your account, and keep it for later steps.
 
 ---
 
+## Register the Azure OpenAI model
 
-### Register the OpenAI model
+Model deployments in batch endpoints can deploy only registered models. You can use MLflow models with the Azure OpenAI flavor to create a model in your workspace that references a deployment in Azure OpenAI.
 
-Model deployments in batch endpoints can only deploy registered models. You can use MLflow models with the flavor OpenAI to create a model in your workspace referencing a deployment in Azure OpenAI.
+In the cloned repository, the model folder contains an MLflow model that generates embeddings based on the `text-embedding-ada-002` model.
 
-1. Create an MLflow model in the workspace's models registry pointing to your OpenAI deployment with the model you want to use. Use MLflow SDK to create the model:
+Register the model in the workspace:
 
-    > [!TIP]
-    > In the cloned repository in the folder **model** you already have an MLflow model to generate embeddings based on ADA-002 model in case you want to skip this step.
+# [Azure CLI](#tab/cli)
 
-    ```python
-    import mlflow
-    import openai
+:::code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/deploy-and-run.sh" ID="register_model" :::
 
-    engine = openai.Model.retrieve("text-embedding-ada-002")
+# [Python SDK](#tab/python)
 
-    model_info = mlflow.openai.save_model(
-        path="model",
-        model="text-embedding-ada-002",
-        engine=engine.id,
-        task=openai.Embedding,
-    )
-    ```
+[!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=register_model)]
 
-1. Register the model in the workspace:
-   
-    # [Azure CLI](#tab/cli)
+---
 
-    :::code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/deploy-and-run.sh" ID="register_model" :::
+## Create a deployment for an Azure OpenAI model
 
-    # [Python](#tab/python)
+To deploy the Azure OpenAI model, you need to create an endpoint, an environment, a scoring script, and a batch deployment. The following sections show you how to set up these components.
 
-    [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=register_model)]
+### Create an endpoint
 
+An endpoint is needed to host the model. To create an endpoint, take the following steps:
 
-## Create a deployment for an OpenAI model
-
-1. First, let's create the endpoint that hosts the model. Decide on the name of the endpoint:
+1. Set up a variable to store your endpoint name. Replace the name in the following code with one that's unique within the region of your resource group.
 
     # [Azure CLI](#tab/cli)
 
     :::code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/deploy-and-run.sh" ID="name_endpoint" :::
 
-    # [Python](#tab/python)
+    # [Python SDK](#tab/python)
 
     [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=name_endpoint)]
 
+    ---
 
 1. Configure the endpoint:
 
     # [Azure CLI](#tab/cli)
 
-    The following YAML file defines a batch endpoint:
-    
-    __endpoint.yml__
+    Create a YAML file called endpoint.yml that contains the following lines. Replace the `name` value with your endpoint name. 
     
     :::code language="yaml" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/endpoint.yml":::
 
-    # [Python](#tab/python)
+    # [Python SDK](#tab/python)
 
     [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=configure_endpoint)]
+
+    ---
 
 1. Create the endpoint resource:
 
@@ -192,177 +194,196 @@ Model deployments in batch endpoints can only deploy registered models. You can 
 
     :::code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/deploy-and-run.sh" ID="create_endpoint" :::
 
-    # [Python](#tab/python)
+    # [Python SDK](#tab/python)
 
     [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=create_endpoint)]
 
-1. Our scoring script uses some specific libraries that are not part of the standard OpenAI SDK so we need to create an environment that have them. Here, we configure an environment with a base image a conda YAML.
-
-    # [Azure CLI](#tab/cli)
-
-    __environment/environment.yml__
-
-    :::code language="yaml" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/environment/environment.yml":::
-
-    # [Python](#tab/python)
-
-    [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=configure_environment)]
-    
     ---
 
-    The conda YAML looks as follows:
+### Configure an environment
 
-    __conda.yaml__
+The scoring script in this example uses some libraries that aren't part of the standard OpenAI SDK. Create an environment that contains a base image and also a conda YAML file to capture those dependencies:
 
-    :::code language="yaml" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/environment/conda.yaml":::
+# [Azure CLI](#tab/cli)
 
-1. Let's create a scoring script that performs the execution. In Batch Endpoints, MLflow models don't require a scoring script. However, in this case we want to extend a bit the capabilities of batch endpoints by:
+The environment definition consists of the following lines, which are included in the deployment definition.
 
-    > [!div class="checklist"]
-    > * Allow the endpoint to read multiple data types, including `csv`, `tsv`, `parquet`, `json`, `jsonl`, `arrow`, and `txt`.
-    > * Add some validations to ensure the MLflow model used has an OpenAI flavor on it.
-    > * Format the output in `jsonl` format.
-    > * Add an environment variable `AZUREML_BI_TEXT_COLUMN` to control (optionally) which input field you want to generate embeddings for.
+:::code language="yaml" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/environment/environment.yml":::
 
-    > [!TIP]
-    > By default, MLflow will use the first text column available in the input data to generate embeddings from. Use the environment variable `AZUREML_BI_TEXT_COLUMN` with the name of an existing column in the input dataset to change the column if needed. Leave it blank if the default behavior works for you.
-    
-    The scoring script looks as follows:
+# [Python SDK](#tab/python)
 
-    __code/batch_driver.py__
+[!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=configure_environment)]
 
-    :::code language="python" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/code/batch_driver.py" :::
+---
 
-1. One the scoring script is created, it's time to create a batch deployment for it. We use environment variables to configure the OpenAI deployment. Particularly we use the following keys:
+The conda YAML file, conda.yml, contains the following lines:
 
-    * `OPENAI_API_BASE` is the URL of the Azure OpenAI resource to use.
-    * `OPENAI_API_VERSION` is the version of the API you plan to use.
-    * `OPENAI_API_TYPE` is the type of API and authentication you want to use.
+:::code language="yaml" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/environment/conda.yaml":::
 
-    # [Microsoft Entra authentication](#tab/ad)
+### Create a scoring script
 
-    The environment variable `OPENAI_API_TYPE="azure_ad"` instructs OpenAI to use Active Directory authentication and hence no key is required to invoke the OpenAI deployment. The identity of the cluster is used instead.
-    
-    # [Access keys](#tab/keys)
+This example uses a scoring script that performs the execution. In batch endpoints, MLflow models don't require a scoring script. But this example extends the capabilities of batch endpoints by:
 
-    To use access keys instead of Microsoft Entra authentication, we need the following environment variables:
+- Allowing the endpoint to read multiple data types, including CSV, TSV, Parquet, JSON, JSON Lines, Arrow, and text formats.
+- Adding some validations to ensure the MLflow model has an Azure OpenAI flavor.
+- Formatting the output in JSON Lines format.
+- Optionally adding the `AZUREML_BI_TEXT_COLUMN` environment variable to control which input field you want to generate embeddings for.
 
-    * Use `OPENAI_API_TYPE="azure"`
-    * Use `OPENAI_API_KEY="<YOUR_AZURE_OPENAI_KEY>"`
+> [!TIP]
+> By default, MLflow generates embeddings from the first text column that's available in the input data. If you want to use a different column, set the `AZUREML_BI_TEXT_COLUMN` environment variable to the name of your preferred column. Leave that variable blank if the default behavior works for you.
 
-1. Once we decided on the authentication and the environment variables, we can use them in the deployment. The following example shows how to use Microsoft Entra authentication particularly:
+The scoring script, code/batch_driver.py, contains the following lines:
+
+:::code language="python" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/code/batch_driver.py" :::
+
+### Create a batch deployment
+
+To configure the Azure OpenAI deployment, you use environment variables. Specifically, you use the following keys:
+
+- `OPENAI_API_TYPE` is the type of API and authentication that you want to use.
+- `OPENAI_API_BASE` is the URL of your Azure OpenAI resource.
+- `OPENAI_API_VERSION` is the version of the API that you plan to use.
+
+# [Microsoft Entra authentication](#tab/ad)
+
+If you use the `OPENAI_API_TYPE` environment variable with a value of `azure_ad`, Azure OpenAI uses Microsoft Entra authentication. No key is required to invoke the Azure OpenAI deployment. Instead, the identity of the cluster is used.
+
+# [Access keys](#tab/keys)
+
+To use an access key instead of Microsoft Entra authentication, you use the following environment variables and values:
+
+- `OPENAI_API_TYPE: "azure"`
+- `AZURE_OPENAI_API_KEY: "<your-Azure-OpenAI-resource-key>"`
+
+---
+
+1. Update the values of the authentication and environment variables in the deployment configuration. The following example uses Microsoft Entra authentication:
 
     # [Azure CLI](#tab/cli)
 
-    __deployment.yml__
+    The deployment.yml file configures the deployment:
 
     :::code language="yaml" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/deployment.yml" highlight="26-28":::
 
     > [!TIP]
-    > Notice the `environment_variables` section where we indicate the configuration for the OpenAI deployment. The value for `OPENAI_API_BASE` will be set later in the creation command so you don't have to edit the YAML configuration file.
+    > The `environment_variables` section provides the configuration for the Azure OpenAI deployment. The `OPENAI_API_BASE` value is set when the deployment is created, so you don't have to edit that value in the YAML configuration file.
 
-    # [Python](#tab/python)
+    # [Python SDK](#tab/python)
 
     [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=configure_deployment)]
     
     > [!TIP]
-    > Notice the `environment_variables` section where we indicate the configuration for the OpenAI deployment.
+    > The `environment_variables` section provides the configuration for the Azure OpenAI deployment.
 
-1. Now, let's create the deployment.
+    ---
+
+1. Create the deployment.
 
     # [Azure CLI](#tab/cli)
 
     :::code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/deploy-and-run.sh" ID="create_deployment" :::
 
-    # [Python](#tab/python)
+    # [Python SDK](#tab/python)
 
     [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=create_deployment)]
 
-    Finally, set the new deployment as the default one:
+    Set the new deployment as the default one:
 
     [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=set_default_deployment)]
 
-1. At this point, our batch endpoint is ready to be used.  
+    ---
+
+    The batch endpoint is ready for use.  
 
 ## Test the deployment
    
-For testing our endpoint, we are going to use a sample of the dataset [BillSum: A Corpus for Automatic Summarization of US Legislation](https://arxiv.org/abs/1910.00523). This sample is included in the repository in the folder data.
+For testing the endpoint, you use a sample of the dataset [BillSum: A Corpus for Automatic Summarization of US Legislation](https://arxiv.org/abs/1910.00523). This sample is included in the data folder of the cloned repository.
 
-1. Create a data input for this model:
+1. Set up the input data:
 
-   # [Azure CLI](#tab/cli)
+    # [Azure CLI](#tab/cli)
+
+    In the commands in this section, use **data** as the name of the folder that contains the input data.
+
+    # [Python SDK](#tab/python)
    
-   :::code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/imagenet-classifier/deploy-and-run.sh" ID="show_job_in_studio" :::
-   
-   # [Python](#tab/python)
-   
-   ```python
-   ml_client.jobs.get(job.name)
-   ```
+    [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=configure_inputs)]
+
+    ---
 
 1. Invoke the endpoint:
 
-   # [Azure CLI](#tab/cli)
+    # [Azure CLI](#tab/cli)
    
-   :::code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/deploy-and-run.sh" ID="start_batch_scoring_job" :::
+    :::code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/deploy-and-run.sh" ID="start_batch_scoring_job" :::
    
-   # [Python](#tab/python)
+    # [Python SDK](#tab/python)
 
-   > [!TIP]
-   > [!INCLUDE [batch-endpoint-invoke-inputs-sdk](includes/batch-endpoint-invoke-inputs-sdk.md)]
+    > [!TIP]
+    > [!INCLUDE [batch-endpoint-invoke-inputs-sdk](includes/batch-endpoint-invoke-inputs-sdk.md)]
 
-   [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=start_batch_scoring_job)]
+    [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=start_batch_scoring_job)]
+
+    ---
 
 1. Track the progress:
 
-   # [Azure CLI](#tab/cli)
+    # [Azure CLI](#tab/cli)
    
-   :::code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/deploy-and-run.sh" ID="show_job_in_studio" :::
+    :::code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/deploy-and-run.sh" ID="show_job_in_studio" :::
    
-   # [Python](#tab/python)
+    # [Python SDK](#tab/python)
    
-   [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=get_job)]
+    [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=get_job)]
 
-1. Once the deployment is finished, we can download the predictions:
+    ---
 
-   # [Azure CLI](#tab/cli)
+1. After the deployment is finished, download the predictions:
 
-   To download the predictions, use the following command:
+    # [Azure CLI](#tab/cli)
 
     :::code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/openai-embeddings/deploy-and-run.sh" ID="download_outputs" :::
 
-   # [Python](#tab/python)
+    # [Python SDK](#tab/python)
 
-   [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=download_outputs)]
+    The deployment creates a child job that implements the scoring. Get a reference to that child job:
 
-1. The output predictions look like the following.
+    [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=get_scoring_job_reference)]
+
+    Download the scores:
+
+    [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb?name=download_outputs)]
+
+    ---
+
+1. Use the following code to view the output predictions:
 
     ```python
-    import pandas as pd 
-       
-    embeddings = pd.read_json("named-outputs/score/embeddings.jsonl", lines=True)
-    embeddings
+    import pandas as pd
+    from io import StringIO
+
+    # Read the output data into an object.
+    with open('embeddings.jsonl', 'r') as f:
+        json_lines = f.readlines()
+    string_io = StringIO()
+    for line in json_lines:
+        string_io.write(line)
+    string_io.seek(0)
+
+    # Read the data into a data frame.
+    embeddings = pd.read_json(string_io, lines=True)
+
+    # Print the data frame.
+    print(embeddings)
     ```
 
-    __embeddings.jsonl__
+    You can also open the output file, embeddings.jsonl, to see the predictions:
     
-    ```json
-    {
-        "file": "billsum-0.csv",
-        "row": 0,
-        "embeddings": [
-            [0, 0, 0 ,0 , 0, 0, 0 ]
-        ]
-    },
-    {
-        "file": "billsum-0.csv",
-        "row": 1,
-        "embeddings": [
-            [0, 0, 0 ,0 , 0, 0, 0 ]
-        ]
-    },
+    ```jsonl
+    {"file": "billsum-0.csv", "row": 0, "embeddings": [[0, 0, 0, 0, 0, 0, 0]]}
+    {"file": "billsum-0.csv", "row": 1, "embeddings": [[0, 0, 0, 0, 0, 0, 0]]}
     ```
-    
-## Next steps
 
-* [Create jobs and input data for batch endpoints](how-to-access-data-batch-endpoints-jobs.md)
+## Related content
+
+- [Create jobs and input data for batch endpoints](how-to-access-data-batch-endpoints-jobs.md)

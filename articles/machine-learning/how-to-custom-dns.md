@@ -25,7 +25,7 @@ When using an Azure Machine Learning workspace (including Azure AI hubs) with a 
 - An Azure Virtual Network that uses [your own DNS server](/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances#name-resolution-that-uses-your-own-dns-server).
 
 :::moniker range="azureml-api-2"
-- An Azure Machine Learning workspace with a private endpoint, including hub workspaces such as those used by Azure AI Studio. For more information, see [Create an Azure Machine Learning workspace](how-to-manage-workspace.md).
+- An Azure Machine Learning workspace with a private endpoint, including hub workspaces such as those used by Azure AI Foundry. For more information, see [Create an Azure Machine Learning workspace](how-to-manage-workspace.md).
 
 - If your workspace dependency resources are secured with an __Azure Virtual network__, familiarity with the [Network isolation during training & inference](./how-to-network-security-overview.md) article.
 :::moniker-end
@@ -57,7 +57,7 @@ Another option is to modify the `hosts` file on the client that is connecting to
 Access to a given Azure Machine Learning workspace via Private Link is done by communicating with the following Fully Qualified Domains (called the workspace FQDNs) listed below:
 
 > [!IMPORTANT]
-> If you are using a hub workspace (including Azure AI Studio hub), then you will have addtional entries for each project workspace created from the hub.
+> If you are using a hub workspace (including Azure AI Foundry hub), then you will have additional entries for each project workspace created from the hub.
 
 **Azure Public regions**:
 - ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.azureml.ms```
@@ -248,7 +248,7 @@ To find the internal IP addresses for the FQDNs in the VNet, use one of the foll
         The value returned will follow the format `https://<project-workspace-id>.workspace.<region>.api.azureml.ms/mlflow/<version>/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<project-workspace-name>`.
 
     1. Take the FQDNs returned from the hub workspace that end in `workspace.<region>.api.azureml.ms` and `workspace.<region>.cert.api.azureml.ms`. Replace the GUID value at the beginning of these FQDNs with the project workspace ID. These FQDNs are in addition to the hub workspace FQDNs.
-    1. Take the FQDN returned from the hub workspace that follows the format in `<workspace-name>-<region>-<GUID>.<region>.notebooks.azure.net`. Replace the GUID value with the project workspace ID. Replace the hub workspace name with the project workspace name. You may need to truncate the workspace name to keep this entry at 63 characters or less. This FQDN is in addition to the hub workspace FQDN.
+    1. Take the FQDN returned from the hub workspace that follows the format in `<workspace-name>-<region>-<GUID>.<region>.notebooks.azure.net`. Replace the GUID value with the project workspace ID. Replace the hub workspace name with the project workspace name. You might need to truncate the workspace name to keep this entry at 63 characters or less. This FQDN is in addition to the hub workspace FQDN.
     
 # [Azure PowerShell](#tab/azure-powershell)
 
@@ -290,8 +290,8 @@ The following table shows example IPs from Azure US Government regions:
 
 | FQDN | IP Address |
 | ----- | ----- |
-| `52882c08-ead2-44aa-af65-08a75cf094bd.workspace.chinaeast2.api.ml.azure.us` | `10.1.0.5` |
-| `52882c08-ead2-44aa-af65-08a75cf094bd.workspace.chinaeast2.cert.api.ml.azure.us` | `10.1.0.5` |
+| `52882c08-ead2-44aa-af65-08a75cf094bd.workspace.usgovvirginia.api.ml.azure.us` | `10.1.0.5` |
+| `52882c08-ead2-44aa-af65-08a75cf094bd.workspace.usgovvirginia.cert.api.ml.azure.us` | `10.1.0.5` |
 | `ml-mype-plt-usgovvirginia-52882c08-ead2-44aa-af65-08a75cf094bd.usgovvirginia.notebooks.usgovcloudapi.net` | `10.1.0.6` |
 | `*.usgovvirginia.inference.ml.azure.us` | `10.1.0.7` |
 
@@ -635,7 +635,7 @@ For more information on the `hosts` file, see [https://wikipedia.org/wiki/Hosts_
 
 ## Dependency services DNS resolution
 
-The services that your workspace relies on may also be secured using a private endpoint. If so, then you may need to create a custom DNS record if you need to directly communicate with the service. For example, if you want to directly work with the data in an Azure Storage Account used by your workspace.
+The services that your workspace relies on may also be secured using a private endpoint. If so, then you might need to create a custom DNS record if you need to directly communicate with the service. For example, if you want to directly work with the data in an Azure Storage Account used by your workspace.
 
 > [!NOTE]
 > Some services have multiple private-endpoints for sub-services or features. For example, an Azure Storage Account may have individual private endpoints for Blob, File, and DFS. If you need to access both Blob and File storage, then you must enable resolution for each specific private endpoint.

@@ -25,6 +25,8 @@ When building AI applications, use the following Azure AI services:
 
 | Service | Description |
 | --- | --- |
+| ![Azure icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure.svg) [Azure AI Agent Service](./agents/index.yml) | Combine the power of generative AI models with tools that allow agents to access and interact with real-world data sources. |
+| ![Azure AI Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure AI Model Inference](../ai-foundry/model-inference/index.yml) | Performs model inference for flagship models in the Azure AI model catalog. | 
 | ![Azure AI Search icon](~/reusable-content/ce-skilling/azure/media/ai-services/search.svg) [Azure AI Search](/azure/search/) | Bring AI-powered cloud search to your mobile and web apps. |
 | ![Azure OpenAI Service icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](./openai/index.yml) | Perform a wide variety of natural language tasks. |
 | ![Bot service icon](~/reusable-content/ce-skilling/azure/media/ai-services/bot-services.svg) [Bot Service](/composer/) | Create bots and connect them across channels. |
@@ -115,8 +117,6 @@ With Azure and Azure AI services, you have access to a broad ecosystem, such as:
 * Azure AI services Docker containers for secure access.
 * Tools like Apache Spark, Azure Databricks, Azure Synapse Analytics, and Azure Kubernetes Service for big data scenarios.
 
-To learn more, see [Azure AI services ecosystem](ai-services-and-ecosystem.md).
-
 ## Regional availability
 
 The APIs in Azure AI services are hosted on a growing network of Microsoft-managed data centers. You can find the regional availability for each API in [Azure region list](https://azure.microsoft.com/regions "Azure region list").
@@ -144,5 +144,5 @@ Azure AI services provide several support options to help you move forward with 
 ## Next steps
 
 * Learn how to [get started with Azure](https://azure.microsoft.com/get-started/)
-* [Try Azure AI services and more in Azure AI Studio](../ai-studio/what-is-ai-studio.md)
+* [Try Azure AI services and more in the Azure AI Foundry portal](../ai-studio/what-is-ai-studio.md)
 * [Plan and manage costs for Azure AI services](plan-manage-costs.md)

@@ -1,7 +1,7 @@
 ---
 title: Monitoring data reference for Azure AI Search
 description: This article contains important reference material you need when you monitor Azure AI Search.
-ms.date: 02/15/2024
+ms.date: 01/27/2025
 ms.custom: horz-monitor
 ms.topic: reference
 author: HeidiSteen
@@ -60,9 +60,9 @@ Depending on your client, a throttled request is indicated in these ways:
 
 + A service returns an error `"You are sending too many requests. Please try again later."` 
 + A service returns a 503 error code indicating the service is currently unavailable. 
-+ If you're using the portal (for example, Search Explorer), the query is dropped silently and you need to select **Search** again.
++ If you're using the Azure portal (for example, Search Explorer), the query is dropped silently and you need to select **Search** again.
 
-To confirm throttled queries, use **Throttled search queries** metric. You can explore metrics in the portal or create an alert metric as described in this article. For queries that were dropped within the sampling interval, use *Total* to get the percentage of queries that didn't execute.
+To confirm throttled queries, use **Throttled search queries** metric. You can explore metrics in the Azure portal or create an alert metric as described in this article. For queries that were dropped within the sampling interval, use *Total* to get the percentage of queries that didn't execute.
 
 | Aggregation type | Throttling |
 |------------------|-----------|

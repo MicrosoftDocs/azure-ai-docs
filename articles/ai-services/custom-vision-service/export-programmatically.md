@@ -15,7 +15,7 @@ ms.devlang: python
 
 # Export a model programmatically
 
-All of the export options available on the [Custom Vision website](https://www.customvision.ai/) are also available programmatically through the client libraries. You may want to use client libraries so you can fully automate the process of retraining and updating the model iteration you use on a local device.
+All of the export options available on the [Custom Vision website](https://www.customvision.ai/) are also available programmatically through the client libraries. You might want to use client libraries so you can fully automate the process of retraining and updating the model iteration you use on a local device.
 
 This guide shows you how to export your model to an ONNX file with the Python SDK.
 

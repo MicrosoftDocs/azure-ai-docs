@@ -77,7 +77,7 @@ The pull model uses *indexers* connecting to a supported data source, automatica
 + [Azure Data Lake Storage Gen2](search-howto-index-azure-data-lake-storage.md)
 + [Azure Files (preview)](search-file-storage-integration.md)
 + [Azure Cosmos DB](search-howto-index-cosmosdb.md)
-+ [Azure SQL Database, SQL Managed Instance, and SQL Server on Azure VMs](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
++ [Azure SQL Database, SQL Managed Instance, and SQL Server on Azure VMs](search-how-to-index-sql-database.md)
 + [OneLake files and shortcuts](search-how-to-index-onelake-files.md)
 + [SharePoint Online (preview)](search-howto-index-sharepoint-online.md)
 
@@ -98,11 +98,11 @@ Use the following tools and APIs for indexer-based indexing:
 
 Indexer functionality is exposed in the [Azure portal], the [REST API](/rest/api/searchservice/indexers/create), and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.searchindexerclient).
 
-An advantage to using the portal is that Azure AI Search can usually generate a default index schema by reading the metadata of the source dataset. 
+An advantage to using the Azure portal is that Azure AI Search can usually generate a default index schema by reading the metadata of the source dataset. 
 
 ## Verify data import with Search explorer
 
-A quick way to perform a preliminary check on the document upload is to use [**Search explorer**](search-explorer.md) in the portal.
+A quick way to perform a preliminary check on the document upload is to use [**Search explorer**](search-explorer.md) in the Azure portal.
 
 :::image type="content" source="media/search-explorer/search-explorer-cmd2.png" alt-text="Screenshot of Search Explorer command in the Azure portal." border="true":::
 

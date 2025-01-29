@@ -5,9 +5,9 @@ description: Learn how to use Azure OpenAI on your Azure Machine Learning index 
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 03/14/2024
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 01/28/2025
+author: aahill
+ms.author: aahi
 recommendations: false
 ms.custom: devx-track-python
 ---

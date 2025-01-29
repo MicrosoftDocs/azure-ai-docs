@@ -6,7 +6,7 @@ author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 04/05/2024
+ms.date: 12/02/2024
 manager: nitinme
 keywords: ChatGPT
 ---
@@ -291,4 +291,4 @@ assert tokens == [100264, 882, 198, 9906, 100265, 100264, 78191]
 
 * [Learn more about Azure OpenAI](../overview.md).
 * Get started with the GPT-35-Turbo model with [the GPT-35-Turbo & GPT-4 quickstart](../chatgpt-quickstart.md).
-* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://aka.ms/AOAICodeSamples)
+* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai)

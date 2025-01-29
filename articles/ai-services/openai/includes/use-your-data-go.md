@@ -5,7 +5,7 @@ author: travisw
 ms.author: travisw
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 03/07/2024
+ms.date: 01/17/2025
 ---
 
 [!INCLUDE [Set up required variables](./use-your-data-common-variables.md)]
@@ -19,16 +19,7 @@ ms.date: 03/07/2024
    cd openai-go
    ```
 
-1. Install the following Go packages:
-
-   ```cmd
-   go get github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai
-   ```
-1. Enable dependency tracking for your code.
-    ```cmd
-    go mod init example/azure-openai
-    ```
-## Create the Go app
+## Create the app
 
 1. From the project directory, open the *sample.go* file and add the following code:
 
@@ -119,13 +110,17 @@ ms.date: 03/07/2024
    > [!IMPORTANT]
    > For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
 
-1. Execute the following command:
+
+1. Now open a command prompt and run the following:
 
    ```cmd
-   go run sample.go
+   go mod init sample.go
    ```
 
-   The application prints the response including both answers to your query and citations from your uploaded files.
+1. Next run:
+    ```cmd
+    go mod tidy
+    go run sample.go
+    ```
 
-> [!div class="nextstepaction"]
-> [I ran into an issue when running the code samples.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=dotnet&Pillar=AOAI&Product=ownData&Page=quickstart&Section=Create-dotnet-application)
+   The application prints the response including both answers to your query and citations from your uploaded files.

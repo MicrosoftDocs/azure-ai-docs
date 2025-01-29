@@ -1,7 +1,7 @@
 ---
-title: Serp API tool for flows in Azure AI Studio
-titleSuffix: Azure AI Studio
-description: This article introduces you to the Serp API tool for flows in Azure AI Studio.
+title: Serp API tool for flows in Azure AI Foundry portal
+titleSuffix: Azure AI Foundry
+description: This article introduces you to the Serp API tool for flows in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom:
@@ -14,7 +14,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Serp API tool for flows in Azure AI Studio
+# Serp API tool for flows in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -28,7 +28,7 @@ Sign up on the [Serp API home page](https://serpapi.com/).
 
 To create a Serp connection:
 
-1. Sign in to [Azure AI Studio](https://ml.azure.com/).
+1. Sign in to [Azure AI Foundry](https://ml.azure.com/).
 1. Go to **Project settings** > **Connections**.
 1. Select **+ New connection**.
 1. Add the following custom keys to the connection:
@@ -37,7 +37,7 @@ To create a Serp connection:
     - `azureml.flow.module`: `promptflow.connections`
     - `api_key`: Your Serp API key. You must select the **is secret** checkbox to keep the API key secure.
     
-    :::image type="content" source="../../media/prompt-flow/serp-custom-connection-keys.png" alt-text="Screenshot that shows adding extra information to a custom connection in AI Studio." lightbox = "../../media/prompt-flow/serp-custom-connection-keys.png":::
+    :::image type="content" source="../../media/prompt-flow/serp-custom-connection-keys.png" alt-text="Screenshot that shows adding extra information to a custom connection in Azure AI Foundry portal." lightbox = "../../media/prompt-flow/serp-custom-connection-keys.png":::
 
 The connection is the model used to establish connections with the Serp API. Get your API key from the Serp API account dashboard.
 
@@ -47,10 +47,10 @@ The connection is the model used to establish connections with the Serp API. Get
 
 ## Build with the Serp API tool
 
-1. Create or open a flow in [Azure AI Studio](https://ai.azure.com). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ More tools** > **Serp API** to add the Serp API tool to your flow.
 
-    :::image type="content" source="../../media/prompt-flow/serp-api-tool.png" alt-text="Screenshot that shows the Serp API tool added to a flow in Azure AI Studio." lightbox="../../media/prompt-flow/serp-api-tool.png":::
+    :::image type="content" source="../../media/prompt-flow/serp-api-tool.png" alt-text="Screenshot that shows the Serp API tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/serp-api-tool.png":::
 
 1. Select the connection to one of your provisioned resources. For example, select **SerpConnection** if you created a connection with that name. For more information, see [Prerequisites](#prerequisites).
 1. Enter values for the Serp API tool input parameters described in the [Inputs table](#inputs).

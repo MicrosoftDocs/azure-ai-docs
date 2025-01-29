@@ -9,8 +9,6 @@ ms.date: 06/13/2024
 
 # ClinVar Annotations
 
-[!INCLUDE [Open Dataset access change notice](./includes/open-datasets-change-note.md)]
-
 The [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) resource is a freely accessible, public archive of reports - with supporting evidence - about the relationships among human variations and phenotypes. It facilitates access to and communication about the claimed relationships between human variation and observed health status, and about the history of that interpretation. It provides access to a broader set of clinical interpretations that researchers can incorporate into genomics workflows and applications.
 
 Visit the [Data Dictionary](https://www.ncbi.nlm.nih.gov/projects/clinvar/ClinVarDataDictionary.pdf) and the [FAQ resource](https://www.ncbi.nlm.nih.gov/clinvar/docs/faq/) for more information about the data.
@@ -20,25 +18,31 @@ Visit the [Data Dictionary](https://www.ncbi.nlm.nih.gov/projects/clinvar/ClinVa
 ## Data source
 
 This dataset is a mirror of the National Library of Medicine ClinVar [FTP resource](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/xml/).
+[FTP resource](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/)
+
+[FTP Overview](https://www.ncbi.nlm.nih.gov/clinvar/docs/ftp_primer/)
 
 ## Data update frequency
 
 This dataset receives daily updates.
 
+## Storage location
+
+This dataset is stored in the West US 2 and West Central US Azure regions. We recommend locating compute resources in West US 2 or West Central US for affinity.
+
 ## Data Access
 
-[FTP resource](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/)
+West US 2:"https://datasetclinvar.blob.core.windows.net/dataset'"
 
-[FTP Overview](https://www.ncbi.nlm.nih.gov/clinvar/docs/ftp_primer/)
+West Central US: "https://datasetclinvar-secondary.blob.core.windows.net/dataset"
 
 ## Use Terms
+
 Data is available without restrictions. More information and citation details, see [Accessing and using data in ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/).
 
 ## Contact
 
 For any questions or feedback about this dataset, contact [clinvar@ncbi.nlm.nih.gov](mailto:clinvar@ncbi.nlm.nih.gov).
-
-## Data access
 
 ### Azure Notebooks
 

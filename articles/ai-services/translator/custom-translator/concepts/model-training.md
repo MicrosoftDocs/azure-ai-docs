@@ -1,12 +1,12 @@
 ---
-title: "What are training and modeling? - Custom Translator"
+title: "What are training and modeling? - Azure AI Custom Translator"
 titleSuffix: Azure AI services
 description: A model is the system, which provides translation for a specific language pair. The outcome of a successful training is a model. To train a model, three mutually exclusive data sets are required training dataset, tuning dataset, and testing dataset.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 07/10/2024
+ms.date: 01/28/2025
 ms.author: lajanuar
 ms.custom: cogserv-non-critical-translator
 #Customer intent: As a Custom Translator user, I want to concept of a model and training, so that I can efficiently use training, tuning and testing datasets the helps me build a translation model.
@@ -18,7 +18,7 @@ A model is the system, which provides translation for a specific language pair. 
 
 If only training data is provided when queuing a training, Custom Translator automatically assembles tuning and testing data. It uses a random subset of sentences from your training documents, and exclude these sentences from the training data itself.
 
-## Training document type for Custom Translator
+## Training document type for Azure AI Custom Translator
 
 Documents included in training set are used by the Custom Translator as the basis for building your model. During training execution, sentences that are present in these documents are aligned (or paired). You can take liberties in composing your set of training documents. You can include documents that you believe are of tangential relevance in one model. Again exclude them in another to see the impact in [BLEU (Bilingual Evaluation Understudy) score](bleu-score.md). As long as you keep the tuning set and test set constant, feel free to experiment with the composition of the training set. This approach  is an effective way to modify the quality of your translation system.
 
@@ -38,13 +38,13 @@ If you manually select your tuning data, it shouldn't have any of the same sente
 
 If you aren't sure what to choose for your tuning data, just select the training data and let Custom Translator select the tuning data for you. When you let the Custom Translator choose the tuning data automatically, it uses a random subset of sentences from your bilingual training documents and exclude these sentences from the training material itself.
 
-## Testing dataset for Custom Translator
+## Testing dataset for Azure AI Custom Translator
 
 Parallel documents included in the testing set are used to compute the BLEU (Bilingual Evaluation Understudy) score. This score indicates the quality of your translation system. This score actually tells you how closely the translations done by the translation system resulting from this training match the reference sentences in the test data set.
 
 The BLEU score is a measurement of the delta between the automatic translation and the reference translation. Its value ranges from 0 to 100. A score of 0 indicates that not a single word of the reference appears in the translation. A score of 100 indicates that the automatic translation exactly matches the reference: the same word is in the exact same position. The score you receive is the BLEU score average for all sentences of the testing data.
 
-The test data should include parallel documents where the target language sentences are the most desirable translations of the corresponding source language sentences in the source-target pair. You may want to use the same criteria you used to compose the tuning data. However, the testing data has no influence over the quality of the translation system and is used exclusively to generate the BLEU score for you.
+The test data should include parallel documents where the target language sentences are the most desirable translations of the corresponding source language sentences in the source-target pair. You might want to use the same criteria you used to compose the tuning data. However, the testing data has no influence over the quality of the translation system and is used exclusively to generate the BLEU score for you.
 
 You don't need more than 2,500 sentences as the testing data. When you let the system choose the testing set automatically, it uses a random subset of sentences from your bilingual training documents, and exclude these sentences from the training material itself.
 
@@ -53,4 +53,4 @@ You can view the custom translations of the testing set, and compare them to the
 ## Next Steps
 
 > [!div class="nextstepaction"]
-> [Test and evaluate your model](../how-to/test-your-model.md)
+> [Test and evaluate your Azure AI Custom Translator model](../how-to/test-your-model.md)

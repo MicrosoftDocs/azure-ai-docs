@@ -27,7 +27,7 @@ Information for the _context_ depends on each application and use case, but it t
 * Historical aggregates of the behavior of users - such as what are the movie genres this user has viewed the most.
 * Information about the state of the system.
 
-Your application is responsible for loading the information about the context from the relevant databases, sensors, and systems you may have. If your context information doesn't change, you can add logic in your application to cache this information, before sending it to the Rank API.
+Your application is responsible for loading the information about the context from the relevant databases, sensors, and systems you might have. If your context information doesn't change, you can add logic in your application to cache this information, before sending it to the Rank API.
 
 ## Actions
 

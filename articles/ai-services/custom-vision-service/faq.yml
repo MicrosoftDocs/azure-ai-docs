@@ -7,7 +7,7 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-custom-vision
   ms.topic: faq
-  ms.date: 01/22/2024
+  ms.date: 01/22/2025
   ms.author: pafarley
   
 title: Custom Vision frequently asked questions
@@ -38,7 +38,7 @@ sections:
       - question: |
           What is the difference between the free and standard pricing tiers?
         answer: |
-          See the [Limits and quotas](./limits-and-quotas.md) page for pricing information.
+          See the [Limits and quotas](./limits-and-quotas.md) page for pricing tier information.
       - question: |
           Do I have to relabel images if I change domains in a project?
         answer: |

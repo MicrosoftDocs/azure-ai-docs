@@ -7,35 +7,17 @@ items:
   - name: What is Azure AI Document Intelligence?
     displayName: models, develop, development, cognitive, applied, form recognizer, form, recognizer
     href: overview.md
+  - name: What's new
+    displayName: changelog, release, updates, previews, beta, packages, ga, cognitive, applied, form recognizer, form, recognizer
+    href: whats-new.md
   - name: Which model should I choose?
     href: concept/choose-model-feature.md
   - name: Create a Document Intelligence resource
     displayName: endpoint, key, portal
-    href:  how-to-guides/create-document-intelligence-resource.md  
+    href:  how-to-guides/create-document-intelligence-resource.md
   - name: Document Intelligence Studio
     displayName: get started
     href: studio-overview.md
-  - name: FAQ
-    displayName: storage, security, privacy, help, support, versions, development, migrate, migration, cognitive, applied, form recognizer, form, recognizer
-    href: faq.yml
-  - name: Document Intelligence client libraries
-    expanded: true
-    items:
-      - name: Changelog and migration guide
-        displayName: latest, update, beta, package, preview, version
-        href: changelog-release-history.md
-      - name: "SDK targets: REST API v4.0 (preview)"
-        displayName: get started, installation, downloads, documentAnalysisClient, document analysis client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
-        href: sdk-overview-v4-0.md
-      - name: "SDK targets: REST API 2023–7–31 latest (GA)"
-        displayName: get started, installation, downloads, documentAnalysisClient, document analysis client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
-        href: sdk-overview-v3-1.md
-      - name:  "SDK targets: REST API 2022–08–31 (GA)"
-        displayName: get started, installation, downloads, documentAnalysisClient, document analysis client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
-        href: sdk-overview-v3-0.md
-      - name:  "SDK targets: REST API v2.1 (GA)"
-        displayName: get started, installation, downloads, formRecognizerClientClient, form recognizer client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
-        href: v21/sdk-overview-v2-1.md
   - name: Language support
     items:
       - name: Document analysis models
@@ -53,18 +35,35 @@ items:
   - name: Service limits and billing
     displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
     href: service-limits.md
-  - name: What's new
-    displayName: changelog, release, updates, previews, beta, packages, ga, cognitive, applied, form recognizer, form, recognizer
-    href: whats-new.md
+  - name: Document Intelligence client libraries
+    items:
+      - name: Changelog and migration guide
+        displayName: latest, update, beta, package, preview, version
+        href: changelog-release-history.md
+      - name: "SDK targets: REST API v4.0 2024-11-30 latest (GA)"
+        displayName: get started, installation, downloads, documentAnalysisClient, document analysis client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
+        href: sdk-overview-v4-0.md
+      - name: "SDK targets: REST API 2023-7-31 (GA)"
+        displayName: get started, installation, downloads, documentAnalysisClient, document analysis client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
+        href: sdk-overview-v3-1.md
+      - name:  "SDK targets: REST API 2022-08-31 (GA)"
+        displayName: get started, installation, downloads, documentAnalysisClient, document analysis client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
+        href: sdk-overview-v3-0.md
+      - name:  "SDK targets: REST API v2.1 (GA)"
+        displayName: get started, installation, downloads, formRecognizerClientClient, form recognizer client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
+        href: v21/sdk-overview-v2-1.md
+  - name: FAQ
+    displayName: storage, security, privacy, help, support, versions, development, migrate, migration, cognitive, applied, form recognizer, form, recognizer
+    href: faq.yml
 - name: Prebuilt models
   items:
   - name: Model overview
     displayName: get started, prebuilt, extraction, input
     href: model-overview.md
-  - name: 🆕 Bank check
+  - name: Bank check (US)
     displayName: routing, account, number, amount, payee, issuer, date
     href: prebuilt/bank-check.md
-  - name: 🆕 Bank statement
+  - name: Bank statement (US)
     displayName: transactions, deposits, withdrawals, balance, account, number, date
     href: prebuilt/bank-statement.md
   - name: Business card
@@ -79,7 +78,7 @@ items:
   - name: General document
     displayName: key value pairs, selection marks, structured
     href: prebuilt/general-document.md?view<=doc-intel-3.1.0&preserve-view=true
-  - name: Health insurance card
+  - name: Health insurance card (US)
     displayName: health, proof, hospital
     href: prebuilt/health-insurance-card.md
   - name: ID document
@@ -91,13 +90,13 @@ items:
   - name: Layout
     displayName: tables, selection marks, structure, paragraph roles, text, headers, page numbers
     href: prebuilt/layout.md
-  - name: Marriage certificate
+  - name: Marriage certificate (US)
     displayName: license
     href: prebuilt/marriage-certificate.md
-  - name: Mortgage documents (U.S.)
+  - name: Mortgage documents (US)
     displayName: 1003, 1008, closing, disclosure
     href: prebuilt/mortgage-documents.md
-  - name: 🆕 Pay stub
+  - name: Pay stub
     displayName: compensation, earnings, deductions, taxes, benefits, employer, employee
     href: prebuilt/pay-stub.md
   - name: Read
@@ -106,7 +105,7 @@ items:
   - name: Receipt
     displayName: sales, merchants
     href: prebuilt/receipt.md
-  - name: Tax documents (U.S.)
+  - name: Tax documents (US)
     displayName: tax, forms, 1098, 1098-E, 1098-T, W-2, wages, taxes, salary, employees, tuition, loan, interest, mortgage
     href: prebuilt/tax-document.md
 - name: Custom models
@@ -114,15 +113,12 @@ items:
   - name: Custom model overview
     displayName: table, label, ocr, confidence, template, neural
     href: train/custom-model.md
-  - name: 🆕 Composed models
+  - name: Composed models
     displayName: custom, assign, modelId, model ID
     href:  train/composed-models.md
-  - name: 🆕 Incremental classifier
+  - name: Incremental classifier
     displayName: custom, classification, training
     href: concept/incremental-classifier.md
-  - name: 🆕Custom generative model
-    displayName: ai studio, neural, template, custom
-    href: train/custom-generative-extraction.md
   - name: Custom template model
     displayName: structure, selection, labels, tables, tabular, train, template, neural, build mode, signatures, custom
     href: train/custom-template.md
@@ -157,18 +153,18 @@ items:
   - name: Analyze document API response
     displayName: words, lines, pages, bounding regions, documents
     href: concept/analyze-document-response.md
-  - name: 🆕 Retrieval-Augmented Generation (RAG)
+  - name: Retrieval-Augmented Generation (RAG)
     displayName: RAG, LLM, semantic, chunk, LangChain, language model
     href: concept/retrieval-augmented-generation.md
-  - name: 🆕 Batch documents analysis
+  - name: Batch documents analysis
     displayName: analyze, azureBlobFileListSource, azureBlobSource, azureBlobFileListSource, resultContainerUrl, resultPrefix, overwriteExisting
     href: concept-batch-analysis.md
 - name: Quickstarts
   items:
-    - name: Document Intelligence Studio
+    - name: Document Intelligence Studio custom projects
       displayName: get started, cors, blob, storage, upload, labels, custom, dynamic, fixed, signatures
-      href: quickstarts/try-document-intelligence-studio.md
-    - name: "Get started with Document Intelligence client libraries"
+      href: quickstarts/studio-custom-project.md
+    - name: "Get started with Document Intelligence"
       displayName: formRecognizerClient, Document Intelligence client, boundingBox, box, begin_recognize
       href: quickstarts/get-started-sdks-rest-api.md
     - name: Sample Labeling tool
@@ -179,16 +175,13 @@ items:
   - name: Use Document Intelligence models
     displayName: documentAnalysisClient, document analysis client, polygon, boundingPolygon, begin_analyze_document,ormRecognizerClient, Document Intelligence client, boundingBox, box, begin_recognize, v2.1
     href: how-to-guides/use-sdk-rest-api.md
-  - name: 🆕 Build and train a custom generative model
-    displayName: ai studio, neural, template, custom
-    href: how-to-guides/build-train-custom-generative-model.md
   - name: Check my usage and estimate the cost
     displayName: price, metrics, dashboard, check, estimate
     href: how-to-guides/estimate-cost.md
   - name: Create SAS tokens for storage containers
     displayName: blob, delegation, shared, explorer
     href:  authentication/create-sas-tokens.md
-  - name: "SDK Migration guides: 2023-10-31-preview"
+  - name: "SDK Migration guides"
     items:
     - name: ".NET/C# SDK"
       href: https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/documentintelligence/Azure.AI.DocumentIntelligence/MigrationGuide.md
@@ -300,17 +293,17 @@ items:
   items:
   - name: REST APIs
     items:
-    - name: 2024-07-31-preview (v4.0)
-      href: /rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true
-    - name: 2023-07-31 (v3.1)
+    - name: 2024-11-30 GA(v4.0)
+      href: /rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true
+    - name: 2023-07-31 GA (v3.1)
       href: /rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP
-    - name: 2022-08-31 (v3.0)
+    - name: 2022-08-31 GA (v3.0)
       href: /rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP
     - name: Error codes v4.0, v3.1, and v3.0
       href: how-to-guides/resolve-errors.md
     - name: v2.1
       href: /rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true
-  - name: Client libraries (2024-07-31-preview)
+  - name: Client libraries (2024-11-30 GA)
     items:
     - name: C# / .NET
       href: /dotnet/api/overview/azure/ai.documentintelligence-readme?view=azure-dotnet-preview&preserve-view=true
@@ -320,30 +313,43 @@ items:
       href: /javascript/api/overview/azure/ai-document-intelligence-rest-readme?view=azure-node-preview&preserve-view=true
     - name: Python
       href: /python/api/overview/azure/ai-documentintelligence-readme?view=azure-python-preview&preserve-view=true
-  - name: Schema
+  - name: Schema 2024-11-30 (GA)
     items:
-    - name: Bank check
-      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/bank-check.md
-    - name: Bank statement
-      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/bank-statement.md
+    - name: Bank check (US)
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/bank-check.md
+    - name: Bank statement (US)
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/bank-statement.md
     - name: Business card (2023-07-31 GA)
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2023-07-31-ga/business-card.md
     - name: Contract
-      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/contract.md
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/contract.md
     - name: Credit card
-      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/credit-card.md
-    - name: Health insurance card
-      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/health-insurance-card.md
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/credit-card.md
+    - name: Health insurance card (US)
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/health-insurance-card.md
     - name: ID document
-      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/id-document.md
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/id-document.md
     - name: Invoice
-      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/invoice.md
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/invoice.md
     - name: Marriage certificate
-      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/marriage-certificate.md
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/marriage-certificate.md
     - name: Pay stub
-      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/pay-stub.md
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/pay-stub.md
     - name: Receipt
-      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-07-31-preview/receipt.md
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/receipt.md
+    - name: US tax W-2 form 
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/us-tax/w2.md
+    - name: US tax W-4 form
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/us-tax/w4.md
+    - name: US tax 1040 forms and schedules
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga/us-tax/1040
+    - name: US tax 1095 forms and schedules
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga/us-tax/1095
+    - name: US tax 1098 forms and schedules
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga/us-tax/1098
+    - name: US tax 1099 forms and schedules
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga/us-tax/1099
+
 - name: Resources
   items:
   - name: Enterprise readiness

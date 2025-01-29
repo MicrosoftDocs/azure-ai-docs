@@ -1,31 +1,34 @@
 ### YamlMime:Landing
 
-title: Azure AI Studio documentation # < 60 chars
-summary:  Build cutting-edge, market-ready, responsible applications for your organization with AI.
+title: Azure AI Foundry documentation # < 60 chars
+summary:  Safely design, customize, and manage AI applications and agents at scale.
 metadata:
-  title: Azure AI Studio documentation
-  description: Azure AI Studio helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and pre-built and customizable APIs and models. Example applications include generative AI, natural language processing for conversations, search, monitoring, translation, speech, vision, and decision-making.
+  title: Azure AI Foundry documentation
+  description: Azure AI Foundry helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and pre-built and customizable APIs and models. Example applications include generative AI, natural language processing for conversations, search, monitoring, translation, speech, vision, and decision-making.
   ms.service: azure-ai-studio
   ms.custom:
     - build-2024
     - copilot-learning-hub
+    - ignite-2024
   ms.topic: landing-page
   ms.reviewer: sgilley
   ms.author: sgilley
   author: sdgilley
-  ms.date: 5/21/2024
+  ms.date: 12/12/2024
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
 landingContent:
 # Cards and links should be based on top customer tasks or top subjects
 # Start card title with a verb
   # Card
-  - title: About Azure AI Studio
+  - title: About Azure AI Foundry
     linkLists:
       - linkListType: overview
         links:
-          - text: What is Azure AI Studio?
+          - text: What is Azure AI Foundry?
             url: what-is-ai-studio.md
+          - text: Azure OpenAI Service in Azure AI Foundry
+            url: azure-openai-in-ai-studio.md
           - text: Select and deploy models from the catalog
             url: how-to/model-catalog.md
           - text: Retrieval Augmented Generation (RAG)
@@ -34,23 +37,21 @@ landingContent:
             url: concepts/evaluation-metrics-built-in.md
       - linkListType: how-to-guide
         links:
-          - text: Create a project in Azure AI Studio
+          - text: Create a project in Azure AI Foundry portal
             url: how-to/create-projects.md
           - text: Get started with prompt flow
             url: how-to/flow-develop.md
           - text: Connect to AI services
-            url: ai-services/connect-ai-services.md
+            url: ai-services/how-to/connect-ai-services.md
   # Card
   - title: 10-minute quickstarts
     linkLists:
       - linkListType: quickstart
         links:
-          - text: Get started building a chat app using the prompt flow SDK
+          - text: Build a chat app using the Azure AI SDK
             url: quickstarts/get-started-code.md
           - text: Use Azure OpenAI Assistants in the playground
             url: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
-          - text: Moderate text and images
-            url: quickstarts/content-safety.md
           - text: Get started using GPT-4 Turbo with Vision
             url: quickstarts/multimodal-vision.md
       - linkListType: tutorial
@@ -65,10 +66,14 @@ landingContent:
         links:
           - text: Get started with the Azure AI SDKs
             url: how-to/develop/sdk-overview.md
-          - text: Work with AI Studio projects in VS Code
+          - text: Work with Azure AI Foundry projects in VS Code
             url: how-to/develop/vscode.md
-          - text: Build a custom chat app with the prompt flow SDK
+
+      - linkListType: tutorial
+        links:
+          - text: Build a custom chat app with the Azure AI SDK
             url: tutorials/copilot-sdk-create-resources.md
+
       - linkListType: concept
         links:
           - text: Connections for flows and indexing
@@ -77,8 +82,8 @@ landingContent:
             url: concepts/deployments-overview.md
       - linkListType: reference
         links:
-          - text: Azure SDK for Python
-            url: /python/api/overview/azure/
+          - text: Azure AI Foundry SDK
+            url: how-to\develop\sdk-overview.md
           - text: Azure OpenAI Service Reference
             url: ../ai-services/openai/reference.md
   

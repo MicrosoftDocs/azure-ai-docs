@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.topic: how-to
 author: jboback
 ms.author: jboback
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ms.custom: language-service-question-answering
 ---
 # Move projects and question answer pairs
@@ -14,7 +14,7 @@ ms.custom: language-service-question-answering
 
 > This article deals with the process to export and move projects and sources from one Language resource to another.
 
-You may want to create copies of your projects or sources for several reasons:
+You might want to create copies of your projects or sources for several reasons:
 
 * To implement a backup and restore process
 * Integrate with your CI/CD pipeline

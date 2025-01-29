@@ -3,8 +3,8 @@ title: 'Quickstart: Use the Azure OpenAI Service via the JavaScript SDK'
 titleSuffix: Azure OpenAI Service
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the JavaScript SDK. 
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+author: aahill
+ms.author: aahi
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 10/09/2024
@@ -23,13 +23,11 @@ ms.custom: passwordless-js, devex-track-typescript
 - We recommend reviewing the [Responsible AI transparency note](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=text) and other [Responsible AI resources](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) to familiarize yourself with the capabilities and limitations of the Azure OpenAI Service.
 - An Azure OpenAI resource with the `gpt-4 (1106-preview)` model deployed was used testing this example. 
 
-## Passwordless authentication is recommended
+### Microsoft Entra ID prerequisites
 
-For passwordless authentication, you need to 
-
-1. Use the `@azure/identity` package.
-1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal under **Access control (IAM)** > **Add role assignment**.
-1. Sign in with the Azure CLI such as `az login`.
+For the recommended keyless authentication with Microsoft Entra ID, you need to:
+- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
 ## Set up
 
@@ -67,21 +65,10 @@ For passwordless authentication, you need to
 
 ## Retrieve resource information
 
-
-#### [Microsoft Entra ID](#tab/typescript-keyless)
-
-[!INCLUDE [assistants-keyless-environment-variables](assistants-env-var-without-key.md)]
-
-
-#### [API key](#tab/typescript-key)
-
-[!INCLUDE [assistants-key-environment-variables](assistants-env-var-key.md)]
-
----
+[!INCLUDE [resource authentication](resource-authentication.md)]
 
 > [!CAUTION]
 > To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
-
 
 ## Create an assistant
 
@@ -151,7 +138,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     const assistantsClient = getClient();
     
     const options: AssistantCreateParams = {
-      model: azureOpenAIDeployment, // Deployment name seen in Azure AI Studio
+      model: azureOpenAIDeployment, // Deployment name seen in Azure AI Foundry portal
       name: "Math Tutor",
       instructions:
         "You are a personal math tutor. Write and run JavaScript code to answer math questions.",
@@ -279,7 +266,7 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     const assistantsClient = getClient();
     
     const options: AssistantCreateParams = {
-      model: azureOpenAIDeployment, // Deployment name seen in Azure AI Studio
+      model: azureOpenAIDeployment, // Deployment name seen in Azure AI Foundry portal
       name: "Math Tutor",
       instructions:
         "You are a personal math tutor. Write and run JavaScript code to answer math questions.",
