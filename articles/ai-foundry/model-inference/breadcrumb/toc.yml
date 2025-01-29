@@ -2,10 +2,10 @@
   tocHref: /azure/
   topicHref: /azure/index
   items:
-  - name: Azure AI services
-    tocHref: /azure/ai-services/
-    topicHref: /azure/ai-services/index
+  - name: AI Foundry
+    tocHref: /azure/ai-foundry/
+    topicHref: /azure/ai-studio/index
     items:
-    - name: Azure AI Model Inference
-      tocHref: /azure/ai-foundry/
+    - name: Model Inference
+      tocHref: /azure/ai-foundry/model-inference/
       topicHref: /azure/ai-foundry/model-inference/index

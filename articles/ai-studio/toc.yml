@@ -448,44 +448,46 @@ items:
       href: how-to/autoscale.md
 - name: Security & Governance
   items:
-    - name: Identity & access management
-      items:
-      - name: Role-based access control in Azure AI Foundry portal
-        href: concepts/rbac-ai-studio.md
-      - name: Network security
-        items:
-        - name: Configure managed network
-          href: how-to/configure-managed-network.md
-        - name: Configure private link
-          displayName: custom dns
-          href: how-to/configure-private-link.md
-        - name: Secure playground chat
-          href: how-to/secure-data-playground.md
-        - name: Securely access on-premises resources
-          href: how-to/access-on-premises-resources.md
-        - name: Troubleshoot secure project connectivity
-          href: how-to/troubleshoot-secure-connection-project.md
-    - name: Data protection & encryption
-      items:
-      - name: Configure customer-managed keys
-        href: concepts/encryption-keys-portal.md
-      - name: Rotate keys
-        href: ../ai-services/rotate-keys.md?context=/azure/ai-studio/context/context
-      - name: Disable shared key access to storage
-        href: how-to/disable-local-auth.md
-    - name: Azure policies
-      items:
-      - name: Built-in policy to allow specific models
-        href: how-to/built-in-policy-model-deployment.md
-      - name: Custom policy to allow specific models
-        href: how-to/custom-policy-model-deployment.md
-      - name: Vulnerability management
-        href: concepts/vulnerability-management.md
-      - name: Disaster recovery
-        href: how-to/disaster-recovery.md
-      - name: Security baseline
-        href: /security/benchmark/azure/baselines/azure-ai-studio-security-baseline
-- name: Responsible AI 
+  - name: Identity & access management
+    items:
+    - name: Role-based access control in Azure AI Foundry portal
+      href: concepts/rbac-ai-studio.md
+  - name: Network security
+    items:
+    - name: Configure managed network
+      href: how-to/configure-managed-network.md
+    - name: Configure private link
+      displayName: custom dns
+      href: how-to/configure-private-link.md
+    - name: Secure playground chat
+      href: how-to/secure-data-playground.md
+    - name: Securely access on-premises resources
+      href: how-to/access-on-premises-resources.md
+    - name: Troubleshoot secure project connectivity
+      href: how-to/troubleshoot-secure-connection-project.md
+  - name: Data protection & encryption
+    items:
+    - name: Configure customer-managed keys
+      href: concepts/encryption-keys-portal.md
+    - name: Rotate keys
+      href: ../ai-services/rotate-keys.md?context=/azure/ai-studio/context/context
+    - name: Disable shared key access to storage
+      href: how-to/disable-local-auth.md
+  - name: Azure policies
+    items:
+    - name: Audit and manage using Azure Policy
+      href: how-to/azure-policy.md
+    - name: Built-in policy to allow specific models
+      href: how-to/built-in-policy-model-deployment.md
+    - name: Custom policy to allow specific models
+      href: how-to/custom-policy-model-deployment.md
+  - name: Vulnerability management
+    href: concepts/vulnerability-management.md
+  - name: Disaster recovery
+    href: how-to/disaster-recovery.md
+  - name: Security baseline
+    href: /security/benchmark/azure/baselines/azure-ai-studio-security-baseline
+- name: Responsible AI
   items:
   - name: Responsible AI overview
     href: responsible-use-of-ai-overview.md
@@ -520,7 +522,7 @@ items:
     displayName: swagger http
     href: ../ai-services/reference/rest-api-resources.md?context=/azure/ai-studio/context/context
   - name: Azure AI Model Inference API
-    href: reference/reference-model-inference-api.md
+    href: ../ai-foundry/model-inference/reference/reference-model-inference-api.md
   - name: Azure Policy built-ins
     displayName: samples, policies, definitions
     href: ../ai-services/policy-reference.md?context=/azure/ai-studio/context/context
