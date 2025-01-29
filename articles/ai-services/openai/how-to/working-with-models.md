@@ -284,7 +284,26 @@ curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-0
 }
 ```
 ## Managing models on provisioned deployment types
-Provisioned deployments support different model management practices than Standard deployments. Provisioned deployment model management practices are intended to give you the greatest control over when and how you migrate between model versions and model families. 
+Provisioned deployments support distinct model management practices. Provisioned deployment model management practices are intended to give you the greatest control over when and how you migrate between model versions and model families. Currently, there are two approaches available to manage models on provisioned deployments: (1) in-place migrations and (2) multi-deployment migrations.
+
+### Prerequisites
+- Validate that the target model version or model family is supported for your existing deployment type. Migrations can only occur between provisioned deployments of the same deployment type. For more information on deployment types, review the [deployment type documentation](./deployment-types.md).
+- Validate capacity availability for your target model version or model family prior to attempting a migration. For more information on determining capacity availability, review the [capacity transparency documentation](../concepts/provisioned-throughput.md#capacity-transparency).
+- For multi-deployment migrations, validate that you have sufficient quota to support multiple deployments simultaneously. For more information on how to validate quota for each provisioned deployment type, review the [provisioned quota documentation](../concepts/provisioned-throughput.md#quota).
+
+### In-place migrations for provisioned deployments
+In-place migrations allow you to maintain the same provisioned deployment name and size while changing the model version or model family assigned to that deployment. With in-place migrations, Azure OpenAI Service takes care of migrating any existing traffic between model versions or model families throughout the migration over a 20-30 minute window. Throughout the migration window, your provisioned deployment will display an "updating" provisioned state. Once the in-place migration is complete, the provisioned state will be updated to "succeeded", indicating that all traffic has been migrated over to the target model version or model family. 
+
+#### In-place migration: model version update
+In-place migrations that target updating an existing provisioned deployment to a new model version within the same model family are supported through Azure AI Foundry, REST API, and Azure CLI. To perform an in-place migration targeting a model version update within Azure AI Foundry, select **Deployments** > under the deployment name column select the deployment name of the provisioned deployment you would like to migrate.
+
+Selecting a deployment name opens the **Properties** for the model deployment. From this view, select the **edit** button, which will show the **Update deployment** dialogue box. Select the model version dropdown to set a new model version for the provisioned deployment. As noted, the provisioning state will change to "updating" during the migration and will revert to "succeeded" once the migration is complete. 
+
+:::image type="content" source="../media/how-to/working-with-models/provisioned-deployment-model-version-update.png" alt-text="Screenshot of the update deployment dialogue box with the model version selector open to show optional model versions to select from.":::
+
+#### In-place migration: model family change
+
+### Multi-deployment migrations for provisioned deployments
 
 ## Next steps
 
