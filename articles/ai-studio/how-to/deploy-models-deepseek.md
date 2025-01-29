@@ -110,7 +110,7 @@ print("Model provider name:", model_info.model_provider_name)
 ```console
 Model name: DeepSeek-R1
 Model type: chat-completions
-Model provider name: Deepseek
+Model provider name: DeepSeek
 ```
 
 ### Create a chat completion request
@@ -359,7 +359,7 @@ console.log("Model provider name: ", model_info.body.model_provider_name)
 ```console
 Model name: DeepSeek-R1
 Model type: chat-completions
-Model provider name: Deepseek
+Model provider name: DeepSeek
 ```
 
 ### Create a chat completion request
@@ -652,7 +652,7 @@ Console.WriteLine($"Model provider name: {modelInfo.Value.ModelProviderName}");
 ```console
 Model name: DeepSeek-R1
 Model type: chat-completions
-Model provider name: Deepseek
+Model provider name: DeepSeek
 ```
 
 ### Create a chat completion request
@@ -903,7 +903,7 @@ The response is as follows:
 {
     "model_name": "DeepSeek-R1",
     "model_type": "chat-completions",
-    "model_provider_name": "Deepseek"
+    "model_provider_name": "DeepSeek"
 }
 ```
 
@@ -1127,7 +1127,7 @@ The following example shows how to handle events when the model detects harmful 
 
 ## More inference examples
 
-For more examples of how to use Deepseek models, see the following examples and tutorials:
+For more examples of how to use DeepSeek models, see the following examples and tutorials:
 
 | Description                               | Language          | Sample                                                          |
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|
@@ -1136,7 +1136,7 @@ For more examples of how to use Deepseek models, see the following examples and 
 | Azure AI Inference package for C#         | C#                | [Link](https://aka.ms/azsdk/azure-ai-inference/csharp/samples)  |
 | Azure AI Inference package for Java       | Java              | [Link](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-inference/src/samples)  |
 
-## Cost and quota considerations for Deepseek models deployed as serverless API endpoints
+## Cost and quota considerations for DeepSeek models deployed as serverless API endpoints
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
