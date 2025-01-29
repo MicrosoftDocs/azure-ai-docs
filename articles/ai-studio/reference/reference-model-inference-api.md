@@ -43,6 +43,7 @@ Models deployed to [serverless API endpoints](../how-to/deploy-models-serverless
 > [!div class="checklist"]
 > * [Cohere Embed V3](../how-to/deploy-models-cohere-embed.md) family of models
 > * [Cohere Command R](../how-to/deploy-models-cohere-command.md) family of models
+> * [DeepSeek-R1](../how-to/deploy-models-deepseek.md) family of models
 > * [Meta Llama 2 chat](../how-to/deploy-models-llama.md) family of models
 > * [Meta Llama 3 instruct](../how-to/deploy-models-llama.md) family of models
 > * [Mistral-Small](../how-to/deploy-models-mistral.md)

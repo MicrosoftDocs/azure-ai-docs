@@ -14,11 +14,12 @@ ms.custom: references_regions, generated
 zone_pivot_groups: azure-ai-model-catalog-samples-chat
 ---
 
-# How to use DeepSeek-R1
+# How to use DeepSeek-R1 reasoning model (preview)
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-In this article, you learn about DeepSeek-R1 and how to use them.
+In this article, you learn about DeepSeek-R1 and how to use it.
+
 DeepSeek-R1 excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks. It features 671B total parameters with 37B active parameters, and 128k context length.
 
 ::: zone pivot="programming-language-python"
@@ -27,7 +28,7 @@ DeepSeek-R1 excels at reasoning tasks using a step-by-step training process, suc
 
 DeepSeek-R1 builds on the progress of earlier reasoning-focused models that improved performance by extending Chain-of-Thought (CoT) reasoning. DeepSeek-R1 takes things further by combining reinforcement learning (RL) with fine-tuning on carefully chosen datasets. It evolved from an earlier version, DeepSeek-R1-Zero, which relied solely on RL and showed strong reasoning skills but had issues like hard-to-read outputs and language inconsistencies. To address these limitations, DeepSeek-R1 incorporates a small amount of cold-start data and follows a refined training pipeline that blends reasoning-oriented RL with supervised fine-tuning on curated datasets, resulting in a model that achieves state-of-the-art performance on reasoning benchmarks.
 
-You can learn more about the models in their respective model card:
+You can learn more about the models in its respective model card:
 
 * [DeepSeek-R1](https://aka.ms/azureai/landing/DeepSeek-R1)
 
@@ -177,7 +178,6 @@ def print_stream(result):
     """
     Prints the chat completion with streaming.
     """
-    import time
     for update in result:
         if update.choices:
             print(update.choices[0].delta.content, end="")

@@ -19,7 +19,7 @@ recommendations: false
 Azure AI model inference provides access to the most powerful models available in the Azure AI model catalog. The models come from key model providers in the industry, including OpenAI, Microsoft, Meta, Mistral, Cohere, G42, and AI21 Labs. These models can be integrated with software solutions to deliver a wide range of tasks that include content generation, summarization, image understanding, semantic search, and code generation.
 
 > [!TIP]
-> DeepSeek R1 is available for deployment as [Serverless API endpoint](../../ai-studio/how-to/deploy-models-serverless.md).
+> DeepSeek-R1 is available for deployment as [Serverless API endpoint](../../ai-studio/how-to/deploy-models-deepseek.md).
 
 Azure AI model inference provides a way to **consume models as APIs without hosting them on your infrastructure**. Models are hosted in a Microsoft-managed infrastructure, which enables API-based access to the model provider's model. API-based access can dramatically reduce the cost of accessing a model and simplify the provisioning experience.
 
