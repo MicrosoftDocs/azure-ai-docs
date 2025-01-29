@@ -17,6 +17,9 @@ ms.custom: references_regions, tool_generated
 
 Azure AI model inference in Azure AI Foundry gives you access to flagship models in Azure AI to consume them as APIs without hosting them on your infrastructure.
 
+> [!TIP]
+> DeepSeek-R1 is available for deployment as [Serverless API endpoint](../../../ai-studio/how-to/deploy-models-deepseek.md).
+
 :::image type="content" source="../media/models/models-catalog.gif" alt-text="An animation showing Azure AI studio model catalog section and the models available." lightbox="../media/models/models-catalog.gif":::
 
 Model availability varies by model provider, deployment SKU, and cloud. All models available in Azure AI Model Inference support the [Global standard](deployment-types.md#global-standard) deployment type which uses global capacity to guarantee throughput. [Azure OpenAI models](#azure-openai) also support regional deployments and [sovereign clouds](/entra/identity-platform/authentication-national-cloud)—Azure Government, Azure Germany, and Azure China 21Vianet.
