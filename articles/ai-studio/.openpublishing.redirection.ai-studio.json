@@ -181,6 +181,11 @@
             "redirect_document_id": false
         },
         {
+            "source_path_from_root": "/articles/ai-studio/reference/reference-model-inference-completions.md",
+            "redirect_url": "/azure/ai-studio/reference/reference-model-inference-chat-completions",
+            "redirect_document_id": false
+        },
+        {
             "source_path_from_root": "/articles/ai-studio/concepts/evaluation-improvement-strategies.md",
             "redirect_url": "/azure/ai-studio/concepts/evaluation-approach-gen-ai",
             "redirect_document_id": false
