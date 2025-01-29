@@ -1,11 +1,10 @@
 ---
 title: What's new in Azure AI Translator?
 titleSuffix: Azure AI services
-description: Learn of the latest changes to the Azure AI Translator Service API.
+description: Learn about the latest changes to the Azure AI Translator Service API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.custom: build-2023
 ms.topic: overview
 ms.date: 01/28/2025
 ms.author: lajanuar
