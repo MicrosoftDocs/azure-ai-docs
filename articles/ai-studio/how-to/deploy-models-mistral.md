@@ -2242,7 +2242,7 @@ For more information on how to track costs, see [Monitor costs for models offere
 ## Related content
 
 * [Deploy models as serverless APIs](deploy-models-serverless.md)
-* [Azure AI Model Inference API](../reference/reference-model-inference-api.md)
+* [Azure AI Model Inference API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md)
 * [Model deprecation and retirement in Azure AI model catalog](../concepts/model-lifecycle-and-retirement.md)
 * [Consume serverless API endpoints from a different Azure AI Foundry project or hub](deploy-models-serverless-connect.md)
 * [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)
