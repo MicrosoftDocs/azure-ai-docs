@@ -1,12 +1,12 @@
 ---
-title: Create and use a glossary with Document Translation
+title: Create and use a glossary with Azure AI Translator Document Translation
 description: How to create and use a glossary with Document Translation.
 ms.topic: how-to
 ms.service: azure-ai-translator
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 07/09/2024
+ms.date: 01/27/2025
 ---
 
 # Use glossaries with Document Translation
@@ -27,7 +27,7 @@ A glossary is a list of terms with definitions that you create for the Document 
 
     The following English-source glossary contains words that can have different meanings depending upon the context. The glossary provides the expected translation for each word in the file to help ensure accuracy.
 
-   For instance, when the word `Bank` appears in a financial document, it should be translated to reflect its financial meaning. If the word `Bank` appears in a geographical document, it may refer to shore to reflect its topographical meaning. Similarly, the word `Crane` can refer to either a bird or machine.
+   For instance, when the word `Bank` appears in a financial document, it should be translated to reflect its financial meaning. If the word `Bank` appears in a geographical document, it can refer to shore to reflect its topographical meaning. Similarly, the word `Crane` can refer to either a bird or machine.
 
    ***Example glossary .tsv file: English-to-French***
 
@@ -55,7 +55,7 @@ By default, Azure AI Translator service API is **case-sensitive**, meaning that 
 
 * **Partial sentence application**. When your glossary is applied to **part of a sentence**, the Document Translation API checks whether the glossary term matches the case in the source text. If the casing doesn't match, the glossary isn't applied.
 
-* **Complete sentence application**. When your glossary is applied to a **complete sentence**, the service becomes **case-insensitive**. It matches the glossary term regardless of its case in the source text. This provision applies the correct results for use cases involving idioms and quotes.
+* **Complete sentence application**. When your glossary is applied to a **complete sentence**, the service becomes **case-insensitive**. It matches the glossary term, regardless of its case, in the source text. This attribute aids in returning the correct results for use cases involving idioms and quotes.
 
 ## Next steps
 

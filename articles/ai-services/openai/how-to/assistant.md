@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: references_regions
 ms.topic: how-to
-ms.date: 05/20/2024
+ms.date: 01/28/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -25,11 +25,6 @@ Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to
 ### Region and model support
 
 Code interpreter is available in all regions supported by Azure OpenAI Assistants. The [models page](../concepts/models.md#assistants-preview) contains the most up-to-date information on regions/models where Assistants are currently supported.
-
-### API Versions
-
-- `2024-02-15-preview`
-- `2024-05-01-preview`
 
 ### Supported file types
 

@@ -1,40 +1,40 @@
 ---
-title: Enable Virtual Network service endpoints with Custom Translator service
+title: Enable Virtual Network service endpoints with Azure AI Custom Translator service
 titleSuffix: Azure AI services
-description: This article describes how to use Custom Translator service with an Azure Virtual Network service endpoint.
+description: This article describes how to use Azure AI Custom Translator service with an Azure Virtual Network service endpoint.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 07/10/2024
+ms.date: 01/28/2025
 ms.author: moelghaz
 ms.topic: how-to
 ---
 
-# Enable Custom Translator through Azure Virtual Network
+# Enable Azure AI Custom Translator through Azure Virtual Network
 
-In this article, we show you how to set up and use VNet service endpoints with Custom Translator.
+In this article, we show you how to set up and use `VNet` service endpoints with Custom Translator.
 
-Azure Virtual Network (VNet) [service endpoints](/azure/virtual-network/virtual-network-service-endpoints-overview) securely connect your Azure service resources to your virtual networks over an optimized route via the Azure global network. Service endpoints enable private IP addresses within your virtual network to reach the endpoint of an Azure service without the need for a public IP address on the virtual network.
+Azure Virtual Network (`VNet`) [service endpoints](/azure/virtual-network/virtual-network-service-endpoints-overview) securely connect your Azure service resources to your virtual networks over an optimized route via the Azure global network. Service endpoints enable private IP addresses within your virtual network to reach the endpoint of an Azure service without the need for a public IP address on the virtual network.
 
 For more information, see [Azure Virtual Network overview](/azure/virtual-network/virtual-networks-overview)
 
 > [!NOTE]
 > Before you start, review [how to use virtual networks with Azure AI services](../../../cognitive-services-virtual-networks.md).
 
- To set up a Translator resource for VNet service endpoint scenarios, you need the resources:
+ To set up a Translator resource for `VNet` service endpoint scenarios, you need the resources:
 
-* [A regional Translator resource (global isn't supported)](../../create-translator-resource.yml).
-* [VNet and networking settings for the Translator resource](#configure-virtual-networks-resource-networking-settings).
+* [A regional Translator resource (global isn't supported)](../../create-translator-resource.md).
+* [`VNet` and networking settings for the Translator resource](#configure-virtual-networks-resource-networking-settings).
 
 ## Configure virtual networks resource networking settings
 
-To start, you need to add all virtual networks that are allowed access via the service endpoint to the Translator resource networking properties. To enable access to a Translator resource via the VNet, you need to enable the `Microsoft.CognitiveServices` service endpoint type for the required subnets of your virtual network. Doing so routes all subnet traffic related to Azure AI services through the private global network. If you intend to access any other Azure AI services resources from the same subnet, make sure these resources are also configured to allow your virtual network.
+To start, you need to add all virtual networks that are allowed access via the service endpoint to the Translator resource networking properties. To enable access to a Translator resource via the `VNet`, you need to enable the `Microsoft.CognitiveServices` service endpoint type for the required subnets of your virtual network. Doing so routes all subnet traffic related to Azure AI services through the private global network. If you intend to access any other Azure AI services resources from the same subnet, make sure these resources are also configured to allow your virtual network.
 
 > [!NOTE]
 >
-> * If a virtual network isn't added as *allowed* in the Translator resource networking properties, it won't have access to the Translator resource via the service endpoint, even if the `Microsoft.CognitiveServices` service endpoint is enabled for the virtual network.
-> * If the service endpoint is enabled but the virtual network isn't allowed, the Translator resource won't be accessible for the virtual network through a public IP address, regardless of your other network security settings.
+> * If a virtual network isn't added as *allowed* in the Translator resource networking properties, it doesn't have access to the Translator resource via the service endpoint, even if the `Microsoft.CognitiveServices` service endpoint is enabled for the virtual network.
+> * If the service endpoint is enabled but the virtual network isn't allowed, the Translator resource isn't accessible for the virtual network through a public IP address. This restriction applies regardless of your other network security settings.
 > * Enabling the `Microsoft.CognitiveServices` endpoint routes all traffic related to Azure AI services through the private global network. Thus, the virtual network should be explicitly allowed to access the resource.
 > * This guidance applies for all Azure AI services resources, not just for Translator resources.
 
@@ -147,7 +147,7 @@ Use a billing region code, listed in the following table, with the 'Create a wor
 |West Central US|`USWC`|
 |West Europe|`WEU`|
 
-Congratulations! You learned how to use Azure VNet service endpoints with Custom Translator.
+Congratulations! You learned how to use Azure `VNet` service endpoints with Custom Translator.
 
 ## Learn more
 
