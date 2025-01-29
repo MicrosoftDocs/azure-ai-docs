@@ -221,8 +221,12 @@ items:
       href: ../ai-services/computer-vision/overview.md?context=/azure/ai-studio/context/context
 - name: Solutions and optimizations
   items:
-  - name: Agents
-    href: ../ai-services/agents/overview.md?context=/azure/ai-studio/context/context
+  - name: Azure AI Agents Service
+    items:
+    - name: What is Azure AI Agent Service
+      href: ../ai-services/agents/overview.md?context=/azure/ai-studio/context/context
+    - name: Quickstart
+      href: ../ai-services/agents/quickstart.md?context=/azure/ai-studio/context/context
   - name: Azure AI Search for RAG
     items: 
     - name: Retrieval Augmented Generation (RAG) overview
