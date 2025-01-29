@@ -53,7 +53,7 @@ landingContent:
             url: quickstarts/get-started-code.md
           - text: Use Azure OpenAI Assistants in the playground
             url: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
-          - text: Get started using GPT-4 Turbo with Vision
+          - text: Get started using vision-enabled chats
             url: quickstarts/multimodal-vision.md
       - linkListType: tutorial
         links:
