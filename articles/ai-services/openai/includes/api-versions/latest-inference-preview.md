@@ -7343,7 +7343,7 @@ Represents a step in execution of a run.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | id | string | The identifier of the run step, which can be referenced in API endpoints. | Yes |  |
-| object | string | The object type, which is always `assistant.run.step``. | Yes |  |
+| object | string | The object type, which is always `assistant.run.step`. | Yes |  |
 | created_at | integer | The Unix timestamp (in seconds) for when the run step was created. | Yes |  |
 | assistant_id | string | The ID of the assistant associated with the run step. | Yes |  |
 | thread_id | string | The ID of the thread that was run. | Yes |  |
@@ -7451,7 +7451,7 @@ Details of the message creation by the run step.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | string | Always `message_creation``. | Yes |  |
+| type | string | Always `message_creation`. | Yes |  |
 | message_creation | object |  | Yes |  |
 
 
