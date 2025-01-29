@@ -84,7 +84,19 @@ items:
       href: ../../ai-studio/how-to/develop/semantic-kernel.md?context=/azure/ai-foundry/model-inference/context/context
 - name: Reference
   items:
-    - name: Azure AI model inference API
-      href: ../../ai-studio/reference/reference-model-inference-api.md?context=/azure/ai-foundry/model-inference/context/context
+    - name: Azure AI Model Inference API
+      items:
+      - name: What's the Azure AI Model Inference API?
+        href: reference/reference-model-inference-api.md
+      - name: Reference
+        items:
+        - name: Get Info
+          href: reference/reference-model-inference-info.md
+        - name: Embeddings
+          href: reference/reference-model-inference-embeddings.md
+        - name: Chat Completions
+          href: reference/reference-model-inference-chat-completions.md
+        - name: Images Embeddings
+          href: reference/reference-model-inference-images-embeddings.md
     - name: Azure OpenAI API
       href: /azure/ai-services/openai/reference?context=/azure/ai-foundry/model-inference/context/context

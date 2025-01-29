@@ -516,6 +516,8 @@ items:
     items:
     - name: Monitor
       href: monitor-azure-cognitive-search.md
+    - name: Enable diagnostic logging
+      href: search-monitor-enable-logging.md
     - name: Monitor queries
       href: search-monitor-queries.md
     - name: Monitor indexer-based indexing
