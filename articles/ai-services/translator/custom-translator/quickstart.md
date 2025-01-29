@@ -98,7 +98,7 @@ You create English-to-German project to train a custom model with only a [traini
 
 ## Upload documents
 
-In order to create a custom model, you need to upload all or a combination of [training](concepts/model-training.md#training-document-type-for-custom-translator), [tuning](concepts/model-training.md#tuning-document-type-for-custom-translator), [testing](concepts/model-training.md#testing-dataset-for-azure-ai-custom-translator), and [dictionary](concepts/dictionaries.md) document types.
+In order to create a custom model, you need to upload all or a combination of [training](concepts/model-training.md#training-document-type-for-azure-ai-custom-translator), [tuning](concepts/model-training.md#tuning-document-type-for-custom-translator), [testing](concepts/model-training.md#testing-dataset-for-azure-ai-custom-translator), and [dictionary](concepts/dictionaries.md) document types.
 
 In this quickstart, we show you how to upload [training](concepts/model-training.md#training-document-type-for-azure-ai-custom-translator) documents for customization.
 
