@@ -292,7 +292,7 @@ Provisioned deployments support distinct model management practices. Provisioned
 - For multi-deployment migrations, validate that you have sufficient quota to support multiple deployments simultaneously. For more information on how to validate quota for each provisioned deployment type, review the [provisioned quota documentation](../concepts/provisioned-throughput.md#quota).
 
 ### In-place migrations for provisioned deployments
-In-place migrations allow you to maintain the same provisioned deployment name and size while changing the model version or model family assigned to that deployment. With in-place migrations, Azure OpenAI Service takes care of migrating any existing traffic between model versions or model families throughout the migration over a 20-30 minute window. Throughout the migration window, your provisioned deployment will display an "updating" provisioned state. Once the in-place migration is complete, the provisioned state will be updated to "succeeded", indicating that all traffic has been migrated over to the target model version or model family. 
+In-place migrations allow you to maintain the same provisioned deployment name and size while changing the model version or model family assigned to that deployment. With in-place migrations, Azure OpenAI Service takes care of migrating any existing traffic between model versions or model families throughout the migration over a 20-30 minute window. Throughout the migration window, your provisioned deployment will display an "updating" provisioned state. You can continue to use your provisioned deployment as you normally would. Once the in-place migration is complete, the provisioned state will be updated to "succeeded", indicating that all traffic has been migrated over to the target model version or model family. 
 
 #### In-place migration: model version update
 In-place migrations that target updating an existing provisioned deployment to a new model version within the same model family are supported through Azure AI Foundry, REST API, and Azure CLI. To perform an in-place migration targeting a model version update within Azure AI Foundry, select **Deployments** > under the deployment name column select the deployment name of the provisioned deployment you would like to migrate.
@@ -302,6 +302,63 @@ Selecting a deployment name opens the **Properties** for the model deployment. F
 ![Screenshot of update deployment dialogue box with the model version field selector opened to show model version options available for selection.](media/working-with-models/provisioned-deployment-model-version-update.png)
 
 #### In-place migration: model family change
+In-place migration that target updating an existing provisioned deployment to a new model family are supported through REST API and Azure CLI. To perform an in-place migration targeting a model family change, use the example request below as a guide. In the request, you will need to update the model name and model version for the target model you are migrating to. 
+
+```Bash
+curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-temp/providers/Microsoft.CognitiveServices/accounts/docs-openai-test-001/deployments/gpt-4o-ptu-deployment?api-version=2024-10-01 \
+  -H "Content-Type: application/json" \
+  -H 'Authorization: Bearer YOUR_AUTH_TOKEN' \
+  -d '{"sku":{"name":"GlobalProvisionedManaged","capacity":100},"properties": {"model": {"format": "OpenAI","name": "gpt-4o-mini","version": "2024-07-18"}}}'
+```
+#### Example response
+
+```json
+ {
+  "id": "/subscriptions/{subscription-id}/resourceGroups/resource-group-temp/providers/Microsoft.CognitiveServices/accounts/docs-openai-test-001/deployments/gpt-35-turbo",
+  "type": "Microsoft.CognitiveServices/accounts/deployments",
+  "name": "gpt-4o-ptu-deployment",
+  "sku": {
+    "name": "GlobalProvisionedManaged",
+    "capacity": 100
+  },
+  "properties": {
+    "model": {
+      "format": "OpenAI",
+      "name": "gpt-4o-mini",
+      "version": "2024-07-18"
+    },
+    "versionUpgradeOption": "OnceCurrentVersionExpired",
+    "currentCapacity": 100
+    "capabilities": {
+      "area": "EUR",
+      "chatCompletion": "true"
+      "jsonObjectResponse": "true",
+      "maxContextToken": "128000",
+      "maxOutputToken": "16834",
+      "assistants": "true"
+    },
+    "provisioningState": "Updating",
+    "rateLimits": [
+      {
+        "key": "request",
+        "renewalPeriod": 10,
+        "count": 120
+      }
+    ]
+  },
+  "systemData": {
+    "createdBy": "docs@contoso.com",
+    "createdByType": "User",
+    "createdAt": "2025-01-28T02:57:15.8951706Z",
+    "lastModifiedBy": "docs@contoso.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2025-01-29T15:35:53.082912Z"
+  },
+  "etag": "\"GUID\""
+}
+
+> [!NOTE]
+> There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account?view=azure-cli-latest#az-account-get-access-token&preserve-view=true). You can use this token as your temporary authorization token for API testing.
 
 ### Multi-deployment migrations for provisioned deployments
 
