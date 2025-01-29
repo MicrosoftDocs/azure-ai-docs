@@ -136,6 +136,8 @@ items:
       href: ./how-to/completions.md
     - name: JSON mode
       href: ./how-to/json-mode.md
+    - name: Predicted outputs
+      href: ./how-to/predicted-outputs.md
     - name: Prompt caching
       href: ./how-to/prompt-caching.md
     - name: Reproducible output
