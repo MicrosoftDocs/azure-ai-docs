@@ -5398,7 +5398,7 @@ on a public Azure OpenAI endpoint call for embeddings.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | type | [onYourDataVectorizationSourceType](#onyourdatavectorizationsourcetype) | Represents the available sources Azure OpenAI On Your Data can use to configure vectorization of data for use with<br>vector search. | Yes |  |
-| endpoint | string | Specifies the resource endpoint URL from which embeddings should be retrieved. It should be in the format of https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT_NAME/embeddings. The api-version query parameter isn't allowed. | No |  |
+| endpoint | string | Specifies the resource endpoint URL from which embeddings should be retrieved. It should be in the format of `https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT_NAME/embeddings`. The api-version query parameter isn't allowed. | No |  |
 | authentication | [onYourDataApiKeyAuthenticationOptions](#onyourdataapikeyauthenticationoptions) or [onYourDataAccessTokenAuthenticationOptions](#onyourdataaccesstokenauthenticationoptions) |  | No |  |
 | dimensions | integer | The number of dimensions the embeddings should have. Only supported in `text-embedding-3` and later models. | No |  |
 
