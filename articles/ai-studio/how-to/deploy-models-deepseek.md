@@ -1,7 +1,7 @@
 ---
-title: How to use DeepSeek-R1 with Azure AI Foundry
+title: How to use DeepSeek-R1 reasoning model with Azure AI Foundry
 titleSuffix: Azure AI Foundry
-description: Learn how to use DeepSeek-R1 with Azure AI Foundry.
+description: Learn how to use DeepSeek-R1 reasoning model with Azure AI Foundry.
 manager: scottpolly
 author: msakande
 reviewer: santiagxf
@@ -25,7 +25,7 @@ DeepSeek-R1 excels at reasoning tasks using a step-by-step training process, suc
 
 ::: zone pivot="programming-language-python"
 
-## DeepSeek-R1 (preview)
+## DeepSeek-R1
 
 DeepSeek-R1 builds on the progress of earlier reasoning-focused models that improved performance by extending Chain-of-Thought (CoT) reasoning. DeepSeek-R1 takes things further by combining reinforcement learning (RL) with fine-tuning on carefully chosen datasets. It evolved from an earlier version, DeepSeek-R1-Zero, which relied solely on RL and showed strong reasoning skills but had issues like hard-to-read outputs and language inconsistencies. To address these limitations, DeepSeek-R1 incorporates a small amount of cold-start data and follows a refined training pipeline that blends reasoning-oriented RL with supervised fine-tuning on curated datasets, resulting in a model that achieves state-of-the-art performance on reasoning benchmarks.
 
@@ -86,7 +86,6 @@ from azure.core.credentials import AzureKeyCredential
 client = ChatCompletionsClient(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
-    model="DeepSeek-R1"
 )
 ```
 
@@ -111,7 +110,7 @@ print("Model provider name:", model_info.model_provider_name)
 ```console
 Model name: DeepSeek-R1
 Model type: chat-completions
-Model provider name: DeepSeek
+Model provider name: Deepseek
 ```
 
 ### Create a chat completion request
@@ -166,7 +165,7 @@ response = client.complete(
 )
 ```
 
-The response is as follows:
+You can extract the reasoning content from the response to understand the model's thought process as follows:
 
 
 ```python
@@ -277,7 +276,7 @@ except HttpResponseError as ex:
 
 ::: zone pivot="programming-language-javascript"
 
-## DeepSeek-R1 (preview)
+## DeepSeek-R1
 
 DeepSeek-R1 builds on the progress of earlier reasoning-focused models that improved performance by extending Chain-of-Thought (CoT) reasoning. DeepSeek-R1 takes things further by combining reinforcement learning (RL) with fine-tuning on carefully chosen datasets. It evolved from an earlier version, DeepSeek-R1-Zero, which relied solely on RL and showed strong reasoning skills but had issues like hard-to-read outputs and language inconsistencies. To address these limitations, DeepSeek-R1 incorporates a small amount of cold-start data and follows a refined training pipeline that blends reasoning-oriented RL with supervised fine-tuning on curated datasets, resulting in a model that achieves state-of-the-art performance on reasoning benchmarks.
 
@@ -360,7 +359,7 @@ console.log("Model provider name: ", model_info.body.model_provider_name)
 ```console
 Model name: DeepSeek-R1
 Model type: chat-completions
-Model provider name: DeepSeek
+Model provider name: Deepseek
 ```
 
 ### Create a chat completion request
@@ -425,7 +424,7 @@ var response = await client.path("/chat/completions").post({
 });
 ```
 
-The response is as follows:
+You can extract the reasoning content from the response to understand the model's thought process as follows:
 
 
 ```javascript
@@ -550,7 +549,7 @@ catch (error) {
 
 ::: zone pivot="programming-language-csharp"
 
-## DeepSeek-R1 (preview)
+## DeepSeek-R1
 
 DeepSeek-R1 builds on the progress of earlier reasoning-focused models that improved performance by extending Chain-of-Thought (CoT) reasoning. DeepSeek-R1 takes things further by combining reinforcement learning (RL) with fine-tuning on carefully chosen datasets. It evolved from an earlier version, DeepSeek-R1-Zero, which relied solely on RL and showed strong reasoning skills but had issues like hard-to-read outputs and language inconsistencies. To address these limitations, DeepSeek-R1 incorporates a small amount of cold-start data and follows a refined training pipeline that blends reasoning-oriented RL with supervised fine-tuning on curated datasets, resulting in a model that achieves state-of-the-art performance on reasoning benchmarks.
 
@@ -653,7 +652,7 @@ Console.WriteLine($"Model provider name: {modelInfo.Value.ModelProviderName}");
 ```console
 Model name: DeepSeek-R1
 Model type: chat-completions
-Model provider name: DeepSeek
+Model provider name: Deepseek
 ```
 
 ### Create a chat completion request
@@ -712,7 +711,7 @@ ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
 Response<ChatCompletions> response = client.Complete(requestOptions);
 ```
 
-The response is as follows:
+You can extract the reasoning content from the response to understand the model's thought process as follows:
 
 
 ```csharp
@@ -843,7 +842,7 @@ catch (RequestFailedException ex)
 
 ::: zone pivot="programming-language-rest"
 
-## DeepSeek-R1 (preview)
+## DeepSeek-R1
 
 DeepSeek-R1 builds on the progress of earlier reasoning-focused models that improved performance by extending Chain-of-Thought (CoT) reasoning. DeepSeek-R1 takes things further by combining reinforcement learning (RL) with fine-tuning on carefully chosen datasets. It evolved from an earlier version, DeepSeek-R1-Zero, which relied solely on RL and showed strong reasoning skills but had issues like hard-to-read outputs and language inconsistencies. To address these limitations, DeepSeek-R1 incorporates a small amount of cold-start data and follows a refined training pipeline that blends reasoning-oriented RL with supervised fine-tuning on curated datasets, resulting in a model that achieves state-of-the-art performance on reasoning benchmarks.
 
@@ -904,7 +903,7 @@ The response is as follows:
 {
     "model_name": "DeepSeek-R1",
     "model_type": "chat-completions",
-    "model_provider_name": "DeepSeek"
+    "model_provider_name": "Deepseek"
 }
 ```
 
@@ -980,7 +979,7 @@ Some reasoning models, like DeepSeek-R1, generate completions and include the re
 }
 ```
 
-The response is as follows:
+You can extract the reasoning content from the response to understand the model's thought process as follows:
 
 
 ```json
@@ -1128,7 +1127,7 @@ The following example shows how to handle events when the model detects harmful 
 
 ## More inference examples
 
-For more examples of how to use DeepSeek models, see the following examples and tutorials:
+For more examples of how to use Deepseek models, see the following examples and tutorials:
 
 | Description                               | Language          | Sample                                                          |
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|
@@ -1137,7 +1136,7 @@ For more examples of how to use DeepSeek models, see the following examples and 
 | Azure AI Inference package for C#         | C#                | [Link](https://aka.ms/azsdk/azure-ai-inference/csharp/samples)  |
 | Azure AI Inference package for Java       | Java              | [Link](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-inference/src/samples)  |
 
-## Cost and quota considerations for DeepSeek models deployed as serverless API endpoints
+## Cost and quota considerations for Deepseek models deployed as serverless API endpoints
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
