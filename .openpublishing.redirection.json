@@ -31,6 +31,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/agents/concepts/agents.md",
+      "redirect_url": "/azure/ai-services/agents/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/openai/how-to/use-your-data-securely.md",
       "redirect_url": "/azure/ai-services/openai/how-to/on-your-data-configuration",
       "redirect_document_id": false
