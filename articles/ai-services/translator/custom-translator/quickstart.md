@@ -80,7 +80,7 @@ You can read an overview of translation and custom translation, learn some tips,
 
 Once the workspace is created successfully, you see the **Projects** page.
 
-You create English-to-German project to train a custom model with only a [training](concepts/model-training.md#training-document-type-for-custom-translator) document type.
+You create English-to-German project to train a custom model with only a [training](concepts/model-training.md#training-document-type-for-azure-ai-custom-translator) document type.
 
 1. Select **Create project**.
 
@@ -98,9 +98,9 @@ You create English-to-German project to train a custom model with only a [traini
 
 ## Upload documents
 
-In order to create a custom model, you need to upload all or a combination of [training](concepts/model-training.md#training-document-type-for-custom-translator), [tuning](concepts/model-training.md#tuning-document-type-for-custom-translator), [testing](concepts/model-training.md#testing-dataset-for-custom-translator), and [dictionary](concepts/dictionaries.md) document types.
+In order to create a custom model, you need to upload all or a combination of [training](concepts/model-training.md#training-document-type-for-custom-translator), [tuning](concepts/model-training.md#tuning-document-type-for-custom-translator), [testing](concepts/model-training.md#testing-dataset-for-azure-ai-custom-translator), and [dictionary](concepts/dictionaries.md) document types.
 
-In this quickstart, we show you how to upload [training](concepts/model-training.md#training-document-type-for-custom-translator) documents for customization.
+In this quickstart, we show you how to upload [training](concepts/model-training.md#training-document-type-for-azure-ai-custom-translator) documents for customization.
 
 >[!Note]
 > You can use our sample training, phrase and sentence dictionaries dataset, [Customer sample English-to-German datasets](https://github.com/MicrosoftTranslator/CustomTranslatorSampleDatasets), for this quickstart. However, for production, it's better to upload your own training dataset.

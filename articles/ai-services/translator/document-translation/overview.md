@@ -38,7 +38,7 @@ Use asynchronous document processing to translate multiple documents and large f
   |**Translate large files**| Translate whole documents asynchronously.|
   |**Translate numerous files**|Translate multiple files across all supported languages and dialects while preserving document structure and data format.|
   |**Preserve source file presentation**| Translate files while preserving the original layout and format.|
-  |**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#custom-translator) models.|
+  |**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-ai-custom-translator) models.|
   |**Apply custom glossaries**|Translate documents using custom glossaries.|
   |**Automatically detect document language**|Let the Document Translation service determine the language of the document.|
   |**Translate documents with content in multiple languages**|Use the autodetect feature to translate documents with content in multiple languages into your target language.|
@@ -104,7 +104,7 @@ Document Translation supports the following glossary file types:
 | ---------| -------------|
 |**Translate single-page files**| The synchronous request accepts only a single document as input.|
 |**Preserve source file presentation**| Translate files while preserving the original layout and format.|
-|**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#custom-translator) models.|
+|**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-ai-custom-translator) models.|
 |**Apply custom glossaries**|Translate documents using custom glossaries.|
 |**Single language translation**|Translate to and from one [supported language](../language-support.md).|
 |**Automatically detect document language**|Let the Document Translation service determine the language of the document.|

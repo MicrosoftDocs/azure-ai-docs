@@ -1,5 +1,5 @@
 ---
-title: Create and manage a Azure AI Custom Translator project
+title: Create and manage an Azure AI Custom Translator project
 titleSuffix: Azure AI services
 description: How to create and manage a project in the Azure AI Custom Translator.
 author: laujan

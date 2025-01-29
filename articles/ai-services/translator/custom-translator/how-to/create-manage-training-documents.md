@@ -1,8 +1,7 @@
 ---
 title: Build and upload Azure AI Custom Translator training documents
 titleSuffix: Azure AI services
-description: How to build and upload parallel documents (two documents where one is the origin and the other is the translation) using 
-Azure AI Custom Translator.
+description: How to build and upload parallel documents (two documents where one is the origin and the other is the translation) using Azure AI Custom Translator.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator

@@ -71,7 +71,7 @@ For better results, we recommended letting the system learn from your training d
    >
    > If you save the model as `Draft`, **Model details** is updated with the model name in `Draft` status.
    >
-   > To add more documents, select on the model name and follow the steps in the [Create model](#create-model) section.
+   > To add more documents, select on the model name and follow the steps in the [Create model](#create-custom-model) section.
 
    :::image type="content" source="../media/how-to/duplicate-model.png" alt-text="Screenshot illustrating the duplicate model blade.":::
 

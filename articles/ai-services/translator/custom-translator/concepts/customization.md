@@ -13,7 +13,7 @@ ms.author: lajanuar
 
 # Customize your text translations
 
-Azure AI Custom Translator is a feature of the Azure AI Translator service, which allows users to customize Azure AI Translator's advanced neural machine translation when translating text using Translator (version 3 only).
+Azure AI Custom Translator is a feature of the Azure AI Translator service. Azure AI Custom Translator allows users to customize Azure AI Translator's advanced neural machine translation when translating text using Translator (version 3 only).
 
 The feature can also be used to customize speech translation when used with [Azure AI Speech](../../../speech-service/index.yml).
 

@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 # What is Azure AI Translator container?
 
-Azure AI Translator container enables you to build translator application architecture that is optimized for both robust cloud capabilities and edge locality. A container is a running instance of an executable software image. The Translator container image includes all libraries, tools, and dependencies needed to run an application consistently in any private, public, or personal computing environment. Containers are isolated, lightweight, portable, and are great for implementing specific security or data governance requirements. Translator container is available in [connected](#connected-containers) and [disconnected (offline)](#disconnected-containers) modalities.
+Azure AI Translator container enables you to build translator application architecture that is optimized for both robust cloud capabilities and edge locality. A container is a running instance of an executable software image. The Translator container image includes all libraries, tools, and dependencies needed to run an application consistently in any private, public, or personal computing environment. Containers are isolated, lightweight, portable, and are great for implementing specific security or data governance requirements. Translator container is available in [connected](#connected-azure-ai-translator-containers) and [disconnected (offline)](#disconnected-azure-ai-translator-containers) modalities.
 
 ## Connected Azure AI Translator containers
 
