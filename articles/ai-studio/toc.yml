@@ -133,17 +133,17 @@ items:
       href: ai-services/how-to/connect-azure-openai.md
     - name: Deploy Azure OpenAI models
       href: how-to/deploy-models-openai.md
-    - name: Get started using Azure OpenAI Assistants
+    - name: Use Azure OpenAI Assistants
       href: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
-    - name: Analyze images and video with GPT-4 for Vision in the playground
-      href: quickstarts/multimodal-vision.md
+    - name: Generate images in Azure AI Foundry portal
+      href: ../ai-services/openai/dall-e-quickstart.md?context=/azure/ai-studio/context/context
     - name:  Chat
       items: 
       - name: Use GPT-35-Turbo and GPT-4 with Azure OpenAI Service
         href: ../ai-services/openai/chatgpt-quickstart.md?context=/azure/ai-studio/context/context
       - name: Chat with your data using Azure OpenAI models
         href: ../ai-services/openai/use-your-data-quickstart.md?context=/azure/ai-studio/context/context
-      - name: Vision-enabled chat
+      - name: Use vision-enabled chat
         href:  ../ai-services/openai/gpt-v-quickstart.md?context=/azure/ai-studio/context/context
       - name: Use GPT-4o in the real-time audio playground
         href: ../ai-services/openai/realtime-audio-quickstart.md?context=/azure/ai-studio/context/context
