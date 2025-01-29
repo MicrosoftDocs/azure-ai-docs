@@ -299,7 +299,7 @@ In-place migrations that target updating an existing provisioned deployment to a
 
 Selecting a deployment name opens the **Properties** for the model deployment. From this view, select the **edit** button, which will show the **Update deployment** dialogue box. Select the model version dropdown to set a new model version for the provisioned deployment. As noted, the provisioning state will change to "updating" during the migration and will revert to "succeeded" once the migration is complete. 
 
-:::image type="content" source="../media/how-to/working-with-models/provisioned-deployment-model-version-update.png" alt-text="Screenshot of the update deployment dialogue box with the model version selector open to show optional model versions to select from.":::
+![Screenshot of update deployment dialogue box with the model version field selector opened to show model version options available for selection.](media/working-with-models/provisioned-deployment-model-version-update.png)
 
 #### In-place migration: model family change
 
