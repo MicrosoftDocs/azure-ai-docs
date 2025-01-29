@@ -72,7 +72,7 @@ To learn more Azure AI Inference SDK for C# and observability, see the [Tracing 
 
 ---
 
-To learn more , see the [Inference SDK reference](../../reference/reference-model-inference-api.md).
+To learn more , see the [Inference SDK reference](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md).
 
 ### Configuration
 
