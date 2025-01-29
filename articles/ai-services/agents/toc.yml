@@ -1,7 +1,7 @@
 items:
 - name: Azure AI Agent Service Documentation
   href: index.yml
-- name: overview
+- name: Overview
   items:
   - name: What is Azure AI Agent Service?
     href: overview.md
