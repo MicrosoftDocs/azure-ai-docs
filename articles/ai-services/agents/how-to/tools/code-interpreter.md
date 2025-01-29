@@ -30,6 +30,11 @@ The [models page](../../quotas-limits.md) contains the most up-to-date informati
 
 We recommend using Agents with the latest models to take advantage of the new features, larger context windows, and more up-to-date training data.
 
+## Usage support
+
+|Azure AI foundry support  | Python SDK |	C# SDK | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Using the function calling tool with an agent
 

@@ -28,22 +28,11 @@ The [models page](../../concepts/model-region-support.md) contains the most up-t
 
 To use all features of function calling including parallel functions, you need to use a model that was released after November 6, 2023.
 
+### Usage support
 
-## Using the function calling tool with an agent
-
-You can add the function calling tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal:
-
-1. In the **Create and debug** screen for your agent, scroll down the **Setup** pane on the right to **action**. Then select **Add**.
-
-    :::image type="content" source="../../media/tools/action-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/action-tools.png":::
-
-1. Select **Custom function** and follow the prompts to add the tool. 
-
-    :::image type="content" source="../../media/tools/action-tools-list.png" alt-text="A screenshot showing the available action tools in the Azure AI Foundry portal." lightbox="../../media/tools/action-tools-list.png":::
-
-1. You can use a function that you define (examples provided in the code samples tab above), or you can try an example function. 
-
-    :::image type="content" source="../../media/tools/custom-function-trigger.png" alt-text="A screenshot showing the custom function trigger." lightbox="../../media/tools/custom-function-trigger.png":::
+|Azure AI foundry support  | Python SDK |	C# SDK | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|
+|      | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ::: zone-end
 

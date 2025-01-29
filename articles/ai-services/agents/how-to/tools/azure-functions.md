@@ -35,6 +35,12 @@ The following examples highlight how to use the Azure AI Agent Service function 
 
 You can find the template and code used here on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python).
 
+## Usage support
+
+|Azure AI foundry support  | Python SDK |	C# SDK | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|
+|  | ✔️ |  | | ✔️ |
+
 ### Create Azure resources for local and cloud dev-test
 
 Once you have your Azure subscription, run the following in a new terminal window to create Azure OpenAI and other resources needed:
@@ -118,19 +124,6 @@ When you're done working with your function app and related resources, you can u
 ```shell
 azd down --purge
 ```
-
-
-## Using the Azure functions tool with an agent
-
-You can add the function calling tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal:
-
-1. In the **Create and debug** screen for your agent, scroll down the **Setup** pane on the right to **action**. Then select **Add**.
-
-    :::image type="content" source="../../media/tools/action-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/action-tools.png":::
-
-1. Select **Azure Functions** and follow the prompts to add the tool. 
-
-    :::image type="content" source="../../media/tools/action-tools-list.png" alt-text="A screenshot showing the available action tools in the Azure AI Foundry portal." lightbox="../../media/tools/action-tools-list.png":::
 
 ::: zone-end
 

@@ -28,8 +28,6 @@ items:
   items:
     - name: Tools
       items:
-      - name: Overview
-        href: how-to/tools/overview.md
       - name: Knowledge tools
         items:
         - name: Grounding with Bing Search
