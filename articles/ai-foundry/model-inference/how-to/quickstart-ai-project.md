@@ -7,24 +7,24 @@ ms.topic: how-to
 ms.date: 1/21/2025
 ms.custom: ignite-2024, github-universe-2024
 manager: nitinme
-author: mrbullwinkle
+author: santiagxf
 ms.author: fasantia 
 recommendations: false
 ---
 
 # Configure your AI project to use Azure AI model inference
 
-If you already have an AI project in an existing AI Hub, models via "Models as a Service" are by default deployed inside of your project as stand-alone endpoints. Each model deployment has its own set of URI and credentials to access it. Azure OpenAI models are deployed to Azure AI Services resource or to the Azure OpenAI Service resource.
+If you already have an AI project in Azure AI Foundry, the model catalog deploys models from third-party model providers as stand-alone endpoints in your project by default. Each model deployment has its own set of URI and credentials to access it. On the other hand, Azure OpenAI models are deployed to Azure AI Services resource or to the Azure OpenAI Service resource.
 
-You can configure the AI project to connect with the Azure AI model inference in Azure AI services. Once configured, **deployments of Models as a Service models happen to the connected Azure AI Services resource** instead to the project itself, giving you a single set of endpoint and credential to access all the models deployed in Azure AI Foundry. 
+You can change this behavior and deploy both types of models to Azure AI Services resources using Azure AI model inference. Once configured, **deployments of Models as a Service models supporting pay-as-you-go billing happen to the connected Azure AI Services resource** instead to the project itself, giving you a single set of endpoint and credential to access all the models deployed in Azure AI Foundry. You can manage Azure OpenAI and third-party model providers models in the same way.
 
 Additionally, deploying models to Azure AI model inference brings the extra benefits of:
 
 > [!div class="checklist"]
-> * [Routing capability](../concepts/endpoints.md#routing)
-> * [Custom content filters](../concepts/content-filter.md)
-> * Global capacity deployment
-> * Entra ID support and role-based access control
+> * [Routing capability](../concepts/endpoints.md#routing).
+> * [Custom content filters](../concepts/content-filter.md).
+> * Global capacity deployment type.
+> * [Key-less authentication](configure-entra-id.md) with role-based access control.
 
 In this article, you learn how to configure your project to use models deployed in Azure AI model inference in Azure AI services.
 
@@ -104,7 +104,7 @@ For each model you want to deploy under Azure AI model inference, follow these s
 
 6. You can configure the deployment settings at this time. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for request to route to this particular model deployment. It allows you to configure specific names for your models when you attach specific configurations. For instance, `o1-preview-safe` for a model with a strict content safety content filter.
 
-7. We automatically select an Azure AI Services connection depending on your project because you have turned on the feature **Deploy models to Azure AI model inference service**. Use the **Customize** option to change the connection based on your needs. If you're deploying under the **Standard** deployment type, the models need to be available in the region of the Azure AI Services resource.
+7. We automatically select an Azure AI Services connection depending on your project because you turned on the feature **Deploy models to Azure AI model inference service**. Use the **Customize** option to change the connection based on your needs. If you're deploying under the **Standard** deployment type, the models need to be available in the region of the Azure AI Services resource.
 
     :::image type="content" source="../media/add-model-deployments/models-deploy-customize.png" alt-text="Screenshot showing how to customize the deployment if needed." lightbox="../media/add-model-deployments/models-deploy-customize.png":::
 
@@ -152,7 +152,7 @@ Although you configured the project to use the Azure AI model inference, existin
 
 ### Upgrade your code with the new endpoint
 
-Once the models are deployed under Azure AI Services, you can upgrade your code to use the Azure AI model inference endpoint. The main difference between how Serverless API endpoints and Azure AI model inference works reside in the endpoint URL and model parameter. While Serverless API Endpoints have set of URI and key per each model deployment, Azure AI model inference has only one for all of them.
+Once the models are deployed under Azure AI Services, you can upgrade your code to use the Azure AI model inference endpoint. The main difference between how Serverless API endpoints and Azure AI model inference works reside in the endpoint URL and model parameter. While Serverless API Endpoints have a set of URI and key per each model deployment, Azure AI model inference has only one for all of them.
 
 The following table summarizes the changes you have to introduce:
 
@@ -186,9 +186,10 @@ For each model deployed as Serverless API Endpoints, follow these steps:
 
 ## Limitations
 
-Azure AI model inference in Azure AI Services gives users access to flagship models in the Azure AI model catalog. However, only models supporting pay-as-you-go billing (Models as a Service) are available for deployment. 
+Consider the following limitations when configuring your project to use Azure AI model inference:
 
-Models requiring compute quota from your subscription (Managed Compute), including custom models, can only be deployed within a given project as Managed Online Endpoints and continue to be accessible using their own set of endpoint URI and credentials.
+* Only models supporting pay-as-you-go billing (Models as a Service) are available for deployment to Azure AI model inference. Models requiring compute quota from your subscription (Managed Compute), including custom models, can only be deployed within a given project as Managed Online Endpoints and continue to be accessible using their own set of endpoint URI and credentials.
+* Models available as both pay-as-you-go billing and managed compute offerings are, by default, deployed to Azure AI model inference in Azure AI services resources. Azure AI Foundry portal doesn't offer a way to deploy them to Managed Online Endpoints. You have to turn off the feature mentioned at [Configure the project to use Azure AI model inference](#configure-the-project-to-use-azure-ai-model-inference) or use the Azure CLI/Azure ML SDK/ARM templates to perform the deployment.
 
 ## Next steps
 

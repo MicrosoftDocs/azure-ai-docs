@@ -2,7 +2,7 @@
 title: Model inference endpoint in Azure AI services
 titleSuffix: Azure AI Foundry
 description: Learn about the model inference endpoint in Azure AI services
-author: mrbullwinkle
+author: santiagxf
 manager: nitinme
 ms.service: azure-ai-model-inference
 ms.topic: how-to
@@ -38,7 +38,11 @@ To learn more about how to create deployments see [Add and configure model deplo
 
 ## Azure AI inference endpoint
 
-The Azure AI inference endpoint allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. This endpoint follows the [Azure AI model inference API](../../../ai-studio/reference/reference-model-inference-api.md) which all the models in Azure AI model inference support.
+The Azure AI inference endpoint allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. This endpoint follows the [Azure AI model inference API](.././reference/reference-model-inference-api.md) which all the models in Azure AI model inference support. It support the following modalidities:
+
+* Text embeddings
+* Image embeddings
+* Chat completions
 
 You can see the endpoint URL and credentials in the **Overview** section:
 

@@ -27,6 +27,12 @@ automated, and scalable API integrations that enhance the capabilities and effic
 describing HTTP APIs. This allows people to understand how an API works, how a sequence of APIs 
 work together, generate client code, create tests, apply design standards, and more. Currently, we support 3 authentication types with the OpenAPI 3.0 specified tools: `anonymous`, `API key`, `managed identity`.
 
+### Usage support
+
+|Azure AI foundry support  | Python SDK |	C# SDK | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|
+|      | ✔️ | ✔️ | ✔️ | ✔️ |
+
 ## Prerequisites
 1. Ensure you've completed the prerequisites and setup steps in the [quickstart](../../quickstart.md).
 
@@ -35,7 +41,7 @@ work together, generate client code, create tests, apply design standards, and m
 
 ## Authenticating with API Key
 
-1. Verify that the OpenAPI spec supports API keys: it has `securitySchemes` section and has one scheme of type `apiKey". An example would be:
+1. Verify that the OpenAPI spec supports API keys: it has `securitySchemes` section and has one scheme of type `apiKey`. For example:
    ```json
        "securitySchemes": {
           "apiKeyHeader": {
@@ -56,7 +62,7 @@ work together, generate client code, create tests, apply design standards, and m
 
     1. Select **+ new connection** in the settings page. 
         >[!NOTE]
-        > If you re-generate the API key at a later date, you need to update the connection with the new key.
+        > If you regenerate the API key at a later date, you need to update the connection with the new key.
         
        :::image type="content" source="../../media/tools/bing/project-connections.png" alt-text="A screenshot of the connections screen for the AI project." lightbox="../../media/tools/bing/project-connections.png":::
 
@@ -138,7 +144,7 @@ public partial class Sample_Agent_OpenAPI : SamplesBase<AIProjectsTestEnvironmen
 ---
 
 ## Step 2: Enable the OpenAPI Spec tool
-You might want to store the OpenAPI specification in another file and import the content to initialize the tool. Please note the sample code is using `anonymous` as authentication type.
+You might want to store the OpenAPI specification in another file and import the content to initialize the tool. Note the sample code is using `anonymous` as authentication type.
 
 # [Python](#tab/python)
 
@@ -149,7 +155,7 @@ with open('./weather_openapi.json', 'r') as f:
 # Create Auth object for the OpenApiTool (note that connection or managed identity auth setup requires additional setup in Azure)
 auth = OpenApiAnonymousAuthDetails()
 
-# Initialize agent OpenApi tool using the read in OpenAPI spec
+# Initialize agent OpenAPI tool using the read in OpenAPI spec
 openapi = OpenApiTool(name="get_weather", spec=openapi_spec, description="Retrieve weather information for a location", auth=auth)
 ```
 If you want to use connection, which stores API key, for authentication, replace the line with
@@ -184,10 +190,10 @@ An example of the audience would be ```https://cognitiveservices.azure.com/```.
 # [Python](#tab/python)
 
 ```python
-# Create agent with OpenApi tool and process assistant run
+# Create agent with OpenAPI tool and process assistant run
 with project_client:
     agent = project_client.agents.create_agent(
-        model="gpt-4o-mini",
+        model="gpt-4o",
         name="my-assistant",
         instructions="You are a helpful assistant",
         tools=openapi.definitions
@@ -201,7 +207,7 @@ with project_client:
 # [C#](#tab/csharp)
 ```csharp
 Response<Agent> agentResponse = await client.CreateAgentAsync(
-            model: "gpt-4",
+            model: "gpt-4o",
             name: "azure-function-agent-foo",
             instructions: "You are a helpful assistant.",
             tools: new List<ToolDefinition> { openapiTool }

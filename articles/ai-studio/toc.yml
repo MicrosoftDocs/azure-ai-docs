@@ -394,6 +394,8 @@ items:
       href: how-to/disable-local-auth.md
   - name: Azure policies
     items:
+    - name: Audit and manage using Azure Policy
+      href: how-to/azure-policy.md
     - name: Built-in policy to allow specific models
       href: how-to/built-in-policy-model-deployment.md
     - name: Custom policy to allow specific models
@@ -441,19 +443,7 @@ items:
   - name: Prompt flow Python SDK
     href: https://microsoft.github.io/promptflow/reference/index.html#
   - name: Azure AI Model Inference API
-    items:
-      - name: What's the Azure AI Model Inference API?
-        href: reference/reference-model-inference-api.md
-      - name: Reference
-        items:
-        - name: Get Info
-          href: reference/reference-model-inference-info.md
-        - name: Embeddings
-          href: reference/reference-model-inference-embeddings.md
-        - name: Chat Completions
-          href: reference/reference-model-inference-chat-completions.md
-        - name: Images Embeddings
-          href: reference/reference-model-inference-images-embeddings.md
+    href: ../ai-foundry/model-inference/reference/reference-model-inference-api.md
   - name: Azure Policy built-ins
     displayName: samples, policies, definitions
     href: ../ai-services/policy-reference.md?context=/azure/ai-studio/context/context

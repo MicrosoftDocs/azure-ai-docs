@@ -1,6 +1,6 @@
 ---
 manager: nitinme
-author: mrbullwinkle
+author: santiagxf
 ms.author: fasantia 
 ms.service: azure-ai-model-inference
 ms.date: 1/21/2025
@@ -10,7 +10,11 @@ zone_pivot_groups: azure-ai-models-deployment
 
 [!INCLUDE [Header](intro.md)]
 
-* An AI project connected to your Azure AI Services resource. You call follow the steps at [Configure Azure AI model inference service in my project](../../how-to/configure-project-connection.md) in Azure AI Foundry.
+* An AI project resource.
+
+* The feature **Deploy models to Azure AI model inference service** on.
+
+   :::image type="content" source="../../media/quickstart-ai-project/ai-project-inference-endpoint.gif" alt-text="An animation showing how to turn on the Deploy models to Azure AI model inference service feature in Azure AI Foundry portal." lightbox="../../media/quickstart-ai-project/ai-project-inference-endpoint.gif":::
 
 ## Add a connection
 
