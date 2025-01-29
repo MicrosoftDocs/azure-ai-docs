@@ -314,7 +314,7 @@ curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-0
 
 ```json
  {
-  "id": "/subscriptions/{subscription-id}/resourceGroups/resource-group-temp/providers/Microsoft.CognitiveServices/accounts/docs-openai-test-001/deployments/gpt-35-turbo",
+  "id": "/subscriptions/{subscription-id}/resourceGroups/resource-group-temp/providers/Microsoft.CognitiveServices/accounts/docs-openai-test-001/deployments/gpt-4o-ptu-deployment",
   "type": "Microsoft.CognitiveServices/accounts/deployments",
   "name": "gpt-4o-ptu-deployment",
   "sku": {
@@ -342,7 +342,7 @@ curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-0
       {
         "key": "request",
         "renewalPeriod": 10,
-        "count": 120
+        "count": 300
       }
     ]
   },
@@ -363,7 +363,10 @@ curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-0
 
 ### Multi-deployment migrations for provisioned deployments
 Multi-deployment migrations allow you to have greater control over the model migration process. With multi-deployment migrations, you can dictate how quickly you would like to migrate your existing traffic to the target model version or model family on a new provisioned deployment. The process to migrate to a new model version or model family using the multi-deployment migration approach is as follows:
-- Create a new provisioned deployment. For this new deployment, you can choose to maintain the same provisioned deployment type as your existing provisioned deployment or select a new deployment type if de
+- Create a new provisioned deployment. For this new deployment, you can choose to maintain the same provisioned deployment type as your existing deployment or select a new deployment type if desired.
+- Transition traffic from the existing provisioned deployment to the newly created provisioned deployment with your target model version or model family until all traffic is offloaded from the original deployment. 
+- Once traffic is migrated over to the new deployment, validate that there are no inference requests being processed on the previous provisioned deployment by ensuring the Azure OpenAI Requests metric does not show any API calls made within 5-10 minutes of the inference traffic being migrated over to the new deployment. For more information on this metric, [see the Monitor Azure OpenAI documentation](https://aka.ms/aoai/docs/monitor-azure-openai).
+- Once you confirm that no inference calls have been made, delete the original provisioned deployment.
 
 ## Next steps
 
