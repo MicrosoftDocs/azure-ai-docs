@@ -129,7 +129,7 @@ The following video provides an overview of the capabilities.
 
 Semantic ranker is available on search services at the Basic and higher tiers, subject to [regional availability](search-region-support.md).
 
-When you enable semantic ranker, choose a pricing plan for the feature:
+When you configure semantic ranker, choose a pricing plan for the feature:
 
 * At lower query volumes (under 1,000 monthly), semantic ranking is free.
 * At higher query volumes, choose the standard pricing plan.
@@ -144,7 +144,7 @@ Charges for semantic ranker are levied when query requests include `queryType=se
 
 1. [Sign in to Azure portal](https://portal.azure.com) to verify your search service is Basic or higher.
 
-1. [Enable semantic ranker and choose a pricing plan](semantic-how-to-enable-disable.md).
+1. [Configure semantic ranker for the search service, choosing a pricing plan](semantic-how-to-enable-disable.md).
 
 1. [Configure semantic ranker in a search index](semantic-how-to-configure.md).
 

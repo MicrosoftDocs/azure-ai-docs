@@ -1,8 +1,8 @@
 ---
 title: Plan to manage costs for model inference in Azure AI Services
 description: Learn how to plan for and manage costs for Azure AI model inference in Azure AI Services by using cost analysis in the Azure portal.
-author: mrbullwinkle
-ms.author: mbullwin
+author: santiagxf
+ms.author: fasantia 
 ms.custom: subject-cost-optimization
 ms.service: azure-ai-model-inference
 ms.topic: how-to

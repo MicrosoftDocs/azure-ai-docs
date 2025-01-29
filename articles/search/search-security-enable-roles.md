@@ -13,15 +13,18 @@ ms.date: 1/16/2025
 
 # Enable or disable role-based access control in Azure AI Search
 
-Azure AI Search supports both keyless and [key-based authentication](search-security-api-keys.md) for for all control plane and data plane operations. You can use Microsoft Entra ID authentication and authorization for all control plane and data plane operations through Azure role-based access control (RBAC).
+Azure AI Search supports both keyless and [key-based authentication](search-security-api-keys.md) for all data plane operations. You can use Microsoft Entra ID authentication and role-based authorization to enable access to operations and content.
 
 > [!IMPORTANT]
 > When you create a search service, key-based authentication is the default, but it's not the most secure option. We recommend that you replace it with role-based access as described in this article.
 
 Before you can assign roles for authorized data plane access to Azure AI Search, you must enable role-based access control on your search service. Roles for service administration (control plane) are built in and can't be enabled or disabled. 
 
-> [!NOTE]
-> *Data plane* refers to operations against the search service endpoint, such as indexing or queries, or any other operation specified in the [Search Service REST APIs](/rest/api/searchservice/) or equivalent Azure SDK client libraries. *Control plane* refers to Azure resource management, such as creating or configuring a search service.
+*Data plane* refers to operations against the search service endpoint, such as indexing or queries, or any other operation specified in the [Search Service REST APIs](/rest/api/searchservice/) or equivalent Azure SDK client libraries. 
+
+*Control plane* refers to Azure resource management, such as creating or configuring a search service, or any other operation specified in the [Search Management REST APIs](/rest/api/searchmanagement/). 
+
+You can only enable or disable role-based access control for data plane operations. Control plane operations always use Owner, Contributor, or Reader roles. If you observe key-related activity, such as Get Admin Keys, in the **Activity Log** on a roles-only search service, those actions are initiated on the control plane and don't affect your content or content-related operations.
 
 ## Prerequisites
 
