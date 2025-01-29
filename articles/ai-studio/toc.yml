@@ -140,7 +140,7 @@ items:
     - name: Analyze images and video with GPT-4 for Vision in the playground
       href: quickstarts/multimodal-vision.md
     - name:  Chat
-      items: 
+      items:
       - name: Use GPT-35-Turbo and GPT-4 with Azure OpenAI Service
         href: ../ai-services/openai/chatgpt-quickstart.md?context=/azure/ai-studio/context/context
       - name: Chat with your data using Azure OpenAI models
@@ -156,23 +156,23 @@ items:
       - name: When to use Azure OpenAI fine-tuning
         href: ../ai-services/openai/concepts/fine-tuning-considerations.md?context=/azure/ai-studio/context/context
   - name: Content Safety
-    items: 
+    items:
     - name: What is Azure AI Content Safety?
       href: ai-services/content-safety-overview.md
     - name: Use Azure AI Content Safety in AI Foundry portal
       href: ai-services/how-to/content-safety.md
   - name:  Content Understanding
-    items:   
+    items:
     - name: What is Azure AI Content Understanding (preview)?
       href:   ../ai-services/content-understanding/overview.md?context=/azure/ai-studio/context/context
     - name: Use Content Understanding in Azure AI Foundry portal
       href: ../ai-services/content-understanding/quickstart/use-ai-foundry.md?context=/azure/ai-studio/context/context
   - name:  Document Intelligence
-    items: 
+    items:
     - name: What is Azure AI Document Intelligence?
       href: ../ai-services/document-intelligence/overview.md?context=/azure/ai-studio/context/context
   - name:  Language
-    items: 
+    items:
     - name: What is Azure AI Language?
       href: ../ai-services/language-service/overview.md?context=/azure/ai-studio/context/context
   - name: Model inference
@@ -186,7 +186,7 @@ items:
     - name: Use the inference endpoint
       href: ../ai-foundry/model-inference/concepts/endpoints.md?context=/azure/ai-studio/context/context
   - name:  Speech
-    items: 
+    items:
     - name: What is the Speech service?
       href: ../ai-services/speech-service/overview.md?context=/azure/ai-studio/context/context
     - name: Real-time speech to text
@@ -202,7 +202,7 @@ items:
     - name: Hear and speak with chat in the playground
       href: quickstarts/hear-speak-playground.md
     - name:  Customizations
-      items: 
+      items:
       - name: Custom speech fine-tuning
         href: ../ai-services/speech-service/custom-speech-ai-foundry-portal.md?context=/azure/ai-studio/context/context
       - name: Custom voice fine-tuning
@@ -212,11 +212,25 @@ items:
       - name: Custom avatar fine-tuning
         href: ../ai-services/speech-service/text-to-speech-avatar/custom-avatar-create.md?context=/azure/ai-studio/context/context
   - name:  Translator
-    items: 
+    items:
     - name: What is Azure AI Translator?
       href: ../ai-services/translator/translator-overview.md?context=/azure/ai-studio/context/context
+    - name: Azure AI Translator language support
+      href: ../ai-services/translator/language-support.md?context=/azure/ai-studio/context/context
+    - name: Features and capabilities
+      items:
+      - name: Text translation
+        href: ../ai-services/translator/text-translation-overview.md?context=/azure/ai-studio/context/context
+      - name: Document translation
+        href: ../ai-services/translator/document-translation/overview.md?context=/azure/ai-studio/context/context
+      - name: Custom Translator
+        href: ../ai-services/translator/custom-translator/overview.md?context=/azure/ai-studio/context/context
+      - name: Containers
+        href: ../ai-services/translator/containers/overview.md?context=/azure/ai-studio/context/context
+      - name: Prebuilt solutions
+        href: ../ai-services/translator/solutions-overview.md?context=/azure/ai-studio/context/context
   - name:  Vision
-    items: 
+    items:
     - name: What is Azure AI Vision?
       href: ../ai-services/computer-vision/overview.md?context=/azure/ai-studio/context/context
 - name: Solutions and optimizations
@@ -224,7 +238,7 @@ items:
   - name: Agents
     href: ../ai-services/agents/overview.md?context=/azure/ai-studio/context/context
   - name: Azure AI Search for RAG
-    items: 
+    items:
     - name: Retrieval Augmented Generation (RAG) overview
       href: concepts/retrieval-augmented-generation.md
     - name: Use Azure AI Search
@@ -239,7 +253,7 @@ items:
     items:
     - name: Prompt engineering techniques
       href: ../ai-services/openai/concepts/prompt-engineering.md?context=/azure/ai-studio/context/context
-    - name: Image prompt engineering 
+    - name: Image prompt engineering
       href: ../ai-services/openai/concepts/gpt-4-v-prompt-engineering.md?context=/azure/ai-studio/context/context
     - name: Synthetic Data Generation
       href: concepts/concept-synthetic-data.md
@@ -254,9 +268,9 @@ items:
     - name: Develop with LlamaIndex
       href: how-to/develop/llama-index.md
       displayName: code,sdk
-    - name: Develop with Semantic Kernel 
+    - name: Develop with Semantic Kernel
       href: how-to/develop/semantic-kernel.md
-  - name: Tracing 
+  - name: Tracing
     items:
     - name: Tracing in Azure AI Foundry
       href: concepts/trace.md
@@ -292,7 +306,7 @@ items:
           href: how-to/flow-bulk-test-evaluation.md
         - name: Develop an evaluation flow in Prompt flow
           href: how-to/flow-develop-evaluation.md
-    - name: A/B experimentation 
+    - name: A/B experimentation
       href: concepts/a-b-experimentation.md
   - name: Model optimizations
     items:
@@ -373,9 +387,9 @@ items:
           href: how-to/monitor-quality-safety.md
         - name: Troubleshoot prompt flow
           href: how-to/prompt-flow-troubleshoot.md
-- name: Management center 
+- name: Management center
   items:
-  - name: Management center overview 
+  - name: Management center overview
     href: /concepts/management-center.md
   - name: Manage projects and hubs
     items:
