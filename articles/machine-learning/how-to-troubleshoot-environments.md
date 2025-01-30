@@ -21,6 +21,8 @@ monikerRange: 'azureml-api-1 || azureml-api-2'
 :::moniker-end
 :::moniker range="azureml-api-1"
 [!INCLUDE [dev v1](includes/machine-learning-dev-v1.md)]
+
+[!INCLUDE [cli-version-info](./includes/machine-learning-cli-v1-deprecation.md)]
 :::moniker-end
 
 In this article, learn how to troubleshoot common problems you may encounter with environment image builds and learn about AzureML environment vulnerabilities.

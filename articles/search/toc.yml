@@ -303,7 +303,7 @@ items:
             href: search-how-to-index-sql-server.md
         - name: OneLake files
           href: search-how-to-index-onelake-files.md
-        - name: SharePoint and OneDrive
+        - name: SharePoint Online
           href: search-howto-index-sharepoint-online.md
     - name: Skillsets
       items:
@@ -470,6 +470,8 @@ items:
           href: search-howto-managed-identities-sql.md
         - name: SQL Managed Instance
           href: search-index-azure-sql-managed-instance-with-managed-identity.md
+        - name: Connect to an Azure function
+          href: search-howto-managed-identities-azure-functions.md
       - name: Connect through a firewall
         href: search-indexer-howto-access-ip-restricted.md
       - name: Connect using Network Security Perimeter
@@ -514,6 +516,8 @@ items:
     items:
     - name: Monitor
       href: monitor-azure-cognitive-search.md
+    - name: Enable diagnostic logging
+      href: search-monitor-enable-logging.md
     - name: Monitor queries
       href: search-monitor-queries.md
     - name: Monitor indexer-based indexing

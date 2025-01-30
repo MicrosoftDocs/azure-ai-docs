@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: conceptual
-ms.date: 01/07/2025
+ms.date: 01/29/2025
 ms.custom: azure-ai-agents
 ---
 
@@ -21,20 +21,27 @@ Azure AI Agent Service supports the same models as the chat completions API in A
 
 | **Region**    | **gpt-4o**, **2024-05-13** | **gpt-4o**, **2024-08-06** | **gpt-4o-mini**, **2024-07-18** | **gpt-4**, **0613** | **gpt-4**, **1106-Preview** | **gpt-4**, **0125-Preview** | **gpt-4**, **turbo-2024-04-09** | **gpt-4-32k**, **0613** | **gpt-35-turbo**, **0613** | **gpt-35-turbo**, **1106** | **gpt-35-turbo**, **0125** | **gpt-35-turbo-16k**, **0613** |
 |:--------------|:--------------------------:|:--------------------------:|:-------------------------------:|:-------------------:|:---------------------------:|:---------------------------:|:-------------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:------------------------------:|
+| australiaeast    | - | - | - | ✅ | ✅ | -| - | ✅ | ✅ | ✅ | ✅ | ✅ |
 | eastus        | ✅                         | ✅                          | ✅                            | -                   | -                           | ✅                          | ✅                              | -                       | ✅                          | -                          | ✅                         | ✅                              |
+| eastus2    | ✅ | ✅ | ✅ | -  | ✅ | - | ✅ | - | ✅ | - | ✅ | ✅ | 
 | francecentral | -                          | -                          | -                               | ✅                  | ✅                           | -                           | -                               | ✅ | ✅                         | ✅                          | -                          | ✅                             |
 | japaneast     | -                          | -                          | -                               | -                   | -                           | -                           | -                               | -                      | ✅                         | -                          | ✅                         | ✅                              |
+| norwayeast    |-  |  - |  - | -  | ✅ | -  |-  | -  | -  | -  | -  | - |
+| southindia    | - | - | - | - | ✅ | - | - | - | - | ✅ | ✅ | - |
+| swedencentral    | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | ✅ | - | ✅ |
 | uksouth       | -                          | -                          | -                               | -                   | ✅                          | ✅                           | -                               | -                       | ✅                          | ✅                         | ✅                          | ✅                             |
 | westus        | ✅                         | ✅                          | ✅                            | -                   | ✅                          | -                           | ✅                               | - | -                          | ✅                         | ✅                          | -                              |
+| westus3    | ✅ | ✅ | ✅ | - | ✅ | - | ✅ | - | - | - | ✅ | - |
 
 
 ## More models
 
 The Azure AI Agent Service also supports the following models from the Azure AI Foundry model catalog.
 
-* Llama 3.1-70B-instruct
+* Meta-Llama-405B-Instruct
 * Mistral-large-2407
-* Cohere command R+
+* Cohere-command-r-plus
+* Cohere-command-r
 
 To use these models, you can use Azure AI Foundry portal to make a deployment, and then reference it in your agent. 
 

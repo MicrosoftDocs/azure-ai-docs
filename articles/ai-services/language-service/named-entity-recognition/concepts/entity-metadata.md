@@ -33,6 +33,7 @@ Examples: "10 years old", "23 months old", "sixty Y.O."
 
 ```json
 "metadata": {
+                "metadataKind": "AgeMetadata",
                 "unit": "Year",
                 "value": 10
             }

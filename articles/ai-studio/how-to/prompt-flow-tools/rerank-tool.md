@@ -5,7 +5,7 @@ description: This article introduces you to the Rerank tool for flows in Azure A
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.topic: how-to
-ms.date: 08/29/2024
+ms.date: 01/29/2025
 ms.reviewer: jingyizhu
 ms.author: lagayhar
 author: lgayhardt
