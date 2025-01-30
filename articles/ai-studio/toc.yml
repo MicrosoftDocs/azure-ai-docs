@@ -266,7 +266,7 @@ items:
       href: how-to/develop/semantic-kernel.md
   - name: Model inference
     items:
-    - name: What is the Azure AI model inference service?
+    - name: What is Azure AI model inference?
       href: ../ai-foundry/model-inference/overview.md?context=/azure/ai-studio/context/context
     - name: Upgrade from GitHub Models
       href: ../ai-foundry/model-inference/how-to/quickstart-github-models.md?context=/azure/ai-studio/context/context
