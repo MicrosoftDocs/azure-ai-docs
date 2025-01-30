@@ -48,7 +48,7 @@ To create a project in Azure AI Foundry, follow these steps:
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
 1. Go to your project or [create a new project](../../../ai-studio//how-to/create-projects.md) in Azure AI Foundry portal.
-1. From your project overview, select **Agents**, located under **playgrounds**. The Agents playground allows you to explore, prototype, and test AI Agents without needing to run any code. From this page, you can quickly iterate and experiment with new ideas.
+1. From your project overview, select **Agents**, located under **Build and customize**.
 
 1. Select your Azure OpenAI resource.
 
@@ -64,7 +64,7 @@ To create a project in Azure AI Foundry, follow these steps:
 
 The **Agents playground** allows you to explore, prototype, and test agents without needing to run any code. From this page, you can quickly iterate and experiment with new ideas.
 
-1. If you haven't already, select **Agents** from the navigation menu on the left. In the **Create and debug your agents** screen that appears, select **New agent**. This will create a new agent, and open a **Setup** pane where you can change its parameters and tools. 
+1. In the **Create and debug your agents** screen, select your agent, or create a new one with **New agent**. The **Setup** pane on the right is where you can change its parameters and tools. 
 
     You can optionally give your agent a name other than the one generated for it, and add instructions to help improve its performance. Give your agent clear directions on what to do and how to do it. Include specific tasks, their order, and any special instructions like tone or engagement style.
 
