@@ -34,7 +34,7 @@ There are a few requirements to creating a project, including the following:
 
 * An Azure AI Hub with an AI Services multi-service resource connected
 
-[!NOTE] Your AI Hub must be in the following supported regions: westus, swedencentral, australiaeast
+  > [!NOTE] Your AI Hub must be in one of the following supported regions: westus, swedencentral, australiaeast
 * An Azure blob storage account (by default it will create a new one for you)
 
 Once you complete the setup steps, select `Create project`.
@@ -107,11 +107,9 @@ The following analyzer templates are available for use in the [Azure AI Foundry 
 
 ## Build your first analyzer
 
-The following is an example of how to build a schema, which is the customziable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document:
+The following is an example of how to build a schema, which is the customziable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any type of data and the steps to follow will remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
 
 1. Upload a sample file of an invoice document or any other data relevant to your scenario.
-
-[Add a note about the data types supported]
 
    :::image type="content" source="../media/analyzer-template/define-schema-upload.png" alt-text="Screenshot of upload step in user experience.":::
 
