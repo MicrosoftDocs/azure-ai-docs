@@ -15,7 +15,7 @@ ms.custom: azure-ai-agents
 
 This article provides a summary of the latest releases and major documentation updates for Azure AI Agent Service.
 
-## January 2025
+## February 2025
 
 ### Use Azure AI Agent Service in the Azure AI Foundry portal
 
