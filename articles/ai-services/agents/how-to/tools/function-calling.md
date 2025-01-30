@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 12/11/2024
+ms.date: 01/30/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-function-calling
