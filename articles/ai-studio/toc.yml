@@ -135,17 +135,17 @@ items:
       href: ai-services/how-to/connect-azure-openai.md
     - name: Deploy Azure OpenAI models
       href: how-to/deploy-models-openai.md
-    - name: Get started using Azure OpenAI Assistants
+    - name: Use Azure OpenAI Assistants
       href: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
-    - name: Analyze images and video with GPT-4 for Vision in the playground
-      href: quickstarts/multimodal-vision.md
+    - name: Generate images in Azure AI Foundry portal
+      href: ../ai-services/openai/dall-e-quickstart.md?context=/azure/ai-studio/context/context
     - name:  Chat
       items:
       - name: Use GPT-35-Turbo and GPT-4 with Azure OpenAI Service
         href: ../ai-services/openai/chatgpt-quickstart.md?context=/azure/ai-studio/context/context
       - name: Chat with your data using Azure OpenAI models
         href: ../ai-services/openai/use-your-data-quickstart.md?context=/azure/ai-studio/context/context
-      - name: Vision-enabled chat
+      - name: Use vision-enabled chat
         href:  ../ai-services/openai/gpt-v-quickstart.md?context=/azure/ai-studio/context/context
       - name: Use GPT-4o in the real-time audio playground
         href: ../ai-services/openai/realtime-audio-quickstart.md?context=/azure/ai-studio/context/context
@@ -156,11 +156,19 @@ items:
       - name: When to use Azure OpenAI fine-tuning
         href: ../ai-services/openai/concepts/fine-tuning-considerations.md?context=/azure/ai-studio/context/context
   - name: Content Safety
-    items:
-    - name: What is Azure AI Content Safety?
+    items: 
+    - name: What is Azure AI Content Safety service?
       href: ../ai-services/content-safety/overview.md?context=/azure/ai-studio/context/context
-    - name: Use Azure AI Content Safety in AI Foundry portal
-      href: ../ai-services/content-safety/how-to/foundry.md?context=/azure/ai-studio/context/context
+    - name: Prompt Shields quickstart
+      href: ../ai-services/content-safety/quickstart-jailbreak.md?context=/azure/ai-studio/context/context
+    - name: Groundedness detection (preview) quickstart
+      href: ../ai-services/content-safety/quickstart-groundedness.md?context=/azure/ai-studio/context/context
+    - name: Protected material detection for text quickstart
+      href: ../ai-services/content-safety/quickstart-protected-material.md?context=/azure/ai-studio/context/context
+    - name: Custom categories (preview) quickstart
+      href: ../ai-services/content-safety/quickstart-custom-categories.md?context=/azure/ai-studio/context/context
+    - name: Text moderation quickstart
+      href: ../ai-services/content-safety/quickstart-text.md?context=/azure/ai-studio/context/context
   - name:  Content Understanding
     items:
     - name: What is Azure AI Content Understanding (preview)?
@@ -221,8 +229,28 @@ items:
         href: ../ai-services/translator/solutions-overview.md?context=/azure/ai-studio/context/context
   - name:  Vision
     items:
-    - name: What is Azure AI Vision?
-      href: ../ai-services/computer-vision/overview.md?context=/azure/ai-studio/context/context
+    - name: Azure Image Analysis
+      items:
+      - name: What is Image Analysis?
+        href: /azure/ai-services/computer-vision/overview-image-analysis?context=/azure/ai-studio/context/context
+      - name: Quickstart
+        href: /azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library-40?context=/azure/ai-studio/context/context
+      - name: Optical Character Recognition concepts
+        href: /azure/ai-services/computer-vision/concept-ocr?context=/azure/ai-studio/context/context
+      - name: Image captioning concepts
+        href: /azure/ai-services/computer-vision/concept-describe-images-40?context=/azure/ai-studio/context/context
+    - name: Azure AI Face
+      items:
+      - name: What is Azure AI Face service?
+        href: /azure/ai-services/computer-vision/overview-identity?context=/azure/ai-studio/context/context
+      - name: Quickstart 
+        href: /azure/ai-services/computer-vision/quickstarts-sdk/identity-client-library?context=/azure/ai-studio/context/context
+      - name: Face detection concepts
+        href: /azure/ai-services/computer-vision/concept-face-detection?context=/azure/ai-studio/context/context
+      - name: Face recognition concepts
+        href: /azure/ai-services/computer-vision/concept-face-recognition?context=/azure/ai-studio/context/context
+      - name: Liveness detection tutorial
+        href: /azure/ai-services/computer-vision/tutorials/liveness?context=/azure/ai-studio/context/context
 - name: Solutions and optimizations
   items:
   - name: Azure AI Agent Service
@@ -481,10 +509,10 @@ items:
   items:
   - name: Responsible AI overview
     href: responsible-use-of-ai-overview.md
-  - name: What is Azure AI Content Safety?
+  - name: Azure AI Content Safety in AI Foundry portal overview
     href: ai-services/content-safety-overview.md
-  - name: Use Azure AI Content Safety in the portal
-    href: ai-services/how-to/content-safety.md
+  - name: Use Azure AI Content Safety in AI Foundry portal
+    href: /azure/ai-services/content-safety/how-to/foundry?context=/azure/ai-studio/context/context
   - name: Content filtering
     href: concepts/content-filtering.md
   - name: Use blocklists
