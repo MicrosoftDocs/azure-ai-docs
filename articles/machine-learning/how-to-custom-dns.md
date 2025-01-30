@@ -54,7 +54,7 @@ While your architecture may differ from these examples, you can use them as a re
 Another option is to modify the `hosts` file on the client that is connecting to the Azure Virtual Network (virtual network) that contains your workspace. For more information, see the [Host file](#hosts) section.
 ### Workspace DNS resolution path
 
-Access to a given Azure Machine Learning workspace via Private Link is done by communicating with the following Fully Qualified Domains (called the workspace FQDNs) listed below:
+Access to a given Azure Machine Learning workspace via Private Link is done by communicating with the following Fully Qualified Domains (called the workspace FQDNs):
 
 > [!IMPORTANT]
 > If you're using a hub workspace (including Azure AI Foundry hub), then you have other entries for each project workspace created from the hub.
@@ -350,7 +350,7 @@ The following steps describe how this topology works:
 
     Next, create a conditional forwarder to the Azure DNS Virtual Server. The conditional forwarder ensures that the DNS server always queries the Azure DNS Virtual Server IP address for FQDNs related to your workspace. This means that the DNS Server returns the corresponding record from the Private DNS Zone.
 
-    The following is a list of zones to conditionally forward. The Azure DNS Virtual Server IP address is 168.63.129.16:
+    The following list is of zones to conditionally forward. The Azure DNS Virtual Server IP address is 168.63.129.16:
 
     **Azure Public regions**:
     - ```api.azureml.ms```
@@ -496,7 +496,7 @@ The following steps describe how this topology works:
 
     Next, create a conditional forwarder to the Azure DNS Virtual Server. The conditional forwarder ensures that the DNS server always queries the Azure DNS Virtual Server IP address for FQDNs related to your workspace. This means that the DNS Server returns the corresponding record from the Private DNS Zone.
 
-    The following is a list of zones to conditionally forward. The Azure DNS Virtual Server IP address is 168.63.129.16.
+    The following list is of zones to conditionally forward. The Azure DNS Virtual Server IP address is 168.63.129.16.
 
     **Azure Public regions**:
     - ```api.azureml.ms```
@@ -526,7 +526,7 @@ The following steps describe how this topology works:
 
     Next, create a conditional forwarder to the DNS Server in the DNS Server Virtual Network. This forwarder is for the zones listed in step 1. This is similar to step 3, but, instead of forwarding to the Azure DNS Virtual Server IP address, the On-premises DNS Server is targeting the IP address of the DNS Server. As the On-premises DNS Server isn't in Azure, it isn't able to directly resolve records in Private DNS Zones. In this case, the DNS Server proxies requests from the On-premises DNS Server to the Azure DNS Virtual Server IP. This allows the On-premises DNS Server to retrieve records in the Private DNS Zones linked to the DNS Server Virtual Network.
 
-    The following is a list of zones to conditionally forward. The IP addresses to forward to are the IP addresses of your DNS Servers:
+    The following list is the zones to conditionally forward. The IP addresses to forward to are the IP addresses of your DNS Servers:
 
     **Azure Public regions**:
     - ```api.azureml.ms```
