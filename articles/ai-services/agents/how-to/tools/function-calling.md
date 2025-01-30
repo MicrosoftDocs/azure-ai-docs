@@ -22,12 +22,6 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 > [!NOTE]
 > Runs expire ten minutes after creation. Be sure to submit your tool outputs before the expiration.
 
-### Supported models
-
-The [models page](../../concepts/model-region-support.md) contains the most up-to-date information on regions/models where Agents are supported.
-
-To use all features of function calling including parallel functions, you need to use a model that was released after November 6, 2023.
-
 ::: zone-end
 
 ::: zone pivot="code-example"
