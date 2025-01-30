@@ -31,7 +31,7 @@ To get started, make sure you have the following:
 
  >[!IMPORTANT] If your organization requires you to customize the security or storage resources, the AI Foundry currently does not support resource creation that meets these standards. Please refer to [Azure AI services API access keys](../../../ai-studio/concepts/ai-resources.md#azure-ai-services-api-access-keys) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it.
 
-* An [AI Services multi-service resource](../how-to/create-multi-service-resource.md), connected to your AI Hub.
+* An [AI Services multi-service resource](../how-to/create-multi-service-resource.md), connected to your AI Hub. For more information on creating connections, see [How to add a new connection in Azure AI Foundry portal](../../../ai-studio/how-to/connections-add.md).
 
 * An [Azure blob storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal), connected to your AI hub.
 
