@@ -48,9 +48,9 @@ In order to try out [the Content Understanding service in the AI Foundry](https:
 
 Once on the Content Understanding page, select `Create a new Content Understanding Project`, shown below:
 
-
-
    :::image type="content" source="../media/quickstarts/cu-landing-page.png" alt-text="Screenshot of Content Understanding page.":::
+
+ > [!NOTE] The Content Understanding project type is separate from the Generative AI project type, also available in the AI Foundry.
 
 Follow the steps in the wizard to select the Hub, AI Services multi-service resource, and Azure blob storage container that you just created. Once you complete the setup steps, select `Create project`.
 
@@ -73,7 +73,7 @@ Follow these steps to create your own analyzer:
 
 ## Build your first analyzer
 
-The following is an example of how to build a schema, which is the customziable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any type of data and the steps to follow will remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
+Now that everything is configured to get started, the following is a setep-by-step walkthrough of how to build your first analyzer, starting with building the schema. The schema is the customziable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any type of data and the steps to follow will remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
 
 1. Upload a sample file of an invoice document or any other data relevant to your scenario.
 
