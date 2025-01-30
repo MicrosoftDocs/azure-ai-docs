@@ -20,21 +20,21 @@ ms.custom: ignite-2024-understanding-release
 In order to try out [the Content Understanding service in the AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding), you have to create a Content Understanding project. You can also access Content Understanding from:
 
 * The AI Foundry home page
-   :::image type="content" source="../media/analyzer-template/define-schema-upload.png" alt-text="Screenshot of the AI Foundry home page.":::
+   :::image type="content" source="../media/quickstarts/foundry-home-page.png" alt-text="Screenshot of the AI Foundry home page.":::
 
 * The AI Services landing page
-   :::image type="content" source="../media/analyzer-template/define-schema-upload.png" alt-text="Screenshot of the AI Services landing page in AI Foundry.":::
+   :::image type="content" source="../media/quickstarts/cu-ai-services-landing-page.png" alt-text="Screenshot of the AI Services landing page in AI Foundry.":::
 
 
 Once on the Content Understanding page, select `Create a new Content Understanding Project`, shown below:
 
-   :::image type="content" source="../media/analyzer-template/define-schema-upload.png" alt-text="Screenshot of Content Understanding page.":::
+   :::image type="content" source="../media/quickstarts/cu-landing-page.png" alt-text="Screenshot of Content Understanding page.":::
 
 There are a few requirements to creating a project, including the following:
 
 * An Azure AI Hub with an AI Services multi-service resource connected
 
-[NOTE] Your AI Hub must be in the following supported regions: westus, swedencentral, australiaeast
+[!NOTE] Your AI Hub must be in the following supported regions: westus, swedencentral, australiaeast
 * An Azure blob storage account (by default it will create a new one for you)
 
 Once you complete the setup steps, select `Create project`.
