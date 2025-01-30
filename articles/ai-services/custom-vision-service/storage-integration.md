@@ -6,9 +6,11 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-custom-vision
 ms.topic: how-to
-ms.date: 02/27/2024
+ms.date: 01/29/2025
 ms.author: pafarley
 ms.custom: cogserv-non-critical-vision
+#customer intent: As a developer, I want to integrate Azure storage with Custom Vision so that I can receive notifications and back up models.
+
 ---
 
 # Integrate Azure storage for notifications and backup
@@ -204,8 +206,9 @@ Also, you'll receive a notification in your queue when the export finishes.
 
 The `"exportStatus"` field may be either `"ExportCompleted"` or `"ExportFailed"`. The `"modelUri"` field will contain the URL of the backup model stored in your container, assuming you integrated queue notifications in the beginning. If you didn't, the `"modelUri"` field will show the SAS URL for your Custom Vision model blob.
 
-## Next steps
+## Next step
 
 In this guide, you learned how to copy and back up a project between Custom Vision resources. Next, explore the API reference docs to see what else you can do with Custom Vision.
-* [REST API reference documentation (training)](/rest/api/customvision/train-project)
-* [REST API reference documentation (prediction)](/rest/api/customvision/predictions)
+
+> [!div class="nextstepaction"]
+> [REST API reference documentation (training)](/rest/api/customvision/train-project)
