@@ -81,6 +81,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/how-to/view-model-evaluation.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview.md",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/language-support.md",
       "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview.md",
       "redirect_document_id": false
@@ -137,6 +142,11 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/language-service/sentiment-opinion-mining/custom/how-to/train-model.md",
+      "redirect_url": "/azure/ai-services/language-service/sentiment-opinion-mining/overview.md",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/sentiment-opinion-mining/custom/quickstart.md",
       "redirect_url": "/azure/ai-services/language-service/sentiment-opinion-mining/overview.md",
       "redirect_document_id": false
     }

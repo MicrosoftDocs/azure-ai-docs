@@ -26,8 +26,6 @@ The sentiment analysis feature provides sentiment labels (such as "negative", "n
 
 Opinion mining is a feature of sentiment analysis. Also known as aspect-based sentiment analysis in Natural Language Processing (NLP), this feature provides more granular information about the opinions related to words (such as the attributes of products or services) in text.
 
-#### [Prebuilt model](#tab/prebuilt)
-
 [!INCLUDE [Typical workflow for pre-configured language features](../includes/overview-typical-workflow.md)]
 
 ## Get started with sentiment analysis
@@ -36,43 +34,9 @@ Opinion mining is a feature of sentiment analysis. Also known as aspect-based se
 
 [!INCLUDE [Developer reference](../includes/reference-samples-text-analytics.md)] 
 
-#### [Custom model (preview)](#tab/custom)
-
-Custom sentiment analysis enables users to build custom AI models to classify text into sentiments pre-defined by the user. By creating a Custom sentiment analysis project, developers can iteratively label data, train, evaluate, and improve model performance before making it available for consumption. The quality of the labeled data greatly impacts model performance. To simplify building and customizing your model, the service offers a custom web portal that can be accessed through the [Language studio](https://aka.ms/languageStudio). You can easily get started with the service by following the steps in this [quickstart](quickstart.md). 
-
-
-## Project development lifecycle
-
-Creating a Custom sentiment analysis project typically involves several different steps. 
-
-:::image type="content" source="media/development-lifecycle.png" alt-text="Diagram of the development lifecycle" lightbox="media/development-lifecycle.png":::
-
-Follow these steps to get the most out of your model:
-
-1. **Define your schema**: Know your data and identify the sentiments you want, to avoid ambiguity.
-
-2. **Label your data**: The quality of data labeling is a key factor in determining model performance. Avoid ambiguity, make sure that your sentiments are clearly separable from each other.
-
-3. **Train the model**: Your model starts learning from your labeled data.
-
-4. **View the model's performance**: View the evaluation details for your model to determine how well it performs when introduced to new data.
-
-5. **Deploy the model**: Deploying a model makes it available for use via the [Analyze API](https://aka.ms/ct-runtime-swagger).
-
-6. **Classify text**: Use your custom model for sentiment analysis tasks.
-
-## Development options
-
-|Development option  |Description  |
-|---------|---------|
-|Language studio     | Language Studio is a web-based platform that lets you try entity linking with text examples without an Azure account, and your own data when you sign up.       |
-|REST API     | Integrate sentiment analysis into your applications programmatically using the REST API.    |
-
-For more information, see [sentiment analysis quickstart](./custom/quickstart.md).   
-
 ## Reference documentation
 
-As you use Custom sentiment analysis, see the following reference documentation and samples for the Language service:
+As you use sentiment analysis, see the following reference documentation and samples for the Language service:
 
 |Development option / language  |Reference documentation |Samples  |
 |---------|---------|---------|
@@ -89,5 +53,4 @@ An AI system includes not only the technology, but also the people who use it, t
 ## Next steps
 
 * The quickstart articles with instructions on using the service for the first time.
-    * [Use the prebuilt model](./quickstart.md)
-    * [Create a custom model](./custom/quickstart.md)  
+    * [Use sentiment analysis and opinion mining](./quickstart.md)
