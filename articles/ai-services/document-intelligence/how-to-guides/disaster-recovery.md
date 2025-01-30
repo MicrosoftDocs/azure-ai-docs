@@ -46,7 +46,7 @@ If your app or business depends on the use of a Document Intelligence custom mod
 
 ## Prerequisites
 
-1. Two Document Intelligence Azure resources in different Azure regions. If you don't have them, go to the Azure portal and [create a new Document Intelligence resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer).
+1. Two Document Intelligence Azure resources in different Azure subscriptions or regions. If you don't have them, go to the Azure portal and [create a new Document Intelligence resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer).
 1. The key, endpoint URL, and subscription ID for your Document Intelligence resource. You can find these values on the resource's **Overview** tab in the [Azure portal](https://portal.azure.com/#home).
 
 ::: moniker-end
