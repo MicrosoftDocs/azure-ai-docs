@@ -8,7 +8,7 @@ author: ssalgadodev
 ms.reviewer: balapv
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 01/22/2024
+ms.date: 01/22/2025
 ms.topic: how-to
 ms.collection: ce-skilling-ai-copilot 
 ms.custom:
