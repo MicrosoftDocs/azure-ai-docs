@@ -5,7 +5,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 01/10/2024
+ms.date: 01/29/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -24,14 +24,12 @@ This article is to help you understand the support lifecycle for the Azure OpenA
 
 Azure OpenAI API latest release:
 
-- Inference: [2024-12-01-preview](reference-preview.md)
-- Authoring: [2024-10-01-preview](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/authoring/preview/2024-10-01-preview/azureopenai.json)
-
-> [!IMPORTANT]
-> For features that are part of the dataplane authoring API such as batch, fine-tuning, and assistants files, continue to use API version `2024-10-01-preview` to take advantage of the latest preview features.
+- Inference: [2025-01-01-preview](reference-preview.md)
+- Authoring: [2025-01-01-preview](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/authoring/preview/2025-01-01-preview/azureopenai.json)
 
 This version contains support for the latest Azure OpenAI features including:
 
+- [Predicted Outputs](./how-to/predicted-outputs.md) [**Added in 2025-01-01-preview**]
 - [Reasoning models](./how-to/reasoning.md) [**Added in 2024-12-01-preview**]
 - [Stored completions/distillation](./how-to/stored-completions.md) [**Added in 2024-12-01-preview**]
 - Assistants V2 [**Added in 2024-05-01-preview**]
@@ -43,6 +41,11 @@ This version contains support for the latest Azure OpenAI features including:
 - [Whisper](./whisper-quickstart.md). [**Added in 2023-09-01-preview**]
 - [Function calling](./how-to/function-calling.md)  [**Added in 2023-07-01-preview**]
 - [Retrieval augmented generation with your data feature](./use-your-data-quickstart.md).  [**Added in 2023-06-01-preview**]
+
+## Changes between 2025-01-01-preview and 2024-12_01_preview
+
+- `prediction` parameter added for [predicted outputs](./how-to/predicted-outputs.md) support.
+- `gpt-4o-audio-preview` [model support](./audio-completions-quickstart.md).
 
 ## Changes between 2024-12-01-preview and 2024-10-01-preview
 
