@@ -228,7 +228,7 @@ Out of Memory error can be found in `~/system_logs/lifecycler/<node-id>/executio
 We suggest reducing the number of processes per node or upgrade vm size if the compute resources is close the limits.
 
 #### Unhandled Exceptions
-In some cases, the python processes cannot catch the failing stack. You can add an environment variable ```env["PYTHONFAULTHANDLER"]="true"``` to enable python builtin faulthandler.
+In some cases, the python processes cannot catch the failing stack. You can add an environment variable ```env["PYTHONFAULTHANDLER"]="true"``` to enable python builtin fault handler.
 
 ### Minibatch Timeout
 You can adjust `run_invocation_timeout` argument according to your minibatch tasks. When you are seeing the run() functions take more time than expected, here are some tips.
