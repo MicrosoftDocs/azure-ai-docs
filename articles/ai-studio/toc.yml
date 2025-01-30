@@ -1,17 +1,11 @@
 items:
 - name: Azure AI Foundry documentation
   href: index.yml
+- name: What is Azure AI Foundry?
+  href: what-is-ai-studio.md
 - name: Get started
   expanded: true
   items:
-  - name: Overview
-    expanded: true
-    items:
-    - name: What is Azure AI Foundry?
-      href: what-is-ai-studio.md
-    - name: Azure AI Foundry and AI services
-      href: concepts/related-content.md
-      displayName: code, sdk
   - name: Quickstarts
     items:
     - name: Use the chat playground
@@ -54,12 +48,6 @@ items:
     items:
     - name: AI21 Jamba models
       href: how-to/deploy-models-jamba.md
-    - name: Azure OpenAI models
-      items:
-      - name: Deploy Azure OpenAI models
-        href: how-to/deploy-models-openai.md
-      - name: Fine-tune Azure OpenAI models
-        href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context
     - name: Cohere models
       items:
       - name: Cohere Command models
@@ -121,141 +109,133 @@ items:
           href: how-to/fine-tune-models-tsuzumi.md
     - name: TimeGEN-1 model
       href: how-to/deploy-models-timegen-1.md
-- name: Azure OpenAI and AI services
-  items:
-  - name: Azure OpenAI in Azure AI Foundry
-    href: azure-openai-in-ai-studio.md
-  - name: Use Azure AI services in Azure AI Foundry portal
-    href: ai-services/how-to/connect-ai-services.md
-    displayName: cognitive,task
-  - name: Azure OpenAI
+  - name: Azure OpenAI and AI services
     items:
-    - name: What is Azure OpenAI?
-      href: ../ai-services/openai/overview.md?context=/azure/ai-studio/context/context
-      displayName: cognitive
     - name: Use Azure OpenAI Service in Azure AI Foundry portal
       href: ai-services/how-to/connect-azure-openai.md
-    - name: Deploy Azure OpenAI models
-      href: how-to/deploy-models-openai.md
-    - name: Use Azure OpenAI Assistants
-      href: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
-    - name: Generate images in Azure AI Foundry portal
-      href: ../ai-services/openai/dall-e-quickstart.md?context=/azure/ai-studio/context/context
-    - name:  Chat
+    - name: Use Azure AI services in Azure AI Foundry portal
+      href: ai-services/how-to/connect-ai-services.md
+      displayName: cognitive,task
+    - name: What are Azure AI services?
+      href: concepts/what-are-ai-services.md
+    - name: Azure OpenAI
       items:
-      - name: Use GPT-35-Turbo and GPT-4 with Azure OpenAI Service
-        href: ../ai-services/openai/chatgpt-quickstart.md?context=/azure/ai-studio/context/context
-      - name: Chat with your data using Azure OpenAI models
-        href: ../ai-services/openai/use-your-data-quickstart.md?context=/azure/ai-studio/context/context
-      - name: Use vision-enabled chat
-        href:  ../ai-services/openai/gpt-v-quickstart.md?context=/azure/ai-studio/context/context
-      - name: Use GPT-4o in the real-time audio playground
-        href: ../ai-services/openai/realtime-audio-quickstart.md?context=/azure/ai-studio/context/context
-    - name: Fine-tuning
+      - name: What is Azure OpenAI?
+        href: ../ai-services/openai/overview.md?context=/azure/ai-studio/context/context
+        displayName: cognitive
+      - name: Azure OpenAI in Azure AI Foundry
+        href: azure-openai-in-ai-studio.md
+      - name: Deploy Azure OpenAI models
+        href: how-to/deploy-models-openai.md
+      - name: Use Azure OpenAI Assistants
+        href: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
+      - name: Generate images in Azure AI Foundry portal
+        href: ../ai-services/openai/dall-e-quickstart.md?context=/azure/ai-studio/context/context
+      - name:  Chat
+        items:
+        - name: Use GPT-35-Turbo and GPT-4 with Azure OpenAI Service
+          href: ../ai-services/openai/chatgpt-quickstart.md?context=/azure/ai-studio/context/context
+        - name: Chat with your data using Azure OpenAI models
+          href: ../ai-services/openai/use-your-data-quickstart.md?context=/azure/ai-studio/context/context
+        - name: Use vision-enabled chat
+          href:  ../ai-services/openai/gpt-v-quickstart.md?context=/azure/ai-studio/context/context
+        - name: Use GPT-4o in the real-time audio playground
+          href: ../ai-services/openai/realtime-audio-quickstart.md?context=/azure/ai-studio/context/context
+      - name: Fine-tuning
+        items:
+        - name: Fine-tune Azure OpenAI models
+          href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context
+        - name: When to use Azure OpenAI fine-tuning
+          href: ../ai-services/openai/concepts/fine-tuning-considerations.md?context=/azure/ai-studio/context/context
+    - name: Content Safety
+      items: 
+      - name: What is Azure AI Content Safety service?
+        href: ../ai-services/content-safety/overview.md?context=/azure/ai-studio/context/context
+      - name: Prompt Shields quickstart
+        href: ../ai-services/content-safety/quickstart-jailbreak.md?context=/azure/ai-studio/context/context
+      - name: Groundedness detection (preview) quickstart
+        href: ../ai-services/content-safety/quickstart-groundedness.md?context=/azure/ai-studio/context/context
+      - name: Protected material detection for text quickstart
+        href: ../ai-services/content-safety/quickstart-protected-material.md?context=/azure/ai-studio/context/context
+      - name: Custom categories (preview) quickstart
+        href: ../ai-services/content-safety/quickstart-custom-categories.md?context=/azure/ai-studio/context/context
+      - name: Text moderation quickstart
+        href: ../ai-services/content-safety/quickstart-text.md?context=/azure/ai-studio/context/context
+    - name:  Content Understanding
       items:
-      - name: Fine-tune Azure OpenAI models
-        href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context
-      - name: When to use Azure OpenAI fine-tuning
-        href: ../ai-services/openai/concepts/fine-tuning-considerations.md?context=/azure/ai-studio/context/context
-  - name: Content Safety
-    items: 
-    - name: What is Azure AI Content Safety service?
-      href: ../ai-services/content-safety/overview.md?context=/azure/ai-studio/context/context
-    - name: Prompt Shields quickstart
-      href: ../ai-services/content-safety/quickstart-jailbreak.md?context=/azure/ai-studio/context/context
-    - name: Groundedness detection (preview) quickstart
-      href: ../ai-services/content-safety/quickstart-groundedness.md?context=/azure/ai-studio/context/context
-    - name: Protected material detection for text quickstart
-      href: ../ai-services/content-safety/quickstart-protected-material.md?context=/azure/ai-studio/context/context
-    - name: Custom categories (preview) quickstart
-      href: ../ai-services/content-safety/quickstart-custom-categories.md?context=/azure/ai-studio/context/context
-    - name: Text moderation quickstart
-      href: ../ai-services/content-safety/quickstart-text.md?context=/azure/ai-studio/context/context
-  - name:  Content Understanding
-    items:
-    - name: What is Azure AI Content Understanding (preview)?
-      href:   ../ai-services/content-understanding/overview.md?context=/azure/ai-studio/context/context
-    - name: Use Content Understanding in Azure AI Foundry portal
-      href: ../ai-services/content-understanding/quickstart/use-ai-foundry.md?context=/azure/ai-studio/context/context
-  - name:  Document Intelligence
-    items:
-    - name: What is Azure AI Document Intelligence?
-      href: ../ai-services/document-intelligence/overview.md?context=/azure/ai-studio/context/context
-  - name:  Language
-    items:
-    - name: What is Azure AI Language?
-      href: ../ai-services/language-service/overview.md?context=/azure/ai-studio/context/context
-  - name:  Speech
-    items:
-    - name: What is the Speech service?
-      href: ../ai-services/speech-service/overview.md?context=/azure/ai-studio/context/context
-    - name: Real-time speech to text
-      href: ../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-studio/context/context
-    - name: Fast transcription
-      href: ../ai-services/speech-service/fast-transcription-create.md?context=/azure/ai-studio/context/context
-    - name: Pronunciation assessment
-      href: ../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/ai-studio/context/context
-    - name: Speech translation
-      href: ../ai-services/speech-service/get-started-speech-translation.md?context=/azure/ai-studio/context/context
-    - name: Audio content creation
-      href: ../ai-services/speech-service/how-to-audio-content-creation.md?context=/azure/ai-studio/context/context
-    - name: Hear and speak with chat in the playground
-      href: quickstarts/hear-speak-playground.md
-    - name:  Customizations
+      - name: What is Azure AI Content Understanding (preview)?
+        href:   ../ai-services/content-understanding/overview.md?context=/azure/ai-studio/context/context
+      - name: Use Content Understanding in Azure AI Foundry portal
+        href: ../ai-services/content-understanding/quickstart/use-ai-foundry.md?context=/azure/ai-studio/context/context
+    - name:  Document Intelligence
       items:
+      - name: What is Azure AI Document Intelligence?
+        href: ../ai-services/document-intelligence/overview.md?context=/azure/ai-studio/context/context
+    - name:  Language
+      items:
+      - name: What is Azure AI Language?
+        href: ../ai-services/language-service/overview.md?context=/azure/ai-studio/context/context
+    - name:  Speech
+      items:
+      - name: What is the Speech service?
+        href: ../ai-services/speech-service/overview.md?context=/azure/ai-studio/context/context
+      - name: Real-time speech to text
+        href: ../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-studio/context/context
+      - name: Fast transcription
+        href: ../ai-services/speech-service/fast-transcription-create.md?context=/azure/ai-studio/context/context
+      - name: Pronunciation assessment
+        href: ../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/ai-studio/context/context
+      - name: Speech translation
+        href: ../ai-services/speech-service/get-started-speech-translation.md?context=/azure/ai-studio/context/context
+      - name: Hear and speak with chat in the playground
+        href: quickstarts/hear-speak-playground.md
       - name: Custom speech fine-tuning
         href: ../ai-services/speech-service/custom-speech-ai-foundry-portal.md?context=/azure/ai-studio/context/context
-      - name: Custom voice fine-tuning
-        href: ../ai-services/speech-service/professional-voice-create-project.md?context=/azure/ai-studio/context/context
-      - name: Personal voice
-        href: ../ai-services/speech-service/personal-voice-create-project.md?context=/azure/ai-studio/context/context
-      - name: Custom avatar fine-tuning
-        href: ../ai-services/speech-service/text-to-speech-avatar/custom-avatar-create.md?context=/azure/ai-studio/context/context
-  - name:  Translator
-    items:
-    - name: What is Azure AI Translator?
-      href: ../ai-services/translator/translator-overview.md?context=/azure/ai-studio/context/context
-    - name: Azure AI Translator language support
-      href: ../ai-services/translator/language-support.md?context=/azure/ai-studio/context/context
-    - name: Features and capabilities
+    - name:  Translator
       items:
-      - name: Text translation
-        href: ../ai-services/translator/text-translation-overview.md?context=/azure/ai-studio/context/context
-      - name: Document translation
-        href: ../ai-services/translator/document-translation/overview.md?context=/azure/ai-studio/context/context
-      - name: Custom Translator
-        href: ../ai-services/translator/custom-translator/overview.md?context=/azure/ai-studio/context/context
-      - name: Containers
-        href: ../ai-services/translator/containers/overview.md?context=/azure/ai-studio/context/context
-      - name: Prebuilt solutions
-        href: ../ai-services/translator/solutions-overview.md?context=/azure/ai-studio/context/context
-  - name:  Vision
-    items:
-    - name: Azure Image Analysis
+      - name: What is Azure AI Translator?
+        href: ../ai-services/translator/translator-overview.md?context=/azure/ai-studio/context/context
+      - name: Azure AI Translator language support
+        href: ../ai-services/translator/language-support.md?context=/azure/ai-studio/context/context
+      - name: Features and capabilities
+        items:
+        - name: Text translation
+          href: ../ai-services/translator/text-translation-overview.md?context=/azure/ai-studio/context/context
+        - name: Document translation
+          href: ../ai-services/translator/document-translation/overview.md?context=/azure/ai-studio/context/context
+        - name: Custom Translator
+          href: ../ai-services/translator/custom-translator/overview.md?context=/azure/ai-studio/context/context
+        - name: Containers
+          href: ../ai-services/translator/containers/overview.md?context=/azure/ai-studio/context/context
+        - name: Prebuilt solutions
+          href: ../ai-services/translator/solutions-overview.md?context=/azure/ai-studio/context/context
+    - name:  Vision
       items:
-      - name: What is Image Analysis?
-        href: /azure/ai-services/computer-vision/overview-image-analysis?context=/azure/ai-studio/context/context
-      - name: Quickstart
-        href: /azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library-40?context=/azure/ai-studio/context/context
-      - name: Optical Character Recognition concepts
-        href: /azure/ai-services/computer-vision/concept-ocr?context=/azure/ai-studio/context/context
-      - name: Image captioning concepts
-        href: /azure/ai-services/computer-vision/concept-describe-images-40?context=/azure/ai-studio/context/context
-    - name: Azure AI Face
-      items:
-      - name: What is Azure AI Face service?
-        href: /azure/ai-services/computer-vision/overview-identity?context=/azure/ai-studio/context/context
-      - name: Quickstart 
-        href: /azure/ai-services/computer-vision/quickstarts-sdk/identity-client-library?context=/azure/ai-studio/context/context
-      - name: Face detection concepts
-        href: /azure/ai-services/computer-vision/concept-face-detection?context=/azure/ai-studio/context/context
-      - name: Face recognition concepts
-        href: /azure/ai-services/computer-vision/concept-face-recognition?context=/azure/ai-studio/context/context
-      - name: Liveness detection tutorial
-        href: /azure/ai-services/computer-vision/tutorials/liveness?context=/azure/ai-studio/context/context
-- name: Solutions and optimizations
+      - name: Azure Image Analysis
+        items:
+        - name: What is Image Analysis?
+          href: /azure/ai-services/computer-vision/overview-image-analysis?context=/azure/ai-studio/context/context
+        - name: Quickstart
+          href: /azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library-40?context=/azure/ai-studio/context/context
+        - name: Optical Character Recognition concepts
+          href: /azure/ai-services/computer-vision/concept-ocr?context=/azure/ai-studio/context/context
+        - name: Image captioning concepts
+          href: /azure/ai-services/computer-vision/concept-describe-images-40?context=/azure/ai-studio/context/context
+      - name: Azure AI Face
+        items:
+        - name: What is Azure AI Face service?
+          href: /azure/ai-services/computer-vision/overview-identity?context=/azure/ai-studio/context/context
+        - name: Quickstart 
+          href: /azure/ai-services/computer-vision/quickstarts-sdk/identity-client-library?context=/azure/ai-studio/context/context
+        - name: Face detection concepts
+          href: /azure/ai-services/computer-vision/concept-face-detection?context=/azure/ai-studio/context/context
+        - name: Face recognition concepts
+          href: /azure/ai-services/computer-vision/concept-face-recognition?context=/azure/ai-studio/context/context
+        - name: Liveness detection tutorial
+          href: /azure/ai-services/computer-vision/tutorials/liveness?context=/azure/ai-studio/context/context
+- name: Solutions
   items:
-  - name: Azure AI Agent Service
+  - name: Agents
     items:
     - name: What is Azure AI Agent Service
       href: ../ai-services/agents/overview.md?context=/azure/ai-studio/context/context
@@ -273,14 +253,6 @@ items:
       href: how-to/develop/index-build-consume-sdk.md
     - name: Build a RAG solution using Azure AI Search
       href: /azure/search/tutorial-rag-build-solution?context=/azure/ai-studio/context/context
-  - name: Prompt engineering
-    items:
-    - name: Prompt engineering techniques
-      href: ../ai-services/openai/concepts/prompt-engineering.md?context=/azure/ai-studio/context/context
-    - name: Image prompt engineering
-      href: ../ai-services/openai/concepts/gpt-4-v-prompt-engineering.md?context=/azure/ai-studio/context/context
-    - name: Synthetic Data Generation
-      href: concepts/concept-synthetic-data.md
   - name: Develop with code
     items:
     - name: Work with projects in VS Code
@@ -304,6 +276,43 @@ items:
       href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-studio/context/context
     - name: Use the inference endpoint
       href: ../ai-foundry/model-inference/concepts/endpoints.md?context=/azure/ai-studio/context/context
+  - name: Deployments
+    items:
+    - name: Deploying models in Azure AI Foundry
+      href: concepts/deployments-overview.md
+    - name: Deploy models as serverless API
+      href: how-to/deploy-models-serverless.md
+    - name: Deploy models via managed compute
+      href: how-to/deploy-models-managed.md
+    - name: Consume serverless API models from a different project or hub
+      href: how-to/deploy-models-serverless-connect.md
+      displayName: maas, paygo, models-as-a-service
+    - name: Model and region availability for Serverless API deployments
+      href: how-to/deploy-models-serverless-availability.md
+    - name: Quotas and limits
+      href: ai-services/concepts/quotas-limits.md
+    - name: Troubleshoot deployments and monitoring
+      href: how-to/troubleshoot-deploy-and-monitor.md
+- name: Optimizations
+  items:
+  - name: Prompt engineering
+    items:
+    - name: Prompt engineering techniques
+      href: ../ai-services/openai/concepts/prompt-engineering.md?context=/azure/ai-studio/context/context
+    - name: Image prompt engineering
+      href: ../ai-services/openai/concepts/gpt-4-v-prompt-engineering.md?context=/azure/ai-studio/context/context
+    - name: Synthetic Data Generation
+      href: concepts/concept-synthetic-data.md
+  - name: Fine-tuning
+    items:
+    - name: Fine-tuning in Azure AI Foundry
+      href: concepts/fine-tuning-overview.md
+    - name: Fine-tune with a managed compute
+      href: how-to/fine-tune-managed-compute.md
+    - name: Fine-tune Azure OpenAI models
+      href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context
+    - name: Distillation
+      href: concepts/concept-model-distillation.md
   - name: Tracing
     items:
     - name: Tracing in Azure AI Foundry
@@ -342,33 +351,6 @@ items:
           href: how-to/flow-develop-evaluation.md
     - name: A/B experimentation
       href: concepts/a-b-experimentation.md
-  - name: Model optimizations
-    items:
-    - name: Fine-tuning in Azure AI Foundry
-      href: concepts/fine-tuning-overview.md
-    - name: Fine-tune with a managed compute
-      href: how-to/fine-tune-managed-compute.md
-    - name: Fine-tune Azure OpenAI models
-      href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context
-    - name: Distillation
-      href: concepts/concept-model-distillation.md
-  - name: Deployments
-    items:
-    - name: Deploying models in Azure AI Foundry
-      href: concepts/deployments-overview.md
-    - name: Deploy models as serverless API
-      href: how-to/deploy-models-serverless.md
-    - name: Deploy models via managed compute
-      href: how-to/deploy-models-managed.md
-    - name: Consume serverless API models from a different project or hub
-      href: how-to/deploy-models-serverless-connect.md
-      displayName: maas, paygo, models-as-a-service
-    - name: Model and region availability for Serverless API deployments
-      href: how-to/deploy-models-serverless-availability.md
-    - name: Quotas and limits
-      href: ai-services/concepts/quotas-limits.md
-    - name: Troubleshoot deployments and monitoring
-      href: how-to/troubleshoot-deploy-and-monitor.md
   - name: Build apps with prompt flow
     items:
     - name: Prompt flow overview
