@@ -11,13 +11,34 @@ ms.custom: ignite-2024-understanding-release
 ---
 
 # Use Content Understanding in the Azure AI Foundry
-[The Azure AI Foundry](https://ai.azure.com/) is a comprehensive platform for developing and deploying generative AI applications and APIs responsibly. This guide shows you how to use Content Understanding to build an analyzer, which is a tool that allows you to extract exactly the insights that you need from your data, no matter the type. Content Understanding analyzers can be created by building your own schema from scratch or by using a suggested analyzer template which is offered to address common scenarios across each data type.
+[The Azure AI Foundry](https://ai.azure.com/) is a comprehensive platform for developing and deploying generative AI applications and APIs responsibly. Azure AI Content Understanding is a new generative AI-based [Azure AI Service](../../what-are-ai-services.md) that analyzes files of any modality (documents, images, videos, and audio) and extracts structured output in user-defined field formats. This guide shows you how to use Content Understanding to build an analyzer, which is a tool that allows you to extract exactly the insights that you need from your data, no matter the type. Content Understanding analyzers are fully customizable, and can be created by building your own schema from scratch or by using a suggested analyzer template which is offered to address common scenarios across each data type.
 
   :::image type="content" source="../media/quickstarts/ai-foundry-overview.png" alt-text="Screenshot of the Content Understanding workflow in the Azure AI Foundry.":::
 
-## Create a Content Understanding project in the AI Foundry
+## Prerequisites
 
-In order to try out [the Content Understanding service in the AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding), you have to create a Content Understanding project. You can also access Content Understanding from:
+To get started, make sure you have the following:
+
+* An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/) before you begin.
+
+* You need permissions to create an Azure AI Foundry hub or have one created for you.
+
+  * If your role is **Contributor** or **Owner**, you can proceed with creating your own hub.
+
+  * If your role is **Azure AI Developer**, the hub must already be created before you can complete this quickstart. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../../../ai-studio/concepts/ai-resources.md) and [Azure AI roles](../../../ai-studio/concepts/rbac-ai-studio.md).
+
+ > [!NOTE] Your AI Hub must be in one of the following supported regions: westus, swedencentral, australiaeast
+
+ >[!IMPORTANT] If your organization requires you to customize the security or storage resources, the AI Foundry currently does not support resource creation that meets these standards. Please refer to [Azure AI services API access keys](../../../ai-studio/concepts/ai-resources.md#azure-ai-services-api-access-keys) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it.
+
+* An [AI Services multi-service resource](../how-to/create-multi-service-resource.md), connected to your AI Hub.
+
+* An [Azure blob storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal), connected to your AI hub.
+
+
+## Create your first Content Understanding project in the AI Foundry
+
+In order to try out [the Content Understanding service in the AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding), you have to create a Content Understanding project. You can access Content Understanding from:
 
 * The AI Foundry home page
    :::image type="content" source="../media/quickstarts/foundry-home-page.png" alt-text="Screenshot of the AI Foundry home page.":::
@@ -25,19 +46,13 @@ In order to try out [the Content Understanding service in the AI Foundry](https:
 * The AI Services landing page
    :::image type="content" source="../media/quickstarts/cu-ai-services-landing-page.png" alt-text="Screenshot of the AI Services landing page in AI Foundry.":::
 
-
 Once on the Content Understanding page, select `Create a new Content Understanding Project`, shown below:
+
+
 
    :::image type="content" source="../media/quickstarts/cu-landing-page.png" alt-text="Screenshot of Content Understanding page.":::
 
-There are a few requirements to creating a project, including the following:
-
-* An Azure AI Hub with an AI Services multi-service resource connected
-
-  > [!NOTE] Your AI Hub must be in one of the following supported regions: westus, swedencentral, australiaeast
-* An Azure blob storage account (by default it will create a new one for you)
-
-Once you complete the setup steps, select `Create project`.
+Follow the steps in the wizard to select the Hub, AI Services multi-service resource, and Azure blob storage container that you just created. Once you complete the setup steps, select `Create project`.
 
 ## Steps to create a Content Understanding analyzer
 
@@ -54,6 +69,46 @@ Follow these steps to create your own analyzer:
 1. **Test the analyzer on your data and validate its accuracy:** Try out the schema on your data file, or add additional data to test the performance.
 
 1. **Build the analyzer to integrate it into your applications:** A built analyzer can be consumed in your own application, applying the schema that you just created. 
+
+
+## Build your first analyzer
+
+The following is an example of how to build a schema, which is the customziable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any type of data and the steps to follow will remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
+
+1. Upload a sample file of an invoice document or any other data relevant to your scenario.
+
+   :::image type="content" source="../media/analyzer-template/define-schema-upload.png" alt-text="Screenshot of upload step in user experience.":::
+
+1. Next, the Content Understanding service will suggest analyzer templates based on your content type. For this example, select **Document analysis** to build your own schema tailored to the invoice scenario. When using your own data, select the analyzer template that best fits your needs, or create your own. See [Analyzer templates](#analyzer-templates) for a full list of available templates.
+
+1. Select **Create**.
+
+   :::image type="content" source="../media/analyzer-template/define-schema-template-selection.png" alt-text="Screenshot of analyzer templates.":::
+
+1. Add fields to your schema:
+
+    * Specify clear and simple field names. Some example fields might include **vendorName**, **items**, **price**.
+
+    * Indicate the value type for each field (strings, dates, numbers, lists, groups). To learn more, *see* [supported field types](../service-limits.md#field-type-limits).
+
+    * *[Optional]* Provide field descriptions to explain the desired behavior, including any exceptions or rules.
+
+    * *[Optional]* Specify the method to generate the value for each field.
+
+1. Select **Save**.
+
+   :::image type="content" source="../media/analyzer-template/define-schema.png" alt-text="Screenshot of completed schema.":::
+
+1. With the completed schema, Content Understanding now generates the output on your sample data. At this step, you can add additional data to test the analyzer's accuracy or make changes to the schema if needed.
+
+   :::image type="content" source="../media/analyzer-template/test-analyzer.png" alt-text="Screenshot of schema testing step.":::
+
+1. Once you're satisfied with the quality of your output, select **Build analyzer**. This action creates an analyzer ID that you can integrate into your own applications, allowing you to call the analyzer from your code.
+
+   :::image type="content" source="../media/analyzer-template/build-analyzer.png" alt-text="Screenshot of built analyzer.":::
+
+Now you've successfully built your first Content Understanding analyzer, and are ready to start extracting insights from your data.
+
 
 ## Analyzer templates offered with Content Understanding
 
@@ -103,45 +158,6 @@ The following analyzer templates are available for use in the [Azure AI Foundry 
    :::image type="content" source="../media/analyzer-template/video-templates.png" alt-text="Screenshot of video analyzer template.":::
 
 ---
-
-
-## Build your first analyzer
-
-The following is an example of how to build a schema, which is the customziable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any type of data and the steps to follow will remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
-
-1. Upload a sample file of an invoice document or any other data relevant to your scenario.
-
-   :::image type="content" source="../media/analyzer-template/define-schema-upload.png" alt-text="Screenshot of upload step in user experience.":::
-
-1. Next, the Content Understanding service will suggest analyzer templates based on your content type. For this example, select **Document analysis** to build your own schema tailored to the invoice scenario. When using your own data, select the analyzer template that best fits your needs, or create your own. See [Analyzer templates](#analyzer-templates) for a full list of available templates.
-
-1. Select **Create**.
-
-   :::image type="content" source="../media/analyzer-template/define-schema-template-selection.png" alt-text="Screenshot of analyzer templates.":::
-
-1. Add fields to your schema:
-
-    * Specify clear and simple field names. Some example fields might include **vendorName**, **items**, **price**.
-
-    * Indicate the value type for each field (strings, dates, numbers, lists, groups). To learn more, *see* [supported field types](../service-limits.md#field-type-limits).
-
-    * *[Optional]* Provide field descriptions to explain the desired behavior, including any exceptions or rules.
-
-    * *[Optional]* Specify the method to generate the value for each field.
-
-1. Select **Save**.
-
-   :::image type="content" source="../media/analyzer-template/define-schema.png" alt-text="Screenshot of completed schema.":::
-
-1. With the completed schema, Content Understanding now generates the output on your sample data. At this step, you can add additional data to test the analyzer's accuracy or make changes to the schema if needed.
-
-   :::image type="content" source="../media/analyzer-template/test-analyzer.png" alt-text="Screenshot of schema testing step.":::
-
-1. Once you're satisfied with the quality of your output, select **Build analyzer**. This action creates an analyzer ID that you can integrate into your own applications, allowing you to call the analyzer from your code.
-
-   :::image type="content" source="../media/analyzer-template/build-analyzer.png" alt-text="Screenshot of built analyzer.":::
-
-Now you've successfully built your first Content Understanding analyzer, and are ready to start extracting insights from your data.
 
 ## Next steps
 
