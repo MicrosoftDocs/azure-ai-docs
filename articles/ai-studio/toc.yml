@@ -225,7 +225,7 @@ items:
       href: ../ai-services/computer-vision/overview.md?context=/azure/ai-studio/context/context
 - name: Solutions and optimizations
   items:
-  - name: Azure AI Agents Service
+  - name: Azure AI Agent Service
     items:
     - name: What is Azure AI Agent Service
       href: ../ai-services/agents/overview.md?context=/azure/ai-studio/context/context
