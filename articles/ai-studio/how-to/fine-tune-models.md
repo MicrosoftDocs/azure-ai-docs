@@ -24,7 +24,7 @@ Fine-tuning provides significant value by enabling customization and optimizatio
 In this article, you learn how to fine-tune models in [Azure AI Foundry](https://ai.azure.com).
 
 
-## Model types
+## Models with fine-tuning support
 
 The AI Foundry model catalog offers fine-tuning support for multiple typles of models, including chat completions and text generation. To view all models that contain fine-tuning support:
 1. Navigate to the model catalog
