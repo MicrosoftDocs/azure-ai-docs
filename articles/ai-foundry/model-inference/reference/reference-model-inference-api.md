@@ -49,7 +49,8 @@ Models deployed to [serverless API endpoints](../../../ai-studio/how-to/deploy-m
 > * [Mistral-Large](../../../ai-studio/how-to/deploy-models-mistral.md)
 > * [Jais](../../../ai-studio/how-to/deploy-jais-models.md) family of models
 > * [Jamba](../../../ai-studio/how-to/deploy-models-jamba.md) family of models
-> * [Phi-3](../../../ai-studio/how-to/deploy-models-phi-3.md) family of models
+> * [Phi-3](../../../ai-studio/how-to/deploy-models-phi-3.md) and [Phi-4](../../../ai-studio/how-to/deploy-models-phi-4.md) family of models
+> * [DeepSeek-R1](../../../ai-studio/how-to/deploy-models-deepseek.md) family of models.
 
 Models deployed to [managed inference](../../../ai-studio/concepts/deployments-overview.md):
 
