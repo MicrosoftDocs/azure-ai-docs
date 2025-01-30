@@ -12,7 +12,6 @@ items:
     - name: Azure AI Foundry and AI services
       href: concepts/related-content.md
       displayName: code, sdk
-
   - name: Quickstarts
     items:
     - name: Use the chat playground in Azure AI Foundry portal
@@ -126,6 +125,7 @@ items:
     href: azure-openai-in-ai-studio.md
   - name: Use Azure AI services in Azure AI Foundry portal
     href: ai-services/how-to/connect-ai-services.md
+    displayName: cognitive,task
   - name: Azure OpenAI
     items:
     - name: What is Azure OpenAI?
@@ -183,16 +183,6 @@ items:
     items:
     - name: What is Azure AI Language?
       href: ../ai-services/language-service/overview.md?context=/azure/ai-studio/context/context
-  - name: Model inference
-    items:
-    - name: What is the Azure AI model inference service?
-      href: ../ai-foundry/model-inference/overview.md?context=/azure/ai-studio/context/context
-    - name: Upgrade from GitHub Models
-      href: ../ai-foundry/model-inference/how-to/quickstart-github-models.md?context=/azure/ai-studio/context/context
-    - name: Add and configure models
-      href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-studio/context/context
-    - name: Use the inference endpoint
-      href: ../ai-foundry/model-inference/concepts/endpoints.md?context=/azure/ai-studio/context/context
   - name:  Speech
     items:
     - name: What is the Speech service?
@@ -263,11 +253,11 @@ items:
         href: /azure/ai-services/computer-vision/tutorials/liveness?context=/azure/ai-studio/context/context
 - name: Solutions and optimizations
   items:
-  - name: Azure AI Agents Service
+  - name: Azure AI Agent Service
     items:
     - name: What is Azure AI Agent Service
       href: ../ai-services/agents/overview.md?context=/azure/ai-studio/context/context
-    - name: Quickstart
+    - name: "Quickstart: Create a new agent"
       href: ../ai-services/agents/quickstart.md?context=/azure/ai-studio/context/context
   - name: Azure AI Search for RAG
     items:
@@ -302,6 +292,16 @@ items:
       displayName: code,sdk
     - name: Develop with Semantic Kernel
       href: how-to/develop/semantic-kernel.md
+  - name: Model inference
+    items:
+    - name: What is Azure AI model inference?
+      href: ../ai-foundry/model-inference/overview.md?context=/azure/ai-studio/context/context
+    - name: Upgrade from GitHub Models
+      href: ../ai-foundry/model-inference/how-to/quickstart-github-models.md?context=/azure/ai-studio/context/context
+    - name: Add and configure models
+      href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-studio/context/context
+    - name: Use the inference endpoint
+      href: ../ai-foundry/model-inference/concepts/endpoints.md?context=/azure/ai-studio/context/context
   - name: Tracing
     items:
     - name: Tracing in Azure AI Foundry
