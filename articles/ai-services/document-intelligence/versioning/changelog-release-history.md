@@ -1,7 +1,7 @@
 ---
-title: Document Intelligence changelog and release history
+title: Document Intelligence changelog, release history, and migration guide
 titleSuffix: Azure AI services
-description: A version-based description of Document Intelligence feature and capability releases, changes, enhancements,  and updates.
+description: A version-based description of Document Intelligence feature and capability releases, changes, enhancements, migration guidance, and updates.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
@@ -15,7 +15,7 @@ ms.author: lajanuar
 <!-- markdownlint-disable MD051 -->
 <!-- markdownlint-disable MD024 -->
 
-# SDK changelog and release history
+# SDK changelog, release history, and migration guide
 
 This reference article provides a version-based description of Document Intelligence feature and capability releases, changes, updates, and enhancements.
 
