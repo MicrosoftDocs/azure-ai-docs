@@ -1,9 +1,9 @@
 ---
-title: Fine-tune models in Azure AI Studio
-titleSuffix: Azure AI Studio
-description: Learn how to fine-tune models in Azure AI Studio.
+title: Fine-tune models in Azure AI Foundry
+titleSuffix: Azure AI Foundry
+description: Learn how to fine-tune models in Azure AI Foundry.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 01/09/2025
 ms.reviewer: rasavage
@@ -13,15 +13,15 @@ author: ssalgadodev
 ms.custom: references_regions, build-2024, code01
 ---
 
-# Fine-tune models in Azure AI Studio
+# Fine-tune models in Azure AI Foundry
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-Azure AI Studio lets you tailor large language models to your personal datasets by using a process known as *fine-tuning*. 
+Azure AI Foundry lets you tailor large language models to your personal datasets by using a process known as *fine-tuning*. 
 
 Fine-tuning provides significant value by enabling customization and optimization for specific tasks and applications. It leads to improved performance, cost efficiency, reduced latency, and tailored outputs.
 
-In this article, you learn how to fine-tune models in [Azure AI Studio](https://ai.azure.com).
+In this article, you learn how to fine-tune models in [Azure AI Foundry](https://ai.azure.com).
 
 
 ## Model types
@@ -37,13 +37,13 @@ The AI Foundry model catalog offers fine-tuning support for multiple typles of m
 ## Prerequisites
 
  An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
-- An [Azure AI Studio hub](../how-to/create-azure-ai-resource.md).
+- An [Azure AI Foundry hub](../how-to/create-azure-ai-resource.md).
 
 
-- An [Azure AI Studio project](../how-to/create-projects.md) in Azure AI Studio.
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Studio. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. Alternatively, your account can be assigned a custom role that has the following permissions:
+- An [Azure AI Foundry project](../how-to/create-projects.md) in Azure AI Foundry.
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. Alternatively, your account can be assigned a custom role that has the following permissions:
 
-    - On the Azure subscription—to subscribe the AI Studio project to the Azure Marketplace offering, once for each project, per offering:
+    - On the Azure subscription—to subscribe the AI Foundry project to the Azure Marketplace offering, once for each project, per offering:
       - `Microsoft.MarketplaceOrdering/agreements/offers/plans/read`
       - `Microsoft.MarketplaceOrdering/agreements/offers/plans/sign/action`
       - `Microsoft.MarketplaceOrdering/offerTypes/publishers/offers/plans/agreements/read`
@@ -54,11 +54,11 @@ The AI Foundry model catalog offers fine-tuning support for multiple typles of m
       - `Microsoft.SaaS/resources/read`
       - `Microsoft.SaaS/resources/write`
  
-    - On the AI Studio project—to deploy endpoints (the Azure AI Developer role contains these permissions already):
+    - On the AI Foundry project—to deploy endpoints (the Azure AI Developer role contains these permissions already):
       - `Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*`  
       - `Microsoft.MachineLearningServices/workspaces/serverlessEndpoints/*`
 
-    For more information on permissions, see [Role-based access control in Azure AI Studio](../concepts/rbac-ai-studio.md).
+    For more information on permissions, see [Role-based access control in Azure AI Foundry](../concepts/rbac-ai-studio.md).
 
 
 ### Subscription provider registration
@@ -121,19 +121,19 @@ The supported file type is JSON Lines. Files are uploaded to the default datasto
 
 ## Fine-tune a model
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com).
-1. Choose the model you want to fine-tune from the Azure AI Studio [model catalog](https://ai.azure.com/explore/models). 
+1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+1. Choose the model you want to fine-tune from the Azure AI Foundry [model catalog](https://ai.azure.com/explore/models). 
 
 1. On the model's **Details** page, select **fine-tune**.
 
 1. Select the project in which you want to fine-tune your models. To use the pay-as-you-go model fine-tune offering, your workspace must belong to an available region. Each model has specific region availability. To check region availability for your desired model, see [region availability.](deploy-models-serverless-availability.md)
-1. On the fine-tune wizard, select the link to **Azure AI Studio Terms** to learn more about the terms of use. You can also select the **Azure AI Studio offer details** tab to learn about pricing for the selected model.
-1. If this is your first time fine-tuning the model in the project, you have to subscribe your project for the particular offering (for example, Mistral-large-2407) from Azure AI Studio. This step requires that your account has the Azure subscription permissions and resource group permissions listed in the prerequisites. Each project has its own subscription to the particular Azure AI Studio offering, which allows you to control and monitor spending. Select **Subscribe and fine-tune**.
+1. On the fine-tune wizard, select the link to **Azure AI Foundry Terms** to learn more about the terms of use. You can also select the **Azure AI Foundry offer details** tab to learn about pricing for the selected model.
+1. If this is your first time fine-tuning the model in the project, you have to subscribe your project for the particular offering (for example, Mistral-large-2407) from Azure AI Foundry. This step requires that your account has the Azure subscription permissions and resource group permissions listed in the prerequisites. Each project has its own subscription to the particular Azure AI Studio offering, which allows you to control and monitor spending. Select **Subscribe and fine-tune**.
 
     > [!NOTE]
-    > Subscribing a project to a particular Azure AI Studio offering (in this case, Mistral-large-2407) requires that your account has **Contributor** or **Owner** access at the subscription level where the project is created. Alternatively, your user account can be assigned a custom role that has the Azure subscription permissions and resource group permissions listed in the [prerequisites](#prerequisites).
+    > Subscribing a project to a particular Azure AI Foundry offering (in this case, Mistral-large-2407) requires that your account has **Contributor** or **Owner** access at the subscription level where the project is created. Alternatively, your user account can be assigned a custom role that has the Azure subscription permissions and resource group permissions listed in the [prerequisites](#prerequisites).
 
-1. Once you sign up the project for the particular Azure AI Studio offering, subsequent fine-tuning of the _same_ offering in the _same_ project don't require subscribing again. Therefore, you don't need to have the subscription-level permissions for subsequent fine-tune jobs. If this scenario applies to you, select **Continue to fine-tune**.
+1. Once you sign up the project for the particular Azure AI Foundry offering, subsequent fine-tuning of the _same_ offering in the _same_ project don't require subscribing again. Therefore, you don't need to have the subscription-level permissions for subsequent fine-tune jobs. If this scenario applies to you, select **Continue to fine-tune**.
 
 1. Enter a name for your fine-tuned model and the optional tags and description.
 1. Select training data to fine-tune your model. See [data preparation](#data-preparation) for more information.
@@ -141,7 +141,7 @@ The supported file type is JSON Lines. Files are uploaded to the default datasto
     > [!NOTE]
     > If the you have your training/validation files in a credential less datastore, you will need to allow workspace managed identity access to your datastore in order to proceed with MaaS fine-tuning with a credential less storage. On the "Datastore" page, after clicking "Update authentication" > Select the following option: 
 	
-	![Use workspace managed identity for data preview and profiling in Azure Machine Learning Studio.](../media/how-to/fine-tune/phi-3/credentials.png)
+	![Use workspace managed identity for data preview and profiling in Azure Machine Learning Foundry.](../media/how-to/fine-tune/phi-3/credentials.png)
 
     Make sure all your training examples follow the expected format for inference. To fine-tune models effectively, ensure a balanced and diverse dataset. This involves maintaining data balance, including various scenarios, and periodically refining training data to align with real-world expectations, ultimately leading to more accurate and balanced model responses.
     - The batch size to use for training. When set to -1, batch_size is calculated as 0.2% of examples in training set and the max is 256.
@@ -159,7 +159,7 @@ Once your model is fine-tuned, you can deploy the model and can use it in your o
 
 ## Cleaning up your fine-tuned models 
 
-You can delete a fine-tuned model from the fine-tuning model list in [Azure AI Studio](https://ai.azure.com) or from the model details page. Select the fine-tuned model to delete from the Fine-tuning page, and then select the Delete button to delete the fine-tuned model.
+You can delete a fine-tuned model from the fine-tuning model list in [Azure AI Foundry](https://ai.azure.com) or from the model details page. Select the fine-tuned model to delete from the Fine-tuning page, and then select the Delete button to delete the fine-tuned model.
 
 >[!NOTE]
 > You can't delete a custom model if it has an existing deployment. You must first delete your model deployment before you can delete your custom model.
@@ -174,7 +174,7 @@ You can find the pricing information on the __Pricing and terms__ tab of the dep
 
 #### Cost for non-Microsoft models
 
-Non-Microsoft models deployed as serverless API endpoints are offered through the Azure Marketplace and integrated with Azure AI Studio for use. You can find the Azure Marketplace pricing when deploying or fine-tuning these models.
+Non-Microsoft models deployed as serverless API endpoints are offered through the Azure Marketplace and integrated with Azure AI Foundry for use. You can find the Azure Marketplace pricing when deploying or fine-tuning these models.
 
 Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently.
 
@@ -192,6 +192,6 @@ Models deployed as a service with pay-as-you-go billing are protected by Azure A
 
 
 ## Next steps
-- [What is Azure AI Studio?](../what-is-ai-studio.md)
+- [What is Azure AI Foundry?](../what-is-ai-studio.md)
 - [Learn more about deploying Mistral models](./deploy-models-mistral.md)
 - [Azure AI FAQ article](../faq.yml)
