@@ -25,35 +25,14 @@ In this article, you learn how to fine-tune models in [Azure AI Studio](https://
 
 
 ## Model types
-# [Chat Completion](#tab/chat-completion)
 
-The following chat completions models are available in Azure Marketplace for when fine-tuning as a service with pay-as-you-go billing:
+The AI Foundry model catalog offers fine-tuning support for multiple typles of models, including chat completions and text generation. To view all models that contain fine-tuning support:
+1. Navigate to the model catalog
+2. Select the **Fine-tuning task** filter. 
+    
+    :::image type="content" source="../media/how-to/fine-tune/fine-tune-filters.png" alt-text="Screenshot of model catalog finetuning filter options." lightbox="../media/how-to/fine-tune/fine-tune-filters.png":::
 
-- `Meta-Llama-3.1-70B-Instruct` (preview)
-- `Meta-LLama-3.1-8b-Instruct` (preview)
-- `Meta Llama-2-70b` (preview)
-- `Meta Llama-2-13b` (preview)
-- `Meta Llama-2-7b` (preview)
-- `Phi-3-Mini-4k-Instruct` (preview)
-- `Phi-3-Mini-128K-Instruct` (preview)
-- `Phi-3-Medium-4k-Instruct` (preview)
-- `Phi-3-Medium-128K-Instruct` (preview)
-- `Phi-3.5-Mini-Instruct` (preview)
-- `Phi-3.5-MOE-Instruct` (preview)
-- `Mistral-Large-2407` (preview)
-- `Mistral-Nemo` (preview)
-
-# [Text Generations](#tab/text-generation)
-
-The following text generation models are available in Azure Marketplace for when fine-tuning as a service with pay-as-you-go billing:
-
-- `Meta-Llama-3.1-70B-Instruct` (preview)
-- `Meta-LLama-3.1-8b-Instruct` (preview)
-- `Meta Llama-2-70b` (preview)
-- `Meta Llama-2-13b` (preview)
-- `Meta Llama-2-7b` (preview)
-  
----
+3. Select **All** or select a specific task type. 
 
 ## Prerequisites
 
