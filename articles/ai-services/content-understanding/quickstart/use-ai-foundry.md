@@ -55,49 +55,11 @@ Follow these steps to create your own analyzer:
 
 1. **Build the analyzer to integrate it into your applications:** A built analyzer can be consumed in your own application, applying the schema that you just created. 
 
-## Build a schema
+## Analyzer templates offered with Content Understanding
 
-To follow is an example of how to build an analyzer that extracts key data from an invoice document:
+Content Understanding analyzer templates give you a head start by allowing you to build your analyzer without creating schemas from scratch. They're fully customizable, allowing you to adjust any fields in the schemas to better fit your needs. Learn more about the analyzer templates offered for each modality by viewing the tabs below.
 
-1. Upload a sample file of an invoice document or any other data relevant to your scenario.
-
-[Add a note about the data types supported]
-
-   :::image type="content" source="../media/analyzer-template/define-schema-upload.png" alt-text="Screenshot of upload step in user experience.":::
-
-1. Content Understanding suggests analyzer templates based on your content type. For this example, select **Document analysis** and build your own schema tailored to the invoice scenario. When using your own data, select the analyzer template that best fits your needs, or create your own. See Analyzer templates for a full list of available templates.
-
-1. Select **Create**.
-
-   :::image type="content" source="../media/analyzer-template/define-schema-template-selection.png" alt-text="Screenshot of analyzer templates.":::
-
-1. Add fields to your schema:
-
-    * Specify clear and simple field names. Example fields: **vendorName**, **items**, **price**.
-
-    * Indicate the value type for each field (strings, dates, numbers, lists, groups). To learn more, *see* [supported field types](../service-limits.md#field-type-limits).
-
-    * *[Optional]* Provide field descriptions to explain the desired behavior, including any exceptions or rules.
-
-    * *[Optional]* Specify the method to generate the value for each field.
-
-1. Select **Save**.
-
-   :::image type="content" source="../media/analyzer-template/define-schema.png" alt-text="Screenshot of completed schema.":::
-
-1. Content Understanding generates the output based on your schema. Test the analyzer's accuracy on added data or make changes to the schema if needed.
-
-   :::image type="content" source="../media/analyzer-template/test-analyzer.png" alt-text="Screenshot of schema testing step.":::
-
-1. Once you're satisfied with the quality, select **Build analyzer**. This action creates an analyzer that you can integrate into your applications. You also receive an analyzer ID, which you can use to call the analyzer from your code.
-
-   :::image type="content" source="../media/analyzer-template/build-analyzer.png" alt-text="Screenshot of built analyzer.":::
-
-## Analyzer templates
-
-Content Understanding analyzer templates give you a head start by allowing you to build your analyzer without creating schemas from scratch. They're fully customizable, allowing you to adjust any fields in the schemas to better fit your needs.
-
-The following analyzer templates are available for use in the [Azure AI Foundry portal Content Understanding experience](https://ai.azure.com/).
+The following analyzer templates are available for use in the [Azure AI Foundry Content Understanding experience](https://ai.azure.com/).
 
 # [Document](#tab/document)
 
@@ -141,6 +103,47 @@ The following analyzer templates are available for use in the [Azure AI Foundry 
    :::image type="content" source="../media/analyzer-template/video-templates.png" alt-text="Screenshot of video analyzer template.":::
 
 ---
+
+
+## Build your first analyzer
+
+The following is an example of how to build a schema, which is the customziable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document:
+
+1. Upload a sample file of an invoice document or any other data relevant to your scenario.
+
+[Add a note about the data types supported]
+
+   :::image type="content" source="../media/analyzer-template/define-schema-upload.png" alt-text="Screenshot of upload step in user experience.":::
+
+1. Next, the Content Understanding service will suggest analyzer templates based on your content type. For this example, select **Document analysis** to build your own schema tailored to the invoice scenario. When using your own data, select the analyzer template that best fits your needs, or create your own. See [Analyzer templates](#analyzer-templates) for a full list of available templates.
+
+1. Select **Create**.
+
+   :::image type="content" source="../media/analyzer-template/define-schema-template-selection.png" alt-text="Screenshot of analyzer templates.":::
+
+1. Add fields to your schema:
+
+    * Specify clear and simple field names. Some example fields might include **vendorName**, **items**, **price**.
+
+    * Indicate the value type for each field (strings, dates, numbers, lists, groups). To learn more, *see* [supported field types](../service-limits.md#field-type-limits).
+
+    * *[Optional]* Provide field descriptions to explain the desired behavior, including any exceptions or rules.
+
+    * *[Optional]* Specify the method to generate the value for each field.
+
+1. Select **Save**.
+
+   :::image type="content" source="../media/analyzer-template/define-schema.png" alt-text="Screenshot of completed schema.":::
+
+1. With the completed schema, Content Understanding now generates the output on your sample data. At this step, you can add additional data to test the analyzer's accuracy or make changes to the schema if needed.
+
+   :::image type="content" source="../media/analyzer-template/test-analyzer.png" alt-text="Screenshot of schema testing step.":::
+
+1. Once you're satisfied with the quality of your output, select **Build analyzer**. This action creates an analyzer ID that you can integrate into your own applications, allowing you to call the analyzer from your code.
+
+   :::image type="content" source="../media/analyzer-template/build-analyzer.png" alt-text="Screenshot of built analyzer.":::
+
+Now you've successfully built your first Content Understanding analyzer, and are ready to start extracting insights from your data.
 
 ## Next steps
 
