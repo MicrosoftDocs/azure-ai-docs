@@ -555,10 +555,10 @@ items:
     items:
       - name: Sentiment analysis and opinion mining overview
         href: sentiment-opinion-mining/overview.md
-      - name: Sentiment analysis and opinion mining language support
-        href: sentiment-opinion-mining/language-support.md
       - name: Sentiment analysis and opinion mining quickstart
         href: sentiment-opinion-mining/quickstart.md
+      - name: Sentiment analysis and opinion mining language support
+        href: sentiment-opinion-mining/language-support.md
       - name: Responsible use of AI
         items:
         - name: Transparency note for sentiment analysis and opinion mining
@@ -590,42 +590,6 @@ items:
         items:
         - name: Use Flask to translate text, analyze sentiment, and synthesize speech
           href: /training/modules/python-flask-build-ai-web-app/
-      - name: Reference
-        items:
-        - name: REST API
-          items:
-            - name: Text analysis runtime API (v2023-04-01)
-              href: https://go.microsoft.com/fwlink/?linkid=2239169
-            - name: Text analysis runtime API (v2022-04-15-preview)
-              href: /rest/api/language/2023-04-15-preview/text-analysis-runtime
-            - name: Previous versions
-              items:
-              - name: v3.2-preview.2
-                href: https://westus2.dev.cognitive.microsoft.com/docs/services/TextAnalytics-v3-2-Preview-2/operations/Sentiment
-              - name: v3.1
-                href: https://westus2.dev.cognitive.microsoft.com/docs/services/TextAnalytics-v3-1/operations/Sentiment
-        - name: SDKs
-          items:
-          - name: Latest
-            items:
-              - name: .NET
-                href: /dotnet/api/azure.ai.textanalytics?view=azure-dotnet&preserve-view=true
-              - name: Python
-                href: /python/api/overview/azure/ai-textanalytics-readme?view=azure-python&preserve-view=true
-              - name: Java
-                href: /java/api/overview/azure/ai-textanalytics-readme?view=azure-java-stable&preserve-view=true
-              - name: Node.js
-                href: /javascript/api/overview/azure/ai-language-text-readme?view=azure-node-latest&preserve-view=true
-          - name: Preview
-            items:
-              - name: .NET
-                href: /dotnet/api/azure.ai.textanalytics?view=azure-dotnet-preview&preserve-view=true
-              - name: Python
-                href: /python/api/azure-ai-textanalytics/azure.ai.textanalytics?view=azure-python-preview&preserve-view=true
-              - name: Java
-                href: /java/api/overview/azure/ai-textanalytics-readme?view=azure-java-preview&preserve-view=true
-              - name: Node.js
-                href: /javascript/api/overview/azure/ai-language-text-readme?view=azure-node-preview&preserve-view=true
   - name: Text Analytics for health
     items:
     - name: Text Analytics for health overview
