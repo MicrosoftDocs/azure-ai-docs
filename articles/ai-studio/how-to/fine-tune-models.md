@@ -34,6 +34,8 @@ The AI Foundry model catalog offers fine-tuning support for multiple typles of m
 
 3. Select **All** or select a specific task type. 
 
+To view a list of models available for finetuning, see [region availability for models in serverless API endpoints.](deploy-models-serverless-availability.md)
+
 ## Prerequisites
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
