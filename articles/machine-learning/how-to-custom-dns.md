@@ -118,7 +118,7 @@ The Fully Qualified Domains resolve to the following Canonical Names (CNAMEs) ca
 - ```ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.privatelink.notebooks.usgovcloudapi.net```
 - ```<managed online endpoint name>.<per-workspace globally-unique identifier>.inference.<region>.privatelink.api.ml.azure.us``` - Used by managed online endpoints
 
-The FQDNs resolve to the IP addresses of the Azure Machine Learning workspace in that region. However, resolution of the workspace Private Link FQDNs can be overridden by using a custom DNS server hosted in the virtual network. For an example of this architecture, see the [custom DNS server hosted in a virtual network](#example-custom-dns-server-hosted-in-vnet) example. For hub and project workspaces, the FQDNs of all project workspaces resolve to the IP address of the hub workspace.
+The FQDNs resolve to the IP addresses of the Azure Machine Learning workspace in that region. However, resolution of the workspace Private Link FQDNs can be overridden by using a custom DNS server hosted in the virtual network. For an example of this architecture, see the [custom DNS server hosted in a virtual network](#example-custom-dns-server-hosted-in-virtual-network) example. For hub and project workspaces, the FQDNs of all project workspaces resolve to the IP address of the hub workspace.
 
 [!INCLUDE [machine-learning-add-dns-records](includes/machine-learning-add-dns-records.md)]
 
