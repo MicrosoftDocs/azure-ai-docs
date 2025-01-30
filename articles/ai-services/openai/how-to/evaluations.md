@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 11/10/2024
+ms.date: 01/29/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -30,7 +30,11 @@ Azure OpenAI evaluation enables developers to create evaluation runs to test aga
 ### Supported deployment types
 
 - Standard
-- Provisioned
+- Global standard
+- Data zone standard
+- Provisioned-managed
+- Global provisioned-managed
+- Data zone provisioned-managed
 
 ## Evaluation pipeline
 
