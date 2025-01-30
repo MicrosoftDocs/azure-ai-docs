@@ -414,7 +414,7 @@ This release includes the following updates:
 This release includes the following updates:
 
 > [!IMPORTANT]
-> The `DocumentAnalysisClient` and `DocumentModelAdministrationClient` now target API v3.0 GA, released 2022-08-31. These clients are no longer supported by APIs 2020-06-30-preview or earlier.
+> The `DocumentAnalysisClient` and `DocumentModelAdministrationClient` now target API v3.0 GA, released 2022-08-31. Document Intelligence no longer supports clients from 2020-06-30-preview APIs or earlier.
 
 ### [**C#**](#tab/csharp)
 
