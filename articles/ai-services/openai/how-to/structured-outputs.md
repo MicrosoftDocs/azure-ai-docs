@@ -14,10 +14,10 @@ recommendations: false
 
 # Structured outputs
 
-Structured outputs make a model follow a [JSON Schema](https://json-schema.org/overview/what-is-jsonschema) definition that you provide as part of your inference API call. This is in contrast to the older [JSON mode](./json-mode.md) feature, which guaranteed valid JSON would be generated, but was unable to ensure strict adherence to the supplied schema. Structured outputs is recommended for function calling, extracting structured data, and building complex multi-step workflows.
+Structured outputs make a model follow a [JSON Schema](https://json-schema.org/overview/what-is-jsonschema) definition that you provide as part of your inference API call. This is in contrast to the older [JSON mode](./json-mode.md) feature, which guaranteed valid JSON would be generated, but was unable to ensure strict adherence to the supplied schema. Structured outputs are recommended for function calling, extracting structured data, and building complex multi-step workflows.
 
 > [!NOTE]
-> * Currently structured outputs is not supported with:
+> * Currently structured outputs are not supported with:
 > - [Bring your own data](../concepts/use-your-data.md) scenarios.
 > - `gpt-4o-audio-preview` version: `2024-12-17`.
 
@@ -282,7 +282,7 @@ Output:
 Structured Outputs for function calling can be enabled with a single parameter, by supplying `strict: true`. 
 
 > [!NOTE]
-> Structured outputs is not supported with parallel function calls. When using structured outputs set `parallel_tool_calls` to `false`.
+> Structured outputs are not supported with parallel function calls. When using structured outputs set `parallel_tool_calls` to `false`.
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
