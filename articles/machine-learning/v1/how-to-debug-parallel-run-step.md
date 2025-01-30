@@ -181,9 +181,9 @@ Logs generated from entry script using EntryScript helper and print statements c
 - `~/logs/user/stderr/<node_id>/<process_name>.stderr.txt`: These files are the logs from stderr of entry_script.
 
 
-For example, the screenshot below shows minibatch 0 failed on node 1 process000. The corresponding logs for your entry script can be found in `~/logs/user/entry_script_log/1/process000.log.txt`, `~/logs/user/stdout/1/process000.log.txt` and  `~/logs/user/stderr/1/process000.log.txt`
+For example, the screenshot shows minibatch 0 failed on node 0 process001. The corresponding logs for your entry script can be found in `~/logs/user/entry_script_log/0/process001.log.txt`, `~/logs/user/stdout/0/process001.log.txt` and  `~/logs/user/stderr/0/process001.log.txt`
 
-![Sample processed_mini-batches.csv file](media/how-to-debug-parallel-run-step/processed_mini_batches_csv_screenshot.png)
+![Screenshot of a sample processed_mini-batches.csv file.](media/how-to-debug-parallel-run-step/processed-mini-batches-csv-screenshot.png)
 
 
 When you need a full understanding of how each node executed the score script, look at the individual process logs for each node. The process logs can be found in the `~/logs/sys/node` folder, grouped by worker nodes:
@@ -221,7 +221,7 @@ Processes may crash due to unexpected or unhandled exceptions, the system kills 
 ```
 
 #### Out of Memory
-`~/logs/perf` logs computation resource comsuption of processes. The memory usage of each task processor can be found. You can estimate the total memory usage on the node. 
+`~/logs/perf` logs computation resource consumption of processes. The memory usage of each task processor can be found. You can estimate the total memory usage on the node. 
 
 Out of Memory error can be found in `~/system_logs/lifecycler/<node-id>/execution-wrapper.txt`.
 
