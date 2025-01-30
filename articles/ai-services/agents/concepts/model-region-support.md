@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: conceptual
-ms.date: 01/27/2025
+ms.date: 01/29/2025
 ms.custom: azure-ai-agents
 ---
 
@@ -27,6 +27,7 @@ Azure AI Agent Service supports the same models as the chat completions API in A
 | francecentral | -                          | -                          | -                               | ✅                  | ✅                           | -                           | -                               | ✅ | ✅                         | ✅                          | -                          | ✅                             |
 | japaneast     | -                          | -                          | -                               | -                   | -                           | -                           | -                               | -                      | ✅                         | -                          | ✅                         | ✅                              |
 | norwayeast    |-  |  - |  - | -  | ✅ | -  |-  | -  | -  | -  | -  | - |
+| southindia    | - | - | - | - | ✅ | - | - | - | - | ✅ | ✅ | - |
 | swedencentral    | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | ✅ | - | ✅ |
 | uksouth       | -                          | -                          | -                               | -                   | ✅                          | ✅                           | -                               | -                       | ✅                          | ✅                         | ✅                          | ✅                             |
 | westus        | ✅                         | ✅                          | ✅                            | -                   | ✅                          | -                           | ✅                               | - | -                          | ✅                         | ✅                          | -                              |
@@ -37,9 +38,10 @@ Azure AI Agent Service supports the same models as the chat completions API in A
 
 The Azure AI Agent Service also supports the following models from the Azure AI Foundry model catalog.
 
-* Llama 3.1-70B-instruct
+* Meta-Llama-405B-Instruct
 * Mistral-large-2407
-* Cohere command R+
+* Cohere-command-r-plus
+* Cohere-command-r
 
 To use these models, you can use Azure AI Foundry portal to make a deployment, and then reference the deployment name in your agent. For example:
 

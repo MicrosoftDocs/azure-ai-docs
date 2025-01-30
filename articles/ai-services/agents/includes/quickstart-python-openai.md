@@ -18,8 +18,6 @@ ms.date: 11/13/2024
 * You need the **Cognitive Services OpenAI User** role assigned to use the Azure AI Services resource.
 * Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
 
-[!INCLUDE [rbac-roles](rbac-roles.md)]
-
 [!INCLUDE [bicep-setup](bicep-setup.md)]
 
 ## Configure and run an agent

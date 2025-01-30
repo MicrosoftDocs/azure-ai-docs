@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 12/11/2024
+ms.date: 01/30/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-function-calling
@@ -21,12 +21,6 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 
 > [!NOTE]
 > Runs expire ten minutes after creation. Be sure to submit your tool outputs before the expiration.
-
-### Supported models
-
-The [models page](../../concepts/model-region-support.md) contains the most up-to-date information on regions/models where Agents are supported.
-
-To use all features of function calling including parallel functions, you need to use a model that was released after November 6, 2023.
 
 ### Usage support
 
