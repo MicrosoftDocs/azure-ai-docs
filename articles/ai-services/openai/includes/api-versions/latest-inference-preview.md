@@ -6292,7 +6292,7 @@ Represents an `assistant` that can call the model and use tools.
 | created_at | integer | The Unix timestamp (in seconds) for when the assistant was created. | Yes |  |
 | name | string | The name of the assistant. The maximum length is 256 characters.<br> | Yes |  |
 | description | string | The description of the assistant. The maximum length is 512 characters.<br> | Yes |  |
-| model | string | ID of the model to use. You can use the List models API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them.<br> | Yes |  |
+| model | string | ID of the model to use. You can use the List models API to see all of your available models, or see our [Model overview](../../concepts/models.md) for descriptions of them.<br> | Yes |  |
 | instructions | string | The system instructions that the assistant uses. The maximum length is 256,000 characters.<br> | Yes |  |
 | tools | array | A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`.<br> | Yes | [] |
 | tool_resources | object | A set of resources that are used by the assistant's tools. The resources are specific to the type of tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires a list of vector store IDs.<br> | No |  |
@@ -7343,7 +7343,7 @@ Represents a step in execution of a run.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | id | string | The identifier of the run step, which can be referenced in API endpoints. | Yes |  |
-| object | string | The object type, which is always `assistant.run.step``. | Yes |  |
+| object | string | The object type, which is always `assistant.run.step`. | Yes |  |
 | created_at | integer | The Unix timestamp (in seconds) for when the run step was created. | Yes |  |
 | assistant_id | string | The ID of the assistant associated with the run step. | Yes |  |
 | thread_id | string | The ID of the thread that was run. | Yes |  |
@@ -7451,7 +7451,7 @@ Details of the message creation by the run step.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | string | Always `message_creation``. | Yes |  |
+| type | string | Always `message_creation`. | Yes |  |
 | message_creation | object |  | Yes |  |
 
 
@@ -7785,7 +7785,7 @@ A result instance of the file search.
 
 | Name | Type | Description | Default |
 |------|------|-------------|--------|
-| output | string | The output of the function. This will be `null` if the outputs have not been [submitted](/docs/api-reference/runs/submitToolOutputs) yet. |  |
+| output | string | The output of the function. This will be `null` if the outputs have not been submitted yet. |  |
 
 
 
