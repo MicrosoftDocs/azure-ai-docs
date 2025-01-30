@@ -22,7 +22,7 @@ Stored completions allow you to capture the conversation history from chat compl
 
 Support first added in `2024-10-01-preview`
 
-# Model & region availability
+### Model & region availability
 
 | **Region**     | **o1-preview**, **2024-09-12**   | **o1-mini**, **2024-09-12**   | **gpt-4o**, **2024-08-06**   | **gpt-4o**, **2024-05-13**  | **gpt-4o-mini**, **2024-07-18**   |
 |:---|:---:|:---:|:---:|:---:|:---:|
