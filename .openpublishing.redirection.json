@@ -29,7 +29,7 @@
       "source_path_from_root": "/articles/ai-services/openai/how-to/use-your-data-securely.md",
       "redirect_url": "/azure/ai-services/openai/how-to/on-your-data-configuration",
       "redirect_document_id": false
-    }
+    },
     {
       "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/concepts/data-formats.md",
       "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview.md",
