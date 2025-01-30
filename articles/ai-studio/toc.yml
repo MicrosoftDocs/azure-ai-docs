@@ -69,6 +69,8 @@ items:
         href: how-to/deploy-models-cohere-embed.md
       - name: Cohere Rerank models
         href: how-to/deploy-models-cohere-rerank.md
+      - name: DeepSeek-R1 reasoning models
+        href: how-to/deploy-models-deepseek.md
     - name: Gretel Navigator model
       href: how-to/deploy-models-gretel-navigator.md
     - name: Healthcare AI models
