@@ -38,30 +38,31 @@ Having a uniform way to consume foundational models allow developers to realize 
 
 The Azure AI Model Inference API is available in the following models/systems:
 
-Models deployed to [serverless API endpoints](../how-to/deploy-models-serverless.md):
+Models deployed to [serverless API endpoints](../../../ai-studio/how-to/deploy-models-serverless.md):
 
 > [!div class="checklist"]
-> * [Cohere Embed V3](../how-to/deploy-models-cohere-embed.md) family of models
-> * [Cohere Command R](../how-to/deploy-models-cohere-command.md) family of models
-> * [Meta Llama 2 chat](../how-to/deploy-models-llama.md) family of models
-> * [Meta Llama 3 instruct](../how-to/deploy-models-llama.md) family of models
-> * [Mistral-Small](../how-to/deploy-models-mistral.md)
-> * [Mistral-Large](../how-to/deploy-models-mistral.md)
-> * [Jais](../how-to/deploy-jais-models.md) family of models
-> * [Jamba](../how-to/deploy-models-jamba.md) family of models
-> * [Phi-3](../how-to/deploy-models-phi-3.md) family of models
+> * [Cohere Embed V3](../../../ai-studio/how-to/deploy-models-cohere-embed.md) family of models
+> * [Cohere Command R](../../../ai-studio/how-to/deploy-models-cohere-command.md) family of models
+> * [Meta Llama 2 chat](../../../ai-studio/how-to/deploy-models-llama.md) family of models
+> * [Meta Llama 3 instruct](../../../ai-studio/how-to/deploy-models-llama.md) family of models
+> * [Mistral-Small](../../../ai-studio/how-to/deploy-models-mistral.md)
+> * [Mistral-Large](../../../ai-studio/how-to/deploy-models-mistral.md)
+> * [Jais](../../../ai-studio/how-to/deploy-jais-models.md) family of models
+> * [Jamba](../../../ai-studio/how-to/deploy-models-jamba.md) family of models
+> * [Phi-3](../../../ai-studio/how-to/deploy-models-phi-3.md) and [Phi-4](../../../ai-studio/how-to/deploy-models-phi-4.md) family of models
+> * [DeepSeek-R1](../../../ai-studio/how-to/deploy-models-deepseek.md) family of models.
 
-Models deployed to [managed inference](../concepts/deployments-overview.md):
-
-> [!div class="checklist"]
-> * [Meta Llama 3 instruct](../how-to/deploy-models-llama.md) family of models
-> * [Phi-3](../how-to/deploy-models-phi-3.md), and [Phi-4](../how-to/deploy-models-phi-4.md) family of models
-> * [Mistral](../how-to/deploy-models-mistral-open.md) and [Mixtral](../how-to/deploy-models-mistral-open.md?tabs=mistral-8x7B-instruct) family of models
-
-Models deployed to [Azure AI model inference in Azure AI Services](../../ai-foundry/model-inference/overview.md):
+Models deployed to [managed inference](../../../ai-studio/concepts/deployments-overview.md):
 
 > [!div class="checklist"]
-> * See [supported models](../../ai-foundry/model-inference/concepts/models.md).
+> * [Meta Llama 3 instruct](../../../ai-studio/how-to/deploy-models-llama.md) family of models
+> * [Phi-3](../../../ai-studio/how-to/deploy-models-phi-3.md), and [Phi-4](../../../ai-studio/how-to/deploy-models-phi-4.md) family of models
+> * [Mistral](../../../ai-studio/how-to/deploy-models-mistral-open.md) and [Mixtral](../../../ai-studio/how-to/deploy-models-mistral-open.md?tabs=mistral-8x7B-instruct) family of models
+
+Models deployed to [Azure AI model inference in Azure AI Services](../overview.md):
+
+> [!div class="checklist"]
+> * See [supported models](../../model-inference/concepts/models.md).
 
 The API is compatible with Azure OpenAI model deployments.
 
@@ -87,7 +88,7 @@ The API indicates how developers can consume predictions for the following modal
 You can use streamlined inference clients in the language of your choice to consume predictions from models running the Azure AI model inference API.
 
 > [!IMPORTANT]
-> When working with the Azure AI model inference endpoint (preview), the base URL to connect to is of the form `https://<resource-name>.services.ai.azure.com/models`. Use this URL with the parameter `endpoint`. If using REST APIs, such is the base URL you have to append to the modality you want to consume. Read about [how to use the Azure AI model inference endpoint](../../ai-foundry/model-inference/how-to/inference.md).
+> When working with the Azure AI model inference endpoint (preview), the base URL to connect to is of the form `https://<resource-name>.services.ai.azure.com/models`. Use this URL with the parameter `endpoint`. If using REST APIs, such is the base URL you have to append to the modality you want to consume. Read about [how to use the Azure AI model inference endpoint](../../../ai-foundry/model-inference/how-to/inference.md).
 
 # [Python](#tab/python)
 
@@ -462,7 +463,7 @@ __Response__
 
 ## Content safety
 
-The Azure AI model inference API supports [Azure AI Content Safety](../concepts/content-filtering.md). When using deployments with Azure AI Content Safety on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI Content Safety](../../../ai-studio/concepts/content-filtering.md). When using deployments with Azure AI Content Safety on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The following example shows the response for a chat completion request that has triggered content safety. 
 
@@ -597,7 +598,7 @@ __Response__
 
 ## Getting started
 
-The Azure AI Model Inference API is currently supported in certain models deployed as [Serverless API endpoints](../how-to/deploy-models-serverless.md) and Managed Online Endpoints. Deploy any of the [supported models](#availability) and use the exact same code to consume their predictions.
+The Azure AI Model Inference API is currently supported in certain models deployed as [Serverless API endpoints](../../../ai-studio/how-to/deploy-models-serverless.md) and Managed Online Endpoints. Deploy any of the [supported models](#availability) and use the exact same code to consume their predictions.
 
 # [Python](#tab/python)
 
@@ -623,7 +624,6 @@ Explore the reference section of the Azure AI model inference API to see paramet
 
 * [Get info](reference-model-inference-info.md): Returns the information about the model deployed under the endpoint.
 * [Text embeddings](reference-model-inference-embeddings.md): Creates an embedding vector representing the input text.
-* [Text completions](reference-model-inference-completions.md): Creates a completion for the provided prompt and parameters.
 * [Chat completions](reference-model-inference-chat-completions.md): Creates a model response for the given chat conversation.
 * [Image embeddings](reference-model-inference-images-embeddings.md): Creates an embedding vector representing the input text and image.
 

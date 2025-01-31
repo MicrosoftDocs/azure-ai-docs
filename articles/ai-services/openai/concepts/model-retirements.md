@@ -80,6 +80,8 @@ For more information on the model evaluation process, see the [Getting started w
 
 For information on the model upgrade process, see [How to upgrade to a new model or version](./model-versions.md).
 
+For more information on how to manage model upgrades and migrations for provisioned deployments, see [Managing models on provisioned deployment types](../how-to/working-with-models.md#managing-models-on-provisioned-deployment-types)
+
 ## Current models
 
 > [!NOTE]

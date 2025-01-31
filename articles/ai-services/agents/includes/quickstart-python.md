@@ -17,8 +17,6 @@ ms.date: 11/13/2024
 * Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio.md) assigned at the appropriate level.
 * Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
 
-[!INCLUDE [rbac-roles](rbac-roles.md)]
-
 [!INCLUDE [bicep-setup](bicep-setup.md)]
 
 ## Configure and run an agent
@@ -37,6 +35,11 @@ Run the following commands to install the python packages.
 ```console
 pip install azure-ai-projects
 pip install azure-identity
+```
+Next, to authenticate your API requests and run the program, use the [az login](/cli/azure/authenticate-azure-cli-interactively) command to sign into your Azure subscription.
+
+```azurecli
+az login
 ```
 
 Use the following code to create and run an agent. To run this code, you will need to create a connection string using information from your project. This string is in the format:
@@ -115,7 +118,7 @@ with project_client:
     print(f"Messages: {messages}")
 
     # Get the last message from the sender
-    last_msg = messages.get_last_text_message_by_sender("assistant")
+    last_msg = messages.get_last_text_message_by_role("assistant")
     if last_msg:
         print(f"Last Message: {last_msg.text.value}")
 
