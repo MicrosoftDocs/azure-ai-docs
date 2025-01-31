@@ -125,7 +125,7 @@ ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
 }
 ```
 
-# [JavaScript]
+# [JavaScript](#tab/javascript)
 
 ```javascript
 class FunctionToolExecutor {
@@ -250,7 +250,7 @@ Response<Agent> agentResponse = await client.CreateAgentAsync(
 Agent agent = agentResponse.Value;
 ```
 
-# [JavaScript]
+# [JavaScript](#tab/javascript)
 
 ```javascript
 const functionToolExecutor = new FunctionToolExecutor();
