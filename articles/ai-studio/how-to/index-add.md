@@ -77,7 +77,6 @@ You must have:
 
    :::image type="content" source="../media/index-retrieve/configure-index-lookup-tool.png" alt-text="Screenshot of the prompt flow node to configure index lookup." lightbox="../media/index-retrieve/configure-index-lookup-tool.png":::
 
-   :::image type="content" source="../media/index-retrieve/generate-index.png" alt-text="Screenshot of the prompt flow node to generate an index." lightbox="../media/index-retrieve/generate-index.png":::
 
 
 ## Related content
