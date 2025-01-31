@@ -1,7 +1,7 @@
 ---
 title: Azure OpenAI o1 series reasoning models
 titleSuffix: Azure OpenAI
-description: Learn how to use Azure OpenAI's advanced o1 series reasoning models
+description: Learn how to use Azure OpenAI's advanced o3-mini, o1, & o1-mini reasoning reasoning models 
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
