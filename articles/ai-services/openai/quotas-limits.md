@@ -62,7 +62,7 @@ The following sections provide you with a quick guide to the default quotas and 
 
 [!INCLUDE [Quota](./includes/global-batch-limits.md)]
 
-## o-series rate limits
+## `o-series` rate limits
 
 > [!IMPORTANT]
 > The ratio of RPM/TPM for quota with o1-series models works differently than older chat completions models:
@@ -76,7 +76,7 @@ The following sections provide you with a quick guide to the default quotas and 
 >
 > There is a known issue with the [quota/usages API](/rest/api/aiservices/accountmanagement/usages/list?view=rest-aiservices-accountmanagement-2024-06-01-preview&tabs=HTTP&preserve-view=true) where it assumes the old ratio applies to the new o1-series models. The API returns the correct base capacity number, but doesn't apply the correct ratio for the accurate calculation of TPM.
 
-### o-series global standard
+### `o-series` global standard
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
