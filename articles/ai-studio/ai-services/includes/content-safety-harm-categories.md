@@ -1,8 +1,7 @@
 ---
 title: include file
 description: include file
-ms.reviewer: osiotugo
-ms.author: osiotugo
+ms.author: pafarley
 ms.service: azure-ai-studio
 ms.topic: include
 ms.date: 01/28/2025
