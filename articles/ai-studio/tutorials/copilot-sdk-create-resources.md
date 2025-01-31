@@ -138,6 +138,8 @@ Create a folder for your work. Create a file called **config.py** in this folder
 
 :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/config.py":::
 
+> [!NOTE]
+> This script also uses a package you haven't installed yet, `azure.monitor.opentelemetry`.  You'll install this package in the next part of the tutorial series.
 
 ## Configure environment variables
 
