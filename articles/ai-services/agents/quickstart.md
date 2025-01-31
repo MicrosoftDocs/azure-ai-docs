@@ -38,7 +38,18 @@ Azure AI Agent Service allows you to create AI agents tailored to your needs thr
 
 ::: zone-end
 
+::: zone pivot="programming-language-javascript"
 
+[!INCLUDE [quickstart-javascript](includes/quickstart-javascript.md)]
+[!INCLUDE [quickstart-output](includes/quickstart-output.md)]
+
+::: zone-end
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [quickstart-typescript](includes/quickstart-typescript.md)]
+[!INCLUDE [quickstart-output](includes/quickstart-output.md)]
+
+::: zone-end
 
 
 
