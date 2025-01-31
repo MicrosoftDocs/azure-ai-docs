@@ -83,7 +83,7 @@ The following sections provide you with a quick guide to the default quotas and 
 | `o3-mini` | Enterprise agreement | 16 M | 1.6 K |
 | `o1` & `o1-preview` | Enterprise agreement | 30 M | 5 K |
 | `o1-mini`| Enterprise agreement | 50 M | 5 K |
-| `o3-mini` | Default | 160 | 1.6 M |
+| `o3-mini` | Default | 1.6 M | 160 |
 | `o1` & `o1-preview` | Default | 3 M | 500 |
 | `o1-mini`| Default | 5 M | 500 |
 
