@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Provides guidance on how to set managed identity with Microsoft Entra ID
 ms.service: azure-ai-openai
 ms.topic: how-to 
-ms.date: 06/25/2024
+ms.date: 01/31/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false

@@ -7,7 +7,7 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 06/27/2024
+ms.date: 01/31/2025
 ms.author: mbullwin
 ---
 
@@ -54,9 +54,7 @@ To use dynamic quota, you must:
 
 ### Enable dynamic quota
 
-To activate dynamic quota for your deployment, you can go to the advanced properties in the resource configuration, and switch it on:
-
-:::image type="content" source="../media/how-to/dynamic-quota/dynamic-quota-new.png" alt-text="Screenshot of advanced configuration UI for deployments." lightbox="../media/how-to/dynamic-quota/dynamic-quota-new.png":::
+To activate dynamic quota for your deployment, you can go to the advanced properties in the resource configuration, and switch it on.
 
 Alternatively, you can enable it programmatically with Azure CLI's [`az rest`](/cli/azure/reference-index?view=azure-cli-latest#az-rest&preserve-view=true):
 
