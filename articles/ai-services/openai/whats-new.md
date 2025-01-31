@@ -21,6 +21,10 @@ This article provides a summary of the latest releases and major documentation u
 
 ## January 2025
 
+### o3-mini released
+
+`o3-mini` (2025-01-31) is the latest reasoning model, offering enhanced reasoning abilities. For more information, see our [reasoning model guide](../how-to/reasoning.md).
+
 ### GPT-4o audio completions
 
 The `gpt-4o-audio-preview` model is now available for global deployments in [East US 2 and Sweden Central regions](./concepts/models.md#global-standard-model-availability). Use the `gpt-4o-audio-preview` model for audio generation.
