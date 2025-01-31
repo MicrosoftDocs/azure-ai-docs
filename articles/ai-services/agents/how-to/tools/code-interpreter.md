@@ -32,9 +32,9 @@ We recommend using Agents with the latest models to take advantage of the new fe
 
 ## Usage support
 
-|Azure AI foundry support  | Python SDK |	C# SDK | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Using the function calling tool with an agent
 
@@ -57,7 +57,7 @@ You can add the function calling tool to an agent programatically using the code
 ::: zone pivot="code-example"
 
 
-## Define imports and create a project client 
+## Create a project client 
 
 # [Python](#tab/python)
 
@@ -87,6 +87,23 @@ To use code interpreter, first you need to create a project client, which will c
 ```csharp
 var connectionString = Environment.GetEnvironmentVariable("PROJECT_CONNECTION_STRING");
 AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredential()); 
+```
+
+# [JavaScript](#tab/javascript)
+
+To use code interpreter, first you need to create a project client, which will contain a connection string to your AI project, and will be used to authenticate API calls.
+
+```javascript
+const connectionString =
+  process.env["AZURE_AI_PROJECTS_CONNECTION_STRING"] || "<project connection string>";
+
+if (!connectionString) {
+  throw new Error("AZURE_AI_PROJECTS_CONNECTION_STRING must be set.");
+}
+const client = AIProjectsClient.fromConnectionString(
+    connectionString || "",
+    new DefaultAzureCredential(),
+);
 ```
 
 ---
@@ -129,6 +146,21 @@ VectorStore vectorStore = await client.CreateVectorStoreAsync(
 CodeInterpreterToolResource codeInterpreterToolResource = new CodeInterpreterToolResource();
 CodeInterpreterToolResource.VectorStoreIds.Add(vectorStore.Id);
 ```
+
+# [JavaScript](#tab/javascript)
+
+Files can be uploaded and then referenced by agents or messages. Once it's uploaded it can be added to the tool utility for referencing.
+
+```javascript
+const fileStream = fs.createReadStream("nifty_500_quarterly_results.csv");
+const fFile = await client.agents.uploadFile(fileStream, "assistants", {
+  fileName: "nifty_500_quarterly_results.csv",
+});
+console.log(`Uploaded local file, file ID : ${file.id}`);
+
+const codeInterpreterTool = ToolUtility.createCodeInterpreterTool([file.id]);
+```
+
 ---
 
 ## Create an agent with the code interpreter tool
@@ -163,6 +195,18 @@ Response<Agent> agentResponse = await client.CreateAgentAsync(
 Agent agent = agentResponse.Value;
 ```
 
+# [JavaScript](#tab/javascript)
+
+```javascript
+// Notice that CodeInterpreter must be enabled in the agent creation, otherwise the agent will not be able to see the file attachment
+const agent = await client.agents.createAgent("gpt-4o-mini", {
+  name: "my-agent",
+  instructions: "You are a helpful agent",
+  tools: [codeInterpreterTool.definition],
+  toolResources: codeInterpreterTool.resources,
+});
+console.log(`Created agent, agent ID: ${agent.id}`);
+```
 ---
 
 ## Create a thread, message, and get the agent response 
@@ -262,6 +306,63 @@ foreach (ThreadMessage threadMessage in messages)
     }
 }
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+  // create a thread
+  const thread = await client.agents.createThread();
+    
+  // add a message to thread
+  await client.agents.createMessage(
+      thread.id, {
+      role: "user",
+      content: "I need to solve the equation `3x + 11 = 14`. Can you help me?",
+  });
+  // create a run
+  const streamEventMessages = await client.agents.createRun(thread.id, agent.id).stream();
+
+  for await (const eventMessage of streamEventMessages) {
+    switch (eventMessage.event) {
+      case RunStreamEvent.ThreadRunCreated:
+        break;
+      case MessageStreamEvent.ThreadMessageDelta:
+        {
+          const messageDelta = eventMessage.data;
+          messageDelta.delta.content.forEach((contentPart) => {
+            if (contentPart.type === "text") {
+              const textContent = contentPart;
+              const textValue = textContent.text?.value || "No text";
+            }
+          });
+        }
+        break;
+
+      case RunStreamEvent.ThreadRunCompleted:
+        break;
+      case ErrorEvent.Error:
+        console.log(`An error occurred. Data ${eventMessage.data}`);
+        break;
+      case DoneEvent.Done:
+        break;
+    }
+  }
+
+  // Print the messages from the agent
+  const messages = await client.agents.listMessages(thread.id);
+
+  // Messages iterate from oldest to newest
+  // messages[0] is the most recent
+  for (let i = messages.data.length - 1; i >= 0; i--) {
+    const m = messages.data[i];
+    if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
+      const textContent = m.content[0];
+      console.log(`${textContent.text.value}`);
+      console.log(`---------------------------------`);
+    }
+  }
+```
+
 ---
 
 ## Download files generated by code interpreter
@@ -297,6 +398,29 @@ foreach (MessageContent contentItem in message.Content)
     }
 }
 ```
+# [JavaScript](#tab/javascript)
+
+Files uploaded by Agents cannot be retrieved back. If your use case needs to access the file content uploaded by the Agents, you are advised to keep an additional copy accessible by your application. However, files generated by Agents are retrievable by `getFileContent`.
+
+```javascript
+const messages = await client.agents.listMessages(thread.id);
+const imageFile = (messages.data[0].content[0] as MessageImageFileContentOutput).imageFile;
+const imageFileName = (await client.agents.getFile(imageFile.fileId)).filename;
+
+const fileContent = await (await client.agents.getFileContent(imageFile.fileId).asNodeStream()).body;
+if (fileContent) {
+  const chunks: Buffer[] = [];
+  for await (const chunk of fileContent) {
+    chunks.push(Buffer.from(chunk));
+  }
+  const buffer = Buffer.concat(chunks);
+  fs.writeFileSync(imageFileName, buffer);
+} else {
+  console.error("Failed to retrieve file content: fileContent is undefined");
+}
+console.log(`Saved image file to: ${imageFileName}`);
+```
+
 
 ---
 

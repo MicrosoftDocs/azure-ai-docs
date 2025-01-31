@@ -33,9 +33,9 @@ File search augments agents with knowledge from outside its model, such as propr
 
 ### Usage support
 
-|Azure AI foundry support  | Python SDK |	C# SDK | Basic agent setup | Standard agent setup |
+|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|
-| ✔️  | ✔️ | ✔️ | File upload only | File upload and using blob storage | 
+| ✔️  | ✔️ | ✔️ | ✔️ | File upload only | File upload and using blob storage | 
 
 ## Dependency on agent setup
 
