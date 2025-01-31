@@ -11,7 +11,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: whats-new
-ms.date: 1/21/2025
+ms.date: 1/30/2025
 recommendations: false
 ---
 
@@ -20,6 +20,10 @@ recommendations: false
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI Service.
 
 ## January 2025
+
+### o3-mini released
+
+`o3-mini` (2025-01-31) is the latest reasoning model, offering enhanced reasoning abilities. For more information, see our [reasoning model guide](./how-to/reasoning.md).
 
 ### GPT-4o audio completions
 

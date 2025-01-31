@@ -7,7 +7,7 @@ ms.topic: how-to
 ms.date: 1/21/2025
 ms.custom: ignite-2024, github-universe-2024
 manager: nitinme
-author: mrbullwinkle
+author: santiagxf
 ms.author: fasantia 
 recommendations: false
 ---
@@ -141,7 +141,7 @@ Use the parameter `model="<deployment-name>` to route your request to this deplo
 
 ## Move from Serverless API Endpoints to Azure AI model inference
 
-Although you configured the project to use the Azure AI model inference, existing model deployments continue to exit within the project as Serverless API Endpoints. Those deployments aren't moved for you. Hence, you can progressively upgrade any existing code that reference previous model deployments. To start moving the model deployments, we recommend the following workflow:
+Although you configured the project to use the Azure AI model inference, existing model deployments continue to exist within the project as Serverless API Endpoints. Those deployments aren't moved for you. Hence, you can progressively upgrade any existing code that reference previous model deployments. To start moving the model deployments, we recommend the following workflow:
 
 1. Recreate the model deployment in Azure AI model inference. This model deployment is accessible under the **Azure AI model inference endpoint**.
 

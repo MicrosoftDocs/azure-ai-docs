@@ -1,6 +1,6 @@
 ---
 manager: nitinme
-author: mrbullwinkle
+author: santiagxf
 ms.author: fasantia 
 ms.service: azure-ai-model-inference
 ms.date: 01/23/2025
