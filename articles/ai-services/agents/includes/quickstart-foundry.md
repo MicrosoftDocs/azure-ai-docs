@@ -71,9 +71,9 @@ The **Agents playground** allows you to explore, prototype, and test agents with
     :::image type="content" source="../media/quickstart/create-debug-agent.png" alt-text="A screenshot of the Agents create and debug screen." lightbox="../media/quickstart/create-debug-agent.png":::
 
     > [!TIP]
-    > Your agent can access multiple [**tools**](../how-to/tools/overview.md) that extend its capabilities, such as the ability to search the web with Bing, run code, and more. In the **Setup** pane, scroll down to **knowledge** and **action** and select **Add** to see the tools available for use. 
+    > Your agent can access multiple tools such as [code interpreter](../how-to/tools/code-interpreter.md) that extend its capabilities, such as the ability to search the web with Bing, run code, and more. In the **Setup** pane, scroll down to **knowledge** and **action** and select **Add** to see the tools available for use. 
     > :::image type="content" source="../media/quickstart/portal-tools.png" alt-text="A screenshot of the Agents tool choices." lightbox="../media/quickstart/portal-tools.png":::
 
 ## See also
 
-* See the [tools overview](../how-to/tools/overview.md) to learn about the tools you can allow your agent to use to extend its capabilities.
+Check out the [models](../concepts/model-region-support.md) that you can use with Agents.
