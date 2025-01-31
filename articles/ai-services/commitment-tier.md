@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2023
 ms.service: azure-ai-services
 ms.topic: conceptual
-ms.date: 01/22/2024
+ms.date: 01/31/2025
 ---
 
 # Purchase commitment tier pricing
