@@ -193,9 +193,34 @@ You can use this [sample notebook](https://github.com/Azure/azureml-examples/blo
 
 Additionally, you can use this sample CLI to create a standalone fine-tuning job to enhance a model's ability to summarize dialogues between two people using a dataset. 
 
-::: zone pivot="programming-language-cli"
-[!INCLUDE [cli](cli/jobs/finetuning/standalone/model-as-a-service/chat-completion/chat-completion-finetuning.yaml)] 
-::: zone-end
+```yaml
+type: finetuning
+
+name: "Phi-3-mini-4k-instruct-with-amlcompute"
+experiment_name: "Phi-3-mini-4k-instruct-finetuning-experiment"
+display_name: "Phi-3-mini-4k-instruct-display-name"
+task: chat_completion
+model_provider: custom
+model: 
+  path: "azureml://registries/azureml/models/Phi-3-mini-4k-instruct/versions/14"
+  type: mlflow_model
+training_data: train.jsonl
+validation_data:
+  path: validation.jsonl
+  type: uri_file
+hyperparameters:
+  num_train_epochs: "1"
+  per_device_train_batch_size: "1"
+  learning_rate: "0.00002"
+properties:
+  my_property: "my_value"
+tags:
+  foo_tag: "bar"
+outputs:
+  registered_model:
+    name: "Phi-3-mini-4k-instruct-finetuned-model"
+    type: mlflow_model 
+```
 
 The training data used is the same as demonstrated in the SDK notebook. The CLI employs the available Azure AI models for the chat-completion task. If you prefer to use a different model than the one in the CLI sample, you can update the arguments, such as 'model path,' accordingly
 
