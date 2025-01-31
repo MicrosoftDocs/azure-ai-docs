@@ -5,7 +5,7 @@ description: Learn how to use Mistral-7B and Mixtral chat models with Azure AI F
 ms.service: azure-ai-studio
 manager: scottpolly
 ms.topic: how-to
-ms.date: 09/13/2024
+ms.date: 01/31/2025
 ms.reviewer: kritifaujdar
 reviewer: fkriti
 ms.author: mopeakande
