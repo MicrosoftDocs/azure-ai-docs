@@ -239,10 +239,7 @@ print(response.model_dump_json(indent=2))
 
 ## Developer messages
 
-Functionally developer messages ` "role": "developer"` are the same as system messages.
-
-- **System messages are not supported** with the **o1 series** reasoning models. 
-- `o1-2024-12-17` with API version: `2024-12-01-preview` and later adds support for developer messages. 
+Functionally developer messages ` "role": "developer"` are the same as system messages. 
 
 Adding a developer message to the previous code example would look as follows:
 
