@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: build-2023
 ms.topic: how-to
-ms.date: 07/10/2024
+ms.date: 01/28/2025
 ms.author: lajanuar
 ---
 
@@ -21,7 +21,7 @@ ms.author: lajanuar
 
 > [!IMPORTANT]
 >
-> * The Translator connector is currently available in public preview. Features, approaches and processes may change, prior to General Availability (GA), based on user feedback.
+> * The Translator connector is currently available in public preview. Features, approaches, and processes can change, before General Availability (GA) release, based on user feedback.
 
 This article guides you through configuring a Microsoft Translator V3 connector cloud flow that supports text translation and transliteration. The Translator V3 connector creates a connection between your Translator Service instance and Microsoft Power Automate enabling you to use one or more prebuilt operations as steps in your apps and workflows.
 
@@ -79,7 +79,7 @@ Let's select an action. Choose to translate or transliterate text.
       :::image type="content" source="../media/connectors/add-connection.png" alt-text="Screenshot showing the add-connection window.":::
 
       > [!NOTE]
-      > After you've setup your connection, you won't be required to reenter your credentials for subsequent Translator flows.
+      > After setting up your connection, you won't be required to reenter your credentials for subsequent Translator flows.
 
 1. The **Translate text** action window appears next.
 1. Select a **Source Language** from the dropdown menu or keep the default **Auto-detect** option.

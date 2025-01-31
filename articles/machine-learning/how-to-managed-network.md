@@ -1091,6 +1091,9 @@ For more information, see [Configure private link](how-to-configure-private-link
 
 ## Private endpoints
 
+> [!IMPORTANT]
+> As of March 31st 2025, the Azure AI Enterprise Network Connection Approver role must be assigned to the Azure Machine Learning workspace's managed identity to approve private endpoints to securely access your Azure resources from the managed virtual network. This does not impact existing resources with approved private endpoints as the role is correctly assigned by the service. For new resources, please ensure the role is assigned to the workspace's managed identity. For Azure Data Factory, Azure Databricks, and Azure Function Apps, the Contributor role should instead be assigned to your workspace's managed identity. This role assignment is applicable to both User-assigned identity and System-assigned identity workspaces. 
+
 Private endpoints are currently supported for the following Azure services:
 
 * Azure Machine Learning

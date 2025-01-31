@@ -140,6 +140,8 @@ items:
         href: how-to/deploy-models-cohere-embed.md
       - name: Cohere Rerank models
         href: how-to/deploy-models-cohere-rerank.md
+    - name: DeepSeek-R1 reasoning models
+      href: how-to/deploy-models-deepseek.md
     - name: Meta Llama models
       items:
       - name: Meta Llama family models
@@ -443,19 +445,7 @@ items:
   - name: Prompt flow Python SDK
     href: https://microsoft.github.io/promptflow/reference/index.html#
   - name: Azure AI Model Inference API
-    items:
-      - name: What's the Azure AI Model Inference API?
-        href: reference/reference-model-inference-api.md
-      - name: Reference
-        items:
-        - name: Get Info
-          href: reference/reference-model-inference-info.md
-        - name: Embeddings
-          href: reference/reference-model-inference-embeddings.md
-        - name: Chat Completions
-          href: reference/reference-model-inference-chat-completions.md
-        - name: Images Embeddings
-          href: reference/reference-model-inference-images-embeddings.md
+    href: ../ai-foundry/model-inference/reference/reference-model-inference-api.md
   - name: Azure Policy built-ins
     displayName: samples, policies, definitions
     href: ../ai-services/policy-reference.md?context=/azure/ai-studio/context/context
