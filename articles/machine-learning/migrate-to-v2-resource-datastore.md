@@ -8,7 +8,7 @@ ms.subservice: core
 ms.topic: reference
 author: sdgilley
 ms.author: sgilley
-ms.date: 09/16/2022
+ms.date: 01/16/2025
 ms.reviewer: xunwan
 ms.custom: migration
 monikerRange: 'azureml-api-1 || azureml-api-2'
@@ -168,9 +168,9 @@ blob_datastore = Datastore.register_azure_blob_container(workspace=ws,
 |[azureml_blob_datastore](/python/api/azureml-core/azureml.data.azure_storage_datastore.azureblobdatastore?view=azure-ml-py&preserve-view=true)|[azureml_blob_datastore](/python/api/azure-ai-ml/azure.ai.ml.entities.azuredatalakegen1datastore)|
 |[azureml_data_lake_gen1_datastore](/python/api/azureml-core/azureml.data.azure_data_lake_datastore.azuredatalakedatastore?view=azure-ml-py&preserve-view=true)|[azureml_data_lake_gen1_datastore](/python/api/azure-ai-ml/azure.ai.ml.entities.azuredatalakegen1datastore)|
 |[azureml_data_lake_gen2_datastore](/python/api/azureml-core/azureml.data.azure_data_lake_datastore.azuredatalakegen2datastore?view=azure-ml-py&preserve-view=true)|[azureml_data_lake_gen2_datastore](/python/api/azure-ai-ml/azure.ai.ml.entities.azuredatalakegen2datastore)|
-|[azuremlml_sql_database_datastore](/python/api/azureml-core/azureml.data.azure_sql_database_datastore.azuresqldatabasedatastore?view=azure-ml-py&preserve-view=true)|Will be supported via import & export functionalities|
-|[azuremlml_my_sql_datastore](/python/api/azureml-core/azureml.data.azure_my_sql_datastore.azuremysqldatastore?view=azure-ml-py&preserve-view=true)|Will be supported via import & export functionalities|
-|[azuremlml_postgre_sql_datastore](/python/api/azureml-core/azureml.data.azure_postgre_sql_datastore.azurepostgresqldatastore?view=azure-ml-py&preserve-view=true)|Will be supported via import & export functionalities|
+|[azuremlml_sql_database_datastore](/python/api/azureml-core/azureml.data.azure_sql_database_datastore.azuresqldatabasedatastore?view=azure-ml-py&preserve-view=true)|[Working with data (import data from external resources)](https://github.com/Azure/azureml-examples/blob/main/sdk/python/assets/data/data.ipynb)|
+|[azuremlml_my_sql_datastore](/python/api/azureml-core/azureml.data.azure_my_sql_datastore.azuremysqldatastore?view=azure-ml-py&preserve-view=true)|[Working with data (import data from external resources)](https://github.com/Azure/azureml-examples/blob/main/sdk/python/assets/data/data.ipynb)|
+|[azuremlml_postgre_sql_datastore](/python/api/azureml-core/azureml.data.azure_postgre_sql_datastore.azurepostgresqldatastore?view=azure-ml-py&preserve-view=true)|[Working with data (import data from external resources)](https://github.com/Azure/azureml-examples/blob/main/sdk/python/assets/data/data.ipynb)|
 
 
 ## Next steps

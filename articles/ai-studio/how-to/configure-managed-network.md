@@ -634,7 +634,7 @@ During hub creation, select __Provision managed network proactively at creation_
 The following example shows how to provision a managed virtual network during hub creation. The `--provision-network-now` flag is in preview.
     
 ```azurecli
-az ml workspace create -n myworkspace -g my_resource_group --kind hub --managed-network AllowInternetOutbound --provision-network-now
+az ml workspace create -n myworkspace -g my_resource_group --kind hub --managed-network AllowInternetOutbound --provision-network-now true
 ```
 
 The following example shows how to provision a managed virtual network.
@@ -654,7 +654,7 @@ az ml workspace show -n my_ai_hub_name -g my_resource_group --query managed_netw
 The following example shows how to provision a managed virtual network during hub creation. The `--provision-network-now` flag is in preview.
     
 ```azurecli
-az ml workspace create -n myworkspace -g my_resource_group --managed-network AllowInternetOutbound --provision-network-now
+az ml workspace create -n myworkspace -g my_resource_group --managed-network AllowInternetOutbound --provision-network-now true
 ```
 
 The following example shows how to provision a managed virtual network:
@@ -774,22 +774,19 @@ To allow installation of __Python packages for training and deployment__, add ou
 Visual Studio Code relies on specific hosts and ports to establish a remote connection.
 
 #### Hosts
-If you plan to use __Visual Studio Code__ with the hub, add outbound _FQDN_ rules to allow traffic to the following hosts:
 
-* `*.vscode.dev`
-* `vscode.blob.core.windows.net`
-* `*.gallerycdn.vsassets.io`
-* `raw.githubusercontent.com`
-* `*.vscode-unpkg.net`
-* `*.vscode-cdn.net`
-* `*.vscodeexperiments.azureedge.net`
-* `default.exp-tas.com`
-* `code.visualstudio.com`
-* `update.code.visualstudio.com`
-* `*.vo.msecnd.net`
-* `marketplace.visualstudio.com`
-* `pkg-containers.githubusercontent.com`
-* `github.com`
+The hosts in this section are used to install Visual Studio Code packages to establish a remote connection between Visual Studio Code and the compute instances for your project.
+
+> [!NOTE]
+> This is not a complete list of the hosts required for all Visual Studio Code resources on the internet, only the most commonly used. For example, if you need access to a GitHub repository or other host, you must identify and add the required hosts for that scenario. For a complete list of host names, see [Network Connections in Visual Studio Code](https://code.visualstudio.com/docs/setup/network).
+
+| __Host name__ | __Purpose__ |
+| ---- | ---- |
+| `*.vscode.dev`<br>`*.vscode-unpkg.net`<br>`*.vscode-cdn.net`<br>`*.vscodeexperiments.azureedge.net`<br>`default.exp-tas.com` | Required to access vscode.dev (Visual Studio Code for the Web) |
+| `code.visualstudio.com` | Required to download and install VS Code desktop. This host isn't required for VS Code Web. |
+| `update.code.visualstudio.com`<br>`*.vo.msecnd.net` | Used to retrieve VS Code server bits that are installed on the compute instance through a setup script. |
+| `marketplace.visualstudio.com`<br>`vscode.blob.core.windows.net`<br>`*.gallerycdn.vsassets.io` | Required to download and install VS Code extensions. These hosts enable the remote connection to compute instances. For more information, see [Get started with Azure AI Foundry projects in VS Code](./develop/vscode.md). |
+| `vscode.download.prss.microsoft.com` | Used for Visual Studio Code download CDN |
 
 #### Ports
 You must allow network traffic to ports 8704 to 8710. The VS Code server dynamically selects the first available port within this range.
@@ -821,7 +818,7 @@ pytorch.org
 
 Private endpoints are currently supported for the following Azure services:
 
-* AI Foundry hub
+* Azure AI Foundry hub
 * Azure AI Search
 * Azure AI services
 * Azure API Management
@@ -847,6 +844,9 @@ When you create a private endpoint, you provide the _resource type_ and _subreso
 When you create a private endpoint for hub dependency resources, such as Azure Storage, Azure Container Registry, and Azure Key Vault, the resource can be in a different Azure subscription. However, the resource must be in the same tenant as the hub.
 
 A private endpoint is automatically created for a connection if the target resource is an Azure resource listed previously. A valid target ID is expected for the private endpoint. A valid target ID for the connection can be the Azure Resource Manager ID of a parent resource. The target ID is also expected in the target of the connection or in `metadata.resourceid`. For more on connections, see [How to add a new connection in Azure AI Foundry portal](connections-add.md).
+
+> [!IMPORTANT]
+> As of March 31st 2025, the Azure AI Enterprise Network Connection Approver role must be assigned to the Azure AI Foundry hub's managed identity to approve private endpoints to securely access your Azure resources from the managed virtual network. This does not impact existing resources with approved private endpoints as the role is correctly assigned by the service. For new resources, please ensure the role is assigned to the hub's managed identity. For Azure Data Factory, Azure Databricks, and Azure Function Apps, the Contributor role should instead be assigned to your hub's managed identity. This role assignment is applicable to both User-assigned identity and System-assigned identity workspaces. 
 
 ## Select an Azure Firewall version for allowed only approved outbound (Preview)
 
@@ -902,4 +902,4 @@ The hub managed virtual network feature is free. However, you're charged for the
 
 ## Related content
 
-- [Create AI Foundry hub and project using the SDK](./develop/create-hub-project-sdk.md)
+- [Create Azure AI Foundry hub and project using the SDK](./develop/create-hub-project-sdk.md)

@@ -91,7 +91,7 @@ description: <DESCRIPTION>
 
 ## Submit the job
 
-In the following commands in this section, you may need to know:
+In the following commands in this section, you might need to know:
 
 - The Azure Machine Learning workspace name
 - The resource group name where the workspace is

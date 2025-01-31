@@ -1,5 +1,5 @@
 ---
-title: Use blocklists in AI Foundry portal
+title: Use blocklists in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: Learn how to create custom blocklists in Azure AI Foundry portal as part of your content filtering configurations.
 manager: nitinme

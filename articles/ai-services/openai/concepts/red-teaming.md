@@ -65,7 +65,7 @@ It can be helpful to provide red teamers with:
 
 ### Plan: What to test
 
-Because an application is developed using a base model, you may need to test at several different layers:
+Because an application is developed using a base model, you might need to test at several different layers:
 
 - The LLM base model with its safety system in place to identify any gaps that may need to be addressed in the context of your application system. (Testing is usually done through an API endpoint.)
 

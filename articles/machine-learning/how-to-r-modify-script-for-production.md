@@ -296,7 +296,7 @@ RUN R -e "install.packages('<package-to-install>', dependencies = TRUE, repos = 
 
 ## Additional suggestions
 
-Some additional suggestions you may want to consider:
+Some additional suggestions you might want to consider:
 
 - Use R's `tryCatch` function for exception and error handling
 - Add explicit logging for troubleshooting and debugging

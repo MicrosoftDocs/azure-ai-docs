@@ -96,7 +96,7 @@ If you regenerate your Azure OpenAI key and manually update the connection used 
 
 This is because the connections used in the endpoints/deployments won't be automatically updated. Any change for key or secrets in deployments should be done by manual update, which aims to avoid impacting online production deployment due to unintentional offline operation.
 
-- If the endpoint was deployed in the AI Foundry portal, you can just redeploy the flow to the existing endpoint using the same deployment name.
+- If the endpoint was deployed in the Azure AI Foundry portal, you can just redeploy the flow to the existing endpoint using the same deployment name.
 - If the endpoint was deployed using SDK or CLI, you need to make some modification to the deployment definition such as adding a dummy environment variable, and then use `az ml online-deployment update` to update your deployment.
 
 ### Vulnerability issues in prompt flow deployments

@@ -38,7 +38,7 @@ You can secure your Azure AI Foundry hub, projects, and managed resources in a m
 
     :::image type="content" source="../media/how-to/network/ai-hub-resources.png" alt-text="Screenshot of the Create a hub with the option to set resource information." lightbox="../media/how-to/network/ai-hub-resources.png"::: 
 
-1. Select **Next: Networking** to configure the managed virtual network that AI Foundry uses to secure its hub and projects.
+1. Select **Next: Networking** to configure the managed virtual network that Azure AI Foundry uses to secure its hub and projects.
     
     1. Select **Private with Internet Outbound**, which allows compute resources to access the public internet for resources such as Python packages.
 

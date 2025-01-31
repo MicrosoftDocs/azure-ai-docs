@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 08/07/2024
+ms.date: 11/19/2024
 ms.author: vikurpad
 ms.custom:
   - references_regions
@@ -18,8 +18,6 @@ monikerRange: '>=doc-intel-3.0.0'
 
 [!INCLUDE [applies to v4.0 v3.1 v3.0](../includes/applies-to-v40-v31-v30.md)]
 
-> [!IMPORTANT]
-> Best practices to generating labelled datasets only applies to custom template and custom neural models, for custom generative, refer to [Custom Generative](custom-generative-extraction.md)
 
 Custom models (template and neural) require a labeled dataset of at least five documents to train a model. The quality of the labeled dataset affects the accuracy of the trained model. This guide helps you learn more about generating a model with high accuracy by assembling a diverse dataset and provides best practices for labeling your documents.
 
@@ -88,11 +86,11 @@ Custom neural models currently only support key-value pairs, structured fields (
 | Custom template | ✔️Supported| ✔️Supported | ✔️Supported | ✔️Supported | ✔️Supported | Unsupported |
 
 <sup>1</sup> Region labeling implementation differs between template and neural models. For template models, the training process injects synthetic data at training time if no text is found in the region labeled. With neural models, no synthetic text is injected and the recognized text is used as is.</br>
-<sup>2</sup> Overlapping fields are supported starting with the API version ```2024-02-29-preview``` and later. Overlapping fields have some limits. For more information, *see* [overlapping fields](custom-neural.md#overlapping-fields).
+<sup>2</sup> Overlapping fields are supported starting with the API version ```v4.0 2024-11-30 (GA)```. Overlapping fields have some limits. For more information, *see* [overlapping fields](custom-neural.md#overlapping-fields).
 
 ## Tabular fields
 
-Tabular fields (tables) are supported with custom neural models starting with API version ```2022-06-30-preview```. Models trained with API version 2022-06-30-preview or later will accept tabular field labels and documents analyzed with the model with API version 2022-06-30-preview or later will produce tabular fields in the output within the  ```documents``` section of the result in the ```analyzeResult``` object.
+Tabular fields (tables) are supported with custom neural models with API version ```v4.0 2024-11-30 (GA)```. Models trained with API version 2022-06-30-preview or later will accept tabular field labels and documents analyzed with the model with API version 2022-06-30-preview or later will produce tabular fields in the output within the  ```documents``` section of the result in the ```analyzeResult``` object.
 
 Tabular fields support **cross page tables** by default. To label a table that spans multiple pages, label each row of the table across the different pages in the single table. As a best practice, ensure that your dataset contains a few samples of the expected variations. For example, include both samples where an entire table is on a single page and samples of a table spanning two or more pages.
 
@@ -125,7 +123,7 @@ Tabular fields are also useful when extracting repeating information within a do
 * View the REST APIs:
 
     > [!div class="nextstepaction"]
-    > [Document Intelligence API v4.0:2024-07-31-preview](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)
+    > [Document Intelligence API v4.0:2024-11-30 (GA)](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)
 
     > [!div class="nextstepaction"]
     > [Document Intelligence API v3.1:2023-07-31 (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)

@@ -107,7 +107,7 @@ items:
         tocHref: /security/benchmark/azure/
         topicHref: /security/benchmark/azure/index
  
-# AI Foundry or Azure ML
+# Azure AI Foundry or Azure ML
 - name: Azure
   tocHref: /ai/
   topicHref: /azure/index

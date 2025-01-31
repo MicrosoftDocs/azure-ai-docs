@@ -16,7 +16,7 @@ author: lgayhardt
 
 To thoroughly assess the performance of your generative AI models and applications when applied to a substantial dataset, you can initiate an evaluation process. During this evaluation, your model or application is tested with the given dataset, and its performance will be quantitatively measured with both mathematical based metrics and AI-assisted metrics. This evaluation run provides you with comprehensive insights into the application's capabilities and limitations.
 
-To carry out this evaluation, you can utilize the evaluation functionality in Azure AI Foundry portal, a comprehensive platform that offers tools and features for assessing the performance and safety of your generative AI model. In AI Foundry portal, you're able to log, view, and analyze detailed evaluation metrics.
+To carry out this evaluation, you can utilize the evaluation functionality in Azure AI Foundry portal, a comprehensive platform that offers tools and features for assessing the performance and safety of your generative AI model. In Azure AI Foundry portal, you're able to log, view, and analyze detailed evaluation metrics.
 
 In this article, you learn to create an evaluation run against model, a test dataset or a flow with built-in evaluation metrics from Azure AI Foundry UI. For greater flexibility, you can establish a custom evaluation flow and employ the  **custom evaluation** feature. Alternatively, if your objective is solely to conduct a batch run without any evaluation, you can also utilize the custom evaluation feature.
 
@@ -29,7 +29,7 @@ To run an evaluation with AI-assisted metrics, you need to have the following re
 
 ## Create an evaluation with built-in evaluation metrics
 
-An evaluation run allows you to generate metric outputs for each data row in your test dataset. You can choose one or more evaluation metrics to assess the output from different aspects. You can create an evaluation run from the evaluation, model catalog or prompt flow pages in AI Foundry portal. Then an evaluation creation wizard appears to guide you through the process of setting up an evaluation run.
+An evaluation run allows you to generate metric outputs for each data row in your test dataset. You can choose one or more evaluation metrics to assess the output from different aspects. You can create an evaluation run from the evaluation, model catalog or prompt flow pages in Azure AI Foundry portal. Then an evaluation creation wizard appears to guide you through the process of setting up an evaluation run.
 
 ### From the evaluate page
 
@@ -235,7 +235,7 @@ The evaluator library is a centralized place that allows you to see the details 
  
 The evaluator library also enables version management. You can compare different versions of your work, restore previous versions if needed, and collaborate with others more easily. 
 
-To use the evaluator library in AI Foundry portal, go to your project's **Evaluation** page and select the **Evaluator library** tab.
+To use the evaluator library in Azure AI Foundry portal, go to your project's **Evaluation** page and select the **Evaluator library** tab.
 
 :::image type="content" source="../media/evaluations/evaluate/evaluator-library-list.png" alt-text="Screenshot of the page to select evaluators from the evaluator library." lightbox="../media/evaluations/evaluate/evaluator-library-list.png":::
 

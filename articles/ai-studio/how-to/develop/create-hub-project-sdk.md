@@ -1,7 +1,7 @@
 ---
 title: How to create a hub using the Azure Machine Learning SDK/CLI
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to create an AI Foundry hub using the Azure Machine Learning SDK and Azure CLI extension.
+description: This article provides instructions on how to create an Azure AI Foundry hub using the Azure Machine Learning SDK and Azure CLI extension.
 manager: scottpolly
 ms.service: azure-ai-studio
 ms.custom: build-2024, devx-track-azurecli
@@ -16,7 +16,7 @@ author: sdgilley
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-In this article, you learn how to create the following AI Foundry resources using the Azure Machine Learning SDK and Azure CLI (with machine learning extension):
+In this article, you learn how to create the following Azure AI Foundry resources using the Azure Machine Learning SDK and Azure CLI (with machine learning extension):
 - An Azure AI Foundry hub
 - An Azure AI Services connection
 
@@ -46,7 +46,7 @@ Use the following tabs to select whether you're using the Python SDK or Azure CL
 
 ---
 
-## Create the AI Foundry hub and AI Services connection
+## Create the Azure AI Foundry hub and AI Services connection
 
 Use the following examples to create a new hub. Replace example string values with your own values:
 
@@ -127,7 +127,7 @@ You can use either an API key or credential-less YAML configuration file. For mo
 
 ---
 
-## Create an AI Foundry hub using existing dependency resources
+## Create an Azure AI Foundry hub using existing dependency resources
 
 You can also create a hub using existing resources such as Azure Storage and Azure Key Vault. In the following examples, replace the example string values with your own values:
 

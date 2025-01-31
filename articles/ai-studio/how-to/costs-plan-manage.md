@@ -100,7 +100,7 @@ When you use cost analysis, you view hub costs in graphs and tables for differen
 You can get to cost analysis from the [Azure portal](https://portal.azure.com). You can also get to cost analysis from the [Azure AI Foundry](https://ai.azure.com).
 
 > [!IMPORTANT]
-> Your AI Foundry project costs are only a subset of your overall application or solution costs. You need to monitor costs for all Azure resources used in your application or solution. For more information, see [Azure AI Foundry hubs](../concepts/ai-resources.md).
+> Your Azure AI Foundry project costs are only a subset of your overall application or solution costs. You need to monitor costs for all Azure resources used in your application or solution. For more information, see [Azure AI Foundry hubs](../concepts/ai-resources.md).
 
 For the examples in this section, assume that all Azure AI Foundry resources are in the same resource group. But you can have resources in different resource groups. For example, your Azure AI Search resource might be in a different resource group than your project.
 

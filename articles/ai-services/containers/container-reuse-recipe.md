@@ -24,7 +24,7 @@ Any `docker run` examples in this document assume a Windows console with a `^` l
 
 * Do not change the order of the arguments unless you are very familiar with docker containers.
 * If you are using an operating system other than Windows, or a console other than Windows console, use the correct console/terminal, folder syntax for mounts, and line continuation character for your console and system.  Because the Azure AI services container is a Linux operating system, the target mount uses a Linux-style folder syntax.
-* `docker run` examples use the directory off the `c:` drive to avoid any permission conflicts on Windows. If you need to use a specific directory as the input directory, you may need to grant the docker service permission.
+* `docker run` examples use the directory off the `c:` drive to avoid any permission conflicts on Windows. If you need to use a specific directory as the input directory, you might need to grant the docker service permission.
 
 ## Store no configuration settings in image
 
@@ -158,7 +158,7 @@ COPY luisModel2 /input/
 
 ## Store all configuration settings
 
-If you are a single manager of the container, you may want to store all settings in the container. The new, resulting container will not need any variables passed in to run. 
+If you are a single manager of the container, you might want to store all settings in the container. The new, resulting container will not need any variables passed in to run. 
 
 Issues with this approach:
 

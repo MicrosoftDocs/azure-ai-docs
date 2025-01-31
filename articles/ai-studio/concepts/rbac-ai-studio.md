@@ -22,17 +22,17 @@ In this article, you learn how to manage access (authorization) to an Azure AI F
 > [!WARNING]
 > Applying some roles might limit UI functionality in Azure AI Foundry portal for other users. For example, if a user's role does not have the ability to create a compute instance, the option to create a compute instance will not be available in studio. This behavior is expected, and prevents the user from attempting operations that would return an access denied error. 
 
-## AI Foundry hub vs project
+## Azure AI Foundry hub vs project
 
 In the Azure AI Foundry portal, there are two levels of access: the hub and the project. The hub is home to the infrastructure (including virtual network setup, customer-managed keys, managed identities, and policies) and where you configure your Azure AI services. Hub access can allow you to modify the infrastructure, create new hubs, and create projects. Projects are a subset of the hub that act as workspaces that allow you to build and deploy AI systems. Within a project you can develop flows, deploy models, and manage project assets. Project access lets you develop AI end-to-end while taking advantage of the infrastructure setup on the hub.
 
-:::image type="content" source="../media/concepts/resource-provider-connected-resources.svg" alt-text="Diagram of the relationship between AI Foundry resources.":::
+:::image type="content" source="../media/concepts/resource-provider-connected-resources.svg" alt-text="Diagram of the relationship between Azure AI Foundry resources.":::
 
 One of the key benefits of the hub and project relationship is that developers can create their own projects that inherit the hub security settings. You might also have developers who are contributors to a project, and can't create new projects.
 
 ## Default roles for the hub 
 
-The AI Foundry hub has built-in roles that are available by default. 
+The Azure AI Foundry hub has built-in roles that are available by default. 
 
 Here's a table of the built-in roles and their permissions for the hub:
 
@@ -92,7 +92,7 @@ If the built-in Azure AI Developer role doesn't meet your needs, you can create 
 
 ## Default roles for projects 
 
-Projects in AI Foundry portal have built-in roles that are available by default. 
+Projects in Azure AI Foundry portal have built-in roles that are available by default. 
 
 Here's a table of the built-in roles and their permissions for the project:
 
@@ -104,99 +104,11 @@ Here's a table of the built-in roles and their permissions for the project:
 | Azure AI Inference Deployment Operator | Perform all actions required to create a resource deployment within a resource group. |
 | Reader |     Read only access to the project. |
 
-When a user is granted access to a project (for example, through the AI Foundry portal permission management), two more roles are automatically assigned to the user. The first role is Reader on the hub. The second role is the Inference Deployment Operator role, which allows the user to create deployments on the resource group that the project is in. This role is composed of these two permissions: ```"Microsoft.Authorization/*/read"``` and    ```"Microsoft.Resources/deployments/*"```.
+When a user is granted access to a project (for example, through the Azure AI Foundry portal permission management), two more roles are automatically assigned to the user. The first role is Reader on the hub. The second role is the Inference Deployment Operator role, which allows the user to create deployments on the resource group that the project is in. This role is composed of these two permissions: ```"Microsoft.Authorization/*/read"``` and    ```"Microsoft.Resources/deployments/*"```.
 
 In order to complete end-to-end AI development and deployment, users only need these two autoassigned roles and either the Contributor or Azure AI Developer role on a project.
 
 The minimum permissions needed to create a project is a role that has the allowed action of `Microsoft.MachineLearningServices/workspaces/hubs/join` on the hub. The Azure AI Developer built-in role has this permission.
-
-## Azure AI Administrator role
-
-Prior to 11/19/2024, the system-assigned managed identity created for the hub was automatically assigned the __Contributor__ role for the resource group that contains the hub and projects. Hubs created after this date have the system-assigned managed identity assigned to the __Azure AI Administrator__ role. This role is more narrowly scoped to the minimum permissions needed for the managed identity to perform its tasks.
-
-The __Azure AI Administrator__ role is currently in public preview.
-
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
-
-The __Azure AI Administrator__ role has the following permissions:
-
-```json
-{
-    "permissions": [
-        {
-            "actions": [
-                "Microsoft.Authorization/*/read",
-                "Microsoft.CognitiveServices/*",
-                "Microsoft.ContainerRegistry/registries/*",
-                "Microsoft.DocumentDb/databaseAccounts/*",
-                "Microsoft.Features/features/read",
-                "Microsoft.Features/providers/features/read",
-                "Microsoft.Features/providers/features/register/action",
-                "Microsoft.Insights/alertRules/*",
-                "Microsoft.Insights/components/*",
-                "Microsoft.Insights/diagnosticSettings/*",
-                "Microsoft.Insights/generateLiveToken/read",
-                "Microsoft.Insights/logDefinitions/read",
-                "Microsoft.Insights/metricAlerts/*",
-                "Microsoft.Insights/metricdefinitions/read",
-                "Microsoft.Insights/metrics/read",
-                "Microsoft.Insights/scheduledqueryrules/*",
-                "Microsoft.Insights/topology/read",
-                "Microsoft.Insights/transactions/read",
-                "Microsoft.Insights/webtests/*",
-                "Microsoft.KeyVault/*",
-                "Microsoft.MachineLearningServices/workspaces/*",
-                "Microsoft.Network/virtualNetworks/subnets/joinViaServiceEndpoint/action",
-                "Microsoft.ResourceHealth/availabilityStatuses/read",
-                "Microsoft.Resources/deployments/*",
-                "Microsoft.Resources/deployments/operations/read",
-                "Microsoft.Resources/subscriptions/operationresults/read",
-                "Microsoft.Resources/subscriptions/read",
-                "Microsoft.Resources/subscriptions/resourcegroups/deployments/*",
-                "Microsoft.Resources/subscriptions/resourceGroups/read",
-                "Microsoft.Resources/subscriptions/resourceGroups/write",
-                "Microsoft.Storage/storageAccounts/*",
-                "Microsoft.Support/*",
-                "Microsoft.Search/searchServices/write",
-                "Microsoft.Search/searchServices/read",
-                "Microsoft.Search/searchServices/delete",
-                "Microsoft.Search/searchServices/indexes/*",
-                "Microsoft.DataFactory/factories/*"
-            ],
-            "notActions": [],
-            "dataActions": [],
-            "notDataActions": []
-        }
-    ]
-}
-```
-
-### Convert an existing system-managed identity to the Azure AI Administrator role
-
-> [!TIP]
-> We recommend that you convert hubs created before 11/19/2024 to use the Azure AI Administrator role. The Azure AI Administrator role is more narrowly scoped than the previously used Contributor role and follows the principal of least privilege.
-
-You can convert hubs created before 11/19/2024 by using one of the following methods:
-
-- Azure REST API: Use a `PATCH` request to the Azure REST API for the workspace. The body of the request should set `{"properties":{"allowRoleAssignmeentOnRG":true}}`. The following example shows a `PATCH` request using `curl`. Replace `<your-subscription>`, `<resource-group-name>`, `<workspace-name>`, and `<YOUR-ACCESS-TOKEN>` with the values for your scenario. For more information on using REST APIs, visit the [Azure REST API documentation](/rest/api/azure/).
-
-    ```bash
-    curl -X PATCH https://management.azure.com/subscriptions/<your-subscription>/resourcegroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>?api-version=2024-04-01-preview -H "Authorization:Bearer <YOUR-ACCESS-TOKEN>"
-    ```
-
-- Azure CLI: Use the `az ml workspace update` command with the `--allow-roleassignment-on-rg true` parameter. The following example updates a workspace named `myworkspace`. This command requires the Azure Machine Learning CLI extension version 2.27.0 or later.
-
-    ```azurecli
-    az ml workspace update --name myworkspace --allow-roleassignment-on-rg true
-    ```
-
-- Azure Python SDK: Set the `allow_roleassignment_on_rg` property of the Workspace object to `True` and then perform an update operation. The following example updates a workspace named `myworkspace`. This operation requires the Azure Machine Learning SDK version 1.17.0 or later.
-
-    ```python
-    ws = ml_client.workspaces.get(name="myworkspace")
-    ws.allow_roleassignment_on_rg = True
-    ws = ml_client.workspaces.begin_update(workspace=ws).result()
-    ```
 
 ## Dependency service Azure RBAC permissions
 
@@ -229,7 +141,7 @@ For example, if you're trying to consume a new Blob storage, you need to ensure 
 
 ## Manage access with roles 
 
-If you're an owner of a hub, you can add and remove roles for AI Foundry. Go to the **Home** page in [Azure AI Foundry](https://ai.azure.com) and select your hub. Then select **Users** to add and remove users for the hub. You can also manage permissions from the Azure portal under **Access Control (IAM)** or through the Azure CLI. For example, use the [Azure CLI](/cli/azure/) to assign the Azure AI Developer role to "joe@contoso.com" for resource group "this-rg" with the following command: 
+If you're an owner of a hub, you can add and remove roles for Azure AI Foundry. Go to the **Home** page in [Azure AI Foundry](https://ai.azure.com) and select your hub. Then select **Users** to add and remove users for the hub. You can also manage permissions from the Azure portal under **Access Control (IAM)** or through the Azure CLI. For example, use the [Azure CLI](/cli/azure/) to assign the Azure AI Developer role to "joe@contoso.com" for resource group "this-rg" with the following command: 
  
 ```azurecli-interactive
 az role assignment create --role "Azure AI Developer" --assignee "joe@contoso.com" --resource-group this-rg 
@@ -237,18 +149,18 @@ az role assignment create --role "Azure AI Developer" --assignee "joe@contoso.co
 
 ## Create custom roles
 
-If the built-in roles are insufficient, you can create custom roles. Custom roles might have the read, write, delete, and compute resource permissions in that AI Foundry. You can make the role available at a specific project level, a specific resource group level, or a specific subscription level. 
+If the built-in roles are insufficient, you can create custom roles. Custom roles might have the read, write, delete, and compute resource permissions in that Azure AI Foundry. You can make the role available at a specific project level, a specific resource group level, or a specific subscription level. 
 
 > [!NOTE]
 > You must be an owner of the resource at that level to create custom roles within that resource.
 
-The following JSON example defines a custom AI Foundry developer role at the subscription level:
+The following JSON example defines a custom Azure AI Foundry developer role at the subscription level:
 
 ```json
 {
     "properties": {
-        "roleName": "AI Foundry Developer",
-        "description": "Custom role for AI Foundry. At subscription level",
+        "roleName": "Azure AI Foundry Developer",
+        "description": "Custom role for Azure AI Foundry. At subscription level",
         "assignableScopes": [
             "/subscriptions/<your-subscription-id>"
         ],
@@ -299,7 +211,7 @@ For steps on creating a custom role, use one of the following articles:
 
 For more information on creating custom roles in general, visit the [Azure custom roles](/azure/role-based-access-control/custom-roles) article.
 
-## Assigning roles in AI Foundry portal
+## Assigning roles in Azure AI Foundry portal
 
 You can add users and assign roles directly from Azure AI Foundry at either the hub or project level. In the [management center](management-center.md), select **Users** in either the hub or project section, then select **New user** to add a user. 
 
@@ -316,7 +228,7 @@ You are then prompted to enter the user information and select a built-in role.
 
 When configuring a hub to use a customer-managed key (CMK), an Azure Key Vault is used to store the key. The user or service principal used to create the workspace must have owner or contributor access to the key vault.
 
-If your AI Foundry hub is configured with a **user-assigned managed identity**, the identity must be granted the following roles. These roles allow the managed identity to create the Azure Storage, Azure Cosmos DB, and Azure Search resources used when using a customer-managed key:
+If your Azure AI Foundry hub is configured with a **user-assigned managed identity**, the identity must be granted the following roles. These roles allow the managed identity to create the Azure Storage, Azure Cosmos DB, and Azure Search resources used when using a customer-managed key:
 
 - `Microsoft.Storage/storageAccounts/write`
 - `Microsoft.Search/searchServices/write`
@@ -368,8 +280,8 @@ An Azure Container Registry instance is an optional dependency for Azure AI Foun
 | Authentication method | Public network access </br>disabled | Azure Container Registry</br>Public network access enabled |
 | ---- | :----: | :----: |
 | Admin user | ✓ | ✓ |
-| AI Foundry hub system-assigned managed identity | ✓ | ✓ |
-| AI Foundry hub user-assigned managed identity </br>with the **ACRPull** role assigned to the identity |  | ✓ |
+| Azure AI Foundry hub system-assigned managed identity | ✓ | ✓ |
+| Azure AI Foundry hub user-assigned managed identity </br>with the **ACRPull** role assigned to the identity |  | ✓ |
 
 A system-assigned managed identity is automatically assigned to the correct roles when the hub is created. If you're using a user-assigned managed identity, you must assign the **ACRPull** role to the identity.
 

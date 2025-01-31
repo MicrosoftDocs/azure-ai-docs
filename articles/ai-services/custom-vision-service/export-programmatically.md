@@ -1,21 +1,22 @@
 ---
 title: "Export a model programmatically"
 titleSuffix: Azure AI services
-description: Use the Custom Vision client library to export a trained model.
+description: Learn how to use the Custom Vision client library to export a trained model programmatically, enabling automation of model retraining and updates.
 #services: cognitive-services
+#customer intent: As a developer, I want to export a trained model programmatically so that I can automate the process of retraining and updating the model.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-custom-vision
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 01/29/2025
 ms.author: pafarley
 ms.devlang: python
 ---
 
 # Export a model programmatically
 
-All of the export options available on the [Custom Vision website](https://www.customvision.ai/) are also available programmatically through the client libraries. You may want to use client libraries so you can fully automate the process of retraining and updating the model iteration you use on a local device.
+All of the export options available on the [Custom Vision website](https://www.customvision.ai/) are also available programmatically through the client libraries. You might want to use client libraries so you can fully automate the process of retraining and updating the model iteration you use on a local device.
 
 This guide shows you how to export your model to an ONNX file with the Python SDK.
 
@@ -84,7 +85,7 @@ if export.status == "Done":
         file.write(export_file.content)
 ```
 
-## Next steps
+## Related content
 
 Integrate your exported model into an application by exploring one of the following articles or samples:
 

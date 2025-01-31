@@ -37,7 +37,7 @@ To create a Serp connection:
     - `azureml.flow.module`: `promptflow.connections`
     - `api_key`: Your Serp API key. You must select the **is secret** checkbox to keep the API key secure.
     
-    :::image type="content" source="../../media/prompt-flow/serp-custom-connection-keys.png" alt-text="Screenshot that shows adding extra information to a custom connection in AI Foundry portal." lightbox = "../../media/prompt-flow/serp-custom-connection-keys.png":::
+    :::image type="content" source="../../media/prompt-flow/serp-custom-connection-keys.png" alt-text="Screenshot that shows adding extra information to a custom connection in Azure AI Foundry portal." lightbox = "../../media/prompt-flow/serp-custom-connection-keys.png":::
 
 The connection is the model used to establish connections with the Serp API. Get your API key from the Serp API account dashboard.
 

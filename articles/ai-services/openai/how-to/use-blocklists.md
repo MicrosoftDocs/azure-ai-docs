@@ -13,7 +13,7 @@ ms.author: pafarley
 
 # Use a blocklist with Azure OpenAI
 
-The configurable content filters are sufficient for most content moderation needs. However, you may need to filter terms specific to your use case. 
+The configurable content filters are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. 
 
 ## Prerequisites
 

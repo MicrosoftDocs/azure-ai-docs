@@ -16,7 +16,7 @@ ms.author: mbullwin
 
 ## Metrics drill down by dimensions
 
-When you're viewing incident information, you may need to get more detailed information, for example, for different dimensions, and timestamps. If your data has one or more dimensions, you can use the drill down function to get a more detailed view. 
+When you're viewing incident information, you might need to get more detailed information, for example, for different dimensions, and timestamps. If your data has one or more dimensions, you can use the drill down function to get a more detailed view. 
 
 To use the drill down function, select the **Metric drilling** tab in the **Incident hub**. 
 

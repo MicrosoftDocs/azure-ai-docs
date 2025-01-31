@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 05/23/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ms.custom: devx-track-csharp
 ---
@@ -91,12 +91,12 @@ With Document Intelligence, you can create two different client types. The first
 `FormRecognizerClient` provides the following operations:
 
 - Recognize form fields and content by using custom models trained to analyze your custom forms. These values are returned in a collection of `RecognizedForm` objects. See [Analyze forms with a custom model](#analyze-forms-with-a-custom-model).
-- Recognize form content, including tables, lines, and words, without the need to train a model.  Form content is returned in a collection of `FormPage` objects. See [Analyze layout](#analyze-layout).
+- Recognize form content, including tables, lines, and words, without the need to train a model. Form content is returned in a collection of `FormPage` objects. See [Analyze layout](#analyze-layout).
 - Recognize common fields from US receipts, business cards, invoices, and ID documents using a pretrained model on the Document Intelligence service.
 
 `FormTrainingClient` provides operations to:
 
-- Train custom models to analyze all fields and values found in your custom forms.  A `CustomFormModel` is returned that indicates the form types the model analyzes and the fields it extracts for each form type.
+- Train custom models to analyze all fields and values found in your custom forms. A `CustomFormModel` is returned that indicates the form types the model analyzes and the fields it extracts for each form type.
 - Train custom models to analyze specific fields and values you specify by labeling your custom forms. A `CustomFormModel` is returned that indicates the fields that the model extracts and the estimated accuracy for each field.
 - Manage models created in your account.
 - Copy a custom model from one Document Intelligence resource to another.
@@ -309,7 +309,7 @@ Finally, return the trained model ID for use in later steps.
 
 [!code-csharp[](~/cognitive-services-quickstart-code/dotnet/FormRecognizer/FormRecognizerQuickstart.cs?name=snippet_train_return)]
 
-This output has been truncated for readability.
+This output is truncated for readability.
 
 ```output
 Merchant Name: 'Contoso Contoso', with confidence 0.516
@@ -373,7 +373,7 @@ The returned `CustomFormModel` indicates the fields that the model can extract, 
 
 [!code-csharp[](~/cognitive-services-quickstart-code/dotnet/FormRecognizer/FormRecognizerQuickstart.cs?name=snippet_trainlabels_response)]
 
-This output has been truncated for readability.
+This output is truncated for readability.
 
 ```output
 Form Page 1 has 18 lines.
@@ -431,7 +431,7 @@ The returned value is a collection of `RecognizedForm` objects. There's one obje
 
 [!code-csharp[](~/cognitive-services-quickstart-code/dotnet/FormRecognizer/FormRecognizerQuickstart.cs?name=snippet_analyze_response)]
 
-This output response has been truncated for readability.
+This output response is truncated for readability.
 
 ```output
 Custom Model Info:
@@ -498,7 +498,7 @@ This section demonstrates how to manage the custom models stored in your account
 
 ### Check the number of models in the FormRecognizer resource account
 
-The following code block checks how many models you've saved in your Document Intelligence account and compares it to the account limit.
+The following code block checks how many models you saved in your Document Intelligence account and compares it to the account limit.
 
 [!code-csharp[](~/cognitive-services-quickstart-code/dotnet/FormRecognizer/FormRecognizerQuickstart.cs?name=snippet_manage_model_count)]
 
@@ -515,7 +515,7 @@ The following code blocklists the current models in your account and prints thei
 
 [!code-csharp[](~/cognitive-services-quickstart-code/dotnet/FormRecognizer/FormRecognizerQuickstart.cs?name=snippet_manage_model_list)]
 
-This output has been truncated for readability.
+This output is truncated for readability.
 
 ```output
 Custom Model Info:
@@ -541,7 +541,7 @@ The following code block trains a new model, just like in [Train a model without
 
 [!code-csharp[](~/cognitive-services-quickstart-code/dotnet/FormRecognizer/FormRecognizerQuickstart.cs?name=snippet_manage_model_get)]
 
-This output has been truncated for readability.
+This output is truncated for readability.
 
 ```output
 Custom Model Info:

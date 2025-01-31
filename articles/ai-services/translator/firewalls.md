@@ -1,5 +1,5 @@
 ---
-title: Translate behind firewalls - Translator
+title: Translate behind firewalls - Azure AI Translator
 titleSuffix: Azure AI services
 description: Azure AI Translator can translate behind firewalls using either domain-name or IP filtering.
 #services: cognitive-services
@@ -7,19 +7,19 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 07/09/2024
+ms.date: 01/28/2025
 ms.author: lajanuar
 ---
 
-# Use Translator behind firewalls
+# Use Azure AI Translator behind firewalls
 
-Translator can translate behind firewalls using either [Domain-name](/azure/firewall/dns-settings#dns-proxy-configuration) or [IP filtering](#configure-firewall). Domain-name filtering is the preferred method.
+Azure AI Translator can translate behind firewalls using either [Domain-name](/azure/firewall/dns-settings#dns-proxy-configuration) or [IP filtering](#configure-firewall). Domain-name filtering is the preferred method.
 
 If you still require IP filtering, you can get the [IP addresses details using service tag](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files). Translator is under the **CognitiveServicesManagement** service tag.
 
 ## Configure firewall
 
- Navigate to your Translator resource in the Azure portal.
+ Navigate to your Azure AI Translator resource in the Azure portal.
 
 1. Select **Networking** from the **Resource Management** section.
 1. Under the **Firewalls and virtual networks** tab, choose **Selected Networks and Private Endpoints**.
@@ -33,7 +33,7 @@ If you still require IP filtering, you can get the [IP addresses details using s
 
 1. To grant access to an internet IP range, enter the IP address or address range (in [`CIDR` notation](https://tools.ietf.org/html/rfc4632)) under **Firewall** > **Address Range**. Only valid public IP (`non-reserved`) addresses are accepted.
 
-Running Microsoft Translator from behind a specific IP filtered firewall is **not recommended**. The setup is likely to break in the future without notice.
+Running Azure AI Translator from behind a specific IP filtered firewall is **not recommended**. The setup is likely to break in the future without notice.
 
 The IP addresses for Translator geographical endpoints as of September 21, 2021 are:
 
@@ -45,6 +45,6 @@ The IP addresses for Translator geographical endpoints as of September 21, 2021 
 
 ## Next steps
 
-[**Translator virtual network support**](reference/v3-0-reference.md#virtual-network-support)
+[**Azure AI Translator virtual network support**](reference/v3-0-reference.md#virtual-network-support)
 
 [**Configure virtual networks**](../cognitive-services-virtual-networks.md#grant-access-from-an-internet-ip-range)

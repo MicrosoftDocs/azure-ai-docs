@@ -1,7 +1,7 @@
 ---
 title: What is Azure AI Content Understanding?
 titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding solutions
+description: Learn about Azure AI Content Understanding solutions, processes, workflows, use-cases, and field extractions.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -9,21 +9,23 @@ ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.date: 11/19/2024
 ms.custom: ignite-2024-understanding-release
+
+#customer intent: As a user, I want to learn more about Content Understanding solutions.
 ---
 
-# What is Azure AI Content Understanding?
+# What is Azure AI Content Understanding (preview)?
 
 > [!IMPORTANT]
 >
 > * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes may change or have constrained capabilities, prior to General Availability (GA).
+> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 Azure AI Content Understanding is a new Generative AI based [**Azure AI Service**](../what-are-ai-services.md), designed to process/ingest content of any types (documents, images, videos, and audio) into a user-defined output format.
 
 Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into automation and analytical workflows.
 
-:::image type="content" source="media/overview/content-understanding-overview.png" alt-text="Screenshot of Content Understanding overview.":::
+:::image type="content" source="media/overview/overview-flow.png" alt-text="Screenshot of Content Understanding overview, process, and workflow.":::
 
 ## Why process with Content Understanding?
 
@@ -42,6 +44,7 @@ Content Understanding offers a streamlined process to reason over large amounts 
 * **Analytics and reporting**: Content Understanding's extracted field outputs enhance analytics and reporting, allowing businesses to gain valuable insights, conduct deeper analysis, and make informed decisions based on accurate reports.
 
 ## Applications
+
 Common applications for Content Understanding include:
 
 |Application|Description|Quickstart|
@@ -74,15 +77,11 @@ See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 Developers using the Content Understanding service should review Microsoft's policies on customer data. For more information, visit our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page.
 
 > [!IMPORTANT]
-> If you are using Microsoft products or services to process Biometric Data, you are responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate and required under applicable Data Protection Requirements. "Biometric Data" will have the meaning set forth in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
+> If you're using Microsoft products or services to process Biometric Data, you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate, and required under applicable Data Protection Requirements. "Biometric Data" has the meaning articulated in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
 
 ## Getting started
 Our quickstart guides help you quickly start using the Content Understanding service:
 
-* [**Azure AI Foundry Quickstart**](quickstart/use-ai-foundry.md)
+* [**Azure AI Foundry portal Quickstart**](quickstart/use-ai-foundry.md)
 * [**Rest API Quickstart**](quickstart/use-rest-api.md)
-
-
-
-
 

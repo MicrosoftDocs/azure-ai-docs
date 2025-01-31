@@ -226,7 +226,7 @@ If you have an existing Azure AI Foundry hub, use the steps in this section to u
 
 # [Azure portal](#tab/portal)
 
-1. Go to the Azure portal and select the __AI Foundry hub__.
+1. Go to the Azure portal and select the __Azure AI Foundry hub__.
 1. From the left menu, select **Properties**. From the bottom of the page, set __Storage account access type__ to __Identity-based__. Select __Save__ from the top of the page to save the configuration.
 
     :::image type="content" source="../media/disable-local-auth/update-existing-hub-identity-based-access.png" alt-text="Screenshot showing selection of Identity-based access." lightbox="../media/disable-local-auth/update-existing-hub-identity-based-access.png":::

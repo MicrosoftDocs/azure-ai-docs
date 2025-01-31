@@ -11,6 +11,7 @@ ms.custom:
   - ignite-2023
 ms.topic: whats-new
 ms.date: 03/11/2024
+ms.collection: ce-skilling-fresh-tier2
 ms.author: pafarley
 ---
 
@@ -18,11 +19,25 @@ ms.author: pafarley
 
 Learn what's new in Azure AI Vision. Check this page to stay up to date with new features, enhancements, fixes, and documentation updates. 
 
-## September 2024
+## January 2025
 
-### Model customization and Product Recognition deprecation
+### Image Analysis 4.0 Preview API deprecation
 
-On January 10, 2025, the Azure AI Vision Product Recognition and model customization features will be retired. After this date, API calls to these services will fail.
+On March 31, 2025, the Image Analysis 4.0 Preview APIs will be retired. Before that date, you'll need to migrate your Azure Image Analysis workloads to the [Image Analysis 4.0 GA ](/rest/api/computervision/operation-groups?view=rest-computervision-v4.0%20(2024-02-01))API.
+
+We encourage you to make the transition sooner to gain access to improvements such as multimodal embedding, synchronous OCR, people detection, image tagging, smart cropping, caption, dense caption, and image object detection.
+These Image Analysis 4.0 preview APIs will be retired on March 31, 2025:
+- `2022-07-31-preview`
+- `2022-10-12-preview`
+- `2023-02-01-preview`
+- `2023-04-01-preview`
+- `2023-07-01-preview`
+- `v4.0-preview.1`
+
+The following features will no longer be available upon retirement of the preview API versions, and they are removed from the Studio experience as of January 10, 2025:
+- Model customization
+- Background removal
+- Product recognition
 
 To maintain a smooth operation of your models, transition to [Azure AI Custom Vision](/azure/ai-services/Custom-Vision-Service/overview), which is now generally available. Custom Vision offers similar functionality to these retiring features.
 
