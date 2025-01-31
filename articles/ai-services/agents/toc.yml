@@ -68,6 +68,8 @@ items:
           href: /dotnet/api/overview/azure/ai.projects-readme?context=/azure/ai-services/agents/context/context
         - name: Python
           href: /python/api/overview/azure/ai-projects-readme?context=/azure/ai-services/agents/context/context
+        - name: JavaScript
+          href: /javascript/api/@azure/ai-projects/?context=/azure/ai-services/agents/context/context
       - name: OpenAI SDK
         items:
         - name: C#
