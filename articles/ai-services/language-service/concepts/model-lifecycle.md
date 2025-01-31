@@ -43,7 +43,7 @@ Use the table below to find which model versions are supported by each feature:
 | Entity Linking                                      | `latest*`                                      |                                             |
 | Named Entity Recognition (NER)                      | `latest*`                                      | `2023-04-15-preview**`                      |
 | Personally Identifiable Information (PII) detection | `latest*`                                      | `2023-04-15-preview**`                      | 
-| PII detection for conversations                     | `latest*`                                      | `2023-04-15-preview**`                      |
+| PII detection for conversations                     | `latest*`                                      | `2024-11-01-preview**`                      |
 | Question answering                                  | `latest*`                                      |                                             |
 | Text Analytics for health                           | `latest*`                                      | `2022-08-15-preview`, `2023-01-01-preview**`|
 | Key phrase extraction                               | `latest*`                                      |                                             | 
