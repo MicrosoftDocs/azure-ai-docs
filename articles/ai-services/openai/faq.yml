@@ -81,6 +81,15 @@ sections:
           To learn more about how GPT models are trained and work we recommend watching [Andrej Karpathy's talk from Build 2023 on the state of GPT](https://www.youtube.com/watch?v=bZQun8Y4L2A).
       
       - question: |
+          How can I get the model to respond in a specific language?
+        answer: | 
+          Ensure that your prompt is clear and specific about the language requirement. If the issue persists, consider adding more context or rephrasing the prompt to reinforce the language instruction.
+
+          Example prompts:
+          * "Please respond in English and only in English."
+          * "Answer the following question in English: What is the weather like in Fresno?"
+          
+      - question: |
           I asked the model when its knowledge cutoff is and it gave me a different answer than what is on the Azure OpenAI model's page. Why does this happen?
         answer:
           This is expected behavior. The models aren't able to answer questions about themselves. If you want to know when the knowledge cutoff for the model's training data is, consult the [models page](./concepts/models.md).
