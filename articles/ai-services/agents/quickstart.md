@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: quickstart
-ms.date: 12/11/2024
+ms.date: 01/30/2025
 zone_pivot_groups: agents-quickstart
 ms.custom: azure-ai-agents
 ---
