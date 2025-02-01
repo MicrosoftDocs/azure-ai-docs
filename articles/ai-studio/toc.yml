@@ -175,6 +175,32 @@ items:
       items:
       - name: What is Azure AI Language?
         href: ../ai-services/language-service/overview.md?context=/azure/ai-studio/context/context
+      - name: Conversation Language Understanding
+        href: ../ai-services/language-service/conversational-language-understanding/quickstart.md?context=/azure/ai-studio/context/context
+      - name: Entity Linking
+        href: ../ai-services/language-service/entity-linking/quickstart.md?context=/azure/ai-studio/context/context
+      - name: Key Phrase Extraction
+        href: ../ai-services/language-service/key-phrase-extraction/quickstart.md?context=/azure/ai-studio/context/context
+      - name: Language Detection
+        href: ../ai-services/language-service/language-detection/quickstart.md?context=/azure/ai-studio/context/context
+      - name: Named Entity Recognition
+        href: ../ai-services/language-service/named-entity-recognition/quickstart.md?context=/azure/ai-studio/context/context
+      - name: Custom Named Entity Recognition
+        href: ../ai-services/language-service/custom-named-entity-recognition/quickstart.md?context=/azure/ai-studio/context/context
+      - name: Native Document Support
+        href: ../ai-services/language-service/native-document-support/use-native-documents.md?context=/azure/ai-studio/context/context
+      - name: Orchestration Workflow
+        href: ../ai-services/language-service/orchestration-workflow/quickstart.md?context=/azure/ai-studio/context/context
+      - name: Personally Identifiable Information detection
+        href: ../ai-services/language-service/personally-identifiable-information/quickstart.md?context=/azure/ai-studio/context/context
+      - name: Sentiment Analysis
+        href: ../ai-services/language-service/sentiment-opinion-mining/quickstart.md?context=/azure/ai-studio/context/context
+      - name: Summarization
+        href: ../ai-services/language-service/summarization/quickstart.md?context=/azure/ai-studio/context/context
+      - name: Text Analytics for Health
+        href: ../ai-services/language-service/text-analytics-for-health/quickstart.md?context=/azure/ai-studio/context/context
+      - name: Text Classification
+        href: ../ai-services/language-service/custom-text-classification/quickstart.md?context=/azure/ai-studio/context/context
     - name:  Speech
       items:
       - name: What is the Speech service?
