@@ -36,7 +36,7 @@ gnomeshell: removed
 
 ml: '2.32.4'
 
-Nvidia Driver:  `535.216.03`
+NVIDIA Driver:  `535.216.03`
 
 `CUDA`: `12.2`
 
@@ -50,7 +50,7 @@ SDK Version: `1.57.0`
 
 Python: `3.10.11`
 
-Nvidia Driver:  `535.183.06`
+NVIDIA Driver:  `535.183.06`
 
 `CUDA`: `12.2`
 
@@ -223,7 +223,7 @@ Python: `3.9`
 
 CUDnn==`9.1.1`
 
-Nvidia Driver: `535.171.04`
+NVIDIA Driver: `535.171.04`
 
 PyTorch: `1.13.1`
 
