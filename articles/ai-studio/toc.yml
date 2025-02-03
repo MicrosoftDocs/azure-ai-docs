@@ -120,19 +120,16 @@ items:
       href: concepts/what-are-ai-services.md
     - name: Azure OpenAI
       items:
-      - name: What is Azure OpenAI?
-        href: ../ai-services/openai/overview.md?context=/azure/ai-studio/context/context
-        displayName: cognitive
-      - name: Azure OpenAI in Azure AI Foundry
-        href: azure-openai-in-ai-studio.md
-      - name: Model region availability
-        href:  ../ai-services/openai/concepts/models.md?context=/azure/ai-studio/context/context
-      - name: Deployment types
-        href: ../ai-services/openai/how-to/deployment-types.md?context=/azure/ai-studio/context/context
       - name: Deploy Azure OpenAI models
-        href: how-to/deploy-models-openai.md
-      - name: Generate images
-        href: ../ai-services/openai/dall-e-quickstart.md?context=/azure/ai-studio/context/context
+        items: 
+        - name: Azure OpenAI in Azure AI Foundry
+          href: azure-openai-in-ai-studio.md
+        - name: Model region availability
+          href:  ../ai-services/openai/concepts/models.md?context=/azure/ai-studio/context/context
+        - name: Deployment types
+          href: ../ai-services/openai/how-to/deployment-types.md?context=/azure/ai-studio/context/context
+        - name: Deploy Azure OpenAI models
+          href: how-to/deploy-models-openai.md
       - name: Generate text
         items:
         - name: Batch
@@ -149,16 +146,18 @@ items:
           href: ../ai-services/openai/how-to/structured-outputs.md?context=/azure/ai-studio/context/context 
         - name: Use vision-enabled chat
           href:  ../ai-services/openai/gpt-v-quickstart.md?context=/azure/ai-studio/context/context
+        - name: Generate images
+        href: ../ai-services/openai/dall-e-quickstart.md?context=/azure/ai-studio/context/context
       - name: Audio
-        item:
+        items:
           - name: Use GPT-4o in the real-time audio playground
             href: ../ai-services/openai/realtime-audio-quickstart.md?context=/azure/ai-studio/context/context
           - name: Audio generation
             href: ../ai-services/openai/audio-completions-quickstart.md?context=/azure/ai-studio/context/context 
-      - name: Embeddings
-        href: ../ai-services/openai/tutorials/embeddings.md?context=/azure/ai-studio/context/context
       - name: Distillation (stored completions)
         href: ../ai-services/openai/how-to/stored-completions.md?context=/azure/ai-studio/context/context
+      - name: Embeddings
+        href: ../ai-services/openai/tutorials/embeddings.md?context=/azure/ai-studio/context/context
       - name: Evaluation
         href: ../ai-services/openai/how-to/evaluations.md?context=/azure/ai-studio/context/context
       - name: Fine-tuning
