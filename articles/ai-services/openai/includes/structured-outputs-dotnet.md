@@ -3,12 +3,116 @@
 # [Microsoft Entra ID](#tab/dotnet-entra-id)
 
 ```csharp
+using Azure.AI.OpenAI;
+using Azure.Identity;
+using Newtonsoft.Json.Schema.Generation;
+using OpenAI.Chat;
+using System.ClientModel;
+
+// Create the clients
+string endpoint = GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
+
+AzureOpenAIClient openAIClient = new(
+    new Uri(endpoint),
+    new DefaultAzureCredential());
+
+var client = openAIClient.GetChatClient("gpt-4o");
+
+// Create a chat with initial prompts
+var chat = new List<ChatMessage>()
+    {
+         new SystemChatMessage("Extract the event information and projected weather."),
+         new UserChatMessage("Alice and Bob are going to a science fair in Seattle on June 1st, 2025.")
+    };
+
+// Get the schema of the class for the structured response
+JSchemaGenerator generator = new JSchemaGenerator();
+var jsonSchema = generator.Generate(typeof(CalendarEvent)).ToString();
+
+// Get a completion with structured output
+var chatUpdates = client.CompleteChatStreamingAsync(
+        chat,
+        new ChatCompletionOptions()
+        {
+            ResponseFormat = ChatResponseFormat.CreateJsonSchemaFormat(
+                        "calenderEvent",
+                        BinaryData.FromString(jsonSchema))
+        });
+
+// Write the structured response
+await foreach (var chatUpdate in chatUpdates)
+{
+    foreach (var contentPart in chatUpdate.ContentUpdate)
+    {
+        Console.Write(contentPart.Text);
+    }
+}
+
+// The class for the structured response
+public class CalendarEvent()
+{
+    public string Name { get; set; }
+    public string Date { get; set; }
+    public List<string> Participants { get; set; }
+}
 
 ```
 
 # [Key-based auth](#tab/dotnet-keys)
 
 ```csharp
+using Azure.AI.OpenAI;
+using Newtonsoft.Json.Schema.Generation;
+using OpenAI.Chat;
+using System.ClientModel;
+
+// Create the clients
+string endpoint = GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
+string key = GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
+
+AzureOpenAIClient openAIClient = new(
+    new Uri(endpoint),
+    new ApiKeyCredential(key));
+
+var client = openAIClient.GetChatClient("gpt-4o");
+
+// Create a chat with initial prompts
+var chat = new List<ChatMessage>()
+    {
+         new SystemChatMessage("Extract the event information and projected weather."),
+         new UserChatMessage("Alice and Bob are going to a science fair in Seattle on June 1st, 2025.")
+    };
+
+// Get the schema of the class for the structured response
+JSchemaGenerator generator = new JSchemaGenerator();
+var jsonSchema = generator.Generate(typeof(CalendarEvent)).ToString();
+
+// Get a completion with structured output
+var chatUpdates = client.CompleteChatStreamingAsync(
+        chat,
+        new ChatCompletionOptions()
+        {
+            ResponseFormat = ChatResponseFormat.CreateJsonSchemaFormat(
+                        "calenderEvent",
+                        BinaryData.FromString(jsonSchema))
+        });
+
+// Write the structured response
+await foreach (var chatUpdate in chatUpdates)
+{
+    foreach (var contentPart in chatUpdate.ContentUpdate)
+    {
+        Console.Write(contentPart.Text);
+    }
+}
+
+// The class for the structured response
+public class CalendarEvent()
+{
+    public string Name { get; set; }
+    public string Date { get; set; }
+    public List<string> Participants { get; set; }
+}
 
 ```
 
@@ -18,41 +122,36 @@
 
 Structured Outputs for function calling can be enabled with a single parameter, by supplying `strict: true`. 
 
-> [!NOTE]
-> Structured outputs are not supported with parallel function calls. When using structured outputs set `parallel_tool_calls` to `false`.
-
 # [Microsoft Entra ID](#tab/dotnet-entra-id)
 
 ```csharp
-
-```
-
-# [Key-based auth](#tab/dotnet-keys)
-
-```csharp
 using Azure.AI.OpenAI;
-using Azure.Identity;
-using Newtonsoft.Json.Schema;
 using Newtonsoft.Json.Schema.Generation;
-using OpenAI.Assistants;
 using OpenAI.Chat;
-using OpenAI.Files;
-using System;
 using System.ClientModel;
-using System.Text;
-using System.Text.Json;
 
+// Create the clients
+string endpoint = GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
+
+AzureOpenAIClient openAIClient = new(
+    new Uri(endpoint),
+    new DefaultAzureCredential());
+
+var chatClient = openAIClient.GetChatClient("gpt-4o");
+
+// Local function to be used by the assistant tooling
 string GetTemperature(string location, string date)
 {
-    // Call the weather API here.
+    // Placeholder for Weather API
     if(location == "Seattle" && date == "2025-06-01")
     {
-        return "45";
+        return "75";
     }
 
     return "50";
 }
 
+// Create a tool to get the temperature
 ChatTool GetTemperatureTool = ChatTool.CreateFunctionTool(
     functionName: nameof(GetTemperature),
     functionSchemaIsStrict: true,
@@ -76,28 +175,20 @@ ChatTool GetTemperatureTool = ChatTool.CreateFunctionTool(
         """u8.ToArray())
 );
 
-AzureOpenAIClient openAIClient = new(new Uri(""), new ApiKeyCredential(""));
-
+// Create a chat with prompts
 var chat = new List<ChatMessage>()
     {
          new SystemChatMessage("Extract the event information and projected weather."),
          new UserChatMessage("Alice and Bob are going to a science fair in Seattle on June 1st, 2025.")
     };
 
+// Create a JSON schema for the CalendarEvent structured response
 JSchemaGenerator generator = new JSchemaGenerator();
 var schema = generator.Generate(typeof(CalendarEvent));
 string jsonSchema = schema.ToString();
 
-var json = Encoding.UTF8.GetBytes(schema.ToString());
-
-var client = openAIClient.GetChatClient("gpt-4o");
-
-bool requiresAction;
-
-do
-{
-    requiresAction = false;
-    var completion = client.CompleteChat(
+// Get a chat completion from the AI model
+var completion = chatClient.CompleteChat(
         chat,
         new ChatCompletionOptions()
         {
@@ -107,70 +198,98 @@ do
             Tools = { GetTemperatureTool }
         });
 
-    switch (completion.Value.FinishReason)
+Console.WriteLine(completion.Value.ToolCalls[0].FunctionName);
+
+// Structured response class
+public class CalendarEvent()
+{
+    public string Name { get; set; }
+    public string Date { get; set; }
+    public string Temperature { get; set; }
+    public List<string> Participants { get; set; }
+}
+```
+
+# [Key-based auth](#tab/dotnet-keys)
+
+```csharp
+using Azure.AI.OpenAI;
+using Newtonsoft.Json.Schema.Generation;
+using OpenAI.Chat;
+using System.ClientModel;
+
+// Create the clients
+string endpoint = GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
+string key = GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
+
+AzureOpenAIClient openAIClient = new(
+    new Uri(endpoint),
+    new ApiKeyCredential(key));
+
+var chatClient = openAIClient.GetChatClient("gpt-4o");
+
+// Local function to be used by the assistant tooling
+string GetTemperature(string location, string date)
+{
+    // Placeholder for Weather API
+    if(location == "Seattle" && date == "2025-06-01")
     {
-        case ChatFinishReason.Stop:
-            {
-                // Add the assistant message to the conversation history.
-                chat.Add(new AssistantChatMessage(completion));
-                Console.WriteLine(completion.Value.Content[0].Text);
-                break;
-            }
-
-        case ChatFinishReason.ToolCalls:
-            {
-                // First, add the assistant message with tool calls to the conversation history.
-                chat.Add(new AssistantChatMessage(completion));
-
-                // Then, add a new tool message for each tool call that is resolved.
-                foreach (ChatToolCall toolCall in completion.Value.ToolCalls)
-                {
-                    switch (toolCall.FunctionName)
-                    {
-                        case nameof(GetTemperature):
-                            {
-                                using JsonDocument argumentsJson = JsonDocument.Parse(toolCall.FunctionArguments);
-                                bool hasLocation = argumentsJson.RootElement.TryGetProperty("location", out JsonElement location);
-                                bool hasDate = argumentsJson.RootElement.TryGetProperty("date", out JsonElement date);
-
-                                if (!hasLocation || !hasDate)
-                                {
-                                    throw new ArgumentNullException(nameof(location), "The location and date arguments are required.");
-                                }
-
-                                string toolResult = GetTemperature(location.GetString(), date.GetString());
-                                chat.Add(new ToolChatMessage(toolCall.Id, toolResult));
-                                break;
-                            }
-
-                        default:
-                            {
-                                // Handle other unexpected calls.
-                                throw new NotImplementedException();
-                            }
-                    }
-                }
-
-                requiresAction = true;
-                break;
-            }
-
-        case ChatFinishReason.Length:
-            throw new NotImplementedException("Incomplete model output due to MaxTokens parameter or token limit exceeded.");
-
-        case ChatFinishReason.ContentFilter:
-            throw new NotImplementedException("Omitted content due to a content filter flag.");
-
-        case ChatFinishReason.FunctionCall:
-            throw new NotImplementedException("Deprecated in favor of tool calls.");
-
-        default:
-            throw new NotImplementedException(completion.Value.FinishReason.ToString());
+        return "75";
     }
 
-} while (requiresAction);
+    return "50";
+}
 
+// Create a tool to get the temperature
+ChatTool GetTemperatureTool = ChatTool.CreateFunctionTool(
+    functionName: nameof(GetTemperature),
+    functionSchemaIsStrict: true,
+    functionDescription: "Get the projected temperature by date and location.",
+    functionParameters: BinaryData.FromBytes("""
+        {
+            "type": "object",
+            "properties": {
+                "location": {
+                    "type": "string",
+                    "description": "The location of the weather."
+                },
+                "date": {
+                    "type": "string",
+                    "description": "The date of the projected weather."
+                }
+            },
+            "required": ["location", "date"],
+            "additionalProperties": false  
+        }
+        """u8.ToArray())
+);
 
+// Create a chat with prompts
+var chat = new List<ChatMessage>()
+    {
+         new SystemChatMessage("Extract the event information and projected weather."),
+         new UserChatMessage("Alice and Bob are going to a science fair in Seattle on June 1st, 2025.")
+    };
+
+// Create a JSON schema for the CalendarEvent structured response
+JSchemaGenerator generator = new JSchemaGenerator();
+var schema = generator.Generate(typeof(CalendarEvent));
+string jsonSchema = schema.ToString();
+
+// Get a chat completion from the AI model
+var completion = chatClient.CompleteChat(
+        chat,
+        new ChatCompletionOptions()
+        {
+            ResponseFormat = ChatResponseFormat.CreateJsonSchemaFormat(
+                "calenderEvent",
+                BinaryData.FromString(jsonSchema)),
+            Tools = { GetTemperatureTool }
+        });
+
+Console.WriteLine(completion.Value.ToolCalls[0].FunctionName);
+
+// Structured response class
 public class CalendarEvent()
 {
     public string Name { get; set; }
