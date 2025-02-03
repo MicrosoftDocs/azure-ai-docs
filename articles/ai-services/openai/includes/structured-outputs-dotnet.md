@@ -2,9 +2,9 @@
 
 Add the following packages to your project to work with Azure OpenAI:
 
-**[Azure.AI.OpenAI](https://www.nuget.org/packages/Azure.AI.OpenAI/)**: Provides an Azure OpenAI client with Azure specific functionality that builds on top of the standard [OpenAI](https://www.nuget.org/packages/OpenAI/) library dependency.
-**[Azure.Identity](https://www.nuget.org/packages/Azure.Identity)**: Provides Microsoft Entra ID token authentication support across the Azure SDK libraries. 
-**[Newtonsoft.Json.Schema](https://www.nuget.org/packages/Newtonsoft.Json.Schema)**: Provides helpful utilities for working with JSON schemas.
+- **[Azure.AI.OpenAI](https://www.nuget.org/packages/Azure.AI.OpenAI/)**: Provides an Azure OpenAI client with Azure specific functionality that builds on top of the standard [OpenAI](https://www.nuget.org/packages/OpenAI/) library dependency.
+- **[Azure.Identity](https://www.nuget.org/packages/Azure.Identity)**: Provides Microsoft Entra ID token authentication support across the Azure SDK libraries. 
+- **[Newtonsoft.Json.Schema](https://www.nuget.org/packages/Newtonsoft.Json.Schema)**: Provides helpful utilities for working with JSON schemas.
 
 ```dotnetcli
 dotnet add package Azure.AI.OpenAI --prerelease
