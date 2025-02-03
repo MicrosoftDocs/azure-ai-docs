@@ -131,7 +131,7 @@ The supported file type is JSON Lines. Files are uploaded to the default datasto
     > [!NOTE]
     > Subscribing a project to a particular Azure AI Foundry offering requires that your account has **Contributor** or **Owner** access at the subscription level where the project is created. Alternatively, your user account can be assigned a custom role that has the Azure subscription permissions and resource group permissions listed in the [prerequisites](#prerequisites).
 
-    1. Once you sign up the project for the particular Azure AI Foundry offering, subsequent fine-tuning of the _same_ offering in the _same_ project don't require subscribing again. Therefore, you don't need to have the subscription-level permissions for subsequent fine-tune jobs. If this scenario applies to you, select **Continue to fine-tune**.
+    2. Once you sign up the project for the particular Azure AI Foundry offering, subsequent fine-tuning of the _same_ offering in the _same_ project don't require subscribing again. Therefore, you don't need to have the subscription-level permissions for subsequent fine-tune jobs. If this scenario applies to you, select **Continue to fine-tune**.
 
 1. If you're using a Microsoft model (for example, Phi-3.5-mini-instruct),  you don't  create an Azure Marketplace subscription. Select __Fine-tune__.
 
