@@ -37,8 +37,6 @@ You can use Azure AI Content Safety for many scenarios:
 - Custom categories: Allows users to define specific categories for moderating and filtering content, tailoring safety protocols to unique needs. 
 - Safety system message: Provides a method for setting up a "System Message" to instruct the AI on desired behavior and limitations, reinforcing safety boundaries and helping prevent unwanted outputs. 
 
-## Understand harm categories
-
 [!INCLUDE [content-safety-harm-categories](../includes/content-safety-harm-categories.md)]
 
 ## Limitations
