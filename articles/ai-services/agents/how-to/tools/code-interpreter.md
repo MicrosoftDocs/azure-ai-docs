@@ -36,9 +36,9 @@ We recommend using Agents with the latest models to take advantage of the new fe
 |---------|---------|---------|---------|---------|---------|
 | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
-## Using the function calling tool with an agent
+## Using the code interpreter tool with an agent
 
-You can add the function calling tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal:
+You can add the code interpreter tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal:
 
 1. In the **Create and debug** screen for your agent, scroll down the **Setup** pane on the right to **action**. Then select **Add**.
 
