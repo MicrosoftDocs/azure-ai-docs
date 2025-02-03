@@ -79,6 +79,9 @@ To change this behavior, you have to update the connections from your projects t
 
 7. Your connection is configured to work with Microsoft Entra ID now.
 
+## Troubleshooting
+
+[!INCLUDE [troubleshooting](troubleshooting.md)]
 
 ## Disable key-based authentication in the resource
 
