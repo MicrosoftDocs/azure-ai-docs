@@ -30,9 +30,9 @@ Developers and end users don't have access to raw content returned from Groundin
 
 ## Usage support
 
-|Azure AI foundry support  | Python SDK |	C# SDK | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK |Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Setup  
 
@@ -138,6 +138,21 @@ var projectClient = new AIProjectClient(connectionString, new DefaultAzureCreden
 
 ```
 
+# [JavaScript](#tab/javascript)
+
+```javascript
+const connectionString =
+  process.env["AZURE_AI_PROJECTS_CONNECTION_STRING"] || "<project connection string>";
+
+if (!connectionString) {
+  throw new Error("AZURE_AI_PROJECTS_CONNECTION_STRING must be set.");
+}
+const client = AIProjectsClient.fromConnectionString(
+    connectionString || "",
+    new DefaultAzureCredential(),
+);
+```
+
 ---
 
 ## Step 2: Enable the Grounding with Bing search tool
@@ -190,6 +205,23 @@ Response<Agent> agentResponse = await agentClient.CreateAgentAsync(
     tools: new List<ToolDefinition> { bingGroundingTool });
 Agent agent = agentResponse.Value;
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+const bingGroundingConnectionId = "<bingGroundingConnectionId>";
+const bingTool = ToolUtility.createConnectionTool(connectionToolType.BingGrounding, [
+  bingGroundingConnectionId,
+]);
+
+const agent = await client.agents.createAgent("gpt-4o", {
+  name: "my-agent",
+  instructions: "You are a helpful agent",
+  tools: [bingTool.definition],
+});
+console.log(`Created agent, agent ID : ${agent.id}`);
+```
+
 ---
 
 
@@ -224,6 +256,20 @@ Response<ThreadMessage> messageResponse = await agentClient.CreateMessageAsync(
     MessageRole.User,
     "How does wikipedia explain Euler's Identity?");
 ThreadMessage message = messageResponse.Value;
+```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+// create a thread
+const thread = await client.agents.createThread();
+
+// add a message to thread
+await client.agents.createMessage(
+    thread.id, {
+    role: "user",
+    content: "What is the weather in Seattle?",
+});
 ```
 
 ---
@@ -293,6 +339,55 @@ foreach (ThreadMessage threadMessage in messages)
     }
 }
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+
+  // create a run
+  const streamEventMessages = await client.agents.createRun(thread.id, agent.id).stream();
+
+  for await (const eventMessage of streamEventMessages) {
+    switch (eventMessage.event) {
+      case RunStreamEvent.ThreadRunCreated:
+        break;
+      case MessageStreamEvent.ThreadMessageDelta:
+        {
+          const messageDelta = eventMessage.data;
+          messageDelta.delta.content.forEach((contentPart) => {
+            if (contentPart.type === "text") {
+              const textContent = contentPart;
+              const textValue = textContent.text?.value || "No text";
+            }
+          });
+        }
+        break;
+
+      case RunStreamEvent.ThreadRunCompleted:
+        break;
+      case ErrorEvent.Error:
+        console.log(`An error occurred. Data ${eventMessage.data}`);
+        break;
+      case DoneEvent.Done:
+        break;
+    }
+  }
+
+  // Print the messages from the agent
+  const messages = await client.agents.listMessages(thread.id);
+
+  // Messages iterate from oldest to newest
+  // messages[0] is the most recent
+  for (let i = messages.data.length - 1; i >= 0; i--) {
+    const m = messages.data[i];
+    if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
+      const textContent = m.content[0];
+      console.log(`${textContent.text.value}`);
+      console.log(`---------------------------------`);
+    }
+  }
+```
+
 ---
 
 ::: zone-end
