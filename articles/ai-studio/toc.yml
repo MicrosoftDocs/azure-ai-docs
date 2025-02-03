@@ -128,7 +128,7 @@ items:
           href:  ../ai-services/openai/concepts/models.md?context=/azure/ai-studio/context/context
         - name: Deployment types
           href: ../ai-services/openai/how-to/deployment-types.md?context=/azure/ai-studio/context/context
-        - name: Deploy Azure OpenAI models
+        - name: Model deployment
           href: how-to/deploy-models-openai.md
       - name: Generate text
         items:
