@@ -417,7 +417,7 @@ items:
   - name: Content safety in the Azure AI Foundry portal
     href: ai-services/content-safety-overview.md
   - name: Use Azure AI content safety in the portal
-    href: ai-services/how-to/content-safety.md
+    href: ../ai-services/content-safety/how-to/foundry.md?context=/azure/ai-studio/context/context
   - name: Content filtering
     href: concepts/content-filtering.md
   - name: Use blocklists
