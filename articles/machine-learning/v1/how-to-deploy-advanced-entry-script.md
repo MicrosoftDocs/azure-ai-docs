@@ -22,7 +22,7 @@ This article explains how to write entry scripts for specialized use cases in Az
 
 ## Prerequisites
 
-* A trained machine learning model that you intend to deploy with Azure Machine Learning. For more information about model deployment, see [Deploy machine learning models to Azure](how-to-deploy-and-where.md).
+A trained machine learning model that you intend to deploy with Azure Machine Learning. For more information about model deployment, see [Deploy machine learning models to Azure](how-to-deploy-and-where.md).
 
 ## Automatically generate a Swagger schema
 
@@ -111,7 +111,7 @@ def run(Inputs, GlobalParameters):
 ```
 
 > [!TIP]
-> The return value from the script can be any Python object that's serializable to JSON. For example, if your model returns a Pandas dataframe that contains multiple columns, you might use an output decorator similar to the following code:
+> The return value from the script can be any Python object that's serializable to JSON. For example, if your model returns a Pandas dataframe that contains multiple columns, you can use an output decorator that's similar to the following code:
 > 
 > ```python
 > output_sample = pd.DataFrame(data=[{"a1": 5, "a2": 6}])
@@ -249,7 +249,7 @@ def run(request):
 > ```
 
 > [!WARNING]
-> Azure Machine Learning only routes POST and GET requests to the containers that run the scoring service. Errors can result if browsers use OPTIONS requests to issue preflight requests.
+> Azure Machine Learning routes only POST and GET requests to the containers that run the scoring service. Errors can result if browsers use OPTIONS requests to issue preflight requests.
 
 ## Load registered models
 
@@ -307,7 +307,7 @@ second_model = Model(ws, name="my_second_model", version=2)
 service = Model.deploy(ws, "myservice", [first_model, second_model], inference_config, deployment_config)
 ```
 
-In the Docker image that hosts the service, the `AZUREML_MODEL_DIR` environment variable contains the directory where the models are located. In this directory, each model is located in a directory path of `<model-name>/<version>`. In this path, `<model-name>` is the name of the registered model, and `<version>` is the version of the model. The files that make up the registered model are stored in these directories.
+In the Docker image that hosts the service, the `AZUREML_MODEL_DIR` environment variable contains the folder where the models are located. In this folder, each model is located in a folder path of `<model-name>/<version>`. In this path, `<model-name>` is the name of the registered model, and `<version>` is the version of the model. The files that make up the registered model are stored in these folders.
 
 In this example, the path of the first model is `$AZUREML_MODEL_DIR/my_first_model/1/my_first_model.pkl`. The path of the second model is `$AZUREML_MODEL_DIR/my_second_model/2/my_second_model.pkl`.
 
@@ -323,7 +323,7 @@ second_model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), second_model_na
 
 ### get_model_path
 
-When you register a model, you provide a model name that's used for managing the model in the registry. You use this name with the [`Model.get_model_path`](/python/api/azureml-core/azureml.core.model.model#azureml-core-model-model-get-model-path) method to retrieve the path of the model file or files on the local file system. If you register a folder or a collection of files, this API returns the path of the directory that contains those files.
+When you register a model, you provide a model name that's used for managing the model in the registry. You use this name with the [`Model.get_model_path`](/python/api/azureml-core/azureml.core.model.model#azureml-core-model-model-get-model-path) method to retrieve the path of the model file or files on the local file system. If you register a folder or a collection of files, this API returns the path of the folder that contains those files.
 
 When you register a model, you give it a name. The name corresponds to where the model is placed, either locally or during service deployment.
 
