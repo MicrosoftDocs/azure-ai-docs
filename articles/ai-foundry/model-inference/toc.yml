@@ -71,11 +71,17 @@ items:
     - name: Programming languages and SDKs
       href: ./supported-languages.md
     - name: Work with embedding models
-      href: ./how-to/use-embeddings.md
-    - name: Work with image embedding models
-      href: ./how-to/use-image-embeddings.md
-    - name: Work with chat completion models
-      href: ./how-to/use-chat-completions.md
+      items:
+        - name: Work with text embeddings
+          href: ./how-to/use-embeddings.md
+        - name: Work with image embeddings
+          href: ./how-to/use-image-embeddings.md
+    - name: Work with chat models
+      items:
+        - name: Work with chat completion models
+          href: ./how-to/use-chat-completions.md
+        - name: Work with reasoning models
+          href: ./how-to/use-chat-reasoning.md
     - name: Develop with LangChain and LangGraph
       href: ../../ai-studio/how-to/develop/langchain.md?context=/azure/ai-foundry/model-inference/context/context
     - name: Develop with Llama-Index
