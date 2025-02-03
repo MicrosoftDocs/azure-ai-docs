@@ -47,18 +47,8 @@ To get started with Jamba 1.5 mini deployed as a serverless API, explore our int
 ### Prerequisites
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
-- An [Azure AI Foundry project](../how-to/create-projects.md). The serverless API model deployment offering for Jamba family models is only available with projects created in these regions:
-
-     * East US
-     * East US 2
-     * North Central US
-     * South Central US
-     * West US
-     * West US 3
-     * Sweden Central
+- An [Azure AI Foundry project](../how-to/create-projects.md). The serverless API model deployment offering for Jamba family models is only available with projects created in specific regions. For a list of these regions, see [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md#ai21-models).
        
-    For a list of  regions that are available for each of the models supporting serverless API endpoint deployments, see [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md).
-
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. Alternatively, your account can be assigned a custom role that has the following permissions:
 
     - On the Azure subscription—to subscribe the Azure AI Foundry project to the Azure Marketplace offering, once for each project, per offering:
