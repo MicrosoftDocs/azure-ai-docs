@@ -28,6 +28,7 @@ from azure.identity import DefaultAzureCredential
 model = ChatCompletionsClient(
     endpoint="https://<resource>.services.ai.azure.com/models",
     credential=DefaultAzureCredential(),
+    credential_scopes=["https://cognitiveservices.azure.com/.default"],
     model="mistral-large-2407",
 )
 ```
@@ -47,10 +48,13 @@ import ModelClient from "@azure-rest/ai-inference";
 import { isUnexpected } from "@azure-rest/ai-inference";
 import { DefaultAzureCredential } from "@azure/identity";
 
+const clientOptions = { credentials: { "https://cognitiveservices.azure.com" } };
+
 const client = new ModelClient(
     "https://<resource>.services.ai.azure.com/models", 
     new DefaultAzureCredential(),
-    "mistral-large-2407"
+    "mistral-large-2407",
+    clientOptions,
 );
 ```
 
@@ -79,10 +83,16 @@ using Azure.AI.Inference;
 Then, you can use the package to consume the model. The following example shows how to create a client to consume chat completions with Entra ID:
 
 ```csharp
+var credential = new DefaultAzureCredential();
+AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions();
+BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(credential, new string[] { "https://cognitiveservices.azure.com/.default" });
+clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
+
 ChatCompletionsClient client = new ChatCompletionsClient(
     new Uri("https://<resource>.services.ai.azure.com/models"),
-    new DefaultAzureCredential(includeInteractiveCredentials: true),
-    "mistral-large-2407"
+    credential,
+    "mistral-large-2407",
+    clientOptions.
 );
 ```
 
@@ -106,8 +116,9 @@ Add the package to your project:
 Then, you can use the package to consume the model. The following example shows how to create a client to consume chat completions:
 
 ```java
+TokenCredential defaultCredential = new DefaultAzureCredentialBuilder().build();
 ChatCompletionsClient client = new ChatCompletionsClientBuilder()
-    .credential(new DefaultAzureCredential()))
+    .credential(defaultCredential)
     .endpoint("https://<resource>.services.ai.azure.com/models")
     .model("mistral-large-2407")
     .buildClient();
