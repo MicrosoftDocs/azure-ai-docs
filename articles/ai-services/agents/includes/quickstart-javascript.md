@@ -149,7 +149,7 @@ export async function main() {
   // messages[0] is the most recent
   for (let i = messages.data.length - 1; i >= 0; i--) {
     const m = messages.data[i];
-    if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
+    if (isOutputOfType(m.content[0], "text")) {
       const textContent = m.content[0];
       console.log(`${textContent.text.value}`);
       console.log(`---------------------------------`);
