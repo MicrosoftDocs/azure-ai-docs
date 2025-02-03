@@ -98,6 +98,8 @@ items:
       items:
         - name: Fine-tuning overview
           href: concepts/fine-tuning-overview.md
+        - name: Fine-tune with serverless API
+          href: how-to/fine-tune-serverless.md
         - name: Fine-tune with user-managed compute
           href: how-to/fine-tune-managed-compute.md
         - name: Fine-tune Azure OpenAI models
