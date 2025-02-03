@@ -10,7 +10,7 @@ ms.date: 01/30/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
-zone_pivot_groups: openai-quickstart-new
+zone_pivot_groups: structured-outputs
 ---
 
 # Structured outputs

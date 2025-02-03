@@ -1037,3 +1037,13 @@ groups:
     title: TypeScript
   - id: rest-api
     title: REST
+- id: structured-outputs
+  title: Programming languages
+  prompt: Choose a language or API
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-rest
+    title: rest
