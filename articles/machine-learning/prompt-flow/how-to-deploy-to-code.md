@@ -493,9 +493,11 @@ request_settings:
   request_timeout_ms: 300000
 ```
 
-> [!NOTE]
+> [!IMPORTANT]
 >
-> 300,000 ms timeout only works for maanged online deployments from prompt flow. You need to make sure that you have added properties for your model as below (either inline model specification in the deployment yaml or standalone model specification yaml) to indicate this is a deployment from prompt flow.
+> The 300,000 ms timeout _only works for managed online deployments from prompt flow_. The maximum for a non-prompt flow managed online endpoint is 180 seconds. 
+>
+> You need to make sure that you have added properties for your model as below (either inline model specification in the deployment yaml or standalone model specification yaml) to indicate this is a deployment from prompt flow.
 
 ```yaml
 properties:
