@@ -9,8 +9,9 @@ ms.topic: include
 
 The following table contains multiple scenarios that can help troubleshooting Microsoft Entra ID:
 
-| Error / Scenario | Root cause | Solution |
-| ---------------- | ---------- | -------- |
+| Error / Scenario     | Root cause    | Solution |
+| -------------------- | ------------- | -------- |
+| You're using an SDK. | Known issues. | Before making further troubleshooting, it's advisable to install the latest version of the software you are using to conect to the service. Authentication bugs may have been fixed in a newer version of the software you're using. |
 | `401 Principal does not have access to API/Operation` | The request indicates authentication in the correct way, however, the user principal doesn't have the required permissions to use the inference endpoint. | Ensure you have: <br /> 1. Assigned the role **Cognitive Services User** to your principal to the Azure AI Services resource. <br /> 2. Wait at least 5 minutes before making the first call. |
 | `401 HTTP/1.1 401 PermissionDenied` | The request indicates authentication in the correct way, however, the user principal doesn't have the required permissions to use the inference endpoint. | Assigned the role **Cognitive Services User** to your principal in the Azure AI Services resource. Roles like **Administrator** or **Contributor** don't grand inference access. Wait at least 5 minutes before making the first call. |
 | You're using REST API calls and you get `401 Unauthorized. Access token is missing, invalid, audience is incorrect, or have expired.` | The request is failing to perform authentication with Entra ID. | Ensure the `Authentication` header contains a valid token with a scope `https://cognitiveservices.azure.com/.default`. |
