@@ -1,6 +1,20 @@
 ## Getting started
 
+Add the following packages to your project to work with Azure OpenAI:
+
+**[Azure.AI.OpenAI](https://www.nuget.org/packages/Azure.AI.OpenAI/)**: Provides an Azure OpenAI client with Azure specific functionality that builds on top of the standard [OpenAI](https://www.nuget.org/packages/OpenAI/) library dependency.
+**[Azure.Identity](https://www.nuget.org/packages/Azure.Identity)**: Provides Microsoft Entra ID token authentication support across the Azure SDK libraries. 
+**[Newtonsoft.Json.Schema](https://www.nuget.org/packages/Newtonsoft.Json.Schema)**: Provides helpful utilities for working with JSON schemas.
+
+```dotnetcli
+dotnet add package Azure.AI.OpenAI --prerelease
+dotnet add package Azure.Identity
+dotnet add package Newtonsoft.Json.Schema
+```
+
 # [Microsoft Entra ID](#tab/dotnet-entra-id)
+
+If you are new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](../how-to/managed-identity.md).
 
 ```csharp
 using Azure.AI.OpenAI;
@@ -184,8 +198,7 @@ var chat = new List<ChatMessage>()
 
 // Create a JSON schema for the CalendarEvent structured response
 JSchemaGenerator generator = new JSchemaGenerator();
-var schema = generator.Generate(typeof(CalendarEvent));
-string jsonSchema = schema.ToString();
+var jsonSchema = generator.Generate(typeof(CalendarEvent)).ToString();
 
 // Get a chat completion from the AI model
 var completion = chatClient.CompleteChat(
@@ -273,8 +286,7 @@ var chat = new List<ChatMessage>()
 
 // Create a JSON schema for the CalendarEvent structured response
 JSchemaGenerator generator = new JSchemaGenerator();
-var schema = generator.Generate(typeof(CalendarEvent));
-string jsonSchema = schema.ToString();
+var jsonSchema = generator.Generate(typeof(CalendarEvent)).ToString();
 
 // Get a chat completion from the AI model
 var completion = chatClient.CompleteChat(
