@@ -1,34 +1,35 @@
 ---
-title: Entry script authoring for advanced scenarios
+title: Entry scripts for advanced scenarios
 titleSuffix: Azure Machine Learning
-description: Learn how to write Azure Machine Learning entry scripts for pre- and post-processing during deployment.
+description: See how to write Azure Machine Learning entry scripts for advanced scenarios like schema generation, accepting raw data, and loading registered models.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: how-to
-ms.date: 03/12/2024
+ms.date: 02/03/2025
 author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
 ms.custom: UpdateFrequency5, deploy, sdkv1
+# customer intent: As a developer, I want to see how to use advanced entry scripts in Azure Machine Learning so that I can implement schema generation, accept raw data, and load registered models.
 ---
 
-# Advanced entry script authoring
+# Advanced entry scripts
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
-This article explains how to write entry scripts for specialized use cases in Azure Machine Learning.
+This article explains how to write entry scripts for specialized use cases in Azure Machine Learning. An entry script, which is also called a scoring script, accepts requests, uses a model to score data, and returns a response.
 
 ## Prerequisites
 
-- A trained machine learning model that you intend to deploy with Azure Machine Learning. To learn more about model deployment, see [Deploy machine learning models to Azure](how-to-deploy-and-where.md).
+* A trained machine learning model that you intend to deploy with Azure Machine Learning. For more information about model deployment, see [Deploy machine learning models to Azure](how-to-deploy-and-where.md).
 
 ## Automatically generate a Swagger schema
 
 To automatically generate a schema for your web service, provide a sample of the input or output in the constructor for one of the defined type objects. The type and sample are used to automatically create the schema. Azure Machine Learning then creates an [OpenAPI specification](https://swagger.io/docs/specification/about/) (formerly, a Swagger specification) for the web service during deployment.
 
 > [!WARNING]
-> Don't use sensitive or private data for the sample input or output. The Swagger page for AML-hosted inferencing exposes the sample data.
+> Don't use sensitive or private data for the sample input or output. In Azure Machine Learning, the Swagger page for inferencing exposes the sample data.
 
 The following types are currently supported:
 
@@ -67,40 +68,40 @@ from inference_schema.parameter_types.pandas_parameter_type import PandasParamet
 
 def init():
     global model
-    # Replace filename if needed.
+    # Replace the file name if needed.
     model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), 'sklearn_regression_model.pkl')
     # Deserialize the model file back into a sklearn model.
     model = joblib.load(model_path)
 
 
-# providing 3 sample inputs for schema generation
+# Provide three sample inputs for schema generation.
 numpy_sample_input = NumpyParameterType(np.array([[1,2,3,4,5,6,7,8,9,10],[10,9,8,7,6,5,4,3,2,1]],dtype='float64'))
 pandas_sample_input = PandasParameterType(pd.DataFrame({'name': ['Sarah', 'John'], 'age': [25, 26]}))
 standard_sample_input = StandardPythonParameterType(0.0)
 
-# This is a nested input sample, any item wrapped by `ParameterType` will be described by schema
+# The following sample is a nested input sample. Any item wrapped by `ParameterType` is described by the schema.
 sample_input = StandardPythonParameterType({'input1': numpy_sample_input, 
                                         'input2': pandas_sample_input, 
                                         'input3': standard_sample_input})
 
-sample_global_parameters = StandardPythonParameterType(1.0) # this is optional
+sample_global_parameters = StandardPythonParameterType(1.0) # This line is optional.
 sample_output = StandardPythonParameterType([1.0, 1.0])
-outputs = StandardPythonParameterType({'Results':sample_output}) # 'Results' is case sensitive
+outputs = StandardPythonParameterType({'Results':sample_output}) # "Results" is case sensitive.
 
 @input_schema('Inputs', sample_input) 
-# 'Inputs' is case sensitive
+# "Inputs" is case sensitive.
 
 @input_schema('GlobalParameters', sample_global_parameters) 
-# this is optional, 'GlobalParameters' is case sensitive
+# The preceding line is optional. "GlobalParameters" is case sensitive.
 
 @output_schema(outputs)
 
 def run(Inputs, GlobalParameters): 
-    # the parameters here have to match those in decorator, both 'Inputs' and 
-    # 'GlobalParameters' here are case sensitive
+    # The parameters in the preceding line have to match those in the decorator. "Inputs" and 
+    # "GlobalParameters" are case sensitive.
     try:
         data = Inputs['input1']
-        # data will be convert to target format
+        # The data gets converted to the target format.
         assert isinstance(data, np.ndarray)
         result = model.predict(data)
         return result.tolist()
@@ -132,45 +133,44 @@ from azureml.contrib.services.aml_response import AMLResponse
 from PIL import Image
 import json
 
-
 def init():
     print("This is init()")
-    
 
 @rawhttp
 def run(request):
     print("This is run()")
     
     if request.method == 'GET':
-        # For this example, just return the URL for GETs.
+        # For this example, return the URL for GET requests.
         respBody = str.encode(request.full_path)
         return AMLResponse(respBody, 200)
     elif request.method == 'POST':
         file_bytes = request.files["image"]
         image = Image.open(file_bytes).convert('RGB')
-        # For a real-world solution, you would load the data from reqBody
+        # For a real-world solution, load the data from the request body
         # and send it to the model. Then return the response.
 
-        # For demonstration purposes, this example just returns the size of the image as the response.
+        # For demonstration purposes, this example returns the size of the image as the response.
         return AMLResponse(json.dumps(image.size), 200)
     else:
         return AMLResponse("bad request", 500)
 ```
 
 > [!IMPORTANT]
-> The `AMLRequest` class is in the `azureml.contrib` namespace. Entities in this namespace are in preview. They change frequently as the service undergoes improvements. These entities aren't fully supported by Microsoft.
+> The `AMLRequest` class is in the `azureml.contrib` namespace. Entities in this namespace are in preview. They change frequently while the service undergoes improvements. Microsoft doesn't offer full support for these entities.
 >
-> If you need to test this code in your local development environment, you can install the components by using the following command:
+> If you need to test code that uses this class in your local development environment, you can install the components by using the following command:
 >
 > ```shell
 > pip install azureml-contrib-services
 > ```
 
 > [!NOTE]
-> We don't recommend using `500` as a custom status code. On the `azureml-fe` side, the status code is rewritten to `502`.
->   * The status code is passed through `azureml-fe` and then sent to the client.
->   * The `azureml-fe` code rewrites the `500` that's returned from the model side as `502`. The client receives a code of `502`.
->   * If the `azureml-fe` code itself returns `500`, the client side still receives a code of `500`.
+> We don't recommend using `500` as a custom status code. On the Azure Machine Learning inference router (`azureml-fe`) side, the status code is rewritten to `502`.
+> 
+> * The status code is passed through `azureml-fe` and then sent to the client.
+> * The `azureml-fe` code rewrites the `500` that's returned from the model side as `502`. The client receives a code of `502`.
+> * If the `azureml-fe` code itself returns `500`, the client side still receives a code of `500`.
 
 When you use the `AMLRequest` class, you can access only the raw posted data in the score.py file. There's no client-side component. From a client, you can post data as usual. For example, the following Python code reads an image file and posts the data:
 
@@ -240,9 +240,9 @@ def run(request):
 ```
 
 > [!IMPORTANT]
-> The `AMLRequest` class is in the `azureml.contrib` namespace. Entities in this namespace are in preview. They change frequently as the service undergoes improvements. These entities aren't fully supported by Microsoft.
+> The `AMLRequest` class is in the `azureml.contrib` namespace. Entities in this namespace are in preview. They change frequently while the service undergoes improvements. Microsoft doesn't offer full support for these entities.
 >
-> If you need to test code this in your local development environment, you can install the components by using the following command:
+> If you need to test code that uses this class in your local development environment, you can install the components by using the following command:
 >
 > ```shell
 > pip install azureml-contrib-services
@@ -250,7 +250,6 @@ def run(request):
 
 > [!WARNING]
 > Azure Machine Learning only routes POST and GET requests to the containers that run the scoring service. Errors can result if browsers use OPTIONS requests to issue preflight requests.
->
 
 ## Load registered models
 
@@ -263,14 +262,14 @@ There are two ways to locate models in your entry script:
 
 `AZUREML_MODEL_DIR` is an environment variable that's created during service deployment. You can use this environment variable to find the location of deployed models.
 
-The following table describes the value of `AZUREML_MODEL_DIR` when a varying number of models are deployed:
+The following table describes possible values of `AZUREML_MODEL_DIR` for a varying number of deployed models:
 
 | Deployment | Environment variable value |
 | ----- | ----- |
 | Single model | The path to the folder that contains the model. |
 | Multiple models | The path to the folder that contains all models. Models are located by name and version in this folder in the format `<model-name>/<version>`. |
 
-During model registration and deployment, models are placed in the `AZUREML_MODEL_DIR` path, and their original filenames are preserved.
+During model registration and deployment, models are placed in the `AZUREML_MODEL_DIR` path, and their original file names are preserved.
 
 To get the path to a model file in your entry script, combine the environment variable with the file path you're looking for.
 
@@ -281,10 +280,10 @@ The following example shows you how to find the path when you have a single mode
 ```python
 import os
 
-# Example when the model is a file
+# In the following example, the model is a file.
 model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), 'sklearn_regression_model.pkl')
 
-# Example when the model is a folder containing a file
+# In the following example, the model is a folder that contains a file.
 file_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), 'my_model_folder', 'sklearn_regression_model.pkl')
 ```
 
@@ -313,7 +312,7 @@ In the Docker image that hosts the service, the `AZUREML_MODEL_DIR` environment 
 In this example, the path of the first model is `$AZUREML_MODEL_DIR/my_first_model/1/my_first_model.pkl`. The path of the second model is `$AZUREML_MODEL_DIR/my_second_model/2/my_second_model.pkl`.
 
 ```python
-# Example when the model is a file, and the deployment contains multiple models
+# In the following example, the model is a file, and the deployment contains multiple models.
 first_model_name = 'my_first_model'
 first_model_version = '1'
 first_model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), first_model_name, first_model_version, 'my_first_model.pkl')
@@ -335,16 +334,10 @@ For more entry script examples for specific machine learning use cases, see the 
 * [PyTorch](https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/ml-frameworks/pytorch)
 * [TensorFlow](https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/ml-frameworks/tensorflow)
 * [Keras](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/ml-frameworks/keras/train-hyperparameter-tune-deploy-with-keras/train-hyperparameter-tune-deploy-with-keras.ipynb)
-* [AutoML](https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/automated-machine-learning/classification-bank-marketing-all-features)
+* [Automated machine learning](https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/automated-machine-learning/classification-bank-marketing-all-features)
 
 ## Related content
 
 * [Troubleshooting remote model deployment](how-to-troubleshoot-deployment.md)
-* [Deploy a model to an Azure Kubernetes Service cluster with v1](how-to-deploy-azure-kubernetes-service.md)
 * [Consume an Azure Machine Learning model deployed as a web service](how-to-consume-web-service.md)
 * [Update a deployed web service (v1)](how-to-deploy-update-web-service.md)
-* [Use a custom container to deploy a model to an online endpoint](../how-to-deploy-custom-container.md)
-* [Use TLS to secure a web service through Azure Machine Learning](how-to-secure-web-service.md)
-* [Monitor and collect data from ML web service endpoints](how-to-enable-app-insights.md)
-* [Collect data from models in production](how-to-enable-data-collection.md)
-* [Trigger applications, processes, or CI/CD workflows based on Azure Machine Learning events](../how-to-use-event-grid.md)
