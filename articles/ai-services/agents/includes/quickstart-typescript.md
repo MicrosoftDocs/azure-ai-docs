@@ -4,7 +4,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: include
-ms.date: 01/28/2025
+ms.date: 02/03/2025
 ms.custom: devx-track-ts
 ---
 
@@ -37,6 +37,12 @@ Run the following commands to install the npm packages.
 ```console
 npm install @azure/ai-projects
 npm install @azure/identity
+```
+
+Next, to authenticate your API requests and run the program, use the [az login](/cli/azure/authenticate-azure-cli-interactively) command to sign into your Azure subscription.
+
+```azurecli
+az login
 ```
 
 Use the following code to create and run an agent. To run this code, you will need to create a connection string using information from your project. This string is in the format:
@@ -93,7 +99,7 @@ export async function main(): Promise<void> {
   const codeInterpreterTool = ToolUtility.createCodeInterpreterTool();
 
   // Step 2: Create an agent
-  const agent = await client.agents.createAgent("gpt-35-turbo", {
+  const agent = await client.agents.createAgent("gpt-4o-mini", {
     name: "my-agent",
     instructions: "You are a helpful agent",
     tools: [codeInterpreterTool.definition],
