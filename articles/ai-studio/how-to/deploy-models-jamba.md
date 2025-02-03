@@ -31,14 +31,14 @@ Certain models in the model catalog can be deployed as a serverless API with pay
 
 # [AI21 Jamba 1.5 Large](#tab/ai21-jamba-1-5-large)
 
-The [AI21-Jamba 1.5 Large model](https://aka.ms/aistudio/landing/ai21-labs-jamba-1.5-large) deployed as a serverless API with pay-as-you-go billing is [offered by AI21 through Microsoft Azure Marketplace](https://aka.ms/azure-marketplace-offer-ai21-jamba-1.5-large). AI21 can change or update the terms of use and pricing of this model.
+The [AI21-Jamba 1.5 Large model](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) deployed as a serverless API with pay-as-you-go billing is [offered by AI21 through Microsoft Azure Marketplace](https://aka.ms/azure-marketplace-offer-ai21-jamba-1.5-large). AI21 can change or update the terms of use and pricing of this model.
 
 To get started with Jamba 1.5 large deployed as a serverless API, explore our integrations with [LangChain](https://aka.ms/ai21-jamba-1.5-large-langchain-sample), [LiteLLM](https://aka.ms/ai21-jamba-1.5-large-litellm-sample), [OpenAI](https://aka.ms/ai21-jamba-1.5-large-openai-sample) and the [Azure API](https://aka.ms/ai21-jamba-1.5-large-azure-api-sample).
 
 
 # [AI21 Jamba 1.5 Mini](#tab/ai21-jamba-1-5)
 
-The [AI21 Jamba 1.5 Mini model](https://aka.ms/aistudio/landing/ai21-labs-jamba-1.5-mini) deployed as a serverless API with pay-as-you-go billing is [offered by AI21 through Microsoft Azure Marketplace](https://aka.ms/azure-marketplace-offer-ai21-jamba-1.5-mini). AI21 can change or update the terms of use and pricing of this model.
+The [AI21 Jamba 1.5 Mini model](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-staging) deployed as a serverless API with pay-as-you-go billing is [offered by AI21 through Microsoft Azure Marketplace](https://aka.ms/azure-marketplace-offer-ai21-jamba-1.5-mini). AI21 can change or update the terms of use and pricing of this model.
 
 To get started with Jamba 1.5 mini deployed as a serverless API, explore our integrations with [LangChain](https://aka.ms/ai21-jamba-1.5-mini-langchain-sample), [LiteLLM](https://aka.ms/ai21-jamba-1.5-mini-litellm-sample), [OpenAI](https://aka.ms/ai21-jamba-1.5-mini-openai-sample) and the [Azure API](https://aka.ms/ai21-jamba-1.5-mini-azure-api-sample).
 
@@ -85,7 +85,7 @@ These steps demonstrate the deployment of `AI21 Jamba 1.5 Large` or `AI21 Jamba 
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
-4. Search for and select an AI21 model like `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` or `AI21 Jamba Instruct` to open its Details page.
+4. Search for and select an AI21 model like `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` to open its Details page.
 
 1. Select **Deploy** to open a serverless API deployment window for the model.
 
@@ -93,7 +93,7 @@ These steps demonstrate the deployment of `AI21 Jamba 1.5 Large` or `AI21 Jamba 
 
     1. From the left navigation pane of your project, select **My assets** > **Models + endpoints**.
     1. Select **+ Deploy model** > **Deploy base model**.
-    1. Search for and select an AI21 model like `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` or `AI21 Jamba Instruct` to open the Model's Details page.
+    1. Search for and select an AI21 model like `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` to open the Model's Details page.
     1. Select **Confirm** to open a serverless API deployment window for the model.
 
 1. Your current project is specified for the deployment. To successfully deploy the AI21-Jamba family models, your project must be in one of the regions listed in the [Prerequisites](#prerequisites) section.
@@ -114,7 +114,7 @@ These steps demonstrate the deployment of `AI21 Jamba 1.5 Large` or `AI21 Jamba 
 
 1. [!INCLUDE [Find your deployment details](../includes/find-deployments.md)]
 
-To learn about billing for the AI21-Jamba family models deployed as a serverless API with pay-as-you-go token-based billing, see [Cost and quota considerations for Jamba Instruct deployed as a serverless API](#cost-and-quota-considerations-for-jamba-family-models-deployed-as-a-serverless-api).
+To learn about billing for the AI21-Jamba family models deployed as a serverless API with pay-as-you-go token-based billing, see [Cost and quota considerations for Jamba models deployed as a serverless API](#cost-and-quota-considerations-for-jamba-family-models-deployed-as-a-serverless-api).
 
 
 ### Consume Jamba family models as a serverless API
@@ -185,7 +185,7 @@ Payload is a JSON formatted string containing the following parameters:
 
 | Key           | Type           | Required/Default | Allowed values    | Description |
 | ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `model`       | `string`       | Y    | Must be `jamba-1.5-large` or `jamba-1.5-mini` or  `jamba-instruct`|
+| `model`       | `string`       | Y    | Must be `jamba-1.5-large` or `jamba-1.5-mini`|
 | `messages`    | `list[object]` | Y     | A list of objects, one per message, from oldest to newest. The oldest message can be role `system`. All later messages must alternate between user and assistant roles. See the message object definition below.|
 | `max_tokens`  | `integer`      | N <br>`4096` |  0 – 4096     | The maximum number of tokens to allow for each generated response message. Typically the best way to limit output length is by providing a length limit in the system prompt (for example, "limit your answers to three sentences")|
 | `temperature` | `float`        | N <br>`1`  |  0.0 – 2.0      | How much variation to provide in each answer. Setting this value to 0 guarantees the same response to the same question every time. Setting a higher value encourages more variation. Modifies the distribution from which tokens are sampled. We recommend altering this or `top_p`, but not both. |
@@ -271,28 +271,6 @@ __Single-turn example Jamba 1.5 large and Jamba 1.5 mini with documents__
 }
 ```
 
-__Chat example (fourth request containing third user response)__
-
-```JSON
-{
-  "model": "jamba-instruct",
-  "messages": [
-     {"role": "system",
-      "content": "You are a helpful genie just released from a bottle. You start the conversation with 'Thank you for freeing me! I grant you one wish.'"},
-     {"role":"user",
-      "content":"I want a new car"},
-     {"role":"assistant",
-      "content":"🚗 Great choice, I can definitely help you with that! Before I grant your wish, can you tell me what kind of car you're looking for?"},
-     {"role":"user",
-      "content":"A corvette"},
-     {"role":"assistant",
-      "content":"Great choice! What color and year?"},
-     {"role":"user",
-      "content":"1963 black split window Corvette"}
-  ],
-  "n":3
-}
-```
 
 #### Response schema
 
