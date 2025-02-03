@@ -518,7 +518,7 @@ Version: `21.08.11`
 Primary changes:
 
 - Windows Security update
-- Update of Nvidia CuDNN to 8.1.0
+- Update of NVIDIA CuDNN to 8.1.0
 - Update of Jupyter Lab -to 3.0.16
 - Added MLFLow for experiment tracking
 - Improvement of stability and minor bug fixes
