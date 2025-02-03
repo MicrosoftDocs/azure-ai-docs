@@ -56,7 +56,7 @@ In the **Notebooks** section, you can copy and paste text between the terminal a
 
 > * Windows: `Ctrl-c` to copy and use `Ctrl-v` or `Ctrl-Shift-v` or `Shift-Insert` to paste.
 > * Mac OS: `Cmd-c` to copy and `Cmd-v` to paste.
-> * FireFox and Internet Explorer may not support clipboard permissions properly.
+> * Firefox and Internet Explorer may not support clipboard permissions properly.
 
 ## <a name=git></a> Use files from Git and version files
 
