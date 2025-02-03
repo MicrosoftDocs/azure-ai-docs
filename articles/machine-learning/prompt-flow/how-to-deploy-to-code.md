@@ -464,7 +464,7 @@ While tuning above parameters, you need to monitor the following metrics to ensu
 
 #### Collect general metrics
 
-You can view [general metrics of online deployment (request numbers, request latency, network bytes, CPU/GPU/Disk/Memory utilization, and more)](../how-to-monitor-online-endpoints.md#metrics).
+You can view [general metrics of online deployment (request numbers, request latency, network bytes, CPU/GPU/Disk/Memory utilization, and more)](../how-to-monitor-online-endpoints.md#use-metrics).
 
 #### Collect tracing data and system metrics during inference time
 

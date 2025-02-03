@@ -123,7 +123,7 @@ Azure Machine Learning online endpoints and batch endpoints have resource limits
 > [!IMPORTANT]
 > These limits are *regional*, meaning that you can use up to these limits per each region you're using. For example, if your current limit for number of endpoints per subscription is 100, you can create 100 endpoints in the East US region, 100 endpoints in the West US region, and 100 endpoints in each of the other supported regions in a single subscription. Same principle applies to all the other limits.
 
-To determine the current usage for an endpoint, [view the metrics](how-to-monitor-online-endpoints.md#metrics). 
+To determine the current usage for an endpoint, [view the metrics](how-to-monitor-online-endpoints.md#use-metrics). 
 
 To request an exception from the Azure Machine Learning product team, use the steps in the [Endpoint limit increases](#endpoint-limit-increases).
 
