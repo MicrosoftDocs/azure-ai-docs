@@ -414,7 +414,9 @@ items:
     href: responsible-use-of-ai-overview.md
   - name: What is Azure AI Content Safety?
     href: ai-services/content-safety-overview.md
-  - name: Use Azure AI Content Safety in the portal
+  - name: Content safety in the Azure AI Foundry portal
+    href: ai-services/content-safety-overview.md
+  - name: Use Azure AI content safety in the portal
     href: ai-services/how-to/content-safety.md
   - name: Content filtering
     href: concepts/content-filtering.md
