@@ -138,6 +138,8 @@ Authorization: Bearer <bearer-token>
 Content-Type: application/json
 ```
 
+Tokens have to be issued with scope `https://cognitiveservices.azure.com/.default`.
+
 For testing purposes, the easiest way to get a valid token for your user account is to use the Azure CLI. In a console, run the following Azure CLI command:
 
 ```azurecli
