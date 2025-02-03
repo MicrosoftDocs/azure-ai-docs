@@ -41,7 +41,7 @@ Support for structured outputs was first added in API version `2024-08-01-previe
 ::: zone-end
 
 
-::: zone pivot="programming-language-python"
+::: zone pivot="programming-language-csharp"
 
 [!INCLUDE [structured-outputs-dotnet](../includes/structured-outputs-dotnet.md)]
 
