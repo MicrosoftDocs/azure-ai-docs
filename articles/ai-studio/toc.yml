@@ -120,31 +120,61 @@ items:
       href: concepts/what-are-ai-services.md
     - name: Azure OpenAI
       items:
-      - name: What is Azure OpenAI?
-        href: ../ai-services/openai/overview.md?context=/azure/ai-studio/context/context
-        displayName: cognitive
-      - name: Azure OpenAI in Azure AI Foundry
-        href: azure-openai-in-ai-studio.md
       - name: Deploy Azure OpenAI models
-        href: how-to/deploy-models-openai.md
-      - name: Use Azure OpenAI Assistants
-        href: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
-      - name: Generate images in Azure AI Foundry portal
-        href: ../ai-services/openai/dall-e-quickstart.md?context=/azure/ai-studio/context/context
-      - name:  Chat
+        items: 
+        - name: Azure OpenAI in Azure AI Foundry
+          href: azure-openai-in-ai-studio.md
+        - name: Model region availability
+          href:  ../ai-services/openai/concepts/models.md?context=/azure/ai-studio/context/context
+          displayName: OpenAI, gpt-4o, gpt-4o-mini, whisper
+        - name: Deployment types
+          href: ../ai-services/openai/how-to/deployment-types.md?context=/azure/ai-studio/context/context
+          displayName: provisioned, global standard, datazone, data zone, global data zone, batch, globalbatch
+        - name: Model deployment
+          href: how-to/deploy-models-openai.md
+      - name: Generate text
         items:
-        - name: Use GPT-35-Turbo and GPT-4 with Azure OpenAI Service
-          href: ../ai-services/openai/chatgpt-quickstart.md?context=/azure/ai-studio/context/context
-        - name: Chat with your data using Azure OpenAI models
-          href: ../ai-services/openai/use-your-data-quickstart.md?context=/azure/ai-studio/context/context
+        - name: Batch
+          href: ../ai-services/openai/how-to/batch.md?context=/azure/ai-studio/context/context
+          displayName: OpenAI, global batch, globalbatch, chat, chat completions
+        - name: Reasoning models
+          href: ../ai-services/openai/how-to/reasoning.md?context=/azure/ai-studio/context/context
+          displayName: OpenAI, o1, o1-mini, o3-mini, reasoning effort
+        - name: Function calling
+          href: ../ai-services/openai/how-to/function-calling.md?context=/azure/ai-studio/context/context
+          displayName: OpenAI 
+        - name: Predicted outputs
+          href: ../ai-services/openai/how-to/predicted-outputs.md?context=/azure/ai-studio/context/context 
+        - name: Prompt caching
+          href: ../ai-services/openai/how-to/prompt-caching.md?context=/azure/ai-studio/context/context 
+        - name: Structured outputs
+          href: ../ai-services/openai/how-to/structured-outputs.md?context=/azure/ai-studio/context/context 
         - name: Use vision-enabled chat
           href:  ../ai-services/openai/gpt-v-quickstart.md?context=/azure/ai-studio/context/context
-        - name: Use GPT-4o in the real-time audio playground
-          href: ../ai-services/openai/realtime-audio-quickstart.md?context=/azure/ai-studio/context/context
+      - name: Generate images
+        href: ../ai-services/openai/dall-e-quickstart.md?context=/azure/ai-studio/context/context
+        displayName: OpenAI, DALLE, dall-e, DALL-E
+      - name: Audio
+        items:
+          - name: Use GPT-4o in the real-time audio playground
+            href: ../ai-services/openai/realtime-audio-quickstart.md?context=/azure/ai-studio/context/context
+            displayName: OpenAI, realtime, real-time
+          - name: Audio generation
+            href: ../ai-services/openai/audio-completions-quickstart.md?context=/azure/ai-studio/context/context 
+      - name: Distillation (stored completions)
+        href: ../ai-services/openai/how-to/stored-completions.md?context=/azure/ai-studio/context/context
+        displayName: OpenAI, Azure OpenAI, stored completions, model distillation
+      - name: Embeddings
+        href: ../ai-services/openai/tutorials/embeddings.md?context=/azure/ai-studio/context/context
+        displayName: text-embedding-ada-002, text-embedding-3-large, text-embedding-3-small
+      - name: Evaluation
+        href: ../ai-services/openai/how-to/evaluations.md?context=/azure/ai-studio/context/context
+        displayName: OpenAI
       - name: Fine-tuning
         items:
         - name: Fine-tune Azure OpenAI models
           href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context
+          displayname: vision fine-tuning, DPO, direct preference optimization
         - name: When to use Azure OpenAI fine-tuning
           href: ../ai-services/openai/concepts/fine-tuning-considerations.md?context=/azure/ai-studio/context/context
     - name: Content Safety
