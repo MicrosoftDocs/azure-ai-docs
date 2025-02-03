@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: Learn about content safety for models deployed using serverless APIs, using Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-foundry
-ms.topic: how-to
+ms.topic: conceptual
 ms.date: 01/21/2025
 ms.author: mopeakande 
 author: msakande
@@ -22,10 +22,10 @@ In this article, learn about content safety capabilities for models from the mod
 
 Azure AI uses a default configuration of [Azure AI Content Safety](/azure/ai-services/content-safety/overview) content filters that detect harmful content across four categories hate and fairness, self-harm, sexual, and violence for models deployed via serverless APIs. To learn more about content filtering (preview), see [Harm categories in Azure AI Content Safety](/azure/ai-services/content-safety/concepts/harm-categories).
 
-The default content filtering configuration for text models is set to filter at the medium severity threshold, filtering any detected content at this level or higher. For image models, the default content filtering configuration is set at the low configuration threshold, filtering at this level or higher. Models deployed using the [Azure AI model inference service](/articles/ai-foundry/model-inference/how-to/configure-content-filters.md) can create configurable filters by clicking the **Content filters** tab within the **Safety + security** page.
+The default content filtering configuration for text models is set to filter at the medium severity threshold, filtering any detected content at this level or higher. For image models, the default content filtering configuration is set at the low configuration threshold, filtering at this level or higher. Models deployed using the [Azure AI model inference service](../../ai-foundry/model-inference/how-to/configure-content-filters.md)can create configurable filters by clicking the **Content filters** tab within the **Safety + security** page.
 
 > [!TIP]
-> Content filtering (preview) is not available for certain model types that are deployed via serverless APIs. These model types include embedding models and time series models.
+> Content filtering (preview) isn't available for certain model types that are deployed via serverless APIs. These model types include embedding models and time series models.
 
 Content filtering (preview) occurs synchronously as the service processes prompts to generate content. You might be billed separately according to [Azure AI Content Safety pricing](https://azure.microsoft.com/pricing/details/cognitive-services/content-safety/) for such use. You can disable content filtering (preview) for individual serverless endpoints either:
 
@@ -34,7 +34,7 @@ Content filtering (preview) occurs synchronously as the service processes prompt
 
 Suppose you decide to use an API other than the [Azure AI Model Inference API](/azure/ai-studio/reference/reference-model-inference-api) to work with a model that is deployed via a serverless API. In such a situation, content filtering (preview) isn't enabled unless you implement it separately by using Azure AI Content Safety. To get started with Azure AI Content Safety, see [Quickstart: Analyze text content](/azure/ai-services/content-safety/quickstart-text). You run a higher risk of exposing users to harmful content if you don't use content filtering (preview) when working with models that are deployed via serverless APIs.
 
-[!INCLUDE [content-safety-harm-categories](/articles/ai-studio/ai-services/includes/content-safety-harm-categories.md)]
+[!INCLUDE [content-safety-harm-categories](../includes/content-safety-harm-categories.md)]
 
 ## How charges are calculated
 
@@ -42,6 +42,6 @@ Pricing details are viewable at [Azure AI Content Safety pricing](https://azure.
 
 ## Related content
 
-- [How to configure content filters (preview) for models in Azure AI services](/articles/ai-foundry/model-inference/how-to/configure-content-filters.md)
-- [Azure AI Content Safety Overview](/articles/ai-services/content-safety/overview.md)
-- [Model catalog and collections in Azure AI Foundry portal](/articles/ai-studio/how-to/model-catalog-overview.md)
+- [How to configure content filters (preview) for models in Azure AI services](../../ai-foundry/model-inference/how-to/configure-content-filters.md)
+- [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md)
+- [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md)
