@@ -147,7 +147,9 @@ items:
         - name: Use vision-enabled chat
           href:  ../ai-services/openai/gpt-v-quickstart.md?context=/azure/ai-studio/context/context
         - name: Generate images
-        href: ../ai-services/openai/dall-e-quickstart.md?context=/azure/ai-studio/context/context
+        href: ../ai-services/openai/dall-e-quickstart.md?context=/azure/ai-studio/context/context 
+      - name: Generate images
+        href: ../ai-services/openai/dall-e-quickstart.md?context=/azure/ai-studio/context/context 
       - name: Audio
         items:
           - name: Use GPT-4o in the real-time audio playground
