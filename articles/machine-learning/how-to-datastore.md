@@ -180,7 +180,7 @@ ml_client.create_or_update(store)
 
 ```python
 from azure.ai.ml.entities import AzureDataLakeGen2Datastore
-from azure.ai.ml.entities._datastore.credentials import ServicePrincipalCredentials
+from azure.ai.ml.entities._credentials import ServicePrincipalConfiguration
 
 from azure.ai.ml import MLClient
 
@@ -191,7 +191,7 @@ store = AzureDataLakeGen2Datastore(
     description="Datastore pointing to an Azure Data Lake Storage Gen2.",
     account_name="mytestdatalakegen2",
     filesystem="my-gen2-container",
-     credentials=ServicePrincipalCredentials(
+     credentials=ServicePrincipalConfiguration(
         tenant_id= "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
         client_id= "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
         client_secret= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
@@ -356,7 +356,7 @@ ml_client.create_or_update(store)
 
 ```python
 from azure.ai.ml.entities import AzureDataLakeGen1Datastore
-from azure.ai.ml.entities._datastore.credentials import ServicePrincipalCredentials
+from azure.ai.ml.entities._credentials import ServicePrincipalConfiguration
 from azure.ai.ml import MLClient
 
 ml_client = MLClient.from_config()
@@ -365,7 +365,7 @@ store = AzureDataLakeGen1Datastore(
     name="adls_gen1_example",
     description="Datastore pointing to an Azure Data Lake Storage Gen1.",
     store_name="mytestdatalakegen1",
-    credentials=ServicePrincipalCredentials(
+    credentials=ServicePrincipalConfiguration(
         tenant_id= "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
         client_id= "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
         client_secret= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
@@ -466,7 +466,7 @@ ml_client.create_or_update(store)
 
 ```python
 from azure.ai.ml.entities import AzureDataLakeGen1Datastore
-from azure.ai.ml.entities._datastore.credentials import ServicePrincipalCredentials
+from azure.ai.ml.entities._credentials import ServicePrincipalConfiguration
 from azure.ai.ml import MLClient
 
 ml_client = MLClient.from_config()
@@ -485,7 +485,7 @@ store = OneLakeDatastore(
     name="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/Files", #{your_one_lake_artifact_guid}/Files
     type="lake_house"
     )
-    credentials=ServicePrincipalCredentials(
+    credentials=ServicePrincipalConfiguration(
         tenant_id= "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
         client_id= "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
         client_secret= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
