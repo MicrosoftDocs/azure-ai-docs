@@ -4,11 +4,12 @@ titleSuffix: Azure Machine Learning
 description: See how to monitor Azure Machine Learning online endpoints. Find out how to use available metrics, logs, and the integration with Application Insights.
 services: machine-learning
 ms.service: azure-machine-learning
-ms.reviewer: None
+ms.reviewer: jturuk
+reviewer: Jagatjeet
 author: msakande
 ms.author: mopeakande
 ms.subservice: mlops
-ms.date: 01/02/2025
+ms.date: 01/31/2025
 ms.topic: how-to
 ms.custom: how-to, devplatv2
 # customer intent: As a developer, I want to see how to use metrics, logs, and Application Insights to monitor my Azure Machine Learning online endpoints so that I can track and analyze endpoint behavior.
