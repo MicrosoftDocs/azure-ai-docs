@@ -25,7 +25,7 @@ import os
 from azure.ai.inference import ChatCompletionsClient
 from azure.identity import DefaultAzureCredential
 
-model = ChatCompletionsClient(
+client = ChatCompletionsClient(
     endpoint="https://<resource>.services.ai.azure.com/models",
     credential=DefaultAzureCredential(),
     credential_scopes=["https://cognitiveservices.azure.com/.default"],
