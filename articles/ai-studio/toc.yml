@@ -198,7 +198,7 @@ items:
         - name: Consume serverless API models from a different project or hub
           href: how-to/deploy-models-serverless-connect.md
           displayName: maas, paygo, models-as-a-service
-        - name: Content safety for models deployed with serverless API
+        - name: Content safety for models deployed with serverless APIs
           href: concepts/model-catalog-content-safety.md
         - name: Model and region availability for Serverless API deployments
           href: how-to/deploy-models-serverless-availability.md
