@@ -415,7 +415,7 @@ items:
   - name: What is Azure AI Content Safety?
     href: ai-services/content-safety-overview.md
   - name: Content safety in the Azure AI Foundry portal
-    href: ai-services/content-safety-overview.md
+    href: concepts/model-catalog-content-safety.md
   - name: Use Azure AI content safety in the portal
     href: ../ai-services/content-safety/how-to/foundry.md?context=/azure/ai-studio/context/context
   - name: Content filtering
