@@ -21,15 +21,12 @@ To complete this tutorial, you need:
 
   * This examples uses `DeepSeek-R1`.
 
-* Install the Azure AI inference package with the following command:
+* Install the [Azure AI inference package](https://aka.ms/azsdk/azure-ai-inference/python/reference) with the following command:
 
   ```bash
   pip install -U azure-ai-inference
   ```
   
-  > [!TIP]
-  > Read more about the [Azure AI inference package and reference](https://aka.ms/azsdk/azure-ai-inference/python/reference).
-
 ## Use reasoning capabilities with chat
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
@@ -78,7 +75,13 @@ response = client.complete(
 )
 ```
 
-When building prompts for reasoning models, built-in reasoning capabilities make simple zero-shot prompts as effective as more complex methods. When providing additional context or documents, like in RAG scenarios, including only the most relevant information may help preventing the model from over-complicating its response.
+When building prompts for reasoning models, take the following into consideration:
+
+> [!div class="checklist"]
+> * Built-in reasoning capabilities make simple zero-shot prompts as effective as more complex methods.
+> * When providing additional context or documents, like in RAG scenarios, including only the most relevant information may help preventing the model from over-complicating its response.
+> * Reasoning models may support the use of system messages. However, they may not follow them as strictly as other non-reasoning models.
+> * When creating multi-turn applications, consider only appending the final answer from the model, without it's reasoning content as explained at [Reasoning content](#reasoning-content) section.
 
 The response is as follows, where you can see the model's usage statistics:
 

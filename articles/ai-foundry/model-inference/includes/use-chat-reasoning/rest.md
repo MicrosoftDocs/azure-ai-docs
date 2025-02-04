@@ -55,7 +55,13 @@ The following example shows how you can create a basic reasoning capabilities wi
 }
 ```
 
-When building prompts for reasoning models, built-in reasoning capabilities make simple zero-shot prompts as effective as more complex methods. When providing additional context or documents, like in RAG scenarios, including only the most relevant information may help preventing the model from over-complicating its response.
+When building prompts for reasoning models, take the following into consideration:
+
+> [!div class="checklist"]
+> * Built-in reasoning capabilities make simple zero-shot prompts as effective as more complex methods.
+> * When providing additional context or documents, like in RAG scenarios, including only the most relevant information may help preventing the model from over-complicating its response.
+> * Reasoning models may support the use of system messages. However, they may not follow them as strictly as other non-reasoning models.
+> * When creating multi-turn applications, consider only appending the final answer from the model, without it's reasoning content as explained at [Reasoning content](#reasoning-content) section.
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -83,18 +89,6 @@ The response is as follows, where you can see the model's usage statistics:
     }
 }
 ```
-
-### Parameters
-
-In general, reasoning models don't support the following parameters you can find in chat completion models:
-
-* Temperature
-* Presence penalty
-* Repetition penalty
-* Parameter `top_p`
-
-Some models support the use of tools or structured outputs (including JSON-schemas). Read the [Models](../../concepts/models.md) details page to understand each model's support.
-
 
 ### Reasoning content
 
@@ -177,6 +171,16 @@ The last message in the stream has `finish_reason` set, indicating the reason fo
 }
 ```
 
+### Parameters
+
+In general, reasoning models don't support the following parameters you can find in chat completion models:
+
+* Temperature
+* Presence penalty
+* Repetition penalty
+* Parameter `top_p`
+
+Some models support the use of tools or structured outputs (including JSON-schemas). Read the [Models](../../concepts/models.md) details page to understand each model's support.
 
 ### Apply content safety
 

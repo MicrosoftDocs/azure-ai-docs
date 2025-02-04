@@ -21,7 +21,7 @@ To complete this tutorial, you need:
 
   * This examples uses `DeepSeek-R1`.
 
-* Add the Azure AI inference package to your project:
+* Add the [Azure AI inference package](https://aka.ms/azsdk/azure-ai-inference/java/reference) to your project:
 
   ```xml
   <dependency>
@@ -31,9 +31,6 @@ To complete this tutorial, you need:
   </dependency>
   ```
   
-  > [!TIP]
-  > Read more about the [Azure AI inference package and reference](https://aka.ms/azsdk/azure-ai-inference/java/reference).
-
 * If you are using Entra ID, you also need the following package:
 
   ```xml
@@ -97,7 +94,13 @@ ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
 Response<ChatCompletions> response = client.complete(requestOptions);
 ```
 
-When building prompts for reasoning models, built-in reasoning capabilities make simple zero-shot prompts as effective as more complex methods. When providing additional context or documents, like in RAG scenarios, including only the most relevant information may help preventing the model from over-complicating its response.
+When building prompts for reasoning models, take the following into consideration:
+
+> [!div class="checklist"]
+> * Built-in reasoning capabilities make simple zero-shot prompts as effective as more complex methods.
+> * When providing additional context or documents, like in RAG scenarios, including only the most relevant information may help preventing the model from over-complicating its response.
+> * Reasoning models may support the use of system messages. However, they may not follow them as strictly as other non-reasoning models.
+> * When creating multi-turn applications, consider only appending the final answer from the model, without it's reasoning content as explained at [Reasoning content](#reasoning-content) section.
 
 The response is as follows, where you can see the model's usage statistics:
 
