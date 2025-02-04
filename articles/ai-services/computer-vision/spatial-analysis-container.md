@@ -159,9 +159,9 @@ Follow these steps to remotely connect from a Windows client.
 
 Follow these instructions if your host computer isn't an Azure Stack Edge device.
 
-#### Install NVIDIA CUDA Toolkit and Nvidia graphics drivers on the host computer
+#### Install NVIDIA CUDA Toolkit and NVIDIA graphics drivers on the host computer
 
-Use the following bash script to install the required Nvidia graphics drivers, and CUDA Toolkit.
+Use the following bash script to install the required NVIDIA graphics drivers, and CUDA Toolkit.
 
 ```bash
 wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin

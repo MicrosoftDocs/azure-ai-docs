@@ -6,7 +6,7 @@ author: challenp
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.custom: references_regions, azuregovernment
-ms.date: 12/11/2024
+ms.date: 1/29/2025
 recommendations: false
 ---
 
@@ -17,9 +17,9 @@ This article highlights the differences when using Azure OpenAI in Azure Governm
 
 ## Azure OpenAI models
 
-Learn more about the different capabilities of each model in [Azure OpenAI Service models](./concepts/models.md). For customers with [Business Continuity and Disaster Recovery (BCDR) considerations](./how-to/business-continuity-disaster-recovery.md), please take careful note of the deployment types, regions, and model availability below as not all model/type combinations are available in both regions. 
+Learn more about the different capabilities of each model in [Azure OpenAI Service models](./concepts/models.md). For customers with [Business Continuity and Disaster Recovery (BCDR) considerations](./how-to/business-continuity-disaster-recovery.md), take careful note of the deployment types, regions, and model availability as not all model/type combinations are available in both regions. 
 
-The following sections show model availability by region and deployment type.
+The following sections show model availability by region and deployment type. Models and versions not listed are not currently available in Azure Government. For general limits, quotas, and other details refer to [Azure OpenAI Service quotas and limits](/azure/ai-services/openai/quotas-limits/). 
 
 <br>
 
@@ -29,7 +29,7 @@ The following sections show model availability by region and deployment type.
 | usgovarizona  | ✅ | ✅ | ✅ | ✅ | -  | ✅ | ✅ |
 | usgovvirginia | ✅ | -  | ✅ | ✅ | ✅ |  - | ✅ |
 
-To request quota increases for these models, submit a request at [https://aka.ms/AOAIGovQuota](https://aka.ms/AOAIGovQuota). Please note the following maximum quota limits that will be granted via that form:
+To request quota increases for these models, submit a request at [https://aka.ms/AOAIGovQuota](https://aka.ms/AOAIGovQuota). Note the following maximum quota limits allowed via that form:
 
 | **gpt-4o** | **gpt-4o-mini** | **gpt-4** | **gpt-35-turbo** | **text-embedding-3-large** | **text-embedding-ada-002**|
 |:----------:|:---------------:|:---------:|:----------------:|:--------------------------:|:-------------------------:|
@@ -95,10 +95,10 @@ From the Manage Commitments view, you can do several things:
 | **Renewal settings** | Autorenew at current PTUs <br> Autorenew at lower PTUs <br> Do not autorenew |
 
 > [!IMPORTANT]
-> A new commitment is billed up-front for the entire term.  If the renewal settings are set to auto-renew, then you will be billed again on each renewal date based on the renewal settings.
+> A new commitment is billed up-front for the entire term. If the renewal settings are set to auto-renew, then you will be billed again on each renewal date based on the renewal settings.
 
 > [!IMPORTANT]
-> When you add PTUs to a commitment, they will be billed immediately, at a pro-rated amount from the current date to the end of the existing commitment term.  Adding PTUs does not reset the commitment term.
+> When you add PTUs to a commitment, they will be billed immediately, at a pro-rated amount from the current date to the end of the existing commitment term. Adding PTUs does not reset the commitment term.
 
 ### Changing renewal settings
 

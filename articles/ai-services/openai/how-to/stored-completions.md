@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 12/12/2024
+ms.date: 01/29/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -20,15 +20,15 @@ Stored completions allow you to capture the conversation history from chat compl
 
 ### API support
 
-- `2024-10-01-preview`
+Support first added in `2024-10-01-preview`
 
-### Model support
+### Model & region availability
 
-- `gpt-4o-2024-08-06`
-
-### Regional availability
-
-- Sweden Central
+| **Region**     | **o1-preview**, **2024-09-12**   | **o1-mini**, **2024-09-12**   | **gpt-4o**, **2024-08-06**   | **gpt-4o**, **2024-05-13**  | **gpt-4o-mini**, **2024-07-18**   |
+|:---|:---:|:---:|:---:|:---:|:---:|
+| Sweden Central | ✅ | ✅  | ✅ | ✅ | ✅ |
+| North Central US | - | - | ✅ | - | - |
+| East US 2 | - | - | ✅ | - | - |
 
 ## Configure stored completions
 

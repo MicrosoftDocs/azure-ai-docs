@@ -86,7 +86,7 @@ Even with identical GPUs, performance can fluctuate based on the GPU load and th
 
 ## Install the NVIDIA container toolkit
 
-The `host` is the computer that runs the docker container. The host must support Nvidia container toolkit. Follow the below guidance to install the toolkit in your environment.
+The `host` is the computer that runs the docker container. The host must support NVIDIA container toolkit. Follow the below guidance to install the toolkit in your environment.
 
 [Install the NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 

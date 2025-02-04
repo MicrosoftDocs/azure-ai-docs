@@ -17,7 +17,7 @@ Feature availability in Azure OpenAI is dependent on what version of the REST AP
 
 | Latest GA API | Latest Preview API|
 |:-----|:------|
-|`2024-10-21` |`2024-10-01-preview`|
+|`2024-10-21` |`2025-01-01-preview`|
 
 ## Installation
 

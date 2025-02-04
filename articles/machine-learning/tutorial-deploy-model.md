@@ -451,7 +451,7 @@ If you open the metrics for the online endpoint, you can set up the page to see 
 
 :::image type="content" source="media/tutorial-deploy-model/view-endpoint-metrics-in-azure-portal.png" alt-text="Screenshot showing online endpoint metrics in the Azure portal." lightbox="media/tutorial-deploy-model/view-endpoint-metrics-in-azure-portal.png":::
 
-For more information on how to view online endpoint metrics, see [Monitor online endpoints](how-to-monitor-online-endpoints.md#metrics).
+For more information on how to view online endpoint metrics, see [Monitor online endpoints](how-to-monitor-online-endpoints.md#use-metrics).
 
 ## Send all traffic to the new deployment
 Once you're fully satisfied with your `green` deployment, switch all traffic to it.

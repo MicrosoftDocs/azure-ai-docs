@@ -31,7 +31,7 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 ## Add the JavaScript code
 
-#### [Microsoft Entra ID](#tab/javascript-keyless)
+#### [Microsoft Entra ID](#tab/keyless)
 
 1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.js`. Copy the following code into the `ChatWithOwnData.js` file.
     
@@ -123,7 +123,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     ```
 
 
-#### [API key](#tab/javascript-key)
+#### [API key](#tab/api-key)
 
 1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.js`. Copy the following code into the `ChatWithOwnData.js` file.
     

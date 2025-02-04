@@ -31,7 +31,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Retrieve resource information
 
-[!INCLUDE [resource authentication](resource-auth.md)]
+[!INCLUDE [resource authentication](resource-authentication.md)]
 
 > [!CAUTION]
 > To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
@@ -56,7 +56,7 @@ Your app's _package.json_ file is updated with the dependencies.
 Open a command prompt where you want the new project, and create a new file named ChatCompletion.js. Copy the following code into the ChatCompletion.js file.
 
 
-## [Microsoft Entra ID](#tab/javascript-keyless)
+## [Microsoft Entra ID](#tab/keyless)
 
 ```javascript
 const { AzureOpenAI } = require("openai");
@@ -108,7 +108,7 @@ node.exe ChatCompletion.js
 ```
 
 
-## [API key](#tab/javascript-key)
+## [API key](#tab/api-key)
 
 ```javascript
 const { AzureOpenAI } = require("openai");
@@ -178,4 +178,5 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 ## Next steps
 
 * [Azure OpenAI Overview](../overview.md)
+* [Get started with the chat using your own data sample for JavaScript](/azure/developer/javascript/ai/get-started-app-chat-template?toc=/azure/ai-services/openai/toc.json&bc=/azure/ai-services/openai/breadcrumb/toc.json&tabs=github-codespaces)
 * For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai)

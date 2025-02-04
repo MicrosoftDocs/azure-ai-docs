@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-services
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.topic: how-to
-ms.date: 06/13/2024
+ms.date: 01/31/2025
 ms.author: aahi
 ---
 
