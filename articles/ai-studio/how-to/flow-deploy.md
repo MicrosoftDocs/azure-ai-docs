@@ -200,7 +200,7 @@ You can grant the required permissions in Azure portal UI by following steps.
        
     :::image type="content" source="../media/prompt-flow/how-to-deploy-for-real-time-inference/storage-container-registry.png" alt-text="Screenshot of the overview page with storage and container registry highlighted." lightbox = "../media/prompt-flow/how-to-deploy-for-real-time-inference/storage-container-registry.png":::
 
-    Go to the hub container registry overview page, select **Access control**, and select **Add role assignment**, and assign **ACR pull |Pull container image** to the endpoint identity.
+    Go to the hub container registry overview page, select **Access control**, and select **Add role assignment**, and assign **ACR Pull** to the endpoint identity.
 
     Go to the hub default storage overview page, select **Access control**, and select **Add role assignment**, and assign **Storage Blob Data Reader** to the endpoint identity.
 
