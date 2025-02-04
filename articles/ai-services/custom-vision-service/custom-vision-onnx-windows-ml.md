@@ -58,7 +58,7 @@ To use your own image classifier model, follow these steps:
 To discover other ways to export and use a Custom Vision model, see the following documents:
 
 * [Export your model](./export-your-model.md)
-* [Use exported Tensorflow model in an Android application](https://github.com/Azure-Samples/cognitive-services-android-customvision-sample)
+* [Use exported TensorFlow model in an Android application](https://github.com/Azure-Samples/cognitive-services-android-customvision-sample)
 * [Use exported CoreML model in a Swift iOS application](https://go.microsoft.com/fwlink/?linkid=857726)
 * [Use exported CoreML model in an iOS application with Xamarin](https://github.com/xamarin/ios-samples/tree/master/ios11/CoreMLAzureModel)
 
