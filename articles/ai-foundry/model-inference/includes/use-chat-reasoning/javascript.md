@@ -19,7 +19,7 @@ To complete this tutorial, you need:
 
 * A model with reasoning capabilities model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a reasoning model. 
 
-  * This examples uses `DeepSeek-R1`.
+  * This examples use `DeepSeek-R1`.
 
 * Install the [Azure Inference library for JavaScript](https://aka.ms/azsdk/azure-ai-inference/javascript/reference) with the following command:
 
@@ -43,6 +43,9 @@ const client = new ModelClient(
 );
 ```
 
+> [!TIP]
+> Verify that you have deployed the model to Azure AI Services resource with the Azure AI model inference API. `Deepseek-R1` is also available as Serverless API Endpoints. However, those endpoints don't take the parameter `model` as explained in this tutorial. You can verify that by going to [Azure AI Foundry portal]() > Models + endpoints, and verify that the model is listed under the section **Azure AI Services**.
+
 If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
 ```javascript
@@ -62,7 +65,7 @@ const client = new ModelClient(
 
 ### Create a chat completion request
 
-The following example shows how you can create a basic reasoning capabilities with chat request to the model.
+The following example shows how you can create a basic chat request to the model.
 
 ```javascript
 var messages = [
