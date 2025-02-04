@@ -16,14 +16,12 @@ items:
       href: faq.yml
 - name: Quickstarts
   items:
+    - name: Create resources and configure
+      href: ./how-to/quickstart-create-resources.md
     - name: Upgrade from GitHub Models to Azure AI model inference
       href: ./how-to/quickstart-github-models.md 
     - name: Configure AI projects to work with Azure AI model inference
       href: ./how-to/quickstart-ai-project.md
-    - name: Work with embeddings
-      href: ./how-to/use-embeddings.md
-    - name: Work with chat completions
-      href: ./how-to/use-chat-completions.md
 - name: Concepts
   items:
     - name: Available models
@@ -45,7 +43,7 @@ items:
   - name: Create resources
     href: ./how-to/quickstart-create-resources.md
   - name: Add and configure models
-    href: ./how-to/github/create-model-deployments.md
+    href: ./how-to/create-model-deployments.md
   - name: Connect your AI project
     href: ./how-to/configure-project-connection.md
   - name: Responsible AI

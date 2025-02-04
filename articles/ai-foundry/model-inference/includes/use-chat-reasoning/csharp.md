@@ -1,39 +1,31 @@
 ---
-title: How to use chat completions with Azure AI model inference
-titleSuffix: Azure AI Foundry
-description: Learn how to generate chat completions with Azure AI model inference
-manager: scottpolly
-author: mopeakande
-reviewer: santiagxf
+manager: nitinme
 ms.service: azure-ai-model-inference
-ms.topic: how-to
-ms.date: 1/21/2025
-ms.author: mopeakande
-ms.reviewer: fasantia
-ms.custom: references_regions, tool_generated
-zone_pivot_groups: azure-ai-inference-samples
+ms.topic: include
+ms.date: 1/31/2025
+ms.author: fasantia
+author: santiagxf
 ---
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use chat completions API with models deployed to Azure AI model inference in Azure AI services.
+This article explains how to use the reasoning capabilities of chat completions models deployed to Azure AI model inference in Azure AI services.
 
 ## Prerequisites
 
-To use chat completion models in your application, you need:
+To complete this tutorial, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
-* A chat completions model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+* A model with reasoning capabilities model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a reasoning model. 
+
+  * This examples uses `DeepSeek-R1`.
 
 * Install the Azure AI inference package with the following command:
 
     ```bash
     dotnet add package Azure.AI.Inference --prerelease
     ```
-    
-    > [!TIP]
-    > Read more about the [Azure AI inference package and reference](https://aka.ms/azsdk/azure-ai-inference/python/reference).
 
 * If you are using Entra ID, you also need the following package:
 
@@ -41,39 +33,39 @@ To use chat completion models in your application, you need:
     dotnet add package Azure.Identity
     ```
 
-## Use chat completions
+## Use reasoning capabilities with chat
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
 
-
 ```csharp
 ChatCompletionsClient client = new ChatCompletionsClient(
-    new Uri(Environment.GetEnvironmentVariable("AZURE_INFERENCE_ENDPOINT")),
+    new Uri("https://<resource>.services.ai.azure.com/models"),
     new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL")),
-    "mistral-large-2407"
+    "DeepSeek-R1"
 );
 ```
 
-If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+> [!TIP]
+> Verify that you have deployed the model to Azure AI Services resource with the Azure AI model inference API. `Deepseek-R1` is also available as Serverless API Endpoints. However, those endpoints doesn't take the parameter `model` as explained in this tutorial. You can verify that by going to [Azure AI Foundry portal]() > Models + endpoints, and verify that the model is listed under the section **Azure AI Services**.
 
+If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
 ```csharp
 client = new ChatCompletionsClient(
-    new Uri(Environment.GetEnvironmentVariable("AZURE_INFERENCE_ENDPOINT")),
+    new Uri("https://<resource>.services.ai.azure.com/models"),
     new DefaultAzureCredential(includeInteractiveCredentials: true),
-    "mistral-large-2407"
+    "DeepSeek-R1"
 );
 ```
 
 ### Create a chat completion request
 
-The following example shows how you can create a basic chat completions request to the model.
+The following example shows how you can create a basic reasoning capabilities with chat request to the model.
 
 ```csharp
 ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
 {
     Messages = {
-        new ChatRequestSystemMessage("You are a helpful assistant."),
         new ChatRequestUserMessage("How many languages are in the world?")
     },
 };
@@ -81,11 +73,9 @@ ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
 Response<ChatCompletions> response = client.Complete(requestOptions);
 ```
 
-> [!NOTE]
-> Some models don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+When building prompts for reasoning models, built-in reasoning capabilities make simple zero-shot prompts as effective as more complex methods. When providing additional context or documents, like in RAG scenarios, including only the most relevant information may help preventing the model from over-complicating its response.
 
 The response is as follows, where you can see the model's usage statistics:
-
 
 ```csharp
 Console.WriteLine($"Response: {response.Value.Content}");
@@ -97,24 +87,56 @@ Console.WriteLine($"\tCompletion tokens: {response.Value.Usage.CompletionTokens}
 ```
 
 ```console
-Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
-Model: mistral-large-2407
+Response: <think>Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate...</think>The exact number of languages in the world is challenging to determine due to differences in definitions (e.g., distinguishing languages from dialects) and ongoing documentation efforts. However, widely cited estimates suggest there are approximately **7,000 languages** globally.
+Model: deepseek-r1
 Usage: 
-  Prompt tokens: 19
-  Total tokens: 91
-  Completion tokens: 72
+  Prompt tokens: 11
+  Total tokens: 897
+  Completion tokens: 886
 ```
 
-Inspect the `usage` section in the response to see the number of tokens used for the prompt, the total number of tokens generated, and the number of tokens used for the completion.
+### Reasoning content
 
-#### Stream content
+Some reasoning models, like DeepSeek-R1, generate completions and include the reasoning behind it. The reasoning associated with the completion is included in the response's content within the tags `<think>` and `</think>`. The model may select on which scenarios to generate reasoning content. You can extract the reasoning content from the response to understand the model's thought process as follows:
+
+```csharp
+Regex regex = new Regex(pattern, RegexOptions.Singleline);
+Match match = regex.Match(response.Value.Content);
+
+Console.WriteLine("Response:");
+if (match.Success)
+{
+    Console.WriteLine($"\tThinking: {match.Groups[1].Value}");
+    Console.WriteLine($"\tAnswer: {match.Groups[2].Value}");
+else
+{
+    Console.WriteLine($"Response: {response.Value.Content}");
+}
+Console.WriteLine($"Model: {response.Value.Model}");
+Console.WriteLine("Usage:");
+Console.WriteLine($"\tPrompt tokens: {response.Value.Usage.PromptTokens}");
+Console.WriteLine($"\tTotal tokens: {response.Value.Usage.TotalTokens}");
+Console.WriteLine($"\tCompletion tokens: {response.Value.Usage.CompletionTokens}");
+```
+
+```console
+Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer. Let's start by recalling the general consensus from linguistic sources. I remember that the number often cited is around 7,000, but maybe I should check some reputable organizations.\n\nEthnologue is a well-known resource for language data, and I think they list about 7,000 languages. But wait, do they update their numbers? It might be around 7,100 or so. Also, the exact count can vary because some sources might categorize dialects differently or have more recent data. \n\nAnother thing to consider is language endangerment. Many languages are endangered, with some having only a few speakers left. Organizations like UNESCO track endangered languages, so mentioning that adds context. Also, the distribution isn't even. Some countries have hundreds of languages, like Papua New Guinea with over 800, while others have just a few. \n\nA user might also wonder why the exact number is hard to pin down. It's because the distinction between a language and a dialect can be political or cultural. For example, Mandarin and Cantonese are considered dialects of Chinese by some, but they're mutually unintelligible, so others classify them as separate languages. Also, some regions are under-researched, making it hard to document all languages. \n\nI should also touch on language families. The 7,000 languages are grouped into families like Indo-European, Sino-Tibetan, Niger-Congo, etc. Maybe mention a few of the largest families. But wait, the question is just about the count, not the families. Still, it's good to provide a bit more context. \n\nI need to make sure the information is up-to-date. Let me think – recent estimates still hover around 7,000. However, languages are dying out rapidly, so the number decreases over time. Including that note about endangerment and language extinction rates could be helpful. For instance, it's often stated that a language dies every few weeks. \n\nAnother point is sign languages. Does the count include them? Ethnologue includes some, but not all sources might. If the user is including sign languages, that adds more to the count, but I think the 7,000 figure typically refers to spoken languages. For thoroughness, maybe mention that there are also over 300 sign languages. \n\nSummarizing, the answer should state around 7,000, mention Ethnologue's figure, explain why the exact number varies, touch on endangerment, and possibly note sign languages as a separate category. Also, a brief mention of Papua New Guinea as the most linguistically diverse country. \n\nWait, let me verify Ethnologue's current number. As of their latest edition (25th, 2022), they list 7,168 living languages. But I should check if that's the case. Some sources might round to 7,000. Also, SIL International publishes Ethnologue, so citing them as reference makes sense. \n\nOther sources, like Glottolog, might have a different count because they use different criteria. Glottolog might list around 7,000 as well, but exact numbers vary. It's important to highlight that the count isn't exact because of differing definitions and ongoing research. \n\nIn conclusion, the approximate number is 7,000, with Ethnologue being a key source, considerations of endangerment, and the challenges in counting due to dialect vs. language distinctions. I should make sure the answer is clear, acknowledges the variability, and provides key points succinctly.
+
+Answer: The exact number of languages in the world is challenging to determine due to differences in definitions (e.g., distinguishing languages from dialects) and ongoing documentation efforts. However, widely cited estimates suggest there are approximately **7,000 languages** globally.
+Model: DeepSeek-R1
+Usage: 
+  Prompt tokens: 11
+  Total tokens: 897
+  Completion tokens: 886
+```
+
+When making multi-turn conversations, it's useful to avoid sending the reasoning content in the chat history as reasoning tends to generate long explanations.
+
+### Stream content
 
 By default, the completions API returns the entire generated content in a single response. If you're generating long completions, waiting for the response can take many seconds.
 
 You can _stream_ the content to get it as it's being generated. Streaming content allows you to start processing the completion as content becomes available. This mode returns an object that streams back the response as [data-only server-sent events](https://html.spec.whatwg.org/multipage/server-sent-events.html#server-sent-events). Extract chunks from the delta field, rather than the message field.
-
-To stream completions, use `CompleteStreamingAsync` method when you call the model. Notice that in this example we the call is wrapped in an asynchronous method.
-
 
 ```csharp
 static async Task StreamMessageAsync(ChatCompletionsClient client)
@@ -122,8 +144,7 @@ static async Task StreamMessageAsync(ChatCompletionsClient client)
     ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
     {
         Messages = {
-            new ChatRequestSystemMessage("You are a helpful assistant."),
-            new ChatRequestUserMessage("How many languages are in the world? Write an essay about it.")
+            new ChatRequestUserMessage("How many languages are in the world?")
         },
         MaxTokens=4096
     };
@@ -134,20 +155,33 @@ static async Task StreamMessageAsync(ChatCompletionsClient client)
 }
 ```
 
-To visualize the output, define an asynchronous method to print the stream in the console.
+To visualize the output, define a helper function to print the stream. The following example implements a routing that stream only the answer without the reasoning content:
 
 ```csharp
-static async Task PrintStream(StreamingResponse<StreamingChatCompletionsUpdate> response)
+static void PrintStream(StreamingResponse<StreamingChatCompletionsUpdate> response)
 {
+    bool isThinking = false;
     await foreach (StreamingChatCompletionsUpdate chatUpdate in response)
     {
-        if (chatUpdate.Role.HasValue)
-        {
-            Console.Write($"{chatUpdate.Role.Value.ToString().ToUpperInvariant()}: ");
-        }
         if (!string.IsNullOrEmpty(chatUpdate.ContentUpdate))
         {
-            Console.Write(chatUpdate.ContentUpdate);
+            string content = chatUpdate.ContentUpdate;
+            if (content == "<think>")
+            {
+                isThinking = true;
+                Console.Write("🧠 Thinking...");
+                Console.Out.Flush();
+            }
+            else if (content == "</think>")
+            {
+                isThinking = false;
+                Console.WriteLine("🛑\n\n");
+            }
+            else if (!string.IsNullOrEmpty(content))
+            {
+                Console.Write(content);
+                Console.Out.Flush();
+            }
         }
     }
 }
@@ -160,207 +194,16 @@ You can visualize how streaming generates content:
 StreamMessageAsync(client).GetAwaiter().GetResult();
 ```
 
-#### Explore more parameters supported by the inference client
+### Parameters
 
-Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Azure AI Model Inference API reference](https://aka.ms/azureai/modelinference).
+In general, reasoning models don't support the following parameters you can find in chat completion models:
 
-```csharp
-requestOptions = new ChatCompletionsOptions()
-{
-    Messages = {
-        new ChatRequestSystemMessage("You are a helpful assistant."),
-        new ChatRequestUserMessage("How many languages are in the world?")
-    },
-    PresencePenalty = 0.1f,
-    FrequencyPenalty = 0.8f,
-    MaxTokens = 2048,
-    StopSequences = { "<|endoftext|>" },
-    Temperature = 0,
-    NucleusSamplingFactor = 1,
-    ResponseFormat = new ChatCompletionsResponseFormatText()
-};
+* Temperature
+* Presence penalty
+* Repetition penalty
+* Parameter `top_p`
 
-response = client.Complete(requestOptions);
-Console.WriteLine($"Response: {response.Value.Content}");
-```
-
-Some models don't support JSON output formatting. You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
-
-If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
-
-#### Create JSON outputs
-
-Some models can create JSON outputs. Set `response_format` to `json_object` to enable JSON mode and guarantee that the message the model generates is valid JSON. You must also instruct the model to produce JSON yourself via a system or user message. Also, the message content might be partially cut off if `finish_reason="length"`, which indicates that the generation exceeded `max_tokens` or that the conversation exceeded the max context length.
-
-
-```csharp
-requestOptions = new ChatCompletionsOptions()
-{
-    Messages = {
-        new ChatRequestSystemMessage(
-            "You are a helpful assistant that always generate responses in JSON format, " +
-            "using. the following format: { \"answer\": \"response\" }."
-        ),
-        new ChatRequestUserMessage(
-            "How many languages are in the world?"
-        )
-    },
-    ResponseFormat = new ChatCompletionsResponseFormatJSON()
-};
-
-response = client.Complete(requestOptions);
-Console.WriteLine($"Response: {response.Value.Content}");
-```
-
-### Pass extra parameters to the model
-
-The Azure AI Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
-
-
-```csharp
-requestOptions = new ChatCompletionsOptions()
-{
-    Messages = {
-        new ChatRequestSystemMessage("You are a helpful assistant."),
-        new ChatRequestUserMessage("How many languages are in the world?")
-    },
-    AdditionalProperties = { { "logprobs", BinaryData.FromString("true") } },
-};
-
-response = client.Complete(requestOptions, extraParams: ExtraParameters.PassThrough);
-Console.WriteLine($"Response: {response.Value.Content}");
-```
-
-Before you pass extra parameters to the Azure AI model inference API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
-
-### Use tools
-
-Some models support the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
-
-The following code example creates a tool definition that is able to look from flight information from two different cities.
-
-
-```csharp
-FunctionDefinition flightInfoFunction = new FunctionDefinition("getFlightInfo")
-{
-    Description = "Returns information about the next flight between two cities. This includes the name of the airline, flight number and the date and time of the next flight",
-    Parameters = BinaryData.FromObjectAsJson(new
-    {
-        Type = "object",
-        Properties = new
-        {
-            origin_city = new
-            {
-                Type = "string",
-                Description = "The name of the city where the flight originates"
-            },
-            destination_city = new
-            {
-                Type = "string",
-                Description = "The flight destination city"
-            }
-        }
-    },
-        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }
-    )
-};
-
-ChatCompletionsFunctionToolDefinition getFlightTool = new ChatCompletionsFunctionToolDefinition(flightInfoFunction);
-```
-
-In this example, the function's output is that there are no flights available for the selected route, but the user should consider taking a train.
-
-
-```csharp
-static string getFlightInfo(string loc_origin, string loc_destination)
-{
-    return JsonSerializer.Serialize(new
-    {
-        info = $"There are no flights available from {loc_origin} to {loc_destination}. You " +
-        "should take a train, specially if it helps to reduce CO2 emissions."
-    });
-}
-```
-
-> [!NOTE]
-> Cohere models require a tool's responses to be a valid JSON content formatted as a string. When constructing messages of type *Tool*, ensure the response is a valid JSON string.
-
-Prompt the model to book flights with the help of this function:
-
-
-```csharp
-var chatHistory = new List<ChatRequestMessage>(){
-        new ChatRequestSystemMessage(
-            "You are a helpful assistant that help users to find information about traveling, " +
-            "how to get to places and the different transportations options. You care about the" +
-            "environment and you always have that in mind when answering inqueries."
-        ),
-        new ChatRequestUserMessage("When is the next flight from Miami to Seattle?")
-    };
-
-requestOptions = new ChatCompletionsOptions(chatHistory);
-requestOptions.Tools.Add(getFlightTool);
-requestOptions.ToolChoice = ChatCompletionsToolChoice.Auto;
-
-response = client.Complete(requestOptions);
-```
-
-You can inspect the response to find out if a tool needs to be called. Inspect the finish reason to determine if the tool should be called. Remember that multiple tool types can be indicated. This example demonstrates a tool of type `function`.
-
-
-```csharp
-var responseMessage = response.Value;
-var toolsCall = responseMessage.ToolCalls;
-
-Console.WriteLine($"Finish reason: {response.Value.Choices[0].FinishReason}");
-Console.WriteLine($"Tool call: {toolsCall[0].Id}");
-```
-
-To continue, append this message to the chat history:
-
-
-```csharp
-requestOptions.Messages.Add(new ChatRequestAssistantMessage(response.Value));
-```
-
-Now, it's time to call the appropriate function to handle the tool call. The following code snippet iterates over all the tool calls indicated in the response and calls the corresponding function with the appropriate parameters. The response is also appended to the chat history.
-
-
-```csharp
-foreach (ChatCompletionsToolCall tool in toolsCall)
-{
-    if (tool is ChatCompletionsFunctionToolCall functionTool)
-    {
-        // Get the tool details:
-        string callId = functionTool.Id;
-        string toolName = functionTool.Name;
-        string toolArgumentsString = functionTool.Arguments;
-        Dictionary<string, object> toolArguments = JsonSerializer.Deserialize<Dictionary<string, object>>(toolArgumentsString);
-
-        // Here you have to call the function defined. In this particular example we use 
-        // reflection to find the method we definied before in an static class called 
-        // `ChatCompletionsExamples`. Using reflection allows us to call a function 
-        // by string name. Notice that this is just done for demonstration purposes as a 
-        // simple way to get the function callable from its string name. Then we can call 
-        // it with the corresponding arguments.
-
-        var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
-        string toolResponse = (string)typeof(ChatCompletionsExamples).GetMethod(toolName, flags).Invoke(null, toolArguments.Values.Cast<object>().ToArray());
-
-        Console.WriteLine("->", toolResponse);
-        requestOptions.Messages.Add(new ChatRequestToolMessage(toolResponse, callId));
-    }
-    else
-        throw new Exception("Unsupported tool type");
-}
-```
-
-View the response from the model:
-
-
-```csharp
-response = client.Complete(requestOptions);
-```
+Some models support the use of tools or structured outputs (including JSON-schemas). Read the [Models](../../concepts/models.md) details page to understand each model's support.
 
 ### Apply content safety
 
@@ -400,68 +243,3 @@ catch (RequestFailedException ex)
 
 > [!TIP]
 > To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
-
-## Use chat completions with images
-
-Some models can reason across text and images and generate text completions based on both kinds of input. In this section, you explore the capabilities of Some models for vision in a chat fashion:
-
-> [!IMPORTANT]
-> Some models support only one image for each turn in the chat conversation and only the last image is retained in context. If you add multiple images, it results in an error.
-
-To see this capability, download an image and encode the information as `base64` string. The resulting data should be inside of a [data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs):
-
-
-```csharp
-string imageUrl = "https://news.microsoft.com/source/wp-content/uploads/2024/04/The-Phi-3-small-language-models-with-big-potential-1-1900x1069.jpg";
-string imageFormat = "jpeg";
-HttpClient httpClient = new HttpClient();
-httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0");
-byte[] imageBytes = httpClient.GetByteArrayAsync(imageUrl).Result;
-string imageBase64 = Convert.ToBase64String(imageBytes);
-string dataUrl = $"data:image/{imageFormat};base64,{imageBase64}";
-```
-
-Visualize the image:
-
-:::image type="content" source="../../../../ai-studio/media/how-to/sdks/small-language-models-chart-example.jpg" alt-text="A chart displaying the relative capabilities between large language models and small language models." lightbox="../../../../ai-studio/media/how-to/sdks/small-language-models-chart-example.jpg":::
-
-Now, create a chat completion request with the image:
-
-
-```csharp
-ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
-{
-    Messages = {
-        new ChatRequestSystemMessage("You are an AI assistant that helps people find information."),
-        new ChatRequestUserMessage([
-            new ChatMessageTextContentItem("Which conclusion can be extracted from the following chart?"),
-            new ChatMessageImageContentItem(new Uri(dataUrl))
-        ]),
-    },
-    MaxTokens=2048,
-};
-
-var response = client.Complete(requestOptions);
-Console.WriteLine(response.Value.Content);
-```
-
-The response is as follows, where you can see the model's usage statistics:
-
-
-```csharp
-Console.WriteLine($"{response.Value.Role}: {response.Value.Content}");
-Console.WriteLine($"Model: {response.Value.Model}");
-Console.WriteLine("Usage:");
-Console.WriteLine($"\tPrompt tokens: {response.Value.Usage.PromptTokens}");
-Console.WriteLine($"\tTotal tokens: {response.Value.Usage.TotalTokens}");
-Console.WriteLine($"\tCompletion tokens: {response.Value.Usage.CompletionTokens}");
-```
-
-```console
-ASSISTANT: The chart illustrates that larger models tend to perform better in quality, as indicated by their size in billions of parameters. However, there are exceptions to this trend, such as Phi-3-medium and Phi-3-small, which outperform smaller models in quality. This suggests that while larger models generally have an advantage, there might be other factors at play that influence a model's performance.
-Model: mistral-large-2407
-Usage: 
-  Prompt tokens: 2380
-  Completion tokens: 126
-  Total tokens: 2506
-```
