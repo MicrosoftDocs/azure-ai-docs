@@ -1,5 +1,5 @@
 ---
-title: Content Safety for serverless APIs
+title: Content safety for serverless APIs
 titleSuffix: Azure AI Foundry
 description: Learn about content safety for models deployed using serverless APIs, using Azure AI Foundry.
 manager: scottpolly
@@ -13,7 +13,7 @@ reviewer: ositanachi
 ms.custom: 
 ---
 
-# Content Safety for serverless APIs
+# Content safety for models in the model catalog
 
 In this article, learn about content safety capabilities for models from the model catalog deployed using serverless APIs.
 
