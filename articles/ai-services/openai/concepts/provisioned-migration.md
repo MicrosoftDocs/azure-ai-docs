@@ -170,7 +170,7 @@ Customers using Azure OpenAI Provisioned offer prior to August 2024 can use eith
 
 **Resource has an active Commitment** 
 
-* The commitment discounts all deployments on the resource up to the number of PTUs on the commitment. Any excess PTUs will be billed hourly. 
+* The commitment discounts all deployments on the resource up to the number of PTUs on the commitment. Any excess PTUs will be billed hourly unless the excess PTUs are not in the scope of an active reservations. If the excess PTUs exist in the scope of an active reservation, will be discounted as a group up to the number of PTUs on the reservation and any excess spill still leftover will be billed hourly. 
 
 **Resource does not have an active commitment** 
 
@@ -217,7 +217,7 @@ An alternative approach to self-service migration is to switch the reservation p
 * There will be a short period of double-billing or hourly charges during the switchover from committed to hourly/reservation billing.
 
 > [!IMPORTANT]
-> Self-service approach may generate some additional charges as the payment mode is switched from Committed to Hourly/Reservation. This is the characteristics of this migration approaches and customers aren't credited for these charges. Alternately, Customers can choose to use the managed migration approach described below to avoid them.
+> Self-service approach generates additional charges as the payment mode is switched from Committed to Hourly/Reservation. This is the characteristics of this migration approaches and customers aren't credited for these charges. Alternately, Customers can choose to use the managed migration approach described below to avoid them.
 
 ### Managed migration
 
