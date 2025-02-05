@@ -26,7 +26,7 @@ To use chat completion models in your application, you need:
 
 * A chat completions model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
 
-* Add the Azure AI inference package to your project:
+* Add the [Azure AI inference package](https://aka.ms/azsdk/azure-ai-inference/java/reference) to your project:
 
   ```xml
   <dependency>
@@ -36,9 +36,6 @@ To use chat completion models in your application, you need:
   </dependency>
   ```
   
-  > [!TIP]
-  > Read more about the [Azure AI inference package and reference](https://aka.ms/azsdk/azure-ai-inference/java/reference).
-
 * If you are using Entra ID, you also need the following package:
 
   ```xml
