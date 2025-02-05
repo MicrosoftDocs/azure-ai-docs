@@ -17,7 +17,7 @@ Models deployed in Azure AI Model Inference can be used with different SDKs and 
 
 ## All models
 
-All models deployed to Azure AI model inference support the [Azure AI model inference API](https://aka.ms/aistudio/modelinference) and its associated family of SDKs.
+All models deployed to Azure AI model inference support the [Azure AI model inference API](https://aka.ms/azureai/modelinference) and its associated family of SDKs.
 
 To use these SDKs, connect them to the [Azure AI model inference URI](concepts/endpoints.md#azure-ai-inference-endpoint) (usually in the form `https://<resource-name>.services.ai.azure.com/models`).
 
