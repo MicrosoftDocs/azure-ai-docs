@@ -23,7 +23,7 @@ To use these SDKs, connect them to the [Azure AI model inference URI](concepts/e
 
 ### Azure AI inference SDK
 
-The Azure AI Inference package allow you to consume all models deployed to the Azure AI model inference service and easily change among them. Azure AI Inference package is part of the Azure AI Foundry SDK.
+The Azure AI Inference package allows you to consume all models deployed to the Azure AI model inference service and easily change among them. Azure AI Inference package is part of the Azure AI Foundry SDK.
 
 | Language   | Documentation | Package | Examples |
 |------------|---------|-----|-------|
@@ -76,7 +76,7 @@ To use these SDKs, connect them to the [Azure OpenAI service URI](concepts/endpo
 ## Limitations
 
 > [!WARNING]
-> Cohere SDK and Mistral SDK are not supported in Azure AI Model Inference in Azure AI Foundry.
+> Cohere SDK and Mistral SDK aren't supported in Azure AI Model Inference in Azure AI Foundry.
 
 ## Next steps
 
