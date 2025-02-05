@@ -276,6 +276,36 @@ During cluster creation or when editing compute cluster details, in the **Advanc
 
 ---
 
+### Kubernetes Compute Cluster
+
+> [!NOTE]
+> Azure Machine Learning kubernetes clusters support only **one system-assigned identity** or **one multiple user-assigned identities**, not both concurrently.
+
+The **default managed identity** is the system-assigned managed identity or the first user-assigned managed identity.
+
+
+During a run there are two applications of an identity:
+
+1. The system uses an identity to set up the user's storage mounts, container registry, and datastores.
+
+    * In this case, the system will use the default-managed identity.
+
+1. You apply an identity to access resources from within the code for a submitted job:
+
+    * In the case of kubernetes compute clusters, the ManagedIdentityCredential object should be passed **without any client_id**.
+
+    For example, to retrieve a token for a datastore with the default-managed identity:
+
+    ```python
+    client_id = os.environ.get('DEFAULT_IDENTITY_CLIENT_ID')
+    credential = ManagedIdentityCredential()
+    token = credential.get_token('https://storage.azure.com/')
+    ```
+
+To configure a kubernetes compute cluster, make sure that it has the [necessary AML extension deployed in it](https://learn.microsoft.com/azure/machine-learning/how-to-deploy-kubernetes-extension?view=azureml-api-2&tabs=deploy-extension-with-cli) and follow the documentation on [how to attach the kubernetes compute cluster to your AML workspace](https://learn.microsoft.com/azure/machine-learning/how-to-attach-kubernetes-to-workspace?view=azureml-api-2&tabs=cli).
+
+---
+
 ### Data storage
 
 When you create a datastore that uses **identity-based data access**, your Azure account ([Microsoft Entra token](/azure/active-directory/fundamentals/active-directory-whatis)) is used to confirm you have permission to access the storage service. In the **identity-based data access** scenario, no authentication credentials are saved. Only the storage account information is stored in the datastore.
@@ -413,54 +443,6 @@ The following steps outline how to set up data access with user identity for tra
 > [!IMPORTANT] 
 > During job submission with authentication with user identity enabled, the code snapshots are protected against tampering by checksum validation. If you have existing pipeline components and intend to use them with authentication with user identity enabled, you might need to re-upload them. Otherwise the job may fail during checksum validation. 
 
-### Access data for training jobs on AKS clusters using user identity
-When training on Azure Kubernetes Service (AKS) clusters, the authentication to dependent azure resources works differently.
-The following steps outline how to set up data access with a given managed identity for training jobs on AKS clusters:
-
-1. Firstly, create and attach the [Azure Kubernetes Cluster to your Azure Machine Learning Workspace](https://learn.microsoft.com/azure/machine-learning/how-to-attach-kubernetes-to-workspace?view=azureml-api-2&tabs=sdk#how-to-attach-a-kubernetes-cluster-to-azure-machine-learning-workspace).
-
-1. Ensure that the kubernetes cluster has an [assigned managed identity](https://learn.microsoft.com/azure/machine-learning/how-to-attach-kubernetes-to-workspace?view=azureml-api-2&tabs=sdk#assign-managed-identity) and that the identity has the necessary [azure roles assigned to it](https://learn.microsoft.com/azure/machine-learning/how-to-attach-kubernetes-to-workspace?view=azureml-api-2&tabs=sdk#assign-azure-roles-to-managed-identity).
-
-1. When submitting the job, make sure to provide the managed identity of the compute **without specifying the client_id** in the parameters:
-
-    ```yaml
-    command: |
-    echo "--census-csv: ${{inputs.census_csv}}"
-    python hello-census.py --census-csv ${{inputs.census_csv}}
-    code: src
-    inputs:
-    census_csv:
-        type: uri_file 
-        path: azureml://datastores/mydata/paths/census.csv
-    environment: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest
-    compute: azureml:kubernetes-cluster
-    ```
-
-    ```python
-    from azure.ai.ml import command
-    from azure.ai.ml.entities import Data, UriReference
-    from azure.ai.ml import Input
-    from azure.ai.ml.constants import AssetTypes
-    from azure.ai.ml import UserIdentityConfiguration
-    
-    # Specify the data location
-    my_job_inputs = {
-        "input_data": Input(type=AssetTypes.URI_FILE, path="<path-to-my-data>")
-    }
-
-    # Define the job
-    job = command(
-        code="<my-local-code-location>", 
-        command="python <my-script>.py --input_data ${{inputs.input_data}}",
-        inputs=my_job_inputs,
-        environment="AzureML-sklearn-0.24-ubuntu18.04-py37-cpu:9",
-        compute="<my-kubernetes-cluster-name>",
-        identity= ManagedIdentityConfiguration() 
-    )
-    # submit the command
-    returned_job = ml_client.jobs.create_or_update(job)
-    ```
-In this case, you can leave the identity property unspecified in the yaml, as it will default to the managed identity of the kubernetes cluster.
 
 ### Work with virtual networks
 
