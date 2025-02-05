@@ -85,6 +85,7 @@ Use the parameter `model="<deployment-name>` to route your request to this deplo
 Azure AI model inference supports additional features not available in GitHub Models, including:
 
 * [Explore the model catalog](https://ai.azure.com/github/models) to see additional models not available in GitHub Models.
+* Configure [key-less authentication](configure-entra-id.md).
 * Configure [content filtering](configure-content-filters.md).
 * Configure rate limiting (for specific models).
 * Explore additional [deployment SKUs (for specific models)](../concepts/deployment-types.md).
