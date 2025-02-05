@@ -63,7 +63,7 @@ To explore the content extraction and add-on capabilities for each modality, sel
 ### Information Extraction Using Schemas
 Schemas play a crucial role in Content understanding by providing a structured framework for extracting and organizing information from various data types. [Field extraction](#1-field-extraction), [grounding and confidence scores](#2-grounding-and-confidence-scores) are some of the key reasons why schemas are powerful.
 
-#### 1. Field Extraction
+#### Field Extraction
 Schemas enable the extraction of structured data from unstructured data using generative AI to generate, classify or extract data from the input content. For instance, field extraction can identify the invoice amount in a document, capture names mentioned in an audio file, or generate a summary of a video.  [Learn more and follow a quickstart guide to build a schema and extract fields.](../quickstart/use-ai-foundry.md#build-a-schema)
 
 Generation methods differ by modality type. To learn more about the supported generation methods for each modality, select a modality from the tabs below.
@@ -94,7 +94,7 @@ Generation methods differ by modality type. To learn more about the supported ge
 |&bullet; **Generate**: In video, users can derive values from the input content, such as summaries of video segments and product characteristics. <br> &bullet; **Classify**: In video, users can categorize values from the input content, such as determining the sentiment of conversations (positive, neutral, or negative). <br>|
 
 -------
-#### 2. Grounding and Confidence Scores
+#### Grounding and Confidence Scores
 
 Content Understanding ensures that the results from field and content extraction are accurately grounded to the input content and provide confidence scores for the extracted data, making automation and validation more reliable.
 
