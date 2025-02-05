@@ -12,7 +12,7 @@ ms.topic: conceptual
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: deeikele
-ms.date: 09/12/2023
+ms.date: 02/05/2025
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ---
 # Use customer-managed keys with Azure Machine Learning
