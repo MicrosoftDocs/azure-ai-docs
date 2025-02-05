@@ -19,7 +19,7 @@ ms.custom: 2025-understanding-release
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Content Understanding offers a streamlined process and a various capabilities to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into analytical workflows and retrieval augmented generation (RAG) applications.
+Content Understanding offers a streamlined process and various capabilities to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into analytical workflows and retrieval augmented generation (RAG) applications.
 
 ## Key Capabilities of Content Understanding
 
@@ -33,7 +33,7 @@ Content extraction focuses on extracting general information from the input cont
 #### Add-on capabilities of content extraction
 Content Understanding supports more sophisticated analysis capabilities. Use the add-on features to extend the results to include more features extracted from your content. Some add-on features incur an extra cost. These optional features can be enabled and disabled depending on the scenario.
 
-To learn more about each modality's content extraction and add-on capabilities, select a modality from the following tabs.
+To explore the content extraction and add-on capabilities for each modality, select a modality from the tabs below.
 
 # [Document](#tab/document)
 
@@ -61,9 +61,9 @@ To learn more about each modality's content extraction and add-on capabilities, 
 
 ----
 ### Information Extraction Using Schemas
-Schemas play a crucial role in Content understanding by providing a structured framework for extracting and organizing information from various data types. Here are some key reasons why schemas are powerful:
+Schemas play a crucial role in Content understanding by providing a structured framework for extracting and organizing information from various data types. [Field extraction](#1-field-extraction), [grounding and confidence scores](#2-grounding-and-confidence-scores) are some of the key reasons why schemas are powerful.
 
-#### Field Extraction
+#### 1. Field Extraction
 Schemas enable the extraction of structured data from unstructured data using generative AI to generate, classify or extract data from the input content. For instance, field extraction can identify the invoice amount in a document, capture names mentioned in an audio file, or generate a summary of a video.  [Learn more and follow a quickstart guide to build a schema and extract fields.](../quickstart/use-ai-foundry.md#build-a-schema)
 
 Generation methods differ by modality type. To learn more about the supported generation methods for each modality, select a modality from the tabs below.
@@ -94,7 +94,7 @@ Generation methods differ by modality type. To learn more about the supported ge
 |&bullet; **Generate**: In video, users can derive values from the input content, such as summaries of video segments and product characteristics. <br> &bullet; **Classify**: In video, users can categorize values from the input content, such as determining the sentiment of conversations (positive, neutral, or negative). <br>|
 
 -------
-#### Grounding and Confidence Scores
+#### 2. Grounding and Confidence Scores
 
 Content Understanding ensures that the results from field and content extraction are accurately grounded to the input content and provide confidence scores for the extracted data, making automation and validation more reliable.
 
