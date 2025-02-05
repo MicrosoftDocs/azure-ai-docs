@@ -34,7 +34,7 @@ The Azure AI Inference package allows you to consume all models deployed to the 
 
 ### Azure AI Projects package
 
-The Azure AI Projects package allows customer to access a comprhensive set of functionalities from an Azure AI project. Those capabilities includes Azure AI model inference, but also advanced capabilities like tracing, evaluation, and data storage. Azure AI Projects package is part of the Azure AI Foundry SDK and leverages the Azure AI Inference package and Azure OpenAI package to perform inference depending on users needs.
+The Azure AI Projects package allows customer to access a comprehensive set of functionalities from an Azure AI project. Those capabilities include Azure AI model inference, but also advanced capabilities like tracing, evaluation, and data storage. Azure AI Projects package is part of the Azure AI Foundry SDK and leverages the Azure AI Inference package and Azure OpenAI package to perform inference depending on users needs.
 
 | Language   | Documentation | Package | Examples |
 |------------|---------|-----|-------|
