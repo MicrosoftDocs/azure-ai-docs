@@ -23,6 +23,8 @@ To use these SDKs, connect them to the [Azure AI model inference URI](concepts/e
 
 ### Azure AI inference SDK
 
+The Azure AI Inference package allow you to consume all models deployed to the Azure AI model inference service and easily change among them. Azure AI Inference package is part of the Azure AI Foundry SDK.
+
 | Language   | Documentation | Package | Examples |
 |------------|---------|-----|-------|
 | C#         | [Reference](https://aka.ms/azsdk/azure-ai-inference/csharp/reference) | [azure-ai-inference (NuGet)](https://www.nuget.org/packages/Azure.AI.Inference/) | [C# examples](https://aka.ms/azsdk/azure-ai-inference/csharp/samples)       |
@@ -31,6 +33,8 @@ To use these SDKs, connect them to the [Azure AI model inference URI](concepts/e
 | Python     | [Reference](https://aka.ms/azsdk/azure-ai-inference/python/reference) | [azure-ai-inference (PyPi)](https://pypi.org/project/azure-ai-inference/) | [Python examples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-inference/samples) |
 
 ### Azure AI Foundry SDK
+
+The Azure AI Foundry SDK is a comprehensive 
 
 | Language   | Documentation | Package | Examples |
 |------------|---------|-----|-------|
@@ -44,6 +48,7 @@ To use these SDKs, connect them to the [Azure AI model inference URI](concepts/e
 | LangChain   | Python     | [Reference](https://python.langchain.com/docs/integrations/providers/microsoft) | [langchain-azure-ai (PyPi)](https://pypi.org/project/langchain-azure-ai/) | [Python examples](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/langchain) |
 | Llama-Index | Python     | [Reference](https://aka.ms/azsdk/azure-ai-inference/python/reference) | [llama-index-llms-azure-inference (PyPi)](https://pypi.org/project/llama-index-llms-azure-inference/) <br /> [llama-index-embeddings-azure-inference (PyPi)](https://pypi.org/project/llama-index-embeddings-azure-inference/) | [Python examples](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/llama-index) |
 | Semantic Kernel | Python     | [Reference](/semantic-kernel/overview) | [semantic-kernel[azure] (PyPi)](https://pypi.org/project/semantic-kernel/) | [Python examples](../../ai-studio/how-to/develop/semantic-kernel.md) |
+| AutoGen     | Python     | [Reference](https://microsoft.github.io/autogen/stable/reference/python/autogen_ext.models.azure.html#autogen_ext.models.azure.AzureAIChatCompletionClient)  | [autogen-ext[azure] (PyPi)](https://pypi.org/project/autogen-ext/) | [Quickstart](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/quickstart.html) |
 
 
 ## Azure OpenAI models
@@ -66,6 +71,7 @@ To use these SDKs, connect them to the [Azure OpenAI service URI](concepts/endpo
 | ----------- |------------|---------|-----|-------|
 | LangChain   | Python     | [Reference](https://python.langchain.com/docs/integrations/providers/microsoft) | [langchain-openai (PyPi)](https://pypi.org/project/langchain-openai/) | [Python examples](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/langchain) |
 | Llama-Index | Python     | [Reference](https://aka.ms/azsdk/azure-ai-inference/python/reference) | [llama-index-llms-openai (PyPi)](https://pypi.org/project/llama-index-llms-openai/) <br /> [llama-index-embeddings-openai (PyPi)](https://pypi.org/project/llama-index-embeddings-openai/) | [Python examples](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/llama-index) |
+| AutoGen     | Python     | [Reference](https://microsoft.github.io/autogen/stable/reference/python/autogen_ext.models.openai.html)  | [autogen-ext[openai] (PyPi)](https://pypi.org/project/autogen-ext/) | [Quickstart](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/quickstart.html) |
 
 ## Limitations
 
