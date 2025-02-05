@@ -22,6 +22,8 @@ Document Intelligence operates as a multitenant service, ensuring that latency f
 > * The Document Intelligence API offers asynchronous functionality, allowing you to access results up to 24 hours after sending your request to our backend. 
 > * Use the request ID provided by the POST operation to retrieve these results. If you encounter issues during your standard polling sequence, save the request ID and try again later before considering a retry. For further assistance, refer to our service page.
 
+## Set your latency baseline
+
 To evaluate latency, you should first establish baseline metrics for your specific scenario. These metrics give you the expected end-to-end and server latency within the context of your application environment. Once you have these baseline metrics, it becomes easier to distinguish between expected and unexpected conditions.
 
 ## Check Azure region status
