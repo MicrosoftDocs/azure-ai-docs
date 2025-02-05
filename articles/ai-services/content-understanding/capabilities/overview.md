@@ -69,25 +69,25 @@ Schemas enable the extraction of structured data from unstructured data using ge
 Generation methods differ by modality type. To learn more about the supported generation methods for each modality, select a modality from the tabs below.
 
 
-# [Document](#tab/document1)
+# [Documents](#tab/document1)
 
 |Supported generation methods|
 |--------------|
 |Extract: In document, users can extract field values from input content, such as dates from receipts or item details from invoices. |
 
-# [Image](#tab/image1)
+# [Images](#tab/image1)
 
 |Supported generation methods|
 |--------------|
 |&bullet; Generate: In images, users can derive values from the input content, such as generating titles, descriptions, and summaries for figures and charts. <br> &bullet; Classify: In images, users can categorize elements from the input content, such as identifying different types of charts like histograms, bar graphs, etc.<br> |
 
-# [Audio](#tab/audio1)
+# [Audios](#tab/audio1)
 
 |Supported generation methods|
 |--------------|
 |&bullet; Generate: In audio, users can derive values from the input content, such as conversation summaries and topics. <br> &bullet; Classify: In audio, users can categorize values from the input content, such as determining the sentiment of a conversation (positive, neutral, or negative).<br> |
 
-# [Video](#tab/video1)
+# [Videos](#tab/video1)
 
 |Supported generation methods|
 |--------------|
