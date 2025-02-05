@@ -73,25 +73,25 @@ Generation methods differ by modality type. To learn more about the supported ge
 
 |Supported generation methods|
 |--------------|
-|Extract: In document, users can extract field values from input content, such as dates from receipts or item details from invoices. |
+|**Extract**: In document, users can extract field values from input content, such as dates from receipts or item details from invoices. |
 
 # [Image](#tab/image)
 
 |Supported generation methods|
 |--------------|
-|&bullet; Generate: In images, users can derive values from the input content, such as generating titles, descriptions, and summaries for figures and charts. <br> &bullet; Classify: In images, users can categorize elements from the input content, such as identifying different types of charts like histograms, bar graphs, etc.<br> |
+|&bullet; **Generate**: In images, users can derive values from the input content, such as generating titles, descriptions, and summaries for figures and charts. <br> &bullet; **Classify**: In images, users can categorize elements from the input content, such as identifying different types of charts like histograms, bar graphs, etc.<br> |
 
 # [Audio](#tab/audio)
 
 |Supported generation methods|
 |--------------|
-|&bullet; Generate: In audio, users can derive values from the input content, such as conversation summaries and topics. <br> &bullet; Classify: In audio, users can categorize values from the input content, such as determining the sentiment of a conversation (positive, neutral, or negative).<br> |
+|&bullet; **Generate**: In audio, users can derive values from the input content, such as conversation summaries and topics. <br> &bullet; **Classify**: In audio, users can categorize values from the input content, such as determining the sentiment of a conversation (positive, neutral, or negative).<br> |
 
 # [Video](#tab/video)
 
 |Supported generation methods|
 |--------------|
-|&bullet; Generate: In video, users can derive values from the input content, such as summaries of video segments and product characteristics. <br> &bullet; Classify: In video, users can categorize values from the input content, such as determining the sentiment of conversations (positive, neutral, or negative). <br>|
+|&bullet; **Generate**: In video, users can derive values from the input content, such as summaries of video segments and product characteristics. <br> &bullet; **Classify**: In video, users can categorize values from the input content, such as determining the sentiment of conversations (positive, neutral, or negative). <br>|
 
 -------
 #### Grounding and Confidence Scores
