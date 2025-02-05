@@ -12,23 +12,27 @@ ms.author: lajanuar
 
 # Troubleshooting latency issues in Azure AI Document Intelligence
 
-This article presents troubleshooting tips, remedial solutions, and best practices to address Document Intelligence latency issues. Latency refers to the duration an API server takes to handle and process an incoming request before delivering the response to the client. The time required to analyze a document varies based on its size (such as the number of pages) and the content on each page. Document Intelligence operates as a multitenant service, ensuring that latency for similar documents is comparable, though not always identical. Variability in latency and performance is an inherent characteristic of any microservice-based, stateless, asynchronous service, especially when processing images and large documents on a large scale. Despite continuous efforts to increase hardware capacity and enhance scalability, some latency issues can still arise during runtime.
+This article presents troubleshooting tips, remedial solutions, and best practices to address Document Intelligence latency issues. Latency refers to the duration an API server takes to handle and process an incoming request before delivering the response to the client. The time required to analyze a document varies based on its size (such as the number of pages) and the content on each page. 
+
+Document Intelligence operates as a multitenant service, ensuring that latency for similar documents is comparable, though not always identical. Variability in latency and performance is an inherent characteristic of any microservice-based, stateless, asynchronous service, especially when processing images and large documents on a large scale. Despite continuous efforts to increase hardware capacity and enhance scalability, some latency issues can still arise during runtime.
 
 > [!NOTE]
-> Azure AI services don't provide a Service Level Agreement (SLA) for latency.
-> The Document Intelligence API offers asynchronous functionality, allowing you to access results up to 24 hours after sending your request to our backend. Use the request ID provided by the POST operation to retrieve these results. If you encounter issues during your standard polling sequence, save the request ID and try again later before considering a retry. For further assistance, refer to our service page.
+>
+> * Azure AI services don't provide a Service Level Agreement (SLA) for latency.
+> * The Document Intelligence API offers asynchronous functionality, allowing you to access results up to 24 hours after sending your request to our backend. 
+> * Use the request ID provided by the POST operation to retrieve these results. If you encounter issues during your standard polling sequence, save the request ID and try again later before considering a retry. For further assistance, refer to our service page.
 
-To evaluate latency, you should first establish baseline metrics for your specific scenario. These metrics give you the expected end-to-end and server latency within the context of your application environment. Once you have these baseline metrics, it becomes easier to distinguish between abnormal and normal conditions.
+To evaluate latency, you should first establish baseline metrics for your specific scenario. These metrics give you the expected end-to-end and server latency within the context of your application environment. Once you have these baseline metrics, it becomes easier to distinguish between expected and unexpected conditions.
 
 ## Check Azure region status
 
-If you're experiencing latency issues, the first step is to check [Azure status](https://azure.status.microsoft/status) for any current outages or issues that might impact your services.
+When you're experiencing latency issues, the first step is to check [Azure status](https://azure.status.microsoft/status) for any current outages or issues that might impact your services.
 
 * All active events are listed under the `Current Impact` tab.
 
 * You can also check your resource in the host region. Go to Geography → Products And Services → AI + Machine Learning → Azure AI Document Intelligence and check the status for your region:
 
-   :::image type="content" source="../media/latency/azure-status.png" alt-text="Screenshot of the Microsoft Azure status page" lightbox="../media/azure-status.png":::
+   :::image type="content" source="../media/latency/azure-status.png" alt-text="Screenshot of the Microsoft Azure status page" lightbox="../media/latency/azure-status.png":::
 
 ## Check file size
 
