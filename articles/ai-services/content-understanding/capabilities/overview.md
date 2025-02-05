@@ -57,7 +57,7 @@ To learn more about each modality's content extraction and add-on capabilities, 
 
 |Content Extraction|Add-on Capabilities|
 |--------|-------------|
-|&bullet; **Transcription**: Converts speech to structured, searchable text via Azure AI Speech, allowing users to specify recognition languages. </br>&bullet; **Shot Detection**:  Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly on shot boundaries. </br> &bullet; **Key Frame Extraction**: Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable Field Extraction to work effectively.</br>| **Face Grouping**: Grouped faces appearing in a video to extract one representative face image for each person and provides segments where each one is present. The grouped face data is available as metadata and can be used to generate customized metadata fields.This feature is limited access and involves face identification and grouping; customers need to register for access at Face Recognition. |
+|&bullet; **Transcription**: Converts speech to structured, searchable text via Azure AI Speech, allowing users to specify recognition languages. </br>&bullet; **Shot Detection**:  Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly on shot boundaries. </br> &bullet; **Key Frame Extraction**: Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable Field Extraction to work effectively.</br> | **Face Grouping**: Grouped faces appearing in a video to extract one representative face image for each person and provides segments where each one is present. The grouped face data is available as metadata and can be used to generate customized metadata fields.This feature is limited access and involves face identification and grouping; customers need to register for access at Face Recognition. |
 
 
 ### Information Extraction Using Schemas
@@ -69,25 +69,25 @@ Schemas enable the extraction of structured data from unstructured data using ge
 Generation methods differ by modality type. To learn more about the supported generation methods for each modality, select a modality from the tabs below.
 
 
-# [Document](#tab/document)
+# [Document](#tab/document1)
 
 |Supported generation methods|
 |--------------|
 |Extract: In document, users can extract field values from input content, such as dates from receipts or item details from invoices. |
 
-# [Image](#tab/image)
+# [Image](#tab/image1)
 
 |Supported generation methods|
 |--------------|
-|&bullet; Generate: In images, users can derive values from the input content, such as generating titles, descriptions, and summaries for figures and charts. <br> &bullet; Classify: In images, users can categorize elements from the input content, such as identifying different types of charts like histograms, bar graphs, etc.<br>|
+|&bullet; Generate: In images, users can derive values from the input content, such as generating titles, descriptions, and summaries for figures and charts. <br> &bullet; Classify: In images, users can categorize elements from the input content, such as identifying different types of charts like histograms, bar graphs, etc.<br> |
 
-# [Audio](#tab/audio)
+# [Audio](#tab/audio1)
 
 |Supported generation methods|
 |--------------|
-|&bullet; Generate: In audio, users can derive values from the input content, such as conversation summaries and topics. <br> &bullet; Classify: In audio, users can categorize values from the input content, such as determining the sentiment of a conversation (positive, neutral, or negative).<br>|
+|&bullet; Generate: In audio, users can derive values from the input content, such as conversation summaries and topics. <br> &bullet; Classify: In audio, users can categorize values from the input content, such as determining the sentiment of a conversation (positive, neutral, or negative).<br> |
 
-# [Video](#tab/video)
+# [Video](#tab/video1)
 
 |Supported generation methods|
 |--------------|
