@@ -16,7 +16,7 @@ This article presents troubleshooting tips, remedial solutions, and best practic
 
 > [!NOTE]
 > Azure AI services doesn't offer a Service Level Agreement (SLA) for latency.
-> The asynchronous nature of the API allows you to retrieve results for up to 24 hours after the operation is sent to our backend with the request Id returned by the POST operation. If you are unable to retrieve the result within your normal polling sequence, store the request Id and attempt at a different time before retrying. Please refer to our service page for more guidance.  
+> The asynchronous nature of the API allows you to retrieve results for up to 24 hours after the operation is sent to our backend with the request Id returned by the POST operation. If you are unable to retrieve the result within your normal polling sequence, store the request Id and attempt at a different time before retrying. Please refer to our service page for more guidance.
 
 ## Check Azure region status
 
@@ -26,14 +26,39 @@ If you're experiencing latency issues, the first to check [Azure status](https:/
 
 * You can also check your resource in the host region. Go to Geography → Products And Services → AI + Machine Learning → Azure AI Document Intelligence and check the status for your region:
 
-   :::image type="content" source="../media/azure-status.png" alt-text="Screenshot of the Microsoft Azure status page" lightbox="../media/azure-status.png":::
+   :::image type="content" source="../media/latency/azure-status.png" alt-text="Screenshot of the Microsoft Azure status page" lightbox="../media/azure-status.png":::
 
 ## Check file size
 
-the size of the files you may be sending through the request API. The service parallelizes processing, larger files can lead to longer processing time. Please normalize your measurement as latency per page. Consider raising the issue if you see sustained periods (more than an hour) with latency per page consistently being above 15s.
+The size of the files you may be sending through the request API. The service parallelizes processing, larger files can lead to longer processing time. Please normalize your measurement as latency per page. Consider raising the issue if you see sustained periods (more than an hour) with latency per page consistently being above 15s.
 
-## Check for latency in Azure Blob storage
+## Check Azure Blob storage latency
 
-Azure Storage latency is related to request rates for Azure Storage operations. In practice, request rates do not always scale so linearly, due to overhead in the client from task scheduling, context switching, and so forth. On the service side, there can be variability in latency due to pressure on the Azure Storage system, differences in the storage media used, noise from other workloads, maintenance tasks, and other factors. Finally, the network connection between the client and the server may affect Azure Storage latency due to congestion, rerouting, or other disruptions. For more information, *see* [Latency im Blob storage](/azure/storage/blobs/storage-blobs-latency).
+Latency in Azure Storage operations is affected by the size of the request. Larger operations take more time to complete due to the increased volume of data transferred over the network and processed by Azure Storage.
 
-## Check monitoring metrics in the Azure portal
+Azure Storage provides two latency metrics for block blobs in the Azure portal:
+
+   * End-to-end (E2E) latency measures the interval from when Azure Storage receives the first packet of the request until Azure Storage receives a client acknowledgment on the last packet of the response.
+
+   * Server latency measures the interval from when Azure Storage receives the last packet of the request until the first packet of the response is returned from Azure Storage.
+
+To view latency metrics, navigate to your storage resource in the Azure portal:
+
+* On the left navigation window, select **Insights** from the **Monitoring** drop-down menu.
+
+* The insights tab opens a window that includes a chart showing both `E2E` and `Server` latency metrics:
+
+   :::image type="content" source="../media/latency/azure-storage.png" alt-text="Screenshot of Azure Storage latency metrics in the Azure portal.":::
+
+
+For more information, *see* [Latency in Blob storage](/azure/storage/blobs/storage-blobs-latency).
+
+
+## Check monitoring metrics for your resource
+
+You can monitor performance metrics and set up alerts for your Document Intelligence resource in the Azure portal. To view latency metrics, navigate to your Document Intelligence resource in the Azure portal:
+
+* On the **Overview** page, select **Monitoring**, select the time period, and review the **Request latency** metrics on page.
+
+   :::image type="content" source="../media/latency/azure-portal-monitoring.png" alt-text="Screenshot of Azure usage monitoring metrics in the Azure portal.":::
+
