@@ -292,7 +292,7 @@ During a run there are two applications of an identity:
 
 1. You apply an identity to access resources from within the code for a submitted job:
 
-    * In the case of kubernetes compute clusters, the ManagedIdentityCredential object should be passed **without any client_id**.
+    * In the case of kubernetes compute clusters, the ManagedIdentityCredential object should be provided **without any client_id**.
 
     For example, to retrieve a token for a datastore with the default-managed identity:
 
