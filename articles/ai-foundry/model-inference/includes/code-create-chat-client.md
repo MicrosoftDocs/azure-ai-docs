@@ -12,7 +12,7 @@ author: santiagxf
 Install the package `azure-ai-inference` using your package manager, like pip:
 
 ```bash
-pip install -U azure-ai-inference
+pip install azure-ai-inference
 ```
 
 Then, you can use the package to consume the model. The following example shows how to create a client to consume chat completions:
