@@ -10,7 +10,7 @@ ms.topic: how-to
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: meerakurup
-ms.date: 09/13/2023
+ms.date: 02/05/2025
 ---
 
 # Network Isolation Change with Our New API Platform on Azure Resource Manager
