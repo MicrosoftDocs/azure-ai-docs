@@ -106,10 +106,8 @@ Each modality offers suggested analyzer templates tailored to common scenarios, 
 
 These suggested templates serve as a starting point, allowing users to customize them to fit specific needs and extract relevant data. This approach simplifies data extraction without requiring specialized AI skills, such as prompt engineering. [Learn more about analyzer templates](../quickstart/use-ai-foundry.md#analyzer-templates)
 
-#### Training Analyzers
-
-If you want to further boost the performance for field extraction, training is possible with zero-shot capabilities when provided with a few labeled samples. Note: This feature is available to document scenario now.
-
+#### Improving Analyzer Performance
+To enhance field extraction performance, you can improve an analyzer using zero-shot learning. By providing a few labeled samples, the analyzer can learn and refine its accuracy. **Note**: This feature is currently available for document scenarios only.
 
 ## Input requirements
 For detailed information on supported input document formats, refer to our [Service quotas and limits](../service-limits.md) page.
