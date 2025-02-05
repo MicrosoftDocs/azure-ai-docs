@@ -61,7 +61,7 @@ To explore the content extraction and add-on capabilities for each modality, sel
 
 ----
 ### Information Extraction Using Schemas
-Schemas play a crucial role in Content understanding by providing a structured framework for extracting and organizing information from various data types. [Field extraction](#1-field-extraction), [grounding and confidence scores](#2-grounding-and-confidence-scores) are some of the key reasons why schemas are powerful.
+Schemas play a crucial role in Content understanding by providing a structured framework for extracting and organizing information from various data types. [Field extraction](#field-extraction), [grounding and confidence scores](#grounding-and-confidence-scores) are some of the key reasons why schemas are powerful.
 
 #### Field Extraction
 Schemas enable the extraction of structured data from unstructured data using generative AI to generate, classify or extract data from the input content. For instance, field extraction can identify the invoice amount in a document, capture names mentioned in an audio file, or generate a summary of a video.  [Learn more and follow a quickstart guide to build a schema and extract fields.](../quickstart/use-ai-foundry.md#build-a-schema)
