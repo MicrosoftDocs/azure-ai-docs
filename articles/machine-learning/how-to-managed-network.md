@@ -1178,7 +1178,8 @@ The Azure Machine Learning managed virtual network feature is free. However, you
 
 * Once you enable managed virtual network isolation of your workspace (either allow internet outbound or allow only approved outbound), you can't disable it.
 * Managed virtual network uses private endpoint connection to access your private resources. You can't have a private endpoint and a service endpoint at the same time for your Azure resources, such as a storage account. We recommend using private endpoints in all scenarios.
-* The managed virtual network is deleted when the workspace is deleted. When deleting Azure Machine Learning resources in your Azure subscription, disable any resource locks or locks which prevent deletion of resources you created, or were created by Microsoft for the managed virtual network.
+* The managed virtual network is deleted when the workspace is deleted.
+* Make sure there are no __scope locks__ on the Azure Machine Learning resources and resource group. Internal operations related to managed virtual network might be blocked.
 * Data exfiltration protection is automatically enabled for the only approved outbound mode. If you add other outbound rules, such as to FQDNs, Microsoft can't guarantee that you're protected from data exfiltration to those outbound destinations.
 * Creating a compute cluster in a different region than the workspace isn't supported when using a managed virtual network.
 * Kubernetes and attached VMs aren't supported in an Azure Machine Learning managed virtual network.
