@@ -42,7 +42,7 @@ Microsoft Translator Pro provides real-time multilingual speech-to-speech suppor
 | Bengali (India) | ✔️ |  |
 | Bosnian (Bosnia and Herzegovina) | ✔️ |  |
 | Bulgarian (Bulgaria) | ✔️ |  |
-| Catalan (Spain) | ✔️ |  |
+| Catalan | ✔️ |  |
 | Chinese (Cantonese, Traditional) | ✔️ |  |
 | Chinese (Mandarin, Simplified) | ✔️ | ✔️ |
 | Chinese (Taiwanese Mandarin, Traditional) | ✔️ |  |
