@@ -244,8 +244,8 @@ If you aren't going use the endpoint after completing this tutorial, you should 
 > [!NOTE]
 > The complete deletion might take approximately 20 minutes.
 
-## Next Steps
+## Next steps
 
 - Learn more about what you can do in [Azure AI Foundry](../what-is-ai-studio.md)
 - Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml)
-- [Enable trace and collect feedback for your deployment] (./develop/trace-production-sdk.md)
+- [Enable trace and collect feedback for your deployment](./develop/trace-production-sdk.md)
