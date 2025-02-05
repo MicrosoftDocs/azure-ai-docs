@@ -59,7 +59,7 @@ To learn more about each modality's content extraction and add-on capabilities, 
 |--------|-------------|
 |&bullet; **Transcription**: Converts speech to structured, searchable text via Azure AI Speech, allowing users to specify recognition languages. </br>&bullet; **Shot Detection**:  Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly on shot boundaries. </br> &bullet; **Key Frame Extraction**: Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable Field Extraction to work effectively.</br> | **Face Grouping**: Grouped faces appearing in a video to extract one representative face image for each person and provides segments where each one is present. The grouped face data is available as metadata and can be used to generate customized metadata fields.This feature is limited access and involves face identification and grouping; customers need to register for access at Face Recognition. |
 
-
+----
 ### Information Extraction Using Schemas
 Schemas play a crucial role in Content understanding by providing a structured framework for extracting and organizing information from various data types. Here are some key reasons why schemas are powerful:
 
@@ -68,31 +68,32 @@ Schemas enable the extraction of structured data from unstructured data using ge
 
 Generation methods differ by modality type. To learn more about the supported generation methods for each modality, select a modality from the tabs below.
 
-
-# [Documents](#tab/document1)
+----
+# [Document](#tab/document)
 
 |Supported generation methods|
 |--------------|
 |Extract: In document, users can extract field values from input content, such as dates from receipts or item details from invoices. |
 
-# [Images](#tab/image1)
+# [Image](#tab/image)
 
 |Supported generation methods|
 |--------------|
 |&bullet; Generate: In images, users can derive values from the input content, such as generating titles, descriptions, and summaries for figures and charts. <br> &bullet; Classify: In images, users can categorize elements from the input content, such as identifying different types of charts like histograms, bar graphs, etc.<br> |
 
-# [Audios](#tab/audio1)
+# [Audio](#tab/audio)
 
 |Supported generation methods|
 |--------------|
 |&bullet; Generate: In audio, users can derive values from the input content, such as conversation summaries and topics. <br> &bullet; Classify: In audio, users can categorize values from the input content, such as determining the sentiment of a conversation (positive, neutral, or negative).<br> |
 
-# [Videos](#tab/video1)
+# [Video](#tab/video)
 
 |Supported generation methods|
 |--------------|
 |&bullet; Generate: In video, users can derive values from the input content, such as summaries of video segments and product characteristics. <br> &bullet; Classify: In video, users can categorize values from the input content, such as determining the sentiment of conversations (positive, neutral, or negative). <br>|
 
+-------
 #### Grounding and Confidence Scores
 
 Content Understanding ensures that the results from field and content extraction are accurately grounded to the input content and provide confidence scores for the extracted data, making automation and validation more reliable.
