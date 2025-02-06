@@ -3,7 +3,7 @@ title: Content Safety in Azure AI Foundry portal overview
 titleSuffix: Azure AI Foundry
 description: Learn how to use Azure AI Content Safety in Azure AI Foundry portal to detect harmful user-generated and AI-generated content in applications and services.
 manager: nitinme
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: overview

@@ -3,7 +3,7 @@ title: Plan and manage costs for Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn how to plan for and manage costs for Azure AI Foundry by using cost analysis in the Azure portal.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024

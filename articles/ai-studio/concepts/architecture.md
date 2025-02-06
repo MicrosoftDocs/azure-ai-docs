@@ -3,7 +3,7 @@ title: Azure AI Foundry architecture
 titleSuffix: Azure AI Foundry
 description: Learn about the architecture of Azure AI Foundry.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - ignite-2024

@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: "The management center in Azure AI Foundry portal provides a centralized hub for governance and management activities."
 author: Blackmist
 ms.author: larryfr
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: concept-article #Don't change.

@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: "Learn how to use custom Azure Policies to control Azure AI services and Azure OpenAI model deployment with Azure AI Foundry."
 author: Blackmist
 ms.author: larryfr
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: how-to #Don't change
 ms.date: 10/25/2024
 

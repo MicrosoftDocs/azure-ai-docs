@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: Learn how to use AI responsibly with Azure AI Foundry.
 manager: nitinme
 keywords: Azure AI services, cognitive
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: overview
 ms.date: 11/06/2024
 ms.author: pafarley
