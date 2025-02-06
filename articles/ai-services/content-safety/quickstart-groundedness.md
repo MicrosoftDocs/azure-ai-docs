@@ -27,7 +27,7 @@ This guide shows you how to use the groundedness detection API. This feature aut
 * [cURL](https://curl.haxx.se/) or [Python](https://www.python.org/downloads/) installed.
 
 ## Authentication
-For enhanced security, you need to use Managed Identity (MI) to manage access to your resources, for more details, please refer to [Security](./overview.md#Security).
+For enhanced security, you need to use Managed Identity (MI) to manage access to your resources, for more details, please refer to [Security](./overview.md#security).
 
 ## Check groundedness without reasoning
 
