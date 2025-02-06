@@ -179,7 +179,7 @@ Customers using Azure OpenAI Provisioned offer prior to August 2024 can use eith
 
 ### Changes to the existing payment mode
 
-Customers that have commitments today can continue to use them at least through the end the supported model's end of life. This includes purchasing new PTUs on new or existing commitments and managing commitment renewals. However, the August update has changed certain aspects of commitments operation.
+Customers that have commitments today can continue to use them at least till the supported model's retirement. This includes purchasing new PTUs on new or existing commitments and managing commitment renewals. However, the August update has changed certain aspects of commitments operation.
 
 - Azure OpenAI has stopped supporting enrollment on to new commitments, starting August 1, 2024
 - Only a limited set of models can be deployed on a resource with a commitment. Here is the [List of models](./provisioned-migration.md#supported-models-on-commitment-payment-model)
