@@ -33,10 +33,10 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/studio-examples/named-entity-recognition.png" alt-text="A screenshot of a named entity recognition example."  lightbox="media/studio-examples/named-entity-recognition.png":::
+      :::image type="content" source="media/overview/ner.png" alt-text="A screenshot of the named entity recognition tile in Azure AI Foundry."  lightbox="media/overview/ner.png":::
    :::column-end:::
    :::column span="":::
-      [Named entity recognition](./named-entity-recognition/overview.md) is a preconfigured feature that categorizes entities (words or phrases) in unstructured text across several predefined category groups. For example: people, events, places, dates, [and more](./named-entity-recognition/concepts/named-entity-categories.md).
+      [Named entity recognition](./named-entity-recognition/overview.md) identifies different entries in tex and categorizes them into pre-defined types.
 
    :::column-end:::
 :::row-end:::
@@ -45,10 +45,10 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/studio-examples/personal-information-detection.png" alt-text="A screenshot of a PII detection example." lightbox="media/studio-examples/personal-information-detection.png":::
+      :::image type="content" source="media/overview/pii.png" alt-text="A screenshot of the personally identifying information tiles in Azure AI Foundry." lightbox="media/overview/pii.png":::
    :::column-end:::
    :::column span="":::
-      [PII detection](./personally-identifiable-information/overview.md) is a preconfigured feature that identifies, categorizes, and redacts sensitive information in both [unstructured text documents](./personally-identifiable-information/how-to-call.md), and [conversation transcripts](./personally-identifiable-information/how-to-call-for-conversations.md). For example: phone numbers, email addresses, forms of identification, [and more](./personally-identifiable-information/concepts/entity-categories.md).
+      [PII detection](./personally-identifiable-information/overview.md) identifies entities in text that are associated with an individual and conversations (chat or transcripts).
 
    :::column-end:::
 :::row-end:::
@@ -57,10 +57,10 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/studio-examples/language-detection.png" alt-text="A screenshot of a language detection example." lightbox="media/studio-examples/language-detection.png":::
+      :::image type="content" source="media/overview/language-detection.png" alt-text="A screenshot of the language detection tile in Azure AI Foundry." lightbox="media/overview/language-detection.png":::
    :::column-end:::
    :::column span="":::
-      [Language detection](./language-detection/overview.md) is a preconfigured feature that can detect the language a document is written in, and returns a language code for a wide range of languages, variants, dialects, and some regional/cultural languages.
+      [Language detection](./language-detection/overview.md) evaluates text and detects a wide range of languages and variant dialects.
 
    :::column-end:::
 :::row-end:::
@@ -81,10 +81,10 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/studio-examples/summarization-example.png" alt-text="A screenshot of a summarization example." lightbox="media/studio-examples/summarization-example.png":::
+      :::image type="content" source="media/overview/summarization.png" alt-text="A screenshot of the summarization tiles in Azure AI Foundry." lightbox="media/overview/summarization.png":::
    :::column-end:::
    :::column span="":::
-      [Summarization](./summarization/overview.md) is a preconfigured feature that uses extractive text summarization to produce a summary of documents and conversation transcriptions. It extracts sentences that collectively represent the most important or relevant information within the original content.
+      [Summarization](./summarization/overview.md) recaps and summarizes customer issues and resolution, conversation and segment long meetings into timestamps and chapters, and key information at scale from text.
    :::column-end:::
 :::row-end:::
 
@@ -114,10 +114,10 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="text-analytics-for-health/media/call-api/health-named-entity-recognition.png" alt-text="A screenshot of a text analytics for health example." lightbox="text-analytics-for-health/media/call-api/health-named-entity-recognition.png":::
+      :::image type="content" source="media/overview/ta4h.png" alt-text="A screenshot of a text analytics for health example." lightbox="media/overview/ta4h.png":::
    :::column-end:::
    :::column span="":::
-      [Text analytics for health](./text-analytics-for-health/overview.md) is a preconfigured feature that extracts and labels relevant medical information from unstructured texts such as doctor's notes, discharge summaries, clinical documents, and electronic health records. 
+      [Text analytics for health](./text-analytics-for-health/overview.md) Extracts and labels relevant health information from unstructured text.
    :::column-end:::
 :::row-end:::
 
