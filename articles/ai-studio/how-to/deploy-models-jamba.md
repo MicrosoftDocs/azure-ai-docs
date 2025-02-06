@@ -33,14 +33,14 @@ Certain models in the model catalog can be deployed as a serverless API with pay
 
 The [AI21-Jamba 1.5 Large model](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) deployed as a serverless API with pay-as-you-go billing is [offered by AI21 through Microsoft Azure Marketplace](https://aka.ms/azure-marketplace-offer-ai21-jamba-1.5-large). AI21 can change or update the terms of use and pricing of this model.
 
-To get started with Jamba 1.5 large deployed as a serverless API, explore our integrations with [LangChain](https://aka.ms/ai21-jamba-1.5-large-langchain-sample), [LiteLLM](https://aka.ms/ai21-jamba-1.5-large-litellm-sample), [OpenAI](https://aka.ms/ai21-jamba-1.5-large-openai-sample) and the [Azure API](https://aka.ms/ai21-jamba-1.5-large-azure-api-sample).
+To get started with Jamba 1.5 large deployed as a serverless API, explore our integrations with [LangChain](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/ai21-labs/jamba-1-5/langchain.ipynb), [LiteLLM](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/ai21-labs/jamba-1-5/litellm.ipynb), [OpenAI](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/ai21-labs/jamba-1-5/openaisdk.ipynb) and the [Azure API](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/ai21-labs/jamba-1-5/webrequests.ipynb).
 
 
 # [AI21 Jamba 1.5 Mini](#tab/ai21-jamba-1-5)
 
 The [AI21 Jamba 1.5 Mini model](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-staging) deployed as a serverless API with pay-as-you-go billing is [offered by AI21 through Microsoft Azure Marketplace](https://aka.ms/azure-marketplace-offer-ai21-jamba-1.5-mini). AI21 can change or update the terms of use and pricing of this model.
 
-To get started with Jamba 1.5 mini deployed as a serverless API, explore our integrations with [LangChain](https://aka.ms/ai21-jamba-1.5-mini-langchain-sample), [LiteLLM](https://aka.ms/ai21-jamba-1.5-mini-litellm-sample), [OpenAI](https://aka.ms/ai21-jamba-1.5-mini-openai-sample) and the [Azure API](https://aka.ms/ai21-jamba-1.5-mini-azure-api-sample).
+To get started with Jamba 1.5 mini deployed as a serverless API, explore our integrations with [LangChain](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/ai21-labs/jamba-1-5/langchain.ipynb), [LiteLLM](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/ai21-labs/jamba-1-5/litellm.ipynb), [OpenAI](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/ai21-labs/jamba-1-5/openaisdk.ipynb) and the [Azure API](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/ai21-labs/jamba-1-5/webrequests.ipynb).
 
 ---
 
@@ -261,6 +261,28 @@ __Single-turn example Jamba 1.5 large and Jamba 1.5 mini with documents__
 }
 ```
 
+__Chat example (fourth request containing third user response)__
+
+```JSON
+{
+  "model": "jamba-1.5-large",
+  "messages": [
+     {"role": "system",
+      "content": "You are a helpful genie just released from a bottle. You start the conversation with 'Thank you for freeing me! I grant you one wish.'"},
+     {"role":"user",
+      "content":"I want a new car"},
+     {"role":"assistant",
+      "content":"🚗 Great choice, I can definitely help you with that! Before I grant your wish, can you tell me what kind of car you're looking for?"},
+     {"role":"user",
+      "content":"A corvette"},
+     {"role":"assistant",
+      "content":"Great choice! What color and year?"},
+     {"role":"user",
+      "content":"1963 black split window Corvette"}
+  ],
+  "n":3
+}
+```
 
 #### Response schema
 
