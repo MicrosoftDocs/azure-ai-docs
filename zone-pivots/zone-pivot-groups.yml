@@ -577,6 +577,41 @@ groups:
       title: JavaScript
     - id: programming-language-rest
       title: REST
+- id: azure-ai-inference-samples
+# Owner: santiagxf
+  title: Programing languages
+  prompt: Choose a tool or API
+  pivots:
+    - id: programming-language-python
+      title: Python
+    - id: programming-language-javascript
+      title: JavaScript
+    - id: programming-language-java
+      title: Java
+    - id: programming-language-csharp
+      title: C#
+    - id: programming-language-rest
+      title: REST
+- id: azure-ai-models-deployment
+# Owner: santiagxf
+  title: Prograaming languages
+  prompt: Choose a tool or API
+  pivots:
+    - id: ai-foundry-portal
+      title: Foundry portal
+    - id: programming-language-cli
+      title: Azure CLI
+    - id: programming-language-bicep
+      title: Bicep
+- id: azure-ai-model-catalog-sub-group-samples
+# Owner: mopeakande
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+    - id: programming-language-python
+      title: Python
+    - id: programming-language-rest
+      title: REST
 - id: aml-control-methods
   # Owner: gopalv
   title: Azure Machine Learning control plane
