@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's advanced o3-mini, o1, & o1-mini rea
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 01/30/2025
+ms.date: 02/06/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 ---
@@ -50,12 +50,16 @@ Request access: [limited access model application](https://aka.ms/OAI/o1access)
 | **[Reasoning effort](#reasoning-effort)** | ✅ | ✅ | - | - |
 | **[Vision Support](./gpt-with-vision.md)** | - | ✅ | - | - |
 | Functions/Tools | ✅  | ✅  |  - | - |
-| `max_completion_tokens`<sup>*</sup> |✅ |✅ |✅ | ✅ |
-| System Messages<sup>**</sup> | ✅ | ✅ | - | - |
+| `max_completion_tokens`<sup>1</sup> |✅ |✅ |✅ | ✅ |
+| System Messages<sup>2</sup> | ✅ | ✅ | - | - |
 | Streaming | ✅ | - | - | - |
+| Markdown formatting<sup>3</sup><br><br>`Formatting re-enabled`  | ✅ | - | - | - |
 
-<sup>*</sup> Reasoning models will only work with the `max_completion_tokens` parameter. <br><br>
-<sup>**</sup>The latest o<sup>&#42;</sup> series model support system messages to make migration easier. When you use a system message with `o3-mini` and `o1` it will be treated as a developer message. You should not use both a developer message and a system message in the same API request.
+<sup>1</sup> Reasoning models will only work with the `max_completion_tokens` parameter. <br><br>
+
+<sup>2</sup>The latest o<sup>&#42;</sup> series model support system messages to make migration easier. When you use a system message with `o3-mini` and `o1` it will be treated as a developer message. You should not use both a developer message and a system message in the same API request.
+
+<sup>3</sup> By default the `o3-mini` and `o1` models will not attempt to produce output in markdown. To override this behavior and encourage markdown inclusion in model responses add the string `Formatting re-enabled` to the beginning of your developer message.
 
 ### Not Supported
 
@@ -63,6 +67,9 @@ The following are currently unsupported with reasoning models:
 
 - Parallel tool calling
 - `temperature`, `top_p`, `presence_penalty`, `frequency_penalty`, `logprobs`, `top_logprobs`, `logit_bias`, `max_tokens`
+
+ > [!IMPORTANT]
+ > Currently adding `Formatting re-enabled` to the beginning of a developer messages to indicate that the response should contain markdown formatting is only supported with `o3-mini`. Once support is added for `o1-2024-12-17` we will update this article accordingly.
 
 ## Usage
 
