@@ -38,8 +38,7 @@ import { AzureKeyCredential } from "@azure/core-auth";
 
 const client = new ModelClient(
     process.env.AZURE_INFERENCE_ENDPOINT, 
-    new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL),
-    "deepseek-r1"
+    new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL)
 );
 ```
 
@@ -58,7 +57,6 @@ const clientOptions = { credentials: { "https://cognitiveservices.azure.com" } }
 const client = new ModelClient(
     "https://<resource>.services.ai.azure.com/models", 
     new DefaultAzureCredential(),
-    "deepseek-r1",
     clientOptions,
 );
 ```
@@ -74,6 +72,7 @@ var messages = [
 
 var response = await client.path("/chat/completions").post({
     body: {
+        model: "DeepSeek-R1",
         messages: messages,
     }
 });
@@ -163,6 +162,7 @@ var messages = [
 
 var response = await client.path("/chat/completions").post({
     body: {
+        model: "DeepSeek-R1",
         messages: messages,
     }
 }).asNodeStream();
@@ -229,6 +229,7 @@ try {
     ];
 
     var response = await client.path("/chat/completions").post({
+        model: "DeepSeek-R1",
         body: {
             messages: messages,
         }

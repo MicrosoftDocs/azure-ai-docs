@@ -33,7 +33,7 @@ To use embedding models in your application, you need:
 To use the text embeddings, use the route `/images/embeddings` appended to your base URL along with your credential indicated in `api-key`. `Authorization` header is also supported with the format `Bearer <key>`.
 
 ```http
-POST https://<resource>.services.ai.azure.com/models/images/embeddings
+POST https://<resource>.services.ai.azure.com/models/images/embeddings?api-version=2024-05-01-preview
 Content-Type: application/json
 api-key: <key>
 ```
@@ -41,7 +41,7 @@ api-key: <key>
 If you configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header:
 
 ```http
-POST https://<resource>.services.ai.azure.com/models/images/embeddings
+POST https://<resource>.services.ai.azure.com/models/images/embeddings?api-version=2024-05-01-preview
 Content-Type: application/json
 Authorization: Bearer <token>
 ```
@@ -52,7 +52,7 @@ To create image embeddings, you need to pass the image data as part of your requ
 
 ```json
 {
-    "model": "${varients-sample}",
+    "model": "Cohere-embed-v3-english",
     "input": [
         {
             "image": "data:image/png;base64,iVBORw0KGgoAAAANSUh..."
@@ -103,7 +103,7 @@ Some models can generate embeddings from images and text pairs. In this case, yo
 
 ```json
 {
-    "model": "${varients-sample}",
+    "model": "Cohere-embed-v3-english",
     "input": [
         {
             "image": "data:image/png;base64,iVBORw0KGgoAAAANSUh...",
@@ -122,7 +122,7 @@ The following example shows how to create embeddings that are used to create an 
 
 ```json
 {
-    "model": "${varients-sample}",
+    "model": "Cohere-embed-v3-english",
     "input": [
         {
             "image": "data:image/png;base64,iVBORw0KGgoAAAANSUh..."
@@ -137,7 +137,7 @@ When you work on a query to retrieve such a document, you can use the following 
 
 ```json
 {
-    "model": "${varients-sample}",
+    "model": "Cohere-embed-v3-english",
     "input": [
         {
             "image": "data:image/png;base64,iVBORw0KGgoAAAANSUh..."
