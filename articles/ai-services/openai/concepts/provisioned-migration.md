@@ -97,7 +97,7 @@ Microsoft has introduced a new "Hourly/reservation" payment model for provisione
 - Commitments can't be canceled or altered during their term, except to add new PTUs.
 
 #### Supported models on Commitment payment model:
-  Only the following list of Azure OpenAI models are supported in Commitments, for onboarding any other models that are not in the list below or any newer models on provisioned throughput offering  refer to the [Azure OpenAI provisioned onboarding guide](../how-to/provisioned-throughput-onboarding.md) and [Azure Reservations for Azure OpenAI provisioned deployments](../how-to/provisioned-throughput-onboarding.md#azure-reservations-for-azure-openai-provisioned-deployments)
+  Only the following list of Azure OpenAI models are supported in Commitments. For onboarding any other models that are not in the list below, or any newer models on provisioned throughput offering,  refer to the [Azure OpenAI provisioned onboarding guide](../how-to/provisioned-throughput-onboarding.md) and [Azure Reservations for Azure OpenAI provisioned deployments](../how-to/provisioned-throughput-onboarding.md#azure-reservations-for-azure-openai-provisioned-deployments)
     
 |Supported models on Commitment plan |
 |-|
