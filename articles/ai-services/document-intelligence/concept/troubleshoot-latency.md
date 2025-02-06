@@ -34,7 +34,7 @@ When you're experiencing latency issues, the first step is to check [Azure statu
 
 * You can also check your resource in the host region. Go to Geography → Products And Services → AI + Machine Learning → Azure AI Document Intelligence and check the status for your region:
 
-   :::image type="content" source="../media/latency/azure-status.png" alt-text="Screenshot of the Microsoft Azure status page" lightbox="../media/latency/azure-status.png":::
+   :::image type="content" source="../media/latency/azure-status.png" alt-text="Screenshot of the Microsoft Azure status page." lightbox="../media/latency/azure-status.png":::
 
 ## Check file size
 
@@ -88,7 +88,7 @@ Alerts assist you in identifying and resolving issues by providing proactive not
 
 1. In the new window that opens, select **Latency** from the **Select a signal** drop-down menu.
 
-   :::image type="content" source="../media/latency/azure-portal-create-alert.png" alt-text="Screenshot of the create an alert rule page in the Azure portal":::
+   :::image type="content" source="../media/latency/azure-portal-create-alert.png" alt-text="Screenshot of the create an alert rule page in the Azure portal.":::
 
 1. Configure the alert by completing the fields on the page.
 
