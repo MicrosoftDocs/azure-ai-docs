@@ -62,7 +62,7 @@ Special notes for configuring a secure AKS inferencing environment:
   * If your workspace is also behind a VNet, follow the instructions in [securely connect to your workspace](./how-to-secure-workspace-vnet.md#securely-connect-to-your-workspace) to access the workspace.
   * For storage account private endpoint, make sure to enable `Allow Azure services on the trusted services list to access this storage account`.
 
->[!Note]
+> [!NOTE]
 >
 > If your AKS that is behind a VNet has been stopped and **restarted**, you need to:
 > 1. First, follow the steps in [Stop and start an Azure Kubernetes Service (AKS) cluster](/azure/aks/start-stop-cluster) to delete and recreate a private endpoint linked to this cluster. 
@@ -70,7 +70,7 @@ Special notes for configuring a secure AKS inferencing environment:
 >
 > Otherwise, the creation, update, and deletion of endpoints/deployments to this AKS cluster will fail.
 
-## Next steps
+## Related content
 
 This article is part of a series on securing an Azure Machine Learning workflow. See the other articles in this series:
 
