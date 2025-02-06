@@ -6,11 +6,10 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
 ms.custom: references_regions
-ms.date: 10/25/2024
+ms.date: 02/06/2025
 ---
 
-| **Region**   | **gpt-35-turbo-instruct**, **0914**   | **babbage-002**, **1**   | **davinci-002**, **1**   |
-|:-----------------|:-----------------------------------:|:----------------------:|:----------------------:|
-| eastus           | ✅                                | -                  | -                  |
-| northcentralus   | -                               | ✅                   | ✅                   |
-| swedencentral    | ✅                                | ✅                   | ✅                   |
+| **Region**   | **gpt-35-turbo-instruct**, **0914**   |
+|:-----------------|:-----------------------------------:|
+| eastus           | ✅                                |
+| swedencentral    | ✅                                |
