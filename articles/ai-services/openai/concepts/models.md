@@ -320,7 +320,6 @@ These models can only be used with Embedding API requests.
 
 |  Model ID  | Max Request (characters) |
 |  --- | :---: |
-| dalle2 (preview)  | 1,000 |
 | dall-e-3  | 4,000 |
 
 # [Audio](#tab/standard-audio)
