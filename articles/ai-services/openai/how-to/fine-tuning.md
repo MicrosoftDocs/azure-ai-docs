@@ -72,7 +72,7 @@ Provisioned Managed fine-tuning deployments currently do not support vision and 
 
 #### Creating a Provisioned Managed deployment
 
-To create a new deployment, make an HTTP PUT call via the [Deployments - Create or Update REST API](https://learn.microsoft.com/en-us/rest/api/aiservices/accountmanagement/deployments/create-or-update?view=rest-aiservices-accountmanagement-2024-10-01&tabs=HTTP). The approach is similar to performing [cross region deployment](#cross-region-deployment) with the following exceptions:
+To create a new deployment, make an HTTP PUT call via the [Deployments - Create or Update REST API](/rest/api/aiservices/accountmanagement/deployments/create-or-update?view=rest-aiservices-accountmanagement-2024-10-01&tabs=HTTP&preserve-view=true). The approach is similar to performing [cross region deployment](#cross-region-deployment) with the following exceptions:
 
 - You must provide a sku name of `ProvisionedStandard`.
 - The capacity must be declared in PTUs.
