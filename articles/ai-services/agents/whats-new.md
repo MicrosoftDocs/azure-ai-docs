@@ -7,13 +7,19 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: overview
-ms.date: 12/11/2024
+ms.date: 01/30/2025
 ms.custom: azure-ai-agents
 ---
 
 # What's new in Azure AI Agent Service
 
 This article provides a summary of the latest releases and major documentation updates for Azure AI Agent Service.
+
+## February 2025
+
+### Use Azure AI Agent Service in the Azure AI Foundry portal
+
+You can now use the Azure AI Agent Service in the [Azure AI Foundry](https://ai.azure.com/). Create, debug and modify agents, view threads, add tools and chat with agents without writing code. See the [quickstart](./quickstart.md?pivots=ai-foundry) for steps on getting started. 
 
 ## December 2024
 
@@ -22,7 +28,7 @@ This article provides a summary of the latest releases and major documentation u
 Azure AI Service is now available in preview. The service builds off of the [Assistants API](../openai/how-to/assistant.md) in Azure OpenAI, and offers several additional features, such as:
 
 * Several [additional tools](./how-to/tools/overview.md) to enhance your AI agents' functionality, such as the ability to use Bing and as a knowledge source and call functions. 
-* The ability to use non Azure OpenAI [models](./concepts/model-region-support.md#more-models): 
+* The ability to use non Azure OpenAI [models](./concepts/model-region-support.md): 
     * Llama 3.1-70B-instruct
     * Mistral-large-2407    
     * Cohere command R+

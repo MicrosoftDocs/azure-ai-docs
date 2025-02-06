@@ -24,6 +24,8 @@ The following section shows you how to set up the required resources for getting
 
 **Standard Setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage.
 
+[!INCLUDE [ai-foundry-setup](portal-agent-limitation.md)]
+
 <!--
 | Description   | Resources  | Autodeploy |
 | -----------------------------------------------| -----------------------|----------------------|
