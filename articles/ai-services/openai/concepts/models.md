@@ -320,7 +320,6 @@ These models can only be used with Embedding API requests.
 
 |  Model ID  | Max Request (characters) |
 |  --- | :---: |
-| dalle2 (preview)  | 1,000 |
 | dall-e-3  | 4,000 |
 
 # [Audio](#tab/standard-audio)
@@ -346,8 +345,6 @@ These models can only be used with Embedding API requests.
 # [Completions (Legacy)](#tab/standard-completions)
 
 ### Completions models
-
-`babbage-002` and `davinci-002` are not trained to follow instructions. Querying these base models should only be done as a point of reference to a fine-tuned version to evaluate the progress of your training.
 
 [!INCLUDE [Completions](../includes/model-matrix/standard-completions.md)]
 

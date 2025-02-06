@@ -26,15 +26,12 @@ To use chat completion models in your application, you need:
 
 * A chat completions model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
 
-* Install the Azure AI inference package with the following command:
+* Install the [Azure AI inference package for Python](https://aka.ms/azsdk/azure-ai-inference/python/reference) with the following command:
 
   ```bash
   pip install -U azure-ai-inference
   ```
   
-  > [!TIP]
-  > Read more about the [Azure AI inference package and reference](https://aka.ms/azsdk/azure-ai-inference/python/reference).
-
 ## Use chat completions
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.

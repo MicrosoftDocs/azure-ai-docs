@@ -3,7 +3,7 @@ title: How to create and manage an Azure AI Foundry hub
 titleSuffix: Azure AI Foundry
 description: Learn how to create and manage an Azure AI Foundry hub from the Azure portal or from the Azure AI Foundry portal. Your developers can then create projects from the hub.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024

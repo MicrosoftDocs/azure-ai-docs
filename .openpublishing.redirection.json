@@ -16,6 +16,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/overview.md",
+      "redirect_url": "/azure/ai-services/agents/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/search/search-howto-index-csv-blobs.md",
       "redirect_url": "/azure/search/search-how-to-index-csv-blobs",
       "redirect_document_id": false
@@ -23,6 +28,11 @@
     {
       "source_path_from_root": "/articles/search/search-howto-large-index.md",
       "redirect_url": "/azure/search/search-how-to-large-index",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/agents/concepts/agents.md",
+      "redirect_url": "/azure/ai-services/agents/overview",
       "redirect_document_id": false
     },
     {
