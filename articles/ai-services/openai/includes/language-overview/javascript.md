@@ -57,7 +57,7 @@ const client = new AzureOpenAI({
      });
 ```
 
-For more information about Azure OpenAI keyless authentication, see the "[Get started with the Azure OpenAI security building block](azure/developer/ai/get-started-securing-your-ai-app?tabs=github-codespaces&pivots=typescript)" QuickStart article. 
+For more information about Azure OpenAI keyless authentication, see the "[Get started with the Azure OpenAI security building block](/azure/developer/ai/get-started-securing-your-ai-app?tabs=github-codespaces&pivots=typescript)" QuickStart article. 
 
 # [API Key](#tab/api-key)
 
