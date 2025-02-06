@@ -3,7 +3,7 @@ title: Deprecation and retirement for models in Azure AI model catalog
 titleSuffix: Azure AI Foundry
 description: Learn about the lifecycle stages, deprecation, and retirement for models in the Azure AI model catalog.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.date: 02/03/2025
 ms.author: mopeakande
