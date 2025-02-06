@@ -3,7 +3,7 @@ title: Create an Azure AI Foundry hub using a Bicep template
 titleSuffix: Azure AI Foundry
 description: Use a Microsoft Bicep template to create a new Azure AI Foundry hub.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom: devx-track-arm-template, devx-track-bicep, build-2024
 ms.topic: how-to
 ms.date: 11/21/2024

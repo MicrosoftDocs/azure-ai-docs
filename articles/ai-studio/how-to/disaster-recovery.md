@@ -3,7 +3,7 @@ title: Customer enabled disaster recovery
 titleSuffix: Azure AI Foundry
 description: Learn how to plan for disaster recovery for Azure AI Foundry.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to
