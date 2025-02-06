@@ -32,25 +32,25 @@ The `AzureClientOptions` object is used to configure the API client for interfac
 **Properties**:
 
 * azureADTokenProvider:
-    Type: (() => Promise<string>) | undefined
+    Type: `(() => Promise<string>) | undefined`
     Default: undefined
     Description: A function that returns an access token for Microsoft Entra (formerly known as Azure Active Directory), which will be invoked on every request.
 * apiKey:
-    Type: string | undefined
+    Type: `string | undefined`
     Default: process.env['AZURE_OPENAI_API_KEY']
     Description: Your API key for authenticating requests.
 * apiVersion:
-    Type: string | undefined
+    Type: `string | undefined`
     Default: process.env['OPENAI_API_VERSION']
     Description: Specifies the API version to use.
 * deployment:
-    Type: string | undefined
+    Type: `string | undefined`
     Default: undefined
     Description: A model deployment. If given, sets the base client URL to include /deployments/{deployment}. Note: this means you won't be able to use non-deployment endpoints. Not supported with Assistants APIs.    
 * endpoint:
-    Type: string | undefined
+    Type: `string | undefined`
     Default: undefined
-    Description: Your Azure endpoint, including the resource, e.g. https://example-resource.azure.openai.com/.
+    Description: Your Azure OpenAI endpoint.
 
 ## Authentication
 
