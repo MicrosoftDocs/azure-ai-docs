@@ -603,6 +603,15 @@ groups:
       title: Azure CLI
     - id: programming-language-bicep
       title: Bicep
+- id: azure-ai-model-catalog-sub-group-samples
+# Owner: mopeakande
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+    - id: programming-language-python
+      title: Python
+    - id: programming-language-rest
+      title: REST
 - id: aml-control-methods
   # Owner: gopalv
   title: Azure Machine Learning control plane
