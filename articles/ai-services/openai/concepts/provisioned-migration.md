@@ -122,7 +122,7 @@ Microsoft has introduced a new "Hourly/reservation" payment model for provisione
 - Supports all models, both old and new.
 
 > [!IMPORTANT]
-> **All the latest models are available in provisioned offering with Hourly/Reservation payment model.** Models that are not in the above [list](./provisioned-migration.md#supported-models-on-commitment-payment-model) are not deployable on Azure OpenAI resources that have active commitments. To deploy models newer models you must either:
+> **More latest models are available in provisioned offering with Hourly/Reservation payment model.** Check the [list](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=provisioned%2Cstandard-chat-completions#global-standard-model-availability) here for the availabilityModels that are not in the above [list](./provisioned-migration.md#supported-models-on-commitment-payment-model) are not deployable on Azure OpenAI resources that have active commitments. To deploy models newer models you must either:
 > - Create deployments on Azure OpenAI resources without commitments.
 > - Migrate an existing resource off its commitments.
 
