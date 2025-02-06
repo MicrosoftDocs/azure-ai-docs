@@ -31,19 +31,14 @@ To get started, make sure you have the following:
 
  >[!IMPORTANT] If your organization requires you to customize the security or storage resources, the AI Foundry currently does not support resource creation that meets these standards. Please refer to [Azure AI services API access keys](../../../ai-studio/concepts/ai-resources.md#azure-ai-services-api-access-keys) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it.
 
-* An [AI Services multi-service resource](../how-to/create-multi-service-resource.md), connected to your AI Hub. For more information on creating connections, see [How to add a new connection in Azure AI Foundry portal](../../../ai-studio/how-to/connections-add.md).
-
-* An [Azure blob storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal), connected to your AI hub.
-
-
 ## Create your first Content Understanding project in the AI Foundry
 
 In order to try out [the Content Understanding service in the AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding), you have to create a Content Understanding project. You can access Content Understanding from:
 
-* The AI Foundry home page
+* The [AI Foundry home page](https://ai.azure.com/https://ai.azure.com/explore/aiservices)
    :::image type="content" source="../media/quickstarts/foundry-home-page.png" alt-text="Screenshot of the AI Foundry home page.":::
 
-* The AI Services landing page
+* The [AI Services landing page]()
    :::image type="content" source="../media/quickstarts/cu-ai-services-landing-page.png" alt-text="Screenshot of the AI Services landing page in AI Foundry.":::
 
 Once on the Content Understanding page, select `Create a new Content Understanding Project`, shown below:
@@ -52,24 +47,22 @@ Once on the Content Understanding page, select `Create a new Content Understandi
 
  > [!NOTE] The Content Understanding project type is separate from the Generative AI project type, also available in the AI Foundry.
 
-Follow the steps in the wizard to select the Hub, AI Services multi-service resource, and Azure blob storage container that you just created. Once you complete the setup steps, select `Create project`.
+Follow the steps in the project creation wizard, and start by selecting the Hub that you already created. When the hub was created, it should have provisioned an AI Services resource, as well as a blob storage container, and these will be selected by default. You can alternatively create one using the wizard.
 
-## Steps to create a Content Understanding analyzer
+ >[!IMPORTANT] If your organization requires you to customize the security or storage resources, the AI Foundry currently does not support resource creation that meets these standards. Please refer to [Azure AI services API access keys](../../../ai-studio/concepts/ai-resources.md#azure-ai-services-api-access-keys) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it.
 
-Azure AI Foundry portal enables you to build a Content Understanding analyzer tailored to your specific needs. An analyzer can extract data from your content based on your scenario.
+ Once you complete the setup steps, select `Create project`.
 
-Follow these steps to create your own analyzer:
+ ## Sharing your content understanding project
 
-1. **Upload a sample data file:** Upload a data file that is representative of the data you are interested in extracting insights from. This allows the model to classify your data and recommend relevant scenario templates that may fit your needs, such as call-center analytics or video shot extraction.
+In order to share and manage access to the Content Understanding project you just created, navigate to the Management Center, found at the bottom of the navigation for your project:
 
-1. **Select an analyzer template or build your own schema from scratch:** Once the service recommends templates, you have the option of selecting one that fits your needs or building one from scratch.
+  :::image type="content" source="../media/quickstarts/cu-find-management-center.png" alt-text="Screenshot of where to find management center.":::
 
-1. **Customize the schema to fit your specific scenario:** Make any necessary changes or build your schema from scratch to include exactly the fields that your scenario requires. An example field might be "Summarize the video, highlighting the backgrounds and vehicles that are present in each scene." 
 
-1. **Test the analyzer on your data and validate its accuracy:** Try out the schema on your data file, or add additional data to test the performance.
+You can manage the users and their individual roles here:
 
-1. **Build the analyzer to integrate it into your applications:** A built analyzer can be consumed in your own application, applying the schema that you just created. 
-
+   :::image type="content" source="../media/quickstarts/cu-management-center.png" alt-text="Screenshot of "Project users" section of management center.":::
 
 ## Build your first analyzer
 
