@@ -91,6 +91,8 @@ If your prompt is flagged, the `error.code` value in the message is set to `cont
 }
 ```
 
+It's also possible that the generated image itself is filtered. In this case, the error message is set to *Generated image was filtered as a result of our safety system*. Here's an example:
+
 ```json
 {
     "created": 1698435368,
