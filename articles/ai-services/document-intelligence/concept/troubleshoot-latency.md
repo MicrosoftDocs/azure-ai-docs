@@ -20,7 +20,7 @@ Document Intelligence operates as a multitenant service, ensuring that latency f
 >
 > * Azure AI services don't provide a Service Level Agreement (SLA) for latency.
 > * The Document Intelligence API offers asynchronous functionality, allowing you to access results up to 24 hours after sending your request to our backend. 
-> * Use the request ID provided by the POST operation to retrieve these results. If you encounter issues during your standard polling sequence, save the request ID and try again later before considering a retry. For further assistance, refer to our service page.
+> * Use the request ID provided by the POST operation to retrieve these results. If you encounter issues during your standard polling sequence, save the request ID and try again later before considering a retry. For further assistance, refer to our [service page](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/service-limits?view=doc-intel-4.0.0#detailed-description-quota-adjustment-and-best-practices).
 
 ## Set your latency baseline
 
