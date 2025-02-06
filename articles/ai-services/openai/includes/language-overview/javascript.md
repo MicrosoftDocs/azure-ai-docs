@@ -85,8 +85,6 @@ const client = new AzureOpenAI({
 
 # [API Key](#tab/api-key)
 
-API Key
-
 API keys are not recommended for production use because they are less secure than other authentication methods. 
 
 ```typescript
@@ -98,7 +96,7 @@ const apiVersion = "2024-10-21"
 const client = new AzureOpenAI({ apiKey, endpoint, apiVersion });
 ```
 
-`AzureOpenAI` can be authenticated with an API key by setting the `AZURE_OPENAI_API_KEY` environment variable or by setting the `apiKey` string property in the options object when creating the `AzureOpenAI` client.
+`AzureOpenAI` can be authenticated with an API key by setting the `AZURE_OPENAI_API_KEY` environment variable or by setting the `apiKey` string property in the [`AzureClientOptions`](#configuration) object when creating the `AzureOpenAI` client.
 
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
