@@ -279,7 +279,7 @@ During cluster creation or when editing compute cluster details, in the **Advanc
 ### Kubernetes Compute Cluster
 
 > [!NOTE]
-> Azure Machine Learning kubernetes clusters support only **one system-assigned identity** or **one multiple user-assigned identities**, not both concurrently.
+> Azure Machine Learning kubernetes clusters support only **one system-assigned identity** or **one user-assigned identities**, not both concurrently.
 
 The **default managed identity** is the system-assigned managed identity or the first user-assigned managed identity.
 
@@ -297,7 +297,6 @@ During a run there are two applications of an identity:
     For example, to retrieve a token for a datastore with the default-managed identity:
 
     ```python
-    client_id = os.environ.get('DEFAULT_IDENTITY_CLIENT_ID')
     credential = ManagedIdentityCredential()
     token = credential.get_token('https://storage.azure.com/')
     ```
