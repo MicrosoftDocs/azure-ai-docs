@@ -7,7 +7,7 @@ ms.author: larryfr
 ms.reviewer: bozhlin
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 08/31/2022
+ms.date: 02/06/2025
 ms.topic: how-to
 ms.custom: build-spring-2022, cliv2, sdkv2
 # Customer intent: I would like to have machine learning with all private IP only
@@ -15,7 +15,7 @@ ms.custom: build-spring-2022, cliv2, sdkv2
 
 # Secure Azure Kubernetes Service inferencing environment
 
-If you have an Azure Kubernetes (AKS) cluster behind of VNet, you would need to secure Azure Machine Learning workspace resources and a compute environment using the same or peered VNet. In this article, you'll learn: 
+If you have an Azure Kubernetes (AKS) cluster behind of VNet, you would need to secure Azure Machine Learning workspace resources and a compute environment using the same or peered VNet. In this article, you learn: 
   * What is a secure AKS inferencing environment
   * How to configure a secure AKS inferencing environment
 
@@ -53,7 +53,7 @@ After you have VNet information for AKS cluster and if you already have workspac
   * If you have other storage that is used by your Azure Machine Learning workloads, add a new private endpoint for that storage. The private endpoint should be in the same or peered VNet as AKS cluster and have private DNS zone integration enabled.
   * Add a new private endpoint to your workspace. This private endpoint should be in the same or peered VNet as your AKS cluster and have private DNS zone integration enabled.
 
-If you have AKS cluster ready but don't have workspace created yet, you can use AKS cluster VNet when creating the workspace. Use the AKS cluster VNet information when following the [create secure workspace](./tutorial-create-secure-workspace.md) tutorial. Once the workspace has been created, add a new private endpoint to your workspace as the last step. For all the above steps, it's important to ensure that all private endpoints should exist in the same AKS cluster VNet and have private DNS zone integration enabled.
+If you have AKS cluster ready but don't have workspace created yet, you can use AKS cluster VNet when creating the workspace. Use the AKS cluster VNet information when following the [create secure workspace](./tutorial-create-secure-workspace.md) tutorial. Once the workspace is created, add a new private endpoint to your workspace as the last step. For all the above steps, it's important to ensure that all private endpoints should exist in the same AKS cluster VNet and have private DNS zone integration enabled.
 
 Special notes for configuring a secure AKS inferencing environment:
   * Use system-assigned managed identity when creating workspace, as storage account with private endpoint only allows access with system-assigned managed identity.
