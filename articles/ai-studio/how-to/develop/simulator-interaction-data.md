@@ -15,7 +15,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Generate synthetic and simulated data for evaluation
+# Generate synthetic and simulated data for evaluation (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -28,7 +28,7 @@ In this article, you'll learn how to holistically generate high-quality datasets
 
 ## Getting started
 
-First install and import the simulator package from the Azure AI Evaluation SDK:
+First install and import the simulator package (preview) from the Azure AI Evaluation SDK:
 
 ```python
 pip install azure-ai-evaluation
@@ -36,7 +36,7 @@ pip install azure-ai-evaluation
 
 ## Generate synthetic data and simulate non-adversarial tasks
 
-Azure AI Evaluation SDK's `Simulator` provides an end-to-end synthetic data generation capability to help developers test their application's response to typical user queries in the absence of production data. AI developers can use an index or text-based query generator and fully customizable simulator to create robust test datasets around non-adversarial tasks specific to their application. The `Simulator` class is a powerful tool designed to generate synthetic conversations and simulate task-based interactions. This capability is useful for:
+Azure AI Evaluation SDK's `Simulator` (preview) provides an end-to-end synthetic data generation capability to help developers test their application's response to typical user queries in the absence of production data. AI developers can use an index or text-based query generator and fully customizable simulator to create robust test datasets around non-adversarial tasks specific to their application. The `Simulator` class is a powerful tool designed to generate synthetic conversations and simulate task-based interactions. This capability is useful for:
 
 - **Testing Conversational Applications**: Ensure your chatbots and virtual assistants respond accurately under various scenarios.
 - **Training AI Models**: Generate diverse datasets to train and fine-tune machine learning models.

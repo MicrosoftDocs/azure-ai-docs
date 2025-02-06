@@ -329,7 +329,7 @@ For conversation outputs, per-turn results are stored in a list and the overall 
 > [!NOTE]
 > We strongly recommend users to migrate their code to use the key without prefixes (for example, `groundedness.groundedness`) to allow your code to support more evaluator models.
 
-### Risk and safety evaluators
+### Risk and safety evaluators (preview)
 
 When you use AI-assisted risk and safety metrics, a GPT model isn't required. Instead of `model_config`, provide your `azure_ai_project` information. This accesses the Azure AI project safety evaluations back-end service, which provisions a GPT model specific to harms evaluation that can generate content risk severity scores and reasoning to enable the safety evaluators.
 
@@ -738,13 +738,13 @@ result = evaluate(
 
 ```
 
-## Cloud evaluation on test datasets
+## Cloud evaluation (preview) on test datasets
 
 After local evaluations of your generative AI applications, you might want to run evaluations in the cloud for pre-deployment testing, and [continuously evaluate](https://aka.ms/GenAIMonitoringDoc) your applications for post-deployment monitoring. Azure AI Projects SDK offers such capabilities via a Python API and supports almost all of the features available in local evaluations. Follow the steps below to submit your evaluation to the cloud on your data using built-in or custom evaluators.
 
 ### Prerequisites
 
-- Azure AI project in the same [regions](#region-support) as risk and safety evaluators. If you don't have an existing project, follow the guide [How to create Azure AI project](../create-projects.md?tabs=ai-studio) to create one.
+- Azure AI project in the same [regions](#region-support) as risk and safety evaluators (preview). If you don't have an existing project, follow the guide [How to create Azure AI project](../create-projects.md?tabs=ai-studio) to create one.
 
 > [!NOTE]
 > Cloud evaluations do not support `ContentSafetyEvaluator`, and `QAEvaluator`.
@@ -919,7 +919,7 @@ print("Versioned evaluator id:", registered_evaluator.id)
 
 After logging your custom evaluator to your Azure AI project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under **Evaluation** tab of your Azure AI project.
 
-### Cloud evaluation with Azure AI Projects SDK
+### Cloud evaluation (preview) with Azure AI Projects SDK
 
 You can submit a cloud evaluation with Azure AI Projects SDK via a Python API. See the following example to submit a cloud evaluation of your dataset using an NLP evaluator (F1 score), an AI-assisted quality evaluator (Relevance), a safety evaluator (Violence) and a custom evaluator. Putting it altogether:
 
