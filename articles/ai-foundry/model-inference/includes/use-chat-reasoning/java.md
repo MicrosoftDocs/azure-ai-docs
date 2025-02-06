@@ -27,7 +27,7 @@ To complete this tutorial, you need:
   <dependency>
       <groupId>com.azure</groupId>
       <artifactId>azure-ai-inference</artifactId>
-      <version>1.0.0-beta.1</version>
+      <version>1.0.0-beta.2</version>
   </dependency>
   ```
   
@@ -65,7 +65,6 @@ First, create the client to consume the model. The following code uses an endpoi
 ChatCompletionsClient client = new ChatCompletionsClient(
         new URI("https://<resource>.services.ai.azure.com/models"),
         new AzureKeyCredential(System.getProperty("AZURE_INFERENCE_CREDENTIAL")),
-        "${variants-sample}"
 ```
 
 > [!TIP]
@@ -76,8 +75,7 @@ If you have configured the resource to with **Microsoft Entra ID** support, you 
 ```java
 client = new ChatCompletionsClient(
         new URI("https://<resource>.services.ai.azure.com/models"),
-        new DefaultAzureCredentialBuilder().build(),
-        "${variants-sample}"
+        new DefaultAzureCredentialBuilder().build()
 );
 ```
 
@@ -87,6 +85,7 @@ The following example shows how you can create a basic chat request to the model
 
 ```java
 ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
+        .setModel("DeepSeek-R1")
         .setMessages(Arrays.asList(
                 new ChatRequestUserMessage("How many languages are in the world?")
         ));
@@ -167,6 +166,7 @@ You can _stream_ the content to get it as it's being generated. Streaming conten
 
 ```java
 ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
+        .setModel("DeepSeek-R1")
         .setMessages(Arrays.asList(
                 new ChatRequestUserMessage("How many languages are in the world? Write an essay about it.")
         ))
