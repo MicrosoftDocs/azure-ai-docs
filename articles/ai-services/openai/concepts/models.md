@@ -346,8 +346,6 @@ These models can only be used with Embedding API requests.
 
 ### Completions models
 
-`babbage-002` and `davinci-002` are not trained to follow instructions. Querying these base models should only be done as a point of reference to a fine-tuned version to evaluate the progress of your training.
-
 [!INCLUDE [Completions](../includes/model-matrix/standard-completions.md)]
 
 ---
