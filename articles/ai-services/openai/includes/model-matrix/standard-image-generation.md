@@ -6,11 +6,11 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
 ms.custom: references_regions
-ms.date: 10/25/2024
+ms.date: 02/06/2025
 ---
 
-| **Region**   | **dall-e-2**, **2.0**   | **dall-e-3**, **3.0**   |
-|:-----------------|:---------------------:|:---------------------:|
-| australiaeast    | -                 | ✅                  |
-| eastus           | ✅                  | ✅                  |
-| swedencentral    | -                 | ✅                  |
+| **Region**   | **dall-e-3**, **3.0**   |
+|:-----------------|:---------------------:|
+| australiaeast    | ✅                  |
+| eastus           | ✅                  |
+| swedencentral    | ✅                  |
