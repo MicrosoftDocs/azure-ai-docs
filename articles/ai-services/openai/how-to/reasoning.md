@@ -59,7 +59,7 @@ Request access: [limited access model application](https://aka.ms/OAI/o1access)
 
 <sup>2</sup>The latest o<sup>&#42;</sup> series model support system messages to make migration easier. When you use a system message with `o3-mini` and `o1` it will be treated as a developer message. You should not use both a developer message and a system message in the same API request.
 
-<sup>3</sup> By default the `o3-mini` and `o1` models will not attempt to produce output in markdown. To override this behavior and encourage markdown inclusion in model responses add the string `Formatting re-enabled` to the beginning of your developer message.
+<sup>3</sup> By default the `o3-mini` and `o1` models will not attempt to produce output in markdown. To override this behavior and encourage markdown inclusion in model responses add the string `Formatting re-enabled` to the beginning of your developer message. `Formatting re-enabled is currently only supported with `o3-mini`.
 
 ### Not Supported
 
