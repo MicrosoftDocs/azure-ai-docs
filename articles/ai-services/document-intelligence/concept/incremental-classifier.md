@@ -56,7 +56,7 @@ The incremental classifier build request is similar to the [`classify document` 
 
 ***Sample `POST` request to build an incremental document classifier***
 
-**`POST` {your-endpoint}/documentintelligence/documentClassifiers:build?api-version=2024-02-29-preview**
+**`POST` {your-endpoint}/documentintelligence/documentClassifiers:build?api-version=2024-11-30**
 
 ```json
 {
@@ -94,7 +94,7 @@ Upon successful completion:
 
 ***Sample `GET` request to retrieve the result of an incremental document classifier***
 
-**`GET` {your-endpoint}/documentintelligence/documentClassifiers/{classifierId}/analyzeResults/{resultId}?api-version=2024-02-29-preview**
+**`GET` {your-endpoint}/documentintelligence/documentClassifiers/{classifierId}/analyzeResults/{resultId}?api-version=2024-11-30**
 
 ```json
 

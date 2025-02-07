@@ -63,7 +63,7 @@ Use the following table as a reference. Replace *\<modelId>* and *\<document-url
 Open a console window and run the following cURL command. The commands include the endpoint and key environment variables previously created in the set environment variables section. Replace those variables if your variable names differ. Remember to replace the *\<modelId>* and *\<document-url>* parameters.
 
 ```console
-curl -i -X POST "%DI_ENDPOINT%/documentintelligence/documentModels/{modelId}:analyze?api-version=2024-02-29-preview" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: %DI_KEY%" --data-ascii "{'urlSource': '<document-url>'}"
+curl -i -X POST "%DI_ENDPOINT%/documentintelligence/documentModels/{modelId}:analyze?api-version=2024-11-30" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: %DI_KEY%" --data-ascii "{'urlSource': '<document-url>'}"
 ```
 
 To enable add-on capabilities, use the `features` query parameter in the POST request. There are four add-on capabilities available with the `2023-07-31` (GA) and later releases: *ocr.highResolution*, *ocr.formula*, *ocr.font*, and *queryFields.premium*. To learn more about each of the capabilities, see [Custom models](../../../concept/accuracy-confidence.md).
@@ -71,7 +71,7 @@ To enable add-on capabilities, use the `features` query parameter in the POST re
 You can only call the *highResolution*, *formula*, and *font* capabilities for the Read and Layout model, and the *queryFields* capability for the General Documents model. The following example shows how to call the *highResolution*, *formula*, and *font* capabilities for the Layout model.
 
 ```bash
-curl -i -X POST "%DI_ENDPOINT%documentintelligence/documentModels/prebuilt-layout:analyze?features=ocr.highResolution,ocr.formula,ocr.font?api-version=2024-02-29-preview" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: %DI_KEY%" --data-ascii "{'urlSource': '<document-url>'}"
+curl -i -X POST "%DI_ENDPOINT%documentintelligence/documentModels/prebuilt-layout:analyze?features=ocr.highResolution,ocr.formula,ocr.font?api-version=2024-11-30" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: %DI_KEY%" --data-ascii "{'urlSource': '<document-url>'}"
 ```
 
 ### POST response
@@ -101,7 +101,7 @@ Use the NodeJS *json tool* as a JSON formatter for cURL. If you don't have [Node
 1. Pretty print the JSON output by including the pipe character `| json` with your GET requests.
 
    ```console
-   curl -i -X GET "<endpoint>documentintelligence/documentModels/prebuilt-read/analyzeResults/0e49604a-2d8e-4b15-b6b8-bb456e5d3e0a?api-version=2024-02-29-preview"-H "Ocp-Apim-Subscription-Key: <subscription key>" | json
+   curl -i -X GET "<endpoint>documentintelligence/documentModels/prebuilt-read/analyzeResults/0e49604a-2d8e-4b15-b6b8-bb456e5d3e0a?api-version=2024-11-30"-H "Ocp-Apim-Subscription-Key: <subscription key>" | json
    ```
 
 #### [macOS](#tab/macOS)
@@ -111,7 +111,7 @@ The *json_pp* command tool ships with macOS and can be used as a JSON formatter 
 - Pretty print the JSON output by including `| json_pp` with your GET requests.
 
   ```console
-  curl -i -X GET "{endpoint}documentintelligence/documentModels/prebuilt-read/analyzeResults/0e49604a-2d8e-4b15-b6b8-bb456e5d3e0a?api-version=2024-02-29-preview"-H "Ocp-Apim-Subscription-Key: <subscription key>" | json_pp
+  curl -i -X GET "{endpoint}documentintelligence/documentModels/prebuilt-read/analyzeResults/0e49604a-2d8e-4b15-b6b8-bb456e5d3e0a?api-version=2024-11-30"-H "Ocp-Apim-Subscription-Key: <subscription key>" | json_pp
   ```
 
 #### [Linux](#tab/linux)
@@ -121,7 +121,7 @@ The *json_pp* command line tool is preinstalled in most Linux distributions. If 
 - Pretty print the JSON output by including `| json_pp` with your `GET` requests.
 
   ```console
-  curl -i -X GET "<endpoint>documentintelligence/documentModels/prebuilt-read/analyzeResults/0e49604a-2d8e-4b15-b6b8-bb456e5d3e0a?api-version=2024-02-29-preview"-H "Ocp-Apim-Subscription-Key: <subscription key>" | json_pp
+  curl -i -X GET "<endpoint>documentintelligence/documentModels/prebuilt-read/analyzeResults/0e49604a-2d8e-4b15-b6b8-bb456e5d3e0a?api-version=2024-11-30"-H "Ocp-Apim-Subscription-Key: <subscription key>" | json_pp
   ```
 
 ---
