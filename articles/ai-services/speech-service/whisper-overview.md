@@ -61,7 +61,7 @@ Whisper Model via Azure AI Speech batch transcription might be best for:
 - Supported file formats: mp3, wav, and ogg.
 
 Regional support is another consideration. 
-- The Whisper model via Azure OpenAI Service is available in the following regions: East US 2, India South, North Central, Norway East, Sweden Central, Switzerland North, and West Europe. 
+- The Whisper model via Azure OpenAI Service is available in the following regions: East US 2, India South, Japan East, North Central, Norway East, Sweden Central, Switzerland North, and West Europe. 
 - The Whisper model via Azure AI Speech is available in the following regions: Australia East, East US, North Central US, South Central US, Southeast Asia, UK South, and West Europe.
 
 ## Related content
