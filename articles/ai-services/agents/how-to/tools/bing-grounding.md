@@ -44,6 +44,8 @@ Developers and end users don't have access to raw content returned from Groundin
 1. Create a Grounding with Bing Search resource. You need to have `owner` or `contributor` role in your subscription or resource group to create it.
 
    1. You can create one in the [Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingSearch), and select the different fields in the creation form. Make sure you create this Grounding with Bing Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.
+
+    :::image type="content" source="../../media/tools/bing/resource-selection.png" alt-text="A screenshot of the Bing resource selection in the Azure portal." lightbox="../../media/tools/bing/resource-selection.png":::
   
    1. You can also create one through code-first experience. If so, you need to manually [register](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) Bing Search as an Azure resource provider. You must have permission to perform the `/register/action` operation for the resource provider. The permission is included in the **Contributor** and **Owner** roles.
 
