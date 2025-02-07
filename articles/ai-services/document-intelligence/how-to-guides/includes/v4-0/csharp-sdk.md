@@ -88,7 +88,7 @@ monikerRange: 'doc-intel-4.0.0'
 
 1. Open the *Program.cs* file.
 
-1. Delete the pre-existing code, including the line `Console.Writeline("Hello World!")`.
+1. Delete the existing code, including the line `Console.Writeline("Hello World!")`.
 
 1. Select one of the following code samples and copy/paste into your application's *Program.cs* file:
 
