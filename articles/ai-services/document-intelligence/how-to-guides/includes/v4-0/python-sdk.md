@@ -80,6 +80,7 @@ import os
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.documentintelligence import DocumentIntelligenceClient
 from azure.ai.documentintelligence.models import AnalyzeResult
+from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
 
 # use your `key` and `endpoint` environment variables
 key = os.environ.get('DI_KEY')
@@ -183,6 +184,7 @@ import os
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.documentintelligence import DocumentIntelligenceClient
 from azure.ai.documentintelligence.models import AnalyzeResult
+from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
 
 
 # use your `key` and `endpoint` environment variables
@@ -263,6 +265,7 @@ import os
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.documentintelligence import DocumentIntelligenceClient
 from azure.ai.documentintelligence.models import AnalyzeResult
+from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
 
 # use your `key` and `endpoint` environment variables
 key = os.environ.get('DI_KEY')
@@ -458,6 +461,7 @@ import os
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.documentintelligence import DocumentIntelligenceClient
 from azure.ai.documentintelligence.models import AnalyzeResult
+from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
 
 # use your `key` and `endpoint` environment variables
 key = os.environ.get('DI_KEY')
@@ -648,6 +652,7 @@ import os
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.documentintelligence import DocumentIntelligenceClient
 from azure.ai.documentintelligence.models import AnalyzeResult
+from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
 
 # use your `key` and `endpoint` environment variables
 key = os.environ.get('DI_KEY')
@@ -740,6 +745,7 @@ import os
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.documentintelligence import DocumentIntelligenceClient
 from azure.ai.documentintelligence.models import AnalyzeResult
+from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
 
 # use your `key` and `endpoint` environment variables
 key = os.environ.get('DI_KEY')
