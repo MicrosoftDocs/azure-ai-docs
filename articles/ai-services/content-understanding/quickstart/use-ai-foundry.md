@@ -21,15 +21,13 @@ To get started, make sure you have the following:
 
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/) before you begin.
 
-* An Azure AI Foundry hub. You will need to have the proper permissions to create a hub, or may have one created for you.
+* An Azure AI Foundry hub is required to manage the resources provisioned in your Content Understanding project, and it must be created in one of the following supported regions: westus, swedencentral, or australiaeast. If this is your first time creating a hub, check out [How to create and manage an Azure AI Foundry Hub](../../../ai-studio/how-to/create-azure-ai-resource.md?tabs=portal) to learn more. It's important to note you will need the proper permissions to create a hub, or your admin may create one for you.
 
   * If your role is **Contributor** or **Owner**, you can proceed with creating your own hub.
 
   * If your role is **Azure AI Developer**, the hub must already be created before you can complete this quickstart. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../../../ai-studio/concepts/ai-resources.md) and [Azure AI roles](../../../ai-studio/concepts/rbac-ai-studio.md).
 
- > [!NOTE] Your AI Hub must be in one of the following supported regions: westus, swedencentral, australiaeast
-
- >[!IMPORTANT] If your organization requires you to customize the security of storage resources, the AI Foundry currently does not currently expose all the features that can be configured. Please refer to [Azure AI services API access keys](../../../ai-studio/concepts/ai-resources.md#azure-ai-services-api-access-keys) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it. Please return here when you have resources created.
+ >[!IMPORTANT] If your organization requires you to customize the security of storage resources, the AI Foundry currently does not currently expose all the features that can be configured. Please refer to [Azure AI services API access keys](../../../ai-studio/concepts/ai-resources.md#azure-ai-services-api-access-keys.md) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it. Please return here when you have resources created.
 
 ## Create your first Content Understanding project in the AI Foundry
 
@@ -47,9 +45,11 @@ Once on the Content Understanding page, select `Create a new Content Understandi
 
    :::image type="content" source="../media/quickstarts/cu-landing-page.png" alt-text="Screenshot of Content Understanding page.":::
 
-Follow the steps in the project creation wizard, and start by selecting the Hub that you already created. When the hub was created, it should have provisioned an AI Services resource, as well as a blob storage container, and these will be selected by default. You can alternatively create one using the wizard.
+Follow the steps in the project creation wizard, and start by selecting the Hub that you already created. When the hub was created, it should have provisioned an AI Services resource, as well as a blob storage container, and these will be selected by default. You can alternatively create one using the wizard, or the [Azure Portal](../how-to/create-multi-service-resource.md). The below diagram illustrates the role of hubs, resources, and projects in the AI Foundry.
 
- >[!IMPORTANT] If your organization requires you to customize the security of storage resources, the AI Foundry currently does not currently expose all the features that can be configured. Please refer to [Azure AI services API access keys](../../../ai-studio/concepts/ai-resources.md#azure-ai-services-api-access-keys) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it. Please return here when you have resources created.
+   :::image type="content" source="../media/quickstarts/foundry-architecture.png" alt-text="Diagram of hub, project, and resource architecture.":::
+
+ >[!IMPORTANT] If your organization requires you to customize the security of storage resources, the AI Foundry currently does not currently expose all the features that can be configured. Please refer to [Azure AI services API access keys](../../../ai-studio/concepts/ai-resources.md#azure-ai-services-api-access-key.mds) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it. Please return here when you have resources created.
 
  Once you complete the setup steps, select `Create project`.
 
