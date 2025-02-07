@@ -35,6 +35,8 @@ Content Understanding offers a streamlined process to reason over large amounts 
 
 * **Enhance accuracy**. Content Understanding employs multiple AI models to analyze and cross-validate information simultaneously, resulting in more accurate and reliable results.
 
+* **Confidence scores & grounding**. Content Understanding ensures the accuracy of extracted values while minimizing the cost of human review.
+
 ## Content Understanding use cases
 
 * **Automation**. Content Understanding supports automation scenarios by converting unstructured content into structured data, which can be integrated into various workflows and applications. Confidence scores minimize human review and lower costs. For example, automate procurement and payment processes by extracting fields from invoices.
@@ -71,7 +73,7 @@ See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 
 
 ## Responsible AI
- Azure AI Content Understanding is designed to guard against processing harmful content. For more information, *see* our **Transparency Note** and our [**Code of Conduct**](/legal/cognitive-services/openai/code-of-conduct).
+ Azure AI Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. For more information and a full list of prohibited content, *see* our [**Transparency Note**](legal/cognitive-services/content-understanding/transparency-note) and our [**Code of Conduct**](/legal/cognitive-services/openai/code-of-conduct).
 
 ## Data privacy and security
 Developers using the Content Understanding service should review Microsoft's policies on customer data. For more information, visit our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page.
