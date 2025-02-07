@@ -15,7 +15,7 @@ ms.custom: cogserv-non-critical-speech, references_regions, devx-track-extended-
 # Quickstart: Real-time conversation transcription multichannel diarization (preview)
 
 > [!NOTE]
-> This feature is currently in public preview. This preview is provided without a service-level agreement, and is not recommended for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> This feature is currently in public preview. This preview is provided without a service-level agreement, and isn't recommended for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 With conversation transcription multichannel diarization, you can transcribe meetings with the ability to add, remove, and identify multiple participants by streaming audio to the Speech service. You first create voice signatures for each participant using the REST API, and then use the voice signatures with the Speech SDK to transcribe meetings. See the conversation transcription [overview](meeting-transcription.md) for more information.
 
