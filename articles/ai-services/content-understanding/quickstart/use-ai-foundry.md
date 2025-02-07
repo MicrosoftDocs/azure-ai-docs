@@ -62,7 +62,7 @@ In order to share and manage access to the Content Understanding project you jus
 
 You can manage the users and their individual roles here:
 
-   :::image type="content" source="../media/quickstarts/cu-management-center.png" alt-text="Screenshot of "Project users" section of management center.":::
+   :::image type="content" source="../media/quickstarts/cu-management-center.png" alt-text="Screenshot of Project users section of management center.":::
 
 ## Build your first analyzer
 
