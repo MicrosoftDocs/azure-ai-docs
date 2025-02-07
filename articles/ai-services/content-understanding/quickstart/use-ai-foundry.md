@@ -21,7 +21,7 @@ To get started, make sure you have the following:
 
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/) before you begin.
 
-* An Azure AI Foundry hub is required to manage the resources provisioned in your Content Understanding project, and it must be created in one of the following supported regions: westus, swedencentral, or australiaeast. If this is your first time creating a hub, check out [How to create and manage an Azure AI Foundry Hub](../../../ai-studio/how-to/create-azure-ai-resource.md?tabs=portal) to learn more. It's important to note you will need the proper permissions to create a hub, or your admin may create one for you.
+* An Azure AI Foundry hub is required to manage the resources provisioned in your Content Understanding project, and it must be created in one of the following supported regions: westus, swedencentral, or australiaeast. If this is your first time creating a hub, check out [How to create and manage an Azure AI Foundry hub](../../../ai-studio/how-to/create-azure-ai-resource.md?tabs=portal) to learn more. It's important to note you will need the proper permissions to create a hub, or your admin may create one for you.
 
   * If your role is **Contributor** or **Owner**, you can proceed with creating your own hub.
 
