@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 02/07/2025
 ms.author: lajanuar
 monikerRange: '<=doc-intel-3.1.0'
 ---
@@ -24,7 +24,7 @@ monikerRange: '<=doc-intel-3.1.0'
 
 ## Migrating from v3.1 API version
 
-Preview APIs are periodically deprecated. If you're using a preview API version, update your application to target the GA API version. To migrate from a preview API version to the `2023-11-30 (GA)` API version using the SDK, update to the [current version of the language specific SDK](sdk-overview-v3-1.md).
+Preview APIs are periodically deprecated. If you're using a preview API version, update your application to target the GA API version. To migrate from a preview API version to the `2024-11-30 (GA)` API version using the SDK, update to the [current version of the language specific SDK](sdk-overview-v3-1.md).
 
 ### Analysis features
 
