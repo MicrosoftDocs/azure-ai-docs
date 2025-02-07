@@ -318,11 +318,11 @@ print(response.model_dump_json(indent=2))
 
 ## Markdown output
 
-By default the `o3-mini` and `o1` models will not attempt to produce output that includes markdown formatting. A common use case where this behavior is undesirable is when you want the model to output code contained within a markdown code block. To override this behavior and encourage markdown inclusion in model responses add the string `Formatting re-enabled` to the beginning of your developer message.
+By default the `o3-mini` and `o1` models will not attempt to produce output that includes markdown formatting. A common use case where this behavior is undesirable is when you want the model to output code contained within a markdown code block. When the model generates output without markdown formatting you lose features like syntax highlighting, and copyable code blocks in interactive playground experiences. To override this new default behavior and encourage markdown inclusion in model responses, add the string `Formatting re-enabled` to the beginning of your developer message.
 
 Adding `Formatting re-enabled` to the beginning of your developer message does not guarantee that the model will include markdown formatting in its response, it only increases the likelihood. We have found from internal testing that `Formatting re-enabled` is less effective by itself with the `o1` model than with `o3-mini`.
 
-To improve the performance of `Formatting re-enabled` we have found that further augmenting the beginning of the developer message will often result in the desired output. So instead of just adding `Formatting re-enabled` to the beginning of your developer message, instead we recommend experimenting with adding a more descriptive initial instruction like one of the examples below:
+To improve the performance of `Formatting re-enabled` you can further augment the beginning of the developer message which will often result in the desired output. Rather than just adding `Formatting re-enabled` to the beginning of your developer message, you can experiment with adding a more descriptive initial instruction like one of the examples below:
 
 - `Formatting re-enabled - please enclose code blocks with appropriate markdown tags.`
 - `Formatting re-enabled -  code output should be wrapped in markdown.`
