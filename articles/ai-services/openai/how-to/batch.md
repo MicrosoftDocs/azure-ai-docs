@@ -46,6 +46,8 @@ Key use cases include:
 
 [!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
 
+Registration is required for access to `o3-mini`. For more information see, our [reasoning models guide](./reasoning.md).
+
 # [Data Zone Batch](#tab/datazone-batch)
 
 ### Data zone batch model availability
@@ -58,6 +60,7 @@ The following models support global batch:
 
 | Model | Version | Input format |
 |---|---|---|
+| `o3-mini` | 2025-01-31 | text |
 |`gpt-4o` | 2024-08-06 |text + image |
 |`gpt-4o-mini`| 2024-07-18 | text + image |
 |`gpt-4o` | 2024-05-13 |text + image |
@@ -74,7 +77,7 @@ Refer to the [models page](../concepts/models.md) for the most up-to-date inform
 |   | API Version   |
 |---|---|
 |**Latest GA API release:**| `2024-10-21`|
-|**Latest Preview API release:**| `2024-10-01-preview`|
+|**Latest Preview API release:**| `2025-01-01-preview`|
 
 Support first added in: `2024-07-01-preview`
 
