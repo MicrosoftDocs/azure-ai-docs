@@ -1,28 +1,24 @@
 ---
 title: "How-to: Migrate Document Intelligence applications to v3.1."
 titleSuffix: Azure AI services
-description: In this how-to guide, learn the differences between Document Intelligence API v3.0 and v3.1 and how to move to the newer version of the API.
+description: In this how-to guide, learn the differences between Document Intelligence API versions and how to move to the newer version of the API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
 ms.date: 02/07/2025
 ms.author: lajanuar
-monikerRange: '<=doc-intel-3.1.0'
+monikerRange: '<=doc-intel-4.0.0'
 ---
 
 <!-- markdownlint-disable MD004 -->
 # Document Intelligence v4.0 migration
 
-::: moniker range="<=doc-intel-3.1.0"
-[!INCLUDE [applies to v3.1, v3.0, and v2.1](../includes/applies-to-v40-v31-v30-v21.md)]
-::: moniker-end
-
 > [!IMPORTANT]
 >
-> Document Intelligence REST API v3.1 introduces breaking changes in the REST API request and analyze response JSON.
+> Document Intelligence REST API v4.0 introduces breaking changes in the REST API request and analyze response JSON.
 
-## Migrating from v3.1 API version
+## Migrating from v3.1 to v4.0
 
 Preview APIs are periodically deprecated. If you're using a preview API version, update your application to target the GA API version. To migrate from a preview API version to the `2024-11-30 (GA)` API version using the SDK, update to the [current version of the language specific SDK](sdk-overview-v4-0.md).
 
@@ -447,3 +443,4 @@ GET https://{your-form-recognizer-endpoint}/formrecognizer/info? api-version=202
 * [Review the new REST API](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)
 * [What is Document Intelligence?](../overview.md)
 * [Document Intelligence quickstart](../quickstarts/get-started-sdks-rest-api.md)
+0
