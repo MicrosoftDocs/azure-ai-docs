@@ -53,7 +53,6 @@ Request access: [limited access model application](https://aka.ms/OAI/o1access)
 | `max_completion_tokens`<sup>*</sup> |✅ |✅ |✅ | ✅ |
 | System Messages<sup>**</sup> | ✅ | ✅ | - | - |
 | Streaming | ✅ | - | - | - |
-| [Markdown formatting](#markdown-output)  | ✅ | ✅ | - | - |
 
 <sup>*</sup> Reasoning models will only work with the `max_completion_tokens` parameter. <br><br>
 
@@ -325,4 +324,6 @@ Adding `Formatting re-enabled` to the beginning of your developer message does n
 To improve the performance of `Formatting re-enabled` you can further augment the beginning of the developer message which will often result in the desired output. Rather than just adding `Formatting re-enabled` to the beginning of your developer message, you can experiment with adding a more descriptive initial instruction like one of the examples below:
 
 - `Formatting re-enabled - please enclose code blocks with appropriate markdown tags.`
-- `Formatting re-enabled -  code output should be wrapped in markdown.`
+- `Formatting re-enabled - code output should be wrapped in markdown.`
+
+Depending on your expected output you may need to customize your initial developer message further to target your specific use case.
