@@ -5,7 +5,7 @@ description: Learn about the Document Intelligence Batch analysis API
 author: laujan
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 02/07/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---
@@ -250,4 +250,4 @@ The batch analysis results help you identify which files are successfully analyz
 
 ## Next steps
 
-[View code samples on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/Python(v4.0)/Prebuilt_model)
+[View code samples on GitHub.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/samples/sample_analyze_batch_documents.py)
