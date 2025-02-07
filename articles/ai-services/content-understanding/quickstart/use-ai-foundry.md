@@ -33,9 +33,9 @@ To get started, make sure you have the following:
 
 ## Create your first Content Understanding project in the AI Foundry
 
-In order to try out [the Content Understanding service in the AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding), you have to create a Content Understanding project. You can access Content Understanding from:
- 
  > [!NOTE] The Content Understanding project type is separate from the Generative AI project type, also available in the AI Foundry.
+
+In order to try out [the Content Understanding service in the AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding), you have to create a Content Understanding project. You can access Content Understanding from:
 
 * The [AI Foundry home page](https://ai.azure.com/https://ai.azure.com/explore/aiservices)
    :::image type="content" source="../media/quickstarts/foundry-home-page.png" alt-text="Screenshot of the AI Foundry home page.":::
