@@ -142,10 +142,10 @@ The rate limits for each `gpt-4o` audio model deployment are 100K TPM and 1K RPM
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
-|`gpt-4o-audio-preview` | Default | 100 K | 1 K |
-|`gpt-4o-realtime-preview` | Default | 100 K | 1 K |
-|`gpt-4o-mini-audio-preview` | Default | 100 K | 1 K |
-|`gpt-4o-mini-realtime-preview` | Default | 100 K | 1 K |
+|`gpt-4o-audio-preview` | Default | 450 K | 1 K |
+|`gpt-4o-realtime-preview` | Default | 800 K | 1 K |
+|`gpt-4o-mini-audio-preview` | Default | 2 M | 1 K |
+|`gpt-4o-mini-realtime-preview` | Default | 800 K | 1 K |
 
 M = million | K = thousand
 
