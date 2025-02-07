@@ -19,7 +19,6 @@ ms.date: 02/06/2025
 | eastus2            | ✅                       | ✅                       | ✅                       | ✅                            |
 | francecentral      | ✅                       | ✅                       | ✅                       | ✅                            |
 | germanywestcentral | ✅                       | ✅                       | ✅                       | ✅                            |
-| italynorth         | ✅                       | ✅                       | ✅                       | ✅                            |
 | japaneast          | ✅                       | ✅                       | ✅                       | ✅                            |
 | koreacentral       | ✅                       | ✅                       | ✅                       | ✅                            |
 | northcentralus     | ✅                       | ✅                       | ✅                       | ✅                            |
