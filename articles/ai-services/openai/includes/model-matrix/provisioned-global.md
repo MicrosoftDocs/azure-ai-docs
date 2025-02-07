@@ -19,6 +19,7 @@ ms.date: 02/06/2025
 | eastus2            | ✅                       | ✅                       | ✅                       | ✅                            |
 | francecentral      | ✅                       | ✅                       | ✅                       | ✅                            |
 | germanywestcentral | ✅                       | ✅                       | ✅                       | ✅                            |
+| italynorth         | ✅                       | ✅                       | ✅                       | ✅                            |
 | japaneast          | ✅                       | ✅                       | ✅                       | ✅                            |
 | koreacentral       | ✅                       | ✅                       | ✅                       | ✅                            |
 | northcentralus     | ✅                       | ✅                       | ✅                       | ✅                            |
@@ -28,7 +29,6 @@ ms.date: 02/06/2025
 | southcentralus     | ✅                       | ✅                       | ✅                       | ✅                            |
 | southeastasia      | ✅                       | ✅                       | ✅                       | ✅                            |
 | southindia         | ✅                       | ✅                       | ✅                       | ✅                            |
-| spaincentral       | ✅                       | ✅                       | ✅                       | ✅                            |
 | swedencentral      | ✅                       | ✅                       | ✅                       | ✅                            |
 | switzerlandnorth   | ✅                       | ✅                       | ✅                       | ✅                            |
 | switzerlandwest    | ✅                       | ✅                       | ✅                       | ✅                            |
