@@ -11,7 +11,7 @@ ms.custom: ignite-2024-understanding-release
 ---
 
 # Use Content Understanding in the Azure AI Foundry
-[The Azure AI Foundry](https://ai.azure.com/) is a comprehensive platform for developing and deploying generative AI applications and APIs responsibly. Azure AI Content Understanding is a new generative AI-based [Azure AI Service](../../what-are-ai-services.md) that analyzes files of any modality (documents, images, videos, and audio) and extracts structured output in user-defined field formats. This guide shows you how to use Content Understanding to build an analyzer, which is a tool that allows you to extract exactly the insights that you need from your data, no matter the type. Content Understanding analyzers are fully customizable, and can be created by building your own schema from scratch or by using a suggested analyzer template which is offered to address common scenarios across each data type.
+[The Azure AI Foundry](https://ai.azure.com/) is a comprehensive platform for developing and deploying generative AI applications and APIs responsibly. Azure AI Content Understanding is a new generative AI-based [Azure AI Service](../../what-are-ai-services.md) that analyzes files of any modality (documents, images, videos, and audio) and extracts structured output in user-defined field formats. This guide shows you how to build and test a Content Understanding analyzer in the AI Foundry, which you can then use in any app or process you build using a simple REST API call. Content Understanding analyzers are fully customizable, and can be created by building your own schema from scratch or by using a suggested analyzer template which are offered to address common scenarios across each data type.
 
   :::image type="content" source="../media/quickstarts/ai-foundry-overview.png" alt-text="Screenshot of the Content Understanding workflow in the Azure AI Foundry.":::
 
@@ -21,7 +21,7 @@ To get started, make sure you have the following:
 
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/) before you begin.
 
-* You need permissions to create an Azure AI Foundry hub or have one created for you.
+* An Azure AI Foundry hub. You will need to have the proper permissions to create a hub, or may have one created for you.
 
   * If your role is **Contributor** or **Owner**, you can proceed with creating your own hub.
 
@@ -29,11 +29,13 @@ To get started, make sure you have the following:
 
  > [!NOTE] Your AI Hub must be in one of the following supported regions: westus, swedencentral, australiaeast
 
- >[!IMPORTANT] If your organization requires you to customize the security or storage resources, the AI Foundry currently does not support resource creation that meets these standards. Please refer to [Azure AI services API access keys](../../../ai-studio/concepts/ai-resources.md#azure-ai-services-api-access-keys) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it.
+ >[!IMPORTANT] If your organization requires you to customize the security of storage resources, the AI Foundry currently does not currently expose all the features that can be configured. Please refer to [Azure AI services API access keys](../../../ai-studio/concepts/ai-resources.md#azure-ai-services-api-access-keys) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it. Please return here when you have resources created.
 
 ## Create your first Content Understanding project in the AI Foundry
 
 In order to try out [the Content Understanding service in the AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding), you have to create a Content Understanding project. You can access Content Understanding from:
+ 
+ > [!NOTE] The Content Understanding project type is separate from the Generative AI project type, also available in the AI Foundry.
 
 * The [AI Foundry home page](https://ai.azure.com/https://ai.azure.com/explore/aiservices)
    :::image type="content" source="../media/quickstarts/foundry-home-page.png" alt-text="Screenshot of the AI Foundry home page.":::
@@ -45,11 +47,9 @@ Once on the Content Understanding page, select `Create a new Content Understandi
 
    :::image type="content" source="../media/quickstarts/cu-landing-page.png" alt-text="Screenshot of Content Understanding page.":::
 
- > [!NOTE] The Content Understanding project type is separate from the Generative AI project type, also available in the AI Foundry.
-
 Follow the steps in the project creation wizard, and start by selecting the Hub that you already created. When the hub was created, it should have provisioned an AI Services resource, as well as a blob storage container, and these will be selected by default. You can alternatively create one using the wizard.
 
- >[!IMPORTANT] If your organization requires you to customize the security or storage resources, the AI Foundry currently does not support resource creation that meets these standards. Please refer to [Azure AI services API access keys](../../../ai-studio/concepts/ai-resources.md#azure-ai-services-api-access-keys) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it.
+ >[!IMPORTANT] If your organization requires you to customize the security of storage resources, the AI Foundry currently does not currently expose all the features that can be configured. Please refer to [Azure AI services API access keys](../../../ai-studio/concepts/ai-resources.md#azure-ai-services-api-access-keys) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it. Please return here when you have resources created.
 
  Once you complete the setup steps, select `Create project`.
 
@@ -86,7 +86,7 @@ Now that everything is configured to get started, the following is a setep-by-st
 
     * *[Optional]* Provide field descriptions to explain the desired behavior, including any exceptions or rules.
 
-    * *[Optional]* Specify the method to generate the value for each field.
+    * Specify the method to generate the value for each field.
 
 1. Select **Save**.
 
@@ -100,7 +100,7 @@ Now that everything is configured to get started, the following is a setep-by-st
 
    :::image type="content" source="../media/analyzer-template/build-analyzer.png" alt-text="Screenshot of built analyzer.":::
 
-Now you've successfully built your first Content Understanding analyzer, and are ready to start extracting insights from your data.
+Now you've successfully built your first Content Understanding analyzer, and are ready to start extracting insights from your data. Check out [Quickstart: Azure AI Content Understanding REST APIs](./use-rest-api.md) to utilize the REST API to call your analyzer.
 
 
 ## Analyzer templates offered with Content Understanding
