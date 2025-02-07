@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: quickstart
-ms.date: 8/1/2024
+ms.date: 2/7/2025
 ms.author: eur
 ms.custom:
   - subject-armqs
@@ -35,7 +35,7 @@ The template that you use in this quickstart is from [Azure Quickstart Templates
 
 One Azure resource is defined in the Bicep file. The `kind` field in the Bicep file defines the type of resource.
 
-As needed, change the `sku` parameter value to the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/) instance you want. The `sku` depends on the resource `kind` that you use. For example, use `TextAnalytics` for the Azure AI Language service. The `TextAnalytics` kind uses `S` instead of `S0` for the `sku` value.
+As needed, change the `sku` parameter value to the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/) instance you want. The `sku` depends on the resource `kind` that you use. For example, use `AIServices` for the Azure AI Language service. 
 
 ## Deploy the template
 

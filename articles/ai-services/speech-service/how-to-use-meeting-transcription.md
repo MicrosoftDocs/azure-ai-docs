@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 9/9/2024
+ms.date: 2/7/2025
 ms.author: eur
 zone_pivot_groups: acs-js-csharp-python
 ms.custom: cogserv-non-critical-speech, references_regions, devx-track-extended-java, devx-track-js, devx-track-python
