@@ -1048,9 +1048,9 @@ groups:
   title: Programming languages
   prompt: Choose a programming language
   pivots:
-  - id: csharp
+  - id: programming-language-csharp
     title: C#
-  - id: programming-language-javas
+  - id: programming-language-java
     title: Java
   - id: programming-language-javascript
     title: JavaScript

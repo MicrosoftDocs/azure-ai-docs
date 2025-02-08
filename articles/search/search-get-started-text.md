@@ -20,9 +20,9 @@ ms.date: 2/8/2025
 
 # Quickstart: Full text search using the Azure SDKs
 
-::: zone pivot="ai-foundry-portal"
+::: zone pivot="csharp"
 
-[!INCLUDE [AI Foundry](includes/quickstarts/full-text-csharp.md)]
+[!INCLUDE [C# quickstart](includes/quickstarts/full-text-csharp.md)]
 
 ::: zone-end
 
