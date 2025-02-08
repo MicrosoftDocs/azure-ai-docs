@@ -13,7 +13,7 @@ Build a Node.js application using the [@azure/search-documents](/javascript/api/
 
 Alternatively, you can [download the source code](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart) to start with a finished project or follow these steps to create your own.
 
-##Set up your environment
+## Set up your environment
 
 We used the following tools to create this quickstart.
 
@@ -23,7 +23,7 @@ We used the following tools to create this quickstart.
 
 * [TypeScript](https://www.typescriptlang.org/download/)
 
-##Create the project
+## Create the project
 
 1. Start Visual Studio Code.
 
@@ -87,7 +87,7 @@ We used the following tools to create this quickstart.
 
 Replace the `YOUR-SEARCH-SERVICE-URL` value with the name of your search service endpoint URL. Replace `<YOUR-SEARCH-ADMIN-API-KEY>` with the admin key you recorded earlier. 
 
-##Create index.ts file
+## Create index.ts file
 
 Next we create an *index.ts* file, which is the main file that hosts our code.
 
@@ -141,7 +141,7 @@ main().catch((err) => {
 
 With that in place, we're ready to create an index.
 
-##Create index
+## Create index
 
 Create a file *hotels_quickstart_index.json*. This file defines how Azure AI Search works with the documents you'll be loading in the next step. Each field will be identified by a `name` and have a specified `type`. Each field also has a series of index attributes that specify whether Azure AI Search can search, filter, sort, and facet upon the field. Most of the fields are simple data types, but some, like `AddressType` are complex types that allow you to create rich data structures in your index. You can read more about [supported data types](/rest/api/searchservice/supported-data-types) and index attributes described in [Create Index (REST)](/rest/api/searchservice/indexes/create). 
 
@@ -333,7 +333,7 @@ let index = await indexClient.createIndex(hotelIndexDefinition);
 console.log(`Index named ${index.name} has been created.`);
 ```
 
-##Run the sample
+## Run the sample
 
 At this point, you're ready to build and run the sample. Use a terminal window to run the following commands to build your source with `tsc` then run your source with `node`:
 
@@ -352,7 +352,7 @@ Open the **Overview** of your search service in the Azure portal. Select the **I
 
 In the next step, you'll add data to index. 
 
-##Load documents 
+## Load documents 
 
 In Azure AI Search, documents are data structures that are both inputs to indexing and outputs from queries. You can push such data to the index or use an [indexer](/azure/search/search-indexer-overview). In this case, we'll programatically push the documents to the index.
 
@@ -498,7 +498,7 @@ To have the program wait for one second, call the `sleep` function:
 sleep(1000);
 ```
 
-##Search an index
+## Search an index
 
 With an index created and documents uploaded, you're ready to send queries to the index. In this section, we send five different queries to the search index to demonstrate different pieces of query functionality available to you.
 
@@ -598,6 +598,6 @@ let documentResult = await searchClient.getDocument('3')
 console.log(`HotelId: ${documentResult.HotelId}; HotelName: ${documentResult.HotelName}`)
 ```
 
-##Rerun the sample
+## Rerun the sample
 
 Build and run the program with `tsc && node index.ts`. Now, in addition to the previous steps, the queries are sent and the results written to the console.
