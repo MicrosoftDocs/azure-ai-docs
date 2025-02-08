@@ -20,7 +20,7 @@ ms.date: 2/8/2025
 
 # Quickstart: Full text search using the Azure SDKs
 
-::: zone pivot="csharp"
+::: zone pivot="programming-language-csharp"
 
 [!INCLUDE [C# quickstart](includes/quickstarts/full-text-csharp.md)]
 
