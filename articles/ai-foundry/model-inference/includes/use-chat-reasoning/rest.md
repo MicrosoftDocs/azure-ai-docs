@@ -60,7 +60,7 @@ The following example shows how you can create a basic chat request to the model
 }
 ```
 
-[ !INCLUDE [best-practices](best-practices.md)]
+[!INCLUDE [best-practices](best-practices.md)]
 
 The response is as follows, where you can see the model's usage statistics:
 

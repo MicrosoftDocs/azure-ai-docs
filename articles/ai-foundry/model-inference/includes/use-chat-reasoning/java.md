@@ -95,7 +95,7 @@ ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
 Response<ChatCompletions> response = client.complete(requestOptions);
 ```
 
-[ !INCLUDE [best-practices](best-practices.md)]
+[!INCLUDE [best-practices](best-practices.md)]
 
 The response is as follows, where you can see the model's usage statistics:
 
