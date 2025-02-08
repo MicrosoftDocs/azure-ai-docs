@@ -37,10 +37,10 @@ To get started, make sure you have the following:
 
 In order to try out [the Content Understanding service in the AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding), you have to create a Content Understanding project. You can access Content Understanding from:
 
-* The [AI Foundry home page](https://ai.azure.com/https://ai.azure.com/explore/aiservices)
+* The [AI Foundry home page](https://ai.azure.com/)
    :::image type="content" source="../media/quickstarts/foundry-home-page.png" alt-text="Screenshot of the AI Foundry home page.":::
 
-* The [AI Services landing page]()
+* The [AI Services landing page](https://ai.azure.com/https://ai.azure.com/explore/aiservices)
    :::image type="content" source="../media/quickstarts/cu-ai-services-landing-page.png" alt-text="Screenshot of the AI Services landing page in AI Foundry.":::
 
 Once on the Content Understanding page, select `Create a new Content Understanding Project`, shown below:
@@ -75,7 +75,7 @@ Now that everything is configured to get started, the following is a setep-by-st
 
    :::image type="content" source="../media/analyzer-template/define-schema-upload.png" alt-text="Screenshot of upload step in user experience.":::
 
-1. Next, the Content Understanding service will suggest analyzer templates based on your content type. For this example, select **Document analysis** to build your own schema tailored to the invoice scenario. When using your own data, select the analyzer template that best fits your needs, or create your own. See [Analyzer templates](#analyzer-templates) for a full list of available templates.
+1. Next, the Content Understanding service will suggest analyzer templates based on your content type. Check out [Analyzer templates offered with Content Understanding](../concepts/analyzer-templates.md) for a full list of all templates offered for each modality. For this example, select **Document analysis** to build your own schema tailored to the invoice scenario. When using your own data, select the analyzer template that best fits your needs, or create your own. See [Analyzer templates](#analyzer-templates) for a full list of available templates.
 
 1. Select **Create**.
 
@@ -105,55 +105,6 @@ Now that everything is configured to get started, the following is a setep-by-st
 
 Now you've successfully built your first Content Understanding analyzer, and are ready to start extracting insights from your data. Check out [Quickstart: Azure AI Content Understanding REST APIs](./use-rest-api.md) to utilize the REST API to call your analyzer.
 
-
-## Analyzer templates offered with Content Understanding
-
-Content Understanding analyzer templates give you a head start by allowing you to build your analyzer without creating schemas from scratch. They're fully customizable, allowing you to adjust any fields in the schemas to better fit your needs. Learn more about the analyzer templates offered for each modality by viewing the tabs below.
-
-The following analyzer templates are available for use in the [Azure AI Foundry Content Understanding experience](https://ai.azure.com/).
-
-# [Document](#tab/document)
-
-|Template| Description|
-| ----|----|----|
-|Document analysis |Analyze documents to extract text, layout, structured fields, and more.|
-|Text analysis |Analyze texts and extract structured fields.|
-
-   :::image type="content" source="../media/analyzer-template/image-templates.png" alt-text="Screenshot of document analyzer template.":::
-
-# [Image](#tab/image)
-
-|Template| Description|
-| ----|----|----|
-|Image analysis |Analyze images and extract structured fields.|
-|Retail inventory management |Retail inventory management for monitoring of products on shelves.|
-|Defect detection |Identify potential defects in provided images of metal plates.|
-
-   :::image type="content" source="../media/analyzer-template/image-templates.png" alt-text="Screenshot of image analyzer template.":::
-
-# [Audio](#tab/audio)
-
-|Template| Description|
-| ----|----|----|
-|Audio transcription |Transcribe audio recordings.|
-|Conversation summarization |Transcribe conversations and extract summaries.|
-|Post call analytics |Analyze call center conversations to extract transcripts, summaries, sentiment, and more.|
-
-
-   :::image type="content" source="../media/analyzer-template/audio-templates.png" alt-text="Screenshot of audio analyzer template.":::
-
-# [Video](#tab/video)
-
-|Template| Description|
-| ----|----|----|
-|Video shot analysis |Analyze videos to extract transcript and structured fields for each shot.|
-|Media asset management |Extract structured information from marketing videos, news content, broadcast media, television episodes, and film archives.|
-|Advertising |Advertising analysis and moderation.|
-
-
-   :::image type="content" source="../media/analyzer-template/video-templates.png" alt-text="Screenshot of video analyzer template.":::
-
----
 
 ## Next steps
 
