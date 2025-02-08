@@ -552,6 +552,6 @@ let documentResult = await searchClient.getDocument(key='3')
 console.log(`HotelId: ${documentResult.HotelId}; HotelName: ${documentResult.HotelName}`)
 ```
 
-## Run the sample
+## Run the sample again
 
 Run the program by using `node index.js`. Now, in addition to the previous steps, the queries are sent and the results written to the console.
