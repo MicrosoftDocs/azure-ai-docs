@@ -27,11 +27,13 @@ To get started, make sure you have the following:
 
   * If your role is **Azure AI Developer**, the hub must already be created before you can complete this quickstart. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../../../ai-studio/concepts/ai-resources.md) and [Azure AI roles](../../../ai-studio/concepts/rbac-ai-studio.md).
 
- >[!IMPORTANT] If your organization requires you to customize the security of storage resources, the AI Foundry currently does not currently expose all the features that can be configured. Please refer to [Azure AI services API access keys](../../../ai-studio/concepts/ai-resources.md#azure-ai-services-api-access-keys.md) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it. Please return here when you have resources created.
+> [!IMPORTANT]
+> If your organization requires you to customize the security of storage resources, the AI Foundry currently does not currently expose all the features that can be configured. Please refer to [Azure AI services API access keys](../../../ai-studio/concepts/ai-resources.md#azure-ai-services-api-access-keys.md) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it. Please return here when you have resources created.
 
 ## Create your first Content Understanding project in the AI Foundry
 
- > [!NOTE] The Content Understanding project type is separate from the Generative AI project type, also available in the AI Foundry.
+> [!NOTE]
+> The Content Understanding project type is separate from the Generative AI project type, also available in the AI Foundry.
 
 In order to try out [the Content Understanding service in the AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding), you have to create a Content Understanding project. You can access Content Understanding from:
 
@@ -49,7 +51,8 @@ Follow the steps in the project creation wizard, and start by selecting the Hub 
 
    :::image type="content" source="../media/quickstarts/foundry-architecture.png" alt-text="Diagram of hub, project, and resource architecture.":::
 
- >[!IMPORTANT] If your organization requires you to customize the security of storage resources, the AI Foundry currently does not currently expose all the features that can be configured. Please refer to [Azure AI services API access keys](../../../ai-studio/concepts/ai-resources.md#azure-ai-services-api-access-key.mds) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it. Please return here when you have resources created.
+ > [!IMPORTANT]
+> If your organization requires you to customize the security of storage resources, the AI Foundry currently does not currently expose all the features that can be configured. Please refer to [Azure AI services API access keys](../../../ai-studio/concepts/ai-resources.md#azure-ai-services-api-access-key.mds) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it. Please return here when you have resources created.
 
  Once you complete the setup steps, select `Create project`.
 
