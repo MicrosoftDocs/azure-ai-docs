@@ -14,18 +14,18 @@ ms.reviewer: changliu2
 ms.author: lagayhar
 author: lgayhardt
 ---
-# Cloud Evaluation: Evaluate your Generative AI application remotely on the cloud
+# Cloud evaluation (Preview): evaluate your Generative AI application remotely on the cloud
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-While Azure AI Evaluation client SDK supports running evaluations locally on your own machine, you may want to delegate the job remotely to the cloud. For example, after you ran local evaluations on small test data to help assess your generative AI application prototypes, now you move into pre-deployment testing and need run evaluations on a large dataset. Cloud evaluation frees you from managing your local compute infrastructure, and enables you integrate evaluations as tests into your CI/CD pipelines. After deployment, you may want to [continuously evaluate](https://aka.ms/GenAIMonitoringDoc) your applications for post-deployment monitoring.
+While Azure AI Evaluation SDK client supports running evaluations locally on your own machine, you may want to delegate the job remotely to the cloud. For example, after you ran local evaluations on small test data to help assess your generative AI application prototypes, now you move into pre-deployment testing and need run evaluations on a large dataset. Cloud evaluation frees you from managing your local compute infrastructure, and enables you integrate evaluations as tests into your CI/CD pipelines. After deployment, you may want to [continuously evaluate](https://aka.ms/GenAIMonitoringDoc) your applications for post-deployment monitoring.
 
 In this article, you learn how to run cloud evaluation in pre-deployment testing on a test dataset. Using the Azure AI Projects SDK, you will have evaluation results automatically logged into your Azure AI project for better observability. This feature support all Microsft-curated [built-in evaluators](./evaluate-sdk.md#built-in-evaluators) and your own [custom evaluators](./evaluate-sdk.md#custom-evaluators) which can be located in the [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) of your project.
 
 
 ### Prerequisites
 
-- Azure AI project in the same [regions](#region-support) as risk and safety evaluators (preview). If you don't have an existing project, follow the guide [How to create Azure AI project](../create-projects.md?tabs=ai-studio) to create one.
+- Azure AI project in the same [regions](./evaluate-sdk.md#region-support) as risk and safety evaluators (preview). If you don't have an existing project, follow the guide [How to create Azure AI project](../create-projects.md?tabs=ai-studio) to create one.
 
 - Azure OpenAI Deployment with GPT model supporting `chat completion`, for example `gpt-4`.
 - `Connection String` for Azure AI project to easily create `AIProjectClient` object. You can get the **Project connection string** under **Project details** from the project's **Overview** page.
