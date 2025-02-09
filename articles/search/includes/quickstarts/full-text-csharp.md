@@ -1,18 +1,19 @@
 ---
-author: HeidiSteen
-ms.author: heidist
+manager: nitinme
+author: eric-urban
+ms.author: eur
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: include
-ms.date: 10/07/2024
+ms.date: 2/8/2025
 ---
+
+[!INCLUDE [Full text introduction](full-text-intro.md)]
 
 Build a console application using the [Azure.Search.Documents](/dotnet/api/overview/azure/search.documents-readme) client library to create, load, and query a search index.
 
 Alternatively, you can [download the source code](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart/v11) to start with a finished project or follow these steps to create your own.
 
-#### Set up your environment
+## Set up your environment
 
 1. Start Visual Studio and create a new project for a console app.
 
@@ -24,7 +25,7 @@ Alternatively, you can [download the source code](https://github.com/Azure-Sampl
 
 1. Select **Install** to add the assembly to your project and solution.
 
-#### Create a search client
+## Create a search client
 
 1. In *Program.cs*, change the namespace to `AzureSearch.SDK.Quickstart.v11` and then add the following `using` directives.
 
@@ -58,7 +59,7 @@ Alternatively, you can [download the source code](https://github.com/Azure-Sampl
     }
     ```
 
-#### Create an index
+## Create an index
 
 This quickstart builds a Hotels index that you'll load with hotel data and execute queries against. In this step, define the fields in the index. Each field definition includes a name, data type, and attributes that determine how the field is used.
 
@@ -167,7 +168,7 @@ In this example, synchronous methods of the *Azure.Search.Documents* library are
     }
    ```
 
-#### Load documents
+## Load documents
 
 Azure AI Search searches over content stored in the service. In this step, you'll load JSON documents that conform to the hotel index you just created.
 
@@ -303,7 +304,7 @@ When uploading documents, you must use an [IndexDocumentsBatch](/dotnet/api/azur
 
     The 2-second delay compensates for indexing, which is asynchronous, so that all documents can be indexed before the queries are executed. Coding in a delay is typically only necessary in demos, tests, and sample applications.
 
-#### Search an index
+## Search an index
 
 You can get query results as soon as the first document is indexed, but actual testing of your index should wait until all documents are indexed.
 
@@ -461,7 +462,7 @@ The previous queries show multiple [ways of matching terms in a query](/azure/se
 
 Full text search and filters are performed using the [SearchClient.Search](/dotnet/api/azure.search.documents.searchclient.search) method. A search query can be passed in the `searchText` string, while a filter expression can be passed in the [Filter](/dotnet/api/azure.search.documents.searchoptions.filter) property of the [SearchOptions](/dotnet/api/azure.search.documents.searchoptions) class. To filter without searching, just pass `"*"` for the `searchText` parameter of the [Search](/dotnet/api/azure.search.documents.searchclient.search) method. To search without filtering, leave the `Filter` property unset, or don't pass in a `SearchOptions` instance at all.
 
-#### Run the program
+## Run the program
 
 Press **F5** to rebuild the app and run the program in its entirety.
 
