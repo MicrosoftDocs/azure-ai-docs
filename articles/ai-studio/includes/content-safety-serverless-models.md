@@ -1,7 +1,7 @@
 ---
 title: Include file
 description: Include file
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 07/12/2024
 ms.author: mopeakande

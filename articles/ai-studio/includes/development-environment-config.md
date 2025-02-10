@@ -2,7 +2,7 @@
 title: include file
 description: include file
 author: sdgilley
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 5/21/2024
 ms.author: sgilley

@@ -3,7 +3,7 @@ title: Work with Azure AI Foundry projects in VS Code
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to get started with Azure AI Foundry projects in VS Code.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024

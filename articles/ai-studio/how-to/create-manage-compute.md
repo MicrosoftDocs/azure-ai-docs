@@ -3,7 +3,7 @@ title: How to create and manage compute instances in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to create and manage compute instances in Azure AI Foundry portal.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024

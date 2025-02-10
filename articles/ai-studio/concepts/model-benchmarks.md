@@ -3,7 +3,7 @@ title: Explore model benchmarks in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article introduces benchmarking capabilities and the model benchmarks experience in Azure AI Foundry portal.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ai-learning-hub
   - ignite-2024

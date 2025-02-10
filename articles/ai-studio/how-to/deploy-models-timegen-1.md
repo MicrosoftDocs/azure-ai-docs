@@ -3,7 +3,7 @@ title: How to deploy TimeGEN-1 model with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn how to deploy TimeGEN-1 with Azure AI Foundry.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 12/16/2024
 ms.reviewer: haelhamm

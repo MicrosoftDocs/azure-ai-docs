@@ -3,7 +3,7 @@ title: Fine-tune Llama models in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: Learn how to fine-tune Meta Llama models in Azure AI Foundry portal.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 12/16/2024
 ms.reviewer: rasavage

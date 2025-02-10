@@ -4,7 +4,7 @@ description: Learn about conducting A/B experiments for AI applications.
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: skohlmeier
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: concept-article

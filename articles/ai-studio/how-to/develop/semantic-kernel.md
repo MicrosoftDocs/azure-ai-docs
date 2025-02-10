@@ -7,7 +7,7 @@ ms.author: lagayhar
 ms.reviewer: taochen
 ms.date: 12/04/2024
 ms.topic: how-to
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 manager: scottpolly
 ---
 
