@@ -356,9 +356,7 @@ To learn more about using Azure AI Search, check out [Azure AI Search documentat
 
 ## Azure AI Agent Service
 
-Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. Using an extensive ecosystem of models, tools and capabilities from OpenAI, Microsoft, and third-party providers, Azure AI Agent Service enables building agents for a wide range of generative AI use cases.
-
-To get access to agents, [sign-up for the preview](https://nam.dcv.ms/nzy5CEG6Br).
+Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. Using an extensive ecosystem of models, tools and capabilities from OpenAI, Microsoft, and third-party providers, [Azure AI Agent Service](/azure/ai-services/agents) enables building agents for a wide range of generative AI use cases.
 
 ## Evaluation
 
