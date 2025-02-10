@@ -9,7 +9,7 @@ ms.topic: conceptual
 author: fbsolo-ms1 
 ms.author: franksolomon 
 ms.reviewer: swatig 
-ms.date: 07/24/2024
+ms.date: 02/10/2025
 ms.custom: data4ml
 #Customer intent: As an experienced Python developer, I need secure access to my data in my Azure storage solutions, and I need to use that data to accomplish my machine learning tasks.
 ---
@@ -17,6 +17,9 @@ ms.custom: data4ml
 # Data concepts in Azure Machine Learning
 
 With Azure Machine Learning, you can import data from a local machine or an existing cloud-based storage resource. This article describes key Azure Machine Learning data concepts.
+
+> [!NOTE]
+> Azure Machine Learning resources do not support data imports from Synapse SQL data resources.
 
 ## Datastore
 
