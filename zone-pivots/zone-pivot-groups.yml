@@ -1052,7 +1052,7 @@ groups:
   - id: programming-language-csharp
     title: C#
   - id: programming-language-rest
-    title: rest
+    title: REST
 - id: search-quickstart-full-text
 # Owner: eur
   title: Programming languages
