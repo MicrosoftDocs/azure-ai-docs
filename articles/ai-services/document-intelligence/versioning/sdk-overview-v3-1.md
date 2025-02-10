@@ -8,7 +8,7 @@ ms.service: azure-ai-document-intelligence
 ms.custom:
   - devx-track-python
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 02/10/2025
 ms.author: lajanuar
 monikerRange: 'doc-intel-3.1.0'
 --- 
@@ -225,7 +225,7 @@ async function main() {
 #### Use a Microsoft Entra token credential
 
 > [!NOTE]
-> Regional endpoints do not support Microsoft Entra authentication. Create a [custom subdomain](../../../ai-services/authentication.md?tabs=powershell#create-a-resource-with-a-custom-subdomain) for your resource in order to use this type of authentication.
+> Regional endpoints don't support Microsoft Entra authentication. Create a [custom subdomain](../../../ai-services/authentication.md?tabs=powershell#create-a-resource-with-a-custom-subdomain) for your resource in order to use this type of authentication.
 
 Authorization is easiest using the `DefaultAzureCredential`. It provides a default token credential, based upon the running environment, capable of handling most Azure authentication scenarios.
 
