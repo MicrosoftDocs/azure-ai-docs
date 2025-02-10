@@ -3,7 +3,7 @@ title: How to generate synthetic and simulated data for evaluation
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to generate synthetic data to run simulations to evaluate the performance and safety of your generative AI application.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024

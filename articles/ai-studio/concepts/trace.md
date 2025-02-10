@@ -3,7 +3,7 @@ title: Tracing in Azure AI Inference SDK
 titleSuffix: Azure AI Foundry
 description: This article provides an overview of tracing with the Azure AI Inference SDK.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: conceptual

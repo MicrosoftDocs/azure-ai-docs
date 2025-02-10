@@ -3,7 +3,7 @@ title:  Azure AI Foundry risk and safety evaluations (preview) Transparency Note
 titleSuffix: Azure AI Foundry
 description: Azure AI Foundry safety evaluations intended purpose, capabilities, limitations and how to achieve the best performance.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: article

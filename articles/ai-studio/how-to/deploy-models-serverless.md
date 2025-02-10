@@ -3,7 +3,7 @@ title: Deploy models as serverless APIs
 titleSuffix: Azure AI Foundry
 description: Learn to deploy models as serverless APIs, using Azure AI Foundry.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 12/20/2024
 ms.author: mopeakande

@@ -2,7 +2,7 @@
 title: How to use the Meta Llama family of models with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn how to use the Meta Llama family of models with Azure AI Foundry.
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 manager: scottpolly
 ms.topic: how-to
 ms.date: 12/04/2024

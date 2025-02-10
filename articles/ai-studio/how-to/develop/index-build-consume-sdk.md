@@ -3,7 +3,7 @@ title: How to build and consume an index using code
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to build and consume an index using code.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to

@@ -3,7 +3,7 @@ title: Azure AI Model Inference Image Embeddings
 titleSuffix: Azure AI Foundry
 description: Reference for Azure AI Model Inference Image Embeddings API
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: conceptual
 ms.date: 01/28/2025
 ms.reviewer: fasantia 

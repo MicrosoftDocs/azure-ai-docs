@@ -3,7 +3,7 @@ title: Consume deployed serverless API endpoints from a different project or hub
 titleSuffix: Azure AI Foundry
 description: Learn how to consume deployed serverless API endpoints from a different project or hub.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 12/20/2024
 ms.author: mopeakande

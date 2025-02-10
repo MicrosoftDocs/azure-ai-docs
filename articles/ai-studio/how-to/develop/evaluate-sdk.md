@@ -3,7 +3,7 @@ title: Evaluate your Generative AI application with the Azure AI Evaluation SDK
 titleSuffix: Azure AI project
 description: This article provides instructions on how to evaluate a Generative AI application with the Azure AI Evaluation SDK.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - references_regions

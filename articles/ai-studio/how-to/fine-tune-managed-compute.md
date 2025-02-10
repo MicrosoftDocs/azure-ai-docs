@@ -3,7 +3,7 @@ title: Fine-tune models using a managed compute with Azure AI Foundry portal (pr
 titleSuffix: Azure AI Foundry
 description: Learn how to fine-tune models using a managed compute with Azure AI Foundry.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 11/22/2024
 ms.reviewer: vkann

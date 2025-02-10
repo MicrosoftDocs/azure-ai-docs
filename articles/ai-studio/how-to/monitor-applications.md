@@ -3,7 +3,7 @@ title: Continuously Monitor your Generative AI Applications
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to continuously monitor Generative AI Applications.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to

@@ -3,7 +3,7 @@ title: Azure AI Model Inference Get Info
 titleSuffix: Azure AI Foundry
 description: Reference for Azure AI Model Inference Get Info API
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: conceptual
 ms.date: 01/28/2025
 ms.reviewer: fasantia 

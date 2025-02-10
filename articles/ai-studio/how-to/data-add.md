@@ -3,7 +3,7 @@ title: How to add and manage data in your Azure AI Foundry project
 titleSuffix: Azure AI Foundry
 description: Learn how to add and manage data in your Azure AI Foundry project.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024

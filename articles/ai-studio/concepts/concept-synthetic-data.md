@@ -3,7 +3,7 @@ title: Synthetic data generation in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: Learn how to generate a synthetic dataset in Azure AI Foundry portal.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 12/15/2024
 ms.reviewer: vkann

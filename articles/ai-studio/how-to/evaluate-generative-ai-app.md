@@ -3,7 +3,7 @@ title: How to evaluate generative AI models and applications with Azure AI Found
 titleSuffix: Azure AI Foundry
 description: Evaluate your generative AI models and applications with Azure AI Foundry.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom: ignite-2023, references_regions, build-2024, ignite-2024
 ms.topic: how-to
 ms.date: 11/19/2024

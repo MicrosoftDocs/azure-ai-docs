@@ -3,7 +3,7 @@ title: Retrieval augmented generation in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article introduces retrieval augmented generation for use in generative AI applications.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
