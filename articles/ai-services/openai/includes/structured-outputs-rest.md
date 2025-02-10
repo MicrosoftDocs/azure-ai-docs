@@ -1,3 +1,12 @@
+---
+ms.service: azure-ai-openai
+ms.topic: how-to
+ms.date: 02/10/2025
+author: mrbullwinkle
+ms.author: mbullwin
+zone_pivot_groups: structured-outputs
+---
+
 ## Getting started
 
 `response_format` is set to `json_schema` with `strict: true` set.
