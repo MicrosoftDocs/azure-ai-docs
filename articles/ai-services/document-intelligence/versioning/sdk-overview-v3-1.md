@@ -256,7 +256,7 @@ Here's how to acquire and use the [DefaultAzureCredential](/dotnet/api/azure.ide
     var client = new DocumentAnalysisClient(new Uri(endpoint), new DefaultAzureCredential());
     ```
 
-For more information, *see* [Authenticate the client](https://github.com/Azure/azure-sdk-for-net/tree/Azure.AI.FormRecognizer_4.0.0-beta.4/sdk/formrecognizer/Azure.AI.FormRecognizer#authenticate-the-client).
+For more information, *see* [Authenticate the client](https://github.com/Azure/azure-sdk-for-net/tree/Azure.AI.FormRecognizer_4.0.0/sdk/formrecognizer/Azure.AI.FormRecognizer#authenticate-the-client).
 
 ### [Java](#tab/java)
 

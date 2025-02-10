@@ -13,7 +13,7 @@ ms.author: lajanuar
 <!-- markdownlint-disable MD036 -->
 
 :::moniker range="doc-intel-4.0.0"
-[Client library](/java/api/overview/azure/ai-documentintelligence-readme?view=azure-java-preview&preserve-view=true) | [SDK reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-ai-documentintelligence/1.0.0/index.html) | [REST API reference](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-documentintelligence/1.0.0-beta.4) | [Samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-documentintelligence_1.0.0/sdk/documentintelligence/azure-ai-documentintelligence/src/samples#examples) |[Supported REST API version](../../sdk-overview-v4-0.md)
+[Client library](/java/api/com.azure.ai.documentintelligence?view=azure-java-stable&preserve-view=true) | [SDK reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-ai-documentintelligence/1.0.0/index.html) | [REST API reference](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-documentintelligence/1.0.0) | [Samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-documentintelligence_1.0.0/sdk/documentintelligence/azure-ai-documentintelligence/src/samples#examples) |[Supported REST API version](../../sdk-overview-v4-0.md)
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0"
@@ -128,7 +128,7 @@ Open the project's *build.gradle.kts* file in your IDE. Copay and past the follo
          mavenCentral()
      }
      dependencies {
-         implementation group: 'com.azure', name: 'azure-ai-documentintelligence', version: '1.0.0-beta.4'
+         implementation group: 'com.azure', name: 'azure-ai-documentintelligence', version: '1.0.0'
 
      }
   ```
