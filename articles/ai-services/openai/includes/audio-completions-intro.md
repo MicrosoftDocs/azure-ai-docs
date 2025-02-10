@@ -7,7 +7,7 @@ ms.topic: include
 ms.date: 1/21/2025
 ---
 
-The `gpt-4o-audio-preview` model introduces the audio modality into the existing `/chat/completions` API. The audio model expands the potential for AI applications in text and voice-based interactions and audio analysis. Modalities supported in `gpt-4o-audio-preview` model include:  text, audio, and text + audio.
+The `gpt-4o-audio-preview` and `gpt-4o-mini-audio-preview` models introduce the audio modality into the existing `/chat/completions` API. The audio model expands the potential for AI applications in text and voice-based interactions and audio analysis. Modalities supported in `gpt-4o-audio-preview` and `gpt-4o-mini-audio-preview` models include:  text, audio, and text + audio.
 
 Here's a table of the supported modalities with example use cases:
 
@@ -23,9 +23,9 @@ By using audio generation capabilities, you can achieve more dynamic and interac
 
 ## Supported models
 
-Currently only `gpt-4o-audio-preview` version: `2024-12-17` supports audio generation.
+Currently only `gpt-4o-audio-preview` and `gpt-4o-mini-audio-preview` version: `2024-12-17` supports audio generation.
 
-The `gpt-4o-audio-preview` model is available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
+For more information about region availability, see the [models and versions documentation](../concepts/models.md#global-standard-model-availability).
 
 Currently the following voices are supported for audio out: Alloy, Echo, and Shimmer.
 

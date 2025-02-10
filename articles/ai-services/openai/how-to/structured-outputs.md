@@ -21,10 +21,11 @@ Structured outputs make a model follow a [JSON Schema](https://json-schema.org/o
 > Currently structured outputs are not supported with:
 > - [Bring your own data](../concepts/use-your-data.md) scenarios.
 > - [Assistants](../how-to/assistant.md) or [Azure AI Agents Service](../../agents/overview.md).
-> - `gpt-4o-audio-preview` version: `2024-12-17`.
+> - `gpt-4o-audio-preview` and `gpt-4o-mini-audio-preview` version: `2024-12-17`.
 
 ## Supported models
 
+- `o3-mini` version `2025-01-31`
 - `o1` version: `2024-12-17`
 - `gpt-4o-mini` version: `2024-07-18`
 - `gpt-4o` version: `2024-08-06`

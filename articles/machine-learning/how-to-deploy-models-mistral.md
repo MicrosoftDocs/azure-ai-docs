@@ -90,7 +90,7 @@ Mistral Nemo is a 12B model, making it a powerful drop-in replacement for any sy
 
 Additionally, Mistral Nemo is:
 
-- **Jointly developed with Nvidia.** This collaboration has resulted in a powerful 12B model that pushes the boundaries of language understanding and generation.
+- **Jointly developed with NVIDIA.** This collaboration has resulted in a powerful 12B model that pushes the boundaries of language understanding and generation.
 - **Multilingual proficient.** Mistral Nemo is equipped with a tokenizer called Tekken, which is designed for multilingual applications. It supports over 100 languages, such as English, French, German, and Spanish. Tekken is more efficient than the Llama 3 tokenizer in compressing text for approximately 85% of all languages, with significant improvements in Malayalam, Hindi, Arabic, and prevalent European languages.
 - **Agent-centric.** Mistral Nemo possesses top-tier agentic capabilities, including native function calling and JSON outputting.
 - **Advanced in reasoning.** Mistral Nemo demonstrates state-of-the-art mathematical and reasoning capabilities within its size category.

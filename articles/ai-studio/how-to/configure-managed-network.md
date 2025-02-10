@@ -3,7 +3,7 @@ title: How to configure a managed network for Azure AI Foundry hubs
 titleSuffix: Azure AI Foundry
 description: Learn how to configure a managed network for Azure AI Foundry hubs.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom: ignite-2023, build-2024, devx-track-azurecli, ignite-2024
 ms.topic: how-to
 ms.date: 11/19/2024
@@ -135,7 +135,7 @@ Before following the steps in this article, make sure you have the following pre
 
 ## Limitations
 
-* Azure AI Foundry currently doesn't support bringing your own virtual network, it only supports managed virtual network isolation.
+* Azure AI Foundry supports managed virtual network isolation for securing your compute resources. Azure AI Foundry does not support bring your own virtual network for securing compute resources. Please note bring your own virtual network for securing computes is different than your Azure virtual network that is required to access Azure AI Foundry from your on-premises network. 
 * Once you enable managed virtual network isolation of your Azure AI, you can't disable it.
 * Managed virtual network uses private endpoint connection to access your private resources. You can't have a private endpoint and a service endpoint at the same time for your Azure resources, such as a storage account. We recommend using private endpoints in all scenarios.
 * The managed virtual network is deleted when the Azure AI is deleted. 
@@ -768,7 +768,7 @@ To allow installation of __Python packages for training and deployment__, add ou
 | `*.anaconda.org` | Used to get repo data. |
 | `pypi.org` | Used to list dependencies from the default index, if any, and the index isn't overwritten by user settings. If the index is overwritten, you must also allow `*.pythonhosted.org`. |
 | `pytorch.org`<br>`*.pytorch.org` | Used by some examples based on PyTorch. |
-| `*.tensorflow.org` | Used by some examples based on Tensorflow. |
+| `*.tensorflow.org` | Used by some examples based on TensorFlow. |
 
 ### Scenario: Use Visual Studio Code
 Visual Studio Code relies on specific hosts and ports to establish a remote connection.

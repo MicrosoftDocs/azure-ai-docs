@@ -315,8 +315,6 @@ items:
       items:
         - name: Voice assistants overview
           href: voice-assistants.md
-        - name: Voice Assistants Samples (GitHub)
-          href: https://aka.ms/speech/va-samples
         - name: Custom commands
           href: custom-commands.md
         - name: Direct Line Speech

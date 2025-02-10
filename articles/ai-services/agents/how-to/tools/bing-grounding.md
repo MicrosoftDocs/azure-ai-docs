@@ -24,9 +24,15 @@ You can ask questions such as "*what is the top news today*" or "*what is the re
 Developers and end users don't have access to raw content returned from Grounding with Bing Search. The response, however, includes citations with links to the websites used to generate the response, and a link to the Bing query used for the search. These two *References* must be retained and displayed in the exact form provided by Microsoft, as per Grounding with Bing Search's [Use and Display Requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal#use-and-display-requirements). See the [how to display Grounding with Bing Search results](#how-to-display-grounding-with-bing-search-results) section for details.
 
 >[!IMPORTANT]
-> 1. Your usage of Grounding with Bing Search may incur costs. See the [pricing page](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
+> 1. Your usage of Grounding with Bing Search can incur costs. See the [pricing page](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
 > 1. By creating and using a Grounding with Bing Search resource through code-first experience, such as Azure CLI, or deploying through deployment template, you agree to be bound by and comply with the terms available at https://www.microsoft.com/en-us/bing/apis/grounding-legal, which may be updated from time to time.
+> 1. When you use Grounding with Bing Search, your customer data is transferred outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is not subject to the same data processing terms (including location of processing) and does not have the same compliance standards and certifications as the Azure AI Agent Service, as described in the [Grounding with Bing Search Terms of Use](https://www.microsoft.com/en-us/bing/apis/grounding-legal). It is your responsibility to assess whether use of Grounding with Bing Search in your agent meets your needs and requirements.
 
+## Usage support
+
+|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK |Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Setup  
 
@@ -35,44 +41,39 @@ Developers and end users don't have access to raw content returned from Groundin
 
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
 
-1. Manually [register](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) Bing Search as an Azure resource provider. You must have permission to perform the `/register/action` operation for the resource provider. The permission is included in the **Contributor** and **Owner** roles.
+1. Create a Grounding with Bing Search resource. You need to have `owner` or `contributor` role in your subscription or resource group to create it.
+
+   1. You can create one in the [Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingSearch), and select the different fields in the creation form. Make sure you create this Grounding with Bing Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.
+
+    :::image type="content" source="../../media/tools/bing/resource-selection.png" alt-text="A screenshot of the Bing resource selection in the Azure portal." lightbox="../../media/tools/bing/resource-selection.png":::
+  
+   1. You can also create one through code-first experience. If so, you need to manually [register](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) Bing Search as an Azure resource provider. You must have permission to perform the `/register/action` operation for the resource provider. The permission is included in the **Contributor** and **Owner** roles.
 
    ```console
        az provider register --namespace 'Microsoft.Bing'
    ```
 
-1. Developers can create a new Grounding with Bing Search resource. Create a new Grounding with Bing Search resource in the [Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingSearch), and select the different fields in the creation form. Make sure you create this Grounding with Bing Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.
-
 1. After you have created a Grounding with Bing Search resource, you can find it in [Azure portal](https://portal.azure.com/#home). Navigate to the resource group you've created the resource in, search for the Grounding with Bing Search resource you have created.
 
     :::image type="content" source="../../media/tools/bing/resource-azure-portal.png" alt-text="A screenshot of the Bing resource in the Azure portal." lightbox="../../media/tools/bing/resource-azure-portal.png":::
 
-1. Select the Grounding with Bing Search resource you have created and copy any of the API keys.
+1. You can add the Grounding with Bing Search tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal, in the **Create and debug** screen for your agent, scroll down the **Setup** pane on the right to **knowledge**. Then select **Add**.
 
-    :::image type="content" source="../../media/tools/bing/key-resource-azure-portal.png" alt-text="A screenshot of the key and endpoint screen for the Bing resource in the Azure portal." lightbox="../../media/tools/bing/key-resource-azure-portal.png":::
+    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com/) and select the AI Project (make sure it's in the same resource group of your Grounding with Bing Search resource). Click **management center**.
+1. Select **Grounding with Bing Search** and follow the prompts to add the tool. Note you can add only one per agent.
 
-    :::image type="content" source="../../media/tools/bing/project-settings-button.png" alt-text="A screenshot of the settings button for an AI project." lightbox="../../media/tools/bing/project-settings-button.png":::
+    :::image type="content" source="../../media/tools/knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools-list.png":::
 
-1. Select **+ new connection** in the settings page. 
+1. Click to add new connections. Once you have added a connection, you can directly select from existing list.
+   
+   :::image type="content" source="../../media/tools/bing/choose-bing-connection.png" alt-text="A screenshot showing the button for creating a new connection." lightbox="../../media/tools/bing/choose-bing-connection.png":::
 
-    >[!NOTE]
-    > If you re-generate the API key at a later date, you need to update the connection with the new key.
+1. Select the Grounding with Bing Search resource you want to use and click to add connection. 
 
-    :::image type="content" source="../../media/tools/bing/project-connections.png" alt-text="A screenshot of the connections screen for the AI project." lightbox="../../media/tools/bing/project-connections.png":::
+   :::image type="content" source="../../media/tools/bing/create-bing-connection.png" alt-text="A screenshot showing available Grounding with Bing Search connections." lightbox="../../media/tools/bing/create-bing-connection.png":::
 
 
-1. Select **API key** in **other resource types**.
-
-    :::image type="content" source="../../media/tools/bing/api-key-connection.png" alt-text="A screenshot of the resource types available for connections." lightbox="../../media/tools/bing/api-key-connection.png":::
-
-1. Enter the following information and then create a new connection to your Grounding with Bing Search resource.
-
-    - Endpoint: `https://api.bing.microsoft.com/`
-    - Key: `YOUR_API_KEY`
-    - Connection name: `YOUR_CONNECTION_NAME` (You will use this connection name in the sample code below.)
-    - Access: you can choose either *this project only* or *shared to all projects*. Just make sure in the sample code below, the project you entered connection string for has access to this connection.
 
 ## How to display Grounding with Bing Search results
 
@@ -139,6 +140,21 @@ var projectClient = new AIProjectClient(connectionString, new DefaultAzureCreden
 
 ```
 
+# [JavaScript](#tab/javascript)
+
+```javascript
+const connectionString =
+  process.env["AZURE_AI_PROJECTS_CONNECTION_STRING"] || "<project connection string>";
+
+if (!connectionString) {
+  throw new Error("AZURE_AI_PROJECTS_CONNECTION_STRING must be set.");
+}
+const client = AIProjectsClient.fromConnectionString(
+    connectionString || "",
+    new DefaultAzureCredential(),
+);
+```
+
 ---
 
 ## Step 2: Enable the Grounding with Bing search tool
@@ -191,6 +207,23 @@ Response<Agent> agentResponse = await agentClient.CreateAgentAsync(
     tools: new List<ToolDefinition> { bingGroundingTool });
 Agent agent = agentResponse.Value;
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+const bingGroundingConnectionId = "<bingGroundingConnectionId>";
+const bingTool = ToolUtility.createConnectionTool(connectionToolType.BingGrounding, [
+  bingGroundingConnectionId,
+]);
+
+const agent = await client.agents.createAgent("gpt-4o", {
+  name: "my-agent",
+  instructions: "You are a helpful agent",
+  tools: [bingTool.definition],
+});
+console.log(`Created agent, agent ID : ${agent.id}`);
+```
+
 ---
 
 
@@ -225,6 +258,20 @@ Response<ThreadMessage> messageResponse = await agentClient.CreateMessageAsync(
     MessageRole.User,
     "How does wikipedia explain Euler's Identity?");
 ThreadMessage message = messageResponse.Value;
+```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+// create a thread
+const thread = await client.agents.createThread();
+
+// add a message to thread
+await client.agents.createMessage(
+    thread.id, {
+    role: "user",
+    content: "What is the weather in Seattle?",
+});
 ```
 
 ---
@@ -294,6 +341,55 @@ foreach (ThreadMessage threadMessage in messages)
     }
 }
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+
+  // create a run
+  const streamEventMessages = await client.agents.createRun(thread.id, agent.id).stream();
+
+  for await (const eventMessage of streamEventMessages) {
+    switch (eventMessage.event) {
+      case RunStreamEvent.ThreadRunCreated:
+        break;
+      case MessageStreamEvent.ThreadMessageDelta:
+        {
+          const messageDelta = eventMessage.data;
+          messageDelta.delta.content.forEach((contentPart) => {
+            if (contentPart.type === "text") {
+              const textContent = contentPart;
+              const textValue = textContent.text?.value || "No text";
+            }
+          });
+        }
+        break;
+
+      case RunStreamEvent.ThreadRunCompleted:
+        break;
+      case ErrorEvent.Error:
+        console.log(`An error occurred. Data ${eventMessage.data}`);
+        break;
+      case DoneEvent.Done:
+        break;
+    }
+  }
+
+  // Print the messages from the agent
+  const messages = await client.agents.listMessages(thread.id);
+
+  // Messages iterate from oldest to newest
+  // messages[0] is the most recent
+  for (let i = messages.data.length - 1; i >= 0; i--) {
+    const m = messages.data[i];
+    if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
+      const textContent = m.content[0];
+      console.log(`${textContent.text.value}`);
+      console.log(`---------------------------------`);
+    }
+  }
+```
+
 ---
 
 ::: zone-end

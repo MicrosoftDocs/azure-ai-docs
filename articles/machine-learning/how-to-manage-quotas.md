@@ -123,7 +123,7 @@ Azure Machine Learning online endpoints and batch endpoints have resource limits
 > [!IMPORTANT]
 > These limits are *regional*, meaning that you can use up to these limits per each region you're using. For example, if your current limit for number of endpoints per subscription is 100, you can create 100 endpoints in the East US region, 100 endpoints in the West US region, and 100 endpoints in each of the other supported regions in a single subscription. Same principle applies to all the other limits.
 
-To determine the current usage for an endpoint, [view the metrics](how-to-monitor-online-endpoints.md#metrics). 
+To determine the current usage for an endpoint, [view the metrics](how-to-monitor-online-endpoints.md#use-metrics). 
 
 To request an exception from the Azure Machine Learning product team, use the steps in the [Endpoint limit increases](#endpoint-limit-increases).
 
@@ -137,12 +137,12 @@ To request an exception from the Azure Machine Learning product team, use the st
 | Number of deployments per endpoint | 20 | Yes | All types of endpoints <sup>3</sup> |
 | Number of deployments per cluster | 100 | - | Kubernetes online endpoint |
 | Number of instances per deployment | 50 <sup>4</sup> | Yes | Managed online endpoint |
-| Max request time-out at endpoint level | 180 seconds | - | Managed online endpoint |
+| Max request time-out at endpoint level | 180 seconds <sup>5</sup> | - | Managed online endpoint |
 | Max request time-out at endpoint level | 300 seconds | - | Kubernetes online endpoint |
-| Total requests per second at endpoint level for all deployments  | 500 <sup>5</sup> | Yes | Managed online endpoint |
-| Total connections per second at endpoint level for all deployments  | 500 <sup>5</sup> | Yes | Managed online endpoint |
-| Total connections active at endpoint level for all deployments  | 500 <sup>5</sup> | Yes | Managed online endpoint |
-| Total bandwidth at endpoint level for all deployments  | 5 MBPS <sup>5</sup> | Yes | Managed online endpoint |
+| Total requests per second at endpoint level for all deployments  | 500 <sup>6</sup> | Yes | Managed online endpoint |
+| Total connections per second at endpoint level for all deployments  | 500 <sup>6</sup> | Yes | Managed online endpoint |
+| Total connections active at endpoint level for all deployments  | 500 <sup>6</sup> | Yes | Managed online endpoint |
+| Total bandwidth at endpoint level for all deployments  | 5 MBPS <sup>6</sup> | Yes | Managed online endpoint |
 
 <sup>1</sup> This is a regional limit. For example, if current limit on number of endpoints is 100, you can create 100 endpoints in the East US region, 100 endpoints in the West US region, and 100 endpoints in each of the other supported regions in a single subscription. Same principle applies to all the other limits. 
 
@@ -152,7 +152,9 @@ To request an exception from the Azure Machine Learning product team, use the st
 
 <sup>4</sup> We reserve 20% extra compute resources for performing upgrades. For example, if you request 10 instances in a deployment, you must have a quota for 12. Otherwise, you receive an error. There are some VM SKUs that are exempt from extra quota. For more information on quota allocation, see [virtual machine quota allocation for deployment](#virtual-machine-quota-allocation-for-deployment).
 
-<sup>5</sup> Requests per second, connections, bandwidth, etc. are related. If you request to increase any of these limits, ensure that you estimate/calculate other related limits together.
+<sup>5</sup> The request timeout maximum is 180 seconds unless it is a flow (prompt flow) deployment. The maximum request timeout for a flow deployment is 300 seconds. For more information on the timeout with flow deployments, see [deploy a flow in prompt flow](./prompt-flow/how-to-deploy-to-code.md#upstream-request-timeout-issue-when-consuming-the-endpoint).
+
+<sup>6</sup> Requests per second, connections, bandwidth, etc. are related. If you request to increase any of these limits, ensure that you estimate/calculate other related limits together.
 
 #### Virtual machine quota allocation for deployment
 

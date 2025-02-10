@@ -16,6 +16,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/overview.md",
+      "redirect_url": "/azure/ai-services/agents/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/search/search-howto-index-csv-blobs.md",
       "redirect_url": "/azure/search/search-how-to-index-csv-blobs",
       "redirect_document_id": false
@@ -26,8 +31,138 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/agents/concepts/agents.md",
+      "redirect_url": "/azure/ai-services/agents/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/openai/how-to/use-your-data-securely.md",
       "redirect_url": "/azure/ai-services/openai/how-to/on-your-data-configuration",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/concepts/data-formats.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/concepts/entity-components.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/concepts/evaluation-metrics.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/how-to/call-api.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/how-to/create-project.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/how-to/deploy-model.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/how-to/design-schema.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/how-to/fail-over.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/how-to/label-data.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/how-to/train-model.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/how-to/view-model-evaluation.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/language-support.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/overview.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/quickstart.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/reference/glossary.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/reference/service-limits.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/sentiment-opinion-mining/custom/concepts/data-formats.md",
+      "redirect_url": "/azure/ai-services/language-service/sentiment-opinion-mining/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/sentiment-opinion-mining/custom/how-to/call-api.md",
+      "redirect_url": "/azure/ai-services/language-service/sentiment-opinion-mining/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/sentiment-opinion-mining/custom/how-to/create-project.md",
+      "redirect_url": "/azure/ai-services/language-service/sentiment-opinion-mining/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/sentiment-opinion-mining/custom/how-to/deploy-model.md",
+      "redirect_url": "/azure/ai-services/language-service/sentiment-opinion-mining/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/sentiment-opinion-mining/custom/how-to/design-schema.md",
+      "redirect_url": "/azure/ai-services/language-service/sentiment-opinion-mining/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/sentiment-opinion-mining/custom/how-to/label-data.md",
+      "redirect_url": "/azure/ai-services/language-service/sentiment-opinion-mining/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/sentiment-opinion-mining/custom/how-to/train-model.md",
+      "redirect_url": "/azure/ai-services/language-service/sentiment-opinion-mining/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/sentiment-opinion-mining/custom/quickstart.md",
+      "redirect_url": "/azure/ai-services/language-service/sentiment-opinion-mining/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/references/azure-machine-learning.md",
+      "redirect_url": "/azure/ai-services/openai/concepts/use-your-data",
       "redirect_document_id": false
     }
   ]

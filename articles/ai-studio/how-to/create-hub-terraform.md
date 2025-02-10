@@ -4,7 +4,7 @@ description: In this article, you create an Azure AI Foundry hub, an Azure AI Fo
 ms.topic: how-to
 ms.date: 11/21/2024
 titleSuffix: Azure AI Foundry 
-ms.service: azure-ai-studio 
+ms.service: azure-ai-foundry
 manager: scottpolly 
 ms.reviewer: andyaviles 
 ms.author: larryfr 

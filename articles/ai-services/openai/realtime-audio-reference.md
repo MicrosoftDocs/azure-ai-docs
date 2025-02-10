@@ -5,7 +5,7 @@ description: Learn how to use the Realtime API to interact with the Azure OpenAI
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 12/20/2024
+ms.date: 2/7/2024
 author: eric-urban
 ms.author: eur
 recommendations: false
@@ -28,16 +28,16 @@ The Realtime API requires an existing Azure OpenAI resource endpoint in a suppor
 
 You can construct a full request URI by concatenating:
 
-- The secure WebSocket (`wss://`) protocol
+- The secure WebSocket (`wss://`) protocol.
 - Your Azure OpenAI resource endpoint hostname, for example, `my-aoai-resource.openai.azure.com`
-- The `openai/realtime` API path
-- An `api-version` query string parameter for a supported API version such as `2024-10-01-preview`
-- A `deployment` query string parameter with the name of your `gpt-4o-realtime-preview` model deployment
+- The `openai/realtime` API path.
+- An `api-version` query string parameter for a supported API version such as `2024-12-17`
+- A `deployment` query string parameter with the name of your `gpt-4o-realtime-preview` or `gpt-4o-mini-realtime-preview` model deployment.
 
 The following example is a well-constructed `/realtime` request URI:
 
 ```http
-wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=2024-10-01-preview&deployment=gpt-4o-realtime-preview-1001
+wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=2024-12-17&deployment=gpt-4o-realtime-preview
 ```
 
 ## Authentication

@@ -200,6 +200,6 @@ The results of running the image tensor through the model will then need to be m
 ## Related content
 
 Next, learn how to wrap your model into a mobile application:
-* [Use your exported Tensorflow model in an Android application](https://github.com/Azure-Samples/cognitive-services-android-customvision-sample)
+* [Use your exported TensorFlow model in an Android application](https://github.com/Azure-Samples/cognitive-services-android-customvision-sample)
 * [Use your exported CoreML model in a Swift iOS application](https://go.microsoft.com/fwlink/?linkid=857726)
 * [Use your exported CoreML model in an iOS application with Xamarin](https://github.com/xamarin/ios-samples/tree/master/ios11/CoreMLAzureModel)

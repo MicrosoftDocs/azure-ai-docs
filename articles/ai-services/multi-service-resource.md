@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-services
 ms.custom: devx-track-azurecli, devx-track-azurepowershell, build-2024, ignite-2024
 ms.topic: quickstart
-ms.date: 8/20/2024
+ms.date: 2/7/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-portal-cli-ps
 ---
@@ -37,7 +37,8 @@ The multi-service resource enables access to the following Azure AI services wit
 
 | Service | Description | Kind (via API) |
 | --- | --- | --- |
-| ![Azure AI model inference icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure AI Model Inference](../ai-foundry/model-inference/index.yml) | Performs model inference for flagship models in the Azure AI model catalog. | `AIServices` |
+| ![Azure icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure.svg) [Azure AI Agent Service](./agents/index.yml) | Combine the power of generative AI models with tools that allow agents to access and interact with real-world data sources. | `AIServices` |
+| ![Azure AI Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure AI Model Inference](../ai-foundry/model-inference/index.yml) | Performs model inference for flagship models in the Azure AI model catalog. | `AIServices` |
 | ![Azure OpenAI Service icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](./openai/index.yml) | Perform a wide variety of natural language tasks. | `AIServices`<br/>`OpenAI` |
 | ![Content Safety icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg) [Content Safety](./content-safety/index.yml) | An AI service that detects unwanted contents. | `AIServices`<br/>`ContentSafety` |
 | ![Custom Vision icon](~/reusable-content/ce-skilling/azure/media/ai-services/custom-vision.svg) [Custom Vision](./custom-vision-service/index.yml) | Customize image recognition for your business. | `CustomVision.Prediction` (Prediction only)<br/>`CustomVision.Training` (Training only) |
