@@ -118,7 +118,7 @@ You can consume Jamba family models as follows:
 1. In the **workspace**, select **Endpoints** > **Serverless endpoints**.
 1. Find and select the deployment you created.
 1. Copy the **Target** URL and the **Key** token values.
-1. Make an API request using either the [Azure AI Model Inference API](reference-model-inference-api.md) on the route `/chat/completions` or the [AI21's Azure Client](https://docs.ai21.com/reference/jamba-instruct-api) on `/v1/chat/completions`.
+1. Make an API request using either the [Azure AI Model Inference API](reference-model-inference-api.md) on the route `/chat/completions` or the [AI21's Azure Client](https://docs.ai21.com/reference/jamba-15-api-ref) on `/v1/chat/completions`.
 
 For more information on using the APIs, see the [reference](#reference-for-jamba-family-models-deployed-as-a-serverless-api) section.
 
@@ -129,7 +129,7 @@ For more information on using the APIs, see the [reference](#reference-for-jamba
 Jamba family models accept both of these APIs:
 
 - The [Azure AI model inference API](reference-model-inference-api.md) [Azure AI Model Inference API] on the route `/chat/completions` for multi-turn chat or single-turn question-answering. This API is supported because Jamba family models are fine-tuned for chat completion.
-- [AI21's Azure Client](https://docs.ai21.com/reference/jamba-instruct-api). For more information about the REST endpoint being called, visit [AI21's REST documentation](https://docs.ai21.com/reference/jamba-instruct-api).
+- [AI21's Azure Client](https://docs.ai21.com/reference/jamba-15-api-ref). For more information about the REST endpoint being called, visit [AI21's REST documentation](https://docs.ai21.com/reference/jamba-15-api-ref).
 
 ### Azure AI model inference API
 
