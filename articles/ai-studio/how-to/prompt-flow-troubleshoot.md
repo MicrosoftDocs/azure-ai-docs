@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
-ms.topic: reference
+ms.topic: conceptual
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: chenjieting
