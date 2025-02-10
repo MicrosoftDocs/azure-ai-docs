@@ -31,13 +31,6 @@ Azure Machine Learning registries enable you to create and use those assets in d
 
 [!INCLUDE [CLI v2 preres](includes/machine-learning-cli-prereqs.md)]
 
-> [!TIP]
-> If you are using an older version of the `ml` extension for CLI, you might need to update it to the latest version before working with this feature. To update the latest version, use the following command:
->
-> :::code language="azurecli" source="~/azureml-examples-main/cli/misc.sh" id="az_ml_update":::
->
-> For more information, see [Install, set up, and use the CLI (v2)](how-to-configure-cli.md).
-
 ## Prepare to create registry
 
 You need to decide the following information carefully before proceeding to create a registry:
