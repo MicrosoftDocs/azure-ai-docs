@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: include
-ms.date: 03/04/2024
+ms.date: 02/10/2025
 author: aahill
 ms.author: aahi
 ---
@@ -31,7 +31,7 @@ ms.author: aahi
 
     :::image type="content" source="../media/assistants/foundry-openai-selectior.png" alt-text="A screenshot of the main page of the Azure AI Foundry." lightbox="../media/assistants/foundry-openai-selectior.png":::
     
-1. In the nagivation menu on the left, select **Playgrounds** **Assistants**, located under **playgrounds**.
+1. In the nagivation menu on the left, select **Assistants**, located under **playgrounds**.
 
     :::image type="content" source="../media/quickstarts/assistants-ai-studio-playground.png" alt-text="Screenshot of the Assistant configuration screen without all the values filled in." lightbox="../media/quickstarts/assistants-ai-studio-playground.png":::
 
