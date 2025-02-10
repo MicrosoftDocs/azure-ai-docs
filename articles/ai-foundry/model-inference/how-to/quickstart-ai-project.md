@@ -125,10 +125,10 @@ You can use any of the supported SDKs to get predictions out from the endpoint. 
 
 * OpenAI SDK
 * Azure OpenAI SDK
-* Azure AI Inference SDK
-* Azure AI Foundry SDK
+* Azure AI Inference package
+* Azure AI Projects package
 
-See the [supported languages and SDKs](../supported-languages.md) section for more details and examples. The following example shows how to use the Azure AI model inference SDK with the newly deployed model:
+See the [supported languages and SDKs](../supported-languages.md) section for more details and examples. The following example shows how to use the Azure AI Inference package with the newly deployed model:
 
 [!INCLUDE [code-create-chat-client](../includes/code-create-chat-client.md)]
 
