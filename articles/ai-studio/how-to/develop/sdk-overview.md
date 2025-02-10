@@ -3,7 +3,7 @@ title: How to get started with Azure AI Foundry SDK
 titleSuffix: Azure AI Foundry
 description: This article provides an overview of the Azure AI Foundry SDK and how to get started using it.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - ignite-2024

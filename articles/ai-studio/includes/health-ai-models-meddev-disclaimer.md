@@ -4,7 +4,7 @@ description: Include file
 author: msakande
 ms.reviewer: itarapov
 ms.author: mopeakande
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 10/1/2024
 ms.custom: include

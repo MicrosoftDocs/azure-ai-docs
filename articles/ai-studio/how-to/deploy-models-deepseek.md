@@ -5,7 +5,7 @@ description: Learn how to use DeepSeek-R1 reasoning model with Azure AI Foundry.
 manager: scottpolly
 author: msakande
 reviewer: santiagxf
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 01/29/2025
 ms.author: mopeakande

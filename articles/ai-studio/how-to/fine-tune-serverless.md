@@ -3,7 +3,7 @@ title: Fine-tune models using serverless APIs in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: Learn how to fine-tune models deployed via serverless APIs in Azure AI Foundry.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 01/31/2025
 ms.reviewer: rasavage

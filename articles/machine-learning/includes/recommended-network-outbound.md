@@ -2,12 +2,12 @@
 author: Blackmist
 ms.service: azure-machine-learning
 ms.topic: include
-ms.date: 06/12/2023
+ms.date: 02/10/2025
 ms.author: larryfr
 ---
 
 > [!NOTE]
-> This is not a complete list of the hosts required for all Python resources on the internet, only the most commonly used. For example, if you need access to a GitHub repository or other host, you must identify and add the required hosts for that scenario.
+> The following list doesn't contain all of the hosts required for all Python resources on the internet, only the most commonly used. For example, if you need access to a GitHub repository or other host, you must identify and add the required hosts for that scenario.
 
 | __Host name__ | __Purpose__ |
 | ---- | ---- |

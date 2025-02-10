@@ -2,7 +2,7 @@
 title: How to use Mistral premium chat models with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn how to use Mistral premium chat models with Azure AI Foundry.
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 manager: scottpolly
 ms.topic: how-to
 ms.date: 11/20/2024
