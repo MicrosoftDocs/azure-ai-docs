@@ -158,7 +158,7 @@ This is currently not supported.
 
 ### Can I use the batch API for embeddings models?
 
-Although batch API does not currently support embedding models, you can use the embedding API to get an array of embeddings, in a batch fashion, by sending an array of input strings.
+Although batch API does not currently support embeddings models, you can use the [embeddings API](./embeddings.md) to get an array of embeddings, in a batch fashion, by sending an array of input strings.
 
 ### Does content filtering work with Global Batch deployment?
 
