@@ -51,7 +51,7 @@ To explore the content extraction and add-on capabilities for each modality, sel
 
 |Content Extraction|Add-on Capabilities|
 |--------|-------------|
-|&bullet; **Transcription**:Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Customizable fields can be generated from transcription data. Sentence-level and word-level timestamps are available upon request. </br>&bullet; **Diarization**:  Distinguishes between speakers in a conversation, attributing parts of the transcript to specific speakers. </br> &bullet;  **Speaker role detection**: Distinguishes between speakers in a conversation, attributing parts of the transcript to specific speakers. <br> &bullet; **Language detection**: Automatically detects the language in the audio or uses specified language/locale hints. </br>| N/A |
+|&bullet; **Transcription**:Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Customizable fields can be generated from transcription data. Sentence-level and word-level timestamps are available upon request. </br> &bullet; **Diarization**:  Distinguishes between speakers in a conversation, attributing parts of the transcript to specific speakers. </br>  &bullet; **Language detection**: Automatically detects the language spoken in the audio to be processed.</br>| &bullet;  **Speaker role detection**: Identifies speaker roles based on diarization results and replaces generic labels like "Speaker 1" with specific role names, such as "Agent" or "Customer." </br>|
 
 # [Video](#tab/video)
 
