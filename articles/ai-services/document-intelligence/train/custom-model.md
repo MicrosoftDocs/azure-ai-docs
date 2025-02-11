@@ -95,7 +95,7 @@ If the language of your documents and extraction scenarios supports custom neura
 
 * For custom model training, the maximum number of pages for training data is 500 for the custom template model and 50,000 for the custom neural model.
 
-* For custom extraction model training, the total size of training data is `50 MB` for template model and `1` GB for the neural model.
+* For custom extraction model training, the total size of training data is `50 MB` for template model and `1 GB` for the neural model.
 
 * For custom classification model training, the total size of training data is `1 GB`  with a maximum of 10,000 pages.
 
@@ -268,7 +268,7 @@ The following table describes the features available with the associated tools a
 > [!NOTE]
 > Custom template models trained with the 3.0 API have a few improvements over the 2.1 API stemming from improvements to the OCR engine. Datasets used to train a custom template model using the 2.1 API can still be used to train a new model using the 3.0 API.
 
-* One clear photo or high-quality scan per document should be provided for best results, provide.
+* One clear photo or high-quality scan per document should be provided for best results.
 * File formats supported are JPEG/JPG, PNG, BMP, TIFF, and PDF (text-embedded or scanned). Text-embedded PDFs are best to eliminate the possibility of error in character extraction and location.
 * PDF and TIFF files, up to 2,000 pages, can be processed. With a free tier subscription, only the first two pages are processed.
 * The file size must be less than 500 MB for paid (S0) tier and 4 MB for free (F0) tier.
