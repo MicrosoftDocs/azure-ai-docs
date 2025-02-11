@@ -2,7 +2,7 @@
 title: How to use Mistral Nemo chat model with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn how to use Mistral Nemo chat model with Azure AI Foundry.
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 manager: scottpolly
 ms.topic: how-to
 ms.date: 01/31/2025

@@ -3,7 +3,7 @@ title: Quickstart - getting started with Azure OpenAI assistants (preview) in Az
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI assistants with new features like code interpreter in Azure AI Foundry portal.
 manager: nitinme
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - ignite-2024

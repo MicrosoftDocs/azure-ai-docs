@@ -3,7 +3,7 @@ title: Hear and speak with chat models in the Azure AI Foundry portal chat playg
 titleSuffix: Azure AI Foundry
 description: Hear and speak with chat models in the Azure AI Foundry portal chat playground.
 manager: nitinme
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024

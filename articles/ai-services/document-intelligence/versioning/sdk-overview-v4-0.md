@@ -11,7 +11,7 @@ ms.custom:
   - devx-track-js
   - devx-track-python
 ms.topic: conceptual
-ms.date: 12/17/2024
+ms.date: 02/10/2025
 ms.author: lajanuar
 monikerRange: 'doc-intel-4.0.0'
 --- 
@@ -37,7 +37,7 @@ Document Intelligence SDK supports the following languages and platforms:
 | [**.NET/C# → 1.0.0 (GA)**](/dotnet/api/azure.ai.documentintelligence?view=azure-dotnet&preserve-view=true)|[NuGet](https://www.nuget.org/packages/Azure.AI.DocumentIntelligence/1.0.0)|[2024-11-30 (GA)](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)|[Windows, macOS, Linux, Docker](https://dotnet.microsoft.com/download)|
 |[**Java → 1.0.0 (GA**](/java/api/com.azure.ai.documentintelligence?view=azure-java-stable&preserve-view=true) |[Maven repository](https://central.sonatype.com/artifact/com.azure/azure-ai-documentintelligence/1.0.0) |[2024-11-30 (GA)](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)|[Windows, macOS, Linux](/java/openjdk/install)|
 |[**JavaScript → 1.0.0 (GA)**](/javascript/api/%40azure-rest/ai-document-intelligence/?view=azure-node-latest&preserve-view=true)| [npm](https://www.npmjs.com/package/@azure-rest/ai-document-intelligence/v/1.0.0)|[2024-11-30 (GA)](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)| [Browser, Windows, macOS, Linux](https://nodejs.org/en/download/) |
-|[**Python → 1.0.0b4 (preview)**](/python/api/overview/azure/ai-documentintelligence-readme?view=azure-python&preserve-view=true) | [PyPI](https://pypi.org/project/azure-ai-documentintelligence/1.0.0/)|[2024-11-30 (GA)](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)|[Windows, macOS, Linux](/azure/developer/python/configure-local-development-environment?tabs=windows%2Capt%2Ccmd#use-the-azure-cli)|
+|[**Python → 1.0.0 (GA)**](/python/api/overview/azure/ai-documentintelligence-readme?view=azure-python&preserve-view=true) | [PyPI](https://pypi.org/project/azure-ai-documentintelligence/1.0.0/)|[2024-11-30 (GA)](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)|[Windows, macOS, Linux](/azure/developer/python/configure-local-development-environment?tabs=windows%2Capt%2Ccmd#use-the-azure-cli)|
 
 For more information on other SDK versions, see:
 
@@ -53,7 +53,7 @@ The following tables present the correlation between each SDK version the suppor
 
 | Language| SDK alias | API version (default) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; | Supported clients|
 | :------ | :-----------|:---------- | :-----------------|
- |**.NET/C# 1.0.0-beta.2 (preview)**| v4.0 (GA)| 2024-11-30 GA|**DocumentIntelligenceClient**</br>**DocumentIntelligenceAdministrationClient**|
+ |**.NET/C# 1.0.0 (GA)**| v4.0 (GA)| 2024-11-30 GA|**DocumentIntelligenceClient**</br>**DocumentIntelligenceAdministrationClient**|
 |**.NET/C# 4.1.0**| v3.1 latest (GA)| 2023-07-31|**DocumentAnalysisClient**</br>**DocumentModelAdministrationClient** |
 |**.NET/C# 4.0.0**| v3.0 (GA)| 2022-08-31|  **DocumentAnalysisClient**</br>**DocumentModelAdministrationClient** |
 |**.NET/C# 3.1.x**| v2.1 |  v2.1 |  **FormRecognizerClient**</br>**FormTrainingClient** |
@@ -63,7 +63,7 @@ The following tables present the correlation between each SDK version the suppor
 
 | Language| SDK alias | API version (default) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; | Supported clients|
 | :------ | :-----------|:---------- | :-----------------|
-|**Java 1.0.0-beta.2 (preview)**| v4.0 (GA)| 2024-07-31-preview|**DocumentIntelligenceClient**</br>**DocumentIntelligenceAdministrationClient**|
+|**Java 1.0.0 (GA)**| v4.0 (GA)| 2024-11-30 GA|**DocumentIntelligenceClient**</br>**DocumentIntelligenceAdministrationClient**|
 |**Java 4.1.0**| v3.1 latest (GA)| 2023-07-31|**DocumentAnalysisClient**</br>**DocumentModelAdministrationClient** |
 |**Java 4.0.0**</br>| v3.0 (GA)| 2022-08-31|  **DocumentAnalysisClient**</br>**DocumentModelAdministrationClient** |
 |**Java 3.1.x**| v2.1 |  v2.1 |  **FormRecognizerClient**</br>**FormTrainingClient** |
@@ -73,7 +73,7 @@ The following tables present the correlation between each SDK version the suppor
 
 | Language| SDK alias | API version (default) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; | Supported clients|
 | :------ | :-----------|:---------- | :-----------------|
-|**JavaScript 1.0.0-beta.2**| v4.0 (GA)| 2024-07-31-preview|**DocumentIntelligenceClient**</br>**DocumentIntelligenceAdministrationClient**|
+|**JavaScript 1.0.0 (GA)**| v4.0 (GA)| 2024-11-30 GA|**DocumentIntelligenceClient**</br>**DocumentIntelligenceAdministrationClient**|
 |**JavaScript 5.0.0**| v3.1 latest (GA)| 2023-07-31 |**DocumentAnalysisClient**</br>**DocumentModelAdministrationClient** |
 |**JavaScript 4.0.0**</br>| v3.0 (GA)| 2022-08-31|  **DocumentAnalysisClient**</br>**DocumentModelAdministrationClient** |
 |**JavaScript 3.1.x**</br>| v2.1 |  v2.1 |  **FormRecognizerClient**</br>**FormTrainingClient** |
@@ -83,7 +83,7 @@ The following tables present the correlation between each SDK version the suppor
 
 | Language| SDK alias | API version (default) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; | Supported clients|
 | :------ | :-----------|:---------- | :-----------------|
-| **Python 1.0.0b2**| v4.0 (preview)| 2024-07-31-preview |**DocumentIntelligenceClient**</br>**DocumentIntelligenceAdministrationClient**|
+| **Python 1.0.0b2**| v4.0 (GA)| 2024-11-30 GA |**DocumentIntelligenceClient**</br>**DocumentIntelligenceAdministrationClient**|
 | **Python 3.3.0**| v3.1 latest (GA)| 2023-07-31|  **DocumentAnalysisClient**</br>**DocumentModelAdministrationClient**|
 | **Python 3.2.x**| v3.0 (GA)| 2022-08-31|  **DocumentAnalysisClient**</br>**DocumentModelAdministrationClient**|
 | **Python 3.1.x**| v2.1 |  v2.1  |  **FormRecognizerClient**</br>**FormTrainingClient** |
@@ -100,11 +100,11 @@ The Document Intelligence SDK enables the use and management of the Document Int
 ### [C#/.NET](#tab/csharp)
 
 ```dotnetcli
-dotnet add package Azure.AI.DocumentIntelligence --prerelease
+dotnet add package Azure.AI.DocumentIntelligence -Version 1.0.0
 ```
 
 ```powershell
-Install-Package Azure.AI.FormRecognizer -Version 1.0.0-beta.3
+Install-Package Azure.AI.DocumentIntelligence -Version 1.0.0
 ```
 
 ### [Java](#tab/java)
@@ -113,26 +113,26 @@ Install-Package Azure.AI.FormRecognizer -Version 1.0.0-beta.3
   <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-documentintelligence</artifactId>
-    <version>1.0.0-beta.2</version>
+    <version>1.0.0</version>
   </dependency>
 
 ```
 
 ```kotlin
-implementation("com.azure:azure-ai-documentintelligence:1.0.0-beta.4")
+implementation("com.azure:azure-ai-documentintelligence:1.0.0")
 
 ```
 
 ### [JavaScript](#tab/javascript)
 
 ```console
-npm i @azure-rest/ai-document-intelligence version 1.0.0-beta.3
+npm i @azure-rest/ai-document-intelligence
 ```
 
 ### [Python](#tab/python)
 
 ```python
-pip install azure-ai-documentintelligence==1.0.0b4
+pip install azure-ai-documentintelligence==1.0.0
 ```
 
 ---
@@ -158,7 +158,7 @@ import com.azure.core.credential.AzureKeyCredential;
 ### [JavaScript](#tab/javascript)
 
 ```javascript
-const { AzureKeyCredential, DocumentIntelligence } = require("@azure-rest/ai-document-intelligence@1.0.0-beta.3");
+const { AzureKeyCredential, DocumentIntelligence } = require("@azure-rest/ai-document-intelligence@1.0.0");
 ```
 
 ### [Python](#tab/python)
@@ -234,7 +234,7 @@ async function main() {
 #### Use a Microsoft Entra token credential
 
 > [!NOTE]
-> Regional endpoints do not support Microsoft Entra authentication. Create a [custom subdomain](../../../ai-services/authentication.md?tabs=powershell#create-a-resource-with-a-custom-subdomain) for your resource in order to use this type of authentication.
+> Regional endpoints don't support Microsoft Entra authentication. Create a [custom subdomain](../../../ai-services/authentication.md?tabs=powershell#create-a-resource-with-a-custom-subdomain) for your resource in order to use this type of authentication.
 
 Authorization is easiest using the `DefaultAzureCredential`. It provides a default token credential, based upon the running environment, capable of handling most Azure authentication scenarios.
 
@@ -297,7 +297,7 @@ Here's how to acquire and use the [DefaultAzureCredential](/java/api/com.azure.i
         .buildClient();
     ```
 
-For more information, *see* [Authentication](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-documentintelligence_1.0.0-beta.2/sdk/documentintelligence/azure-ai-documentintelligence/README.md#authentication).
+For more information, *see* [Authentication](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-documentintelligence_1.0.0/sdk/documentintelligence/azure-ai-documentintelligence/README.md#authentication).
 
 ### [JavaScript](#tab/javascript)
 
@@ -318,7 +318,7 @@ Here's how to acquire and use the [DefaultAzureCredential](/javascript/api/@azur
 1. Create your **`DocumentIntelligenceClient`** instance including the **`DefaultAzureCredential`**:
 
     ```javascript
-    const { DocumentIntelligenceClient } = require("@azure-rest/ai-document-intelligence@1.0.0-beta.2");
+    const { DocumentIntelligenceClient } = require("@azure-rest/ai-document-intelligence@1.0.0");
     const { DefaultAzureCredential } = require("@azure/identity");
 
     const client = new DocumentIntelligenceClient("<your-endpoint>", new DefaultAzureCredential());
