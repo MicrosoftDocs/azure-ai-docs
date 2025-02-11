@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: include
-ms.date: 03/04/2024
+ms.date: 02/10/2025
 author: aahill
 ms.author: aahi
 ---
@@ -26,8 +26,14 @@ ms.author: aahi
 [Azure AI Foundry](https://ai.azure.com) lets you use Assistants v2 which provides several upgrades such as the [file search](../how-to/file-search.md) tool which is faster and supports more files.
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
-1. Go to your project or [create a new project](../../../ai-studio//how-to/create-projects.md) in Azure AI Foundry portal.
-1. From your project overview, select **Assistants**, located under **playgrounds**.
+1. If your screen doesn't look like the following screenshot, select **Azure AI Foundry** in the top left of the screen.
+1. Select **Let's go** in the Azure OpenAI Service card. 
+
+    :::image type="content" source="../media/assistants/foundry-openai-selectior.png" alt-text="A screenshot of the main page of the Azure AI Foundry." lightbox="../media/assistants/foundry-openai-selectior.png":::
+    
+1. In the navigation menu on the left, select **Assistants**, located under **playgrounds**.
+
+    :::image type="content" source="../media/quickstarts/assistants-ai-studio-playground.png" alt-text="Screenshot of the Assistant configuration screen without all the values filled in." lightbox="../media/quickstarts/assistants-ai-studio-playground.png":::
 
     The Assistants playground allows you to explore, prototype, and test AI Assistants without needing to run any code. From this page, you can quickly iterate and experiment with new ideas.
     
@@ -42,8 +48,6 @@ ms.author: aahi
     | **Code interpreter** | Code interpreter provides access to a sandboxed Python environment that can be used to allow the model to test and execute code. |
     | **Files** | You can upload up to 10,000 files, with a max file size of 512 MB to use with tools. Not used in this quickstart. |
     
-    :::image type="content" source="../media/quickstarts/assistants-ai-studio-playground.png" alt-text="Screenshot of the Assistant configuration screen without all the values filled in." lightbox="../media/quickstarts/assistants-ai-studio-playground.png":::
-
 ## Create your first Assistant
 
 1. Select your deployment from the **Deployments** dropdown.
