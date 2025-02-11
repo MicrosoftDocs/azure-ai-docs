@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 02/10/2025
 ms.author: lajanuar
 ms.custom: references.regions
 ---
@@ -207,7 +207,7 @@ Extract data, including name, birth date, and expiration date, from ID documents
     * The "documentResults" field contains key/value pairs information and line items information for the most relevant parts of the document.
 
 > [!NOTE]
-> The [Sample Labeling tool](https://fott-2-1.azurewebsites.net/) does not support the BMP file format. This is a limitation of the tool not the Document Intelligence Service.
+> The [Sample Labeling tool](https://fott-2-1.azurewebsites.net/) doesn't support the BMP file format. This restriction is a limitation of the tool not the Document Intelligence Service.
 
 ::: moniker-end
 
