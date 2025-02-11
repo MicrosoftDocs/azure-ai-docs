@@ -119,7 +119,7 @@ A Folder (`uri_folder`) data source type points to a *folder* on a storage resou
 ### Delete data
 
 > [!IMPORTANT]
-> Data deletion is not supported. Data is immutable in Azure AI Foundry portal. Once you create a data version, it can't be modified or deleted. This immutability provides a level of protection when working in a team that creates production workloads.
+> Data deletion isn't supported. Data is immutable in Azure AI Foundry portal. Once you create a data version, it can't be modified or deleted. This immutability provides a level of protection when working in a team that creates production workloads.
 
 If Azure AI Foundry allowed data deletion, it would have the following adverse effects:
 - Production jobs that consume data that is later deleted would fail
@@ -163,7 +163,7 @@ At this time, Azure AI Foundry doesn't support restoration of *all versions* of 
 #### Restore a specific data version
 
 > [!IMPORTANT]
-> If all data versions were archived, you cannot restore individual versions of the data - you must restore all versions.
+> If all data versions were archived, you can't restore individual versions of the data - you must restore all versions.
 
 Currently, Azure AI Foundry doesn't support restoration of a specific data version.
 
