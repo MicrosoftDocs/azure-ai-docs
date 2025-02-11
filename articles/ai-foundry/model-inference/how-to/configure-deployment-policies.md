@@ -1,20 +1,18 @@
 ---
-title: Control AI model deployment with custom policies
+title: Control model deployment with custom policies
 titleSuffix: Azure AI Foundry
 description: "Learn how to use custom Azure Policies to control Azure AI services and Azure OpenAI model deployment with Azure AI Foundry."
-author: Blackmist
-ms.author: larryfr
+manager: nitinme
+author: santiagxf
+ms.author: fasantia
 ms.service: azure-ai-foundry
 ms.topic: how-to #Don't change
-ms.date: 10/25/2024
-
-#customer intent: As an admin, I want control what Azure AI services and Azure OpenAI models can be deployed by my developers.
-
+ms.date: 2/05/2025
 ---
 
-# Control AI model deployment with custom policies in Azure AI Foundry portal
+# Control model deployment with custom policies
 
-When using models from Azure AI services and Azure OpenAI with Azure AI Foundry, you might need to use custom policies to control what models your developers can deploy. Custom Azure Policies allow you to create policy definitions that meet your organization's unique requirements. This article shows you how to create and assign an example custom policy to control model deployment.
+When using models from Azure AI Services and Azure OpenAI with Azure AI Foundry, you might need to use custom policies to control which [type of deployment](../concepts/deployment-types.md) options are available to them or which specific models users can deploy. This article guides you on how to create policies to control model deployments using Azure Policies. 
 
 ## Prerequisites
 
@@ -24,9 +22,17 @@ When using models from Azure AI services and Azure OpenAI with Azure AI Foundry,
 
 ## Create a custom policy
 
+Select the scenario better applies to your case:
+
+# [Enforce specific models](#tab/models)
+
+Follow these steps to create and assign an example custom policy to allow specific models from the model catalog.
+
 1. From the [Azure portal](https://portal.azure.com), select **Policy** from the left side of the page. You can also search for **Policy** in the search bar at the top of the page.
-1. From the left side of the Azure Policy Dashboard, select **Authoring**, **Definitions**, and then select **+ Policy definition** from the top of the page.
-1. In the **Policy Definition** form, use the following values:
+
+2. From the left side of the Azure Policy Dashboard, select **Authoring**, **Definitions**, and then select **+ Policy definition** from the top of the page.
+
+3. In the **Policy Definition** form, use the following values:
 
     - **Definition location**: Select the subscription or management group where you want to store the policy definition.
     - **Name**: Enter a unique name for the policy definition. For example, `Custom allowed Azure AI services and Azure OpenAI models`.
@@ -71,9 +77,11 @@ When using models from Azure AI services and Azure OpenAI with Azure AI Foundry,
         }
         ```
 
-1. Select **Save** to save the policy definition. After saving, you arrive at the policy definition's overview page.
-1. From the policy definition's overview page, select **Assign policy** to assign the policy definition.
-1. From the **Assign policy** page, use the following values on the **Basics** tab:
+4. Select **Save** to save the policy definition. After saving, you arrive at the policy definition's overview page.
+
+5. From the policy definition's overview page, select **Assign policy** to assign the policy definition.
+
+6. From the **Assign policy** page, use the following values on the **Basics** tab:
 
     - **Scope**: Select the scope where you want to assign the policy. The scope can be a management group, subscription, or resource group.
     - **Policy definition**: This field is prepopulated with the title of policy definition you created previously.
@@ -81,14 +89,78 @@ When using models from Azure AI services and Azure OpenAI with Azure AI Foundry,
     - **Policy enforcement**: Make sure that the **Policy enforcement** field is set to **Enabled**. If it isn't enabled, the policy isn't enforced.
 
     Select **Next** at the bottom of the page, or the **Parameters** tab at the top of the page.
-1. From the **Parameters** tab, set **Allowed AI models** to the list of models that you want to allow. The list should be a comma-separated list of model names and approved versions, surrounded by square brackets. For example, `["gpt-4,0613", "gpt-35-turbo,0613"]`.
+
+7. From the **Parameters** tab, set **Allowed AI models** to the list of models that you want to allow. The list should be a comma-separated list of model names and approved versions, surrounded by square brackets. For example, `["gpt-4,0613", "gpt-35-turbo,0613"]`.
 
     > [!TIP]
     > You can find the model names and their versions in the [Azure AI Foundry Model Catalog](https://ai.azure.com/explore/models). Select the model to view the details, and then copy the model name and their version in the title.
 
-1. Optionally, select the **Non-compliance messages** tab at the top of the page and set a custom message for noncompliance.
-1. Select **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
-1. Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't in the list of allowed models.
+8. Optionally, select the **Non-compliance messages** tab at the top of the page and set a custom message for noncompliance.
+
+9. Select **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
+
+10. Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't in the list of allowed models.
+
+
+# [Enforce specific deployment types](#tab/deployments)
+
+The following policy allow you to control which types of deployments are allowed in the Azure AI Services or Azure OpenAI Resources. For example, you may want to prevent them from creating deployments that result in data processed in a different region. Follow these steps to create a policy that denies creating Global processing deployment types.
+
+1. From the [Azure portal](https://portal.azure.com), select **Policy** from the left side of the page. You can also search for **Policy** in the search bar at the top of the page.
+  
+2. From the left side of the Azure Policy Dashboard, select **Authoring**, **Definitions**, and then select **+ Policy definition** from the top of the page.
+  
+3. In the **Policy Definition** form, use the following values:
+
+    - **Definition location**: Select the subscription or management group where you want to store the policy definition.
+    - **Name**: Enter a unique name for the policy definition. For example, `Custom allowed Azure AI services and Azure OpenAI deployments`.
+    - **Description**: Enter a description for the policy definition.
+    - **Category**: You can either create a new category or use an existing one. For example, "AI model governance."
+    - **Policy rule**: Enter the policy rule in JSON format. The following example shows a policy rule that blocks specific deployment types, particularly Global Standard.
+
+        ```json
+        {
+            "mode": "All",
+            "policyRule": {
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "type",
+                            "equals": "Microsoft.CognitiveServices/accounts/deployments"
+                        },
+                        {
+                            "field": "Microsoft.CognitiveServices/accounts/deployments/sku.name",
+                            "equals": "GlobalStandard"
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
+                }
+            }
+        }
+        ```
+
+4. Select **Save** to save the policy definition. After saving, you arrive at the policy definition's overview page.
+
+5. From the policy definition's overview page, select **Assign policy** to assign the policy definition.
+
+6. From the **Assign policy** page, use the following values on the **Basics** tab:
+
+    - **Scope**: Select the scope where you want to assign the policy. The scope can be a management group, subscription, or resource group.
+    - **Policy definition**: This field is prepopulated with the title of policy definition you created previously.
+    - **Assignment name**: Enter a unique name for the assignment.
+    - **Policy enforcement**: Make sure that the **Policy enforcement** field is set to **Enabled**. If it isn't enabled, the policy isn't enforced.
+
+    Select **Next** at the bottom of the page, or the **Parameters** tab at the top of the page.
+
+7. Optionally, select the **Non-compliance messages** tab at the top of the page and set a custom message for noncompliance.
+
+8.  Select **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
+
+9.  Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't in the list of allowed models.
+
+---
 
 ## Verify policy assignment
 
@@ -112,7 +184,6 @@ To update an existing policy assignment with new models, follow these steps:
 
 ## Best practices
 
-- **Obtaining model names**: Use the [Azure AI Foundry Model Catalog](https://ai.azure.com/explore/models), then select the model to view details. Use the model name in the title with the policy.
 - **Granular scoping**: Assign policies at the appropriate scope to balance control and flexibility. For example, apply at the subscription level to control all resources in the subscription, or apply at the resource group level to control resources in a specific group.
 - **Policy naming**: Use a consistent naming convention for policy assignments to make it easier to identify the purpose of the policy. Include information such as the purpose and scope in the name.
 - **Documentation**: Keep records of policy assignments and configurations for auditing purposes. Document any changes made to the policy over time.
@@ -123,6 +194,5 @@ To update an existing policy assignment with new models, follow these steps:
 ## Related content
 
 - [Azure Policy overview](/azure/governance/policy/overview)
-- [Azure AI Foundry model catalog](model-catalog-overview.md)
-- [Azure AI services documentation](/azure/ai-services)
+- [Deployment types](../concepts/deployment-types.md)
 
