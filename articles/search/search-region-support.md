@@ -59,7 +59,7 @@ AI service integration refers to internal connections to an Azure AI multi-servi
 | Region | AI service integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | North Europe​​ | ✅ | ✅ | ✅ | All tiers|
-| West Europe​​ <sup>1</sup>| ✅ | ✅ | ✅ | All Tiers |
+| West Europe​​ | ✅ | ✅ | ✅ |  |
 | France Central​​ | ✅ | ✅ | ✅ | All Tiers|
 | Germany West Central​ <sup>1</sup>​| ✅ |  | ✅ | |
 | Italy North​​ |  |  | ✅ | |
