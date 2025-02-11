@@ -73,7 +73,7 @@ Use the following tools to create this quickstart.
 
 ## Specify Maven dependencies
 
-1. Open the *pom.xml* file and add the following dependencies. This includes the [Azure.Search.Documents](/java/api/overview/azure/search) library, the [Azure.Core](/java/api/overview/azure/core) library, and JUnit for testing.
+1. Open the *pom.xml* file and add the following dependencies. This includes the [Azure.Search.Documents](/java/api/overview/azure/search) library.
 
     ```xml
     <dependencies>
