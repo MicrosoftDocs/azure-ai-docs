@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.author: franksolomon
 author: fbsolo-ms1
 ms.reviewer: yogipandey
-ms.date: 02/20/2024
+ms.date: 02/11/2025
 ms.custom: data4ml, ignite-2023, devx-track-azurecli
 # Customer intent: As an experienced Python developer, I need to make my data in Azure storage available to my remote compute resource to train my machine learning models.
 ---

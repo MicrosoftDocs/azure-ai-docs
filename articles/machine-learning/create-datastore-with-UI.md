@@ -1,7 +1,7 @@
 ---
-title: Linking Tables in OneLake to Azure ML Through UI
+title: Linking Tables in OneLake to Azure Machine Learning Through UI
 titleSuffix: Azure Machine Learning, Microsoft Fabric
-description: Learn how to link table in Lakehouse to Azure ML studio through UI.
+description: Learn how to link table in Lakehouse to Azure Machine Learning studio through UI.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
@@ -9,21 +9,19 @@ ms.topic: how-to
 ms.author: helenzeng
 author: helenzusa1
 ms.reviewer: franksolomon
-ms.date: 02/10/2025
+ms.date: 02/11/2025
 ms.custom: data4ml
-# Customer intent: I have some Tables in OneLake, I want to use Azure ML studio for ML activities, so I need to link the Tables in AML, and I prefer to do it through UI.
+# Customer intent: They have some Tables in OneLake, they want to use Azure ML studio for ML activities, so they need to link the Tables in AML, and they prefer to do it through UI.
 ---
 
 # Introduction of the solution
-There were some existing solutions which can build a link in Azure ML to OneLake, get the data and create datastore in AML.
-However, in those solutions, the data in OneLake is of type ‘Files’. Please refer to reference section.
-Some customers have data in OneLake as type ‘Tables’. The existing solutions creating datastore in AML don’t work.
+There were some existing solutions which can build a link in Azure Machine Learning to OneLake, get the data, and create a datastore in AML. However, in those solutions, the data in OneLake is of type "Files. Refer to the reference section. Some customers have data in OneLake as type "Tables." The existing solutions creating datastore in AML don’t work.
 
 :::image type="content" source="media/create-datastore-with-UI/1-table-in-fabric.png" alt-text="Screenshot that shows how the table looks like in Microsoft Fabric." lightbox="./media/create-datastore-with-UI/1-table-in-fabric.png":::
 
 Also some customers prefer doing in UI. Therefore, a new solution is needed to link AML to Tables in OneLake using UI.
 
-In this article, you will learn how to link tables in OneLake to Azure ML studio through UI.
+In this article, you learn how to link tables in OneLake to Azure Machine Learning studio through UI.
 
 ## Overall idea
 
@@ -50,17 +48,17 @@ In this article, you will learn how to link tables in OneLake to Azure ML studio
 
 :::image type="content" source="media/create-datastore-with-UI/7-create-pipeline.png" alt-text="Screenshot that shows how to create a data pipeline in Fabric." lightbox="./media/create-datastore-with-UI/7-create-pipeline.png":::
 
-## Step 6. Use pipeline, start 'Copy data assistant'
+## Step 6. With the pipeline, start the 'Copy data assistant'
 
 :::image type="content" source="media/create-datastore-with-UI/8-copy-data-assistant.png" alt-text="Screenshot that shows how to start Copy data assistant in Fabric." lightbox="./media/create-datastore-with-UI/8-copy-data-assistant.png":::
 
-## Step 7. In 'Copy data assistant', select Azure Blobs
+## Step 7. In the 'Copy data assistant,' select Azure Blobs
 
 :::image type="content" source="media/create-datastore-with-UI/9-select-azure-blob.png" alt-text="Screenshot that shows how to select Azure blobs in Copy data assistant in Fabric." lightbox="./media/create-datastore-with-UI/9-select-azure-blob.png":::
 
 ## Step 8. Set storage account, create connection
 
-:::image type="content" source="media/create-datastore-with-UI/10-create-connection.png" alt-text="Screenshot that shows how to create connection in Fabric data pepiline." lightbox="./media/create-datastore-with-UI/10-create-connection.png":::
+:::image type="content" source="media/create-datastore-with-UI/10-create-connection.png" alt-text="Screenshot that shows how to create connection in Fabric data pipeline." lightbox="./media/create-datastore-with-UI/10-create-connection.png":::
 
 ## Step 9. Select destination folder
 
@@ -84,19 +82,19 @@ In this article, you will learn how to link tables in OneLake to Azure ML studio
 
 ## Step 14. In ML studio create data asset, type 'File'
 
-:::image type="content" source="media/create-datastore-with-UI/16-create-data-asset.png" alt-text="Screenshot that shows how to create a data asset in Azure ML studio." lightbox="./media/create-datastore-with-UI/16-create-data-asset.png":::
+:::image type="content" source="media/create-datastore-with-UI/16-create-data-asset.png" alt-text="Screenshot that shows how to create a data asset in Azure Machine Learning studio." lightbox="./media/create-datastore-with-UI/16-create-data-asset.png":::
 
 ## Step 15. Select 'From Azure storage'
 
 :::image type="content" source="media/create-datastore-with-UI/17-select-azure-storage.png" alt-text="Screenshot that shows how to select Azure storage." lightbox="./media/create-datastore-with-UI/17-select-azure-storage.png":::
 
-## Step 16. It will bring you to create 'New datastore'
+## Step 16. Create a 'New datastore'
 
-:::image type="content" source="media/create-datastore-with-UI/18-new-datastore.png" alt-text="Screenshot that shows how to create new datastore in Azure ML." lightbox="./media/create-datastore-with-UI/18-new-datastore.png":::
+:::image type="content" source="media/create-datastore-with-UI/18-new-datastore.png" alt-text="Screenshot that shows how to create new datastore in Azure Machine Learning." lightbox="./media/create-datastore-with-UI/18-new-datastore.png":::
 
 ## Step 17. Or you can directly 'Create datastore' from the beginning
 
-:::image type="content" source="media/create-datastore-with-UI/19-create-datastore.png" alt-text="Screenshot that shows how to create a datastore in Azure ML." lightbox="./media/create-datastore-with-UI/19-create-datastore.png":::
+:::image type="content" source="media/create-datastore-with-UI/19-create-datastore.png" alt-text="Screenshot that shows how to create a datastore in Azure Machine Learning." lightbox="./media/create-datastore-with-UI/19-create-datastore.png":::
 
 ## Step 18. Datastore is created
 
@@ -104,7 +102,7 @@ In this article, you will learn how to link tables in OneLake to Azure ML studio
 
 ## Step 19. Access the datastore
 
-:::image type="content" source="media/create-datastore-with-UI/21-access-datastore.png" alt-text="Screenshot that shows how to access a datastore in Azure ML." lightbox="./media/create-datastore-with-UI/21-access-datastore.png":::
+:::image type="content" source="media/create-datastore-with-UI/21-access-datastore.png" alt-text="Screenshot that shows how to access a datastore in Azure Machine Learning." lightbox="./media/create-datastore-with-UI/21-access-datastore.png":::
 
 ## References
 
