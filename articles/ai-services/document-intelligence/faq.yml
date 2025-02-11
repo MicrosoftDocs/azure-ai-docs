@@ -175,13 +175,13 @@ sections:
 
           - [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio)
 
-          - [C#/.NET](https://www.nuget.org/packages/Azure.AI.FormRecognizer/4.0.0)
+          - [C#/.NET](https://www.nuget.org/packages/Azure.AI.DocumentIntelligence/1.0.0)
 
-          - [Java](https://oss.sonatype.org/#nexus-search;quick~azure-ai-formrecognizer)
+          - [Java](https://central.sonatype.com/artifact/com.azure/azure-ai-documentintelligence/1.0.0)
 
-          - [JavaScript/TypeScript](https://www.npmjs.com/package/@azure/ai-form-recognizer/v/4.0.0-beta.4)
+          - [JavaScript/TypeScript](https://www.npmjs.com/package/@azure-rest/ai-document-intelligence/v/1.0.0)
 
-          - [Python](https://pypi.org/project/azure-ai-formrecognizer/3.2.0/)
+          - [Python](https://pypi.org/project/azure-ai-documentintelligence/1.0.0/)
 
       - question: |
            Can I migrate my application to the latest version of Document Intelligence?
