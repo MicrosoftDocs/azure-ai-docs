@@ -57,7 +57,7 @@ items:
       - name: Configure key-less authentication
         href: ./how-to/configure-entra-id.md
       - name: Control model deployment with custom policies
-        href: ./how-to/configure-deployment-policies.mdd
+        href: ./how-to/configure-deployment-policies.md
   - name: Manage cost
     href: ./how-to/manage-costs.md
   - name: Quotas and limits
