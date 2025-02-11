@@ -31,7 +31,7 @@ ms.author: aahi
 
     :::image type="content" source="../media/assistants/foundry-openai-selectior.png" alt-text="A screenshot of the main page of the Azure AI Foundry." lightbox="../media/assistants/foundry-openai-selectior.png":::
     
-1. In the nagivation menu on the left, select **Assistants**, located under **playgrounds**.
+1. In the navigation menu on the left, select **Assistants**, located under **playgrounds**.
 
     :::image type="content" source="../media/quickstarts/assistants-ai-studio-playground.png" alt-text="Screenshot of the Assistant configuration screen without all the values filled in." lightbox="../media/quickstarts/assistants-ai-studio-playground.png":::
 
