@@ -2,17 +2,20 @@
 title: Control model deployment with custom policies
 titleSuffix: Azure AI Foundry
 description: "Learn how to use custom Azure Policies to control Azure AI services and Azure OpenAI model deployment with Azure AI Foundry."
-manager: nitinme
-author: santiagxf
-ms.author: fasantia
+manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to #Don't change
-ms.date: 2/05/2025
+ms.date: 02/11/2025
+author: Blackmist
+ms.author: larryfr
+reviewer: santiagxf
+ms.reviewer: fasantia
+
 ---
 
 # Control model deployment with custom policies
 
-When using models from Azure AI Services and Azure OpenAI with Azure AI Foundry, you might need to use custom policies to control which [type of deployment](../concepts/deployment-types.md) options are available to them or which specific models users can deploy. This article guides you on how to create policies to control model deployments using Azure Policies. 
+When using models from Azure AI Services and Azure OpenAI with Azure AI Foundry, you might need to use custom policies to control which [type of deployment](../concepts/deployment-types.md) options are available to users or which specific models users can deploy. This article guides you on how to create policies to control model deployments using Azure Policies. 
 
 ## Prerequisites
 
@@ -22,7 +25,7 @@ When using models from Azure AI Services and Azure OpenAI with Azure AI Foundry,
 
 ## Create a custom policy
 
-Select the scenario better applies to your case:
+Select the scenario that applies to your case better:
 
 # [Enforce specific models](#tab/models)
 
@@ -104,7 +107,7 @@ Follow these steps to create and assign an example custom policy to allow specif
 
 # [Enforce specific deployment types](#tab/deployments)
 
-The following policy allow you to control which types of deployments are allowed in the Azure AI Services or Azure OpenAI Resources. For example, you may want to prevent them from creating deployments that result in data processed in a different region. Follow these steps to create a policy that denies creating Global processing deployment types.
+The following policy allows you to control which types of deployments are allowed in the Azure AI Services or Azure OpenAI Resources. For example, you might want to prevent developers from creating deployments that result in data processed in a different region. Follow these steps to create a policy that denies creating global processing deployment types.
 
 1. From the [Azure portal](https://portal.azure.com), select **Policy** from the left side of the page. You can also search for **Policy** in the search bar at the top of the page.
   
@@ -156,7 +159,7 @@ The following policy allow you to control which types of deployments are allowed
 
 7. Optionally, select the **Non-compliance messages** tab at the top of the page and set a custom message for noncompliance.
 
-8.  Select **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
+8.  Select the **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
 
 9.  Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't in the list of allowed models.
 
