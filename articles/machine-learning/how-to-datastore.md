@@ -544,6 +544,8 @@ az ml datastore create --file my_onelakesp_datastore.yml
 ```
 ---
 
+## [Create a datastore for OneLake Table with UI](create-datastore-with-UI.md#create-datastore-with-UI)
+
 ## Next steps
 
 - [Access data in a job](how-to-read-write-data-v2.md#access-data-in-a-job)
