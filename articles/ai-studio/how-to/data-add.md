@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 10/25/2024
+ms.date: 02/11/2025
 ms.author: franksolomon
 author: fbsolo-ms1
 ---
@@ -25,7 +25,7 @@ Data can help when you need these capabilities:
 > [!div class="checklist"]
 > - **Versioning:** Data versioning is supported.
 > - **Reproducibility:** Once you create a data version, it is *immutable*. It cannot be modified or deleted. Therefore, jobs or prompt flow pipelines that consume the data can be reproduced.
-> - **Auditability:** Because the data version is immutable, you can track the asset versions, who updated a version, and when the version updates occurred.
+> - **Auditability:** Because the data version is immutable, you can track the asset versions, who updated a version, and the date of each version update.
 > - **Lineage:** For any given data, you can view which jobs or prompt flow pipelines consume the data.
 > - **Ease-of-use:** An Azure AI Foundry data resembles web browser bookmarks (favorites). Instead of remembering long storage paths that *reference* your frequently-used data on Azure Storage, you can create a data *version* and then access that version of the asset with a friendly name.
 
@@ -57,9 +57,9 @@ Azure AI Foundry shows the supported source paths. You can create a data from a 
 
 A file (`uri_file`) data resource type points to a *single file* on storage (for example, a CSV file).
 
-These steps explain how to create a File typed data in Azure AI Foundry portal:
+These steps explain how to create a File typed data resource in the Azure AI Foundry portal:
 
-1. Navigate to [Azure AI Foundry](https://ai.azure.com/).
+1. Navigate to the [Azure AI Foundry](https://ai.azure.com/).
 
 1. Select the project where you want to create the data.
 
@@ -119,13 +119,13 @@ A Folder (`uri_folder`) data source type points to a *folder* on a storage resou
 ### Delete data
 
 > [!IMPORTANT]
-> Data deletion is not supported. Data is immutable in Azure AI Foundry portal. Once you create a data version, it can't be modified or deleted. This immutability provides a level of protection when working in a team that creates production workloads.
+> Data deletion isn't supported. Data is immutable in Azure AI Foundry portal. Once you create a data version, it can't be modified or deleted. This immutability provides a level of protection when working in a team that creates production workloads.
 
 If Azure AI Foundry allowed data deletion, it would have the following adverse effects:
-- Production jobs that consume data that is later deleted would fail.
-- Machine learning experiment reproduction would become more difficult.
-- Job lineage would break, because it would become impossible to view the deleted data version.
-- You could no longer track and audit correctly, since versions could be missing.
+- Production jobs that consume data that is later deleted would fail
+- Machine learning experiment reproduction would become more difficult
+- Job lineage would break, because it would become impossible to view the deleted data version
+- You could no longer correctly track and audit, since versions could be missing
 
 When a data resource is erroneously created - for example, with an incorrect name, type or path - Azure AI offers solutions to handle the situation without the negative consequences of deletion:
 
@@ -163,7 +163,7 @@ At this time, Azure AI Foundry doesn't support restoration of *all versions* of 
 #### Restore a specific data version
 
 > [!IMPORTANT]
-> If all data versions were archived, you cannot restore individual versions of the data - you must restore all versions.
+> If all data versions were archived, you can't restore individual versions of the data - you must restore all versions.
 
 Currently, Azure AI Foundry doesn't support restoration of a specific data version.
 
@@ -172,17 +172,17 @@ Currently, Azure AI Foundry doesn't support restoration of a specific data versi
 Data tagging is extra metadata applied to the data in the form of a key-value pair. Data tagging offers many benefits:
 
 - Data quality description. For example, if your organization uses a *medallion lakehouse architecture*, you can tag assets with `medallion:bronze` (raw), `medallion:silver` (validated) and `medallion:gold` (enriched).
-- Provides efficient data searching and filtering, to help data discovery.
-- Helps identify sensitive personal data, to properly manage and govern data access. For example, `sensitivity:PII`/`sensitivity:nonPII`.
-- Identify whether data is approved, from a responsible AI (RAI) audit. For example, `RAI_audit:approved`/`RAI_audit:todo`.
+- It provides efficient data searching and filtering, to help data discovery.
+- It helps identify sensitive personal data, to properly manage and govern data access. For example, `sensitivity:PII`/`sensitivity:nonPII`.
+- It identifies whether or not data is approved, from a responsible AI (RAI) audit. For example, `RAI_audit:approved`/`RAI_audit:todo`.
 
 You can add tags to existing data.
 
 ### Data preview
 
-You can browse the folder structure and preview the file in the Data details page. We support data preview for the following types:
-- Data file types that are supported via preview API: ".tsv", ".csv", ".parquet", ".jsonl".
-- Other file types, Azure AI Foundry portal attempts to preview the file in the browser natively. The supported file types might depend on the browser itself.
+In the Data details page, you can browse the folder structure and preview the file. We support data preview for these types:
+- Data file types that are supported via the preview API: ".tsv", ".csv", ".parquet", ".jsonl".
+- For other file types, Azure AI Foundry portal tries to natively preview the file in the browser. The supported file types might depend on the browser itself.
 Normally for images, these file image types are supported: ".png", ".jpg", ".gif". Normally, these file types are supported: ".ipynb", ".py", ".yml", ".html".
 
 ## Next steps

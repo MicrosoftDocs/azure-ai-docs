@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 02/11/2025
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
@@ -24,9 +24,9 @@ At the top level, Azure AI Foundry provides access to the following resources:
 
 <!-- The top level Azure AI Foundry resources (hub and project) are based on Azure Machine Learning. Connected resources, such as Azure OpenAI, Azure AI services, and Azure AI Search, are used by the hub and project in reference, but follow their own resource management lifecycle. -->
 
-- **Azure OpenAI**: Provides access to the latest Open AI models. You can create secure deployments, try playgrounds, fine tune models, content filters, and batch jobs. The Azure OpenAI resource provider is `Microsoft.CognitiveServices/account` and the kind of resource is `OpenAI`. You can also connect to Azure OpenAI by using a kind of `AIServices`, which also includes other [Azure AI services](/azure/ai-services/what-are-ai-services).
+- **Azure OpenAI**: Provides access to the latest OpenAI models. You can create secure deployments, try playgrounds, fine tune models, content filters, and batch jobs. The Azure OpenAI resource provider is `Microsoft.CognitiveServices/account` and the kind of resource is `OpenAI`. You can also connect to Azure OpenAI by using a kind of `AIServices`, which also includes other [Azure AI services](/azure/ai-services/what-are-ai-services).
 
-    When using Azure AI Foundry portal, you can directly work with Azure OpenAI without an Azure Studio project or you can use Azure OpenAI through a project.
+    When you use Azure AI Foundry portal, you can directly work with Azure OpenAI without an Azure Studio project. Or you can use Azure OpenAI through a project.
 
     For more information, visit [Azure OpenAI in Azure AI Foundry portal](../azure-openai-in-ai-studio.md).
 
