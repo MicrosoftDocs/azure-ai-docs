@@ -83,7 +83,7 @@ The following tables present the correlation between each SDK version the suppor
 
 | Language| SDK alias | API version (default) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; | Supported clients|
 | :------ | :-----------|:---------- | :-----------------|
-| **Python 1.0.0b2**| v4.0 (GA)| 2024-11-30 GA |**DocumentIntelligenceClient**</br>**DocumentIntelligenceAdministrationClient**|
+| **Python 1.0.0**| v4.0 (GA)| 2024-11-30 GA |**DocumentIntelligenceClient**</br>**DocumentIntelligenceAdministrationClient**|
 | **Python 3.3.0**| v3.1 latest (GA)| 2023-07-31|  **DocumentAnalysisClient**</br>**DocumentModelAdministrationClient**|
 | **Python 3.2.x**| v3.0 (GA)| 2022-08-31|  **DocumentAnalysisClient**</br>**DocumentModelAdministrationClient**|
 | **Python 3.1.x**| v2.1 |  v2.1  |  **FormRecognizerClient**</br>**FormTrainingClient** |
