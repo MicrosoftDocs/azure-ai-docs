@@ -6,7 +6,7 @@ ms.topic: how-to
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 08/13/2024
+ms.date: 02/10/2025
 ---
 
 # Create SAS tokens for your storage containers
@@ -19,9 +19,9 @@ In this article, you learn how to create user delegation, shared access signatur
 >
 > [Managed identities](create-use-managed-identities.md) provide an alternate method for you to grant access to your storage data without the need to include SAS tokens with your HTTP requests. *See*, [Managed identities for Document Translation](create-use-managed-identities.md).
 >
-> * You can use managed identities to grant access to any resource that supports Microsoft Entra authentication, including your own applications.
-> * Using managed identities replaces the requirement for you to include shared access signature tokens (SAS) with your source and target URLs.
-> * There's no added cost to use managed identities in Azure.
+> * Managed identities can grant access to any resource that supports Microsoft Entra authentication, including your own applications.
+> * Managed identities replace the requirement for you to include shared access signature tokens (SAS) with your source and target URLs.
+> * Managed identities are available with your Azure subscription at no added cost.
 
 At a high level, here's how SAS tokens work:
 
@@ -41,7 +41,7 @@ Azure Blob Storage offers three resource types:
 >
 > * SAS tokens are used to grant permissions to storage resources, and should be protected in the same manner as an account key.
 >
-> * Operations that use SAS tokens should be performed only over an HTTPS connection, and SAS URIs should only be distributed on a secure connection such as HTTPS.
+> * Operations that use SAS tokens should be performed only over an HTTPS connection, and SAS URLs should only be distributed on a secure connection such as HTTPS.
 
 ## Prerequisites
 
