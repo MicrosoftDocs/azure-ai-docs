@@ -45,7 +45,7 @@ Content extraction provides foundational data that grounds the generative capabi
 
 Content Understanding enhances its core extraction capabilities through optional add-on features that provide deeper content analysis. These add-ons can extract additional elements like layout information, barcodes, mathematical formulas, and speaker roles. While some add-ons may incur additional costs, they can be selectively enabled based on your specific requirements to optimize both functionality and cost-efficiency. The modular nature of these add-ons allows for customized processing pipelines tailored to your use case.
 
-The following sections detail the content extraction capabilities and optional add-on features available for each supported modality. Select your target modality from the tabs below to view its specific capabilities.
+The following section details the content extraction capabilities and optional add-on features available for each supported modality. Select your target modality from the tabs below to view its specific capabilities.
 
 # [Document](#tab/document)
 
@@ -70,16 +70,18 @@ The following sections detail the content extraction capabilities and optional a
 |&bullet; **Transcription**: Converts speech to structured, searchable text via Azure AI Speech, allowing users to specify recognition languages. </br>&bullet; **Shot Detection**:  Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly on shot boundaries. </br> &bullet; **Key Frame Extraction**: Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable Field Extraction to work effectively.</br> | **Face Grouping**: Grouped faces appearing in a video to extract one representative face image for each person and provides segments where each one is present. The grouped face data is available as metadata and can be used to generate customized metadata fields.This feature is limited access and involves face identification and grouping; customers need to register for access at Face Recognition. |
 
 ----
-### Information Extraction Using Schemas
-Schemas play a crucial role in Content understanding by providing a structured framework for extracting and organizing information from various data types. [Field extraction](#field-extraction), [grounding and confidence scores](#grounding-and-confidence-scores) are some of the key reasons why schemas are powerful.
-
 ### Field Extraction
-Field extraction in Content Understanding leverages a multimodal generative AI model to define schemas that extract, infer, or abstract information from various data types into structured outputs. This capability is powerful because by defining schemas with natural language field descriptions it eliminates the need for complex prompt engineering, making it accessible for users to create standardized outputs. 
+Field extraction in Content Understanding leverages generative AI models to define schemas that extract, infer, or abstract information from various data types into structured outputs. This capability is powerful because by defining schemas with natural language field descriptions it eliminates the need for complex prompt engineering, making it accessible for users to create standardized outputs. 
 
-Field extraction is particularly optimized for scenarios requiring consistent metadata extraction across content types, workflow automation with structured output, compliance monitoring and validation etc. The value lies in its ability to handle multiple content types (text, audio, video, images) while maintaining accuracy and scalability through AI-powered schema validation and confidence scoring. [Learn more and follow a quickstart guide to build a schema and extract fields.](../quickstart/use-ai-foundry.md#build-a-schema)
+Field extraction is particularly optimized for scenarios requiring:
+* consistent metadata extraction across content types
+* workflow automation with structured output
+* compliance monitoring and validation 
+
+The value lies in its ability to handle multiple content types (text, audio, video, images) while maintaining accuracy and scalability through AI-powered schema validation and confidence scoring.[Learn more and follow a quickstart guide to build a schema and extract fields.](../quickstart/use-ai-foundry.md#build-a-schema)
 
 Each modality supports specific generation approaches optimized for that content type. Review the tabs below to understand the generation capabilities and methods available for your target modality.
-----
+
 # [Document](#tab/document)
 
 |Supported generation methods|
