@@ -80,7 +80,7 @@ Azure AI Content Understanding now supports turning off content filtering for ap
 > [!IMPORTANT]
 >
 > * Apply for modified content filters via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
-> * For more information, *see* [**Content Filtering**]([https://azure.microsoft.com/support/legal/preview-supplemental-terms](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new)).
+> * For more information, *see* [**Content Filtering**](/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new).
 
 ## Data privacy and security
 Developers using the Content Understanding service should review Microsoft's policies on customer data. For more information, visit our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page.
