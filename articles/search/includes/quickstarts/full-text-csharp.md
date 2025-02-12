@@ -53,6 +53,29 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     dotnet add package Azure.Identity
     ```
 
+1. For the **recommended** keyless authentication with Microsoft Entra ID, sign in to Azure with the following command:
+
+    ```console
+    az login
+    ```
+
+The sample code in this quickstart uses Microsoft Entra ID for authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
+
+#### [Microsoft Entra ID](#tab/keyless)
+
+```csharp
+Uri serviceEndpoint = new Uri($"https://<Put your search service NAME here>.search.windows.net/");
+DefaultAzureCredential credential = new();
+```
+
+#### [API key](#tab/api-key)
+
+```csharp
+Uri serviceEndpoint = new Uri($"https://<Put your search service NAME here>.search.windows.net/");
+AzureKeyCredential credential = new AzureKeyCredential("<Your search service admin key>");
+```
+---
+
 
 ## Create, load, and query a search index
 
@@ -76,17 +99,19 @@ In this section, you add code to create a search index, load it with documents, 
         class Program
         {
             static void Main(string[] args)
-            {
-                string serviceName = "<Put your search service NAME here>";
-                string apiKey = "<Put your search service ADMIN API KEY here>";
-                string indexName = "hotels-quickstart";
+            {    
+                // Your search service endpoint
+                Uri serviceEndpoint = new Uri($"https://<Put your search service NAME here>.search.windows.net/");
+    
+                // Use the recommended keyless credential instead of the AzureKeyCredential credential.
+                DefaultAzureCredential credential = new();
+                //AzureKeyCredential credential = new AzureKeyCredential("Your search service admin key");
     
                 // Create a SearchIndexClient to send create/delete index commands
-                Uri serviceEndpoint = new Uri($"https://{serviceName}.search.windows.net/");
-                AzureKeyCredential credential = new AzureKeyCredential(apiKey);
                 SearchIndexClient adminClient = new SearchIndexClient(serviceEndpoint, credential);
     
                 // Create a SearchClient to load and query documents
+                string indexName = "hotels-quickstart";
                 SearchClient srchclient = new SearchClient(serviceEndpoint, indexName, credential);
     
                 // Delete index if it exists
