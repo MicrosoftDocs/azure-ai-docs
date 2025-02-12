@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 2/12/2025
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
@@ -102,7 +102,7 @@ Here are a few guides to help you get started with Azure OpenAI Service playgrou
 - [Quickstart: Use GPT-4o in the real-time audio playground](../../../ai-services/openai/realtime-audio-quickstart.md?context=/azure/ai-studio/context/context)
 - [Quickstart: Analyze images and video with GPT-4 for Vision in the playground](../../quickstarts/multimodal-vision.md)
 
-Each playground has different model requirements and capabilities. The supported regions will vary depending on the model. For more information about model availability per region, see the [Azure OpenAI Service models documentation](../../../ai-services/openai/concepts/models.md).
+Each playground has different model requirements and capabilities. The supported regions vary depending on the model. For more information about model availability per region, see the [Azure OpenAI Service models documentation](../../../ai-services/openai/concepts/models.md).
 
 ## Fine-tune Azure OpenAI models
 
