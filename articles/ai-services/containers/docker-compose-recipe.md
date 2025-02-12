@@ -41,7 +41,7 @@ The YAML file defines all the Azure AI services containers to be deployed. These
 version: '3.7'
 services:
   forms:
-    image: "mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout"
+    image: "mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-3.1:latest"
     environment:
        eula: accept
        billing: # < Your Document Intelligence billing URL >
@@ -50,16 +50,16 @@ services:
        FormRecognizer__ComputerVisionEndpointUri: # < Your Document Intelligence URI >
     volumes:
        - type: bind
-         source: E:\publicpreview\output
+         source: C:\mydirectory\output
          target: /output
        - type: bind
-         source: E:\publicpreview\input
+         source: C:\mydirectory\input
          target: /input
     ports:
       - "5010:5000"
 
   ocr:
-    image: "mcr.microsoft.com/azure-cognitive-services/vision/read:3.1-preview"
+    image: "mcr.microsoft.com/azure-cognitive-services/vision/read:latest"
     environment:
       eula: accept
       apikey: # < Your Azure AI Vision API key >
@@ -155,15 +155,15 @@ Here's some example outputs:
 
 ```
 IMAGE ID            REPOSITORY                                                                 TAG
-2ce533f88e80        mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout          latest
+2ce533f88e80        mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-3.1      latest
 4be104c126c5        mcr.microsoft.com/azure-cognitive-services/vision/read:3.1-preview         latest
 ```
 
 ### Test containers
 
-Open a browser on the host machine and go to **localhost** by using the specified port from the *docker-compose.yaml* file, such as http://localhost:5021/swagger/index.html. For example, you could use the **Try It** feature in the API to test the Document Intelligence endpoint. Both containers swagger pages should be available and testable.
+Open a browser on the host machine and go to **localhost** by using the specified port from the *docker-compose.yaml* file, such as `http://localhost:5021`. Both containers landing pages should be available.
 
-![Document Intelligence Container](media/form-recognizer-swagger-page.png)
+:::image type="content" source="../media/container-webpage.png" alt-text="A screenshot of the container landing page.":::
 
 ## Next steps
 
