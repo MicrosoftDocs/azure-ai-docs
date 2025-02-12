@@ -211,6 +211,11 @@
             "redirect_document_id": false
           },
           {
+            "source_path_from_root": "/articles/ai-studio/how-to/custom-policy-model-deployment.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/how-to/configure-deployment-policies",
+            "redirect_document_id": true
+          },
+          {
             "source_path_from_root": "/articles/ai-studio/ai-services/how-to/content-safety.md",
             "redirect_url": "/azure/ai-services/content-safety/how-to/foundry",
             "redirect_document_id": true
