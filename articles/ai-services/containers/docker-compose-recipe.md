@@ -7,17 +7,18 @@ author: aahill
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 11/06/2024
+ms.date: 02/12/2025
 ms.author: aahi
 
 # SME: Brendan Walsh
 #Customer intent: As a potential customer, I want to know how to configure containers so I can reuse them.
 ---
 
-# Use Docker Compose to deploy multiple containers
+# Use Docker Compose to deploy multiple Azure AI containers
 
-This article shows you how to deploy multiple Azure AI containers. Specifically, you'll learn how to use Docker Compose to orchestrate multiple Docker container images.
+This article shows you how to deploy multiple Azure AI containers. Specifically, you'll learn how to use Docker Compose to orchestrate multiple Docker container images. The example in this article is deploying a [Document Intelligence](../document-intelligence/overview.md) container and a [AI Vision read](../computer-vision/how-to/call-read-api.md) container.
 
+> [!NOTE] 
 > [Docker Compose](https://docs.docker.com/compose/) is a tool for defining and running multi-container Docker applications. In Compose, you use a YAML file to configure your application's services. Then, you create and start all the services from your configuration by running a single command.
 
 It can be useful to orchestrate multiple container images on a single host computer. In this article, we'll pull together the Read and Document Intelligence containers.
@@ -36,7 +37,7 @@ This procedure requires several tools that must be installed and run locally:
 
 ## Docker Compose file
 
-The YAML file defines all the services to be deployed. These services rely on either a `DockerFile` or an existing container image. In this case, we'll use two preview images. Copy and paste the following YAML file, and save it as *docker-compose.yaml*. Provide the appropriate **apikey**, **billing**, and **EndpointUri** values in the file.
+The YAML file defines all the Azure AI services containers to be deployed. These services rely on either a `DockerFile` or an existing container image. In this case, we'll use two images. Copy and paste the following YAML file, and save it as *docker-compose.yaml*. Provide the appropriate **apikey**, **billing**, and **EndpointUri** values in the file.
 
 ```yaml
 version: '3.7'
@@ -152,7 +153,7 @@ ocr_1    | Application started. Press Ctrl+C to shut down.
 
 [!INCLUDE [Tip for using docker list](../includes/cognitive-services-containers-docker-list-tip.md)]
 
-Here's some example output:
+Here's some example outputs:
 
 ```
 IMAGE ID            REPOSITORY                                                                 TAG
