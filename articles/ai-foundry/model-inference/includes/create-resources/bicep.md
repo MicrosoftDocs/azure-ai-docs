@@ -40,6 +40,8 @@ The tutorial helps you create:
 > * (Optionally) An Azure AI project and hub.
 > * (Optionally) A connection between the hub and the models in Azure AI Services.
 
+Notice that **you have to deploy an Azure AI project and hub** if you plan to use the Azure AI Foundry portal for managing the resource, using playground, or any other feature from the portal.
+
 You are using the following assets to create those resources:
 
 1. Use the template `modules/ai-services-template.bicep` to describe your Azure AI Services resource:
