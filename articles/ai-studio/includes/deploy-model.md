@@ -19,7 +19,7 @@ To work with a model, you first deploy it into a project. If you don't yet have 
   
         :::image type="content" source="../media/tutorials/chat/home-page.png" alt-text="Screenshot of the home page if with no projects." lightbox="../media/tutorials/chat/home-page.png":::
 
-    * If you have projects but aren't in one, select the project you wish to use, then select **Model catalog** from the left navigation pane. Or, you can select **Model catalog and benchmarks** at the bottom of the screen.
+    * If you have projects but aren't in one, select the project you wish to use, then select **Model catalog** from the left navigation pane.
     * If you are in a project, select **Model catalog** from the left navigation pane.
 
 1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
