@@ -623,23 +623,41 @@ In *Program.cs*, you created two clients:
 
 Both clients need the search service endpoint and credentials described previously in the [resource information](#retrieve-resource-information) section.
 
-Because the code builds out the URI for you, you only specify the search service name in the `serviceName` property.
+The sample code in this quickstart uses Microsoft Entra ID for authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
+
+#### [Microsoft Entra ID](#tab/keyless)
+
+```csharp
+Uri serviceEndpoint = new Uri($"https://<Put your search service NAME here>.search.windows.net/");
+DefaultAzureCredential credential = new();
+```
+
+#### [API key](#tab/api-key)
+
+```csharp
+Uri serviceEndpoint = new Uri($"https://<Put your search service NAME here>.search.windows.net/");
+AzureKeyCredential credential = new AzureKeyCredential("<Your search service admin key>");
+```
+---
 
 ```csharp
 static void Main(string[] args)
 {
-    string serviceName = "<your-search-service-name>";
-    string apiKey = "<your-search-service-admin-api-key>";
-    string indexName = "hotels-quickstart";
+    // Your search service endpoint
+    Uri serviceEndpoint = new Uri($"https://<Put your search service NAME here>.search.windows.net/");
+
+    // Use the recommended keyless credential instead of the AzureKeyCredential credential.
+    DefaultAzureCredential credential = new();
+    //AzureKeyCredential credential = new AzureKeyCredential("Your search service admin key");
 
     // Create a SearchIndexClient to send create/delete index commands
-    Uri serviceEndpoint = new Uri($"https://{serviceName}.search.windows.net/");
-    AzureKeyCredential credential = new AzureKeyCredential(apiKey);
     SearchIndexClient adminClient = new SearchIndexClient(serviceEndpoint, credential);
 
     // Create a SearchClient to load and query documents
+    string indexName = "hotels-quickstart";
     SearchClient srchclient = new SearchClient(serviceEndpoint, indexName, credential);
-    . . . 
+    
+    // REDACTED FOR BREVITY . . . 
 }
 ```
 
