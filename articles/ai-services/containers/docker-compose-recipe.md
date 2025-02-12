@@ -37,6 +37,9 @@ This procedure requires several tools that must be installed and run locally:
 
 The YAML file defines all the Azure AI services containers to be deployed. These services rely on either a `DockerFile` or an existing container image. In this case, we'll use two images. Copy and paste the following YAML file, and save it as *docker-compose.yaml*. Provide the appropriate **apikey**, **billing**, and **EndpointUri** values in the file.
 
+> [!NOTE]
+> To avoid errors, make sure that the host machine correctly shares drives with Docker Engine. For example, if *E:\mydirectory* is used as a directory in the *docker-compose.yaml* file, share drive **E** with Docker.
+
 ```yaml
 version: '3.7'
 services:
@@ -50,10 +53,10 @@ services:
        FormRecognizer__ComputerVisionEndpointUri: # < Your Document Intelligence URI >
     volumes:
        - type: bind
-         source: C:\mydirectory\output
+         source: E:\mydirectory\output
          target: /output
        - type: bind
-         source: C:\mydirectory\input
+         source: E:\mydirectory\input
          target: /input
     ports:
       - "5010:5000"
@@ -74,9 +77,6 @@ services:
 ## Start the configured Docker Compose services
 
 A Docker Compose file enables the management of all the stages in a defined service's life cycle: starting, stopping, and rebuilding services; viewing the service status; and log streaming. Open a command-line interface from the project directory (where the docker-compose.yaml file is located).
-
-> [!NOTE]
-> To avoid errors, make sure that the host machine correctly shares drives with Docker Engine. For example, if *E:\publicpreview* is used as a directory in the *docker-compose.yaml* file, share drive **E** with Docker.
 
 From the command-line interface, execute the following command to start (or restart) all the services defined in the *docker-compose.yaml* file:
 
@@ -161,7 +161,7 @@ IMAGE ID            REPOSITORY                                                  
 
 ### Test containers
 
-Open a browser on the host machine and go to **localhost** by using the specified port from the *docker-compose.yaml* file, such as `http://localhost:5021`. Both containers landing pages should be available.
+Open a browser on the host machine and go to **localhost** by using the specified port from the *docker-compose.yaml* file, such as `http://localhost:5021`. Both containers' landing pages should be available.
 
 :::image type="content" source="../media/container-webpage.png" alt-text="A screenshot of the container landing page.":::
 
