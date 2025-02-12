@@ -14,13 +14,13 @@ ms.reviewer: changliu2
 ms.author: lagayhar
 author: lgayhardt
 ---
-# Cloud evaluation (Preview): evaluate your Generative AI application remotely on the cloud
+# Cloud evaluation (preview): evaluate your Generative AI application remotely on the cloud
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-While Azure AI Evaluation SDK client supports running evaluations locally on your own machine, you may want to delegate the job remotely to the cloud. For example, after you ran local evaluations on small test data to help assess your generative AI application prototypes, now you move into pre-deployment testing and need run evaluations on a large dataset. Cloud evaluation frees you from managing your local compute infrastructure, and enables you integrate evaluations as tests into your CI/CD pipelines. After deployment, you may want to [continuously evaluate](https://aka.ms/GenAIMonitoringDoc) your applications for post-deployment monitoring.
+While Azure AI Evaluation SDK client supports running evaluations locally on your own machine, you might want to delegate the job remotely to the cloud. For example, after you ran local evaluations on small test data to help assess your generative AI application prototypes, now you move into pre-deployment testing and need run evaluations on a large dataset. Cloud evaluation frees you from managing your local compute infrastructure, and enables you to integrate evaluations as tests into your CI/CD pipelines. After deployment, you may want to [continuously evaluate](https://aka.ms/GenAIMonitoringDoc) your applications for post-deployment monitoring.
 
-In this article, you learn how to run cloud evaluation in pre-deployment testing on a test dataset. Using the Azure AI Projects SDK, you will have evaluation results automatically logged into your Azure AI project for better observability. This feature support all Microsft-curated [built-in evaluators](./evaluate-sdk.md#built-in-evaluators) and your own [custom evaluators](./evaluate-sdk.md#custom-evaluators) which can be located in the [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) of your project.
+In this article, you learn how to run cloud evaluation in pre-deployment testing on a test dataset. Using the Azure AI Projects SDK, you'll have evaluation results automatically logged into your Azure AI project for better observability. This feature supports all Microsft-curated [built-in evaluators](./evaluate-sdk.md#built-in-evaluators) and your own [custom evaluators](./evaluate-sdk.md#custom-evaluators) which can be located in the [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) and have the same project-scope RBAC.
 
 
 ### Prerequisites
@@ -100,7 +100,7 @@ from azure.ai.evaluation import F1ScoreEvaluator, RelevanceEvaluator, ViolenceEv
 print("F1 Score evaluator id:", F1ScoreEvaluator.id)
 ```
 
-- **From UI**: Follows these steps to fetch evaluator ids after they're registered to your project:
+- **From UI**: Follows these steps to fetch evaluator IDs after they're registered to your project:
   - Select **Evaluation** tab in your Azure AI project;
   - Select Evaluator library;
   - Select your evaluators of choice by comparing the descriptions;
@@ -108,7 +108,7 @@ print("F1 Score evaluator id:", F1ScoreEvaluator.id)
 
 #### Specifying custom evaluators
 
-- For code-based custom evaluators, register them to your Azure AI project and fetch the evaluator ids as in this example:
+- For code-based custom evaluators, register them to your Azure AI project and fetch the evaluator IDs as in this example:
 
 ```python
 from azure.ai.ml import MLClient
@@ -199,7 +199,7 @@ After logging your custom evaluator to your Azure AI project, you can view it in
 
 ### Cloud evaluation (preview) with Azure AI Projects SDK
 
-Given the steps above, you can now submit a cloud evaluation with Azure AI Projects SDK via a Python API. See the following example specifying an NLP evaluator (F1 score), an AI-assisted quality evaluator (Relevance), a safety evaluator (Violence) and a custom evaluator (Friendliness) with their [evaluator ids](#specifying-evaluators-from-evaluator-library):
+You can now submit a cloud evaluation with Azure AI Projects SDK via a Python API. See the following example specifying an NLP evaluator (F1 score), AI-assisted quality and safety evaluator (Relevance and Violence), and a custom evaluator (Friendliness) with their [evaluator IDs](#specifying-evaluators-from-evaluator-library):
 
 ```python
 import os, time

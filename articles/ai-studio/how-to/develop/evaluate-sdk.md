@@ -328,7 +328,7 @@ For conversation outputs, per-turn results are stored in a list and the overall 
 > [!NOTE]
 > We strongly recommend users to migrate their code to use the key without prefixes (for example, `groundedness.groundedness`) to allow your code to support more evaluator models.
 
-### Risk and safety evaluators (Preview)
+### Risk and safety evaluators (preview)
 
 When you use AI-assisted risk and safety metrics, a GPT model isn't required. Instead of `model_config`, provide your `azure_ai_project` information. This accesses the Azure AI project safety evaluations back-end service, which provisions a GPT model specific to harms evaluation that can generate content risk severity scores and reasoning to enable the safety evaluators.
 
