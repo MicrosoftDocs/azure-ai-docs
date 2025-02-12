@@ -140,10 +140,10 @@ If you're an existing customer looking for information about these models, see [
 | babbage-002 | | January 27, 2025 |  |
 | davinci-002 | | January 27, 2025 | |
 | dall-e-2|  | January 27, 2025 | dalle-3 |
-| ada | July 6, 2023 | June 14, 2024 | babbage-002 |
-| babbage | July 6, 2023 | June 14, 2024 | babbage-002 |
-| curie | July 6, 2023 | June 14, 2024 | davinci-002 |
-| davinci | July 6, 2023 | June 14, 2024 | davinci-002 |
+| ada | July 6, 2023 | June 14, 2024 |  |
+| babbage | July 6, 2023 | June 14, 2024 |  |
+| curie | July 6, 2023 | June 14, 2024 | |
+| davinci | July 6, 2023 | June 14, 2024 |  |
 | text-ada-001 | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
 | text-babbage-001 | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
 | text-curie-001 | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
