@@ -51,7 +51,7 @@ Azure OpenAI fine-tuning supports [global standard deployments](./deployment-typ
 - `gpt-4o-mini-2024-07-18`
 - `gpt-4o-2024-08-06`
 
-And supports [regional provisioned managed](./deployment-types.md#provisioned) in North Central US and Sweden Central for:
+And supports [regional provisioned managed](./deployment-types.md#provisioned) in North Central US and Switzerland West for:
 
 - `gpt-4o-mini-2024-07-18`
 - `gpt-4o-2024-08-06`
