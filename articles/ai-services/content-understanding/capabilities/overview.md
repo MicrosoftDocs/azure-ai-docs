@@ -89,8 +89,6 @@ Field extraction is particularly optimized for scenarios requiring:
 
 The value lies in its ability to handle multiple content types (text, audio, video, images) while maintaining accuracy and scalability through AI-powered schema validation and confidence scoring. 
 
-Follow our quickstart guide [to build a schema](../quickstart/use-ai-foundry.md#build-a-schema)
-
 Each modality supports specific generation approaches optimized for that content type. Review the tabs below to understand the generation capabilities and methods available for your target modality.
 
 # [Document](#tab/document)
@@ -119,6 +117,8 @@ Each modality supports specific generation approaches optimized for that content
 
 -------
 
+Follow our quickstart guide [to build your first schema](../quickstart/use-ai-foundry.md#build-a-schema).
+
 #### Grounding and Confidence Scores
 
 Content Understanding ensures that the results from field and content extraction are accurately grounded to the input content and provide confidence scores for the extracted data, making automation and validation more reliable.
@@ -142,7 +142,7 @@ Key benefits of analyzers include:
 
 For example, you might create an analyzer for processing customer service calls that combines audio transcription (content extraction) with sentiment analysis and topic classification (field extraction). This analyzer can then consistently process thousands of calls, providing structured insights for your customer experience analytics.
 
-Follow our quickstart guide to [build your first analyzer](../quickstart/use-ai-foundry.md#analyzer-templates) using our step-by-step guide.
+Follow our quickstart guide to [build your first analyzer](../quickstart/use-ai-foundry.md#analyzer-templates).
 
 #### Best Practices
 
