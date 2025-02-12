@@ -98,8 +98,6 @@ items:
           href: ../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/ai-studio/context/context
         - name: Work with reasoning models
           href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-studio/context/context
-
-
     - name: AI21 Jamba models
       href: how-to/deploy-models-jamba.md
     - name: Cohere models
