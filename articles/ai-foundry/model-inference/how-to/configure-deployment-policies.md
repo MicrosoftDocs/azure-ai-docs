@@ -25,11 +25,7 @@ When using models from Azure AI Services and Azure OpenAI with Azure AI Foundry,
 
 ## Create a custom policy
 
-Select the scenario that applies to your case better:
-
-# [Enforce specific models](#tab/models)
-
-Follow these steps to create and assign an example custom policy to allow specific models from the model catalog.
+Follow these steps to create and assign an example custom policy to control model deployments:
 
 1. From the [Azure portal](https://portal.azure.com), select **Policy** from the left side of the page. You can also search for **Policy** in the search bar at the top of the page.
 
@@ -43,50 +39,84 @@ Follow these steps to create and assign an example custom policy to allow specif
     - **Name**: Enter a unique name for the policy definition. For example, `Custom allowed Azure AI services and Azure OpenAI models`.
     - **Description**: Enter a description for the policy definition.
     - **Category**: You can either create a new category or use an existing one. For example, "AI model governance."
-    - **Policy rule**: Enter the policy rule in JSON format. The following example shows a policy rule that allows the deployment of specific Azure AI services and Azure OpenAI models:
 
-        > [!TIP]
-        > Azure AI services was originally named Azure Cognitive Services. This name is still used internally by Azure, such as this custom policy where you see a value of `Microsoft.CognitiveServices`. Azure OpenAI is part of Azure AI services, so this policy also applies to Azure OpenAI models.
+4. On **Policy rule**, enter the policy rule details in JSON format. Select the scenario that applies to your case better:
 
-        ```json
-        {
-              "mode": "All",
-              "policyRule": {
-                "if": {
-                  "allOf": [
-                    {
-                      "field": "type",
-                      "equals": "Microsoft.CognitiveServices/accounts/deployments"
-                    },
-                    {
-                      "not": {
-                        "value": "[concat(field('Microsoft.CognitiveServices/accounts/deployments/model.name'), ',', field('Microsoft.CognitiveServices/accounts/deployments/model.version'))]",
-                        "in": "[parameters('allowedModels')]"
-                      }
-                    }
-                  ]
+    # [Enforce specific models](#tab/models)
+
+    The following policy allows you to control which specific models and versions are available for deployment. You can enforce this policy at different levels depending on your needs.
+
+    ```json
+    {
+          "mode": "All",
+          "policyRule": {
+            "if": {
+              "allOf": [
+                {
+                  "field": "type",
+                  "equals": "Microsoft.CognitiveServices/accounts/deployments"
                 },
-                "then": {
-                  "effect": "deny"
-                }
-              },
-              "parameters": {
-                "allowedModels": {
-                  "type": "Array",
-                  "metadata": {
-                    "displayName": "Allowed AI models",
-                    "description": "The list of allowed models to be deployed."
+                {
+                  "not": {
+                    "value": "[concat(field('Microsoft.CognitiveServices/accounts/deployments/model.name'), ',', field('Microsoft.CognitiveServices/accounts/deployments/model.version'))]",
+                    "in": "[parameters('allowedModels')]"
                   }
                 }
+              ]
+            },
+            "then": {
+              "effect": "deny"
+            }
+          },
+          "parameters": {
+            "allowedModels": {
+              "type": "Array",
+              "metadata": {
+                "displayName": "Allowed AI models",
+                "description": "The list of allowed models to be deployed."
               }
+            }
         }
-        ```
+    }
+    ```
 
-4. Select **Save** to save the policy definition. After saving, you arrive at the policy definition's overview page.
+    # [Enforce specific deployment types](#tab/deployments)
 
-5. From the policy definition's overview page, select **Assign policy** to assign the policy definition.
+    The following policy allows you to control which types of deployments are allowed in the Azure AI Services or Azure OpenAI Resources. For example, you might want to prevent developers from creating deployments that result in data processed in a different region. Follow these steps to create a policy that denies creating global processing deployment types.
 
-6. From the **Assign policy** page, use the following values on the **Basics** tab:
+    ```json
+    {
+        "mode": "All",
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.CognitiveServices/accounts/deployments"
+                    },
+                    {
+                        "field": "Microsoft.CognitiveServices/accounts/deployments/sku.name",
+                        "equals": "GlobalStandard"
+                    }
+                ]
+            },
+            "then": {
+                "effect": "deny"
+            }
+        }
+    }
+    ```
+
+    ---
+
+    > [!TIP]
+    > Azure AI services was originally named Azure Cognitive Services. This name is still used internally by Azure, such as this custom policy where you see a value of `Microsoft.CognitiveServices`. Azure OpenAI is part of Azure AI services, so this policy also applies to Azure OpenAI models.
+
+5. Select **Save** to save the policy definition. After saving, you arrive at the policy definition's overview page.
+
+6. From the policy definition's overview page, select **Assign policy** to assign the policy definition.
+
+7. From the **Assign policy** page, use the following values on the **Basics** tab:
 
     - **Scope**: Select the scope where you want to assign the policy. The scope can be a management group, subscription, or resource group.
     - **Policy definition**: This field is prepopulated with the title of policy definition you created previously.
@@ -95,79 +125,25 @@ Follow these steps to create and assign an example custom policy to allow specif
 
     Select **Next** at the bottom of the page, or the **Parameters** tab at the top of the page.
 
-7. From the **Parameters** tab, set **Allowed AI models** to the list of models that you want to allow. The list should be a comma-separated list of model names and approved versions, surrounded by square brackets. For example, `["gpt-4,0613", "gpt-35-turbo,0613"]`.
+8. Configure the parameters for the policy (if any): 
+
+    # [Enforce specific models](#tab/models)
+
+    From the **Parameters** tab, set **Allowed AI models** to the list of models that you want to allow. The list should be a comma-separated list of model names and approved versions, surrounded by square brackets. For example, `["gpt-4,0613", "gpt-35-turbo,0613"]`.
 
     > [!TIP]
     > You can find the model names and their versions in the [Azure AI Foundry Model Catalog](https://ai.azure.com/explore/models). Select the model to view the details, and then copy the model name and their version in the title.
 
-8. Optionally, select the **Non-compliance messages** tab at the top of the page and set a custom message for noncompliance.
+    # [Enforce specific deployment types](#tab/deployments)
 
-9.  Select **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
+    This policy doesn't require parameters. 
 
-10. Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't in the list of allowed models.
+9. Optionally, select the **Non-compliance messages** tab at the top of the page and set a custom message for noncompliance.
 
+10. Select **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
 
-# [Enforce specific deployment types](#tab/deployments)
+11. Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't in the list of allowed models.
 
-The following policy allows you to control which types of deployments are allowed in the Azure AI Services or Azure OpenAI Resources. For example, you might want to prevent developers from creating deployments that result in data processed in a different region. Follow these steps to create a policy that denies creating global processing deployment types.
-
-1. From the [Azure portal](https://portal.azure.com), select **Policy** from the left side of the page. You can also search for **Policy** in the search bar at the top of the page.
-  
-2. From the left side of the Azure Policy Dashboard, select **Authoring**, **Definitions**, and then select **+ Policy definition** from the top of the page.
-
-    :::image type="content" source="../media/configure-deployment-policies/create-new-policy.png" alt-text="An screenshot showing how to create a new policy definition in Azure Policies." lightbox="../media/configure-deployment-policies/create-new-policy.png":::
-  
-3. In the **Policy Definition** form, use the following values:
-
-    - **Definition location**: Select the subscription or management group where you want to store the policy definition.
-    - **Name**: Enter a unique name for the policy definition. For example, `Custom allowed Azure AI services and Azure OpenAI deployments`.
-    - **Description**: Enter a description for the policy definition.
-    - **Category**: You can either create a new category or use an existing one. For example, "AI model governance."
-    - **Policy rule**: Enter the policy rule in JSON format. The following example shows a policy rule that blocks specific deployment types, particularly Global Standard.
-
-        ```json
-        {
-            "mode": "All",
-            "policyRule": {
-                "if": {
-                    "allOf": [
-                        {
-                            "field": "type",
-                            "equals": "Microsoft.CognitiveServices/accounts/deployments"
-                        },
-                        {
-                            "field": "Microsoft.CognitiveServices/accounts/deployments/sku.name",
-                            "equals": "GlobalStandard"
-                        }
-                    ]
-                },
-                "then": {
-                    "effect": "deny"
-                }
-            }
-        }
-        ```
-
-4. Select **Save** to save the policy definition. After saving, you arrive at the policy definition's overview page.
-
-5. From the policy definition's overview page, select **Assign policy** to assign the policy definition.
-
-6. From the **Assign policy** page, use the following values on the **Basics** tab:
-
-    - **Scope**: Select the scope where you want to assign the policy. The scope can be a management group, subscription, or resource group.
-    - **Policy definition**: This field is prepopulated with the title of policy definition you created previously.
-    - **Assignment name**: Enter a unique name for the assignment.
-    - **Policy enforcement**: Make sure that the **Policy enforcement** field is set to **Enabled**. If it isn't enabled, the policy isn't enforced.
-
-7. Select **Next** at the bottom of the page, or the **Parameters** tab at the top of the page.
-
-8. Optionally, select the **Non-compliance messages** tab at the top of the page and set a custom message for noncompliance.
-
-9.  Select the **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
-
-10. Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't in the list of allowed models.
-
----
 
 ## Verify policy assignment
 
@@ -179,9 +155,9 @@ To monitor compliance with the policy, follow these steps:
 
 1. From the [Azure portal](https://portal.azure.com), select **Policy** from the left side of the page. You can also search for **Policy** in the search bar at the top of the page.
 
-1. From the left side of the Azure Policy Dashboard, select **Compliance**. Each policy assignment is listed with the compliance status. To view more details, select the policy assignment.
+1. From the left side of the Azure Policy Dashboard, select **Compliance**. Each policy assignment is listed with the compliance status. To view more details, select the policy assignment. The following example shows the compliance report for a policy that blocks deployments of type *Global standard*.
 
-    :::image type="content" source="../media/configure-deployment-policies/policy-compliance.png" alt-text="An screenshot showing an example of a policy compliance report." lightbox="../media/configure-deployment-policies/policy-compliance.png":::
+    :::image type="content" source="../media/configure-deployment-policies/policy-compliance.png" alt-text="An screenshot showing an example of a policy compliance report for a policy that blocks Global standard deployment SKUs." lightbox="../media/configure-deployment-policies/policy-compliance.png":::
 
 ## Update the policy assignment
 
