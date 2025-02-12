@@ -22,13 +22,13 @@ ms.custom: 2025-understanding-release
 Content Understanding offers a streamlined process and various capabilities to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into analytical workflows and retrieval augmented generation (RAG) applications.
 
 When you create a Content Understanding service, you work with the following capabilities:
-* **AI-Powered Analysis**: Leverages advanced generative AI models to analyze and understand content across multiple modalities - text, audio, video, and images.
+**AI-Powered Analysis**: Leverages advanced generative AI models to analyze and understand content across multiple modalities - text, audio, video, and images.
 
-* **Intelligent Content Processing**: Transforms unstructured content into structured data through a dual-pipeline architecture:
+**Intelligent Content Processing**: Transforms unstructured content into structured data through a dual-pipeline architecture:
   - Content extraction for foundational data structuring
   - Field extraction for schema-based insights generation
 
-* **Standardized Output Generation**: Creates consistent, structured outputs suitable for:
+**Standardized Output Generation**: Creates consistent, structured outputs suitable for:
   - Integration with analytical workflows
   - Retrieval augmented generation (RAG) applications
   - Automated business processes
@@ -126,8 +126,8 @@ Content Understanding ensures that the results from field and content extraction
 
 Analyzers are the core processing units in Content Understanding that define how your content should be processed and what insights should be extracted. Think of an analyzer as a custom pipeline that combines:
 
-1. Content extraction configurations - determining what foundational elements to extract
-2. Field extraction schemas - specifying what insights to generate from the content
+* Content extraction configurations - determining what foundational elements to extract
+* Field extraction schemas - specifying what insights to generate from the content
 
 Key benefits of analyzers include:
 
