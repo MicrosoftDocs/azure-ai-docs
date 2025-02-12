@@ -95,7 +95,7 @@ These models are currently available for use in Azure OpenAI Service.
 | ---- | ---- | ---- | --- |
 | `dall-e-3` | 3 | No earlier than April 30, 2025 | |
 | `gpt-35-turbo` | 0301 | February 13, 2025<br><br> Deployments set to [**Auto-update to default**](/azure/ai-services/openai/how-to/working-with-models?tabs=powershell#auto-update-to-default) will be automatically upgraded to version: `0125`, starting on January 21, 2025.   | `gpt-35-turbo` (0125) <br><br> `gpt-4o-mini`  |
-| `gpt-35-turbo`<br>`gpt-35-turbo-16k` | 0613 | February 13, 2025 <br><br> Deployments set to [**Auto-update to default**](/azure/ai-services/openai/how-to/working-with-models?tabs=powershell#auto-update-to-default) will be automatically upgraded to version: `0125`, starting on January 21, 2025.  | `gpt-35-turbo` (0125) <br><br> `gpt-4o-mini`|
+| `gpt-35-turbo` | 0613 | February 13, 2025 <br><br> Deployments set to [**Auto-update to default**](/azure/ai-services/openai/how-to/working-with-models?tabs=powershell#auto-update-to-default) will be automatically upgraded to version: `0125`, starting on January 21, 2025.  | `gpt-35-turbo` (0125) <br><br> `gpt-4o-mini`|
 | `gpt-35-turbo-16k`| 0613 | April, 30, 2025 | `gpt-35-turbo` (0125) <br><br> `gpt-4o-mini`|
 | `gpt-35-turbo` | 1106 | No earlier than May 31, 2025 <br><br> Deployments set to [**Auto-update to default**](/azure/ai-services/openai/how-to/working-with-models?tabs=powershell#auto-update-to-default) will be automatically upgraded to version: `0125`, starting on January 21, 2025. | `gpt-35-turbo` (0125) <br><br> `gpt-4o-mini` |
 | `gpt-35-turbo` | 0125 | No earlier than May 31, 2025 | `gpt-4o-mini` |
@@ -140,10 +140,10 @@ If you're an existing customer looking for information about these models, see [
 | babbage-002 | | January 27, 2025 |  |
 | davinci-002 | | January 27, 2025 | |
 | dall-e-2|  | January 27, 2025 | dalle-3 |
-| ada | July 6, 2023 | June 14, 2024 | babbage-002 |
-| babbage | July 6, 2023 | June 14, 2024 | babbage-002 |
-| curie | July 6, 2023 | June 14, 2024 | davinci-002 |
-| davinci | July 6, 2023 | June 14, 2024 | davinci-002 |
+| ada | July 6, 2023 | June 14, 2024 |  |
+| babbage | July 6, 2023 | June 14, 2024 |  |
+| curie | July 6, 2023 | June 14, 2024 | |
+| davinci | July 6, 2023 | June 14, 2024 |  |
 | text-ada-001 | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
 | text-babbage-001 | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
 | text-curie-001 | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
