@@ -76,9 +76,6 @@ When working with audio and video content, selecting a narrow set of languages f
 ### Example 1:
 If you are certain that the content only contains English and Spanish, configuring your transcription to these two languages only may improve quality.  But if the content accidentally includes another languages, such configuration may actually degrade overall quality.
 
-### Example 2:
-If you have conference calls that occasionally include Portuguese speakers, add Portuguese only for those meetings. For all other calls, stick to English if that’s what you expect 90% of the time.
-
 ---
 
 ## Transcript, OCR text, and speaker data do not require fields
