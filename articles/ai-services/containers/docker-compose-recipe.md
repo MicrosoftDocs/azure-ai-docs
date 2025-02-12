@@ -16,12 +16,10 @@ ms.author: aahi
 
 # Use Docker Compose to deploy multiple Azure AI containers
 
-This article shows you how to deploy multiple Azure AI containers. Specifically, you'll learn how to use Docker Compose to orchestrate multiple Docker container images. The example in this article is deploying a [Document Intelligence](../document-intelligence/overview.md) container and a [AI Vision read](../computer-vision/how-to/call-read-api.md) container.
+This article shows you how to deploy multiple Azure AI containers. Specifically, you'll learn how to use Docker Compose to orchestrate multiple Docker container images on a single host computer. The example in this article is deploying a [Document Intelligence](../document-intelligence/overview.md) container and a [AI Vision read](../computer-vision/how-to/call-read-api.md) container together.
 
 > [!NOTE] 
 > [Docker Compose](https://docs.docker.com/compose/) is a tool for defining and running multi-container Docker applications. In Compose, you use a YAML file to configure your application's services. Then, you create and start all the services from your configuration by running a single command.
-
-It can be useful to orchestrate multiple container images on a single host computer. In this article, we'll pull together the Read and Document Intelligence containers.
 
 ## Prerequisites
 
