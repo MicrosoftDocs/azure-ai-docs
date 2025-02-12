@@ -21,19 +21,31 @@ ms.custom: 2025-understanding-release
 
 Content Understanding offers a streamlined process and various capabilities to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into analytical workflows and retrieval augmented generation (RAG) applications.
 
-## Key Capabilities of Content Understanding
+When you create a Content Understanding service, you work with the following capabilities:
+* Leveraging the latest advancements in Generative AI to transform unstructured data into structured, organized, and searchable information.
+* Leveraging the latest advancements in Generative AI to transform unstructured data into structured, organized, and searchable information.
+
+## Overview of Key Capabilities in Content Understanding
 
 ### Multimodal Data Ingestion
-Content Understanding processes a variety of data types, including documents, text, images, audio, and video, converting them into a structured format for efficient analysis. This service offers a comprehensive solution, eliminating the need to manage separate Azure resources for each type of data—speech, vision, and document processing. By integrating these functionalities, Content Understanding simplifies workflows, reduces operational complexity, and enhances efficiency.
+
+Content Understanding delivers a unified solution for processing diverse data types - documents, text, images, audio, and video - through an intelligent pipeline that transforms unstructured content into structured, analyzable formats. This consolidated approach eliminates the complexity of managing separate Azure resources for speech, vision, and document processing.
+
+The service employs a customizable dual-pipeline architecture that combines [content extraction](#content-extraction) and [field extraction](#field-extraction) capabilities. Content extraction provides foundational structuring of raw data, while field extraction applies schema-based analysis to derive specific insights. This integrated approach streamlines workflows, reduces operational overhead, and enables sophisticated analysis across multiple modalities through a single, cohesive interface.
 
 ### Content Extraction
-Content extraction focuses on extracting general information from the input content. For example, content extraction can be used to extract all printed or handwritten text, perform layout analysis to identify paragraphs, sections, and tables, and recognize barcode within a document.
 
+Content extraction in Content Understanding is a powerful feature that transforms unstructured data into structured data, powering advanced AI processing capabilities. The structured data enables efficient downstream processing while maintaining contextual relationships in the source content.
 
-#### Add-on capabilities of content extraction
-Content Understanding supports more sophisticated analysis capabilities. Use the add-on features to extend the results to include more features extracted from your content. Some add-on features incur an extra cost. These optional features can be enabled and disabled depending on the scenario.
+Content extraction provides foundational data that grounds the generative capabilities of Field Extraction, offering essential context about the input content. Users will find content extraction invaluable for converting diverse data formats into a structured format, this capability excels in scenarios requiring:
+* Document digitization and OCR
+* Content classification and categorization  
+* Audio/video transcription and analysis
+* Metadata generation at scale
 
-To explore the content extraction and add-on capabilities for each modality, select a modality from the tabs below.
+Content Understanding enhances its core extraction capabilities through optional add-on features that provide deeper content analysis. These add-ons can extract additional elements like layout information, barcodes, mathematical formulas, and speaker roles. While some add-ons may incur additional costs, they can be selectively enabled based on your specific requirements to optimize both functionality and cost-efficiency. The modular nature of these add-ons allows for customized processing pipelines tailored to your use case.
+
+The following sections detail the content extraction capabilities and optional add-on features available for each supported modality. Select your target modality from the tabs below to view its specific capabilities.
 
 # [Document](#tab/document)
 
@@ -42,10 +54,8 @@ To explore the content extraction and add-on capabilities for each modality, sel
 |&bullet; **Optical Character Recognition (OCR)**: Extract printed and handwritten text from documents in various file formats, converting it into structured data. </br>|  &bullet; **Layout**:Extracts layout information such as paragraphs, sections, tables, and more.. </br>&bullet; **Barcode**:  Identifies and decodes all barcodes in the documents. </br> &bullet; **Formula**: Recognizes all identified mathematical equations from the documents. </br> |
 
 # [Image](#tab/image)
-
-|Content Extraction|Add-on Capabilities|
-|--------|-------------|
-|&bullet; **Image Analysis**: Analyze images to extract structured fields. </br>&bullet; **Defect detection**:  Identify potential defects and their severities in defect scenarios </br> &bullet; **Retail Inventory Management**: Identify and extract retail products fields product on shelves and retail scenarios. </br>| N/A |
+> [!NOTE]
+> Content extraction for images is currently not supported. At present, the Image modality supports field extraction capabilities only. 
 
 # [Audio](#tab/audio)
 
@@ -63,11 +73,12 @@ To explore the content extraction and add-on capabilities for each modality, sel
 ### Information Extraction Using Schemas
 Schemas play a crucial role in Content understanding by providing a structured framework for extracting and organizing information from various data types. [Field extraction](#field-extraction), [grounding and confidence scores](#grounding-and-confidence-scores) are some of the key reasons why schemas are powerful.
 
-#### Field Extraction
-Schemas enable the extraction of structured data from unstructured data using generative AI to generate, classify or extract data from the input content. For instance, field extraction can identify the invoice amount in a document, capture names mentioned in an audio file, or generate a summary of a video.  [Learn more and follow a quickstart guide to build a schema and extract fields.](../quickstart/use-ai-foundry.md#build-a-schema)
+### Field Extraction
+Field extraction in Content Understanding leverages a multimodal generative AI model to define schemas that extract, infer, or abstract information from various data types into structured outputs. This capability is powerful because by defining schemas with natural language field descriptions it eliminates the need for complex prompt engineering, making it accessible for users to create standardized outputs. 
 
-Generation methods differ by modality type. To learn more about the supported generation methods for each modality, select a modality from the tabs below.
+Field extraction is particularly optimized for scenarios requiring consistent metadata extraction across content types, workflow automation with structured output, compliance monitoring and validation etc. The value lies in its ability to handle multiple content types (text, audio, video, images) while maintaining accuracy and scalability through AI-powered schema validation and confidence scoring. [Learn more and follow a quickstart guide to build a schema and extract fields.](../quickstart/use-ai-foundry.md#build-a-schema)
 
+Each modality supports specific generation approaches optimized for that content type. Review the tabs below to understand the generation capabilities and methods available for your target modality.
 ----
 # [Document](#tab/document)
 
@@ -94,6 +105,8 @@ Generation methods differ by modality type. To learn more about the supported ge
 |&bullet; **Generate**: In video, users can derive values from the input content, such as summaries of video segments and product characteristics. <br> &bullet; **Classify**: In video, users can categorize values from the input content, such as determining the sentiment of conversations (positive, neutral, or negative). <br>|
 
 -------
+
+
 #### Grounding and Confidence Scores
 
 Content Understanding ensures that the results from field and content extraction are accurately grounded to the input content and provide confidence scores for the extracted data, making automation and validation more reliable.
