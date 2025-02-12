@@ -58,9 +58,16 @@ EmbeddingsClient client = new EmbeddingsClient(
 If you configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client. Note that here `includeInteractiveCredentials` is set to `true` only for demonstration purposes so authentication can happen using the web browser. On production workloads, you should remove such parameter.
 
 ```csharp
+TokenCredential credential = new DefaultAzureCredential(includeInteractiveCredentials: true);
+AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions();
+BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(credential, new string[] { "https://cognitiveservices.azure.com/.default" });
+
+clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
+
 client = new EmbeddingsClient(
     new Uri("https://<resource>.services.ai.azure.com/models"),
-    new DefaultAzureCredential(includeInteractiveCredentials: true)
+    credential,
+    clientOptions
 );
 ```
 
