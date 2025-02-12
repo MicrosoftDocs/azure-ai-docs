@@ -253,18 +253,16 @@ items:
         href: ../ai-services/translator/translator-overview.md?context=/azure/ai-studio/context/context
       - name: Azure AI Translator language support
         href: ../ai-services/translator/language-support.md?context=/azure/ai-studio/context/context
-      - name: Features and capabilities
-        items:
-        - name: Text translation
-          href: ../ai-services/translator/text-translation-overview.md?context=/azure/ai-studio/context/context
-        - name: Document translation
-          href: ../ai-services/translator/document-translation/overview.md?context=/azure/ai-studio/context/context
-        - name: Custom Translator
-          href: ../ai-services/translator/custom-translator/overview.md?context=/azure/ai-studio/context/context
-        - name: Containers
-          href: ../ai-services/translator/containers/overview.md?context=/azure/ai-studio/context/context
-        - name: Prebuilt solutions
-          href: ../ai-services/translator/solutions-overview.md?context=/azure/ai-studio/context/context
+      - name: Text translation
+        href: ../ai-services/translator/text-translation-overview.md?context=/azure/ai-studio/context/context
+      - name: Document translation
+        href: ../ai-services/translator/document-translation/overview.md?context=/azure/ai-studio/context/context
+      - name: Custom Translator
+        href: ../ai-services/translator/custom-translator/overview.md?context=/azure/ai-studio/context/context
+      - name: Containers
+        href: ../ai-services/translator/containers/overview.md?context=/azure/ai-studio/context/context
+      - name: Prebuilt solutions
+        href: ../ai-services/translator/solutions-overview.md?context=/azure/ai-studio/context/context
     - name:  Vision
       items:
       - name: Azure Image Analysis
