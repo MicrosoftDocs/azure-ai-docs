@@ -32,6 +32,8 @@ Follow these steps to create and assign an example custom policy to allow specif
 
 2. From the left side of the Azure Policy Dashboard, select **Authoring**, **Definitions**, and then select **+ Policy definition** from the top of the page.
 
+    :::image type="content" source="../media/configure-deployment-policies/create-new-policy.png" alt-text="An screenshot showing how to create a new policy definition in Azure Policies." lightbox="../media/configure-deployment-policies/create-new-policy.png":::
+
 3. In the **Policy Definition** form, use the following values:
 
     - **Definition location**: Select the subscription or management group where you want to store the policy definition.
@@ -97,18 +99,20 @@ Follow these steps to create and assign an example custom policy to allow specif
 
 8. Optionally, select the **Non-compliance messages** tab at the top of the page and set a custom message for noncompliance.
 
-9. Select **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
+9.  Select **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
 
 10. Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't in the list of allowed models.
 
 
 # [Enforce specific deployment types](#tab/deployments)
 
-The following policy allow you to control which types of deployments are allowed in the Azure AI Services or Azure OpenAI Resources. For example, you may want to prevent them from creating deployments that result in data processed in a different region. Follow these steps to create a policy that denies creating Global processing deployment types.
+The following policy allows you to control which types of deployments are allowed in the Azure AI Services or Azure OpenAI Resources. For example, you may want to prevent them from creating deployments that result in data processed in a different region. Follow these steps to create a policy that denies creating Global processing deployment types.
 
 1. From the [Azure portal](https://portal.azure.com), select **Policy** from the left side of the page. You can also search for **Policy** in the search bar at the top of the page.
   
 2. From the left side of the Azure Policy Dashboard, select **Authoring**, **Definitions**, and then select **+ Policy definition** from the top of the page.
+
+    :::image type="content" source="../media/configure-deployment-policies/create-new-policy.png" alt-text="An screenshot showing how to create a new policy definition in Azure Policies." lightbox="../media/configure-deployment-policies/create-new-policy.png":::
   
 3. In the **Policy Definition** form, use the following values:
 
@@ -152,13 +156,15 @@ The following policy allow you to control which types of deployments are allowed
     - **Assignment name**: Enter a unique name for the assignment.
     - **Policy enforcement**: Make sure that the **Policy enforcement** field is set to **Enabled**. If it isn't enabled, the policy isn't enforced.
 
-    Select **Next** at the bottom of the page, or the **Parameters** tab at the top of the page.
+    :::image type="content" source="../media/configure-deployment-policies/assign-policy-scope.png" alt-text="An screenshot showing to assign the created policy definition to a given scope." lightbox="../media/configure-deployment-policies/assign-policy-scope.png":::
 
-7. Optionally, select the **Non-compliance messages** tab at the top of the page and set a custom message for noncompliance.
+7. Select **Next** at the bottom of the page, or the **Parameters** tab at the top of the page.
 
-8.  Select **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
+8. Optionally, select the **Non-compliance messages** tab at the top of the page and set a custom message for noncompliance.
 
-9.  Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't in the list of allowed models.
+9.  Select **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
+
+10. Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't in the list of allowed models.
 
 ---
 
@@ -171,7 +177,10 @@ To verify that the policy is assigned, navigate to **Policy** in the Azure porta
 To monitor compliance with the policy, follow these steps:
 
 1. From the [Azure portal](https://portal.azure.com), select **Policy** from the left side of the page. You can also search for **Policy** in the search bar at the top of the page.
+
 1. From the left side of the Azure Policy Dashboard, select **Compliance**. Each policy assignment is listed with the compliance status. To view more details, select the policy assignment.
+
+:::image type="content" source="../media/configure-deployment-policies/policy-compliance.png" alt-text="An screenshot showing an example of a policy compliance report." lightbox="../media/configure-deployment-policies/policy-compliance.png":::
 
 ## Update the policy assignment
 
