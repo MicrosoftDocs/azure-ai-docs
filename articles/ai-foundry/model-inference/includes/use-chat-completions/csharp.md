@@ -202,7 +202,7 @@ requestOptions = new ChatCompletionsOptions()
             "How many languages are in the world?"
         )
     },
-    ResponseFormat = new ChatCompletionsResponseFormatJSON()
+    ResponseFormat = new ChatCompletionsResponseFormatJsonObject()
 };
 
 response = client.Complete(requestOptions);
