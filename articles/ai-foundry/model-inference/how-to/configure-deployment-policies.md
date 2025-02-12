@@ -159,13 +159,11 @@ The following policy allows you to control which types of deployments are allowe
     - **Assignment name**: Enter a unique name for the assignment.
     - **Policy enforcement**: Make sure that the **Policy enforcement** field is set to **Enabled**. If it isn't enabled, the policy isn't enforced.
 
-    :::image type="content" source="../media/configure-deployment-policies/assign-policy-scope.png" alt-text="An screenshot showing to assign the created policy definition to a given scope." lightbox="../media/configure-deployment-policies/assign-policy-scope.png":::
-
 7. Select **Next** at the bottom of the page, or the **Parameters** tab at the top of the page.
 
 8. Optionally, select the **Non-compliance messages** tab at the top of the page and set a custom message for noncompliance.
 
-8.  Select the **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
+9.  Select the **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
 
 10. Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't in the list of allowed models.
 
@@ -183,7 +181,7 @@ To monitor compliance with the policy, follow these steps:
 
 1. From the left side of the Azure Policy Dashboard, select **Compliance**. Each policy assignment is listed with the compliance status. To view more details, select the policy assignment.
 
-:::image type="content" source="../media/configure-deployment-policies/policy-compliance.png" alt-text="An screenshot showing an example of a policy compliance report." lightbox="../media/configure-deployment-policies/policy-compliance.png":::
+    :::image type="content" source="../media/configure-deployment-policies/policy-compliance.png" alt-text="An screenshot showing an example of a policy compliance report." lightbox="../media/configure-deployment-policies/policy-compliance.png":::
 
 ## Update the policy assignment
 
