@@ -37,8 +37,8 @@ This procedure requires several tools that must be installed and run locally:
 
 The YAML file defines all the Azure AI services containers to be deployed. These services rely on either a `DockerFile` or an existing container image. In this case, we'll use two images. Copy and paste the following YAML file, and save it as *docker-compose.yaml*. Provide the appropriate **apikey**, **billing**, and **EndpointUri** values in the file.
 
-> [!NOTE]
-> To avoid errors, make sure that the host machine correctly shares drives with Docker Engine. For example, if *E:\mydirectory* is used as a directory in the *docker-compose.yaml* file, share drive **E** with Docker.
+> [!IMPORTANT]
+> Be sure to create the directories on the host machine that are specified under the `volumes` node, or provide ones that exist on your machine. These directories must exist before you try to mount an image by using volume bindings.
 
 ```yaml
 version: '3.7'
@@ -70,9 +70,6 @@ services:
     ports:
       - "5021:5000"
 ```
-
-> [!IMPORTANT]
-> Create the directories on the host machine that are specified under the **volumes** node. This approach is required because the directories must exist before you try to mount an image by using volume bindings.
 
 ## Start the configured Docker Compose services
 
