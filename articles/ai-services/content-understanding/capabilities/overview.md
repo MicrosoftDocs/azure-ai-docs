@@ -86,7 +86,9 @@ Field extraction is particularly optimized for scenarios requiring:
 * workflow automation with structured output
 * compliance monitoring and validation 
 
-The value lies in its ability to handle multiple content types (text, audio, video, images) while maintaining accuracy and scalability through AI-powered schema validation and confidence scoring.[Learn more and follow a quickstart guide to build a schema and extract fields.](../quickstart/use-ai-foundry.md#build-a-schema)
+The value lies in its ability to handle multiple content types (text, audio, video, images) while maintaining accuracy and scalability through AI-powered schema validation and confidence scoring. 
+
+> [Learn more and follow a quickstart guide to build a schema and extract fields.](../quickstart/use-ai-foundry.md#build-a-schema)
 
 Each modality supports specific generation approaches optimized for that content type. Review the tabs below to understand the generation capabilities and methods available for your target modality.
 
@@ -116,32 +118,45 @@ Each modality supports specific generation approaches optimized for that content
 
 -------
 
-
 #### Grounding and Confidence Scores
 
 Content Understanding ensures that the results from field and content extraction are accurately grounded to the input content and provide confidence scores for the extracted data, making automation and validation more reliable.
 
 ### Analyzers
-Analyzers serve as the fundamental element of Content Understanding. They enable clients to set up content extraction configurations and field extraction schemas. Once established, the analyzer reliably applies these settings to all incoming data for processing. 
 
-#### Prebuilt and Customizable Analyzers
-Each modality offers suggested analyzer templates tailored to common scenarios, with some templates providing prebuilt schemas.
+Analyzers are the core processing units in Content Understanding that define how your content should be processed and what insights should be extracted. Think of an analyzer as a custom pipeline that combines:
 
-These suggested templates serve as a starting point, allowing users to customize them to fit specific needs and extract relevant data. This approach simplifies data extraction without requiring specialized AI skills, such as prompt engineering. [Learn more about analyzer templates](../quickstart/use-ai-foundry.md#analyzer-templates)
+1. Content extraction configurations - determining what foundational elements to extract
+2. Field extraction schemas - specifying what insights to generate from the content
 
-#### Improving Analyzer Performance
-To enhance field extraction performance, you can improve an analyzer using zero-shot learning. By providing a few labeled samples, the analyzer can learn and refine its accuracy. **Note**: This feature is currently available for document scenarios only.
+Key benefits of analyzers include:
 
-## Input requirements
+* **Consistency**: Analyzers ensure uniform processing across all content by applying the same extraction rules and schemas, delivering reliable and predictable results.
+
+* **Scalability**: Once configured, analyzers can handle large volumes of content through API integration, making them ideal for production scenarios.
+
+* **Reusability**: A single analyzer can be reused across multiple workflows and applications, reducing development overhead.
+
+* **Customization**: While starting with prebuilt templates, analyzers can be fully customized to match your specific business requirements and use cases.
+
+For example, you might create an analyzer for processing customer service calls that combines audio transcription (content extraction) with sentiment analysis and topic classification (field extraction). This analyzer can then consistently process thousands of calls, providing structured insights for your customer experience analytics.
+
+> [Learn more about analyzer templates](../quickstart/use-ai-foundry.md#analyzer-templates)
+
+#### Best Practices
+
+For guidance on optimizing your Content Understanding implementations, including schema design tips, analyzer configuration strategies, see our detailed [Best practices guide](../how-to/best-practices.md). This guide helps you maximize the value of Content Understanding while avoiding common pitfalls.
+
+### Input requirements
 For detailed information on supported input document formats, refer to our [Service quotas and limits](../service-limits.md) page.
 
-## Supported languages and regions
+### Supported languages and regions
 For a detailed list of supported languages and regions, visit our [Language and region support](../language-region-support.md) page.
 
-## Data privacy and security
+### Data privacy and security
 Developers using Content Understanding should review Microsoft's policies on customer data. For more information, visit our [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) page.
 
-## Next step
+## Next steps
 * Try processing your document content using Content Understanding in [Azure ](https://ai.azure.com/).
 * Learn to analyze content [**analyzer templates**](../quickstart/use-ai-foundry.md).
 * Review code sample: [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
