@@ -87,6 +87,7 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
     ```csharp
     using System;
     using Azure;
+    using Azure.Identity;
     using Azure.Search.Documents;
     using Azure.Search.Documents.Indexes;
     using Azure.Search.Documents.Indexes.Models;
