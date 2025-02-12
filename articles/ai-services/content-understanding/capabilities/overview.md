@@ -22,8 +22,16 @@ ms.custom: 2025-understanding-release
 Content Understanding offers a streamlined process and various capabilities to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into analytical workflows and retrieval augmented generation (RAG) applications.
 
 When you create a Content Understanding service, you work with the following capabilities:
-* Leveraging the latest advancements in Generative AI to transform unstructured data into structured, organized, and searchable information.
-* Leveraging the latest advancements in Generative AI to transform unstructured data into structured, organized, and searchable information.
+* **AI-Powered Analysis**: Leverages advanced generative AI models to analyze and understand content across multiple modalities - text, audio, video, and images.
+
+* **Intelligent Content Processing**: Transforms unstructured content into structured data through a dual-pipeline architecture:
+  - Content extraction for foundational data structuring
+  - Field extraction for schema-based insights generation
+
+* **Standardized Output Generation**: Creates consistent, structured outputs suitable for:
+  - Integration with analytical workflows
+  - Retrieval augmented generation (RAG) applications
+  - Automated business processes
 
 ## Overview of Key Capabilities in Content Understanding
 
