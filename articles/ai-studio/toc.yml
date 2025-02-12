@@ -60,7 +60,7 @@ items:
       items:
       - name: Deploy models via managed compute
         href: how-to/deploy-models-managed.md
-    - name: Model inference
+    - name: Azure AI model inference
       items:
       - name: What is Azure AI model inference?
         href: ../ai-foundry/model-inference/overview.md?context=/azure/ai-studio/context/context
@@ -78,8 +78,28 @@ items:
       href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-studio/context/context
     - name: Troubleshoot deployments and monitoring
       href: how-to/troubleshoot-deploy-and-monitor.md
-  - name: Featured models
+  - name: Work with models from the model catalog
     items:
+    - name: Featured models
+      href: ../ai-foundry/model-inference/concepts/models.md?context=/azure/ai-studio/context/context
+    - name: Use the Azure AI model inference endpoint
+      href: ../ai-foundry/model-inference/how-to/inference.md?context=/azure/ai-studio/context/context
+    - name: Programming languages and SDKs
+      href: ../ai-foundry/model-inference/supported-languages.md?context=/azure/ai-studio/context/context
+    - name: Work with embedding models
+      items:
+        - name: Work with text embedding models
+          href: ../ai-foundry/model-inference/how-to/use-embeddings.md?context=/azure/ai-studio/context/context
+        - name: Work with image embedding models
+          href: ../ai-foundry/model-inference/how-to/use-image-embeddings.md?context=/azure/ai-studio/context/context
+    - name: Work with chat models
+      items:
+        - name: Work with chat completion models
+          href: ../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/ai-studio/context/context
+        - name: Work with reasoning models
+          href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-studio/context/context
+
+
     - name: AI21 Jamba models
       href: how-to/deploy-models-jamba.md
     - name: Cohere models
