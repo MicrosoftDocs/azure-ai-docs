@@ -252,7 +252,7 @@ groundedness_pro_eval = GroundednessProEvaluator(azure_ai_project=azure_ai_proje
 
 query_response = dict(
     query="Which tent is the most waterproof?",
-    context="The Alpine Explorer Tent is the most water-proof of all tents available.",
+    context="The Alpine Explorer Tent is the second most water-proof of all tents available.",
     response="The Alpine Explorer Tent is the most waterproof."
 )
 
