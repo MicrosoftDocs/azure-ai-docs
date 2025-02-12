@@ -126,8 +126,8 @@ Content Understanding ensures that the results from field and content extraction
 
 Analyzers are the core processing units in Content Understanding that define how your content should be processed and what insights should be extracted. Think of an analyzer as a custom pipeline that combines:
 
-* Content extraction configurations - determining what foundational elements to extract
-* Field extraction schemas - specifying what insights to generate from the content
+* Content extraction configurations - determining what foundational elements to extract.
+* Field extraction schemas - specifying what insights to generate from the content.
 
 Key benefits of analyzers include:
 
@@ -141,7 +141,7 @@ Key benefits of analyzers include:
 
 For example, you might create an analyzer for processing customer service calls that combines audio transcription (content extraction) with sentiment analysis and topic classification (field extraction). This analyzer can then consistently process thousands of calls, providing structured insights for your customer experience analytics.
 
-* [Build your first analyzer](../quickstart/use-ai-foundry.md#analyzer-templates) using our step-by-step guide
+* [Build your first analyzer](../quickstart/use-ai-foundry.md#analyzer-templates) using our step-by-step guide.
 * Explore [prebuilt analyzer templates](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates) for common scenarios.
 
 #### Best Practices
