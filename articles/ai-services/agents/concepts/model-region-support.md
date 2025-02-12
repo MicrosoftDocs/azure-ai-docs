@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: conceptual
-ms.date: 01/07/2025
+ms.date: 01/29/2025
 ms.custom: azure-ai-agents
 ---
 
@@ -27,54 +27,27 @@ Azure AI Agent Service supports the same models as the chat completions API in A
 | francecentral | -                          | -                          | -                               | ✅                  | ✅                           | -                           | -                               | ✅ | ✅                         | ✅                          | -                          | ✅                             |
 | japaneast     | -                          | -                          | -                               | -                   | -                           | -                           | -                               | -                      | ✅                         | -                          | ✅                         | ✅                              |
 | norwayeast    |-  |  - |  - | -  | ✅ | -  |-  | -  | -  | -  | -  | - |
+| southindia    | - | - | - | - | ✅ | - | - | - | - | ✅ | ✅ | - |
 | swedencentral    | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | ✅ | - | ✅ |
 | uksouth       | -                          | -                          | -                               | -                   | ✅                          | ✅                           | -                               | -                       | ✅                          | ✅                         | ✅                          | ✅                             |
 | westus        | ✅                         | ✅                          | ✅                            | -                   | ✅                          | -                           | ✅                               | - | -                          | ✅                         | ✅                          | -                              |
 | westus3    | ✅ | ✅ | ✅ | - | ✅ | - | ✅ | - | - | - | ✅ | - |
 
 
-## More models
+## Non-Microsoft models
 
 The Azure AI Agent Service also supports the following models from the Azure AI Foundry model catalog.
 
-* Llama 3.1-70B-instruct
+* Meta-Llama-405B-Instruct
 * Mistral-large-2407
-* Cohere command R+
+* Cohere-command-r-plus
+* Cohere-command-r
 
-To use these models, you can use Azure AI Foundry portal to make a deployment, and then reference it in your agent. 
+To use these models, you can use Azure AI Foundry portal to make a deployment, and then reference the deployment name in your agent. For example:
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com/) and select **Model catalog** in the left navigation menu, and scroll down to **Meta-Llama-3-70B-Instruct**. You can also find and use one of the models listed previously.  
-
-1. Select **Deploy**. 
-
-1. In the Deployment options screen that appears, select **Serverless API** with Azure AI Content Safety. 
-
-    :::image type="content" source="../media/llama/llama-deployment.png" alt-text="An image of the llama model project selection screen.":::
- 
-1. Select your project and then select **Subscribe and deploy**. 
-
-    :::image type="content" source="../media/llama/llama-deployment-2.png" alt-text="An image of the llama model deployment screen.":::
-
-1. Add the serverless connection to your hub/project. The deployment name you choose is the one that you reference in your code.  
-
-1. When calling agent creation API, set the `models` parameter to your deployment name. For example:
-
-    # [Python](#tab/python)
-
-    ```python
-    agent = project_client.agents.create_agent( model="llama-3", name="my-agent", instructions="You are a helpful agent" ) 
-    ```
-
-    # [C#](#tab/csharp)
-
-    ```csharp
-    Response<Agent> agentResponse = await client.CreateAgentAsync(
-            model: "llama-3",
-            name: "My agent",
-            instructions: "You are a helpful agent"
-    ```
-    ---
-
+```python
+agent = project_client.agents.create_agent( model="llama-3", name="my-agent", instructions="You are a helpful agent" ) 
+```
 
 ## Next steps
 

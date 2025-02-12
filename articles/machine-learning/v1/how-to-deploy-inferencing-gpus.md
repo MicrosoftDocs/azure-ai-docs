@@ -1,7 +1,7 @@
 ---
 title: Deploy a model for inference with GPU
 titleSuffix: Azure Machine Learning
-description: This article teaches you how to use Azure Machine Learning to deploy a GPU-enabled Tensorflow deep learning model as a web service.service and score inference requests.
+description: This article teaches you how to use Azure Machine Learning to deploy a GPU-enabled TensorFlow deep learning model as a web service.service and score inference requests.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
@@ -44,7 +44,7 @@ Inference, or model scoring, is the phase where the deployed model is used to ma
 
     * To learn how to register models, see [Deploy Models](../how-to-deploy-online-endpoints.md).
 
-    * To create and register the Tensorflow model used to create this document, see [How to Train a TensorFlow Model](../how-to-train-tensorflow.md).
+    * To create and register the TensorFlow model used to create this document, see [How to Train a TensorFlow Model](../how-to-train-tensorflow.md).
 
 * A general understanding of [How and where to deploy models](../how-to-deploy-online-endpoints.md).
 
@@ -99,7 +99,7 @@ For more information on using AKS with Azure Machine Learning, see [How to deplo
 
 ## Write the entry script
 
-The entry script receives data submitted to the web service, passes it to the model, and returns the scoring results. The following script loads the Tensorflow model on startup, and then uses the model to score data.
+The entry script receives data submitted to the web service, passes it to the model, and returns the scoring results. The following script loads the TensorFlow model on startup, and then uses the model to score data.
 
 > [!TIP]
 > The entry script is specific to your model. For example, the script must know the framework to use with your model, data formats, etc.
@@ -140,7 +140,7 @@ This file is named `score.py`. For more information on entry scripts, see [How a
 
 ## Define the conda environment
 
-The conda environment file specifies the dependencies for the service. It includes dependencies required by both the model and the entry script. Please note that you must indicate azureml-defaults with verion >= 1.0.45 as a pip dependency, because it contains the functionality needed to host the model as a web service. The following YAML defines the environment for a Tensorflow model. It specifies `tensorflow-gpu`, which will make use of the GPU used in this deployment:
+The conda environment file specifies the dependencies for the service. It includes dependencies required by both the model and the entry script. Please note that you must indicate azureml-defaults with verion >= 1.0.45 as a pip dependency, because it contains the functionality needed to host the model as a web service. The following YAML defines the environment for a TensorFlow model. It specifies `tensorflow-gpu`, which will make use of the GPU used in this deployment:
 
 ```yaml
 name: project_environment

@@ -98,6 +98,8 @@ items:
       items:
         - name: Fine-tuning overview
           href: concepts/fine-tuning-overview.md
+        - name: Fine-tune with serverless API
+          href: how-to/fine-tune-serverless.md
         - name: Fine-tune with user-managed compute
           href: how-to/fine-tune-managed-compute.md
         - name: Fine-tune Azure OpenAI models
@@ -140,6 +142,8 @@ items:
         href: how-to/deploy-models-cohere-embed.md
       - name: Cohere Rerank models
         href: how-to/deploy-models-cohere-rerank.md
+    - name: DeepSeek-R1 reasoning models
+      href: how-to/deploy-models-deepseek.md
     - name: Meta Llama models
       items:
       - name: Meta Llama family models
@@ -196,6 +200,8 @@ items:
         - name: Consume serverless API models from a different project or hub
           href: how-to/deploy-models-serverless-connect.md
           displayName: maas, paygo, models-as-a-service
+        - name: Content safety for models deployed with serverless APIs
+          href: concepts/model-catalog-content-safety.md
         - name: Model and region availability for Serverless API deployments
           href: how-to/deploy-models-serverless-availability.md
       - name: Managed compute
@@ -412,8 +418,10 @@ items:
     href: responsible-use-of-ai-overview.md
   - name: What is Azure AI Content Safety?
     href: ai-services/content-safety-overview.md
-  - name: Use Azure AI Content Safety in the portal
-    href: ai-services/how-to/content-safety.md
+  - name: Content safety for models deployed with serverless APIs
+    href: concepts/model-catalog-content-safety.md
+  - name: Use Azure AI content safety in the portal
+    href: ../ai-services/content-safety/how-to/foundry.md?context=/azure/ai-studio/context/context
   - name: Content filtering
     href: concepts/content-filtering.md
   - name: Use blocklists

@@ -1,20 +1,21 @@
 ---
 title: "Quickstart: Custom categories (preview)"
 titleSuffix: Azure AI services
-description: Use the custom categories API to create your own harmful content categories and train the Content Safety model for your use case.
+description: Use the custom categories API to create your own content categories and train the Content Safety model for your use case.
 #services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
-ms.date: 07/03/2024
+ms.date: 01/29/2025
 ms.author: pafarley
+#customer intent: As a developer, I want to create custom content categories so that I can train the Content Safety model for specific use cases.
 ---
 
 
 # Quickstart: Custom categories (standard mode) (preview)
 
-Follow this guide to use Azure AI Content Safety Custom categories (standard) REST API to create your own content categories for your use case and train Azure AI Content Safety to detect them in new text content.
+Follow this guide to use Azure AI Content Safety Custom categories (standard) REST API to create your own content categories for your use case and train Azure AI Content Safety to detect them in new text content. 
 
 For more information on Custom categories, see the [Custom categories concept page](./concepts/custom-categories.md). For API input limits, see the [Input requirements](./overview.md#input-requirements) section of the Overview. 
 
@@ -45,7 +46,7 @@ To train a custom category, you need example text data that represents the categ
 > For tips on creating your own data set, see the [How-to guide](./how-to/custom-categories.md#prepare-your-training-data).
 
 1. Download the [sample text data file](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/ContentSafety/survival-advice.jsonl) from the GitHub repository.
-2. Upload the _.jsonl_ file to your Azure Storage account blob container. Then copy the blob URL to a temporary location for later use.
+1. Upload the _.jsonl_ file to your Azure Storage account blob container. Then copy the blob URL to a temporary location for later use.
 
 > [!IMPORTANT]
 > **The user's storage account is set up as a hierarchical namespace account, which cannot be supported by Custom Categories. Please try using a regular storage account instead.**
@@ -77,36 +78,30 @@ curl -X PUT "<your_endpoint>/contentsafety/text/categories/<your_category_name>?
 > Every time you change your category name, definition or samples,a new version will be created. You can use the version number to trace back to previous versions. Please remember this version number, as it will be required in the URL for the next step- training custom categories.
 
 
-
 #### API Request
 
-
-| Field            | Description                                                                                      | Example Value                                                                                                                   |
-|------------------|--------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| `categoryName`   | The name of the category or topic the request relates to.                                        | survival-advice                                                                                                               |
-| `definition`     | A brief description of the content type for the category.                                        | text prompts about survival advice in camping/wilderness situations                                                           |
-| `sampleBlobUrl`  | URL to access a sample JSONL file containing data examples for the category.                     | Link               |
-
+| Field        | Description      | Example Value    |
+|--------|--------------|---------------------|
+| `categoryName`   | The name of the category or topic the request relates to.              | survival-advice             |
+| `definition`     | A brief description of the content type for the category.      | text prompts about survival advice in camping/wilderness situations           |
+| `sampleBlobUrl`  | URL to access a sample JSONL file containing data examples for the category.    | Link      |
 
 
 
 #### API Response
 
-| Field                  | Description                                                                                      | Example Value                                                                                                                   |
-|------------------------|--------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| `categoryName`         | The name of the category or topic the response relates to.                                       | survival-advice                                                                                                               |
-| `definition`           | A brief description of the content type for the category.                                        | text prompts about survival advice in camping/wilderness situations                                                           |
+| Field     | Description    | Example Value    |
+|------------------------|---|---------|
+| `categoryName`         | The name of the category or topic the response relates to.     | survival-advice        |
+| `definition`           | A brief description of the content type for the category.         | text prompts about survival advice in camping/wilderness situations                                                           |
 | `sampleBlobUrl`        | URL to access a sample JSONL file containing data examples for the category.                     | Link                 |
 | `sampleBlobSnapshotUrl`| Snapshot URL of the sample JSONL file, which provides access to a specific version of the data.  | Snapshot URL |
-| `version`              | The version number of the category data.                                                         | 1                                                                                                                             |
-| `createdTime`          | Timestamp when the category data was created.                                                    | 2024-10-28T22:06:59.4626988Z                                                                                                  |
-| `status`               | Current status of the category data processing.                                                  | Succeeded                                                                                                                     |
+| `version`              | The version number of the category data.     | 1      |
+| `createdTime`          | Timestamp when the category data was created.      | 2024-10-28T22:06:59.4626988Z         |
+| `status`         | Current status of the category data processing.       | Succeeded         |
 
 
-
-
-
-### Start the category build process:
+### Start the category build process
 
 Replace <your_api_key> and <your_endpoint> with your own values, and also **append the version number in the url you obtained from the last step.** Allow enough time for model training: the end-to-end execution of custom category training can take from around five hours to ten hours. Plan your moderation pipeline accordingly. After you receive the response, store the operation ID (referred to as `id`) in a temporary location. This ID will be necessary for retrieving the build status using the **Get status** API in the next section.
 
@@ -124,7 +119,7 @@ curl -X POST "<your_endpoint>/contentsafety/text/categories/survival-advice:buil
 | `status`   | Current status of the request                 | Succeeded                                     |
 
 
-### Get the category build status:
+### Get the category build status
 
 To retrieve the status, utilize the `id` obtained from the previous API response and place it in the path of the API below.
 
@@ -133,6 +128,7 @@ curl -X GET "<your_endpoint>/contentsafety/text/categories/operations/<id>?api-v
      -H "Ocp-Apim-Subscription-Key: <your_api_key>" \
      -H "Content-Type: application/json"
 ```
+
 #### API Response
 
 | Field      | Description                                   | Example Value                                 |
@@ -154,6 +150,7 @@ curl -X POST "<your_endpoint>/contentsafety/text:analyzeCustomCategory?api-versi
             \"version\": 1
         }"
 ```
+
 #### API Request
 | Field          | Description                                             |
 |----------------|---------------------------------------------------------|
@@ -274,6 +271,7 @@ print(result)
 ```
 ---
 
+
 ## Other custom categories operations
 
 Remember to replace the placeholders below with your actual values for the API key, endpoint, and specific content (category name, definition, and so on). These examples help you to manage the customized categories in your account.
@@ -389,5 +387,6 @@ print(result)
 ---
 
 ## Related content
+
 * [Custom categories concepts](./concepts/custom-categories.md)
 * [Moderate content with Content Safety](./quickstart-text.md)

@@ -3,7 +3,7 @@ title: Azure OpenAI Service Assistants API concepts
 titleSuffix: Azure OpenAI Service
 description: Learn about the concepts behind the Azure OpenAI Assistants API.
 ms.topic: conceptual
-ms.date: 08/21/2024
+ms.date: 02/04/2025
 ms.service: azure-ai-openai
 manager: nitinme
 author: aahill
@@ -13,7 +13,7 @@ recommendations: false
 
 # Azure OpenAI Assistants API (Preview)
 
-Assistants, a new feature of Azure OpenAI Service, is now available in public preview. Assistants API makes it easier for developers to create applications with sophisticated copilot-like experiences that can sift through data, suggest solutions, and automate tasks.
+Assistants, a feature of Azure OpenAI Service, is available in public preview starting in the `2024-02-15-preview` API version. Assistants API makes it easier for developers to create applications with sophisticated copilot-like experiences that can sift through data, suggest solutions, and automate tasks.
 
 * Assistants can call Azure OpenAI’s [models](../concepts/models.md) with specific instructions to tune their personality and capabilities.
 * Assistants can access **multiple tools in parallel**. These can be both Azure OpenAI-hosted tools like [code interpreter](../how-to/code-interpreter.md) and [file search](../how-to/file-search.md), or tools you build, host, and access through [function calling](../how-to/function-calling.md).
@@ -37,6 +37,10 @@ Assistants API is built on the same capabilities that power OpenAI’s GPT produ
 
 > [!IMPORTANT]
 > Retrieving untrusted data using Function calling, Code Interpreter or File Search with file input, and Assistant Threads functionalities could compromise the security of your Assistant, or the application that uses the Assistant. Learn about mitigation approaches [here](https://aka.ms/oai/assistant-rai).
+
+## Available models
+
+To see a list of Azure OpenAI models that you can use with assitants, see the [Models](./models.md#assistants-preview) article.
 
 ## Assistants playground
 

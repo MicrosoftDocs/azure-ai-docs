@@ -100,8 +100,14 @@ Once you configured Microsoft Entra ID in your resource, you need to update your
 
 [!INCLUDE [about-credentials](about-credentials.md)]
 
+## Troubleshooting
 
+[!INCLUDE [troubleshooting](troubleshooting.md)]
 
 ## Disable key-based authentication in the resource
 
-Disabling key-based authentication is advisable when you implemented Microsoft Entra ID and fully addressed compatibility or fallback concerns in all the applications that consume the service.
+Disabling key-based authentication is advisable when you implemented Microsoft Entra ID and fully addressed compatibility or fallback concerns in all the applications that consume the service. You can achieve it by changing the property `disableLocalAuth`:
+
+__modules/ai-services-template.bicep__
+
+:::code language="bicep" source="~/azureai-model-inference-bicep/infra/modules/ai-services-template.bicep" highlight="10-11,42":::

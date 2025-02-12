@@ -1,18 +1,18 @@
 ---
-title: What is Azure AI Translator container?
+title: What are Azure AI Translator containers?
 titlesuffix: Azure AI services
-description: Translate text and documents using the Azure AI Translator container.
+description: Translate text and documents using Azure AI Translator containers.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 01/27/2025
+ms.date: 01/29/2025
 ms.author: lajanuar
 ---
 
-# What is Azure AI Translator container?
+# What are Azure AI Translator containers?
 
-Azure AI Translator container enables you to build translator application architecture that is optimized for both robust cloud capabilities and edge locality. A container is a running instance of an executable software image. The Translator container image includes all libraries, tools, and dependencies needed to run an application consistently in any private, public, or personal computing environment. Containers are isolated, lightweight, portable, and are great for implementing specific security or data governance requirements. Translator container is available in [connected](#connected-azure-ai-translator-containers) and [disconnected (offline)](#disconnected-azure-ai-translator-containers) modalities.
+Azure AI Translator containers enable you to build translator application architecture that is optimized for both robust cloud capabilities and edge locality. A container is a running instance of an executable software image. A Translator container image includes all libraries, tools, and dependencies needed to run an application consistently in any private, public, or personal computing environment. Containers are isolated, lightweight, portable, and are great for implementing specific security or data governance requirements. Azure AI Translator containers are available in [connected](#connected-azure-ai-translator-containers) and [disconnected (offline)](#disconnected-azure-ai-translator-containers) modalities.
 
 ## Connected Azure AI Translator containers
 

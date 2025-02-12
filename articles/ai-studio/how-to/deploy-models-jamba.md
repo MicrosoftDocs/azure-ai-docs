@@ -3,7 +3,7 @@ title: How to deploy AI21's Jamba family models with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: How to deploy AI21's Jamba family models with Azure AI Foundry
 manager: scottpolly
-ms.service: azure-machine-learning
+ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 08/06/2024
 ms.author: ssalgado
@@ -31,34 +31,24 @@ Certain models in the model catalog can be deployed as a serverless API with pay
 
 # [AI21 Jamba 1.5 Large](#tab/ai21-jamba-1-5-large)
 
-The [AI21-Jamba 1.5 Large model](https://aka.ms/aistudio/landing/ai21-labs-jamba-1.5-large) deployed as a serverless API with pay-as-you-go billing is [offered by AI21 through Microsoft Azure Marketplace](https://aka.ms/azure-marketplace-offer-ai21-jamba-1.5-large). AI21 can change or update the terms of use and pricing of this model.
+The [AI21-Jamba 1.5 Large model](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) deployed as a serverless API with pay-as-you-go billing is [offered by AI21 through Microsoft Azure Marketplace](https://aka.ms/azure-marketplace-offer-ai21-jamba-1.5-large). AI21 can change or update the terms of use and pricing of this model.
 
-To get started with Jamba 1.5 large deployed as a serverless API, explore our integrations with [LangChain](https://aka.ms/ai21-jamba-1.5-large-langchain-sample), [LiteLLM](https://aka.ms/ai21-jamba-1.5-large-litellm-sample), [OpenAI](https://aka.ms/ai21-jamba-1.5-large-openai-sample) and the [Azure API](https://aka.ms/ai21-jamba-1.5-large-azure-api-sample).
+To get started with Jamba 1.5 large deployed as a serverless API, explore our integrations with [LangChain](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/ai21-labs/jamba-1-5/langchain.ipynb), [LiteLLM](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/ai21-labs/jamba-1-5/litellm.ipynb), [OpenAI](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/ai21-labs/jamba-1-5/openaisdk.ipynb) and the [Azure API](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/ai21-labs/jamba-1-5/webrequests.ipynb).
 
 
 # [AI21 Jamba 1.5 Mini](#tab/ai21-jamba-1-5)
 
-The [AI21 Jamba 1.5 Mini model](https://aka.ms/aistudio/landing/ai21-labs-jamba-1.5-mini) deployed as a serverless API with pay-as-you-go billing is [offered by AI21 through Microsoft Azure Marketplace](https://aka.ms/azure-marketplace-offer-ai21-jamba-1.5-mini). AI21 can change or update the terms of use and pricing of this model.
+The [AI21 Jamba 1.5 Mini model](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-staging) deployed as a serverless API with pay-as-you-go billing is [offered by AI21 through Microsoft Azure Marketplace](https://aka.ms/azure-marketplace-offer-ai21-jamba-1.5-mini). AI21 can change or update the terms of use and pricing of this model.
 
-To get started with Jamba 1.5 mini deployed as a serverless API, explore our integrations with [LangChain](https://aka.ms/ai21-jamba-1.5-mini-langchain-sample), [LiteLLM](https://aka.ms/ai21-jamba-1.5-mini-litellm-sample), [OpenAI](https://aka.ms/ai21-jamba-1.5-mini-openai-sample) and the [Azure API](https://aka.ms/ai21-jamba-1.5-mini-azure-api-sample).
+To get started with Jamba 1.5 mini deployed as a serverless API, explore our integrations with [LangChain](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/ai21-labs/jamba-1-5/langchain.ipynb), [LiteLLM](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/ai21-labs/jamba-1-5/litellm.ipynb), [OpenAI](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/ai21-labs/jamba-1-5/openaisdk.ipynb) and the [Azure API](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/ai21-labs/jamba-1-5/webrequests.ipynb).
 
 ---
 
 ### Prerequisites
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
-- An [Azure AI Foundry project](../how-to/create-projects.md). The serverless API model deployment offering for Jamba family models is only available with projects created in these regions:
-
-     * East US
-     * East US 2
-     * North Central US
-     * South Central US
-     * West US
-     * West US 3
-     * Sweden Central
+- An [Azure AI Foundry project](../how-to/create-projects.md). The serverless API model deployment offering for Jamba family models is only available with projects created in specific regions. For a list of these regions, see [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md#ai21-models).
        
-    For a list of  regions that are available for each of the models supporting serverless API endpoint deployments, see [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md).
-
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. Alternatively, your account can be assigned a custom role that has the following permissions:
 
     - On the Azure subscription—to subscribe the Azure AI Foundry project to the Azure Marketplace offering, once for each project, per offering:
@@ -85,7 +75,7 @@ These steps demonstrate the deployment of `AI21 Jamba 1.5 Large` or `AI21 Jamba 
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
-4. Search for and select an AI21 model like `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` or `AI21 Jamba Instruct` to open its Details page.
+4. Search for and select an AI21 model like `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` to open its Details page.
 
 1. Select **Deploy** to open a serverless API deployment window for the model.
 
@@ -93,7 +83,7 @@ These steps demonstrate the deployment of `AI21 Jamba 1.5 Large` or `AI21 Jamba 
 
     1. From the left navigation pane of your project, select **My assets** > **Models + endpoints**.
     1. Select **+ Deploy model** > **Deploy base model**.
-    1. Search for and select an AI21 model like `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` or `AI21 Jamba Instruct` to open the Model's Details page.
+    1. Search for and select an AI21 model like `AI21 Jamba 1.5 Large` or `AI21 Jamba 1.5 Mini` to open the Model's Details page.
     1. Select **Confirm** to open a serverless API deployment window for the model.
 
 1. Your current project is specified for the deployment. To successfully deploy the AI21-Jamba family models, your project must be in one of the regions listed in the [Prerequisites](#prerequisites) section.
@@ -114,7 +104,7 @@ These steps demonstrate the deployment of `AI21 Jamba 1.5 Large` or `AI21 Jamba 
 
 1. [!INCLUDE [Find your deployment details](../includes/find-deployments.md)]
 
-To learn about billing for the AI21-Jamba family models deployed as a serverless API with pay-as-you-go token-based billing, see [Cost and quota considerations for Jamba Instruct deployed as a serverless API](#cost-and-quota-considerations-for-jamba-family-models-deployed-as-a-serverless-api).
+To learn about billing for the AI21-Jamba family models deployed as a serverless API with pay-as-you-go token-based billing, see [Cost and quota considerations for Jamba models deployed as a serverless API](#cost-and-quota-considerations-for-jamba-family-models-deployed-as-a-serverless-api).
 
 
 ### Consume Jamba family models as a serverless API
@@ -185,7 +175,7 @@ Payload is a JSON formatted string containing the following parameters:
 
 | Key           | Type           | Required/Default | Allowed values    | Description |
 | ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `model`       | `string`       | Y    | Must be `jamba-1.5-large` or `jamba-1.5-mini` or  `jamba-instruct`|
+| `model`       | `string`       | Y    | Must be `jamba-1.5-large` or `jamba-1.5-mini`|
 | `messages`    | `list[object]` | Y     | A list of objects, one per message, from oldest to newest. The oldest message can be role `system`. All later messages must alternate between user and assistant roles. See the message object definition below.|
 | `max_tokens`  | `integer`      | N <br>`4096` |  0 – 4096     | The maximum number of tokens to allow for each generated response message. Typically the best way to limit output length is by providing a length limit in the system prompt (for example, "limit your answers to three sentences")|
 | `temperature` | `float`        | N <br>`1`  |  0.0 – 2.0      | How much variation to provide in each answer. Setting this value to 0 guarantees the same response to the same question every time. Setting a higher value encourages more variation. Modifies the distribution from which tokens are sampled. We recommend altering this or `top_p`, but not both. |
@@ -275,7 +265,7 @@ __Chat example (fourth request containing third user response)__
 
 ```JSON
 {
-  "model": "jamba-instruct",
+  "model": "jamba-1.5-large",
   "messages": [
      {"role": "system",
       "content": "You are a helpful genie just released from a bottle. You start the conversation with 'Thank you for freeing me! I grant you one wish.'"},

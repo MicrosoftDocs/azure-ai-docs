@@ -370,30 +370,6 @@ The following entities are grouped and listed by country/region:
       
    :::column-end:::
 :::row-end:::
-:::row:::
-    :::column span="":::
-        **Entity**
-
-        Belgium national number V2
-
-    :::column-end:::
-    :::column span="2":::
-        **Details**
-
-        To get this entity category, add `BENationalNumberV2` to the `piiCategories` parameter. `BENationalNumberV2` will be returned in the API response if detected.
-      
-        Also returned with `domain=phi`.
-
-        This entity is deprecated
-
-    :::column-end:::
-    :::column span="":::
-      **Supported languages**
-
-      `fr`, `de`
-      
-   :::column-end:::
-:::row-end:::
 
 :::row:::
     :::column span="":::
@@ -1165,26 +1141,6 @@ The following entities are grouped and listed by country/region:
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
-   :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
- 
-        Ireland Personal Public Service (PPS) Number v2
-
-    :::column-end:::
-    :::column span="2":::
-
-        To get this entity category, add `IEPersonalPublicServiceNumberV2` to the `piiCategories` parameter. `IEPersonalPublicServiceNumberV2` will be returned in the API response if detected.
-
-        This entity is deprecated
-      
-    :::column-end:::
-    :::column span="":::
-      **Supported languages**
-
-      `en`
       
    :::column-end:::
 :::row-end:::

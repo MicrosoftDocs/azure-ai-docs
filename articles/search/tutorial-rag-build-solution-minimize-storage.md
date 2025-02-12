@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 12/05/2024
+ms.date: 02/05/2025
 
 ---
 
@@ -51,11 +51,11 @@ You should also have the following objects:
 
 Azure AI Search has multiple approaches for reducing vector size, which lowers the cost of vector workloads. In this step, create a new index that uses the following capabilities:
 
-- Smaller vector indexes by compressing the vectors used during query execution. Scalar quantization provides this capability.
+- Vector compression. Scalar quantization provides this capability.
 
-- Smaller vector indexes by opting out of vector storage for search results. If you only need vectors for queries and not in response payload, you can drop the vector copy used for search results.
+- Eliminate optional storage. If you only need vectors for queries and not in a response payload, you can drop the vector copy used for search results.
 
-- Smaller vector fields through narrow data types. You can specify `Collection(Edm.Half)` on the text_vector field to store incoming float32 dimensions as float16.
+- Narrow data types. You can specify `Collection(Edm.Half)` on the text_vector field to store incoming float32 dimensions as float16, which takes up less space in the index.
 
 All of these capabilities are specified in a search index. After you load the index, compare the difference between the original index and the new one.
 

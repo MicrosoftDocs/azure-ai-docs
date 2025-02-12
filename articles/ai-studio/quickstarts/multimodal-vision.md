@@ -3,7 +3,7 @@ title: Get started vision-enabled chats in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: Get started using vision-enabled chats in Azure AI Foundry portal.
 manager: nitinme
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: quickstart

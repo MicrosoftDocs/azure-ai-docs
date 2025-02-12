@@ -160,13 +160,17 @@ parallelrun_step = ParallelRunStep(
 
 The transition from debugging a scoring script locally to debugging a scoring script in an actual pipeline can be a difficult leap. For information on finding your logs in the portal, see  [machine learning pipelines section on debugging scripts from a remote context](how-to-debug-pipelines.md). Information in that section also applies to a ParallelRunStep.
 
-For example, the log file `70_driver_log.txt` contains information from the controller that launches the ParallelRunStep code.
-
 Because of the distributed nature of ParallelRunStep jobs, there are logs from several different sources. However, two consolidated files are created that provide high-level information:
 
 - `~/logs/job_progress_overview.txt`: This file provides a high-level info about the number of mini-batches (also known as tasks) created so far and number of mini-batches processed so far. At this end, it shows the result of the job. If the job fails, it shows the error message and where to start the troubleshooting.
 
+- `~/logs/job_result.txt`: It shows the result of the job. If the job failed, it shows the error message and where to start the troubleshooting.
+
+- `~/logs/job_error.txt`: This file summarizes the errors in your script.
+
 - `~/logs/sys/master_role.txt`: This file provides the principal node (also known as the orchestrator) view of the running job. Includes task creation, progress monitoring, the run result.
+
+- `~/logs/sys/job_report/processed_mini-batches.csv`: A table of all minibatches that were processed. It shows result of each run of minibatch, its execution agent node id and process name. Also, the elapsed time and error messages are included. Logs for each run of minibatches can be found by following the node id and process name.
 
 Logs generated from entry script using EntryScript helper and print statements can be found in following files:
 
@@ -176,15 +180,13 @@ Logs generated from entry script using EntryScript helper and print statements c
 
 - `~/logs/user/stderr/<node_id>/<process_name>.stderr.txt`: These files are the logs from stderr of entry_script.
 
-For a concise understanding of errors in your script there is:
 
-- `~/logs/user/error.txt`: This file summarizes the errors in your script.
+For example, the screenshot shows minibatch 0 failed on node 0 process001. The corresponding logs for your entry script can be found in `~/logs/user/entry_script_log/0/process001.log.txt`, `~/logs/user/stdout/0/process001.log.txt` and  `~/logs/user/stderr/0/process001.log.txt`
 
-For more information on errors in your script, there is:
+![Screenshot of a sample processed_mini-batches.csv file.](media/how-to-debug-parallel-run-step/processed-mini-batches-csv-screenshot.png)
 
-- `~/logs/user/error/`: Contains full stack traces of exceptions thrown while loading and running entry script.
 
-When you need a full understanding of how each node executed the score script, look at the individual process logs for each node. The process logs can be found in the `sys/node` folder, grouped by worker nodes:
+When you need a full understanding of how each node executed the score script, look at the individual process logs for each node. The process logs can be found in the `~/logs/sys/node` folder, grouped by worker nodes:
 
 - `~/logs/sys/node/<node_id>/<process_name>.txt`: This file provides detailed info about each mini-batch that was picked up or completed by a worker. For each mini-batch, this file includes:
 
@@ -202,6 +204,38 @@ You can also view the results of periodical checks of the resource usage for eac
     - `node_disk_usage.csv`: Detailed disk usage of the node.
     - `node_resource_usage.csv`: Resource usage overview of the node.
     - `processes_resource_usage.csv`: Resource usage overview of each process.
+
+## Common job failure reasons
+
+### SystemExit: 42
+Exits 41 and 42 are PRS designed exit codes. Worker nodes exit with 41 to notify compute manager that it terminated independently. It is expected. A leader node may exit with 0 or 42 which indicates the job result. Exit 42 means the job failed. The failure reason can be found in `~/logs/job_result.txt`. You can follow previous section to debug your job.
+
+### Data Permission
+Error of the job indicates the compute cannot access input data. If identity-based is used for your compute cluster and storage, you can refer [Identity-based data authentication](../how-to-administrate-data-authentication.md).
+
+### Processes terminated unexpectedly
+Processes may crash due to unexpected or unhandled exceptions, the system kills processes due to Out of Memory exceptions. In PRS system logs `~/logs/sys/node/<node-id>/_main.txt`, errors like below can be found.
+
+```
+<process-name> exits with returncode -9.
+```
+
+#### Out of Memory
+`~/logs/perf` logs computation resource consumption of processes. The memory usage of each task processor can be found. You can estimate the total memory usage on the node. 
+
+Out of Memory error can be found in `~/system_logs/lifecycler/<node-id>/execution-wrapper.txt`.
+
+We suggest reducing the number of processes per node or upgrade vm size if the compute resources is close the limits.
+
+#### Unhandled Exceptions
+In some cases, the python processes cannot catch the failing stack. You can add an environment variable ```env["PYTHONFAULTHANDLER"]="true"``` to enable python builtin fault handler.
+
+### Minibatch Timeout
+You can adjust `run_invocation_timeout` argument according to your minibatch tasks. When you are seeing the run() functions take more time than expected, here are some tips.
+
+- Check the elapsed time and process time of the minibatch. The process time measures CPU time of the process. When process time is significantly shorter than elapsed, you can check if there are some heavy IO operations or network requests in the tasks. Long latency of those operations is the common reason of minibatch timeout.
+
+- Some specific minibatches take longer time than others. You can either update the configuration, or try work with input data to balance the minibatch processing time.
 
 ## How do I log from my user script from a remote context?
 
@@ -367,11 +401,11 @@ This section is about how to check the progress of a ParallelRunStep job and che
 Besides looking at the overall status of the StepRun, the count of scheduled/processed mini-batches and the progress of generating output can be viewed in `~/logs/job_progress_overview.<timestamp>.txt`. The file rotates on daily basis. You can check the one with the largest timestamp for the latest information.
 
 ### What should I check if there is no progress for a while?
-You can go into `~/logs/sys/error` to see if there's any exception. If there is none, it is likely that your entry script is taking a long time, you can print out progress information in your code to locate the time-consuming part, or add `"--profiling_module", "cProfile"` to the `arguments` of `ParallelRunStep` to generate a profile file named as `<process_name>.profile` under `~/logs/sys/node/<node_id>` folder.
+You can go into `~/logs/sys/error` to see if there's any exception. If there is none, it is likely that your entry script is taking a long time, you can print progress information in your code to locate the time-consuming part, or add `"--profiling_module", "cProfile"` to the `arguments` of `ParallelRunStep` to generate a profile file named as `<process_name>.profile` under `~/logs/sys/node/<node_id>` folder.
 
 ### When will a job stop?
 If not canceled, the job may stop with status:
-- Completed. If all mini-batches have been processed and output has been generated for `append_row` mode.
+- Completed. All mini-batches are processed successfully and output is generated for `append_row` mode.
 - Failed. If `error_threshold` in [`Parameters for ParallelRunConfig`](#parameters-for-parallelrunconfig)  is exceeded, or system error occurs during the job.
 
 ### Where to find the root cause of failure?
@@ -381,7 +415,7 @@ You can follow the lead in `~/logs/job_result.txt` to find the cause and detaile
 Not if there are other available nodes in the designated compute cluster. ParallelRunStep can run independently on each node. Single node failure doesn't fail the whole job.
 
 ### What happens if `init` function in entry script fails?
-ParallelRunStep has mechanism to retry for a certain time to give chance for recovery from transient issues without delaying the job failure for too long, the mechanism is as follows:
+ParallelRunStep has mechanism to retry for a certain time to give chance for recovery from transient issues without delaying the job failure for too long. The mechanism is as follows:
 1. If after a node starts, `init` on all agents keeps failing, we will stop trying after `3 * process_count_per_node` failures.
 2. If after job starts, `init` on all agents of all nodes keeps failing, we will stop trying if job runs more than 2 minutes and there're `2 * node_count * process_count_per_node` failures.
 3. If all agents are stuck on `init` for more than `3 * run_invocation_timeout + 30` seconds, the job would fail because of no progress for too long.

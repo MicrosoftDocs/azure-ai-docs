@@ -3,7 +3,7 @@ title: Fine-tune Phi-3 models in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article introduces fine-tuning Phi-3 models in Azure AI Foundry portal.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom: references_regions
 ms.topic: how-to
 ms.date: 12/16/2024

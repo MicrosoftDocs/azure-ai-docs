@@ -6,7 +6,7 @@ services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 12/11/2024
+ms.date: 01/30/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -34,6 +34,12 @@ Meanwhile, bindings facilitate streamlined connections to input or output data s
 The following examples highlight how to use the Azure AI Agent Service function calling where function calls are placed on a storage queue by the Agent Service to be processed by an Azure Function listening to that queue.
 
 You can find the template and code used here on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python).
+
+## Usage support
+
+|Azure AI foundry support  | Python SDK |	C# SDK | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|
+|  | ✔️ |  | | ✔️ |
 
 ### Create Azure resources for local and cloud dev-test
 

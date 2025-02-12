@@ -8,7 +8,7 @@ manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 01/27/2025
+ms.date: 01/29/2025
 ms.author: lajanuar
 ---
 
@@ -62,6 +62,12 @@ No, both have their place as essential tools for communication. Use machine tran
 
 Machine translation is used as a first pass, before using human translation, by several of our [language service provider (LSP)](https://www.microsoft.com/translator/business/partners/) partners and can improve productivity by up to 50 percent. For a list of LSP partners, visit the Azure AI Translator partner page.
 
+## Does Azure AI Translator retain any user data?
+
+No. Customer data submitted for translation to Azure AI Translator isn't stored permanently and not data is stored at rest. There's no record of the submitted text or document in any Microsoft data center. All organizational data remains within your organization's Azure subscription, ensuring that no data is shared with Microsoft. You maintain full control over your data, which remains your exclusive business. Microsoft further strengthens this control by adhering to extensive privacy laws, such as GDPR, and privacy standards, including the ISO/IEC 27018—the world's first international code of practice for cloud privacy. For more information, *see* [Azure AI Translator data, privacy, and security](/legal/cognitive-services/translator/data-privacy-security) and [Microsoft Translator Confidentiality](https://www.microsoft.com/en-us/translator/business/notrace/#compliance).
+
 ---
 > [!TIP]
+
 > If you can't find answers to your questions in this FAQ, try asking the Azure AI Translator API community on [StackOverflow](https://stackoverflow.com/search?q=%5Bmicrosoft-cognitive%5D+or+%5Bmicrosoft-cognitive%5D+translator&s=34bf0ce2-b6b3-4355-86a6-d45a1121fe27).
+

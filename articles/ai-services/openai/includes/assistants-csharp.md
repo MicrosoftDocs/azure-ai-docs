@@ -24,13 +24,13 @@ ms.date: 9/27/2024
 
 ### Create a new .NET Core application
 
-1. In a console window (such as cmd, PowerShell, or Bash), use the [`dotnet new`](/dotnet/core/tools/dotnet-new) command to create a new console app with the name `azure-openai-quickstart`:
+1. In a console window (such as cmd, PowerShell, or Bash), use the [`dotnet new`](/dotnet/core/tools/dotnet-new) command to create a new console app with the name `azure-openai-assistants-quickstart`:
     
     ```dotnetcli
     dotnet new console -n azure-openai-assistants-quickstart
     ```
 
-2. Change into the directory of the newly created app folder and build the app with the [`dotnet build`](/dotnet/core/tools/dotnet-build) command:
+2. In the newly created `azure-openai-assistants-quickstart` folder, build the app with the [`dotnet build`](/dotnet/core/tools/dotnet-build) command:
 
     ```dotnetcli
     dotnet build

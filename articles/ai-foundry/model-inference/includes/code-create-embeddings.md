@@ -54,7 +54,7 @@ __Request__
 
 ```HTTP/1.1
 POST https://<resource>.services.ai.azure.com/models/embeddings?api-version=2024-05-01-preview
-Authorization: Bearer <bearer-token>
+api-key: <api-key>
 Content-Type: application/json
 ```
 
