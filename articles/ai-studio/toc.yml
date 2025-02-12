@@ -462,7 +462,7 @@ items:
 - name: Management center
   items:
   - name: Management center overview
-    href: /concepts/management-center.md
+    href: concepts/management-center.md
   - name: Manage projects and hubs
     items:
     - name: Create a project
