@@ -59,6 +59,12 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     az login
     ```
 
+## Create, load, and query a search index
+
+In the prior [set up](#set-up) section, you created a new console application and installed the Azure AI Search client library. 
+
+In this section, you add code to create a search index, load it with documents, and run queries. You run the program to see the results in the console. For a detailed explanation of the code, see the [explaining the code](#explaining-the-code) section.
+
 The sample code in this quickstart uses Microsoft Entra ID for authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
 
 #### [Microsoft Entra ID](#tab/keyless)
@@ -75,13 +81,6 @@ Uri serviceEndpoint = new Uri($"https://<Put your search service NAME here>.sear
 AzureKeyCredential credential = new AzureKeyCredential("<Your search service admin key>");
 ```
 ---
-
-
-## Create, load, and query a search index
-
-In the prior [set up](#set-up) section, you created a new console application and installed the Azure AI Search client library. 
-
-In this section, you add code to create a search index, load it with documents, and run queries. You run the program to see the results in the console. For a detailed explanation of the code, see the [explaining the code](#explaining-the-code) section.
 
 1. In *Program.cs*, paste the following code. Edit the `serviceName` and `apiKey` variables with your search service name and admin API key.
 
