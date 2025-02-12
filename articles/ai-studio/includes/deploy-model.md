@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 10/29/2024
+ms.date: 02/12/2025
 ms.custom: include, ignite-2024
 ---
 
@@ -38,4 +38,4 @@ To work with a model, you first deploy it into a project. If you don't yet have 
         1. Provide a name for your project.
         1. Select **Create a project**.
 
-1. Leave the default **Deployment name**. Select **Connect and deploy**.
+1. Leave the default **Deployment name**. Select **Deploy**.

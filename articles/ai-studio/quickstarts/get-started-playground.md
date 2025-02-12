@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 10/22/2024
+ms.date: 02/12/2025
 ms.reviewer: zuramir
 ms.author: sgilley
 author: sdgilley
