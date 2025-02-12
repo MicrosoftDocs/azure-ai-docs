@@ -4,7 +4,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 2/8/2025
+ms.date: 2/12/2025
 ---
 
 [!INCLUDE [Full text introduction](full-text-intro.md)]

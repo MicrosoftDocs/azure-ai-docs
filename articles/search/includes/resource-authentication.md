@@ -3,7 +3,7 @@ author: eric-urban
 ms.author: eur 
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 2/9/2025
+ms.date: 2/12/2025
 ---
 
 You need to retrieve the following information to authenticate your application with your Azure AI Search service:
