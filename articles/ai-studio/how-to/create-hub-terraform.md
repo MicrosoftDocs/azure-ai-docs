@@ -2,7 +2,7 @@
 title: 'Use Terraform to create an Azure AI Foundry hub'
 description: In this article, you create an Azure AI Foundry hub, an Azure AI Foundry project, an AI services resource, and more resources.
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 02/12/2025
 titleSuffix: Azure AI Foundry 
 ms.service: azure-ai-foundry
 manager: scottpolly 
@@ -40,7 +40,7 @@ In this article, you use Terraform to create an Azure AI Foundry hub, a project,
 ## Implement the Terraform code
 
 > [!NOTE]
-> The sample code for this article is located in the [Azure Terraform GitHub repo](https://github.com/Azure/terraform/tree/master/quickstart/101-ai-studio). You can view the log file containing the [test results from current and previous versions of Terraform](https://github.com/Azure/terraform/tree/master/quickstart/101-ai-studio/TestRecord.md).
+> The sample code for this article is located in the [Azure Terraform GitHub repo](https://github.com/Azure/terraform/tree/master/quickstart/101-ai-studio). You can view the log file containing the [test results from current and previous versions of Terraform](https://github.com/Azure/terraform/tree/master/quickstart/101-ai-studio/TestRecord.md). You may need to update the resource provider versions used in the template to use the latest available versions.
 > 
 > See more [articles and sample code showing how to use Terraform to manage Azure resources](/azure/terraform)
 
