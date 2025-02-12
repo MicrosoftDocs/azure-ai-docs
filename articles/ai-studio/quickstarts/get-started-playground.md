@@ -38,7 +38,7 @@ If you don't have an Azure subscription, <a href="https://azure.microsoft.com/fr
 
 7. Once the model is deployed, select **Open in playground** to test your model.
 
-You're now in a project, with a deployed model.  You can use the chat playground to interact with your model.
+You're now in a project, with a deployed model. You can use the chat playground to interact with your model.
 
 For more information about deploying models, see [how to deploy models](../how-to/deploy-models-openai.md).
 
