@@ -84,7 +84,7 @@ List<ImageEmbeddingInput> input = new List<ImageEmbeddingInput>
 var requestOptions = new ImageEmbeddingsOptions()
 {
     Input = input,
-    Model =: "Cohere-embed-v3-english"
+    Model = "Cohere-embed-v3-english"
 };
 
 Response<EmbeddingsResult> response = client.Embed(requestOptions);
