@@ -88,7 +88,7 @@ Field extraction is particularly optimized for scenarios requiring:
 
 The value lies in its ability to handle multiple content types (text, audio, video, images) while maintaining accuracy and scalability through AI-powered schema validation and confidence scoring. 
 
-> [Learn more and follow a quickstart guide to build a schema and extract fields.](../quickstart/use-ai-foundry.md#build-a-schema)
+> [Follow our quickstart guide to build a schema](../quickstart/use-ai-foundry.md#build-a-schema)
 
 Each modality supports specific generation approaches optimized for that content type. Review the tabs below to understand the generation capabilities and methods available for your target modality.
 
@@ -142,7 +142,7 @@ Key benefits of analyzers include:
 For example, you might create an analyzer for processing customer service calls that combines audio transcription (content extraction) with sentiment analysis and topic classification (field extraction). This analyzer can then consistently process thousands of calls, providing structured insights for your customer experience analytics.
 
 * [Build your first analyzer](../quickstart/use-ai-foundry.md#analyzer-templates) using our step-by-step guide
-* Explore [prebuilt analyzer templates](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates) for common scenarios
+* Explore [prebuilt analyzer templates](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates) for common scenarios.
 
 #### Best Practices
 
