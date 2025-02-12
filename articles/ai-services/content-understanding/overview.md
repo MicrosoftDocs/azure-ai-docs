@@ -75,12 +75,12 @@ See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 
 ### Modified Content Filtering
 
-Azure AI Content Understanding now supports turning off content filtering for approved customers. The subscription IDs with approved modified content filtering will impact the Azure AI Content Understanding output.
+Azure AI Content Understanding now supports turning off content filtering for approved customers. The subscription IDs with approved modified content filtering impacts the Azure AI Content Understanding output.
 
 > [!IMPORTANT]
 >
 > * Apply for modified content filters via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
-> * For more information, *see* [**Content Filtering**](/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new).
+> * For more information, *see* [**Content Filtering**](../openai/concepts/content-filter.md).
 
 ## Data privacy and security
 Developers using the Content Understanding service should review Microsoft's policies on customer data. For more information, visit our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page.
