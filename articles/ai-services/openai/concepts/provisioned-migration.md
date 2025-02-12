@@ -13,15 +13,14 @@ ms.author: aahi
 recommendations: false
 ---
 
-# Azure OpenAI provisioned August 2024 update 
+# Azure OpenAI provisioned Managed offering updates 
 
-In mid-August, 2024, Microsoft launched improvements to its Provisioned Throughput offering that address customer feedback on usability and operational agility that open new payment options and deployment scenarios.
+Microsoft launched improvements to its Provisioned Throughput offering that address customer feedback on usability and operational agility that open new payment options and deployment scenarios.
 
 This article is intended for existing users of the provisioned throughput offering. New customers should refer to the [Azure OpenAI provisioned onboarding guide](../how-to/provisioned-throughput-onboarding.md).
 
 ## What's changing?
 
-The capabilities below are rolling out for the Provisioned Managed offering.
 
 > [!IMPORTANT]
 > The changes in this article do not apply to the older *"Provisioned Classic (PTU-C)"* offering. They only affect the Provisioned (also known as the Provisioned Managed) offering.
@@ -39,11 +38,11 @@ The capabilities below are rolling out for the Provisioned Managed offering.
 
 |Feature | Benefit|
 |---|---|
-|Hourly, uncommitted usage | Hourly payment option without a required commitment enables short-term deployment scenarios. |
+|Non-binding, Hourly option | Hourly payment option without any binding enables short-term deployment scenarios. Ideal for testing new models and assessing benefits of Provisioned Throughput. |
 |Term discounts via Azure Reservations | Azure reservations provide substantial discounts over the hourly rate for one month and one year terms, and provide flexible scopes that minimize administration and associated with today’s resource-bound commitments.|
 | Default provisioned-managed quota in many regions | Get started quickly in new regions without having to first request quota. |
-| Flexible choice of payment model for existing provisioned customers | Customers with commitments can stay on the commitment model at least through the end of 2024, and can choose to migrate existing commitments to hourly/reservations via a self-service or managed process. |
-| Supports latest model generations | The hourly/reservation model is required to deploy models released after August 1, 2024. |
+| Flexible choice of payment model for existing provisioned customers | Customers with commitments can stay on the commitment model till the end of life of the currently supported models, and can choose to migrate existing commitments to hourly/reservations via managed process. We recommend migrating to hourly/ reservations to take advantage of term discounts and to work with the latest models. |
+| Supports latest model generations | The latest models are available only on hourly/ reservations in provisioned offering. |
 
 ## Usability improvement details
 
@@ -87,7 +86,7 @@ See the following links for more information. The guidance for reservations and 
 > [!NOTE]
 > The following description of payment models doesn't apply to the older "Provisioned Classic (PTU-C)" offering. They only affect the Provisioned (also known as Provisioned Managed) offering. Provisioned Classic continues to be governed by the unchanged monthly commitment payment model.
 
-Microsoft has introduced a new "Hourly/reservation" payment model for provisioned deployments. This is in addition to the current **Commitment** payment model, which will continue to be supported at least through the end of 2024.
+Microsoft has introduced a new "Hourly/reservation" payment model for provisioned deployments. This is in addition to the current **Commitment** payment model, which will continue to be supported till end of life of the currently supported limited model list. Refer to the [supported models on **Commitment payment model**](./provisioned-migration.md#supported-models-on-commitment-payment-model) for the list of supported models on Commitment payment model.
 
 ### Commitment payment model
 
@@ -97,7 +96,18 @@ Microsoft has introduced a new "Hourly/reservation" payment model for provisione
 
 - Commitments can't be canceled or altered during their term, except to add new PTUs.
 
-- Supports models released prior to August 1, 2024.
+#### Supported models on Commitment payment model:
+  Only the following list of Azure OpenAI models are supported in Commitments. For onboarding any other models that are not in the list below, or any newer models on provisioned throughput offering,  refer to the [Azure OpenAI provisioned onboarding guide](../how-to/provisioned-throughput-onboarding.md) and [Azure Reservations for Azure OpenAI provisioned deployments](../how-to/provisioned-throughput-onboarding.md#azure-reservations-for-azure-openai-provisioned-deployments)
+    
+|Supported models on Commitment plan |
+|-|
+|gpt-35-turbo|
+|gpt-4|
+|gpt-4-32k|
+|gpt-4o|
+
+
+
 
 ### Hourly reservation payment model
 
@@ -112,7 +122,7 @@ Microsoft has introduced a new "Hourly/reservation" payment model for provisione
 - Supports all models, both old and new.
 
 > [!IMPORTANT]
-> **Models released after August 1, 2024 require the use of the Hourly/Reservation payment model.** They are not deployable on Azure OpenAI resources that have active commitments. To deploy models released after August 1, existing customers must either:
+> More latest models are available in provisioned offering with Hourly/Reservation payment model. Check the list [**here**](https://learn.microsoft.com/azure/ai-services/openai/concepts/models?tabs=provisioned%2Cstandard-chat-completions#global-standard-model-availability) for the availabilityModels that are not in the above [**list**](./provisioned-migration.md#supported-models-on-commitment-payment-model) are not deployable on Azure OpenAI resources that have active commitments. To deploy models newer models you must either:
 > - Create deployments on Azure OpenAI resources without commitments.
 > - Migrate an existing resource off its commitments.
 
@@ -142,11 +152,11 @@ Steps 1 and 2 are the same in all cases. The difference is whether a commitment 
     |Discount type  |Available Scopes (within a region)  |
     |---------|---------|
     |Commitment     |  Azure OpenAI resource        |
-    |Row2     | Resource group, single subscription, management group (group of subscriptions), shared (all subscriptions in a billing account)          |
+    |Reservation     | Resource group, single subscription, management group (group of subscriptions), shared (all subscriptions in a billing account)          |
 
 * The discounted price is applied to deployed PTUs up to the number of discounted PTUs in the discount. 
 * The number of deployed PTUs exceeding the discounted PTUs (or not covered by any discount) are charged the hourly rate. 
-* The best practice is to create deployments first, and then to apply discounts. This is to guarantee that service. capacity is available to support your deployments prior to creating a term commitment for PTUs you cannot use. 
+* The best practice is to create deployments first, and then to apply discounts. This is to guarantee that service. capacity is available to support your deployments prior to creating a term agreement for PTUs you cannot use. 
 
 > [!NOTE] 
 > When you follow best practices, you might receive hourly charges between the time you create the deployment and increase your discount (commitment or reservation).   
@@ -155,12 +165,12 @@ Steps 1 and 2 are the same in all cases. The difference is whether a commitment 
 
 ## Mapping deployments to discounting method 
 
-Customers using Azure OpenAI Provisioned prior to August 2024 can use either or both payment models simultaneously within a subscription. The payment model used for each deployment is determined based on its Azure OpenAI resource: 
+Customers using Azure OpenAI Provisioned offer prior to August 2024 can use either or both payment models simultaneously within a subscription. The payment model used for each deployment is determined based on its Azure OpenAI resource: 
 
 
 **Resource has an active Commitment** 
 
-* The commitment discounts all deployments on the resource up to the number of PTUs on the commitment. Any excess PTUs will be billed hourly. 
+* The commitment discounts all deployments on the resource up to the number of PTUs on the commitment. Any excess PTUs will be billed hourly unless the excess PTUs are not in the scope of an active reservations. If the excess PTUs exist in the scope of an active reservation, will be discounted as a group up to the number of PTUs on the reservation and any excess spill still leftover will be billed hourly. 
 
 **Resource does not have an active commitment** 
 
@@ -169,9 +179,10 @@ Customers using Azure OpenAI Provisioned prior to August 2024 can use either or 
 
 ### Changes to the existing payment mode
 
-Customers that have commitments today can continue to use them at least through the end of 2024. This includes purchasing new PTUs on new or existing commitments and managing commitment renewal behaviors. However, the August update has changed certain aspects of commitment operation.
+Customers that have commitments today can continue to use them at least till the supported model's retirement. This includes purchasing new PTUs on new or existing commitments and managing commitment renewals. However, the August update has changed certain aspects of commitments operation.
 
-- Only models released as provisioned prior to August 1, 2024 or before can be deployed on a resource with a commitment.
+- Azure OpenAI has stopped supporting enrollment on to new commitments, starting August 1, 2024
+- Only a limited set of models can be deployed on a resource with a commitment. Here is the [List of models](./provisioned-migration.md#supported-models-on-commitment-payment-model)
 
 - If the deployed PTUs under a commitment exceed the committed PTUs, the hourly overage charges will be emitted against the same hourly meter as used for the new hourly/reservation payment model. This allows the overage charges to be discounted via an Azure Reservation.
 - It is possible to deploy more PTUs than are committed on the resource. This supports the ability to guarantee capacity availability prior to increasing the commitment size to cover it.
@@ -206,7 +217,7 @@ An alternative approach to self-service migration is to switch the reservation p
 * There will be a short period of double-billing or hourly charges during the switchover from committed to hourly/reservation billing.
 
 > [!IMPORTANT]
-> Both self-service approaches generate some additional charges as the payment mode is switched from Committed to Hourly/Reservation. These are characteristics of the migration approaches and customers aren't credited for these charges.  Customers can choose to use the managed migration approach described below to avoid them.
+> Self-service approach generates additional charges as the payment mode is switched from Committed to Hourly/Reservation. This is the characteristics of this migration approaches and customers aren't credited for these charges. Alternately, Customers can choose to use the managed migration approach described below to avoid additional charges.
 
 ### Managed migration
 
