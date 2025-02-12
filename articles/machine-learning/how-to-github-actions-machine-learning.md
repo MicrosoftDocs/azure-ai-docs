@@ -45,7 +45,7 @@ git clone https://github.com/YOUR-USERNAME/azureml-examples
 
 ## Step 2: Authenticate with Azure
 
-You need to first define how to authenticate with Azure. You can use a [service principal](/azure/active-directory/develop/app-objects-and-service-principals#service-principal-object) or [OpenID Connect](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect). 
+You'll need to first define how to authenticate with Azure. The recommended, more secure option is to [sign in with OpenID Connect using a Microsoft Entra application or a user-assigned managed identity](/azure/developer/github/connect-from-azure-openid-connect). If necessary, you can also use [sign in with a service principal and secret](/azure/developer/github/connect-from-azure-secret). This approach is less secure and not recommended. 
 
 ### Generate deployment credentials
 
@@ -79,12 +79,70 @@ You use a `pipeline.yml` file to deploy your Azure Machine Learning pipeline. Th
 
 Your workflow authenticates with Azure, sets up the Azure Machine Learning CLI, and uses the CLI to train a model in Azure Machine Learning. 
 
+ # [OpenID Connect](#tab/openid)
+
+Your workflow file is made up of a trigger section and jobs:
+- A trigger starts the workflow in the `on` section. The workflow runs by default on a cron schedule and when a pull request is made from matching branches and paths. Learn more about [events that trigger workflows](https://docs.github.com/actions/using-workflows/events-that-trigger-workflows). 
+- In the jobs section of the workflow, you checkout code and log into Azure with the Azure login action using OpenID Connect.
+====
+- The jobs section also includes a setup action that installs and sets up the [Machine Learning CLI (v2)](how-to-configure-cli.md). Once the CLI is installed, the run job action runs your Azure Machine Learning `pipeline.yml` file to train a model with NYC taxi data.
+
+### Enable your workflow
+
+1. In your forked repository, open `.github/workflows/cli-jobs-pipelines-nyc-taxi-pipeline.yml` and verify that your workflow looks like this.
+
+    ```yaml
+    name: cli-jobs-pipelines-nyc-taxi-pipeline
+    on:
+      workflow_dispatch:
+      schedule:
+        - cron: "0 0/4 * * *"
+      pull_request:
+        branches:
+          - main
+          - sdk-preview
+        paths:
+          - cli/jobs/pipelines/nyc-taxi/**
+          - .github/workflows/cli-jobs-pipelines-nyc-taxi-pipeline.yml
+          - cli/run-pipeline-jobs.sh
+          - cli/setup.sh
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        steps:
+        - name: check out repo
+          uses: actions/checkout@v2
+        - name: azure login
+          uses: azure/login@v2
+          with:
+              client-id: ${{ secrets.AZURE_CLIENT_ID }}
+              tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+              subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        - name: setup
+          run: bash setup.sh
+          working-directory: cli
+          continue-on-error: true
+        - name: run job
+          run: bash -x ../../../run-job.sh pipeline.yml
+          working-directory: cli/jobs/pipelines/nyc-taxi
+    ```
+    
+1. Select **View runs**. 
+1. Enable workflows by selecting **I understand my workflows, go ahead and enable them**.
+1. Select the **cli-jobs-pipelines-nyc-taxi-pipeline workflow** and choose to **Enable workflow**. 
+
+    :::image type="content" source="media/how-to-github-actions-machine-learning/enable-github-actions-ml-workflow.png" alt-text="Screenshot of enable GitHub Actions workflow.":::
+
+1. Select **Run workflow** and choose the option to **Run workflow** now. 
+
+    :::image type="content" source="media/how-to-github-actions-machine-learning/github-actions-run-workflow.png" alt-text="Screenshot of run GitHub Actions workflow.":::
+
 # [Service principal](#tab/userlevel)
 
 
 Your workflow file is made up of a trigger section and jobs:
 - A trigger starts the workflow in the `on` section. The workflow runs by default on a cron schedule and when a pull request is made from matching branches and paths. Learn more about [events that trigger workflows](https://docs.github.com/actions/using-workflows/events-that-trigger-workflows). 
-- In the jobs section of the workflow, you check out code and log into Azure with your service principal secret.
+- In the jobs section of the workflow, you checkout code and log into Azure with your service principal secret.
 - The jobs section also includes a setup action that installs and sets up the [Machine Learning CLI (v2)](how-to-configure-cli.md). Once the CLI is installed, the run job action runs your Azure Machine Learning `pipeline.yml` file to train a model with NYC taxi data.
 
 
@@ -114,7 +172,7 @@ Your workflow file is made up of a trigger section and jobs:
         - name: check out repo
           uses: actions/checkout@v2
         - name: azure login
-          uses: azure/login@v1
+          uses: azure/login@v2
           with:
             creds: ${{secrets.AZURE_CREDENTIALS}}
         - name: setup
@@ -133,62 +191,6 @@ Your workflow file is made up of a trigger section and jobs:
 1. Select **Run workflow** and choose the option to **Run workflow** now. 
     :::image type="content" source="media/how-to-github-actions-machine-learning/github-actions-run-workflow.png" alt-text="Screenshot of run GitHub Actions workflow.":::
 
- # [OpenID Connect](#tab/openid)
-
-Your workflow file is made up of a trigger section and jobs:
-- A trigger starts the workflow in the `on` section. The workflow runs by default on a cron schedule and when a pull request is made from matching branches and paths. Learn more about [events that trigger workflows](https://docs.github.com/actions/using-workflows/events-that-trigger-workflows). 
-- In the jobs section of the workflow, you check out code and log into Azure with the Azure login action using OpenID Connect.
-- The jobs section also includes a setup action that installs and sets up the [Machine Learning CLI (v2)](how-to-configure-cli.md). Once the CLI is installed, the run job action runs your Azure Machine Learning `pipeline.yml` file to train a model with NYC taxi data.
-
-### Enable your workflow
-
-1. In your forked repository, open `.github/workflows/cli-jobs-pipelines-nyc-taxi-pipeline.yml` and verify that your workflow looks like this.
-
-    ```yaml
-    name: cli-jobs-pipelines-nyc-taxi-pipeline
-    on:
-      workflow_dispatch:
-      schedule:
-        - cron: "0 0/4 * * *"
-      pull_request:
-        branches:
-          - main
-          - sdk-preview
-        paths:
-          - cli/jobs/pipelines/nyc-taxi/**
-          - .github/workflows/cli-jobs-pipelines-nyc-taxi-pipeline.yml
-          - cli/run-pipeline-jobs.sh
-          - cli/setup.sh
-    jobs:
-      build:
-        runs-on: ubuntu-latest
-        steps:
-        - name: check out repo
-          uses: actions/checkout@v2
-        - name: azure login
-          uses: azure/login@v1
-          with:
-              client-id: ${{ secrets.AZURE_CLIENT_ID }}
-              tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-              subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        - name: setup
-          run: bash setup.sh
-          working-directory: cli
-          continue-on-error: true
-        - name: run job
-          run: bash -x ../../../run-job.sh pipeline.yml
-          working-directory: cli/jobs/pipelines/nyc-taxi
-    ```
-    
-1. Select **View runs**. 
-1. Enable workflows by selecting **I understand my workflows, go ahead and enable them**.
-1. Select the **cli-jobs-pipelines-nyc-taxi-pipeline workflow** and choose to **Enable workflow**. 
-
-    :::image type="content" source="media/how-to-github-actions-machine-learning/enable-github-actions-ml-workflow.png" alt-text="Screenshot of enable GitHub Actions workflow.":::
-
-1. Select **Run workflow** and choose the option to **Run workflow** now. 
-
-    :::image type="content" source="media/how-to-github-actions-machine-learning/github-actions-run-workflow.png" alt-text="Screenshot of run GitHub Actions workflow.":::
 ---
 
 ## Step 6: Verify your workflow run
