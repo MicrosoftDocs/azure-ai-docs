@@ -36,7 +36,7 @@ Before you can use a custom keyword, you need to create a keyword using the [Cus
 
 1. Select a model type, then select **Create**. You can view a list of regions that support the **Advanced** model type in the [Keyword recognition region support](../../../regions.md#speech-service) documentation. 
 
-1. Due to high demand, training the basic model may take several hours, while training the advanced model could take up to a day to complete. The status will update from **Processing** to **Succeeded** once the training is complete. 
+1. Because of high demand, training the basic model might take several hours. Training the advanced model could take up to a day to finish. The status changes from **Processing** to **Succeeded** when the training is complete. 
 
     :::image type="content" source="../../../media/custom-keyword/custom-kw-portal-review-keyword.png" alt-text="Review your keyword.":::
 
