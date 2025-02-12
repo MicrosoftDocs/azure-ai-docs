@@ -9,7 +9,7 @@ This document provides guidance on how to effectively use Content Understanding 
 When defining a schema, it is essential to provide detailed field descriptions and examples. Clear descriptions and relevant examples guide the model to focus on the correct information, improving the accuracy of the output.
 
 ### Example 1:
-If you want to extract the date from an invoice, instead of just naming the field `"Date"`, provide a description such as:
+If you want to extract the date from an invoice, in addition to naming the field `"Date"`, provide a description such as:
 > **"The date when the invoice was issued, typically found at the top right corner of the document."**
 
 ### Example 2:
