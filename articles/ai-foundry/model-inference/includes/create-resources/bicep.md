@@ -121,3 +121,8 @@ In your console, follow these steps:
     ```
 
 7. The template outputs the Azure AI model inference endpoint that you can use to consume any of the model deployments you have created.
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Use the inference endpoint](../../how-to/inference.md)
