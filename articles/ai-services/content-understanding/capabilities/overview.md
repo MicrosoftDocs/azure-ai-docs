@@ -117,7 +117,7 @@ Each modality supports specific generation approaches optimized for that content
 
 -------
 
-:::image type="content" source="../media/capabilities/CUGeneration.gif" lightbox="../media/capabilities/CUGeneration.gif" alt-text="Illustration of Generation method workflow.":::
+:::image type="content" source="../media/capabilities/CUGeneration.gif" alt-text="Illustration of Generation method workflow.":::
 
 Follow our quickstart guide [to build your first schema](../quickstart/use-ai-foundry.md#build-a-schema).
 
@@ -146,7 +146,7 @@ For example, you might create an analyzer for processing customer service calls 
 
 Follow our quickstart guide to [build your first analyzer](../quickstart/use-ai-foundry.md#analyzer-templates).
 
-#### Best Practices
+### Best Practices
 
 For guidance on optimizing your Content Understanding implementations, including schema design tips, see our detailed [Best practices guide](../how-to/best-practices.md). This guide helps you maximize the value of Content Understanding while avoiding common pitfalls.
 
