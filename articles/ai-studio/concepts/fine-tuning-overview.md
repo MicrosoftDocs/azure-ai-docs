@@ -3,7 +3,7 @@ title: Fine-tuning in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article introduces fine-tuning of models in Azure AI Foundry portal.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - code01

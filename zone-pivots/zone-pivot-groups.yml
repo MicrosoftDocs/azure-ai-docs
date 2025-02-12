@@ -1043,3 +1043,28 @@ groups:
     title: TypeScript
   - id: rest-api
     title: REST
+- id: structured-outputs
+  title: Programming languages
+  prompt: Choose a language or API
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-rest
+    title: REST
+- id: search-quickstart-full-text
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-typescript
+    title: TypeScript

@@ -1,18 +1,19 @@
 ---
-author: HeidiSteen
-ms.author: heidist
+manager: nitinme
+author: eric-urban
+ms.author: eur
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: include
-ms.date: 10/07/2024
+ms.date: 2/8/2025
 ---
+
+[!INCLUDE [Full text introduction](full-text-intro.md)]
 
 Use a Jupyter notebook and the [azure-search-documents](/python/api/overview/azure/search-documents-readme) library in the Azure SDK for Python to create, load, and query a search index. 
 
 Alternatively, you can download and run a [finished notebook](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart).
 
-#### Set up your environment
+## Set up your environment
 
 Use [Visual Studio Code with the Python extension](https://code.visualstudio.com/docs/languages/python), or an equivalent IDE, with Python 3.10 or later.
 
@@ -30,7 +31,7 @@ We recommend a virtual environment for this quickstart:
 
 It can take a minute to set up. If you run into problems, see [Python environments in VS Code](https://code.visualstudio.com/docs/python/environments).
 
-#### Install packages and set variables
+## Install packages and set variables
 
 1. Install packages, including [azure-search-documents](/python/api/azure-search-documents). 
 
@@ -48,7 +49,7 @@ It can take a minute to set up. If you run into problems, see [Python environmen
     index_name: str = "hotels-quickstart"
     ```
 
-#### Create an index
+## Create an index
 
 ```python
 from azure.core.credentials import AzureKeyCredential
@@ -98,7 +99,7 @@ result = index_client.create_or_update_index(index)
 print(f' {result.name} created')
 ```
 
-#### Create a documents payload
+## Create a documents payload
 
 Use an [index action](/python/api/azure-search-documents/azure.search.documents.models.indexaction) for the operation type, such as upload or merge-and-upload. Documents originate from the [HotelsData](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/hotels/HotelsData_toAzureSearch.JSON) sample on GitHub.
 
@@ -184,7 +185,7 @@ documents = [
 ]
 ```
 
-#### Upload documents
+## Upload documents
 
 ```python
 # Upload documents to the index
@@ -201,7 +202,7 @@ except Exception as ex:
     endpoint=search_endpoint, credential=credential)
 ```
 
-#### Run your first query
+## Run your first query
 
 Use the *search* method of the [search.client class](/python/api/azure-search-documents/azure.search.documents.searchclient).
 
@@ -221,7 +222,7 @@ for result in results:
     print(f"Description: {result['Description']}")
 ```
 
-#### Run a term query
+## Run a term query
 
 The next query adds whole terms to the search expression ("wifi"). This query specifies that results contain only those fields in the `select` statement. Limiting the fields that come back minimizes the amount of data sent back over the wire and reduces search latency.
 
@@ -238,7 +239,7 @@ for result in results:
     print(f"Description: {result['Description']}")
 ```
 
-#### Add a filter
+## Add a filter
 
 Add a filter expression, returning only those hotels with a rating greater than four, sorted in descending order.
 
@@ -254,7 +255,7 @@ for result in results:
     print("{}: {} - {} rating".format(result["HotelId"], result["HotelName"], result["Rating"]))
 ```
 
-#### Add field scoping
+## Add field scoping
 
 Add `search_fields` to scope query execution to specific fields.
 
@@ -269,7 +270,7 @@ for result in results:
     print("{}: {}".format(result["HotelId"], result["HotelName"]))
 ```
 
-#### Add facets
+## Add facets
 
 Facets are generated for positive matches found in search results. There are no zero matches. If search results don't include the term *wifi*, then *wifi* doesn't appear in the faceted navigation structure.
 
@@ -283,7 +284,7 @@ for facet in facets["Category"]:
     print("    {}".format(facet))
 ```
 
-#### Look up a document
+## Look up a document
 
 Return a document based on its key. This operation is useful if you want to provide drill through when a user selects an item in a search result.
 
@@ -297,7 +298,7 @@ print("Rating: {}".format(result["Rating"]))
 print("Category: {}".format(result["Category"]))
 ```
 
-#### Add autocomplete
+## Add autocomplete
 
 Autocomplete can provide potential matches as the user types into the search box.
 

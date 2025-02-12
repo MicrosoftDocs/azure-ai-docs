@@ -1,28 +1,27 @@
 ---
-author: HeidiSteen
-ms.author: heidist
+manager: nitinme
+author: eric-urban
+ms.author: eur
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: include
-ms.date: 10/07/2024
+ms.date: 2/8/2025
 ---
+
+[!INCLUDE [Full text introduction](full-text-intro.md)]
 
 Build a Node.js application using the [@azure/search-documents](/javascript/api/overview/azure/search-documents-readme) library to create, load, and query a search index. 
 
 Alternatively, you can [download the source code](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart) to start with a finished project or follow these steps to create your own.
 
-#### Set up your environment
+## Set up your environment
 
 We used the following tools to create this quickstart.
 
 + [Visual Studio Code](https://code.visualstudio.com), which has built-in support for creating JavaScript apps
 
-+ [Node.js LTS](https://nodejs.org) and [npm](https://www.npmjs.com)
++ [Node.js](https://nodejs.org) and [npm](https://www.npmjs.com)
 
-* [TypeScript](https://www.typescriptlang.org/download/)
-
-#### Create the project
+## Create the project
 
 1. Start Visual Studio Code.
 
@@ -71,8 +70,8 @@ We used the following tools to create this quickstart.
       "author": "Your Name",
       "license": "MIT",
       "dependencies": {
-        "@azure/search-documents": "^12.1.0",
-        "dotenv": "^16.4.5"
+        "@azure/search-documents": "^11.3.0",
+        "dotenv": "^16.0.2"
       }
     }
     ```
@@ -86,32 +85,21 @@ We used the following tools to create this quickstart.
 
 Replace the `YOUR-SEARCH-SERVICE-URL` value with the name of your search service endpoint URL. Replace `<YOUR-SEARCH-ADMIN-API-KEY>` with the admin key you recorded earlier. 
 
-#### Create index.ts file
+## Create index.js file
 
-Next we create an *index.ts* file, which is the main file that hosts our code.
+Next we create an *index.js* file, which is the main file that hosts our code.
 
 At the top of this file, we import the `@azure/search-documents` library:
 
-```typescript
-import {
-    AzureKeyCredential,
-    ComplexField,
-    odata,
-    SearchClient,
-    SearchFieldArray,
-    SearchIndex,
-    SearchIndexClient,
-    SearchSuggester,
-    SimpleField
-} from "@azure/search-documents";
+```javascript
+const { SearchIndexClient, SearchClient, AzureKeyCredential, odata } = require("@azure/search-documents");
 ```
 
 Next, we need to require the `dotenv` package to read in the parameters from the *.env* file as follows:
 
-```typescript
+```javascript
 // Load the .env file if it exists
-import dotenv from 'dotenv';
-dotenv.config();
+require("dotenv").config();
 
 // Getting endpoint and apiKey from .env file
 const endpoint = process.env.SEARCH_API_ENDPOINT || "";
@@ -122,7 +110,7 @@ With our imports and environment variables in place, we're ready to define the m
 
 Most of the functionality in the SDK is asynchronous so we make our main function `async`. We also include a `main().catch()` below the main function to catch and log any errors encountered:
 
-```typescript
+```javascript
 async function main() {
     console.log(`Running Azure AI Search JavaScript quickstart...`);
     if (!endpoint || !apiKey) {
@@ -140,11 +128,11 @@ main().catch((err) => {
 
 With that in place, we're ready to create an index.
 
-#### Create index
+## Create index 
 
 Create a file *hotels_quickstart_index.json*. This file defines how Azure AI Search works with the documents you'll be loading in the next step. Each field will be identified by a `name` and have a specified `type`. Each field also has a series of index attributes that specify whether Azure AI Search can search, filter, sort, and facet upon the field. Most of the fields are simple data types, but some, like `AddressType` are complex types that allow you to create rich data structures in your index. You can read more about [supported data types](/rest/api/searchservice/supported-data-types) and index attributes described in [Create Index (REST)](/rest/api/searchservice/indexes/create). 
 
-Add the following content to *hotels_quickstart_index.json* or [download the file](https://github.com/Azure-Samples/azure-search-javascript-samples/blob/main/quickstart/hotels_quickstart_index.json).
+Add the following content to *hotels_quickstart_index.json* or [download the file](https://github.com/Azure-Samples/azure-search-javascript-samples/blob/main/quickstart/hotels_quickstart_index.json). 
 
 ```json
 {
@@ -278,18 +266,10 @@ Add the following content to *hotels_quickstart_index.json* or [download the fil
 }
 ```
 
-With our index definition in place, we want to import *hotels_quickstart_index.json* at the top of *index.ts* so the main function can access the index definition.
+With our index definition in place, we want to import *hotels_quickstart_index.json* at the top of *index.js* so the main function can access the index definition.
 
-```typescript
-// Importing the index definition and sample data
-import indexDefinition from './hotels_quickstart_index.json';
-
-interface HotelIndexDefinition {
-    name: string;
-    fields: SimpleField[] | ComplexField[];
-    suggesters: SearchSuggester[];
-};
-const hotelIndexDefinition: HotelIndexDefinition = indexDefinition as HotelIndexDefinition;
+```javascript
+const indexDefinition = require('./hotels_quickstart_index.json');
 ```
 
 Within the main function, we then create a `SearchIndexClient`, which is used to create and manage indexes for Azure AI Search. 
@@ -302,8 +282,8 @@ Next, we want to delete the index if it already exists. This operation is a comm
 
 We do this by defining a simple function that tries to delete the index.
 
-```typescript
-async function deleteIndexIfExists(indexClient: SearchIndexClient, indexName: string): Promise<void> {
+```javascript
+async function deleteIndexIfExists(indexClient, indexName) {
     try {
         await indexClient.deleteIndex(indexName);
         console.log('Deleting index...');
@@ -315,9 +295,8 @@ async function deleteIndexIfExists(indexClient: SearchIndexClient, indexName: st
 
 To run the function, we extract the index name from the index definition and pass the `indexName` along with the `indexClient` to the `deleteIndexIfExists()` function.
 
-```typescript
-// Getting the name of the index from the index definition
-const indexName: string = hotelIndexDefinition.name;
+```javascript
+const indexName = indexDefinition["name"];
 
 console.log('Checking if index exists...');
 await deleteIndexIfExists(indexClient, indexName);
@@ -325,20 +304,19 @@ await deleteIndexIfExists(indexClient, indexName);
 
 After that, we're ready to create the index with the `createIndex()` method.
 
-```typescript
+```javascript
 console.log('Creating index...');
-let index = await indexClient.createIndex(hotelIndexDefinition);
+let index = await indexClient.createIndex(indexDefinition);
 
 console.log(`Index named ${index.name} has been created.`);
 ```
 
-#### Run the sample
+## Run the sample
 
-At this point, you're ready to build and run the sample. Use a terminal window to run the following commands to build your source with `tsc` then run your source with `node`:
+At this point, you're ready to run the sample. Use a terminal window to run the following command:
 
 ```cmd
-tsc
-node index.ts
+node index.js
 ```
 
 If you [downloaded the source code](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart) and haven't installed the required packages yet, run `npm install` first.
@@ -351,7 +329,7 @@ Open the **Overview** of your search service in the Azure portal. Select the **I
 
 In the next step, you'll add data to index. 
 
-#### Load documents 
+## Load documents 
 
 In Azure AI Search, documents are data structures that are both inputs to indexing and outputs from queries. You can push such data to the index or use an [indexer](/azure/search/search-indexer-overview). In this case, we'll programatically push the documents to the index.
 
@@ -432,78 +410,62 @@ Document inputs might be rows in a database, blobs in Blob storage, or, as in th
 }
 ```
 
-Similar to what we did with the indexDefinition, we also need to import `hotels.json` at the top of *index.ts* so that the data can be accessed in our main function.
+Similar to what we did with the `indexDefinition`, we also need to import `hotels.json` at the top of *index.js* so that the data can be accessed in our main function.
 
-```typescript
-import hotelData from './hotels.json';
-
-interface Hotel {
-    HotelId: string;
-    HotelName: string;
-    Description: string;
-    Description_fr: string;
-    Category: string;
-    Tags: string[];
-    ParkingIncluded: string | boolean;
-    LastRenovationDate: string;
-    Rating: number;
-    Address: {
-        StreetAddress: string;
-        City: string;
-        StateProvince: string;
-        PostalCode: string;
-    };
-};
-
-const hotels: Hotel[] = hotelData["value"];
+```javascript
+const hotelData = require('./hotels.json');
 ```
 
 To index data into the search index, we now need to create a `SearchClient`. While the `SearchIndexClient` is used to create and manage an index, the `SearchClient` is used to upload documents and query the index.
 
 There are two ways to create a `SearchClient`. The first option is to create a `SearchClient` from scratch:
 
-```typescript
- const searchClient = new SearchClient<Hotel>(endpoint, indexName, new AzureKeyCredential(apiKey));
+```javascript
+ const searchClient = new SearchClient(endpoint, indexName, new AzureKeyCredential(apiKey));
 ```
 
 Alternatively, you can use the `getSearchClient()` method of the `SearchIndexClient` to create the `SearchClient`:
 
-```typescript
-const searchClient = indexClient.getSearchClient<Hotel>(indexName);
+```javascript
+const searchClient = indexClient.getSearchClient(indexName);
 ```
 
-Now that the client is defined, upload the documents into the search index. In this case, we use the `mergeOrUploadDocuments()` method, which uploads the documents or merges them with an existing document if a document with the same key already exists. Then check that the operation succeeded because at least the first document exists.
+Now that the client is defined, upload the documents into the search index. In this case, we use the `mergeOrUploadDocuments()` method, which uploads the documents or merges them with an existing document if a document with the same key already exists.
 
-```typescript
-console.log("Uploading documents...");
-const indexDocumentsResult = await searchClient.mergeOrUploadDocuments(hotels);
+```javascript
+console.log('Uploading documents...');
+let indexDocumentsResult = await searchClient.mergeOrUploadDocuments(hotelData['value']);
 
 console.log(`Index operations succeeded: ${JSON.stringify(indexDocumentsResult.results[0].succeeded)}`);
 ```
 
-Run the program again with `tsc && node index.ts`. You should see a slightly different set of messages from those you saw in Step 1. This time, the index *does* exist, and you should see a message about deleting it before the app creates the new index and posts data to it. 
+Run the program again with `node index.js`. You should see a slightly different set of messages from those you saw in Step 1. This time, the index *does* exist, and you should see a message about deleting it before the app creates the new index and posts data to it. 
 
 Before we run the queries in the next step, define a function to have the program wait for one second. This is done just for test/demo purposes to ensure the indexing finishes and that the documents are available in the index for our queries.
 
-```typescript
-function sleep(ms: number): Promise<void> {
-    return new Promise((resolve) => setTimeout(resolve, ms));
+```javascript
+function sleep(ms) {
+    var d = new Date();
+    var d2 = null;
+    do {
+        d2 = new Date();
+    } while (d2 - d < ms);
 }
 ```
 
-To have the program wait for one second, call the `sleep` function:
+To have the program wait for one second, call the `sleep` function like below:
 
-```typescript
+```javascript
 sleep(1000);
 ```
 
-#### Search an index
+## Search an index
 
 With an index created and documents uploaded, you're ready to send queries to the index. In this section, we send five different queries to the search index to demonstrate different pieces of query functionality available to you.
 
 The queries are written in a `sendQueries()` function that we call in the main function as follows:
 
-```typescript
+```javascript
 await sendQueries(searchClient);
 ```
 
@@ -511,26 +473,17 @@ Queries are sent using the `search()` method of `searchClient`. The first parame
 
 The first query searches `*`, which is equivalent to searching everything and selects three of the fields in the index. It's a best practice to only `select` the fields you need because pulling back unnecessary data can add latency to your queries.
 
-The `searchOptions` for this query also has `includeTotalCount` set to `true`, which will return the number of matching results found.
+The `searchOptions` for this query also has `includeTotalCount` set to `true`, which returns the number of matching results found.
 
-```typescript
-async function sendQueries(
-    searchClient: SearchClient<Hotel>
-): Promise<void> {
-
-    // Query 1
+```javascript
+async function sendQueries(searchClient) {
     console.log('Query #1 - search everything:');
-    const selectFields: SearchFieldArray<Hotel> = [
-        "HotelId",
-        "HotelName",
-        "Rating",
-    ];
-    const searchOptions1 = { 
-        includeTotalCount: true, 
-        select: selectFields 
+    let searchOptions = {
+        includeTotalCount: true,
+        select: ["HotelId", "HotelName", "Rating"]
     };
 
-    let searchResults = await searchClient.search("*", searchOptions1);
+    let searchResults = await searchClient.search("*", searchOptions);
     for await (const result of searchResults.results) {
         console.log(`${JSON.stringify(result.document)}`);
     }
@@ -544,15 +497,16 @@ The remaining queries outlined below should also be added to the `sendQueries()`
 
 In the next query, we specify the search term `"wifi"` and also include a filter to only return results where the state is equal to `'FL'`. Results are also ordered by the Hotel's `Rating`.
 
-```typescript
-console.log('Query #2 - search with filter, orderBy, and select:');
+```javascript
+console.log('Query #2 - Search with filter, orderBy, and select:');
 let state = 'FL';
-const searchOptions2 = {
+searchOptions = {
     filter: odata`Address/StateProvince eq ${state}`,
     orderBy: ["Rating desc"],
-    select: selectFields
+    select: ["HotelId", "HotelName", "Rating"]
 };
-searchResults = await searchClient.search("wifi", searchOptions2);
+
+searchResults = await searchClient.search("wifi", searchOptions);
 for await (const result of searchResults.results) {
     console.log(`${JSON.stringify(result.document)}`);
 }
@@ -560,30 +514,31 @@ for await (const result of searchResults.results) {
 
 Next, the search is limited to a single searchable field using the `searchFields` parameter. This approach is a great option to make your query more efficient if you know you're only interested in matches in certain fields. 
 
-```typescript
-console.log('Query #3 - limit searchFields:');
-const searchOptions3 = {
-    select: selectFields,
-    searchFields: ["HotelName"] as const
+```javascript
+console.log('Query #3 - Limit searchFields:');
+searchOptions = {
+    select: ["HotelId", "HotelName", "Rating"],
+    searchFields: ["HotelName"]
 };
 
-searchResults = await searchClient.search("Sublime Palace", searchOptions3);
+searchResults = await searchClient.search("Sublime Palace", searchOptions);
 for await (const result of searchResults.results) {
     console.log(`${JSON.stringify(result.document)}`);
 }
+console.log();
 ```
 
-Another common option to include in a query is `facets`. Facets allow you to provide self-directed drilldown from the results in your UI. The facets results can be turned into checkboxes in the result pane. 
+Another common option to include in a query is `facets`. Facets allow you to build out filters on your UI to make it easy for users to know what values they can filter down to.
 
-```typescript
-console.log('Query #4 - limit searchFields and use facets:');
-const searchOptions4 = {
+```javascript
+console.log('Query #4 - Use facets:');
+searchOptions = {
     facets: ["Category"],
-    select: selectFields,
-    searchFields: ["HotelName"] as const
+    select: ["HotelId", "HotelName", "Rating"],
+    searchFields: ["HotelName"]
 };
 
-searchResults = await searchClient.search("*", searchOptions4);
+searchResults = await searchClient.search("*", searchOptions);
 for await (const result of searchResults.results) {
     console.log(`${JSON.stringify(result.document)}`);
 }
@@ -591,12 +546,12 @@ for await (const result of searchResults.results) {
 
 The final query uses the `getDocument()` method of the `searchClient`. This allows you to efficiently retrieve a document by its key. 
 
-```typescript
+```javascript
 console.log('Query #5 - Lookup document:');
-let documentResult = await searchClient.getDocument('3')
+let documentResult = await searchClient.getDocument(key='3')
 console.log(`HotelId: ${documentResult.HotelId}; HotelName: ${documentResult.HotelName}`)
 ```
 
-#### Rerun the sample
+## Run the sample again
 
-Build and run the program with `tsc && node index.ts`. Now, in addition to the previous steps, the queries are sent and the results written to the console.
+Run the program by using `node index.js`. Now, in addition to the previous steps, the queries are sent and the results written to the console.

@@ -3,7 +3,7 @@ title: How to use Azure OpenAI Service in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: Learn how to use Azure OpenAI Service in Azure AI Foundry portal.
 manager: nitinme
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
