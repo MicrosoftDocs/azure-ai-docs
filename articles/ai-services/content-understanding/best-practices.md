@@ -22,7 +22,7 @@ Suppose you want to extract the `"Customer Name"` from an invoice. Your descript
 If the system’s output isn’t meeting expectations, the first thing to try is refining and updating the field descriptions. By clarifying the context and being more explicit about what you need, you reduce ambiguity and improve accuracy.
 
 ### Example:
-If the `"Shipping date"` field generated inconsistent or incorrect extraction, update it to something more precise like:
+If the `"Shipping date"` field generated inconsistent or incorrect extraction, often after a "Dispatch Date" label, update it to something more precise like:
 > **"The date when the products were shipped, typically found below the item list. It may also be labeled something similar like Delivery Date or Dispatch Date. Dates should typically have a format like 1/23/2024 or 01-04-2025."**
 
 This extra context guides the model to the right location in the document.
