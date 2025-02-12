@@ -44,6 +44,40 @@ items:
       href: concepts/model-benchmarks.md
     - name: How to use model benchmarking
       href: how-to/benchmark-model-in-catalog.md
+  - name: Model deployment in Azure AI Foundry
+    items:
+    - name: Deploying models in Azure AI Foundry
+      href: concepts/deployments-overview.md
+    - name: Serverless API
+      items:
+      - name: Deploy models as serverless API
+        href: how-to/deploy-models-serverless.md
+      - name: Consume serverless API models from a different project or hub
+        href: how-to/deploy-models-serverless-connect.md
+      - name: Model and region availability for Serverless API deployments
+        href: how-to/deploy-models-serverless-availability.md
+    - name: Managed compute
+      items:
+      - name: Deploy models via managed compute
+        href: how-to/deploy-models-managed.md
+    - name: Model inference
+      items:
+      - name: What is Azure AI model inference?
+        href: ../ai-foundry/model-inference/overview.md?context=/azure/ai-studio/context/context
+      - name: Upgrade from GitHub Models
+        href: ../ai-foundry/model-inference/how-to/quickstart-github-models.md?context=/azure/ai-studio/context/context
+      - name: Add and configure models
+        href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-studio/context/context
+      - name: Use the inference endpoint
+        href: ../ai-foundry/model-inference/concepts/endpoints.md?context=/azure/ai-studio/context/context
+    - name: Azure OpenAI Service
+      items:
+      - name: Deploy Azure OpenAI models
+        href: how-to/deploy-models-openai.md
+    - name: Quotas and limits
+      href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-studio/context/context
+    - name: Troubleshoot deployments and monitoring
+      href: how-to/troubleshoot-deploy-and-monitor.md
   - name: Featured models
     items:
     - name: AI21 Jamba models
@@ -318,33 +352,6 @@ items:
       displayName: code,sdk
     - name: Develop with Semantic Kernel
       href: how-to/develop/semantic-kernel.md
-  - name: Model inference
-    items:
-    - name: What is Azure AI model inference?
-      href: ../ai-foundry/model-inference/overview.md?context=/azure/ai-studio/context/context
-    - name: Upgrade from GitHub Models
-      href: ../ai-foundry/model-inference/how-to/quickstart-github-models.md?context=/azure/ai-studio/context/context
-    - name: Add and configure models
-      href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-studio/context/context
-    - name: Use the inference endpoint
-      href: ../ai-foundry/model-inference/concepts/endpoints.md?context=/azure/ai-studio/context/context
-  - name: Deployments
-    items:
-    - name: Deploying models in Azure AI Foundry
-      href: concepts/deployments-overview.md
-    - name: Deploy models as serverless API
-      href: how-to/deploy-models-serverless.md
-    - name: Deploy models via managed compute
-      href: how-to/deploy-models-managed.md
-    - name: Consume serverless API models from a different project or hub
-      href: how-to/deploy-models-serverless-connect.md
-      displayName: maas, paygo, models-as-a-service
-    - name: Model and region availability for Serverless API deployments
-      href: how-to/deploy-models-serverless-availability.md
-    - name: Quotas and limits
-      href: ai-services/concepts/quotas-limits.md
-    - name: Troubleshoot deployments and monitoring
-      href: how-to/troubleshoot-deploy-and-monitor.md
 - name: Optimizations
   items:
   - name: Prompt engineering
