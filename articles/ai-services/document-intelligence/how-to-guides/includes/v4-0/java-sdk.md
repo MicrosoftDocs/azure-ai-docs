@@ -192,7 +192,7 @@ analyzeLayoutResult.getPages().forEach(documentPage -> {
   documentPage.getLines().forEach(documentLine ->
     System.out.printf("Line %s is within a bounding polygon %s.%n",
       documentLine.getContent(),
-      documentLine.getBoundingPolygon().toString()));
+      documentLine.getPolygon().toString()));
 
   // words
   documentPage.getWords().forEach(documentWord ->
@@ -258,7 +258,7 @@ analyzeLayoutResult.getPages().forEach(documentPage -> {
   documentPage.getLines().forEach(documentLine ->
     System.out.printf("Line %s is within a bounding polygon %s.%n",
       documentLine.getContent(),
-      documentLine.getBoundingPolygon().toString()));
+      documentLine.getPolygon().toString()));
 
   // words
   documentPage.getWords().forEach(documentWord ->
@@ -270,7 +270,7 @@ analyzeLayoutResult.getPages().forEach(documentPage -> {
   documentPage.getSelectionMarks().forEach(documentSelectionMark ->
     System.out.printf("Selection mark is '%s' and is within a bounding polygon %s with confidence %.2f.%n",
       documentSelectionMark.getSelectionMarkState().toString(),
-      getBoundingCoordinates(documentSelectionMark.getBoundingPolygon()),
+      getBoundingCoordinates(documentSelectionMark.getPolygon()),
       documentSelectionMark.getConfidence()));
 });
 
@@ -290,8 +290,8 @@ for (int i = 0; i < tables.size(); i++) {
 }
 
 // Utility function to get the bounding polygon coordinates.
-private static String getBoundingCoordinates(List < Point > boundingPolygon) {
-  return boundingPolygon.stream().map(point -> String.format("[%.2f, %.2f]", point.getX(),
+private static String getBoundingCoordinates(List < Point > Polygon) {
+  return Polygon.stream().map(point -> String.format("[%.2f, %.2f]", point.getX(),
     point.getY())).collect(Collectors.joining(", "));
 }
 
@@ -351,7 +351,7 @@ analyzeResult.getPages().forEach(documentPage -> {
   documentPage.getLines().forEach(documentLine ->
     System.out.printf("Line %s is within a bounding polygon %s.%n",
       documentLine.getContent(),
-      documentLine.getBoundingPolygon().toString()));
+      documentLine.getPolygon().toString()));
 
   // words
   documentPage.getWords().forEach(documentWord ->
