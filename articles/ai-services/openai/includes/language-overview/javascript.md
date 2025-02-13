@@ -66,12 +66,12 @@ The `AzureClientOptions` object extends the OpenAI `ClientOptions` object. This 
 |--|--|
 | apiVersion: `string` | Specifies the API version to use. |
 | azureADTokenProvider: `(() => Promise<string>)` | A function that returns an access token for Microsoft Entra (formerly known as Azure Active Directory), invoked on every request.|
-| deployment: `string` | A model deployment. If provided, sets the base client URL to include `/deployments/{deployment}`. Non-deployment endpoints cannot be used (not supported with Assistants APIs).|
+| deployment: `string` | A model deployment. If provided, sets the base client URL to include `/deployments/{deployment}`. Non-deployment endpoints can't be used (not supported with Assistants APIs).|
 | endpoint: `string` | Your Azure OpenAI endpoint with the following format: `https://RESOURCE-NAME.azure.openai.com/`.|
 
 # [API Key](#tab/api-key)
 
-API keys are not recommended for production use because they are less secure than other authentication methods. 
+API keys aren't recommended for production use because they're less secure than other authentication methods. 
 
 ```typescript
 import { AzureKeyCredential } from "@azure/openai";
@@ -94,7 +94,7 @@ The `AzureClientOptions` object extends the OpenAI `ClientOptions` object. This 
 |--|--|
 | apiKey: `string` | Your API key for authenticating requests. |
 | apiVersion: `string` | Specifies the API version to use. |
-| deployment: `string` | A model deployment. If provided, sets the base client URL to include `/deployments/{deployment}`. Non-deployment endpoints cannot be used (not supported with Assistants APIs).|
+| deployment: `string` | A model deployment. If provided, sets the base client URL to include `/deployments/{deployment}`. Non-deployment endpoints can't be used (not supported with Assistants APIs).|
 | endpoint: `string` | Your Azure OpenAI endpoint with the following format: `https://RESOURCE-NAME.azure.openai.com/`.|
 
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
