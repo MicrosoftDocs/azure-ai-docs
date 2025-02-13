@@ -29,28 +29,13 @@ npm install openai
 
 The `AzureClientOptions` object is used to configure the API client for interfacing with the Azure OpenAI API. The configuration object extends the existing OpenAi `ClientOptions` object. Below are the Azure OpenAI specific properties, their default values, and descriptions:
 
-**Properties**:
-
-* azureADTokenProvider:
-    Type: `(() => Promise<string>) | undefined`
-    Default: undefined
-    Description: A function that returns an access token for Microsoft Entra (formerly known as Azure Active Directory), which will be invoked on every request.
-* apiKey:
-    Type: `string | undefined`
-    Default: process.env['AZURE_OPENAI_API_KEY']
-    Description: Your API key for authenticating requests.
-* apiVersion:
-    Type: `string | undefined`
-    Default: process.env['OPENAI_API_VERSION']
-    Description: Specifies the API version to use.
-* deployment:
-    Type: `string | undefined`
-    Default: undefined
-    Description: A model deployment. If given, sets the base client URL to include /deployments/{deployment}. Note: this means you won't be able to use non-deployment endpoints. Not supported with Assistants APIs.    
-* endpoint:
-    Type: `string | undefined`
-    Default: undefined
-    Description: Your Azure OpenAI endpoint.
+| Property             | Details |
+|--|--|
+| azureADTokenProvider: `(() => Promise<string>) | A function that returns an access token for Microsoft Entra (formerly known as Azure Active Directory), invoked on every request.                                                                     |
+| apiKey: `string | Your API key for authenticating requests. Default environment variable is `AZURE_OPENAI_API_KEY`.`|
+| apiVersion: `string | Specifies the API version to use. Default environment variable is `OPENAI_API_VERSION` |
+| deployment: `string | A model deployment. If provided, sets the base client URL to include `/deployments/{deployment}`. Non-deployment endpoints cannot be used (not supported with Assistants APIs).|
+| endpoint: `string | Your Azure OpenAI endpoint.|
 
 ## Authentication
 
