@@ -64,26 +64,26 @@ items:
       items:
       - name: What is Azure AI model inference?
         href: ../ai-foundry/model-inference/overview.md?context=/azure/ai-studio/context/context
-      - name: Upgrade from GitHub Models
-        href: ../ai-foundry/model-inference/how-to/quickstart-github-models.md?context=/azure/ai-studio/context/context
       - name: Add and configure models
         href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-studio/context/context
-      - name: Use the inference endpoint
-        href: ../ai-foundry/model-inference/concepts/endpoints.md?context=/azure/ai-studio/context/context
+      - name: Use the Azure AI model inference endpoint
+        href: ../ai-foundry/model-inference/how-to/inference.md?context=/azure/ai-studio/context/context
+      - name: Quotas and limits
+        href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-studio/context/context
     - name: Azure OpenAI Service
       items:
       - name: Deploy Azure OpenAI models
         href: how-to/deploy-models-openai.md
-    - name: Quotas and limits
-      href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-studio/context/context
-    - name: Troubleshoot deployments and monitoring
-      href: how-to/troubleshoot-deploy-and-monitor.md
+      - name: Azure OpenAI Service quotas and limits
+        href: ../ai-services/openai/quotas-limits.md?context=/azure/ai-studio/context/context
+      - name: Troubleshoot deployments and monitoring
+        href: how-to/troubleshoot-deploy-and-monitor.md
   - name: Work with models from the model catalog
     items:
     - name: Featured models
       href: ../ai-foundry/model-inference/concepts/models.md?context=/azure/ai-studio/context/context
     - name: Use the Azure AI model inference endpoint
-      href: ../ai-foundry/model-inference/how-to/inference.md?context=/azure/ai-studio/context/context
+      href: ../ai-foundry/model-inference/concepts/endpoints.md?context=/azure/ai-studio/context/context
     - name: Programming languages and SDKs
       href: ../ai-foundry/model-inference/supported-languages.md?context=/azure/ai-studio/context/context
     - name: Work with embedding models
