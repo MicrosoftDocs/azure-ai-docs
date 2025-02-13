@@ -101,7 +101,7 @@ my_connection_name = "myaiservivce" # any name you want
 aiservices_resource_name = <resource_name> # copy from Azure AI Foundry portal
 my_endpoint = "<endpoint>" # copy from Azure AI Foundry portal
 my_api_keys = None # leave blank for Authentication type = AAD
-resource_id = f"/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{aiservices_resource_name}"
+my_ai_services_resource_id = f"/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{aiservices_resource_name}"
 
 my_connection = AzureAIServicesConnection(name=my_connection_name,
                                     endpoint=my_endpoint, 
