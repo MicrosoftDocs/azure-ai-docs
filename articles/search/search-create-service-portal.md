@@ -4,65 +4,70 @@ titleSuffix: Azure AI Search
 description: Learn how to set up an Azure AI Search resource in the Azure portal. Choose resource groups, regions, and a pricing tier.
 
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - references_regions
   - build-2024
 ms.topic: conceptual
-ms.date: 01/15/2025
+ms.date: 02/13/2025
 ---
 
 # Create an Azure AI Search service in the Azure portal
 
-[**Azure AI Search**](search-what-is-azure-search.md) is an information retrieval platform for the enterprise. It supports traditional search and conversational AI-driven search for "chat with your data" experiences over your proprietary content.
+[Azure AI Search](search-what-is-azure-search.md) is an information-retrieval platform for the enterprise. It supports traditional search and conversational, AI-driven search for "chat with your data" experiences across proprietary content.
 
-The easiest way to create a service is using the [Azure portal](https://portal.azure.com/), which is covered in this article.
+The easiest way to create a search service is through the [Azure portal](https://portal.azure.com/), which is covered in this article.
 
-You can also use [Azure PowerShell](search-manage-powershell.md#create-or-delete-a-service), [Azure CLI](search-manage-azure-cli.md#create-or-delete-a-service), the [Management REST API](search-manage-rest.md#create-or-update-a-service), an [Azure Resource Manager service template](search-get-started-arm.md), a [Bicep file](search-get-started-bicep.md), or [Terraform](search-get-started-terraform.md).
+[![Animated GIF showing how to create an Azure AI Search service in the Azure portal.](./media/search-create-service-portal/AnimatedGif-AzureSearch-small.gif)](./media/search-create-service-portal/AnimatedGif-AzureSearch.gif#lightbox)
 
-[![Animated GIF](./media/search-create-service-portal/AnimatedGif-AzureSearch-small.gif)](./media/search-create-service-portal/AnimatedGif-AzureSearch.gif#lightbox)
+You can also use [Azure PowerShell](search-manage-powershell.md#create-or-delete-a-service), the [Azure CLI](search-manage-azure-cli.md#create-or-delete-a-service), the [Management REST API](search-manage-rest.md#create-or-update-a-service), an [Azure Resource Manager service template](search-get-started-arm.md), a [Bicep file](search-get-started-bicep.md), or [Terraform](search-get-started-terraform.md).
 
 ## Before you start
 
-A few service properties are fixed for the lifetime of the service. Before creating the service, decide on a name, region, and tier.
+Some properties are fixed for the lifetime of the search service. Before creating your service, decide on a name, region, and tier.
 
-+ [Service name](#name-the-service) becomes part of the URL endpoint. The name must be unique and it must conform to naming rules.
++ [Service name](#name-the-service) becomes part of the URL endpoint. The name must be unique and follow naming rules.
 
-+ [Region](search-region-support.md) determines data residency and the availability of certain features. Semantic ranker and Azure AI integration come with region requirements. Make sure your region of choice supports the features you need.
++ [Region](search-region-support.md) determines data residency and availability of certain features. Semantic ranker and Azure AI integration have region requirements. Make sure your region of choice supports the features you need.
 
 + [Service tier](search-sku-tier.md) determines infrastructure, service limits, and billing. Some features aren't available on lower or specialized tiers.
 
 ## Subscribe (free or paid)
 
-Paid (or billable) search occurs when you choose a billable tier (Basic or higher) when creating the resource on a billable Azure subscription.
+Paid (or billable) search occurs when you choose a billable tier (Basic or higher) when creating the search service on a billable Azure subscription.
 
-To try Azure AI Search for free, [open a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) and then create your search service by choosing the **Free** tier. You can have one free search service per Azure subscription. Free search services are intended for short-term evaluation of the product for nonproduction applications. Generally, you can complete all of the quickstarts and most tutorials, except for those featuring semantic ranker (it requires a billable service). Free services that are inactive for an extended period of time can be deleted by Microsoft to make room for other services.
+To try Azure AI Search for free, [open a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) and select the Free tier when creating your service. Each Azure subscription can have one free search service, which is intended for short-term, non-production evaluation of the product. Afterwards, you can complete all of the quickstarts and most of the tutorials, except those featuring semantic ranker, which requires a billable service.
 
-Alternatively, you can use free credits to try out paid Azure services. With this approach, you can create your search service at **Basic** or higher to get more capacity. Your credit card is never charged unless you explicitly change your settings and ask to be charged. Another approach is to [activate Azure credits in a Visual Studio subscription](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F). A Visual Studio subscription gives you credits every month you can use for paid Azure services.
+> [!NOTE]
+> To make room for other services, Microsoft might delete free services that are inactive for an extended period of time.
+
+Alternatively, you can use free credits to try paid Azure services. With this approach, you can create your service at the Basic tier or higher for more capacity. Your credit card is never charged unless you change your settings and ask to be charged. Another approach is to [activate Azure credits in a Visual Studio subscription](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F). This subscription gives you monthly credits to explore paid Azure services.
 
 ## Find the Azure AI Search offering
 
 1. Sign in to the [Azure portal](https://portal.azure.com/).
 
-1. Select (**Create Resource"**) in the top-left corner.
+1. In the upper-left corner, select **Create a resource**.
 
-1. Use the search bar to find "Azure AI Search*.
+   :::image type="content" source="media/search-create-service-portal/find-search3.png" lightbox="media/search-create-service-portal/find-search3.png" alt-text="Screenshot of the Create a Resource page in the Azure portal." border="true":::
 
-:::image type="content" source="media/search-create-service-portal/find-search3.png" lightbox="media/search-create-service-portal/find-search3.png" alt-text="Screenshot of the Create Resource page in the Azure portal." border="true":::
+1. In the search box, enter **Azure AI Search**.
 
 ## Choose a subscription
 
-If you have more than one subscription, choose one for your search service. If you're implementing [customer-managed encryption](search-security-manage-encryption-keys.md) or if you use other features that depend on managed service identities for [external data access](search-indexer-securing-resources.md), choose the same subscription as the one used for Azure Key Vault or other services for which managed identities are used.
+If you have multiple subscriptions, choose one for your search service.
+
+If you're implementing [customer-managed encryption](search-security-manage-encryption-keys.md) or using other features that depend on managed service identities for [external data access](search-indexer-securing-resources.md), choose the same subscription as the one used for Azure Key Vault or other services that use managed identities.
 
 ## Set a resource group
 
-A resource group is a container that holds related resources for your Azure solution. It's useful for consolidating same-solution resources, monitoring costs, and for checking the creation date of your search service.
+A resource group is a container that holds related resources for an Azure solution. Use it to consolidate same-solution resources, monitor costs, and check the creation date of your search service.
 
-:::image type="content" source="media/search-create-service-portal/new-resource-group.png" lightbox="media/search-create-service-portal/new-resource-group.png" alt-text="Screenshot of the Create Resource Group page in the Azure portal." border="true":::
+:::image type="content" source="media/search-create-service-portal/new-resource-group.png" lightbox="media/search-create-service-portal/new-resource-group.png" alt-text="Screenshot of the Create a Resource Group page in the Azure portal." border="true":::
 
-Over time, you can track current and projected costs all-up or you can view charges for individual resources. The following screenshot shows the kind of cost information you can expect to see when you combine multiple resources into one group.
+Over time, you can track current and projected costs all-up or view charges for individual resources. The following screenshot shows the kind of cost information you can expect to see when you combine multiple resources into one group.
 
 :::image type="content" source="media/search-create-service-portal/resource-group-cost-management.png" lightbox="media/search-create-service-portal/resource-group-cost-management.png" alt-text="Screenshot of the Managing costs page in the Azure portal." border="true":::
 
