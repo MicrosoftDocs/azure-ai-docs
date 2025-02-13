@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: Azure AI Foundry is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way.
 manager: scottpolly
 keywords: Azure AI services, cognitive
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: overview
 ms.date: 10/31/2024
 ms.reviewer: sgilley

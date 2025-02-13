@@ -5,7 +5,7 @@ description: Learn how to use Speech to text REST API for short audio to convert
 author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: reference
+ms.topic: how-to
 ms.date: 9/23/2024
 ms.author: eur
 ms.devlang: csharp

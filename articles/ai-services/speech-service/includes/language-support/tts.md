@@ -174,21 +174,4 @@ ms.custom: references_regions
 
 <sup>5</sup> The OpenAI text to speech voices in Azure AI Speech are in public preview and only available in North Central US (`northcentralus`) and Sweden Central (`swedencentral`). Locales not listed for OpenAI voices aren't supported. For information about additional differences between OpenAI text to speech voices and Azure AI Speech text to speech voices, see [OpenAI text to speech voices](../../openai-voices.md#openai-text-to-speech-voices-via-azure-openai-service-or-via-azure-ai-speech).
 
-"SecondaryLocaleList": [
-      "zh-CN-shaanxi",
-      "zh-CN-sichuan",
-      "zh-CN-shanxi",
-      "zh-CN-anhui",
-      "zh-CN-hunan",
-      "zh-CN-gansu",
-      "zh-CN-shandong",
-      "zh-CN-henan",
-      "zh-CN-liaoning",
-      "zh-TW",
-      "nan-CN",
-      "yue-CN",
-      "wuu-CN"
-    ],
-
-
 <sup>6</sup> The `zh-CN-XiaoxiaoDialectsNeural` voice also supports the following secondary locales: `zh-CN-shaanxi`, `zh-CN-sichuan`, `zh-CN-shanxi`, `zh-CN-anhui`, `zh-CN-hunan`, `zh-CN-gansu`, `zh-CN-shandong`, `zh-CN-henan`, `zh-CN-liaoning`, `zh-TW`, `nan-CN`, `yue-CN`, and `wuu-CN`. To get the latest supported list of secondary locales, see [the voice list API reference](../../rest-text-to-speech.md#get-a-list-of-voices).

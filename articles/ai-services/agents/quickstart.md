@@ -7,14 +7,20 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: quickstart
-ms.date: 01/28/2025
-zone_pivot_groups: programming-languages-agents
+ms.date: 01/30/2025
+zone_pivot_groups: agents-quickstart
 ms.custom: azure-ai-agents
 ---
 
 # Quickstart: Create a new agent
 
 Azure AI Agent Service allows you to create AI agents tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions.
+
+::: zone pivot="ai-foundry"
+
+[!INCLUDE [quickstart-ai-foundry](includes/quickstart-foundry.md)]
+
+::: zone-end
 
 ::: zone pivot="programming-language-csharp"
 

@@ -138,11 +138,14 @@ M = million | K = thousand
 
 ## gpt-4o audio
 
-The rate limits for each `gpt-4o-realtime-preview` model deployment are 100K TPM and 1K RPM. During the preview, Azure AI Foundry portal and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit will be 100K TPM and 1K RPM.
+The rate limits for each `gpt-4o` audio model deployment are 100K TPM and 1K RPM. During the preview, Azure AI Foundry portal and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit will be 100K TPM and 1K RPM.
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
-|`gpt-4o-realtime-preview` | Default | 100 K | 1 K |
+|`gpt-4o-audio-preview` | Default | 450 K | 1 K |
+|`gpt-4o-realtime-preview` | Default | 800 K | 1 K |
+|`gpt-4o-mini-audio-preview` | Default | 2 M | 1 K |
+|`gpt-4o-mini-realtime-preview` | Default | 800 K | 1 K |
 
 M = million | K = thousand
 

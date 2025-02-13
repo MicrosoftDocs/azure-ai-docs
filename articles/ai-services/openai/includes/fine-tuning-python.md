@@ -26,8 +26,6 @@ ms.author: mbullwin
 
 The following models support fine-tuning:
 
-- `babbage-002`
-- `davinci-002`
 - `gpt-35-turbo` (0613)
 - `gpt-35-turbo` (1106)
 - `gpt-35-turbo` (0125)
@@ -59,10 +57,6 @@ Take a moment to review the fine-tuning workflow for using the Python SDK with A
 ### Prepare your training and validation data
 
 Your training data and validation data sets consist of input and output examples for how you would like the model to perform.
-
-Different model types require a different format of training data.
-
-# [chat completion models](#tab/turbo)
 
 The training and validation data you use **must** be formatted as a JSON Lines (JSONL) document. For `gpt-35-turbo-0613` the fine-tuning dataset must be formatted in the conversational format that is used by the [Chat completions](../how-to/chatgpt.md) API.
 
@@ -99,54 +93,6 @@ In addition to the JSONL format, training and validation data files must be enco
 The more training examples you have, the better. Fine tuning jobs will not proceed without at least 10 training examples, but such a small number is not enough to noticeably influence model responses. It is best practice to provide hundreds, if not thousands, of training examples to be successful.
 
 In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind, low quality examples can negatively impact performance. If you train the model on a large amount of internal data, without first pruning the dataset for only the highest quality examples you could end up with a model that performs much worse than expected.
-
-# [babbage-002/davinci-002](#tab/completionfinetuning)
-
-The training and validation data you use **must** be formatted as a JSON Lines (JSONL) document in which each line represents a single prompt-completion pair. The OpenAI command-line interface (CLI) includes [a data preparation tool](#openai-cli-data-preparation-tool) that validates, gives suggestions, and reformats your training data into a JSONL file ready for fine-tuning.
-
-```json
-{"prompt": "<prompt text>", "completion": "<ideal generated text>"}
-{"prompt": "<prompt text>", "completion": "<ideal generated text>"}
-{"prompt": "<prompt text>", "completion": "<ideal generated text>"}
-```
-
-In addition to the JSONL format, training and validation data files must be encoded in UTF-8 and include a byte-order mark (BOM). The file must be less than 512 MB in size.
-
-### Create your training and validation datasets
-
-Designing your prompts and completions for fine-tuning is different from designing your prompts for use with any of [our GPT-3 base models](../concepts/legacy-models.md#gpt-3-models). Prompts for completion calls often use either detailed instructions or few-shot learning techniques, and consist of multiple examples. For fine-tuning, each training example should consist of a single input prompt and its desired completion output. You don't need to give detailed instructions or multiple completion examples for the same prompt.
-
-The more training examples you have, the better. Fine tuning jobs will not proceed without at least 10 training examples, but such a small number is not enough to noticeably influence model responses. It is best practice to provide hundreds, if not thousands, of training examples to be successful.
-
-In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind, low quality examples can negatively impact performance. If you train the model on a large amount of internal data, without first pruning the dataset for only the highest quality examples you could end up with a model that performs much worse than expected.
-
-### OpenAI CLI data preparation tool
-
-OpenAI's CLI data preparation tool was developed for the previous generation of fine-tuning models to assist with many of the data preparation steps. This tool will only work for data preparation for models that work with the completion API like `babbage-002` and `davinci-002`. The tool validates, gives suggestions, and reformats your data into a JSONL file ready for fine-tuning.
-
-To install the OpenAI CLI, run the following Python command:
-
-```console
-pip install openai==0.28.1
-```
-
-To analyze your training data with the data preparation tool, run the following Python command. Replace the _\<LOCAL_FILE>_ argument with the full path and file name of the training data file to analyze:
-
-```console
-openai tools fine_tunes.prepare_data -f <LOCAL_FILE>
-```
-
-This tool accepts files in the following data formats, if they contain a prompt and a completion column/key:
-
-- Comma-separated values (CSV)
-- Tab-separated values (TSV)
-- Microsoft Excel workbook (XLSX)
-- JavaScript Object Notation (JSON)
-- JSON Lines (JSONL)
-
-After it guides you through the process of implementing suggested changes, the tool reformats your training data and saves output into a JSONL file ready for fine-tuning.
-
----
 
 ## Upload your training data
 
@@ -209,7 +155,7 @@ import os
 openai.api_key = os.getenv("AZURE_OPENAI_API_KEY") 
 openai.api_base =  os.getenv("AZURE_OPENAI_ENDPOINT")
 openai.api_type = 'azure'
-openai.api_version = '2024-02-01' # This API version or later is required to access fine-tuning for turbo/babbage-002/davinci-002
+openai.api_version = '2024-02-01' # This API version or later is required
 
 training_file_name = 'training_set.jsonl'
 validation_file_name = 'validation_set.jsonl'
@@ -302,7 +248,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-02-01"  # This API version or later is required to access fine-tuning for turbo/babbage-002/davinci-002
+  api_version="2024-02-01"  # This API version or later is required
 )
 
 client.fine_tuning.jobs.create(
@@ -580,7 +526,7 @@ az cognitiveservices account deployment create
 
 ## Use a deployed customized model
 
-After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in [Azure AI Foundry](https://ai.azure.com) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models. For fine-tuned `babbage-002` and `davinci-002` models you will use the Completions playground and the Completions API. For fine-tuned `gpt-35-turbo-0613` models you will use the Chat playground and the Chat completion API.
+After your custom model deploys, you can use it like any other deployed model. You can use the **Chat Playground** in [Azure AI Foundry](https://ai.azure.com) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models.
 
 # [OpenAI Python 1.x](#tab/python-new)
 

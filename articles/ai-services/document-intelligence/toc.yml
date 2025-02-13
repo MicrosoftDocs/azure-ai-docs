@@ -5,7 +5,7 @@ items:
   expanded: true
   items:
   - name: What is Azure AI Document Intelligence?
-    displayName: models, develop, development, cognitive, applied, form recognizer, form, recognizer
+    displayName: models, develop, development, cognitive, applied, form recognizer, form, recognizer, region availability, regional availability
     href: overview.md
   - name: What's new
     displayName: changelog, release, updates, previews, beta, packages, ga, cognitive, applied, form recognizer, form, recognizer
@@ -51,7 +51,7 @@ items:
         href: v21/sdk-overview-v2-1.md
   - name: Changelog and migration guide
     displayName: latest, update, beta, package, preview, version
-    href: changelog-release-history.md      
+    href: changelog-release-history.md
   - name: Frequently asked questions (FAQ)
     displayName: storage, security, privacy, help, support, versions, development, migrate, migration, cognitive, applied, form recognizer, form, recognizer
     href: faq.yml
@@ -159,6 +159,9 @@ items:
   - name: Batch documents analysis
     displayName: analyze, azureBlobFileListSource, azureBlobSource, azureBlobFileListSource, resultContainerUrl, resultPrefix, overwriteExisting
     href: concept-batch-analysis.md
+  - name: Troubleshoot latency issues
+    displayName: latency, performance, slow, response, time, analyze
+    href: concept/troubleshoot-latency.md
 - name: Quickstarts
   items:
     - name: Document Intelligence Studio custom projects
@@ -337,7 +340,7 @@ items:
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/pay-stub.md
     - name: Receipt
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/receipt.md
-    - name: US tax W-2 form 
+    - name: US tax W-2 form
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/us-tax/w2.md
     - name: US tax W-4 form
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/us-tax/w4.md

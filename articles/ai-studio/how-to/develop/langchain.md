@@ -3,7 +3,7 @@ title: Develop application with LangChain and Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: This article explains how to use LangChain with models deployed in Azure AI Foundry portal to build advance intelligent applications.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to

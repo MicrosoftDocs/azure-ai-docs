@@ -8,7 +8,7 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
-ms.topic: reference
+ms.topic: conceptual
 ms.date: 02/17/2021
 ms.author: nitinme
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face

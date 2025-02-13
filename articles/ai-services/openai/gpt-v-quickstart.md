@@ -20,7 +20,7 @@ Get started using GPT-4 Turbo with images with the Azure OpenAI Service.
 > [!NOTE]
 > **Model choice**
 >
-> The latest vision-capable models are `gpt-4o` and `gpt-4o mini`. These are in public preview. The latest available GA model is `gpt-4` version `turbo-2024-04-09`.
+> The latest vision-capable models are `gpt-4o` and `gpt-4o mini`. These models are in public preview. The latest available GA model is `gpt-4` version `turbo-2024-04-09`.
 
 > [!IMPORTANT]
 > Extra usage fees might apply when using chat completion models with vision functionality.
@@ -64,6 +64,7 @@ Get started using GPT-4 Turbo with images with the Azure OpenAI Service.
 
 ## Next steps
 
+* [Get started with multimodal vision chat apps using Azure OpenAI](/azure/developer/ai/get-started-app-chat-vision?tabs=github-codespaces) AI App template
 * Learn more about these APIs in the [Vision-enabled models how-to guide](./gpt-v-quickstart.md)
 * [GPT-4 Turbo with Vision frequently asked questions](./faq.yml#gpt-4-turbo-with-vision)
 * [GPT-4 Turbo with Vision API reference](https://aka.ms/gpt-v-api-ref)

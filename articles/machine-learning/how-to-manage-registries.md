@@ -31,8 +31,6 @@ Azure Machine Learning registries enable you to create and use those assets in d
 
 [!INCLUDE [CLI v2 preres](includes/machine-learning-cli-prereqs.md)]
 
-[!INCLUDE [CLI v2 update](./includes/new-feature-cli.md)]
-
 ## Prepare to create registry
 
 You need to decide the following information carefully before proceeding to create a registry:

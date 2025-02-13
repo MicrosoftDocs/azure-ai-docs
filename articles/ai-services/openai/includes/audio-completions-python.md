@@ -17,8 +17,8 @@ Use this guide to get started generating audio with the Azure OpenAI SDK for Pyt
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>. We recommend using Python 3.10 or later, but having at least Python 3.8 is required. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
-- An Azure OpenAI resource created in the East US 2 or Sweden Central regions. See [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).
-- Then, you need to deploy a `gpt-4o-audio-preview` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](../concepts/models.md#global-standard-model-availability).
+- Then, you need to deploy a `gpt-4o-mini-audio-preview` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 ## Microsoft Entra ID prerequisites
 
@@ -107,7 +107,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
     # Make the audio chat completions request
     completion=client.chat.completions.create(
-        model="gpt-4o-audio-preview",
+        model="gpt-4o-mini-audio-preview",
         modalities=["text", "audio"],
         audio={"voice": "alloy", "format": "wav"},
         messages=[
@@ -153,7 +153,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
     # Make the audio chat completions request
     completion = client.chat.completions.create(
-        model="gpt-4o-audio-preview",
+        model="gpt-4o-mini-audio-preview",
         modalities=["text", "audio"],
         audio={"voice": "alloy", "format": "wav"},
         messages=[
@@ -216,7 +216,7 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
      
     # Make the audio chat completions request
     completion = client.chat.completions.create( 
-        model="gpt-4o-audio-preview", 
+        model="gpt-4o-mini-audio-preview", 
         modalities=["text", "audio"], 
         audio={"voice": "alloy", "format": "wav"}, 
         messages=[ 
@@ -278,7 +278,7 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
      
     # Make the audio chat completions request
     completion = client.chat.completions.create( 
-        model="gpt-4o-audio-preview", 
+        model="gpt-4o-mini-audio-preview", 
         modalities=["text", "audio"], 
         audio={"voice": "alloy", "format": "wav"}, 
         messages=[ 
@@ -370,7 +370,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     # Get the first turn's response
     
     completion = client.chat.completions.create( 
-        model="gpt-4o-audio-preview", 
+        model="gpt-4o-mini-audio-preview", 
         modalities=["text", "audio"], 
         audio={"voice": "alloy", "format": "wav"}, 
         messages=messages
@@ -396,7 +396,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     
     # Send the follow-up request with the accumulated messages
     completion = client.chat.completions.create( 
-        model="gpt-4o-audio-preview", 
+        model="gpt-4o-mini-audio-preview", 
         messages=messages
     ) 
     
@@ -451,7 +451,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     # Get the first turn's response 
     
     completion = client.chat.completions.create( 
-        model="gpt-4o-audio-preview", 
+        model="gpt-4o-mini-audio-preview", 
         modalities=["text", "audio"], 
         audio={"voice": "alloy", "format": "wav"}, 
         messages=messages
@@ -477,7 +477,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     
     # Send the follow-up request with the accumulated messages 
     completion = client.chat.completions.create( 
-        model="gpt-4o-audio-preview", 
+        model="gpt-4o-mini-audio-preview", 
         messages=messages
     ) 
     

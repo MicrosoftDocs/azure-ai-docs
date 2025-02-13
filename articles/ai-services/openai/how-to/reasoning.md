@@ -1,11 +1,11 @@
 ---
-title: Azure OpenAI o1 series reasoning models
+title: Azure OpenAI reasoning models - o3-mini, o1, o1-mini
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's advanced o3-mini, o1, & o1-mini reasoning models 
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 01/30/2025
+ms.date: 02/06/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 ---
@@ -55,7 +55,10 @@ Request access: [limited access model application](https://aka.ms/OAI/o1access)
 | Streaming | ✅ | - | - | - |
 
 <sup>*</sup> Reasoning models will only work with the `max_completion_tokens` parameter. <br><br>
+
 <sup>**</sup>The latest o<sup>&#42;</sup> series model support system messages to make migration easier. When you use a system message with `o3-mini` and `o1` it will be treated as a developer message. You should not use both a developer message and a system message in the same API request.
+
+
 
 ### Not Supported
 
@@ -312,3 +315,15 @@ print(response.model_dump_json(indent=2))
 
 ---
 
+## Markdown output
+
+By default the `o3-mini` and `o1` models will not attempt to produce output that includes markdown formatting. A common use case where this behavior is undesirable is when you want the model to output code contained within a markdown code block. When the model generates output without markdown formatting you lose features like syntax highlighting, and copyable code blocks in interactive playground experiences. To override this new default behavior and encourage markdown inclusion in model responses, add the string `Formatting re-enabled` to the beginning of your developer message.
+
+Adding `Formatting re-enabled` to the beginning of your developer message does not guarantee that the model will include markdown formatting in its response, it only increases the likelihood. We have found from internal testing that `Formatting re-enabled` is less effective by itself with the `o1` model than with `o3-mini`.
+
+To improve the performance of `Formatting re-enabled` you can further augment the beginning of the developer message which will often result in the desired output. Rather than just adding `Formatting re-enabled` to the beginning of your developer message, you can experiment with adding a more descriptive initial instruction like one of the examples below:
+
+- `Formatting re-enabled - please enclose code blocks with appropriate markdown tags.`
+- `Formatting re-enabled - code output should be wrapped in markdown.`
+
+Depending on your expected output you may need to customize your initial developer message further to target your specific use case.
