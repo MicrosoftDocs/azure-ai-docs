@@ -3,7 +3,7 @@ title: Azure AI Foundry content filtering
 titleSuffix: Azure AI Foundry
 description: Learn about the content filtering capabilities of Azure OpenAI in Azure AI Foundry portal.
 manager: nitinme
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024

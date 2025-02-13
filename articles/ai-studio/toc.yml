@@ -405,7 +405,7 @@ items:
     - name: Built-in policy to allow specific models
       href: how-to/built-in-policy-model-deployment.md
     - name: Custom policy to allow specific models
-      href: how-to/custom-policy-model-deployment.md
+      href: ../ai-foundry/model-inference/how-to/configure-deployment-policies.md?context=/azure/ai-studio/context/context
   - name: Vulnerability management
     href: concepts/vulnerability-management.md
   - name: Disaster recovery

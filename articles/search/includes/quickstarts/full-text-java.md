@@ -1,18 +1,33 @@
 ---
-author: HeidiSteen
-ms.author: heidist
+manager: nitinme
+author: eric-urban
+ms.author: eur
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: include
-ms.date: 01/07/2025
+ms.date: 2/12/2025
 ---
 
-Build a Java console application using the [Azure.Search.Documents](/java/api/overview/azure/search) library to create, load, and query a search index. 
+[!INCLUDE [Full text introduction](full-text-intro.md)]
 
-Alternatively, you can [download the source code](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart) to start with a finished project or follow these steps to create your own.
+> [!TIP]
+> You can [download the source code](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart) to start with a finished project or follow these steps to create your own.
 
-#### Set up your environment
+## Prerequisites
+
+- An active Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
+- An Azure AI Search service. [Create a service](../../search-create-service-portal.md) if you don't have one. You can use a free tier for this quickstart.
+
+## Microsoft Entra ID prerequisites
+
+For the recommended keyless authentication with Microsoft Entra ID, you need to:
+- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+- Assign both of the `Search Service Contributor` and `Search Index Data Contributor` roles to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**. For more information, see [Connect to Azure AI Search using roles](../../search-security-rbac.md).
+
+## Retrieve resource information
+
+[!INCLUDE [resource authentication](../resource-authentication.md)]
+
+## Set up your environment
 
 Use the following tools to create this quickstart.
 
@@ -20,7 +35,7 @@ Use the following tools to create this quickstart.
 
 + [Java 11 SDK](/java/azure/jdk/)
 
-#### Create the project
+## Create the project
 
 1. Start Visual Studio Code.
 
@@ -56,9 +71,9 @@ Use the following tools to create this quickstart.
 
 1. Open the folder you created the project in.
 
-#### Specify Maven dependencies
+## Specify Maven dependencies
 
-1. Open the *pom.xml* file and add the following dependencies.
+1. Open the *pom.xml* file and add the following dependencies. This includes the [Azure.Search.Documents](/java/api/overview/azure/search) library.
 
     ```xml
     <dependencies>
@@ -88,7 +103,7 @@ Use the following tools to create this quickstart.
     <maven.compiler.target>1.11</maven.compiler.target>
     ```
 
-#### Create a search client
+## Create a search client
 
 1. Open the `App` class under **src**, **main**, **java**, **azure**, **search**, **sample**. Add the following import directives.
 
@@ -137,7 +152,7 @@ Use the following tools to create this quickstart.
     }
     ```
 
-#### Create an index
+## Create an index
 
 This quickstart builds a Hotels index that you'll load with hotel data and execute queries against. In this step, define the fields in the index. Each field definition includes a name, data type, and attributes that determine how the field is used.
 
@@ -324,7 +339,7 @@ Whether you use the basic `SearchField` API or either one of the helper models, 
         .setSuggesters(new SearchSuggester("sg", Arrays.asList("HotelName"))));
     ```
 
-#### Load documents
+## Load documents
 
 Azure AI Search searches over content stored in the service. In this step, you'll load JSON documents that conform to the hotel index you just created.
 
@@ -453,7 +468,7 @@ Once you initialize the `IndexDocumentsBatch` object, you can send it to the ind
 
 The 2-second delay compensates for indexing, which is asynchronous, so that all documents can be indexed before the queries are executed. Coding in a delay is typically only necessary in demos, tests, and sample applications.
 
-#### Search an index
+## Search an index
 
 You can get query results as soon as the first document is indexed, but actual testing of your index should wait until all documents are indexed.
 
@@ -583,7 +598,7 @@ The previous queries show multiple ways of matching terms in a query: full-text 
 
 Full text search and filters are performed using the [SearchClient.search](/java/api/com.azure.search.documents.searchclient#com-azure-search-documents-searchclient-search(java-lang-string)) method. A search query can be passed in the `searchText` string, while a filter expression can be passed in the `filter` property of the [SearchOptions](/java/api/com.azure.search.documents.models.searchoptions) class. To filter without searching, just pass "*" for the `searchText` parameter of the `search` method. To search without filtering, leave the `filter` property unset, or don't pass in a `SearchOptions` instance at all.
 
-### Run the program
+## Run the program
 
 Press F5 to rebuild the app and run the program in its entirety.
 

@@ -3,7 +3,7 @@ title: How to manually evaluate prompts in Azure AI Foundry portal playground
 titleSuffix: Azure AI Foundry
 description: Quickly test and evaluate prompts in Azure AI Foundry portal playground.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024

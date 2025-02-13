@@ -3,10 +3,10 @@ title: How to create a hub using the Azure Machine Learning SDK/CLI
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to create an Azure AI Foundry hub using the Azure Machine Learning SDK and Azure CLI extension.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom: build-2024, devx-track-azurecli
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 02/13/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -78,27 +78,40 @@ az ml workspace create --kind hub --resource-group {my_resource_group} --name {m
 
 ## Create an AI Services connection
 
-After creating your own AI Services, you can connect it to your hub:
+After creating your own AI Services, you can connect it to your hub.
 
 # [Python SDK](#tab/python)
 
-```python
-from azure.ai.ml.entities import AzureAIServicesConnection
+1. Your `ml_client` connection now needs to include your hub:
 
-# constrict an AI Services connection
-my_connection_name = "myaiservivce"
-my_endpoint = "demo.endpoint" # this could also be called target
-my_api_keys = None # leave blank for Authentication type = AAD
-my_ai_services_resource_id = "" # ARM id required
+    * Provide your subscription details.  For `<AML_WORKSPACE_NAME>`, use your hub name:
+    
+        [!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=details)]
 
-my_connection = AzureAIServicesConnection(name=my_connection_name,
-                                    endpoint=my_endpoint, 
-                                    api_key= my_api_keys,
-                                    ai_services_resource_id=my_ai_services_resource_id)
+    * Get a handle to the hub:
 
-# Create the connection
-ml_client.connections.create_or_update(my_connection)
-```
+        [!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=ml_client)]
+
+2. Use `ml_client` to create the connection to your AI Services:
+
+    ```python
+    from azure.ai.ml.entities import AzureAIServicesConnection
+
+    # construct an AI Services connection
+    my_connection_name = "myaiservivce" # any name you want
+    aiservices_resource_name = <resource_name> # copy from Azure AI Foundry portal
+    my_endpoint = "<endpoint>" # copy from Azure AI Foundry portal
+    my_api_keys = None # leave blank for Authentication type = AAD
+    my_ai_services_resource_id = f"/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{aiservices_resource_name}"
+
+    my_connection = AzureAIServicesConnection(name=my_connection_name,
+                                        endpoint=my_endpoint, 
+                                        api_key= my_api_keys,
+                                        ai_services_resource_id=my_ai_services_resource_id)
+
+    # Create the connection
+    ml_client.connections.create_or_update(my_connection)
+    ```
 
 # [Azure CLI](#tab/azurecli)
 
@@ -113,8 +126,9 @@ You can use either an API key or credential-less YAML configuration file. For mo
     ```yml
     name: myazai_ei
     type: azure_ai_services
-    endpoint: https://contoso.cognitiveservices.azure.com/
+    endpoint: <endpoint for your AI Services>
     api_key: XXXXXXXXXXXXXXX
+    ai_services_resource_id: <fully_qualified_resource_id>
     ```
 
 - Credential-less
@@ -122,8 +136,11 @@ You can use either an API key or credential-less YAML configuration file. For mo
     ```yml    
     name: myazai_apk
     type: azure_ai_services
-    endpoint: https://contoso.cognitiveservices.azure.com/
+    endpoint: <endpoint for your AI Services>
+    ai_services_resource_id: <fully_qualified_resource_id>
     ```
+
+The <fully_qualified_resource_id> is the resource ID of your AI Services resource. It is in the format `/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{aiservices_resource_name}`.
 
 ---
 
@@ -132,7 +149,7 @@ You can use either an API key or credential-less YAML configuration file. For mo
 You can also create a hub using existing resources such as Azure Storage and Azure Key Vault. In the following examples, replace the example string values with your own values:
 
 > [!TIP]
-> You can retrieve the resource ID of the storage account and key vault from the Azure Portal by going to the resource's overview and selecting __JSON view__. The resource ID is located in the __id__ field. You can also use the Azure CLI to retrieve the resource ID. For example, `az storage account show --name {my_storage_account_name} --query "id"` and `az keyvault show --name {my_key_vault_name} --query "id"`.
+> You can retrieve the resource ID of the storage account and key vault from the Azure portal by going to the resource's overview and selecting __JSON view__. The resource ID is located in the __id__ field. You can also use the Azure CLI to retrieve the resource ID. For example, `az storage account show --name {my_storage_account_name} --query "id"` and `az keyvault show --name {my_key_vault_name} --query "id"`.
 
 # [Python SDK](#tab/python)
 

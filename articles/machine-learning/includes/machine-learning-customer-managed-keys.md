@@ -4,7 +4,7 @@ ms.service: azure-machine-learning
 ms.custom:
   - ignite-2023
 ms.topic: include
-ms.date: 10/27/2023
+ms.date: 02/10/2025
 ms.author: larryfr
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ---

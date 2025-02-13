@@ -44,7 +44,7 @@ In this article, you will learn how to deploy a model using no-code deployment f
 * A working Python 3.8 (or higher) environment. 
 
 * You must have additional Python packages installed for scoring and may install them with the code below. They include:
-    * Numpy - An array and numerical computing library 
+    * NumPy - An array and numerical computing library 
     * [Triton Inference Server Client](https://github.com/triton-inference-server/client) - Facilitates requests to the Triton Inference Server
     * Pillow - A library for image operations
     * Gevent - A networking library used when connecting to the Triton Server
@@ -76,7 +76,7 @@ The information in this document is based on using a model stored in ONNX format
 * A working Python 3.8 (or higher) environment.
 
 * You must have additional Python packages installed for scoring and may install them with the code below. They include:
-    * Numpy - An array and numerical computing library 
+    * NumPy - An array and numerical computing library 
     * [Triton Inference Server Client](https://github.com/triton-inference-server/client) - Facilitates requests to the Triton Inference Server
     * Pillow - A library for image operations
     * Gevent - A networking library used when connecting to the Triton Server

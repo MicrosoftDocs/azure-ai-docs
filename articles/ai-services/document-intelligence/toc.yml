@@ -5,7 +5,7 @@ items:
   expanded: true
   items:
   - name: What is Azure AI Document Intelligence?
-    displayName: models, develop, development, cognitive, applied, form recognizer, form, recognizer
+    displayName: models, develop, development, cognitive, applied, form recognizer, form, recognizer, region availability, regional availability
     href: overview.md
   - name: What's new
     displayName: changelog, release, updates, previews, beta, packages, ga, cognitive, applied, form recognizer, form, recognizer

@@ -3,7 +3,7 @@ title: Manage, collaborate, and organize with hubs
 titleSuffix: Azure AI Foundry
 description: This article introduces concepts about Azure AI Foundry hubs for your Azure AI Foundry projects.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024

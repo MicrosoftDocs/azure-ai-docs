@@ -3,13 +3,13 @@ title: How to use Azure AI services in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: Learn how to use Azure AI services in Azure AI Foundry portal. You can use existing Azure AI services resources in Azure AI Foundry portal by creating a connection to the resource.
 manager: nitinme
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 2/12/2025
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
@@ -25,7 +25,7 @@ This article describes how to use new or existing Azure AI services resources in
 
 Depending on the AI service and model you want to use, you can use them in Azure AI Foundry portal via:
 - [Bring your existing Azure AI services resources](#bring-your-existing-azure-ai-services-resources-into-a-project) into a project. You can use your existing Azure AI services resources in an Azure AI Foundry project by creating a connection to the resource.
-- The [model catalog](#discover-azure-ai-models-in-the-model-catalog). You don't need a project to browse and discover Azure AI models. Some of the Azure AI services are available for you to try via the model catalog without a project. Some Azure AI services require a project to use in the playgrounds.
+- The [model catalog](#discover-azure-ai-models-in-the-model-catalog). You don't need a project to browse and discover Azure AI models. Some of the Azure AI services are available for you to try via the model catalog without a project. Some Azure AI services require a project to use them in the playgrounds.
 - The [project-level playgrounds](#try-azure-ai-services-in-the-project-level-playgrounds). You need a project to try Azure AI services such as Azure AI Speech and Azure AI Language. 
 - [Azure AI Services demo pages](#try-out-azure-ai-services-demos). You can browse Azure AI services capabilities and step through the demos. You can try some limited demos for free without a project.
 - [Fine-tune](#fine-tune-azure-ai-services-models) models. You can fine-tune a subset of Azure AI services models in Azure AI Foundry portal.
@@ -40,7 +40,7 @@ Let's look at two ways to connect Azure AI services resources to an Azure AI Fou
 
 ### Connect Azure AI services when you create a project for the first time
 
-When you create a project for the first time, you also create a hub. When you create a hub, you can select an existing Azure AI services resource (including Azure OpenAI) or create a new AI services resource.
+When you create a project for the first time, you can select an existing Azure AI services resource (including Azure OpenAI) or create a new AI services resource.
 
 :::image type="content" source="../../media/how-to/projects/projects-create-resource.png" alt-text="Screenshot of the create resource page within the create project dialog." lightbox="../../media/how-to/projects/projects-create-resource.png":::
 
@@ -58,7 +58,7 @@ To use your existing Azure AI services resources (such as Azure AI Speech) in an
 
     :::image type="content" source="../../media/ai-services/connections-add.png" alt-text="Screenshot of the connected resources page with the button to create a new connection." lightbox="../../media/ai-services/connections-add.png":::
 
-1. On the **Add a connection to external assets** page, select the kind of AI service that you want to connect to the project. For example, you can select Azure OpenAI Service, Azure AI Content Safety, Azure AI Speech, Azure AI Language, and other AI services.
+1. On the **Add a connection to external assets** page, select the kind of AI service that you want to connect to the project. For example, you can select Azure AI services (for a connection to multiple services in one resource), Azure OpenAI Service, Azure AI Content Safety, Azure AI Speech, Azure AI Language, and other AI services.
 
     :::image type="content" source="../../media/ai-services/connections-add-assets.png" alt-text="Screenshot of the page to select the kind of AI service that you want to connect to the project." lightbox="../../media/ai-services/connections-add-assets.png":::
 
@@ -72,7 +72,7 @@ To use your existing Azure AI services resources (such as Azure AI Speech) in an
 
 You can discover Azure AI models in the model catalog without a project. Some Azure AI services are available for you to try via the model catalog without a project. 
 
-1. Go to the [Azure AI Foundry home page](https://ai.azure.com).
+1. Go to the [Azure AI Foundry portal home page](https://ai.azure.com).
 1. Select the tile that says **Model catalog and benchmarks**. 
 
     :::image type="content" source="../../media/explore/ai-studio-home-model-catalog.png" alt-text="Screenshot of the home page in Azure AI Foundry portal with the option to select the model catalog tile." lightbox="../../media/explore/ai-studio-home-model-catalog.png":::
@@ -139,9 +139,9 @@ Once you have a project, several Azure AI services models are already deployed a
 1. Go to your Azure AI Foundry project.
 1. Select **Management center** from the left pane.
 1. Select **Models + endpoints** (under **Project**) from the left pane. 
-1. Select the **Service deployments** tab to view the list of Azure AI services models that are already deployed.
+1. Select the **Service endpoints** tab to view the list of Azure AI services models that are already deployed.
 
-    :::image type="content" source="../../media/ai-services/endpoint/models-endpoints-ai-services-deployments.png" alt-text="Screenshot of the models and endpoints page to view Azure AI services deployments." lightbox="../../media/ai-services/endpoint/models-endpoints-ai-services-deployments.png":::
+    :::image type="content" source="../../media/ai-services/endpoint/models-endpoints-ai-services-deployments.png" alt-text="Screenshot of the models and endpoints page to view Azure AI services endpoints." lightbox="../../media/ai-services/endpoint/models-endpoints-ai-services-deployments.png":::
 
     In this example, we see:
     - Six Azure AI Services deployments (such as Azure AI Speech and Azure AI Language) via the default connection. These models were already available for use when you created the project.
@@ -150,7 +150,6 @@ Once you have a project, several Azure AI services models are already deployed a
 There's no option to deploy Azure AI services models from the **Models + endpoints** page. Azure AI services models are already deployed and ready to use.
 
 However, you can deploy [fine-tuned Azure AI services models](#fine-tune-azure-ai-services-models). For example, you might want to deploy a custom speech model that you fine-tuned. In this case, you can deploy the model from the corresponding fine-tuning page. 
-
 
 ## Related content
 
