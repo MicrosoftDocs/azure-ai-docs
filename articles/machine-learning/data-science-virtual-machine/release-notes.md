@@ -28,7 +28,7 @@ Visit the [list of known issues](reference-known-issues.md) to learn about known
 Version  `25.02.03`
 
 - SDK `1.59.0`
-- 
+  
 ## February 4, 2025
 
 [Data Science Virtual Machine - Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
