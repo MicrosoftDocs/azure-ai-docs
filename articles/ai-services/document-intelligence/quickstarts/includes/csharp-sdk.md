@@ -344,10 +344,10 @@ foreach (DocumentPage page in result.Pages)
         Console.WriteLine($"  Line {i} has content: '{line.Content}'.");
 
         Console.WriteLine($"    Its bounding box is:");
-        Console.WriteLine($"      Upper left => X: {line.BoundingPolygon[0].X}, Y= {line.BoundingPolygon[0].Y}");
-        Console.WriteLine($"      Upper right => X: {line.BoundingPolygon[1].X}, Y= {line.BoundingPolygon[1].Y}");
-        Console.WriteLine($"      Lower right => X: {line.BoundingPolygon[2].X}, Y= {line.BoundingPolygon[2].Y}");
-        Console.WriteLine($"      Lower left => X: {line.BoundingPolygon[3].X}, Y= {line.BoundingPolygon[3].Y}");
+        Console.WriteLine($"      Upper left => X: {line.Polygon[0].X}, Y= {line.Polygon[0].Y}");
+        Console.WriteLine($"      Upper right => X: {line.Polygon[1].X}, Y= {line.Polygon[1].Y}");
+        Console.WriteLine($"      Lower right => X: {line.Polygon[2].X}, Y= {line.Polygon[2].Y}");
+        Console.WriteLine($"      Lower left => X: {line.Polygon[3].X}, Y= {line.Polygon[3].Y}");
     }
 
     for (int i = 0; i < page.SelectionMarks.Count; i++)
@@ -356,10 +356,10 @@ foreach (DocumentPage page in result.Pages)
 
         Console.WriteLine($"  Selection Mark {i} is {selectionMark.State}.");
         Console.WriteLine($"    Its bounding box is:");
-        Console.WriteLine($"      Upper left => X: {selectionMark.BoundingPolygon[0].X}, Y= {selectionMark.BoundingPolygon[0].Y}");
-        Console.WriteLine($"      Upper right => X: {selectionMark.BoundingPolygon[1].X}, Y= {selectionMark.BoundingPolygon[1].Y}");
-        Console.WriteLine($"      Lower right => X: {selectionMark.BoundingPolygon[2].X}, Y= {selectionMark.BoundingPolygon[2].Y}");
-        Console.WriteLine($"      Lower left => X: {selectionMark.BoundingPolygon[3].X}, Y= {selectionMark.BoundingPolygon[3].Y}");
+        Console.WriteLine($"      Upper left => X: {selectionMark.Polygon[0].X}, Y= {selectionMark.Polygon[0].Y}");
+        Console.WriteLine($"      Upper right => X: {selectionMark.Polygon[1].X}, Y= {selectionMark.Polygon[1].Y}");
+        Console.WriteLine($"      Lower right => X: {selectionMark.Polygon[2].X}, Y= {selectionMark.Polygon[2].Y}");
+        Console.WriteLine($"      Lower left => X: {selectionMark.Polygon[3].X}, Y= {selectionMark.Polygon[3].Y}");
     }
 }
 
@@ -459,9 +459,9 @@ foreach (DocumentPage page in result.Pages)
 
         Console.WriteLine($"    Its bounding polygon (points ordered clockwise):");
 
-        for (int j = 0; j < line.BoundingPolygon.Count; j++)
+        for (int j = 0; j < line.Polygon.Count; j++)
         {
-            Console.WriteLine($"      Point {j} => X: {line.BoundingPolygon[j].X}, Y: {line.BoundingPolygon[j].Y}");
+            Console.WriteLine($"      Point {j} => X: {line.Polygon[j].X}, Y: {line.Polygon[j].Y}");
         }
     }
 
@@ -472,9 +472,9 @@ foreach (DocumentPage page in result.Pages)
         Console.WriteLine($"  Selection Mark {i} is {selectionMark.State}.");
         Console.WriteLine($"    Its bounding polygon (points ordered clockwise):");
 
-        for (int j = 0; j < selectionMark.BoundingPolygon.Count; j++)
+        for (int j = 0; j < selectionMark.Polygon.Count; j++)
         {
-            Console.WriteLine($"      Point {j} => X: {selectionMark.BoundingPolygon[j].X}, Y: {selectionMark.BoundingPolygon[j].Y}");
+            Console.WriteLine($"      Point {j} => X: {selectionMark.Polygon[j].X}, Y: {selectionMark.Polygon[j].Y}");
         }
     }
 }
@@ -542,9 +542,9 @@ foreach (DocumentPage page in result.Pages)
 
         Console.WriteLine($"    Its bounding polygon (points ordered clockwise):");
 
-        for (int j = 0; j < line.BoundingPolygon.Count; j++)
+        for (int j = 0; j < line.Polygon.Count; j++)
         {
-            Console.WriteLine($"      Point {j} => X: {line.BoundingPolygon[j].X}, Y: {line.BoundingPolygon[j].Y}");
+            Console.WriteLine($"      Point {j} => X: {line.Polygon[j].X}, Y: {line.Polygon[j].Y}");
         }
     }
 
@@ -555,9 +555,9 @@ foreach (DocumentPage page in result.Pages)
         Console.WriteLine($"  Selection Mark {i} is {selectionMark.State}.");
         Console.WriteLine($"    Its bounding polygon (points ordered clockwise):");
 
-        for (int j = 0; j < selectionMark.BoundingPolygon.Count; j++)
+        for (int j = 0; j < selectionMark.Polygon.Count; j++)
         {
-            Console.WriteLine($"      Point {j} => X: {selectionMark.BoundingPolygon[j].X}, Y: {selectionMark.BoundingPolygon[j].Y}");
+            Console.WriteLine($"      Point {j} => X: {selectionMark.Polygon[j].X}, Y: {selectionMark.Polygon[j].Y}");
         }
     }
 }

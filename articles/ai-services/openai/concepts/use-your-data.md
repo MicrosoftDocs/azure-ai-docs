@@ -8,7 +8,7 @@ ms.service: azure-ai-openai
 ms.topic: quickstart
 author: aahill
 ms.author: aahi
-ms.date: 10/25/2024
+ms.date: 02/13/2025
 recommendations: false
 ms.custom: references_regions, ignite-2024
 ---
@@ -40,6 +40,11 @@ Typically, the development process you'd use with Azure OpenAI On Your Data is:
     1. **Response generation**: The resulting data is submitted along with other information like the system message to the Large Language Model (LLM) and the response is sent back to the application.
 
 To get started, [connect your data source](../use-your-data-quickstart.md) using Azure AI Foundry portal and start asking questions and chatting on your data.
+
+> [!NOTE]
+> The following models are not supported by Azure OpenAI On Your Data:
+> * o1 models
+> * o3 models
 
 ## Azure Role-based access controls (Azure RBAC) for adding data sources
 
