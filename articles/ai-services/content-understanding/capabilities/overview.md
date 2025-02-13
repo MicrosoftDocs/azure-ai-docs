@@ -48,8 +48,7 @@ Content extraction in Content Understanding is a powerful feature that transform
 
 Content extraction provides foundational data that grounds the generative capabilities of Field Extraction, offering essential context about the input content. Users will find content extraction invaluable for converting diverse data formats into a structured format, this capability excels in scenarios requiring:
 * Document digitization and OCR
-* Content classification and categorization  
-* Audio/video transcription and analysis
+* Audio/video transcription
 * Metadata generation at scale
 
 Content Understanding enhances its core extraction capabilities through optional add-on features that provide deeper content analysis. These add-ons can extract additional elements like layout information, barcodes, mathematical formulas, and speaker roles. While some add-ons may incur additional costs, they can be selectively enabled based on your specific requirements to optimize both functionality and cost-efficiency. The modular nature of these add-ons allows for customized processing pipelines tailored to your use case.
