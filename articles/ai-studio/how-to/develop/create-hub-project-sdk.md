@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: build-2024, devx-track-azurecli
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 02/13/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -78,18 +78,26 @@ az ml workspace create --kind hub --resource-group {my_resource_group} --name {m
 
 ## Create an AI Services connection
 
-After creating your own AI Services, you can connect it to your hub:
+After creating your own AI Services, you can connect it to your hub.
 
 # [Python SDK](#tab/python)
+
+First, create a connection to ml_client that includes your hub as the workspace_name:
+
+[!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=details)]
+[!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=ml_client)]
+
+Then use ml_client to create the connection to your AI Services:
 
 ```python
 from azure.ai.ml.entities import AzureAIServicesConnection
 
-# constrict an AI Services connection
-my_connection_name = "myaiservivce"
-my_endpoint = "demo.endpoint" # this could also be called target
+# construct an AI Services connection
+my_connection_name = "myaiservivce" # any name you want
+aiservices_resource_name = <resource_name> # copy from Azure AI Foundry portal
+my_endpoint = "<endpoint>" # copy from Azure AI Foundry portal
 my_api_keys = None # leave blank for Authentication type = AAD
-my_ai_services_resource_id = "" # ARM id required
+resource_id = f"/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{aiservices_resource_name}"
 
 my_connection = AzureAIServicesConnection(name=my_connection_name,
                                     endpoint=my_endpoint, 
@@ -113,8 +121,9 @@ You can use either an API key or credential-less YAML configuration file. For mo
     ```yml
     name: myazai_ei
     type: azure_ai_services
-    endpoint: https://contoso.cognitiveservices.azure.com/
+    endpoint: <endpoint for your AI Services>
     api_key: XXXXXXXXXXXXXXX
+    ai_services_resource_id: <fully_qualified_resource_id>
     ```
 
 - Credential-less
@@ -122,8 +131,11 @@ You can use either an API key or credential-less YAML configuration file. For mo
     ```yml    
     name: myazai_apk
     type: azure_ai_services
-    endpoint: https://contoso.cognitiveservices.azure.com/
+    endpoint: <endpoint for your AI Services>
+    ai_services_resource_id: <fully_qualified_resource_id>
     ```
+
+The <fully_qualified_resource_id> is the resource ID of your AI Services resource. It is in the format `/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{aiservices_resource_name}`.
 
 ---
 
