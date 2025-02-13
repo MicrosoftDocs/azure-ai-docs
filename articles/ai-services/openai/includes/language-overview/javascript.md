@@ -32,7 +32,7 @@ The `AzureClientOptions` object is used to configure the API client for interfac
 | Property | Details |
 |--|--|
 | azureADTokenProvider: `(() => Promise<string>)` | A function that returns an access token for Microsoft Entra (formerly known as Azure Active Directory), invoked on every request.|
-| apiKey: `string` | Your API key for authenticating requests. Default environment variable is `AZURE_OPENAI_API_KEY`.`|
+| apiKey: `string` | Your API key for authenticating requests. Default environment variable is `AZURE_OPENAI_API_KEY`.|
 | apiVersion: `string` | Specifies the API version to use. Default environment variable is `OPENAI_API_VERSION` |
 | deployment: `string` | A model deployment. If provided, sets the base client URL to include `/deployments/{deployment}`. Non-deployment endpoints cannot be used (not supported with Assistants APIs).|
 | endpoint: `string` | Your Azure OpenAI endpoint.|
@@ -63,7 +63,7 @@ const azureADTokenProvider = getBearerTokenProvider(credential, scope);
 
 const client = new AzureOpenAI({ 
     endpoint, 
-    apiVersions,
+    apiVersion,
     azureADTokenProvider
      });
 ```
@@ -75,7 +75,7 @@ API keys are not recommended for production use because they are less secure tha
 ```typescript
 import { AzureKeyCredential } from "@azure/openai";
 const apiKey = new AzureKeyCredential("your API key");
-const endpoint = "https://your-azure-openai-resource.com";0
+const endpoint = "https://your-azure-openai-resource.com";
 const apiVersion = "2024-10-21"
 
 const client = new AzureOpenAI({ apiKey, endpoint, apiVersion });
