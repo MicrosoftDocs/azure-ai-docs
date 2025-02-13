@@ -67,6 +67,8 @@ OpenAIClient client = new OpenAIClientBuilder()
     .buildClient();
 ```
 
+For more information about Azure OpenAI keyless authentication, see [Use Azure OpenAI without keys](/azure/developer/ai/keyless-connections?tabs=java%2Cazure-cli). 
+
 # [API Key](#tab/api-key)
 
 ```java

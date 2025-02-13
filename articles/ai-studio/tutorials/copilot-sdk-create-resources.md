@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: tutorial
-ms.date: 12/18/2024
+ms.date: 02/12/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
