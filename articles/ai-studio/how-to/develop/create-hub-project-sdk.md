@@ -82,9 +82,9 @@ After creating your own AI Services, you can connect it to your hub.
 
 # [Python SDK](#tab/python)
 
-1. Create a connection to `ml_client` that includes your hub as the `workspace_name`:
+1. Create a connection to `ml_client` that includes your hub.
 
-    * Provide your subscription details:
+    * Provide your subscription details.  For `<AML_WORKSPACE_NAME>', use your hub name:
     
         [!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=details)]
 
