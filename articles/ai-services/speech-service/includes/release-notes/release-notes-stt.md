@@ -11,35 +11,33 @@ ms.author: eur
 Announcing the release of a new feature: Semantic Segmentation. This feature integrates a punctuation module inside decoder that segments audio based on semantic information, resulting in more logical and precise segmentation boundaries.
 Key Benefits:
 - Improved Segmentation Accuracy: By leveraging semantic information, this feature significantly reduces instances of long segments caused by the absence of pauses in the input audio.
-- Reduce latency caused by under-segmentation: The overall latency for the Speech-to-Text service is reduced, with a 40%-60% reduction in the length of the longest 5% of segments.
+- Reduce latency caused by under-segmentation: The overall latency for speech recognition is reduced, with a 40%-60% reduction in the length of the longest 5% of segments.
 - Over-Segmentation Mitigation: This feature also helps prevent over-segmentation by delaying segmentation when a better sentence can be formed.
 
 Supported Locales:
+- English (en-US, en-GB)
+- Chinese (zh-CN, zh-HK)
+- Japanese (ja-JP)
+- Korean (ko-KR)
+- German (de-DE)
+- French (fr-FR)
+- Italian (it-IT)
+- Spanish (es-ES, es-MX)
+- Hindi (hi-IN)
+- Portuguese (pt-BR, pt-PT)
+- Turkish (tr-TR)
+- Russian (ru-RU)
+- Thai (th-TH)
+- Indonesian (id-ID)
 
-<li>English (en-US, en-GB)</li>
-<li>Chinese (zh-CN, zh-HK)</li>
-<li>Japanese (ja-JP)</li>
-<li>Korean (ko-KR)</li>
-<li>German (de-DE)</li>
-<li>French (fr-FR)</li>
-<li>Italian (it-IT)</li>
-<li>Spanish (es-ES, es-MX)</li>
-<li>Hindi (hi-IN)</li>
-<li>Portuguese (pt-BR, pt-PT)</li>
-<li>Turkish (tr-TR)</li>
-<li>Russian (ru-RU)</li>
-<li>Thai (th-TH)</li>
-<li>Indonesian (id-ID)</li>
-
-For implementation details, please refer to the documentation: [How to Recognize Speech](https://learn.microsoft.com/azure/ai-services/speech-service/how-to-recognize-speech?pivots=programming-language-csharp) in section "Semantic Segmentation".
+For implementation details, please refer to the documentation: [How to Recognize Speech](/azure/ai-services/speech-service/how-to-recognize-speech?pivots=programming-language-csharp) in the "Semantic Segmentation" section.
 
 #### Real-time speech to text - New English model release
 
 Announcing the release of the latest English speech model (en-US, en-CA), which brings substantial improvements across various performance metrics. Below are the key highlights of this release:
 - Accessibility Enhancements: Achieved a 36% reduction in Word Error Rate (WER) on Microsoft internal accessibility test sets, making speech recognition more accurate and reliable for recognizing speech from individuals with speech disabilities.
-- 
 - Ghost Word Reduction: A remarkable 90% reduction in ghost words on the ghost word development set and reductions range from 63% to 100% across other ghost word datasets, significantly enhancing the clarity and accuracy of transcriptions.
-- 
+
 The new model also improved the overall performance, including entity recognition and better recognition of spelled-out letters.
 
 These advancements are expected to provide a more accurate, efficient, and satisfying experience for all users. The new model is available through the API and Azure AI Foundry playground. Feedback is encouraged to further refine its capabilities.
