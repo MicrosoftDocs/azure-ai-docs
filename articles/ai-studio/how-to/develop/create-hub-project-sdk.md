@@ -82,16 +82,17 @@ After creating your own AI Services, you can connect it to your hub.
 
 # [Python SDK](#tab/python)
 
-First, create a connection to ml_client that includes your hub as the workspace_name:
+1. Create a connection to `ml_client` that includes your hub as the workspace_name:
 
-Provide your subscription details:
-[!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=details)]
+    * Provide your subscription details:
+    
+    [!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=details)]
 
-Get a handle to the hub:
+    * Get a handle to the hub:
 
-[!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=ml_client)]
+    [!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=ml_client)]
 
-Now use ml_client to create the connection to your AI Services:
+2. Use `ml_client` to create the connection to your AI Services:
 
 ```python
 from azure.ai.ml.entities import AzureAIServicesConnection
@@ -148,7 +149,7 @@ The <fully_qualified_resource_id> is the resource ID of your AI Services resourc
 You can also create a hub using existing resources such as Azure Storage and Azure Key Vault. In the following examples, replace the example string values with your own values:
 
 > [!TIP]
-> You can retrieve the resource ID of the storage account and key vault from the Azure Portal by going to the resource's overview and selecting __JSON view__. The resource ID is located in the __id__ field. You can also use the Azure CLI to retrieve the resource ID. For example, `az storage account show --name {my_storage_account_name} --query "id"` and `az keyvault show --name {my_key_vault_name} --query "id"`.
+> You can retrieve the resource ID of the storage account and key vault from the Azure portal by going to the resource's overview and selecting __JSON view__. The resource ID is located in the __id__ field. You can also use the Azure CLI to retrieve the resource ID. For example, `az storage account show --name {my_storage_account_name} --query "id"` and `az keyvault show --name {my_key_vault_name} --query "id"`.
 
 # [Python SDK](#tab/python)
 
