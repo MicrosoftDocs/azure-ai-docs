@@ -40,7 +40,7 @@ Nvidia Driver:  `535.216.03`
 
 `CUDA`: `12.2`
 
-'nginx': Server status was Failed.nginx issue fixed and the status is running.
+'nginx': Server status was Failed. nginx issue fixed and the status is Running.
 
 ## December 18, 2024
 
