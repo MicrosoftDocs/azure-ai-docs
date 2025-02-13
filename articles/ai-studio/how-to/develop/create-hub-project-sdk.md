@@ -82,7 +82,7 @@ After creating your own AI Services, you can connect it to your hub.
 
 # [Python SDK](#tab/python)
 
-1. Your `ml_client` connection now need to include your hub:
+1. Your `ml_client` connection now needs to include your hub:
 
     * Provide your subscription details.  For `<AML_WORKSPACE_NAME>`, use your hub name:
     
