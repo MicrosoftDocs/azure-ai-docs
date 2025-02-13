@@ -5,7 +5,7 @@ description: Azure OpenAI JavaScript support
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 02/06/2025
+ms.date: 02/13/2025
 ---
 
 [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Reference](../../reference.md) |
@@ -29,13 +29,13 @@ npm install openai
 
 The `AzureClientOptions` object is used to configure the API client for interfacing with the Azure OpenAI API. The configuration object extends the existing OpenAi `ClientOptions` object. Below are the Azure OpenAI specific properties, their default values, and descriptions:
 
-| Property             | Details |
+| Property | Details |
 |--|--|
-| azureADTokenProvider: `(() => Promise<string>) | A function that returns an access token for Microsoft Entra (formerly known as Azure Active Directory), invoked on every request.                                                                     |
-| apiKey: `string | Your API key for authenticating requests. Default environment variable is `AZURE_OPENAI_API_KEY`.`|
-| apiVersion: `string | Specifies the API version to use. Default environment variable is `OPENAI_API_VERSION` |
-| deployment: `string | A model deployment. If provided, sets the base client URL to include `/deployments/{deployment}`. Non-deployment endpoints cannot be used (not supported with Assistants APIs).|
-| endpoint: `string | Your Azure OpenAI endpoint.|
+| azureADTokenProvider: `(() => Promise<string>)` | A function that returns an access token for Microsoft Entra (formerly known as Azure Active Directory), invoked on every request.|
+| apiKey: `string` | Your API key for authenticating requests. Default environment variable is `AZURE_OPENAI_API_KEY`.`|
+| apiVersion: `string` | Specifies the API version to use. Default environment variable is `OPENAI_API_VERSION` |
+| deployment: `string` | A model deployment. If provided, sets the base client URL to include `/deployments/{deployment}`. Non-deployment endpoints cannot be used (not supported with Assistants APIs).|
+| endpoint: `string` | Your Azure OpenAI endpoint.|
 
 ## Authentication
 
