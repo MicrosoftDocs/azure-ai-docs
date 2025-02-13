@@ -3,10 +3,10 @@ title: Troubleshoot guidance for prompt flow
 titleSuffix: Azure AI Foundry
 description: This article addresses frequent questions about prompt flow usage.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
-ms.topic: reference
+ms.topic: conceptual
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: chenjieting

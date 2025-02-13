@@ -11,6 +11,8 @@ author: santiagxf
 
 This article explains how to use the reasoning capabilities of chat completions models deployed to Azure AI model inference in Azure AI services.
 
+[!INCLUDE [about-reasoning](about-reasoning.md)]
+
 ## Prerequisites
 
 To complete this tutorial, you need:
@@ -93,13 +95,7 @@ ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
 Response<ChatCompletions> response = client.complete(requestOptions);
 ```
 
-When building prompts for reasoning models, take the following into consideration:
-
-> [!div class="checklist"]
-> * Built-in reasoning capabilities make simple zero-shot prompts as effective as more complex methods.
-> * When providing additional context or documents, like in RAG scenarios, including only the most relevant information may help preventing the model from over-complicating its response.
-> * Reasoning models may support the use of system messages. However, they may not follow them as strictly as other non-reasoning models.
-> * When creating multi-turn applications, consider only appending the final answer from the model, without it's reasoning content as explained at [Reasoning content](#reasoning-content) section.
+[!INCLUDE [best-practices](best-practices.md)]
 
 The response is as follows, where you can see the model's usage statistics:
 

@@ -26,7 +26,3 @@ zone_pivot_groups: azure-ai-models-deployment
 ::: zone pivot="programming-language-bicep"
 [!INCLUDE [bicep](../includes/create-resources/bicep.md)]
 ::: zone-end
-
-## Next steps
-
-* [Develop applications using Azure AI model inference service in Azure AI services](../supported-languages.md)

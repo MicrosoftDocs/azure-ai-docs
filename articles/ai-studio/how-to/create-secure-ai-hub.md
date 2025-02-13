@@ -2,7 +2,7 @@
 title: Create a secure hub
 titleSuffix: Azure AI Foundry
 description: Create an Azure AI Foundry hub inside a managed virtual network. The managed virtual network secures access to managed resources such as computes.
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to

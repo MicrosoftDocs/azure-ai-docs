@@ -3,7 +3,7 @@ title: Explore the model catalog in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article introduces foundation model capabilities and the model catalog in Azure AI Foundry portal.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024

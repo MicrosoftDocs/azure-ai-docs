@@ -5,7 +5,7 @@ description: How to build and upload parallel documents (two documents where one
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 07/09/2024
+ms.date: 02/10/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
@@ -98,3 +98,4 @@ In workspace page you can view history of all document uploads details like docu
 - Learn [how to test and evaluate model quality](test-your-model.md).
 - Learn [how to publish an Azure AI Custom Translator model](publish-model.md).
 - Learn [how to translate with custom models](translate-with-custom-model.md).
+- Visit the [Custom Translator portal](https://portal.customtranslator.azure.ai)

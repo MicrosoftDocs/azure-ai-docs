@@ -4,7 +4,7 @@ description: include file
 author: PatrickFarley
 ms.reviewer: pafarley
 ms.author: pafarley
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 12/05/2024
 ms.custom: include
