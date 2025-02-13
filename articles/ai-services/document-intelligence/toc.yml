@@ -176,7 +176,7 @@ items:
 - name: How-to guides
   items:
   - name: Use Document Intelligence models
-    displayName: documentAnalysisClient, document analysis client, polygon, Polygon, begin_analyze_document,ormRecognizerClient, Document Intelligence client, boundingBox, box, begin_recognize, v2.1
+    displayName: documentAnalysisClient, document analysis client, polygon, boundingPolygon, begin_analyze_document,ormRecognizerClient, Document Intelligence client, boundingBox, box, begin_recognize, v2.1
     href: how-to-guides/use-sdk-rest-api.md
   - name: Check my usage and estimate the cost
     displayName: price, metrics, dashboard, check, estimate
