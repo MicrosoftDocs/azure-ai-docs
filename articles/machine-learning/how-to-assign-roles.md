@@ -56,7 +56,7 @@ You can combine the roles to grant different levels of access. For example, you 
 
 Prior to 11/19/2024, the system-assigned managed identity created for the workspace was automatically assigned the __Contributor__ role for the resource group that contains the workspace. Workspaces created after this date have the system-assigned managed identity assigned to the __Azure AI Administrator__ role. This role is more narrowly scoped to the minimum permissions needed for the managed identity to perform its tasks.
 
-The __Azure AI Administrator__ role is currently in public preview.
+The __Azure AI Administrator__ role is currently in public preview. If you encounter issues when using the Azure AI Administrator role with your workspace's managed identity, you can try [reverting to the Contributor role](#revert-to-the-contributor-role).
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
@@ -578,6 +578,28 @@ Here are a few things to be aware of while you use Azure RBAC:
 - When there are two role assignments to the same Microsoft Entra user with conflicting sections of Actions/NotActions, your operations listed in NotActions from one role might not take effect if they're also listed as Actions in another role. To learn more about how Azure parses role assignments, read [How Azure RBAC determines if a user has access to a resource](/azure/role-based-access-control/overview#how-azure-rbac-determines-if-a-user-has-access-to-a-resource)
 
 - It can sometimes take up to one hour for your new role assignments to take effect over cached permissions across the stack.
+
+### Revert to the Contributor role
+
+If you create a new workspace and encounter errors with the new default role assignment of Azure AI Administrator for the workspace managed identity, use the following steps to revert to the Contributor role:
+
+1. Delete the role assignment for the workspace's managed-identity. The scope for this role assignment is the __resource group__ that contains the workspace, so the role must be deleted from the resource group. 
+
+    > [!TIP]
+    > The system-assigned managed identity for the workspace is the same as the workspace name.
+
+    From the Azure portal, navigate to the __resource group__ that contains the workspace. Select __Access control (IAM)__, and then select __Role assignments__. In the list of role assignments, find the role assignment for the managed identity. Select it, and then select __Delete__.
+
+    For information on deleting a role assignment, see [Remove role assigngments](/azure/role-based-access-control/role-assignments-remove).
+
+1. Create a new role assignment on the __resource group__ for the __Contributor__ role. When adding this role assignment, select the managed-identity for the workspace as the assignee. The name of the system-assigned managed identity is same as the workspace name.
+
+    1. From the Azure portal, navigate to the __resource group__ that contains the workspace. Select __Access control (IAM)__, and then select __Add role assignment__. 
+    1. From the __Role__ tab, select __Contributor__. 
+    1. From the __Members__ tab, select __Managed identity__, __+ Select members__, ans set the __Managed identity__ dropdown to __Azure Machine Learning workspace__. If the workspace is a hub workspace, select __Azure AI hub__ instead. In the __Select__ field, enter the name of the workspace. Select the workspace from the list, and then select __Select__.
+    1. From the __Review + assign__ tab, select __Review + assign__.
+
+1. If reverting to the Contributor role resolves the problem, and you would like to opt-out of using the Azure AI Administrator role and instead return to using the Contributor role as the default, please open a support incident and request that the Azure AI Administrator role be disabled for your subscription.
 
 ## Related content
 
