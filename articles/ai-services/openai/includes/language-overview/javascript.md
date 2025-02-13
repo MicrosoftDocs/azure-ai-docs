@@ -102,19 +102,6 @@ const client = new AzureOpenAI({ apiKey, endpoint, apiVersion });
 
 ---
 
-### AzureClientOptions Properties
-
-| Property Name       | Default Value / Environment Variable | Purpose                                                                 |
-|---------------------|--------------------------------------|-------------------------------------------------------------------------|
-| `endpoint`          | `process.env.AZURE_COSMOS_DB_ENDPOINT` | The endpoint URL for the Azure Cosmos DB instance.                      |
-| `key`               | `process.env.AZURE_COSMOS_DB_KEY`      | The primary key for accessing the Azure Cosmos DB instance.             |
-| `databaseName`      | `process.env.AZURE_COSMOS_DB_DATABASE` | The name of the database to connect to within the Azure Cosmos DB.       |
-| `containerName`     | `process.env.AZURE_COSMOS_DB_CONTAINER`| The name of the container (collection) within the database.              |
-| `aadCredentials`    | `new DefaultAzureCredential()`         | Azure Active Directory credentials for authentication.                   |
-| `consistencyLevel`  | `Session`                              | The consistency level for read operations (e.g., Strong, BoundedStaleness, Session, Eventual). |
-| `connectionPolicy`  | `Default`                              | The connection policy for the Cosmos DB client, including retry options and preferred locations. |
-| `timeout`           | `60000` (60 seconds)                   | The timeout duration for requests to the Azure Cosmos DB instance.       |
-
 ## Description
 
 The `AzureClientOptions` object is used to configure the connection and behavior of the Azure Cosmos DB client. It includes properties for specifying the endpoint, authentication credentials, database and container names, consistency level, connection policy, and request timeout.
