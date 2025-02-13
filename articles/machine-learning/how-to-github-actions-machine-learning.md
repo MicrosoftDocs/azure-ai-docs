@@ -84,7 +84,6 @@ Your workflow authenticates with Azure, sets up the Azure Machine Learning CLI, 
 Your workflow file is made up of a trigger section and jobs:
 - A trigger starts the workflow in the `on` section. The workflow runs by default on a cron schedule and when a pull request is made from matching branches and paths. Learn more about [events that trigger workflows](https://docs.github.com/actions/using-workflows/events-that-trigger-workflows). 
 - In the jobs section of the workflow, you checkout code and log into Azure with the Azure login action using OpenID Connect.
-====
 - The jobs section also includes a setup action that installs and sets up the [Machine Learning CLI (v2)](how-to-configure-cli.md). Once the CLI is installed, the run job action runs your Azure Machine Learning `pipeline.yml` file to train a model with NYC taxi data.
 
 ### Enable your workflow
