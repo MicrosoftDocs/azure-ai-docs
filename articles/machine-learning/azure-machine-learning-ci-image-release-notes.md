@@ -20,6 +20,28 @@ Azure Machine Learning checks and validates any machine learning packages that m
 
 Main updates provided with each image version are described in the below sections.
 
+##  January 15, 2025
+
+Image Version: `24.12.31`
+
+Release Notes:
+
+SDK Version: `1.57.0`
+
+Jupyter-core: `5.7.2`
+
+nvdia_docker2: installed
+
+gnomeshell: removed
+
+ml: '2.32.4'
+
+Nvidia Driver:  `535.216.03`
+
+`CUDA`: `12.2`
+
+'nginx': Server status was Failed.nginx issue fixed and the status is running.
+
 ## December 18, 2024
 
 Image Version: `24.12.09`
