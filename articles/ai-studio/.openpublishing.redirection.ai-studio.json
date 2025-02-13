@@ -246,6 +246,11 @@
               "redirect_document_id": false
           },
           {
+            "source_path_from_root": "/articles/ai-studio/quickstarts/multimodal-vision.md",
+            "redirect_url": "/azure/ai-services/openai/gpt-v-quickstart",
+            "redirect_document_id": false
+          },
+          {
             "source_path_from_root": "/articles/ai-studio/reference/reference-model-inference-api.md",
             "redirect_url": "/azure/ai-foundry/model-inference/reference/reference-model-inference-api",
             "redirect_document_id": false
@@ -268,6 +273,16 @@
           {
             "source_path_from_root": "/articles/ai-studio/reference/reference-model-inference-images-embeddings.md",
             "redirect_url": "/azure/ai-foundry/model-inference/reference/reference-model-inference-images-embeddings",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/concepts/about-capabilities.md",
+            "redirect_url": "/azure/ai-studio/concepts/what-are-ai-services",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/concepts/related-content.md",
+            "redirect_url": "/azure/ai-studio/concepts/what-are-ai-services",
             "redirect_document_id": false
           }
     ]
