@@ -86,32 +86,32 @@ After creating your own AI Services, you can connect it to your hub.
 
     * Provide your subscription details:
     
-    [!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=details)]
+        [!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=details)]
 
     * Get a handle to the hub:
 
-    [!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=ml_client)]
+        [!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=ml_client)]
 
 2. Use `ml_client` to create the connection to your AI Services:
 
-```python
-from azure.ai.ml.entities import AzureAIServicesConnection
+    ```python
+    from azure.ai.ml.entities import AzureAIServicesConnection
 
-# construct an AI Services connection
-my_connection_name = "myaiservivce" # any name you want
-aiservices_resource_name = <resource_name> # copy from Azure AI Foundry portal
-my_endpoint = "<endpoint>" # copy from Azure AI Foundry portal
-my_api_keys = None # leave blank for Authentication type = AAD
-my_ai_services_resource_id = f"/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{aiservices_resource_name}"
+    # construct an AI Services connection
+    my_connection_name = "myaiservivce" # any name you want
+    aiservices_resource_name = <resource_name> # copy from Azure AI Foundry portal
+    my_endpoint = "<endpoint>" # copy from Azure AI Foundry portal
+    my_api_keys = None # leave blank for Authentication type = AAD
+    my_ai_services_resource_id = f"/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{aiservices_resource_name}"
 
-my_connection = AzureAIServicesConnection(name=my_connection_name,
-                                    endpoint=my_endpoint, 
-                                    api_key= my_api_keys,
-                                    ai_services_resource_id=my_ai_services_resource_id)
+    my_connection = AzureAIServicesConnection(name=my_connection_name,
+                                        endpoint=my_endpoint, 
+                                        api_key= my_api_keys,
+                                        ai_services_resource_id=my_ai_services_resource_id)
 
-# Create the connection
-ml_client.connections.create_or_update(my_connection)
-```
+    # Create the connection
+    ml_client.connections.create_or_update(my_connection)
+    ```
 
 # [Azure CLI](#tab/azurecli)
 
