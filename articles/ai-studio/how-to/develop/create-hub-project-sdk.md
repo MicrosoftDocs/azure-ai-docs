@@ -84,10 +84,14 @@ After creating your own AI Services, you can connect it to your hub.
 
 First, create a connection to ml_client that includes your hub as the workspace_name:
 
+Provide your subscription details:
 [!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=details)]
+
+Get a handle to the hub:
+
 [!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=ml_client)]
 
-Then use ml_client to create the connection to your AI Services:
+Now use ml_client to create the connection to your AI Services:
 
 ```python
 from azure.ai.ml.entities import AzureAIServicesConnection
