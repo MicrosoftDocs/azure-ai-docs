@@ -259,8 +259,6 @@ items:
         href: ../ai-services/translator/document-translation/overview.md?context=/azure/ai-studio/context/context
       - name: Custom Translator
         href: ../ai-services/translator/custom-translator/overview.md?context=/azure/ai-studio/context/context
-      - name: Containers
-        href: ../ai-services/translator/containers/overview.md?context=/azure/ai-studio/context/context
       - name: Prebuilt solutions
         href: ../ai-services/translator/solutions-overview.md?context=/azure/ai-studio/context/context
     - name:  Vision
