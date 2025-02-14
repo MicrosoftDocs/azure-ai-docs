@@ -11,7 +11,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: reference
-ms.date: 11/20/2024
+ms.date: 02/13/2025
 ---
 
 # Document Layout skill
@@ -123,7 +123,7 @@ The file reference object can be generated in one of following ways:
   "skills": [
     {
       "description": "Analyze a document",
-      "@odata.type": "#Microsoft.Skills.Util.DocumentLayoutAnalysisSkill",
+      "@odata.type": "#Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill",
       "context": "/document",
       "outputMode": "oneToMany", 
       "markdownHeaderDepth": "h3", 
