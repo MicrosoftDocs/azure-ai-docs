@@ -7,7 +7,7 @@ author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 01/22/2025
+ms.date: 02/14/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: generated
@@ -37,7 +37,7 @@ To use embedding models in your application, you need:
     > [!TIP]
     > Read more about the [Azure AI inference package and reference](https://aka.ms/azsdk/azure-ai-inference/python/reference).
 
-* If you are using Entra ID, you also need the following package:
+* If you're using Entra ID, you also need the following package:
 
     ```bash
     dotnet add package Azure.Identity
@@ -55,7 +55,7 @@ EmbeddingsClient client = new EmbeddingsClient(
 );
 ```
 
-If you configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client. Note that here `includeInteractiveCredentials` is set to `true` only for demonstration purposes so authentication can happen using the web browser. On production workloads, you should remove such parameter.
+If you configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client. Notice that `includeInteractiveCredentials` is set to `true` only for demonstration purposes so authentication can happen using the web browser. For production workloads, you should remove the parameter.
 
 ```csharp
 TokenCredential credential = new DefaultAzureCredential(includeInteractiveCredentials: true);
@@ -105,7 +105,7 @@ foreach (EmbeddingItem item in response.Value.Data)
 ```
 
 > [!IMPORTANT]
-> Computing embeddings in batches may not be supported for all the models. For example, for `Cohere-embed-v3-english` model, you need to send one image at a time.
+> Computing embeddings in batches might not be supported for all the models. For example, for `Cohere-embed-v3-english` model, you need to send one image at a time.
 
 #### Embedding images and text pairs
 
@@ -132,7 +132,7 @@ Response<EmbeddingsResult> response = client.Embed(requestOptions);
 
 Some models can generate multiple embeddings for the same input depending on how you plan to use them. This capability allows you to retrieve more accurate embeddings for RAG patterns. 
 
-The following example shows how to create embeddings that are used to create an embedding for a document that will be stored in a vector database:
+The following example shows how to create embeddings for a document that will be stored in a vector database:
 
 
 ```csharp
