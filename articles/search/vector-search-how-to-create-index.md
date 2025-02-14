@@ -9,72 +9,94 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 01/09/2025
+ms.date: 02/14/2025
 ---
 
 # Create a vector index
 
-In Azure AI Search, a *vector store* has an index schema that defines vector and nonvector fields, a vector configuration for algorithms that create and compress the embedding space, and settings on vector field definitions that are used in query requests. 
+In Azure AI Search, you can store vectors in a search index and send vector queries to match on semantic similarity. A vector store in Azure AI Search has an index schema that defines both vector and nonvector fields. It also has a vector configuration for algorithms used to create and compress the embedding space.
 
-The [Create or Update Index](/rest/api/searchservice/indexes/create-or-update) API creates the vector store. Follow these steps to index vector data:
+[Create or Update Index API](/rest/api/searchservice/indexes/create-or-update) creates the vector store. Follow these steps to index vectors in Azure AI Search:
 
 > [!div class="checklist"]
-> + Define a schema with vector algorithms and optional compression
+> + Start with a basic schema definition
+> + Add vector algorithms and optional compression
 > + Add vector field definitions
 > + Load prevectorized data [as a separate step](#load-vector-data-for-indexing), or use [integrated vectorization](vector-search-integrated-vectorization.md) for data chunking and encoding during indexing
 
-This article explains the workflow and uses REST for illustration. Once you understand the basic workflow, continue with the Azure SDK code samples in the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repository for guidance on using these features in test and production code.
+This article explains the workflow using the REST API for illustration. Once you understand the basic workflow, continue with the Azure SDK code samples in the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repository for guidance on using vectors in test and production code.
 
 > [!TIP]
-> Use the Azure portal to [create a vector index](search-get-started-portal-import-vectors.md) and try integrated data chunking and vectorization.
+> You can also use the Azure portal to [create a vector index](search-get-started-portal-import-vectors.md) and try out integrated data chunking and vectorization.
 
 ## Prerequisites
 
-+ Azure AI Search, in any region and on any tier. On services created before January 2019, there's a small subset that can't create a vector index. If this applies to you, create a new service to use vectors. For indexing workloads that include integrated vectorization (skillsets that call Azure AI), Azure AI Search must be in the same region as Azure OpenAI or Azure AI services.
++ Azure AI Search, in any region and on any tier. If you plan to use [integrated vectorization](vector-search-integrated-vectorization.md), Azure AI Search must be in the same region as the embedding models hosted on Azure OpenAI or in Azure AI Vision.
 
-+ You must have [pre-existing vector embeddings](vector-search-how-to-generate-embeddings.md) to upload to the index, or you can use [integrated vectorization](vector-search-integrated-vectorization.md), where embedding models are called from a skillset in an indexer pipeline.
++ Your source documents must have [vector embeddings](vector-search-how-to-generate-embeddings.md) to upload to the index. Or, you can use [integrated vectorization](vector-search-integrated-vectorization.md) for this step.
 
-+ You should know the dimensions limit of the model used to create the embeddings so that you can assign that limit to the vector field. Integrated vectorization supports a finite number of embedding models. For **text-embedding-ada-002**, dimensions are fixed at 1536. For **text-embedding-3-small** or **text-embedding-3-large**, the vector length ranges from 1 to 1536 and 3072, respectively. 
++ You should know the dimensions limit of the model used to create the embeddings so that you can assign that limit to the vector field. For **text-embedding-ada-002**, dimensions are fixed at 1536. For **text-embedding-3-small** or **text-embedding-3-large**, dimensions range from 1 to 1536 and 3072, respectively. 
 
 + You should also know what similarity metric to use. For embedding models on Azure OpenAI, similarity is [computed using `cosine`](/azure/ai-services/openai/concepts/understand-embeddings#cosine-similarity). 
 
 + You should be familiar with [creating an index](search-how-to-create-search-index.md). The schema must include a field for the document key, other fields you want to search or filter, and other configurations for behaviors needed during indexing and queries. 
 
+## Limitations
+
+For search services created before January 2019, there's a small subset that can't create a vector index. If this applies to you, create a new service to use vectors.
+
 ## Prepare documents for indexing
 
-Prior to indexing, assemble a document payload that includes fields of vector and nonvector data. The document structure must conform to the index schema. 
+Before indexing, assemble a document payload that includes fields of vector and nonvector data. The document structure must conform to the index schema. 
 
-Make sure your documents:
+Make sure your documents provide the following content:
 
-1. Provide a field or a metadata property that uniquely identifies each document. All search indexes require a document key. To satisfy document key requirements, a source document must have one field or property that can uniquely identify it in the index. This source field must be mapped to an index field of type `Edm.String` and `key=true` in the search index. 
+| Content | Description |
+|---------|-------------|
+| Unique identifier | A field or a metadata property that uniquely identifies each document. All search indexes require a document key. To satisfy document key requirements, a source document must have one field or property uniquely identifies it in the index. If you're indexing blobs, it might be the metadata_storage_path that uniquely identifies each blob. If you're indexing from a database, it might be primary key. This source field must be mapped to an index field of type `Edm.String` and `key=true` in the search index.|
+| Non-vector content | Provide other fields with human-readable content. Human readable content is useful for the query response, and for hybrid query scenarios that include full text search or semantic ranking in the same request. If you're using a chat completion model, most models like ChatGPT don't accept raw vectors as input. |
+| Vector content| A vectorized version of your non-vector content. A vector is an array of single-precision floating point numbers generated by an embedding model. Each vector field contains an array generated by an embedding model, one embedding per field, where the field is a top-level field (not part of a nested or complex type). For the simplest integration, we recommend the embedding models in [Azure OpenAI](https://aka.ms/oai/access), such as an **text-embedding-3** model for text documents or the [Image Retrieval REST API](/rest/api/computervision/image-retrieval/vectorize-image) for images. <br><br>If you can take a dependency on indexers and skillsets, consider using [integrated vectorization](vector-search-integrated-vectorization.md) that encodes images and textual content during indexing. Your field definitions are for vector fields, but incoming source data can be text or images, which are converted to vector arrays during indexing. |
 
-1. Provide vector data (an array of single-precision floating point numbers) in source fields.
-
-   Vector fields contain an array generated by embedding models, one embedding per field, where the field is a top-level field (not part of a nested or complex type). For the simplest integration, we recommend the embedding models in [Azure OpenAI](https://aka.ms/oai/access), such as a **text-embedding-3** model for text documents or the [Image Retrieval REST API](/rest/api/computervision/2023-02-01-preview/image-retrieval/vectorize-image) for images.
-
-   If you can take a dependency on indexers and skillsets, consider using [integrated vectorization](vector-search-integrated-vectorization.md) that encodes images and textual content during indexing. Your field definitions are for vector fields, but incoming source data can be text or images, which are converted to vector arrays during indexing.
-
-1. Provide other fields with human-readable content for the query response, and for hybrid query scenarios that include full text search or semantic ranking in the same request. 
-
-Your search index should include fields and content for all of the query scenarios you want to support. Suppose you want to search or filter over product names, versions, metadata, or addresses. In this case, similarity search isn't especially helpful. Keyword search, geo-search, or filters would be a better choice. A search index that includes a comprehensive field collection of vector and nonvector data provides maximum flexibility for query construction and response composition.
+Your search index should include fields and content for all of the query scenarios you want to support. Suppose you want to search or filter over product names, versions, metadata, or addresses. In this case, vector similarity search isn't especially helpful. Keyword search, geo-search, or filters would be a better choice. A search index that includes a comprehensive collection of both vector and nonvector fields provides maximum flexibility for query construction and response composition.
 
 A short example of a documents payload that includes vector and nonvector fields is in the [load vector data](#load-vector-data-for-indexing) section of this article.
 
+## Start with a basic index
+
+Start with a minimum schema so that you have a definition to work with before adding a vector configuration and vector fields. A simple index might look the following example. You can learn more about an index schema in [Create a search index](search-how-to-create-search-index.md).
+
+Notice that it has a required name, a required document key (`"key": true`), and fields for human readable content in plain text. It's common to have a human-readable version of whatever content you intend to vectorize. For example, if you have a chunk of text from a PDF file, your index schema should have the plain text equivalent of the vectorized text. 
+
+```http
+POST https://[servicename].search.windows.net/indexes?api-version=[api-version] 
+{
+  "name": "example-index",
+  "fields": [
+    { "name": "documentId", "type": "Edm.String", "key": true, "retrievable": true, "searchable": true, "filterable": true },
+    { "name": "myHumanReadableNameField", "type": "Edm.String", "retrievable": true, "searchable": true, "filterable": false, "sortable": true, "facetable": false },
+    { "name": "myHumanReadableContentField", "type": "Edm.String", "retrievable": true, "searchable": true, "filterable": false, "sortable": false, "facetable": false, "analyzer": "en.microsoft" },
+  ],
+  "suggesters": [ ],
+  "scoringProfiles": [ ],
+  "analyzers":(optional)[ ... ]
+}
+```
+
 ## Add a vector search configuration
 
-A vector configuration specifies the parameters used during indexing to create "nearest neighbor" information among the vector nodes:
+Next, add a vector search configuration to your schema. Configuration occurs before field definitions because you specify one on each field as part of its definition. In the schema, vector configuration is typically added after the fields collection, perhaps after `"suggesters"`, `"scoringProfiles"`, or `"analyzers"`.
+
+A vector configuration specifies the parameters used during indexing to create "nearest neighbor" information among the vector nodes. Algorithms include:
 
 + Hierarchical Navigable Small World (HNSW)
-+ Exhaustive KNN
++ Exhaustive k-Nearest Neighbor (KNN)
 
-If you choose HNSW on a field, you can opt in for exhaustive KNN at query time. But the other direction doesn’t work: if you choose exhaustive, you can’t later request HNSW search because the extra data structures that enable approximate search don’t exist.
+If you choose HNSW on a field, you can opt in for exhaustive KNN at query time. But the other direction doesn’t work: if you choose exhaustive for indexing, you can’t later request HNSW search because the extra data structures that enable approximate search don’t exist.
 
 Optionally, a vector configuration also specifies quantization methods for reducing vector size:
 
 + Scalar
 + Binary (available in 2024-07-01 only and in newer Azure SDK packages)
-
-For instructions on how to migrate to the latest version, see [Upgrade REST API](search-api-migration.md).
 
 ### [**2024-07-01**](#tab/config-2024-07-01)
 
@@ -82,7 +104,7 @@ For instructions on how to migrate to the latest version, see [Upgrade REST API]
 
 + `vectorSearch.algorithms` support HNSW and exhaustive KNN.
 + `vectorSearch.compressions` support scalar and binary quantization, oversampling, and reranking with original vectors.
-+ `vectorSearch.profiles` provide for multiple combinations of algorithm and compression configurations.
++ `vectorSearch.profiles` for specifying multiple combinations of algorithm and compression configurations.
 
 Be sure to have a strategy for [vectorizing your content](vector-search-how-to-generate-embeddings.md). We recommend [integrated vectorization](vector-search-integrated-vectorization.md) and [query-time vectorizers](vector-search-how-to-configure-vectorizer.md) for built-in encoding.
 
@@ -270,7 +292,19 @@ For more information about new preview features, see [What's new in Azure AI Sea
 
 The fields collection must include a field for the document key, vector fields, and any other fields that you need for hybrid search scenarios.
 
-Vector fields are characterized by [their data type](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields), a `dimensions` property based on the embedding model used to output the vectors, and a vector profile.
+Vector fields are characterized by [their data type](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields), a `dimensions` property based on the embedding model used to output the vectors, and a vector profile that you created in a previous step.
+
+```json
+{
+    "name": "contentVector",
+    "type": "Collection(Edm.Single)",
+    "searchable": true,
+    "retrievable": false,
+    "stored": false,
+    "dimensions": 1536,
+    "vectorSearchProfile": "vector-profile-1"
+}
+```
 
 ### [**2024-07-01**](#tab/rest-2024-07-01)
 
@@ -284,7 +318,7 @@ Vector fields are characterized by [their data type](/rest/api/searchservice/sup
    + `dimensions` is the number of dimensions generated by the embedding model. For text-embedding-ada-002, it's fixed at 1536. For the text-embedding-3 model series, there's a range of values. If you're using integrated vectorization and an embedding skill to generate vectors, make sure this property is set to the [same dimensions value](cognitive-search-skill-azure-openai-embedding.md#supported-dimensions-by-modelname) used by the embedding skill.
    + `vectorSearchProfile` is the name of a profile defined elsewhere in the index.
    + `searchable` must be true.
-   + `retrievable` can be true or false. True returns the raw vectors (1536 of them) as plain text and consumes storage space. Set to true if you're passing a vector result to a downstream app.
+   + `retrievable` can be true or false. True returns the raw vectors (1,536 of them) as plain text and consumes storage space. Set to true if you're passing a vector result to a downstream app.
    + `stored` can be true or false. It determines whether an extra copy of vectors is stored for retrieval. For more information, see [Reduce vector size](vector-search-how-to-storage-options.md).
    + `filterable`, `facetable`, `sortable` must be false. 
 
@@ -367,8 +401,10 @@ Vector fields are characterized by [their data type](/rest/api/searchservice/sup
 
 ### [**2024-05-01-preview**](#tab/rest-2024-05-01-Preview)
 
+[**2024-05-01-preview**](/rest/api/searchservice/search-service-api-versions#2024-05-01-preview) is the most recent preview version.
+
 + Supports all [vector data types](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields).
-+ Inclusive of `2024-03-01-preview`, with new support [indexing binary data for vector search](vector-search-how-to-index-binary-data.md).
++ Inclusive of `2024-03-01-preview`.
 
 1. Use the [Create or Update Index Preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true) to define the fields collection of an index.
 
@@ -378,7 +414,7 @@ Vector fields are characterized by [their data type](/rest/api/searchservice/sup
    + `dimensions` is the number of dimensions generated by the embedding model. For text-embedding-ada-002, it's 1536.
    + `vectorSearchProfile` is the name of a profile defined elsewhere in the index.
    + `searchable` must be true.
-   + `retrievable` can be true or false. True returns the raw vectors (1536 of them) as plain text and consumes storage space. Set to true if you're passing a vector result to a downstream app. False is required if `stored` is false.
+   + `retrievable` can be true or false. True returns the raw vectors (1,536 of them) as plain text and consumes storage space. Set to true if you're passing a vector result to a downstream app. False is required if `stored` is false.
    + `stored` is a new boolean property that applies to vector fields only. True stores a copy of vectors returned in search results. False discards that copy during indexing. You can search on vectors, but can't return vectors in results.
    + `filterable`, `facetable`, `sortable` must be false. 
 
@@ -547,7 +583,7 @@ If you're familiar with indexers and skillsets:
 
 ---
 
-## Check your index for vector content
+## Query your index for vector content
 
 For validation purposes, you can query the index using Search Explorer in the Azure portal or a REST API call. Because Azure AI Search can't convert a vector to human-readable text, try to return fields from the same document that provide evidence of the match. For example, if the vector query targets the "titleVector" field, you could select "title" for the search results.
 
@@ -565,7 +601,7 @@ Fields must be attributed as "retrievable" to be included in the results.
 
   + Use the default Query view for a quick confirmation that the index contains vectors. The query view is for full text search. Although you can't use it for vector queries, you can send an empty search (`search=*`) to check for content. The content of all fields, including vector fields, is returned as plain text.
 
-  + See [Create a vector query](vector-search-how-to-query.md) for more details.
+For more information, see [Create a vector query](vector-search-how-to-query.md).
 
 ### [**REST API**](#tab/rest-check-index)
 
@@ -595,18 +631,18 @@ api-key: {{admin-api-key}}
 
 ## Update a vector store
 
-To update a vector store, modify the schema and if necessary, reload documents to populate new fields. APIs for schema updates include [Create or Update Index (REST)](/rest/api/searchservice/indexes/create-or-update), [CreateOrUpdateIndex](/dotnet/api/azure.search.documents.indexes.searchindexclient.createorupdateindexasync) in the Azure SDK for .NET, [create_or_update_index](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python#azure-search-documents-indexes-searchindexclient-create-or-update-index&preserve-view=true) in the Azure SDK for Python, and similar methods in other Azure SDKs.
+To update a vector store, modify the schema and reload documents to populate new fields. APIs for schema updates include [Create or Update Index (REST)](/rest/api/searchservice/indexes/create-or-update), [CreateOrUpdateIndex](/dotnet/api/azure.search.documents.indexes.searchindexclient.createorupdateindexasync) in the Azure SDK for .NET, [create_or_update_index](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python#azure-search-documents-indexes-searchindexclient-create-or-update-index&preserve-view=true) in the Azure SDK for Python, and similar methods in other Azure SDKs.
 
 The standard guidance for updating an index is covered in [Update or rebuild an index](search-howto-reindex.md). 
 
 Key points include:
 
-+ Drop and rebuild is often required for updates to and deletion of existing fields.
++ Drop and full index rebuild is often required for updates to and deletion of existing fields.
 
-+ However, you can update an existing schema with the following modifications, with no rebuild required:
++ A few modifications can be made with no rebuild requirement:
 
   + Add new fields to a fields collection.
-  + Add new vector configurations, assigned to new fields but not existing fields that have already been vectorized.
+  + Add new vector configurations, assigned to new fields but not existing fields that are already vectorized.
   + Change "retrievable" (values are true or false) on an existing field. Vector fields must be searchable and retrievable, but if you want to disable access to a vector field in situations where drop and rebuild isn't feasible, you can set retrievable to false.
 
 ## Next steps
