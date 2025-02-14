@@ -138,4 +138,4 @@ When you get results from PII detection, you can stream the results to an applic
 
 ## Next steps
 
-[Named Entity Recognition overview](overview.md)
+[Personally Identifying Information (PII) overview](overview.md)
