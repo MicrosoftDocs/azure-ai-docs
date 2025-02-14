@@ -176,9 +176,7 @@ items:
       - name: What is Azure AI Language?
         href: ../ai-services/language-service/overview.md?context=/azure/ai-studio/context/context
       - name: Conversation Language Understanding
-        href: ../ai-services/language-service/conversational-language-understanding/quickstart.md?context=/azure/ai-studio/context/context
-      - name: Entity Linking
-        href: ../ai-services/language-service/entity-linking/quickstart.md?context=/azure/ai-studio/context/context
+        href: ../ai-services/language-service/conversational-language-understanding/quickstart.md?context=/azure/ai-studio/context/context&pivots=rest-api
       - name: Key Phrase Extraction
         href: ../ai-services/language-service/key-phrase-extraction/quickstart.md?context=/azure/ai-studio/context/context
       - name: Language Detection
@@ -186,7 +184,7 @@ items:
       - name: Named Entity Recognition
         href: ../ai-services/language-service/named-entity-recognition/quickstart.md?context=/azure/ai-studio/context/context
       - name: Custom Named Entity Recognition
-        href: ../ai-services/language-service/custom-named-entity-recognition/quickstart.md?context=/azure/ai-studio/context/context
+        href: ../ai-services/language-service/custom-named-entity-recognition/quickstart.md?context=/azure/ai-studio/context/context&pivots=rest-api
       - name: Native Document Support
         href: ../ai-services/language-service/native-document-support/use-native-documents.md?context=/azure/ai-studio/context/context
       - name: Orchestration Workflow
