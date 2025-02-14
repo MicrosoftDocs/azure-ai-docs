@@ -98,7 +98,7 @@ You can configure default values to use with the Azure CLI. To avoid passing in 
 
 ### Clone the examples repository
 
-To follow along with this article, first clone the [examples repository (azureml-examples)](https://github.com/azure/azureml-examples). Then, go to the repository's `cli/` directory:
+To follow along with this article, first clone the [examples repository (azureml-examples)](https://github.com/azure/azureml-examples). Then go to the repository's `cli/` directory:
 
 ```azurecli
 git clone --depth 1 https://github.com/Azure/azureml-examples
@@ -109,16 +109,16 @@ cd cli
 > [!TIP]
 > Use `--depth 1` to clone only the latest commit to the repository, which reduces the time that's needed to complete the operation.
 
-The commands in this tutorial are in the file `deploy-safe-rollout-online-endpoints.sh` in the `cli` directory, and the YAML configuration files are in the `endpoints/online/managed/sample/` subdirectory.
+The commands in this tutorial are in the deploy-safe-rollout-online-endpoints.sh file in the cli directory, and the YAML configuration files are in the endpoints/online/managed/sample/ subdirectory.
 
 > [!NOTE]
-> The YAML configuration files for Kubernetes online endpoints are in the `endpoints/online/kubernetes/` subdirectory.
+> The YAML configuration files for Kubernetes online endpoints are in the endpoints/online/kubernetes/ subdirectory.
 
 # [Python SDK](#tab/python)
 
 ### Clone the examples repository
 
-To run the training examples, first clone the [examples repository (azureml-examples)](https://github.com/azure/azureml-examples). Then, go into the `azureml-examples/sdk/python/endpoints/online/managed` directory:
+To run the training examples, first clone the [examples repository (azureml-examples)](https://github.com/azure/azureml-examples). Then go to the azureml-examples/sdk/python/endpoints/online/managed directory:
 
 ```bash
 git clone --depth 1 https://github.com/Azure/azureml-examples
@@ -128,14 +128,14 @@ cd azureml-examples/sdk/python/endpoints/online/managed
 > [!TIP]
 > Use `--depth 1` to clone only the latest commit to the repository, which reduces the time that's needed to complete the operation.
 
-The information in this article is based on the [online-endpoints-safe-rollout.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/online/managed/online-endpoints-safe-rollout.ipynb) notebook. This article contains the same content as the notebook, but the order of the code blocks diffs slightly between the two documents.
+The information in this article is based on the [online-endpoints-safe-rollout.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/online/managed/online-endpoints-safe-rollout.ipynb) notebook. This article contains the same content as the notebook, but the order of the code blocks differs slightly between the two documents.
 
 > [!NOTE]
 > The steps for the Kubernetes online endpoint are based on the [kubernetes-online-endpoints-safe-rollout.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/online/kubernetes/kubernetes-online-endpoints-safe-rollout.ipynb) notebook.
 
 ### Connect to an Azure Machine Learning workspace
 
-The [workspace](concept-workspace.md) is the top-level resource for Azure Machine Learning. A workspace provides a centralized place to work with all the artifacts you create when you use Azure Machine Learning. In this section, you connect to your workspace, where you perform deployment tasks. To follow along, open your `online-endpoints-safe-rollout.ipynb` notebook.
+The [workspace](concept-workspace.md) is the top-level resource for Azure Machine Learning. A workspace provides a centralized place to work with all the artifacts you create when you use Azure Machine Learning. In this section, you connect to your workspace, where you perform deployment tasks. To follow along, open your online-endpoints-safe-rollout.ipynb notebook.
 
 1. Import the required libraries:
 
@@ -158,7 +158,7 @@ If you have Git installed on your local machine, you can follow the instructions
 
 ### Clone the examples repository
 
-To follow along with this article, clone the [azureml-examples repository](https://github.com/azure/azureml-examples), and then go to the `azureml-examples/cli/endpoints/online/model-1` folder.
+To follow along with this article, clone the [azureml-examples repository](https://github.com/azure/azureml-examples), and then go to the azureml-examples/cli/endpoints/online/model-1 folder.
 
 ```bash
 git clone --depth 1 https://github.com/Azure/azureml-examples
@@ -194,7 +194,7 @@ The following table lists key attributes to specify when you define an endpoint.
 | Traffic | Optional | Rules on how to route traffic across deployments. You represent the traffic as a dictionary of key-value pairs, where the key represents the deployment name and the value represents the percentage of traffic to that deployment. You can set the traffic only when the deployments under an endpoint have been created. You can also update the traffic for an online endpoint after the deployments have been created. For more information about how to use mirrored traffic, see [Allocate a small percentage of live traffic to the new deployment](#allocate-a-small-percentage-of-live-traffic-to-the-new-deployment). |
 | Mirror traffic | Optional | The percentage of live traffic to mirror to a deployment. For more information about how to use mirrored traffic, see [Test the deployment with mirrored traffic](#test-the-deployment-with-mirrored-traffic). |
 
-To see a full list of attributes that you can specify when you create an endpoint, see [CLI (v2) online endpoint YAML schema](/azure/machine-learning/reference-yaml-endpoint-online) or for version 2 of the Python SDK, see [ManagedOnlineEndpoint Class](/python/api/azure-ai-ml/azure.ai.ml.entities.managedonlineendpoint).
+To see a full list of attributes that you can specify when you create an endpoint, see [CLI (v2) online endpoint YAML schema](/azure/machine-learning/reference-yaml-endpoint-online) or for version 2 of the Azure Machine Learning SDK for Python, see [ManagedOnlineEndpoint Class](/python/api/azure-ai-ml/azure.ai.ml.entities.managedonlineendpoint).
 
 ### Define a deployment
 
@@ -217,7 +217,7 @@ To see a full list of attributes that you can specify when you create a deployme
 
 ### Create an online endpoint
 
-First set the endpoint name and then configure it. In this article, you use the endpoints/online/managed/sample/endpoint.yml file to configure the endpoint. That file contains the following lines:
+You first set the endpoint name and then configure it. In this article, you use the endpoints/online/managed/sample/endpoint.yml file to configure the endpoint. That file contains the following lines:
 
 :::code language="yaml" source="~/azureml-examples-main/cli/endpoints/online/managed/sample/endpoint.yml":::
 
@@ -259,7 +259,7 @@ To use the blue-deployment.yml file to create the `blue` deployment for your end
 > [!IMPORTANT]
 > The `--all-traffic` flag in the `az ml online-deployment create` command allocates 100 percent of the endpoint traffic to the newly created `blue` deployment.
 
-In the blue-deployment.yaml file, the `path` line specifies where to upload files from. The CLI uses this information to upload the files and register the model and environment. As a best practice for production, you should register the model and environment and specify the registered name and version separately in the YAML code. Use the format `model: azureml:<model-name>:<model-version>` for the model, for example, `model: azureml:my-model:1`. For the environment, use the format `environment: azureml:<environment-name>:<environment-version>`, for example, `environment: azureml:my-env:1`.
+In the blue-deployment.yaml file, the `path` line specifies where to upload files from. The Azure Machine Learning CLI uses this information to upload the files and register the model and environment. As a best practice for production, you should register the model and environment and specify the registered name and version separately in the YAML code. Use the format `model: azureml:<model-name>:<model-version>` for the model, for example, `model: azureml:my-model:1`. For the environment, use the format `environment: azureml:<environment-name>:<environment-version>`, for example, `environment: azureml:my-env:1`.
 
 For registration, you can extract the YAML definitions of `model` and `environment` into separate YAML files and use the commands `az ml model create` and `az ml environment create`. To learn more about these commands, run `az ml model create -h` and `az ml environment create -h`.
 
@@ -290,7 +290,7 @@ To create a deployment for your managed online endpoint, use the `ManagedOnlineD
 
     [!notebook-python[](~/azureml-examples-main/sdk/python/endpoints/online/managed/online-endpoints-safe-rollout.ipynb?name=configure_deployment)]
 
-    In this example, the `path` parameter specifies where to upload files from. The SDK uses this information to upload the files and register the model and environment. As a best practice for production, you should register the model and environment and specify the registered name and version separately in the code.
+    In this example, the `path` parameter specifies where to upload files from. The Python SDK uses this information to upload the files and register the model and environment. As a best practice for production, you should register the model and environment and specify the registered name and version separately in the code.
 
     For more information about registering your model as an asset, see [Register a model by using the Azure CLI or Python SDK](how-to-manage-models.md#register-a-model-by-using-the-azure-cli-or-python-sdk).
 
@@ -385,7 +385,7 @@ One way to create a managed online endpoint in the studio is from the **Models**
     1. Select **Next**.
 
 1. On the **Code and environment for inferencing** page, take the following steps:
-    1. Under "Select a scoring script for inferencing**, select **Browse**, and then select the \azureml-examples\cli\endpoints\online\model-1\onlinescoring\score.py file from the repo you cloned or downloaded earlier.
+    1. Under **Select a scoring script for inferencing**, select **Browse**, and then select the \azureml-examples\cli\endpoints\online\model-1\onlinescoring\score.py file from the repo you cloned or downloaded earlier.
     1. In the search box above the list of environments, start entering **sklearn**, and then select the **sklearn-1.5:19** curated environment.
     1. Select **Next**.
 
@@ -658,16 +658,16 @@ Even though 0 percent of the traffic goes to the `green` deployment, you can sti
 
 ## Test the deployment with mirrored traffic
 
-After you test your `green` deployment, you can *mirror*, or copy, a percentage of the live traffic to it. Traffic mirroring, which is also called shadowing, doesn't change the results returned to clients—100 percent of requests still flow to the `blue` deployment. The mirrored percentage of the traffic is copied and also submitted to the `green` deployment so that you can gather metrics and logging without impacting your clients.
+After you test your `green` deployment, you can *mirror* a percentage of the live traffic to your endpoint by copying that percentage of traffic and sending it to the `green` deployment. Traffic mirroring, which is also called shadowing, doesn't change the results returned to clients—100 percent of requests still flow to the `blue` deployment. The mirrored percentage of the traffic is copied and also submitted to the `green` deployment so that you can gather metrics and logging without impacting your clients.
 
 Mirroring is useful when you want to validate a new deployment without impacting clients. For example, you can use mirroring to check whether latency is within acceptable bounds or to check that there are no HTTP errors. Using traffic mirroring, or shadowing, to test a new deployment is also known as [shadow testing](https://microsoft.github.io/code-with-engineering-playbook/automated-testing/shadow-testing/). The deployment that receives the mirrored traffic, in this case, the `green` deployment, can also be called the *shadow deployment*.
 
 Mirroring has the following limitations:
 
-* Mirroring is supported for versions 2.4.0 and later of the Azure Machine Learning CLI and versions 1.0.0 and later of the Azure Machine Learning SDK for Python. If you use an older version of the Azure Machine Learning CLI or the SDK to update an endpoint, you lose the mirror traffic setting.
+* Mirroring is supported for versions 2.4.0 and later of the Azure Machine Learning CLI and versions 1.0.0 and later of the Python SDK. If you use an older version of the Azure Machine Learning CLI or the Python SDK to update an endpoint, you lose the mirror traffic setting.
 * Mirroring isn't currently supported for Kubernetes online endpoints.
 * You can mirror traffic to only one deployment in an endpoint.
-* The maximum percentage of traffic you can mirror is 50 percent. This cap limits the effect on your [endpoint bandwidth quota](how-to-manage-quotas.md#azure-machine-learning-online-endpoints-and-batch-endpoints), which has a default value of 5 MBPS. Your endpoint bandwidth is throttled if you exceed the allocated quota. For information about monitoring bandwidth throttling, see [Supported metrics for Microsoft.MachineLearningServices/workspaces/onlineEndpoints](monitor-azure-machine-learning-reference.md#supported-metrics-for-microsoftmachinelearningservicesworkspacesonlineendpoints).
+* The maximum percentage of traffic you can mirror is 50 percent. This cap limits the effect on your [endpoint bandwidth quota](how-to-manage-quotas.md#azure-machine-learning-online-endpoints-and-batch-endpoints), which has a default value of 5 MBps. Your endpoint bandwidth is throttled if you exceed the allocated quota. For information about monitoring bandwidth throttling, see [Supported metrics for Microsoft.MachineLearningServices/workspaces/onlineEndpoints](monitor-azure-machine-learning-reference.md#supported-metrics-for-microsoftmachinelearningservicesworkspacesonlineendpoints).
 
 Also note the following behavior:
 
@@ -696,7 +696,7 @@ done
 You can confirm that the specified percentage of the traffic was sent to the `green` deployment by checking the logs from the deployment:
 
 ```azurecli
-az ml online-deployment get-logs --name blue --endpoint $ENDPOINT_NAME
+az ml online-deployment get-logs --name green --endpoint $ENDPOINT_NAME
 ```
 
 After testing, you can set the mirror traffic to zero to disable mirroring:
