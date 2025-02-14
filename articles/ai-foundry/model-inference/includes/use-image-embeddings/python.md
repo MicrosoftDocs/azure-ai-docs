@@ -37,7 +37,7 @@ To use embedding models in your application, you need:
   > [!TIP]
   > Read more about the [Azure AI inference package and reference](https://aka.ms/azsdk/azure-ai-inference/python/reference).
 
-## Use embeddings
+## Use image embeddings
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
 
@@ -98,7 +98,7 @@ print("Usage:", response.usage)
 ```
 
 > [!IMPORTANT]
-> Computing embeddings in batches may not be supported for all the models. For example, for `cohere-embed-v3` model, you need to send one image at a time.
+> Computing embeddings in batches may not be supported for all the models. For example, for `Cohere-embed-v3-english` model, you need to send one image at a time.
 
 #### Embedding images and text pairs
 
