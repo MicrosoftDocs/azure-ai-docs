@@ -20,7 +20,7 @@ ms.custom: how-to, devplatv2, cliv2, sdkv2, update-code
 
 In this article, you see how to deploy a new version of a machine learning model in production without causing any disruption. You use a blue-green deployment strategy, which is also known as a safe rollout strategy, to introduce a new version of a web service to production. When you use this strategy, you can roll out your new version of the web service to a small subset of users or requests before rolling it out completely.
 
-This article assumes you use online endpoints, or endpoints that are used for online (real-time) inferencing. There are two types of online endpoints: **managed online endpoints** and **Kubernetes online endpoints**. For more information about endpoints and the differences between managed online endpoints and Kubernetes online endpoints, see [Managed online endpoints vs. Kubernetes online endpoints](concept-endpoints-online.md#managed-online-endpoints-vs-kubernetes-online-endpoints).
+This article assumes you use online endpoints, or endpoints that are used for online (real-time) inferencing. There are two types of online endpoints: **managed online endpoints** and **Kubernetes online endpoints**. For more information about endpoints and the differences between endpoint types, see [Managed online endpoints vs. Kubernetes online endpoints](concept-endpoints-online.md#managed-online-endpoints-vs-kubernetes-online-endpoints).
 
 This article uses managed online endpoints for deployment. But it also includes notes that explain how to use Kubernetes endpoints instead of managed online endpoints.
 
@@ -33,7 +33,7 @@ In this article, you see how to:
 - Mirror a percentage of live traffic to the `green` deployment to validate it.
 - Send a small percentage of live traffic to the `green` deployment.
 - Send all live traffic to the `green` deployment.
-- Delete the unused version 1 `blue` deployment.
+- Delete the unused `blue` deployment.
 
 ## Prerequisites
 
