@@ -12,20 +12,19 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 02/14/2025
 ---
 
 # Upgrade to the latest REST API in Azure AI Search
 
-Use this article to migrate data plane calls to newer versions of the [**Search REST APIs**](/rest/api/searchservice/) and management plane calls to newer version of the [**Search Management REST APIs**](/rest/api/searchmanagement/)
+Use this article to migrate to newer versions of the [**Search Service REST APIs**](/rest/api/searchservice/) and the [**Search Management REST APIs**](/rest/api/searchmanagement/) for [data plane and control plane](/azure/azure-resource-manager/management/control-plane-and-data-plane) operations.
 
-+ [`2024-07-01`](/rest/api/searchservice/search-service-api-versions#2024-07-01) is the most recent stable data plane API version.
-
-+ [`2024-11-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-11-01-preview) is the most recent preview data plane API version.
-
-+ [`2023-11-01`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2023-11-01) is the most recent stable management plane API version.
-
-+ [`2024-03-01-preview`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2024-03-01-preview) is the most recent preview management plane API version.
+| Targeted operations | REST API | Status |
+|---------------------|----------|--------|
+| Data plane | [`2024-07-01`](/rest/api/searchservice/search-service-api-versions#2024-07-01) | Stable |
+| Data plane | [`2024-11-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-11-01-preview) | Preview |
+| Control plane | [`2023-11-01`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2023-11-01) | Stable |
+| Control plane | [`2024-03-01-preview`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2024-03-01-preview) | Preview |
 
 Upgrade instructions focus on code changes that get you through breaking changes from previous versions so that existing code runs the same as before, but on the newer API version. Once your code is in working order, you can decide whether to adopt newer features. To learn more about new features, see [vector code samples](https://github.com/Azure/azure-search-vector-samples) and [What's New](whats-new.md).
 
@@ -48,7 +47,7 @@ Azure AI Search breaks backward compatibility as a last resort. Upgrade is neces
 
 ## How to upgrade
 
-1. If you are upgrading a data plane version, review the [release notes](/rest/api/searchservice/search-service-api-versions) for the new API version.
+1. If you're upgrading a data plane version, review the [release notes](/rest/api/searchservice/search-service-api-versions) for the new API version.
 
 1. Update the `api-version` parameter, specified in the request header, to a newer version. 
 
@@ -56,7 +55,7 @@ Azure AI Search breaks backward compatibility as a last resort. Upgrade is neces
 
    If you're using an Azure SDK, those packages target specific versions of the REST API. Package updates might coincide with a REST API update, but each SDK is on its own release schedule that ships independently of Azure AI Search REST API versions. Check the change log of your SDK package to determine whether a package release targets the latest REST API version.
 
-1. If you are upgrading a data plane version, review the breaking changes documented in this article and implement the workarounds. Start with the version used by your code and resolve any breaking change for each newer API version until you get to the newest stable or preview release.
+1. If you're upgrading a data plane version, review the breaking changes documented in this article and implement the workarounds. Start with the version used by your code and resolve any breaking change for each newer API version until you get to the newest stable or preview release.
 
 ## Breaking change for data plane client code that reads connection information
 
@@ -125,11 +124,11 @@ If you're upgrading from `2023-10-01-preview`, there are no breaking changes. Ho
 
 1. Search your codebase for `vectorFilterMode` references.
 
-1. If the property is explicitly set, no action is required. If you used the default, be aware that the new default behavior is to filter before query execution. If you want post-query filtering, explicitly set `vectorFilterMode` to postfilter to retain the old behavior.
+1. If the property is explicitly set, no action is required. If you relied on the default value, the new default behavior is to filter *before* query execution. If you want post-query filtering, explicitly set `vectorFilterMode` to postfilter to retain the old behavior.
 
 ### Upgrade to 2023-11-01
 
-[`2023-11-01`](/rest/api/searchservice/search-service-api-versions#2023-11-01) is a general release. The former preview features are now generally available: semantic ranker, vector index and query support.
+[`2023-11-01`](/rest/api/searchservice/search-service-api-versions#2023-11-01) is a general release. The former preview features are now generally available: semantic ranker and vector support.
 
 There are no breaking changes from `2023-10-01-preview`, but there are multiple breaking changes from `2023-07-01-preview` to `2023-11-01`. For more information, see [Upgrade from 2023-07-01-preview](#upgrade-from-2023-07-01-preview).
 
@@ -420,22 +419,24 @@ You can update flat indexes to the new format with the following steps using API
 1. Perform a PUT request to update the index to the new format. Avoid changing any other details of the index, such as the searchability/filterability of fields, because changes that affect the physical expression of existing index isn't allowed by the Update Index API.
 
 > [!NOTE]
-> It is not possible to manage indexes created with the old "flat" format from the Azure portal. Please upgrade your indexes from the “flat” representation to the “tree” representation at your earliest convenience.
+> It isn't possible to manage indexes created with the old "flat" format from the Azure portal. Upgrade your indexes from the “flat” representation to the “tree” representation at your earliest convenience.
 
-## Management plane upgrades
+## Control plane upgrades
 
-### Upgrading from 2014-07-31-Preview, 2015-02-28, and 2015-08-19
+**Applies to:** `2014-07-31-Preview`, `2015-02-28`, and `2015-08-19`
 
-The `listQueryKeys` operation is deprecated on these API versions. It's recommended to update to the latest stable management plane API versopm to use the `listQueryKeys` operation.
+The `listQueryKeys` GET request on older Search Management API versions is now deprecated. We recommend migrating to the most recent stable control plane API version to use the `listQueryKeys` POST request.
 
-1. If you are using a REST request, in addition to changing the `api-version` parameter, it's necessary to switch from `GET` to `POST`
+1. In existing code, change the `api-version` parameter to the most recent version (`2023-11-01`).
 
-```
-POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}/listQueryKeys?api-version=2023-11-01
-Authorization: Bearer {{token}}
-```
+1. Refactor the request from `GET` to `POST`:
 
-2. If you are using the Azure SDK, it's recommended to update to the latest version.
+   ```http
+   POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}/listQueryKeys?api-version=2023-11-01
+   Authorization: Bearer {{token}}
+   ```
+
+1. If you're using an Azure SDK, it's recommended that you upgrade to the latest version.
 
 ### Next steps
 
