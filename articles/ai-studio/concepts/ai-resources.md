@@ -128,6 +128,6 @@ In the Azure portal, you can find resources that correspond to your project in A
 
 ## Next steps
 
-- [Quickstart: Analyze images and video with GPT-4 for Vision in the playground](../quickstarts/multimodal-vision.md)
+- [Quickstart: Analyze images and video in the chat playground](../quickstarts/multimodal-vision.md)
 - [Learn more about Azure AI Foundry](../what-is-ai-studio.md)
 - [Learn more about projects](../how-to/create-projects.md)

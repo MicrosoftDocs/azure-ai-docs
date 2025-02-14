@@ -58,7 +58,7 @@ def fetch_weather(location: str) -> str:
     weather_json = json.dumps({"weather": weather})
     return weather_json
     
-    # Statically defined user functions for fast reference
+# Statically defined user functions for fast reference
 user_functions: Set[Callable[..., Any]] = {
     fetch_weather,
 }
