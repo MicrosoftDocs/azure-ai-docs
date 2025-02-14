@@ -10,7 +10,7 @@ ms.author: eur
 #### New Feature - Semantic Segmentation
 Announcing the release of a new feature: Semantic Segmentation. This feature integrates a punctuation module inside decoder that segments audio based on semantic information, resulting in more logical and precise segmentation boundaries.
 Key Benefits:
-- Improved Segmentation Accuracy: By leveraging semantic information, this feature significantly reduces instances of long segments caused by the absence of pauses in the input audio.
+- Improved Segmentation Accuracy: By using semantic information, this feature significantly reduces instances of long segments caused by the absence of pauses in the input audio.
 - Reduce latency caused by under-segmentation: The overall latency for speech recognition is reduced, with a 40%-60% reduction in the length of the longest 5% of segments.
 - Over-Segmentation Mitigation: This feature also helps prevent over-segmentation by delaying segmentation when a better sentence can be formed.
 
@@ -53,7 +53,7 @@ The speech to text REST API version 2024-11-15 is released for general availabil
 
 #### Fast transcription (GA)
 
-Fast transcription is now generally available via [speech to text REST API version 2024-11-15](https://go.microsoft.com/fwlink/?linkid=2296107). Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio much faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
+Fast transcription is now generally available via [speech to text REST API version 2024-11-15](https://go.microsoft.com/fwlink/?linkid=2296107). Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
 
 ### October 2024 release
 
@@ -128,7 +128,7 @@ Speech [pronunciation assessment](../../how-to-pronunciation-assessment.md) now
 
 #### Fast Transcription API (Preview)
 
-Fast transcription is now available in public preview. Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio much faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
+Fast transcription is now available in public preview. Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
 
 > [!TIP]
 > Try out fast transcription in the [Azure AI Foundry portal](https://aka.ms/fasttranscription/studio).
@@ -231,7 +231,7 @@ Highlights:
 - Advanced entity recognition: Entity recognition receives a substantial upgrade, resulting in more accurate and nuanced results.
 
 Potential impacts: Despite these advancements, it's crucial to be mindful of potential impacts:
-- Custom Silence Timeout Feature: Users employing custom silence timeout, especially with low settings, might encounter over-segmentation and potential omissions of single-word phrases.
+- Custom Silences Time-out Feature: Users employing custom silence time-out, especially with low settings, might encounter over-segmentation and potential omissions of single-word phrases.
 - The new model might exhibit compatibility issues with the Keyword prefix feature, and users are advised to assess its performance in their specific applications.
 - Reduced disfluency words or phrases: Users might notice a reduction in disfluency words or phrases like "um" or "uh" in the speech output.
 - Inaccuracies in word timestamp duration: Some disfluency words might display inaccuracies in timestamp duration, requiring attention in applications dependent on precise timing.
