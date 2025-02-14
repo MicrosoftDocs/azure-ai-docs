@@ -29,6 +29,7 @@ Structured outputs make a model follow a [JSON Schema](https://json-schema.org/o
 - `o1` version: `2024-12-17`
 - `gpt-4o-mini` version: `2024-07-18`
 - `gpt-4o` version: `2024-08-06`
+- `gpt-4o` version: `2024-11-20`
 
 ## API support
 
