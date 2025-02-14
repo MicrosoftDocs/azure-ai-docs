@@ -3,6 +3,8 @@ items:
   href: index.yml
 - name: What is Azure AI Foundry?
   href: what-is-ai-studio.md
+- name: What's new in Azure AI Foundry?
+  href: whats-new-ai-studio.md
 - name: Get started
   expanded: true
   items:
