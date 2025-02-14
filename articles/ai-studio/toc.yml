@@ -4,7 +4,7 @@ items:
 - name: What is Azure AI Foundry?
   href: what-is-ai-studio.md
 - name: What's new in Azure AI Foundry?
-  href: whats-new-ai-studio.md
+  href: whats-new-ai-foundry.md
 - name: Get started
   expanded: true
   items:
