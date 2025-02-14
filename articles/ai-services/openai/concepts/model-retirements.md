@@ -20,10 +20,10 @@ Azure OpenAI Service models are continually refreshed with newer and more capabl
 
 ### Terminology
 
-* Retirement
-	* When a model is retired, it's no longer available for use. Azure OpenAI Service deployments of a retired model always return error responses.
 * Deprecation
 	* When a model is deprecated, it's no longer available for new customers. It continues to be available for use by customers with existing deployments until the model is retired.
+* Retirement
+	* When a model is retired, it's no longer available for use. Azure OpenAI Service deployments of a retired model always return error responses.
 
 ## Notifications
 
