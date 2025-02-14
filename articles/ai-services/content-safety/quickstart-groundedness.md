@@ -96,8 +96,7 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
     print(data.decode("utf-8"))
     ```
 
-    > [!IMPORTANT]
-    > Remember to remove the key from your code when you're done, and never post your key publicly. For production, use a secure way of storing and accessing your credentials. For more information, see [Azure Key Vault](/azure/key-vault/general/overview).
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 1. Run the application with the `python` command:
 
