@@ -53,9 +53,7 @@ Install the [Azure Identity client library for Java](https://mvnrepository.com/a
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-identity</artifactId>
-            <version>1.10.0</version>
-            <type>pom</type>
-            <scope>import</scope>
+            <version>1.15.1</version>
         </dependency>
     </dependencies>
 </dependencyManagement>
