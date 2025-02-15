@@ -44,71 +44,121 @@ items:
       href: concepts/model-benchmarks.md
     - name: How to use model benchmarking
       href: how-to/benchmark-model-in-catalog.md
-  - name: Featured models
+  - name: Model deployment in Azure AI Foundry
     items:
-    - name: AI21 Jamba models
-      href: how-to/deploy-models-jamba.md
-    - name: Cohere models
+    - name: Deploying models in Azure AI Foundry
+      href: concepts/deployments-overview.md
+    - name: Serverless API
       items:
-      - name: Cohere Command models
-        href: how-to/deploy-models-cohere-command.md
-      - name: Cohere Embed models
-        href: how-to/deploy-models-cohere-embed.md
-      - name: Cohere Rerank models
-        href: how-to/deploy-models-cohere-rerank.md
-    - name: DeepSeek-R1 reasoning models
-      href: how-to/deploy-models-deepseek.md
-    - name: Gretel Navigator model
-      href: how-to/deploy-models-gretel-navigator.md
-    - name: Healthcare AI models
+      - name: Deploy models as serverless API
+        href: how-to/deploy-models-serverless.md
+      - name: Consume serverless API models from a different project or hub
+        href: how-to/deploy-models-serverless-connect.md
+      - name: Model and region availability for Serverless API deployments
+        href: how-to/deploy-models-serverless-availability.md
+    - name: Managed compute
       items:
-      - name: Foundational AI models for healthcare
-        href: how-to/healthcare-ai/healthcare-ai-models.md
-      - name: MedImageInsight - embedding model
-        href: how-to/healthcare-ai/deploy-medimageinsight.md
-      - name: CXRReportGen - text generation model
-        href: how-to/healthcare-ai/deploy-cxrreportgen.md
-      - name: MedImageParse - prompted segmentation model
-        href: how-to/healthcare-ai/deploy-medimageparse.md
-    - name: JAIS model
-      href: how-to/deploy-models-jais.md
-    - name: Meta Llama models
+      - name: Deploy models via managed compute
+        href: how-to/deploy-models-managed.md
+    - name: Azure AI model inference
       items:
-      - name: Meta Llama family models
-        href: how-to/deploy-models-llama.md
-      - name: Fine-tune Meta Llama family models
-        href: how-to/fine-tune-model-llama.md
-    - name: Microsoft Phi family models
+      - name: What is Azure AI model inference?
+        href: ../ai-foundry/model-inference/overview.md?context=/azure/ai-studio/context/context
+      - name: Add and configure models
+        href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-studio/context/context
+      - name: Supported programming languages and SDKs
+        href: ../ai-foundry/model-inference/supported-languages.md?context=/azure/ai-studio/context/context
+      - name: Use the Azure AI model inference endpoint
+        href: ../ai-foundry/model-inference/how-to/inference.md?context=/azure/ai-studio/context/context
+      - name: Azure AI model inference quotas and limits
+        href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-studio/context/context
+    - name: Azure OpenAI Service
       items:
-      - name: Phi-3 chat models
-        href: how-to/deploy-models-phi-3.md
-      - name: Phi-3 chat model with vision
-        href: how-to/deploy-models-phi-3-vision.md
-      - name: Phi-3.5 chat model with vision
-        href: how-to/deploy-models-phi-3-5-vision.md
-      - name: Phi-4 chat models
-        href: how-to/deploy-models-phi-4.md
-      - name: Fine-tune Phi-3 chat models
-        href: how-to/fine-tune-phi-3.md
-    - name: Mistral family models
+      - name: Deploy Azure OpenAI models
+        href: how-to/deploy-models-openai.md
+      - name: Azure OpenAI Service quotas and limits
+        href: ../ai-services/openai/quotas-limits.md?context=/azure/ai-studio/context/context
+      - name: Troubleshoot deployments and monitoring
+        href: how-to/troubleshoot-deploy-and-monitor.md
+  - name: Work with models from the model catalog
+    items:
+    - name: Featured models supported in Azure AI model inference
+      href: ../ai-foundry/model-inference/concepts/models.md?context=/azure/ai-studio/context/context
+    - name: Work with embedding models
       items:
-      - name: Mistral premium models
-        href: how-to/deploy-models-mistral.md
-      - name: Codestral model
-        href: how-to/deploy-models-mistral-codestral.md
-      - name: Mistral Nemo model
-        href: how-to/deploy-models-mistral-nemo.md
-      - name: Mistral-7B and Mixtral models
-        href: how-to/deploy-models-mistral-open.md
-      displayName: maas
-    - name: NTTDATA tsuzumi model
+        - name: Work with text embedding models
+          href: ../ai-foundry/model-inference/how-to/use-embeddings.md?context=/azure/ai-studio/context/context
+        - name: Work with image embedding models
+          href: ../ai-foundry/model-inference/how-to/use-image-embeddings.md?context=/azure/ai-studio/context/context
+    - name: Work with chat models
       items:
-        - name: NTTDATA tsuzumi model
-          href: how-to/deploy-models-tsuzumi.md
-        - name: Fine-tune tsuzumi model
-          href: how-to/fine-tune-models-tsuzumi.md
-    - name: TimeGEN-1 model
-      href: how-to/deploy-models-timegen-1.md
+        - name: Work with chat completion models
+          href: ../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/ai-studio/context/context
+    - name: Work with featured models
+      items:
+      - name: AI21 Jamba models
+        href: how-to/deploy-models-jamba.md
+      - name: Cohere models
+        items:
+        - name: Cohere Command models
+          href: how-to/deploy-models-cohere-command.md
+        - name: Cohere Embed models
+          href: how-to/deploy-models-cohere-embed.md
+        - name: Cohere Rerank models
+          href: how-to/deploy-models-cohere-rerank.md
+      - name: DeepSeek-R1 reasoning models
+        href: how-to/deploy-models-deepseek.md
+      - name: Gretel Navigator model
+        href: how-to/deploy-models-gretel-navigator.md
+      - name: Healthcare AI models
+        items:
+        - name: Foundational AI models for healthcare
+          href: how-to/healthcare-ai/healthcare-ai-models.md
+        - name: MedImageInsight - embedding model
+          href: how-to/healthcare-ai/deploy-medimageinsight.md
+        - name: CXRReportGen - text generation model
+          href: how-to/healthcare-ai/deploy-cxrreportgen.md
+        - name: MedImageParse - prompted segmentation model
+          href: how-to/healthcare-ai/deploy-medimageparse.md
+      - name: JAIS model
+        href: how-to/deploy-models-jais.md
+      - name: Meta Llama models
+        items:
+        - name: Meta Llama family models
+          href: how-to/deploy-models-llama.md
+        - name: Fine-tune Meta Llama family models
+          href: how-to/fine-tune-model-llama.md
+      - name: Microsoft Phi family models
+        items:
+        - name: Phi-3 chat models
+          href: how-to/deploy-models-phi-3.md
+        - name: Phi-3 chat model with vision
+          href: how-to/deploy-models-phi-3-vision.md
+        - name: Phi-3.5 chat model with vision
+          href: how-to/deploy-models-phi-3-5-vision.md
+        - name: Phi-4 chat models
+          href: how-to/deploy-models-phi-4.md
+        - name: Fine-tune Phi-3 chat models
+          href: how-to/fine-tune-phi-3.md
+      - name: Mistral family models
+        items:
+        - name: Mistral premium models
+          href: how-to/deploy-models-mistral.md
+        - name: Codestral model
+          href: how-to/deploy-models-mistral-codestral.md
+        - name: Mistral Nemo model
+          href: how-to/deploy-models-mistral-nemo.md
+        - name: Mistral-7B and Mixtral models
+          href: how-to/deploy-models-mistral-open.md
+        displayName: maas
+      - name: NTTDATA tsuzumi model
+        items:
+          - name: NTTDATA tsuzumi model
+            href: how-to/deploy-models-tsuzumi.md
+          - name: Fine-tune tsuzumi model
+            href: how-to/fine-tune-models-tsuzumi.md
+      - name: TimeGEN-1 model
+        href: how-to/deploy-models-timegen-1.md
   - name: Azure OpenAI and AI services
     items:
     - name: Use Azure OpenAI Service in Azure AI Foundry portal
@@ -316,33 +366,6 @@ items:
       displayName: code,sdk
     - name: Develop with Semantic Kernel
       href: how-to/develop/semantic-kernel.md
-  - name: Model inference
-    items:
-    - name: What is Azure AI model inference?
-      href: ../ai-foundry/model-inference/overview.md?context=/azure/ai-studio/context/context
-    - name: Upgrade from GitHub Models
-      href: ../ai-foundry/model-inference/how-to/quickstart-github-models.md?context=/azure/ai-studio/context/context
-    - name: Add and configure models
-      href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-studio/context/context
-    - name: Use the inference endpoint
-      href: ../ai-foundry/model-inference/concepts/endpoints.md?context=/azure/ai-studio/context/context
-  - name: Deployments
-    items:
-    - name: Deploying models in Azure AI Foundry
-      href: concepts/deployments-overview.md
-    - name: Deploy models as serverless API
-      href: how-to/deploy-models-serverless.md
-    - name: Deploy models via managed compute
-      href: how-to/deploy-models-managed.md
-    - name: Consume serverless API models from a different project or hub
-      href: how-to/deploy-models-serverless-connect.md
-      displayName: maas, paygo, models-as-a-service
-    - name: Model and region availability for Serverless API deployments
-      href: how-to/deploy-models-serverless-availability.md
-    - name: Quotas and limits
-      href: ai-services/concepts/quotas-limits.md
-    - name: Troubleshoot deployments and monitoring
-      href: how-to/troubleshoot-deploy-and-monitor.md
 - name: Optimizations
   items:
   - name: Prompt engineering
