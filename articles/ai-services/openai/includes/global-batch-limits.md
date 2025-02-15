@@ -39,3 +39,4 @@ B = billion | M = million | K = thousand
 |---|---|---|---|---|---|
 | `gpt-4o` | 500 M | 30 M | 30 M | 90 K | N/A|
 | `gpt-4o-mini` | 1.5 B | 100 M | 50 M | 90 K | N/A |
+| `o3-mini` | 1.5 B | 100 M | 50 M | 90 K | N/A |
