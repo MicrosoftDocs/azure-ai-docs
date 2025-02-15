@@ -28,7 +28,7 @@ To use embedding models in your application, you need:
 
   * This example uses `Cohere-embed-v3-english` from Cohere.
 
-## Use embeddings
+## Use image embeddings
 
 To use the text embeddings, use the route `/images/embeddings` appended to your base URL along with your credential indicated in `api-key`. `Authorization` header is also supported with the format `Bearer <key>`.
 
@@ -94,7 +94,7 @@ The response is as follows, where you can see the model's usage statistics:
 ```
 
 > [!IMPORTANT]
-> Computing embeddings in batches may not be supported for all the models. For example, for `cohere-embed-v3` model, you need to send one image at a time.
+> Computing embeddings in batches may not be supported for all the models. For example, for `Cohere-embed-v3-english` model, you need to send one image at a time.
 
 #### Embedding images and text pairs
 

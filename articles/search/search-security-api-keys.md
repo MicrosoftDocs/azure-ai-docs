@@ -43,7 +43,7 @@ Visually, there's no distinction between an admin key or query key. Both keys ar
 
 API keys are used for data plane (content) requests, such as creating or accessing an index or, any other request that's represented in the [Search REST APIs](/rest/api/searchservice/). 
 
-You can use either an API key or [Azure roles](search-security-rbac.md) for management plane (service) requests. When you use an API key:
+You can use either an API key or [Azure roles](search-security-rbac.md) for control plane (service) requests. When you use an API key:
 - Admin keys are used for creating, modifying, or deleting objects. Admin keys are also used to GET object definitions and system information.
 - Query keys are typically distributed to client applications that issue queries.
 

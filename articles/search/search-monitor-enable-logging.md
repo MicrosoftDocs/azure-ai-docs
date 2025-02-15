@@ -13,7 +13,7 @@ ms.date: 01/28/2025
 
 # Configure diagnostic logging for Azure AI Search
 
-Resource-level diagnostic logs provide insight into operations that occur in your Azure AI Search resource. In contrast, activity logs provide an insight into the operations performed on each Azure resource in the subscription from the outside, known as the control plane or management plane. Activity logging is enabled automatically, and often
+Resource-level diagnostic logs provide insight into operations that occur in your Azure AI Search resource. In contrast, activity logs provide an insight into the operations performed on each Azure resource in the subscription from the outside, known as the [control plane](/azure/azure-resource-manager/management/control-plane-and-data-plane). Activity logging is enabled automatically, and often
 
 This article explains how to enable resource-level diagnostic logging and how to find information about system and user operations on an Azure AI Search resource.
 
