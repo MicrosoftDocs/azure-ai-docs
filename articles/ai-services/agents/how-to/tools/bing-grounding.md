@@ -30,9 +30,9 @@ Developers and end users don't have access to raw content returned from Groundin
 
 ## Usage support
 
-|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK |Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|---------|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Setup  
 
@@ -97,7 +97,7 @@ Your use of Grounding with Bing Search will be governed by the Terms of Use. By 
 
 ::: zone pivot="code-example"
 
-## Step 1: Create an agent with Grounding with Bing Search
+## Step 1: Create a project client
 
 Create a client object, which will contain the connection string for connecting to your AI project and other resources.
 
@@ -155,9 +155,12 @@ const client = AIProjectsClient.fromConnectionString(
 );
 ```
 
+# [REST API](#tab/rest)
+Follow the [REST API Quickstart](../quickstart-rest.md) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`.
+
 ---
 
-## Step 2: Enable the Grounding with Bing search tool
+## Step 2: Create an Agent with the Grounding with Bing search tool enabled
 
 To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Azure AI Foundry portal.
 
@@ -224,6 +227,30 @@ const agent = await client.agents.createAgent("gpt-4o", {
 console.log(`Created agent, agent ID : ${agent.id}`);
 ```
 
+# [REST API](#tab/rest)
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "instructions": "You are a helpful agent.",
+        "name": "my-agent",
+        "model": "gpt-4o",
+        "tools": [
+          {
+            "type": "bing_grounding",
+            "bing_grounding": {
+                "connections": [
+                    {
+                        "connection_id": "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<your-project-name>/connections/<your-bing-connection-name>"
+                    }
+                ]
+            }
+          }
+        ]
+      }'
+```
+
 ---
 
 
@@ -272,6 +299,28 @@ await client.agents.createMessage(
     role: "user",
     content: "What is the weather in Seattle?",
 });
+```
+
+# [REST API](#tab/rest)
+### Create a thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d ''
+```
+
+### Add a user question to the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+      "role": "user",
+      "content": "What is the weather in Seattle?"
+    }'
 ```
 
 ---
@@ -388,6 +437,32 @@ foreach (ThreadMessage threadMessage in messages)
       console.log(`---------------------------------`);
     }
   }
+```
+
+# [REST API](#tab/rest)
+### Run the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistant_id": "asst_abc123",
+  }'
+```
+
+### Retrieve the status of the run
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123 \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+```
+
+### Retrieve the agent response
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
 ---

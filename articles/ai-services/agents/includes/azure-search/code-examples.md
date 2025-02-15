@@ -72,6 +72,9 @@ const client = AIProjectsClient.fromConnectionString(
 );
 ```
 
+# [REST API](#tab/rest)
+Follow the [REST API Quickstart](../quickstart-rest.md) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`.
+
 ---
 
 ### Step 2: Get the connection ID for the Azure AI Search resource
@@ -108,6 +111,10 @@ const cognitiveServicesConnection = await client.connections.getConnection(
   cognitiveServicesConnectionName,
 );
 ```
+
+# [REST API](#tab/rest)
+Follow the next section on how to get the connection ID from the Azure AI Foundry.
+
 ---
 The second way to get the connection ID is to navigate to the project in the Azure AI Foundry and click on the **Connected resources** tab and then select your Azure AI Search resource.
 :::image type="content" source="../../media/tools/ai-search/success-connection.png" alt-text="A screenshot of an AI Search resource connection page in Azure AI Foundry." lightbox="../../media/tools/ai-search/success-connection.png":::
@@ -159,6 +166,8 @@ const agent = await client.agents.createAgent("gpt-4o-mini", {
 console.log(`Created agent, agent ID : ${agent.id}`);
 ```
 
+# [REST API](#tab/rest)
+Not Applicable
 
 ---
 
@@ -198,6 +207,33 @@ const agent = await client.agents.createAgent("gpt-4o-mini", {
   toolResources: azureAISearchTool.resources,
 });
 console.log(`Created agent, agent ID : ${agent.id}`);
+```
+
+# [REST API](#tab/rest)
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "instructions": "You are a helpful agent.",
+        "name": "my-agent",
+        "tools": [
+          {"type": "azure_ai_search"}
+        ],
+        "model": "gpt-4o-mini",
+        "tool_resources": {
+            "azure_ai_search": {
+              "indexes": [
+                  {
+                      "index_connection_id": "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<your-project-name>/connections/<your-azure-ai-search-connection-name>",
+                      "index_name": "<your-index-name>",
+                      "query_type": "semantic"
+                  }
+              ]
+            }
+        }
+      }'
 ```
 
 ---
@@ -249,7 +285,7 @@ AgentThread thread = threadResponse.Value;
 Response<ThreadMessage> messageResponse = await agentClient.CreateMessageAsync(
     thread.Id,
     MessageRole.User,
-    "Hello, send an email with the datetime and weather information in New York?");
+    "what are my health insurance plan coverage types?");
 ThreadMessage message = messageResponse.Value;
 
 // Run the agent
@@ -296,7 +332,7 @@ foreach (ThreadMessage threadMessage in messages)
   await client.agents.createMessage(
     thread.id, {
     role: "user",
-    content: "I need to solve the equation `3x + 11 = 14`. Can you help me?",
+    content: "what are my health insurance plan coverage types?",
   });
 
   // Intermission is now correlated with thread
@@ -344,6 +380,53 @@ foreach (ThreadMessage threadMessage in messages)
       console.log(`---------------------------------`);
     }
   }
+```
+
+# [REST API](#tab/rest)
+### Create a thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d ''
+```
+
+### Add a user question to the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+      "role": "user",
+      "content": "what are my health insurance plan coverage types?"
+    }'
+```
+
+### Run the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistant_id": "asst_abc123",
+  }'
+```
+
+### Retrieve the status of the run
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123 \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+```
+
+### Retrieve the agent response
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
 ---
