@@ -267,7 +267,7 @@ console.log(`Created agent, agent ID: ${agent.id}`);
 ```
 
 # [REST API](#tab/rest)
-Follow the [REST API Quickstart](../quickstart-rest.md) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`.
+Follow the [REST API Quickstart](../../includes/quickstart-rest.md) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`.
 ```console
 curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
