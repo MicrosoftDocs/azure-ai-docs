@@ -232,7 +232,7 @@ agent = project_client.agents.create_agent(
 ```
 
 # [REST API](#tab/rest)
-Follow the [REST API Quickstart](../quickstart-rest.md) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`. The create the agent using:
+Follow the [REST API Quickstart](../../includes/quickstart-rest.md) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`. The create the agent using:
 ```console
 curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
@@ -259,14 +259,14 @@ curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
             "input_binding": {
                 "type": "storage_queue",
                 "storage_queue": {
-                    "queue_service_uri": storage_connection_string,
+                    "queue_service_endpoint": "https://storageaccount.queue.core.windows.net",
                     "queue_name": "input"
                 }
             },
             "output_binding": {
                 "type": "storage_queue",
                 "storage_queue": {
-                    "queue_service_uri": storage_connection_string,
+                    "queue_service_endpoint": "https://storageaccount.queue.core.windows.net",
                     "queue_name": "output"
                 }
             }
@@ -294,6 +294,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
   -H "Content-Type: application/json" \
   -d ''
 ```
+---
 
 ## Create a run and check the output
 
@@ -344,7 +345,8 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
-### Get the result of the run
+---
+## Get the result of the run
 
 # [Python](#tab/python)
 ```python
