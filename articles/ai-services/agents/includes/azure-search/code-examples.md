@@ -73,7 +73,7 @@ const client = AIProjectsClient.fromConnectionString(
 ```
 
 # [REST API](#tab/rest)
-Follow the [REST API Quickstart](../quickstart-rest.md) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`.
 
 ---
 
