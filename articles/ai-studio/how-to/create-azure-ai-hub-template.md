@@ -1,12 +1,12 @@
 ---
 title: Create an Azure AI Foundry hub using a Bicep template
 titleSuffix: Azure AI Foundry
-description: Use a Microsoft Bicep template to create a new Azure AI Foundry hub.
+description: Use a Microsoft Bicep template to create a new Azure AI Foundry hub. This template also creates resources required by the hub.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom: devx-track-arm-template, devx-track-bicep, build-2024
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 02/11/2025
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
@@ -64,7 +64,7 @@ The Bicep template is made up of the following files:
 | [dependent-resources.bicep](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.machinelearningservices/aistudio-basics/modules/dependent-resources.bicep) | Defines the dependent resources for the hub such as Azure Storage Account, Container Registry, Key Vault, and Application Insights. |
 
 > [!IMPORTANT]
-> The example templates may not always use the latest API version for the Azure resources it creates. Before using the template, we recommend modifying it to use the latest API versions. Each Azure service has its own set of API versions. For information on the API for a specific service, check the service information in the [Azure REST API reference](/rest/api/azure/).
+> The example templates might not always use the latest API version for the Azure resources it creates. Before using the template, we recommend modifying it to use the latest API versions. Each Azure service has its own set of API versions. For information on the API for a specific service, check the service information in the [Azure REST API reference](/rest/api/azure/).
 >
 > The hub is based on Azure Machine Learning. For information on the latest API versions for Azure Machine Learning, see the [Azure Machine Learning REST API reference](/rest/api/azureml/). To update this API version, find the `Microsoft.MachineLearningServices/<resource>` entry for the resource type and update it to the latest version. The following example is an entry for a hub that uses an API version of `2023-08-01-preview`:
 >

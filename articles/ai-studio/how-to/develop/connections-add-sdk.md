@@ -3,7 +3,7 @@ title: How to add a new connection in Azure AI Foundry portal using the Azure Ma
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to add connections to other resources using the Azure Machine Learning SDK.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - ignite-2024

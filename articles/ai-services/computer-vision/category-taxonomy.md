@@ -8,7 +8,7 @@ ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
-ms.topic: reference
+ms.topic: conceptual
 ms.date: 04/17/2019
 ---
 

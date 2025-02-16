@@ -3,7 +3,7 @@ title: include file
 description: include file
 author: msakande
 ms.author: mopeakande
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 1/28/2025
 ms.custom: include file

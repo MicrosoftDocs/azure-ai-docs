@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 01/28/2025
+ms.date: 02/03/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -104,7 +104,12 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants?api-version=2
     "tools": [
       { "type": "code_interpreter" }
     ],
-    "model": "gpt-4-1106-preview"
+    "model": "gpt-4-1106-preview",
+    "tool_resources": {
+      "code_interpreter": {
+        "file_ids": ["assistant-123abc456"]
+      }
+    }
   }'
 ```
 

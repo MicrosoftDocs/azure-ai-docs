@@ -1,5 +1,5 @@
 ---
-title: Create and use managed identities for Azure AI Document Translation
+title: Create and use managed identities
 titleSuffix: Azure AI services
 description: Understand how to create and use managed identities in the Azure portal.
 author: laujan

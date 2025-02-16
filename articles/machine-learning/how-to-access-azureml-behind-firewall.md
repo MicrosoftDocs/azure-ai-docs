@@ -395,7 +395,7 @@ __Azure Machine Learning compute instance and compute cluster hosts__
 > * Ports 8787 and 18881 for __compute instance__ are only needed when your Azure Machine workspace has a private endpoint.
 > * In the following table, replace `<storage>` with the name of the default storage account for your Azure Machine Learning workspace.
 > * In the following table, replace `<region>` with the Azure region that contains your Azure Machine Learning workspace.
-> * Websocket communication must be allowed to the compute instance. If you block websocket traffic, Jupyter notebooks won't work correctly.
+> * WebSocket communication must be allowed to the compute instance. If you block websocket traffic, Jupyter notebooks won't work correctly.
 
 # [Azure public](#tab/public)
 

@@ -4,7 +4,7 @@ description: Include file
 author: s-polly
 ms.reviewer: scottpolly
 ms.author: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 08/05/2024
 ms.custom: include, references_regions
@@ -97,8 +97,8 @@ TimeGEN-1     | [Microsoft Managed countries/regions](/partner-center/marketplac
 
 | Model  |Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
 |---------|---------|---------|---------|
-AI21-Jamba-1.5-Mini | [Microsoft Managed countries/regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions) | East US 2 <br> South Central US <br> East US <br> West US 3 <br> West US <br> North Central US       |  Not available       |
-AI21-Jamba-1.5-Large | [Microsoft Managed countries/regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions) | East US 2 <br> South Central US <br> East US <br> West US 3 <br> West US <br> North Central US       |  Not available       |
+AI21-Jamba-1.5-Mini | [Microsoft Managed countries/regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions) | East US 2 <br> South Central US <br> East US <br> West US 3 <br> West US <br> North Central US <br> Sweden Central      |  Not available       |
+AI21-Jamba-1.5-Large | [Microsoft Managed countries/regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions) | East US 2 <br> South Central US <br> East US <br> West US 3 <br> West US <br> North Central US <br> Sweden Central      |  Not available       |
 
 ### Bria models
 

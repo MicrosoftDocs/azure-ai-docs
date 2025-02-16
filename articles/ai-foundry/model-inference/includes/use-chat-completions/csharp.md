@@ -26,15 +26,12 @@ To use chat completion models in your application, you need:
 
 * A chat completions model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
 
-* Install the Azure AI inference package with the following command:
+* Install the [Azure AI inference package](https://aka.ms/azsdk/azure-ai-inference/python/reference) with the following command:
 
     ```bash
     dotnet add package Azure.AI.Inference --prerelease
     ```
     
-    > [!TIP]
-    > Read more about the [Azure AI inference package and reference](https://aka.ms/azsdk/azure-ai-inference/python/reference).
-
 * If you are using Entra ID, you also need the following package:
 
     ```bash
@@ -50,7 +47,6 @@ First, create the client to consume the model. The following code uses an endpoi
 ChatCompletionsClient client = new ChatCompletionsClient(
     new Uri(Environment.GetEnvironmentVariable("AZURE_INFERENCE_ENDPOINT")),
     new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL")),
-    "mistral-large-2407"
 );
 ```
 
@@ -58,10 +54,16 @@ If you have configured the resource to with **Microsoft Entra ID** support, you 
 
 
 ```csharp
+TokenCredential credential = new DefaultAzureCredential(includeInteractiveCredentials: true);
+AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions();
+BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(credential, new string[] { "https://cognitiveservices.azure.com/.default" });
+
+clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
+
 client = new ChatCompletionsClient(
     new Uri(Environment.GetEnvironmentVariable("AZURE_INFERENCE_ENDPOINT")),
-    new DefaultAzureCredential(includeInteractiveCredentials: true),
-    "mistral-large-2407"
+    credential,
+    clientOptions,
 );
 ```
 
@@ -76,6 +78,7 @@ ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
         new ChatRequestSystemMessage("You are a helpful assistant."),
         new ChatRequestUserMessage("How many languages are in the world?")
     },
+    Model = "mistral-large-2407",
 };
 
 Response<ChatCompletions> response = client.Complete(requestOptions);
@@ -125,7 +128,8 @@ static async Task StreamMessageAsync(ChatCompletionsClient client)
             new ChatRequestSystemMessage("You are a helpful assistant."),
             new ChatRequestUserMessage("How many languages are in the world? Write an essay about it.")
         },
-        MaxTokens=4096
+        MaxTokens=4096,
+        Model = "mistral-large-2407",
     };
 
     StreamingResponse<StreamingChatCompletionsUpdate> streamResponse = await client.CompleteStreamingAsync(requestOptions);
@@ -171,6 +175,7 @@ requestOptions = new ChatCompletionsOptions()
         new ChatRequestSystemMessage("You are a helpful assistant."),
         new ChatRequestUserMessage("How many languages are in the world?")
     },
+    Model = "mistral-large-2407",
     PresencePenalty = 0.1f,
     FrequencyPenalty = 0.8f,
     MaxTokens = 2048,
@@ -205,7 +210,8 @@ requestOptions = new ChatCompletionsOptions()
             "How many languages are in the world?"
         )
     },
-    ResponseFormat = new ChatCompletionsResponseFormatJSON()
+    ResponseFormat = new ChatCompletionsResponseFormatJsonObject(),
+    Model = "mistral-large-2407",
 };
 
 response = client.Complete(requestOptions);
@@ -224,6 +230,7 @@ requestOptions = new ChatCompletionsOptions()
         new ChatRequestSystemMessage("You are a helpful assistant."),
         new ChatRequestUserMessage("How many languages are in the world?")
     },
+    Model = "mistral-large-2407",
     AdditionalProperties = { { "logprobs", BinaryData.FromString("true") } },
 };
 
@@ -298,7 +305,7 @@ var chatHistory = new List<ChatRequestMessage>(){
         new ChatRequestUserMessage("When is the next flight from Miami to Seattle?")
     };
 
-requestOptions = new ChatCompletionsOptions(chatHistory);
+requestOptions = new ChatCompletionsOptions(chatHistory, model: "mistral-large-2407");
 requestOptions.Tools.Add(getFlightTool);
 requestOptions.ToolChoice = ChatCompletionsToolChoice.Auto;
 
@@ -380,6 +387,7 @@ try
                 "Chopping tomatoes and cutting them into cubes or wedges are great ways to practice your knife skills."
             ),
         },
+        Model = "mistral-large-2407",
     };
 
     response = client.Complete(requestOptions);
@@ -439,6 +447,7 @@ ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
         ]),
     },
     MaxTokens=2048,
+    Model = "phi-3.5-vision-instruct",
 };
 
 var response = client.Complete(requestOptions);
@@ -459,7 +468,7 @@ Console.WriteLine($"\tCompletion tokens: {response.Value.Usage.CompletionTokens}
 
 ```console
 ASSISTANT: The chart illustrates that larger models tend to perform better in quality, as indicated by their size in billions of parameters. However, there are exceptions to this trend, such as Phi-3-medium and Phi-3-small, which outperform smaller models in quality. This suggests that while larger models generally have an advantage, there might be other factors at play that influence a model's performance.
-Model: mistral-large-2407
+Model: phi-3.5-vision-instruct
 Usage: 
   Prompt tokens: 2380
   Completion tokens: 126

@@ -3,7 +3,7 @@ title: Evaluation and monitoring metrics for generative AI
 titleSuffix: Azure AI Foundry
 description: Discover the supported built-in metrics for evaluating large language models, understand their application and usage, and learn how to interpret them effectively.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024

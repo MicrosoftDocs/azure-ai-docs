@@ -53,6 +53,8 @@ client = AzureOpenAI(
 )
 ```
 
+For more information about Azure OpenAI keyless authentication, see the "[Get started with the Azure OpenAI security building block](/azure/developer/ai/get-started-securing-your-ai-app?tabs=github-codespaces&pivots=python)" QuickStart article. 
+
 # [API Key](#tab/python-key)
 
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]

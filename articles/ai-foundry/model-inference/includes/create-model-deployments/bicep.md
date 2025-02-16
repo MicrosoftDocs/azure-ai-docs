@@ -27,6 +27,20 @@ zone_pivot_groups: azure-ai-models-deployment
     * **Version**: `2`
     * **Deployment type**: Global standard
 
+## About this tutorial
+
+The example in this article is based on code samples contained in the [Azure-Samples/azureai-model-inference-bicep](https://github.com/Azure-Samples/azureai-model-inference-bicep) repository. To run the commands locally without having to copy or paste file content, use the following commands to clone the repository and go to the folder for your coding language:
+
+```azurecli
+git clone https://github.com/Azure-Samples/azureai-model-inference-bicep
+```
+
+The files for this example are in:
+
+```azurecli
+cd azureai-model-inference-bicep/infra
+```
+
 ## Add the model
 
 1. Use the template `ai-services-deployment-template.bicep` to describe model deployments:
