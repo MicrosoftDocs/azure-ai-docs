@@ -429,11 +429,11 @@ You can update flat indexes to the new format with the following steps using API
 
 **Applies to:** `2014-07-31-Preview`, `2015-02-28`, and `2015-08-19`
 
-The `listQueryKeys` GET request on older Search Management API versions is now deprecated. We recommend migrating to the most recent stable control plane API version to use the `listQueryKeys` POST request.
+The `listQueryKeys` GET request on older Search Management API versions is now deprecated. We recommend migrating to the most recent stable control plane API version to use the [`listQueryKeys` POST request](/rest/api/searchmanagement/query-keys/list-by-search-service).
 
 1. In existing code, change the `api-version` parameter to the most recent version (`2023-11-01`).
 
-1. Refactor the request from `GET` to `POST`:
+1. Reframe the request from `GET` to `POST`:
 
    ```http
    POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}/listQueryKeys?api-version=2023-11-01

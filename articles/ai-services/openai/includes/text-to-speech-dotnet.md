@@ -43,8 +43,7 @@ To make requests to your Azure OpenAI service, you need the service endpoint as 
 - [Microsoft Entra ID](/entra/fundamentals/whatis) is the recommended approach for authenticating to Azure services and is more secure than key-based alternatives. 
 - Access keys allow you to provide a secret key to connect to your resource.
 
-    > [!IMPORTANT]
-    > Access keys should be used with caution. If your service access key is lost or accidentally exposed in an insecure location, your service may become vulnerable. Anyone who has the access key is able to authorize requests against the Azure OpenAI service.
+[!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ### Get the Azure OpenAI endpoint
 
@@ -99,9 +98,6 @@ The access key value can be found in the **Keys & Endpoint** section when examin
     await File.WriteAllBytesAsync(speechFilePath, result.Value.ToArray());
     Console.WriteLine("Finished streaming");
     ```
-
-    > [!IMPORTANT]
-    > For production, store and access your credentials using a secure method, such as [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see [Azure AI services security](../../security-features.md).
 
 1. Run the application using the `dotnet run` command or the run button at the top of Visual Studio:
 
