@@ -20,6 +20,14 @@ Azure Machine Learning checks and validates any machine learning packages that m
 
 Main updates provided with each image version are described in the below sections.
 
+##  February 11, 2025
+
+Image Version: `25.01.31`
+
+Release Notes:
+
+SDK Version: `1.59.0`
+
 ##  January 15, 2025
 
 Image Version: `24.12.31`
