@@ -14,7 +14,7 @@ ms.custom: language-service-key-phrase
 
 # What is key phrase extraction in Azure AI Language?
 
-Key phrase extraction is one of the features offered by [Azure AI Language](../overview.md), a collection of machine learning and AI algorithms in the cloud for developing intelligent applications that involve written language. Use key phrase extraction to quickly identify the main concepts in text. For example, in the text "*The food was delicious and the staff were wonderful.*", key phrase extraction will return the main topics: "*food*" and "*wonderful staff*".
+Key phrase extraction is one of the features offered by [Azure AI Language](../overview.md), a collection of machine learning and AI algorithms in the cloud for developing intelligent applications that involve written language. Use key phrase extraction to quickly identify the main concepts in text. For example, in the text "*The food was delicious and the staff were wonderful.*", key phrase extraction returns the main topics: "*food*" and "*wonderful staff*".
 
 This documentation contains the following types of articles:
 
@@ -32,7 +32,7 @@ This documentation contains the following types of articles:
 
 ## Responsible AI 
 
-An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Read the [transparency note for key phrase extraction](/legal/cognitive-services/language-service/transparency-note-key-phrase-extraction?context=/azure/ai-services/language-service/context/context) to learn about responsible AI use and deployment in your systems. You can also see the following articles for more information:
+An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it is deployed. Read the [transparency note for key phrase extraction](/legal/cognitive-services/language-service/transparency-note-key-phrase-extraction?context=/azure/ai-services/language-service/context/context) to learn about responsible AI use and deployment in your systems. You can also see the following articles for more information:
 
 [!INCLUDE [Responsible AI links](../includes/overview-responsible-ai-links.md)]
 

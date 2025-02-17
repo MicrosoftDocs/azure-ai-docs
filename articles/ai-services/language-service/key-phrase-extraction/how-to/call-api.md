@@ -29,20 +29,20 @@ This feature is useful if you need to quickly identify the main points in a coll
 
 ### Specify the key phrase extraction model
 
-By default, key phrase extraction will use the latest available AI model on your text. You can also configure your API requests to use a specific [model version](../../concepts/model-lifecycle.md).
+By default, key phrase extraction uses the latest available AI model on your text. You can also configure your API requests to use a specific [model version](../../concepts/model-lifecycle.md).
 
 ### Input languages
 
-When you submit documents to be processed by key phrase extraction, you can specify which of [the supported languages](../language-support.md) they're written in. if you don't specify a language, key phrase extraction will default to English. The API may return offsets in the response to support different [multilingual and emoji encodings](../../concepts/multilingual-emoji-support.md). 
+When you submit documents to be processed by key phrase extraction, you can specify which of [the supported languages](../language-support.md) they're written in. if you don't specify a language, key phrase extraction defaults to English. The API may return offsets in the response to support different [multilingual and emoji encodings](../../concepts/multilingual-emoji-support.md). 
 
 ## Submitting data
 
 Key phrase extraction works best when you give it bigger amounts of text to work on. This is opposite from sentiment analysis, which performs better on smaller amounts of text. To get the best results from both operations, consider restructuring the inputs accordingly.
 
-To send an API request, You will need your Language resource endpoint and key.
+To send an API request, You need your Language resource endpoint and key.
 
 > [!NOTE]
-> You can find the key and endpoint for your Language resource on the Azure portal. They will be located on the resource's **Key and endpoint** page, under **resource management**. 
+> You can find the key and endpoint for your Language resource on the Azure portal. They are located on the resource's **Key and endpoint** page, under **resource management**. 
 
 Analysis is performed upon receipt of the request. Using the key phrase extraction feature synchronously is stateless. No data is stored in your account, and results are returned immediately in the response.
 
