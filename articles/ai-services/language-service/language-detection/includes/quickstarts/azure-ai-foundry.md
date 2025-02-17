@@ -17,7 +17,7 @@ Using the left side pane, select **Playgrounds**. Then select the **Try the Lang
 
 :::image type="content" source="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png" alt-text="The development lifecycle" lightbox="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png":::
 
-## Use Text Analytics for Health in the Azure AI Foundry Playground
+## Use Language Detection in the Azure AI Foundry Playground
 
 The **Language Playground** consists of four sections:
 
@@ -26,11 +26,11 @@ The **Language Playground** consists of four sections:
 * Center pane: This pane is where you enter your text for processing. After the operation is run, some results are shown here.
 * Right pane: This pane is where **Details** of the run operation are shown.
 
-Here you can select the Text Analytics for Health capability my choosing the top banner tile, **Extract health information**.
+Here you can select the Language Detection capability my choosing the top banner tile, **Detect language**.
 
-## Use Extract health information
+## Use Detect language
 
-**Extract health information** is designed to identify and extract health information in text.
+**Detect language** is designed to identify the language typed in text.
 
 In **Configuration** there are the following options:
 
@@ -38,15 +38,16 @@ In **Configuration** there are the following options:
 |--------------------|-----------------------------------------|
 |Select API version  | Select which version of the API to use.    |
 |Select model version| Select which version of the model to use.|
-|Select text language| Select which language the language is input in.|
-|Return output in FHIR structure| Returns the output in the Fast Healthcare Interoperability Resources (FHIR) structure.|
+|Select country hint| The origin country of the input text. |
 
 After your operation is completed, the type of entity is displayed beneath each entity in the center pane and the **Details** section contains the following fields for each entity:
 
 |Field | Description                |
 |------|----------------------------|
-|Entity|The detected entity.|
-|Category| The type of entity that was detected.|
-|Confidence| How confident the model is in the correctness of identification of entity's type.|
+|Name|Name of the most detected language in the text.|
+|Iso 639-1 Code| The ISE 639-1 code for the most detected language.|
+|Confidence Score| How confident the model is in the correctness of identification of the most typed language.|
+|Script Name| The name of the most detected script in the text.
+|Iso 15924 Script Code| The ISO 15924 script code for the most detected script.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/text-analytics-for-health.png" alt-text="An example of extract health information in azure AI studio" lightbox="../../media/quickstarts/azure-ai-foundry/text-analytics-for-health.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/language-detection.png" alt-text="An example of detect language in azure AI studio" lightbox="../../media/quickstarts/azure-ai-foundry/language-detection.png":::
