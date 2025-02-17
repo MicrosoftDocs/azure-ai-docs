@@ -47,3 +47,9 @@ zone_pivot_groups: programming-languages-text-analytics
 [!INCLUDE [REST API quickstart](includes/quickstarts/rest-api.md)]
 
 ::: zone-end
+
+::: zone pivot="azure-ai-foundry"
+
+[!INCLUDE [Azure AI Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
+
+::: zone-end

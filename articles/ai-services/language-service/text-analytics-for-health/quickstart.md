@@ -51,6 +51,12 @@ This article contains Text Analytics for health quickstarts that help with using
 
 ::: zone-end
 
+::: zone pivot="azure-ai-foundry"
+
+[!INCLUDE [Azure AI Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
+
+::: zone-end
+
 ## Clean up resources
 
 If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
