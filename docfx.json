@@ -415,7 +415,7 @@
         "articles/machine-learning/v1/*.md": "UpdateFrequency5"
       },
       "ms.service": {
-        "articles/ai-studio/**/*.md": "azure-ai-studio",
+        "articles/ai-studio/**/*.md": "azure-ai-foundry",
         "articles/ai-services/**/*.md": "azure-ai-services",
         "articles/ai-services/speech-service/*.md": "azure-ai-speech",
         "articles/ai-services/translator/**/*.md": "azure-ai-translator",
