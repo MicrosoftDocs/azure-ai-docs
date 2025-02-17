@@ -5,7 +5,6 @@ ms.service: azure-ai-language
 ms.topic: include
 ms.date: 02/16/2025
 ms.author: jboback
-ms.custom: language-service-pii
 ---
 
 ## Prerequisites
@@ -54,4 +53,4 @@ After your operation is completed, the type of entity is displayed beneath each 
 |Length| The character length of the entity.|
 |Confidence| How confident the model is in the correctness of identification of entity's type.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png" alt-text="The development lifecycle" lightbox="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png" alt-text="An example of extract named entities in azure AI studio" lightbox="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png":::
