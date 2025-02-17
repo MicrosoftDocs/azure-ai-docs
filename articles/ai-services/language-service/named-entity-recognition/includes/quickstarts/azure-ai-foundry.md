@@ -10,13 +10,13 @@ ms.custom: language-service-pii
 
 ## Prerequisites
 
-* [Create a Project in Foundry in the Azure AI Foundry Portal](../../../ai-studio/how-to/create-projects.md?tabs=ai-studio)
+* [Create a Project in Foundry in the Azure AI Foundry Portal](../../../../../ai-studio/how-to/create-projects?tabs=ai-studio.md)
 
 ## Navigate to the Azure AI Foundry Playground
 
 Using the left side pane, select **Playgrounds**. Then select the **Try the Language Playground** button.
 
-:::image type="content" source="media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png" alt-text="The development lifecycle" lightbox="media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png" alt-text="The development lifecycle" lightbox="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png":::
 
 ## Use NER in the Azure AI Foundry Playground
 
@@ -54,4 +54,4 @@ After your operation is completed, the type of entity is displayed beneath each 
 |Length| The character length of the entity.|
 |Confidence| How confident the model is in the correctness of identification of entity's type.|
 
-:::image type="content" source="media/quickstarts/azure-ai-foundry/conversation-pii.png" alt-text="The development lifecycle" lightbox="media/quickstarts/azure-ai-foundry/conversation-pii.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png" alt-text="The development lifecycle" lightbox="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png":::
