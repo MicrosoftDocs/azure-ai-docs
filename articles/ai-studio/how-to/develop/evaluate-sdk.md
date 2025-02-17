@@ -934,7 +934,7 @@ from azure.ai.evaluation import F1ScoreEvaluator, RelevanceEvaluator, ViolenceEv
 deployment_name = os.environ.get("AZURE_OPENAI_DEPLOYMENT")
 api_version = os.environ.get("AZURE_OPENAI_API_VERSION")
 
-# Create an Azure AI Client from a connection string. Avaiable on project overview page on Azure AI project UI.
+# Create an Azure AI Client from a connection string. Available on project overview page on Azure AI project UI.
 project_client = AIProjectClient.from_connection_string(
     credential=DefaultAzureCredential(),
     conn_str="<connection_string>"
