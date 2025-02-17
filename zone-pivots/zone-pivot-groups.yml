@@ -12,7 +12,7 @@ groups:
   - id: azpowershell
     title: Azure PowerShell
 - id: programming-languages-set-twenty-eight
-# Owner: aahi
+# Owner: jboback
   title: Programming languages
   prompt: Choose a programming language
   pivots:
@@ -24,6 +24,8 @@ groups:
     title: JavaScript
   - id: programming-language-python
     title: Python
+  - id: azure-ai-foundry
+    title: Azure AI Foundry
 # Service-specific groups
 - id: azure-ai-model-catalog-samples-chat
 # Owner: santiagxf
@@ -763,7 +765,7 @@ groups:
   - id: programming-language-swift
     title: Swift (iOS)
 - id: usage-custom-language-features
-# Owner aahill
+# Owner jboback
   title: Usage methods
   prompt: Choose your preferred usage method
   pivots:
