@@ -6,6 +6,79 @@ ms.date: 1/13/2025
 ms.author: eur
 ms.custom: references_regions
 ---
+### February 2025 release
+
+##### Public preview - Update 13 current HD voices to v1.1 (latest) to support multilingual capability and bug fixed
+
+- Calling "latest" model will redirect automatically to v1.1
+- v1.1 will support multilingual
+- If you want to call older version, please specify the voice name with format `en-US-Ava:DragonHDV1.0Neural`
+  
+| **Locale (BCP-47)** | **Voice name**              |
+|---------------------|---------------------------|
+| `de-DE`   | `SeraphinaDragonHDLatestNeural` (Female) |
+| `en-US`   | `BrianDragonHDLatestNeural` (Male) |
+| `en-US`   | `DavisDragonHDLatestNeural` (Male) |
+| `en-US`   | `AvaDragonHDLatestNeural` (Female) |
+| `en-US`   | `AndrewDragonHDLatestNeural` (Male) |
+| `en-US`   | `Andrew2DragonHDLatestNeural` (Male) - optimized for free-talking | 
+| `en-US`   | `EmmaDragonHDLatestNeural` (Female) |
+| `en-US`   | `Emma2DragonHDLatestNeural` (Female) - optimized for free-talking |
+| `en-US`   | `SteffanDragonHDLatestNeural` (Male) |
+| `en-US`   | `AriaDragonHDLatestNeural` (Female) |
+| `en-US`   | `JennyDragonHDLatestNeural` (Female) |
+| `ja-JP`   | `MasaruDragonHDLatestNeural` (Male) |
+| `zh-CN`   | `XiaochenDragonHDLatestNeural` (Female) |
+
+##### Public preview - Introduce 12 more HD voices (only available in v1.1)
+
+| **Locale (BCP-47)** | **Voice name**              |
+|---------------------|---------------------------|
+| `de-DE`   | `FlorianDragonHDLatestNeural` (Male) |
+| `en-US`   | `AdamDragonHDLatestNeural` (Male) |
+| `en-US`   | `BrainDragonHDLatestNeural` (Male) |
+| `en-US`   | `DavisDragonHDLatestNeural` (Male) |
+| `en-US`   | `PhoebeDragonHDLatestNeural` (Female) |
+| `en-US`   | `SerenaDragonHDLatestNeural` (Female) |
+| `es-ES`   | `XimenaDragonHDLatestNeural` (Female) |
+| `es-ES`   | `TristanDragonHDLatestNeural` (Male) |
+| `fr-FR`   | `VivienneDragonHDLatestNeural` (Female) |
+| `fr-FR`   | `RemyDragonHDLatestNeural` (Male) |
+| `ja-JP`   | `NanamiDragonHDLatestNeural` (Female) |
+| `zh-CN`   | `YunfanDragonHDLatestNeural` (Male) |
+
+##### GA - 6 AOAI turbo voices
+| **Locale (BCP-47)** | **Voice name**              |
+|---------------------|---------------------------|
+| `en-US`   | `AlloyTurboMultilingualNeural` (Male) |
+| `en-US`   | `EchoTurboMultilingualNeural` (Male) |
+| `en-US`   | `FableTurboMultilingualNeural` (Neutral) |
+| `en-US`   | `NovaTurboMultilingualNeural` (Female) |
+| `en-US`   | `OnyxTurboMultilingualNeural` (Male) |
+| `en-US`   | `ShimmerTurboMultilingualNeural` (Female) |
+
+##### GA - Regular update to improve quality of 16 voices
+| **Locale (BCP-47)** | **Voice name**              |
+|---------------------|---------------------------|
+| `ar-EG`   | `ShakirNeural` (Male) |
+| `ca-ES`   | `EnricNeural` (Male) |
+| `en-IE`   | `EmilyNeural` (Female) |
+| `fi-FI`   | `HarriNeural` (Male) |
+| `fi-FI`   | `SelmaNeural` (Female) |
+| `fr-CH`   | `FabriceNeural` (Female) |
+| `hr-HR`   | `GabrijelaNeural` (Female) |
+| `nl-NL`   | `MaartenNeural` (Male) |
+| `pt-PT`   | `RaquelNeural` (Female) |
+| `ro-RO`   | `AlinaNeural` (Female) |
+| `sv-SE`   | `MattiasNeural` (Male) |
+| `sv-SE`   | `SofieNeural` (Female) |
+| `vi-VN`   | `HoaiMyNeural` (Female) |
+| `vi-VN`   | `NamMinhNeural` (Male) |
+| `zh-HK`   | `HiuMaanNeural` (Female) |
+| `zh-HK`   | `WanLungNeural` (Male) |
+
+##### GA - Introducing multi-style embedded Jenny
+Now embedded version of Jenny can support 14 different styles: chat`, `customerservice`, `assistant`, `newscast`, `angry`, `cheerful`, `sad`, `excited`, `friendly`, `terrified`, `shouting`, `unfriendly`, `whispering`, and `hopeful.
 
 ### January 2025 release
 
