@@ -12,7 +12,7 @@ groups:
   - id: azpowershell
     title: Azure PowerShell
 - id: programming-languages-set-twenty-eight
-# Owner: jboback
+# Owner: aahi
   title: Programming languages
   prompt: Choose a programming language
   pivots:
@@ -24,8 +24,6 @@ groups:
     title: JavaScript
   - id: programming-language-python
     title: Python
-  - id: azure-ai-foundry
-    title: Azure AI Foundry
 # Service-specific groups
 - id: azure-ai-model-catalog-samples-chat
 # Owner: santiagxf
@@ -787,6 +785,8 @@ groups:
     title: Java
   - id: rest-api
     title: REST API
+  - id: azure-ai-foundry
+    title: Azure AI Foundry
 - id: programming-languages-metrics-monitor
   title: Programming languages
   prompt: Choose a programming language.

@@ -39,5 +39,5 @@ An AI system includes not only the technology, but also the people who will use 
 ## Next steps
 
 There are two ways to get started using the entity linking feature:
-* [Azure AI Foundry](../../../ai-studio/what-is-ai-studio.md.md) is a web-based platform that lets you to use several Azure AI Language features without needing to write code.
+* [Azure AI Foundry](../../../ai-studio/what-is-ai-studio.md) is a web-based platform that lets you to use several Azure AI Language features without needing to write code.
 * The [quickstart article](quickstart.md) for instructions on making requests to the service using the REST API and client library SDK.  
