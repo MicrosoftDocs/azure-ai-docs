@@ -26,7 +26,7 @@ The **Language Playground** consists of four sections:
 * Center pane: This pane is where you enter your text for processing. After the operation is run, some results are shown here.
 * Right pane: This pane is where **Details** of the run operation are shown.
 
-Here you can select the Key Phrase Extraction capability my choosing the top banner tile, **Extract key phrases**.
+Here you can select the Key Phrase Extraction capability by choosing the top banner tile, **Extract key phrases**.
 
 ## Use Extract key phrases
 
