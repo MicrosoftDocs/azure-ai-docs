@@ -26,11 +26,11 @@ The **Language Playground** consists of four sections:
 * Center pane: This pane is where you enter your text for processing. After the operation is run, some results are shown here.
 * Right pane: This pane is where **Details** of the run operation are shown.
 
-Here you can select the Named Entity Recognition capability by choosing the top banner tile, **Extract Named Entities**.
+Here you can select the Text Analytics for Health capability my choosing the top banner tile, **Extract health information**.
 
-## Use Extract Named Entities
+## Use Extract health information
 
-**Extract Named Entities** is designed to identify named entities in text.
+**Extract health information** is designed to identify and extract health information in text.
 
 In **Configuration** there are the following options:
 
@@ -39,9 +39,7 @@ In **Configuration** there are the following options:
 |Select API version  | Select which version of the API to use.    |
 |Select model version| Select which version of the model to use.|
 |Select text language| Select which language the language is input in.|
-|Select types to include| Select they types of information you want to extract.|
-|Overlap policy| Select the policy for overlapping entities.|
-|Inference options| Additional options to customize the return of the processed data.|
+|Return output in FHIR structure| Returns the output in the Fast Healthcare Interoperability Resources (FHIR) structure.|
 
 After your operation is completed, the type of entity is displayed beneath each entity in the center pane and the **Details** section contains the following fields for each entity:
 
@@ -49,8 +47,6 @@ After your operation is completed, the type of entity is displayed beneath each 
 |------|----------------------------|
 |Entity|The detected entity.|
 |Category| The type of entity that was detected.|
-|Offset| The number of characters that the entity was detected from the beginning of the line.|
-|Length| The character length of the entity.|
 |Confidence| How confident the model is in the correctness of identification of entity's type.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png" alt-text="An example of extract named entities in azure AI studio" lightbox="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/text-analytics-for-health.png" alt-text="An example of extract health information in azure AI studio" lightbox="../../media/quickstarts/azure-ai-foundry/text-analytics-for-health.png":::

@@ -27,7 +27,7 @@ The **Language Playground** consists of four sections:
 * Center pane: This pane is where you enter your text for processing. After the operation is run, some results will be shown here.
 * Right pane: This pane is where **Details** of the run operation are shown.
 
-Here you can select from two Personally Identifying Information (PII) detection capabilities from the top banner tiles, **Extract PII from conversation** and **Extract PII from text**. Each is for a different scenario.
+Here you can select from two Personally Identifying Information (PII) detection capabilities by choosing the top banner tiles, **Extract PII from conversation** or **Extract PII from text**. Each is for a different scenario.
 
 ### Extract PII from coversation
 
