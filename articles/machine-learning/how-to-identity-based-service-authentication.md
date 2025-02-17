@@ -276,7 +276,7 @@ During cluster creation or when editing compute cluster details, in the **Advanc
 
 ---
 
-### Kubernetes Compute Cluster
+### Kubernetes Cluster Compute
 
 > [!NOTE]
 > Azure Machine Learning kubernetes clusters support only **one system-assigned identity** or **one user-assigned identities**, not both concurrently.
@@ -292,7 +292,7 @@ During a run there are two applications of an identity:
 
 1. You apply an identity to access resources from within the code for a submitted job:
 
-    * In the case of kubernetes compute clusters, the ManagedIdentityCredential object should be provided **without any client_id**.
+    * In the case of kubernetes cluster compute, the ManagedIdentityCredential object should be provided **without any client_id**.
 
     For example, to retrieve a token for a datastore with the default-managed identity:
 
@@ -301,10 +301,10 @@ During a run there are two applications of an identity:
     token = credential.get_token('https://storage.azure.com/')
     ```
 
-To configure a kubernetes compute cluster, make sure that it has the [necessary AML extension deployed in it](https://learn.microsoft.com/azure/machine-learning/how-to-deploy-kubernetes-extension?view=azureml-api-2&tabs=deploy-extension-with-cli) and follow the documentation on [how to attach the kubernetes compute cluster to your AML workspace](https://learn.microsoft.com/azure/machine-learning/how-to-attach-kubernetes-to-workspace?view=azureml-api-2&tabs=cli).
+To configure a kubernetes cluster compute, make sure that it has the [necessary AML extension deployed in it](https://learn.microsoft.com/azure/machine-learning/how-to-deploy-kubernetes-extension?view=azureml-api-2&tabs=deploy-extension-with-cli) and follow the documentation on [how to attach the kubernetes cluster compute to your AML workspace](https://learn.microsoft.com/azure/machine-learning/how-to-attach-kubernetes-to-workspace?view=azureml-api-2&tabs=cli).
 
 > [!IMPORTANT] 
-> For Training purposes (Machine Learning Jobs), the identity that is used is the one assigned to the Kubernetes Compute Cluster. However, in the case of inferencing (Managed Online Endpoints), the identity that is used is the one assigned to the endpoint. For more information see [How to Access Azure Resources from an Online Endpoint](https://learn.microsoft.com/azure/machine-learning/how-to-access-resources-from-endpoints-managed-identities?view=azureml-api-2&tabs=system-identity-cli).
+> For Training purposes (Machine Learning Jobs), the identity that is used is the one assigned to the Kubernetes Cluster Compute. However, in the case of inferencing (Managed Online Endpoints), the identity that is used is the one assigned to the endpoint. For more information see [How to Access Azure Resources from an Online Endpoint](https://learn.microsoft.com/azure/machine-learning/how-to-access-resources-from-endpoints-managed-identities?view=azureml-api-2&tabs=system-identity-cli).
 
 ---
 
