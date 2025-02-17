@@ -78,7 +78,7 @@ ms.custom: references_regions
 | `zh-HK`   | `WanLungNeural` (Male) |
 
 ##### GA - Introducing multi-style embedded Jenny
-Now embedded version of Jenny can support 14 different styles: chat`, `customerservice`, `assistant`, `newscast`, `angry`, `cheerful`, `sad`, `excited`, `friendly`, `terrified`, `shouting`, `unfriendly`, `whispering`, and `hopeful.
+Now embedded version of Jenny can support 14 different styles: `chat`, `customerservice`, `assistant`, `newscast`, `angry`, `cheerful`, `sad`, `excited`, `friendly`, `terrified`, `shouting`, `unfriendly`, `whispering`, and `hopeful`.
 
 ### January 2025 release
 
