@@ -40,7 +40,7 @@ In **Configuration** there are the following options:
 |Select model version| Select which version of the model to use.|
 |Select country hint| Select the origin country of the input text. |
 
-After your operation is completed, the type of entity is displayed beneath each entity in the center pane and the **Details** section contains the following fields for the most detected language and script:
+After your operation is completed, the **Details** section contains the following fields for the most detected language and script:
 
 |Field | Description                |
 |------|----------------------------|
