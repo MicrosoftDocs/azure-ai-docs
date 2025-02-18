@@ -1,26 +1,26 @@
 ---
-title: "Data Filtering - Custom Translator"
+title: "Data Filtering - Azure AI Custom Translator"
 titleSuffix: Azure AI services
 description: When you submit documents to be used for training a custom system, the documents undergo a series of processing and filtering steps.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 12/21/2023
+ms.date: 01/28/2025
 ms.author: lajanuar
 ms.topic: conceptual
 ms.custom: cogserv-non-critical-translator
 #Customer intent: As a Custom Translator, I want to understand how data is filtered before training a model.
 ---
 
-# Data filtering
+# Custom Translator Data filtering
 
-When you submit documents to be used for training, the documents undergo a series of processing and filtering steps. These steps are explained here. The knowledge of the filtering may help you understand the sentence count displayed in Custom Translator and the steps you may take yourself to prepare the documents for training with Custom Translator.
+When you submit documents to be used for training, the documents undergo a series of processing and filtering steps. These steps are explained here. The knowledge of the filtering can help you understand the sentence count displayed in Custom Translator and the steps you can take yourself to prepare the documents for training with Custom Translator.
 
 ## Sentence alignment
 
-If your document isn't in XLIFF, TMX, or ALIGN format, Custom Translator aligns the sentences of your source and target documents to each other, sentence by sentence. Custom Translator doesn't perform document alignment – it follows your naming of the documents to find the matching document of the other language. Within the document, Custom Translator tries to find the corresponding sentence in the other language. It uses document markup like embedded HTML tags to help with the alignment.  
+If your document isn't in XLIFF, `TMX`, or ALIGN format, Custom Translator aligns the sentences of your source and target documents to each other, sentence by sentence. Custom Translator doesn't perform document alignment – it follows your naming of the documents to find the matching document of the other language. Within the document, Custom Translator tries to find the corresponding sentence in the other language. It uses document markup like embedded HTML tags to help with the alignment.
 
-If you see a large discrepancy between the number of sentences in the source and target documents, your documents may not be parallel. The document pairs with a large difference (>10%) of sentences on each side warrant a second look to make sure they're indeed parallel. Custom Translator shows a warning next to the document if the sentence count differs suspiciously.  
+If you see a large discrepancy between the number of sentences in the source and target documents, your documents can't be parallel. The document pairs with a large difference (>10%) of sentences on each side warrant a second look to make sure they're indeed parallel. Custom Translator shows a warning next to the document if the sentence count differs suspiciously.
 
 ## Deduplication
 
@@ -31,7 +31,7 @@ Custom Translator removes the sentences that are present in test and tuning docu
 * Remove sentences with only one word on either side.
 * Remove sentences with more than 100 words on either side.  Chinese, Japanese, Korean are exempt.
 * Remove sentences with fewer than three characters. Chinese, Japanese, Korean are exempt.
-* Remove sentences with more than 2000 characters for Chinese, Japanese, Korean.
+* Remove sentences with more than 2,000 characters for Chinese, Japanese, Korean.
 * Remove sentences with less than 1% alpha characters.
 * Remove dictionary entries containing more than 50 words.
 
@@ -42,7 +42,7 @@ Custom Translator removes the sentences that are present in test and tuning docu
 
 ## Sentence end punctuation
 
-Replace multiple sentence end punctuation characters with a single instance.  
+Replace multiple sentence end punctuation characters with a single instance.
 
 ## Japanese character normalization
 

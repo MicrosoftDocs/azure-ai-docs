@@ -1,17 +1,17 @@
 ---
-title: Translate text with a custom model
+title: Translate text with an Azure AI Custom Translator model
 titleSuffix: Azure AI services
-description: How to make translation requests using custom models published with the Azure AI Translator Custom Translator.
+description: How to make translation requests using custom models published with the Azure AI Custom Translator.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 07/10/2024
+ms.date: 01/28/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
-# Translate text with a custom model
+# Translate text with an Azure AI Custom Translator model
 
-After you publish your custom model, you can access it with the Translator API by using the `Category ID` parameter.
+After you publish your custom model, you can access it with the Azure AI Translator API by using the `Category ID` parameter.
 
 ## How to translate
 
@@ -29,4 +29,4 @@ After you publish your custom model, you can access it with the Translator API b
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn more about building and publishing custom models](../beginners-guide.md)
+> [Learn more about building and publishing  Azure AI Custom Translator models](../beginners-guide.md)

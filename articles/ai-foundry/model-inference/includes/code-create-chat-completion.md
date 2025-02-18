@@ -77,8 +77,8 @@ for (ChatChoice choice : chatCompletions.getChoices()) {
 __Request__
 
 ```HTTP/1.1
-POST models/chat/completions?api-version=2024-04-01-preview
-Authorization: Bearer <bearer-token>
+POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
+api-key: <api-key>
 Content-Type: application/json
 ```
 

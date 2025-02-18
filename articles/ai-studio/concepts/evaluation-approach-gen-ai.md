@@ -3,7 +3,7 @@ title: Evaluation of generative AI applications with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Explore the broader domain of monitoring and evaluating large language models through the establishment of precise metrics, the development of test sets for measurement, and the implementation of iterative testing.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024

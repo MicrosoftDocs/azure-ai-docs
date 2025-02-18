@@ -6,11 +6,11 @@ summary: Azure AI model inference provides access to the most powerful models av
 metadata:
   title: Azure AI model inference documentation - Quickstarts, How-to's, API Reference - Azure AI Foundry | Microsoft Docs
   description: Learn how to use flagship models available in the Azure AI model catalog from the key model providers in the industry, including OpenAI, Microsoft, Meta, Mistral, Cohere, G42, and AI21 Labs.
-  ms.service: azure-ai-models
+  ms.service: azure-ai-model-inference
   ms.custom:
   ms.topic: landing-page
-  author: mrbullwinkle
-  ms.author: mbullwin
+  author: santiagxf
+  ms.author: fasantia 
   ms.date: 1/21/2025
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
@@ -34,6 +34,8 @@ landingContent:
             url: supported-languages.md
       - linkListType: quickstart
         links:
+           - text: Create resources and configure
+             url: ./how-to/quickstart-create-resources.md
            - text: Upgrade from GitHub Models to Azure AI model inference
              url: ./how-to/quickstart-github-models.md
            - text: Configure AI projects to work with Azure AI model inference
@@ -58,10 +60,10 @@ landingContent:
             url: ./how-to/configure-content-filters.md
           - text: Configure blocklists (preview)
             url: ./how-to/use-blocklists.md
+          - text: Configure key-less authentication
+            url: ./how-to/configure-entra-id.md
           - text: Manage cost
             url: ./how-to/manage-costs.md
-          - text: Create resources
-            url: ./how-to/quickstart-create-resources.md
 
 #Card 3:
    - title: Develop
@@ -72,12 +74,14 @@ landingContent:
             url: supported-languages.md
       - linkListType: get-started
         links:
-          - text: Work with embeddings
+          - text: Text embeddings
             url: ./how-to/use-embeddings.md
-          - text: Work with image embeddings
+          - text: Image embeddings
             url: ./how-to/use-image-embeddings.md
-          - text: Work with chat completions
+          - text: Chat completions
             url: ./how-to/use-chat-completions.md
+          - text: Reasoning
+            url: ./how-to/use-chat-reasoning.md
           - text: Develop with LangChain or LangGraph
             url: ../../ai-studio/how-to/develop/langchain.md?context=/azure/ai-foundry/model-inference/context/context
           - text: Develop with Llama-Index

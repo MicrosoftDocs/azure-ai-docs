@@ -16,8 +16,6 @@ ms.date: 01/15/2025
 * Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio.md) assigned at the appropriate level.
 * Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
 
-[!INCLUDE [rbac-roles](rbac-roles.md)]
-
 [!INCLUDE [bicep-setup](bicep-setup.md)]
 
 ## Configure and run an agent
@@ -38,6 +36,12 @@ dotnet add package Azure.AI.Projects
 dotnet add package Azure.Identity
 ```
 
+Next, to authenticate your API requests and run the program, use the [az login](/cli/azure/authenticate-azure-cli-interactively) command to sign into your Azure subscription.
+
+```azurecli
+az login
+```
+
 Use the following code to create and run an agent. To run this code, you will need to create a connection string using information from your project. This string is in the format:
 
 `<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>`
@@ -55,6 +59,7 @@ For example, your connection string may look something like:
 `eastus.api.azureml.ms;12345678-abcd-1234-9fc6-62780b3d3e05;my-resource-group;my-project-name`
 
 Set this connection string as an environment variable named `PROJECT_CONNECTION_STRING`.
+
 
 ```csharp
 // Copyright (c) Microsoft Corporation. All rights reserved.

@@ -18,8 +18,6 @@ ms.date: 11/13/2024
 * You need the **Cognitive Services OpenAI User** role assigned to use the Azure AI Services resource.
 * Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
 
-[!INCLUDE [rbac-roles](rbac-roles.md)]
-
 [!INCLUDE [bicep-setup](bicep-setup.md)]
 
 ## Configure and run an agent
@@ -39,6 +37,12 @@ Run the following commands to install the python packages.
 pip install azure-ai-projects
 pip install azure-identity
 pip install openai
+```
+
+Next, to authenticate your API requests and run the program, use the [az login](/cli/azure/authenticate-azure-cli-interactively) command to sign into your Azure subscription.
+
+```azurecli
+az login
 ```
 
 Use the following code to create and run an agent. To run this code, you will need to create a connection string using information from your project. This string is in the format:

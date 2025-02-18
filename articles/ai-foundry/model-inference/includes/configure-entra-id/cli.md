@@ -1,6 +1,6 @@
 ---
 manager: nitinme
-author: mrbullwinkle
+author: santiagxf
 ms.author: fasantia 
 ms.service: azure-ai-model-inference
 ms.date: 12/15/2024
@@ -90,3 +90,7 @@ Once Microsoft Entra ID is configured in your resource, you need to update your 
 [!INCLUDE [code](../code-create-chat-client-entra.md)]
 
 [!INCLUDE [about-credentials](about-credentials.md)]
+
+## Troubleshooting
+
+[!INCLUDE [troubleshooting](troubleshooting.md)]

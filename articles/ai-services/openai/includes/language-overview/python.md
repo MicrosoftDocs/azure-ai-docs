@@ -19,7 +19,7 @@ Feature availability in Azure OpenAI is dependent on what version of the REST AP
 
 | Latest GA API | Latest Preview API|
 |:-----|:------|
-|`2024-10-21` |`2024-10-01-preview`|
+|`2024-10-21` |`2025-01-01-preview`|
 
 ## Installation
 
@@ -52,6 +52,8 @@ client = AzureOpenAI(
   api_version="2024-10-21"
 )
 ```
+
+For more information about Azure OpenAI keyless authentication, see the "[Get started with the Azure OpenAI security building block](/azure/developer/ai/get-started-securing-your-ai-app?tabs=github-codespaces&pivots=python)" QuickStart article. 
 
 # [API Key](#tab/python-key)
 
@@ -616,7 +618,7 @@ except openai.APIStatusError as e:
 
 ### Request IDs
 
-To retrieve the ID of your request you can use the `_request_id` property which corresponds to the `x-request-id` responde header.
+To retrieve the ID of your request you can use the `_request_id` property which corresponds to the `x-request-id` response header.
 
 ```python
 print(completion._request_id) 

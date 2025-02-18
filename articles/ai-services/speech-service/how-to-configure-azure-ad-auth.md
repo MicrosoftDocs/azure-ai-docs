@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/9/2024
+ms.date: 2/7/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-set-two
 ms.custom: devx-track-azurepowershell, devx-track-extended-java, devx-track-python, devx-track-azurecli
@@ -123,9 +123,6 @@ For programming languages where a Microsoft identity platform client library isn
 
 You need your Speech resource ID to make SDK calls using Microsoft Entra authentication.
 
-> [!NOTE]
-> For Intent Recognition use your LUIS Prediction resource ID.
-
 # [Azure portal](#tab/portal)
 
 To get the resource ID in the Azure portal:
@@ -152,7 +149,6 @@ To get the resource ID using PowerShell, confirm that you have PowerShell versio
     If nothing appears, or if that version of the Azure PowerShell module is earlier than 5.1.0, follow the instructions at [Install the Azure PowerShell module](/powershell/azure/install-azure-powershell) to upgrade.
 
 Now run `Connect-AzAccount` to create a connection with Azure.
-
 
 ```azurepowershell
 Connect-AzAccount

@@ -181,6 +181,11 @@
             "redirect_document_id": false
         },
         {
+            "source_path_from_root": "/articles/ai-studio/reference/reference-model-inference-completions.md",
+            "redirect_url": "/azure/ai-studio/reference/reference-model-inference-chat-completions",
+            "redirect_document_id": false
+        },
+        {
             "source_path_from_root": "/articles/ai-studio/concepts/evaluation-improvement-strategies.md",
             "redirect_url": "/azure/ai-studio/concepts/evaluation-approach-gen-ai",
             "redirect_document_id": false
@@ -206,9 +211,14 @@
             "redirect_document_id": false
           },
           {
+            "source_path_from_root": "/articles/ai-studio/how-to/custom-policy-model-deployment.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/how-to/configure-deployment-policies",
+            "redirect_document_id": true
+          },
+          {
             "source_path_from_root": "/articles/ai-studio/ai-services/how-to/content-safety.md",
-            "redirect_url": "/azure/ai-foundry/model-inference/how-to/configure-content-safety",
-            "redirect_document_id": false
+            "redirect_url": "/azure/ai-services/content-safety/how-to/foundry",
+            "redirect_document_id": true
           },
           {
             "source_path_from_root": "/articles/ai-studio/ai-services/concepts/quotas-limits.md",
@@ -234,6 +244,46 @@
               "source_path_from_root": "/articles/ai-studio/how-to/data-image-add.md",
               "redirect_url": "/azure/ai-studio/quickstarts/multimodal-vision",
               "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/quickstarts/multimodal-vision.md",
+            "redirect_url": "/azure/ai-services/openai/gpt-v-quickstart",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/reference/reference-model-inference-api.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/reference/reference-model-inference-api",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/reference/reference-model-inference-info.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/reference/reference-model-inference-info",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/reference/reference-model-inference-embeddings.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/reference/reference-model-inference-embeddings",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/reference/reference-model-inference-chat-completions.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/reference/reference-model-inference-chat-completions",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/reference/reference-model-inference-images-embeddings.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/reference/reference-model-inference-images-embeddings",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/concepts/about-capabilities.md",
+            "redirect_url": "/azure/ai-studio/concepts/what-are-ai-services",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/concepts/related-content.md",
+            "redirect_url": "/azure/ai-studio/concepts/what-are-ai-services",
+            "redirect_document_id": false
           }
     ]
 }
