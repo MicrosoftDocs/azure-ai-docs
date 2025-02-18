@@ -79,7 +79,7 @@ There are two parts to enable data loss prevention. First, the resource property
         ResourceProviderName = 'Microsoft.CognitiveServices'
         ResourceType = 'accounts'
         Name = 'myaccount'
-        ApiVersion = '2021-10-01'
+        ApiVersion = '2024-10-01'
         Payload = '{"properties": { "restrictOutboundNetworkAccess": true, "allowedFqdnList": [ "microsoft.com" ] }}'
         Method = 'PATCH'
     }
