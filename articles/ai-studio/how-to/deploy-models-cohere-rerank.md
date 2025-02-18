@@ -5,7 +5,7 @@ description: Learn to deploy and use Cohere Rerank models with Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 12/06/2024
+ms.date: 02/18/2025
 ms.reviewer: shubhiraj
 ms.author: mopeakande
 author: msakande
@@ -22,12 +22,22 @@ In this article, you learn about the Cohere Rerank models, how to use Azure AI F
 
 ## Cohere Rerank models
 
-Cohere offers two Rerank models in [Azure AI Foundry](https://ai.azure.com). These models are available in the model catalog for deployment as serverless APIs:
+Cohere offers rerank models in [Azure AI Foundry](https://ai.azure.com). These models are available in the model catalog for deployment as serverless APIs:
 
-* Cohere Rerank v3 - English
-* Cohere Rerank v3 - Multilingual
+- Cohere Rerank v3.5
+- Cohere Rerank v3 - English
+- Cohere Rerank v3 - Multilingual
 
 You can browse the Cohere family of models in the [Model Catalog](model-catalog.md) by filtering on the Cohere collection.
+
+### Cohere Rerank v3.5
+
+Cohere Rerank 3.5 provides a significant boost to the relevancy of search results. This AI model, also known as a cross-encoder, precisely sorts lists of documents according to their semantic similarity to a provided query. This allows information retrieval systems to go beyond keyword search, and also outperform traditional embedding models, surfacing the most contextually relevant data within end-user applications.  
+
+Businesses use Cohere Rerank 3.5 to improve their enterprise search and retrieval-augmented generation (RAG) applications across more than 100 languages. With just a few lines of code, you can add the model to existing systems to boost the accuracy of search results. The model is also uniquely performant at searching across complex enterprise data such as JSON, code, and tables. Further, it is capable of reasoning through hard questions which other search systems fail to understand.
+
+- Context window of the model is 4,096 tokens
+- Max query length is 4,096 tokens
 
 ### Cohere Rerank v3 - English
 
@@ -37,8 +47,8 @@ Use Rerank as a ranker after initial retrieval. In other words, after an initial
 
 Rerank supports JSON objects as documents where users can specify, at query time, the fields (keys) to use for semantic search. Some other attributes of Rerank include:
 
-* Context window of the model is 4,096 tokens
-* The max query length is 2,048 tokens
+- Context window of the model is 4,096 tokens
+- The max query length is 2,048 tokens
 
 Rerank English works well for code retrieval, semi-structured data retrieval, and long context.
 
@@ -50,8 +60,8 @@ Use Rerank as a ranker after initial retrieval. In other words, after an initial
 
 Rerank supports JSON objects as documents where users can specify, at query time, the fields (keys) to use for semantic search. Some other attributes of Rerank Multilingual include:
 
-* Context window of the model is 4,096 tokens
-* The max query length is 2,048 tokens
+- Context window of the model is 4,096 tokens
+- The max query length is 2,048 tokens
 
 Rerank multilingual performs well on multilingual benchmarks such as Miracl.
 
@@ -71,25 +81,20 @@ You can deploy the previously mentioned Cohere models as a service with pay-as-y
 
 - Azure role-based access controls are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).
 
-
-### Create a new deployment
-
-The following steps demonstrate the deployment of Cohere Rerank v3 - English, but you can use the same steps to deploy Cohere Rerank v3 - Multilingual by replacing the model name.
+### Create a new deployment 
+The following steps demonstrate the deployment of Cohere Rerank v3.5, but you can use the same steps to deploy the other Cohere rerank models by replacing the model name.
 
 To create a deployment:
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
-4. Select the model card of the model you want to deploy. In this article, you select **Cohere-rerank-v3-english** to open the Model Details page.
-
+4. Select the model card of the model you want to deploy. In this article, you select **Cohere-rerank-v3-5** to open the Model Details page.
 1. Select **Deploy** to open a serverless API deployment window for the model.
-1. Alternatively, you can initiate a deployment from your project in the Azure AI Foundry portal as follows: 
-
+1. Alternatively, you can initiate a deployment from your project in the Azure AI Foundry portal as follows:
     1. From the left sidebar of your project, select **Models + Endpoints**.
     1. Select **+ Deploy model** > **Deploy base model**.
-    1. Search for and select **Cohere-rerank-v3-english** to open the Model Details page.
+    1. Search for and select **Cohere-rerank-v3-5** to open the Model Details page.
     1. Select **Confirm** to open a serverless API deployment window for the model.
-
 1. In the deployment wizard, select the link to **Azure Marketplace Terms** to learn more about the terms of use.
 1. Select the **Pricing and terms** tab to learn about pricing for the selected model.
 1. Select the **Subscribe and Deploy** button. If this is your first time deploying the model in the project, you have to subscribe your project for the particular offering.
@@ -107,7 +112,7 @@ To create a deployment:
 
 To learn about billing for the Cohere models deployed as a serverless API with pay-as-you-go token-based billing, see [Cost and quota considerations for Cohere models deployed as a service](#cost-and-quota-considerations-for-models-deployed-as-a-service).
 
-### Consume the Cohere Rerank models as a service
+### Consume the Cohere Rerank model as a service
 
 Cohere Rerank models deployed as serverless APIs can be consumed using the Rerank API.
 
@@ -117,56 +122,189 @@ Cohere Rerank models deployed as serverless APIs can be consumed using the Reran
 
 1. Copy the **Target** URL and the **Key** value.
 
-1. Cohere currently exposes `v1/rerank` for inference with the Rerank v3 - English and Rerank v3 - Multilingual models schema. For more information on using the APIs, see the [reference](#rerank-api-reference-for-cohere-rerank-models-deployed-as-a-service) section.
+Cohere currently exposes v2/rerank for inference with Rerank v3.5, Rerank v3 - English, and Rerank v3 - Multilingual models schema. For more information on using the APIs, see the [reference](#rerank-api-reference-for-cohere-rerank-models-deployed-as-a-service) section.
 
 ## Rerank API reference for Cohere Rerank models deployed as a service
 
-Cohere Rerank v3 - English and Rerank v3 - Multilingual accept the native Cohere Rerank API on `v1/rerank`. This section contains details about the Cohere Rerank API.
+The native **Cohere Rerank API v2** endpoint on `https://api.cohere.com/v2/rerank` supports inference with Cohere Rerank v3.5, Cohere Rerank v3 - English, and Cohere Rerank v3 - Multilingual.
 
-#### v1/rerank request
+The native **Cohere Rerank API v1** endpoint on `https://api.cohere.com/v1/rerank` supports inference with Cohere Rerank v3 - English and Cohere Rerank v3 - Multilingual.
+
+
+### v2/rerank request schema
+
+| Property | Type | Default | Description |
+| ------------ | -------- | ----------- | ------------- |
+| `query` | string | Required | The search query. |
+| `documents` | List of strings | Required | A list of texts that will be compared to the query. For optimal performance we recommend against sending more than 1,000 documents in a single request.<br><br>Note: long documents will automatically be truncated to the value of **max_tokens_per_doc**.<br><br>Note: structured data should be formatted as YAML strings for best performance. |
+| top_n | integer | Optional | Limits the number of returned rerank results to the specified value. If not passed, all the rerank results will be returned. |
+| `return_documents` | boolean | `FALSE` | If FALSE, returns results without the doc text - the API returns a list of {index, relevance_score} where index is inferred from the list passed into the request.<br><br>If TRUE, returns results with the doc text passed in - the API returns an ordered list of {index, text, relevance_score} where index + text refers to the list passed into the request. |
+| `max_chunks_per_doc` | integer | Optional | Defaults to 4096. Long documents will be automatically truncated to the specified number of tokens. |
+| `Model` | string | Required | The identifier of the model to use, eg rerank-v3.5. |
+
+
+### v2/rerank response schema
+
+Response fields are fully documented on [Cohere's Rerank API reference](https://docs.cohere.com/reference/rerank). The response payload is a dictionary with the following fields:
+
+| Key | Type | Description |
+| ------------ | -------- | ----------- |
+| `id`  | string | Optional |
+| `results` | List of objects | An ordered list of ranked documents |
+| `meta` | object | document is described by an object that includes api_version and version and, optionally, is_deprecated and is_experimental. |
+| `Billed units` | object | Described by an object that are all optionally images, input_tokens, output_tokens, search_units, and classifications |
+| `tokens` | object | Described optionally as input_tokens which are the number of tokens used as input to the model and output_tokens which are the number of tokens produced by the model. |
+| `warnings` | List of strings | Optional |
+
+The `results` object is a dictionary with the following fields:
+
+| Key | Type | Description |
+| ------------ | -------- | ----------- |
+| `index` | integer | Corresponds to the index in the original list of documents to which the ranked document belongs. (i.e. if the first value in the results object has an index value of 3, it means in the list of documents passed in, the document at index=3 had the highest relevance) |
+| `relevance_score` | double | Relevance scores are normalized to be in the range \[0, 1\]. Scores close to 1 indicate a high relevance to the query, and scores closer to 0 indicate low relevance. It is not accurate to assume a score of 0.9 means the document is 2x more relevant than a document with a score of 0.45 |
+| `document` | object | If return_documents is set as false this will return none, if true it will return the documents passed in |
+
+### Examples using Cohere Rerank API v2
+
+#### Request example
+
+```python
+
+import cohere
+
+co = cohere.ClientV2()
+
+docs = [
+
+"Carson City is the capital city of the American state of Nevada.",
+
+"The Commonwealth of the Northern Mariana Islands is a group of islands in the Pacific Ocean. Its capital is Saipan.",
+
+"Capitalization or capitalisation in English grammar is the use of a capital letter at the start of a word. English usage varies from capitalization in other languages.",
+
+"Washington, D.C. (also known as simply Washington or D.C., and officially as the District of Columbia) is the capital of the United States. It is a federal district.",
+
+"Capital punishment has existed in the United States since beforethe United States was a country. As of 2017, capital punishment is legal in 30 of the 50 states.",
+
+]
+
+response = co.rerank(
+
+model="rerank-v3.5",
+
+query="What is the capital of the United States?",
+
+documents=docs,
+
+top_n=3,
+
+)
+
+print(response)
+```
+
+#### Response example
 
 ```json
+
+{
+
+"results": [
+
+{
+
+"index": 3,
+
+"relevance_score": 0.999071
+
+},
+
+{
+
+"index": 4,
+
+"relevance_score": 0.7867867
+
+},
+
+{
+
+"index": 0,
+
+"relevance_score": 0.32713068
+
+}
+
+],
+
+"id": "07734bd2-2473-4f07-94e1-0d9f0e6843cf",
+
+"meta": {
+
+"api_version": {
+
+"version": "2",
+
+"is_experimental": false
+
+},
+
+"billed_units": {
+
+"search_units": 1
+
+}
+
+}
+
+}
+
+```
+
+
+### v1/rerank request
+
+```json
+
     POST /v1/rerank HTTP/1.1
     Host: <DEPLOYMENT_URI>
     Authorization: Bearer <TOKEN>
     Content-type: application/json
 ```
 
-#### v1/rerank request schema
+### v1/rerank request schema
 
-Cohere Rerank v3 - English and Rerank v3 - Multilingual accept the following parameters for a `v1/rerank` API call:
+Cohere Rerank v3 - English and Rerank v3 - Multilingual accept the following parameters for a v1/rerank API call:
 
 | Property | Type | Default | Description |
 | --- | --- | --- | --- |
-|`query` |`string` |Required |The search query. |
-|`documents` |`array` |None |A list of document objects or strings to rerank. |
-|`top_n` |`integer` |Length of `documents` |The number of most relevant documents or indices to return. |
-|`return_documents` |`boolean` |`FALSE` |If `FALSE`, returns results without the doc text - the API returns a list of {`index`, `relevance_score`} where index is inferred from the list passed into the request. </br>If `TRUE`, returns results with the doc text passed in - the API returns an ordered list of {`index`, `text`, `relevance_score`} where index + text refers to the list passed into the request. |
-|`max_chunks_per_doc` |`integer` |None |The maximum number of chunks to produce internally from a document.|
-|`rank_fields` |`array of strings` |None |If a JSON object is provided, you can specify which keys you would like to consider for reranking. The model reranks based on the order of the fields passed in (for example, `rank_fields=['title','author','text']` reranks, using the values in `title`, `author`, and `text` in that sequence. If the length of title, author, and text exceeds the context length of the model, the chunking won't reconsider earlier fields).<br> If not provided, the model uses the default text field for ranking. |
+| `query` | string | Required | The search query. |
+| `documents` | array | None | A list of document objects or strings to rerank. |
+| `top_n` | integer | Length of documents | The number of most relevant documents or indices to return. |
+| `return_documents` | boolean | `FALSE` | If FALSE, returns results without the doc text - the API returns a list of {index, relevance_score} where index is inferred from the list passed into the request.<br><br>If TRUE, returns results with the doc text passed in - the API returns an ordered list of {index, text, relevance_score} where index + text refers to the list passed into the request. |
+| `max_chunks_per_doc` | integer | None | The maximum number of chunks to produce internally from a document. |
+| `rank_fields` | array of strings | None | If a JSON object is provided, you can specify which keys you would like to consider for reranking. The model reranks based on the order of the fields passed in (for example, rank_fields=\['title','author','text'\] reranks, using the values in title, author, and text in that sequence. If the length of title, author, and text exceeds the context length of the model, the chunking won't reconsider earlier fields).<br><br>If not provided, the model uses the default text field for ranking. |
 
-#### v1/rerank response schema
+### v1/rerank response schema
 
 Response fields are fully documented on [Cohere's Rerank API reference](https://docs.cohere.com/reference/rerank). The response payload is a dictionary with the following fields:
 
 | Key | Type | Description |
 | --- | --- | --- |
-| `id` | `string` |An identifier for the response. |
-| `results` | `array of objects`|An ordered list of ranked documents, where each document is described by an object that includes `index` and `relevance_score` and, optionally, `text`. |
-| `meta` | `array of objects` | An optional meta object containing a list of warning strings. |
-
-<br>
+| `id`  | string | An identifier for the response. |
+| `results` | array of objects | An ordered list of ranked documents, where each document is described by an object that includes index and relevance_score and, optionally, text. |
+| `meta` | array of objects | An optional meta object containing a list of warning strings. |
 
 The `results` object is a dictionary with the following fields:
 
 | Key | Type | Description |
 | --- | --- | --- |
-| `document` | `object` |The document objects or strings that were reranked. |
-| `index` | `integer` |The `index` in the original list of documents to which the ranked document belongs. For example, if the first value in the `results` object has an index value of 3, it means in the list of documents passed in, the document at `index=3` had the highest relevance.|
-| `relevance_score` | `float` |Relevance scores are normalized to be in the range `[0, 1]`. Scores close to one indicate a high relevance to the query, and scores close to zero indicate low relevance. A score of `0.9` _doesn't_ necessarily mean that a document is twice as relevant as another with a score of `0.45`. |
+| `document` | object | The document objects or strings that were reranked. |
+| `index` | integer | The index in the original list of documents to which the ranked document belongs. For example, if the first value in the results object has an index value of 3, it means in the list of documents passed in, the document at index=3 had the highest relevance. |
+| `relevance_score` | float | Relevance scores are normalized to be in the range \[0, 1\]. Scores close to one indicate a high relevance to the query, and scores close to zero indicate low relevance. A score of 0.9 _doesn't_ necessarily mean that a document is twice as relevant as another with a score of 0.45. |
 
+### Examples using Cohere Rerank API v1
 
-## Examples
 
 #### Request example
 
@@ -228,22 +366,20 @@ The `results` object is a dictionary with the following fields:
 #### More inference examples
 
 | Package | Sample Notebook |
-|---|---|
-|CLI using CURL and Python web requests| [cohere-rerank.ipynb](https://aka.ms/samples/cohere-rerank/webrequests)|
-|LangChain|[langchain.ipynb](https://aka.ms/samples/cohere-rerank/langchain)|
-|Cohere SDK|[cohere-sdk.ipynb](https://aka.ms/samples/cohere-rerank/cohere-python-sdk)|
+| --- | --- |
+| CLI using CURL and Python web requests | [cohere-rerank.ipynb](https://aka.ms/samples/cohere-rerank/webrequests) |
+| LangChain | [langchain.ipynb](https://aka.ms/samples/cohere-rerank/langchain) |
+| Cohere SDK | [cohere-sdk.ipynb](https://aka.ms/samples/cohere-rerank/cohere-python-sdk) |
 
 ## Cost and quota considerations for models deployed as a service
 
-Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios. 
+Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
 Cohere models deployed as serverless APIs with pay-as-you-go billing are offered by Cohere through Azure Marketplace and integrated with Azure AI Foundry for use. You can find Azure Marketplace pricing when deploying the model.
 
 Each time a project subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
 
 For more information on how to track costs, see [monitor costs for models offered throughout Azure Marketplace](./costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
-
-
 
 ## Related content
 
