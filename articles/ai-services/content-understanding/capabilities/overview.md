@@ -104,6 +104,8 @@ Each modality supports specific generation approaches optimized for that content
 |--------------|
 |&bullet; **Generate**: In images, users can derive values from the input content, such as generating titles, descriptions, and summaries for figures and charts. <br> &bullet; **Classify**: In images, users can categorize elements from the input content, such as identifying different types of charts like histograms, bar graphs, etc.<br> |
 
+:::image type="content" source="../media/capabilities/chartanalysis.gif" alt-text="Illustration of Audio Generation and Classification workflow.":::
+
 # [Audio](#tab/audio)
 
 |Supported generation methods|
