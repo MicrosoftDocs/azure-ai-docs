@@ -41,11 +41,6 @@ Typically, the development process you'd use with Azure OpenAI On Your Data is:
 
 To get started, [connect your data source](../use-your-data-quickstart.md) using Azure AI Foundry portal and start asking questions and chatting on your data.
 
-> [!NOTE]
-> The following models are not supported by Azure OpenAI On Your Data:
-> * o1 models
-> * o3 models
-
 ## Azure Role-based access controls (Azure RBAC) for adding data sources
 
 To use Azure OpenAI On Your Data fully, you need to set one or more Azure RBAC roles. See [Azure OpenAI On Your Data configuration](../how-to/on-your-data-configuration.md#role-assignments) for more information.
@@ -718,6 +713,11 @@ This means the storage account isn't accessible with the given credentials. In t
 Each user message can translate to multiple search queries, all of which get sent to the search resource in parallel. This can produce throttling behavior when the number of search replicas and partitions is low. The maximum number of queries per second that a single partition and single replica can support might not be sufficient. In this case, consider increasing your replicas and partitions, or adding sleep/retry logic in your application. See the [Azure AI Search documentation](/azure/search/performance-benchmarks) for more information.
 
 ## Regional availability and model support
+
+> [!NOTE]
+> The following models are not supported by Azure OpenAI On Your Data:
+> * o1 models
+> * o3 models
 
 | Region | `gpt-35-turbo-16k (0613)` | `gpt-35-turbo (1106)` | `gpt-4-32k (0613)` | `gpt-4 (1106-preview)` | `gpt-4 (0125-preview)` | `gpt-4 (0613)`  | `gpt-4o`\*\* | `gpt-4 (turbo-2024-04-09)` |
 |------|---|---|---|---|---|----|----|----|
