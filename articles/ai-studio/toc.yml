@@ -96,6 +96,8 @@ items:
       items:
         - name: Work with chat completion models
           href: ../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/ai-studio/context/context
+        - name: Work with reasoning models
+          href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-studio/context/context
     - name: Work with featured models
       items:
       - name: AI21 Jamba models
