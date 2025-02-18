@@ -285,17 +285,16 @@ This table doesn't include fine-tuning regional availability information.  Consu
 
 ### Standard models by endpoint
 
-> [!NOTE]
-> **Most o-series models are limited access**. Request access: [limited access model application](https://aka.ms/OAI/o1access). `o1-mini` is currently available to all customers for global standard deployment.
->
-> Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time access to `o1-mini` standard (regional) deployments is not being expanded.
-
-
 # [Chat Completions](#tab/standard-chat-completions)
 
 ### Chat completions
 
 [!INCLUDE [Chat Completions](../includes/model-matrix/standard-chat-completions.md)]
+
+> [!NOTE]
+> **Most o-series models are limited access**. Request access: [limited access model application](https://aka.ms/OAI/o1access). `o1-mini` is currently available to all customers for global standard deployment.
+>
+> Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time access to `o1-mini` standard (regional) deployments is not being expanded.
 
 ### GPT-4 and GPT-4 Turbo model availability
 
