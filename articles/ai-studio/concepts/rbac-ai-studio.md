@@ -39,7 +39,8 @@ Here's a table of the built-in roles and their permissions for the hub:
 | Role | Description | 
 | --- | --- |
 | Owner | Full access to the hub, including the ability to manage and create new hubs and assign permissions. This role is automatically assigned to the hub creator|
-| Contributor |    User has full access to the hub, including the ability to create new hubs, but isn't able to manage hub permissions on the existing resource. |
+| Contributor | User has full access to the hub, including the ability to create new hubs, but isn't able to manage hub permissions on the existing resource. |
+| Azure AI Administrator (preview) | This role is automatically assigned to the system-assigned managed identity for the hub. The Azure AI Administrator role has the minimum permissions needed for the managed identity to perform its tasks. For more information, see [Azure AI Administrator role preview](#azure-ai-administrator-role-preview). |
 | Azure AI Developer |     Perform all actions except create new hubs and manage the hub permissions. For example, users can create projects, compute, and connections. Users can assign permissions within their project. Users can interact with existing Azure AI resources such as Azure OpenAI, Azure AI Search, and Azure AI services. |
 | Azure AI Inference Deployment Operator | Perform all actions required to create a resource deployment within a resource group. |
 | Reader |     Read only access to the hub. This role is automatically assigned to all project members within the hub. |
@@ -48,69 +49,7 @@ The key difference between Contributor and Azure AI Developer is the ability to 
 
 Only the Owner and Contributor roles allow you to make a hub. At this time, custom roles can't grant you permission to make hubs.
 
-### Azure AI Developer role
-
-The full set of permissions for the new "Azure AI Developer" role are as follows:
-
-```json
-{
-    "Permissions": [ 
-        { 
-        "Actions": [
-            "Microsoft.MachineLearningServices/workspaces/*/read",
-            "Microsoft.MachineLearningServices/workspaces/*/action",
-            "Microsoft.MachineLearningServices/workspaces/*/delete",
-            "Microsoft.MachineLearningServices/workspaces/*/write",
-            "Microsoft.MachineLearningServices/locations/*/read",
-            "Microsoft.Authorization/*/read",
-            "Microsoft.Resources/deployments/*"
-        ],
-    
-        "NotActions": [
-            "Microsoft.MachineLearningServices/workspaces/delete",
-            "Microsoft.MachineLearningServices/workspaces/write",
-            "Microsoft.MachineLearningServices/workspaces/listKeys/action",
-            "Microsoft.MachineLearningServices/workspaces/hubs/write",
-            "Microsoft.MachineLearningServices/workspaces/hubs/delete",
-            "Microsoft.MachineLearningServices/workspaces/featurestores/write",
-            "Microsoft.MachineLearningServices/workspaces/featurestores/delete"
-        ], 
-        "DataActions": [ 
-            "Microsoft.CognitiveServices/accounts/OpenAI/*", 
-            "Microsoft.CognitiveServices/accounts/SpeechServices/*", 
-            "Microsoft.CognitiveServices/accounts/ContentSafety/*" 
-        ], 
-        "NotDataActions": [], 
-        "Condition": null, 
-        "ConditionVersion": null 
-        } 
-    ] 
-}
-```
-
-If the built-in Azure AI Developer role doesn't meet your needs, you can create a [custom role](#create-custom-roles).
-
-## Default roles for projects 
-
-Projects in Azure AI Foundry portal have built-in roles that are available by default. 
-
-Here's a table of the built-in roles and their permissions for the project:
-
-| Role | Description | 
-| --- | --- |
-| Owner | Full access to the project, including the ability to assign permissions to project users. |
-| Contributor |    User has full access to the project but can't assign permissions to project users. |
-| Azure AI Developer |     User can perform most actions, including create deployments, but can't assign permissions to project users. |
-| Azure AI Inference Deployment Operator | Perform all actions required to create a resource deployment within a resource group. |
-| Reader |     Read only access to the project. |
-
-When a user is granted access to a project (for example, through the Azure AI Foundry portal permission management), two more roles are automatically assigned to the user. The first role is Reader on the hub. The second role is the Inference Deployment Operator role, which allows the user to create deployments on the resource group that the project is in. This role is composed of these two permissions: ```"Microsoft.Authorization/*/read"``` and    ```"Microsoft.Resources/deployments/*"```.
-
-In order to complete end-to-end AI development and deployment, users only need these two autoassigned roles and either the Contributor or Azure AI Developer role on a project.
-
-The minimum permissions needed to create a project is a role that has the allowed action of `Microsoft.MachineLearningServices/workspaces/hubs/join` on the hub. The Azure AI Developer built-in role has this permission.
-
-## Azure AI Administrator role
+### Azure AI Administrator role preview
 
 Prior to 11/19/2024, the system-assigned managed identity created for the hub was automatically assigned the __Contributor__ role for the resource group that contains the hub and projects. Hubs created after this date have the system-assigned managed identity assigned to the __Azure AI Administrator__ role. This role is more narrowly scoped to the minimum permissions needed for the managed identity to perform its tasks.
 
@@ -171,12 +110,10 @@ The __Azure AI Administrator__ role has the following permissions:
 }
 ```
 
-### Convert an existing system-managed identity to the Azure AI Administrator role
-
 > [!TIP]
 > We recommend that you convert hubs created before 11/19/2024 to use the Azure AI Administrator role. The Azure AI Administrator role is more narrowly scoped than the previously used Contributor role and follows the principal of least privilege.
 
-You can convert hubs created before 11/19/2024 by using one of the following methods:
+You can convert hubs created before 11/19/2024 to use the new Azure AI Administrator role by using one of the following methods:
 
 - Azure REST API: Use a `PATCH` request to the Azure REST API for the workspace. The body of the request should set `{"properties":{"allowRoleAssignmeentOnRG":true}}`. The following example shows a `PATCH` request using `curl`. Replace `<your-subscription>`, `<resource-group-name>`, `<workspace-name>`, and `<YOUR-ACCESS-TOKEN>` with the values for your scenario. For more information on using REST APIs, visit the [Azure REST API documentation](/rest/api/azure/).
 
@@ -197,6 +134,71 @@ You can convert hubs created before 11/19/2024 by using one of the following met
     ws.allow_roleassignment_on_rg = True
     ws = ml_client.workspaces.begin_update(workspace=ws).result()
     ```
+
+If you encounter problems with the Azure AI Administrator role, you can revert to the Contributor role as a troubleshooting step. For more information, see [Revert to the Contributor role](#revert-to-the-contributor-role).
+
+### Azure AI Developer role
+
+The full set of permissions for the new "Azure AI Developer" role are as follows:
+
+```json
+{
+    "Permissions": [ 
+        { 
+        "Actions": [
+            "Microsoft.MachineLearningServices/workspaces/*/read",
+            "Microsoft.MachineLearningServices/workspaces/*/action",
+            "Microsoft.MachineLearningServices/workspaces/*/delete",
+            "Microsoft.MachineLearningServices/workspaces/*/write",
+            "Microsoft.MachineLearningServices/locations/*/read",
+            "Microsoft.Authorization/*/read",
+            "Microsoft.Resources/deployments/*"
+        ],
+    
+        "NotActions": [
+            "Microsoft.MachineLearningServices/workspaces/delete",
+            "Microsoft.MachineLearningServices/workspaces/write",
+            "Microsoft.MachineLearningServices/workspaces/listKeys/action",
+            "Microsoft.MachineLearningServices/workspaces/hubs/write",
+            "Microsoft.MachineLearningServices/workspaces/hubs/delete",
+            "Microsoft.MachineLearningServices/workspaces/featurestores/write",
+            "Microsoft.MachineLearningServices/workspaces/featurestores/delete"
+        ], 
+        "DataActions": [ 
+            "Microsoft.CognitiveServices/accounts/OpenAI/*", 
+            "Microsoft.CognitiveServices/accounts/SpeechServices/*", 
+            "Microsoft.CognitiveServices/accounts/ContentSafety/*" 
+        ], 
+        "NotDataActions": [], 
+        "Condition": null, 
+        "ConditionVersion": null 
+        } 
+    ] 
+}
+```
+
+If the built-in Azure AI Developer role doesn't meet your needs, you can create a [custom role](#create-custom-roles).
+
+## Default roles for projects 
+
+Projects in Azure AI Foundry portal have built-in roles that are available by default. 
+
+Here's a table of the built-in roles and their permissions for the project:
+
+| Role | Description | 
+| --- | --- |
+| Owner | Full access to the project, including the ability to assign permissions to project users. |
+| Contributor |    User has full access to the project but can't assign permissions to project users. |
+| Azure AI Administrator (preview) | This role is automatically assigned to the system-assigned managed identity for the hub. The Azure AI Administrator role has the minimum permissions needed for the managed identity to perform its tasks. For more information, see [Azure AI Administrator role preview](#azure-ai-administrator-role-preview). |
+| Azure AI Developer |     User can perform most actions, including create deployments, but can't assign permissions to project users. |
+| Azure AI Inference Deployment Operator | Perform all actions required to create a resource deployment within a resource group. |
+| Reader |     Read only access to the project. |
+
+When a user is granted access to a project (for example, through the Azure AI Foundry portal permission management), two more roles are automatically assigned to the user. The first role is Reader on the hub. The second role is the Inference Deployment Operator role, which allows the user to create deployments on the resource group that the project is in. This role is composed of these two permissions: ```"Microsoft.Authorization/*/read"``` and    ```"Microsoft.Resources/deployments/*"```.
+
+In order to complete end-to-end AI development and deployment, users only need these two autoassigned roles and either the Contributor or Azure AI Developer role on a project.
+
+The minimum permissions needed to create a project is a role that has the allowed action of `Microsoft.MachineLearningServices/workspaces/hubs/join` on the hub. The Azure AI Developer built-in role has this permission.
 
 ## Dependency service Azure RBAC permissions
 
@@ -503,6 +505,31 @@ Assign the following roles to the user or service principal. The role you assign
 | Azure OpenAI | Cognitive Services User | List API-Keys from Azure AI Foundry. |
 | Azure AI Search | Search Index Data Contributor | Required for indexing scenarios. |
 | Azure AI Search| Search Index Data Reader | Inference service queries the data from the index. Only used for inference scenarios. |
+
+### Revert to the Contributor role
+
+If you create a new hub and encounter errors with the new default role assignment of Azure AI Administrator for the managed identity, use the following steps to revert to the Contributor role:
+
+> [!IMPORTANT]
+> We don't recommend reverting to the Contributor role unless you encounter problems. If reverting does solve the problems that you are encountering, please log a support incident with information on the problems that reverting solved so that we can invesitage further.
+
+1. Delete the role assignment for the hub's managed-identity. The scope for this role assignment is the __resource group__ that contains the hub, so the role must be deleted from the resource group. 
+
+    > [!TIP]
+    > The system-assigned managed identity for the hub is the same as the hub name.
+
+    From the Azure portal, navigate to the __resource group__ that contains the hub. Select __Access control (IAM)__, and then select __Role assignments__. In the list of role assignments, find the role assignment for the managed identity. Select it, and then select __Delete__.
+
+    For information on deleting a role assignment, see [Remove role assigngments](/azure/role-based-access-control/role-assignments-remove).
+
+1. Create a new role assignment on the __resource group__ for the __Contributor__ role. When adding this role assignment, select the managed-identity for the hub as the assignee. The name of the system-assigned managed identity is same as the hub name.
+
+    1. From the Azure portal, navigate to the __resource group__ that contains the hub. Select __Access control (IAM)__, and then select __Add role assignment__. 
+    1. From the __Role__ tab, select __Contributor__. 
+    1. From the __Members__ tab, select __Managed identity__, __+ Select members__, ans set the __Managed identity__ dropdown to __Azure AI hub__. In the __Select__ field, enter the name of the hub. Select the hub from the list, and then select __Select__.
+    1. From the __Review + assign__ tab, select __Review + assign__.
+
+1. If reverting to the Contributor role resolves the problem, and you would like to opt-out of using the Azure AI Administrator role and instead return to using the Contributor role as the default, please open a support incident and request that the Azure AI Administrator role be disabled for your subscription.
 
 ## Next steps
 

@@ -583,6 +583,9 @@ Here are a few things to be aware of while you use Azure RBAC:
 
 If you create a new workspace and encounter errors with the new default role assignment of Azure AI Administrator for the workspace managed identity, use the following steps to revert to the Contributor role:
 
+> [!IMPORTANT]
+> We don't recommend reverting to the Contributor role unless you encounter problems. If reverting does solve the problems that you are encountering, please log a support incident with information on the problems that reverting solved so that we can invesitage further.
+
 1. Delete the role assignment for the workspace's managed-identity. The scope for this role assignment is the __resource group__ that contains the workspace, so the role must be deleted from the resource group. 
 
     > [!TIP]
