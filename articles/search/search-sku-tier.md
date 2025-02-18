@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 10/25/2024
+ms.date: 01/15/2025
 
 ---
 
@@ -55,16 +55,12 @@ You can find out more about the various tiers on the [pricing page](https://azur
 
 The supported [regions list](search-region-support.md) provides the locations where Azure AI Search is offered.
 
-Currently, several regions are at capacity for specific tiers and can't be used for new search services. If you use the Azure portal to create a search service, the Azure portal excludes any region-tier combinations that aren't available.
+Currently, several regions are capacity-constrained for specific tiers and can't be used for new search services. If you use the Azure portal to create a search service, the Azure portal excludes any region-tier combinations that aren't available.
 
 | Region | Disabled tier (SKU) due to over-capacity | Suggested alternative |
 |--------|------------------------------------------|-----------------------|
-| East US 2| Basic, S1| Central US |
-| South Central US | All tiers | Central US |
-| US Gov Virginia | All tiers | US Gov Arizona |
-| West Europe | All tiers | Sweden Central/North Europe |
-| West US 3| Basic, S1 | Central US |
-| North Europe | S2, S3, S3 HD, L1, L2 | UK South |
+| France Central | All tiers| Sweden Central, West Europe|
+| North Europe | All tiers | Sweden Central, West Europe|
 
 ## Feature availability by tier
 
@@ -109,7 +105,7 @@ This billing model is based on the concept of applying the billing rate to the n
 
 ## Tier upgrade or downgrade
 
-There is no built-in support to upgrade or downgrade tiers. If you want to switch to a different tier, the approach is:
+There's no built-in support to upgrade or downgrade tiers. If you want to switch to a different tier, the approach is:
 
 + Create a new search service at the new tier.
 

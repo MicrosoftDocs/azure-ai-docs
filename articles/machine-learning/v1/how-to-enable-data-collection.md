@@ -39,7 +39,6 @@ Once collection is enabled, the data you collect helps you:
 > The MDC feature is incompatible with any other image than Ubuntu 18.04, which is no available after the Ubuntu 18.04 image is deprecated.
 >
 > mMore information you can refer to:
-> * [openmpi3.1.2-ubuntu18.04 release-notes](https://github.com/Azure/AzureML-Containers/blob/master/base/cpu/openmpi3.1.2-ubuntu18.04/release-notes.md)
 > * [data science virtual machine release notes](../data-science-virtual-machine/release-notes.md#september-20-2022)
 
 >[!NOTE]

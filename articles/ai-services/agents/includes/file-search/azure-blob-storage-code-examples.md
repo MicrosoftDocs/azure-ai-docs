@@ -4,7 +4,7 @@ author: fosteramanda
 ms.author: fosteramanda
 ms.service: azure-ai-agent-service
 ms.topic: include
-ms.date: 12/10/2024
+ms.date: 01/31/2025
 ---
 
 ## Quickstart – Use existing files in Azure Blob Storage with file search

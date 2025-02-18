@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.custom: linux-related-content
 ms.topic: include
-ms.date: 11/19/2024
+ms.date: 02/07/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD033 -->
@@ -16,14 +16,14 @@ ms.author: lajanuar
 >
 > This project uses cURL command-line tool to execute REST API calls.
 
-| [Document Intelligence REST API](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) | [Supported Azure SDKS](../../../sdk-overview-v4-0.md)
+| [Document Intelligence REST API](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) | [Supported Azure `SDK`s](../../../sdk-overview-v4-0.md)
 
 ## Prerequisites
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
 - The cURL command line tool installed. Windows 10 and Windows 11 ship with a copy of cURL. At a command prompt, type the following cURL command. If the help options display, cURL is installed in your Windows environment.
 
-  ```console
+  ```bash
   curl -help
   ```
 
@@ -60,10 +60,10 @@ Use the following table as a reference. Replace *\<modelId>* and *\<document-url
 
 ## POST request
 
-Open a console window and run the following cURL command. The commands include the endpoint and key environment variables previously created in the set environment variables section. Replace those variables if your variable names differ. Remember to replace the *\<modelId>* and *\<document-url>* parameters.
+Open a bash window and run the following cURL command. The commands include the endpoint and key environment variables previously created in the set environment variables section. Replace those variables if your variable names differ. Remember to replace the *\<modelId>* and *\<document-url>* parameters.
 
-```console
-curl -i -X POST "%DI_ENDPOINT%/documentintelligence/documentModels/{modelId}:analyze?api-version=2024-02-29-preview" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: %DI_KEY%" --data-ascii "{'urlSource': '<document-url>'}"
+```bash
+curl -i -X POST "POST {endpoint}/documentintelligence/documentModels/{modelId}:analyze?_overload=analyzeDocument&api-version=2024-11-30" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: {DI_KEY}" --data-ascii "{'urlSource': '<document-url>'}"
 ```
 
 To enable add-on capabilities, use the `features` query parameter in the POST request. There are four add-on capabilities available with the `2023-07-31` (GA) and later releases: *ocr.highResolution*, *ocr.formula*, *ocr.font*, and *queryFields.premium*. To learn more about each of the capabilities, see [Custom models](../../../concept/accuracy-confidence.md).
@@ -71,7 +71,7 @@ To enable add-on capabilities, use the `features` query parameter in the POST re
 You can only call the *highResolution*, *formula*, and *font* capabilities for the Read and Layout model, and the *queryFields* capability for the General Documents model. The following example shows how to call the *highResolution*, *formula*, and *font* capabilities for the Layout model.
 
 ```bash
-curl -i -X POST "%DI_ENDPOINT%documentintelligence/documentModels/prebuilt-layout:analyze?features=ocr.highResolution,ocr.formula,ocr.font?api-version=2024-02-29-preview" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: %DI_KEY%" --data-ascii "{'urlSource': '<document-url>'}"
+curl -i -X POST "{endpoint}/documentintelligence/documentModels/prebuilt-layout:analyze?features=ocr.highResolution,ocr.formula,ocr.font?api-version=2024-11-30" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: {DI_KEY}" --data-ascii "{'urlSource': '<document-url>'}"
 ```
 
 ### POST response
@@ -82,7 +82,7 @@ You receive a `202 (Success)` response that includes an `Operation-location` hea
 
 ### Get analyze result (GET Request)
 
-After you call the [`Analyze document`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2024-02-29-preview&preserve-view=true&tabs=HTTP) API, call the [`Get analyze` result}(/rest/api/aiservices/document-models/get-analyze-result?view=rest-aiservices-2024-02-29-preview&preserve-view=true&tabs=HTTP) API to get the status of the operation and the extracted data.
+After you call the [`Analyze document`](/rest/api/aiservices/document-models/analyze-batch-documents?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true&tabs=HTTP) API, call the [`Get analyze` result](/rest/api/aiservices/document-models/get-analyze-result?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true&tabs=HTTP) API to get the status of the operation and the extracted data.
 
 <!-- markdownlint-disable MD024 -->
 
@@ -92,16 +92,16 @@ The cURL command line tool doesn't format API responses that contain JSON conten
 
 Use the NodeJS *json tool* as a JSON formatter for cURL. If you don't have [Node.js](https://nodejs.org/) installed, download and install the latest version.
 
-1. Open a console window and install the json tool by using the following command:
+1. Open a bash window and install the json tool by using the following command:
 
-   ```console
+   ```bash
    npm install -g jsontool
    ```
 
 1. Pretty print the JSON output by including the pipe character `| json` with your GET requests.
 
-   ```console
-   curl -i -X GET "<endpoint>documentintelligence/documentModels/prebuilt-read/analyzeResults/0e49604a-2d8e-4b15-b6b8-bb456e5d3e0a?api-version=2024-02-29-preview"-H "Ocp-Apim-Subscription-Key: <subscription key>" | json
+   ```bash
+   curl -i -X GET "<endpoint>documentintelligence/documentModels/prebuilt-read/analyzeResults/0e49604a-2d8e-4b15-b6b8-bb456e5d3e0a?api-version=2024-11-30"-H "Ocp-Apim-Subscription-Key: <subscription key>" | json
    ```
 
 #### [macOS](#tab/macOS)
@@ -110,8 +110,8 @@ The *json_pp* command tool ships with macOS and can be used as a JSON formatter 
 
 - Pretty print the JSON output by including `| json_pp` with your GET requests.
 
-  ```console
-  curl -i -X GET "{endpoint}documentintelligence/documentModels/prebuilt-read/analyzeResults/0e49604a-2d8e-4b15-b6b8-bb456e5d3e0a?api-version=2024-02-29-preview"-H "Ocp-Apim-Subscription-Key: <subscription key>" | json_pp
+  ```bash
+  curl -i -X GET "{endpoint}/documentintelligence/documentModels/{modelId}/analyzeResults/{resultId}?api-version=2024-11-30"-H "Ocp-Apim-Subscription-Key: <subscription key>" | json_pp
   ```
 
 #### [Linux](#tab/linux)
@@ -120,8 +120,8 @@ The *json_pp* command line tool is preinstalled in most Linux distributions. If 
 
 - Pretty print the JSON output by including `| json_pp` with your `GET` requests.
 
-  ```console
-  curl -i -X GET "<endpoint>documentintelligence/documentModels/prebuilt-read/analyzeResults/0e49604a-2d8e-4b15-b6b8-bb456e5d3e0a?api-version=2024-02-29-preview"-H "Ocp-Apim-Subscription-Key: <subscription key>" | json_pp
+  ```bash
+  curl -i -X GET "{endpoint}/documentintelligence/documentModels/{modelId}/analyzeResults/{resultId}?api-version=2024-11-30"-H "Ocp-Apim-Subscription-Key: <subscription key>" | json_pp
   ```
 
 ---
@@ -134,8 +134,8 @@ Before you run the following command, make these changes:
 - Replace *\<DI_KEY* with the variable for your environment variable if it differs from the name in the code.
 - Replace *\<json-tool> with your JSON formatting tool.
 
-```console
-curl -i -X GET "<POST response>" -H "Ocp-Apim-Subscription-Key: %DI_KEY%" | `<json-tool>`
+```bash
+curl -i -X GET "<POST response>" -H "Ocp-Apim-Subscription-Key: {DI_KEY}" | `<json-tool>`
 ```
 
 ### Examine the response

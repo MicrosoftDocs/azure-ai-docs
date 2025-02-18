@@ -3,10 +3,10 @@ title: Get started building a chat app using the Azure AI Foundry SDK
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to build a custom chat app in Python using the Azure AI SDK.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom: build-2024, devx-track-azurecli, devx-track-python, ignite-2024
 ms.topic: how-to
-ms.date: 11/07/2024
+ms.date: 02/12/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -42,7 +42,7 @@ pip install azure-ai-projects azure-ai-inference azure-identity
 
 Create a file named **chat.py**.  Copy and paste the following code into it.
 
-:::code language="python" source="~/azureai-samples-temp/scenarios/inference/chat-app/chat-simple.py":::
+:::code language="python" source="~/azureai-samples-main/scenarios/projects/basic/chat-simple.py":::
 
 ## Insert your connection string
 
@@ -72,7 +72,7 @@ Let's change the script to take input from a client application and generate a s
 
 1. Now define a `get_chat_response` function that takes messages and context, generates a system message using a prompt template, and calls a model.  Add this code to your  existing **chat.py** file:
 
-    :::code language="python" source="~/azureai-samples-temp/scenarios/inference/chat-app/chat-template.py" id="chat_function":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/projects/basic/chat-template.py" id="chat_function":::
 
     > [!NOTE]
     > The prompt template uses mustache format.
@@ -81,7 +81,7 @@ Let's change the script to take input from a client application and generate a s
 
 1. Now simulate passing information from a frontend application to this function.  Add the following code to the end of your **chat.py** file.  Feel free to play with the message and add your own name.
 
-    :::code language="python" source="~/azureai-samples-temp/scenarios/inference/chat-app/chat-template.py" id="create_response":::
+    :::code language="python" source="~/azureai-samples-main/scenarios/projects/basic/chat-template.py" id="create_response":::
 
 Run the revised script to see the response from the model with this new input.
 

@@ -57,6 +57,21 @@ var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
 AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredential());
 ```
 
+# [JavaScript](#tab/javascript)
+
+```javascript
+const connectionString =
+  process.env["AZURE_AI_PROJECTS_CONNECTION_STRING"] || "<project connection string>";
+
+if (!connectionString) {
+  throw new Error("AZURE_AI_PROJECTS_CONNECTION_STRING must be set.");
+}
+const client = AIProjectsClient.fromConnectionString(
+    connectionString || "",
+    new DefaultAzureCredential(),
+);
+```
+
 ---
 
 ## Step 2: Upload files and add them to a Vector Store
@@ -95,6 +110,24 @@ VectorStore vectorStore = await client.CreateVectorStoreAsync(
     fileIds:  new List<string> { uploadedAgentFile.Id },
     name: "my_vector_store");
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+const localFileStream = fs.createReadStream("sample_file_for_upload.txt");
+const file = await client.agents.uploadFile(localFileStream, "assistants", {
+  fileName: "sample_file_for_upload.txt",
+});
+console.log(`Uploaded file, ID: ${file.id}`);
+
+const vectorStore = await client.agents.createVectorStore({
+  fileIds: [file.id],
+  name: "my_vector_store",
+});
+console.log(`Created vector store, ID: ${vectorStore.id}`);
+```
+
+
 ---
 
 ## Step 3: Create an agent and enable file search
@@ -135,6 +168,19 @@ Response<Agent> agentResponse = await client.CreateAgentAsync(
 Agent agent = agentResponse.Value;
 ```
 
+# [JavaScript](#tab/javascript)
+
+```javascript
+const fileSearchTool = ToolUtility.createFileSearchTool([vectorStore.id]);
+
+const agent = await client.agents.createAgent("gpt-4o-mini", {
+  name: "SDK Test Agent - Retrieval",
+  instructions: "You are helpful agent that can help fetch data from files you know about.",
+  tools: [fileSearchTool.definition],
+  toolResources: fileSearchTool.resources,
+});
+console.log(`Created agent, agent ID : ${agent.id}`);
+```
 ---
 
 ## Step 4: Create a thread
@@ -173,6 +219,22 @@ Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
     "Can you give me the documented codes for 'banana' and 'orange'?");
 ThreadMessage message = messageResponse.Value;
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+// Create thread with file resources.
+// If the agent has multiple threads, only this thread can search this file.
+const thread = await client.agents.createThread({ toolResources: fileSearchTool.resources });
+
+// add a message to thread
+await client.agents.createMessage(
+    thread.id, {
+    role: "user",
+    content: "Can you give me the documented codes for 'banana' and 'orange'?",
+});
+```
+
 ---
 
 ## Step 5: Create a run and check the output
@@ -228,4 +290,53 @@ foreach (ThreadMessage threadMessage in messages)
     }
 }
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+
+  // create a run
+  const streamEventMessages = await client.agents.createRun(thread.id, agent.id).stream();
+
+  for await (const eventMessage of streamEventMessages) {
+    switch (eventMessage.event) {
+      case RunStreamEvent.ThreadRunCreated:
+        break;
+      case MessageStreamEvent.ThreadMessageDelta:
+        {
+          const messageDelta = eventMessage.data;
+          messageDelta.delta.content.forEach((contentPart) => {
+            if (contentPart.type === "text") {
+              const textContent = contentPart;
+              const textValue = textContent.text?.value || "No text";
+            }
+          });
+        }
+        break;
+
+      case RunStreamEvent.ThreadRunCompleted:
+        break;
+      case ErrorEvent.Error:
+        console.log(`An error occurred. Data ${eventMessage.data}`);
+        break;
+      case DoneEvent.Done:
+        break;
+    }
+  }
+
+  // Print the messages from the agent
+  const messages = await client.agents.listMessages(thread.id);
+
+  // Messages iterate from oldest to newest
+  // messages[0] is the most recent
+  for (let i = messages.data.length - 1; i >= 0; i--) {
+    const m = messages.data[i];
+    if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
+      const textContent = m.content[0];
+      console.log(`${textContent.text.value}`);
+      console.log(`---------------------------------`);
+    }
+  }
+```
+
 ---

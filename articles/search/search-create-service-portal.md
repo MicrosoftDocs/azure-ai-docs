@@ -11,7 +11,7 @@ ms.custom:
   - references_regions
   - build-2024
 ms.topic: conceptual
-ms.date: 10/17/2024
+ms.date: 01/15/2025
 ---
 
 # Create an Azure AI Search service in the Azure portal
@@ -119,8 +119,8 @@ Generally, choose a region near you, unless the following considerations apply:
 
 Currently, the following regions offer cross-region among all three services (Azure AI Search, Azure OpenAI, Azure AI Vision multimodal). This list isn't definitive, and there might be more choices beyond the regions listed here depending on the tier. Also, region status can change quickly, so be sure to confirm region choice before installing.
 
-+ **Americas**: West US
-+ **Europe**: France Central, North Europe, Sweden Central
++ **Americas**: West US, East US
++ **Europe**: Switzerland North, Sweden Central
 
 ## Choose a tier
 
@@ -161,7 +161,7 @@ Unless you're using the Azure portal, programmatic access to your new service re
 
    :::image type="content" source="media/search-create-service-portal/set-authentication-options.png" lightbox="media/search-create-service-portal/set-authentication-options.png" alt-text="Screenshot of the Keys page with authentication options." border="true":::
 
-An endpoint and key aren't needed for portal-based tasks. the Azure portal is already linked to your Azure AI Search resource with admin rights. For a portal walkthrough, start with [Quickstart: Create an Azure AI Search index in the Azure portal](search-get-started-portal.md).
+An endpoint and key aren't needed for portal-based tasks. The Azure portal is already linked to your Azure AI Search resource with admin rights. For a portal walkthrough, start with [Quickstart: Create an Azure AI Search index in the Azure portal](search-get-started-portal.md).
 
 ## Scale your service
 
@@ -195,7 +195,7 @@ Although most customers use just one service, service redundancy might be necess
 + Globally deployed applications might require search services in each geography to minimize latency.
 
 > [!NOTE]
-> In Azure AI Search, you cannot segregate indexing and querying operations; thus, you would never create multiple services for segregated workloads. An index is always queried on the service in which it was created (you cannot create an index in one service and copy it to another).
+> In Azure AI Search, you can't segregate indexing and querying operations; thus, you would never create multiple services for segregated workloads. An index is always queried on the service in which it was created (you can't create an index in one service and copy it to another).
 
 A second service isn't required for high availability. High availability for queries is achieved when you use two or more replicas in the same service. Replica updates are sequential, which means at least one is operational when a service update is rolled out. For more information about uptime, see [Service Level Agreements](https://azure.microsoft.com/support/legal/sla/search/v1_0/).
 

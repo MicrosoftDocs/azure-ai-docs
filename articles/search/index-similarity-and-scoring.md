@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 12/10/2024
+ms.date: 01/17/2025
 ---
 
 # Relevance in keyword search (BM25 scoring)
@@ -117,7 +117,7 @@ POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-ve
 As long as the same `sessionId` is used, a best-effort attempt is made to target the same replica, increasing the consistency of results your users will see. 
 
 > [!NOTE]
-> Reusing the same `sessionId` values repeatedly can interfere with the load balancing of the requests across replicas and adversely affect the performance of the search service. The value used as sessionId cannot start with a '_' character.
+> Reusing the same `sessionId` values repeatedly can interfere with the load balancing of the requests across replicas and adversely affect the performance of the search service. The value used as sessionId can't start with a '_' character.
 
 ## Relevance tuning
 
@@ -171,6 +171,8 @@ The featuresMode parameter isn't documented in the REST APIs, but you can use it
 ## Number of ranked results in a full text query response
 
 By default, if you aren't using pagination, the search engine returns the top 50 highest ranking matches for full text search. You can use the `top` parameter to return a smaller or larger number of items (up to 1,000 in a single response). You can use `skip` and `next` to page results. Paging determines the number of results on each logical page and supports content navigation. For more information, see [Shape search results](search-pagination-page-layout.md).
+
+If your full text query is part of a [hybrid query](hybrid-search-how-to-query.md), you can [set `maxTextRecallSize`](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode) to increase or decrease the number of results from the text side of the query.
 
 Full text search is subject to a maximum limit of 1,000 matches (see [API response limits](search-limits-quotas-capacity.md#api-response-limits)). Once 1,000 matches are found, the search engine no longer looks for more.
 

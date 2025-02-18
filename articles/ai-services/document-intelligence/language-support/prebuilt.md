@@ -207,7 +207,7 @@ Azure AI Document Intelligence models provide multilingual document processing s
 | &bullet; Spanish (`es`) |Spain (`es`)|
 | &bullet; Swedish (`sv`) | Sweden (`se`)|
 | &bullet; Thai (`th`) | Thailand (`th`)|
-| &bullet; Turkish (`tr`) | Turkey (`tr`)|
+| &bullet; Turkish (`tr`) | Türkiye (`tr`)|
 | &bullet; Ukrainian (`uk`) | Ukraine (`uk`)|
 | &bullet; Vietnamese (`vi`) | Vietnam (`vi`)|
 

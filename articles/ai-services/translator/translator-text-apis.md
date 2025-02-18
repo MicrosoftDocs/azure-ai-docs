@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 07/08/2024
+ms.date: 01/27/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, javascript, python
@@ -109,7 +109,7 @@ To call the Translator service via the [REST API](reference/rest-api-guide.md), 
 
 1. Open the **Program.cs** file.
 
-1. Delete the pre-existing code, including the line `Console.WriteLine("Hello World!")`. Copy and paste the code samples into your application's Program.cs file. For each code sample, make sure you update the key and endpoint variables with values from your Azure portal Translator instance.
+1. Delete the preexisting code, including the line `Console.WriteLine("Hello World!")`. Copy and paste the code samples into your application's Program.cs file. For each code sample, make sure you update the key and endpoint variables with values from your Azure portal Translator instance.
 
 1. Once you add a desired code sample to your application, choose the green **start button** next to formRecognizer_quickstart to build and run your program, or press **F5**.
 
@@ -117,17 +117,17 @@ To call the Translator service via the [REST API](reference/rest-api-guide.md), 
 
 ### [Go](#tab/go)
 
-You can use any text editor to write Go applications. We recommend using the latest version of [Visual Studio Code and the Go application extension](/azure/developer/go/configure-visual-studio-code).
+You can use any text editor to write `Go` applications. We recommend using the latest version of [Visual Studio Code and the `Go` application extension](/azure/developer/go/configure-visual-studio-code).
 
 > [!TIP]
 >
-> If you're new to Go, try the [Get started with Go](/training/modules/go-get-started/) Learn module.
+> If you're new to `Go`, try the [Get started with `Go`](/training/modules/go-get-started/) Learn module.
 
-1. If you don't have it in your dev environment, [download and install Go](https://go.dev/doc/install).
+1. If you don't have it in your dev environment, [download and install `Go`](https://go.dev/doc/install).
 
-    * Download the Go application version for your operating system.
+    * Download the `Go` application version for your operating system.
     * Once the download is complete, run the installer.
-    * Open a command prompt and enter the following to confirm Go was installed:
+    * Open a command prompt and enter the following to confirm `Go` was installed:
 
       ```console
             go version
@@ -139,7 +139,7 @@ You can use any text editor to write Go applications. We recommend using the lat
 
 1. Copy and paste the code samples into your **text-translator.go** file. Make sure you update the key variable with the value from your Azure portal Translator instance.
 
-1. Once you add a code sample to your application, your Go program can be executed in a command or terminal prompt. Make sure your prompt's path is set to the **translator-text-app** folder and use the following command:
+1. Once you add a code sample to your application, your `Go` program can be executed in a command or terminal prompt. Make sure your prompt's path is set to the **translator-text-app** folder and use the following command:
 
       ```console
        go run translation.go
@@ -152,7 +152,7 @@ You can use any text editor to write Go applications. We recommend using the lat
   >[!TIP]
   >
   > * Visual Studio Code offers a **Coding Pack for Java** for Windows and macOS.The coding pack is a bundle of VS Code, the Java Development Kit (JDK), and a collection of suggested extensions by Microsoft. The Coding Pack can also be used to fix an existing development environment.
-  > * If you are using VS Code and the Coding Pack For Java, install the [**Gradle for Java**](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-gradle) extension.
+  > * If you're using VS Code and the Coding Pack For Java, install the [**Gradle for Java**](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-gradle) extension.
 
 * If you aren't using Visual Studio Code, make sure you have the following installed in your development environment:
 
@@ -183,7 +183,7 @@ You can use any text editor to write Go applications. We recommend using the lat
 1. Accept the default project name (translator-text-app) by selecting **Return** or **Enter**.
 
   > [!NOTE]
-  > It may take a few minutes for the entire application to be created, but soon you should see several folders and files including `build-gradle.kts`.
+  > It can take a few minutes for the entire application to be created, but soon you should see several folders and files including `build-gradle.kts`.
 
 1. Update `build.gradle.kts` with the following code:
 
@@ -316,7 +316,7 @@ You can use any text editor to write Go applications. We recommend using the lat
     ```
 
     > [!NOTE]
-    > We will also use a Python built-in package called json. It's used to work with JSON data.
+    > We also use a Python built-in package called json. It's used to work with JSON data.
 
 1. Create a new Python file called **text-translator.py** in your preferred editor or IDE.
 
@@ -3130,7 +3130,7 @@ After a successful call, you should see the following response. For more informa
 
 ### Java users
 
-If you're encountering connection issues, it may be that your TLS/SSL certificate is expired. To resolve this issue, install the [DigiCertGlobalRootG2.crt](http://cacerts.digicert.com/DigiCertGlobalRootG2.crt) to your private store.
+If you're encountering connection issues, your TLS/SSL certificate could be is expired. To resolve this issue, install the [DigiCertGlobalRootG2.crt](http://cacerts.digicert.com/DigiCertGlobalRootG2.crt) to your private store.
 
 ## Next steps
 

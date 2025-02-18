@@ -5,7 +5,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 03/07/2024
+ms.date: 01/10/2025
 ---
 
 [!INCLUDE [Set up required variables](./use-your-data-common-variables.md)]
@@ -20,7 +20,7 @@ To trigger a response from the model, you should end with a user message indicat
 > There are several parameters you can use to change the model's response, such as `temperature` or `top_p`. See the [reference documentation](../reference.md#completions-extensions) for more information.
 
 ```bash
-curl -i -X POST $AZURE_OPENAI_ENDPOINT/openai/deployments/$AZURE_OPENAI_DEPLOYMENT_ID/chat/completions?api-version=2024-02-15-preview \
+curl -i -X POST $AZURE_OPENAI_ENDPOINT/openai/deployments/$AZURE_OPENAI_DEPLOYMENT_ID/chat/completions?api-version=2024-10-21 \
 -H "Content-Type: application/json" \
 -H "api-key: $AZURE_OPENAI_API_KEY" \
 -d \
@@ -31,8 +31,11 @@ curl -i -X POST $AZURE_OPENAI_ENDPOINT/openai/deployments/$AZURE_OPENAI_DEPLOYME
             "type": "azure_search",
             "parameters": {
                 "endpoint": "'$AZURE_AI_SEARCH_ENDPOINT'",
-                "key": "'$AZURE_AI_SEARCH_API_KEY'",
-                "index_name": "'$AZURE_AI_SEARCH_INDEX'"
+                "index_name": "'$AZURE_AI_SEARCH_INDEX'",
+                "authentication": {
+                    "type": "api_key",
+                    "key": "'$AZURE_AI_SEARCH_API_KEY'"
+                }
             }
         }
     ],
@@ -81,7 +84,8 @@ curl -i -X POST $AZURE_OPENAI_ENDPOINT/openai/deployments/$AZURE_OPENAI_DEPLOYME
         "prompt_tokens": 3779,
         "completion_tokens": 105,
         "total_tokens": 3884
-    }
+    },
+    "system_fingerprint": "fp_65792305e4"
 }
 ```
 

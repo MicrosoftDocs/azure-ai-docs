@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 1/3/2025
+ms.date: 1/13/2025
 ms.author: eur
 keywords: how to record video samples for custom text to speech avatar
 ---
@@ -15,7 +15,7 @@ keywords: how to record video samples for custom text to speech avatar
 
 This article provides instructions on preparing high-quality video samples for creating a custom text to speech avatar.
 
-Custom text to speech avatar model building requires training on a video recording of a real human speaking. This person is the avatar talent. You must get sufficient consent under all relevant laws and regulations from the avatar talent to create a custom avatar from their talent's image or likeness. To learn about requirements of the consent statement video, see [Get consent file from the avatar talent](custom-avatar-create.md#get-consent-file-from-the-avatar-talent).
+Custom text to speech avatar model building requires training on a video recording of a real human speaking. This person is the avatar talent. You must get sufficient consent under all relevant laws and regulations from the avatar talent to create a custom avatar from their talent's image or likeness. To learn about requirements of the consent statement video, see [Get consent file from the avatar talent](./custom-avatar-create.md#step-2-add-avatar-talent-consent).
 
 ## Recording environment
 
@@ -64,7 +64,7 @@ You need several types of basic video clips:
 
 **Consent Video (Required)**
 The consent video is required for creating a custom avatar. 
-   - The consent video must represent the same avatar talent speaking, following the requirement of the consent statement. Make sure the statement is correctly recorded, and each word is clearly spoken. [Get consent file from the avatar talent](custom-avatar-create.md#get-consent-file-from-the-avatar-talent). You can select any one of the languages supported. 
+   - The consent video must represent the same avatar talent speaking, following the requirement of the consent statement. Make sure the statement is correctly recorded, and each word is clearly spoken. You can select any one of the languages supported. To learn about requirements of the consent statement video, see [Get consent file from the avatar talent](./custom-avatar-create.md#step-2-add-avatar-talent-consent).
    - The avatar talent should always face the front of the camera, without large movements. 
    - The video should be taken in a quiet environment, and the voice should be recorded at a reasonable volume. Try to keep the signal-to-noise ratio higher than 20. For voice recording guidance, see the [Recording custom voice samples](../record-custom-voice-samples.md#recording-your-script) guide.
    - Ensure that the head part will not be occluded in each frame of the video. 

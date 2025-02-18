@@ -1,19 +1,19 @@
 ---
-title: Transparency Note for Azure AI Foundry safety evaluations
+title:  Azure AI Foundry risk and safety evaluations (preview) Transparency Note
 titleSuffix: Azure AI Foundry
 description: Azure AI Foundry safety evaluations intended purpose, capabilities, limitations and how to achieve the best performance.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: article
-ms.date: 11/21/2024
+ms.date: 01/10/2025
 ms.reviewer: mithigpe
 ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Transparency Note for Azure AI Foundry safety evaluations
+# Azure AI Foundry risk and safety evaluations (preview) Transparency Note
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -23,19 +23,22 @@ An AI system includes not only the technology, but also the people who will use 
 
 Microsoft's Transparency Notes are part of a broader effort at Microsoft to put our AI Principles into practice. To find out more, see the [Microsoft AI principles](https://www.microsoft.com/en-us/ai/responsible-ai).
 
-## The basics of Azure AI Foundry safety evaluations
+## The basics of Azure AI Foundry risk and safety evaluations (preview)
 
 ### Introduction
 
-The Azure AI Foundry portal safety evaluations let users evaluate the output of their generative AI application for textual content risks: hateful and unfair content, sexual content, violent content, self-harm-related content, jailbreak vulnerability. Safety evaluations can also help generate adversarial datasets to help you accelerate and augment the red-teaming operation. Azure AI Foundry safety evaluations reflect Microsoft's commitments to ensure AI systems are built safely and responsibly, operationalizing our Responsible AI principles.
+The Azure AI Foundry risk and safety evaluations let users evaluate the output of their generative AI application for textual content risks: hateful and unfair content, sexual content, violent content, self-harm-related content, direct and indirect jailbreak vulnerability, and protected material in content. Safety evaluations can also help generate adversarial datasets to help you accelerate and augment the red-teaming operation. Azure AI Foundry safety evaluations reflect Microsoft's commitments to ensure AI systems are built safely and responsibly, operationalizing our Responsible AI principles.
 
 ### Key terms
 
-- **Hateful and unfair content** refers to any language pertaining to hate toward or unfair representations of individuals and social groups along factors including but not limited to race, ethnicity, nationality, gender, sexual orientation, religion, immigration status, ability, personal appearance, and body size. Unfairness occurs when AI systems treat or represent social groups inequitably, creating or contributing to societal inequities.
-- **Sexual content** includes language pertaining to anatomical organs and genitals, romantic relationships, acts portrayed in erotic terms, pregnancy, physical sexual acts (including assault or sexual violence), prostitution, pornography, and sexual abuse.
-- **Violent content** includes language pertaining to physical actions intended to hurt, injure, damage, or kill someone or something. It also includes descriptions of weapons and guns (and related entities such as manufacturers and associations).
-- **Self-harm-related content** includes language pertaining to actions intended to hurt, injure, or damage one's body or kill oneself.
-- **Jailbreak**, direct prompt attacks, or user prompt injection attacks, refer to users manipulating prompts to inject harmful inputs into LLMs to distort actions and outputs. An example of a jailbreak command is a 'DAN' (Do Anything Now) attack, which can trick the LLM into inappropriate content generation or ignoring system-imposed restrictions.  
+- **Hateful and unfair content (for text and images)** refers to any language or imagery pertaining to hate toward or unfair representations of individuals and social groups along factors including but not limited to race, ethnicity, nationality, gender, sexual orientation, religion, immigration status, ability, personal appearance, and body size. Unfairness occurs when AI systems treat or represent social groups inequitably, creating or contributing to societal inequities.
+- **Sexual content (for text and images)** includes language or imagery pertaining to anatomical organs and genitals, romantic relationships, acts portrayed in erotic terms, pregnancy, physical sexual acts (including assault or sexual violence), prostitution, pornography, and sexual abuse.
+- **Violent content (for text and images)** includes language or imagery  pertaining to physical actions intended to hurt, injure, damage, or kill someone or something. It also includes descriptions of weapons and guns (and related entities such as manufacturers and associations).
+- **Self-harm-related content (for text and images)** includes language or imagery pertaining to actions intended to hurt, injure, or damage one's body or kill oneself.
+- **Protected material content (for text)** known textual content, for example, song lyrics, articles, recipes, and selected web content, that might be output by large language models. By detecting and preventing the display of protected material, organizations can maintain compliance with intellectual property rights and preserve content originality.
+- **Protected material content (for images)** refers to certain protected visual content, that is protected by copyright such as logos and brands, artworks, or fictional characters. The system uses an image-to-text foundation model to identify whether such content is present.
+- **Direct jailbreak**, direct prompt attacks, or user prompt injection attacks, refer to users manipulating prompts to inject harmful inputs into LLMs to distort actions and outputs. An example of a jailbreak command is a 'DAN' (Do Anything Now) attack, which can trick the LLM into inappropriate content generation or ignoring system-imposed restrictions.  
+- **Indirect jailbreak** indirect prompt attacks or cross-domain prompt injection attacks, refers to when malicious instructions are hidden within data that an AI system processes or generates grounded content from. This data can include emails, documents, websites, or other sources not directly authored by the developer or user and can lead to inappropriate content generation or ignoring system-imposed restrictions.
 - **Defect rate (content risk)** is defined as the percentage of instances in your test dataset that surpass a threshold on the severity scale over the whole dataset size.
 - **Red-teaming** has historically described systematic adversarial attacks for testing security vulnerabilities. With the rise of Large Language Models (LLM), the term has extended beyond traditional cybersecurity and evolved in common usage to describe many kinds of probing, testing, and attacking of AI systems. With LLMs, both benign and adversarial usage can produce potentially harmful outputs, which can take many forms, including harmful content such as hateful speech, incitement or glorification of violence, reference to self-harm-related content or sexual content.
 
@@ -43,7 +46,7 @@ The Azure AI Foundry portal safety evaluations let users evaluate the output of 
 
 ### System behavior
 
-Azure AI Foundry provisions an Azure OpenAI GPT-4 model and orchestrates adversarial attacks against your application to generate a high quality test dataset. It then provisions another GPT-4 model to annotate your test dataset for content and security. Users provide their generative AI application endpoint that they wish to test, and the safety evaluations will output a static test dataset against that endpoint along with its content risk label (Very low, Low, Medium, High) and reasoning for the AI-generated label.
+Azure AI Foundry provisions a fine-tuned Azure OpenAI GPT-4o model and orchestrates adversarial attacks against your application to generate a high quality test dataset. It then provisions another GPT-4o model to annotate your test dataset for content and security. Users provide their generative AI application endpoint that they wish to test, and the safety evaluations will output a static test dataset against that endpoint along with its content risk label (Very low, Low, Medium, High) or content risk detection label (True or False) and reasoning for the AI-generated label.
 
 ### Use cases
 
@@ -88,7 +91,7 @@ We encourage customers to leverage Azure AI Foundry safety evaluations in their 
 
 ### Evaluation methods
 
-For all supported content risk types, we have internally checked the quality by comparing the rate of approximate matches between human labelers using a 0-7 severity scale and the safety evaluations' automated annotator also using a 0-7 severity scale on the same datasets. For each risk area, we had both human labelers and an automated annotator label 500 English, single-turn texts. The human labelers and the automated annotator didn't use exactly the same versions of the annotation guidelines; while the automated annotator's guidelines stemmed from the guidelines for humans, they have since diverged to varying degrees (with the hate and unfairness guidelines having diverged the most). Despite these slight to moderate differences, we believe it's still useful to share general trends and insights from our comparison of approximate matches. In our comparisons, we looked for matches with a 2-level tolerance (where human label matched automated annotator label exactly or was within 2 levels above or below in severity), matches with a 1-level tolerance, and matches with a 0-level tolerance.
+For all supported content risk types, we have internally checked the quality by comparing the rate of approximate matches between human labelers using a 0-7 severity scale and the safety evaluations' automated annotator also using a 0-7 severity scale on the same datasets. For each risk area, we had both human labelers and an automated annotator label 500 English, single-turn texts, 250 single-turn text-to-image generations,  and 250 multi-modal text with image-to-text generations. The human labelers and the automated annotator didn't use exactly the same versions of the annotation guidelines; while the automated annotator's guidelines stemmed from the guidelines for humans, they have since diverged to varying degrees (with the hate and unfairness guidelines having diverged the most). Despite these slight to moderate differences, we believe it's still useful to share general trends and insights from our comparison of approximate matches. In our comparisons, we looked for matches with a 2-level tolerance (where human label matched automated annotator label exactly or was within 2 levels above or below in severity), matches with a 1-level tolerance, and matches with a 0-level tolerance.
 
 ### Evaluation results
 

@@ -1,6 +1,10 @@
 items:
 - name: Azure AI Foundry documentation
   href: index.yml
+- name: What is Azure AI Foundry?
+  href: what-is-ai-studio.md
+- name: What's new in Azure AI Foundry?
+  href: whats-new-ai-foundry.md
 - name: Overview
   expanded: true
   items:
@@ -68,11 +72,6 @@ items:
         href: ../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context
       - name: Use GPT-4o in the real-time audio playground
         href: ../ai-services/openai/realtime-audio-quickstart.md?context=/azure/ai-studio/context/context
-      - name: Analyze images and video with GPT-4 for Vision in the playground
-        href: quickstarts/multimodal-vision.md
-      - name: Use your image data with Azure OpenAI
-        href: how-to/data-image-add.md
-        displayName: vision, gpt, turbo
     - name: Azure AI Speech
       items:
       - name: Real-time speech to text
@@ -101,6 +100,8 @@ items:
       items:
         - name: Fine-tuning overview
           href: concepts/fine-tuning-overview.md
+        - name: Fine-tune with serverless API
+          href: how-to/fine-tune-serverless.md
         - name: Fine-tune with user-managed compute
           href: how-to/fine-tune-managed-compute.md
         - name: Fine-tune Azure OpenAI models
@@ -143,6 +144,8 @@ items:
         href: how-to/deploy-models-cohere-embed.md
       - name: Cohere Rerank models
         href: how-to/deploy-models-cohere-rerank.md
+    - name: DeepSeek-R1 reasoning models
+      href: how-to/deploy-models-deepseek.md
     - name: Meta Llama models
       items:
       - name: Meta Llama family models
@@ -153,11 +156,15 @@ items:
       items:
         - name: Mistral premium models
           href: how-to/deploy-models-mistral.md
+        - name: Codestral model
+          href: how-to/deploy-models-mistral-codestral.md
         - name: Mistral Nemo model
           href: how-to/deploy-models-mistral-nemo.md
         - name: Mistral-7B and Mixtral models
           href: how-to/deploy-models-mistral-open.md
       displayName: maas
+    - name: Gretel Navigator model
+      href: how-to/deploy-models-gretel-navigator.md
     - name: JAIS model
       href: how-to/deploy-models-jais.md
     - name: AI21 Jamba models
@@ -176,19 +183,17 @@ items:
       - name: Azure AI model inference
         items:
         - name: What is the Azure AI model inference service?
-          href: ai-services/model-inference.md
+          href: ../ai-foundry/model-inference/overview.md?context=/azure/ai-studio/context/context
         - name: Upgrade from GitHub Models
-          href: ai-services/how-to/quickstart-github-models.md
+          href: ../ai-foundry/model-inference/how-to/quickstart-github-models.md?context=/azure/ai-studio/context/context
         - name: Add and configure models
-          href: ai-services/how-to/create-model-deployments.md
+          href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-studio/context/context
         - name: Deployment types
-          href: ai-services/concepts/deployment-types.md
+          href: ../ai-foundry/model-inference/concepts/deployment-types.md?context=/azure/ai-studio/context/context
         - name: Use the inference endpoint
-          href: ai-services/concepts/endpoints.md
+          href: ../ai-foundry/model-inference/concepts/endpoints.md?context=/azure/ai-studio/context/context
         - name: Quotas and limits
-          href: ai-services/concepts/quotas-limits.md
-        - name: Azure AI model inference FAQ
-          href: ai-services/faq.yml
+          href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-studio/context/context
       - name: Serverless API
         items:
         - name: Deploy models as serverless API
@@ -197,6 +202,8 @@ items:
         - name: Consume serverless API models from a different project or hub
           href: how-to/deploy-models-serverless-connect.md
           displayName: maas, paygo, models-as-a-service
+        - name: Content safety for models deployed with serverless APIs
+          href: concepts/model-catalog-content-safety.md
         - name: Model and region availability for Serverless API deployments
           href: how-to/deploy-models-serverless-availability.md
       - name: Managed compute
@@ -331,6 +338,8 @@ items:
     - name: View evaluation results in the portal
       href: how-to/evaluate-results.md
       displayName: accuracy,metrics
+    - name: Run evaluations online
+      href: how-to/online-evaluation.md
     - name: Evaluate flows in the portal
       items:
         - name: Submit batch run and evaluate a flow
@@ -342,7 +351,7 @@ items:
   - name: Deploy and monitor generative AI apps
     items:
     - name: Continuously monitor your applications
-      href: how-to/online-evaluation.md
+      href: how-to/monitor-applications.md
     - name: Deploy and monitor flows
       items:
       - name: Deploy a flow for real-time inference
@@ -393,10 +402,12 @@ items:
       href: how-to/disable-local-auth.md
   - name: Azure policies
     items:
+    - name: Audit and manage using Azure Policy
+      href: how-to/azure-policy.md
     - name: Built-in policy to allow specific models
       href: how-to/built-in-policy-model-deployment.md
     - name: Custom policy to allow specific models
-      href: how-to/custom-policy-model-deployment.md
+      href: ../ai-foundry/model-inference/how-to/configure-deployment-policies.md?context=/azure/ai-studio/context/context
   - name: Vulnerability management
     href: concepts/vulnerability-management.md
   - name: Disaster recovery
@@ -409,8 +420,10 @@ items:
     href: responsible-use-of-ai-overview.md
   - name: What is Azure AI Content Safety?
     href: ai-services/content-safety-overview.md
-  - name: Use Azure AI Content Safety in the portal
-    href: ai-services/how-to/content-safety.md
+  - name: Content safety for models deployed with serverless APIs
+    href: concepts/model-catalog-content-safety.md
+  - name: Use Azure AI content safety in the portal
+    href: ../ai-services/content-safety/how-to/foundry.md?context=/azure/ai-studio/context/context
   - name: Content filtering
     href: concepts/content-filtering.md
   - name: Use blocklists
@@ -440,21 +453,7 @@ items:
   - name: Prompt flow Python SDK
     href: https://microsoft.github.io/promptflow/reference/index.html#
   - name: Azure AI Model Inference API
-    items:
-      - name: What's the Azure AI Model Inference API?
-        href: reference/reference-model-inference-api.md
-      - name: Reference
-        items:
-        - name: Get Info
-          href: reference/reference-model-inference-info.md
-        - name: Embeddings
-          href: reference/reference-model-inference-embeddings.md
-        - name: Completions
-          href: reference/reference-model-inference-completions.md
-        - name: Chat Completions
-          href: reference/reference-model-inference-chat-completions.md
-        - name: Images Embeddings
-          href: reference/reference-model-inference-images-embeddings.md
+    href: ../ai-foundry/model-inference/reference/reference-model-inference-api.md
   - name: Azure Policy built-ins
     displayName: samples, policies, definitions
     href: ../ai-services/policy-reference.md?context=/azure/ai-studio/context/context

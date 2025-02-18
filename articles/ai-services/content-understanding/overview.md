@@ -18,7 +18,7 @@ ms.custom: ignite-2024-understanding-release
 > [!IMPORTANT]
 >
 > * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes may change or have constrained capabilities, prior to General Availability (GA).
+> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 Azure AI Content Understanding is a new Generative AI based [**Azure AI Service**](../what-are-ai-services.md), designed to process/ingest content of any types (documents, images, videos, and audio) into a user-defined output format.
@@ -73,19 +73,24 @@ See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 ## Responsible AI
  Azure AI Content Understanding is designed to guard against processing harmful content. For more information, *see* our **Transparency Note** and our [**Code of Conduct**](/legal/cognitive-services/openai/code-of-conduct).
 
+### Modified Content Filtering
+
+Azure AI Content Understanding now supports turning off content filtering for approved customers. The subscription IDs with approved modified content filtering impacts the Azure AI Content Understanding output.
+
+> [!IMPORTANT]
+>
+> * Apply for modified content filters via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
+> * For more information, *see* [**Content Filtering**](../openai/concepts/content-filter.md).
+
 ## Data privacy and security
 Developers using the Content Understanding service should review Microsoft's policies on customer data. For more information, visit our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page.
 
 > [!IMPORTANT]
-> If you are using Microsoft products or services to process Biometric Data, you are responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate and required under applicable Data Protection Requirements. "Biometric Data" will have the meaning set forth in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
+> If you're using Microsoft products or services to process Biometric Data, you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate, and required under applicable Data Protection Requirements. "Biometric Data" has the meaning articulated in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
 
 ## Getting started
 Our quickstart guides help you quickly start using the Content Understanding service:
 
 * [**Azure AI Foundry portal Quickstart**](quickstart/use-ai-foundry.md)
 * [**Rest API Quickstart**](quickstart/use-rest-api.md)
-
-
-
-
 

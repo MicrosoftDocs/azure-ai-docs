@@ -15,7 +15,7 @@ ms.author: lajanuar
 
 Azure AI Document Intelligence supports a wide variety of models that enable you to add intelligent document processing to your applications and optimize your workflows. Selecting the right model is essential to ensure the success of your enterprise. In this article, we explore the available Document Intelligence models and provide guidance for how to choose the best solution for your projects.
 
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE5fX1b]
+> [!VIDEO 364078d4-14bc-4b16-995a-526db31ea1ee]
 
 The following decision charts highlight the features of each supported model to help you choose the model that best meets the needs and requirements of your application.
 

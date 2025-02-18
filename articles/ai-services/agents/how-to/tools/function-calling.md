@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 12/11/2024
+ms.date: 01/30/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-function-calling
@@ -22,11 +22,11 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 > [!NOTE]
 > Runs expire ten minutes after creation. Be sure to submit your tool outputs before the expiration.
 
-### Supported models
+### Usage support
 
-The [models page](../../concepts/model-region-support.md) contains the most up-to-date information on regions/models where Agents are supported.
-
-To use all features of function calling including parallel functions, you need to use a model that was released after November 6, 2023.
+|Azure AI foundry support  | Python SDK |	C# SDK | Function calling | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|
+|      | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ::: zone-end
 
@@ -58,7 +58,7 @@ def fetch_weather(location: str) -> str:
     weather_json = json.dumps({"weather": weather})
     return weather_json
     
-    # Statically defined user functions for fast reference
+# Statically defined user functions for fast reference
 user_functions: Set[Callable[..., Any]] = {
     fetch_weather,
 }
@@ -125,9 +125,82 @@ ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
 }
 ```
 
+# [JavaScript](#tab/javascript)
+
+```javascript
+class FunctionToolExecutor {
+  private functionTools: { func: Function, definition: FunctionToolDefinition }[];
+
+  constructor() {
+    this.functionTools = [{
+      func: this.getUserFavoriteCity,
+      ...ToolUtility.createFunctionTool({
+        name: "getUserFavoriteCity",
+        description: "Gets the user's favorite city.",
+        parameters: {}
+      })
+    }, {
+      func: this.getCityNickname,
+      ...ToolUtility.createFunctionTool({
+        name: "getCityNickname",
+        description: "Gets the nickname of a city, e.g. 'LA' for 'Los Angeles, CA'.",
+        parameters: { type: "object", properties: { location: { type: "string", description: "The city and state, e.g. Seattle, Wa" } } }
+      })
+    }, {
+      func: this.getWeather,
+      ...ToolUtility.createFunctionTool({
+        name: "getWeather",
+        description: "Gets the weather for a location.",
+        parameters: { type: "object", properties: { location: { type: "string", description: "The city and state, e.g. Seattle, Wa" }, unit: { type: "string", enum: ['c', 'f'] } } }
+      })
+    }];
+  }
+
+  private getUserFavoriteCity(): {} {
+    return { "location": "Seattle, WA" };
+  }
+
+  private getCityNickname(location: string): {} {
+    return { "nickname": "The Emerald City" };
+  }
+
+  private getWeather(location: string, unit: string): {} {
+    return { "weather": unit === "f" ? "72f" : "22c" };
+  }
+
+  public invokeTool(toolCall: RequiredToolCallOutput & FunctionToolDefinitionOutput): ToolOutput | undefined {
+    console.log(`Function tool call - ${toolCall.function.name}`);
+    const args = [];
+    if (toolCall.function.parameters) {
+      try {
+        const params = JSON.parse(toolCall.function.parameters);
+        for (const key in params) {
+          if (Object.prototype.hasOwnProperty.call(params, key)) {
+            args.push(params[key]);
+          }
+        }
+      } catch (error) {
+        console.error(`Failed to parse parameters: ${toolCall.function.parameters}`, error);
+        return undefined;
+      }
+    }
+    const result = this.functionTools.find((tool) => tool.definition.function.name === toolCall.function.name)?.func(...args);
+    return result ? {
+      toolCallId: toolCall.id,
+      output: JSON.stringify(result)
+    } : undefined;
+  }
+
+  public getFunctionDefinitions(): FunctionToolDefinition[] {
+    return this.functionTools.map(tool => {return tool.definition});
+  }
+}
+```
+
+
 ---
 
-## Create a client
+## Create a client and agent
 
 # [Python](#tab/python)
 
@@ -155,6 +228,11 @@ project_client = AIProjectClient.from_connection_string(
 functions = FunctionTool(user_functions)
 toolset = ToolSet()
 toolset.add(functions)
+
+agent = project_client.agents.create_agent(
+    model="gpt-4o-mini", name="my-agent", instructions="You are a weather bot. Use the provided functions to help answer questions.", toolset=toolset
+)
+print(f"Created agent, ID: {agent.id}")
 ```
 
 # [C#](#tab/csharp)
@@ -172,36 +250,18 @@ Response<Agent> agentResponse = await client.CreateAgentAsync(
 Agent agent = agentResponse.Value;
 ```
 
----
+# [JavaScript](#tab/javascript)
 
-
-## Submitting function outputs
-
-# [Python](#tab/python)
-
-```python
-
-# Create agent with toolset and process a run
-
-agent = project_client.agents.create_agent(
-    model="gpt-4o-mini", name="my-agent", instructions="You are a helpful agent", toolset=toolset
-)
-print(f"Created agent, ID: {agent.id}")
-```
-
-# [C#](#tab/csharp)
-
-```csharp
-// note: parallel function calling is only supported with newer models like gpt-4-1106-preview
-Response<Agent> agentResponse = await client.CreateAgentAsync(
-    model: "gpt-4o-mini",
-    name: "SDK Test Agent - Functions",
-        instructions: "You are a weather bot. Use the provided functions to help answer questions. "
-            + "Customize your responses to the user's preferences as much as possible and use friendly "
-            + "nicknames for cities whenever possible.",
-    tools: new List<ToolDefinition> { getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool }
-    );
-Agent agent = agentResponse.Value;
+```javascript
+const functionToolExecutor = new FunctionToolExecutor();
+const functionTools = functionToolExecutor.getFunctionDefinitions();
+const agent = await client.agents.createAgent("gpt-4o",
+  {
+    name: "my-agent",
+    instructions: "You are a weather bot. Use the provided functions to help answer questions. Customize your responses to the user's preferences as much as possible and use friendly nicknames for cities whenever possible.",
+    tools: functionTools
+  });
+console.log(`Created agent, agent ID: ${agent.id}`);
 ```
 
 ---
@@ -235,6 +295,20 @@ Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
     MessageRole.User,
     "What's the weather like in my favorite city?");
 ThreadMessage message = messageResponse.Value;
+```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+// create a thread
+const thread = await client.agents.createThread();
+
+// add a message to thread
+await client.agents.createMessage(
+    thread.id, {
+    role: "user",
+    content: "What is the weather in Seattle?",
+});
 ```
 
 ---
@@ -307,6 +381,54 @@ foreach (ThreadMessage threadMessage in messages)
         Console.WriteLine();
     }
 }
+```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+
+  // create a run
+  const streamEventMessages = await client.agents.createRun(thread.id, agent.id).stream();
+
+  for await (const eventMessage of streamEventMessages) {
+    switch (eventMessage.event) {
+      case RunStreamEvent.ThreadRunCreated:
+        break;
+      case MessageStreamEvent.ThreadMessageDelta:
+        {
+          const messageDelta = eventMessage.data;
+          messageDelta.delta.content.forEach((contentPart) => {
+            if (contentPart.type === "text") {
+              const textContent = contentPart;
+              const textValue = textContent.text?.value || "No text";
+            }
+          });
+        }
+        break;
+
+      case RunStreamEvent.ThreadRunCompleted:
+        break;
+      case ErrorEvent.Error:
+        console.log(`An error occurred. Data ${eventMessage.data}`);
+        break;
+      case DoneEvent.Done:
+        break;
+    }
+  }
+
+  // Print the messages from the agent
+  const messages = await client.agents.listMessages(thread.id);
+
+  // Messages iterate from oldest to newest
+  // messages[0] is the most recent
+  for (let i = messages.data.length - 1; i >= 0; i--) {
+    const m = messages.data[i];
+    if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
+      const textContent = m.content[0];
+      console.log(`${textContent.text.value}`);
+      console.log(`---------------------------------`);
+    }
+  }
 ```
 
 ---

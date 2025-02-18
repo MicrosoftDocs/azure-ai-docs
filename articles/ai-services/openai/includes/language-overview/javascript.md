@@ -17,7 +17,7 @@ Feature availability in Azure OpenAI is dependent on what version of the REST AP
 
 | Latest GA API | Latest Preview API|
 |:-----|:------|
-|`2024-10-21` |`2024-10-01-preview`|
+|`2024-10-21` |`2025-01-01-preview`|
 
 ## Installation
 
@@ -56,6 +56,8 @@ const client = new AzureOpenAI({
     azureADTokenProvider
      });
 ```
+
+For more information about Azure OpenAI keyless authentication, see the "[Get started with the Azure OpenAI security building block](/azure/developer/ai/get-started-securing-your-ai-app?tabs=github-codespaces&pivots=typescript)" QuickStart article. 
 
 # [API Key](#tab/api-key)
 

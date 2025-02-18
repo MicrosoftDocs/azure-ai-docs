@@ -2,7 +2,7 @@
 title: How to use Cohere Embed V3 models with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn how to use Cohere Embed V3 models with Azure AI Foundry.
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 manager: scottpolly
 ms.topic: how-to
 ms.date: 10/23/2024
@@ -631,7 +631,8 @@ Cohere Embed V3 models can optimize the embeddings based on its use case.
 | Description                               | Language          | Sample                                                          |
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|
 | Web requests                              | Bash              | [cohere-embed.ipynb](https://aka.ms/samples/embed-v3/webrequests) |
-| Azure AI Inference package for JavaScript | JavaScript        | [Link](https://aka.ms/azsdk/azure-ai-inference/javascript/samples)  |
+| Azure AI Inference package for C#         | C#                | [Link](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Inference/samples)   |  
+| Azure AI Inference package for JavaScript | JavaScript        | [Link](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples)  |
 | Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)      |
 | OpenAI SDK (experimental)                 | Python            | [Link](https://aka.ms/samples/cohere-embed/openaisdk)             |
 | LangChain                                 | Python            | [Link](https://aka.ms/samples/cohere-embed/langchain)                     |
@@ -662,7 +663,7 @@ Quota is managed per deployment. Each deployment has a rate limit of 200,000 tok
 ## Related content
 
 
-* [Azure AI Model Inference API](../reference/reference-model-inference-api.md)
+* [Azure AI Model Inference API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md)
 * [Deploy models as serverless APIs](deploy-models-serverless.md)
 * [Consume serverless API endpoints from a different Azure AI Foundry project or hub](deploy-models-serverless-connect.md)
 * [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)

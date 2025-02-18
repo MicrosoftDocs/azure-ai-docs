@@ -7,7 +7,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: release-notes
-ms.date: 11/12/2024
+ms.date: 1/13/2025
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn about new releases and features for Azure AI Speech.
 ---

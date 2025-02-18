@@ -34,7 +34,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Retrieve resource information
 
-[!INCLUDE [resource authentication](resource-auth.md)]
+[!INCLUDE [resource authentication](resource-authentication.md)]
 
 > [!CAUTION]
 > To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
@@ -62,7 +62,7 @@ Your app's _package.json_ file will be updated with the dependencies.
 Select an image from the [azure-samples/cognitive-services-sample-data-files](https://github.com/Azure-Samples/cognitive-services-sample-data-files/tree/master/ComputerVision/Images) and set the URL for an image in the environment variables.
 
 
-## [Microsoft Entra ID](#tab/javascript-keyless)
+## [Microsoft Entra ID](#tab/keyless)
 
 1. Replace the contents of _quickstart.js_ with the following code. 
     
@@ -150,7 +150,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
 
 
 
-## [API key](#tab/javascript-key)
+## [API key](#tab/api-key)
 
 1. Replace the contents of _quickstart.js_ with the following code. 
     
@@ -227,6 +227,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
     ```console
     node quickstart.js
     ```
+[!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ---
 

@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: tutorial
-ms.date: 1/22/2024
+ms.date: 1/15/2025
 ms.author: eur
 ms.devlang: csharp
 ms.custom: cogserv-non-critical-speech, devx-track-csharp

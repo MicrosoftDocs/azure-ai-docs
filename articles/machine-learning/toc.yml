@@ -648,8 +648,6 @@ items:
               href: reference-model-inference-info.md
             - name: Embeddings
               href: reference-model-inference-embeddings.md
-            - name: Completions
-              href: reference-model-inference-completions.md
             - name: Chat Completions
               href: reference-model-inference-chat-completions.md
             - name: Images Embeddings
@@ -949,7 +947,7 @@ items:
           href: reference-managed-online-endpoints-vm-sku-list.md
         - name: Viewing managed online endpoint costs
           href: how-to-view-online-endpoints-costs.md
-        - name: Monitoring online endpoints
+        - name: Monitor online endpoints
           href: how-to-monitor-online-endpoints.md
         - name: Debug online endpoints locally VS Code
           href: how-to-debug-managed-online-endpoints-visual-studio-code.md
@@ -1788,6 +1786,9 @@ items:
         - name: "Pipelines"
           displayName: migration, v1, v2
           href: migrate-to-v2-execution-pipeline.md
+        - name: "Logging"
+          displayName: migration, v1, v2
+          href: reference-migrate-sdk-v1-mlflow-tracking.md
     - name: Upgrade endpoints
       items:
         - name: "Online endpoints"

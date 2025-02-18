@@ -7,14 +7,15 @@ ms.author: vigunase
 ms.service: genomics
 ms.topic: conceptual
 ms.date: 05/23/2018
+ms.hidden: true
 
 ---
 # How to contact Microsoft Genomics for support
-This overview describes how to file a support request to contact Microsoft Genomics. This can be helpful if you are not able to troubleshoot your issue using the [troubleshooting guide](troubleshooting-guide-genomics.md) or the [FAQ](frequently-asked-questions-genomics.yml). 
+This overview describes how to file a support request to contact Microsoft Genomics. This document can be helpful if you aren't able to troubleshoot your issue using the [troubleshooting guide](troubleshooting-guide-genomics.md) or the [FAQ](frequently-asked-questions-genomics.yml). 
 
 
 ## File a support ticket through the Azure portal
-First, log into your Azure account in the Azure portal. Click on the question mark on the top right corner and select `Help + support`.
+First, log in to your Azure account in the Azure portal. Click on the question mark on the top right corner and select `Help + support`.
 
 ![Contact support on Azure portal](./media/file-support-ticket/genomics-contact-support.png "Contact support on Azure portal") 
 
@@ -24,7 +25,7 @@ Then, select `New support request`.
 
 ![New support request](./media/file-support-ticket/new-support-request.png "New support request") 
 
-Fill out the `Basics`, including `Issue type` and your `Subscription`. Select the most relevant `Issue type` to your issue; as an example in the image below, `Technical` has been selected. Be sure to select `Microsoft Genomics` as the relevant service.  `Microsoft Genomics` will be listed under the `Intelligence and Analytics` category.   After selecting `Microsoft Genomics`, you will also be asked to supply your `Support plan` type.
+Fill out the `Basics`, including `Issue type` and your `Subscription`. Select the most relevant `Issue type` to your issue; as an example in the image, `Technical` has been selected. Be sure to select `Microsoft Genomics` as the relevant service.  `Microsoft Genomics` is listed under the `Intelligence and Analytics` category.   After selecting `Microsoft Genomics`, you'll also be asked to supply your `Support plan` type.
 
 ![Support request basics](./media/file-support-ticket/support-request-basics.png "Support request basics")
 

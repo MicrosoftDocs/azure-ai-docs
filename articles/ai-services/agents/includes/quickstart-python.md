@@ -36,6 +36,11 @@ Run the following commands to install the python packages.
 pip install azure-ai-projects
 pip install azure-identity
 ```
+Next, to authenticate your API requests and run the program, use the [az login](/cli/azure/authenticate-azure-cli-interactively) command to sign into your Azure subscription.
+
+```azurecli
+az login
+```
 
 Use the following code to create and run an agent. To run this code, you will need to create a connection string using information from your project. This string is in the format:
 
@@ -113,7 +118,7 @@ with project_client:
     print(f"Messages: {messages}")
 
     # Get the last message from the sender
-    last_msg = messages.get_last_text_message_by_sender("assistant")
+    last_msg = messages.get_last_text_message_by_role("assistant")
     if last_msg:
         print(f"Last Message: {last_msg.text.value}")
 

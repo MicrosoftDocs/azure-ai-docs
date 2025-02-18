@@ -52,94 +52,6 @@ You can combine the roles to grant different levels of access. For example, you 
 > [!IMPORTANT]
 > Role access can be scoped to multiple levels in Azure. For example, someone with owner access to a workspace may not have owner access to the resource group that contains the workspace. For more information, see [How Azure RBAC works](/azure/role-based-access-control/overview#how-azure-rbac-works).
 
-## Azure AI Administrator role
-
-Prior to 11/19/2024, the system-assigned managed identity created for the workspace was automatically assigned the __Contributor__ role for the resource group that contains the workspace. Workspaces created after this date have the system-assigned managed identity assigned to the __Azure AI Administrator__ role. This role is more narrowly scoped to the minimum permissions needed for the managed identity to perform its tasks.
-
-The __Azure AI Administrator__ role is currently in public preview.
-
-[!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
-
-The __Azure AI Administrator__ role has the following permissions:
-
-```json
-{
-    "permissions": [
-        {
-            "actions": [
-                "Microsoft.Authorization/*/read",
-                "Microsoft.CognitiveServices/*",
-                "Microsoft.ContainerRegistry/registries/*",
-                "Microsoft.DocumentDb/databaseAccounts/*",
-                "Microsoft.Features/features/read",
-                "Microsoft.Features/providers/features/read",
-                "Microsoft.Features/providers/features/register/action",
-                "Microsoft.Insights/alertRules/*",
-                "Microsoft.Insights/components/*",
-                "Microsoft.Insights/diagnosticSettings/*",
-                "Microsoft.Insights/generateLiveToken/read",
-                "Microsoft.Insights/logDefinitions/read",
-                "Microsoft.Insights/metricAlerts/*",
-                "Microsoft.Insights/metricdefinitions/read",
-                "Microsoft.Insights/metrics/read",
-                "Microsoft.Insights/scheduledqueryrules/*",
-                "Microsoft.Insights/topology/read",
-                "Microsoft.Insights/transactions/read",
-                "Microsoft.Insights/webtests/*",
-                "Microsoft.KeyVault/*",
-                "Microsoft.MachineLearningServices/workspaces/*",
-                "Microsoft.Network/virtualNetworks/subnets/joinViaServiceEndpoint/action",
-                "Microsoft.ResourceHealth/availabilityStatuses/read",
-                "Microsoft.Resources/deployments/*",
-                "Microsoft.Resources/deployments/operations/read",
-                "Microsoft.Resources/subscriptions/operationresults/read",
-                "Microsoft.Resources/subscriptions/read",
-                "Microsoft.Resources/subscriptions/resourcegroups/deployments/*",
-                "Microsoft.Resources/subscriptions/resourceGroups/read",
-                "Microsoft.Resources/subscriptions/resourceGroups/write",
-                "Microsoft.Storage/storageAccounts/*",
-                "Microsoft.Support/*",
-                "Microsoft.Search/searchServices/write",
-                "Microsoft.Search/searchServices/read",
-                "Microsoft.Search/searchServices/delete",
-                "Microsoft.Search/searchServices/indexes/*",
-                "Microsoft.DataFactory/factories/*"
-            ],
-            "notActions": [],
-            "dataActions": [],
-            "notDataActions": []
-        }
-    ]
-}
-```
-
-### Convert an existing system-managed identity to the Azure AI Administrator role
-
-> [!TIP]
-> We recommend that you convert workspaces created before 11/19/2024 to use the Azure AI Administrator role. The Azure AI Administrator role is more narrowly scoped than the previously used Contributor role and follows the principal of least privilege.
-
-You can convert workspaces created before 11/19/2024 by using one of the following methods:
-
-- Azure REST API: Use a `PATCH` request to the Azure REST API for the workspace. The body of the request should set `{"properties":{"allowRoleAssignmeentOnRG":true}}`. The following example shows a `PATCH` request using `curl`. Replace `<your-subscription>`, `<resource-group-name>`, `<workspace-name>`, and `<YOUR-ACCESS-TOKEN>` with the values for your scenario. For more information on using REST APIs, visit the [Azure REST API documentation](/rest/api/azure/).
-
-    ```bash
-    curl -X PATCH https://management.azure.com/subscriptions/<your-subscription>/resourcegroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>?api-version=2024-04-01-preview -H "Authorization:Bearer <YOUR-ACCESS-TOKEN>"
-    ```
-
-- Azure CLI: Use the `az ml workspace update` command with the `--allow-roleassignment-on-rg true` parameter. The following example updates a workspace named `myworkspace`. This command requires the Azure Machine Learning CLI extension version 2.27.0 or later.
-
-    ```azurecli
-    az ml workspace update --name myworkspace --allow-roleassignment-on-rg true
-    ```
-
-- Azure Python SDK: Set the `allow_roleassignment_on_rg` property of the Workspace object to `True` and then perform an update operation. The following example updates a workspace named `myworkspace`. This operation requires the Azure Machine Learning SDK version 1.17.0 or later.
-
-    ```python
-    ws = ml_client.workspaces.get(name="myworkspace")
-    ws.allow_roleassignment_on_rg = True
-    ws = ml_client.workspaces.begin_update(workspace=ws).result()
-    ```
-
 ## Manage workspace access
 
 If you're an owner of a workspace, you can add and remove roles for the workspace. You can also assign roles to users. Use the following links to discover how to manage access:
@@ -276,7 +188,7 @@ The following table is a summary of Azure Machine Learning activities and the pe
 | Create new compute cluster | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/computes/write` |
 | Create new compute instance | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/computes/write` |
 | Submitting any type of run (V1) | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/*/read`, `/workspaces/environments/write`, `/workspaces/experiments/runs/write`, `/workspaces/metadata/artifacts/write`, `/workspaces/metadata/snapshots/write`, `/workspaces/environments/build/action`, `/workspaces/experiments/runs/submit/action`, `/workspaces/environments/readSecrets/action` |
-| Submitting any type of run (V2) | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/*/read`, `/workspaces/environments/write`, `/workspaces/jobs/*`, `/workspaces/metadata/artifacts/write`, `/workspaces/metadata/codes/*/write`, `/workspaces/environments/build/action`, `/workspaces/environments/readSecrets/action` |
+| Submitting any type of run (V2) | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/*/read`, `/workspaces/environments/write`, `/workspaces/jobs/*`, `/workspaces/metadata/artifacts/write`, `/workspaces/environments/build/action`, `/workspaces/environments/readSecrets/action` |
 | Publishing pipelines and endpoints (V1) | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/endpoints/pipelines/*`, `/workspaces/pipelinedrafts/*`, `/workspaces/modules/*` |
 | Publishing pipelines and endpoints (V2) | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/endpoints/pipelines/*`, `/workspaces/pipelinedrafts/*`, `/workspaces/components/*` |
 | Attach an AKS resource <sub>2</sub> | Not required | Owner or contributor on the resource group that contains AKS | |
@@ -304,7 +216,6 @@ There are certain differences between actions for V1 APIs and V2 APIs.
 | Dataset | Microsoft.MachineLearningServices/workspaces/datasets | Microsoft.MachineLearningServices/workspaces/datasets/versions |
 | Experiment runs and jobs | Microsoft.MachineLearningServices/workspaces/experiments | Microsoft.MachineLearningServices/workspaces/jobs |
 | Models | Microsoft.MachineLearningServices/workspaces/models | Microsoft.MachineLearningServices/workspaces/models/versions |
-| Snapshots and code | Microsoft.MachineLearningServices/workspaces/snapshots | Microsoft.MachineLearningServices/workspaces/codes/versions |
 | Modules and components | Microsoft.MachineLearningServices/workspaces/modules | Microsoft.MachineLearningServices/workspaces/components |
 
 You can make custom roles compatible with both V1 and V2 APIs by including both actions, or using wildcards that include both actions, for example `Microsoft.MachineLearningServices/workspaces/datasets/*/read`.
@@ -510,8 +421,7 @@ Allows you to assign a role to a service principal and use that to automate your
         "Microsoft.MachineLearningServices/workspaces/experiments/jobs/read",       
         "Microsoft.MachineLearningServices/workspaces/experiments/jobs/write",
         "Microsoft.MachineLearningServices/workspaces/metadata/artifacts/write",
-        "Microsoft.MachineLearningServices/workspaces/metadata/snapshots/write",
-        "Microsoft.MachineLearningServices/workspaces/metadata/codes/*/write",       
+        "Microsoft.MachineLearningServices/workspaces/metadata/snapshots/write",  
         "Microsoft.MachineLearningServices/workspaces/environments/build/action",
     ],
     "NotActions": [

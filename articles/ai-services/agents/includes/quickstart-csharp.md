@@ -4,7 +4,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: include
-ms.date: 11/13/2024
+ms.date: 01/15/2025
 ---
 
 | [Reference documentation](/dotnet/api/overview/azure/ai.projects-readme) | [Samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Projects/tests/Samples) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Projects) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.Projects/) |
@@ -32,7 +32,14 @@ ms.date: 11/13/2024
 Install the .NET package to your project. For example if you're using the .NET CLI, run the following command.
 
 ```console
-dotnet add package Azure.AI.Projects --version 1.0.0-beta.1
+dotnet add package Azure.AI.Projects
+dotnet add package Azure.Identity
+```
+
+Next, to authenticate your API requests and run the program, use the [az login](/cli/azure/authenticate-azure-cli-interactively) command to sign into your Azure subscription.
+
+```azurecli
+az login
 ```
 
 Use the following code to create and run an agent. To run this code, you will need to create a connection string using information from your project. This string is in the format:
@@ -53,75 +60,61 @@ For example, your connection string may look something like:
 
 Set this connection string as an environment variable named `PROJECT_CONNECTION_STRING`.
 
+
 ```csharp
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 #nullable disable
 
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Azure.Core.TestFramework;
-using NUnit.Framework;
+using Azure.Identity;
 
 namespace Azure.AI.Projects.Tests;
 
-public partial class Sample_Agent_Basics : SamplesBase<AIProjectsTestEnvironment>
+public class Sample_Agent
 {
-    [Test]
-    public async Task BasicExample()
+    static async Task Main()
     {
         var connectionString = Environment.GetEnvironmentVariable("AZURE_AI_CONNECTION_STRING");
 
         AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredential());
-        #endregion
 
         // Step 1: Create an agent
-        #region Snippet:OverviewCreateAgent
         Response<Agent> agentResponse = await client.CreateAgentAsync(
-            model: "gpt-4o",
-            name: "Math Tutor",
-            instructions: "You are a personal math tutor. Write and run code to answer math questions.",
+            model: "gpt-4o-mini",
+            name: "My Agent",
+            instructions: "You are a helpful agent.",
             tools: new List<ToolDefinition> { new CodeInterpreterToolDefinition() });
         Agent agent = agentResponse.Value;
-        #endregion
 
         // Intermission: agent should now be listed
 
         Response<PageableList<Agent>> agentListResponse = await client.GetAgentsAsync();
 
         //// Step 2: Create a thread
-        #region Snippet:OverviewCreateThread
         Response<AgentThread> threadResponse = await client.CreateThreadAsync();
         AgentThread thread = threadResponse.Value;
-        #endregion
 
         // Step 3: Add a message to a thread
-        #region Snippet:OverviewCreateMessage
         Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
             thread.Id,
             MessageRole.User,
             "I need to solve the equation `3x + 11 = 14`. Can you help me?");
         ThreadMessage message = messageResponse.Value;
-        #endregion
 
         // Intermission: message is now correlated with thread
         // Intermission: listing messages will retrieve the message just added
 
         Response<PageableList<ThreadMessage>> messagesListResponse = await client.GetMessagesAsync(thread.Id);
-        Assert.That(messagesListResponse.Value.Data[0].Id == message.Id);
+        //Assert.That(messagesListResponse.Value.Data[0].Id == message.Id);
 
         // Step 4: Run the agent
-        #region Snippet:OverviewCreateRun
         Response<ThreadRun> runResponse = await client.CreateRunAsync(
             thread.Id,
             agent.Id,
-            additionalInstructions: "Please address the user as Jane Doe. The user has a premium account.");
+            additionalInstructions: "");
         ThreadRun run = runResponse.Value;
-        #endregion
 
-        #region Snippet:OverviewWaitForRun
         do
         {
             await Task.Delay(TimeSpan.FromMilliseconds(500));
@@ -129,9 +122,7 @@ public partial class Sample_Agent_Basics : SamplesBase<AIProjectsTestEnvironment
         }
         while (runResponse.Value.Status == RunStatus.Queued
             || runResponse.Value.Status == RunStatus.InProgress);
-        #endregion
 
-        #region Snippet:OverviewListUpdatedMessages
         Response<PageableList<ThreadMessage>> afterRunMessagesResponse
             = await client.GetMessagesAsync(thread.Id);
         IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
@@ -153,7 +144,6 @@ public partial class Sample_Agent_Basics : SamplesBase<AIProjectsTestEnvironment
                 Console.WriteLine();
             }
         }
-        #endregion
     }
 }
 ```

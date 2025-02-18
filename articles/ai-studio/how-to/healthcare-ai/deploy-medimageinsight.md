@@ -2,7 +2,7 @@
 title: How to deploy and use MedImageInsight healthcare AI model with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn how to use MedImageInsight Healthcare AI Model with Azure AI Foundry.
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 manager: scottpolly
 ms.topic: how-to
 ms.date: 10/20/2024
@@ -15,8 +15,6 @@ author: msakande
 ---
 
 # How to use MedImageInsight healthcare AI model for medical image embedding generation
-
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 

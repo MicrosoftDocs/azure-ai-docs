@@ -55,7 +55,25 @@ var clientOptions = new AIProjectClientOptions();
 clientOptions.AddPolicy(new CustomHeadersPolicy(), HttpPipelinePosition.PerCall);
 var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential(), clientOptions);
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+const connectionString =
+  process.env["AZURE_AI_PROJECTS_CONNECTION_STRING"] || "<project connection string>";
+
+if (!connectionString) {
+  throw new Error("AZURE_AI_PROJECTS_CONNECTION_STRING must be set in the environment variables");
+}
+
+const client = AIProjectsClient.fromConnectionString(
+    connectionString || "",
+    new DefaultAzureCredential(),
+);
+```
+
 ---
+
 ### Step 2: Get the connection ID for the Azure AI Search resource
 
 Get the connection ID of the Azure AI Search connection in the project. You can use the code snippet to print the connection ID of all the Azure AI Search connections in the project. 
@@ -69,7 +87,7 @@ Get the connection ID of the Azure AI Search connection in the project. You can 
 conn_list = project_client.connections.list()
 conn_id = ""
 for conn in conn_list:
-    if conn.connection_type == "CognitiveSearch":
+    if conn.connection_type == "AZURE_AI_SEARCH":
         print(f"Connection ID: {conn.id}")
 ```
 # [C#](#tab/csharp)
@@ -80,7 +98,15 @@ ListConnectionsResponse connections = await projectClient.GetConnectionsClient()
         {
             throw new InvalidOperationException("No connections found for the Azure AI Search.");
         }
+```
 
+# [JavaScript](#tab/javascript)
+
+```javascript
+const cognitiveServicesConnectionName = "<cognitiveServicesConnectionName>";
+const cognitiveServicesConnection = await client.connections.getConnection(
+  cognitiveServicesConnectionName,
+);
 ```
 ---
 The second way to get the connection ID is to navigate to the project in the Azure AI Foundry and click on the **Connected resources** tab and then select your Azure AI Search resource.
@@ -97,8 +123,7 @@ conn_id =  "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-
 
 # Initialize agent AI search tool and add the search index connection ID and index name
 # TO DO: replace <your-index-name> with the name of the index you want to use
-ai_search = AzureAISearchTool()
-ai_search.add_index(conn_id, "<your-index-name>")
+ai_search = AzureAISearchTool(index_connection_id=conn_id, index_name="<your-index-name>")
 ```
 # [C#](#tab/csharp)
 ```csharp
@@ -115,6 +140,26 @@ ToolResources searchResource = new ToolResources
     }
 };
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+const azureAISearchTool = ToolUtility.createAzureAISearchTool(
+  cognitiveServicesConnection.id,
+  cognitiveServicesConnection.name,
+);
+
+// Create agent with the Azure AI search tool
+const agent = await client.agents.createAgent("gpt-4o-mini", {
+  name: "my-agent",
+  instructions: "You are a helpful agent",
+  tools: [azureAISearchTool.definition],
+  toolResources: azureAISearchTool.resources,
+});
+console.log(`Created agent, agent ID : ${agent.id}`);
+```
+
+
 ---
 
 ### Step 4: Create an agent with the Azure AI Search tool enabled
@@ -142,6 +187,19 @@ Response<Agent> agentResponse = await agentClient.CreateAgentAsync(
     toolResources: searchResource);
 Agent agent = agentResponse.Value;
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+const agent = await client.agents.createAgent("gpt-4o-mini", {
+  name: "my-agent",
+  instructions: "You are a helpful agent",
+  tools: [azureAISearchTool.definition],
+  toolResources: azureAISearchTool.resources,
+});
+console.log(`Created agent, agent ID : ${agent.id}`);
+```
+
 ---
 
 ### Step 5: Ask the agent questions about data in the index
@@ -227,4 +285,65 @@ foreach (ThreadMessage threadMessage in messages)
     }
 }
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+  // create a thread
+  const thread = await client.agents.createThread();
+
+  // add a message to thread
+  await client.agents.createMessage(
+    thread.id, {
+    role: "user",
+    content: "I need to solve the equation `3x + 11 = 14`. Can you help me?",
+  });
+
+  // Intermission is now correlated with thread
+  // Intermission messages will retrieve the message just added
+
+  // create a run
+  const streamEventMessages = await client.agents.createRun(thread.id, agent.id).stream();
+
+  for await (const eventMessage of streamEventMessages) {
+    switch (eventMessage.event) {
+      case RunStreamEvent.ThreadRunCreated:
+        break;
+      case MessageStreamEvent.ThreadMessageDelta:
+        {
+          const messageDelta = eventMessage.data;
+          messageDelta.delta.content.forEach((contentPart) => {
+            if (contentPart.type === "text") {
+              const textContent = contentPart;
+              const textValue = textContent.text?.value || "No text";
+            }
+          });
+        }
+        break;
+
+      case RunStreamEvent.ThreadRunCompleted:
+        break;
+      case ErrorEvent.Error:
+        console.log(`An error occurred. Data ${eventMessage.data}`);
+        break;
+      case DoneEvent.Done:
+        break;
+    }
+  }
+
+  // Print the messages from the agent
+  const messages = await client.agents.listMessages(thread.id);
+
+  // Messages iterate from oldest to newest
+  // messages[0] is the most recent
+  for (let i = messages.data.length - 1; i >= 0; i--) {
+    const m = messages.data[i];
+    if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
+      const textContent = m.content[0];
+      console.log(`${textContent.text.value}`);
+      console.log(`---------------------------------`);
+    }
+  }
+```
+
 ---

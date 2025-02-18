@@ -94,7 +94,7 @@ The high-level steps involved in liveness orchestration are illustrated below:
     var createContent = new CreateLivenessSessionContent(LivenessOperationMode.Passive)
     {
         DeviceCorrelationId = "723d6d03-ef33-40a8-9682-23a1feb7bccd",
-        SendResultsToClient = false,
+        EnableSessionImage = true,
     };
 
     var createResponse = await sessionClient.CreateLivenessSessionAsync(createContent);
@@ -116,7 +116,7 @@ The high-level steps involved in liveness orchestration are illustrated below:
 
     CreateLivenessSessionContent parameters = new CreateLivenessSessionContent(LivenessOperationMode.PASSIVE)
         .setDeviceCorrelationId("723d6d03-ef33-40a8-9682-23a1feb7bccd")
-        .setSendResultsToClient(false);
+        .setEnableSessionImage(true);
 
     CreateLivenessSessionResult creationResult = sessionClient.createLivenessSession(parameters);
     System.out.println("Session created.");
@@ -135,7 +135,7 @@ The high-level steps involved in liveness orchestration are illustrated below:
         CreateLivenessSessionContent(
             liveness_operation_mode=LivenessOperationMode.PASSIVE,
             device_correlation_id="723d6d03-ef33-40a8-9682-23a1feb7bccd",
-            send_results_to_client=False,
+            enable_session_image=True,
         )
     )
     print("Session created.")
@@ -151,11 +151,11 @@ The high-level steps involved in liveness orchestration are illustrated below:
     const credential = new AzureKeyCredential(apikey);
     const client = createFaceClient(endpoint, credential);
 
-    const createLivenessSessionResponse = await client.path('/detectLiveness/singleModal/sessions').post({
+    const createLivenessSessionResponse = await client.path('/detectLiveness-sessions').post({
         body: {
             livenessOperationMode: 'Passive',
             deviceCorrelationId: '723d6d03-ef33-40a8-9682-23a1feb7bccd',
-            sendResultsToClient: false,
+            enableSessionImage: true,
         },
     });
 
@@ -170,27 +170,27 @@ The high-level steps involved in liveness orchestration are illustrated below:
 
     #### [REST API (Windows)](#tab/cmd)
     ```console
-    curl --request POST --location "%FACE_ENDPOINT%/face/v1.1-preview.1/detectliveness/singlemodal/sessions" ^
+    curl --request POST --location "%FACE_ENDPOINT%/face/v1.2/detectLiveness-sessions" ^
     --header "Ocp-Apim-Subscription-Key: %FACE_APIKEY%" ^
     --header "Content-Type: application/json" ^
     --data ^
     "{ ^
         ""livenessOperationMode"": ""passive"", ^
         ""deviceCorrelationId"": ""723d6d03-ef33-40a8-9682-23a1feb7bccd"", ^
-        ""sendResultsToClient"": ""false"" ^
+        ""enableSessionImage"": ""true"" ^
     }"
     ```
 
     #### [REST API (Linux)](#tab/bash)
     ```bash
-    curl --request POST --location "${FACE_ENDPOINT}/face/v1.1-preview.1/detectliveness/singlemodal/sessions" \
+    curl --request POST --location "${FACE_ENDPOINT}/face/v1.2/detectLivenesswithVerify-sessions" \
     --header "Ocp-Apim-Subscription-Key: ${FACE_APIKEY}" \
     --header "Content-Type: application/json" \
     --data \
     '{
         "livenessOperationMode": "passive",
         "deviceCorrelationId": "723d6d03-ef33-40a8-9682-23a1feb7bccd",
-        "sendResultsToClient": "false"
+        "enableSessionImage": "true"
     }'
     ```
 
@@ -200,29 +200,58 @@ The high-level steps involved in liveness orchestration are illustrated below:
     ```json 
     {
         "sessionId": "a6e7193e-b638-42e9-903f-eaf60d2b40a5",
-        "authToken": "<session-authorization-token>"
+        "authToken": "<session-authorization-token>",
+        "status": "NotStarted",
+        "modelVersion": "2024-11-15",
+        "results": {
+            "attempts": []
+        }
     }
     ```
 
 1. The app server provides the session-authorization-token back to the frontend application. 
 
-1. The frontend application provides the session-authorization-token during the Azure AI Vision SDK’s initialization. 
+1. The frontend application uses the session-authorization-token to start the face-liveness-detector which will kick off the liveness flow.
 
     #### [Android](#tab/mobile-kotlin)
     ```kotlin
-    mServiceOptions?.setTokenCredential(com.azure.android.core.credential.TokenCredential { _, callback ->
-        callback.onSuccess(com.azure.android.core.credential.AccessToken("<INSERT_TOKEN_HERE>", org.threeten.bp.OffsetDateTime.MAX))
-    })
+        FaceLivenessDetector(
+            sessionAuthorizationToken = FaceSessionToken.sessionToken,
+            verifyImageFileContent = FaceSessionToken.sessionSetInClientVerifyImage,
+            deviceCorrelationId = "null",
+            onSuccess = viewModel::onSuccess,
+            onError = viewModel::onError
+        )
     ```
 
     #### [iOS](#tab/mobile-swift)
     ```swift
-    serviceOptions?.authorizationToken = "<INSERT_TOKEN_HERE>"
+    struct HostView: View {
+       @State var livenessDetectionResult: LivenessDetectionResult? = nil
+       var token: String
+       var body: some View {
+           if livenessDetectionResult == nil {
+               FaceLivenessDetectorView(result: $livenessDetectionResult,
+                                        sessionAuthorizationToken: token)
+           } else if let result = livenessDetectionResult {
+               VStack {
+                   switch result { 
+                       case .success(let success):
+                       /// <#show success#>
+                       case .failure(let error):
+                       /// <#show failure#>
+                   }
+               }
+           }
+       }
+    }
     ```
 
     #### [Web](#tab/web-javascript)
     ```javascript
-    azureAIVisionFaceAnalyzer.token = "<INSERT_TOKEN_HERE>"
+    faceLivenessDetector = document.createElement("azure-ai-vision-face-ui");
+    document.getElementById("container").appendChild(faceLivenessDetector);
+    faceLivenessDetector.start(session.authToken)
     ```
 
     ---
@@ -242,13 +271,7 @@ The high-level steps involved in liveness orchestration are illustrated below:
     var sessionResult = getResultResponse.Value;
     Console.WriteLine($"Session id: {sessionResult.Id}");
     Console.WriteLine($"Session status: {sessionResult.Status}");
-    Console.WriteLine($"Liveness detection request id: {sessionResult.Result?.RequestId}");
-    Console.WriteLine($"Liveness detection received datetime: {sessionResult.Result?.ReceivedDateTime}");
     Console.WriteLine($"Liveness detection decision: {sessionResult.Result?.Response.Body.LivenessDecision}");
-    Console.WriteLine($"Session created datetime: {sessionResult.CreatedDateTime}");
-    Console.WriteLine($"Auth token TTL (seconds): {sessionResult.AuthTokenTimeToLiveInSeconds}");
-    Console.WriteLine($"Session expired: {sessionResult.SessionExpired}");
-    Console.WriteLine($"Device correlation id: {sessionResult.DeviceCorrelationId}");
     ```
 
     #### [Java](#tab/java)
@@ -256,13 +279,7 @@ The high-level steps involved in liveness orchestration are illustrated below:
     LivenessSession sessionResult = sessionClient.getLivenessSessionResult(creationResult.getSessionId());
     System.out.println("Session id: " + sessionResult.getId());
     System.out.println("Session status: " + sessionResult.getStatus());
-    System.out.println("Liveness detection request id: " + sessionResult.getResult().getRequestId());
-    System.out.println("Liveness detection received datetime: " + sessionResult.getResult().getReceivedDateTime());
     System.out.println("Liveness detection decision: " + sessionResult.getResult().getResponse().getBody().getLivenessDecision());
-    System.out.println("Session created datetime: " + sessionResult.getCreatedDateTime());
-    System.out.println("Auth token TTL (seconds): " + sessionResult.getAuthTokenTimeToLiveInSeconds());
-    System.out.println("Session expired: " + sessionResult.isSessionExpired());
-    System.out.println("Device correlation id: " + sessionResult.getDeviceCorrelationId());
     ```
 
     #### [Python](#tab/python)
@@ -272,13 +289,7 @@ The high-level steps involved in liveness orchestration are illustrated below:
     )
     print(f"Session id: {liveness_result.id}")
     print(f"Session status: {liveness_result.status}")
-    print(f"Liveness detection request id: {liveness_result.result.request_id}")
-    print(f"Liveness detection received datetime: {liveness_result.result.received_date_time}")
     print(f"Liveness detection decision: {liveness_result.result.response.body.liveness_decision}")
-    print(f"Session created datetime: {liveness_result.created_date_time}")
-    print(f"Auth token TTL (seconds): {liveness_result.auth_token_time_to_live_in_seconds}")
-    print(f"Session expired: {liveness_result.session_expired}")
-    print(f"Device correlation id: {liveness_result.device_correlation_id}")
     ```
 
     #### [JavaScript](#tab/javascript)
@@ -302,13 +313,13 @@ The high-level steps involved in liveness orchestration are illustrated below:
 
     #### [REST API (Windows)](#tab/cmd)
     ```console
-    curl --request GET --location "%FACE_ENDPOINT%/face/v1.1-preview.1/detectliveness/singlemodal/sessions/<session-id>" ^
+    curl --request GET --location "%FACE_ENDPOINT%/face/v1.2/detectLiveness-sessions/<session-id>" ^
     --header "Ocp-Apim-Subscription-Key: %FACE_APIKEY%"
     ```
 
     #### [REST API (Linux)](#tab/bash)
     ```bash
-    curl --request GET --location "${FACE_ENDPOINT}/face/v1.1-preview.1/detectliveness/singlemodal/sessions/<session-id>" \
+    curl --request GET --location "${FACE_ENDPOINT}/face/v1.2/detectLiveness-sessions/<session-id>" \
     --header "Ocp-Apim-Subscription-Key: ${FACE_APIKEY}"
     ```
 
@@ -317,49 +328,37 @@ The high-level steps involved in liveness orchestration are illustrated below:
     An example of the response body:
     ```json
     {
-        "status": "ResultAvailable",
-        "result": {
-            "id": 1,
-            "sessionId": "a3dc62a3-49d5-45a1-886c-36e7df97499a",
-            "requestId": "cb2b47dc-b2dd-49e8-bdf9-9b854c7ba843",
-            "receivedDateTime": "2023-10-31T16:50:15.6311565+00:00",
-            "request": {
-                "url": "/face/v1.1-preview.1/detectliveness/singlemodal",
-                "method": "POST",
-                "contentLength": 352568,
-                "contentType": "multipart/form-data; boundary=--------------------------482763481579020783621915",
-                "userAgent": ""
-            },
-            "response": {
-                "body": {
-                    "livenessDecision": "realface",
-                    "target": {
-                        "faceRectangle": {
-                            "top": 59,
-                            "left": 121,
-                            "width": 409,
-                            "height": 395
-                        },
-                        "fileName": "content.bin",
-                        "timeOffsetWithinFile": 0,
-                        "imageType": "Color"
-                    },
-                    "modelVersionUsed": "2022-10-15-preview.04"
+        "sessionId": "0acf6dbf-ce43-42a7-937e-705938881d62",
+        "authToken": "",
+        "status": "Succeeded",
+        "modelVersion": "2024-11-15",
+        "results": {
+            "attempts": [
+            {
+                "attemptId": 1,
+                "attemptStatus": "Succeeded",
+                "result": {
+                "livenessDecision": "realface",
+                "targets": {
+                    "color": {
+                    "faceRectangle": {
+                        "top": 763,
+                        "left": 320,
+                        "width": 739,
+                        "height": 938
+                    }
+                    }
                 },
-                "statusCode": 200,
-                "latencyInMilliseconds": 1098
-            },
-            "digest": "537F5CFCD8D0A7C7C909C1E0F0906BF27375C8E1B5B58A6914991C101E0B6BFC"
-        },
-        "id": "a3dc62a3-49d5-45a1-886c-36e7df97499a",
-        "createdDateTime": "2023-10-31T16:49:33.6534925+00:00",
-        "authTokenTimeToLiveInSeconds": 600,
-        "deviceCorrelationId": "723d6d03-ef33-40a8-9682-23a1feb7bccd",
-        "sessionExpired": false
+                "digest": "517A0E700859E42107FA47E957DD12F54211C1A021A969CD391AC38BB88295A2",
+                "sessionImageId": "Ab9tzwpDzqdCk35wWTiIHWJzzPr9fBCNSqBcXnJmDjbI"
+                }
+            }
+            ]
+        }
     }
     ```
 
-1. The app server can delete the session if you don't query its result anymore.
+1. The app server can delete the session once all session-results have been queried.
 
     #### [C#](#tab/csharp)
     ```csharp
@@ -393,13 +392,13 @@ The high-level steps involved in liveness orchestration are illustrated below:
 
     #### [REST API (Windows)](#tab/cmd)
     ```console
-    curl --request DELETE --location "%FACE_ENDPOINT%/face/v1.1-preview.1/detectliveness/singlemodal/sessions/<session-id>" ^
+    curl --request DELETE --location "%FACE_ENDPOINT%/face/v1.2/detectLiveness-sessions/<session-id>" ^
     --header "Ocp-Apim-Subscription-Key: %FACE_APIKEY%"
     ```
 
     #### [REST API (Linux)](#tab/bash)
     ```bash
-    curl --request DELETE --location "${FACE_ENDPOINT}/face/v1.1-preview.1/detectliveness/singlemodal/sessions/<session-id>" \
+    curl --request DELETE --location "${FACE_ENDPOINT}/face/v1.2/detectLiveness-sessions/<session-id>" \
     --header "Ocp-Apim-Subscription-Key: ${FACE_APIKEY}"
     ```
 
@@ -449,7 +448,8 @@ The high-level steps involved in liveness with verification orchestration are il
 
         var createContent = new CreateLivenessWithVerifySessionContent(LivenessOperationMode.Passive)
         {
-            DeviceCorrelationId = "723d6d03-ef33-40a8-9682-23a1feb7bccd"
+            DeviceCorrelationId = "723d6d03-ef33-40a8-9682-23a1feb7bccd",
+            EnableSessionImage = true,
         };
         using var fileStream = new FileStream("test.png", FileMode.Open, FileAccess.Read);
 
@@ -476,7 +476,7 @@ The high-level steps involved in liveness with verification orchestration are il
 
         CreateLivenessWithVerifySessionContent parameters = new CreateLivenessWithVerifySessionContent(LivenessOperationMode.PASSIVE)
             .setDeviceCorrelationId("723d6d03-ef33-40a8-9682-23a1feb7bccd")
-            .setSendResultsToClient(false);
+            .setEnableSessionImage(true);
 
         Path path = Paths.get("test.png");
         BinaryData data = BinaryData.fromFile(path);
@@ -487,7 +487,7 @@ The high-level steps involved in liveness with verification orchestration are il
         System.out.println("Auth token: " + creationResult.getAuthToken());
         System.out.println("The reference image:");
         System.out.println("  Face rectangle: " + creationResult.getVerifyImage().getFaceRectangle().getTop() + " " + creationResult.getVerifyImage().getFaceRectangle().getLeft() + " " + creationResult.getVerifyImage().getFaceRectangle().getWidth() + " " + creationResult.getVerifyImage().getFaceRectangle().getHeight());
-        System.out.println("  The quality for recognition: " + creationResult.getVerifyImage().getQualityForRecognition());
+        System.out.println("  The quality for recognition: " + creationResult.getVerifyImage().getQualityForRecognition());        
         ```
 
         #### [Python](#tab/python)
@@ -505,6 +505,7 @@ The high-level steps involved in liveness with verification orchestration are il
             CreateLivenessWithVerifySessionContent(
                 liveness_operation_mode=LivenessOperationMode.PASSIVE,
                 device_correlation_id="723d6d03-ef33-40a8-9682-23a1feb7bccd",
+                enable_session_image=True,
             ),
             verify_image=reference_image_content,
         )
@@ -524,7 +525,7 @@ The high-level steps involved in liveness with verification orchestration are il
         const credential = new AzureKeyCredential(apikey);
         const client = createFaceClient(endpoint, credential);
 
-        const createLivenessSessionResponse = await client.path('/detectLivenessWithVerify/singleModal/sessions').post({
+        const createLivenessSessionResponse = await client.path('/detectLivenesswithVerify-sessions').post({
             contentType: 'multipart/form-data',
             body: [
                 {
@@ -538,6 +539,7 @@ The high-level steps involved in liveness with verification orchestration are il
                     body: {
                         livenessOperationMode: 'Passive',
                         deviceCorrelationId: '723d6d03-ef33-40a8-9682-23a1feb7bccd',
+                        enableSessionImage: true,
                     },
                 },
             ],
@@ -557,15 +559,15 @@ The high-level steps involved in liveness with verification orchestration are il
 
         #### [REST API (Windows)](#tab/cmd)
         ```console
-        curl --request POST --location "%FACE_ENDPOINT%/face/v1.1-preview.1/detectlivenesswithverify/singlemodal/sessions" ^
+        curl --request POST --location "%FACE_ENDPOINT%/face/v1.2/detectLivenesswithVerify-sessions" ^
         --header "Ocp-Apim-Subscription-Key: %FACE_APIKEY%" ^
-        --form "Parameters=""{\\\""livenessOperationMode\\\"": \\\""passive\\\"", \\\""deviceCorrelationId\\\"": \\\""723d6d03-ef33-40a8-9682-23a1feb7bccd\\\""}""" ^
+        --form "Parameters=""{\\\""livenessOperationMode\\\"": \\\""passive\\\"", \\\""deviceCorrelationId\\\"": \\\""723d6d03-ef33-40a8-9682-23a1feb7bccd\\\"", ""enableSessionImage"": ""true""}""" ^
         --form "VerifyImage=@""test.png"""
         ```
 
         #### [REST API (Linux)](#tab/bash)
         ```bash
-        curl --request POST --location "${FACE_ENDPOINT}/face/v1.1-preview.1/detectlivenesswithverify/singlemodal/sessions" \
+        curl --request POST --location "${FACE_ENDPOINT}/face/v1.2/detectLivenesswithVerify-sessions" \
         --header "Ocp-Apim-Subscription-Key: ${FACE_APIKEY}" \
         --form 'Parameters="{
             \"livenessOperationMode\": \"passive\",
@@ -579,17 +581,25 @@ The high-level steps involved in liveness with verification orchestration are il
         An example of the response body:
         ```json
         {
-            "verifyImage": {
-                "faceRectangle": {
-                    "top": 506,
-                    "left": 51,
-                    "width": 680,
-                    "height": 475
-                },
-                "qualityForRecognition": "high"
-            },
             "sessionId": "3847ffd3-4657-4e6c-870c-8e20de52f567",
-            "authToken": "<session-authorization-token>"
+            "authToken": "<session-authorization-token>",
+            "status": "NotStarted",
+            "modelVersion": "2024-11-15",
+            "results": {
+                "attempts": [],
+                "verifyReferences": [
+                {
+                    "referenceType": "image",
+                    "faceRectangle": {
+                    "top": 98,
+                    "left": 131,
+                    "width": 233,
+                    "height": 300
+                    },
+                    "qualityForRecognition": "high"
+                }
+                ]
+            }
         }
         ```
 
@@ -597,16 +607,35 @@ The high-level steps involved in liveness with verification orchestration are il
 
         #### [Android](#tab/mobile-kotlin)
         ```kotlin
-        val singleFaceImageSource = VisionSource.fromFile("/path/to/image.jpg")
-        mFaceAnalysisOptions?.setRecognitionMode(RecognitionMode.valueOfVerifyingMatchToFaceInSingleFaceImage(singleFaceImageSource))
+            FaceLivenessDetector(
+                sessionAuthorizationToken = FaceSessionToken.sessionToken,
+                verifyImageFileContent = FaceSessionToken.sessionSetInClientVerifyImage,
+                deviceCorrelationId = "null",
+                onSuccess = viewModel::onSuccess,
+                onError = viewModel::onError
+            )
         ```
 
         #### [iOS](#tab/mobile-swift)
         ```swift
-        if let path = Bundle.main.path(forResource: "<IMAGE_RESOURCE_NAME>", ofType: "<IMAGE_RESOURCE_TYPE>"),
-           let image = UIImage(contentsOfFile: path),
-           let singleFaceImageSource = try? VisionSource(uiImage: image) {
-           try methodOptions.setRecognitionMode(.verifyMatchToFaceIn(singleFaceImage: singleFaceImageSource))
+        struct HostView: View {
+            @State var livenessDetectionResult: LivenessDetectionResult? = nil
+            var token: String
+            var body: some View {
+                if livenessDetectionResult == nil {
+                    FaceLivenessDetectorView(result: $livenessDetectionResult,
+                                                sessionAuthorizationToken: token)
+                } else if let result = livenessDetectionResult {
+                    VStack {
+                        switch result { 
+                            case .success(let success):
+                            /// <#show success#>
+                            case .failure(let error):
+                            /// <#show failure#>
+                        }
+                    }
+                }
+            }
         }
         ```
 
@@ -625,15 +654,9 @@ The high-level steps involved in liveness with verification orchestration are il
     var sessionResult = getResultResponse.Value;
     Console.WriteLine($"Session id: {sessionResult.Id}");
     Console.WriteLine($"Session status: {sessionResult.Status}");
-    Console.WriteLine($"Liveness detection request id: {sessionResult.Result?.RequestId}");
-    Console.WriteLine($"Liveness detection received datetime: {sessionResult.Result?.ReceivedDateTime}");
     Console.WriteLine($"Liveness detection decision: {sessionResult.Result?.Response.Body.LivenessDecision}");
     Console.WriteLine($"Verification result: {sessionResult.Result?.Response.Body.VerifyResult.IsIdentical}");
     Console.WriteLine($"Verification confidence: {sessionResult.Result?.Response.Body.VerifyResult.MatchConfidence}");
-    Console.WriteLine($"Session created datetime: {sessionResult.CreatedDateTime}");
-    Console.WriteLine($"Auth token TTL (seconds): {sessionResult.AuthTokenTimeToLiveInSeconds}");
-    Console.WriteLine($"Session expired: {sessionResult.SessionExpired}");
-    Console.WriteLine($"Device correlation id: {sessionResult.DeviceCorrelationId}");
     ```
 
     #### [Java](#tab/java)
@@ -641,15 +664,9 @@ The high-level steps involved in liveness with verification orchestration are il
     LivenessWithVerifySession sessionResult = sessionClient.getLivenessWithVerifySessionResult(creationResult.getSessionId());
     System.out.println("Session id: " + sessionResult.getId());
     System.out.println("Session status: " + sessionResult.getStatus());
-    System.out.println("Liveness detection request id: " + sessionResult.getResult().getRequestId());
-    System.out.println("Liveness detection received datetime: " + sessionResult.getResult().getReceivedDateTime());
     System.out.println("Liveness detection decision: " + sessionResult.getResult().getResponse().getBody().getLivenessDecision());
     System.out.println("Verification result: " + sessionResult.getResult().getResponse().getBody().getVerifyResult().isIdentical());
     System.out.println("Verification confidence: " + sessionResult.getResult().getResponse().getBody().getVerifyResult().getMatchConfidence());
-    System.out.println("Session created datetime: " + sessionResult.getCreatedDateTime());
-    System.out.println("Auth token TTL (seconds): " + sessionResult.getAuthTokenTimeToLiveInSeconds());
-    System.out.println("Session expired: " + sessionResult.isSessionExpired());
-    System.out.println("Device correlation id: " + sessionResult.getDeviceCorrelationId());
     ```
 
     #### [Python](#tab/python)
@@ -659,20 +676,14 @@ The high-level steps involved in liveness with verification orchestration are il
     )
     print(f"Session id: {liveness_result.id}")
     print(f"Session status: {liveness_result.status}")
-    print(f"Liveness detection request id: {liveness_result.result.request_id}")
-    print(f"Liveness detection received datetime: {liveness_result.result.received_date_time}")
     print(f"Liveness detection decision: {liveness_result.result.response.body.liveness_decision}")
     print(f"Verification result: {liveness_result.result.response.body.verify_result.is_identical}")
     print(f"Verification confidence: {liveness_result.result.response.body.verify_result.match_confidence}")
-    print(f"Session created datetime: {liveness_result.created_date_time}")
-    print(f"Auth token TTL (seconds): {liveness_result.auth_token_time_to_live_in_seconds}")
-    print(f"Session expired: {liveness_result.session_expired}")
-    print(f"Device correlation id: {liveness_result.device_correlation_id}")
     ```
 
     #### [JavaScript](#tab/javascript)
     ```javascript
-    const getLivenessSessionResultResponse = await client.path('/detectLivenessWithVerify/singleModal/sessions/{sessionId}', createLivenessSessionResponse.body.sessionId).get();
+    const getLivenessSessionResultResponse = await client.path('/detectLivenesswithVerify/singleModal/sessions/{sessionId}', createLivenessSessionResponse.body.sessionId).get();
     if (isUnexpected(getLivenessSessionResultResponse)) {
         throw new Error(getLivenessSessionResultResponse.body.error.message);
     }
@@ -680,25 +691,19 @@ The high-level steps involved in liveness with verification orchestration are il
     console.log(`Session id: ${getLivenessSessionResultResponse.body.id}`);
     console.log(`Session status: ${getLivenessSessionResultResponse.body.status}`);
     console.log(`Liveness detection request id: ${getLivenessSessionResultResponse.body.result?.requestId}`);
-    console.log(`Liveness detection received datetime: ${getLivenessSessionResultResponse.body.result?.receivedDateTime}`);
-    console.log(`Liveness detection decision: ${getLivenessSessionResultResponse.body.result?.response.body.livenessDecision}`);
     console.log(`Verification result: ${getLivenessSessionResultResponse.body.result?.response.body.verifyResult.isIdentical}`);
     console.log(`Verification confidence: ${getLivenessSessionResultResponse.body.result?.response.body.verifyResult.matchConfidence}`);
-    console.log(`Session created datetime: ${getLivenessSessionResultResponse.body.createdDateTime}`);
-    console.log(`Auth token TTL (seconds): ${getLivenessSessionResultResponse.body.authTokenTimeToLiveInSeconds}`);
-    console.log(`Session expired: ${getLivenessSessionResultResponse.body.sessionExpired}`);
-    console.log(`Device correlation id: ${getLivenessSessionResultResponse.body.deviceCorrelationId}`);
     ```
 
     #### [REST API (Windows)](#tab/cmd)
     ```console
-    curl --request GET --location "%FACE_ENDPOINT%/face/v1.1-preview.1/detectlivenesswithverify/singlemodal/sessions/<session-id>" ^
+    curl --request GET --location "%FACE_ENDPOINT%/face/v1.2/detectLivenesswithVerify-sessions/<session-id>" ^
     --header "Ocp-Apim-Subscription-Key: %FACE_APIKEY%"
     ```
 
     #### [REST API (Linux)](#tab/bash)
     ```bash
-    curl --request GET --location "${FACE_ENDPOINT}/face/v1.1-preview.1/detectlivenesswithverify/singlemodal/sessions/<session-id>" \
+    curl --request GET --location "${FACE_ENDPOINT}/face/v1.2/detectLivenesswithVerify-sessions/<session-id>" \
     --header "Ocp-Apim-Subscription-Key: ${FACE_APIKEY}"
     ```
 
@@ -707,49 +712,47 @@ The high-level steps involved in liveness with verification orchestration are il
     An example of the response body:
     ```json
     {
-        "status": "ResultAvailable",
-        "result": {
-            "id": 1,
-            "sessionId": "3847ffd3-4657-4e6c-870c-8e20de52f567",
-            "requestId": "f71b855f-5bba-48f3-a441-5dbce35df291",
-            "receivedDateTime": "2023-10-31T17:03:51.5859307+00:00",
-            "request": {
-                "url": "/face/v1.1-preview.1/detectlivenesswithverify/singlemodal",
-                "method": "POST",
-                "contentLength": 352568,
-                "contentType": "multipart/form-data; boundary=--------------------------590588908656854647226496",
-                "userAgent": ""
-            },
-            "response": {
-                "body": {
+        "sessionId": "93fd6f13-4161-41df-8a22-80a38ef53836",
+        "authToken": "",
+        "status": "Succeeded",
+        "modelVersion": "2024-11-15",
+        "results": {
+            "attempts": [
+                {
+                    "attemptId": 1,
+                    "attemptStatus": "Succeeded",
+                    "result": {
                     "livenessDecision": "realface",
-                    "target": {
-                        "faceRectangle": {
-                            "top": 59,
-                            "left": 121,
-                            "width": 409,
-                            "height": 395
-                        },
-                        "fileName": "content.bin",
-                        "timeOffsetWithinFile": 0,
-                        "imageType": "Color"
+                    "targets": {
+                        "color": {
+                            "faceRectangle": {
+                                "top": 669,
+                                "left": 203,
+                                "width": 646,
+                                "height": 724
+                            }
+                        }
                     },
-                    "modelVersionUsed": "2022-10-15-preview.04",
+                    "digest": "EE664438FDF0535C6344A468181E4DDD4A34AC89582D4FD6E9E8954B843C7AA7",
                     "verifyResult": {
-                        "matchConfidence": 0.9304124,
-                        "isIdentical": true
+                            "matchConfidence": 0.08172279,
+                            "isIdentical": false
+                        }
                     }
-                },
-                "statusCode": 200,
-                "latencyInMilliseconds": 1306
-            },
-            "digest": "2B39F2E0EFDFDBFB9B079908498A583545EBED38D8ACA800FF0B8E770799F3BF"
-        },
-        "id": "3847ffd3-4657-4e6c-870c-8e20de52f567",
-        "createdDateTime": "2023-10-31T16:58:19.8942961+00:00",
-        "authTokenTimeToLiveInSeconds": 600,
-        "deviceCorrelationId": "723d6d03-ef33-40a8-9682-23a1feb7bccd",
-        "sessionExpired": true
+                }
+            ],
+            "verifyReferences": [
+            {
+                "faceRectangle": {
+                    "top": 98,
+                    "left": 131,
+                    "width": 233,
+                    "height": 300
+                    },
+                "qualityForRecognition": "high"
+            }
+            ]
+        }
     }
     ```
 
@@ -778,7 +781,7 @@ The high-level steps involved in liveness with verification orchestration are il
 
     #### [JavaScript](#tab/javascript)
     ```javascript
-    const deleteLivenessSessionResponse = await client.path('/detectLivenessWithVerify/singleModal/sessions/{sessionId}', createLivenessSessionResponse.body.sessionId).delete();
+    const deleteLivenessSessionResponse = await client.path('/detectLivenesswithVerify/singleModal/sessions/{sessionId}', createLivenessSessionResponse.body.sessionId).delete();
     if (isUnexpected(deleteLivenessSessionResponse)) {
         throw new Error(deleteLivenessSessionResponse.body.error.message);
     }
@@ -787,13 +790,13 @@ The high-level steps involved in liveness with verification orchestration are il
 
     #### [REST API (Windows)](#tab/cmd)
     ```console
-    curl --request DELETE --location "%FACE_ENDPOINT%/face/v1.1-preview.1/detectlivenesswithverify/singlemodal/sessions/<session-id>" ^
+    curl --request DELETE --location "%FACE_ENDPOINT%/face/v1.2/detectLivenesswithVerify-sessions/<session-id>" ^
     --header "Ocp-Apim-Subscription-Key: %FACE_APIKEY%"
     ```
 
     #### [REST API (Linux)](#tab/bash)
     ```bash
-    curl --request DELETE --location "${FACE_ENDPOINT}/face/v1.1-preview.1/detectlivenesswithverify/singlemodal/sessions/<session-id>" \
+    curl --request DELETE --location "${FACE_ENDPOINT}/face/v1.2/detectLivenesswithVerify-sessions/<session-id>" \
     --header "Ocp-Apim-Subscription-Key: ${FACE_APIKEY}"
     ```
 

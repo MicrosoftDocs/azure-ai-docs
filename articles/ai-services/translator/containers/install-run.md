@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 12/09/2024
+ms.date: 01/28/2025
 ms.author: lajanuar
 recommendations: false
 keywords: on-premises, Docker, container, identify
@@ -98,7 +98,7 @@ The following table describes the minimum and recommended specifications and the
   |Text transliteration| 4 Core, 2-GB memory ||
    |Document translation | 4 Core, 6-GB memory|The number of documents that can be processed concurrently can be  calculated with the following formula: [minimum of (`n-2`), (`m-6)/4`)]. <br>&bullet; `n` is number of CPU cores.<br>&bullet; `m` is GB of memory.<br>&bullet;  **Example**: 8 Core, 32-GB memory can process six(6) concurrent documents [minimum of (`8-2`), `(36-6)/4)`].|
 
-* Each core must be at least 2.6 gigahertz (GHz) or faster.
+* For each core, you must have at least 2.6 gigahertz (GHz) or faster.
 
 * For every language pair, 2 GB of memory is recommended.
 
@@ -126,7 +126,7 @@ All Azure AI containers require the following input values:
 
 > [!IMPORTANT]
 >
-> * Keys are used to access your Azure AI resource. Do not share your keys. Store them securely, for example, using Azure Key Vault.
+> * Keys are used to access your Azure AI resource. Don't share your keys. Store them securely, for example, using Azure Key Vault.
 >
 > * We also recommend regenerating these keys regularly. Only one key is necessary to make an API call. When regenerating the first key, you can use the second key for continued access to the service.
 
@@ -172,8 +172,8 @@ The [docker run](https://docs.docker.com/engine/reference/commandline/run/) comm
 
 > [!IMPORTANT]
 >
-> * The docker commands in the following sections use the back slash, `\`, as a line continuation character. Replace or remove this based on your host operating system's requirements.
-> * The `EULA`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container won't start.
+> * The docker commands in the following sections use the backslash, `\`, as a line continuation character. Replace or remove the backslash based on your host operating system's requirements.
+> * The `EULA`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container can't start.
 > * If you're translating documents, be sure to use the document translation endpoint.
 
 ```bash
@@ -197,13 +197,13 @@ The Docker command:
 * Automatically removes the container after it exits. The container image is still available on the host computer.
 
 > [!TIP]
-> Additional Docker command:
+> Other Docker command:
 >
 > * `docker ps` lists running containers.
 > * `docker pause {your-container name}` pauses a running container.
 > * `docker unpause {your-container-name}` unpauses a paused container.
 > * `docker restart {your-container-name}` restarts a running container.
-> * `docker exec` enables you to execute commands lto *detach* or *set environment variables* in a running container.
+> * `docker exec` enables you to execute commands to *detach* or *set environment variables* in a running container.
 >
 > For more information, *see* [docker CLI reference](https://docs.docker.com/engine/reference/commandline/docker/).
 
@@ -223,9 +223,9 @@ The container provides a REST-based Translator endpoint API. Here's an example r
 
 > [!NOTE]
 >
-> * Source language detection requires an additional container. For more information, *see* [Supporting containers](#use-cases-for-supporting-containers)
+> * Source language detection requires another container. For more information, *see* [Supporting containers](#use-cases-for-supporting-containers)
 >
-> * If the cURL POST request returns a `Service is temporarily unavailable` response the container isn't ready. Wait a few minutes, then try again.
+> * If the cURL POST request returns a `Service is temporarily unavailable` response, the container isn't ready. Wait a few minutes, then try again.
 
 ### [**Disconnected (offline) containers**](#tab/disconnected)
 
@@ -276,9 +276,9 @@ Both the endpoint URL and API key are needed when you first run the container to
   :::image type="content" source="media/keys-endpoint-container.png" alt-text="Screenshot of Azure portal keys and endpoint page.":::
 
 > [!IMPORTANT]
-> You will only use your key and endpoint to configure the container to run in a disconnected.
+> You only use your key and endpoint to configure the container to run in a disconnected.
 > If you're translating **documents**, be sure to use the document translation endpoint.
-> environment. After you configure the container, you won't need the key and endpoint values to send API requests. Store them securely, for example, using Azure Key Vault. Only one key is necessary for this process.
+> After you configure the container, you don't need the key and endpoint values to send API requests. Store them securely, for example, using Azure Key Vault. Only one key is necessary for this process.
 
 ## Pull and load the Translator container image
 
@@ -315,7 +315,7 @@ Now that you downloaded your container, you can execute the `docker run` command
 * **`Languages={language list}`**. You must include this parameter to download model files for the [languages](../language-support.md) you want to translate.
 
 > [!IMPORTANT]
-> The `docker run` command will generate a template that you can use to run the container. The template contains parameters you'll need for the downloaded models and configuration file. Make sure you save this template.
+> The `docker run` command generates a template that you can use to run the container. The template contains parameters you need for the downloaded models and configuration file. Make sure you save this template.
 
 The following example shows the formatting for the `docker run` command with placeholder values. Replace these placeholder values with your own values.
 
@@ -521,7 +521,7 @@ If you installed Docker Desktop CLI, it includes Docker compose and its prerequi
    > * `docker compose pause` pauses running containers.
    > * `docker compose unpause {your-container-name}` unpauses paused containers.
    > * `docker compose restart` restarts all stopped and running container with all its previous changes intact. If you make changes to your `compose.yaml` configuration, these changes aren't updated with the `docker compose restart` command. You have to use the `docker compose up` command to reflect updates and changes in the `compose.yaml` file.
-   > * `docker compose ps -a` lists all containers, including those that are stopped.
+   > * `docker compose ps -a` lists all containers, including containers that are stopped.
    > * `docker compose exec` enables you to execute commands to *detach* or *set environment variables* in a running container.
    >
    > For more information, *see* [docker CLI reference](https://docs.docker.com/engine/reference/commandline/docker/).

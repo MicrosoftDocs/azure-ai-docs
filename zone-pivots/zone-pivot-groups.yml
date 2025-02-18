@@ -137,7 +137,7 @@ groups:
   prompt: Choose your preferred usage method
   pivots:
   - id: programming-language-studio
-    title: Studio
+    title: Portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-go
@@ -577,6 +577,41 @@ groups:
       title: JavaScript
     - id: programming-language-rest
       title: REST
+- id: azure-ai-inference-samples
+# Owner: santiagxf
+  title: Programing languages
+  prompt: Choose a tool or API
+  pivots:
+    - id: programming-language-python
+      title: Python
+    - id: programming-language-javascript
+      title: JavaScript
+    - id: programming-language-java
+      title: Java
+    - id: programming-language-csharp
+      title: C#
+    - id: programming-language-rest
+      title: REST
+- id: azure-ai-models-deployment
+# Owner: santiagxf
+  title: Prograaming languages
+  prompt: Choose a tool or API
+  pivots:
+    - id: ai-foundry-portal
+      title: Foundry portal
+    - id: programming-language-cli
+      title: Azure CLI
+    - id: programming-language-bicep
+      title: Bicep
+- id: azure-ai-model-catalog-sub-group-samples
+# Owner: mopeakande
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+    - id: programming-language-python
+      title: Python
+    - id: programming-language-rest
+      title: REST
 - id: aml-control-methods
   # Owner: gopalv
   title: Azure Machine Learning control plane
@@ -916,16 +951,22 @@ groups:
     title: Python
   - id: programming-language-typescript
     title: TypeScript
-- id: programming-languages-agents
-  title: Programming languages
-  prompt: Choose a programming language
+- id: agents-quickstart
+  title: Usage methods
+  prompt: Choose a usage method
   pivots:
+  - id: ai-foundry
+    title: AI Foundry
   - id: programming-language-csharp
     title: C#
+  - id: programming-language-javascript
+    title: JavaScript
   - id: programming-language-python-azure
     title: Python (Azure SDK)
   - id: programming-language-python-openai
-    title: Python (OpenAI SDK) 
+    title: Python (OpenAI SDK)
+  - id: programming-language-typescript
+    title: TypeScript
 # owner: aahi
 - id: selection-code-interpreter
   title: Selections
@@ -987,3 +1028,43 @@ groups:
     title: Python
   - id: programming-language-csharp
     title: C#
+- id: audio-completions-quickstart
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: ai-foundry-portal
+    title: Portal
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-typescript
+    title: TypeScript
+  - id: rest-api
+    title: REST
+- id: structured-outputs
+  title: Programming languages
+  prompt: Choose a language or API
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-rest
+    title: REST
+- id: search-quickstart-full-text
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-typescript
+    title: TypeScript

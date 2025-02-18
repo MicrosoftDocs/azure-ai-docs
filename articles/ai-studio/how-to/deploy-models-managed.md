@@ -3,7 +3,7 @@ title: How to deploy and inference a managed compute deployment with code
 titleSuffix: Azure AI Foundry
 description: Learn how to deploy and inference a managed compute deployment with code.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to
@@ -16,7 +16,7 @@ author: msakande
 
 # How to deploy and inference a managed compute deployment with code
 
-the Azure AI Foundry portal [model catalog](../how-to/model-catalog-overview.md) offers over 1,600 models, and the most common way to deploy these models is to use the managed compute deployment option, which is also sometimes referred to as a managed online deployment. 
+The Azure AI Foundry portal [model catalog](../how-to/model-catalog-overview.md) offers over 1,600 models, and the most common way to deploy these models is to use the managed compute deployment option, which is also sometimes referred to as a managed online deployment. 
 
 Deployment of a large language model (LLM) makes it available for use in a website, an application, or other production environment. Deployment typically involves hosting the model on a server or in the cloud and creating an API or other interface for users to interact with the model. You can invoke the deployment for real-time inference of generative AI applications such as chat and copilot.
 
@@ -150,6 +150,10 @@ response = workspace_ml_client.online_endpoints.invoke(
 response_json = json.loads(response)
 print(json.dumps(response_json, indent=2))
 ```
+
+## Configure Autoscaling
+
+To configure autoscaling for deployments, you can go to Azure Portal, locate the Azure resource typed `Machine learning online deployment` in the resource group of the AI project, and use Scaling menu under Setting. For more information on autoscaling, see [Autoscale online endpoints](/azure/machine-learning/how-to-autoscale-endpoints) in the Azure Machine Learning documentation. 
 
 ## Delete the deployment endpoint
 

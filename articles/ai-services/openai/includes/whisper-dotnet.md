@@ -92,8 +92,7 @@ Passwordless authentication is more secure than key-based alternatives and is th
     }
     ```
 
-    > [!IMPORTANT]
-    > For production, store and access your credentials using a secure method, such as [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see [Azure AI services security](../../security-features.md).
+[!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 1. Run the application using the `dotnet run` command or the run button at the top of Visual Studio:
 

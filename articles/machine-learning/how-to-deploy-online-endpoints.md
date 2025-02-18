@@ -10,7 +10,7 @@ ms.author: mopeakande
 ms.reviewer: sehan
 ms.date: 04/30/2024
 ms.topic: how-to
-ms.custom: how-to, devplatv2, cliv2, sdkv2, update-code, devx-track-azurecli
+ms.custom: how-to, devplatv2, cliv2, sdkv2, update-code2, devx-track-azurecli
 ---
 
 # Deploy and score a machine learning model by using an online endpoint
@@ -1230,7 +1230,7 @@ To view metrics and set alerts based on your SLA, complete the steps that are de
 
 ### (Optional) Integrate with Log Analytics
 
-The `get-logs` command for CLI or the `get_logs` method for SDK provides only the last few hundred lines of logs from an automatically selected instance. However, Log Analytics provides a way to durably store and analyze logs. For more information on using logging, see [Monitor online endpoints](how-to-monitor-online-endpoints.md#logs).
+The `get-logs` command for CLI or the `get_logs` method for SDK provides only the last few hundred lines of logs from an automatically selected instance. However, Log Analytics provides a way to durably store and analyze logs. For more information on using logging, see [Monitor online endpoints](how-to-monitor-online-endpoints.md#use-logs).
 
 <!-- [!INCLUDE [Email Notification Include](includes/machine-learning-email-notifications.md)] -->
 

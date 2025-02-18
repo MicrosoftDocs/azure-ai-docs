@@ -517,12 +517,6 @@ You can archive all versions or only specific versions of a model. If you don't 
 
 # [Azure CLI](#tab/cli)
 
-Archive all versions of a model:
-
-```azurecli
-az ml model archive --name run-model-example
-```
-
 Archive a specific model version:
 
 ```azurecli
@@ -530,12 +524,6 @@ az ml model archive --name run-model-example --version 1
 ```
 
 # [Python SDK](#tab/python)
-
-Archive all versions of a model:
-
-```python
-ml_client.models.archive(name="run-model-example")
-```
 
 Archive a specific model version:
 

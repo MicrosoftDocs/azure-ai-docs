@@ -39,6 +39,12 @@ pip install azure-identity
 pip install openai
 ```
 
+Next, to authenticate your API requests and run the program, use the [az login](/cli/azure/authenticate-azure-cli-interactively) command to sign into your Azure subscription.
+
+```azurecli
+az login
+```
+
 Use the following code to create and run an agent. To run this code, you will need to create a connection string using information from your project. This string is in the format:
 
 `<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>`

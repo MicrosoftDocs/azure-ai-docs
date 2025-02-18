@@ -24,7 +24,7 @@ With Azure Machine Learning, MLflow models get the added benefits of:
 - Portability as an open source standard format
 - Ability to deploy both locally and on cloud
 
-MLflow provides support for various [machine learning frameworks](https://mlflow.org/docs/latest/models.html#built-in-model-flavors), such as scikit-learn, Keras, and Pytorch. MLflow might not cover every use case. For example, you might want to create an MLflow model with a framework that MLflow doesn't natively support. You might want to change the way your model does preprocessing or post-processing when running jobs. To learn more about MLflow models, see [From artifacts to models in MLflow](concept-mlflow-models.md).
+MLflow provides support for various [machine learning frameworks](https://mlflow.org/docs/latest/models.html#built-in-model-flavors), such as scikit-learn, Keras, and PyTorch. MLflow might not cover every use case. For example, you might want to create an MLflow model with a framework that MLflow doesn't natively support. You might want to change the way your model does preprocessing or post-processing when running jobs. To learn more about MLflow models, see [From artifacts to models in MLflow](concept-mlflow-models.md).
 
 If you didn't train your model with MLFlow and want to use Azure Machine Learning's MLflow no-code deployment offering, you need to convert your custom model to MLFLow. For more information, see [Custom Python Models](https://mlflow.org/docs/latest/models.html#custom-python-models).
 

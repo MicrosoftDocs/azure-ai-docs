@@ -10,18 +10,18 @@ ms.subservice: azure-ai-face
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 10/24/2023
+ms.date: 01/22/2025
 ms.author: pafarley
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Azure Face service quotas and limits
 
-This article contains a reference and a detailed description of the quotas and limits for Azure Face in Azure AI Vision. The following tables summarize the different types of quotas and limits that apply to Azure AI Face service.
+This article contains a reference and a detailed description of the quotas and limits for Azure Face service in Azure AI Vision. The following tables summarize the different types of quotas and limits that apply to Azure AI Face service.
 
 ## Extendable limits
 
-**Default rate limits**
+### Default rate limits
 
 | **Pricing tier** | **Limit value** |
 | --- | --- |
@@ -31,7 +31,7 @@ This article contains a reference and a detailed description of the quotas and l
 > [!NOTE]
 > If you exceed the default rate limit, you'll receive a `429` error. To address this issue, refer to the [Performance guide](/azure/ai-services/computer-vision/how-to/mitigate-latency#handle-errors-effectively).
 
-**Default Face resource quantity limits**
+### Default Face resource quantity limits
 
 | **Pricing tier** | **Limit value** |
 | --- | --- |
@@ -40,7 +40,7 @@ This article contains a reference and a detailed description of the quotas and l
 | Enterprise (E0) | <ul><li>5 resources in UAE North, Brazil South, and Qatar Central.</li><li>10 resources in other regions.</li></ul> |
 
 
-### How to request an increase to the default limits 
+### Request an increase to the default limits 
 
 To increase rate limits and resource limits for paid subscription, you can submit a support request.
 
@@ -65,7 +65,7 @@ We evaluate TPS increase requests on a case-by-case basis, and our decision is b
 
 ## Other limits
 
-**Quota of PersonDirectory**
+### Quota of PersonDirectory
 
 | **Pricing tier** | **Limit value** |
 | --- | --- |
@@ -73,34 +73,36 @@ We evaluate TPS increase requests on a case-by-case basis, and our decision is b
 | Standard (S0), </br>Enterprise (E0) | <ul><li>1 PersonDirectory</li><li>20,000,000 persons<ul><li>Contact support if you want to increase this limit.</li></ul></li><li>Each holds up to 248 faces.</li><li>1,000,000 DynamicPersonGroups</li></ul> |
 
 
-**Quota of FaceList**
+### Quota of FaceList
 
 | **Pricing tier** | **Limit value** |
 | --- | --- |
 | Free (F0), </br>Standard (S0), </br>Enterprise (E0) |<ul><li>64 FaceLists.</li><li>Each holds up to 1,000 faces.</li></ul>|
 
-**Quota of LargeFaceList**
+### Quota of LargeFaceList
 
 | **Pricing tier** | **Limit value** |
 | --- | --- |
 | Free (F0) | <ul><li>64 LargeFaceLists.</li><li>Each holds up to 1,000 faces.</li></ul>|
 | Standard (S0), </br>Enterprise (E0)  | <ul><li>1,000,000 LargeFaceLists.</li><li>Each holds up to 1,000,000 faces.</li></ul> |
 
-**Quota of PersonGroup** 
+### Quota of PersonGroup
 
 | **Pricing tier** | **Limit value** |
 | --- | --- |
 | Free (F0) |<ul><li>1,000 PersonGroups. </li><li>Each holds up to 1,000 Persons.</li><li>Each Person can hold up to 248 faces.</li></ul>|
 | Standard (S0), </br>Enterprise (E0)  |<ul><li>1,000,000 PersonGroups.</li> <li>Each holds up to 10,000 Persons.</li><li>Each Person can hold up to 248 faces.</li></ul>|
 
-**Quota of LargePersonGroup** 
+### Quota of LargePersonGroup
 
 | **Pricing tier** | **Limit value** |
 | --- | --- |
 | Free (F0) | <ul><li>1,000 LargePersonGroups</li><li> Each holds up to 1,000 Persons.</li><li>Each Person can hold up to 248 faces.</li></ul> |
 | Standard (S0), </br>Enterprise (E0) | <ul><li>1,000,000 LargePersonGroups</li><li> Each holds up to 1,000,000 Persons.</li><li>Each Person can hold up to 248 faces.</li><li>The total Persons in all LargePersonGroups shouldn't exceed 1,000,000,000.</li></ul> |
 
-**[Customer-managed keys (CMK)](/azure/ai-services/computer-vision/identity-encrypt-data-at-rest)**
+### Customer-managed keys (CMK)
+
+For information see [Customer-managed keys](/azure/ai-services/computer-vision/identity-encrypt-data-at-rest).
 
 | **Pricing tier** | **Limit value** |
 | --- | --- |

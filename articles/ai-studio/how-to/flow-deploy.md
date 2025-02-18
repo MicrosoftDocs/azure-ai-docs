@@ -3,14 +3,14 @@ title: Deploy a flow as a managed online endpoint for real-time inference
 titleSuffix: Azure AI Foundry
 description: Learn how to deploy a flow as a managed online endpoint for real-time inference with Azure AI Foundry.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 5/21/2024
-ms.reviewer: likebupt
+ms.date: 01/27/2025
+ms.reviewer: gmuthukumar
 ms.author: lagayhar
 author: lgayhardt
 ---
@@ -37,6 +37,7 @@ To deploy a prompt flow as an online endpoint, you need:
 
 * An Azure subscription. If you don't have one, create a free account before you begin.
 * An Azure AI Foundry project.
+* A **Microsoft.PolicyInsights** resource provider registered in the selected subscription. For more information on registering a resource provide, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1).
 
 ## Create an online deployment
 
@@ -157,8 +158,6 @@ You can also specify the connections used by the endpoint when it performs infer
 
 Once you configured and reviewed all the steps above, you can select **Review + Create** to finish the creation.
 
-:::image type="content" source="../media/prompt-flow/how-to-deploy-for-real-time-inference/deploy-advanced-outputs-connections.png" alt-text="Screenshot of the advanced output and connections settings." lightbox = "../media/prompt-flow/how-to-deploy-for-real-time-inference/deploy-advanced-outputs-connections.png":::
-
 > [!NOTE]
 > Expect the endpoint creation to take approximately more than 15 minutes, as it contains several stages including creating endpoint, registering model, creating deployment, etc.
 >
@@ -173,7 +172,7 @@ If you enable this, tracing data and system metrics during inference time (such 
 > [!IMPORTANT]
 > Granting permissions (adding role assignment) is only enabled to the **Owner** of the specific Azure resources. You might need to ask your Azure subscription owner (who might be your IT admin) for help.
 >
-> It's recommended to grant roles to the **user-assigned** identity **before the deployment creation**.
+> It's recommended to grant roles to the **user-assigned** identity as soon as the endpoint creation completes.
 > It might take more than 15 minutes for the granted permission to take effect.
 
 You can grant the required permissions in Azure portal UI by following steps.
@@ -199,7 +198,7 @@ You can grant the required permissions in Azure portal UI by following steps.
        
     :::image type="content" source="../media/prompt-flow/how-to-deploy-for-real-time-inference/storage-container-registry.png" alt-text="Screenshot of the overview page with storage and container registry highlighted." lightbox = "../media/prompt-flow/how-to-deploy-for-real-time-inference/storage-container-registry.png":::
 
-    Go to the hub container registry overview page, select **Access control**, and select **Add role assignment**, and assign **ACR pull |Pull container image** to the endpoint identity.
+    Go to the hub container registry overview page, select **Access control**, and select **Add role assignment**, and assign **ACR Pull** to the endpoint identity.
 
     Go to the hub default storage overview page, select **Access control**, and select **Add role assignment**, and assign **Storage Blob Data Reader** to the endpoint identity.
 
@@ -209,7 +208,7 @@ You can grant the required permissions in Azure portal UI by following steps.
 
 There will be notifications after you finish the deploy wizard. After the endpoint and deployment are created successfully, you can select **View details** in the notification to deployment detail page.
 
-You can also directly go to the **Deployments** page from the left navigation, select the deployment, and check the status.
+You can also directly go to the **Model + endpoints** page from the left navigation, select the deployment, and check the status.
 
 ## Test the endpoint
 
@@ -245,8 +244,8 @@ If you aren't going use the endpoint after completing this tutorial, you should 
 > [!NOTE]
 > The complete deletion might take approximately 20 minutes.
 
-## Next Steps
+## Next steps
 
 - Learn more about what you can do in [Azure AI Foundry](../what-is-ai-studio.md)
 - Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml)
-- [Enable trace and collect feedback for your deployment] (./develop/trace-production-sdk.md)
+- [Enable trace and collect feedback for your deployment](./develop/trace-production-sdk.md)

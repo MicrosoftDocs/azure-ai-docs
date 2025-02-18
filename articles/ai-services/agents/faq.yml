@@ -7,7 +7,7 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-agent-service
   ms.topic: faq
-  ms.date: 12/20/2024
+  ms.date: 01/15/2025
   ms.author: aahi
   author: aahill
 title: Azure AI Agent Service frequently asked questions
@@ -49,7 +49,7 @@ sections:
           * If you've enabled the Code Interpreter tool - for example your agent calls Code Interpreter simultaneously in two different threads, this would create two Code Interpreter sessions, each of which would be charged. Each session is active by default for one hour, which means that you would only pay this fee once if your user keeps giving instructions to Code Interpreter in the same thread for up to one hour.
           * File search is billed based on the vector storage used. 
 
-          For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
+          For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
       - question: |
           Is there any additional pricing or quota for using AI Agent Service? 
         answer: |

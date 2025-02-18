@@ -1,18 +1,18 @@
 ### YamlMime:FAQ
 metadata:
-  title: Azure AI frequently asked questions
+  title: Azure AI Foundry frequently asked questions
   titleSuffix: Azure AI Foundry
   description: Get answers to the most popular questions about Azure AI services.
   manager: scottpolly
-  ms.service: azure-ai-studio
+  ms.service: azure-ai-foundry
   ms.custom:
     - build-2024
   ms.topic: faq
-  ms.date: 5/21/2024
+  ms.date: 01/17/2025
   ms.reviewer: sgilley
   ms.author: sgilley
   author: sdgilley
-title: Azure AI frequently asked questions
+title: Azure AI Foundry frequently asked questions
 summary: |
   If you can't find answers to your questions in this document, and still need help check the [Azure AI services support options guide](../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context). Azure OpenAI is part of Azure AI services.
 sections:
@@ -25,7 +25,7 @@ sections:
       - question: |
           How can customers access Azure AI Foundry? 
         answer: |
-          Customers can explore Azure AI Foundry unauthenticated - including its cutting-edge AI capabilities. When they're ready to begin using templates, tools, and the robust model catalog to stitch together their own AI solutions, they'll be prompted to register or sign in to their Azure account. During preview, there's no extra charge for using Azure AI Foundry. When deploying solutions, Azure AI services, Azure Machine Learning, and other Azure resources used inside of Azure AI Foundry will be billed at their existing rates. Pricing is subject to change when Azure AI Foundry is generally available.
+          Customers can explore Azure AI Foundry unauthenticated - including its cutting-edge AI capabilities. When you're ready to begin using templates, tools, and the robust model catalog to stitch together your own AI solutions, you're prompted to register or sign in to your Azure account. Currently, there's no extra charge for using Azure AI Foundry. When deploying solutions, you're billed for the Azure AI services, Azure Machine Learning, and other Azure resources used inside of Azure AI Foundry at their existing rates.
       - question: |
           What regions is Azure AI Foundry available in?
         answer: | 
@@ -37,15 +37,15 @@ sections:
       - question: |
           Can I use models other than ChatGPT in Azure AI Foundry portal? 
         answer: |
-          Yes. Azure AI Foundry includes a robust and growing catalog of frontier and open-source models from OpenAI, Hugging Face, Meta and more that can be applied over your data. You can even compare models by task using open-source datasets and evaluate the model with your own test data to see how the pre-trained model would perform to fit your own use case.
+          Yes. Azure AI Foundry includes a robust and growing catalog of frontier and open-source models from OpenAI, Hugging Face, Meta, and more that can be applied over your data. You can even compare models by task using open-source datasets and evaluate the model with your own test data to see how the pretrained model would perform to fit your own use case.
       - question: |
           Will there be multiple varying model benchmarks in Azure AI Foundry portal based on individual projects and data sources? 
         answer: |
-          In the model benchmarks view, customers can view varying model benchmarks published by Azure AI. 
+          In the model benchmarks view, customers can view varying model benchmarks published by Azure AI Foundry. 
       - question: |
           Is prompt flow Microsoft's equivalent to LangChain? 
         answer: |
-          Prompt flow is complementary to LangChain and Semantic Kernel and it can work with either. Prompt flow supports LLMOps for generative AI solutions, providing evaluation, connection management, and flow logic to help debug applications, manage deployment and monitor at scale.
+          Prompt flow is complementary to LangChain and Semantic Kernel and it can work with either. Prompt flow supports LLMOps for generative AI solutions, providing evaluation, connection management, and flow logic to help debug applications, manage deployment, and monitor at scale.
       - question: |
           How is prompt injection handled, and how do we ensure no malicious code is running from prompt injection? 
         answer: |
@@ -53,7 +53,7 @@ sections:
       - question: |
           What is the billing model for Model-as-a-Service (MaaS)? 
         answer: |
-          Azure AI Foundry offers paygo inference APIs and hosted fine-tuning for [Llama 2 family models](how-to/deploy-models-llama.md). During preview, there's no extra charge for Azure AI Foundry outside of typical AI services and other Azure resource charges.
+          Azure AI Foundry offers pay-as-you-go inference APIs and hosted fine-tuning for [Llama 2 family models](how-to/deploy-models-llama.md). Currently, there's no extra charge for Azure AI Foundry outside of typical AI services and other Azure resource charges.
       - question: |
           Can all models be secured with content filtering? 
         answer: |

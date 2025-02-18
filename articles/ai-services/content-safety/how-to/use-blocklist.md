@@ -8,8 +8,9 @@ manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2023
 ms.topic: how-to
-ms.date: 06/01/2024
+ms.date: 01/22/2025
 ms.author: pafarley
+#customer intent: As a developer, I want to use blocklists for text moderation so that I can customize content filtering.
 ---
 
 

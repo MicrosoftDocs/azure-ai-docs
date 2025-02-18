@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 06/28/2024
+ms.date: 01/15/2025
 ---
 
 # Security overview for Azure AI Search
@@ -53,7 +53,7 @@ Internal traffic consists of:
 
 + Service-to-service calls for tasks like authentication and authorization through Microsoft Entra ID, resource logging sent to Azure Monitor, and [private endpoint connections](service-create-private-endpoint.md) that utilize Azure Private Link.
 + Requests made to Azure AI services APIs for [built-in skills](cognitive-search-predefined-skills.md)
-+ Requests made to the machine learning models that support [semantic ranking](semantic-search-overview.md#availability-and-pricing).
++ Requests made to the various models that support [semantic ranking](semantic-search-overview.md#availability-and-pricing).
 
 ### Outbound traffic
 

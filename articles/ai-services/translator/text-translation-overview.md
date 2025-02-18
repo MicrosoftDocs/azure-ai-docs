@@ -1,13 +1,13 @@
 ---
 title: What is Azure Text Translation?
 titlesuffix: Azure AI services
-description: Integrate the Text Translation API into your applications, websites, tools, and other solutions to provide multi-language user experiences.
+description: Integrate the Text Translation API into your applications, websites, tools, and other solutions for multi-language user experiences.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 08/12/2024
+ms.date: 02/10/2025
 ms.author: lajanuar
 ---
 
@@ -18,7 +18,7 @@ ms.author: lajanuar
 Text translation documentation contains the following article types:
 
 * [**Quickstarts**](quickstart-text-rest-api.md). Getting-started instructions to guide you through making requests to the service.
-* [**How-to guides**](create-translator-resource.yml). Instructions for accessing and using the service in more specific or customized ways.
+* [**How-to guides**](create-translator-resource.md). Instructions for accessing and using the service in more specific or customized ways.
 * [**Reference articles**](reference/v3-0-reference.md). REST API documentation and programming language-based content.
 
 ## Text translation features
@@ -53,7 +53,7 @@ Add Text Translation to your projects and applications using the following resou
 
     > [!IMPORTANT]
     >
-    > * To use the Translator container you must complete and submit the [**Azure AI services application for Gated Services**](https://aka.ms/csgate-translator) online request form and have it approved to acquire access to the container.
+    > * To use the Translator container, you must complete and submit the [**Azure AI services application for Gated Services**](https://aka.ms/csgate-translator) online request form for approval for access to the container.
     >
     > * The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.
     >
@@ -95,9 +95,9 @@ Custom Translator isn't currently available in Switzerland.
 
 Ready to begin?
 
-* [**Create a Translator resource**](create-translator-resource.yml "Go to the Azure portal.") in the Azure portal.
+* [**Create a Translator resource**](create-translator-resource.md "Go to the Azure portal.") in the Azure portal.
 
-* [**Get your access keys and API endpoint**](create-translator-resource.yml#authentication-keys-and-endpoint-url). An endpoint URL and read-only key are required for authentication.
+* [**Get your access keys and API endpoint**](create-translator-resource.md#authentication-keys-and-endpoint-url). An endpoint URL and read-only key are required for authentication.
 
 * Explore our [**Quickstart**](quickstart-text-rest-api.md "Learn to use Translator via REST and a preferred programming language.") and view use cases and code samples for the following programming languages: 
   * [**C#/.NET**](quickstart-text-rest-api.md?tabs=csharp)
