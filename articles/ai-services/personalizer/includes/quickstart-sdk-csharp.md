@@ -90,8 +90,7 @@ Personalizer is meant to run on applications that receive and interpret real-tim
 
 1. Paste your key and endpoint into the code where indicated. Your endpoint has the form `https://<your_resource_name>.cognitiveservices.azure.com/`.
 
-    > [!IMPORTANT]
-    > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). See the Azure AI services [security](../../security-features.md) article for more information.
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ## Code block 2: Iterate the learning loop
 
