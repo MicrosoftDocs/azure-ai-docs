@@ -89,7 +89,7 @@ The Personalizer learning loop is a cycle of **Rank** and **Reward** calls. In t
 
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
-    :::code language="js" source="~/cognitive-services-quickstart-code/javascript/Personalizer/quickstart-sdk/personalizer-quickstart.js" id="snippet_2":::
+:::code language="js" source="~/cognitive-services-quickstart-code/javascript/Personalizer/quickstart-sdk/personalizer-quickstart.js" id="snippet_2":::
 
 ## Run the program
 
