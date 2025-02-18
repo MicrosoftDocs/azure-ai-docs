@@ -122,7 +122,6 @@ Each modality supports specific generation approaches optimized for that content
 
 -------
 
-:::image type="content" source="../media/capabilities/CUGeneration.gif" alt-text="Illustration of Generation method workflow.":::
 
 Follow our quickstart guide [to build your first schema](../quickstart/use-ai-foundry.md#build-a-schema).
 
