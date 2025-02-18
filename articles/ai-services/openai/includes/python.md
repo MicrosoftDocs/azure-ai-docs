@@ -50,7 +50,7 @@ To successfully make a call against the Azure OpenAI Service, you'll need the fo
 |--------------------------|-------------|
 | `ENDPOINT`               | This value can be found in the **Keys and Endpoint** section when examining your resource from the Azure portal. You can also find the endpoint via the **Deployments** page in Azure AI Foundry portal. An example endpoint is: `https://docs-test-001.openai.azure.com/`.|
 | `API-KEY` | This value can be found in the **Keys and Endpoint** section when examining your resource from the Azure portal. You can use either `KEY1` or `KEY2`.|
-| `DEPLOYMENT-NAME` | This value will correspond to the custom name you chose for your deployment when you deployed a model. This value can be found under **Resource Management** > **Model Deployments** in the Azure portal or via the **Deployments** page in Azure AI Foundry portal.|
+| `DEPLOYMENT-NAME` | This value will correspond to the custom name you chose for your deployment when you deployed a model. This value can be found via the **Deployments** page in Azure AI Foundry portal. An example deployment is: `gpt-4o-mini`.|
 
 Go to your resource in the Azure portal. The **Keys and Endpoint** can be found in the **Resource Management** section. Copy your endpoint and access key as you'll need both for authenticating your API calls. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
 
@@ -77,13 +77,19 @@ client = AzureOpenAI(
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
     
-deployment_name='REPLACE_WITH_YOUR_DEPLOYMENT_NAME' #This will correspond to the custom name you chose for your deployment when you deployed a model. Use a gpt-35-turbo-instruct deployment. 
+deployment_name='REPLACE_WITH_YOUR_DEPLOYMENT_NAME' #This will correspond to the custom name you chose for your deployment when you deployed a model. Use for example, a gpt-4o-mini for deployment. 
     
 # Send a completion call to generate an answer
 print('Sending a test completion job')
 start_phrase = 'Write a tagline for an ice cream shop. '
-response = client.completions.create(model=deployment_name, prompt=start_phrase, max_tokens=10)
-print(start_phrase+response.choices[0].text)
+response = client.chat.completions.create(model=deployment_name, messages=[
+    {
+        'role':'user',
+        'content':start_phrase
+    }
+]
+)
+print(start_phrase+response.choices[0].message.content)
 ```
 
 # [OpenAI Python 0.28.1](#tab/python)
