@@ -95,7 +95,9 @@ Each modality supports specific generation approaches optimized for that content
 |Supported generation methods|
 |--------------|
 |**Extract**: In document, users can extract field values from input content, such as dates from receipts or item details from invoices. |
+
 :::image type="content" source="../media/capabilities/documentextraction.gif" alt-text="Illustration of Document extraction method workflow.":::
+
 # [Image](#tab/image)
 
 |Supported generation methods|
@@ -107,6 +109,7 @@ Each modality supports specific generation approaches optimized for that content
 |Supported generation methods|
 |--------------|
 |&bullet; **Generate**: In audio, users can derive values from the input content, such as conversation summaries and topics. <br> &bullet; **Classify**: In audio, users can categorize values from the input content, such as determining the sentiment of a conversation (positive, neutral, or negative).<br> |
+
 :::image type="content" source="../media/capabilities/audioanalysis.gif" alt-text="Illustration of Audio Generation and Classification workflow.":::
 
 # [Video](#tab/video)
@@ -114,6 +117,7 @@ Each modality supports specific generation approaches optimized for that content
 |Supported generation methods|
 |--------------|
 |&bullet; **Generate**: In video, users can derive values from the input content, such as summaries of video segments and product characteristics. <br> &bullet; **Classify**: In video, users can categorize values from the input content, such as determining the sentiment of conversations (positive, neutral, or negative). <br>|
+
 :::image type="content" source="../media/capabilities/mediaasset.gif" alt-text="Illustration of Video Generation and Classification workflow.":::
 
 -------
