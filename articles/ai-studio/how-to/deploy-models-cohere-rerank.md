@@ -30,7 +30,7 @@ Cohere offers rerank models in [Azure AI Foundry](https://ai.azure.com). These m
 
 You can browse the Cohere family of models in the [Model Catalog](model-catalog.md) by filtering on the Cohere collection.
 
-### Cohere Rerank v3.5
+# [Cohere Rerank v3.5](#tab/cohere-rerank-3-5)
 
 Cohere Rerank 3.5 provides a significant boost to the relevancy of search results. This AI model, also known as a cross-encoder, precisely sorts lists of documents according to their semantic similarity to a provided query. This action allows information retrieval systems to go beyond keyword search, and also outperform traditional embedding models, surfacing the most contextually relevant data within end-user applications.  
 
@@ -39,7 +39,7 @@ Businesses use Cohere Rerank 3.5 to improve their enterprise search and retrieva
 - Context window of the model is 4,096 tokens
 - Max query length is 4,096 tokens
 
-### Cohere Rerank v3 - English
+# [Cohere Rerank v3 - English](#tab/cohere-rerank-3-en)
 
 Cohere Rerank English is a reranking model used for semantic search and retrieval-augmented generation (RAG). Rerank enables you to significantly improve search quality by augmenting traditional keyword-based search systems with a semantic-based reranking system that can contextualize the meaning of a user's query beyond keyword relevance. Cohere's Rerank delivers higher quality results than embedding-based search, lexical search, and even hybrid search, and it requires only adding a single line of code into your application.
 
@@ -52,7 +52,7 @@ Rerank supports JSON objects as documents where users can specify, at query time
 
 Rerank English works well for code retrieval, semi-structured data retrieval, and long context.
 
-### Cohere Rerank v3 - Multilingual
+# [Cohere Rerank v3 - Multilingual](#tab/cohere-rerank-3-multi)
 
 Cohere Rerank Multilingual is a reranking model used for semantic search and retrieval-augmented generation (RAG). Rerank Multilingual supports more than 100 languages and can be used to search within a language (for example, to search with a French query on French documents) and across languages (for example, to search with an English query on Chinese documents). Rerank enables you to significantly improve search quality by augmenting traditional keyword-based search systems with a semantic-based reranking system that can contextualize the meaning of a user's query beyond keyword relevance. Cohere's Rerank delivers higher quality results than embedding-based search, lexical search, and even hybrid search, and it requires only adding a single line of code into your application.
 
@@ -64,6 +64,8 @@ Rerank supports JSON objects as documents where users can specify, at query time
 - The max query length is 2,048 tokens
 
 Rerank multilingual performs well on multilingual benchmarks such as Miracl.
+
+---
 
 ## Deploy Cohere Rerank models as serverless APIs
 
