@@ -30,7 +30,7 @@ ms.custom: references_regions
 | `ja-JP`   | `ja-JP-Masaru:DragonHDLatestNeural` (Male) |
 | `zh-CN`   | `zh-CN-Xiaochen:DragonHDLatestNeural` (Female) |
 
-##### Public preview - Introduce 12 more HD voices (only available in v1.1)
+##### Public preview - Introduce 14 more HD voices (only available in v1.1)
 
 | **Locale (BCP-47)** | **Voice name**              |
 |---------------------|---------------------------|
