@@ -98,7 +98,7 @@ The cURL command line tool doesn't format API responses that contain JSON conten
 
 #### [Windows](#tab/windows)
 
-Use the NodeJS *json tool* as a JSON formatter for cURL. If you don't have [Node.js](https://nodejs.org/) installed, download and install the latest version.
+Use the Node.js *json tool* as a JSON formatter for cURL. If you don't have [Node.js](https://nodejs.org/) installed, download and install the latest version.
 
 1. Open a console window and install the json tool by using the following command:
 
