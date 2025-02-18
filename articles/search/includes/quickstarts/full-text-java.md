@@ -533,11 +533,12 @@ In this section, we explain the code you added to the console application.
 
 ### Create a search client
 
-In *Program.cs*, you created two clients:
-- [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient) creates the index.
-- [SearchClient](/dotnet/api/azure.search.documents.searchclient) loads and queries an existing index. 
+In *App.java* you created two clients:
 
-Both clients need the search service endpoint and credentials described previously in the [resource information](#retrieve-resource-information) section.
+- SearchIndexClient creates the index.
+- SearchClient loads and queries an existing index.
+
+Both clients need the search service endpoint and credentials described previously in the resource information section.
 
 The sample code in this quickstart uses Microsoft Entra ID for authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
 
@@ -588,8 +589,6 @@ public static void main(String[] args) {
 }
 ```
 
-1. The following example includes placeholders for a search service name, admin API key that grants create and delete permissions, and index name. Substitute valid values for all three placeholders. Create two clients: [SearchIndexClient](/java/api/com.azure.search.documents.indexes.searchindexclient) creates the index, and [SearchClient](/java/api/com.azure.search.documents.searchclient) loads and queries an existing index. Both need the service endpoint and an admin API key for authentication with create and delete rights.
-
 
 ### Create an index
 
@@ -599,9 +598,11 @@ In this example, synchronous methods of the *Azure.Search.Documents* library are
 
 #### Define the structures
 
+You created two helper classes, *Hotel.java* and *Address.java*, to define the structure of a hotel document and its address. The Hotel class includes fields for a hotel ID, name, description, category, tags, parking, renovation date, rating, and address. The Address class includes fields for street address, city, state/province, postal code, and country/region.
+
 In the Azure.Search.Documents client library, you can use [SearchableField](/java/api/com.azure.search.documents.indexes.searchablefield) and [SimpleField](/java/api/com.azure.search.documents.indexes.simplefield) to streamline field definitions.
 
-* `SimpleField` can be any data type, is always non-searchable (it's ignored for full text search queries), and is retrievable (it's not hidden). Other attributes are off by default, but can be enabled. You might use a SimpleField for document IDs or fields used only in filters, facets, or scoring profiles. If so, be sure to apply any attributes that are necessary for the scenario, such as IsKey = true for a document ID.
+* `SimpleField` can be any data type, is always non-searchable (ignored for full text search queries), and is retrievable (not hidden). Other attributes are off by default, but can be enabled. You might use a SimpleField for document IDs or fields used only in filters, facets, or scoring profiles. If so, be sure to apply any attributes that are necessary for the scenario, such as IsKey = true for a document ID.
 * `SearchableField` must be a string, and is always searchable and retrievable. Other attributes are off by default, but can be enabled. Because this field type is searchable, it supports synonyms and the full complement of analyzer properties.
 
 Whether you use the basic `SearchField` API or either one of the helper models, you must explicitly enable filter, facet, and sort attributes. For example, `isFilterable`, `isSortable`, and `isFacetable` must be explicitly attributed, as shown in the previous sample.
@@ -619,7 +620,7 @@ searchIndexClient.createOrUpdateIndex(
 
 ### Load documents
 
-Azure AI Search searches over content stored in the service. In this step, you'll load JSON documents that conform to the hotel index you just created.
+Azure AI Search searches over content stored in the service. In this step, you load JSON documents that conform to the hotel index you created.
 
 In Azure AI Search, search documents are data structures that are both inputs to indexing and outputs from queries. As obtained from an external data source, document inputs might be rows in a database, blobs in Blob storage, or JSON documents on disk. In this example, we're taking a shortcut and embedding JSON documents for four hotels in the code itself.
 
