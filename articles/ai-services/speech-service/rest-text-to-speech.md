@@ -5,7 +5,7 @@ description: Learn how to use the REST API to convert text into synthesized spee
 author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: reference
+ms.topic: how-to
 ms.date: 9/23/2024
 ms.author: eur
 ms.custom: references_regions

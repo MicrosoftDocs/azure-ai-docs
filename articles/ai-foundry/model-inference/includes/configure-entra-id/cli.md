@@ -90,3 +90,7 @@ Once Microsoft Entra ID is configured in your resource, you need to update your 
 [!INCLUDE [code](../code-create-chat-client-entra.md)]
 
 [!INCLUDE [about-credentials](about-credentials.md)]
+
+## Troubleshooting
+
+[!INCLUDE [troubleshooting](troubleshooting.md)]

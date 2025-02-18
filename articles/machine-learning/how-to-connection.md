@@ -596,7 +596,7 @@ az ml connection create --file connection.yaml
 
 # [Python SDK](#tab/python)
 
-The following example creates an Azure Container Registry connection. A managed identity authenticates this connection:
+The following example creates an Azure Container Registry connection:
 
 ```python
 from azure.ai.ml.entities import WorkspaceConnection
@@ -604,8 +604,8 @@ from azure.ai.ml.entities import UsernamePasswordConfiguration
 
 # If using username/password, the name/password values should be url-encoded
 import urllib.parse
-username = urllib.parse.quote(os.environ["REGISTRY_USERNAME"], safe="")
-password = urllib.parse.quote(os.environ["REGISTRY_PASSWORD"], safe="")
+username = os.environ["REGISTRY_USERNAME"]
+password = os.environ["REGISTRY_PASSWORD"]
 
 name = "my_acr_conn"
 
@@ -717,7 +717,7 @@ az ml environment show --name my-env --version 1 --resource-group my-resource-gr
 
 # [Python SDK](#tab/python)
 
-The following example creates an Azure Container Registry connection. A managed identity authenticates this connection:
+The following example creates a Generic Container Registry connection:
 
 ```python
 import os
@@ -729,10 +729,8 @@ from azure.ai.ml.entities import UsernamePasswordConfiguration
 from azureml.core.conda_dependencies import CondaDependencies
 from azure.ai.ml import command
 
-# If using username/password, the name/password values should be url-encoded
-import urllib.parse
-username = urllib.parse.quote(os.environ["REGISTRY_USERNAME"], safe="")
-password = urllib.parse.quote(os.environ["REGISTRY_PASSWORD"], safe="")
+username = os.environ["REGISTRY_USERNAME"]
+password = os.environ["REGISTRY_PASSWORD"]
 
 # Enter details of AML workspace
 subscription_id = "<SUBSCRIPTION_ID>"

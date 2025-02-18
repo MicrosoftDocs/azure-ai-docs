@@ -400,7 +400,8 @@
         "articles/ai-services/qnamaker/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
         "articles/ai-studio/**/*.md": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
         "articles/ai-studio/**/*.yml": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
-        "articles/search/**/*.md": "ce-skilling-ai-copilot",
+        "articles/ai-foundry/**/*.md": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
+        "articles/ai-foundry/**/*.yml": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",        "articles/search/**/*.md": "ce-skilling-ai-copilot",
         "articles/search/**/*.yml": "ce-skilling-ai-copilot",
         "articles/machine-learning/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
         "articles/machine-learning/component-reference/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
@@ -414,7 +415,7 @@
         "articles/machine-learning/v1/*.md": "UpdateFrequency5"
       },
       "ms.service": {
-        "articles/ai-studio/**/*.md": "azure-ai-studio",
+        "articles/ai-studio/**/*.md": "azure-ai-foundry",
         "articles/ai-services/**/*.md": "azure-ai-services",
         "articles/ai-services/speech-service/*.md": "azure-ai-speech",
         "articles/ai-services/translator/**/*.md": "azure-ai-translator",

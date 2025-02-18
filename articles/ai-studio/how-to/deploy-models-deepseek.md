@@ -5,7 +5,7 @@ description: Learn how to use DeepSeek-R1 reasoning model with Azure AI Foundry.
 manager: scottpolly
 author: msakande
 reviewer: santiagxf
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 01/29/2025
 ms.author: mopeakande
@@ -269,8 +269,8 @@ except HttpResponseError as ex:
     raise
 ```
 
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+[!INCLUDE [content-safety-serverless-apis-note](../includes/content-safety-serverless-apis-note.md)]
+
 
 ::: zone-end
 
@@ -542,8 +542,8 @@ catch (error) {
 }
 ```
 
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+[!INCLUDE [content-safety-serverless-apis-note](../includes/content-safety-serverless-apis-note.md)]
+
 
 ::: zone-end
 
@@ -835,8 +835,8 @@ catch (RequestFailedException ex)
 }
 ```
 
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+[!INCLUDE [content-safety-serverless-apis-note](../includes/content-safety-serverless-apis-note.md)]
+
 
 ::: zone-end
 
@@ -1121,8 +1121,8 @@ The following example shows how to handle events when the model detects harmful 
 }
 ```
 
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+[!INCLUDE [content-safety-serverless-apis-note](../includes/content-safety-serverless-apis-note.md)]
+
 
 ::: zone-end
 
@@ -1143,7 +1143,7 @@ Quota is managed per deployment. Each deployment has a rate limit of 200,000 tok
 
 ## Related content
 
-
+* [Explore DeepSeek-related Azure samples in various languages](https://github.com/azure-samples/deepseek)
 * [Azure AI Model Inference API](../reference/reference-model-inference-api.md)
 * [Deploy models as serverless APIs](deploy-models-serverless.md)
 * [Consume serverless API endpoints from a different Azure AI Studio project or hub](deploy-models-serverless-connect.md)

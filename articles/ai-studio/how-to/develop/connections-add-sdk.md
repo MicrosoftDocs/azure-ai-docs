@@ -3,7 +3,7 @@ title: How to add a new connection in Azure AI Foundry portal using the Azure Ma
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to add connections to other resources using the Azure Machine Learning SDK.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - ignite-2024
@@ -36,11 +36,7 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 
 There are various authentication methods for the different connection types. When you use Microsoft Entra ID, in addition to creating the connection you might also need to grant Azure role-based access control permissions before the connection can be used. For more information, visit [Role-based access control](../../concepts/rbac-ai-studio.md#scenario-connections-using-microsoft-entra-id-authentication).
 
-> [!IMPORTANT]
-> We recommend Microsoft Entra ID authentication with [managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview) to avoid storing credentials with your applications that run in the cloud.
->
-> If you use an API key, store it securely somewhere else, such as in [Azure Key Vault](/azure/key-vault/general/overview). Don't include the API key directly in your code, and never post it publicly.
-
+[!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 ## Azure OpenAI Service
 

@@ -3,7 +3,7 @@ title: Explore the model catalog in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article introduces foundation model capabilities and the model catalog in Azure AI Foundry portal.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
@@ -27,7 +27,7 @@ The model catalog in Azure AI Foundry portal is the hub to discover and use a wi
 The model catalog organizes models into different collections:
 
 
-* **Curated by Azure AI**: The most popular non-Microsoft open-weight and proprietary models packaged and optimized to work seamlessly on the Azure AI platform. Use of these models is subject to the model providers' license terms. When you deploy these models in Azure AI Foundry portal, their availability is subject to the applicable [Azure service-level agreement (SLA)](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services), and Microsoft provides support for deployment problems.
+* **Curated by Azure AI**: The most popular partner models (open-weight and proprietary) packaged and optimized to work seamlessly on the Azure AI platform. Use of these models is subject to the model providers' license terms. When you deploy these models in Azure AI Foundry portal, their availability is subject to the applicable [Azure service-level agreement (SLA)](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services), and Microsoft provides support for deployment problems.
 
   Models from partners such as Meta, NVIDIA, and Mistral AI are examples of models available in this collection on the catalog. You can identify these models by looking for a green checkmark on the model tiles in the catalog. Or you can filter by the **Curated by Azure AI** collection.
 
@@ -97,7 +97,7 @@ Nixtla | Not available | TimeGEN-1
 AI models evolve fast, and when a new version or a new model with updated capabilities in the same model family become available, older models may be retired in the AI Foundry model catalog. To allow for a smooth transition to a newer model version, some models provide users with the option to enable automatic updates. To learn more about the model lifecycle of different models, upcoming model retirement dates, and suggested replacement models and versions, see:
 
 - [Azure OpenAI Service model deprecations and retirements](../../ai-services/openai/concepts/model-retirements.md)
-- [Severless API model deprecations and retirements](../../ai-studio/concepts/model-lifecycle-retirement.md)
+- [Serverless API model deprecations and retirements](../../ai-studio/concepts/model-lifecycle-retirement.md)
 
 ## Managed compute
 

@@ -5,7 +5,7 @@ author: jboback
 ms.author: jboback
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 07/09/2024
+ms.date: 01/31/2025
 ---
 
 # Use Language in Azure prompt flow

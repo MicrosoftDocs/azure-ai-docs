@@ -15,4 +15,4 @@ zone_pivot_groups: azure-ai-inference-samples
 ---
 
 > [!NOTE]
-> Using image embeddings is only supported using Python, JavaScript, or REST requests.
+> Using image embeddings is only supported using Python, JavaScript, C#, or REST requests.

@@ -191,7 +191,7 @@ The following table lists key attributes to specify when you define an endpoint.
 | Authentication mode | Optional | The authentication method for the endpoint. You can choose between key-based authentication, `key`, and Azure Machine Learning token-based authentication, `aml_token`. A key doesn't expire, but a token does expire. For more information about authentication, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md). |
 | Description | Optional | The description of the endpoint. |
 | Tags | Optional | A dictionary of tags for the endpoint. |
-| Traffic | Optional | Rules on how to route traffic across deployments. You represent the traffic as a dictionary of key-value pairs, where the key represents the deployment name and the value represents the percentage of traffic to that deployment. You can set the traffic only when the deployments under an endpoint have been created. You can also update the traffic for an online endpoint after the deployments have been created. For more information about how to use mirrored traffic, see [Allocate a small percentage of live traffic to the new deployment](#allocate-a-small-percentage-of-live-traffic-to-the-new-deployment). |
+| Traffic | Optional | Rules on how to route traffic across deployments. You represent the traffic as a dictionary of key-value pairs, where the key represents the deployment name and the value represents the percentage of traffic to that deployment. You can set the traffic only after the deployments under an endpoint are created. You can also update the traffic for an online endpoint after the deployments are created. For more information about how to use mirrored traffic, see [Allocate a small percentage of live traffic to the new deployment](#allocate-a-small-percentage-of-live-traffic-to-the-new-deployment). |
 | Mirror traffic | Optional | The percentage of live traffic to mirror to a deployment. For more information about how to use mirrored traffic, see [Test the deployment with mirrored traffic](#test-the-deployment-with-mirrored-traffic). |
 
 To see a full list of attributes that you can specify when you create an endpoint, see [CLI (v2) online endpoint YAML schema](/azure/machine-learning/reference-yaml-endpoint-online). For version 2 of the Azure Machine Learning SDK for Python, see [ManagedOnlineEndpoint Class](/python/api/azure-ai-ml/azure.ai.ml.entities.managedonlineendpoint).
@@ -429,7 +429,7 @@ One way to confirm your existing deployment is to invoke your endpoint so that i
 
 ### Invoke an endpoint with a deployment name
 
-If you invoke an endpoint with the name of a deployment that you want to receive traffic, Azure Machine Learning routes the endpoint traffic directly to the specified deployment and returns its output. You can use the `--deployment-name` option [for the Azure Machine Learning CLI v2](/cli/azure/ml/online-endpoint#az-ml-online-endpoint-invoke-optional-parameters), or the `deployment_name` option [for the Python SDK v2](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-invoke) to specify the deployment.
+When you invoke an endpoint, you can specify the name of a deployment that you want to receive traffic. In this case, Azure Machine Learning routes the endpoint traffic directly to the specified deployment and returns its output. You can use the `--deployment-name` option [for the Azure Machine Learning CLI v2](/cli/azure/ml/online-endpoint#az-ml-online-endpoint-invoke-optional-parameters), or the `deployment_name` option [for the Python SDK v2](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-invoke) to specify the deployment.
 
 ### Invoke an endpoint without specifying a deployment
 
@@ -479,7 +479,7 @@ The following code uses the [sample-request.json](https://github.com/Azure/azure
 
 ### View managed online endpoints
 
-You can view all your managed online endpoints in the studio endpoints page. The **Details** tab of each endpoint's page displays critical information, such as the endpoint URI, status, testing tools, activity monitors, deployment logs, and sample consumption code. Take the following steps to see this information:
+You can view all your managed online endpoints in the studio endpoints page. The **Details** tab of each endpoint's page displays critical information, such as the endpoint URI, status, testing tools, activity monitors, deployment logs, and sample consumption code. To see this information, take the following steps:
 
 1. In the studio, select **Endpoints**. A list of all the endpoints in the workspace is displayed.
 
@@ -660,7 +660,7 @@ Even though 0 percent of the traffic goes to the `green` deployment, you can sti
 
 After you test your `green` deployment, you can *mirror* a percentage of the live traffic to your endpoint by copying that percentage of traffic and sending it to the `green` deployment. Traffic mirroring, which is also called shadowing, doesn't change the results returned to clients—100 percent of requests still flow to the `blue` deployment. The mirrored percentage of the traffic is copied and also submitted to the `green` deployment so that you can gather metrics and logging without impacting your clients.
 
-Mirroring is useful when you want to validate a new deployment without impacting clients. For example, you can use mirroring to check whether latency is within acceptable bounds or to check that there are no HTTP errors. Using traffic mirroring, or shadowing, to test a new deployment is also known as [shadow testing](https://microsoft.github.io/code-with-engineering-playbook/automated-testing/shadow-testing/). The deployment that receives the mirrored traffic, in this case, the `green` deployment, can also be called the *shadow deployment*.
+Mirroring is useful when you want to validate a new deployment without impacting clients. For example, you can use mirroring to check whether latency is within acceptable bounds or to check that there are no HTTP errors. The use of traffic mirroring, or shadowing, to test a new deployment is also known as [shadow testing](https://microsoft.github.io/code-with-engineering-playbook/automated-testing/shadow-testing/). The deployment that receives the mirrored traffic, in this case, the `green` deployment, can also be called the *shadow deployment*.
 
 Mirroring has the following limitations:
 
@@ -787,7 +787,7 @@ After you test your `green` deployment, allocate a small percentage of traffic t
 
 Your `green` deployment now receives 10 percent of all live traffic. Clients receive predictions from both the `blue` and `green` deployments.
 
-:::image type="content" source="./media/how-to-safely-rollout-managed-endpoints/endpoint-concept.png" alt-text="Diagram that shows traffic flow through an endpoint, with 90 percent going to the blue deployment and 10 percent going to the green deployment.":::
+:::image type="content" source="./media/how-to-safely-rollout-managed-endpoints/endpoint-concept.png" alt-text="Diagram that shows traffic flow through an endpoint. The blue deployment receives 90 percent of the traffic, and the green deployment, 10 percent.":::
 
 ## Send all traffic to the new deployment
 

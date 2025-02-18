@@ -93,7 +93,7 @@ The regions in these tables support most of the core features of the Speech serv
 | switzerlandnorth   |  | ✅ |  |
 | switzerlandwest    |  | ✅ |  |
 | uaenorth           |  | ✅ |  |
-| uksouth            |  | ✅ | ✅ |
+| uksouth            | ✅ | ✅ | ✅ |
 | westcentralus      |  | ✅ |  |
 | westeurope         | ✅ | ✅ | ✅ |
 | westus             | ✅ | ✅ |  |
