@@ -32,9 +32,9 @@ You can browse the Cohere family of models in the [Model Catalog](model-catalog.
 
 ### Cohere Rerank v3.5
 
-Cohere Rerank 3.5 provides a significant boost to the relevancy of search results. This AI model, also known as a cross-encoder, precisely sorts lists of documents according to their semantic similarity to a provided query. This allows information retrieval systems to go beyond keyword search, and also outperform traditional embedding models, surfacing the most contextually relevant data within end-user applications.  
+Cohere Rerank 3.5 provides a significant boost to the relevancy of search results. This AI model, also known as a cross-encoder, precisely sorts lists of documents according to their semantic similarity to a provided query. This action allows information retrieval systems to go beyond keyword search, and also outperform traditional embedding models, surfacing the most contextually relevant data within end-user applications.  
 
-Businesses use Cohere Rerank 3.5 to improve their enterprise search and retrieval-augmented generation (RAG) applications across more than 100 languages. With just a few lines of code, you can add the model to existing systems to boost the accuracy of search results. The model is also uniquely performant at searching across complex enterprise data such as JSON, code, and tables. Further, it is capable of reasoning through hard questions which other search systems fail to understand.
+Businesses use Cohere Rerank 3.5 to improve their enterprise search and retrieval-augmented generation (RAG) applications across more than 100 languages. With just a few lines of code, you can add the model to existing systems to boost the accuracy of search results. The model is also uniquely performant at searching across complex enterprise data such as JSON, code, and tables. Further, the model is capable of reasoning through hard questions which other search systems fail to understand.
 
 - Context window of the model is 4,096 tokens
 - Max query length is 4,096 tokens
@@ -97,7 +97,7 @@ To create a deployment:
     1. Select **Confirm** to open a serverless API deployment window for the model.
 1. In the deployment wizard, select the link to **Azure Marketplace Terms** to learn more about the terms of use.
 1. Select the **Pricing and terms** tab to learn about pricing for the selected model.
-1. Select the **Subscribe and Deploy** button. If this is your first time deploying the model in the project, you have to subscribe your project for the particular offering.
+1. Select the **Subscribe and Deploy** button. If it's your first time deploying the model in the project, you have to subscribe your project for the particular offering.
 
     > [!NOTE]
     > This step requires that your account has the **Azure AI Developer role** permissions on the resource group, as listed in the prerequisites. Models that are offered by non-Microsoft providers (for example, Cohere models) are billed through Azure Marketplace. For such models, you're required to subscribe your project to the particular model offering. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Currently, you can have only one deployment for each model within a project.
@@ -140,7 +140,7 @@ The native **Cohere Rerank API v1** endpoint on `https://api.cohere.com/v1/reran
 | top_n | integer | Optional | Limits the number of returned rerank results to the specified value. If not passed, all the rerank results will be returned. |
 | `return_documents` | boolean | `FALSE` | If FALSE, returns results without the doc text - the API returns a list of {index, relevance_score} where index is inferred from the list passed into the request.<br><br>If TRUE, returns results with the doc text passed in - the API returns an ordered list of {index, text, relevance_score} where index + text refers to the list passed into the request. |
 | `max_chunks_per_doc` | integer | Optional | Defaults to 4096. Long documents will be automatically truncated to the specified number of tokens. |
-| `Model` | string | Required | The identifier of the model to use, eg rerank-v3.5. |
+| `Model` | string | Required | The identifier of the model to use, for example, rerank-v3.5. |
 
 
 ### v2/rerank response schema
@@ -161,8 +161,8 @@ The `results` object is a dictionary with the following fields:
 | Key | Type | Description |
 | ------------ | -------- | ----------- |
 | `index` | integer | Corresponds to the index in the original list of documents to which the ranked document belongs. (i.e. if the first value in the results object has an index value of 3, it means in the list of documents passed in, the document at index=3 had the highest relevance) |
-| `relevance_score` | double | Relevance scores are normalized to be in the range \[0, 1\]. Scores close to 1 indicate a high relevance to the query, and scores closer to 0 indicate low relevance. It is not accurate to assume a score of 0.9 means the document is 2x more relevant than a document with a score of 0.45 |
-| `document` | object | If return_documents is set as false this will return none, if true it will return the documents passed in |
+| `relevance_score` | double | Relevance scores are normalized to be in the range \[0, 1\]. Scores close to 1 indicate a high relevance to the query, and scores closer to 0 indicate low relevance. It isn't accurate to assume a score of 0.9 means the document is 2x more relevant than a document with a score of 0.45 |
+| `document` | object | If return_documents is set as false this returns none, if true it returns the documents passed in |
 
 ### Examples using Cohere Rerank API v2
 
@@ -175,29 +175,18 @@ import cohere
 co = cohere.ClientV2()
 
 docs = [
-
 "Carson City is the capital city of the American state of Nevada.",
-
 "The Commonwealth of the Northern Mariana Islands is a group of islands in the Pacific Ocean. Its capital is Saipan.",
-
 "Capitalization or capitalisation in English grammar is the use of a capital letter at the start of a word. English usage varies from capitalization in other languages.",
-
 "Washington, D.C. (also known as simply Washington or D.C., and officially as the District of Columbia) is the capital of the United States. It is a federal district.",
-
 "Capital punishment has existed in the United States since beforethe United States was a country. As of 2017, capital punishment is legal in 30 of the 50 states.",
-
 ]
 
 response = co.rerank(
-
-model="rerank-v3.5",
-
-query="What is the capital of the United States?",
-
-documents=docs,
-
-top_n=3,
-
+    model = "rerank-v3.5",
+    query = "What is the capital of the United States?",
+    documents = docs,
+    top_n = 3,
 )
 
 print(response)
@@ -206,58 +195,32 @@ print(response)
 #### Response example
 
 ```json
-
-{
-
-"results": [
-
-{
-
-"index": 3,
-
-"relevance_score": 0.999071
-
-},
-
-{
-
-"index": 4,
-
-"relevance_score": 0.7867867
-
-},
-
-{
-
-"index": 0,
-
-"relevance_score": 0.32713068
-
-}
-
-],
-
-"id": "07734bd2-2473-4f07-94e1-0d9f0e6843cf",
-
-"meta": {
-
-"api_version": {
-
-"version": "2",
-
-"is_experimental": false
-
-},
-
-"billed_units": {
-
-"search_units": 1
-
-}
-
-}
-
-}
+    {
+        "results": [
+            {
+                "index": 3,
+                "relevance_score": 0.999071
+            },
+            {
+                "index": 4,
+                "relevance_score": 0.7867867
+            },
+            {
+                "index": 0,
+                "relevance_score": 0.32713068
+            }
+        ],
+        "id": "00001111-aaaa-2222-bbbb-3333cccc4444",
+        "meta": {
+            "api_version": {
+            "version": "2",
+            "is_experimental": false
+            },
+        "billed_units": {
+            "search_units": 1
+            }
+        }
+    }
 
 ```
 
