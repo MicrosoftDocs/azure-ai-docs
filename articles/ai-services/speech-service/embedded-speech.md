@@ -299,7 +299,7 @@ For embedded voices, it's essential to note that certain SSML tags might not be 
 |                 | volume    |                                                       | No                       |
 |                 | fadein    |                                                       | No                       |
 |                 | fadeout   |                                                       | No                       |
-| msttsexpress-as | style     |                                                       | No                       |
+| msttsexpress-as | style     |                                                       | Yes*                      |
 |                 | styledegree |                                                     | No                       |
 |                 | role      |                                                       | No                       |
 | msttssilence    |           |                                                       | No                       |
@@ -319,6 +319,7 @@ For embedded voices, it's essential to note that certain SSML tags might not be 
 | sub             | alias     |                                                       | Yes                      |
 | speak           |           |                                                       | Yes                      |
 | voice           |           |                                                       | No                       |
+*Style is supported only for `en-US-JennyNeural`
 
 ## Related content
 
