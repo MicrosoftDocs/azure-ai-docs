@@ -176,6 +176,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     });
     
     ```
+[!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 1. Run the script with the following command:
 

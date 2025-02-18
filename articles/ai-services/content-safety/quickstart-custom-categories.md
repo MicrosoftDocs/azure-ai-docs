@@ -276,6 +276,8 @@ print(result)
 
 Remember to replace the placeholders below with your actual values for the API key, endpoint, and specific content (category name, definition, and so on). These examples help you to manage the customized categories in your account.
 
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+
 #### [cURL](#tab/curl)
 
 ### Get a customized category or a specific version of it
