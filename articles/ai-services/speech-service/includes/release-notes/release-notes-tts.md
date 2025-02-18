@@ -16,66 +16,68 @@ ms.custom: references_regions
   
 | **Locale (BCP-47)** | **Voice name**              |
 |---------------------|---------------------------|
-| `de-DE`   | `SeraphinaDragonHDLatestNeural` (Female) |
-| `en-US`   | `BrianDragonHDLatestNeural` (Male) |
-| `en-US`   | `DavisDragonHDLatestNeural` (Male) |
-| `en-US`   | `AvaDragonHDLatestNeural` (Female) |
-| `en-US`   | `AndrewDragonHDLatestNeural` (Male) |
-| `en-US`   | `Andrew2DragonHDLatestNeural` (Male) - optimized for free-talking | 
-| `en-US`   | `EmmaDragonHDLatestNeural` (Female) |
-| `en-US`   | `Emma2DragonHDLatestNeural` (Female) - optimized for free-talking |
-| `en-US`   | `SteffanDragonHDLatestNeural` (Male) |
-| `en-US`   | `AriaDragonHDLatestNeural` (Female) |
-| `en-US`   | `JennyDragonHDLatestNeural` (Female) |
-| `ja-JP`   | `MasaruDragonHDLatestNeural` (Male) |
-| `zh-CN`   | `XiaochenDragonHDLatestNeural` (Female) |
+| `de-DE`   | `de-DE-Seraphina:DragonHDLatestNeural` (Female) |
+| `en-US`   | `en-US-Brian:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Davis:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Ava:DragonHDLatestNeural` (Female) |
+| `en-US`   | `en-US-Andrew:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Andrew2:DragonHDLatestNeural` (Male) - optimized for free-talking | 
+| `en-US`   | `en-US-Emma:DragonHDLatestNeural` (Female) |
+| `en-US`   | `en-US-Emma2:DragonHDLatestNeural` (Female) - optimized for free-talking |
+| `en-US`   | `en-US-Steffan:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Aria:DragonHDLatestNeural` (Female) |
+| `en-US`   | `en-US-Jenny:DragonHDLatestNeural` (Female) |
+| `ja-JP`   | `ja-JP-Masaru:DragonHDLatestNeural` (Male) |
+| `zh-CN`   | `zh-CN-Xiaochen:DragonHDLatestNeural` (Female) |
 
 ##### Public preview - Introduce 12 more HD voices (only available in v1.1)
 
 | **Locale (BCP-47)** | **Voice name**              |
 |---------------------|---------------------------|
-| `de-DE`   | `FlorianDragonHDLatestNeural` (Male) |
-| `en-US`   | `AdamDragonHDLatestNeural` (Male) |
-| `en-US`   | `BrainDragonHDLatestNeural` (Male) |
-| `en-US`   | `DavisDragonHDLatestNeural` (Male) |
-| `en-US`   | `PhoebeDragonHDLatestNeural` (Female) |
-| `en-US`   | `SerenaDragonHDLatestNeural` (Female) |
-| `es-ES`   | `XimenaDragonHDLatestNeural` (Female) |
-| `es-ES`   | `TristanDragonHDLatestNeural` (Male) |
-| `fr-FR`   | `VivienneDragonHDLatestNeural` (Female) |
-| `fr-FR`   | `RemyDragonHDLatestNeural` (Male) |
-| `ja-JP`   | `NanamiDragonHDLatestNeural` (Female) |
-| `zh-CN`   | `YunfanDragonHDLatestNeural` (Male) |
+| `de-DE`   | `de-DE-Florian:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Adam:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Brain:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Davis:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Phoebe:DragonHDLatestNeural` (Female) |
+| `en-US`   | `en-US-Serena:DragonHDLatestNeural` (Female) |
+| `es-ES`   | `es-ES-Ximena:DragonHDLatestNeural` (Female) |
+| `es-ES`   | `es-ES-Tristan:DragonHDLatestNeural` (Male) |
+| `fr-FR`   | `fr-FR-Vivienne:DragonHDLatestNeural` (Female) |
+| `fr-FR`   | `fr-FR-Remy:DragonHDLatestNeural` (Male) |
+| `ja-JP`   | `ja-JP-Nanami:DragonHDLatestNeural` (Female) |
+| `zh-CN`   | `zh-CN-Yunfan:DragonHDLatestNeural` (Male) |
 
 ##### GA - 6 AOAI turbo voices
 | **Locale (BCP-47)** | **Voice name**              |
 |---------------------|---------------------------|
-| `en-US`   | `AlloyTurboMultilingualNeural` (Male) |
-| `en-US`   | `EchoTurboMultilingualNeural` (Male) |
-| `en-US`   | `FableTurboMultilingualNeural` (Neutral) |
-| `en-US`   | `NovaTurboMultilingualNeural` (Female) |
-| `en-US`   | `OnyxTurboMultilingualNeural` (Male) |
-| `en-US`   | `ShimmerTurboMultilingualNeural` (Female) |
+| `en-US`   | `en-US-AlloyTurboMultilingualNeural` (Male) |
+| `en-US`   | `en-US-EchoTurboMultilingualNeural` (Male) |
+| `en-US`   | `en-US-FableTurboMultilingualNeural` (Neutral) |
+| `en-US`   | `en-US-NovaTurboMultilingualNeural` (Female) |
+| `en-US`   | `en-US-OnyxTurboMultilingualNeural` (Male) |
+| `en-US`   | `en-US-ShimmerTurboMultilingualNeural` (Female) |
+
 
 ##### GA - Regular update to improve quality of 16 voices
 | **Locale (BCP-47)** | **Voice name**              |
 |---------------------|---------------------------|
-| `ar-EG`   | `ShakirNeural` (Male) |
-| `ca-ES`   | `EnricNeural` (Male) |
-| `en-IE`   | `EmilyNeural` (Female) |
-| `fi-FI`   | `HarriNeural` (Male) |
-| `fi-FI`   | `SelmaNeural` (Female) |
-| `fr-CH`   | `FabriceNeural` (Female) |
-| `hr-HR`   | `GabrijelaNeural` (Female) |
-| `nl-NL`   | `MaartenNeural` (Male) |
-| `pt-PT`   | `RaquelNeural` (Female) |
-| `ro-RO`   | `AlinaNeural` (Female) |
-| `sv-SE`   | `MattiasNeural` (Male) |
-| `sv-SE`   | `SofieNeural` (Female) |
-| `vi-VN`   | `HoaiMyNeural` (Female) |
-| `vi-VN`   | `NamMinhNeural` (Male) |
-| `zh-HK`   | `HiuMaanNeural` (Female) |
-| `zh-HK`   | `WanLungNeural` (Male) |
+| `ar-EG`   | `ar-EG-ShakirNeural` (Male) |
+| `ca-ES`   | `ca-ES-EnricNeural` (Male) |
+| `en-IE`   | `en-IE-EmilyNeural` (Female) |
+| `fi-FI`   | `fi-FI-HarriNeural` (Male) |
+| `fi-FI`   | `fi-FI-SelmaNeural` (Female) |
+| `fr-CH`   | `fr-CH-FabriceNeural` (Female) |
+| `hr-HR`   | `hr-HR-GabrijelaNeural` (Female) |
+| `nl-NL`   | `nl-NL-MaartenNeural` (Male) |
+| `pt-PT`   | `pt-PT-RaquelNeural` (Female) |
+| `ro-RO`   | `ro-RO-AlinaNeural` (Female) |
+| `sv-SE`   | `sv-SE-MattiasNeural` (Male) |
+| `sv-SE`   | `sv-SE-SofieNeural` (Female) |
+| `vi-VN`   | `vi-VN-HoaiMyNeural` (Female) |
+| `vi-VN`   | `vi-VN-NamMinhNeural` (Male) |
+| `zh-HK`   | `zh-HK-HiuMaanNeural` (Female) |
+| `zh-HK`   | `zh-HK-WanLungNeural` (Male) |
+
 
 ##### GA - Introducing multi-style embedded Jenny
 Now embedded version of Jenny can support 14 different styles: `chat`, `customerservice`, `assistant`, `newscast`, `angry`, `cheerful`, `sad`, `excited`, `friendly`, `terrified`, `shouting`, `unfriendly`, `whispering`, and `hopeful`.
