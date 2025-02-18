@@ -796,7 +796,7 @@ private static void WriteDocuments(AutocompleteResults autoResults)
 
 #### Query example 1
 
-The `RunQueries` method executes queries and returns results. Results are Hotel objects. This sample shows the method signature and the first query. This query demonstrates the Select parameter that lets you compose the result using selected fields from the document.
+The `RunQueries` method executes queries and returns results. Results are Hotel objects. This sample shows the method signature and the first query. This query demonstrates the `Select` parameter that lets you compose the result using selected fields from the document.
 
 ```csharp
 // Run queries, use WriteDocuments to print output
