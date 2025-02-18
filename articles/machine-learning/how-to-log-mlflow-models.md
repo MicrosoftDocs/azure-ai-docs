@@ -1,5 +1,5 @@
 ---
-title: Logging MLflow models
+title: Log MLflow models
 titleSuffix: Azure Machine Learning
 description: Logging MLflow models, instead of artifacts, with MLflow SDK in Azure Machine Learning
 services: machine-learning
@@ -13,31 +13,29 @@ ms.topic: conceptual
 ms.custom: cliv2, sdkv2
 ---
 
-# Logging MLflow models
+# Log MLflow models
 
-This article describes how to log your trained models (or artifacts) as MLflow models. It explores the different ways to customize how MLflow packages your models, and how it runs those models.
+This article describes how to log your trained models (or artifacts) as MLflow models. It explores various ways of customizing how MLflow packages and runs models.
 
-## Why logging models instead of artifacts?
+## Why log models instead of artifacts?
 
-[From artifacts to models in MLflow](concept-mlflow-models.md) describes the difference between logging artifacts or files, as compared to logging MLflow models.
+An MLflow model is a type of artifact. However, a model has a specific structure that serves as a contract between the person that creates the model and the person that intends to use it. This contract helps build a bridge between the artifacts themselves and their meanings.
 
-An MLflow model is also an artifact. However, that model has a specific structure that serves as a contract between the person that created the model and the person that intends to use it. This contract helps build a bridge between the artifacts themselves and their meanings.
+For the difference between logging artifacts, or files, and logging MLflow models, see [Artifacts and models in MLflow](concept-mlflow-models.md). 
 
-Model logging has these advantages:
-> [!div class="checklist"]
-> * You can directly load models, for inference, with `mlflow.<flavor>.load_model`, and you can use the `predict` function
-> * Pipeline inputs can use models directly
-> * You can deploy models without indication of a scoring script or an environment
-> * Swagger is automatically enabled in deployed endpoints, and the Azure Machine Learning studio can use the __Test__ feature
-> * You can use the Responsible AI dashboard
+You can log your model's files as artifacts, but model logging offers the following advantages:
 
-This section describes how to use the model's concept in Azure Machine Learning with MLflow:
+* You can use `mlflow.<flavor>.load_model` to directly load models for inference, and you can use the `predict` function.
+* Pipeline inputs can use models directly.
+* You can deploy models without specifying a scoring script or an environment.
+* Swagger is automatically turned on in deployed endpoints. As a result, you can use the Azure Machine Learning studio test feature.
+* You can use the Responsible AI dashboard. For more information, see [Use the Responsible AI dashboard in Azure Machine Learning studio](how-to-responsible-ai-dashboard.md).
 
-## Logging models using autolog
+## Use automatic logging to log models
 
-You can use MLflow autolog functionality. Autolog allows MLflow to instruct the framework in use to log all the metrics, parameters, artifacts, and models that the framework considers relevant. By default, if autolog is enabled, most models are logged. In some situations, some flavors might not log a model. For instance, the PySpark flavor doesn't log models that exceed a certain size.
+You can use MLflow `autolog` functionality to automatically log models. When you use automatic logging, MLflow instructs the framework that's in use to log all the metrics, parameters, artifacts, and models that the framework considers relevant. By default, if automatic logging is turned on, most models are logged. In some situations, some flavors don't log models. For instance, the PySpark flavor doesn't log models that exceed a certain size.
 
-Use either `mlflow.autolog()` or `mlflow.<flavor>.autolog()` to activate autologging. This example uses `autolog()` to log a classifier model trained with XGBoost:
+Use either `mlflow.autolog` or `mlflow.<flavor>.autolog` to activate automatic logging. The following code uses `autolog` to log a classifier model that's trained with XGBoost:
 
 ```python
 import mlflow
@@ -54,21 +52,21 @@ accuracy = accuracy_score(y_test, y_pred)
 ```
 
 > [!TIP]
-> If use Machine Learning pipelines, for example [Scikit-Learn pipelines](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html), use the `autolog` functionality of that pipeline flavor to log models. Model logging automatically happens when the `fit()` method is called on the pipeline object. The [Training and tracking an XGBoost classifier with MLflow notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/using-mlflow/train-and-log/xgboost_classification_mlflow.ipynb) demonstrates how to log a model with preprocessing, using pipelines.
+> If you use machine learning pipelines, for example [Scikit-Learn pipelines](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html), use the `autolog` functionality of that pipeline flavor to log models. Model logging automatically happens when the `fit` method is called on the pipeline object. For a notebook that logs a model and that includes preprocessing and uses pipelines, see [Training and tracking an XGBoost classifier with MLflow](https://github.com/Azure/azureml-examples/blob/main/sdk/python/using-mlflow/train-and-log/xgboost_classification_mlflow.ipynb).
 
-## Logging models with a custom signature, environment or samples
+## Log models that use a custom signature, environment, or samples
 
-The MLflow `mlflow.<flavor>.log_model` method can manually log models. This workflow can control different aspects of the model logging.
+You can use the MLflow `mlflow.<flavor>.log_model` method to manually log models. This workflow can control various aspects of model logging.
 
 Use this method when:
-> [!div class="checklist"]
-> * You want to indicate pip packages or a conda environment that differ from those that are automatically detected
-> * You want to include input examples
-> * You want to include specific artifacts in the needed package
-> * `autolog` does not correctly infer your signature. This matters when you deal with tensor inputs, where the signature needs specific shapes
-> * The autolog behavior does not cover your purpose for some reason
 
-This code example logs a model for an XGBoost classifier:
+* You want to indicate pip packages or a Conda environment that differs from the automatically detected packages or environment.
+* You want to include input examples.
+* You want to include specific artifacts in the package that you need.
+* The `autolog` method doesn't correctly infer your signature. This case comes up when you work with tensor inputs, which require the signature to have a specific shape.
+* The `autolog` method doesn't meet all your needs.
+
+The following code logs an XGBoost classifier model:
 
 ```python
 import mlflow
@@ -85,20 +83,20 @@ y_pred = model.predict(X_test)
 
 accuracy = accuracy_score(y_test, y_pred)
 
-# Signature
+# Infer the signature.
 signature = infer_signature(X_test, y_test)
 
-# Conda environment
+# Set up a Conda environment.
 custom_env =_mlflow_conda_env(
     additional_conda_deps=None,
     additional_pip_deps=["xgboost==1.5.2"],
     additional_conda_channels=None,
 )
 
-# Sample
+# Sample the data.
 input_example = X_train.sample(n=1)
 
-# Log the model manually
+# Log the model manually.
 mlflow.xgboost.log_model(model, 
                          artifact_path="classifier", 
                          conda_env=custom_env,
@@ -107,19 +105,21 @@ mlflow.xgboost.log_model(model,
 ```
 
 > [!NOTE]
-> * `autolog` has the `log_models=False` configuration. This prevents automatic MLflow model logging. Automatic MLflow model logging happens later, as a manual process
-> * Use the `infer_signature` method to try to infer the signature directly from inputs and outputs
-> * The `mlflow.utils.environment._mlflow_conda_env` method is a private method in the MLflow SDK. In this example, it makes the code simpler, but use it with caution. It may change in the future. As an alternative, you can generate the YAML definition manually as a Python dictionary.
+> * The call to `autolog` uses a configuration of `log_models=False`. This setting turns off automatic MLflow model logging. The `log_model` method is used later to manually log the model.
+> * The `infer_signature` method is used to try to infer the signature directly from inputs and outputs.
+> * The `mlflow.utils.environment._mlflow_conda_env` method is a private method in the MLflow SDK. In this example, it streamlines the code. But use this method with caution, because it might change in the future. As an alternative, you can generate the YAML definition manually as a Python dictionary.
 
-## Logging models with a different behavior in the predict method
+## Log models with a different behavior in the predict method
 
-When logging a model with either `mlflow.autolog` or `mlflow.<flavor>.log_model`, the model flavor determines how to execute the inference, and what the model returns. MLflow doesn't enforce any specific behavior about the generation of `predict` results. In some scenarios, you might want to do some preprocessing or post-processing before and after your model executes.
+When you use `mlflow.autolog` or `mlflow.<flavor>.log_model` to log a model, the model flavor determines how to perform the inference. The flavor also determines what the model returns. MLflow doesn't enforce any specific behavior about the generation of `predict` results. In some scenarios, you might want to do some preprocessing or post-processing before and after your model runs.
 
-In this situation, implement machine learning pipelines that directly move from inputs to outputs. Although this implementation is possible, and sometimes encouraged to improve performance, it might become challenging to achieve. In those cases, it can help to [customize how your model handles inference](#logging-custom-models) as explained in next section.
+In this situation, you can implement machine learning pipelines that directly move from inputs to outputs. Although this type of implementation can sometimes improve performance, it can be challenging to achieve.
 
 ## Logging custom models
 
-MLflow supports many [machine learning frameworks](https://mlflow.org/docs/latest/models.html#built-in-model-flavors), including
+In cases that involve implementing pipelines that directly move from inputs to outputs, it can help to customize the way your model handles inference.
+
+MLflow supports many machine learning frameworks, including the following flavors:
 
 - CatBoost
 - FastAI
@@ -138,25 +138,27 @@ MLflow supports many [machine learning frameworks](https://mlflow.org/docs/lates
 - TensorFlow
 - XGBoost
 
-However, you might need to change the way a flavor works, log a model not natively supported by MLflow or even log a model that uses multiple elements from different frameworks. In these cases, you might need to create a custom model flavor.
+For a complete list, see [Built-In Model Flavors](https://mlflow.org/docs/latest/models.html#built-in-model-flavors).
 
-To solve the problem, MLflow introduces the `pyfunc` flavor (starting from a Python function). This flavor can log any object as a model, as long as that object satisfies two conditions:
+However, you might need to change the way a flavor works or log a model that's not natively supported by MLflow. Or you might need to log a model that uses multiple elements from various frameworks. In these cases, you might need to create a custom model flavor.
 
-* You implement the method `predict` method, at least
-* The Python object inherits from `mlflow.pyfunc.PythonModel`
+To solve the problem, MLflow offers the `pyfunc` flavor, a default model interface for Python models. This flavor can log any object as a model, as long as that object satisfies two conditions:
+
+* You implement at least the `predict` method.
+* The Python object inherits from the `mlflow.pyfunc.PythonModel` class.
 
 > [!TIP]
-> Serializable models that implement the Scikit-learn API can use the Scikit-learn flavor to log the model, regardless of whether the model was built with Scikit-learn. If you can persist your model in Pickle format, and the object has the `predict()` and `predict_proba()` methods (at least), you can use `mlflow.sklearn.log_model()` to log the model inside a MLflow run.
+> Serializable models that implement the Scikit-learn API can use the `Scikit-learn` flavor to log the model, regardless of whether the model was built with `Scikit-learn`. If you can persist your model in Pickle format, and the object has at least the `predict` and `predict_proba` methods, you can use `mlflow.sklearn.log_model` to log the model inside an MLflow run.
 
-# [Using a model wrapper](#tab/wrapper)
+# [Use a model wrapper](#tab/wrapper)
 
-If you create a wrapper around your existing model object, it becomes the simplest to create a flavor for your custom model. MLflow serializes and packages it for you. Python objects are serializable when the object can be stored in the file system as a file, generally in Pickle format. At runtime, the object can materialize from that file. This restores all the values, properties, and methods available when it was saved.
+The easiest way to create a flavor for your custom model is to create a wrapper around your existing model object. MLflow serializes and packages it for you. Python objects are serializable when the object can be stored in the file system as a file, generally in Pickle format. At runtime, the object can materialize from that file. This restores all the values, properties, and methods available when it was saved.
 
 Use this method when:
-> [!div class="checklist"]
-> * You can serialize your model in Pickle format
-> * You want to retain the state of the model, as it was just after training
-> * You want to customize how the `predict` function works.
+
+* You can serialize your model in Pickle format.
+* You want to retain the state of the model just after training.
+* You want to customize how the `predict` function works.
 
 This code sample wraps a model created with XGBoost, to make it behave in a different from the XGBoost flavor default implementation. Instead, it returns the probabilities instead of the classes:
 
