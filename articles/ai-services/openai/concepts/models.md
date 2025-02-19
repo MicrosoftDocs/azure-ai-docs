@@ -244,6 +244,11 @@ All deployments can perform the exact same inference operations, however the bil
 
 [!INCLUDE [Data zone standard](../includes/model-matrix/datazone-standard.md)]
 
+> [!NOTE]
+> **Most o-series models are limited access**. Request access: [limited access model application](https://aka.ms/OAI/o1access). `o1-mini` is currently available to all customers for global standard deployment.
+>
+> Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time access to `o1-mini` standard (regional) deployments is not being expanded.
+
 # [Data Zone Provisioned Managed](#tab/datazone-provisioned-managed)
 
 ### Data zone provisioned managed model availability
