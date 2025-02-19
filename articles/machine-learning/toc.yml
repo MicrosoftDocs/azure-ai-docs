@@ -636,6 +636,8 @@ items:
       href: how-to-deploy-models-jamba.md
     - name: Regulate deployments using policy
       href: how-to-regulate-registry-deployments.md
+    - name: Stability AI models
+      href: deploy-stability-models.md
     - name: Use Model Catalog collections with virtual network
       href: how-to-network-isolation-model-catalog.md
     - name: Azure AI Model Inference API
