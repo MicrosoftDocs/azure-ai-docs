@@ -33,7 +33,7 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/ner.png" alt-text="A screenshot of the named entity recognition tile in Azure AI Foundry."  lightbox="media/overview/ner.png":::
+      :::image type="content" source="media/overview/named-entity-recognition.png" alt-text="A screenshot of named entity recognition in Azure AI Foundry."  lightbox="media/overview/named-entity-recognition.png":::
    :::column-end:::
    :::column span="":::
       [Named entity recognition](./named-entity-recognition/overview.md) identifies different entries in tex and categorizes them into pre-defined types.
@@ -45,7 +45,8 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/pii.png" alt-text="A screenshot of the personally identifying information tiles in Azure AI Foundry." lightbox="media/overview/pii.png":::
+      :::image type="content" source="media/overview/conversation-pii.png" alt-text="A screenshot of conversation personally identifying information in Azure AI Foundry." lightbox="media/overview/conversation-pii.png":::
+      :::image type="content" source="media/overview/text-pii.png" alt-text="A screenshot of text personally identifying information in Azure AI Foundry." lightbox="media/overview/text-pii.png":::
    :::column-end:::
    :::column span="":::
       [PII detection](./personally-identifiable-information/overview.md) identifies entities in text that are associated with an individual and conversations (chat or transcripts).
@@ -57,7 +58,7 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/language-detection.png" alt-text="A screenshot of the language detection tile in Azure AI Foundry." lightbox="media/overview/language-detection.png":::
+      :::image type="content" source="media/overview/language-detection.png" alt-text="A screenshot of language detection in Azure AI Foundry." lightbox="media/overview/language-detection.png":::
    :::column-end:::
    :::column span="":::
       [Language detection](./language-detection/overview.md) evaluates text and detects a wide range of languages and variant dialects.
@@ -69,7 +70,7 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/studio-examples/sentiment-analysis-example.png" alt-text="A screenshot of a sentiment analysis example." lightbox="media/studio-examples/sentiment-analysis-example.png":::
+      :::image type="content" source="media/studio-examples/sentiment-analysis.png" alt-text="A screenshot of sentiment analysis in Azure AI Foundry." lightbox="media/studio-examples/sentiment-analysis.png":::
    :::column-end:::
    :::column span="":::
       [Sentiment analysis and opinion mining](./sentiment-opinion-mining/overview.md) are preconfigured features that help you find out what people think of your brand or topic by mining text for clues about positive or negative sentiment, and can associate them with specific aspects of the text.
@@ -81,7 +82,9 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/summarization.png" alt-text="A screenshot of the summarization tiles in Azure AI Foundry." lightbox="media/overview/summarization.png":::
+      :::image type="content" source="media/overview/conversation-summarization.png" alt-text="A screenshot of conversation summarization  in Azure AI Foundry." lightbox="media/overview/summarization.png":::
+      :::image type="content" source="media/overview/call-center-summarization.png" alt-text="A screenshot of call center summarization in Azure AI Foundry." lightbox="media/overview/summarization.png":::
+      :::image type="content" source="media/overview/text-summarization.png" alt-text="A screenshot of text summarization in Azure AI Foundry." lightbox="media/overview/summarization.png":::
    :::column-end:::
    :::column span="":::
       [Summarization](./summarization/overview.md) recaps and summarizes customer issues and resolution, conversation and segment long meetings into timestamps and chapters, and key information at scale from text.
@@ -92,7 +95,7 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/studio-examples/key-phrases.png" alt-text="A screenshot of a key phrase extraction example." lightbox="media/studio-examples/key-phrases.png":::
+      :::image type="content" source="media/studio-examples/key-phrase-extraction.png" alt-text="A screenshot of key phrase extraction in Azure AI Foundry." lightbox="media/studio-examples/key-phrase-extraction.png":::
    :::column-end:::
    :::column span="":::
       [Key phrase extraction](./key-phrase-extraction/overview.md) is a preconfigured feature that evaluates and returns the main concepts in unstructured text, and returns them as a list.
@@ -114,7 +117,7 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/ta4h.png" alt-text="A screenshot of a text analytics for health example." lightbox="media/overview/ta4h.png":::
+      :::image type="content" source="media/overview/text-analytics-for-health.png" alt-text="A screenshot of text analytics for health in Azure AI Foundry." lightbox="media/overview/text-analytics-for-health.png":::
    :::column-end:::
    :::column span="":::
       [Text analytics for health](./text-analytics-for-health/overview.md) Extracts and labels relevant health information from unstructured text.
