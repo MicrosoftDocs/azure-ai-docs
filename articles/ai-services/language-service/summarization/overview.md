@@ -24,6 +24,8 @@ Out of the box, the service provides summarization solutions for three types of 
 > [!TIP]
 > Try out Summarization [in Azure AI Foundry portal](https://ai.azure.com/explore/language), where you can [utilize a currently existing Language Studio resource or create a new Azure AI Foundry resource](../../../ai-studio/ai-services/connect-ai-services.md) in order to use this service.
 
+## Capabilities
+
 # [Text summarization](#tab/text-summarization)
 
 This documentation contains the following article types:
