@@ -814,6 +814,21 @@
       "source_path_from_root": "/articles/ai-services/ai-services-and-ecosystem.md",
       "redirect_url": "/azure/ai-services/what-are-ai-services",
       "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/personally-identifiable-information/how-to-call.md",
+      "redirect_url": "/azure/ai-services/language-service/personally-identifiable-information/how-to/redact-text-pii",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/personally-identifiable-information/how-to-call-for-conversations.md",
+      "redirect_url": "/azure/ai-services/language-service/personally-identifiable-information/how-to/redact-conversation-pii",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/native-document-support/use-native-documents.md",
+      "redirect_url": "/azure/ai-services/language-service/native-document-support/overview",
+      "redirect_document_id": true
     }
   ]
 }

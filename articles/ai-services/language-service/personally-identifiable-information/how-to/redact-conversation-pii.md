@@ -1,34 +1,30 @@
 ---
-title: How to detect Personally Identifiable Information (PII) in conversations.
+title: Identify and extract Personally Identifying Information (PII) from conversations.
 titleSuffix: Azure AI services
-description: This article shows you how to extract PII from chat and spoken transcripts and redact identifiable information.
+description: This article shows you how to detect and redact Personally Identifying Information (PII) from speech, chat, and spoken-word transcriptions and call transcripts.
 #services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
-ms.custom:
-  - ignite-2024
 ms.topic: how-to
-ms.date: 11/04/2024
-ms.author: jboback
-ms.reviewer: bidishac
+ms.date: 01/31/2025
+ms.author: lajanuar
+ms.custom: language-service-pii
 ---
 
+# Detect and redact Personally Identifying Information in conversations
 
-# How to detect and redact Personally Identifying Information (PII) in conversations
-
-The Conversational PII feature can evaluate conversations to extract sensitive information (PII) in the content across several pre-defined categories and redact them. This API operates on both transcribed text (referenced as transcripts) and chats.
-For transcripts, the API also enables redaction of audio segments, which contains the PII information by providing the audio timing information for those audio segments.
+Azure AI Language conversation PII API analyzes audio discourse to identify and redact sensitive information (PII) using various predefined categories. This API works on both transcribed text (referred to as transcripts) and chats. For transcripts, it also facilitates the redaction of audio segments containing PII by providing the timing information for those segments.
 
 ## Determine how to process the data (optional)
 
 ### Specify the PII detection model
 
-By default, this feature uses the latest available AI model on your input. You can also configure your API requests to use a specific [model version](../concepts/model-lifecycle.md).
+By default, this feature uses the latest available AI model on your input. You can also configure your API requests to use a specific [model version](../../concepts/model-lifecycle.md).
 
 ### Language support
 
-See the [PII Language Support page](language-support.md) for more details. Currently the conversational PII GA model only supports the English language. The preview model and API support the [same list languages](../concepts/language-support.md) as the other Language services.
+See the [PII Language Support page](../language-support.md) for more details. Currently the conversational PII GA model only supports the English language. The preview model and API support the [same list languages](../../concepts/language-support.md) as the other Language services.
 
 ### Region support
 
@@ -37,7 +33,7 @@ The conversational PII API supports all Azure regions supported by the Language 
 ## Submitting data
 
 > [!NOTE]
-> See the [Language Studio](../language-studio.md#valid-text-formats-for-conversation-features) article for information on formatting conversational text to submit using Language Studio. 
+> See the [Language Studio](../../language-studio.md#valid-text-formats-for-conversation-features) article for information on formatting conversational text to submit using Language Studio. 
 
 You can submit the input to the API as list of conversation items. Analysis is performed upon receipt of the request. Because the API is asynchronous, there may be a delay between sending an API request, and receiving the results. For information on the size and number of requests you can send per minute and second, see the data limits below.
 
@@ -45,7 +41,7 @@ When using the async feature, the API results are available for 24 hours from th
 
 When you submit data to conversational PII, you can send one conversation (chat or spoken) per request.
 
-The API attempts to detect all the [defined entity categories](concepts/conversations-entity-categories.md) for a given conversation input. If you want to specify which entities are detected and returned, use the optional `piiCategories` parameter with the appropriate entity categories.
+The API attempts to detect all the [defined entity categories](../concepts/conversations-entity-categories.md) for a given conversation input. If you want to specify which entities are detected and returned, use the optional `piiCategories` parameter with the appropriate entity categories.
 
 For spoken transcripts, the entities detected are returned on the `redactionSource` parameter value provided. Currently, the supported values for `redactionSource` are `text`, `lexical`, `itn`, and `maskedItn` (which maps to Speech to text REST API's `display`\\`displayText`, `lexical`, `itn` and `maskedItn` format respectively). Additionally, for the spoken transcript input, this API also provides audio timing information to empower audio redaction. For using the audioRedaction feature, use the optional `includeAudioRedaction` flag with `true` value. The audio redaction is performed based on the lexical input format.
 
@@ -55,7 +51,7 @@ For spoken transcripts, the entities detected are returned on the `redactionSour
 
 ## Getting PII results
 
-When you get results from PII detection, you can stream the results to an application or save the output to a file on the local system. The API response includes [recognized entities](concepts/conversations-entity-categories.md), including their categories and subcategories, and confidence scores. The text string with the PII entities redacted is also returned.
+When you get results from PII detection, you can stream the results to an application or save the output to a file on the local system. The API response includes [recognized entities](../concepts/conversations-entity-categories.md), including their categories and subcategories, and confidence scores. The text string with the PII entities redacted is also returned.
 
 ## Examples
 
@@ -137,7 +133,7 @@ curl -i -X POST https://your-language-endpoint-here/language/analyze-conversatio
             "kind": "ConversationalPIITask", 
             "parameters": { 
                 "modelVersion": "2023-04-15-preview", 
-                “redactionCharacter” 
+                "redactionCharacter" 
                 "redactionPolicy": { 
                     "policyKind": "characterMask", 
                     //characterMask|entityMask|noMask 
@@ -152,7 +148,7 @@ curl -i -X POST https://your-language-endpoint-here/language/analyze-conversatio
 
 ## Submit transcripts using speech to text
 
-Use the following example if you have conversations transcribed using the Speech service's [speech to text](../../Speech-Service/speech-to-text.md) feature:
+Use the following example if you have conversations transcribed using the Speech service's [speech to text](../../../Speech-Service/speech-to-text.md) feature:
 
 ```bash
 curl -i -X POST https://your-language-endpoint-here/language/analyze-conversations/jobs?api-version=2024-05-01 \
@@ -353,4 +349,4 @@ curl -X GET    https://your-language-endpoint/language/analyze-conversations/job
 
 ## Service and data limits
 
-[!INCLUDE [service limits article](../includes/service-limits-link.md)]
+[!INCLUDE [service limits article](../../includes/service-limits-link.md)]

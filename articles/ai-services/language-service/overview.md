@@ -17,23 +17,23 @@ Azure AI Language is a cloud-based service that provides Natural Language Proces
 
 ## Available features
 
-This Language service unifies the following previously available Azure AI services: Text Analytics, QnA Maker, and LUIS. If you need to migrate from these services, see [the migration section](#migrate-from-text-analytics-qna-maker-or-language-understanding-luis) below.
+This Language service unifies the following previously available Azure AI services: Text Analytics, QnA Maker, and LUIS. If you need to migrate from these services, see [the migration section](#migrate-from-text-analytics-qna-maker-or-language-understanding-luis).
 
 The Language service also provides several new features as well, which can either be:
 
-* Preconfigured, which means the AI models that the feature uses are not customizable. You just send your data, and use the feature's output in your applications.
-* Customizable, which means you'll train an AI model using our tools to fit your data specifically.
+* Preconfigured, which means the AI models that the feature uses aren't customizable. You just send your data, and use the feature's output in your applications.
+* Customizable, which means you train an AI model using our tools to fit your data specifically.
 
 > [!TIP]
-> Unsure which feature to use? See [Which Language service feature should I use?](#which-language-service-feature-should-i-use) to help you decide.
+> Unsure which feature to use? See [Which Language service feature should I use](#which-language-service-feature-should-i-use) to help you decide.
 
-[**Language Studio**](./language-studio.md) enables you to use the below service features without needing to write code.
+[**Language Studio**](./language-studio.md) enables you to use the following service features without needing to write code.
 
 ### Named Entity Recognition (NER)
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/studio-examples/named-entity-recognition.png" alt-text="A screenshot of a named entity recognition example."  lightbox="media/studio-examples/named-entity-recognition.png":::
+      :::image type="content" source="media/studio-examples/named-entity-recognition.png" alt-text="A screenshot of a named entity recognition example." lightbox="media/studio-examples/named-entity-recognition.png":::
    :::column-end:::
    :::column span="":::
       [Named entity recognition](./named-entity-recognition/overview.md) is a preconfigured feature that categorizes entities (words or phrases) in unstructured text across several predefined category groups. For example: people, events, places, dates, [and more](./named-entity-recognition/concepts/named-entity-categories.md).
@@ -48,7 +48,7 @@ The Language service also provides several new features as well, which can eithe
       :::image type="content" source="media/studio-examples/personal-information-detection.png" alt-text="A screenshot of a PII detection example." lightbox="media/studio-examples/personal-information-detection.png":::
    :::column-end:::
    :::column span="":::
-      [PII detection](./personally-identifiable-information/overview.md) is a preconfigured feature that identifies, categorizes, and redacts sensitive information in both [unstructured text documents](./personally-identifiable-information/how-to-call.md), and [conversation transcripts](./personally-identifiable-information/how-to-call-for-conversations.md). For example: phone numbers, email addresses, forms of identification, [and more](./personally-identifiable-information/concepts/entity-categories.md).
+      [PII detection](./personally-identifiable-information/overview.md) is a preconfigured feature that identifies, categorizes, and redacts sensitive information in [unstructured text documents](./personally-identifiable-information/how-to/redact-text-pii.md), [conversation transcripts](./personally-identifiable-information/how-to/redact-conversation-pii.md), and [native documents](./personally-identifiable-information/how-to/redact-document-pii.md). PII includes phone numbers, email addresses, forms of identification, [and more](./personally-identifiable-information/concepts/entity-categories.md).
 
    :::column-end:::
 :::row-end:::
@@ -182,7 +182,7 @@ The Language service also provides several new features as well, which can eithe
 
 ## Which Language service feature should I use?
 
-This section will help you decide which Language service feature you should use for your application:
+This section helps you decide which Language service feature you should use for your application:
 
 |What do you want to do?  |Document format  |Your best solution  | Is this solution customizable?* |
 |---------|---------|---------|---------|
@@ -200,7 +200,7 @@ This section will help you decide which Language service feature you should use 
 | Predict the intention of user inputs and extract information from them. | Unstructured user inputs | [Conversational language understanding](./conversational-language-understanding/overview.md) | ✓ |
 | Connect apps from conversational language understanding, LUIS, and question answering. | Unstructured user inputs | [Orchestration workflow](./orchestration-workflow/overview.md) | ✓ | 
 
-\* If a feature is customizable, you can train an AI model using our tools to fit your data specifically. Otherwise a feature is preconfigured, meaning the AI models it uses cannot be changed. You just send your data, and use the feature's output in your applications.
+\* If a feature is customizable, you can train an AI model using our tools to fit your data specifically. Otherwise a feature is preconfigured, meaning the AI models it uses can't be changed. You just send your data, and use the feature's output in your applications.
 
 ## Migrate from Text Analytics, QnA Maker, or Language Understanding (LUIS)
 
@@ -208,15 +208,15 @@ Azure AI Language unifies three individual language services in Azure AI service
 
 ## Tutorials
 
-After you've had a chance to get started with the Language service, try our tutorials that show you how to solve various scenarios.
+After you get started with the Language service quickstarts, try our tutorials that show you how to solve various scenarios.
 
 * [Extract key phrases from text stored in Power BI](key-phrase-extraction/tutorials/integrate-power-bi.md)
 * [Use Power Automate to sort information in Microsoft Excel](named-entity-recognition/tutorials/extract-excel-information.md) 
 * [Use Flask to translate text, analyze sentiment, and synthesize speech](/training/modules/python-flask-build-ai-web-app/)
 * [Use Azure AI services in canvas apps](/powerapps/maker/canvas-apps/cognitive-services-api?context=/azure/ai-services/language-service/context/context)
-* [Create a FAQ Bot](question-answering/tutorials/bot-service.md)
+* [Create an FAQ Bot](question-answering/tutorials/bot-service.md)
 
-## Additional code samples
+## Code samples
 
 You can find more code samples on GitHub for the following languages:
 
@@ -237,7 +237,7 @@ Use Language service containers to deploy API features on-premises. These Docker
 
 ## Responsible AI 
 
-An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Read the following articles to learn about responsible AI use and deployment in your systems:
+An AI system includes not only the technology, but also the people who use it, the people affected by it, and the deployment environment. Read the following articles to learn about responsible AI use and deployment in your systems:
 
 * [Transparency note for the Language service](/legal/cognitive-services/text-analytics/transparency-note)
 * [Integration and responsible use](/legal/cognitive-services/text-analytics/guidance-integration-responsible-use)
