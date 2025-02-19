@@ -161,6 +161,8 @@ items:
             href: how-to/deploy-models-tsuzumi.md
           - name: Fine-tune tsuzumi model
             href: how-to/fine-tune-models-tsuzumi.md
+      - name: Stability AI models
+        href: ./how-to/deploy-stability-models.md
       - name: TimeGEN-1 model
         href: how-to/deploy-models-timegen-1.md
   - name: Azure OpenAI and AI services

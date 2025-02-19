@@ -1,10 +1,10 @@
 ---
 title: Control AI model deployment with built-in policies
-titleSuffix: Azure AI Foundry
-description: "Learn how to use built-in Azure policies to control what managed AI Services (MaaS) and Model-as-a-Platform (MaaP) AI models can be deployed in Azure AI Foundry portal."
+titleSuffix: Azure Machine Learning
+description: "Learn how to use built-in Azure policies to control what managed AI Services (MaaS) and Model-as-a-Platform (MaaP) AI models can be deployed."
 author: Blackmist
 ms.author: larryfr
-ms.service: azure-ai-foundry
+ms.service: azure-machine-learning
 ms.topic: how-to #Don't change
 ms.date: 02/19/2025
 
@@ -12,9 +12,9 @@ ms.date: 02/19/2025
 
 ---
 
-# Control AI model deployment with built-in policies in Azure AI Foundry portal
+# Control AI model deployment with built-in policies in Azure Machine Learning
 
-Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Managed AI Services (MaaS) and Model-as-a-Platform (MaaP). You can use these policies to control what models your developers can deploy in Azure AI Foundry portal.
+Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Managed AI Services (MaaS) and Model-as-a-Platform (MaaP). You can use these policies to control what models your developers can deploy.
 
 ## Prerequisites
 
@@ -25,35 +25,33 @@ Azure Policy provides built-in policy definitions that help you govern the deplo
 ## Enable the policy
 
 1. From the [Azure portal](https://portal.azure.com), select **Policy** from the left side of the page. You can also search for **Policy** in the search bar at the top of the page.
-1. From the left side of the Azure Policy Dashboard, select **Authoring**, **Definition**, and then search for "[Preview]: Azure Machine Learning Deployments should only use approved Registry Models" in the search bar within the page. You can also directly navigate to [policy definition creation page](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F12e5dd16-d201-47ff-849b-8454061c293d).
-1. Select on **Assign** to assign the policy to the management group:
+1. From the left side of the Azure Policy Dashboard, select **Authoring**, **Assignments**, and then select **Assign policy** from the top of the page.
+1. In the **Policy Assignment** form, use the following values:
 
     - **Scope**: Select the scope where you want to assign the policy. The scope can be a management group, subscription, or resource group.
-    - **Policy definition**: this section should already have a value of "**[Preview]: Azure Machine Learning Deployments should only use approved Registry Models**".
+    - **Policy definition**: Select the ellipse (...) and search for **Allowed models for AI model deployment**. Select the policy definition from the list. For example, **Allowed models for AI model deployment in MaaS and MaaP**.
     - **Assignment name**: Enter a unique name for the assignment.
 
     The rest of the fields can be left as their default values or you can customize as needed for your organization.
 
 1. Select **Next** at the bottom of the page or the **Parameters** tab at the top of the page.
-1. In the **Parameters** tab, deselect **Only show parameters that needs input or review** to see all fields:
+1. In the **Parameters** tab, use the following fields:
 
-    - **Effect**: Set to [**Deny**](/azure/governance/policy/concepts/effect-deny).
-        > [!NOTE]
-        > Using the [audit](/azure/governance/policy/concepts/effect-audit) option allows you to configure the policy to log information to your own compliance dashboard.
-    - **Allowed Models Publishers**: This field expects a list of **publisher's name** in quotation and separated by commas.
-    - **Allowed Asset Ids**: This field expects a list of **model asset ids** in quotation and separated by commas.
+    - **Allowed models**: This field expects the **model ID strings**, separated by commas. To get the model ID strings, use the following steps:
 
-        To get the model asset ID strings and model publishers' name use the following steps:
+        1. Go to the [Azure Machine Learning Model Catalog](https://ml.azure.com/model/catalog) for your workspace.
+        
+            > [!NOTE]
+            > You must have an Azure Machine Learning workspace to access the Model Catalog.
 
-        1. Go to the [Azure AI Foundry model catalog](model-catalog-overview.md).
-
-
-        1. For each model you want to allow, select the model to view the details. In the model detail information, copy the **Model ID** value. For example, the value might look like `azureml://registries/azure-openai/models/gpt-35-turbo/versions/3` for GPT-3.5-Turbo model. The provided names are also *Collections* in model catalog. For example, the publisher for "Meta-Llama-3.1-70B-Instruct" model is Meta. 
+        1. For each model you want to allow, select the model to view the details. In the model detail information, copy the **Model ID** value. For example, the value might look like `azureml://registries/azure-openai/models/gpt-35-turbo/versions/3`.
         
             > [!IMPORTANT]
             > The model ID value must be an exact match for the model. If the model ID is not an exact match, the model won't be allowed.
 
+    - **Effect**: This field determines whether the policy [audits](/azure/governance/policy/concepts/effect-audit) or [denies](/azure/governance/policy/concepts/effect-deny) the use of the models listed in the **Allowed models** field.
 
+1. Optionally, select the **Non-compliance messages** tab at the top of the page and set a custom message for noncompliance.
 1. Select **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
 1. Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't in the list of allowed models.
 
@@ -85,4 +83,4 @@ To update an existing policy assignment with new models, follow these steps:
 ## Related content
 
 - [Azure Policy overview](/azure/governance/policy/overview)
-- [Azure AI Foundry model catalog](model-catalog-overview.md)
+- [Azure Machine Learning model catalog](concept-model-catalog.md)
