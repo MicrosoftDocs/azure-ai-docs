@@ -10,7 +10,7 @@ ms.custom:
   - ai-learning-hub
   - ignite-2024
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 02/19/2025
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
@@ -72,7 +72,7 @@ Projects also have specific settings that only hold for that project:
 | Prompt flow runtime | Prompt flow is a feature that can be used to generate, customize, or run a flow. To use prompt flow, you need to create a runtime on top of a compute instance. |
 
 > [!NOTE]
-> In Azure AI Foundry portal you can also manage language and notification settings that apply to all projects that you can access regardless of the hub or project.
+> In Azure AI Foundry portal, you can also manage language and notification settings that apply to all projects that you can access regardless of the hub or project.
 
 ## Azure AI services API access keys
 
