@@ -29,9 +29,9 @@ work together, generate client code, create tests, apply design standards, and m
 
 ### Usage support
 
-|Azure AI foundry support  | Python SDK |	C# SDK | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|
-|      | ✔️ | ✔️ | ✔️ | ✔️ |
+|Azure AI foundry support  | Python SDK |	C# SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|
+|      | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 1. Ensure you've completed the prerequisites and setup steps in the [quickstart](../../quickstart.md).
@@ -88,7 +88,7 @@ work together, generate client code, create tests, apply design standards, and m
 ::: zone-end
 
 ::: zone pivot="code-example"
-## Step 1: Create an agent with OpenAPI Spec tool
+## Step 1: Create a project client
 Create a client object, which will contain the connection string for connecting to your AI project and other resources.
 # [Python](#tab/python)
 
@@ -140,10 +140,12 @@ public partial class Sample_Agent_OpenAPI : SamplesBase<AIProjectsTestEnvironmen
         AgentsClient client = new(connectionString, new DefaultAzureCredential());
         var file_path = GetFile();
 ```
+# [REST API](#tab/rest)
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`.
 
 ---
 
-## Step 2: Enable the OpenAPI Spec tool
+## Step 2: Create the OpenAPI Spec tool definition
 You might want to store the OpenAPI specification in another file and import the content to initialize the tool. Note the sample code is using `anonymous` as authentication type.
 
 # [Python](#tab/python)
@@ -182,10 +184,12 @@ An example of the audience would be ```https://cognitiveservices.azure.com/```.
         auth: oaiAuth
     );
 ```
+# [REST API](#tab/rest)
+We will create an agent with the tool configuration in the next section.
 
 ---
 
-## Step 3: Create a thread
+## Step 3: Create an agent and a thread
 
 # [Python](#tab/python)
 
@@ -216,6 +220,87 @@ Agent agent = agentResponse.Value;
 #endregion
 Response<AgentThread> threadResponse = await client.CreateThreadAsync();
 AgentThread thread = threadResponse.Value;
+```
+
+# [REST API](#tab/rest)
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "instructions": "You are a weather bot. Use the provided functions to answer questions about the weather.",
+    "model": "gpt-4o",
+    "tools": [{
+        "type": "openapi",
+        "openapi": {
+          "name": "weatherapp",
+          "description": "Tool to get weather data",
+          "auth": {
+            "type": "anonymous"
+          },
+          "spec": {
+            "openapi": "3.1.0",
+            "info": {
+                "title": "get weather data",
+                "description": "Retrieves current weather data for a location.",
+                "version": "v1.0.0"
+            },
+            "servers": [{
+                "url": "https://wttr.in"
+            }],
+            "auth": [],
+            "paths": {
+                "/{location}": {
+                    "get": {
+                        "description": "Get weather information for a specific location",
+                        "operationId": "GetCurrentWeather",
+                        "parameters": [
+                        {
+                            "name": "location",
+                            "in": "path",
+                            "description": "City or location to retrieve the weather for",
+                            "required": true,
+                            "schema": {
+                            "type": "string"
+                            }
+                        },
+                        {
+                            "name": "format",
+                            "in": "query",
+                            "description": "Format in which to return data. Always use 3.",
+                            "required": true,
+                            "schema": {
+                            "type": "integer",
+                            "default": 3
+                            }
+                        }
+                        ],
+                        "responses": {
+                        "200": {
+                            "description": "Successful response",
+                            "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "string"
+                                }
+                            }
+                            }
+                        },
+                        "404": {
+                            "description": "Location not found"
+                        }
+                        },
+                        "deprecated": false
+                    }
+                }
+            },
+            "components": {
+                "schemes": { }
+            }
+            }
+        }
+    }]
+    }'
 ```
 
 ---
@@ -293,6 +378,52 @@ Create a run and observe that the model uses the OpenAPI Spec tool to provide a 
                 Console.WriteLine();
             }
         }
+```
+# [REST API](#tab/rest)
+### Create a thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d ''
+```
+
+### Add a user question to the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+      "role": "user",
+      "content": "What is the weather in Seattle?"
+    }'
+```
+
+### Run the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistant_id": "asst_abc123",
+  }'
+```
+
+### Retrieve the status of the run
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+```
+
+### Retrieve the agent response
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
 ---

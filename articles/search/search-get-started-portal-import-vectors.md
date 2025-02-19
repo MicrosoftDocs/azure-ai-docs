@@ -20,7 +20,7 @@ This quickstart helps you get started with [integrated vectorization](vector-sea
 
 + An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 
-+ [An Azure AI Search service](search-create-service-portal.md) in the same region as Azure AI. We recommend the Basic tier or higher.
++ [An Azure AI Search service](search-create-service-portal.md) in the same region as your Azure AI multi-service resource. We recommend the Basic tier or higher.
 
 + [A supported data source](#supported-data-sources) with the [Health Plan PDF](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) sample documents.
 
