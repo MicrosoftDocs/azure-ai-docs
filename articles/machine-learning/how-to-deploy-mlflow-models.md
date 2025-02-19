@@ -43,7 +43,7 @@ The following example *conda.yaml* file shows conda dependencies specified in an
 :::code language="yaml" source="~/azureml-examples-main/sdk/python/endpoints/online/mlflow/sklearn-diabetes/model/conda.yaml":::
 
 > [!IMPORTANT]
-> MLflow automatically detects packages when it logs a model, and it pins the package versions in the model's conda dependencies. This automatic package detection might not reflect your intentions or requirements. You can alternatively [log models with a custom signature, environment or samples](how-to-log-mlflow-models.md#logging-models-with-a-custom-signature-environment-or-samples).
+> MLflow automatically detects packages when it logs a model, and it pins the package versions in the model's conda dependencies. This automatic package detection might not reflect your intentions or requirements. You can alternatively [log models that use a custom signature, environment, or samples](how-to-log-mlflow-models.md#log-models-that-use-a-custom-signature-environment-or-samples).
 
 ### Models with signatures
 
@@ -56,7 +56,7 @@ The following example *MLmodel* file highlights the `signature`.
 :::code language="yaml" source="~/azureml-examples-main/sdk/python/endpoints/online/mlflow/sklearn-diabetes/model/MLmodel" highlight="19-25":::
 
 > [!TIP]
-> Signatures in MLflow models are recommended because they provide a convenient way to detect data compatibility issues. For more information about how to log models with signatures, see [Logging models with a custom signature, environment or samples](how-to-log-mlflow-models.md#logging-models-with-a-custom-signature-environment-or-samples).
+> Signatures in MLflow models are recommended because they provide a convenient way to detect data compatibility issues. For more information about how to log models with signatures, see [Log models that use a custom signature, environment, or samples](how-to-log-mlflow-models.md#log-models-that-use-a-custom-signature-environment-or-samples).
 
 <a name="models-deployed-in-azure-machine-learning-vs-models-deployed-in-the-mlflow-built-in-server"></a>
 ## Deployment in the MLflow built-in server vs. deployment in Azure Machine Learning inferencing server
