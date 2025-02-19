@@ -6,7 +6,7 @@ author: Blackmist
 ms.author: larryfr
 ms.service: azure-machine-learning
 ms.topic: how-to #Don't change
-ms.date: 10/01/2024
+ms.date: 02/19/2025
 
 #customer intent: As an admin, I want control what Azure AI services and Azure OpenAI models can be deployed by my developers.
 
