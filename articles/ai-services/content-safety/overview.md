@@ -195,9 +195,6 @@ Content Safety encryption protects your data at rest. It encrypts your data as i
 
 By default, data in Content Safety is encrypted using Microsoft Managed Keys (MMK). However, Content Safety supports both Microsoft Managed Keys (MMK) and Customer Managed Keys (CMK) for encryption. When CMK is selected, users can choose CMK and have the ability to select either user-assigned managed identities (UMI) or system-assigned managed identities (SMI).
 
-![image](https://github.com/user-attachments/assets/e3ae2e32-a974-4255-8bbd-01a1bc114702)
-
-
 
 
 
