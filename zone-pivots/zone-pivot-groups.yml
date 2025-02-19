@@ -967,6 +967,8 @@ groups:
     title: Python (OpenAI SDK)
   - id: programming-language-typescript
     title: TypeScript
+  - id: rest-api
+    title: REST API
 # owner: aahi
 - id: selection-code-interpreter
   title: Selections
