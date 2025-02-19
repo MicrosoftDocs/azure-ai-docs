@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 01/07/2025
+ms.date: 02/18/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-bing-grounding

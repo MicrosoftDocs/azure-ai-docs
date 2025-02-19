@@ -1,7 +1,7 @@
 ---
 author: eric-urban
 ms.service: azure-ai-speech
-ms.date: 02/23/2023
+ms.date: 2/13/2025
 ms.topic: include
 ms.author: eur
 ---
@@ -13,7 +13,7 @@ ms.author: eur
 | `ar-AE` | Arabic (United Arab Emirates) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-BH` | Arabic (Bahrain) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-DZ` | Arabic (Algeria) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-EG` | Arabic (Egypt) | No | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-EG` | Arabic (Egypt) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
 | `ar-IL` | Arabic (Israel) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-IQ` | Arabic (Iraq) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-JO` | Arabic (Jordan) | No | Audio + human-labeled transcript<br/><br/>Plain text |
@@ -24,7 +24,7 @@ ms.author: eur
 | `ar-OM` | Arabic (Oman) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-PS` | Arabic (Palestinian Authority) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-QA` | Arabic (Qatar) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-SA` | Arabic (Saudi Arabia) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Phrase list |
+| `ar-SA` | Arabic (Saudi Arabia) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Phrase list |
 | `ar-SY` | Arabic (Syria) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-TN` | Arabic (Tunisia) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-YE` | Arabic (Yemen) | No | Audio + human-labeled transcript<br/><br/>Plain text |
@@ -43,7 +43,7 @@ ms.author: eur
 | `el-GR` | Greek (Greece) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
 | `en-AU` | English (Australia) | No | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `en-CA` | English (Canada) | No | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
-| `en-GB` | English (United Kingdom) | No | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `en-GB` | English (United Kingdom) | Yes | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `en-GH` | English (Ghana) | No | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `en-HK` | English (Hong Kong SAR) | No | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `en-IE` | English (Ireland) | No | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
@@ -91,7 +91,7 @@ ms.author: eur
 | `gl-ES` | Galician | No | Plain text |
 | `gu-IN` | Gujarati (India) | No | Plain text |
 | `he-IL` | Hebrew (Israel) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `hi-IN` | Hindi (India) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Output format<br/><br/>Phrase list |
+| `hi-IN` | Hindi (India) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
 | `hr-HR` | Croatian (Croatia) | No | Plain text<br/><br/>Pronunciation |
 | `hu-HU` | Hungarian (Hungary) | No | Plain text<br/><br/>Pronunciation |
 | `hy-AM` | Armenian (Armenia) | No | Plain text |
@@ -127,7 +127,7 @@ ms.author: eur
 | `pt-BR` | Portuguese (Brazil) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `pt-PT` | Portuguese (Portugal) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `ro-RO` | Romanian (Romania) | No | Plain text<br/><br/>Pronunciation |
-| `ru-RU` | Russian (Russia) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Phrase list |
+| `ru-RU` | Russian (Russia) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Phrase list |
 | `si-LK` | Sinhala (Sri Lanka) | No | Plain text |
 | `sk-SK` | Slovak (Slovakia) | No | Plain text<br/><br/>Pronunciation |
 | `sl-SI` | Slovenian (Slovenia) | No | Plain text<br/><br/>Pronunciation |

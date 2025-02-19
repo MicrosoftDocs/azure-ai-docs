@@ -98,7 +98,7 @@ from promptflow.rag.config import ConnectionConfig
 my_connection_config=ConnectionConfig(
     subscription_id="<subscription_id>",
     resource_group_name="<resource_group_name>",
-    workspace_name="<ai_studio_project_name>",
+    workspace_name="<ai_foundry_project_name>",
     connection_name="<serverless_connection_name>"
     )
 ```
@@ -157,7 +157,7 @@ client=MLClient(
     DefaultAzureCredential(), 
     subscription_id="<subscription_id>",
     resource_group_name="<resource_group_name>",
-    workspace_name="<ai_studio_project_name>"
+    workspace_name="<ai_foundry_project_name>"
     )
 ```
 The `subscription`, `resource_group` and `workspace` in the above code refers to the project you want to connect to.
@@ -210,7 +210,7 @@ client=MLClient(
     DefaultAzureCredential(), 
     subscription_id="<subscription_id>",
     resource_group_name="<resource_group_name>",
-    workspace_name="<ai_studio_project_name>"
+    workspace_name="<ai_foundry_project_name>"
     )
 ```
 

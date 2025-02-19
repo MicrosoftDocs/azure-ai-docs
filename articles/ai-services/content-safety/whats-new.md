@@ -34,8 +34,7 @@ The Multimodal API analyzes materials containing both image content and text con
 
 The Protected material code API flags protected code content (from known GitHub repositories, including software libraries, source code, algorithms, and other proprietary programming content) that might be output by large language models. Follow the [quickstart](./quickstart-protected-material-code.md) to get started.
 
-> [!CAUTION]
-> The content safety service's code scanner/indexer is only current through November 6, 2021. Code that was added to GitHub after this date will not be detected. Use your own discretion when using Protected Material for Code to detect recent bodies of code.
+[!INCLUDE [content-safety-code-indexer](./includes/code-indexer.md)]
 
 ### Groundedness correction (preview)
 
