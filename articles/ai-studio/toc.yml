@@ -175,6 +175,8 @@ items:
       href: how-to/deploy-models-tsuzumi.md
     - name: Fine-tune tsuzumi model
       href: how-to/fine-tune-models-tsuzumi.md
+    - name: Stability AI models
+      href: ./how-to/deploy-stability-models.md
   - name: Deploy AI models
     items:
       - name: Deployments overview
