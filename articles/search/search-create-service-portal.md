@@ -257,7 +257,7 @@ To request more subscription quota:
 
 ## Next steps
 
-Now that you've deployed your search service, continue using the Azure portal to create your first index:
+Now that you've deployed your search service, continue in the Azure portal to create your first index:
 
 > [!div class="nextstepaction"]
 > [Quickstart: Create an Azure AI Search index in the Azure portal](search-get-started-portal.md)
