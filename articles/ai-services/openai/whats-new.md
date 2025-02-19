@@ -11,7 +11,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: whats-new
-ms.date: 2/6/2025
+ms.date: 2/19/2025
 recommendations: false
 ---
 
@@ -20,6 +20,12 @@ recommendations: false
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI Service.
 
 ## February 2025
+
+### o3-mini datazone standard deployments
+
+`o3-mini` is now available for global standard, and data zone standard deployments for registered limited access customers. Data standard deployment regions are currently United States regions only.
+
+For more information, see our [reasoning model guide](./how-to/reasoning.md) 
 
 ### gpt-4o mini audio released
 
