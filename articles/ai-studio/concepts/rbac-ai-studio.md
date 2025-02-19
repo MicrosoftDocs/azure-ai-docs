@@ -508,10 +508,12 @@ Assign the following roles to the user or service principal. The role you assign
 
 ### Revert to the Contributor role
 
-If you create a new hub and encounter errors with the new default role assignment of Azure AI Administrator for the managed identity, use the following steps to revert to the Contributor role:
+If you create a new hub and encounter errors with the new default role assignment of Azure AI Administrator for the managed identity, use the following steps to change the hub to the Contributor role:
 
 > [!IMPORTANT]
-> We don't recommend reverting to the Contributor role unless you encounter problems. If reverting does solve the problems that you are encountering, please log a support incident with information on the problems that reverting solved so that we can invesitage further.
+> We don't recommend reverting a hub to the Contributor role unless you encounter problems. If reverting does solve the problems that you are encountering, please open a support incident with information on the problems that reverting solved so that we can invesitage further.
+>
+> If you would like to revert to the Contributor role as the _default_ for new hubs, open a [support request](https://ms.portal.azure.com/#view/Microsoft_Azure_Support/NewSupportRequestV3Blade) with your Azure subscription details and request that your subscription be changed to use the Contributor role as the default for the system-assigned managed identity of new hubs.
 
 1. Delete the role assignment for the hub's managed-identity. The scope for this role assignment is the __resource group__ that contains the hub, so the role must be deleted from the resource group. 
 
@@ -528,8 +530,6 @@ If you create a new hub and encounter errors with the new default role assignmen
     1. From the __Role__ tab, select __Contributor__. 
     1. From the __Members__ tab, select __Managed identity__, __+ Select members__, ans set the __Managed identity__ dropdown to __Azure AI hub__. In the __Select__ field, enter the name of the hub. Select the hub from the list, and then select __Select__.
     1. From the __Review + assign__ tab, select __Review + assign__.
-
-1. If reverting to the Contributor role resolves the problem, and you would like to opt-out of using the Azure AI Administrator role and instead return to using the Contributor role as the default, please open a support incident and request that the Azure AI Administrator role be disabled for your subscription.
 
 ## Next steps
 

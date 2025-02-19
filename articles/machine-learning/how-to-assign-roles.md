@@ -584,7 +584,9 @@ Here are a few things to be aware of while you use Azure RBAC:
 If you create a new workspace and encounter errors with the new default role assignment of Azure AI Administrator for the workspace managed identity, use the following steps to revert to the Contributor role:
 
 > [!IMPORTANT]
-> We don't recommend reverting to the Contributor role unless you encounter problems. If reverting does solve the problems that you are encountering, please log a support incident with information on the problems that reverting solved so that we can invesitage further.
+> We don't recommend reverting to the Contributor role unless you encounter problems. If reverting a workspace does solve the problems that you are encountering, please log a support incident with information on the problems that reverting solved so that we can invesitage further.
+>
+> If you would like to revert to the Contributor role as the _default_ for new workspaces, open a [support request](https://ms.portal.azure.com/#view/Microsoft_Azure_Support/NewSupportRequestV3Blade) with your Azure subscription details and request that your subscription be changed to use the Contributor role as the default for the system-assigned managed identity of new workspaces.
 
 1. Delete the role assignment for the workspace's managed-identity. The scope for this role assignment is the __resource group__ that contains the workspace, so the role must be deleted from the resource group. 
 
@@ -601,8 +603,6 @@ If you create a new workspace and encounter errors with the new default role ass
     1. From the __Role__ tab, select __Contributor__. 
     1. From the __Members__ tab, select __Managed identity__, __+ Select members__, ans set the __Managed identity__ dropdown to __Azure Machine Learning workspace__. If the workspace is a hub workspace, select __Azure AI hub__ instead. In the __Select__ field, enter the name of the workspace. Select the workspace from the list, and then select __Select__.
     1. From the __Review + assign__ tab, select __Review + assign__.
-
-1. If reverting to the Contributor role resolves the problem, and you would like to opt-out of using the Azure AI Administrator role and instead return to using the Contributor role as the default, please open a support incident and request that the Azure AI Administrator role be disabled for your subscription.
 
 ## Related content
 
