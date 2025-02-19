@@ -27,7 +27,7 @@ The Conversational PII detection models (both version `2024-11-01-preview` and `
 
 As of June 2024, we now provide General Availability support for the Conversational PII service (English-language only). Customers can now redact transcripts, chats, and other text written in a conversational style (that is, text with `um`s, `ah`s, multiple speakers, and the spelling out of words for more clarity) with better confidence in AI quality, Azure `SLA` support and production environment support, and enterprise-grade security in mind.
 
-## Available capabilities
+## Capabilities
 
  Currently, PII support is available for the following capabilities:
 
