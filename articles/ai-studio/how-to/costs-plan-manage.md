@@ -22,7 +22,7 @@ author: Blackmist
 This article describes how you plan for and manage costs for Azure AI Foundry. First, you use the Azure pricing calculator to help plan for Azure AI Foundry costs before you add any resources for the service to estimate costs. Next, as you add Azure resources, review the estimated costs.
 
 > [!TIP]
-> Azure AI Foundry doesn't have a specific page in the Azure pricing calculator. Azure AI Foundry is composed of several other Azure services, some of which are optional. This article provides information on using the pricing calculator to estimate costs for these services.
+> Azure AI Foundry does not have a specific page in the Azure pricing calculator. Azure AI Foundry is composed of several other Azure services, some of which are optional. This article provides information on using the pricing calculator to estimate costs for these services.
 
 You use Azure AI services in Azure AI Foundry portal. Costs for Azure AI services are only a portion of the monthly costs in your Azure bill. You're billed for all Azure services and resources used in your Azure subscription, including the third-party services.
 
@@ -111,7 +111,7 @@ Here's an example of how to monitor costs for a project. The costs are used as a
 1. Under the **Project** heading, select **Overview**. 
 1. Select **View cost for resources** from the **Total cost** section. The [Azure portal](https://portal.azure.com) opens to the resource group for your project.
 
-    :::image type="content" source="../media/cost-management/project-costs/project-settings-go-view-costs.png" alt-text="Screenshot of the Azure AI Foundry portal showing how to see project settings." lightbox="../media/cost-management/project-costs/project-settings-go-view-costs.png":::
+    :::image type="content" source="../media/cost-management/project-costs/project-settings-go-view-costs.png" alt-text="Screenshot of the Azure AI Foundry portal portal showing how to see project settings." lightbox="../media/cost-management/project-costs/project-settings-go-view-costs.png":::
 
 1. Expand the **Resource** column to see the costs for each service that's underlying your [project](../concepts/ai-resources.md#organize-work-in-projects-for-customization). But this view doesn't include costs for all resources that you use in a project.
 
@@ -147,9 +147,9 @@ You can also view resource group costs directly from the Azure portal. To do so:
 
 For more information, see the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
 
-### Monitor costs for models offered through Azure Marketplace
+### Monitor costs for models offered through the Azure Marketplace
 
-Models deployed as a service using pay-as-you-go are offered through Azure Marketplace. The model publishers might apply different costs depending on the offering. Each project in Azure AI Foundry portal has its own subscription with the offering, which allows you to monitor the costs and the consumption happening on that project. Use [Microsoft Cost Management](https://azure.microsoft.com/products/cost-management) to monitor the costs:
+Models deployed as a service using pay-as-you-go are offered through the Azure Marketplace. The model publishers might apply different costs depending on the offering. Each project in Azure AI Foundry portal has its own subscription with the offering, which allows you to monitor the costs and the consumption happening on that project. Use [Microsoft Cost Management](https://azure.microsoft.com/products/cost-management) to monitor the costs:
 
 1. Sign in to [Azure portal](https://portal.azure.com).
 
@@ -161,7 +161,7 @@ Models deployed as a service using pay-as-you-go are offered through Azure Marke
 
     :::image type="content" source="../media/cost-management/marketplace/costs-model-as-service-cost-analysis.png" alt-text="A screenshot of the Cost Analysis tool displaying how to show cost per resource." lightbox="../media/cost-management/marketplace/costs-model-as-service-cost-analysis.png":::
 
-1. On the **Type** column, select the filter icon to filter all the resources of type **microsoft.saas/resources**. This type corresponds to resources created from offers from Azure Marketplace. For convenience, you can filter by resource types containing the string **SaaS**. 
+1. On the **Type** column, select the filter icon to filter all the resources of type **microsoft.saas/resources**. This type corresponds to resources created from offers from the Azure Marketplace. For convenience, you can filter by resource types containing the string **SaaS**. 
 
     :::image type="content" source="../media/cost-management/marketplace/costs-model-as-service-cost-filter.png" alt-text="A screenshot of how to filter by resource type containing the string 'SaaS'." lightbox="../media/cost-management/marketplace/costs-model-as-service-cost-filter.png":::
 
@@ -211,9 +211,9 @@ When you create or use Azure AI services resources, you might get charged based 
 - Commitment tiers: With commitment tier pricing, you commit to using several service features for a fixed fee, enabling you to have a predictable total cost based on the needs of your workload. You're billed according to the plan you choose. See [Quickstart: purchase commitment tier pricing](../../ai-services/commitment-tier.md) for information on available services, how to sign up, and considerations when purchasing a plan.
 
 > [!NOTE]
-> If you use the resource above the quota provided by the commitment plan, you'll be charged for the additional usage as per the overage amount mentioned in the Azure portal when you purchase a commitment plan. 
+> If you use the resource above the quota provided by the commitment plan, you will be charged for the additional usage as per the overage amount mentioned in the Azure portal when you purchase a commitment plan. 
 
-You can pay for Azure AI services charges with your Azure Prepayment (previously called monetary commitment) credit. However, you can't use Azure Prepayment credit to pay for charges for third-party products and services including ones from Azure Marketplace.
+You can pay for Azure AI services charges with your Azure Prepayment (previously called monetary commitment) credit. However, you can't use Azure Prepayment credit to pay for charges for third-party products and services including ones from the Azure Marketplace.
 
 For more information, see the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
 
