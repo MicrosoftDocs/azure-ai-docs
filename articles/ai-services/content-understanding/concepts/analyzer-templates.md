@@ -4,7 +4,7 @@ Content Understanding analyzer templates give you a head start in developing you
 There are analyzer templates specific to common scenarios in each modality, such as call center audio analytics and advertising analysis for videos. Templates are also fully customizable, allowing you to adjust any 
 fields in the schemas to better fit your needs. Learn more about the analyzer templates offered for each modality by viewing the tabs below.
 
-The following analyzer templates are available for use in the [Azure AI Foundry Content Understanding experience](https://ai.azure.com/). Check out [Use Content Understanding in the Azure AI Foundry](../ai-services/content-understanding/quickstart/use-ai-foundry.md) for a step-by-step 
+The following analyzer templates are available for use in the [Azure AI Foundry Content Understanding experience](https://ai.azure.com/). Check out [Use Content Understanding in the Azure AI Foundry](../quickstart/use-ai-foundry.md) for a step-by-step 
 on how to create your first analyzer using the below templates.
 
 
@@ -15,7 +15,7 @@ on how to create your first analyzer using the below templates.
 |Document analysis |Analyze documents to extract text, layout, structured fields, and more.|
 |Text analysis |Analyze texts and extract structured fields.|
 
-   :::image type="content" source="../media/analyzer-template/image-templates.png" alt-text="Screenshot of document analyzer template.":::
+   :::image type="content" source="../media/analyzer-template/scenario-template-document.png" alt-text="Screenshot of document analyzer template.":::
 
 # [Image](#tab/image)
 

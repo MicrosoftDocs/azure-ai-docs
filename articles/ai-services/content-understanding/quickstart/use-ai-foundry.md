@@ -69,7 +69,7 @@ You can manage the users and their individual roles here:
 
 ## Build your first analyzer
 
-Now that everything is configured to get started, the following is a setep-by-step walkthrough of how to build your first analyzer, starting with building the schema. The schema is the customziable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any type of data and the steps to follow will remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
+Now that everything is configured to get started, the following is a step-by-step walkthrough of how to build your first analyzer, starting with building the schema. The schema is the customziable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any type of data and the steps to follow will remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
 
 1. Upload a sample file of an invoice document or any other data relevant to your scenario.
 
