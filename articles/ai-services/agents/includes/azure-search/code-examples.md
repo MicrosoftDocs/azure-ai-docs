@@ -87,7 +87,7 @@ Get the connection ID of the Azure AI Search connection in the project. You can 
 conn_list = project_client.connections.list()
 conn_id = ""
 for conn in conn_list:
-    if conn.connection_type == "AZURE_AI_SEARCH":
+    if conn.connection_type == "CognitiveSearch":
         print(f"Connection ID: {conn.id}")
 ```
 # [C#](#tab/csharp)
