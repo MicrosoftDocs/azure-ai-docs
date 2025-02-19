@@ -73,7 +73,7 @@ Field extraction is particularly optimized for scenarios requiring:
 * Workflow automation with structured output
 * Compliance monitoring and validation 
 
-The value lies in its ability to handle multiple content types (text, audio, video, images) while maintaining accuracy and scalability through AI-powered schema validation and confidence scoring. 
+The value lies in its ability to handle multiple content types (text, audio, video, images) while maintaining accuracy and scalability through AI-powered schema extraction and confidence scoring. 
 
 Each modality supports specific generation approaches optimized for that content type. Review the tabs below to understand the generation capabilities and methods available for your target modality.
 
