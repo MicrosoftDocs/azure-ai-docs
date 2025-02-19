@@ -69,7 +69,7 @@ Deployment to a serverless API endpoint doesn't require quota from your subscrip
 1. Copy the **Target** URL and the **Key** token values.
 1. Make an API request based on the type of model you deployed. To see an example request, see the [reference section](#reference-for-stability-ai-models-deployed-as-a-serverless-api). 
 
-## Reference for Stability AI models deployed as a serverless API
+### Reference for Stability AI models deployed as a serverless API
 
 Stability AI models on Models as a Service implement the [Azure AI Model Inference API](../reference/reference-model-inference-api.md) on the route `/image/generations` 
 
