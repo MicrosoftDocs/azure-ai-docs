@@ -25,7 +25,7 @@ This article provides a summary of the latest releases and major documentation u
 
 `o3-mini` is now available for global standard, and data zone standard deployments for registered limited access customers. Data standard deployment regions are currently United States regions only.
 
-For more information, see our [reasoning model guide](./how-to/reasoning.md) 
+For more information, see our [reasoning model guide](./how-to/reasoning.md). 
 
 ### gpt-4o mini audio released
 

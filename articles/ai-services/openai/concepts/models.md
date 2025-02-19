@@ -53,8 +53,8 @@ To learn more about the advanced `o-series` models see, [getting started with re
 
 | Model | Region |
 |---|---|
-|`o3-mini` | See the [models table](#model-summary-table-and-region-availability) |
-|`o1` | See the [models table](#model-summary-table-and-region-availability) |
+|`o3-mini` | See the [models table](#model-summary-table-and-region-availability). |
+|`o1` | See the [models table](#model-summary-table-and-region-availability). |
 | `o1-preview` | See the [models table](#model-summary-table-and-region-availability). This model is only available for customers who were granted access as part of the original limited access |
 | `o1-mini` | See the [models table](#model-summary-table-and-region-availability). |
 
