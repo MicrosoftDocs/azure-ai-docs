@@ -719,7 +719,7 @@ items:
     href: tutorials/prompt-flow.md
   - name: Native document support
     items:
-    - name: Use native documents for language processing
+    - name: Native documents for language processing
       href: native-document-support/overview.md
     - name: Create SAS tokens for storage containers
       href: native-document-support/shared-access-signatures.md
