@@ -209,7 +209,7 @@ When you log a model by using either `mlflow.autolog` or `mlflow.<flavor>.log_mo
 
 In some cases, you might want to do some preprocessing or postprocessing before and after your model executes. Or, you might want to change what is returned; for example, probabilities instead of classes. One solution is to implement machine learning pipelines that move from inputs to outputs directly.
 
-For example, [`sklearn.pipeline.Pipeline`](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) or [`pyspark.ml.Pipeline`](https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.ml.Pipeline.html) are popular ways to implement pipelines, and are sometimes recommended for performance reasons. You can also customize how your model does inferencing by [logging custom models](how-to-log-mlflow-models.md?#logging-custom-models).
+For example, [`sklearn.pipeline.Pipeline`](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) or [`pyspark.ml.Pipeline`](https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.ml.Pipeline.html) are popular ways to implement pipelines, and are sometimes recommended for performance reasons. You can also customize how your model does inferencing by [logging custom models](how-to-log-mlflow-models.md?#log-custom-models).
 
 ### Customize inference with a scoring script
 

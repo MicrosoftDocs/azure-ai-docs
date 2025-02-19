@@ -352,6 +352,6 @@ The same considerations mentioned above apply to MLflow models. However, since y
 
 * MLflow models in Batch Endpoints support reading tabular data as input data, which may contain long sequences of text. See [File's types support](how-to-mlflow-batch.md#review-support-for-file-types) for details about which file types are supported.
 * Batch deployments calls your MLflow model's predict function with the content of an entire file in as Pandas dataframe. If your input data contains many rows, chances are that running a complex model (like the one presented in this tutorial) results in an out-of-memory exception. If this is your case, you can consider:
-   * Customize how your model runs predictions and implement batching. To learn how to customize MLflow model's inference, see [Logging custom models](how-to-log-mlflow-models.md?#logging-custom-models).
+   * Customize how your model runs predictions and implement batching. To learn how to customize MLflow model's inference, see [Log custom models](how-to-log-mlflow-models.md?#log-custom-models).
    * Author a scoring script and load your model using `mlflow.<flavor>.load_model()`. See [Using MLflow models with a scoring script](how-to-mlflow-batch.md#customize-model-deployment-with-scoring-script) for details.
 
