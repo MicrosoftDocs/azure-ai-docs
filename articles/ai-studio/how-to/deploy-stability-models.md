@@ -118,6 +118,5 @@ Models deployed as a serverless API are protected by Azure AI content safety. Wh
 
 ## Related content
 
-- [Model Catalog and Collections](../concepts/concept-model-catalog.md)
+- [Model Catalog and Collections](./model-catalog-overview.md)
 - [Plan and manage costs for Azure AI Foundry](./costs-plan-manage.md)
-- [Region availability for models in serverless API endpoints](../concepts/concept-endpoint-serverless-availability.md)
