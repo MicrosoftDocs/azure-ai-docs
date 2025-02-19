@@ -40,7 +40,9 @@ This setting can be set during the Session-Creation step (see step 2 of [Perform
 
 Use the following tips to ensure that your input images give the most accurate recognition results:
 
-[!INCLUDE [identity-input-id-verification-composition](includes/identity-input-id-verification-composition.md)]
+TBD
+
+<!--[!INCLUDE [identity-input-id-verification-composition](includes/identity-input-id-verification-composition.md)]-->
 
 ### Data privacy
 
