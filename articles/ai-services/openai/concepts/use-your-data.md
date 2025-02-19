@@ -82,6 +82,8 @@ For some data sources such as uploading files from your local machine (preview) 
 |URL/Web address (preview)        | Web content from the URLs is stored in Azure Blob Storage.         |
 |Azure Blob Storage (preview) | Upload files from Azure Blob Storage to be ingested into an Azure AI Search index.         |
 
+If you choose to upload files or connect Azure Blob Storage, your data should be unstructured text for best results. If you have non-textual semi-structured or structured data consider converting it to text. If your files have special formatting, such as tables and columns, or bullet points, prepare your data with the data preparation script available on [GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/tree/main/scripts#optional-crack-pdfs-to-text).
+
 :::image type="content" source="../media/use-your-data/azure-databases-and-ai-search.png" lightbox="../media/use-your-data/azure-databases-and-ai-search.png" alt-text="Diagram of vector indexing services.":::
 
 # [Azure AI Search](#tab/ai-search)
@@ -93,7 +95,7 @@ You might want to consider using an Azure AI Search index when you either want t
 > [!NOTE]
 > * To use an existing index, it must have at least one searchable field.
 > * Set the CORS **Allow Origin Type** option to `all` and the **Allowed origins** option to `*`. 
-
+> * You cannot have complex fields in your search index. 
 
 ### Search types
 
