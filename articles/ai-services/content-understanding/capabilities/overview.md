@@ -21,19 +21,6 @@ ms.custom: 2025-understanding-release
 
 Content Understanding offers a streamlined process and various capabilities to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into analytical workflows and retrieval augmented generation (RAG) applications.
 
-When you create a Content Understanding service, you work with the following capabilities:
-
-**AI-Powered Analysis**: Leverages advanced generative AI models to analyze and understand content across multiple modalities - text, audio, video, and images.
-
-**Intelligent Content Processing**: Transforms unstructured content into structured data through a dual-pipeline architecture:
-  - Content extraction for foundational data structuring
-  - Field extraction for schema-based insights generation
-
-**Standardized Output Generation**: Creates consistent, structured outputs suitable for:
-  - Integration with analytical workflows
-  - Retrieval augmented generation (RAG) applications
-  - Automated business processes
-
 ## Overview of Key Capabilities in Content Understanding
 
 ### Multimodal Data Ingestion
@@ -51,7 +38,7 @@ Content extraction provides foundational data that grounds the generative capabi
 * Audio/video transcription
 * Metadata generation at scale
 
-Content Understanding enhances its core extraction capabilities through optional add-on features that provide deeper content analysis. These add-ons can extract additional elements like layout information, barcodes, mathematical formulas, and speaker roles. While some add-ons may incur additional costs, they can be selectively enabled based on your specific requirements to optimize both functionality and cost-efficiency. The modular nature of these add-ons allows for customized processing pipelines tailored to your use case.
+Content Understanding enhances its core extraction capabilities through optional add-on features that provide deeper content analysis. These add-ons can extract additional elements like layout information, speaker roles and face grouping. While some add-ons may incur additional costs, they can be selectively enabled based on your specific requirements to optimize both functionality and cost-efficiency. The modular nature of these add-ons allows for customized processing pipelines tailored to your use case.
 
 The following section details the content extraction capabilities and optional add-on features available for each supported modality. Select your target modality from the tabs below to view its specific capabilities.
 
@@ -82,9 +69,9 @@ The following section details the content extraction capabilities and optional a
 Field extraction in Content Understanding leverages generative AI models to define schemas that extract, infer, or abstract information from various data types into structured outputs. This capability is powerful because by defining schemas with natural language field descriptions it eliminates the need for complex prompt engineering, making it accessible for users to create standardized outputs. 
 
 Field extraction is particularly optimized for scenarios requiring:
-* consistent metadata extraction across content types
-* workflow automation with structured output
-* compliance monitoring and validation 
+* Consistent metadata extraction across content types
+* Workflow automation with structured output
+* Compliance monitoring and validation 
 
 The value lies in its ability to handle multiple content types (text, audio, video, images) while maintaining accuracy and scalability through AI-powered schema validation and confidence scoring. 
 
