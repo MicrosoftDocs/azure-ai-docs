@@ -2,7 +2,7 @@
     "redirections": [
     {
         "source_path_from_root": "/articles/machine-learning/how-to-regulate-registry-deployments.md",
-        "redirect_url": "/azure/machine-learning/how-to-built-in-policy-model-deployments",
+        "redirect_url": "/azure/machine-learning/how-to-built-in-policy-model-deployment",
         "redirect_document_id": false
     },
     {
