@@ -36,7 +36,7 @@ The Language service also provides several new features as well, which can eithe
       :::image type="content" source="media/overview/named-entity-recognition.png" alt-text="A screenshot of named entity recognition in Azure AI Foundry."  lightbox="media/overview/named-entity-recognition.png":::
    :::column-end:::
    :::column span="":::
-      [Named entity recognition](./named-entity-recognition/overview.md) identifies different entries in tex and categorizes them into pre-defined types.
+      [Named entity recognition](./named-entity-recognition/overview.md) identifies different entries in text and categorizes them into pre-defined types.
 
    :::column-end:::
 :::row-end:::
@@ -49,7 +49,7 @@ The Language service also provides several new features as well, which can eithe
       :::image type="content" source="media/overview/text-pii.png" alt-text="A screenshot of text personally identifying information in Azure AI Foundry." lightbox="media/overview/text-pii.png":::
    :::column-end:::
    :::column span="":::
-      [PII detection](./personally-identifiable-information/overview.md) identifies entities in text that are associated with an individual and conversations (chat or transcripts).
+      [PII detection](./personally-identifiable-information/overview.md) identifies entities in text and conversations (chat or transcripts) that are associated with individuals.
 
    :::column-end:::
 :::row-end:::
@@ -87,7 +87,9 @@ The Language service also provides several new features as well, which can eithe
       :::image type="content" source="media/overview/text-summarization.png" alt-text="A screenshot of text summarization in Azure AI Foundry." lightbox="media/overview/text-summarization.png":::
    :::column-end:::
    :::column span="":::
-      [Summarization](./summarization/overview.md) recaps and summarizes customer issues and resolution, conversation and segment long meetings into timestamps and chapters, and key information at scale from text.
+      [Summarization](./summarization/overview.md) condenses information for text and conversations (chat and transcripts). 
+Text summarization generates a summary, supporting two approaches: [Extractive summarization](summarization/how-to/document-summarization.md) produces a summary by extracting salient sentences within the document along with the positioning information of these sentences, and abstractive summarization, which generates a summary with concise, coherent sentences or words that aren't verbatim extract sentences from the original document.  
+Conversation summarization recaps and segments long meetings into timestamped chapters. Call center summarization summarizes customer issues and resolution.
    :::column-end:::
 :::row-end:::
 
