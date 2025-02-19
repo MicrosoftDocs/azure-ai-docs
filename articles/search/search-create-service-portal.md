@@ -10,8 +10,8 @@ ms.service: azure-ai-search
 ms.custom:
   - references_regions
   - build-2024
-ms.topic: conceptual
-ms.date: 02/18/2025
+ms.topic: how-to
+ms.date: 02/19/2025
 ---
 
 # Create an Azure AI Search service in the Azure portal
@@ -22,26 +22,39 @@ The easiest way to create a search service is through the [Azure portal](https:/
 
 [![Animated GIF showing how to create an Azure AI Search service in the Azure portal.](./media/search-create-service-portal/AnimatedGif-AzureSearch-small.gif)](./media/search-create-service-portal/AnimatedGif-AzureSearch.gif#lightbox)
 
-You can also use [Azure PowerShell](search-manage-powershell.md#create-or-delete-a-service), the [Azure CLI](search-manage-azure-cli.md#create-or-delete-a-service), the [Management REST API](search-manage-rest.md#create-or-update-a-service), an [Azure Resource Manager template](search-get-started-arm.md), a [Bicep file](search-get-started-bicep.md), or [Terraform](search-get-started-terraform.md).
+You can also use:
+
++ [Azure PowerShell](search-manage-powershell.md#create-or-delete-a-service)
++ [Azure CLI](search-manage-azure-cli.md#create-or-delete-a-service)
++ [Management REST API](search-manage-rest.md#create-or-update-a-service)
++ [Azure Resource Manager template](search-get-started-arm.md)
++ [Bicep](search-get-started-bicep.md)
++ [Terraform](search-get-started-terraform.md)
 
 ## Before you start
 
-Some properties are fixed for the lifetime of the search service. Before creating your service, decide on a name, region, and tier:
+Some properties are fixed for the lifetime of the search service. Before creating your service, decide on the following:
 
-+ [Service name](#name-your-service) becomes part of the URL endpoint. The name must be unique and follow naming rules.
+<!-- + [Service name](#name-your-service) becomes part of the URL endpoint. The name must be unique and follow naming rules.
 
-+ [Region](search-region-support.md) determines data residency and availability of certain features. Semantic ranker and Azure AI integration have region requirements. Make sure your region of choice supports the features you need.
++ [Region](search-region-support.md) determines data residency and availability of certain features. For example, semantic ranker and Azure AI integration have region requirements. Choose a region that supports the features you need.
 
-+ [Service tier](search-sku-tier.md) determines infrastructure, service limits, and billing. Some features aren't available on lower or specialized tiers.
++ [Service tier](search-sku-tier.md) determines infrastructure, service limits, and billing. Some features aren't available on lower or specialized tiers. -->
+
+| Service property | Description |
+|--|--|
+| [Name](#name-your-service) | Becomes part of the URL endpoint. The name must be unique and follow naming rules. |
+| [Region](search-region-support.md) | Determines data residency and availability of certain features. For example, semantic ranker and Azure AI integration have region requirements. Choose a region that supports the features you need. |
+| [Tier](search-sku-tier.md) | Determines infrastructure, service limits, and billing. Some features aren't available on lower or specialized tiers. |
 
 ## Subscribe to Azure
 
-Azure AI Search requires a free or paid Azure subscription. To try Azure AI Search for free, [start a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) and then [create your search service on the Free tier](#choose-a-tier). Each Azure subscription can have one free search service, which is intended for short-term, non-production evaluation of the product. For more information, see [Try Azure AI Search for free](search-try-for-free.md).
+Azure AI Search requires a free or pay-as-you-go Azure subscription.
 
-With the Free tier, you can complete all of the quickstarts and most of the tutorials in the Azure AI Search documentation.
+To try Azure AI Search for free, [start a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) and then [create your search service on the Free tier](#choose-a-tier). Each Azure subscription can have one free search service, which is intended for short-term, non-production evaluation of the product. You can complete all of our quickstarts and most of our tutorials on the Free tier. For more information, see [Try Azure AI Search for free](search-try-for-free.md).
 
 > [!IMPORTANT]
-> To make room for other services, Microsoft might delete free services that are inactive for an extended period of time.
+> To make room for other services, Microsoft might delete free services that have been inactive for an extended period of time.
 
 ## Find the Azure AI Search offering
 
@@ -65,7 +78,7 @@ If you're implementing [customer-managed encryption](search-security-manage-encr
 
 A resource group is a container that holds related resources for an Azure solution. Use it to consolidate same-solution resources, monitor costs, and check the creation date of your search service.
 
-:::image type="content" source="media/search-create-service-portal/create-resource-group.png" lightbox="media/search-create-service-portal/create-resource-group.png" alt-text="Screenshot of the Create a Resource Group dialog in the Azure portal." border="true":::
+:::image type="content" source="media/search-create-service-portal/create-resource-group.png" lightbox="media/search-create-service-portal/create-resource-group.png" alt-text="Screenshot of the Create a Resource Group dialog on the Create a Search Service page." border="true":::
 
 Over time, you can track current and projected costs for individual resources and for the overall resource group. The following screenshot shows the cost information that's available when you combine multiple resources into one group:
 
@@ -121,8 +134,8 @@ In most cases, choose a region near you, unless any of the following apply:
 
 Currently, the following regions offer cross-regional availability for Azure AI Search, Azure OpenAI, and Azure AI Vision multimodal:
 
-+ **Americas**: West US, East US
-+ **Europe**: Switzerland North, Sweden Central
++ Americas: West US, East US
++ Europe: Switzerland North, Sweden Central
 
 This list isn't definitive, and depending on your tier, you might have more choices. Region status can also change quickly, so confirm your region choice before creating your search service.
 
@@ -148,42 +161,44 @@ Search services created after April 3, 2024 have larger partitions and higher ve
 
 ## Create your service
 
-After you provide the necessary inputs, create your search service.
+After providing the necessary inputs, create your search service.
 
-:::image type="content" source="media/search-create-service-portal/create-search-service.png" lightbox="media/search-create-service-portal/create-search-service.png" alt-text="Screenshot of the Review and create the service page." border="true":::
+:::image type="content" source="media/search-create-service-portal/create-search-service.png" lightbox="media/search-create-service-portal/create-search-service.png" alt-text="Screenshot of the Review and Create button on the Create a Search Service page." border="true":::
 
-Your service is deployed in minutes, and you can monitor its progress with Azure notifications. Consider pinning the service to your dashboard for easy access in the future.
+Your service is deployed within minutes, and you can monitor its progress with Azure notifications. Consider pinning the service to your dashboard for easy access in the future.
 
-:::image type="content" source="media/search-create-service-portal/monitor-notifications.png" lightbox="media/search-create-service-portal/monitor-notifications.png" alt-text="Screenshot of the Notifications tab in the Azure portal." border="true":::
+:::image type="content" source="media/search-create-service-portal/portal-notifications.png" lightbox="media/search-create-service-portal/portal-notifications.png" alt-text="Screenshot of the Notifications tab in the Azure portal." border="true":::
 
 ## Configure authentication
 
-If you're using the Azure portal to manage your search service, skip this step. The portal is already linked to your service with admin rights. For a portal walkthrough, see [Quickstart: Create an Azure AI Search index in the Azure portal](search-get-started-portal.md).
+When you create a search service, key-based authentication is the default, but it's not the most secure option. We recommend that you replace it with role-based access.
 
-If you're not using the Azure portal, programmatic access to your service requires the URL endpoint and an authenticated connection:
+The Azure portal is already linked to your service with admin rights, so you don't need an endpoint or keys for portal-based tasks. For a portal walkthrough, see [Quickstart: Create an Azure AI Search index in the Azure portal](search-get-started-portal.md).
+
+<!-- Programmatic access to your service requires the URL endpoint and an authenticated connection. -->
+
+To configure programmatic access to your service:
 
 1. Go to your search service in the [Azure portal](https://portal.azure.com/).
 
-1. From the navigation pane, select **Overview**. Copy the URL endpoint, which you'll use in the next step.
+1. From the navigation pane, select **Overview**. Use the URL endpoint to set up a programmatic connection.
 
    :::image type="content" source="media/search-create-service-portal/URL-endpoint.png" lightbox="media/search-create-service-portal/URL-endpoint.png" alt-text="Screenshot of the Overview tab with the URL endpoint." border="true":::
 
-1. From the navigation pane, select **Settings** > **Keys**. You can connect to your service using [key-based authentication](search-security-api-keys.md), [role-based access](search-security-rbac.md), or both. Most quickstarts and tutorials use API keys for simplicity, but if you're setting up a service for production workloads, consider using roles.
+1. From the navigation pane, select **Settings** > **Keys**. You can connect to your service using [API keys](search-security-api-keys.md), [Azure roles](search-security-rbac.md), or both. Most quickstarts and tutorials use keys for simplicity, but if you're setting up a service for production workloads, consider using roles.
 
    :::image type="content" source="media/search-create-service-portal/authentication-options.png" lightbox="media/search-create-service-portal/authentication-options.png" alt-text="Screenshot of the Keys tab with authentication options." border="true":::
 
 ## Scale your service
 
-After deploying your search service, you can [scale it to meet your needs](search-limits-quotas-capacity.md). Scaling is available only on billable tiers. You can scale your service in two dimensions:
+After deploying your search service, you can [scale it to meet your needs](search-limits-quotas-capacity.md). There are two scaling options: *replicas* and *partitions*. Replicas allow your service to handle a higher load of search queries, while partitions allow your service to store and search through more documents.
 
-+ Partitions, which allow your service to store and search through more documents.
-
-+ Replicas, which allow your service to handle a higher load of search queries.
-
-Adding resources will increase your monthly bill. Use the [pricing calculator](https://azure.microsoft.com/pricing/calculator/) to understand the billing implications. You can adjust resources based on load, such as increasing resources for initial indexing and decreasing them later for incremental indexing.
+Scaling is available only on billable tiers. On the Free tier, you can't scale your service or configure replicas and partitions.
 
 > [!IMPORTANT]
-> Your service must have [two replicas for read-only SLA and three replicas for read-write SLA](https://azure.microsoft.com/support/legal/sla/search/v1_0/).
+> Your service must have [two replicas for read-only SLA and three replicas for read/write SLA](https://azure.microsoft.com/support/legal/sla/search/v1_0/).
+
+Adding resources will increase your monthly bill. Use the [pricing calculator](https://azure.microsoft.com/pricing/calculator/) to understand the billing implications. You can adjust resources based on load, such as increasing resources for initial indexing and decreasing them later for incremental indexing.
 
 To scale your service:
 
@@ -191,20 +206,18 @@ To scale your service:
 
 1. From the navigation pane, select **Settings** > **Scale**.
 
-1. Use the slider to add replicas and partitions.
+   :::image type="content" source="media/search-create-service-portal/scale-settings.png" lightbox="media/search-create-service-portal/scale-settings.png" alt-text="Screenshot of the Scale tab with sliders for adding replicas and partitions." border="true":::
 
-:::image type="content" source="media/search-create-service-portal/scale-settings.png" lightbox="media/search-create-service-portal/scale-settings.png" alt-text="Screenshot of the Scale tab with sliders for adding replicas and partitions." border="true":::
+1. Use the sliders to add replicas and partitions.
 
-## When to add a second service
+## When to create a second service
 
-Most customers use a single search service at a tier [sufficient for the expected load](search-capacity-planning.md). One service can host multiple indexes, each isolated from the others, within the [maximum limits of your chosen tier](search-limits-quotas-capacity.md#index-limits). In Azure AI Search, requests are directed to one index, which reduces the risk of accidentally or intentionally retrieving data from other indexes in the same service.
+Most customers use a single search service at a tier [sufficient for the expected load](search-capacity-planning.md). One service can host multiple indexes, each isolated from the others, within the [maximum limits of your chosen tier](search-limits-quotas-capacity.md#index-limits). In Azure AI Search, requests are directed to one index, which reduces the risk of retrieving data from other indexes in the same service.
 
 However, you might need a second service for the following operational requirements:
 
-+ [Business continuity and disaster recovery (BCDR)](/azure/reliability/cross-region-replication-azure). Azure AI Search doesn't provide instant failover in the event of an outage.
-
++ [Business continuity and disaster recovery (BCDR)](/azure/reliability/cross-region-replication-azure). If there's an outage, Azure AI Search won't provide instant failover.
 + [Multitenant architectures](search-modeling-multitenant-saas-applications.md) that require two or more services.
-
 + Globally deployed applications that require services in each geography to minimize latency.
 
 > [!NOTE]
@@ -216,15 +229,15 @@ A second service isn't required for high availability. You achieve high availabi
 
 Azure AI Search limits the [number of search services](search-limits-quotas-capacity.md#subscription-limits) you can initially create in a subscription. If you reach your limit, you can request more quota.
 
-You must have Owner or Contributor permissions for the subscription to request quota. Depending on your region and data center capacity, you might be able to automatically request quota to add services to your subscription. If the request fails, either reduce the number or file a support ticket. Expect a one-month turnaround for a large quota increase, such as more than 30 additional services.
+You must have Owner or Contributor permissions for the subscription to request quota. Depending on your region and data center capacity, you might be able to automatically request quota to add services to your subscription. If the request fails, reduce the number or file a support ticket. Expect a one-month turnaround for a large quota increase, such as more than 30 additional services.
 
-To request more quota:
+To request more subscription quota:
 
 1. Go to your dashboard in the [Azure portal](https://portal.azure.com/).
 
 1. Use the search box to find the **Quotas** service.
 
-   :::image type="content" source="media/search-create-service-portal/quota-search.png" lightbox="media/search-create-service-portal/.png" alt-text="Screenshot of the Quota search term and Quotas service in the results.":::
+   :::image type="content" source="media/search-create-service-portal/quota-search.png" lightbox="media/search-create-service-portal/quota-search.png" alt-text="Screenshot of the Quota search term and the Quotas service in the results.":::
 
 1. On the **Overview** tab, select the **Search** tile.
 
@@ -232,11 +245,11 @@ To request more quota:
 
 1. Set filters to review the existing quota for search services in your current subscription. We recommend filtering by usage.
 
-    :::image type="content" source="media/search-create-service-portal/usage-filter.png" lightbox="media/search-create-service-portal/usage-filter-page.png" alt-text="Screenshot of the Search tile on the Overview page.":::
+    :::image type="content" source="media/search-create-service-portal/usage-filter.png" lightbox="media/search-create-service-portal/usage-filter.png" alt-text="Screenshot of the Usage filter for search services in your current subscription.":::
 
 1. Next to the tier and region that need more quota, select **Request Adjustment** <img src=media/search-create-service-portal/request-adjustment-icon.png alt="Screenshot of the Request Adjustment icon, which is the outline of a pencil." width="13">.
 
-1. In the **New Quota Request** pane, enter a new limit for your subscription quota. The new limit must be greater than your current limit. If regional capacity is constrained, your request won't be automatically approved, and an incident report will be generated for investigation and resolution.
+1. In the **New Quota Request** pane, enter a new limit for your subscription quota. The new limit must be greater than your current limit. If regional capacity is constrained, your request won't be automatically approved, and an incident report will be generated on your behalf for investigation and resolution.
 
 1. Submit your request.
 
