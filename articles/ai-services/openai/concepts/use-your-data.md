@@ -93,7 +93,7 @@ You might want to consider using an Azure AI Search index when you either want t
 > [!NOTE]
 > * To use an existing index, it must have at least one searchable field.
 > * Set the CORS **Allow Origin Type** option to `all` and the **Allowed origins** option to `*`. 
-
+> * You cannot have complex fields in your search index. 
 
 ### Search types
 
