@@ -1,37 +1,38 @@
 ---
-title: Role-based access control in Azure AI Studio
-titleSuffix: Azure AI Studio
-description: This article introduces role-based access control in Azure AI Studio.
+title: Role-based access control in Azure AI Foundry portal
+titleSuffix: Azure AI Foundry
+description: This article introduces role-based access control in Azure AI Foundry portal.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
+  - ignite-2024
 ms.topic: conceptual
-ms.date: 9/12/2024
+ms.date: 12/05/2024
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
 ---
 
-# Role-based access control in Azure AI Studio
+# Role-based access control in Azure AI Foundry portal
 
-In this article, you learn how to manage access (authorization) to an Azure AI Studio hub. Azure role-based access control (Azure RBAC) is used to manage access to Azure resources, such as the ability to create new resources or use existing ones. Users in your Microsoft Entra ID are assigned specific roles, which grant access to resources. Azure provides both built-in roles and the ability to create custom roles. 
+In this article, you learn how to manage access (authorization) to an Azure AI Foundry hub. Azure role-based access control (Azure RBAC) is used to manage access to Azure resources, such as the ability to create new resources or use existing ones. Users in your Microsoft Entra ID are assigned specific roles, which grant access to resources. Azure provides both built-in roles and the ability to create custom roles. 
 
 > [!WARNING]
-> Applying some roles might limit UI functionality in Azure AI Studio for other users. For example, if a user's role does not have the ability to create a compute instance, the option to create a compute instance will not be available in studio. This behavior is expected, and prevents the user from attempting operations that would return an access denied error. 
+> Applying some roles might limit UI functionality in Azure AI Foundry portal for other users. For example, if a user's role does not have the ability to create a compute instance, the option to create a compute instance will not be available in studio. This behavior is expected, and prevents the user from attempting operations that would return an access denied error. 
 
-## AI Studio hub vs project
+## Azure AI Foundry hub vs project
 
-In the Azure AI Studio, there are two levels of access: the hub and the project. The hub is home to the infrastructure (including virtual network setup, customer-managed keys, managed identities, and policies) and where you configure your Azure AI services. Hub access can allow you to modify the infrastructure, create new hubs, and create projects. Projects are a subset of the hub that act as workspaces that allow you to build and deploy AI systems. Within a project you can develop flows, deploy models, and manage project assets. Project access lets you develop AI end-to-end while taking advantage of the infrastructure setup on the hub.
+In the Azure AI Foundry portal, there are two levels of access: the hub and the project. The hub is home to the infrastructure (including virtual network setup, customer-managed keys, managed identities, and policies) and where you configure your Azure AI services. Hub access can allow you to modify the infrastructure, create new hubs, and create projects. Projects are a subset of the hub that act as workspaces that allow you to build and deploy AI systems. Within a project you can develop flows, deploy models, and manage project assets. Project access lets you develop AI end-to-end while taking advantage of the infrastructure setup on the hub.
 
-:::image type="content" source="../media/concepts/resource-provider-connected-resources.svg" alt-text="Diagram of the relationship between AI Studio resources.":::
+:::image type="content" source="../media/concepts/resource-provider-connected-resources.svg" alt-text="Diagram of the relationship between Azure AI Foundry resources.":::
 
 One of the key benefits of the hub and project relationship is that developers can create their own projects that inherit the hub security settings. You might also have developers who are contributors to a project, and can't create new projects.
 
 ## Default roles for the hub 
 
-The AI Studio hub has built-in roles that are available by default. 
+The Azure AI Foundry hub has built-in roles that are available by default. 
 
 Here's a table of the built-in roles and their permissions for the hub:
 
@@ -91,7 +92,7 @@ If the built-in Azure AI Developer role doesn't meet your needs, you can create 
 
 ## Default roles for projects 
 
-Projects in AI Studio have built-in roles that are available by default. 
+Projects in Azure AI Foundry portal have built-in roles that are available by default. 
 
 Here's a table of the built-in roles and their permissions for the project:
 
@@ -103,7 +104,7 @@ Here's a table of the built-in roles and their permissions for the project:
 | Azure AI Inference Deployment Operator | Perform all actions required to create a resource deployment within a resource group. |
 | Reader |     Read only access to the project. |
 
-When a user is granted access to a project (for example, through the AI Studio permission management), two more roles are automatically assigned to the user. The first role is Reader on the hub. The second role is the Inference Deployment Operator role, which allows the user to create deployments on the resource group that the project is in. This role is composed of these two permissions: ```"Microsoft.Authorization/*/read"``` and    ```"Microsoft.Resources/deployments/*"```.
+When a user is granted access to a project (for example, through the Azure AI Foundry portal permission management), two more roles are automatically assigned to the user. The first role is Reader on the hub. The second role is the Inference Deployment Operator role, which allows the user to create deployments on the resource group that the project is in. This role is composed of these two permissions: ```"Microsoft.Authorization/*/read"``` and    ```"Microsoft.Resources/deployments/*"```.
 
 In order to complete end-to-end AI development and deployment, users only need these two autoassigned roles and either the Contributor or Azure AI Developer role on a project.
 
@@ -121,7 +122,7 @@ The hub has dependencies on other Azure services. The following table lists the 
 | `Microsoft.MachineLearningServices/workspaces/write` | Create a new workspace or updates the properties of an existing workspace. |
 
 ## Sample enterprise RBAC setup
-The following table is an example of how to set up role-based access control for your Azure AI Studio for an enterprise.
+The following table is an example of how to set up role-based access control for your Azure AI Foundry for an enterprise.
 
 | Persona | Role | Purpose |
 | --- | --- | ---|
@@ -140,7 +141,7 @@ For example, if you're trying to consume a new Blob storage, you need to ensure 
 
 ## Manage access with roles 
 
-If you're an owner of a hub, you can add and remove roles for AI Studio. Go to the **Home** page in [AI Studio](https://ai.azure.com) and select your hub. Then select **Users** to add and remove users for the hub. You can also manage permissions from the Azure portal under **Access Control (IAM)** or through the Azure CLI. For example, use the [Azure CLI](/cli/azure/) to assign the Azure AI Developer role to "joe@contoso.com" for resource group "this-rg" with the following command: 
+If you're an owner of a hub, you can add and remove roles for Azure AI Foundry. Go to the **Home** page in [Azure AI Foundry](https://ai.azure.com) and select your hub. Then select **Users** to add and remove users for the hub. You can also manage permissions from the Azure portal under **Access Control (IAM)** or through the Azure CLI. For example, use the [Azure CLI](/cli/azure/) to assign the Azure AI Developer role to "joe@contoso.com" for resource group "this-rg" with the following command: 
  
 ```azurecli-interactive
 az role assignment create --role "Azure AI Developer" --assignee "joe@contoso.com" --resource-group this-rg 
@@ -148,18 +149,18 @@ az role assignment create --role "Azure AI Developer" --assignee "joe@contoso.co
 
 ## Create custom roles
 
-If the built-in roles are insufficient, you can create custom roles. Custom roles might have the read, write, delete, and compute resource permissions in that AI Studio. You can make the role available at a specific project level, a specific resource group level, or a specific subscription level. 
+If the built-in roles are insufficient, you can create custom roles. Custom roles might have the read, write, delete, and compute resource permissions in that Azure AI Foundry. You can make the role available at a specific project level, a specific resource group level, or a specific subscription level. 
 
 > [!NOTE]
 > You must be an owner of the resource at that level to create custom roles within that resource.
 
-The following JSON example defines a custom AI Studio developer role at the subscription level:
+The following JSON example defines a custom Azure AI Foundry developer role at the subscription level:
 
 ```json
 {
     "properties": {
-        "roleName": "AI Studio Developer",
-        "description": "Custom role for AI Studio. At subscription level",
+        "roleName": "Azure AI Foundry Developer",
+        "description": "Custom role for Azure AI Foundry. At subscription level",
         "assignableScopes": [
             "/subscriptions/<your-subscription-id>"
         ],
@@ -210,14 +211,14 @@ For steps on creating a custom role, use one of the following articles:
 
 For more information on creating custom roles in general, visit the [Azure custom roles](/azure/role-based-access-control/custom-roles) article.
 
-## Assigning roles in AI Studio
+## Assigning roles in Azure AI Foundry portal
 
-You can add users and assign roles directly from Azure AI Studio at either the hub or project level. From a hub or project overview page, select **New user** to add a user. 
+You can add users and assign roles directly from Azure AI Foundry at either the hub or project level. In the [management center](management-center.md), select **Users** in either the hub or project section, then select **New user** to add a user. 
 
 > [!NOTE]
 > You are limited to selecting built-in roles. If you need to assign custom roles, you must use the [Azure portal](/azure/role-based-access-control/role-assignments-portal), [Azure CLI](/azure/role-based-access-control/role-assignments-cli), or [Azure PowerShell](/azure/role-based-access-control/role-assignments-powershell).
 
-:::image type="content" source="../media/concepts/hub-overview-add-user.png" lightbox="../media/concepts/hub-overview-add-user.png" alt-text="Screenshot of the Azure AI Studio hub overview with the new user button highlighted.":::
+:::image type="content" source="../media/concepts/hub-overview-add-user.png" lightbox="../media/concepts/hub-overview-add-user.png" alt-text="Screenshot of the Azure AI Foundry hub overview with the new user button highlighted.":::
 
 You are then prompted to enter the user information and select a built-in role.
 
@@ -227,7 +228,7 @@ You are then prompted to enter the user information and select a built-in role.
 
 When configuring a hub to use a customer-managed key (CMK), an Azure Key Vault is used to store the key. The user or service principal used to create the workspace must have owner or contributor access to the key vault.
 
-If your AI Studio hub is configured with a **user-assigned managed identity**, the identity must be granted the following roles. These roles allow the managed identity to create the Azure Storage, Azure Cosmos DB, and Azure Search resources used when using a customer-managed key:
+If your Azure AI Foundry hub is configured with a **user-assigned managed identity**, the identity must be granted the following roles. These roles allow the managed identity to create the Azure Storage, Azure Cosmos DB, and Azure Search resources used when using a customer-managed key:
 
 - `Microsoft.Storage/storageAccounts/write`
 - `Microsoft.Search/searchServices/write`
@@ -241,11 +242,17 @@ When you create a connection that uses Microsoft Entra ID authentication, you mu
 
 | Resource connection | Role | Description |
 |----------|------|-------------|
-| Azure AI Search | Contributor | List API-Keys to list indexes from Azure AI Studio. |
+| Azure AI Search | Contributor | List API-Keys to list indexes from Azure AI Foundry. |
 | Azure AI Search | Search Index Data Contributor | Required for indexing scenarios |
-| Azure AI services / Azure OpenAI | Cognitive Services OpenAI Contributor | Call public ingestion API from Azure AI Studio. |
-| Azure AI services / Azure OpenAI | Cognitive Services User | List API-Keys from Azure AI Studio. |
-| Azure AI services / Azure OpenAI | Contributor | Allows for calls to the control plane. |
+| Azure AI services / Azure OpenAI | Cognitive Services OpenAI Contributor | Call public ingestion API from Azure AI Foundry. |
+| Azure AI services / Azure OpenAI | Cognitive Services User | List API-Keys from Azure AI Foundry. |
+| Azure AI services / Azure OpenAI | Cognitive Services Contributor | Allows for calls to the control plane. |
+| Azure Blob Storage | Storage Blob Data Contributor | Required for reading and writing data to the blob storage. |
+| Azure Data Lake Storage Gen 2 | Storage Blob Data Contributor | Required for reading and writing data to the data lake. |
+| Microsoft OneLake | Contributor | To give someone acess to Microsoft OneLake, you must [give them access to your Microsoft Fabric workspace](/fabric/get-started/give-access-workspaces). |
+
+> [!IMPORTANT]
+> If you are using Promptflow with Azure Storage (including Azure Data Lake Storage Gen 2), you must also assign the __Storage File Data Privileged Contributor__ role.
 
 When using Microsoft Entra ID authenticated connections in the chat playground, the services need to authorize each other to access the required resources. The admin performing the configuration needs to have the __Owner__ role on these resources to add role assignments. The following table lists the required role assignments for each resource. The __Assignee__ column refers to the system-assigned managed identity of the listed resource. The __Resource__ column refers to the resource that the assignee needs to access. For example, Azure OpenAI has a system-assigned managed identity that needs to be assigned the __Search Index Data Reader__ role for the Azure AI Search resource.
 
@@ -256,6 +263,8 @@ When using Microsoft Entra ID authenticated connections in the chat playground, 
 | Search Service Contributor | Azure AI services / Azure OpenAI | Azure AI Search | Read-write access to object definitions (indexes, aliases, synonym maps, indexers, data sources, and skillsets). Inference service queries the index schema for auto fields mapping. Data ingestion service creates index, data sources, skill set, indexer, and queries the indexer status. |
 | Cognitive Services OpenAI Contributor | Azure AI Search | Azure AI services / Azure OpenAI | Custom skill |
 | Cognitive Services OpenAI User | Azure OpenAI Resource for chat model | Azure OpenAI resource for embedding model | Required only if using two Azure OpenAI resources to communicate. |
+| Storage Blob Data Contributor | Azure AI Search | Azure Storage Account | Reads blob and writes knowledge store. |
+| Storage Blob Data Contributor | Azure AI services / Azure OpenAI | Azure Storage Account | Reads from the input container and writes the preprocess results to the output container. |
 
 > [!NOTE]
 > The __Cognitive Services OpenAI User__ role is only required if you are using two Azure OpenAI resources: one for your chat model and one for your embedding model. If this applies, enable Trusted Services AND ensure the connection for your embedding model Azure OpenAI resource has Microsoft Entra ID enabled.  
@@ -266,19 +275,19 @@ When you create a connection to an existing Azure OpenAI resource, you must also
 
 ## Scenario: Use Azure Container Registry
 
-An Azure Container Registry instance is an optional dependency for Azure AI Studio hub. The following table lists the support matrix when authenticating a hub to Azure Container Registry, depending on the authentication method and the __Azure Container Registry's__ [public network access configuration](/azure/container-registry/container-registry-access-selected-networks). 
+An Azure Container Registry instance is an optional dependency for Azure AI Foundry hub. The following table lists the support matrix when authenticating a hub to Azure Container Registry, depending on the authentication method and the __Azure Container Registry's__ [public network access configuration](/azure/container-registry/container-registry-access-selected-networks). 
 
 | Authentication method | Public network access </br>disabled | Azure Container Registry</br>Public network access enabled |
 | ---- | :----: | :----: |
 | Admin user | ✓ | ✓ |
-| AI Studio hub system-assigned managed identity | ✓ | ✓ |
-| AI Studio hub user-assigned managed identity </br>with the **ACRPull** role assigned to the identity |  | ✓ |
+| Azure AI Foundry hub system-assigned managed identity | ✓ | ✓ |
+| Azure AI Foundry hub user-assigned managed identity </br>with the **ACRPull** role assigned to the identity |  | ✓ |
 
 A system-assigned managed identity is automatically assigned to the correct roles when the hub is created. If you're using a user-assigned managed identity, you must assign the **ACRPull** role to the identity.
 
 ## Scenario: Use Azure Application Insights for logging
 
-Azure Application Insights is an optional dependency for Azure AI Studio hub. The following table lists the permissions required if you want to use Application Insights when you create a hub. The person that creates the hub needs these permissions. The person who creates a project from the hub doesn't need these permissions.
+Azure Application Insights is an optional dependency for Azure AI Foundry hub. The following table lists the permissions required if you want to use Application Insights when you create a hub. The person that creates the hub needs these permissions. The person who creates a project from the hub doesn't need these permissions.
 
 | Permission | Purpose |
 |------------|-------------|
@@ -390,7 +399,7 @@ The following example defines a role for a developer using [Azure OpenAI Assista
 
 #### Symptoms
 
-When using the Azure AI Studio chat playground, you receive an error message stating "Principal does not have access to API/Operation". The error may also include an "Apim-request-id".
+When using the Azure AI Foundry portal chat playground, you receive an error message stating "Principal does not have access to API/Operation". The error may also include an "Apim-request-id".
 
 #### Cause
 
@@ -402,13 +411,13 @@ Assign the following roles to the user or service principal. The role you assign
 
 | Service being accessed | Role | Description |
 | --- | --- | --- |
-| Azure OpenAI | Cognitive Services OpenAI Contributor | Call public ingestion API from Azure AI Studio. |
-| Azure OpenAI | Cognitive Services User | List API-Keys from Azure AI Studio. |
+| Azure OpenAI | Cognitive Services OpenAI Contributor | Call public ingestion API from Azure AI Foundry. |
+| Azure OpenAI | Cognitive Services User | List API-Keys from Azure AI Foundry. |
 | Azure AI Search | Search Index Data Contributor | Required for indexing scenarios. |
 | Azure AI Search| Search Index Data Reader | Inference service queries the data from the index. Only used for inference scenarios. |
 
 ## Next steps
 
-- [How to create an Azure AI Studio hub](../how-to/create-azure-ai-resource.md)
-- [How to create an Azure AI Studio project](../how-to/create-projects.md)
-- [How to create a connection in Azure AI Studio](../how-to/connections-add.md)
+- [How to create an Azure AI Foundry hub](../how-to/create-azure-ai-resource.md)
+- [How to create an Azure AI Foundry project](../how-to/create-projects.md)
+- [How to create a connection in Azure AI Foundry portal](../how-to/connections-add.md)

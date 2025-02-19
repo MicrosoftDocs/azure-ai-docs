@@ -1,19 +1,19 @@
 ---
-title: Overview of prompt flow tools in Azure AI Studio
-titleSuffix: Azure AI Studio
-description: Learn about prompt flow tools that are available in Azure AI Studio.
+title: Overview of prompt flow tools in Azure AI Foundry portal
+titleSuffix: Azure AI Foundry
+description: Learn about prompt flow tools that are available in Azure AI Foundry portal.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: overview
-ms.date: 5/21/2024
+ms.date: 01/29/2025
 ms.reviewer: keli19
 ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Overview of prompt flow tools in Azure AI Studio
+# Overview of prompt flow tools in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -31,7 +31,7 @@ The following table provides an index of tools in prompt flow.
 | [Index Lookup](./index-lookup-tool.md)<sup>1</sup> | Search a vector-based query for relevant results using one or more text queries. | [promptflow-vectordb](https://pypi.org/project/promptflow-vectordb/) |
 | [Rerank](./rerank-tool.md) | Rerank documents based on the relevancy to a given query. | [promptflow-vectordb](https://pypi.org/project/promptflow-vectordb/) |
 
-<sup>1</sup> The Index Lookup tool replaces the three deprecated legacy index tools: Vector Index Lookup, Vector DB Lookup, and Faiss Index Lookup. If you have a flow that contains one of those tools, follow the [migration steps](./index-lookup-tool.md#migrate-from-legacy-tools-to-the-index-lookup-tool) to upgrade your flow.
+<sup>1</sup> The Index Lookup tool replaces the three deprecated legacy index tools: Vector Index Lookup, Vector DB Lookup, and Faiss Index Lookup.
 
 ## Custom tools
 

@@ -10,7 +10,7 @@ ms.reviewer: None
 ms.author: larryfr
 author: Blackmist
 ms.date: 09/03/2024
-ms.custom: how-to, devx-track-azurecli, devx-track-arm-template, FY25Q1-Linter
+ms.custom: how-to, devx-track-azurecli, devx-track-arm-template, FY25Q1-Linter, ignite-2024
 monikerRange: 'azureml-api-1 || azureml-api-2'
 # Customer Intent: As an admin, I want to understand what permissions I need to assign resources so my users can accomplish their tasks.
 ---
@@ -188,7 +188,7 @@ The following table is a summary of Azure Machine Learning activities and the pe
 | Create new compute cluster | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/computes/write` |
 | Create new compute instance | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/computes/write` |
 | Submitting any type of run (V1) | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/*/read`, `/workspaces/environments/write`, `/workspaces/experiments/runs/write`, `/workspaces/metadata/artifacts/write`, `/workspaces/metadata/snapshots/write`, `/workspaces/environments/build/action`, `/workspaces/experiments/runs/submit/action`, `/workspaces/environments/readSecrets/action` |
-| Submitting any type of run (V2) | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/*/read`, `/workspaces/environments/write`, `/workspaces/jobs/*`, `/workspaces/metadata/artifacts/write`, `/workspaces/metadata/codes/*/write`, `/workspaces/environments/build/action`, `/workspaces/environments/readSecrets/action` |
+| Submitting any type of run (V2) | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/*/read`, `/workspaces/environments/write`, `/workspaces/jobs/*`, `/workspaces/metadata/artifacts/write`, `/workspaces/environments/build/action`, `/workspaces/environments/readSecrets/action` |
 | Publishing pipelines and endpoints (V1) | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/endpoints/pipelines/*`, `/workspaces/pipelinedrafts/*`, `/workspaces/modules/*` |
 | Publishing pipelines and endpoints (V2) | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/endpoints/pipelines/*`, `/workspaces/pipelinedrafts/*`, `/workspaces/components/*` |
 | Attach an AKS resource <sub>2</sub> | Not required | Owner or contributor on the resource group that contains AKS | |
@@ -216,7 +216,6 @@ There are certain differences between actions for V1 APIs and V2 APIs.
 | Dataset | Microsoft.MachineLearningServices/workspaces/datasets | Microsoft.MachineLearningServices/workspaces/datasets/versions |
 | Experiment runs and jobs | Microsoft.MachineLearningServices/workspaces/experiments | Microsoft.MachineLearningServices/workspaces/jobs |
 | Models | Microsoft.MachineLearningServices/workspaces/models | Microsoft.MachineLearningServices/workspaces/models/versions |
-| Snapshots and code | Microsoft.MachineLearningServices/workspaces/snapshots | Microsoft.MachineLearningServices/workspaces/codes/versions |
 | Modules and components | Microsoft.MachineLearningServices/workspaces/modules | Microsoft.MachineLearningServices/workspaces/components |
 
 You can make custom roles compatible with both V1 and V2 APIs by including both actions, or using wildcards that include both actions, for example `Microsoft.MachineLearningServices/workspaces/datasets/*/read`.
@@ -422,8 +421,7 @@ Allows you to assign a role to a service principal and use that to automate your
         "Microsoft.MachineLearningServices/workspaces/experiments/jobs/read",       
         "Microsoft.MachineLearningServices/workspaces/experiments/jobs/write",
         "Microsoft.MachineLearningServices/workspaces/metadata/artifacts/write",
-        "Microsoft.MachineLearningServices/workspaces/metadata/snapshots/write",
-        "Microsoft.MachineLearningServices/workspaces/metadata/codes/*/write",       
+        "Microsoft.MachineLearningServices/workspaces/metadata/snapshots/write",  
         "Microsoft.MachineLearningServices/workspaces/environments/build/action",
     ],
     "NotActions": [

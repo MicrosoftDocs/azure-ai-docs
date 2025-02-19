@@ -7,12 +7,13 @@ ms.subservice: inferencing
 manager: scottpolly
 ms.topic: how-to
 ms.date: 08/29/2024
-ms.reviewer: kritifaujdar
-reviewer: fkriti
+ms.reviewer: v-vkonjarla
+reviewer: VindyaKonjarla
 ms.author: mopeakande
 author: msakande
 ms.custom: references_regions, generated
 zone_pivot_groups: azure-ai-model-catalog-samples-chat
+ms.collection: ce-skilling-ai-copilot
 ---
 
 # How to use Phi-3.5 chat model with vision with Azure Machine Learning
@@ -1636,4 +1637,4 @@ It is a good practice to start with a low number of instances and scale up as ne
 * [Azure AI Model Inference API](reference-model-inference-api.md)
 * [Deploy models as serverless APIs](how-to-deploy-models-serverless.md)
 * [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md)
-* [Plan and manage costs for Azure AI Studio](concept-plan-manage-cost.md)
+* [Plan and manage costs for Azure AI Foundry](/azure/ai-studio/how-to/costs-plan-manage)

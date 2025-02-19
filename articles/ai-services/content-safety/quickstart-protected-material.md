@@ -7,8 +7,10 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
-ms.date: 10/30/2023
+ms.date: 01/29/2025
 ms.author: pafarley
+#customer intent: As a developer, I want to detect protected material in AI-generated text so that I can ensure compliance with intellectual property laws.
+
 ---
 
 # Quickstart: Protected material detection for text
@@ -22,7 +24,6 @@ The key objectives of the Protected Material Detection for Text feature for AI-g
 - To ensure that AI-generated content complies with legal, ethical, and content policy guidelines.
 
 For more information about protected material detection, see the [Protected material detection concept page](./concepts/protected-material.md). For API input limits, see the [Input requirements](./overview.md#input-requirements) section of the Overview. 
-
 
 
 ## Prerequisites

@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 9/20/2024
+ms.date: 2/7/2025
 ms.author: eur
 ms.custom: cogserv-non-critical-speech, references_regions
 #Customer intent: For developers who want to use the conversation transcription feature in the Speech service to transcribe meetings.
@@ -29,6 +29,7 @@ Conversation transcription multichannel diarization (preview) is retiring on Mar
 To continue using speech to text with diarization, use the following features instead:
 
 - [Real-time speech to text with diarization](get-started-stt-diarization.md)
+- [Fast transcription with diarization](fast-transcription-create.md)
 - [Batch transcription with diarization](batch-transcription.md)
 
 These speech to text features only support diarization for single-channel audio. Multichannel audio that you used with conversation transcription multichannel diarization isn't supported. 

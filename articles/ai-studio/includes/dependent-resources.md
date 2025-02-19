@@ -4,9 +4,9 @@ description: Include file
 author: Blackmist
 ms.reviewer: larryfr
 ms.author: larryfr
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 5/21/2024
+ms.date: 12/05/2024
 ms.custom: include, build-2024
 ---
 

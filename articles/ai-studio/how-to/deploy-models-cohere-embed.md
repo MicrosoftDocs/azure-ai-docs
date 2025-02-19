@@ -1,8 +1,8 @@
 ---
-title: How to use Cohere Embed V3 models with Azure AI Studio
-titleSuffix: Azure AI Studio
-description: Learn how to use Cohere Embed V3 models with Azure AI Studio.
-ms.service: azure-ai-studio
+title: How to use Cohere Embed V3 models with Azure AI Foundry
+titleSuffix: Azure AI Foundry
+description: Learn how to use Cohere Embed V3 models with Azure AI Foundry.
+ms.service: azure-ai-foundry
 manager: scottpolly
 ms.topic: how-to
 ms.date: 10/23/2024
@@ -14,11 +14,11 @@ ms.custom: references_regions, generated
 zone_pivot_groups: azure-ai-model-catalog-samples-embeddings
 ---
 
-# How to use Cohere Embed V3 models with Azure AI Studio
+# How to use Cohere Embed V3 models with Azure AI Foundry
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn about Cohere Embed V3 models and how to use them with Azure AI Studio.
+In this article, you learn about Cohere Embed V3 models and how to use them with Azure AI Foundry.
 The Cohere family of models includes various models optimized for different use cases, including chat completions, embeddings, and rerank. Cohere models are optimized for various use cases that include reasoning, summarization, and question answering.
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
@@ -54,7 +54,7 @@ Image embeddings consume a fixed number of tokens per image—1,000 tokens per i
 
 ## Prerequisites
 
-To use Cohere Embed V3 models with Azure AI Studio, you need the following prerequisites:
+To use Cohere Embed V3 models with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -62,7 +62,7 @@ To use Cohere Embed V3 models with Azure AI Studio, you need the following prere
 
 Cohere Embed V3 models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -247,7 +247,7 @@ Image embeddings consume a fixed number of tokens per image—1,000 tokens per i
 
 ## Prerequisites
 
-To use Cohere Embed V3 models with Azure AI Studio, you need the following prerequisites:
+To use Cohere Embed V3 models with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -255,7 +255,7 @@ To use Cohere Embed V3 models with Azure AI Studio, you need the following prere
 
 Cohere Embed V3 models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -442,7 +442,7 @@ Image embeddings consume a fixed number of tokens per image—1,000 tokens per i
 
 ## Prerequisites
 
-To use Cohere Embed V3 models with Azure AI Studio, you need the following prerequisites:
+To use Cohere Embed V3 models with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -450,7 +450,7 @@ To use Cohere Embed V3 models with Azure AI Studio, you need the following prere
 
 Cohere Embed V3 models can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -631,7 +631,8 @@ Cohere Embed V3 models can optimize the embeddings based on its use case.
 | Description                               | Language          | Sample                                                          |
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|
 | Web requests                              | Bash              | [cohere-embed.ipynb](https://aka.ms/samples/embed-v3/webrequests) |
-| Azure AI Inference package for JavaScript | JavaScript        | [Link](https://aka.ms/azsdk/azure-ai-inference/javascript/samples)  |
+| Azure AI Inference package for C#         | C#                | [Link](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Inference/samples)   |  
+| Azure AI Inference package for JavaScript | JavaScript        | [Link](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples)  |
 | Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)      |
 | OpenAI SDK (experimental)                 | Python            | [Link](https://aka.ms/samples/cohere-embed/openaisdk)             |
 | LangChain                                 | Python            | [Link](https://aka.ms/samples/cohere-embed/langchain)                     |
@@ -651,7 +652,7 @@ Cohere Embed V3 models can optimize the embeddings based on its use case.
 
 ## Cost and quota considerations for Cohere family of models deployed as serverless API endpoints
 
-Cohere models deployed as a serverless API are offered by Cohere through the Azure Marketplace and integrated with Azure AI Studio for use. You can find the Azure Marketplace pricing when deploying the model.
+Cohere models deployed as a serverless API are offered by Cohere through the Azure Marketplace and integrated with Azure AI Foundry for use. You can find the Azure Marketplace pricing when deploying the model.
 
 Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
 
@@ -662,8 +663,8 @@ Quota is managed per deployment. Each deployment has a rate limit of 200,000 tok
 ## Related content
 
 
-* [Azure AI Model Inference API](../reference/reference-model-inference-api.md)
+* [Azure AI Model Inference API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md)
 * [Deploy models as serverless APIs](deploy-models-serverless.md)
-* [Consume serverless API endpoints from a different Azure AI Studio project or hub](deploy-models-serverless-connect.md)
+* [Consume serverless API endpoints from a different Azure AI Foundry project or hub](deploy-models-serverless-connect.md)
 * [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)
 * [Plan and manage costs (marketplace)](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace)

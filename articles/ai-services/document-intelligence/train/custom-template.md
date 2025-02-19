@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 08/07/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: 'doc-intel-4.0.0 || <=doc-intel-3.1.0'
 ---
@@ -15,8 +15,6 @@ monikerRange: 'doc-intel-4.0.0 || <=doc-intel-3.1.0'
 # Document Intelligence custom template model
 
 ::: moniker range="doc-intel-4.0.0"
-
-[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
 
 [!INCLUDE [applies to v4.0](../includes/applies-to-v40.md)]
 ::: moniker-end
@@ -75,7 +73,7 @@ Template models rely on a defined visual template, changes to the template resul
     |Model | PDF |Image: </br>J`PEG/JPG`, `PNG`, `BMP`, `TIFF`, `HEIF` | Microsoft Office: </br> Word (DOCX), Excel (XLSX), PowerPoint (PPTX), and HTML|
     |--------|:----:|:-----:|:---------------:|
     |Read            | ✔    | ✔    | ✔  |
-    |Layout          | ✔  | ✔ | ✔ (2024-02-29-preview, 2023-10-31-preview or later)  |
+    |Layout          | ✔  | ✔ | ✔ |
     |General&nbsp;Document| ✔  | ✔ |   |
     |Prebuilt        |  ✔  | ✔ |   |
     |Custom          |  ✔  | ✔ |   |
@@ -111,7 +109,7 @@ Custom template models are generally available starting with v2.0 API and later 
 With the v3.0 and later APIs, the build operation to train model supports a new ```buildMode``` property, to train a custom template model, set the ```buildMode``` to ```template```.
 
 ```REST
-https://{endpoint}/documentintelligence/documentModels:build?api-version=2024-07-31-preview
+https://{endpoint}/documentintelligence/documentModels:build?api-version=2024-11-30
 
 
 {

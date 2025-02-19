@@ -1314,7 +1314,13 @@ For a more detailed example, see the [demand forecasting with many models notebo
 
 #### Training considerations for a many models run
 
-The many models training and inference components conditionally partition your data according to the `partition_column_names` setting so each partition is in its own file. This process can be very slow or fail when data is very large. The recommendation is to partition your data manually before you run many models training or inference.
+- The many models training and inference components conditionally partition your data according to the `partition_column_names` setting. This process results in each partition being in its own file. The process can be very slow or fail when data is very large. The recommendation is to partition your data manually before you run many models training or inference.
+
+- During many models training, models are automatically registered in the workspace, and hence manual registration of models are not required. Models are named based on the partition on which they were trained and this is not customizable. Same for tags, these are not customizable, and we use these properties to auto detect models during inference.
+
+- Deploying individual model is not at all scalable, and hence we provide `PipelineComponentBatchDeployment` to ease the deployment process. Please refer [demand forecasting with many models notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline/aml-demand-forecast-mm-pipeline/aml-demand-forecast-mm-pipeline.ipynb) to see this in action. 
+
+- During inference, appropriate models (latest version) are automatically selected based on the partition sent in the inference data. By default, latest models are selected from an experiment by providing `training_experiment_name` but you can override to select models from a particular training run by also providing `train_run_id`.
 
 > [!NOTE]
 > The default parallelism limit for a many models run within a subscription is set to 320. If your workload requires a higher limit, you can contact Microsoft support.

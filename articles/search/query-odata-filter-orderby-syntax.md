@@ -7,7 +7,7 @@ author: bevloh
 ms.author: beloh
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 08/19/2024
+ms.date: 12/10/2024
 ---
 
 # OData language overview for `$filter`, `$orderby`, and `$select` in Azure AI Search

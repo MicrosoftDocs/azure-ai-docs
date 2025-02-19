@@ -4,7 +4,7 @@ ms.service: azure-ai-language
 ms.topic: include
 ms.date: 12/19/2023
 ms.author: jboback
-ms.custom: language-service-pii
+ms.custom: language-service-pii, ignite-2024
 ---
 
 [Reference documentation](/python/api/azure-ai-textanalytics/azure.ai.textanalytics?preserve-view=true&view=azure-python) |  [More samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/textanalytics/azure-ai-textanalytics/samples) | [Package (PyPi)](https://pypi.org/project/azure-ai-textanalytics/5.2.0/) | [Library source code](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/textanalytics/azure-ai-textanalytics)
@@ -15,19 +15,10 @@ Use this quickstart to create a Personally Identifiable Information (PII) detect
 ## Prerequisites
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Once you have your Azure subscription, [create an AI services resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal#create-a-new-azure-ai-services-resource).
 * [Python 3.8 or later](https://www.python.org/)
 
-
 ## Setting up
-
-
-[!INCLUDE [Create an Azure resource](../../../includes/create-resource.md)]
-
-
-
-[!INCLUDE [Get your key and endpoint](../../../includes/get-key-endpoint.md)]
-
-
 
 [!INCLUDE [Create environment variables](../../../includes/environment-variables.md)]
 

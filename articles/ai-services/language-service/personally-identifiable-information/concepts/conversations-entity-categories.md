@@ -7,7 +7,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ms.author: jboback
 ms.custom: language-service-pii, build-2024
 ---
@@ -49,7 +49,7 @@ This category contains the following entity:
    :::column-end:::
 :::row-end:::
 
-## Category: PhoneNumber
+## Category: Phone
 
 This category contains the following entity:
 
@@ -57,7 +57,7 @@ This category contains the following entity:
     :::column span="":::
         **Entity**
 
-        PhoneNumber
+        Phone
 
     :::column-end:::
     :::column span="2":::
@@ -65,7 +65,7 @@ This category contains the following entity:
 
         All telephone numbers (including toll-free numbers or numbers that may be easily found or considered public knowledge) are considered PII
 
-        To get this entity category, add `PhoneNumber` to the `pii-categories` parameter. `PhoneNumber` will be returned in the API response if detected.
+        To get this entity category, add `Phone` to the `pii-categories` parameter. `Phone` will be returned in the API response if detected.
       
     :::column-end:::
 
@@ -154,8 +154,6 @@ This category contains the following entities:
         Any numeric or alphanumeric identifier that could contain any PII information. 
         Examples:   
             * Case Number 
-            * Driver's license
-            * Medicare Beneficiary Identifier (MBI)
             * Member Number 
             * Ticket number 
             * Bank account number 

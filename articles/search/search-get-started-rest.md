@@ -9,7 +9,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.devlang: rest-api
-ms.date: 06/27/2024
+ms.date: 11/29/2024
 ms.custom:
   - mode-api
   - ignite-2023
@@ -116,7 +116,7 @@ If you're not familiar with the REST client for Visual Studio Code, this section
 
 1. Open or create a new file named with either a `.rest` or `.http` file extension.
 
-1. Paste in the following example if you're using API keys. Replace the `@baseUrl` and `@apiKey` placeholders with the values you copied earlier.
+1. Paste in the following example if you're using API keys. Replace the `@baseUrl` and `@apiKey` placeholders with the values you copied earlier, without quotes.
 
    ```http
    @baseUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
@@ -128,7 +128,7 @@ If you're not familiar with the REST client for Visual Studio Code, this section
       api-key: {{apiKey}}
     ```
 
-1. Or, paste in this example if your using roles. Replace the `@baseUrl` and `@token` placeholders with the values you copied earlier.
+1. Or, paste in this example if your using roles. Replace the `@baseUrl` and `@token` placeholders with the values you copied earlier, without quotes.
 
    ```http
    @baseUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
@@ -143,6 +143,8 @@ If you're not familiar with the REST client for Visual Studio Code, this section
 1. Select **Send request**. A response should appear in an adjacent pane. If you have existing indexes, they're listed. Otherwise, the list is empty. If the HTTP code is `200 OK`, you're ready for the next steps.
 
    :::image type="content" source="media/search-get-started-rest/rest-client-request-setup.png" lightbox="media/search-get-started-rest/rest-client-request-setup.png" alt-text="Screenshot that shows a REST client configured for a search service request.":::
+
+    If you get `WWW-Authenticate: Bearer realm="Azure Cognitive Search" error="invalid_token" error_description="Authentication token failed validation."`, remove the quotes around the token, save the file, and retry your request.
 
     Key points:
   
@@ -244,7 +246,7 @@ The URI is extended to include the `docs` collections and `index` operation.
             {
             "@search.action": "upload",
             "HotelId": "1",
-            "HotelName": "Secret Point Motel",
+            "HotelName": "Stay-Kay City Hotel",
             "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
             "Category": "Boutique",
             "Tags": [ "pool", "air conditioning", "concierge" ],
@@ -263,7 +265,7 @@ The URI is extended to include the `docs` collections and `index` operation.
             {
             "@search.action": "upload",
             "HotelId": "2",
-            "HotelName": "Twin Dome Motel",
+            "HotelName": "Old Century Hotel",
             "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
             "Category": "Boutique",
             "Tags": [ "pool", "free wifi", "concierge" ],
@@ -282,7 +284,7 @@ The URI is extended to include the `docs` collections and `index` operation.
             {
             "@search.action": "upload",
             "HotelId": "3",
-            "HotelName": "Triple Landscape Hotel",
+            "HotelName": "Gastronomic Landscape Hotel",
             "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
             "Category": "Resort and Spa",
             "Tags": [ "air conditioning", "bar", "continental breakfast" ],
@@ -301,8 +303,8 @@ The URI is extended to include the `docs` collections and `index` operation.
             {
             "@search.action": "upload",
             "HotelId": "4",
-            "HotelName": "Sublime Cliff Hotel",
-            "Description": "Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 1800 palace.",
+            "HotelName": "Sublime Palace Hotel",
+            "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.",
             "Category": "Boutique",
             "Tags": [ "concierge", "view", "24-hour front desk service" ],
             "ParkingIncluded": true,
@@ -357,8 +359,8 @@ The URI is extended to include a query expression, which is specified by using t
         {
           "@search.score": 0.6189728,
           "HotelId": "4",
-          "HotelName": "Sublime Cliff Hotel",
-          "Description": "Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 1800 palace.",
+          "HotelName": "Sublime Palace Hotel",
+          "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.",
           "Tags": [
             "concierge",
             "view",
@@ -397,7 +399,7 @@ You can also use [Get Statistics](/rest/api/searchservice/indexes/get-statistics
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal by using the **All resources** or **Resource groups** link in the leftmost pane.
+You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
 You can also try this `DELETE` command:
 

@@ -7,6 +7,7 @@ ms.author: vigunase
 ms.service: genomics
 ms.topic: overview
 ms.date: 12/07/2017
+ms.hidden: true
 ---
 
 # What is Microsoft Genomics?

@@ -7,6 +7,7 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 09/10/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 

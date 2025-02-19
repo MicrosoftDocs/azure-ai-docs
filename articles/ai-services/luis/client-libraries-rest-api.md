@@ -2,12 +2,12 @@
 title: "Quickstart: Language Understanding (LUIS) SDK client libraries and REST API"
 description: Create and query a LUIS app with the LUIS SDK client libraries and REST API.
 ms.topic: quickstart
-ms.date: 01/19/2024
+ms.date: 11/06/2024
 ms.service: azure-ai-language
-ms.author: aahi
+ms.author: jboback
 manager: nitinme
 ms.subservice: azure-ai-luis
-author: aahill
+author: jboback
 keywords: Azure, artificial intelligence, ai, natural language processing, nlp, LUIS, azure luis, natural language understanding, ai chatbot, chatbot maker,  understanding natural language
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, python

@@ -1,8 +1,8 @@
 ---
 title: include file
 description: include file
-author: sally-baolian
-ms.author: v-baolianzou
+author: eric-urban
+ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 10/11/2024

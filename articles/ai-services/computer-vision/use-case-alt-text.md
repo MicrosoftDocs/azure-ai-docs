@@ -9,6 +9,7 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: conceptual
 ms.date: 01/19/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
@@ -21,7 +22,7 @@ Alt text, or alternative text, is an HTML attribute added to the `<img>` tag
 
 `<img src="elephant.jpg" alt="An elephant in a grassland.">`
 
-Alt text enables website owners to describe an image in plain text. These image descriptions improve accessibility by enabling screen readers such as Microsoft Narrator, JAWS, and NVDA to accurately communicate image content to their vision-impaired and blind users.
+Alt text enables website owners to describe an image in plain text. These image descriptions improve accessibility by enabling screen readers such as Microsoft Narrator, JAWS, and NVDA to accurately communicate image content to their users who are blind or with visual impairment.
 
 Alt text is also vital for image search engine optimization (SEO). It helps search engines understand the visual content in your images. The search engine is then better able to include and rank your website in search results when users search for the content in your website.  
 

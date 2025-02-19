@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 09/04/2024
+ms.date: 12/20/2024
 ---
 
 # Data sources gallery
@@ -72,7 +72,7 @@ By [Azure AI Search](search-what-is-azure-search.md)
 
 Extract field values from a single table or view, serialized into JSON documents, and imported into a search index as search documents. Configure change tracking to refresh the search index with the latest changes in your database.
 
-[More details](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
+[More details](search-how-to-index-sql-database.md)
 
 :::image type="icon" source="media/search-data-sources-gallery/azuresqlconnectorlogo_medium.png":::
 
@@ -435,6 +435,19 @@ The Aspider connector allows crawling of content from web sites, using HTTP Auth
 
 ---
 
+### Atlassian Confluence
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Atlassian Confluence Server and Data Center. Reliably indexes spaces, personal spaces, wiki pages, blog posts, attachments, and labels. Comes with full metadata sets, advanced processing pipelines, and full support for Atlassian Confluence's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/confluence.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
 ### Atlassian Confluence (Cloud)
 
 By [BA Insight](https://www.bainsight.com/)
@@ -442,6 +455,19 @@ By [BA Insight](https://www.bainsight.com/)
 Our Confluence (Cloud Version) Connector is an enterprise grade indexing connector that enables content stored in Confluence to be crawled and indexed.
 
 [More details](https://www.bainsight.com/connectors/connector-for-confluence-cloud-version/)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### Atlassian Confluence (Cloud)
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Atlassian Confluence Cloud. Reliably indexes spaces, personal spaces, wiki pages, blog posts, attachments, and labels. Comes with full metadata sets, advanced processing pipelines, and full support for Atlassian Confluence Cloud's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/confluence-cloud.php)
 
 :::column-end:::
 :::column span="":::
@@ -483,6 +509,19 @@ By [Raytion](https://www.raytion.com/contact)
 Secure enterprise search connector for reliably indexing content from Microsoft Entra ID and intelligently searching it with Azure AI Search. It indexes objects from Microsoft Entra ID via the Microsoft Graph API. The connector can be used for ingesting principals into Azure AI Search in near real time to implement use cases like expert search, equipment search, and location search or to provide early-binding security trimming with custom data sources. The connector supports federated authentication against Microsoft 365.
 
 [More details](https://www.raytion.com/connectors/raytion-azure-ad-connector)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### Microsoft Entra ID
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Enterprise search connector for indexing Entra ID. Can serve as profile search, also for Azure B2C profiles, or as source for early-binding security trimming. Comes with full sets of profile metadata and indexes all user-group relationships.
+
+[More details](https://www.rheininsights.com/en/connectors/entra-id.php)
 
 :::column-end:::
 :::column span="":::
@@ -925,6 +964,19 @@ The File Share Connector makes it possible to surface content from File Shares (
 
 ---
 
+### File Share and Network Shares
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing file shares. Reliably indexes all files from the given file share. Comes with full metadata sets, advanced processing pipelines, supporting UI features, and full support for the respective file share's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/file-share.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
 ### File System
 
 By [Accenture](https://www.accenture.com)
@@ -971,6 +1023,19 @@ Secure enterprise search connector for reliably indexing content from e-Spirit F
 :::row-end:::
 
 :::row:::
+:::column span="":::
+
+---
+
+### Git
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search connector for indexing Git repositories. Reliably indexes branches from remote GIT repositories, versioned files and commit messages. Comes with full metadata sets, and advanced processing pipelines.
+
+[More details](https://www.rheininsights.com/en/connectors/git.php)
+
+:::column-end:::
 :::column span="":::
 
 ---
@@ -1032,6 +1097,32 @@ By [Raytion](https://www.raytion.com/contact)
 Secure enterprise search connector for reliably indexing content from Google Drive and intelligently searching it with Azure AI Search. It robustly indexes files, folders, and comments on personal drives and team drives from Google Drive in near real time. The connector fully supports Google Drive’s built-in permission model and the user and group management by the Google Admin Directory.
 
 [More details](https://www.raytion.com/connectors/raytion-google-drive-connector)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### Google Drive
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Google Drive. Reliably indexes all Google Drive documents from personal and shared drives in your organization. Comes with full metadata sets, advanced processing pipelines and full support for Google Drive's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/google-drive.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### Google Mail
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Google Mail (GMail). Reliably indexes all Mails and their attachments. Comes with full metadata sets, advanced processing pipelines and support for the Google Mail permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/google-mail.php)
 
 :::column-end:::
 :::column span="":::
@@ -1289,6 +1380,19 @@ Secure enterprise search connector for reliably indexing content from Atlassian 
 
 ---
 
+### Jira
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Atlassian Jira Server and Data Center. Reliably indexes projects, issues, issue comments, and attachments. Comes with full metadata sets, advanced processing pipelines, and full support for Atlassian Jira's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/jira.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
 ### Jira Cloud
 
 By [BA Insight](https://www.bainsight.com/)
@@ -1322,6 +1426,19 @@ Secure enterprise search connector for reliably indexing content from Atlassian 
 :::row-end:::
 
 :::row:::
+:::column span="":::
+
+---
+
+### Jira Cloud
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Atlassian Jira Cloud. Reliably indexes projects, issues, issue comments, and attachments. Comes with full metadata sets, advanced processing pipelines, and full support for Atlassian Jira Cloud's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/jira-cloud.php)
+
+:::column-end:::
 :::column span="":::
 
 ---
@@ -1626,6 +1743,19 @@ The database connector is built upon industry standard database access methods, 
 
 ---
 
+### Microsoft SQL Server
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Microsoft SQL databases. Reliably indexes all records based on tables, views and advanced SQL queries. Supports content crawling, as well as, interpreting data structures as user-group relationships for secure search. Comes with full metadata sets, advanced processing pipelines, and support for custom permission models.
+
+[More details](https://www.rheininsights.com/en/connectors/sql.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
 ### Microsoft Teams
 
 By [BA Insight](https://www.bainsight.com/)
@@ -1752,6 +1882,19 @@ The Objective Connector was developed for Objective, establishing a secure conne
 
 ---
 
+### Odata via REST
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for flexibly indexing custom data via OData over REST. Easily provide your own data via SAP API Management, Google Apigee Management or Azure API Management. Comes with full metadata sets of the provided documents, advanced processing pipelines, and support for custom permission models, also provided via an API endpoint.
+
+[More details](https://www.rheininsights.com/en/connectors/odata.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
 ### OneDrive
 
 By [Accenture](https://www.accenture.com)
@@ -1775,6 +1918,20 @@ The OneDrive connector crawls content from Microsoft OneDrive, allowing incremen
 :::column span="":::
 
 ---
+
+### OneDrive
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Microsoft OneDrive for Business. Reliably indexes files from all OneDrives in a tenant. Comes with full metadata sets, advanced processing pipelines, document preview integrations, and full support for Microsoft OneDrive's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/onedrive.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
 
 ### OneDrive for work or school
 
@@ -1889,6 +2046,19 @@ The Oracle Database Connector is built upon industry standard database access me
 
 ---
 
+### Oracle Database
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Oracle Databases. Reliably indexes all records based on tables, views and advanced SQL queries. Supports content crawling, as well as, interpreting data structures as user-group relationships for secure search. Comes with full metadata sets, advanced processing pipelines, and support for custom permission models.
+
+[More details](https://www.rheininsights.com/en/connectors/sql.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
 ### Oracle WebCenter
 
 By [BA Insight](https://www.bainsight.com/)
@@ -1972,6 +2142,19 @@ BA Insight's PostgreSQL Connector honors the security of the source database and
 :::row-end:::
 
 :::row:::
+:::column span="":::
+
+---
+
+### PostgreSQL
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing PostgreSQL databases. Reliably indexes all records based on tables, views and advanced SQL queries. Supports content crawling, as well as, interpreting data structures as user-group relationships for secure search. Comes with full metadata sets, advanced processing pipelines, and support for custom permission models.
+
+[More details](https://www.rheininsights.com/en/connectors/sql.php)
+
+:::column-end:::
 :::column span="":::
 
 ---
@@ -2426,6 +2609,20 @@ BA Insight's SharePoint Connector allows you to connect to SharePoint in Microso
 
 ---
 
+### SharePoint in Microsoft 365
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing SharePoint in Microsoft 365. Reliably indexes all SharePoint sites, pages, lists, list items and documents also in multi-geo scenarios. Comes with full metadata sets, advanced processing pipelines, document preview integrations, and full support for SharePoint in Microsoft 365's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/sharepoint-online.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+
 ### Sitecore
 
 By [BA Insight](https://www.bainsight.com/)
@@ -2472,6 +2669,19 @@ Secure enterprise search connector for reliably indexing content from Slack and 
 :::row-end:::
 
 :::row:::
+:::column span="":::
+
+---
+
+### Slack
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Slack. Reliably indexes public and private channels, messages, threads and attached files. Comes with full metadata sets, advanced processing pipelines, and full support for Slack's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/slack.php)
+
+:::column-end:::
 :::column span="":::
 
 ---
@@ -2553,6 +2763,20 @@ Secure enterprise search connector for reliably indexing content from Symantec E
 
 ---
 
+### Trello
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Trello. Reliably indexes Trello boards, cards, comments, and attachments. Comes with full metadata sets, advanced processing pipelines, and full support for Trello's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/trello.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+
 ### Twitter
 
 By [Accenture](https://www.accenture.com)
@@ -2633,6 +2857,19 @@ By [BA Insight](https://www.bainsight.com/)
 The BA Insight Website Crawler Connector makes it possible to surface content from any website in a single consolidated search index, along with content from other repositories.
 
 [More details](https://www.bainsight.com/connectors/website-connector-for-sharepoint-azure-elasticsearch/)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### Website Pages
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing web pages and attached documents. Reliably and easily indexes web pages from a given site. Comes with full metadata sets, advanced processing pipelines, and support for custom permission models.
+
+[More details](https://www.rheininsights.com/en/connectors/web-pages.php)
 
 :::column-end:::
 :::column span="":::

@@ -7,13 +7,117 @@ manager: nitinme
 ms.service: azure-ai-translator
 ms.custom:
   - ignite-2023
-ms.date: 12/06/2023
+ms.date: 11/01/2024
 ms.author: lajanuar
 ms.topic: release-notes
 ---
 # Custom Translator release notes
 
 This page presents the latest feature, improvement, bug fix, and known issue release notes for Custom Translator service.
+
+## 2024-November release
+
+### Language model updates
+
+* Language pairs are listed in the table below.
+
+* We encourage you to retrain your models accordingly for higher quality.
+
+|Source Language|Target Language|
+|:----|:----|
+|Afrikaans | English |
+|Bashkir | English |
+|Belarusian | English |
+|Bosnian | English |
+|Bulgarian | English |
+|Catalan | English |
+|Chhattisgarhi | English |
+|Croatian | English |
+|Czech | English |
+|Danish | English |
+|English | Afrikaans |
+|English | Bangla |
+|English | Belarusian |
+|English | Bosnian |
+|English | Bulgarian |
+|English | Catalan |
+|English | Chinese Simplified |
+|English | Croatian |
+|English | Czech |
+|English | Danish |
+|English | Dutch |
+|English | Faroese |
+|English | French |
+|English | German |
+|English | Hindi |
+|English | Icelandic |
+|English | Indonesian |
+|English | Italian |
+|English | Japanese |
+|English | Khmer |
+|English | Korean |
+|English | Kurdish (Central) |
+|English | Kyrgyz |
+|English | Lao |
+|English | Luxembourgish |
+|English | Macedonian |
+|English | Malay |
+|English | Manipuri |
+|English | Mongolian (Cyrillic) |
+|English | Norwegian |
+|English | Persian |
+|English | Polish |
+|English | Portuguese (Brazil) |
+|English | Romanian |
+|English | Russian |
+|English | Serbian (Latin) |
+|English | Slovak |
+|English | Slovenian |
+|English | Spanish |
+|English | Swedish |
+|English | Tamil |
+|English | Tatar |
+|English | Thai |
+|English | Turkish |
+|English | Ukrainian |
+|English | Uyghur |
+|English | Uzbek (Latin) |
+|Faroese | English |
+|French | English |
+|German | English |
+|Hindi | English |
+|Icelandic | English |
+|Indonesian | English |
+|Italian | English |
+|Kashmiri | English |
+|Khmer | English |
+|Kurdish (Central) | English |
+|Kyrgyz | English |
+|Lao | English |
+|Luxembourgish | English |
+|Macedonian | English |
+|Malay | English |
+|Manipuri | English |
+|Mongolian (Cyrillic) | English |
+|Norwegian | English |
+|Pashto | English |
+|Persian | English |
+|Polish | English |
+|Portuguese (Brazil) | English |
+|Romanian | English |
+|Russian | English |
+|Serbian (Latin) | English |
+|Slovak | English |
+|Slovenian | English |
+|Spanish | English |
+|Swedish | English |
+|Tamil | English |
+|Tatar | English |
+|Thai | English |
+|Turkmen | English |
+|Uyghur | English |
+|Uzbek (Latin) | English |
+|Vietnamese | English |
 
 ## 2023-December release
 

@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 08/03/2024
+ms.date: 11/19/2024
 ---
 
 # Language support: custom models
@@ -98,8 +98,8 @@ Azure AI Document Intelligence models provide multilingual document processing s
 
 :::moniker-end
 
-## Custom generative 
-Custom generative only supports English `en`
+
+
 
 ## Custom neural
 

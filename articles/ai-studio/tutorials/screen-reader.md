@@ -1,33 +1,33 @@
 ---
-title: Get started using Azure AI Studio with a screen reader
-titleSuffix: Azure AI Studio
-description: This quickstart guides you in how to get oriented and navigate Azure AI Studio with a screen reader.
+title: Get started using Azure AI Foundry with a screen reader
+titleSuffix: Azure AI Foundry
+description: This quickstart guides you in how to get oriented and navigate Azure AI Foundry with a screen reader.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: quickstart
-ms.date: 8/9/2024
+ms.date: 12/31/2024
 ms.reviewer: ailsaleen
 ms.author: sgilley
 author: sdgilley
 ---
 
-# QuickStart: Get started using AI Studio with a screen reader
+# QuickStart: Get started using Azure AI Foundry with a screen reader
 
-This article is for people who use screen readers such as [Microsoft's Narrator](https://support.microsoft.com/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1#WindowsVersion=Windows_11), JAWS, NVDA or Apple's Voiceover. In this quickstart, you'll be introduced to the basic structure of Azure AI Studio and discover how to navigate around efficiently. 
+This article is for people who use screen readers such as [Microsoft's Narrator](https://support.microsoft.com/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1#WindowsVersion=Windows_11), JAWS, NVDA, or Apple's Voiceover. In this quickstart, you're introduced to the basic structure of Azure AI Foundry and discover how to navigate around efficiently. 
 
-## Getting oriented in Azure AI Studio 
+## Getting oriented in Azure AI Foundry portal 
 
-Most Azure AI Studio pages are composed of the following landmark structure: 
+Most Azure AI Foundry pages are composed of the following landmark structure: 
 
-- Banner (contains Azure AI Studio app title, settings, and profile information)
+- Banner (contains Azure AI Foundry app title, settings, and profile information)
     - Might sometimes contain a breadcrumb navigation element 
-- Navigation
-    - The contents of the navigation are different depending on whether you have selected a hub or project in the studio
-- Main page content 
-    - Usually contains a command toolbar 
+- Navigation - There are three different states:
+    - Outside a project - there's no left navigation until you are in a project. The page is divided into sections such as **Work outside of a project** and **Recent projects picker**.
+    - In a project - the left navigation is the same for all parts of a project, until you move to the **Management center**.
+    - The left navigation in the Management center has a section for the hub that the project is in, then a section for the project itself.
 
 For efficient navigation, it might be helpful to navigate by landmarks to move between these sections on the page.
 
@@ -36,55 +36,55 @@ For efficient navigation, it might be helpful to navigate by landmarks to move b
 
 The navigation is list of links divided into different sections. 
 
-If you haven't yet created or selected a project, you can still explore content under the **Get started** (model catalog, model benchmarks, and AI Services) and **Management** (hubs and quota) sections.
+If you haven't yet created or selected a project, you can still explore content under the **Work outside of a project**.
 
-Once you have created or selected a project, you can access more capabilities such as project playgrounds, tools (such as prompt flow and evaluation), and components (such as data and deployments). 
+Once you have created or selected a project, you can access more capabilities such as Model catalog, Playgrounds, and AI Services. Then there are collapsible sections for **Build and customize** (includes Code, Fine-tuning, Prompt-flow), **Assess and improve** (includes Tracing, Evaluation, and Safety + security) and **My assets** (includes Models + endpoints, Data + indexes, and Web apps). 
 
 Once you have created or selected a project, you can also use the **Recent projects picker** button within the navigation to change project at any time.
 
-For more information about the navigation, see [What is Azure AI Studio](../what-is-ai-studio.md).
+For more information about the navigation, see [What is Azure AI Foundry](../what-is-ai-studio.md).
 
 ## Projects 
 
-To work within the Azure AI Studio, you must first [create a project](../how-to/create-projects.md): 
-1. In [Azure AI Studio](https://ai.azure.com), select **Home** from the navigation.
-1. Press the **Tab** key until you hear *New project* and select this button.  
-1. Enter the information requested in the **Create a project** dialog.  
+To work within the Azure AI Foundry portal, you must first [create a project](../how-to/create-projects.md): 
+1. In [Azure AI Foundry](https://ai.azure.com), select **Home** from the navigation.
+1. Press the **Tab** key until you hear *Create project* and select this button. 
+1. Enter the information requested in the **Create a project** dialog. 
 
-You then get taken to the project details page. 
+You then get taken to the project overview page. 
 
 ## Using the playground 
 
-The playground is where you can interact with models and experiment with different prompts and parameters. Different playgrounds are available depending on which model you would like to interact with.  
+The playground is where you can interact with models and experiment with different prompts and parameters. Different playgrounds are available depending on which model you would like to interact with. 
 
-Once you have created or selected a project, go to the navigation landmark. Press the down arrow until you hear *Project playground*. Press the down arrow again until you hear a playground you would like to use.
+Once you have created or selected a project, go to the navigation landmark. Press the down arrow until you hear *Playgrounds*.
 
 ### Chat playground structure 
 
-In this mode, the playground is composed of the command toolbar and two main sections: one for configuring your system message and other parameters, and the other for chatting to the model. If you added your own data in the playground, the **Citations** pane also appears when selecting a citation as part of the model response. 
+In this mode, the playground is composed of the command toolbar and two main sections: one for configuring your system message and other parameters, and the other for chatting to the model. If you added your own data in the playground, the **Add your data** pane also appears. 
 
 ### Chat session pane  
 
 The chat session pane is where you can chat to the model and test out your assistant. 
-- After you send a message, the model might take some time to respond, especially if the response is long. You hear a screen reader announcement "Message received from the chatbot" when the model finishes composing a response.  
+- After you send a message, the model might take some time to respond, especially if the response is long. You hear a screen reader announcement "Message received from the chatbot" when the model finishes composing a response. 
 
 ## Using prompt flow 
 
-Prompt flow is a tool to create executable flows, linking LLMs, prompts, and Python tools through a visualized graph. You can use this to prototype, experiment, and iterate on your AI applications before deploying.  
+Prompt flow is a tool to create executable flows, linking LLMs, prompts, and Python tools through a visualized graph. You can use this to prototype, experiment, and iterate on your AI applications before deploying. 
 
 Once you have created or selected a project, go to the navigation landmark. Press the down arrow until you hear *Prompt flow* and select this link.
 
-The prompt flow UI in Azure AI Studio is composed of the following main sections: the command toolbar, flow (includes list of the flow nodes), files, and graph view. The flow, files, and graph sections each have their own H2 headings that can be used for navigation.
+The prompt flow UI in Azure AI Foundry portal is composed of the following main sections: the command toolbar, flow (includes list of the flow nodes), files, and graph view. The flow, files, and graph sections each have their own H2 headings that can be used for navigation.
 
 ### Flow 
 
 - This is the main working area where you can edit your flow, for example adding a new node, editing the prompt, selecting input data 
 - You can also choose to work in code instead of the editor by navigating to the **Raw file mode** toggle button to view the flow in code. 
-- Each node has its own H3 heading, which can be used for navigation.  
+- Each node has its own H3 heading, which can be used for navigation. 
 
 ### Files 
 
-- This section contains the file structure of the flow. Each flow has a folder that contains a flow.dag.yaml file, source code files, and system folders.  
+- This section contains the file structure of the flow. Each flow has a folder that contains a flow.dag.yaml file, source code files, and system folders. 
 - You can export or import a flow easily for testing, deployment, or collaborative purposes by navigating to the **Add** and **Zip and download all files** buttons.
 
 ### Graph view 
@@ -99,15 +99,15 @@ Evaluation is a tool to help you evaluate the performance of your generative AI 
 
 ### Creating an evaluation 
 
-To review evaluation metrics, you must first create an evaluation.  
+To review evaluation metrics, you must first create an evaluation. 
 
 1. Once you have created or selected a project, go to the navigation landmark. Press the down arrow until you hear *Evaluation* and select this link.
-1. Press the Tab key until you hear *new evaluation* and select this button.  
+1. Press the Tab key until you hear *new evaluation* and select this button. 
 1. Enter the information requested in the **Create a new evaluation** dialog. Once complete, your focus is returned to the evaluations list. 
 
 ### Viewing evaluations 
 
-Once you create an evaluation, you can access it from the list of evaluations.  
+Once you create an evaluation, you can access it from the list of evaluations. 
 
 Evaluation runs are listed as links within the Evaluations grid. Selecting a link takes you to a dashboard view with information about your specific evaluation run. 
 
@@ -124,5 +124,6 @@ If you're a government, commercial, or enterprise customer, contact the enterpri
 
 ## Related content
 
-* Learn how you can build generative AI applications in the [Azure AI Studio](../what-is-ai-studio.md).
+* Learn how you can build generative AI applications in the [Azure AI Foundry](../what-is-ai-studio.md).
+* [Build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK](copilot-sdk-create-resources.md)
 * Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml).

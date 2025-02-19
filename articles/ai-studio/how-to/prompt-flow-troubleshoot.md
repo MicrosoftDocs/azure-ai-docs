@@ -1,10 +1,12 @@
 ---
 title: Troubleshoot guidance for prompt flow
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article addresses frequent questions about prompt flow usage.
 manager: scottpolly
-ms.service: azure-ai-studio
-ms.topic: reference
+ms.service: azure-ai-foundry
+ms.custom:
+  - ignite-2024
+ms.topic: conceptual
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: chenjieting
@@ -94,7 +96,7 @@ If you regenerate your Azure OpenAI key and manually update the connection used 
 
 This is because the connections used in the endpoints/deployments won't be automatically updated. Any change for key or secrets in deployments should be done by manual update, which aims to avoid impacting online production deployment due to unintentional offline operation.
 
-- If the endpoint was deployed in the studio UI, you can just redeploy the flow to the existing endpoint using the same deployment name.
+- If the endpoint was deployed in the Azure AI Foundry portal, you can just redeploy the flow to the existing endpoint using the same deployment name.
 - If the endpoint was deployed using SDK or CLI, you need to make some modification to the deployment definition such as adding a dummy environment variable, and then use `az ml online-deployment update` to update your deployment.
 
 ### Vulnerability issues in prompt flow deployments
@@ -167,7 +169,7 @@ Consider optimizing the endpoint with above considerations to improve the perfor
 
 ### Unable to fetch deployment schema
 
-After you deploy the endpoint and want to test it in the **Test** tab in the deployment detail page, if the **Test** tab shows **Unable to fetch deployment schema**, you can try the following two methods to mitigate this issue:
+After you deploy the endpoint and want to test it in the **Test** tab in the deployment detail page. To get to the **Test** tab, go to **Models +endpoints** under *My assets* from the left navigation then select the deployment to view the details. If the **Test** tab shows **Unable to fetch deployment schema**, you can try the following two methods to mitigate this issue:
 
 :::image type="content" source="../media/prompt-flow//unable-to-fetch-deployment-schema.png" alt-text="Screenshot of the error unable to fetch deployment schema in Test tab in deployment detail page. " lightbox = "../media/prompt-flow/unable-to-fetch-deployment-schema.png":::
 

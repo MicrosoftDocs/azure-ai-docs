@@ -8,7 +8,7 @@ ms.author: larryfr
 ms.reviewer: kritifaujdar
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.date: 06/12/2024
+ms.date: 01/07/2025
 ms.topic: how-to
 ms.custom: cli-v2, sdk-v2, devx-track-azurecli, update-code2, devx-track-python
 ---
@@ -253,7 +253,7 @@ If your model data comes from a job output, you have two options for specifying 
       path="runs:/my_run_0000000000/model/"
       name="my-registered-model",
       description="Model created from run.",
-      type=ModelType.MLFLOW_MODEL
+      type=ModelType.MLFLOW
   )
   
   ml_client.models.create_or_update(run_model) 
@@ -517,12 +517,6 @@ You can archive all versions or only specific versions of a model. If you don't 
 
 # [Azure CLI](#tab/cli)
 
-Archive all versions of a model:
-
-```azurecli
-az ml model archive --name run-model-example
-```
-
 Archive a specific model version:
 
 ```azurecli
@@ -530,12 +524,6 @@ az ml model archive --name run-model-example --version 1
 ```
 
 # [Python SDK](#tab/python)
-
-Archive all versions of a model:
-
-```python
-ml_client.models.archive(name="run-model-example")
-```
 
 Archive a specific model version:
 

@@ -3,8 +3,8 @@ title: 'Quickstart: Full text search using the Azure SDKs'
 titleSuffix: Azure AI Search
 description: "Learn how to create, load, and query a search index using the Azure SDKs for .NET, Python, Java, and JavaScript."
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: eric-urban
+ms.author: eur
 ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet
@@ -14,67 +14,49 @@ ms.custom:
   - devx-track-python
   - ignite-2023
 ms.topic: quickstart
-ms.date: 10/07/2024
+zone_pivot_groups: search-quickstart-full-text
+ms.date: 2/12/2025
 ---
 
 # Quickstart: Full text search using the Azure SDKs
 
-Learn how to use the *Azure.Search.Documents* client library in an Azure SDK to create, load, and query a search index using sample data for [full text search](search-lucene-query-architecture.md). Full text search uses Apache Lucene for indexing and queries, and a BM25 ranking algorithm for scoring results.
+::: zone pivot="programming-language-csharp"
 
-This quickstart has steps for the following SDKs:
+[!INCLUDE [C# quickstart](includes/quickstarts/full-text-csharp.md)]
 
-+ [Azure SDK for .NET](?tabs=dotnet#create-load-and-query-an-index)
-+ [Azure SDK for Python](?tabs=python#create-load-and-query-an-index)
-+ [Azure SDK for Java](?tabs=java#create-load-and-query-an-index)
-+ [Azure SDK for JavaScript/Typescript](?tabs=javascript#create-load-and-query-an-index)
+::: zone-end
 
-## Prerequisites
+::: zone pivot="programming-language-java"
 
-+ An Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount).
+[!INCLUDE [Java quickstart](includes/quickstarts/full-text-java.md)]
 
-+ An Azure AI Search service. [Create a service](search-create-service-portal.md) if you don't have one. You can use a free tier for this quickstart.
+::: zone-end
 
-+ An API key and service endpoint for your service. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch).
+::: zone pivot="programming-language-javascript"
 
-  In the **Overview** section, copy the URL and save it to a text editor for a later step. An example endpoint might look like `https://mydemo.search.windows.net`.
+[!INCLUDE [JavaScript quickstart](includes/quickstarts/full-text-javascript.md)]
 
-  In the **Settings** > **Keys** section, copy and save an admin key for full rights to create and delete objects. There are two interchangeable primary and secondary keys. Choose either one.
+::: zone-end
 
-  :::image type="content" source="media/search-get-started-rest/get-url-key.png" alt-text="Screenshot that shows the HTTP endpoint and the primary and secondary API key locations.":::
+::: zone pivot="programming-language-python"
 
-## Create, load, and query an index
+[!INCLUDE [Python SDK quickstart](includes/quickstarts/full-text-python.md)]
 
-Choose a programming language for the next step. The **Azure.Search.Documents** client libraries are available in Azure SDKs for .NET, Python, Java, and JavaScript/Typescript.
+::: zone-end
 
-## [**.NET**](#tab/dotnet)
+::: zone pivot="programming-language-typescript"
 
-[!INCLUDE [dotnet-sdk-quickstart](includes/quickstarts/dotnet.md)]
+[!INCLUDE [TypeScript quickstart](includes/quickstarts/full-text-typescript.md)]
 
-## [**Python**](#tab/python)
+::: zone-end
 
-[!INCLUDE [python-sdk-quickstart](includes/quickstarts/python.md)]
-
-## [**Java**](#tab/java)
-
-[!INCLUDE [java-sdk-quickstart](includes/quickstarts/java.md)]
-
-## [**JavaScript**](#tab/javascript)
-
-[!INCLUDE [javascript-sdk-quickstart](includes/quickstarts/javascript.md)]
-
-## [**TypeScript**](#tab/typescript)
-
-[!INCLUDE [typescript-sdk-quickstart](includes/quickstarts/typescript.md)]
-
----
-
-## Clean up resources
+## Clean-up resources
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
+You can find and manage resources in the Azure portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
 
-If you're using a free service, remember that you're limited to three indexes, indexers, and data sources. You can delete individual items in the portal to stay under the limit.
+If you're using a free service, remember that you're limited to three indexes, indexers, and data sources. You can delete individual items in the Azure portal to stay under the limit.
 
 ## Next step
 

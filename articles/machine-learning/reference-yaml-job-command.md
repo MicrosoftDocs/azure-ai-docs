@@ -6,7 +6,7 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: reference
-ms.custom: cliv2, devx-track-python, update-code
+ms.custom: cliv2, devx-track-python, update-code2
 author: Blackmist
 ms.author: larryfr
 ms.date: 08/29/2024
@@ -174,10 +174,6 @@ Examples are available in the [examples GitHub repository](https://github.com/Az
 ## YAML: distributed TensorFlow
 
 :::code language="yaml" source="~/azureml-examples-main/cli/jobs/single-step/tensorflow/mnist-distributed/job.yml":::
-
-## YAML: distributed MPI
-
-:::code language="yaml" source="~/azureml-examples-main/cli/jobs/single-step/tensorflow/mnist-distributed-horovod/job.yml":::
 
 ## Next steps
 

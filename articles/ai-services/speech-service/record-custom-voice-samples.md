@@ -13,7 +13,7 @@ ms.author: eur
 
 # Recording voice samples for custom neural voice
 
-This article provides you with instructions on preparing high-quality voice samples for creating a professional voice model using the custom neural voice Pro project.
+This article provides you with best practices on preparing high-quality voice samples for creating a professional voice model using the custom neural voice Pro project. To understand how the data is processed and the minimum requirements for data acceptance, please refer to [upload your data](professional-voice-create-training-set.md#upload-your-data).
 
 Creating a high-quality production custom neural voice from scratch isn't a casual undertaking. The central component of a custom neural voice is a large collection of audio samples of human speech. It's vital that these audio recordings be of high quality. Choose a voice talent who has experience making these kinds of recordings, and have them recorded by a recording engineer using professional equipment.
 
@@ -74,20 +74,21 @@ We provide [sample scripts in the 'General', 'Chat' and 'Customer Service' domai
 
 Below are some general guidelines that you can follow to create a good corpus (recorded audio samples) for custom neural voice training.
 
--  Balance your script to cover different sentence types in your domain including statements, questions, exclamations, long sentences, and short sentences.
-
-   Each sentence should contain four words to 30 words, and no duplicate sentences should be included in your script.<br>
+-  For most use cases, sentences are recommended to be between 2 and 15 seconds long, containing 5 to 30 words for Latin-based languages or 4 to 80 words for non-Latin languages. Aim to balance your script to include a variety of sentence types and lengths. Ensure your script does not include any duplicate sentences.<br>
+   
+   If your use case requires a high emphasis on questions, exclamations, or a mix of particularly long and short sentences, it is recommended to include a good portion of sentences as questions or exclamations, along with very short phrases and longer phrases up to 20 seconds in length.
+   
    For how to balance the different sentence types, refer to the following table:
    
    | Sentence types | Coverage |
    | :--------- | :--------------------------- |
    | Statement sentences | Statement sentences should be 70-80% of the script.|
-   | Question sentences | Question sentences should be about 10%-20% of your domain script, including 5%-10% of rising and 5%-10% of falling tones. |
-   | Exclamation sentences| Exclamation sentences should be about 10%-20% of your script.|
-   | Short word/phrase| Short word/phrase scripts should be about 10% of total utterances, with 5 to 7 words per case. |
+   | Short word/phrase| Short word/phrase scripts should be about 10% of total utterances, with 5 to 7 words per case.<br> Short words or phrases should be separated by commas to help remind voice talent to pause briefly while reading.|
+   | Question sentences (Optional) | Question sentences should be about 10%-20% of your domain script, including 5%-10% of rising and 5%-10% of falling tones.<br> These sentences are required if you want the generated voice to accurately convey questions.|
+   | Exclamation sentences (Optional) | Exclamation sentences should be about 10%-20% of your script.<br> These sentences are required if you want the generated voice to accurately convey exclamations.|
 
-   > [!NOTE]
-   > Short words/phrases should be separated with a commas. They help remind your voice talent to pause briefly when reading them.
+   > [!NOTE] 
+   > You can estimate the number of words in a sentence by assuming a speech rate in words per second based on your language.
 
    Best practices include:
     - Balanced coverage for Parts of Speech, like verbs, nouns, adjectives, and so on.  

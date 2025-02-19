@@ -5,9 +5,10 @@ summary: Information retrieval at scale for vector and text content in tradition
 metadata:
   title: Azure AI Search documentation
   description: Information retrieval at scale for vector and text content in traditional or generative search scenarios.
-  ms.service: service
+  ms.service: azure-ai-search
   ms.custom:
     - ignite-2023
+    - ignite-2024
   ms.topic: landing-page
   author: HeidiSteen
   ms.author: heidist
@@ -45,7 +46,7 @@ landingContent:
           - text: Built-in vectorization
             url: vector-search-integrated-vectorization.md
           - text: Built-in compression
-            url: vector-search-how-to-configure-compression-storage.md
+            url: vector-search-how-to-quantization.md
           - text: Retrieval Augmented Generation (RAG)
             url: retrieval-augmented-generation-overview.md
       - linkListType: quickstart
@@ -62,13 +63,13 @@ landingContent:
             url: https://github.com/Azure/azure-search-vector-samples/blob/main/README.md
 
   # Card
-  - title: Azure AI Studio
+  - title: Azure AI Foundry
     linkLists:
       - linkListType: how-to-guide
         links:
-          - text: Create a vector index in AI Studio
+          - text: Create a vector index in Azure AI Foundry portal
             url: /azure/ai-studio/how-to/index-add
-          - text: Chat with your data in Azure OpenAI Studio
+          - text: Chat with your data using Azure OpenAI
             url: /azure/ai-services/openai/use-your-data-quickstart
           - text: Build a question and answer copilot
             url: /azure/ai-studio/tutorials/deploy-copilot-ai-studio
@@ -89,7 +90,7 @@ landingContent:
           - text: Index from Azure Blob Storage
             url: search-blob-storage-integration.md
           - text: Index from Azure SQL Database
-            url: search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md
+            url: search-how-to-index-sql-database.md
           - text: Index from Azure Cosmos DB
             url: search-howto-index-cosmosdb.md
           - text: Index any data

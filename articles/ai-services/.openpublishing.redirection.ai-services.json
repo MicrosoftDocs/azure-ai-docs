@@ -107,7 +107,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/cognitive-services-development-options.md",
-      "redirect_url": "/azure/ai-services/ai-services-and-ecosystem",
+      "redirect_url": "/azure/ai-services/what-are-ai-services",
       "redirect_document_id": false
     },
     {
@@ -156,6 +156,11 @@
       "redirect_document_id": true
     },
     {
+      "source_path_from_root": "/articles/ai-services/content-safety/how-to/custom-categories.md",
+      "redirect_url": "/azure/ai-services/content-safety/quickstart-custom-categories",
+      "redirect_document_id": true
+    },
+    {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-voice-create-voice.md",
       "redirect_url": "/azure/ai-services/speech-service/professional-voice-train-voice",
       "redirect_document_id": true
@@ -187,7 +192,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/cognitive-services-and-machine-learning.md",
-      "redirect_url": "/azure/ai-services/ai-services-and-ecosystem",
+      "redirect_url": "/azure/ai-services/what-are-ai-services",
       "redirect_document_id": true
     },
     {
@@ -769,6 +774,46 @@
       "source_path_from_root": "/articles/ai-services/speech-service/video-translation-studio.md",
       "redirect_url": "/azure/ai-services/speech-service/video-translation-get-started",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/custom-speech-ai-studio.md",
+      "redirect_url": "/azure/ai-services/speech-service/custom-speech-ai-foundry-portal",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/qnamaker/how-to/migrate-to-openai.md",
+      "redirect_url": "/azure/ai-services/qnamaker/overview/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/how-to/azure-openai-integration.md",
+      "redirect_url": "/azure/ai-services/language-service/question-answering/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/quickstarts/try-document-intelligence-studio.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/quickstarts/studio-custom-project",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/train/custom-generative-extraction.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/custom-model",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/how-to-guides/build-train-custom-generative-model.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/how-to-guides/build-a-custom-model",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/integrate-synapseml.md",
+      "redirect_url": "/azure/ai-services/openai/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/ai-services-and-ecosystem.md",
+      "redirect_url": "/azure/ai-services/what-are-ai-services",
+      "redirect_document_id": false
     }
   ]
 }

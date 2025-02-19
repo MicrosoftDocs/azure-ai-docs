@@ -6,14 +6,11 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 08/07/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ---
 
 # Document Intelligence composed custom models
-
-::: moniker range="doc-intel-4.0.0"
-[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
 
 [!INCLUDE [applies to v4.0](../includes/applies-to-v40.md)]
 ::: moniker-end
@@ -32,7 +29,7 @@ ms.author: lajanuar
 
 > [!IMPORTANT]
 >
-> [The `model compose` operation behavior is changing from api-version=2024-07-31-preview](#benefits-of-the-new-model-compose-operation). The `model compose` operation v4.0 and later adds an explicitly trained classifier instead of an implicit classifier for analysis. For the previous composed model version, *see* Composed custom models v3.1.  If you are currently using composed models consider upgrading to the latest implementation.
+> The v4.0 2024-11-30 (GA) [`model compose` ](#benefits-of-the-new-model-compose-operation) operation adds an explicitly trained classifier instead of an implicit classifier for analysis. For the previous composed model version, *see* Composed custom models v3.1.  If you are currently using composed models consider upgrading to the latest implementation.
 
 ## What is a composed model?
 
@@ -40,7 +37,7 @@ With composed models, you can group multiple custom models into a composed model
 
 Some scenarios require classifying the document first and then analyzing the document with the model best suited to extract the fields from the model. Such scenarios can include ones where a user uploads a document but the document type isn't explicitly known. Another scenario can be when multiple documents are scanned together into a single file and the file is submitted for processing. Your application then needs to identify the component documents and select the best model for each document.
 
-In previous versions, the `model compose` operation performed an implicit classification to decide which custom model best represents the submitted document. The `2024-07-31-preview` implementation of the `model compose` operation replaces the implicit classification from the earlier versions with an explicit classification step and adds conditional routing.
+In previous versions, the `model compose` operation performed an implicit classification to decide which custom model best represents the submitted document. The **2024-11-30 (GA)** implementation of the `model compose` operation replaces the implicit classification from the earlier versions with an explicit classification step and adds conditional routing.
 
 ## Benefits of the new model compose operation
 
@@ -68,7 +65,7 @@ The new `model compose` operation requires you to train an explicit classifier a
 
 * Finally, train an extraction model for each of the document types you intend to use.
 
-* Once your classification and extraction models are trained, use the Document Intelligence Studio, client libraries, or the [REST API](/rest/api/aiservices/operation-groups?view=rest-aiservices-2024-07-31-preview&preserve-view=true) to compose the classification and extraction models into a composed model.
+* Once your classification and extraction models are trained, use the Document Intelligence Studio, client libraries, or the [REST API](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) to compose the classification and extraction models into a composed model.
 
 Use the `splitMode` parameter to control the file splitting behavior:
 
@@ -122,12 +119,11 @@ Composed models are billed the same as individual custom models. The pricing is 
 
 ### Composed model compatibility
 
-|Custom model type|Models trained with v2.1 and v2.0 | Custom template and neural models v3.1 and v3.0 |Custom template and neural models v4.0 preview|Custom Generative models v4.0 preview|
-|--|--|--|--|--|
-|**Models trained with version 2.1 and v2.0** |Not Supported|Not Supported|Not Supported|Not Supported|
-|**Custom template and neural models v3.0 and v3.1** |Not Supported|Supported|Supported|Not Supported|
-|**Custom template and neural models v4.0 preview**|Not Supported|Supported|Supported|Not Supported|
-|**Custom generative models v4.0 preview**|Not Supported|Not Supported|Not Supported|Not Supported|
+|Custom model type|Models trained with v2.1 and v2.0 | Custom template and neural models v3.1 and v3.0 |Custom template and neural models v4.0 2024-11-30 (GA)|
+|--|--|--|--|
+|**Models trained with version 2.1 and v2.0** |Not Supported|Not Supported|Not Supported|
+|**Custom template and neural models v3.0 and v3.1** |Not Supported|Supported|Supported|
+|**Custom template and neural models v4.0**|Not Supported|Supported|Supported|
 
 * To compose a model trained with a prior version of the API (v2.1 or earlier), train a model with the v3.0 API using the same labeled dataset. That addition ensures that the v2.1 model can be composed with other models.
 
@@ -139,11 +135,11 @@ Composed models are billed the same as individual custom models. The pricing is 
 
 :::moniker range="doc-intel-4.0.0"
 
-Document Intelligence **v4.0:2024-07-31-preview** supports the following tools, applications, and libraries:
+Document Intelligence **v4.0:2024-11-30 (GA)** supports the following tools, applications, and libraries:
 
 | Feature | Resources |
 |----------|-------------|
-|***Custom model***| &bullet; [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/custommodel/projects)</br>&bullet; [REST API](/rest/api/aiservices/operation-groups?view=rest-aiservices-2024-07-31-preview&preserve-view=true)</br>&bullet; [C# SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet; [Java SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet; [JavaScript SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet; [Python SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|
+|***Custom model***| &bullet; [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/custommodel/projects)</br>&bullet; [REST API](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)</br>&bullet; [C# SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet; [Java SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet; [JavaScript SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet; [Python SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|
 | ***Composed model***| &bullet; [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/custommodel/projects)</br>&bullet; [REST API](/rest/api/aiservices/operation-groups?view=rest-aiservices-2024-02-29-preview&preserve-view=true)</br>&bullet; [C# SDK](/dotnet/api/azure.ai.formrecognizer.training.formtrainingclient.startcreatecomposedmodel)</br>&bullet; [Java SDK](/java/api/com.azure.ai.formrecognizer.training.formtrainingclient.begincreatecomposedmodel)</br>&bullet; [JavaScript SDK](/javascript/api/@azure/ai-form-recognizer/documentmodeladministrationclient?view=azure-node-latest#@azure-ai-form-recognizer-documentmodeladministrationclient-begincomposemodel&preserve-view=true)</br>&bullet; [Python SDK](/python/api/azure-ai-formrecognizer/azure.ai.formrecognizer.formtrainingclient?view=azure-python#azure-ai-formrecognizer-formtrainingclient-begin-create-composed-model&preserve-view=true)|
 
 :::moniker-end

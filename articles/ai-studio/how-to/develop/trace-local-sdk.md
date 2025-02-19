@@ -1,178 +1,218 @@
 ---
-title: How to trace your application with prompt flow SDK
-titleSuffix: Azure AI Studio
-description: This article provides instructions on how to trace your application with prompt flow SDK.
+title: How to trace your application with Azure AI Inference SDK
+titleSuffix: Azure AI Foundry
+description: This article provides instructions on how to trace your application with  Azure AI Inference SDK.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
+  - ignite-2024
 ms.topic: how-to
-ms.date: 5/21/2024
-ms.reviewer: chenlujiao
-ms.author: sgilley
-author: sdgilley
+ms.date: 11/19/2024
+ms.reviewer: truptiparkar
+ms.author: lagayhar
+author: lgayhardt
 ---
 
-# How to trace your application with prompt flow SDK | Azure AI Studio
+# How to trace your application with Azure AI Inference SDK
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Tracing is a powerful tool that offers developers an in-depth understanding of the execution process of their generative AI applications such as agents, [AutoGen](https://microsoft.github.io/autogen/docs/Use-Cases/agent_chat), and retrieval augmented generation (RAG) use cases. It provides a detailed view of the execution flow, including the inputs and outputs of each node within the application. This essential information proves critical while debugging complex applications or optimizing performance.
-
-While more developers are using various frameworks such as Langchain, Semantic Kernel, OpenAI, and various types of agents to create LLM-based applications. Tracing with the prompt flow SDK offers enhanced visibility and simplified troubleshooting for LLM-based applications, effectively supporting development, iteration, and production monitoring. Tracing in AI Studio follows the [OpenTelemetry specification](https://opentelemetry.io/docs/specs/otel/), capturing and visualizing the internal execution details of any AI application, enhancing the overall development experience.
-
-## Benefits of AI Studio tracing on the enterprise-grade cloud platform
-
-Moreover, we now offer persistent local testing on AI Studio, which is the enterprise-grade cloud platform, significantly enhancing collaboration, persistence, and test history management.
-
-With tracing, you can:
-- Have a cloud-based location to persist and track your historical tests.
-- Easily extract and visualize the test results, comparing the outputs of different test cases.
-- Reuse your previous test assets for later usage, for example, human feedback, data curation, etc.
-- Facilitate better resource utilization in the future.
-- Debug and optimize your application with ease. To get started with debugging LLM application scenarios, refer to [Tracing with LLM application](https://microsoft.github.io/promptflow/tutorials/trace-llm.html)
-- Analyze retrieval and generation processes in RAG applications.
-- Observe the multi-agents interactions in the multi-agent scenarios. To get started with tracing in multi-agent scenarios, refer to [Tracing with AutoGen](https://microsoft.github.io/promptflow/tutorials/trace-autogen-groupchat.html).
-
-## Log and view traces of your applications
-
-AI Studio provides the tracing capability for logging and managing your LLM applications tests and evaluations, while debugging and observing by drilling down the trace view.
-
-The tracing any application feature today is implemented in the [prompt flow open-source package](https://microsoft.github.io/promptflow/), to enable user to trace LLM call or function, and LLM frameworks like LangChain and AutoGen, regardless of which framework you use, following [OpenTelemetry specification](https://opentelemetry.io/docs/specs/otel/). 
+In this article you'll learn how to trace your application with Azure AI Inference SDK with your choice between using Python, JavaScript, or C#. The Azure AI Inference client library provides support for tracing with OpenTelemetry.
 
 ## Enable trace in your application
 
-Code first - Make sure you have annotated your code for tracing in prompt flow!
+### Prerequisites
 
-- [Installing prompt flow](https://microsoft.github.io/promptflow/how-to-guides/quick-start.html#set-up-your-dev-environment) : require promptflow-tracing
-- [Instrumenting your application code](https://microsoft.github.io/promptflow/how-to-guides/tracing/index.html#instrumenting-user-s-code) : using `@trace` and `start_trace()`.
-- [Test and view trace in local](https://microsoft.github.io/promptflow/how-to-guides/tracing/trace-ui.html)
+- An [Azure Subscription](https://azure.microsoft.com/).
+- An Azure AI project, see [Create a project in Azure AI Foundry portal](../create-projects.md).
+- An AI model supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed through Azure AI Foundry.
+- If using Python, you need Python 3.8 or later installed, including pip.
+- If using JavaScript, the supported environments are LTS versions of Node.js.
 
-More details about tracing in prompt flow, please refer to [this prompt flow documentation](https://microsoft.github.io/promptflow/how-to-guides/tracing/index.html#tracing).
+### Installation
 
-## Log the trace to AI Studio
+# [Python](#tab/python)
 
-### Set the trace destination
+Install the package `azure-ai-inference` using your package manager, like pip:
 
-By default, the trace is logged and viewed in your local environment. To log it in the AI Studio in the cloud, you need to set the `trace destination` to a specified AI Studio project.
-
-You can refer to the following steps to set the trace destination to AI Studio project. 
-
-First, ensure that Azure CLI is installed and logged in: 
-
-```azurecli
-az login
+```bash
+  pip install azure-ai-inference[opentelemetry] 
 ```
 
-Next, execute the following command to set the trace destination. Replace `<your_subscription_id>`, `<your_resourcegroup_name>`, and `<your_studio_project_name>` with your specific subscription ID, resource group name, and AI Studio project name:
+Install the Azure Core OpenTelemetry Tracing plugin, OpenTelemetry, and the OTLP exporter for sending telemetry to your observability backend. To install the necessary packages for Python, use the following pip commands:
 
-```azurecli
-pf config set trace.destination=azureml://subscriptions/<your_subscription_id>/resourcegroups/<your_resourcegroup_name>/providers/Microsoft.MachineLearningServices/workspaces/<your_studio_project_name>
+```bash
+pip install opentelemetry 
+
+pip install opentelemetry-exporter-otlp 
 ```
 
-> [!NOTE]
-> The West US 3 (`westus3`) region does not support tracing.
+To learn more about Azure AI Inference SDK for Python and observability, see [Tracing via Inference SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-inference/README.md#observability-with-opentelemetry).
 
-### Collections
+# [JavaScript](#tab/javascript)
 
-A **collection** is a group of associated traces. In [AI Studio](https://ai.azure.com), these collections along with their internal traces are managed and stored in the **Tracing** module under the **Collections** tab.
+Install the package `@azure-rest/ai-inference` for JavaScript using npm:
 
-1. Go to your project in [AI Studio](https://ai.azure.com).
-1. From the left pane, select **Tracing**. You can see the **Collections** tab. You can only see your own collections in the list of collections. In this example, there aren't any collections yet.
-
-    :::image type="content" source="../../media/how-to/tracing/tracing-collections-empty.png" alt-text="Screenshot of the button to add a new connection." lightbox="../../media/how-to/tracing/tracing-collections-empty.png":::
-
-The collection tab displays a comprehensive list of all the collections you've created. It shows essential metadata for each collection, including its name, run location, last updated time, and created time.
-
-- **Run location**: Indicates whether the application runs locally or in the cloud. The cloud collection is associated with specific prompt flow cloud authoring test history and generated traces. In this case, the collection name is the same as the prompt flow display name.
-- **Updated on**: Shows the most recent time a new trace was logged to a collection. By default, collections are sorted in descending order based on their updated times.
-- **Created on**: The time when the collection was initially created.
-
-By selecting a collection's name, you can access a list of all the traces within that collection. Only a subset of traces can be shared with others. Refer to [share trace](#share-trace) for more information.
-
-When logging a trace, you have the option to [specify a collection name](#customize-the-collections) to group it with other related traces. You can create multiple collections for better organization of your traces. If a collection name isn't specified when logging a trace, it defaults to the **project folder name** or to the **default collection**.
-
-#### Customize the collections
-
-For better organization of your traces, you can specify a custom collection name when logging a trace. 
-
-# [Python SDK](#tab/python)
-
-If you're tracing your own application, you can set the collection name in the `start_trace()` function in your code:
-
-```python
-from promptflow.tracing import start_trace, trace
-
-@trace
-def my_function(input: str) -> str:
-    output = input + "Hello World!"
-    return output
-
-my_function("This is my function")
-start_trace(collection="my_custom_collection")
+```bash
+    npm install @azure-rest/ai-inference
 ```
 
-# [Azure CLI](#tab/cli)
-```azurecli
-# Test flow
-pf flow test --flow <flow-name> --collection my_custom_collection
+To learn more about Azure AI Inference SDK for JavaScript and observability, see [Tracing via Inference SDK for JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-inference-rest/README.md#instrumentation).
+
+# [C#](#tab/csharp)
+
+Install the Azure AI Inference client library for .NET with [NuGet](https://aka.ms/azsdk/azure-ai-inference/csharp/package): 
+
+```dotnetcli
+    dotnet add package Azure.AI.Inference --prerelease
 ```
+
+To learn more Azure AI Inference SDK for C# and observability, see the [Tracing via Inference SDK for C#](https://github.com/Azure/azure-sdk-for-net/tree/Azure.AI.Inference_1.0.0-beta.2/sdk/ai/Azure.AI.Inference#observability-with-opentelemetry).
 
 ---
 
-More details about customizing collections, please refer to [tracing tutorial](https://microsoft.github.io/promptflow/reference/python-library-reference/promptflow-tracing/promptflow.tracing.html) and [prompt flow command](https://microsoft.github.io/promptflow/reference/pf-command-reference.html#pf).
+To learn more , see the [Inference SDK reference](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md).
 
+### Configuration
 
-### View the traces
+# [Python](#tab/python)
 
-First, you must complete the previous steps to view the traces in the cloud:
-- [Enable trace in your application](#enable-trace-in-your-application).
-- [Set cloud trace destination](#set-the-trace-destination).
+You need to add following configuration settings as per your use case:
 
-Now, run your python script directly. Upon successful execution, a cloud trace link appears in the output. It might look something like this:
+- To capture prompt and completion contents, set the `AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED` environment variable to true (case insensitive). By default, prompts, completions, function names, parameters, or outputs aren't recorded.
+- To enable Azure SDK tracing, set the `AZURE_SDK_TRACING_IMPLEMENTATION` environment variable to opentelemetry. Alternatively, you can configure it in the code with the following snippet:
 
-```bash
-Starting prompt flow service...
-...
-You can view the traces in cloud from AI Studio: https://ai.azure.com/projecttrace/detail/....
+    ```python
+    from azure.core.settings import settings 
+    
+    settings.tracing_implementation = "opentelemetry" 
+    ```
+
+    To learn more, see [Azure Core Tracing OpenTelemetry client library for Python](/python/api/overview/azure/core-tracing-opentelemetry-readme).
+
+# [JavaScript](#tab/javascript)
+
+Instrumentation is only supported for Chat Completion without streaming. To enable instrumentation, you need to register exporter(s). Following is an example of how to add a console exporter.
+
+Console Exporter:
+
+```javascript
+import { ConsoleSpanExporter, NodeTracerProvider, SimpleSpanProcessor } from "@opentelemetry/sdk-trace-node"; 
+
+const provider = new NodeTracerProvider(); 
+
+provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter())); 
+
+provider.register(); 
 ```
 
-Selecting the URL to navigate to a trace detail page on the cloud portal. This page is similar to the local trace view.
+# [C#](#tab/csharp)
 
-The **trace detail view** provides a comprehensive and structured overview of the operations within your application.
+Distributed tracing and metrics with OpenTelemetry are supported in Azure AI Inference in experimental mode and could be enabled through either of these steps: 
 
-**Understand the trace detail view**
+- Set the `AZURE_EXPERIMENTAL_ENABLE_ACTIVITY_SOURCE` environment variable to true.
+- Set the `Azure.Experimental.EnableActivitySource` context switch to true in your application code.
 
-In the top right corner of the trace view, you find:
-* Trace name: This is same as the root span name, representing the entry function name of your application.
-* Status: This could either be "completed" or "failed".
-* Total duration: This is total duration time of the test execution. Hover over to view the start and end times.
-* Total tokens: This is the total token cost of the test. Hover over to view the prompt tokens and completed tokens.
-* Created time: The time at which the trace was created.
+---
 
-On the left side, you can see a **hierarchical tree structure**. This structure shows the sequence of function calls. Each function call's metadata is organized into [spans](https://opentelemetry.io/docs/concepts/signals/traces/#spans). These spans are linked together in a tree-like structure, illustrating the sequence of execution.
+### Enable Instrumentation
 
-In prompt flow SDK, we defined several span types, including LLM, Function, Embedding, Retrieval, and Flow. And the system automatically creates spans with execution information in designated attributes and events. 
+# [Python](#tab/python)
 
-Each span allows you to view:
-* Function name: By default, this is the name of the function as defined in your code. However, it can also be a customized span name defined via [Open Telemetry](https://opentelemetry.io/docs/what-is-opentelemetry/).
-* Duration: This represents the duration for which the function ran. Hover over to view the start and end times.
-* Tokens for LLM calls: This is the token cost of the LLM call. Hover over to view the prompt tokens and completed tokens.
+The final step is to enable Azure AI Inference instrumentation with the following code snippet:
 
-By selecting a specific span, you can shift to viewing its associated detailed information on the right side. This information includes *input*, *output*, *raw JSON*, *logs*, and *exceptions*, which are essential for observing and debugging your application.
+```python
+from azure.ai.inference.tracing import AIInferenceInstrumentor 
 
-For the **LLM** span, a clear conversation view is provided. This includes the *system prompt*, *user prompt*, and *assistant response*. This information is especially crucial in multi-agent cases, as it allows you to understand the flow of the conversation and the interaction within the LLM intermediate auto-calling.
+# Instrument AI Inference API 
 
-You can select the **raw JSON** tab to view the json data of the span. This format might be more suitable for developers when it comes to debugging and troubleshooting.
+AIInferenceInstrumentor().instrument() 
 
-### Share trace
+```
 
-If you want to share the trace with others who has the project permission, you can select the **Share** button on the right corner of the trace detail page, then you have the page link copied to share with others. 
+It's also possible to uninstrument the Azure AI Inferencing API by using the uninstrument call. After this call, the traces will no longer be emitted by the Azure AI Inferencing API until instrument is called again:
 
-> [!NOTE]
-> The shared trace is read-only, and only the people who has the project permission can view it via the link.
+```python
+AIInferenceInstrumentor().uninstrument() 
+```
+
+# [JavaScript](#tab/javascript)
+
+To use instrumentation for Azure SDK, you need to register it before importing any dependencies from `@azure/core-tracing`, such as `@azure-rest/ai-inference`.
+
+```Javascript
+import { registerInstrumentations } from "@opentelemetry/instrumentation"; 
+
+import { createAzureSdkInstrumentation } from "@azure/opentelemetry-instrumentation-azure-sdk"; 
+
+
+registerInstrumentations({ 
+
+  instrumentations: [createAzureSdkInstrumentation()], 
+
+}); 
+
+import ModelClient from "@azure-rest/ai-inference"; 
+
+```
+
+When making a call for chat completion, you need to include the tracingOptions with the active tracing context: 
+
+```javascript
+
+import { context } from "@opentelemetry/api"; 
+
+client.path("/chat/completions").post({ 
+
+      body: {...}, 
+
+      tracingOptions: { tracingContext: context.active() } 
+
+}); 
+
+```
+
+# [C#](#tab/csharp)
+
+To configure OpenTelemetry and enable Azure AI Inference tracing follow these steps:
+
+1. **Install OpenTelemetry Packages**: Install the following dependencies for HTTP tracing and metrics instrumentation as well as console and [OTLP](https://opentelemetry.io/docs/specs/otel/protocol/) exporters:
+
+    ```csharp
+       dotnet add package OpenTelemetry.Instrumentation.Http 
+    
+       dotnet add package OpenTelemetry.Exporter.Console 
+    
+       dotnet add package OpenTelemetry.Exporter.OpenTelemetryProtocol 
+    ```
+
+1. **Enable Experimental Azure SDK Observability**: Set the context switch to enable experimental Azure SDK observability:
+
+    ```csharp
+       AppContext.SetSwitch("Azure.Experimental.EnableActivitySource", true); 
+    ```
+
+1. **Enable Content Recording**: By default, instrumentation captures chat messages without content. To enable content recording, set the following context switch: 
+
+    ```csharp
+     AppContext.SetSwitch("Azure.Experimental.TraceGenAIMessageContent", true);
+    ```
+
+1. **Configure Tracer Provider**: Configure the tracer provider to export traces and metrics to console and to the local OTLP destination as needed.
+
+---
+
+### Tracing your own functions
+
+To trace your own custom functions, you can leverage OpenTelemetry, you'll need to instrument your code with the OpenTelemetry SDK. This involves setting up a tracer provider and creating spans around the code you want to trace. Each span represents a unit of work and can be nested to form a trace tree. You can add attributes to spans to enrich the trace data with additional context. Once instrumented, configure an exporter to send the trace data to a backend for analysis and visualization. For detailed instructions and advanced usage, refer to the [OpenTelemetry documentation](https://opentelemetry.io/docs/). This will help you monitor the performance of your custom functions and gain insights into their execution.
+
+## Attach User feedback to traces
+
+To attach user feedback to traces and visualize them in Azure AI Foundry portal using OpenTelemetry's semantic conventions, you can instrument your application enabling tracing and logging user feedback. By correlating feedback traces with their respective chat request traces using the response ID, you can use view and manage these traces in Azure AI Foundry portal. OpenTelemetry's specification allows for standardized and enriched trace data, which can be analyzed in Azure AI Foundry portal for performance optimization and user experience insights. This approach helps you use the full power of OpenTelemetry for enhanced observability in your applications.  
 
 ## Related content
 
-- [Get started building a chat app using the prompt flow SDK](../../quickstarts/get-started-code.md)
-- [Work with projects in VS Code](vscode.md)
+- [Python samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-inference/samples/sample_chat_completions_with_tracing.py) containing fully runnable Python code for tracing using synchronous and asynchronous clients.
+- [JavaScript samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples/v1-beta/typescript/src) containing fully runnable JavaScript code for tracing using synchronous and asynchronous clients.
+- [C# Samples](https://github.com/Azure/azure-sdk-for-net/blob/Azure.AI.Inference_1.0.0-beta.2/sdk/ai/Azure.AI.Inference/samples/Sample8_ChatCompletionsWithOpenTelemetry.md) containing fully runnable C# code for doing inference using synchronous and asynchronous methods.

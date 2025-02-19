@@ -1,11 +1,11 @@
 ---
-title: How to use Mistral Nemo chat model with Azure AI Studio
-titleSuffix: Azure AI Studio
-description: Learn how to use Mistral Nemo chat model with Azure AI Studio.
-ms.service: azure-ai-studio
+title: How to use Mistral Nemo chat model with Azure AI Foundry
+titleSuffix: Azure AI Foundry
+description: Learn how to use Mistral Nemo chat model with Azure AI Foundry.
+ms.service: azure-ai-foundry
 manager: scottpolly
 ms.topic: how-to
-ms.date: 09/13/2024
+ms.date: 01/31/2025
 ms.reviewer: kritifaujdar
 reviewer: fkriti
 ms.author: mopeakande
@@ -18,8 +18,12 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn about Mistral Nemo chat model and how to use them.
-Mistral AI offers two categories of models. Premium models including [Mistral Large and Mistral Small](deploy-models-mistral.md), available as serverless APIs with pay-as-you-go token-based billing. Open models including [Mistral Nemo](deploy-models-mistral-nemo.md), [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](deploy-models-mistral-open.md); available to also download and run on self-hosted managed endpoints.
+In this article, you learn about Mistral Nemo chat model and how to use it.
+Mistral AI offers two categories of models, namely:
+
+- _Premium models_: These include [Mistral Large, Mistral Small, and Ministral 3B](deploy-models-mistral.md) models, and are available as serverless APIs with pay-as-you-go token-based billing.  
+- _Open models_: These include [Codestral](deploy-models-mistral-codestral.md) and Mistral Nemo (that are available as serverless APIs with pay-as-you-go token-based billing), and [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](deploy-models-mistral-open.md)(that are available to download and run on self-hosted managed endpoints).
+
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
@@ -33,7 +37,7 @@ Mistral Nemo is a 12B model, making it a powerful drop-in replacement for any sy
 
 Additionally, Mistral Nemo is:
 
-* **Jointly developed with Nvidia**. This collaboration has resulted in a powerful 12B model that pushes the boundaries of language understanding and generation.
+* **Jointly developed with NVIDIA**. This collaboration has resulted in a powerful 12B model that pushes the boundaries of language understanding and generation.
 * **Multilingual proficient**. Mistral Nemo is equipped with a tokenizer called Tekken, which is designed for multilingual applications. It supports over 100 languages, such as English, French, German, and Spanish. Tekken is more efficient than the Llama 3 tokenizer in compressing text for approximately 85% of all languages, with significant improvements in Malayalam, Hindi, Arabic, and prevalent European languages.
 * **Agent-centric**. Mistral Nemo possesses top-tier agentic capabilities, including native function calling and JSON outputting.
 * **Advanced in reasoning**. Mistral Nemo demonstrates state-of-the-art mathematical and reasoning capabilities within its size category.
@@ -49,7 +53,7 @@ You can learn more about the models in their respective model card:
 
 ## Prerequisites
 
-To use Mistral Nemo chat model with Azure AI Studio, you need the following prerequisites:
+To use Mistral Nemo chat model with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -57,7 +61,7 @@ To use Mistral Nemo chat model with Azure AI Studio, you need the following prer
 
 Mistral Nemo chat model can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -83,7 +87,7 @@ Read more about the [Azure AI inference package and reference](https://aka.ms/az
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral Nemo chat model.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral Nemo chat model.
 
 ### Create a client to consume the model
 
@@ -276,7 +280,7 @@ The following extra parameters can be passed to Mistral Nemo chat model:
 
 ### Safe mode
 
-Mistral Nemo chat model support the parameter `safe_prompt`. You can toggle the safe prompt to prepend your messages with the following system prompt:
+Mistral Nemo chat model supports the parameter `safe_prompt`. You can toggle the safe prompt to prepend your messages with the following system prompt:
 
 > Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.
 
@@ -297,7 +301,7 @@ response = client.complete(
 
 ### Use tools
 
-Mistral Nemo chat model support the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
+Mistral Nemo chat model supports the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
 
 The following code example creates a tool definition that is able to look from flight information from two different cities.
 
@@ -457,8 +461,8 @@ except HttpResponseError as ex:
     raise
 ```
 
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+[!INCLUDE [content-safety-serverless-apis-note](../includes/content-safety-serverless-apis-note.md)]
+
 
 ::: zone-end
 
@@ -473,7 +477,7 @@ Mistral Nemo is a 12B model, making it a powerful drop-in replacement for any sy
 
 Additionally, Mistral Nemo is:
 
-* **Jointly developed with Nvidia**. This collaboration has resulted in a powerful 12B model that pushes the boundaries of language understanding and generation.
+* **Jointly developed with NVIDIA**. This collaboration has resulted in a powerful 12B model that pushes the boundaries of language understanding and generation.
 * **Multilingual proficient**. Mistral Nemo is equipped with a tokenizer called Tekken, which is designed for multilingual applications. It supports over 100 languages, such as English, French, German, and Spanish. Tekken is more efficient than the Llama 3 tokenizer in compressing text for approximately 85% of all languages, with significant improvements in Malayalam, Hindi, Arabic, and prevalent European languages.
 * **Agent-centric**. Mistral Nemo possesses top-tier agentic capabilities, including native function calling and JSON outputting.
 * **Advanced in reasoning**. Mistral Nemo demonstrates state-of-the-art mathematical and reasoning capabilities within its size category.
@@ -489,7 +493,7 @@ You can learn more about the models in their respective model card:
 
 ## Prerequisites
 
-To use Mistral Nemo chat model with Azure AI Studio, you need the following prerequisites:
+To use Mistral Nemo chat model with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -497,7 +501,7 @@ To use Mistral Nemo chat model with Azure AI Studio, you need the following prer
 
 Mistral Nemo chat model can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -521,7 +525,7 @@ npm install @azure-rest/ai-inference
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral Nemo chat model.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral Nemo chat model.
 
 ### Create a client to consume the model
 
@@ -735,7 +739,7 @@ The following extra parameters can be passed to Mistral Nemo chat model:
 
 ### Safe mode
 
-Mistral Nemo chat model support the parameter `safe_prompt`. You can toggle the safe prompt to prepend your messages with the following system prompt:
+Mistral Nemo chat model supports the parameter `safe_prompt`. You can toggle the safe prompt to prepend your messages with the following system prompt:
 
 > Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.
 
@@ -761,7 +765,7 @@ var response = await client.path("/chat/completions").post({
 
 ### Use tools
 
-Mistral Nemo chat model support the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
+Mistral Nemo chat model supports the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
 
 The following code example creates a tool definition that is able to look from flight information from two different cities.
 
@@ -916,8 +920,8 @@ catch (error) {
 }
 ```
 
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+[!INCLUDE [content-safety-serverless-apis-note](../includes/content-safety-serverless-apis-note.md)]
+
 
 ::: zone-end
 
@@ -932,7 +936,7 @@ Mistral Nemo is a 12B model, making it a powerful drop-in replacement for any sy
 
 Additionally, Mistral Nemo is:
 
-* **Jointly developed with Nvidia**. This collaboration has resulted in a powerful 12B model that pushes the boundaries of language understanding and generation.
+* **Jointly developed with NVIDIA**. This collaboration has resulted in a powerful 12B model that pushes the boundaries of language understanding and generation.
 * **Multilingual proficient**. Mistral Nemo is equipped with a tokenizer called Tekken, which is designed for multilingual applications. It supports over 100 languages, such as English, French, German, and Spanish. Tekken is more efficient than the Llama 3 tokenizer in compressing text for approximately 85% of all languages, with significant improvements in Malayalam, Hindi, Arabic, and prevalent European languages.
 * **Agent-centric**. Mistral Nemo possesses top-tier agentic capabilities, including native function calling and JSON outputting.
 * **Advanced in reasoning**. Mistral Nemo demonstrates state-of-the-art mathematical and reasoning capabilities within its size category.
@@ -948,7 +952,7 @@ You can learn more about the models in their respective model card:
 
 ## Prerequisites
 
-To use Mistral Nemo chat model with Azure AI Studio, you need the following prerequisites:
+To use Mistral Nemo chat model with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -956,7 +960,7 @@ To use Mistral Nemo chat model with Azure AI Studio, you need the following prer
 
 Mistral Nemo chat model can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -1003,7 +1007,7 @@ using System.Reflection;
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral Nemo chat model.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral Nemo chat model.
 
 ### Create a client to consume the model
 
@@ -1214,7 +1218,7 @@ The following extra parameters can be passed to Mistral Nemo chat model:
 
 ### Safe mode
 
-Mistral Nemo chat model support the parameter `safe_prompt`. You can toggle the safe prompt to prepend your messages with the following system prompt:
+Mistral Nemo chat model supports the parameter `safe_prompt`. You can toggle the safe prompt to prepend your messages with the following system prompt:
 
 > Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.
 
@@ -1237,7 +1241,7 @@ Console.WriteLine($"Response: {response.Value.Choices[0].Message.Content}");
 
 ### Use tools
 
-Mistral Nemo chat model support the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
+Mistral Nemo chat model supports the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
 
 The following code example creates a tool definition that is able to look from flight information from two different cities.
 
@@ -1397,8 +1401,8 @@ catch (RequestFailedException ex)
 }
 ```
 
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+[!INCLUDE [content-safety-serverless-apis-note](../includes/content-safety-serverless-apis-note.md)]
+
 
 ::: zone-end
 
@@ -1413,7 +1417,7 @@ Mistral Nemo is a 12B model, making it a powerful drop-in replacement for any sy
 
 Additionally, Mistral Nemo is:
 
-* **Jointly developed with Nvidia**. This collaboration has resulted in a powerful 12B model that pushes the boundaries of language understanding and generation.
+* **Jointly developed with NVIDIA**. This collaboration has resulted in a powerful 12B model that pushes the boundaries of language understanding and generation.
 * **Multilingual proficient**. Mistral Nemo is equipped with a tokenizer called Tekken, which is designed for multilingual applications. It supports over 100 languages, such as English, French, German, and Spanish. Tekken is more efficient than the Llama 3 tokenizer in compressing text for approximately 85% of all languages, with significant improvements in Malayalam, Hindi, Arabic, and prevalent European languages.
 * **Agent-centric**. Mistral Nemo possesses top-tier agentic capabilities, including native function calling and JSON outputting.
 * **Advanced in reasoning**. Mistral Nemo demonstrates state-of-the-art mathematical and reasoning capabilities within its size category.
@@ -1429,7 +1433,7 @@ You can learn more about the models in their respective model card:
 
 ## Prerequisites
 
-To use Mistral Nemo chat model with Azure AI Studio, you need the following prerequisites:
+To use Mistral Nemo chat model with Azure AI Foundry, you need the following prerequisites:
 
 ### A model deployment
 
@@ -1437,7 +1441,7 @@ To use Mistral Nemo chat model with Azure AI Studio, you need the following prer
 
 Mistral Nemo chat model can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Studio, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
 > [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
@@ -1454,7 +1458,7 @@ Models deployed with the [Azure AI model inference API](https://aka.ms/azureai/m
 In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Studio with the same code and structure, including Mistral Nemo chat model.
+> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral Nemo chat model.
 
 ### Create a client to consume the model
 
@@ -1752,7 +1756,7 @@ The following extra parameters can be passed to Mistral Nemo chat model:
 
 ### Safe mode
 
-Mistral Nemo chat model support the parameter `safe_prompt`. You can toggle the safe prompt to prepend your messages with the following system prompt:
+Mistral Nemo chat model supports the parameter `safe_prompt`. You can toggle the safe prompt to prepend your messages with the following system prompt:
 
 > Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.
 
@@ -1785,7 +1789,7 @@ extra-parameters: pass-through
 
 ### Use tools
 
-Mistral Nemo chat model support the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
+Mistral Nemo chat model supports the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
 
 The following code example creates a tool definition that is able to look from flight information from two different cities.
 
@@ -2004,8 +2008,8 @@ The following example shows how to handle events when the model detects harmful 
 }
 ```
 
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+[!INCLUDE [content-safety-serverless-apis-note](../includes/content-safety-serverless-apis-note.md)]
+
 
 ::: zone-end
 
@@ -2016,7 +2020,8 @@ For more examples of how to use Mistral models, see the following examples and t
 | Description                               | Language          | Sample                                                          |
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|
 | CURL request                              | Bash              | [Link](https://aka.ms/mistral-large/webrequests-sample)         |
-| Azure AI Inference package for JavaScript | JavaScript        | [Link](https://aka.ms/azsdk/azure-ai-inference/javascript/samples)  |
+| Azure AI Inference package for C#         | C#                | [Link](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Inference/samples)   |  
+| Azure AI Inference package for JavaScript | JavaScript        | [Link](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples)  |
 | Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)  |
 | Python web requests                       | Python            | [Link](https://aka.ms/mistral-large/webrequests-sample)         |
 | OpenAI SDK (experimental)                 | Python            | [Link](https://aka.ms/mistral-large/openaisdk)                  |
@@ -2029,17 +2034,17 @@ For more examples of how to use Mistral models, see the following examples and t
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
-Mistral models deployed as a serverless API are offered by MistralAI through the Azure Marketplace and integrated with Azure AI Studio for use. You can find the Azure Marketplace pricing when deploying the model.
+Mistral models deployed as a serverless API are offered by MistralAI through Azure Marketplace and integrated with Azure AI Foundry for use. You can find Azure Marketplace pricing when deploying the model.
 
-Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
+Each time a project subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
 
-For more information on how to track costs, see [Monitor costs for models offered through the Azure Marketplace](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
+For more information on how to track costs, see [Monitor costs for models offered through Azure Marketplace](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
 
 ## Related content
 
 
-* [Azure AI Model Inference API](../reference/reference-model-inference-api.md)
+* [Azure AI Model Inference API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md)
 * [Deploy models as serverless APIs](deploy-models-serverless.md)
-* [Consume serverless API endpoints from a different Azure AI Studio project or hub](deploy-models-serverless-connect.md)
+* [Consume serverless API endpoints from a different Azure AI Foundry project or hub](deploy-models-serverless-connect.md)
 * [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)
 * [Plan and manage costs (marketplace)](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace)

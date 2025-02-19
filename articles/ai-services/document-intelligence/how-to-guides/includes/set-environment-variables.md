@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.custom: linux-related-content
 ms.topic: include
-ms.date: 05/23/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ---
 

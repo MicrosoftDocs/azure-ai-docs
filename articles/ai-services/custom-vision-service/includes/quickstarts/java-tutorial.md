@@ -3,14 +3,14 @@ author: PatrickFarley
 ms.custom: devx-track-java
 ms.author: pafarley
 ms.service: azure-ai-custom-vision
-ms.date: 10/13/2020
+ms.date: 11/11/2024
 ms.topic: include
 ---
 
 Get started using the Custom Vision client library for Java to build an image classification model. Follow these steps to install the package and try out the example code for basic tasks. Use this example as a template for building your own image recognition app.
 
 > [!NOTE]
-> If you want to build and train a classification model _without_ writing code, see the [browser-based guidance](../../getting-started-build-a-classifier.md) instead.
+> If you want to build and train a classification model _without_ writing code, see the [browser-based guidance](../../getting-started-build-a-classifier.md).
 
 Use the Custom Vision client library for Java to:
 
@@ -22,16 +22,16 @@ Use the Custom Vision client library for Java to:
 * Test the prediction endpoint
 
 [Reference documentation](/java/api/overview/azure/cognitiveservices/client/customvision) | 
-Library source code [(training)](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/cognitiveservices/ms-azure-cs-customvision-training) [(prediction)](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/cognitiveservices/ms-azure-cs-customvision-prediction)| 
-Artifact (Maven) [(training)](https://search.maven.org/artifact/com.azure/azure-cognitiveservices-customvision-training/1.1.0-preview.2/jar) [(prediction)](https://search.maven.org/artifact/com.azure/azure-cognitiveservices-customvision-prediction/1.1.0-preview.2/jar) | 
+Library source code for [(training)](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/cognitiveservices/ms-azure-cs-customvision-training) and [(prediction)](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/cognitiveservices/ms-azure-cs-customvision-prediction)| 
+Artifact (Maven) for [(training)](https://search.maven.org/artifact/com.azure/azure-cognitiveservices-customvision-training/1.1.0-preview.2/jar) and [(prediction)](https://search.maven.org/artifact/com.azure/azure-cognitiveservices-customvision-prediction/1.1.0-preview.2/jar) | 
 [Samples](/samples/browse/?products=azure&terms=custom%20vision)
 
 ## Prerequisites
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
-* The current version of the [Java Development Kit(JDK)](https://www.microsoft.com/openjdk)
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* The current version of the [Java Development Kit(JDK)](https://www.microsoft.com/openjdk).
 * The [Gradle build tool](https://gradle.org/install/), or another dependency manager.
-* Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesCustomVision"  title="Create a Custom Vision resource"  target="_blank">create a Custom Vision resource </a> in the Azure portal to create a training and prediction resource.
+* Once you have your Azure subscription, create a [Custom Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesCustomVision) in the Azure portal to create a training and prediction resource.
     * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
 [!INCLUDE [create environment variables](../environment-variables.md)]
@@ -46,7 +46,7 @@ In a console window (such as cmd, PowerShell, or Bash), create a new directory f
 mkdir myapp && cd myapp
 ```
 
-Run the `gradle init` command from your working directory. This command will create essential build files for Gradle, including *build.gradle.kts*, which is used at runtime to create and configure your application.
+Run the `gradle init` command from your working directory. This command creates essential build files for Gradle, including *build.gradle.kts*, which is used at runtime to create and configure your application.
 
 ```console
 gradle init --type basic
@@ -56,7 +56,7 @@ When prompted to choose a **DSL**, select **Kotlin**.
 
 ### Install the client library
 
-Locate *build.gradle.kts* and open it with your preferred IDE or text editor. Then copy in the following build configuration. This configuration defines the project as a Java application whose entry point is the class **CustomVisionQuickstart**. It imports the Custom Vision libraries.
+Locate *build.gradle.kts* and open it with your preferred IDE or text editor. Then copy in the following build configuration. This configuration defines the project as a Java application whose entry point is the class `CustomVisionQuickstart`. It imports the Custom Vision libraries.
 
 ```kotlin
 plugins {
@@ -77,7 +77,6 @@ dependencies {
 
 ### Create a Java file
 
-
 From your working directory, run the following command to create a project source folder:
 
 ```console
@@ -92,20 +91,15 @@ Navigate to the new folder and create a file called *CustomVisionQuickstart.java
 > Want to view the whole quickstart code file at once? You can find it on [GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/java/CustomVision/src/main/java/com/microsoft/azure/cognitiveservices/vision/customvision/samples/CustomVisionSamples.java), which contains the code examples in this quickstart.
 
 
-In the application's **CustomVisionQuickstart** class, create variables that retrieve your resource's keys and endpoint from environment variables.
+In the application's `CustomVisionQuickstart` class, create variables that retrieve your resource's keys and endpoint from environment variables.
 
 [!code-java[](~/cognitive-services-quickstart-code/java/CustomVision/src/main/java/com/microsoft/azure/cognitiveservices/vision/customvision/samples/CustomVisionSamples.java?name=snippet_creds)]
 
 
 > [!IMPORTANT]
-> Go to the Azure portal. If the Custom Vision resources you created in the **Prerequisites** section deployed successfully, select the **Go to Resource** button under **Next Steps**. You can find your keys and endpoint in the resources' **key and endpoint** pages. You'll need to get the keys for both your training and prediction resources, along with the API endpoint for your training resource.
->
-> You can find the prediction resource ID on the resource's **Properties** tab in the Azure portal, listed as **Resource ID**.
-
-> [!IMPORTANT]
 > Remember to remove the keys from your code when you're done, and never post them publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). See the Azure AI services [security](../../../security-features.md) article for more information.
 
-In the application's **main** method, add calls for the methods used in this quickstart. You'll define these later.
+In the application's `main` method, add calls for the methods used in this quickstart. You'll define these later.
 
 [!code-java[](~/cognitive-services-quickstart-code/java/CustomVision/src/main/java/com/microsoft/azure/cognitiveservices/vision/customvision/samples/CustomVisionSamples.java?name=snippet_maincalls)]
 
@@ -133,14 +127,12 @@ These code snippets show you how to do the following tasks with the Custom Visio
 
 ## Authenticate the client
 
-In your **main** method, instantiate training and prediction clients using your endpoint and keys.
+In your `main` method, instantiate training and prediction clients using your endpoint and keys.
 
 [!code-java[](~/cognitive-services-quickstart-code/java/CustomVision/src/main/java/com/microsoft/azure/cognitiveservices/vision/customvision/samples/CustomVisionSamples.java?name=snippet_auth)]
 
 
 ## Create a Custom Vision project
-
-T## Create a new Custom Vision project
 
 This next method creates an image classification project. The created project will show up on the [Custom Vision website](https://customvision.ai/) that you visited earlier. See the [CreateProject](/java/api/com.microsoft.azure.cognitiveservices.vision.customvision.training.trainings.createproject#com_microsoft_azure_cognitiveservices_vision_customvision_training_Trainings_createProject_String_CreateProjectOptionalParameter_&preserve-view=true) method overloads to specify other options when you create your project (explained in the [Build a detector](../../get-started-build-detector.md) web portal guide).
 
@@ -204,9 +196,9 @@ If you want to clean up and remove an Azure AI services subscription, you can de
 
 [!INCLUDE [clean-ic-project](../../includes/clean-ic-project.md)]
 
-## Next steps
+## Related content
 
-Now you've seen how every step of the image classification process can be done in code. This sample executes a single training iteration, but often you'll need to train and test your model multiple times in order to make it more accurate.
+Now you've seen how every step of the object detection process can be done in code. This sample executes a single training iteration, but often you'll need to train and test your model multiple times in order to make it more accurate.
 
 > [!div class="nextstepaction"]
 > [Test and retrain a model](../../test-your-model.md)

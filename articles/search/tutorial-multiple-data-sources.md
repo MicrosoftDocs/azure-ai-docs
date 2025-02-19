@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 01/17/2024
+ms.date: 12/10/2024
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
@@ -99,7 +99,7 @@ This sample uses two small sets of data that describe seven fictional hotels. On
 
 ### Azure AI Search
 
-The third component is Azure AI Search, which you can [create in the portal](search-create-service-portal.md) or [find an existing search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your Azure resources.
+The third component is Azure AI Search, which you can [create in the Azure portal](search-create-service-portal.md) or [find an existing search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your Azure resources.
 
 ### Copy an admin api-key and URL for Azure AI Search
 
@@ -354,7 +354,7 @@ the blob indexer updates the existing documents in the index and adds the room d
 
 ## 5 - Search
 
-You can explore the populated search index after the program has run, using the [**Search explorer**](search-explorer.md) in the portal.
+You can explore the populated search index after the program has run, using the [**Search explorer**](search-explorer.md) in the Azure portal.
 
 In Azure portal, open the search service **Overview** page, and find the **hotel-rooms-sample** index in the **Indexes** list.
 
@@ -368,13 +368,13 @@ In the early experimental stages of development, the most practical approach for
 
 The sample code checks for existing objects and deletes or updates them so that you can rerun the program.
 
-You can also use the portal to delete indexes, indexers, and data sources.
+You can also use the Azure portal to delete indexes, indexers, and data sources.
 
 ## Clean up resources
 
 When you're working in your own subscription, at the end of a project, it's a good idea to remove the resources that you no longer need. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal, using the All resources or Resource groups link in the left-navigation pane.
+You can find and manage resources in the Azure portal, using the All resources or Resource groups link in the left-navigation pane.
 
 ## Next steps
 

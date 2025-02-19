@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 06/25/2024
+ms.date: 12/10/2024
 ---
 
 # Enable caching for incremental enrichment in Azure AI Search
@@ -41,7 +41,7 @@ You can use the Azure portal, preview APIs, or beta Azure SDKs are required to e
 1. Provide an indexer name and an existing index, data source, and skillset.
 1. Enable incremental caching and set the Azure Storage account.
 
-   :::image type="content" source="media/search-incremental-index/portal-option.png" alt-text="Screenshot of the portal option for enrichment cache.":::
+   :::image type="content" source="media/search-incremental-index/portal-option.png" alt-text="Screenshot of the Azure portal option for enrichment cache.":::
 
 ### [**REST**](#tab/rest)
 
@@ -108,7 +108,7 @@ POST https://[service name].search.windows.net/indexers?api-version=2024-05-01-p
 
 ### Step 3: Reset the indexer
 
-[Reset Indexer](/rest/api/searchservice/indexers/reset) is required when setting up incremental enrichment for existing indexers to ensure all documents are in a consistent state. You can use the portal or an API client for this task.
+[Reset Indexer](/rest/api/searchservice/indexers/reset) is required when setting up incremental enrichment for existing indexers to ensure all documents are in a consistent state. You can use the Azure portal or an API client for this task.
 
 ```https
 POST https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]/reset?api-version=2024-05-01-preview
@@ -134,7 +134,7 @@ PUT https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME
     }
 ```
 
-If you now issue another GET request on the indexer, the response from the service includes an `ID` property in the cache object. The alphanumeric string is appended to the name of the container containing all the cached results and intermediate state of each document processed by this indexer. The ID is used to uniquely name the cache in Blob storage.
+If you now issue another GET request on the indexer, the response from the service includes an `ID` property in the cache object. The string is appended to the name of the container containing all the cached results and intermediate state of each document processed by this indexer. The ID is used to uniquely name the cache in Blob storage.
 
 ```http
     "cache": {
@@ -146,7 +146,7 @@ If you now issue another GET request on the indexer, the response from the servi
 
 ### Step 5: Run the indexer
 
-To run indexer, you can use the portal or the API. In the portal, from the indexers list, select the indexer and select **Run**. One advantage to using the portal is that you can monitor indexer status, note the duration of the job, and how many documents are processed. Portal pages are refreshed every few minutes.
+To run indexer, you can use the Azure portal or the API. In the Azure portal, from the indexers list, select the indexer and select **Run**. One advantage to using the Azure portal is that you can monitor indexer status, note the duration of the job, and how many documents are processed. Portal pages are refreshed every few minutes.
 
 Alternatively, you can use REST to [run the indexer](/rest/api/searchservice/indexers/run):
 

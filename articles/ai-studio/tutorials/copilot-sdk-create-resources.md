@@ -1,76 +1,90 @@
 ---
-title: "Part 1: Create resources to build a custom chat app"
-titleSuffix: Azure AI Studio
-description:  Build a custom chat app using the prompt flow SDK. Part 1 of a 3-part tutorial series, which shows how to create the resources you'll need for parts 2 and 3.
+title: "Part 1: Set up project and development environment to build a custom knowledge retrieval (RAG) app"
+titleSuffix: Azure AI Foundry
+description:  Build a custom chat app using the Azure AI Foundry SDK. Part 1 of a 3-part tutorial series, which shows how to create the resources you need for parts 2 and 3.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
+ms.custom:
+  - ignite-2024
 ms.topic: tutorial
-ms.date: 08/29/2024
+ms.date: 02/12/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
-#customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can build a RAG-based chat app.
+#customer intent: As a developer, I want to create a project and set up my development environment to build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK.
 ---
 
-# Tutorial:  Part 1 - Create resources for building a custom chat application with the prompt flow SDK
+# Tutorial:  Part 1 - Set up project and development environment to build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK
 
-In this tutorial, you use the prompt flow SDK (and other libraries) to build, configure, evaluate, and deploy a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
+In this tutorial, you use the Azure AI Foundry SDK (and other libraries) to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
-This tutorial is part one of a three-part tutorial.  This part one shows how an administrator of an Azure subscription creates and configures the resources needed for parts two and three of the tutorial series. Parts two and three show how a developer uses the resources. In many organizations, the same person might take on both of these roles. In this part one, you learn how to:
+This tutorial is part one of a three-part tutorial.  This part one gets you ready to write code in part two and evaluate your chat app in part three. In this part, you:
 
 > [!div class="checklist"]
-> - Create an Azure AI Studio hub
 > - Create a project
 > - Create an Azure AI Search index
-> - Configure access for the Azure AI Studio and Azure AI Search resources
+> - Install the Azure CLI and sign in
+> - Install Python and packages
+> - Deploy models into your project
+> - Configure your environment variables
 
 If you've completed other tutorials or quickstarts, you might have already created some of the resources needed for this tutorial. If you have, feel free to skip those steps here.
 
 This tutorial is part one of a three-part tutorial.
 
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+
 ## Prerequisites
 
 * An Azure account with an active subscription. If you don't have one, [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-> [!IMPORTANT]
-> You must have the necessary permissions to add role assignments in your Azure subscription. Granting permissions by role assignment is only allowed by the **Owner** of the specific Azure resources. You might need to ask your Azure subscription owner (who might be your IT admin) to complete this tutorial for you.  
-
-## Azure AI Studio and Azure portal
-
-In this tutorial, you use Azure resources to build the chat app.  You'll use both Azure AI Studio and Azure portal to create and configure these resources.
-
-- As an administrator, you use Azure portal to configure access to resources.
-- As a developer, you use Azure AI Studio to group together those resources needed to build, evaluate, and deploy the chat app. You can also interact with your models and deployments in AI Studio.
-
-## Create an Azure AI Studio hub
-
-[!INCLUDE [Create Azure AI Studio hub](../includes/create-hub.md)]
-
 ## Create a project
 
-To create a project in [Azure AI Studio](https://ai.azure.com), follow these steps:
+To create a project in [Azure AI Foundry](https://ai.azure.com), follow these steps:
 
-1. Go to the **Home** page of [Azure AI Studio](https://ai.azure.com). 
-1. Select **+ New project**.
-1. Enter a name for the project.
-1. Select the hub you created in the previous step.
+1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com).
+1. Select **+ Create project**.
+1. Enter a name for the project.  Keep all the other settings as default.
+1. Projects are created in hubs.  If you see **Create a new hub** select it and specify a name.  Then select **Next**. (If you don't see **Create new hub**, don't worry; it's because a new one is being created for you.) 
+1. Select **Customize** to specify properties of the hub.
+1. Use any values you want, except for **Region**.  We recommend you use either **East US2** or **Sweden Central** for the region for this tutorial series.
+1. Select **Next**.
+1. Select **Create project**.
 
-Once a project is created, you can access the playground, tools, and other assets in the left navigation panel.
+## Deploy models
 
-## Create an Azure AI Search index
+You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-4o-mini`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Foundry project, using this set of steps for each model.
+
+These steps deploy a model to a real-time endpoint from the Azure AI Foundry portal [model catalog](../how-to/model-catalog-overview.md):
+
+1. On the left navigation pane, select **Model catalog**.
+1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
+
+    :::image type="content" source="../media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="../media/tutorials/chat/select-model.png":::
+
+1. On the model details page, select **Deploy**.
+
+    :::image type="content" source="../media/tutorials/chat/deploy-model.png" alt-text="Screenshot of the model details page with a button to deploy the model." lightbox="../media/tutorials/chat/deploy-model.png":::
+
+1. Leave the default **Deployment name**. select **Deploy**.  Or, if the model isn't available in your region, a different region is selected for you and connected to your project.  In this case, select **Connect and deploy**.
+
+After you deploy the **gpt-4o-mini**, repeat the steps to deploy the **text-embedding-ada-002** model.
+
+## <a name="create-search"></a> Create an Azure AI Search service
 
 The goal with this application is to ground the model responses in your custom data. The search index is used to retrieve relevant documents based on the user's question.
 
 You need an Azure AI Search service and connection in order to create a search index.
 
 > [!NOTE]
-> Creating an [Azure AI Search service](/azure/search/) and subsequent search indexes has associated costs. You can see details about pricing and pricing tiers for the Azure AI Search service on the creation page, to confirm cost before creating the resource.
-
-### Create an Azure AI Search service
+> Creating an [Azure AI Search service](/azure/search/) and subsequent search indexes has associated costs. You can see details about pricing and pricing tiers for the Azure AI Search service on the creation page, to confirm cost before creating the resource. For this tutorial, we recommend using a pricing tier of **Basic** or above.
 
 If you already have an Azure AI Search service, you can skip to the [next section](#connect).
 
-Otherwise, you can create an Azure AI Search service using the Azure portal.
+Otherwise, you can create an Azure AI Search service using the Azure portal. 
+
+> [!TIP]
+> This step is the only time you use the Azure portal in this tutorial series.  The rest of your work is done in Azure AI Foundry portal or in your local development environment.
 
 1. [Create an Azure AI Search service](https://portal.azure.com/#create/Microsoft.Search) in the Azure portal.
 1. Select your resource group and instance details. You can see details about pricing and pricing tiers on this page.
@@ -80,66 +94,56 @@ Otherwise, you can create an Azure AI Search service using the Azure portal.
 
 ### <a name="connect"></a>Connect the Azure AI Search to your project
 
-If you already have an Azure AI Search connection in your project, you can skip to [configure access for the Azure AI Search service](#configure).
+If you already have an Azure AI Search connection in your project, you can skip to [Install the Azure CLI and sign in](#installs).
 
-In the Azure AI Studio, check for an Azure AI Search connected resource.
+In the Azure AI Foundry portal, check for an Azure AI Search connected resource.
 
-1. In [AI Studio](https://ai.azure.com), go to your project and select **Settings** from the left pane.
-1. In the **Connected resources** section, look to see if you have a connection of type Azure AI Search.
-1. If you have an Azure AI Search connection, you can skip ahead to [configure access for resources](#configure).
+1. In [Azure AI Foundry](https://ai.azure.com), go to your project and select **Management center** from the left pane.
+1. In the **Connected resources** section, look to see if you have a connection of type **Azure AI Search**.
+1. If you have an Azure AI Search connection, you can skip ahead to the next section.
 1. Otherwise, select **New connection** and then **Azure AI Search**.
 1. Find your Azure AI Search service in the options and select **Add connection**.
-1. Continue through the wizard to create the connection. For more information about adding connections, see [this how-to guide](../how-to/connections-add.md#create-a-new-connection).
+1. Use **API key** for **Authentication**.
 
-## <a name="configure"></a> Configure access for resources
+    > [!IMPORTANT]
+    > The **API key** option isn't recommended for production. To select and use the recommended **Microsoft Entra ID** authentication option, you must also configure access control for the Azure AI Search service. Assign the *Search Index Data Contributor* and *Search Service Contributor* roles to your user account. For more information, see [Connect to Azure AI Search using roles](../../search/search-security-rbac.md) and [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).
 
-This section shows how to configure the various access controls needed for the resources you created in the previous sections.
+1. Select **Add connection**.  
 
-We recommend using [Microsoft Entra ID](/entra/fundamentals/whatis) instead of using API keys. In order to use this authentication, you need to set the right access controls and assign the right roles for your services. 
+## <a name="installs"></a> Install the Azure CLI and sign in 
 
-### Configure access for Azure AI Services
+[!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
 
-Start in the project to find the AI Services resource:
+## Create a new Python environment
 
-1. In [AI Studio](https://ai.azure.com), go to your project and select **Settings** from the left pane.
-1. Select **Connected resources**.
-1. Select the **AI Services** or **Azure OpenAI** name in the connected resources list to open the resource details page.  Then select the resource name again in the **Connection Details** page, which opens the resource in the Azure portal.
+[!INCLUDE [Install Python](../includes/install-python.md)]
 
-Specify the access control in the Azure portal:
+## Install packages
 
-1. From the left page in the Azure portal, select **Access control (IAM)** > **+ Add** > **Add role assignment**.
-1. Search for the role **Cognitive Services OpenAI User** and then select it. Then select **Next**.
-1. Select **User, group, or service principal**. Then select **Select members**.
-1. In the **Select members** pane that opens, search for the name of the user that you want to add the role assignment for. Select the user and then select **Select**.
-1. Continue through the wizard and select **Review + assign** to add the role assignment.
+Install `azure-ai-projects`(preview) and `azure-ai-inference` (preview), along with other required packages.
 
-### Configure access for Azure AI Search
+1. First, create a file named **requirements.txt** in your project folder. Add the following packages to the file:
 
-Now go back to [AI Studio](https://ai.azure.com) **Settings** > **Connected Resources**.  This time select the **Azure AI Search** name in the connected resources list to open the resource details page.  Then select the resource name again in the **Connection Details** page, which opens the resource in the Azure portal.
+    :::code language="txt" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/requirements.txt":::
 
-To enable role-based access control for your Azure AI Search service, follow these steps:
+1. Install the required packages:
 
-1. On your Azure AI Search service in the [Azure portal](https://portal.azure.com), select **Settings > Keys** from the left pane.
-1. Select **Both** to ensure that API keys and role-based access control are both enabled for your Azure AI Search service. 
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-    :::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/search-access-control.png" alt-text="Screenshot shows API Access control setting.":::
+### Create helper script
 
-> [!WARNING]
-> You can use role-based access control locally because you run `az login` later in this tutorial series. But when you deploy your app in [part 3 of the tutorial](./copilot-sdk-evaluate-deploy.md), the deployment is authenticated using API keys from your Azure AI Search service. Support for Microsoft Entra ID authentication of the deployment is coming soon. For now, you need to enable both keys and endpoints.
+Create a folder for your work. Create a file called **config.py** in this folder. This helper script is used in the next two parts of the tutorial series. Add the following code:
 
-Next grant your user identity (or the identity of the developer who will complete parts two and three) the **Search Index Data Contributor** and **Search Service Contributor** roles on the Azure AI Search service. These roles enable you to call the Azure AI Search service the associated user identity.
+:::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/config.py":::
 
-Still in the Azure portal for the Azure AI Search service, assign the **Search Index Data Contributor** role to your Azure AI Search service. (These are the same steps you did previously for the Azure OpenAI service.)
+> [!NOTE]
+> This script also uses a package you haven't installed yet, `azure.monitor.opentelemetry`.  You'll install this package in the next part of the tutorial series.
 
-1. From the left page in the Azure portal, select **Access control (IAM)** > **+ Add** > **Add role assignment**.
-1. Search for the **Search Index Data Contributor** role and then select it. Then select **Next**.
-1. Select **User, group, or service principal**. Then select **Select members**.
-1. In the **Select members** pane that opens, search for the name of the user that you want to add the role assignment for. Select the user and then select **Select**.
-1. Continue through the wizard and select **Review + assign** to add the role assignment. 
+## Configure environment variables
 
-Repeat these steps to also add the **Search Service Contributor** role to the Azure AI Search service.
-
-You're now ready to hand off the project to a developer to build the chat application.  The developer will use the prompt flow SDK to build, configure, evaluate, and deploy the chat app for your retail company called Contoso Trek.
+[!INCLUDE [create-env-file](../includes/create-env-file-tutorial.md)]
 
 ## Clean up resources
 
@@ -149,5 +153,7 @@ But don't delete them yet, if you want to build a chat app in [the next part of 
 
 ## Next step
 
+In this tutorial, you set up everything you need to build a custom chat app with the Azure AI SDK. In the next part of this tutorial series, you build the custom app.
+
 > [!div class="nextstepaction"]
-> [Part 2: Build a custom chat app with the prompt flow SDK](copilot-sdk-build-rag.md)
+> [Part 2: Build a custom chat app with the Azure AI SDK](copilot-sdk-build-rag.md)

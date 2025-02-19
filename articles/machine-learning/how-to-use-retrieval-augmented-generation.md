@@ -11,6 +11,7 @@ ms.subservice: core
 ms.date: 06/26/2024
 ms.topic: how-to
 ms.custom: prompt
+ms.collection: ce-skilling-ai-copilot 
 ---
 
 # Get started with RAG using a prompt flow sample (preview)

@@ -3,7 +3,7 @@ title: Data, privacy, and security for use of models through the Model Catalog
 titleSuffix: Azure Machine Learning
 description: This article provides details regarding how data provided by you is processed, used, and stored when you deploy models from the Model Catalog.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
 ms.topic: how-to
@@ -11,6 +11,7 @@ ms.date: 5/22/2024
 ms.reviewer: jcioffi
 ms.author: ssalgado
 author: ssalgadodev
+ms.collection: ce-skilling-ai-copilot
 ---
 # Data, privacy, and security for use of models through the Model Catalog
 

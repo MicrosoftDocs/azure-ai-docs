@@ -5,14 +5,11 @@ ms.service: azure-ai-language
 ms.topic: how-to
 ms.author: jboback
 author: jboback
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ms.custom: language-service-question-answering
 ---
 
 # Migrate from QnA Maker knowledge bases to custom question answering
-
-> [!NOTE]
-> You can also migrate to [Azure OpenAI](../../../qnamaker/How-To/migrate-to-openai.md).
 
 Custom question answering, a feature of Azure AI Language was introduced in May 2021 with several new capabilities including enhanced relevance using a deep learning ranker, precise answers, and end-to-end region support. Each custom question answering project is equivalent to a knowledge base in QnA Maker. You can easily migrate knowledge bases from a QnA Maker resource to custom question answering projects within a [language resource](https://aka.ms/create-language-resource). You can also choose to migrate knowledge bases from multiple QnA Maker resources to a specific language resource.
 

@@ -1,14 +1,15 @@
 ---
-title: Evaluation of generative AI applications with Azure AI Studio
-titleSuffix: Azure AI Studio
+title: Evaluation of generative AI applications with Azure AI Foundry
+titleSuffix: Azure AI Foundry
 description: Explore the broader domain of monitoring and evaluating large language models through the establishment of precise metrics, the development of test sets for measurement, and the implementation of iterative testing.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
+  - ignite-2024
 ms.topic: conceptual
-ms.date: 5/21/2024
+ms.date: 12/23/2024
 ms.reviewer: mithigpe
 ms.author: lagayhar
 author: lgayhardt
@@ -18,88 +19,77 @@ author: lgayhardt
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Advancements in language models such as GPT-4 via Azure OpenAI Service offer great promise while coming with challenges related to responsible AI. If not designed carefully, systems built upon these models can perpetuate existing societal biases, promote misinformation, create manipulative content, or lead to a wide range of other negative impacts. Addressing these risks while maximizing benefits to users is possible with an iterative approach through four stages: [identify, measure, and mitigate, operate](https://aka.ms/LLM-RAI-devstages).
+In the rapidly evolving landscape of artificial intelligence, the integration of Generative AI Operations (GenAIOps) is transforming how organizations develop and deploy AI applications. As businesses increasingly rely on AI to enhance decision-making, improve customer experiences, and drive innovation, the importance of a robust evaluation framework can't be overstated. Evaluation is an essential component of the generative AI lifecycle to build confidence and trust in AI-centric applications. If not designed carefully, these applications can produce outputs that are fabricated and ungrounded in context, irrelevant or incoherent, resulting in poor customer experiences, or worse, perpetuate societal stereotypes, promote misinformation, expose organizations to malicious attacks, or a wide range of other negative impacts. 
 
-The measurement stage provides crucial information for steering development toward quality and safety. On the one hand, this includes evaluation of performance and quality. On the other hand, when evaluating risk and safety, this includes evaluation of an AI system’s predisposition toward different risks (each of which can have different severities). In both cases, this is achieved by establishing clear metrics, creating test sets, and completing iterative, systematic testing. This measurement stage provides practitioners with signals that inform targeted mitigation steps such as prompt engineering and the application of content filters. Once mitigations are applied, one can repeat evaluations to test effectiveness.
+Evaluators are helpful tools to assess the frequency and severity of content risks or undesirable behavior in AI responses. Performing iterative, systematic evaluations with the right evaluators can help teams measure and address potential response quality, safety, or security concerns throughout the AI development lifecycle, from initial model selection through post-production monitoring. Evaluation within the GenAI Ops Lifecycle production.
 
-Azure AI Studio provides practitioners with tools for manual and automated evaluation that can help you with the measurement stage. We recommend that you start with manual evaluation then proceed to automated evaluation. Manual evaluation, that is, manually reviewing the application’s generated outputs, is useful for tracking progress on a small set of priority issues. When mitigating specific risks, it's often most productive to keep manually checking progress against a small dataset until evidence of the risks is no longer observed before moving to automated evaluation. Azure AI Studio supports a manual evaluation experience for spot-checking small datasets.
+:::image type="content" source="../media/evaluations/lifecycle.png" alt-text="Diagram of enterprise GenAIOps lifecycle, showing model selection, building an AI application, and operationalizing." lightbox="../media/evaluations/lifecycle.png":::
 
-Automated evaluation is useful for measuring quality and safety at scale with increased coverage to provide more comprehensive results. Automated evaluation tools also enable ongoing evaluations that periodically run to monitor for regression as the system, usage, and mitigations evolve. We support two main methods for automated evaluation of generative AI applications: traditional machine learning evaluations and AI-assisted evaluation.
+ By understanding and implementing effective evaluation strategies at each stage, organizations can ensure their AI solutions not only meet initial expectations but also adapt and thrive in real-world environments. Let's dive into how evaluation fits into the three critical stages of the AI lifecycle
 
-## Traditional machine learning measurements 
+## Base model selection
 
-In the context of generative AI, traditional machine learning evaluations (producing traditional machine learning metrics) are useful when we want to quantify the accuracy of generated outputs compared to expected answers. Traditional metrics are beneficial when one has access to ground truth and expected answers.
+The first stage of the AI lifecycle involves selecting an appropriate base model. Generative AI models vary widely in terms of capabilities, strengths, and limitations, so it's essential to identify which model best suits your specific use case. During base model evaluation, you "shop around" to compare different models by testing their outputs against a set of criteria relevant to your application.
 
-- Ground truth refers to data that we believe to be true and therefore use as a baseline for comparisons. 
-- Expected answers are the outcomes that we believe should occur based on our ground truth data. 
-For instance, in tasks such as classification or short-form question-answering, where there's typically one correct or expected answer, F1 scores or similar traditional metrics can be used to measure the precision and recall of generated outputs against the expected answers.
+Key considerations at this stage might include:
 
-[Traditional metrics](./evaluation-metrics-built-in.md) are also helpful when we want to understand how much the generated outputs are regressing, that is, deviating from the expected answers. They provide a quantitative measure of error or deviation, allowing us to track the performance of the system over time or compare the performance of different systems. These metrics, however, might be less suitable for tasks that involve creativity, ambiguity, or multiple correct solutions, as these metrics typically treat any deviation from an expected answer as an error.
+- **Accuracy/quality**: How well does the model generate relevant and coherent responses?
+- **Performance on specific tasks**: Can the model handle the type of prompts and content required for your use case? How is its latency and cost?
+- **Bias and ethical considerations**: Does the model produce any outputs that might perpetuate or promote harmful stereotypes?
+- **Risk and safety**: Are there any risks of the model generating unsafe or malicious content?
 
-## AI-assisted evaluations
+You can explore [Azure AI Foundry benchmarks](./model-benchmarks.md)to evaluate and compare models on publicly available datasets, while also regenerating benchmark results on your own data. Alternatively, you can evaluate one of many base generative AI models via Azure AI Evaluation SDK as demonstrated, see [Evaluate model endpoints sample](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/Supported_Evaluation_Targets/Evaluate_Base_Model_Endpoint/Evaluate_Base_Model_Endpoint.ipynb).
 
-Large language models (LLM) such as GPT-4 can be used to evaluate the output of generative AI language systems. This is achieved by instructing an LLM to annotate certain aspects of the AI-generated output. For instance, you can provide GPT-4 with a relevance severity scale (for example, provide criteria for relevance annotation on a 1-5 scale) and then ask GPT-4 to annotate the relevance of an AI system’s response to a given question.  
+## Pre-production evaluation
 
-AI-assisted evaluations can be beneficial in scenarios where ground truth and expected answers aren't available. In many generative AI scenarios, such as open-ended question answering or creative writing, single correct answers don't exist, making it challenging to establish the ground truth or expected answers that are necessary for traditional metrics.
+After selecting a base model, the next step is to develop an AI application—such as an AI-powered chatbot, a retrieval-augmented generation (RAG) application, an agentic AI application, or any other generative AI tool. Following development, pre-production evaluation begins. Before deploying the application in a production environment, rigorous testing is essential to ensure the model is truly ready for real-world use.
 
-In these cases,[AI-assisted evaluations](./evaluation-metrics-built-in.md) can help to measure important concepts like the quality and safety of generated outputs. Here, quality refers to performance and quality attributes such as relevance, coherence, fluency, and groundedness. Safety refers to risk and safety attributes such as presence of harmful content (content risks).
+:::image type="content" source="../media/evaluations/evaluation-models-diagram.png" alt-text="Diagram of pre-production evaluation for models and applications with the six steps." lightbox="../media/evaluations/evaluation-models-diagram.png ":::
 
-For each of these attributes, careful conceptualization and experimentation is required to create the LLM’s instructions and severity scale. Sometimes, these attributes refer to complex sociotechnical concepts that different people might view differently. So, it’s critical that the LLM’s annotation instructions are created to represent an agreed-upon, concrete definition of the attribute. Then, it’s similarly critical to ensure that the LLM applies the instructions in a way that is consistent with human expert annotators.
+Pre-production evaluation involves:
 
-By instructing an LLM to annotate these attributes, you can build a metric for how well a generative AI application is performing even when there isn't a single correct answer. AI-assisted evaluations provide a flexible and nuanced way of evaluating generative AI applications, particularly in tasks that involve creativity, ambiguity, or multiple correct solutions. However, the reliability and validity of these evaluations depends on the quality of the LLM and the instructions given to it.
+- **Testing with evaluation datasets**: These datasets simulate realistic user interactions to ensure the AI application performs as expected.
+- **Identifying edge cases**: Finding scenarios where the AI application’s response quality might degrade or produce undesirable outputs.
+- **Assessing robustness**: Ensuring that the model can handle a range of input variations without significant drops in quality or safety.
+- **Measuring key metrics**: Metrics such as response groundedness, relevance, and safety are evaluated to confirm readiness for production.
 
-### AI-assisted performance and quality metrics
+The pre-production stage acts as a final quality check, reducing the risk of deploying an AI application that doesn't meet the desired performance or safety standards.
 
-To run AI-assisted performance and quality evaluations, an LLM is possibly leveraged for two separate functions. First, a test dataset must be created. This can be created manually by choosing prompts and capturing responses from your AI system, or it can be created synthetically by simulating interactions between your AI system and an LLM (referred to as the AI-assisted dataset generator in the following diagram). Then, an LLM is also used to annotate your AI system’s outputs in the test set. Finally, annotations are aggregated into performance and quality metrics and logged to your AI Studio project for viewing and analysis.
+- Bring your own data: You can evaluate your AI applications in pre-production using your own evaluation data with Azure AI Foundry or [Azure AI Evaluation SDK’s](../how-to/develop/evaluate-sdk.md) supported evaluators, including [generation quality, safety,](./evaluation-metrics-built-in.md) or [custom evaluators](../how-to/develop/evaluate-sdk.md#custom-evaluators), and [view results via the Azure AI Foundry portal](../how-to/evaluate-results.md).
+- Simulators: If you don’t have evaluation data (test data), Azure AI [Evaluation SDK’s simulators](..//how-to/develop/simulator-interaction-data.md) can help by generating topic-related or adversarial queries. These simulators test the model’s response to situation-appropriate or attack-like queries (edge cases).
+    - The [adversarial simulator](../how-to/develop/simulator-interaction-data.md#generate-adversarial-simulations-for-safety-evaluation) injects queries that mimic potential security threats or attempt jailbreaks, helping identify limitations and preparing the model for unexpected conditions.  
+    - [Context-appropriate simulators](../how-to/develop/simulator-interaction-data.md#generate-synthetic-data-and-simulate-non-adversarial-tasks) generate typical, relevant conversations you’d expect from users to test quality of responses.
 
-:::image type="content" source="../media/evaluations/quality-evaluation-diagram.png" alt-text="Diagram of evaluate generative AI quality applications in AI Studio." lightbox="../media/evaluations/quality-evaluation-diagram.png":::
+Alternatively, you can also use [Azure AI Foundry’s evaluation widget](../how-to/evaluate-generative-ai-app.md) for testing your generative AI applications.  
 
->[!NOTE]
-> We currently support GPT-4 and GPT-3 as models for AI-assisted evaluations. To use these models for evaluations, you are required to establish valid connections. Please note that we strongly recommend the use of GPT-4, as it offers significant improvements in contextual understanding and adherence to instructions.
+Once satisfactory results are achieved, the AI application can be deployed to production.
 
-### AI-assisted risk and safety metrics
+## Post-production monitoring
 
-One application of AI-assisted quality and performance evaluations is the creation of AI-assisted risk and safety metrics. To create AI-assisted risk and safety metrics, Azure AI Studio safety evaluations provisions an Azure OpenAI GPT-4 model that is hosted in a back-end service, then orchestrates each of the two LLM-dependent steps:
+After deployment, the AI application enters the post-production evaluation phase, also known as online evaluation or monitoring. At this stage, the model is embedded within a real-world product and responds to actual user queries. Monitoring ensures that the model continues to behave as expected and adapts to any changes in user behavior or content.
 
-- Simulating adversarial interactions with your generative AI system:
+- **Ongoing performance tracking**: Regularly measuring AI application’s response using key metrics to ensure consistent output quality.
+- **Incident response**: Quickly responding to any harmful, unfair, or inappropriate outputs that might arise during real-world use.
 
-    Generate a high-quality test dataset of inputs and responses by simulating single-turn or multi-turn exchanges guided by prompts that are targeted to generate harmful responses. 
-- Annotating your test dataset for content or security risks:
+By [continuously monitoring the AI application’s behavior in production](https://aka.ms/AzureAIMonitoring), you can maintain high-quality user experiences and swiftly address any issues that surface.
 
-   Annotate each interaction from the test dataset with a severity and reasoning derived from a severity scale that is defined for each type of content and security risk.
+## Conclusion
 
-Because the provisioned GPT-4 models act as an adversarial dataset generator or annotator, their safety filters are turned off and the models are hosted in a back-end service. The prompts used for these LLMs and the targeted adversarial prompt datasets are also hosted in the service. Due to the sensitive nature of the content being generated and passed through the LLM, the models and data assets aren't directly accessible to Azure AI Studio customers.
+GenAIOps is all about establishing a reliable and repeatable process for managing generative AI applications across their lifecycle. Evaluation plays a vital role at each stage, from base model selection, through pre-production testing, to ongoing post-production monitoring. By systematically measuring and addressing risks and refining AI systems at every step, teams can build generative AI solutions that aren't only powerful but also trustworthy and safe for real-world use.  
 
-The adversarial targeted prompt datasets were developed by Microsoft researchers, applied scientists, linguists, and security experts to help users get started with evaluating content and security risks in generative AI systems.
+Cheat sheet:
 
-If you already have a test dataset with input prompts and AI system responses (for example, records from red-teaming), you can directly pass that dataset in to be annotated by the content risk evaluator. Safety evaluations can help augment and accelerate manual red teaming efforts by enabling red teams to generate and automate adversarial prompts at scale. However, AI-assisted evaluations are neither designed to replace human review nor to provide comprehensive coverage of all possible risks.
+| Purpose |  Process | Parameters |
+| -----| -----| ----|
+| What are you evaluating for? | Identify or build relevant evaluators | - [Quality and performance](./evaluation-metrics-built-in.md?tabs=warning#generation-quality-metrics) ( [Quality and performance sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluate.py))<br> </br> - [Safety and Security](./evaluation-metrics-built-in.md?#risk-and-safety-evaluators) ([Safety and Security sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluatesafetyrisks.py)) <br> </br> - [Custom](../how-to/develop/evaluate-sdk.md#custom-evaluators) ([Custom sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluate.py)) |
+| What data should you use?  | Upload or generate relevant dataset | [Generic simulator for measuring Quality and Performance](./concept-synthetic-data.md) ([Generic simulator sample notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/system/finetune/Llama-notebooks/datagen/synthetic-data-generation.ipynb)) <br></br> - [Adversarial simulator for measuring Safety and Security](../how-to/develop/simulator-interaction-data.md) ([Adversarial simulator sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/simulate_and_evaluate_online_endpoint.ipynb))|
+| What resources should conduct the evaluation? | Run evaluation | - Local run <br> </br>  - Remote cloud run |
+| How did my model/app perform? | Analyze results  | [View aggregate scores, view details, score details, compare evaluation runs](..//how-to/evaluate-results.md) |
+| How can I improve? | Make changes to model, app, or evaluators | - If evaluation results didn't align to human feedback, adjust your evaluator. <br></br> - If evaluation results aligned to human feedback but didn't meet quality/safety thresholds, apply targeted mitigations. |
 
-:::image type="content" source="../media/evaluations/safety-evaluation-service-diagram.png" alt-text="Diagram of evaluate generative AI safety in AI Studio." lightbox="../media/evaluations/safety-evaluation-service-diagram.png":::
-
-#### Evaluating jailbreak vulnerability
-
-Unlike content risks, jailbreak vulnerability can't be reliably measured with direct annotation by an LLM. However, jailbreak vulnerability can be measured via comparison of two parallel test datasets: a baseline adversarial test dataset versus the same adversarial test dataset with jailbreak injections in the first turn. Each dataset can be annotated by the AI-assisted content risk evaluator, producing a content risk defect rate for each. Then the user evaluates jailbreak vulnerability by comparing the defect rates and noting cases where the jailbreak dataset led to more or higher severity defects. For example, if an instance in these parallel test datasets is annotated as more severe for the version with a jailbreak injection, that instance would be considered a jailbreak defect.
-
-To learn more about the supported task types and built-in metrics, see [evaluation and monitoring metrics for generative AI](./evaluation-metrics-built-in.md).
-
-## Evaluating and monitoring of generative AI applications
-
-Azure AI Studio supports several distinct paths for generative AI app developers to evaluate their applications:  
-
-:::image type="content" source="../media/evaluations/evaluation-monitor-flow.png" alt-text="Diagram of evaluation and monitoring flow with different paths to evaluate generative AI applications." lightbox="../media/evaluations/evaluation-monitor-flow.png":::
-
-- Playground: In the first path, you can start by engaging in a "playground" experience. Here, you have the option to select the data you want to use for grounding your model, choose the base model for the application, and provide metaprompt instructions to guide the model's behavior. You can then manually evaluate the application by passing in a dataset and observing the application’s responses. Once the manual inspection is complete, you can opt to use the evaluation wizard to conduct more comprehensive assessments, either through traditional metrics or AI-assisted evaluations.  
-
-- Flows: The Azure AI Studio **Prompt flow** page offers a dedicated development tool tailored for streamlining the entire lifecycle of AI applications powered by LLMs. With this path, you can create executable flows that link LLMs, prompts, and Python tools through a visualized graph. This feature simplifies debugging, sharing, and collaborative iterations of flows. Furthermore, you can create prompt variants and assess their performance through large-scale testing.  
-In addition to the 'Flows' development tool, you also have the option to develop your generative AI applications using a code-first SDK experience. Regardless of your chosen development path, you can evaluate your created flows through the evaluation wizard, accessible from the 'Flows' tab, or via the SDK/CLI experience. From the ‘Flows’ tab, you even have the flexibility to use a customized evaluation wizard and incorporate your own metrics.
-
-- Direct Dataset Evaluation: If you have collected a dataset containing interactions between your application and end-users, you can submit this data directly to the evaluation wizard within the "Evaluation" tab. This process enables the generation of automatic AI-assisted evaluations, and the results can be visualized in the same tab. This approach centers on a data-centric evaluation method. Alternatively, you have the option to evaluate your conversation dataset using the SDK/CLI experience and generate and visualize evaluations through the Azure AI Studio.
-
-After assessing your applications, flows, or data from any of these channels, you can proceed to deploy your generative AI application and monitor its quality and safety in a production environment as it engages in new interactions with your users.
-
-## Next steps
+## Related content
 
 - [Evaluate your generative AI apps via the playground](../how-to/evaluate-prompts-playground.md)
-- [Evaluate your generative AI apps with the Azure AI Studio or SDK](../how-to/evaluate-generative-ai-app.md)
-- [View the evaluation results](../how-to/evaluate-results.md)
-- [Transparency Note for Azure AI Studio safety evaluations](safety-evaluations-transparency-note.md)
+- [Evaluate your generative AI apps with the Azure AI Foundry SDK or portal](../how-to/evaluate-generative-ai-app.md)
+- [Evaluation and monitoring metrics for generative AI](evaluation-metrics-built-in.md)
+- [Transparency Note for Azure AI Foundry safety evaluations](safety-evaluations-transparency-note.md)

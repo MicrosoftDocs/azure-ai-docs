@@ -8,17 +8,17 @@ manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2024
 ms.topic: conceptual
-ms.date: 07/05/2024
+ms.date: 01/22/2025
 ms.author: pafarley
 ---
 
 # Custom categories (preview)
 
-Azure AI Content Safety lets you create and manage your own content moderation categories for enhanced moderation and filtering that matches your specific policies or use cases.
+Azure AI Content Safety lets you create and manage your own content categories for enhanced moderation and filtering that matches your specific policies or use cases.
 
 ## Types of customization
 
-There are multiple ways to define and use custom categories, which are detailed and compared in this section.
+There are multiple methods for defining and using custom categories, detailed and compared in this section.
 
 | API        | Functionality   |
 | :--------- | :------------ |
@@ -39,19 +39,19 @@ The Custom categories (rapid) API is designed to be quicker and more flexible th
 
 An incident may involve a set of emerging content patterns (text, image, or other modalities) that violate Microsoft community guidelines or the customers' own policies and expectations. These incidents need to be mitigated quickly and accurately to avoid potential live site issues or harm to users and communities. 
 
-This implementation works on text content and image content.
+This implementation works on both text content and image content.
 
 > [!TIP]
-> One way to deal with emerging content incidents is to use [Blocklists](/azure/ai-services/content-safety/how-to/use-blocklist), but that only allows exact text matching and no image matching. The Custom categories (rapid) API offers the following advanced capabilities:
-- semantic text matching using embedding search with a lightweight classifier
-- image matching with a lightweight object-tracking model and embedding search.
+> Another to deal with emerging content incidents is to use [Blocklists](/azure/ai-services/content-safety/how-to/use-blocklist), but that only allows exact text matching and no image matching. The Custom categories (rapid) API offers the following advanced capabilities:
+> - semantic text matching using embedding search with a lightweight classifier
+> - image matching with a lightweight object-tracking model and embedding search.
 
 
 ## How it works
 
-#### [Custom categories (standard) API](#tab/standard)
+### [Custom categories (standard) API](#tab/standard)
 
-The Azure AI Content Safety custom categories feature uses a multi-step process for creating, training, and using custom content classification models. Here's a look at the workflow:
+The Azure AI Content Safety custom categories feature uses a multi-step process for creating, training, and using custom content classification models. Here's the workflow:
 
 ### Step 1: Definition and setup
  
@@ -63,7 +63,7 @@ Then, you collect a balanced dataset with **positive** and (optionally) **negati
  
 After you prepare your dataset and define categories, the Azure AI Content Safety service trains a new machine learning model. This model uses your definitions and uploaded dataset to perform data augmentation using a large language model. As a result, the training dataset is made larger and of higher quality. During training, the AI model analyzes the data and learns to differentiate between content that aligns with the specified category and content that does not.
 
-### Step 3: Model inferencing
+### Step 3: Model evaluation
  
 After training, you need to evaluate the model to ensure it meets your accuracy requirements. Test the model with new content that it hasn't received before. The evaluation phase helps you identify any potential adjustments you need to make deploying the model into a production environment.
 
@@ -118,12 +118,14 @@ See the following table for the input limitations of the custom categories (rapi
 | Maximum number of text or image incidents per resource| 100 |  
 | Supported Image formats | BMP, GIF, JPEG, PNG, TIF, WEBP |
 
+---
+
 ### Region availability
 
 To use these APIs, you must create your Azure AI Content Safety resource in one of the supported regions. See [Region availability](../overview.md#region-availability).
 
 
-## Next steps
+## Next step
 
 Follow a how-to guide to use the Azure AI Content Safety APIs to create custom categories.
 

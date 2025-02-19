@@ -1,16 +1,16 @@
 ---
 title: Deploy models as serverless APIs
-titleSuffix: Azure AI Studio
-description: Learn to deploy models as serverless APIs, using Azure AI Studio.
+titleSuffix: Azure AI Foundry
+description: Learn to deploy models as serverless APIs, using Azure AI Foundry.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 07/18/2024
-ms.author: mopeakande 
+ms.date: 12/20/2024
+ms.author: mopeakande
 author: msakande
 ms.reviewer: fasantia
 reviewer: santiagxf
-ms.custom: build-2024, serverless, devx-track-azurecli
+ms.custom: build-2024, serverless, devx-track-azurecli, ignite-2024
 ---
 
 # Deploy models as serverless APIs
@@ -27,17 +27,17 @@ This article uses a Meta Llama model deployment for illustration. However, you c
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- An [Azure AI Studio hub](create-azure-ai-resource.md).
+- An [Azure AI Foundry hub](create-azure-ai-resource.md).
 
-- An [Azure AI Studio project](create-projects.md).
+- An [Azure AI Foundry project](create-projects.md).
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Studio. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Studio](../concepts/rbac-ai-studio.md).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).
 
-- You need to install the following software to work with Azure AI Studio:
+- You need to install the following software to work with Azure AI Foundry:
 
-    # [AI Studio](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
-    You can use any compatible web browser to navigate [Azure AI Studio](https://ai.azure.com).
+    You can use any compatible web browser to navigate [Azure AI Foundry](https://ai.azure.com).
 
     # [Azure CLI](#tab/cli)
 
@@ -101,13 +101,14 @@ This article uses a Meta Llama model deployment for illustration. However, you c
 
 ## Find your model and model ID in the model catalog
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com).
+[!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
-1. For models offered through the Azure Marketplace, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings).
+> [!NOTE]
+> For models offered through the Azure Marketplace, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings).
+>
+> Models that are offered by non-Microsoft providers (for example, Llama and Mistral models) are billed through the Azure Marketplace. For such models, you're required to subscribe your project to the particular model offering. Models that are offered by Microsoft (for example, Phi-3 models) don't have this requirement, as billing is done differently. For details about billing for serverless deployment of models in the model catalog, see [Billing for serverless APIs](model-catalog-overview.md#billing).
 
-    Models that are offered by non-Microsoft providers (for example, Llama and Mistral models) are billed through the Azure Marketplace. For such models, you're required to subscribe your project to the particular model offering. Models that are offered by Microsoft (for example, Phi-3 models) don't have this requirement, as billing is done differently. For details about billing for serverless deployment of models in the model catalog, see [Billing for serverless APIs](model-catalog-overview.md#billing).
-
-1. Select **Model catalog** from the left sidebar and find the model card of the model you want to deploy. In this article, you select a **Meta-Llama-3-8B-Instruct** model.
+4. Select the model card of the model you want to deploy. In this article, you select a **Meta-Llama-3-8B-Instruct** model.
     
     1. If you're deploying the model using Azure CLI, Python, or ARM, copy the **Model ID**.
 
@@ -131,7 +132,7 @@ Serverless API endpoints can deploy both Microsoft and non-Microsoft offered mod
 
 1. Create the model's marketplace subscription. When you create a subscription, you accept the terms and conditions associated with the model offer.
 
-    # [AI Studio](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
     1. On the model's **Details** page, select **Deploy**. A **Deployment options** window opens up, giving you the choice between serverless API deployment and deployment using a managed compute.
 
@@ -258,7 +259,7 @@ Serverless API endpoints can deploy both Microsoft and non-Microsoft offered mod
 
 1. At any point, you can see the model offers to which your project is currently subscribed:
 
-    # [AI Studio](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
     1. Go to the [Azure portal](https://portal.azure.com).
 
@@ -313,7 +314,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
 
 1. Create the serverless endpoint
 
-    # [AI Studio](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
     1. To deploy a Microsoft model that doesn't require subscribing to a model offering:
         1. Select **Deploy** and then select **Serverless API with Azure AI Content Safety (preview)** to open the deployment wizard.
@@ -327,7 +328,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
 
         :::image type="content" source="../media/deploy-monitor/serverless/deployment-name.png" alt-text="A screenshot showing how to specify the name of the deployment you want to create." lightbox="../media/deploy-monitor/serverless/deployment-name.png":::
        > [!TIP]
-       > The **Content filter (preview)** option is enabled by default. Leave the default setting for the service to detect harmful content such as hate, self-harm, sexual, and violent content. For more information about content filtering (preview), see [Content filtering in Azure AI Studio](../concepts/content-filtering.md).
+       > The **Content filter (preview)** option is enabled by default. Leave the default setting for the service to detect harmful content such as hate, self-harm, sexual, and violent content. For more information about content filtering (preview), see [Content filtering in Azure AI Foundry portal](../concepts/content-filtering.md).
 
     1. Select **Deploy**. Wait until the deployment is ready and you're redirected to the Deployments page.
 
@@ -465,11 +466,11 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
 
 1. At any point, you can see the endpoints deployed to your project:
 
-    # [AI Studio](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
     1. Go to your project.
 
-    1. Select the section **Deployments**
+    1. In the **My assets** section, select **Models + endpoints**.
 
     1. Serverless API endpoints are displayed.
 
@@ -514,9 +515,9 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
 
 1. The created endpoint uses key authentication for authorization. Use the following steps to get the keys associated with a given endpoint.
 
-    # [AI Studio](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
-    You can return to the Deployments page, select the deployment, and note the endpoint's _Target URI_ and _Key_. Use them to call the deployment and generate predictions.
+    You can select the deployment, and note the endpoint's _Target URI_ and _Key_. Use them to call the deployment and generate predictions.
 
     > [!NOTE]
     > When using the [Azure portal](https://portal.azure.com), serverless API endpoints aren't displayed by default on the resource group. Use the **Show hidden types** option to display them on the resource group.
@@ -552,15 +553,15 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
 
 ## Use the serverless API endpoint
 
-Models deployed in Azure Machine Learning and Azure AI Studio in Serverless API endpoints support the [Azure AI Model Inference API](../reference/reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
+Models deployed in Azure Machine Learning and Azure AI Foundry in Serverless API endpoints support the [Azure AI Model Inference API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
 
-Read more about the [capabilities of this API](../reference/reference-model-inference-api.md#capabilities) and how [you can use it when building applications](../reference/reference-model-inference-api.md#getting-started). 
+Read more about the [capabilities of this API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#capabilities) and how [you can use it when building applications](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#getting-started). 
 
 ## Network isolation
 
-Endpoints for models deployed as Serverless APIs follow the public network access (PNA) flag setting of the AI Studio Hub that has the project in which the deployment exists. To secure your MaaS endpoint, disable the PNA flag on your AI Studio Hub. You can secure inbound communication from a client to your endpoint by using a private endpoint for the hub.
+Endpoints for models deployed as Serverless APIs follow the public network access (PNA) flag setting of the Azure AI Foundry portal Hub that has the project in which the deployment exists. To secure your MaaS endpoint, disable the PNA flag on your Azure AI Foundry Hub. You can secure inbound communication from a client to your endpoint by using a private endpoint for the hub.
 
-To set the PNA flag for the Azure AI Studio hub:
+To set the PNA flag for the Azure AI Foundry hub:
 
 1. Go to the [Azure portal](https://portal.azure.com).
 2. Search for the Resource group to which the hub belongs, and select the **Azure AI hub** from the resources listed for this resource group.
@@ -572,13 +573,15 @@ To set the PNA flag for the Azure AI Studio hub:
 
 You can delete model subscriptions and endpoints. Deleting a model subscription makes any associated endpoint become *Unhealthy* and unusable.
 
-# [AI Studio](#tab/azure-ai-studio)
+# [Azure AI Foundry portal](#tab/azure-ai-studio)
 
 To delete a serverless API endpoint:
 
-1. Go to the [Azure AI Studio](https://ai.azure.com).
+1. Go to the [Azure AI Foundry](https://ai.azure.com).
 
-1. Go to **Components** > **Deployments**.
+1. Go to your project.
+
+1. In the **My assets** section, select **Models + endpoints**.
 
 1. Open the deployment you want to delete.
 
@@ -656,7 +659,7 @@ You can find the pricing information on the __Pricing and terms__ tab of the dep
 
 #### Cost for non-Microsoft models
 
-Non-Microsoft models deployed as serverless API endpoints are offered through the Azure Marketplace and integrated with Azure AI Studio for use. You can find the Azure Marketplace pricing when deploying or fine-tuning these models.
+Non-Microsoft models deployed as serverless API endpoints are offered through the Azure Marketplace and integrated with Azure AI Foundry for use. You can find the Azure Marketplace pricing when deploying or fine-tuning these models.
 
 Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently.
 
@@ -667,7 +670,7 @@ For more information on how to track costs, see [Monitor costs for models offere
 
 ## Permissions required to subscribe to model offerings
 
-Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Studio. To perform the steps in this article, your user account must be assigned the __Owner__, __Contributor__, or __Azure AI Developer__ role for the Azure subscription. Alternatively, your account can be assigned a custom role that has the following permissions:
+Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Owner__, __Contributor__, or __Azure AI Developer__ role for the Azure subscription. Alternatively, your account can be assigned a custom role that has the following permissions:
 
 - On the Azure subscription—to subscribe the workspace to the Azure Marketplace offering, once for each workspace, per offering:
   - `Microsoft.MarketplaceOrdering/agreements/offers/plans/read`
@@ -684,9 +687,9 @@ Azure role-based access controls (Azure RBAC) are used to grant access to operat
   - `Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*`  
   - `Microsoft.MachineLearningServices/workspaces/serverlessEndpoints/*`
 
-For more information on permissions, see [Role-based access control in Azure AI Studio](../concepts/rbac-ai-studio.md).
+For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).
 
 ## Related content
 
 * [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)
-* [Fine-tune a Meta Llama 2 model in Azure AI Studio](fine-tune-model-llama.md)
+* [Fine-tune a Meta Llama 2 model in Azure AI Foundry portal](fine-tune-model-llama.md)

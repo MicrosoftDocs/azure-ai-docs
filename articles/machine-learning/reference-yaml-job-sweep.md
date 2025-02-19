@@ -9,7 +9,7 @@ ms.topic: reference
 ms.custom: cliv2, devx-track-python, update-code6
 ms.author: franksolomon
 author: fbsolo-ms1
-ms.date: 03/05/2024
+ms.date: 12/03/2024
 ms.reviewer: amipatel
 ---
 
@@ -241,6 +241,49 @@ Visit the [examples GitHub repository](https://github.com/Azure/azureml-examples
 ## YAML: hello sweep
 
 :::code language="yaml" source="~/azureml-examples-main/cli/jobs/basics/hello-sweep.yml":::
+
+## YAML: hello sweep using sobol and a seed value
+
+```yml
+$schema: https://azuremlschemas.azureedge.net/latest/sweepJob.schema.json
+type: sweep
+trial:
+  code: src
+  command: >-
+    python main.py
+    --iris-csv ${{inputs.iris_csv}}
+    --learning-rate ${{search_space.learning_rate}}
+    --boosting ${{search_space.boosting}}
+  environment: azureml:AzureML-lightgbm-3.3@latest
+inputs:
+  iris_csv:
+    type: uri_file
+    path: https://azuremlexamples.blob.core.windows.net/datasets/iris.csv
+compute: azureml:cpu-cluster
+sampling_algorithm:
+  type: random
+  rule: sobol
+  seed: 123
+search_space:
+  learning_rate:
+    type: uniform
+    min_value: 0.01
+    max_value: 0.9
+  boosting:
+    type: choice
+    values: ["gbdt", "dart"]
+objective:
+  goal: minimize
+  primary_metric: test-multi_logloss
+limits:
+  max_total_trials: 20
+  max_concurrent_trials: 10
+  timeout: 7200
+display_name: lightgbm-iris-sweep-example
+experiment_name: lightgbm-iris-sweep-example
+description: Run a hyperparameter sweep job for LightGBM on Iris dataset.
+```
+
 
 ## YAML: basic Python model hyperparameter tuning
 

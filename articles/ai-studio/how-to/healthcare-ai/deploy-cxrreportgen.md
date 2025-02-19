@@ -1,8 +1,8 @@
 ---
-title: How to deploy and use CXRReportGen healthcare AI model with AI Studio
-titleSuffix: Azure AI Studio
-description: Learn how to use CXRReportGen Healthcare AI Model with Azure AI Studio.
-ms.service: azure-ai-studio
+title: How to deploy and use CXRReportGen healthcare AI model with Azure AI Foundry
+titleSuffix: Azure AI Foundry
+description: Learn how to use CXRReportGen Healthcare AI Model with Azure AI Foundry.
+ms.service: azure-ai-foundry
 manager: scottpolly
 ms.topic: how-to
 ms.date: 10/20/2024
@@ -15,8 +15,6 @@ author: msakande
 ---
 
 # How to use CXRReportGen Healthcare AI model to generate grounded findings
-
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 
@@ -37,20 +35,19 @@ The CXRReportGen model combines a radiology-specific image encoder with a large 
 
 ## Prerequisites
 
-[!INCLUDE [shared-ai-studio-and-azure-ml-articles](../../includes/shared-ai-studio-and-azure-ml-articles.md)]
-
-To use CXRReportGen model with Azure AI Studio or Azure Machine Learning studio, you need the following prerequisites:
+To use the CXRReportGen model, you need the following prerequisites:
 
 ### A model deployment
 
 **Deployment to a self-hosted managed compute**
 
-CXRReportGen model can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served. You can deploy the model through the model catalog UI or programmatically.
+CXRReportGen model can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served. You can deploy the model through the catalog UI (in [Azure AI Foundry](https://aka.ms/healthcaremodelstudio) or [Azure Machine Learning studio](https://ml.azure.com/model/catalog)) or deploy programmatically.
 
 To __deploy the model through the UI__:
 
-1. Go to the [model card in the catalog](https://aka.ms/cxrreportgenmodelcard). 
-1. On the model's overview page, select __Deploy__. 
+1. Go to the catalog.
+1. Search for _CxrReportGen_ and select the model card.
+1. On the model's overview page, select __Deploy__.
 1. If given the option to choose between serverless API deployment and deployment using a managed compute, select **Managed Compute**.
 1. Fill out the details in the deployment window.
 

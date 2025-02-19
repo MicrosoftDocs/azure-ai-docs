@@ -38,7 +38,7 @@ ms.reviewer: ambadal
 
 The schema described in this article is used to create a connection to Azure AI Content Safety only. If you would rather create a single connection for Azure AI Services, see the [Azure AI Services connection schema](reference-yaml-connection-ai-services.md).
 
-While the `az ml connection` commands can be used to manage both Azure Machine Learning and Azure AI Studio connections, the Azure AI Content Safety connection is specific to Azure AI Studio.
+While the `az ml connection` commands can be used to manage both Azure Machine Learning and Azure AI Foundry connections, the Azure AI Content Safety connection is specific to Azure AI Foundry.
 
 ## Examples
 

@@ -16,6 +16,13 @@ ms.author: pafarley
 
 Learn what's new in the service. These items might be release notes, videos, blog posts, and other types of information. Bookmark this page to stay up to date with new features, enhancements, fixes, and documentation updates.
 
+## October 2024
+
+### Upcoming deprecations
+
+To align with Content Safety versioning and lifecycle management policies, the following versions are scheduled for deprecation:
+* **Effective March 1st, 2025**: All versions except `2024-09-01`, `2024-09-15-preview`, and `2024-09-30-preview` will be deprecated and no longer supported. We encourage users to transition to the latest available versions to continue receiving full support and updates. If you have any questions about this process or need assistance with the transition, please reach out to our support team.
+
 ## September 2024
 
 ### Multimodal analysis (preview)
@@ -27,8 +34,7 @@ The Multimodal API analyzes materials containing both image content and text con
 
 The Protected material code API flags protected code content (from known GitHub repositories, including software libraries, source code, algorithms, and other proprietary programming content) that might be output by large language models. Follow the [quickstart](./quickstart-protected-material-code.md) to get started.
 
-> [!CAUTION]
-> The content safety service's code scanner/indexer is only current through November 6, 2021. Code that was added to GitHub after this date will not be detected. Use your own discretion when using Protected Material for Code to detect recent bodies of code.
+[!INCLUDE [content-safety-code-indexer](./includes/code-indexer.md)]
 
 ### Groundedness correction (preview)
 
@@ -38,11 +44,9 @@ The groundedness detection API includes a correction feature that automatically 
 
 ### New features are GA
 
-The Prompt Shields API and groundedness detection API are now generally available (GA). Follow a quickstart to try them out.
+The Prompt Shields API and Protected Material for text API are now generally available (GA). Follow a quickstart to try them out.
 * [Prompt Shields quickstart](/azure/ai-services/content-safety/quickstart-jailbreak)
-* [Groundedness detection quickstart](/azure/ai-services/content-safety/quickstart-groundedness?tabs=curl)
-
-
+* [Protected Material quickstart](/azure/ai-services/content-safety/quickstart-protected-material?tabs=curl)
 ## July 2024
 
 ### Custom categories (standard) API public preview

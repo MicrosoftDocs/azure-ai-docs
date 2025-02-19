@@ -129,7 +129,7 @@ Follow these steps to install the Speech SDK for Java using Apache Maven:
             <dependency>
             <groupId>com.microsoft.cognitiveservices.speech</groupId>
             <artifactId>client-sdk-embedded</artifactId>
-            <version>1.40.0</version>
+            <version>1.42.0</version>
             </dependency>
         </dependencies>
     </project>
@@ -150,7 +150,7 @@ Be sure to use the `@aar` suffix when the dependency is specified in `build.grad
 
 ```
 dependencies {
-    implementation 'com.microsoft.cognitiveservices.speech:client-sdk-embedded:1.40.0@aar'
+    implementation 'com.microsoft.cognitiveservices.speech:client-sdk-embedded:1.42.0@aar'
 }
 ```
 ::: zone-end
@@ -280,7 +280,7 @@ For cloud speech, you use the `SpeechConfig` object, as shown in the [speech to 
 
 ## Embedded voices capabilities
 
-For embedded voices, it's essential to note that certain SSML tags might not be currently supported due to differences in the model structure. For detailed information regarding the unsupported SSML tags, refer to the following table.
+For embedded voices, it's essential to note that certain [Speech synthesis markup language (SSML)](./speech-synthesis-markup.md) tags might not be currently supported due to differences in the model structure. For detailed information regarding the unsupported SSML tags, refer to the following table.
 
 | Level 1 | Level 2 | Sub values | Support in embedded NTTS |
 |---------|---------|---------|---------|
@@ -299,7 +299,7 @@ For embedded voices, it's essential to note that certain SSML tags might not be 
 |                 | volume    |                                                       | No                       |
 |                 | fadein    |                                                       | No                       |
 |                 | fadeout   |                                                       | No                       |
-| msttsexpress-as | style     |                                                       | No                       |
+| msttsexpress-as | style     |                                                       | Yes<sup>1</sup>          |
 |                 | styledegree |                                                     | No                       |
 |                 | role      |                                                       | No                       |
 | msttssilence    |           |                                                       | No                       |
@@ -319,6 +319,8 @@ For embedded voices, it's essential to note that certain SSML tags might not be 
 | sub             | alias     |                                                       | Yes                      |
 | speak           |           |                                                       | Yes                      |
 | voice           |           |                                                       | No                       |
+
+<sup>1</sup> The [`msttsexpress-as`](./speech-synthesis-markup-voice.md#use-speaking-styles-and-roles) style is supported only for the `en-US-JennyNeural` voice.
 
 ## Related content
 

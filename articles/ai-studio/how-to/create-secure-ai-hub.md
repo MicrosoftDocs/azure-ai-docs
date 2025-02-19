@@ -1,23 +1,23 @@
 ---
 title: Create a secure hub
-titleSuffix: Azure AI Studio
-description: Create an Azure AI Studio hub inside a managed virtual network. The managed virtual network secures access to managed resources such as computes.
-ms.service: azure-ai-studio
+titleSuffix: Azure AI Foundry
+description: Create an Azure AI Foundry hub inside a managed virtual network. The managed virtual network secures access to managed resources such as computes.
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 11/21/2024
 ms.reviewer: meerakurup 
 ms.author: larryfr
 author: Blackmist
-# Customer intent: As an administrator, I want to create a secure hub and project with a managed virtual network so that I can secure access to the Azure AI Studio hub and project resources.
+# Customer intent: As an administrator, I want to create a secure hub and project with a managed virtual network so that I can secure access to the Azure AI Foundry hub and project resources.
 ---
 
-# How to create a secure Azure AI Studio hub and project with a managed virtual network
+# How to create a secure Azure AI Foundry hub and project with a managed virtual network
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-You can secure your Azure AI Studio hub, projects, and managed resources in a managed virtual network. With a managed virtual network, inbound access is only allowed through a private endpoint for your hub. Outbound access can be configured to allow either all outbound access, or only allowed outbound that you specify. For more information, see [Managed virtual network](configure-managed-network.md).
+You can secure your Azure AI Foundry hub, projects, and managed resources in a managed virtual network. With a managed virtual network, inbound access is only allowed through a private endpoint for your hub. Outbound access can be configured to allow either all outbound access, or only allowed outbound that you specify. For more information, see [Managed virtual network](configure-managed-network.md).
 
 > [!IMPORTANT]
 > The managed virtual network doesn't provide inbound connectivity for your clients. For more information, see the [Connect to the hub](#connect-to-the-hub) section. 
@@ -29,7 +29,7 @@ You can secure your Azure AI Studio hub, projects, and managed resources in a ma
 
 ## Create a hub
 
-1. From the Azure portal, search for `Azure AI Studio` and create a new resource by selecting **+ New Azure AI**.
+1. From the Azure portal, search for `Azure AI Foundry` and create a new resource by selecting **+ New Azure AI**.
 1. Enter your hub name, subscription, resource group, and location details. You can also select an existing Azure AI services resource or create a new one.
 
     :::image type="content" source="../media/how-to/network/ai-hub-basics.png" alt-text="Screenshot of the option to set hub basic information." lightbox="../media/how-to/network/ai-hub-basics.png":::
@@ -38,7 +38,7 @@ You can secure your Azure AI Studio hub, projects, and managed resources in a ma
 
     :::image type="content" source="../media/how-to/network/ai-hub-resources.png" alt-text="Screenshot of the Create a hub with the option to set resource information." lightbox="../media/how-to/network/ai-hub-resources.png"::: 
 
-1. Select **Next: Networking** to configure the managed virtual network that AI Studio uses to secure its hub and projects.
+1. Select **Next: Networking** to configure the managed virtual network that Azure AI Foundry uses to secure its hub and projects.
     
     1. Select **Private with Internet Outbound**, which allows compute resources to access the public internet for resources such as Python packages.
 
@@ -71,5 +71,5 @@ The managed virtual network doesn't directly provide access to your clients. Ins
 ## Next steps
 
 - [Create a project](create-projects.md)
-- [Learn more about Azure AI Studio](../what-is-ai-studio.md)
-- [Learn more about Azure AI Studio hubs](../concepts/ai-resources.md)
+- [Learn more about Azure AI Foundry](../what-is-ai-studio.md)
+- [Learn more about Azure AI Foundry hubs](../concepts/ai-resources.md)

@@ -1,12 +1,12 @@
 ---
-title: What's new in Document Intelligence ?
+title: What's new in Document Intelligence
 titleSuffix: Azure AI services
 description: Learn the latest updates to the Document Intelligence API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: whats-new
-ms.date: 08/07/2024
+ms.date: 02/05/2025
 ms.author: lajanuar
 ms.custom:
   - references_regions
@@ -25,21 +25,76 @@ ms.custom:
 Document Intelligence service is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
 > [!IMPORTANT]
-> Preview API versions are retired once the GA API is released. The 2023-02-28-preview API version is being retired, if you are still using the preview API or the associated SDK versions, please update your code to target the latest API version 2023-07-31 (GA).
+> Preview API versions are retired once the GA API is released. The 2023-02-28-preview API version is retiring. If you're still using the preview API or the associated SDK versions, update your code to target the latest API version `2024-11-30 (GA)`. </br>
+
+## December 2024
+
+**Document Intelligence v4.0 programming language SDKs are now generally available (GA)**! <br><br>The latest client libraries default to the [**2024-11-30 REST API (GA)**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) version of the service.<br><br>
+For more information, *see* client libraries for the following supported programming languages:
+
+* [🆕 .NET (C#)](versioning/changelog-release-history.md?view=doc-intel-4.0.0&tabs=csharp&preserve-view=true)
+
+* [🆕 Java](versioning/changelog-release-history.md?view=doc-intel-4.0.0&tabs=java&preserve-view=true)
+
+* [🆕 JavaScript](versioning/changelog-release-history.md?view=doc-intel-4.0.0&tabs=javascript&preserve-view=true)
+
+* [🆕 Python](versioning/changelog-release-history.md?view=doc-intel-4.0.0&tabs=python&preserve-view=true)
+
+## November 2024
+
+**Document Intelligence REST API v4.0: [**2024-11-30 REST API (GA)**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) is now generally available (GA)**! The v4.0 REST API includes the following changes:
+
+* [🆕 Batch API](concept-batch-analysis.md)
+  * Batch API now supports all models, including all read, layout, prebuilt verticals, and custom models.
+  * Batch API supports LIST function to allow users to list batch jobs within past seven days.
+  * Batch API supports DELETE function to explicitly delete batch job for GDPR and privacy compliance.
+  * GetAnalyzeBatchResult supports resultId in response to LIST all resultIds.
+ 
+* 🆕 Searchable PDF. The [prebuilt read](prebuilt/read.md) model now supports images formats (JPEG/JPG, PNG, BMP, TIFF, HEIF)  and language expansion to include Chinese, Japanese, and Korean for  [PDF output](prebuilt/read.md#searchable-pdf).
+ 
+* [Custom classification model](train/custom-model.md#custom-classification-model)
+  * Custom classification model supports incremental training. You can add new samples to existing classes or add new classes by referencing an existing classifier. 
+  * With v4.0, custom classification model doesn't split documents by default during analysis. You need to explicitly set 'splitMode' property to auto to preserve the older behavior.
+  * Custom classification model now supports 25,000 pages as new training page limit.
+
+* [Custom Neural Model](train/custom-neural.md)
+  * Custom Neural model now supports signature detection.
+  * Custom neural models support paid training for longer duration when you need to train model with a larger labeled dataset. The first 20 training runs in a calendar month continue to be free. Any training operations over 20 is on the paid tier. Learn more details on [billing](train/custom-neural.md#billing).
+
+* [ US Bank statement model](concept-bank-statement.md)
+  * US Bank Statement Model now supports check table extraction.
+
+* [Check model](concept-bank-check.md)
+  * Supports Payer's Signature extraction
+
+* [Mortgage documents model](concept-mortgage-documents.md)
+  * Mortgage model now supports signature detection for  forms 1003, 1004, 1005 and closing disclosure.
+
+* [Receipt Model](concept-receipt.md)
+  * Receipt Model now supports more fields including ReceiptType, Tax rate, CountryRegion, net amount and description. 
+ 
+*  [🆕 US Tax model](prebuilt/tax-document.md)
+   *  New prebuilt tax models added for 1095A, 1095C, 1099SSA, and W4.
+
+* [Delete analyze response](/rest/api/aiservices/document-models/delete-analyze-result?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true&tabs=HTTP)
+  * Analyze response is stored for 24 hours from when the operation completes for retrieval. For scenarios where you want to delete the response sooner, use the delete analyze response API to delete the response.  
+
+* The v4.0 API includes cumulative updates from preview releases as listed:
+  * [August 2024](#august-2024)
+  * [May 2024](#may-2024)
+  * [Feb 2024](#february-2024) 
 
 ## August 2024
 
 The Document Intelligence [**2024-07-31-preview**](/rest/api/aiservices/document-models?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true) REST API is now available. This preview API introduces new and updated capabilities:
 
-* Public preview version [**2024-07-31-preview**](/rest/api/aiservices/operation-groups?view=rest-aiservices-2024-07-31-preview&preserve-view=true) is currently available only in the following Azure regions. The new document field extraction model in AI Studio is only available in North Central US region:
+* Public preview version [**2024-07-31-preview**](/rest/api/aiservices/operation-groups?view=rest-aiservices-2024-07-31-preview&preserve-view=true) is currently available only in the following Azure regions. The new document field extraction model in Azure AI Foundry portal is only available in North Central US region:
 
 * **East US**
 * **West US2**
 * **West Europe**
 * **North Central US**
 
-* [🆕 Document field extraction (custom generative) model](train/custom-generative-extraction.md)
-  * Use **Generative AI** to extract fields from documents and forms. Document Intelligence now offers a new document field extraction model that utilizes large language models (LLMs) to extract fields from unstructured documents or structured forms with a wide variety of visual templates. With grounded values and confidence scores, the new Generative AI based extraction fits into your existing processes.
 * [🆕 Model compose with custom classifiers](train/composed-models.md)
   * Document Intelligence now adds support for composing model with an explicit custom classification model. [Learn more about the benefits](train/composed-models.md) of using the new compose capability.
 * [Custom classification model](train/custom-model.md#custom-classification-model)
@@ -66,7 +121,7 @@ The Document Intelligence [**2024-07-31-preview**](/rest/api/aiservices/document
 
 ## May 2024
 
-The Document Intelligence Studio adds support for Microsoft Entra (formerly Azure Active Directory) authentication. For more information, *see* [Document Intelligence Studio overview](quickstarts/try-document-intelligence-studio.md#authentication).
+The Document Intelligence Studio adds support for Microsoft Entra (formerly Azure Active Directory) authentication. For more information, *see* [Authentication in Document Intelligence Studio](studio-overview.md#authentication-in-studio).
 
 ## February 2024
 
@@ -170,14 +225,13 @@ The Document Intelligence [**2023-10-31-preview**](/rest/api/aiservices/document
   * Add-on capabilities are available within all models excluding the [Read model](prebuilt/read.md).
 
 >[!NOTE]
-> With the 2022-08-31 API general availability (GA) release, the associated preview APIs are being deprecated. If you are using the 2021-09-30-preview, the 2022-01-30-preview or he 2022-06-30-preview API versions, please update your applications to target the 2022-08-31 API version. There are a few minor changes involved, for more information, _see_ the [migration guide](v3-1-migration-guide.md).
+> With the 2022-08-31 API general availability (GA) release, the associated preview APIs are being deprecated. If you're using the 2021-09-30-preview, 2022-01-30-preview, or 2022-06-30-preview API versions, update your applications to target the 2022-08-31 API version. There are a few minor changes involved, for more information, _see_ the [migration guide](v3-1-migration-guide.md).
 
 ## July 2023
 
 > [!NOTE]
 > Form Recognizer is now **Azure AI Document Intelligence**!
 >
-> * Document, Azure AI services encompass all of what were previously known as Cognitive Services and Azure Applied AI Services.
 > * There are no changes to pricing.
 > * The names *Cognitive Services* and *Azure Applied AI* continue to be used in Azure billing, cost analysis, price list, and price APIs.
 > * There are no breaking changes to application programming interfaces (APIs) or client libraries.
@@ -214,7 +268,7 @@ The v3.1 API introduces new and updated capabilities:
     :::image type="content" source="media/studio/analyze-options.gif" alt-text="Animated screenshot showing use of the analyze-options button to configure options in Studio.":::
 
     > [!NOTE]
-    > Font extraction is not visualized in Document Intelligence Studio. However, you can check the styles section of the JSON output for the font detection results.
+    > Font extraction isn't visualized in Document Intelligence Studio. However, you can check the styles section of the JSON output for the font detection results.
 
 ✔️ **Auto labeling documents with prebuilt models or one of your own models**
 
@@ -445,7 +499,7 @@ The v3.1 API introduces new and updated capabilities:
 ## September 2022
 
 >[!NOTE]
-> Starting with version 4.0.0, a new set of clients has been introduced to leverage the newest features of the Document Intelligence service.
+> Starting with version 4.0.0, a new set of clients is introduced to apply the newest features of the Document Intelligence service.
 
 **SDK version 4.0.0 GA release includes the following updates:**
 

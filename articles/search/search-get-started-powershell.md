@@ -8,7 +8,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.devlang: rest-api
-ms.date: 03/18/2024
+ms.date: 10/31/2024
 ms.custom:
   - mode-api
   - ignite-2023
@@ -74,7 +74,7 @@ All requests require an API key on every request sent to your service. Having a 
 
 ## Create an index
 
-Unless you're using the portal, an index must exist on the service before you can load data. This step defines the index and pushes it to the service. The [Create Index REST API](/rest/api/searchservice/indexes/create) is used for this step.
+Unless you're using the Azure portal, an index must exist on the service before you can load data. This step defines the index and pushes it to the service. The [Create Index REST API](/rest/api/searchservice/indexes/create) is used for this step.
 
 Required elements of an index include a name and a fields collection. The fields collection defines the structure of a *document*. Each field has a name, type, and attributes that determine how it's used (for example, whether it's full-text searchable, filterable, or retrievable in search results). Within an index, one of the fields of type `Edm.String` must be designated as the *key* for document identity.
 
@@ -164,7 +164,7 @@ This index is named `hotels-quickstart` and has the field definitions you see in
     ```
 
 > [!Tip]
-> For verification, you could also check the **Indexes** list in the portal.
+> For verification, you could also check the **Indexes** list in the Azure portal.
 
 <a name="load-documents"></a>
 
@@ -183,7 +183,7 @@ To push documents, use an HTTP POST request to your index's URL endpoint. The RE
         {
         "@search.action": "upload",
         "HotelId": "1",
-        "HotelName": "Secret Point Motel",
+        "HotelName": "Stay-Kay City Hotel",
         "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
         "Category": "Boutique",
         "Tags": [ "pool", "air conditioning", "concierge" ],
@@ -202,7 +202,7 @@ To push documents, use an HTTP POST request to your index's URL endpoint. The RE
         {
         "@search.action": "upload",
         "HotelId": "2",
-        "HotelName": "Twin Dome Motel",
+        "HotelName": "Old Century Hotel",
         "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
         "Category": "Boutique",
         "Tags": [ "pool", "free wifi", "concierge" ],
@@ -221,7 +221,7 @@ To push documents, use an HTTP POST request to your index's URL endpoint. The RE
         {
         "@search.action": "upload",
         "HotelId": "3",
-        "HotelName": "Triple Landscape Hotel",
+        "HotelName": "Gastronomic Landscape Hotel",
         "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
         "Category": "Resort and Spa",
         "Tags": [ "air conditioning", "bar", "continental breakfast" ],
@@ -240,8 +240,8 @@ To push documents, use an HTTP POST request to your index's URL endpoint. The RE
         {
         "@search.action": "upload",
         "HotelId": "4",
-        "HotelName": "Sublime Cliff Hotel",
-        "Description": "Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 1800 palace.",
+        "HotelName": "Sublime Palace Hotel",
+        "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.",
         "Category": "Boutique",
         "Tags": [ "concierge", "view", "24-hour front desk service" ],
         "ParkingIncluded": true,
@@ -336,7 +336,7 @@ Be sure to use single quotation marks on search `$urls`. Query strings include `
                   {
                       "@search.score":  0.1547872,
                       "HotelId":  "2",
-                      "HotelName":  "Twin Dome Motel",
+                      "HotelName":  "Old Century Hotel",
                       "Description":  "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
                       "Category":  "Boutique",
                       "Tags":  "pool free wifi concierge",
@@ -348,7 +348,7 @@ Be sure to use single quotation marks on search `$urls`. Query strings include `
                   {
                       "@search.score":  0.009068266,
                       "HotelId":  "3",
-                      "HotelName":  "Triple Landscape Hotel",
+                      "HotelName":  "Gastronomic Landscape Hotel",
                       "Description":  "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel\u0027s restaurant services.",
                       "Category":  "Resort and Spa",
                       "Tags":  "air conditioning bar continental breakfast",
@@ -389,9 +389,9 @@ $url = 'https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/hotels-quicksta
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal by using the **All resources** or **Resource groups** link in the leftmost pane.
+You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
-If you're using a free service, remember that you're limited to three indexes, indexers, and data sources. You can delete individual items in the portal to stay under the limit.
+If you're using a free service, remember that you're limited to three indexes, indexers, and data sources. You can delete individual items in the Azure portal to stay under the limit.
 
 ## Next steps
 

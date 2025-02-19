@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 09/18/2024
+ms.date: 10/31/2024
 ---
 
 # Tutorial: Query an Azure AI Search index from Power Apps
@@ -118,7 +118,7 @@ A connector in Power Apps is a data source connection. In this step, create a cu
         "value": [
             {
                 "@search.score": 1,
-                "HotelName": "Arcadia Resort & Restaurant",
+                "HotelName": "Happy Lake Resort & Restaurant",
                 "Description": "The largest year-round resort in the area offering more of everything for your vacation – at the best value!  What can you enjoy while at the resort, aside from the mile-long sandy beaches of the lake? Check out our activities sure to excite both young and young-at-heart guests. We have it all, including being named “Property of the Year” and a “Top Ten Resort” by top publications.",
                 "Address": {
                     "City": "Seattle"
@@ -126,7 +126,7 @@ A connector in Power Apps is a data source connection. In this step, create a cu
             },
             {
                 "@search.score": 1,
-                "HotelName": "Travel Resort",
+                "HotelName": "Grand Gaming Resort",
                 "Description": "The Best Gaming Resort in the area.  With elegant rooms & suites, pool, cabanas, spa, brewery & world-class gaming.  This is the best place to play, stay & dine.",
                 "Address": {
                     "City": "Albuquerque"
@@ -137,7 +137,7 @@ A connector in Power Apps is a data source connection. In this step, create a cu
     ```
 
     > [!TIP] 
-    > There is a character limit to the JSON response you can enter, so you may want to simplify the JSON before pasting it. The schema and format of the response is more important than the values themselves. For example, the Description field could be simplified to just the first sentence.
+    > There is a character limit to the JSON response you can enter, so you might want to simplify the JSON before pasting it. The schema and format of the response is more important than the values themselves. For example, the Description field could be simplified to just the first sentence.
 
 1. Select **Import** to add the default response.
 
@@ -249,7 +249,7 @@ In this step, create a Power App with a search box, a search button, and a displ
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
+You can find and manage resources in the Azure portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
 
 Remember that a free search service is limited to three indexes, indexers, and data sources. You can delete individual items in the Azure portal to stay under the limit.
 

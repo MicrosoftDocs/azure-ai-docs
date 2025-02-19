@@ -1,13 +1,13 @@
 ---
 title: Troubleshoot private endpoint connection
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: 'Learn how to troubleshoot connectivity problems to a project that is configured with a private endpoint.'
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 11/21/2024
 ms.reviewer: meerakurup
 ms.author: larryfr
 author: Blackmist
@@ -35,7 +35,7 @@ To connect to a project that's secured behind a VNet, use one of the following m
 
 The troubleshooting steps for DNS configuration differ based on whether you're using Azure DNS or a custom DNS. Use the following steps to determine which one you're using:
 
-1. In the [Azure portal](https://portal.azure.com), select the private endpoint resource for your Azure AI Studio. If you don't remember the name, select your Azure AI Studio resource, __Networking__, __Private endpoint connections__, and then select the __Private endpoint__ link.
+1. In the [Azure portal](https://portal.azure.com), select the private endpoint resource for your Azure AI Foundry. If you don't remember the name, select your Azure AI Foundry resource, __Networking__, __Private endpoint connections__, and then select the __Private endpoint__ link.
 
     :::image type="content" source="../media/how-to/troubleshoot-secure-connection-project/private-endpoint-connections.png" alt-text="Screenshot of the private endpoint connections for the resource." lightbox="../media/how-to/troubleshoot-secure-connection-project/private-endpoint-connections.png":::
 
@@ -123,13 +123,14 @@ If you use a proxy, it may prevent communication with a secured project. To test
 * Configure your proxy server to forward DNS requests to Azure DNS.
 * Ensure that the proxy allows connections to AML APIs, such as "*.\<region\>.api.azureml.ms" and "*.instances.azureml.ms"
 
-## Troubleshoot missing storage connections
+## Troubleshoot configurations on connecting to storage
 
 When you create a project, a number of connections to Azure storage are auto-created for data upload scenarios and artifact storage including prompt flow. When your hub's associated Azure Storage account is having public network access set to 'Disabled', there may be a delay in these storage connections to be created. 
 
 Try the following steps to troubleshoot:
-
 1. In Azure Portal, check the network settings of the storage account that is associated to your hub.
-1. Review your internet connection, and make sure you are using a private connection that is allowed by your storage account.
-1. Navigate to AI Studio > your project > project settings. 
-1. Refresh the page. A number of connections should be created including 'workspaceblobstore'.
+  * If public network access is set to __Enabled from selected virtual networks and IP addresses__, ensure the correct IP address ranges are added to access your storage account.
+  * If public network access is set to __Disabled__, ensure you have a private endpoint configured from your Azure virtual network to your storage account with Target sub-resource as blob. In addition, you must grant the [Reader](/azure/role-based-access-control/built-in-roles#reader) role for the storage account private endpoint to the managed identity.
+2. In Azure Portal, navigate to your Azure AI Foundry hub. Ensure the managed virtual network is provisioned and the outbound private endpoint to blob storage is Active. For more on provisioning the managed virtual network, see [How to configure a managed network for Azure AI Foundry hubs](configure-managed-network.md).
+3. Navigate to Azure AI Foundry > your project > project settings. 
+4. Refresh the page. A number of connections should be created including 'workspaceblobstore'.

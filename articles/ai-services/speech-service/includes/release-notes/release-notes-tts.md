@@ -2,16 +2,141 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 10/9/2024
+ms.date: 2/18/2025
 ms.author: eur
 ms.custom: references_regions
 ---
 
+### February 2025 release
+
+#### Version 1.1 of HD voices (Public preview)
+
+Updated 13 current HD voices to the version 1.1 (latest) to support multilingual voices.
+
+- Specifying the "latest" model defaults to v1.1
+- v1.1 supports multilingual
+- If you want to call older version, specify the version in the voice name:
+    - Version 1.0: `en-US-Ava:DragonHDV1.0Neural`
+    - Latest (currently V1.1): `en-US-Ava:DragonHDLatestNeural`
+  
+| **Locale (BCP-47)** | **Voice name**              |
+|---------------------|---------------------------|
+| `de-DE`   | `de-DE-Seraphina:DragonHDLatestNeural` (Female) |
+| `en-US`   | `en-US-Brian:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Davis:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Ava:DragonHDLatestNeural` (Female) |
+| `en-US`   | `en-US-Andrew:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Andrew2:DragonHDLatestNeural` (Male) - optimized for free-talking | 
+| `en-US`   | `en-US-Emma:DragonHDLatestNeural` (Female) |
+| `en-US`   | `en-US-Emma2:DragonHDLatestNeural` (Female) - optimized for free-talking |
+| `en-US`   | `en-US-Steffan:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Aria:DragonHDLatestNeural` (Female) |
+| `en-US`   | `en-US-Jenny:DragonHDLatestNeural` (Female) |
+| `ja-JP`   | `ja-JP-Masaru:DragonHDLatestNeural` (Male) |
+| `zh-CN`   | `zh-CN-Xiaochen:DragonHDLatestNeural` (Female) |
+
+#### Public preview of new HD voices
+
+Added 14 more HD voices that are only available in version 1.1. 
+
+| **Locale (BCP-47)** | **Voice name**              |
+|---------------------|---------------------------|
+| `de-DE`   | `de-DE-Florian:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Adam:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Brain:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Davis:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Phoebe:DragonHDLatestNeural` (Female) |
+| `en-US`   | `en-US-Serena:DragonHDLatestNeural` (Female) |
+| `en-US`   | `en-US-Alloy:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Nova:DragonHDLatestNeural` (Female) |
+| `es-ES`   | `es-ES-Ximena:DragonHDLatestNeural` (Female) |
+| `es-ES`   | `es-ES-Tristan:DragonHDLatestNeural` (Male) |
+| `fr-FR`   | `fr-FR-Vivienne:DragonHDLatestNeural` (Female) |
+| `fr-FR`   | `fr-FR-Remy:DragonHDLatestNeural` (Male) |
+| `ja-JP`   | `ja-JP-Nanami:DragonHDLatestNeural` (Female) |
+| `zh-CN`   | `zh-CN-Yunfan:DragonHDLatestNeural` (Male) |
+
+#### Azure OpenAI Service turbo voices
+
+These turbo voices are now generally available:
+
+| **Locale (BCP-47)** | **Voice name**              |
+|---------------------|---------------------------|
+| `en-US`   | `en-US-AlloyTurboMultilingualNeural` (Male) |
+| `en-US`   | `en-US-EchoTurboMultilingualNeural` (Male) |
+| `en-US`   | `en-US-FableTurboMultilingualNeural` (Neutral) |
+| `en-US`   | `en-US-NovaTurboMultilingualNeural` (Female) |
+| `en-US`   | `en-US-OnyxTurboMultilingualNeural` (Male) |
+| `en-US`   | `en-US-ShimmerTurboMultilingualNeural` (Female) |
+
+#### Voice quality improvements
+
+Improved the quality of 16 voices.
+
+| **Locale (BCP-47)** | **Voice name**              |
+|---------------------|---------------------------|
+| `ar-EG`   | `ar-EG-ShakirNeural` (Male) |
+| `ca-ES`   | `ca-ES-EnricNeural` (Male) |
+| `en-IE`   | `en-IE-EmilyNeural` (Female) |
+| `fi-FI`   | `fi-FI-HarriNeural` (Male) |
+| `fi-FI`   | `fi-FI-SelmaNeural` (Female) |
+| `fr-CH`   | `fr-CH-FabriceNeural` (Female) |
+| `hr-HR`   | `hr-HR-GabrijelaNeural` (Female) |
+| `nl-NL`   | `nl-NL-MaartenNeural` (Male) |
+| `pt-PT`   | `pt-PT-RaquelNeural` (Female) |
+| `ro-RO`   | `ro-RO-AlinaNeural` (Female) |
+| `sv-SE`   | `sv-SE-MattiasNeural` (Male) |
+| `sv-SE`   | `sv-SE-SofieNeural` (Female) |
+| `vi-VN`   | `vi-VN-HoaiMyNeural` (Female) |
+| `vi-VN`   | `vi-VN-NamMinhNeural` (Male) |
+| `zh-HK`   | `zh-HK-HiuMaanNeural` (Female) |
+| `zh-HK`   | `zh-HK-WanLungNeural` (Male) |
+
+#### GA - Multi-style embedded Jenny
+
+Added style support for `en-US-JennyNeural` in [embedded speech](../../embedded-speech.md). The same styles are supported as in the cloud. The following styles are supported: `angry`, `assistant`, `chat`, `cheerful`, `customerservice`, `excited`, `friendly`, `hopeful`, `newscast`, `sad`, `shouting`, `terrified`, `unfriendly`, and `whispering`.
+
+### January 2025 release
+
+#### Custom avatar training
+
+You can now train custom avatars in [Speech Studio](https://speech.microsoft.com/portal/talkingavatar). Previously, you had to wait for Microsoft to train your custom avatar. 
+
+For more details about how to create a custom avatar, see [create a custom text to speech avatar](../../text-to-speech-avatar/custom-avatar-create.md).
+
 ### October 2024 release
 
-##### Prebuilt neural voice
+#### Prebuilt neural voice
 
-- Introduce 4 turbo version of Azure OpenAI voices in public preview: `en-US-EchoTurboMultilingualNeural`, `en-US-FableTurboMultilingualNeural`, `en-US-OnyxTurboMultilingualNeural`, and `en-US-ShimmerTurboMultilingualNeural`. Turbo version of Azure OpenAI voices has the similar voice persona as Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features like word boundary, just like other Azure AI Speech voices. See the [full language and voice list](../../language-support.md?tabs=tts) for more information.
+Introduced 4 turbo version of Azure OpenAI voices in public preview: `en-US-EchoTurboMultilingualNeural`, `en-US-FableTurboMultilingualNeural`, `en-US-OnyxTurboMultilingualNeural`, and `en-US-ShimmerTurboMultilingualNeural`. Turbo version of Azure OpenAI voices has the similar voice persona as Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features like word boundary, just like other Azure AI Speech voices. See the [full language and voice list](../../language-support.md?tabs=tts) for more information.
+
+These voices are now generally available:
+
+| **Locale (BCP-47)** | **Voice name**              |
+|---------------------|---------------------------|
+| `de-DE` | `SeraphinaMultilingualNeural` |
+| `de-DE` | `FlorianMultilingualNeural` |
+| `en-GB` | `AdaMultilingualNeural` |
+| `en-GB` | `OllieMultilingualNeural` |
+| `en-US` | `LunaNeural` |
+| `en-US` | `KaiNeural` |
+| `en-US` | `CoraMultilingualNeural` |
+| `en-US` | `ChristopherMultilingualNeural` |
+| `en-US` | `BrandonMultilingualNeural` |
+| `es-ES` | `IsidoraMultilingualNeural` |
+| `es-ES` | `ArabellaMultilingualNeural` |
+| `es-ES` | `TristanMultilingualNeural` |
+| `es-ES` | `XimenaMultilingualNeural` |
+| `fr-FR` | `LucienMultilingualNeural` |
+| `fr-FR` | `VivienneMultilingualNeural` |
+| `fr-FR` | `RemyMultilingualNeural` |
+| `it-IT` | `IsabellaMultilingualNeural` |
+| `it-IT` | `MarcelloMultilingualNeural` |
+| `it-IT` | `AlessioMultilingualNeural` |
+| `it-IT` | `GiuseppeMultilingualNeural` |
+| `ko-KR` | `HyunsuMultilingualNeural` |
+| `pt-BR` | `ThalitaMultilingualNeural` |
+| `pt-BR` | `MacerioMultilingualNeural` |
 
 #### Prebuilt high definition (HD) neural voice
 
@@ -55,6 +180,8 @@ Azure AI speech high definition (HD) voices are available in public preview. The
 - Custom neural voice Pro now supports the following new locales:
   - `en-NZ`: English (New Zealand)
   - `es-CL`: Spanish (Chile)
+  - `es-US`: Spanish (United States)
+  - `ta-MY`: Tamil (Malaysia)
   
   See the [language list for Custom neural voice](../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
 
@@ -75,6 +202,7 @@ Azure AI speech high definition (HD) voices are available in public preview. The
   | `pt-PT`               | Portuguese (Portugal)     |
   | `sv-SE`               | Swedish (Sweden)          |
   | `tr-TR`               | Turkish (Türkiye)          |
+  | `ta-IN`               | Tamil (India) |
   | `zh-HK`               | Chinese (Cantonese, Traditional)       |  
 
   See the [language list for Custom neural voice](../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
@@ -135,7 +263,7 @@ Added support and general availability for new voices in the following locales:
 | Locale (BCP-47) | Language | Text to speech voices |
 | ----- | ----- | ----- |
 | `as-IN` | Assamese (India) | `as-IN-YashicaNeural` (Female)<br/>`as-IN-PriyomNeural` (Male) |
-| `or-IN` | Oriya (India) | `or-IN-SubhasiniNeural` (Female)<br/>`or-IN-SukantNeural` (Male) |
+| `or-IN` | Odia (India) | `or-IN-SubhasiniNeural` (Female)<br/>`or-IN-SukantNeural` (Male) |
 | `pa-IN` | Punjabi (India) | `pa-IN-OjasNeural` (Male)<br/>`pa-IN-VaaniNeural` (Female) |
 
 The one voice in this table is generally available and supports only the 'en-IN' locale.
@@ -262,7 +390,7 @@ Text to speech avatar is now generally available. For more information, see [tex
   | `pt-PT`| Portuguese (Portugal)|
   | `sv-SE`| Swedish (Sweden)|
   | `th-TH`| Thai (Thailand)|
-  | `tr-TR`| Turkish (Turkey)|
+  | `tr-TR`| Turkish (Türkiye)|
   | `zh-CN`| Chinese (Mandarin, Simplified)|
   | `zh-HK`| Chinese (Cantonese, Traditional)|
   | `zh-TW`| Chinese (Taiwanese Mandarin, Traditional)|
@@ -275,8 +403,8 @@ Text to speech avatar is now generally available. For more information, see [tex
   
   | Locale | Language    | Text to speech voices  |
   |--------|-----------------|-------------------------|
-  | `or-IN`  | Oriya (India)   | `or-IN-SubhasiniNeural` (Female) |
-  | `or-IN`  | Oriya (India)   | `or-IN-SukantNeural` (Male)      | 
+  | `or-IN`  | Odia (India)   | `or-IN-SubhasiniNeural` (Female) |
+  | `or-IN`  | Odia (India)   | `or-IN-SukantNeural` (Male)      | 
   | `pa-IN`  | Punjabi (India) | `pa-IN-VaaniNeural` (Female)     |
   | `pa-IN`  | Punjabi (India) | `pa-IN-OjasNeural` (Male)        | 
   | `as-IN`  | Assamese (India)| `as-IN-YashicaNeural` (Female)   | 
@@ -286,7 +414,7 @@ Text to speech avatar is now generally available. For more information, see [tex
   
 #### Text to speech avatar
 
-- Text to speech avatar now supports the following regions: Southeast Asia, North Europe, West Europe, Sweden Central, South Central US, and West US 2. For more information, see [Speech service regions](../../regions.md#speech-service).
+- Text to speech avatar now supports the following regions: Southeast Asia, North Europe, West Europe, Sweden Central, South Central US, and West US 2. For more information, see [Speech service regions](../../regions.md#regions).
 
 ### May 2024 release
 
@@ -304,7 +432,7 @@ Personal voice is now generally available. With personal voice, you can get AI g
 
 #### Text to speech avatar
 
-- You can now set a static background image for your avatars. To utilize this feature, simply use the `avatarConfig.backgroundImage` property and specify a URL pointing to the desired image. For detials, refer to [How to edit the background](../../text-to-speech-avatar/batch-synthesis-avatar-properties.md#how-to-edit-the-background).
+- You can now set a static background image for your avatars. To utilize this feature, simply use the `avatarConfig.backgroundImage` property and specify a URL pointing to the desired image. For details, refer to [How to edit the background](../../text-to-speech-avatar/batch-synthesis-avatar-properties.md#how-to-edit-the-background).
 
 ### March 2024 release
 
@@ -323,7 +451,7 @@ Personal voice is now generally available. With personal voice, you can get AI g
 #### Text to speech avatar
 
 - Removed dependency on [Azure Communication Services (ACS) TURN](/azure/communication-services/quickstarts/relay-token) for real-time avatar. The [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar) has been updated accordingly to reflect this change.
-- Published text to speech avatar pricing. For more details, see the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Note that avatar pricing will only be visible for service [regions](../../regions.md#speech-service) where the feature is available.
+- Published text to speech avatar pricing. For more details, see the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Note that avatar pricing will only be visible for service [regions](../../regions.md#regions) where the feature is available.
 
 ### February 2024 release
 
@@ -486,7 +614,7 @@ These new multilingual voices can speak in 41 languages and accents: `Arabic (Eg
 These multilingual voices don't fully support certain SSML elements, such as break, emphasis, silence, and sub.
 
 > [!IMPORTANT]
-> The `en-US-JennyMultilingualV2Neural` voice is provided temporarily in public preview soley for evaluation purposes. It will be removed in the future. 
+> The `en-US-JennyMultilingualV2Neural` voice is provided temporarily in public preview solely for evaluation purposes. It will be removed in the future. 
 > 
 > In order to speak in a language other than English, the current implementation of the `en-US-JennyMultilingualNeural` voice requires that you set the `<lang xml:lang>` element. We anticipate that during Q4 calendar year 2023, the `en-US-JennyMultilingualNeural` voice will be updated to speak in the language of the input text without the `<lang xml:lang>` element. This will be in parity with the `en-US-JennyMultilingualV2Neural` voice.
 
@@ -809,7 +937,7 @@ For more information, see the [language and voice list](../../language-support.m
 * Enabled to clone model (rename voice model). Learn more on [how to rename your voice model](../../professional-voice-train-voice.md#rename-your-model).
 * Enabled to test your voice model by adding your own test script. Learn more on [how to upload your test script](../../professional-voice-train-voice.md#test-your-voice-model).
 * Enabled to update engine version for your voice model. Learn more on [how to update the model engine version](../../professional-voice-train-voice.md#update-engine-version-for-your-voice-model).
-* Supported more training regions. See [region support](../../regions.md#speech-service).
+* Supported more training regions. See [region support](../../regions.md#regions).
 * Supported 10 locales for custom neural voice lite (preview). See [language support](../../language-support.md?tabs=tts).
 
 #### Audio Content Creation tool
@@ -841,7 +969,7 @@ For more information, see the [language and voice list](../../language-support.m
 
 * Released custom neural voice lite in public preview. Learn more about [what is custom neural voice lite](../../custom-neural-voice-lite.md).
 * Extended language support to 49 locales. See [language support](../../language-support.md?tabs=tts).
-* Supported more regions/datacenters. See [region support](../../regions.md#speech-service).
+* Supported more regions/datacenters. See [region support](../../regions.md#regions).
 
 #### Audio Content Creation tool
 
@@ -943,7 +1071,7 @@ Added 49 new languages and 98 voices for Neural text to speech:
 Adri in `af-ZA` Afrikaans (South Africa), Willem in `af-ZA` Afrikaans (South Africa), Mekdes in `am-ET` Amharic (Ethiopia), Ameha in `am-ET` Amharic (Ethiopia), Fatima in `ar-AE` Arabic (United Arab Emirates), Hamdan in `ar-AE` Arabic (United Arab Emirates), Laila in `ar-BH` Arabic (Bahrain), Ali in `ar-BH` Arabic (Bahrain), Amina in `ar-DZ` Arabic (Algeria), Ismael in `ar-DZ` Arabic (Algeria), Rana in `ar-IQ` Arabic (Iraq), Bassel in `ar-IQ` Arabic (Iraq), Sana in `ar-JO` Arabic (Jordan), Taim in `ar-JO` Arabic (Jordan), Noura in `ar-KW` Arabic (Kuwait), Fahed in `ar-KW` Arabic (Kuwait), Iman in `ar-LY` Arabic (Libya), Omar in `ar-LY` Arabic (Libya), Mouna in `ar-MA` Arabic (Morocco), Jamal in `ar-MA` Arabic (Morocco), Amal in `ar-QA` Arabic (Qatar), Moaz in `ar-QA` Arabic (Qatar), Amany in `ar-SY` Arabic (Syria), Laith in `ar-SY` Arabic (Syria), Reem in `ar-TN` Arabic (Tunisia), Hedi in `ar-TN` Arabic (Tunisia), Maryam in `ar-YE` Arabic (Yemen), Saleh in `ar-YE` Arabic (Yemen), Nabanita in `bn-BD` Bangla (Bangladesh), Pradeep in `bn-BD` Bangla (Bangladesh), Asilia in `en-KE` English (Kenya), Chilemba in `en-KE` English (Kenya), Ezinne in `en-NG` English (Nigeria), Abeo in `en-NG` English (Nigeria), Imani in `en-TZ` English (Tanzania), Elimu in `en-TZ` English (Tanzania), Sofia in `es-BO` Spanish (Bolivia), Marcelo in `es-BO` Spanish (Bolivia), Catalina in `es-CL` Spanish (Chile), Lorenzo in `es-CL` Spanish (Chile), Maria in `es-CR` Spanish (Costa Rica), Juan in `es-CR` Spanish (Costa Rica), Belkys in `es-CU` Spanish (Cuba), Manuel in `es-CU` Spanish (Cuba), Ramona in `es-DO` Spanish (Dominican Republic), Emilio in `es-DO` Spanish (Dominican Republic), Andrea in `es-EC` Spanish (Ecuador), Luis in `es-EC` Spanish (Ecuador), Teresa in `es-GQ` Spanish (Equatorial Guinea), Javier in `es-GQ` Spanish (Equatorial Guinea), Marta in `es-GT` Spanish (Guatemala), Andres in `es-GT` Spanish (Guatemala), Karla in `es-HN` Spanish (Honduras), Carlos in `es-HN` Spanish (Honduras), Yolanda in `es-NI` Spanish (Nicaragua), Federico in `es-NI` Spanish (Nicaragua), Margarita in `es-PA` Spanish (Panama), Roberto in `es-PA` Spanish (Panama), Camila in `es-PE` Spanish (Peru), Alex in `es-PE` Spanish (Peru), Karina in `es-PR` Spanish (Puerto Rico), Victor in `es-PR` Spanish (Puerto Rico), Tania in `es-PY` Spanish (Paraguay), Mario in `es-PY` Spanish (Paraguay), Lorena in `es-SV` Spanish (El Salvador), Rodrigo in `es-SV` Spanish (El Salvador), Valentina in `es-UY` Spanish (Uruguay), Mateo in `es-UY` Spanish (Uruguay), Paola in `es-VE` Spanish (Venezuela), Sebastian in `es-VE` Spanish (Venezuela), Dilara in `fa-IR` Persian (Iran), Farid in `fa-IR` Persian (Iran), Blessica in `fil-PH` Filipino (Philippines), Angelo in `fil-PH` Filipino (Philippines), Sabela in `gl-ES` Galician, Roi in `gl-ES` Galician, Siti in `jv-ID` Javanese (Indonesia), Dimas in `jv-ID` Javanese (Indonesia), Sreymom in `km-KH` Khmer (Cambodia), Piseth in `km-KH` Khmer (Cambodia), Nilar in `my-MM` Burmese (Myanmar), Thiha in `my-MM` Burmese (Myanmar), Ubax in `so-SO` Somali (Somalia), Muuse in `so-SO` Somali (Somalia), Tuti in `su-ID` Sundanese (Indonesia), Jajang in `su-ID` Sundanese (Indonesia), Rehema in `sw-TZ` Swahili (Tanzania), Daudi in `sw-TZ` Swahili (Tanzania), Saranya in `ta-LK` Tamil (Sri Lanka), Kumar in `ta-LK` Tamil (Sri Lanka), Venba in `ta-SG` Tamil (Singapore), Anbu in `ta-SG` Tamil (Singapore), Gul in `ur-IN` Urdu (India), Salman in `ur-IN` Urdu (India), Madina in `uz-UZ` Uzbek (Uzbekistan), Sardor in `uz-UZ` Uzbek (Uzbekistan), Thando in `zu-ZA` Zulu (South Africa), Themba in `zu-ZA` Zulu (South Africa).
 
 ### September 2021 release
-- **New chatbot voice in `en-US` English (US)**: Sara, represents a young female adult that talks more casually and fits best for the chatbot scenarios. 
+- **New chatbot voice in `en-US` English (US)**: Sara represents a young female adult that talks more casually and fits best for the chatbot scenarios. 
 - **New styles added for `ja-JP` Japanese voice Nanami**: Three new styles are now available with Nanami: chat, customer service, and cheerful.
 - **Overall pronunciation improvement**: Ardi in `id-ID`, Premwadee in `th-TH`, Christel in `da-DK`, HoaiMy and NamMinh in `vi-VN`.
 - **Two new voices in `zh-CN` Chinese (Mandarin, China) in preview**: Xiaochen & Xiaoyan, optimized for spontaneous speech and customer service scenarios.
@@ -972,13 +1100,13 @@ Adri in `af-ZA` Afrikaans (South Africa), Willem in `af-ZA` Afrikaans (South Afr
 
 - **Eleven new en-US voices in preview** - 11 new en-US voices in preview are added to American English, they are Ashley, Amber, Ana, Brandon, Christopher, Cora, Elizabeth, Eric, Michelle, Monica, Jacob.
 
-- **Five `zh-CN` Chinese (Mandarin, Simplified) voices are generally available** - 5 Chinese (Mandarin, Simplified) voices are changed from preview to generally available. They are Yunxi, Xiaomo, Xiaoman, Xiaoxuan, Xiaorui. Now, these voices are available in all [regions](../../regions.md#speech-service). Yunxi is added with a new 'assistant' style, which is suitable for chat bot and voice agent. Xiaomo's voice styles are refined to be more natural and featured.
+- **Five `zh-CN` Chinese (Mandarin, Simplified) voices are generally available** - 5 Chinese (Mandarin, Simplified) voices are changed from preview to generally available. They are Yunxi, Xiaomo, Xiaoman, Xiaoxuan, Xiaorui. Now, these voices are available in all [regions](../../regions.md#regions). Yunxi is added with a new 'assistant' style, which is suitable for chat bot and voice agent. Xiaomo's voice styles are refined to be more natural and featured.
 
 ### April 2021 release
 
 **Neural text to speech is available across 21 regions**
 
-- **Twelve new regions added** - Neural text to speech is now available in these new 12 regions: `Japan East`, `Japan West`, `Korea Central`, `North Central US`, `North Europe`, `South Central US`, `Southeast Asia`, `UK South`, `west Central US`, `West Europe`, `West US`, `West US 2`. Check [here](../../regions.md#speech-service) for full list of 21 supported regions.
+- **Twelve new regions added** - Neural text to speech is now available in these new 12 regions: `Japan East`, `Japan West`, `Korea Central`, `North Central US`, `North Europe`, `South Central US`, `Southeast Asia`, `UK South`, `west Central US`, `West Europe`, `West US`, `West US 2`. Check [here](../../regions.md#regions) for full list of 21 supported regions.
 
 ### March 2021 release
 

@@ -46,7 +46,7 @@ Filtering occurs in tandem with search, qualifying which documents to include in
 
 ## How filters are defined
 
-Filters apply to alphanumeric content on fields that are attributed as `filterable`.
+Filters apply to text and numeric (nonvector) content on fields that are attributed as `filterable`.
 
 Filters are OData expressions, articulated in the [filter syntax](search-query-odata-filter.md) supported by Azure AI Search.
 
@@ -151,7 +151,7 @@ Documents that contain numeric fields (price, size, SKU, ID) provide those value
 
 ## Next steps
 
-First, try **Search explorer** in the portal to submit queries with **$filter** parameters. The [real-estate-sample index](search-get-started-portal.md) provides interesting results for the following filtered queries when you paste them into the search bar:
+First, try **Search explorer** in the Azure portal to submit queries with **$filter** parameters. The [real-estate-sample index](search-get-started-portal.md) provides interesting results for the following filtered queries when you paste them into the search bar:
 
 ```http
 # Geo-filter returning documents within 5 kilometers of Redmond, Washington state

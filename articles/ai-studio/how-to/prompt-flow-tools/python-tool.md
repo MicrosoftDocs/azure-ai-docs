@@ -1,18 +1,18 @@
 ---
-title: Python tool for flows in Azure AI Studio
-titleSuffix: Azure AI Studio
-description: This article introduces you to the Python tool for flows in Azure AI Studio.
+title: Python tool for flows in Azure AI Foundry portal
+titleSuffix: Azure AI Foundry
+description: This article introduces you to the Python tool for flows in Azure AI Foundry portal.
 manager: scottpolly
-ms.service: azure-ai-studio
-ms.custom: ignite-2023, devx-track-python, build-2024
+ms.service: azure-ai-foundry
+ms.custom: ignite-2023, devx-track-python, build-2024, ignite-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 01/29/2025
 ms.reviewer: keli19
 ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Python tool for flows in Azure AI Studio
+# Python tool for flows in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -20,10 +20,10 @@ The prompt flow Python tool offers customized code snippets as self-contained ex
 
 ## Build with the Python tool
 
-1. Create or open a flow in [Azure AI Studio](https://ai.azure.com). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ Python** to add the Python tool to your flow.
 
-    :::image type="content" source="../../media/prompt-flow/python-tool.png" alt-text="Screenshot that shows the Python tool added to a flow in Azure AI Studio." lightbox="../../media/prompt-flow/python-tool.png":::
+    :::image type="content" source="../../media/prompt-flow/python-tool.png" alt-text="Screenshot that shows the Python tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/python-tool.png":::
 
 1. Enter values for the Python tool input parameters that are described in the [Inputs table](#inputs). For example, in the **Code** input text box, you can enter the following Python code:
 
@@ -110,7 +110,9 @@ If you're developing a Python tool that requires calling external services with 
 
 Create a custom connection that stores all your large language model API key or other required credentials.
 
-1. Go to the **Settings** page for your project. Then select **+ New Connection**.
+1. Go to the **Management center** page for your project. 
+1. Under either the **Hub** or **Project** heading, select **Connected resources**.
+1. Select **+ New Connection**.
 1. Select **Custom** service. You can define your connection name. You can add multiple key-value pairs to store your credentials and keys by selecting **Add key-value pairs**.
 
     > [!NOTE]

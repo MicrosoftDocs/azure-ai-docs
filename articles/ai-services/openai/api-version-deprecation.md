@@ -5,7 +5,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 10/16/2024
+ms.date: 01/29/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -16,27 +16,42 @@ ms.custom:
 
 This article is to help you understand the support lifecycle for the Azure OpenAI API previews. New preview APIs target a monthly release cadence. Whenever possible we recommend using either the latest GA, or preview API releases.
 
+
 > [!NOTE]
-> The `2023-06-01-preview` API and the `2023-10-01-preview` API remain supported at this time.
+> New API response objects may be added to the API response without version changes. We recommend you only parse the response objects you require. 
 
 ## Latest preview API releases
 
 Azure OpenAI API latest release:
 
-- Inference: [2024-10-01-preview](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-10-01-preview/inference.json)
-- Authoring: [2024-10-01-preview](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/authoring/preview/2024-10-01-preview/azureopenai.json)
+- Inference: [2025-01-01-preview](reference-preview.md)
+- Authoring: [2025-01-01-preview](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/authoring/preview/2025-01-01-preview/azureopenai.json)
 
 This version contains support for the latest Azure OpenAI features including:
 
+- [Predicted Outputs](./how-to/predicted-outputs.md) [**Added in 2025-01-01-preview**]
+- [Reasoning models](./how-to/reasoning.md) [**Added in 2024-12-01-preview**]
+- [Stored completions/distillation](./how-to/stored-completions.md) [**Added in 2024-12-01-preview**]
 - Assistants V2 [**Added in 2024-05-01-preview**]
 - Embeddings `encoding_format` and `dimensions` parameters [**Added in 2024-03-01-preview**]
 - [Assistants API](./assistants-reference.md). [**Added in 2024-02-15-preview**]
 - [Text to speech](./text-to-speech-quickstart.md). [**Added in 2024-02-15-preview**]
 - [DALL-E 3](./dall-e-quickstart.md). [**Added in 2023-12-01-preview**]
-- [Fine-tuning](./how-to/fine-tuning.md) `gpt-35-turbo`, `babbage-002`, and `davinci-002` models.[**Added in 2023-10-01-preview**]
+- [Fine-tuning](./how-to/fine-tuning.md). [**Added in 2023-10-01-preview**]
 - [Whisper](./whisper-quickstart.md). [**Added in 2023-09-01-preview**]
 - [Function calling](./how-to/function-calling.md)  [**Added in 2023-07-01-preview**]
 - [Retrieval augmented generation with your data feature](./use-your-data-quickstart.md).  [**Added in 2023-06-01-preview**]
+
+## Changes between 2025-01-01-preview and 2024-12_01_preview
+
+- `prediction` parameter added for [predicted outputs](./how-to/predicted-outputs.md) support.
+- `gpt-4o-audio-preview` [model support](./audio-completions-quickstart.md).
+
+## Changes between 2024-12-01-preview and 2024-10-01-preview
+
+- `store`, and `metadata` parameters added for [stored completions support](./how-to/stored-completions.md).
+- `reasoning_effort` added for latest [reasoning models](./how-to/reasoning.md).
+- `user_security_context` added for [Microsoft Defender for Cloud integration](https://aka.ms/TP4AI/Documentation/EndUserContext).
 
 ## Changes between 2024-09-01-preview and 2024-08-01-preview
 
@@ -79,9 +94,7 @@ This version contains support for the latest Azure OpenAI features including:
 
 ## Latest GA API release
 
-Azure OpenAI API version [2024-06-01](./reference.md) is currently the latest GA API release. This API version is the replacement for the previous `2024-02-01` GA API release.
-
-This version contains support for the latest GA features like Whisper, DALL-E 3, fine-tuning, on your data, etc. Any preview features that were released after the `2023-12-01-preview` release like Assistants, TTS, certain on your data datasources, are only supported in the latest preview API releases.
+Azure OpenAI API version [2024-10-21](./reference.md) is currently the latest GA API release. This API version is the replacement for the previous `2024-06-01` GA API release.
 
 ## Updating API versions
 

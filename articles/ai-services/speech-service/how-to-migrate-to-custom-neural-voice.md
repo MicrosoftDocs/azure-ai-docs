@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 9/20/2024
-ms.reviewer: v-baolianzou
+ms.reviewer: eur
 #Customer intent: As a developer, I need to know how to migrate from custom voice to custom neural voice so that I can use the latest technology in my applications.
 ---
 

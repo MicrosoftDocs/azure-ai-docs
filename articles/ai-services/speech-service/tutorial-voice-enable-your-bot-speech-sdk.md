@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: tutorial
-ms.date: 1/22/2024
+ms.date: 1/15/2025
 ms.author: eur
 ms.devlang: csharp
 ms.custom: cogserv-non-critical-speech, devx-track-csharp
@@ -74,7 +74,7 @@ This section walks you through creating a resource group in the West US region. 
 
 ### Choose an Azure region
 
-Ensure that you use a [supported Azure region](regions.md#voice-assistants). The Direct Line Speech channel uses the text to speech service, which has neural and standard voices. Neural voices are used at [these Azure regions](regions.md#speech-service), and standard voices (retiring) are used at [these Azure regions](how-to-migrate-to-prebuilt-neural-voice.md).
+Ensure that you use a [supported Azure region](regions.md#regions). The Direct Line Speech channel uses the text to speech service, which has neural and standard voices. Neural voices are used at [these Azure regions](regions.md#regions), and standard voices (retiring) are used at [these Azure regions](how-to-migrate-to-prebuilt-neural-voice.md).
 
 For more information about regions, see [Azure locations](https://azure.microsoft.com/global-infrastructure/locations/).
 
@@ -333,7 +333,7 @@ If you get an error message in your main app window, use this table to identify 
 |Error (AuthenticationFailure) : WebSocket Upgrade failed with an authentication error (401). Check for correct resource key (or authorization token) and region name| On the **Settings** page of the app, make sure that you entered the key and its region correctly. |
 |Error (ConnectionFailure) : Connection was closed by the remote host. Error code: 1011. Error details: We couldn't connect to the bot before sending a message | Make sure that you [selected the Enable Streaming Endpoint checkbox](#register-the-direct-line-speech-channel) and/or [turned on web sockets](#enable-web-sockets).<br>Make sure that Azure App Service is running. If it is, try restarting it.|
 |Error (ConnectionFailure) : Connection was closed by the remote host. Error code: 1002. Error details: The server returned status code '503' when status code '101' was expected | Make sure that you [selected the Enable Streaming Endpoint checkbox](#register-the-direct-line-speech-channel) box and/or [turned on web sockets](#enable-web-sockets).<br>Make sure that Azure App Service is running. If it is, try restarting it.|
-|Error (ConnectionFailure) : Connection was closed by the remote host. Error code: 1011. Error details: Response status code doesn't indicate success: 500 (InternalServerError)| Your bot specified a neural voice in the [speak](https://github.com/microsoft/botframework-sdk/blob/master/specs/botframework-activity/botframework-activity.md#speak) field of its output activity, but the Azure region associated with your resource key doesn't support neural voices. See [neural voices](./regions.md#speech-service) and [standard voices](how-to-migrate-to-prebuilt-neural-voice.md).|
+|Error (ConnectionFailure) : Connection was closed by the remote host. Error code: 1011. Error details: Response status code doesn't indicate success: 500 (InternalServerError)| Your bot specified a neural voice in the [speak](https://github.com/microsoft/botframework-sdk/blob/master/specs/botframework-activity/botframework-activity.md#speak) field of its output activity, but the Azure region associated with your resource key doesn't support neural voices. See [neural voices](./regions.md#regions) and [standard voices](how-to-migrate-to-prebuilt-neural-voice.md).|
 
 If the actions in the table don't address your problem, see [Voice assistants: Frequently asked questions](faq-voice-assistants.yml). If you still can't resolve your problem after following all the steps in this tutorial, enter a new issue on the [Voice Assistant GitHub page](https://github.com/Azure-Samples/Cognitive-Services-Voice-Assistant/issues).
 
@@ -488,7 +488,7 @@ If you're not going to continue using the echo bot deployed in this tutorial, yo
 ## Explore documentation
 
 * [Deploy to an Azure region near you](https://azure.microsoft.com/global-infrastructure/locations/) to see the improvement in bot response time.
-* [Deploy to an Azure region that supports high-quality neural text to speech voices](./regions.md#speech-service).
+* [Deploy to an Azure region that supports high-quality neural text to speech voices](./regions.md#regions).
 * Get pricing associated with the Direct Line Speech channel:
   * [Bot Service pricing](https://azure.microsoft.com/pricing/details/bot-service/)
   * [Speech service](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/)

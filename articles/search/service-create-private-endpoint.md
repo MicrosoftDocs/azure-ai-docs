@@ -21,7 +21,7 @@ This article explains how to configure a private connection to Azure AI Search s
 + [Create an Azure virtual machine in the same virtual network](#create-a-virtual-machine)
 + [Test using a browser session on the virtual machine](#connect-to-the-vm)
 
-Other Azure resources that might privately connect to Azure AI Search include Azure OpenAI for "use your own data" scenarios. Azure OpenAI Studio doesn't run in a virtual network, but it can be configured on the backend to send requests over the Microsoft backbone network. Configuration for this traffic pattern is enabled by Microsoft when your request is submitted and approved. For this scenario:
+Other Azure resources that might privately connect to Azure AI Search include Azure OpenAI for "use your own data" scenarios. Azure AI Foundry doesn't run in a virtual network, but it can be configured on the backend to send requests over the Microsoft backbone network. Configuration for this traffic pattern is enabled by Microsoft when your request is submitted and approved. For this scenario:
 
 + Follow the instructions in this article to set up the private endpoint.
 + [Enable trusted service](/azure/ai-services/openai/how-to/use-your-data-securely#enable-trusted-service-1) of your search resource from the Azure portal.
@@ -174,7 +174,7 @@ In this section, you create a new Azure AI Search service with a private endpoin
 
 Download and then connect to the virtual machine as follows:
 
-1. In the portal's search bar, search for the virtual machine created in the previous step.
+1. In the Azure portal's search bar, search for the virtual machine created in the previous step.
 
 1. Select **Connect**. After selecting the **Connect** button, **Connect to virtual machine** opens.
 
@@ -230,11 +230,11 @@ When the search service endpoint is private, some portal features are disabled. 
 
 When the search service endpoint is private, some portal features are disabled. You can view and manage service level information, but index, indexer, and skillset information are hidden for security reasons. 
 
-To work around this restriction, connect to Azure portal from a browser on a virtual machine inside the virtual network. The portal uses the private endpoint on the connection and gives you visibility into content and operations.
+To work around this restriction, connect to Azure portal from a browser on a virtual machine inside the virtual network. the Azure portal uses the private endpoint on the connection and gives you visibility into content and operations.
 
 1. Follow the [steps to provision a VM that can access the search service through a private endpoint](#create-virtual-machine-private-endpoint).
 
-1. On a virtual machine in your virtual network, open a browser and sign in to the Azure portal. The portal uses the private endpoint attached to the virtual machine to connect to your search service.
+1. On a virtual machine in your virtual network, open a browser and sign in to the Azure portal. the Azure portal uses the private endpoint attached to the virtual machine to connect to your search service.
 
 ## Disable public network access
 

@@ -8,8 +8,9 @@ author: ssalgadodev
 ms.reviewer: balapv
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 01/22/2024
+ms.date: 01/22/2025
 ms.topic: how-to
+ms.collection: ce-skilling-ai-copilot 
 ms.custom:
   - prompt-flow
   - ignite-2023
@@ -47,23 +48,23 @@ When you create a vector index, Azure Machine Learning chunks the data, creates 
 
     :::image type="content" source="media/how-to-create-vector-index/prompt.png" alt-text="Screenshot that shows the location of prompt flow on the left menu.":::
 
-1. Select the **Vector Index** tab.
+2. Select the **Vector Index** tab.
 
     :::image type="content" source="./media/how-to-create-vector-index/vector-index.png" alt-text="Screenshot that shows the tab for vector index.":::
 
-1. Select **Create**.
+3. Select **Create**.
 
-1. When the form for creating a vector index opens, provide a name for your vector index.
+4. When the form for creating a vector index opens, provide a name for your vector index.
 
     :::image type="content" source="media/how-to-create-vector-index/new-vector-creation.png" alt-text="Screenshot that shows basic settings for creating a vector index.":::
 
-1. Select your data source type.
+5. Select your data source type.
 
-1. Based on the chosen type, provide the location details of your source. Then, select **Next**.
+6. Based on the chosen type, provide the location details of your source. Then, select **Next**.
 
-1. Review the details of your vector index, and then select the **Create** button.
+7. Review the details of your vector index, and then select the **Create** button.
 
-1. On the overview page that appears, you can track and view the status of creating your vector index. The process might take a while, depending on the size of your data.
+8. On the overview page that appears, you can track and view the status of creating your vector index. The process might take a while, depending on the size of your data.
 
 ## Add a vector index to a prompt flow
 
@@ -71,17 +72,19 @@ After you create a vector index, you can add it to a prompt flow from the prompt
 
 1. Open an existing prompt flow.
 
-1. On the top menu of the prompt flow designer, select **More tools**, and then select **Index Lookup**.
+2. On the top menu of the prompt flow designer, select **More tools**, and then select **Index Lookup**. 
 
-    :::image type="content" source="media/how-to-create-vector-index/index-lookup-tool.png" alt-text="Screenshot that shows the list of available tools.":::
+  :::image type="content" source="media/how-to-create-vector-index/index-lookup-tool.png" alt-text="Screenshot that shows the list of available tools.":::
 
-   The Index Lookup tool is added to the canvas. If you don't see the tool immediately, scroll to the bottom of the canvas.
+3. The Index Lookup tool is added to the canvas. If you don't see the tool immediately, scroll to the bottom of the canvas.
 
-    :::image type="content" source="media/how-to-create-vector-index/configure-index-lookup-tool.png" alt-text="Screenshot that shows the Vector Index Lookup tool.":::
+4. Enter a name for your vector index.
 
-1. Select the **mlindex_content** value box, and select your index. The tool should detect the index created in the "Create a vector index" section of the tutorial. After filling in all the necessary information, select save to close the generate drawer.
+  :::image type="content" source="media/how-to-create-vector-index/configure-index-lookup-tool.png" alt-text="Screenshot that shows the Vector Index Lookup tool.":::
 
-1. Enter the queries and query_types to be performed against the index. 
+5. Select the **mlindex_content** value box, and select your index. The tool should detect the index created in the "Create a vector index" section of the tutorial. After filling in all the necessary information, select save to close the generate drawer.
+
+6. Enter the queries and query_types to be performed against the index. 
    
    An example of a plain string you can input in this case would be: `How to use SDK V2?'. Here is an example of an embedding as an input: `${embed_the_question.output}`. Passing a plain string will only work when the Vector Index is getting used on the workspace which created it.
 

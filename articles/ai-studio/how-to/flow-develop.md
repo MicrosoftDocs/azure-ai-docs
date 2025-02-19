@@ -1,15 +1,16 @@
 ---
 title: How to build with prompt flow
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to build with prompt flow.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
+  - ignite-2024
 ms.topic: how-to
-ms.date: 5/21/2024
-ms.reviewer: jinzhong
+ms.date: 01/10/2025
+ms.reviewer: gmuthukumar
 ms.author: lagayhar
 author: lgayhardt
 ---
@@ -26,21 +27,32 @@ With prompt flow, you're able to:
 - Test, debug, and iterate your flows with ease.
 - Create prompt variants and compare their performance.
 
-In this article, you learn how to create and develop your first prompt flow in Azure AI Studio.
+In this article, you learn how to create and develop your first prompt flow in Azure AI Foundry portal.
 
 ## Prerequisites
 
-- If you don't have an Azure AI Studio project already, first [create a project](create-projects.md).
-- Prompt flow requires a compute session. If you don't have a runtime, you can [create one in Azure AI Studio](./create-manage-compute-session.md).
+- If you don't have an Azure AI Foundry project already, first [create a project](create-projects.md).
+- Prompt flow requires a compute session. If you don't have a runtime, you can [create one in Azure AI Foundry portal](./create-manage-compute-session.md).
 - You need a deployed model.
-
+- In your project, configure access control for the blob storage account. Assign the **Storage Blob Data Contributor** role to your user account.
+    - In the bottom left of the Azure AI Foundry portal, select **Management center**.
+    - In **Connected resources** for your project, select the link that corresponds to the **Azure Blob Storage** type. 
+    - Select **View in Azure Portal**
+    - In the Azure portal, select **Access control (IAM)**.
+    - Select **Add>Add role assignment**.
+    - Search for **Storage Blob Data Contributor**, then select it.
+    - Use the **Add role assignment** page to add yourself as a member.
+    - Select **Review + assign** to review the assignment.
+    - Select **Review + assign** to assign the role.
+    
 ## Create and develop your Prompt flow
 
 You can create a flow by either cloning the samples available in the gallery or creating a flow from scratch. If you already have flow files in local or file share, you can also import the files to create a flow.
 
-To create a prompt flow from the gallery in Azure AI Studio:
+To create a prompt flow from the gallery in Azure AI Foundry portal:
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com) and select your project. 
+1. Sign in to [Azure AI Foundry](https://ai.azure.com) and select your project. 
+1. If you're in the Management center, select **Go to project** to return to your project.
 1. From the collapsible left menu, select **Prompt flow**.
 1. Select **+ Create**.
 1. In the **Standard flow** tile, select **Create**.
@@ -48,7 +60,8 @@ To create a prompt flow from the gallery in Azure AI Studio:
 
     :::image type="content" source="../media/prompt-flow/create-standard-flow.png" alt-text="Screenshot of selecting and creating a standard flow." lightbox="../media/prompt-flow/create-standard-flow.png":::
 
-1. The prompt flow authoring page opens. You can start authoring your flow now. By default you see a sample flow. This example flow has nodes for the LLM and Python tools. 
+1. The prompt flow authoring page opens. Select **Start compute session** to have a compute session running for the flow.
+1. You can start authoring your flow now. By default you see a sample flow. This example flow has nodes for the LLM and Python tools. 
 
     :::image type="content" source="../media/prompt-flow/create-flow-in-out.png" alt-text="Screenshot of flow input and output on the edit prompt flow page." lightbox="../media/prompt-flow/create-flow-in-out.png":::
 
@@ -63,6 +76,7 @@ To create a prompt flow from the gallery in Azure AI Studio:
 
     :::image type="content" source="../media/prompt-flow/create-flow-connection.png" alt-text="Screenshot of the selected connection and deployment in the LLM tool on the edit prompt flow page." lightbox="../media/prompt-flow/create-flow-connection.png":::
 
+1. In the **Inputs** section, add a value for the topic.  For example, "atoms."
 1. Select **Run** to run the flow. 
 
     :::image type="content" source="../media/prompt-flow/create-flow-run.png" alt-text="Screenshot of where to select run on the edit prompt flow page." lightbox="../media/prompt-flow/create-flow-run.png":::
@@ -83,7 +97,7 @@ To create a prompt flow from the gallery in Azure AI Studio:
 
 Each flow is represented by a folder that contains a `flow.dag.yaml`` file, source code files, and system folders. You can add new files, edit existing files, and delete files. You can also export the files to local, or import files from local. 
 
-In addition to inline editing the node in flatten view, you can also turn on the **Raw file mode** toggle and select the file name to edit the file in the opening file tab.
+In addition to inline editing the node in the default view, you can also turn on the **Raw file mode** toggle and select the file name to edit the file in the opening file tab.
 
 ### Flow input and output
 
@@ -111,7 +125,10 @@ If the condition isn't met, the node is skipped. The node status is shown as "By
 You can test the flow in two ways:
 
 - Run **single node**.
-    - To run a single node, select the **Run icon** on node in flatten view. Once running is completed, you can quickly check result in **node output section**.
+    - To run a single node, select the **Run icon** on a node in the default view. Once running is completed, you can quickly check result in **node output section**.
+
+    :::image type="content" source="../media/prompt-flow/node-card-run.png" alt-text="Screenshot shows the run button in the node card.":::
+
 - Run **the whole flow**.
     - To run the whole flow, select the **Run button** at the right top.
 
@@ -121,18 +138,12 @@ For the whole flow run, after you execute the flow, you can see the run status i
 
 ##### Understand the trace view
 
-The trace kind of a prompt flow is designated as **Flow**. Within the trace view, the clear sequence of the tools used for flow orchestration can be observed.
-
-Each level 2 span under the flow root represents a node in the flow, executed in the form of a function call, hence the span kind is identified as **Function**. You can see the duration of each node execution in the span tree.
-
-In the span tree, LLM calls are easily identifiable as the **LLM** span. These provide information about the duration of the LLM call and the associated token cost.
-
-By selecting a span, you can see the detailed information on the right side. This includes input & output, Raw Json, and Exception, all of which are useful for observation and debugging.
+Select the **Trace** tab on the Outputs screen to see a graph that provides information about the duration and associated token cost of the flow. Select flow under node name to see detailed flow overview information in the right pane.
 
 :::image type="content" source="../media/prompt-flow/authoring-trace.png" alt-text=" Screenshot of trace detail." lightbox="../media/prompt-flow/authoring-trace.png":::
 
 > [!NOTE]
-> In prompt flow SDK, we defined serval span types, including **LLM**, **Function**, **Embedding**, **Retrieval**, and **Flow**. And the system automatically creates spans with execution information in designated attributes and events.
+> In prompt flow SDK, we defined several span types, including **LLM**, **Function**, **Embedding**, **Retrieval**, and **Flow**. And the system automatically creates spans with execution information in designated attributes and events.
 >
 > To learn more about span types, see  [Trace span](https://microsoft.github.io/promptflow/reference/trace-span-spec-reference.html).
 

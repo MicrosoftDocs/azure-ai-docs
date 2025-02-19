@@ -21,7 +21,7 @@ Before you get started, make sure to:
 > * Make sure that you have access to a microphone for audio capture
 
   > [!NOTE]
-  > Please refer to [the list of supported regions for voice assistants](~/articles/ai-services/speech-service/regions.md#voice-assistants) and ensure your resources are deployed in one of those regions.
+  > Please refer to [the list of supported regions for voice assistants](~/articles/ai-services/speech-service/regions.md#regions) and ensure your resources are deployed in one of those regions.
 
 ## Create and configure a project
 
@@ -244,7 +244,7 @@ The text and graphical representation of your UI should now look like this:
 
     * Replace `YourSpeechSubscriptionKey` with your subscription key.
 
-    * Replace `YourServiceRegion` with the [region](~/articles/ai-services/speech-service/regions.md) associated with your subscription Only a subset of Speech service regions are currently supported with Direct Line Speech. For more information, see [regions](~/articles/ai-services/speech-service/regions.md#voice-assistants).
+    * Replace `YourServiceRegion` with the [region](~/articles/ai-services/speech-service/regions.md) associated with your subscription Only a subset of Speech service regions are currently supported with Direct Line Speech. For more information, see [regions](~/articles/ai-services/speech-service/regions.md#regions).
 
 ## Build and run the app
 

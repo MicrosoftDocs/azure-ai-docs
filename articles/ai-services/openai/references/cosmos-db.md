@@ -6,8 +6,8 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
 ms.date: 09/24/2024
-author: mrbullwinkle
-ms.author: mbullwin
+author: aahill
+ms.author: aahi
 recommendations: false
 ms.custom: devx-track-python
 ---

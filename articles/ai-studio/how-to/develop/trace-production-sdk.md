@@ -1,9 +1,9 @@
 ---
 title: How to enable tracing and collect feedback for a flow deployment
-titleSuffix: Azure AI Studio
-description: This article provides instructions on how to enable tracing and collect feedback for a flow deployment in Azure AI Studio.
+titleSuffix: Azure AI Foundry
+description: This article provides instructions on how to enable tracing and collect feedback for a flow deployment in Azure AI Foundry portal.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to
@@ -21,12 +21,15 @@ After deploying a Generative AI APP in production, you might want to enhance you
 
 In this article, you learn to enable tracing, collect aggregated metrics, and collect user feedback during inference time of your flow deployment.
 
+> [!NOTE]
+> For an improved way to perform continuous monitoring of deployed applications (other than prompt flow), consider using [Azure AI online evaluation](../online-evaluation.md).
+
 ## Prerequisites
 
 - The Azure CLI and the Azure Machine Learning extension to the Azure CLI. 
-- An AI Studio project. If you don't already have a project, you can [create one here](../../how-to/create-projects.md).
+- An Azure AI Foundry project. If you don't already have a project, you can [create one here](../../how-to/create-projects.md).
 - An Application Insights. If you don't already have an Application Insights resource, you can [create one here](/azure/azure-monitor/app/create-workspace-resource).
-- Azure role-based access controls are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, you must have **Owner** or **Contributor** permissions on the selected resource group. For more information, see [Role-based access control in Azure AI Studio](../../concepts/rbac-ai-studio.md).
+- Azure role-based access controls are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, you must have **Owner** or **Contributor** permissions on the selected resource group. For more information, see [Role-based access control in Azure AI Foundry portal](../../concepts/rbac-ai-studio.md).
 
 ## Deploy a flow for real-time inference
 
@@ -39,7 +42,7 @@ You can also [deploy to other platforms, such as Docker container, Kubernetes cl
 
 ## Enable trace and collect system metrics for your deployment
 
-If you're using studio UI to deploy, then you can turn-on **Application Insights diagnostics** in **Advanced settings** > **Deployment** step in the deployment wizard, in which way the tracing data and system metrics are collected to the project linked to Application Insights.
+If you're using Azure AI Foundry portal to deploy, then you can turn-on **Application Insights diagnostics** in **Advanced settings** > **Deployment** step in the deployment wizard, in which way the tracing data and system metrics are collected to the project linked to Application Insights.
 
 If you're using SDK or CLI, you can by adding a property `app_insights_enabled: true` in the deployment yaml file that collects data to the project linked to application insights. 
 
@@ -163,7 +166,7 @@ You can view the trace of the request along with feedback in Application Insight
 
 ## Advanced usage: export trace to custom OpenTelemetry collector service
 
-In some cases, you may want to export the trace data to your deployed OTel collector service, enabled by setting "OTEL_EXPORTER_OTLP_ENDPOINT". Use this exporter when you want to customize your own span processing logic and your own trace persistent target.
+In some cases, you might want to export the trace data to your deployed OTel collector service, enabled by setting "OTEL_EXPORTER_OTLP_ENDPOINT". Use this exporter when you want to customize your own span processing logic and your own trace persistent target.
 
 ## Related content
 

@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 10/01/2024
+ms.date: 12/03/2024
 ---
 
 # Debug Sessions in Azure AI Search
@@ -29,13 +29,13 @@ Use Debug Sessions to investigate and resolve problems with:
 
 + Custom skills used to integrate external processing that you provide.
 
-Compare the following debug session images for the first two scenarios. For both scenarios, the surface area shows the progression of skills that generate or transform content en route from the source document to the search index. The flow includes index mapping options, and you can trace the arrows to follow the processing trail. The details pane to the right is context-sensitive. It shows a representation of the enriched document, or the details of a skill or mapping.
+Compare the following debug session images for the first two scenarios. For both scenarios, the surface area shows the progression of skills that generate or transform content en route from the source document to the search index. The flow includes index mapping options, and you can trace the arrows to follow the processing trail. The details pane to the right is context-sensitive. It shows a representation of the enriched document that's created by the pipeline, or the details of a skill or mapping.
 
-The first image shows a pattern for applied AI enrichment. Skills can run sequentially or in parallel if there are no dependencies. Output field mappings send enriched or generated content from in-memory data structures to fields in an index. 
+The first image shows a pattern for applied AI enrichment (no vectors). Skills can run sequentially or in parallel if there are no dependencies. Index mappings show how enriched or generated content travels from in-memory data structures to fields in an index. Enriched document shows the data structure that the skillset creates.
 
 :::image type="content" source="media/cognitive-search-debug/debug-session-flow-applied-ai.png" alt-text="Screenshot of a debug session for OCR and image analysis." lightbox="media/cognitive-search-debug/debug-session-flow-applied-ai.png":::
 
-The second image shows a typical pattern for integrated vectorization. Skills for integrated vectorization usually includes Text Split and an embedding skill. A Text Split skill chunks a document into pages. An embedding skills provides vectorization. Projection mappings control how chunks of content are index. This particular skillset skips the parent index and creates an index of just chunked content, using metadata to identify the source of the chunk.
+The second image shows a typical pattern for integrated vectorization. Skills for integrated vectorization usually include a Text Split skill and an embedding skill. A Text Split skill divides a document into chunks. An embedding skill calls an embedding API to vectorize those chunks. This particular skillset chunks content into an array of "pages". For integrated vectorization, projection mappings control how chunks are mapped to fields in the index.
 
 :::image type="content" source="media/cognitive-search-debug/debug-session-flow-integrated-vectorization.png" alt-text="Screenshot of a debug session for integrated vectorization." lightbox="media/cognitive-search-debug/debug-session-flow-integrated-vectorization.png":::
 
@@ -53,7 +53,7 @@ Debug Sessions work with all generally available [indexer data sources](search-d
 
 + For custom skills, a user-assigned managed identity isn't supported for a debug session connection to Azure Storage. As stated in the prerequisites, you can use a system managed identity, or specify a full access connection string that includes a key. For more information, see [Connect a search service to other Azure resources using a managed identity](search-howto-managed-identities-data-sources.md).
 
-+ Currently, the ability to select which document to debug is unavailable. This limitation is not permanent and will be lifted soon. At this time, Debug Sessions selects the first document in the source data container or folder.
++ Currently, the ability to select which document to debug is unavailable. This limitation isn't permanent and will be lifted soon. At this time, Debug Sessions selects the first document in the source data container or folder.
 
 ## How a debug session works
 

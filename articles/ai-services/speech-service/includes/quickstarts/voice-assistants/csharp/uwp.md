@@ -18,7 +18,7 @@ Before you get started, make sure to:
 > * Make sure that you have access to a microphone for audio capture
 > 
   > [!NOTE]
-  > Please refer to [the list of supported regions for voice assistants](~/articles/ai-services/speech-service/regions.md#voice-assistants) and ensure your resources are deployed in one of those regions.
+  > Please refer to [the list of supported regions for voice assistants](~/articles/ai-services/speech-service/regions.md#regions) and ensure your resources are deployed in one of those regions.
 
 ## Open your project in Visual Studio
 
@@ -269,7 +269,7 @@ The Design view is updated to show the application's user interface.
     ```
 
    > [!NOTE]
-   > Please refer to [the list of supported regions for voice assistants](~/articles/ai-services/speech-service/regions.md#voice-assistants) and ensure your resources are deployed in one of those regions.
+   > Please refer to [the list of supported regions for voice assistants](~/articles/ai-services/speech-service/regions.md#regions) and ensure your resources are deployed in one of those regions.
 
    > [!NOTE]
    > For information on configuring your bot, see the Bot Framework documentation for [the Direct Line Speech channel](/azure/bot-service/bot-service-channel-connect-directlinespeech).

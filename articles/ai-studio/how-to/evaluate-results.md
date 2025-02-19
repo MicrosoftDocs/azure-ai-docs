@@ -1,24 +1,23 @@
 ---
-title: How to view evaluation results in Azure AI Studio
-titleSuffix: Azure AI Studio
-description: This article provides instructions on how to view evaluation results in Azure AI Studio.
+title: How to view evaluation results in Azure AI Foundry portal
+titleSuffix: Azure AI Foundry
+description: This article provides instructions on how to view evaluation results in Azure AI Foundry portal.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
+  - ignite-2024
 ms.topic: how-to
-ms.date: 9/24/2024
+ms.date: 12/18/2024
 ms.reviewer: wenxwei
 ms.author: lagayhar
 author: lgayhardt
 ---
 
-# How to view evaluation results in Azure AI Studio
+# How to view evaluation results in Azure AI Foundry portal
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
-
-The Azure AI Studio evaluation page is a versatile hub that not only allows you to visualize and assess your results but also serves as a control center for optimizing, troubleshooting, and selecting the ideal AI model for your deployment needs. It's a one-stop solution for data-driven decision-making and performance enhancement in your AI Studio projects. You can seamlessly access and interpret the results from various sources, including your flow, the playground quick test session, evaluation submission UI, and SDK. This flexibility ensures that you can interact with your results in a way that best suits your workflow and preferences.
+The Azure AI Foundry portal evaluation page is a versatile hub that not only allows you to visualize and assess your results but also serves as a control center for optimizing, troubleshooting, and selecting the ideal AI model for your deployment needs. It's a one-stop solution for data-driven decision-making and performance enhancement in your Azure AI Foundry projects. You can seamlessly access and interpret the results from various sources, including your flow, the playground quick test session, evaluation submission UI, and SDK. This flexibility ensures that you can interact with your results in a way that best suits your workflow and preferences.
 
 Once you've visualized your evaluation results, you can dive into a thorough examination. This includes the ability to not only view individual results but also to compare these results across multiple evaluation runs. By doing so, you can identify trends, patterns, and discrepancies, gaining invaluable insights into the performance of your AI system under various conditions.
 
@@ -32,17 +31,41 @@ In this article you learn to:
 
 ## Find your evaluation results
 
-Upon submitting your evaluation, you can locate the submitted evaluation run within the run list by navigating to the **Evaluation** page. 
+Upon submitting your evaluation, you can locate the submitted evaluation run within the run list by navigating to the **Evaluation** page.
 
 You can monitor and manage your evaluation runs within the run list. With the flexibility to modify the columns using the column editor and implement filters, you can customize and create your own version of the run list. Additionally, you can swiftly review the aggregated evaluation metrics across the runs, enabling you to perform quick comparisons.
 
 :::image type="content" source="../media/evaluations/view-results/evaluation-run-list.png" alt-text="Screenshot of the evaluation run list." lightbox="../media/evaluations/view-results/evaluation-run-list.png":::
 
-For a deeper understanding of how the evaluation metrics are derived, you can access a comprehensive explanation by selecting the 'Understand more about metrics' option. This detailed resource provides valuable insights into the calculation and interpretation of the metrics used in the evaluation process.
+> [!TIP]
+> To view evaluations run with any version of the promptflow-evals SDK or azure-ai-evaluation versions 1.0.0b1, 1.0.0b2, 1.0.0b3, enable the "Show all runs" toggle to locate the run.
 
-:::image type="content" source="../media/evaluations/view-results/understand-metrics-details.png" alt-text="Screenshot of the evaluation metrics details." lightbox="../media/evaluations/view-results/understand-metrics-details.png":::
+For a deeper understanding of how the evaluation metrics are derived, you can access a comprehensive explanation by selecting the 'Learn more about metrics' option. This detailed resource provides valuable insights into the calculation and interpretation of the metrics used in the evaluation process.
+
+:::image type="content" source="../media/evaluations/view-results/learn-more-metrics.png" alt-text="Screenshot of the evaluation metrics details." lightbox="../media/evaluations/view-results/learn-more-metrics.png":::
 
 You can choose a specific run, which will take you to the run detail page. Here, you can access comprehensive information, including evaluation details such as test dataset, task type, prompt, temperature, and more. Furthermore, you can view the metrics associated with each data sample. The metrics scores charts provide a visual representation of how scores are distributed for each metric throughout your dataset.
+
+### Metric dashboard charts
+
+We break down the aggregate views with different types of your metrics by AI Quality (AI assisted), Risk and safety, AI Quality (NLP), and Custom when applicable. You can view the distribution of scores across the evaluated dataset and see aggregate scores for each metric.  
+
+- For AI Quality (AI assisted), we aggregate by calculating an average across all the scores for each metric. If you calculate Groundedness Pro, the output is binary and so the aggregated score is passing rate, which is calculated by (#trues / #instances) × 100.
+    :::image type="content" source="../media/evaluations/view-results/ai-quality-ai-assisted-chart.png" alt-text="Screenshot of AI Quality (AI assisted) metrics dashboard tab." lightbox="../media/evaluations/view-results/ai-quality-ai-assisted-chart.png":::
+- For risk and safety metrics, we aggregate by calculating a defect rate for each metric.
+    - For content harm metrics, the defect rate is defined as the percentage of instances in your test dataset that surpass a threshold on the severity scale over the whole dataset size.  By default, the threshold is “Medium”.
+    - For protected material and indirect attack, the defect rate is calculated as the percentage of instances where the output is 'true' (Defect Rate = (#trues / #instances) × 100).
+    :::image type="content" source="../media/evaluations/view-results/risk-and-safety-chart.png" alt-text="Screenshot of risk and safety metrics dashboard tab." lightbox="../media/evaluations/view-results/risk-and-safety-chart.png":::
+- For AI Quality (NLP) metrics, we show histogram of the metric distribution between 0 and 1. We aggregate by calculating an average across all the scores for each metric.
+     :::image type="content" source="../media/evaluations/view-results/ai-quality-nlp-chart.png" alt-text="Screenshot of AI Quality (NLP) dashboard tab." lightbox="../media/evaluations/view-results/ai-quality-nlp-chart.png":::
+- For custom metrics, you can select **Add custom chart**, to create a custom chart with your chosen metrics or to view a metric against selected input parameters.
+     :::image type="content" source="../media/evaluations/view-results/custom-chart-pop-up.png" alt-text="Screenshot of create custom chart pop-up." lightbox="../media/evaluations/view-results/custom-chart-pop-up.png":::
+
+You can also customize existing charts for built-in metrics by changing the chart type.
+
+:::image type="content" source="../media/evaluations/view-results/change-chart-type.png" alt-text="Screenshot of changing chart type." lightbox="../media/evaluations/view-results/change-chart-type.png":::
+
+### Detailed metrics result table
 
 Within the metrics detail table, you can conduct a comprehensive examination of each individual data sample. Here, you can scrutinize the generated output and its corresponding evaluation metric score. This level of detail enables you to make data-driven decisions and take specific actions to improve your model's performance.
 
@@ -54,15 +77,6 @@ Some potential action items based on the evaluation metrics could include:
 - Keyword Search: The search box allows you to look for specific words or phrases in the generated output. This can be useful for pinpointing issues or patterns related to particular topics or keywords and addressing them specifically.
 
 The metrics detail table offers a wealth of data that can guide your model improvement efforts, from recognizing patterns to customizing your view for efficient analysis and refining your model based on identified issues.
-
-We break down the aggregate views or your metrics by **Performance and quality** and **Risk and safety metrics**. You can view the distribution of scores across the evaluated dataset and see aggregate scores for each metric.  
-
-- For performance and quality metrics, we aggregate by calculating an average across all the scores for each metric.
-    :::image type="content" source="../media/evaluations/view-results/evaluation-details-page.png" alt-text="Screenshot of performance and quality metrics dashboard tab." lightbox="../media/evaluations/view-results/evaluation-details-page.png":::
-- For risk and safety metrics, we aggregate by calculating a defect rate for each metric.
-    - For content harm metrics, the defect rate is defined as the percentage of instances in your test dataset that surpass a threshold on the severity scale over the whole dataset size.  By default, the threshold is “Medium”.
-    - For protected material and indirect attack, the defect rate is calculated as the percentage of instances where the output is 'true' (Defect Rate = (#trues / #instances) × 100). 
-    :::image type="content" source="../media/evaluations/view-results/evaluation-details-safety-metrics.png" alt-text="Screenshot of risk and safety metrics dashboard tab." lightbox="../media/evaluations/view-results/evaluation-details-safety-metrics.png":::
 
 Here are some examples of the metrics results for the question answering scenario:
 
@@ -78,11 +92,21 @@ For multi-turn conversation scenario, you can select “View evaluation results 
 
 :::image type="content" source="../media/evaluations/view-results/metric-per-turn.png" alt-text="Screenshot of evaluation results per turn." lightbox="../media/evaluations/view-results/metric-per-turn.png":::
 
+For a safety evaluation in a multi-modal scenario (text + images), you can review the images from both the input and output in the detailed metrics result table to better understand the evaluation result. Since multi-modal evaluation is currently supported only for conversation scenarios, you can select "View evaluation results per turn" to examine the input and output for each turn.  
+
+:::image type="content" source="../media/evaluations/view-results/image-detail-table.png" alt-text="Screenshot of detailed metrics results." lightbox="../media/evaluations/view-results/image-detail-table.png":::
+
+:::image type="content" source="../media/evaluations/view-results/image-per-turn-pop-up.png" alt-text="Screenshot of the image popup from conversation column." lightbox="../media/evaluations/view-results/image-per-turn-pop-up.png":::
+
+Select the image to expand and view it. By default, all images are blurred to protect you from potentially harmful content. To view the image clearly, turn on the "Check Blur Image" toggle.
+
+:::image type="content" source="../media/evaluations/view-results/image-check-blur-image.png" alt-text="Screenshot of blurred image that shows the check blue image toggle." lightbox="../media/evaluations/view-results/image-check-blur-image.png":::
+
 For risk and safety metrics, the evaluation provides a severity score and reasoning for each score. Here are some examples of risk and safety metrics results for the question answering scenario:
 
 :::image type="content" source="../media/evaluations/view-results/risk-safety-metric-example.png" alt-text="Screenshot of risk and safety metrics results for question answering scenario." lightbox="../media/evaluations/view-results/risk-safety-metric-example.png":::
 
-Evaluation results may have different meanings for different audiences. For example, safety evaluations may generate a label for “Low” severity of violent content that may not align to a human reviewer’s definition of how severe that specific violent content might be. We provide a **human feedback** column with thumbs up and thumbs down when reviewing your evaluation results to surface which instances were approved or flagged as incorrect by a human reviewer.
+Evaluation results might have different meanings for different audiences. For example, safety evaluations might generate a label for “Low” severity of violent content that may not align to a human reviewer’s definition of how severe that specific violent content might be. We provide a **human feedback** column with thumbs up and thumbs down when reviewing your evaluation results to surface which instances were approved or flagged as incorrect by a human reviewer.
 
 :::image type="content" source="../media/evaluations/view-results/risk-safety-metric-human-feedback.png" alt-text="Screenshot of risk and safety metrics results with human feedback." lightbox="../media/evaluations/view-results/risk-safety-metric-human-feedback.png":::
 
@@ -90,17 +114,19 @@ When understanding each content risk metric, you can easily view each metric def
 
 :::image type="content" source="../media/evaluations/view-results/risk-safety-metric-definition-popup.png" alt-text="Screenshot of risk and safety metrics detailed explanation pop-up." lightbox="../media/evaluations/view-results/risk-safety-metric-definition-popup.png":::
 
-If there's something wrong with the run, you can also debug your evaluation run with the log and trace.
+If there's something wrong with the run, you can also debug your evaluation run with the logs.
 
 Here are some examples of the logs that you can use to debug your evaluation run:
 
 :::image type="content" source="../media/evaluations/view-results/evaluation-log.png" alt-text="Screenshot of logs that you can use to debug your evaluation run." lightbox="../media/evaluations/view-results/evaluation-log.png":::
 
-And here's an example of the tracing and debugging view:
-
-:::image type="content" source="../media/evaluations/view-results/evaluation-trace.png" alt-text="Screenshot of the trace that you can use to debug your evaluation run." lightbox="../media/evaluations/view-results/evaluation-trace.png":::
-
 If you're evaluating a prompt flow, you can select the  **View in flow** button to navigate to the evaluated flow page to make update to your flow. For example, adding additional meta prompt instruction, or change some parameters and re-evaluate.  
+
+### Manage and share view with view options
+
+On the Evaluation Details page, you can customize your view by adding custom charts or editing columns. Once customized, you have the option to save the view and/or share it with others using the view options. This enables you to review evaluation results in a format tailored to your preferences and facilitates collaboration with colleagues.
+
+:::image type="content" source="../media/evaluations/view-results/view-options-evaluation-details.png" alt-text="Screenshot of the view options button dropdown." lightbox="../media/evaluations/view-results/view-options-evaluation-details.png":::
 
 ## Compare the evaluation results
 
@@ -143,6 +169,6 @@ Understanding the built-in metrics is vital for assessing the performance and ef
 
 Learn more about how to evaluate your generative AI applications:
 - [Evaluate your generative AI apps via the playground](../how-to/evaluate-prompts-playground.md)
-- [Evaluate your generative AI apps with the Azure AI Studio or SDK](../how-to/evaluate-generative-ai-app.md)
+- [Evaluate your generative AI apps with the Azure AI Foundry portal or SDK](../how-to/evaluate-generative-ai-app.md)
 
 Learn more about [harm mitigation techniques](../concepts/evaluation-improvement-strategies.md).

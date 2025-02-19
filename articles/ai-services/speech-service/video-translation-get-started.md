@@ -2,12 +2,12 @@
 title: How to use video translation - Speech service
 titleSuffix: Azure AI services
 description: Learn about how to use video translation. 
-author: sally-baolian
+author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 10/11/2024
-ms.author: v-baolianzou
+ms.author: eur
 zone_pivot_groups: speech-studio-rest
 #Customer intent: As a developer, I want to learn how to use video translation.
 ---

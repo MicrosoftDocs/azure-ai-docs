@@ -1,26 +1,26 @@
 ---
-title: How to manually evaluate prompts in Azure AI Studio playground
-titleSuffix: Azure AI Studio
-description: Quickly test and evaluate prompts in Azure AI Studio playground.
+title: How to manually evaluate prompts in Azure AI Foundry portal playground
+titleSuffix: Azure AI Foundry
+description: Quickly test and evaluate prompts in Azure AI Foundry portal playground.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 11/21/2024
 ms.reviewer: mithigpe
 ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Manually evaluate prompts in Azure AI Studio playground
+# Manually evaluate prompts in Azure AI Foundry portal playground
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 When you get started with prompt engineering, you should test different inputs one at a time to evaluate the effectiveness of the prompt can be very time intensive. This is because it's important to check whether the content filters are working appropriately, whether the response is accurate, and more. 
 
-To make this process simpler, you can utilize manual evaluation in Azure AI Studio, an evaluation tool enabling you to continuously iterate and evaluate your prompt against your test data in a single interface. You can also manually rate the outputs, the model’s responses, to help you gain confidence in your prompt.  
+To make this process simpler, you can utilize manual evaluation in Azure AI Foundry portal, an evaluation tool enabling you to continuously iterate and evaluate your prompt against your test data in a single interface. You can also manually rate the outputs, the model's responses, to help you gain confidence in your prompt.  
 
 Manual evaluation can help you get started to understand how well your prompt is performing and iterate on your prompt to ensure you reach your desired level of confidence. 
 
@@ -55,7 +55,7 @@ You can also **Import Data** to choose one of your previous existing datasets in
 > [!NOTE]
 > You can add as many as 50 input rows to your manual evaluation. If your test data has more than 50 input rows, we will upload the first 50 in the input column. 
 
-Now that your data is added, you can **Run** to populate the output column with the model’s response. 
+Now that your data is added, you can **Run** to populate the output column with the model's response. 
 
 ## Rate your model responses 
 
@@ -67,7 +67,7 @@ You can provide a thumb up or down rating to each response to assess the prompt 
 
 Based on your summary, you might want to make changes to your prompt. You can use the prompt controls above to edit your prompt setup. This can be updating the system message, changing the model, or editing the parameters. 
 
-After making your edits, you can choose to rerun all to update the entire table or focus on rerunning specific rows that didn’t meet your expectations the first time.  
+After making your edits, you can choose to rerun all to update the entire table or focus on rerunning specific rows that didn't meet your expectations the first time.  
 
 ## Save and compare results 
 
@@ -80,7 +80,7 @@ You can also compare the thumbs up and down ratings across your different manual
 ## Next steps
 
 Learn more about how to evaluate your generative AI applications:
-- [Evaluate your generative AI apps with the Azure AI Studio or SDK](./evaluate-generative-ai-app.md)
+- [Evaluate your generative AI apps with the Azure AI Foundry portal or SDK](./evaluate-generative-ai-app.md)
 - [View the evaluation results](./evaluate-results.md)
 
 Learn more about [harm mitigation techniques](../concepts/evaluation-improvement-strategies.md).

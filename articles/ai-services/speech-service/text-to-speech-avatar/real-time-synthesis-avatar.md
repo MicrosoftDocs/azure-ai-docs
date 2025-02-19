@@ -5,8 +5,8 @@ description: Learn how to use text to speech avatar with real-time synthesis.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 9/12/2024
-ms.reviewer: v-baolianzou
+ms.date: 1/13/2025
+ms.reviewer: eur
 ms.author: eur
 author: eric-urban
 ---
@@ -36,7 +36,7 @@ Here's the compatibility of real-time avatar on different platforms and browsers
 | iOS      |   Y    |  Y   |   Y    |   Y     |   Y   |
 | macOS    |   Y    |  Y   |   Y    |   Y<sup>1</sup>    |   Y   |
 
-<sup>1</sup> It dosen't work with ICE server by Communication Service but works with Coturn.
+<sup>1</sup> It dosesn't work with ICE server by Communication Service but works with Coturn.
 
 <sup>2</sup> Background transparency doesn't work.
 
@@ -44,7 +44,7 @@ Here's the compatibility of real-time avatar on different platforms and browsers
 
 The text to speech feature in the Speech service supports a broad portfolio of [languages and voices](../language-support.md?tabs=tts). You can get the full list or try them in the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
 
-Specify the language or voice of `SpeechConfig` to match your input text and use the specified voice. The following code snippet shows how this technique works:
+To match your input text and use the specified voice, you can set the `SpeechSynthesisLanguage` or `SpeechSynthesisVoiceName` properties in the `SpeechConfig` object. The following code snippet shows how this technique works:
 
 ```JavaScript
 const speechConfig = SpeechSDK.SpeechConfig.fromSubscription("YourSpeechKey", "YourSpeechRegion");
@@ -91,7 +91,7 @@ Host: westus2.tts.speech.microsoft.com
 Ocp-Apim-Subscription-Key: YOUR_RESOURCE_KEY
 ```
 
-The following code snippet shows how to create the WebRTC peer connection. The ICE server URL, ICE server username, and ICE server credential can all be fetched from the payload of above HTTP request.
+The following code snippet shows how to create the WebRTC peer connection. The ICE server URL, ICE server username, and ICE server credential can all be fetched from the payload of the previous HTTP request.
 
 ```JavaScript
 // Create WebRTC peer connection
@@ -148,11 +148,11 @@ avatarSynthesizer.startAvatarAsync(peerConnection).then(
 );
 ```
 
-Our real-time API disconnects after 5 minutes of avatar's idle state. Even if the avatar isn't idle and functioning normally, the real-time API will disconnect after a 10-minute connection. To ensure continuous operation of the real-time avatar for more than 10 minutes, you can enable auto-reconnect. For information about how to set up auto-reconnect, refer to this [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/README.md) (search "auto reconnect").
+Our real-time API disconnects after 5 minutes of avatar's idle state. Even if the avatar isn't idle and functioning normally, the real-time API will disconnect after a 30-minute connection. To ensure continuous operation of the real-time avatar for more than 30 minutes, you can enable automatic reconnect. For information about how to set up automatic reconnect, refer to this [JavaScript sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/README.md) (search "auto reconnect").
 
 ## Synthesize talking avatar video from text input
 
-After the above steps, you should see the avatar video being played in the web browser. The avatar is active, with eye blink and slight body movement, but not speaking yet. The avatar is waiting for text input to start speaking.
+After the previous steps, you should see the avatar video being played in the web browser. The avatar is active, with eye blink and slight body movement, but not speaking yet. The avatar is waiting for text input to start speaking.
 
 The following code snippet shows how to send text to the avatar synthesizer and let the avatar speak:
 
@@ -178,21 +178,17 @@ avatarSynthesizer.speakTextAsync(spokenText).then(
 });
 ```
 
-You can find end-to-end working samples on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar).
-
 ## Close the real-time avatar connection
 
-To avoid unnecessary costs after you finish using the real-time avatar, it’s important to close the connection. There are several ways to do this:
+To avoid unnecessary costs after you finish using the real-time avatar, it’s important to close the connection. There are several ways to close the connection:
 
-- When the browser web page is closed, the WebRTC client side peer connection object will be released, and the avatar connection will be automatically closed after a few seconds.
-- If the avatar remains idle for 5 minutes, the connection will be automatically closed by the avatar service.
+- When the browser web page is closed, the WebRTC client side peer connection object is released. Then the avatar connection is automatically closed after a few seconds.
+- The connection is automatically closed if the avatar remains idle for 5 minutes.
 - You can proactively close the avatar connection by running the following code:
   
    ```javascript
    avatarSynthesizer.close()
    ``` 
-
-  You can find end-to-end working samples on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar).
 
 ## Edit background
 
@@ -203,9 +199,19 @@ The avatar real-time synthesis API currently doesn't support setting a backgroun
 - Capture each frame of the avatar video and apply a pixel-by-pixel calculation to set the green pixel to transparent, and draw the recalculated frame to the canvas.
 - Hide the original video.
 
-With this approach, you can get an animated canvas that plays like a video, which has a transparent background. Here's the [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/js/basic.js#L108) to demonstrate such an approach.
+With this approach, you can get an animated canvas that plays like a video, which has a transparent background. Here's the [JavaScript sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/js/basic.js#L108) to demonstrate such an approach.
 
 After you have a transparent-background avatar, you can set the background to any image or video by placing the image or video behind the canvas.
+
+## Code samples
+
+You can find text to speech avatar code samples in the Speech SDK repository on GitHub. The samples demonstrate how to use real-time text to speech avatars in your web applications.
+
+- [JavaScript](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js)
+- [Android](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/java/android/avatar)
+- [iOS](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/swift/ios/avatar)
+
+These samples demonstrate how to use real-time text to speech avatars in your mobile applications.
 
 ## Next steps
 

@@ -1,21 +1,21 @@
 ---
-title: How to configure a managed network for Azure AI Studio hubs
-titleSuffix: Azure AI Studio
-description: Learn how to configure a managed network for Azure AI Studio hubs.
+title: How to configure a managed network for Azure AI Foundry hubs
+titleSuffix: Azure AI Foundry
+description: Learn how to configure a managed network for Azure AI Foundry hubs.
 manager: scottpolly
-ms.service: azure-ai-studio
-ms.custom: ignite-2023, build-2024, devx-track-azurecli
+ms.service: azure-ai-foundry
+ms.custom: ignite-2023, build-2024, devx-track-azurecli, ignite-2024
 ms.topic: how-to
-ms.date: 5/21/2024
-ms.reviewer: meerakurup 
+ms.date: 11/19/2024
+ms.reviewer: meerakurup
 ms.author: larryfr
 author: Blackmist
 zone_pivot_groups: azure-ai-studio-sdk-cli
 ---
 
-# How to configure a managed network for Azure AI Studio hubs
+# How to configure a managed network for Azure AI Foundry hubs
 
-We have two network isolation aspects. One is the network isolation to access an Azure AI Studio hub. Another is the network isolation of computing resources for both your hub and project (such as compute instance, serverless and managed online endpoint.) This document explains the latter highlighted in the diagram. You can use hub built-in network isolation to protect your computing resources.
+We have two network isolation aspects. One is the network isolation to access an Azure AI Foundry hub. Another is the network isolation of computing resources for both your hub and project (such as compute instance, serverless and managed online endpoint.) This document explains the latter highlighted in the diagram. You can use hub built-in network isolation to protect your computing resources.
 
 :::image type="content" source="../media/how-to/network/azure-ai-network-outbound.svg" alt-text="Diagram of hub network isolation." lightbox="../media/how-to/network/azure-ai-network-outbound.png":::
 
@@ -135,15 +135,16 @@ Before following the steps in this article, make sure you have the following pre
 
 ## Limitations
 
-* Azure AI Studio currently doesn't support bringing your own virtual network, it only supports managed virtual network isolation.
+* Azure AI Foundry supports managed virtual network isolation for securing your compute resources. Azure AI Foundry does not support bring your own virtual network for securing compute resources. Please note bring your own virtual network for securing computes is different than your Azure virtual network that is required to access Azure AI Foundry from your on-premises network. 
 * Once you enable managed virtual network isolation of your Azure AI, you can't disable it.
 * Managed virtual network uses private endpoint connection to access your private resources. You can't have a private endpoint and a service endpoint at the same time for your Azure resources, such as a storage account. We recommend using private endpoints in all scenarios.
 * The managed virtual network is deleted when the Azure AI is deleted. 
 * Data exfiltration protection is automatically enabled for the only approved outbound mode. If you add other outbound rules, such as to FQDNs, Microsoft can't guarantee that you're protected from data exfiltration to those outbound destinations.
 * Using FQDN outbound rules increases the cost of the managed virtual network because FQDN rules use Azure Firewall. For more information, see [Pricing](#pricing).
 * FQDN outbound rules only support ports 80 and 443.
+* If you want to disable compute instance's Public IP, you must add a private endpoint to a hub.
 * When using a compute instance with a managed network, use the `az ml compute connect-ssh` command to connect to the compute using SSH.
-* If your managed network is configured to __allow only approved outbound__, you cannot use an FQDN rule to access Azure Storage Accounts. You must use a private endpoint instead.
+* If your managed network is configured to __allow only approved outbound__, you can't use an FQDN rule to access Azure Storage Accounts. You must use a private endpoint instead.
 
 ## Configure a managed virtual network to allow internet outbound
 
@@ -154,7 +155,7 @@ Before following the steps in this article, make sure you have the following pre
 
 * __Create a new hub__:
 
-    1. Sign in to the [Azure portal](https://portal.azure.com), and choose Azure AI Studio from Create a resource menu.
+    1. Sign in to the [Azure portal](https://portal.azure.com), and choose Azure AI Foundry from Create a resource menu.
     1. Select **+ New Azure AI**.
     1. Provide the required information on the __Basics__ tab.
     1. From the __Networking__ tab, select __Private with Internet Outbound__.
@@ -337,7 +338,7 @@ To configure a managed virtual network that allows internet outbound communicati
 
 * __Create a new hub__:
 
-    1. Sign in to the [Azure portal](https://portal.azure.com), and choose Azure AI Studio from Create a resource menu.
+    1. Sign in to the [Azure portal](https://portal.azure.com), and choose Azure AI Foundry from Create a resource menu.
     1. Select **+ New Azure AI**.
     1. Provide the required information on the __Basics__ tab.
     1. From the __Networking__ tab, select __Private with Approved Outbound__.
@@ -616,20 +617,28 @@ To configure a managed virtual network that allows only approved outbound commun
 
 ## Manually provision a managed VNet
 
-The managed VNet is automatically provisioned when you create a compute instance. When you rely on automatic provisioning, it can take around __30 minutes__ to create the first compute instance as it is also provisioning the network. If you configured FQDN outbound rules (only available with allow only approved mode), the first FQDN rule adds around __10 minutes__ to the provisioning time. If you have a large set of outbound rules to be provisioned in the managed network, it can take longer for provisioning to complete. The increased provisioning time can cause your first compute instance creation to time out.
+The managed virtual network is automatically provisioned when you create a compute instance. When you rely on automatic provisioning, it can take around __30 minutes__ to create the first compute instance as it is also provisioning the network. If you configured FQDN outbound rules (only available with allow only approved mode), the first FQDN rule adds around __10 minutes__ to the provisioning time. If you have a large set of outbound rules to be provisioned in the managed network, it can take longer for provisioning to complete. The increased provisioning time can cause your first compute instance creation to time out.
 
 To reduce the wait time and avoid potential timeout errors, we recommend manually provisioning the managed network. Then wait until the provisioning completes before you create a compute instance.
+
+Alternatively, you can use the `provision_network_now` flag to provision the managed network as part of hub creation. This flag is in preview.
 
 > [!NOTE]
 > To create an online deployment, you must manually provision the managed network, or create a compute instance first which will automatically provision it. 
 
 # [Azure portal](#tab/portal)
 
-Use the __Azure CLI__ or __Python SDK__ tabs to learn how to manually provision the managed VNet.
+During hub creation, select __Provision managed network proactively at creation__ to provision the managed network. Charges are incurred from network resources, such as private endpoints, once the virtual network is provisioned. This configuration option is only available during workspace creation, and is in preview.
 
 # [Azure CLI](#tab/azure-cli)
 
-The following example shows how to provision a managed VNet.
+The following example shows how to provision a managed virtual network during hub creation. The `--provision-network-now` flag is in preview.
+    
+```azurecli
+az ml workspace create -n myworkspace -g my_resource_group --kind hub --managed-network AllowInternetOutbound --provision-network-now true
+```
+
+The following example shows how to provision a managed virtual network.
 
 ```azurecli
 az ml workspace provision-network -g my_resource_group -n my_ai_hub_name
@@ -643,7 +652,13 @@ az ml workspace show -n my_ai_hub_name -g my_resource_group --query managed_netw
 
 # [Python SDK](#tab/python)
 
-The following example shows how to provision a managed VNet:
+The following example shows how to provision a managed virtual network during hub creation. The `--provision-network-now` flag is in preview.
+    
+```azurecli
+az ml workspace create -n myworkspace -g my_resource_group --managed-network AllowInternetOutbound --provision-network-now true
+```
+
+The following example shows how to provision a managed virtual network:
 
 ```python
 # Connect to a workspace named "myworkspace"
@@ -754,28 +769,25 @@ To allow installation of __Python packages for training and deployment__, add ou
 | `*.anaconda.org` | Used to get repo data. |
 | `pypi.org` | Used to list dependencies from the default index, if any, and the index isn't overwritten by user settings. If the index is overwritten, you must also allow `*.pythonhosted.org`. |
 | `pytorch.org`<br>`*.pytorch.org` | Used by some examples based on PyTorch. |
-| `*.tensorflow.org` | Used by some examples based on Tensorflow. |
+| `*.tensorflow.org` | Used by some examples based on TensorFlow. |
 
 ### Scenario: Use Visual Studio Code
 Visual Studio Code relies on specific hosts and ports to establish a remote connection.
 
 #### Hosts
-If you plan to use __Visual Studio Code__ with the hub, add outbound _FQDN_ rules to allow traffic to the following hosts:
 
-* `*.vscode.dev`
-* `vscode.blob.core.windows.net`
-* `*.gallerycdn.vsassets.io`
-* `raw.githubusercontent.com`
-* `*.vscode-unpkg.net`
-* `*.vscode-cdn.net`
-* `*.vscodeexperiments.azureedge.net`
-* `default.exp-tas.com`
-* `code.visualstudio.com`
-* `update.code.visualstudio.com`
-* `*.vo.msecnd.net`
-* `marketplace.visualstudio.com`
-* `pkg-containers.githubusercontent.com`
-* `github.com`
+The hosts in this section are used to install Visual Studio Code packages to establish a remote connection between Visual Studio Code and the compute instances for your project.
+
+> [!NOTE]
+> This is not a complete list of the hosts required for all Visual Studio Code resources on the internet, only the most commonly used. For example, if you need access to a GitHub repository or other host, you must identify and add the required hosts for that scenario. For a complete list of host names, see [Network Connections in Visual Studio Code](https://code.visualstudio.com/docs/setup/network).
+
+| __Host name__ | __Purpose__ |
+| ---- | ---- |
+| `*.vscode.dev`<br>`*.vscode-unpkg.net`<br>`*.vscode-cdn.net`<br>`*.vscodeexperiments.azureedge.net`<br>`default.exp-tas.com` | Required to access vscode.dev (Visual Studio Code for the Web) |
+| `code.visualstudio.com` | Required to download and install VS Code desktop. This host isn't required for VS Code Web. |
+| `update.code.visualstudio.com`<br>`*.vo.msecnd.net` | Used to retrieve VS Code server bits that are installed on the compute instance through a setup script. |
+| `marketplace.visualstudio.com`<br>`vscode.blob.core.windows.net`<br>`*.gallerycdn.vsassets.io` | Required to download and install VS Code extensions. These hosts enable the remote connection to compute instances. For more information, see [Get started with Azure AI Foundry projects in VS Code](./develop/vscode.md). |
+| `vscode.download.prss.microsoft.com` | Used for Visual Studio Code download CDN |
 
 #### Ports
 You must allow network traffic to ports 8704 to 8710. The VS Code server dynamically selects the first available port within this range.
@@ -807,7 +819,7 @@ pytorch.org
 
 Private endpoints are currently supported for the following Azure services:
 
-* AI Studio hub
+* Azure AI Foundry hub
 * Azure AI Search
 * Azure AI services
 * Azure API Management
@@ -832,18 +844,63 @@ When you create a private endpoint, you provide the _resource type_ and _subreso
 
 When you create a private endpoint for hub dependency resources, such as Azure Storage, Azure Container Registry, and Azure Key Vault, the resource can be in a different Azure subscription. However, the resource must be in the same tenant as the hub.
 
-A private endpoint is automatically created for a connection if the target resource is an Azure resource listed above. A valid target ID is expected for the private endpoint. A valid target ID for the connection can be the Azure Resource Manager ID of a parent resource. The target ID is also expected in the target of the connection or in `metadata.resourceid`. For more on connections, see [How to add a new connection in Azure AI Studio](connections-add.md).
+A private endpoint is automatically created for a connection if the target resource is an Azure resource listed previously. A valid target ID is expected for the private endpoint. A valid target ID for the connection can be the Azure Resource Manager ID of a parent resource. The target ID is also expected in the target of the connection or in `metadata.resourceid`. For more on connections, see [How to add a new connection in Azure AI Foundry portal](connections-add.md).
+
+> [!IMPORTANT]
+> As of March 31st 2025, the Azure AI Enterprise Network Connection Approver role must be assigned to the Azure AI Foundry hub's managed identity to approve private endpoints to securely access your Azure resources from the managed virtual network. This does not impact existing resources with approved private endpoints as the role is correctly assigned by the service. For new resources, please ensure the role is assigned to the hub's managed identity. For Azure Data Factory, Azure Databricks, and Azure Function Apps, the Contributor role should instead be assigned to your hub's managed identity. This role assignment is applicable to both User-assigned identity and System-assigned identity workspaces. 
+
+## Select an Azure Firewall version for allowed only approved outbound (Preview)
+
+An Azure Firewall is deployed if an FQDN outbound rule is created while in the _allow only approved outbound_ mode. Charges for the Azure Firewall are included in your billing. By default, a __Standard__ version of AzureFirewall is created. Optionally, you can select to use a __Basic__ version. You can change the firewall version used as needed. To figure out which version is best for you, visit [Choose the right Azure Firewall version](/azure/firewall/choose-firewall-sku).
+
+> [!IMPORTANT]
+> The firewall isn't created until you add an outbound FQDN rule. For more information on pricing, see [Azure Firewall pricing](https://azure.microsoft.com/pricing/details/azure-firewall/) and view prices for the _standard_ version.
+
+Use the following tabs to learn how to select the firewall version for your managed virtual network.
+
+# [Azure portal](#tab/portal)
+
+After selecting the allow only approved outbound mode, an option to select the Azure Firewall version (SKU) appears. Select __Standard__ to use the standard version or __Basic__ to use the basic version. Select __Save__ to save your configuration.
+
+# [Azure CLI](#tab/azure-cli)
+
+To configure the firewall version from the CLI, use a YAML file and specify the `firewall_sku`. The following example demonstrates a YAML file that sets the firewall SKU to `basic`:
+
+```yaml
+name: test-ws
+resource_group: test-rg
+location: eastus2 
+managed_network:
+  isolation_mode: allow_only_approved_outbound
+  outbound_rules:
+  - category: required
+    destination: 'contoso.com'
+    name: contosofqdn
+    type: fqdn
+  firewall_sku: basic
+tags: {}
+```
+
+# [Python SDK](#tab/python)
+
+To configure the firewall version from the Python SDK, set the `firewall_sku` property of the `ManagedNetwork` object. The following example demonstrates how to set the firewall SKU to `basic`:
+
+```python
+network = ManagedNetwork(isolation_mode=IsolationMode.ALLOW_INTERNET_OUTBOUND,
+                         firewall_sku='basic')
+```
+---
 
 ## Pricing
 
 The hub managed virtual network feature is free. However, you're charged for the following resources that are used by the managed virtual network:
 
 * Azure Private Link - Private endpoints used to secure communications between the managed virtual network and Azure resources relies on Azure Private Link. For more information on pricing, see [Azure Private Link pricing](https://azure.microsoft.com/pricing/details/private-link/).
-* FQDN outbound rules - FQDN outbound rules are implemented using Azure Firewall. If you use outbound FQDN rules, charges for Azure Firewall are included in your billing. Azure Firewall SKU is standard. Azure Firewall is provisioned per hub.
+* FQDN outbound rules - FQDN outbound rules are implemented using Azure Firewall. If you use outbound FQDN rules, charges for Azure Firewall are included in your billing. A standard version of Azure Firewall is used by default. For information on selecting the basic version, see [Select an Azure Firewall version](#select-an-azure-firewall-version-for-allowed-only-approved-outbound-preview). Azure Firewall is provisioned per hub.
 
     > [!IMPORTANT]
     > The firewall isn't created until you add an outbound FQDN rule. If you don't use FQDN rules, you will not be charged for Azure Firewall. For more information on pricing, see [Azure Firewall pricing](https://azure.microsoft.com/pricing/details/azure-firewall/).
 
 ## Related content
 
-- [Create AI Studio hub and project using the SDK](./develop/create-hub-project-sdk.md)
+- [Create Azure AI Foundry hub and project using the SDK](./develop/create-hub-project-sdk.md)

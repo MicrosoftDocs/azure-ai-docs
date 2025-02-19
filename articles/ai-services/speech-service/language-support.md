@@ -33,12 +33,9 @@ Language support varies by Speech service functionality.
 
 # [Speech to text](#tab/stt)
 
-The table in this section summarizes the locales supported for speech to text. For details, see the table footnotes.
+The table in this section summarizes the locales supported for speech to text ([real-time](speech-to-text.md#real-time-speech-to-text) and [batch](speech-to-text.md#batch-transcription-api) transcription). 
 
 More remarks for speech to text locales are included in the [custom speech](#custom-speech) section of this article. 
-
-> [!TIP]
-> Try out the [real-time speech to text tool](https://speech.microsoft.com/portal/speechtotexttool) without having to use any code.
 
 > [!TIP]
 > Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
@@ -112,7 +109,7 @@ Custom neural voice lets you create synthetic voices that are rich in speaking s
 
 Select the right locale that matches your training data to train a custom neural voice model. For example, if the recording data is spoken in English with a British accent, select `en-GB`. 
 
-With the cross-lingual feature, you can transfer your custom neural voice model to speak a second language. For example, with the `zh-CN` data, you can create a voice that speaks `en-AU` or any of the languages with Cross-lingual support. For the cross-lingual feature, we categorize locales into two tiers: one includes source languages that support the cross-lingual feature, and the other tier comprises locales designated as target languages for cross-lingual transfer. Within the following table, distinguish locales that function as both cross-lingual sources and targets and locales eligible solely as the target locale for cross-lingual transfer. 
+With the cross-lingual feature, you can transfer your custom neural voice model to speak a second language. For example, with the `zh-CN` data, you can create a voice that speaks `en-AU` or any of the languages with cross-lingual support. For the cross-lingual feature, we categorize locales into two tiers: one includes source languages that support the cross-lingual feature, and the other tier comprises locales designated as target languages for cross-lingual transfer. Within the following table, distinguish locales that function as both cross-lingual sources and targets and locales eligible solely as the target locale for cross-lingual transfer. 
 
 [!INCLUDE [Language support include](includes/language-support/tts-cnv.md)]
 
@@ -126,7 +123,7 @@ With the cross-lingual feature, you can transfer your custom neural voice model 
 
 # [Pronunciation assessment](#tab/pronunciation-assessment)
 
-The table in this section summarizes the 33 locales supported for pronunciation assessment, and each language is available on all [speech to text regions](regions.md#speech-service). Latest update extends support from English to 32 more languages and quality enhancements to existing features, including accuracy, fluency and miscue assessment. You should specify the language that you're learning or practicing improving pronunciation. The default language is set as `en-US`. If you know your target learning language, [set the locale](how-to-pronunciation-assessment.md#get-pronunciation-assessment-results) accordingly. For example, if you're learning British English, you should specify the language as `en-GB`. If you're teaching a broader language, such as Spanish, and are uncertain about which locale to select, you can run various accent models (`es-ES`, `es-MX`) to determine the one that achieves the highest score to suit your specific scenario. If you're interested in languages not listed in the following table, fill out this [intake form](https://aka.ms/speechpa/intake) for further assistance.
+The table in this section summarizes the 33 locales supported for pronunciation assessment, and each language is available on all [speech to text regions](regions.md#regions). Latest update extends support from English to 32 more languages and quality enhancements to existing features, including accuracy, fluency and miscue assessment. You should specify the language that you're learning or practicing improving pronunciation. The default language is set as `en-US`. If you know your target learning language, [set the locale](how-to-pronunciation-assessment.md#get-pronunciation-assessment-results) accordingly. For example, if you're learning British English, you should specify the language as `en-GB`. If you're teaching a broader language, such as Spanish, and are uncertain about which locale to select, you can run various accent models (`es-ES`, `es-MX`) to determine the one that achieves the highest score to suit your specific scenario. If you're interested in languages not listed in the following table, fill out this [intake form](https://aka.ms/speechpa/intake) for further assistance.
 
 [!INCLUDE [Language support include](includes/language-support/pronunciation-assessment.md)]
 
@@ -158,8 +155,9 @@ The following table illustrates the fixed mapping relationship between source an
 # [Language identification](#tab/language-identification)
 
 The table in this section summarizes the locales supported for [Language identification](language-identification.md).
-> [!NOTE]
-> Language Identification compares speech at the language level, such as English and German. Do not include multiple locales of the same language in your candidate list.
+
+> [!IMPORTANT]
+> Language Identification compares speech at the language level, such as English and German. Don't include multiple locales of the same language in your candidate list.
 
 [!INCLUDE [Language support include](includes/language-support/language-identification.md)]
 

@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 9/23/2024
+ms.date: 11/19/2024
 ms.author: eur
 # Customer intent: As a developer, I want to learn how to assign access roles for a Speech resource.
 ---
@@ -46,7 +46,7 @@ For finer-grained resource access control, you can [add or remove roles](/azure/
 
 The [roles](#roles-for-speech-resources) define what permissions you have. Authentication is required to use the Speech resource. 
 
-To authenticate with Speech resource keys, all you need is the key and region. To authenticate with a Microsoft Entra token, the Speech resource must have a [custom subdomain](speech-services-private-link.md#create-a-custom-domain-name) and use a [private endpoint](speech-services-private-link.md#turn-on-private-endpoints). The Speech service uses custom subdomains with private endpoints only.
+To authenticate with Speech resource keys, all you need is the key and region. To authenticate with a Microsoft Entra token, the Speech resource must have a [custom subdomain](speech-services-private-link.md#create-a-custom-domain-name).
 
 ### Speech SDK authentication
 
@@ -54,15 +54,15 @@ For the SDK, you configure whether to authenticate with a Speech resource key or
 
 ### Speech Studio authentication
 
-Once you're signed into [Speech Studio](speech-studio-overview.md), you select a subscription and Speech resource. You don't choose whether to authenticate with a Speech resource key or Microsoft Entra token. Speech Studio gets the key or token automatically from the Speech resource. If one of the assigned [roles](#roles-for-speech-resources) has permission to list resource keys, Speech Studio authenticates with the key. Otherwise, Speech Studio authenticates with the Microsoft Entra token. 
+Once you're signed into [Speech Studio](speech-studio-overview.md), you select a subscription and Speech resource. You don't choose whether to authenticate with a Speech resource key or Microsoft Entra token. Speech Studio gets the key or token automatically from the Speech resource. If one of the assigned [roles](#roles-for-speech-resources) has permission to list resource keys and the key authentication is not disabled, Speech Studio authenticates with the key. Otherwise, Speech Studio authenticates with the Microsoft Entra token.
 
-If Speech Studio uses your Microsoft Entra token, but the Speech resource doesn't have a custom subdomain and private endpoint, then you can't use some features in Speech Studio. In this case, for example, the Speech resource can be used to train a custom speech model, but you can't use a custom speech model to transcribe audio files.
+If Speech Studio utilizes your Microsoft Entra token and your Speech resource lacks a properly configured custom subdomain, Role-based access control (RBAC) will not be activated, and you will be unable to access any features in Speech Studio. RBAC determines your access to features based on the role assigned to you and the permissions associated with that role. If your role does not grant access to a specific feature, a warning message will be displayed on the page. Ensure you have the appropriate role to access the desired feature.
 
-| Authentication credential | Feature availability | 
-| ---| ---|  
-|Speech resource key|Full access. Role configuration is ignored if resource key is used.|
-|Microsoft Entra token with custom subdomain and private endpoint|Full access limited only by the assigned role permissions.|
-|Microsoft Entra token without custom subdomain and private endpoint (not recommended)|Features are limited. For example, the Speech resource can be used to train a custom speech model or custom neural voice. But you can't use a custom speech model or custom neural voice.|
+| Authentication credential                      | Feature availability                                                |
+| ---------------------------------------------- | ------------------------------------------------------------------- |
+| Speech resource key                            | Full access. Role configuration is ignored if resource key is used. |
+| Microsoft Entra token with custom subdomain    | Full access limited only by the assigned role permissions.          |
+| Microsoft Entra token without custom subdomain | No access.                       |
 
 ## Next steps
 

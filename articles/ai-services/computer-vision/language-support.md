@@ -8,6 +8,7 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: conceptual
 ms.date: 09/25/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
@@ -258,7 +259,7 @@ The latest [Multimodal embeddings](./concept-image-retrieval.md) model supports 
 | Norwegian             | `no`          | ✅ |  |
 | Nyanja                | `ny`          | ✅ |  |
 | Occitan               | `oc`          | ✅ |  |
-| Oriya                 | `or`          | ✅ |  |
+| Odia                  | `or`          | ✅ |  |
 | Oromo                 | `om`          | ✅ |  |
 | Pashto                | `ps`          | ✅ |  |
 | Persian               | `fa`          | ✅ |  |

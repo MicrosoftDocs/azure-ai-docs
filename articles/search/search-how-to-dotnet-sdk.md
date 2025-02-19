@@ -52,7 +52,7 @@ If you've been using the previous version of the .NET SDK and you'd like to upgr
 
 + Visual Studio 2019 or later.
 
-+ Your own Azure AI Search service. In order to use the SDK, you need the name of your service and one or more API keys. [Create a service in the portal](search-create-service-portal.md) if you don't have one.
++ Your own Azure AI Search service. In order to use the SDK, you need the name of your service and one or more API keys. [Create a service in the Azure portal](search-create-service-portal.md) if you don't have one.
 
 + Download the [NuGet package](https://www.nuget.org/packages/Azure.Search.Documents) using **Tools** > **NuGet Package Manager** > **Manage NuGet Packages for Solution** in Visual Studio. Search for the package name `Azure.Search.Documents`.
 
@@ -323,7 +323,7 @@ private static void UploadDocuments(SearchClient searchClient)
             new Hotel()
             {
                 HotelId = "1",
-                HotelName = "Secret Point Motel",
+                HotelName = "Stay-Kay City Hotel",
                 ...
                 Address = new Address()
                 {
@@ -353,7 +353,7 @@ private static void UploadDocuments(SearchClient searchClient)
             new Hotel()
             {
                 HotelId = "2",
-                HotelName = "Twin Dome Motel",
+                HotelName = "Old Century Hotel",
                 ...
                 {
                     StreetAddress = "140 University Town Center Dr",
@@ -382,7 +382,7 @@ private static void UploadDocuments(SearchClient searchClient)
             new Hotel()
             {
                 HotelId = "3",
-                HotelName = "Triple Landscape Hotel",
+                HotelName = "Gastronomic Landscape Hotel",
                 ...
                 Address = new Address()
                 {
@@ -580,9 +580,9 @@ WriteDocuments(results);
 In this case, we're searching the entire index for the word *motel* in any searchable field and we only want to retrieve the hotel names, as specified by the `Select` option. Here are the results:
 
 ```output
-Name: Secret Point Motel
+Name: Stay-Kay City Hotel
 
-Name: Twin Dome Motel
+Name: Old Century Hotel
 ```
 
 In the second query, use a filter to select rooms with a nightly rate of less than *$100*. Return only the hotel ID and description in the results:

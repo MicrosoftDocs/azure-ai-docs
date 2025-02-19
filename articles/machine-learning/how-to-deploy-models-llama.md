@@ -12,8 +12,9 @@ reviewer: shubhirajMsft
 ms.author: ssalgado
 author: ssalgadodev
 ms.custom: references_regions, build-2024
+ms.collection: ce-skilling-ai-copilot
 
-#This functionality is also available in Azure AI Studio: /azure/ai-studio/how-to/deploy-models-llama.md
+#This functionality is also available in Azure AI Foundry portal: /azure/ai-studio/how-to/deploy-models-llama.md
 ---
 
 
@@ -22,7 +23,7 @@ ms.custom: references_regions, build-2024
 In this article, you learn about the Meta Llama models family (LLMs). Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models - ranging in scale from SLMs (1B, 3B Base and Instruct models) for on-device and edge inferencing - to mid-size LLMs (7B, 8B and 70B Base and Instruct models) and high performant models like Meta Llama 3.1 405B Instruct for synthetic data generation and distillation use cases.
 
 > [!TIP]
-> See our announcements of Meta's Llama 3.2 family models available now on Azure AI Model Catalog through [Meta's blog](https://aka.ms/llama-3.2-meta-announcement) and [Microsoft Tech Community Blog](https://aka.ms/llama-3.2-microsoft-announcement).
+> See our announcements of Meta's Llama 3.3 family models available now on Azure AI Model Catalog [Microsoft Tech Community Blog](https://aka.ms/Metallama70blaunchblog).
 
 See the following GitHub samples to explore integrations with [LangChain](https://aka.ms/meta-llama-3.1-405B-instruct-langchain), [LiteLLM](https://aka.ms/meta-llama-3.1-405B-instruct-litellm), [OpenAI](https://aka.ms/meta-llama-3.1-405B-instruct-openai) and the [Azure API](https://aka.ms/meta-llama-3.1-405B-instruct-webrequests).
 
@@ -31,6 +32,10 @@ See the following GitHub samples to explore integrations with [LangChain](https:
 ## Meta Llama family of models
 
 The Meta Llama family of models include the following models:
+
+# [Llama-3.3](#tab/python-llama-3-3)
+
+* Llama-3.3-70B-Instruct
 
 # [Llama-3.2](#tab/python-llama-3-2)
 
@@ -608,11 +613,11 @@ For more information on how to track costs, see [Monitor costs for models offere
 
 :::image type="content" source="media/how-to-deploy-models-llama/costs-model-as-service-cost-details.png" alt-text="A screenshot showing different resources corresponding to different model offerings and their associated meters." lightbox="media/how-to-deploy-models-llama/costs-model-as-service-cost-details.png":::
 
-Quota is managed per deployment. Each deployment has a rate limit of 400,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
+Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
 ### Cost and quota considerations for Meta Llama 3.1 models deployed managed compute
 
-For deployment and inferencing of Meta Llama 3.1 models with managed compute, you consume virtual machine (VM) core quota that is assigned to your subscription on a per-region basis. When you sign up for Azure AI Studio, you receive a default VM quota for several VM families available in the region. You can continue to create deployments until you reach your quota limit. Once you reach this limit, you can request a quota increase.  
+For deployment and inferencing of Meta Llama 3.1 models with managed compute, you consume virtual machine (VM) core quota that is assigned to your subscription on a per-region basis. When you sign up for Azure AI Foundry, you receive a default VM quota for several VM families available in the region. You can continue to create deployments until you reach your quota limit. Once you reach this limit, you can request a quota increase.  
 
 ## Content filtering
 
@@ -622,5 +627,5 @@ Models deployed as a serverless API are protected by Azure AI content safety. Wh
 
 - [Model Catalog and Collections](concept-model-catalog.md)
 - [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md)
-- [Plan and manage costs for Azure AI Studio](/azure/ai-studio/how-to/costs-plan-manage)
+- [Plan and manage costs for Azure AI Foundry](/azure/ai-studio/how-to/costs-plan-manage)
 - [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md)

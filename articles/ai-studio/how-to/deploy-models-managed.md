@@ -1,9 +1,9 @@
 ---
 title: How to deploy and inference a managed compute deployment with code
-titleSuffix: AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to deploy and inference a managed compute deployment with code.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to
@@ -16,7 +16,7 @@ author: msakande
 
 # How to deploy and inference a managed compute deployment with code
 
-The AI Studio [model catalog](../how-to/model-catalog-overview.md) offers over 1,600 models, and the most common way to deploy these models is to use the managed compute deployment option, which is also sometimes referred to as a managed online deployment. 
+The Azure AI Foundry portal [model catalog](../how-to/model-catalog-overview.md) offers over 1,600 models, and the most common way to deploy these models is to use the managed compute deployment option, which is also sometimes referred to as a managed online deployment. 
 
 Deployment of a large language model (LLM) makes it available for use in a website, an application, or other production environment. Deployment typically involves hosting the model on a server or in the cloud and creating an API or other interface for users to interact with the model. You can invoke the deployment for real-time inference of generative AI applications such as chat and copilot.
 
@@ -26,7 +26,7 @@ In this article, you learn how to deploy models using the Azure Machine Learning
 
 You can deploy managed compute models using the Azure Machine Learning SDK, but first, let's browse the model catalog and get the model ID you need for deployment.
 
-1. Sign in to [AI Studio](https://ai.azure.com) and go to the **Home** page.
+1. Sign in to [Azure AI Foundry](https://ai.azure.com) and go to the **Home** page.
 1. Select **Model catalog** from the left sidebar.
 1. In the **Deployment options** filter, select **Managed compute**.
 
@@ -48,7 +48,7 @@ pip install azure-ai-ml
 pip install azure-identity
 ```
 
-Use this code to authenticate with Azure Machine Learning and create a client object. Replace the placeholders with your subscription ID, resource group name, and AI Studio project name.
+Use this code to authenticate with Azure Machine Learning and create a client object. Replace the placeholders with your subscription ID, resource group name, and Azure AI Foundry project name.
 
 ```python
 from azure.ai.ml import MLClient
@@ -151,15 +151,19 @@ response_json = json.loads(response)
 print(json.dumps(response_json, indent=2))
 ```
 
+## Configure Autoscaling
+
+To configure autoscaling for deployments, you can go to Azure Portal, locate the Azure resource typed `Machine learning online deployment` in the resource group of the AI project, and use Scaling menu under Setting. For more information on autoscaling, see [Autoscale online endpoints](/azure/machine-learning/how-to-autoscale-endpoints) in the Azure Machine Learning documentation. 
+
 ## Delete the deployment endpoint
 
-To delete deployments in AI Studio, select the **Delete** button on the top panel of the deployment details page.
+To delete deployments in Azure AI Foundry portal, select the **Delete** button on the top panel of the deployment details page.
 
 ## Quota considerations
 
-To deploy and perform inferencing with real-time endpoints, you consume Virtual Machine (VM) core quota that is assigned to your subscription on a per-region basis. When you sign up for AI Studio, you receive a default VM quota for several VM families available in the region. You can continue to create deployments until you reach your quota limit. Once that happens, you can request for a quota increase.  
+To deploy and perform inferencing with real-time endpoints, you consume Virtual Machine (VM) core quota that is assigned to your subscription on a per-region basis. When you sign up for Azure AI Foundry, you receive a default VM quota for several VM families available in the region. You can continue to create deployments until you reach your quota limit. Once that happens, you can request for a quota increase.  
 
 ## Next steps
 
-- Learn more about what you can do in [AI Studio](../what-is-ai-studio.md)
+- Learn more about what you can do in [Azure AI Foundry](../what-is-ai-studio.md)
 - Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml)

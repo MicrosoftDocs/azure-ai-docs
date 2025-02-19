@@ -1,7 +1,7 @@
 ---
-title: How to use the GPT-4 Turbo with Vision model
+title: How to use vision-enabled chat models
 titleSuffix: Azure OpenAI Service
-description: Learn about the options for using GPT-4 Turbo with Vision
+description: Learn about the options for using vision-enabled chat models
 author: PatrickFarley #dereklegenzoff
 ms.author: pafarley #delegenz
 ms.service: azure-ai-openai
@@ -10,19 +10,15 @@ ms.date: 08/21/2024
 manager: nitinme
 ---
 
-# Use GPT-4 Turbo with Vision
+# Use vision-enabled chat models
 
 
-GPT-4 Turbo with Vision is a large multimodal model (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. It incorporates both natural language processing and visual understanding.
+Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. The current vision-enabled models are [o1](./reasoning.md), GPT-4o, and GPT-4o-mini, GPT-4 Turbo with Vision.
 
-The GPT-4 Turbo with Vision model answers general questions about what's present in images.
+The vision-enabled models answer general questions about what's present in the images you upload.
 
 > [!TIP]
-> To use GPT-4 Turbo with Vision, you call the Chat Completion API on a GPT-4 Turbo with Vision model that you have deployed. If you're not familiar with the Chat Completion API, see the [GPT-4 Turbo & GPT-4 how-to guide](/azure/ai-services/openai/how-to/chatgpt?tabs=python&pivots=programming-language-chat-completions).
-
-## GPT-4 Turbo model upgrade
-
-[!INCLUDE [GPT-4 Turbo](../includes/gpt-4-turbo.md)]
+> To use vision-enabled models, you call the Chat Completion API on a supported model that you have deployed. If you're not familiar with the Chat Completion API, see the [Vision-enabled chat how-to guide](/azure/ai-services/openai/how-to/chatgpt?tabs=python&pivots=programming-language-chat-completions).
 
 ## Call the Chat Completion APIs
 
@@ -38,8 +34,6 @@ Send a POST request to `https://{RESOURCE_NAME}.openai.azure.com/openai/deployme
 **Required headers**: 
 - `Content-Type`: application/json 
 - `api-key`: {API_KEY} 
-
-
 
 **Body**: 
 The following is a sample request body. The format is the same as the chat completions API for GPT-4, except that the message content can be an array containing text and images (either a valid HTTP or HTTPS URL to an image, or a base-64-encoded image). 
@@ -247,7 +241,7 @@ The _detail_ parameter in the model offers three choices: `low`, `high`, or `aut
 - `low` setting: the model does not activate the "high res" mode, instead processes a lower resolution 512x512 version, resulting in quicker responses and reduced token consumption for scenarios where fine detail isn't crucial.
 - `high` setting: the model activates "high res" mode. Here, the model initially views the low-resolution image and then generates detailed 512x512 segments from the input image. Each segment uses double the token budget, allowing for a more detailed interpretation of the image.''
 
-For details on how the image parameters impact tokens used and pricing please see - [What is OpenAI? Image Tokens with GPT-4 Turbo with Vision](../overview.md#image-tokens-gpt-4-turbo-with-vision-and-gpt-4o)
+For details on how the image parameters impact tokens used and pricing please see - [What is Azure OpenAI? Image Tokens](../overview.md#image-tokens)
 
 
 
@@ -290,7 +284,7 @@ Every response includes a `"finish_reason"` field. It has the following possible
 - `length`: Incomplete model output due to the `max_tokens` input parameter or model's token limit.
 - `content_filter`: Omitted content due to a flag from our content filters.
 
-
+<!--
 
 ### Create a video retrieval index
 
@@ -366,11 +360,16 @@ Every response includes a `"finish_reason"` field. It has the following possible
     ```bash
     curl.exe -v -X GET "https://<YOUR_ENDPOINT_URL>/computervision/retrieval/indexes/my-video-index/ingestions?api-version=2023-05-01-preview&$top=20" -H "ocp-apim-subscription-key: <YOUR_SUBSCRIPTION_KEY>"
     ```
+-->
+
+## GPT-4 Turbo model upgrade
+
+[!INCLUDE [GPT-4 Turbo](../includes/gpt-4-turbo.md)]
 
 
 ## Next steps
 
 * [Learn more about Azure OpenAI](../overview.md).
-* [GPT-4 Turbo with Vision quickstart](../gpt-v-quickstart.md)
+* [Vision-enabled chats quickstart](../gpt-v-quickstart.md)
 * [GPT-4 Turbo with Vision frequently asked questions](../faq.yml#gpt-4-turbo-with-vision)
 * [GPT-4 Turbo with Vision API reference](https://aka.ms/gpt-v-api-ref)

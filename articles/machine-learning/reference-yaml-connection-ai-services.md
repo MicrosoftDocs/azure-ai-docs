@@ -45,7 +45,7 @@ There are two ways to create connections to Azure AI Services:
 
 The schema described in this article is for **one connection for all Azure AI Services except Azure AI Search**.
 
-While the `az ml connection` commands can be used to manage both Azure Machine Learning and Azure AI Studio connections, the Azure AI Services connection is specific to Azure AI Studio.
+While the `az ml connection` commands can be used to manage both Azure Machine Learning and Azure AI Foundry connections, the Azure AI Services connection is specific to Azure AI Foundry.
 
 ## Examples
 

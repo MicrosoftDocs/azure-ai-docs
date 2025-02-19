@@ -1,31 +1,32 @@
 ---
 title: Create and manage prompt flow compute sessions
-titleSuffix: Azure AI Studio
-description: In this article, learn how to create and manage compute sessions to run prompt flows in Azure AI Studio.
+titleSuffix: Azure AI Foundry
+description: In this article, learn how to create and manage compute sessions to run prompt flows in Azure AI Foundry portal.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
+  - ignite-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 02/14/2025
 ms.reviewer: lochen
 ms.author: sgilley
 author: sdgilley
-# customer intent: Learn how to create and manage prompt flow compute sessions in Azure AI Studio.
+# customer intent: Learn how to create and manage prompt flow compute sessions in Azure AI Foundry portal.
 ---
 
-# Create and manage prompt flow compute sessions in Azure AI Studio
+# Create and manage prompt flow compute sessions in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-You need a compute session to run [prompt flows](prompt-flow.md). Use Azure AI Studio to create and manage prompt flow compute sessions.
+You need a compute session to run [prompt flows](prompt-flow.md). Use Azure AI Foundry to create and manage prompt flow compute sessions.
 
-A prompt flow compute session has computing resources that are required for the application to run, including a Docker image that contains all necessary dependency packages. In addition to flow execution, Azure AI Studio uses the compute session to ensure the accuracy and functionality of the tools incorporated within the flow when you make updates to the prompt or code content.
+A prompt flow compute session has computing resources that are required for the application to run, including a Docker image that contains all necessary dependency packages. In addition to flow execution, Azure AI Foundry uses the compute session to ensure the accuracy and functionality of the tools incorporated within the flow when you make updates to the prompt or code content.
 
 ## Prerequisites
 
-Sign in to [Azure AI Studio](https://ai.azure.com) and select your prompt flow.
+Sign in to [Azure AI Foundry](https://ai.azure.com) and select your project.
 
 ## Create a compute session
 
@@ -35,16 +36,16 @@ When you start a compute session, you can use the default settings or customize 
 
 By default, the compute session uses the environment defined in `flow.dag.yaml` in the [flow folder](flow-develop.md#authoring-the-flow). It runs on a serverless compute with a virtual machine (VM) size for which you have sufficient quota in your workspace.
 
-1. Go to your project in Azure AI Studio.
-1. From the left pane, select **Flows** and then select the flow you want to run.
+1. Go to your project in Azure AI Foundry portal.
+1. From the left pane, select **Prompt flow** and then select the flow you want to run.
 1. From the top toolbar of your prompt flow, select **Start compute session**.
 
 ### Start a compute session with advanced settings
 
 In the advanced settings, you can select the compute type. You can choose between serverless compute and compute instance.
 
-1. Go to your project in Azure AI Studio.
-1. From the left pane, select **Flows** and then select the flow you want to run.
+1. Go to your project in Azure AI Foundry portal.
+1. From the left pane, select **Prompt flow** and then select the flow you want to run.
 1. From the top toolbar of your prompt flow, select the dropdown arrow on the right side of the **Start compute session** button. Select **Start with advanced settings** to customize the compute session.
 
     :::image type="content" source="../media/prompt-flow/how-to-create-manage-compute-session/compute-session-create-automatic-init.png" alt-text="Screenshot of prompt flow with default settings for starting a compute session on a flow page." lightbox = "../media/prompt-flow/how-to-create-manage-compute-session/compute-session-create-automatic-init.png":::
@@ -79,7 +80,7 @@ To manage a compute session, select the **Compute session running** on the top t
 - **Install packages from requirements.txt** Opens `requirements.txt` in prompt flow UI so you can add packages.
 - **View installed packages** shows the packages that are installed in the compute session. It includes the packages baked into base image and packages specified in the `requirements.txt` file in the flow folder.
 - **Reset compute session** deletes the current compute session and creates a new one with the same environment. If you encounter a package conflict, you can try this option.
-- **Stop compute session** deletes the current compute session. If there's no active compute session on an underlying serverless compute, the compute resource is also deleted. If the compute session is on a compute instance, stopping the session will allow the instance to become idle.
+- **Stop compute session** deletes the current compute session. If there's no active compute session on an underlying serverless compute, the compute resource is also deleted. If the compute session is on a compute instance, stopping the session allows the instance to become idle.
 
 :::image type="content" source="../media/prompt-flow/how-to-create-manage-compute-session/compute-session-create-automatic-actions.png" alt-text="Screenshot of actions for a compute session on a flow page." lightbox = "../media/prompt-flow/how-to-create-manage-compute-session/compute-session-create-automatic-actions.png":::
 
@@ -93,7 +94,7 @@ You can customize the environment that you use to run this flow by adding packag
 > [!NOTE]
 > You can change the location and even the file name of `requirements.txt`, but be sure to also change it in the `flow.dag.yaml` file in the flow folder.
 >
-> Don't pin the version of `promptflow` and `promptflow-tools` in `requirements.txt`, because they are already included in the compute session base image.
+> Don't pin the version of `promptflow` and `promptflow-tools` in `requirements.txt`, because they're already included in the compute session base image.
 
 ### Add packages in a private feed in Azure DevOps
 
@@ -139,7 +140,7 @@ By default, we use the latest prompt flow image as the base image. If you want t
 
 If you previously created a compute instance runtime, switch it to a compute session by using the following steps:
 
-- Prepare your `requirements.txt` file in the flow folder. See [Manage a compute session](#manage-a-compute-session) for more information.
+- Prepare your `requirements.txt` file in the flow folder. For more information, see [Manage a compute session](#manage-a-compute-session).
 - If you created a custom environment, get the image from the environment detail page, and specify it in the `flow.dag.yaml` file in the flow folder. To learn more, see [Change the base image](#change-the-base-image). Make sure you have `acr pull` permission for the image.
 
 - You can continue to use the existing compute instance if you would like to manually manage the lifecycle.

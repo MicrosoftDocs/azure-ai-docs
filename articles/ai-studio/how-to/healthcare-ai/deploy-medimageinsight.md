@@ -1,8 +1,8 @@
 ---
-title: How to deploy and use MedImageInsight healthcare AI model with AI Studio
-titleSuffix: Azure AI Studio
-description: Learn how to use MedImageInsight Healthcare AI Model with Azure AI Studio.
-ms.service: azure-ai-studio
+title: How to deploy and use MedImageInsight healthcare AI model with Azure AI Foundry
+titleSuffix: Azure AI Foundry
+description: Learn how to use MedImageInsight Healthcare AI Model with Azure AI Foundry.
+ms.service: azure-ai-foundry
 manager: scottpolly
 ms.topic: how-to
 ms.date: 10/20/2024
@@ -16,8 +16,6 @@ author: msakande
 
 # How to use MedImageInsight healthcare AI model for medical image embedding generation
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
-
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 
 In this article, you learn how to deploy MedImageInsight from the model catalog as an online endpoint for real-time inference. You also learn to issue a basic call to the API. The steps you take are:
@@ -27,7 +25,7 @@ In this article, you learn how to deploy MedImageInsight from the model catalog 
 * Send test data to the model, receive, and interpret results
 
 ## MedImageInsight - the medical imaging embedding model
-MedImageInsight foundational model for health is a powerful model that can process a wide variety of medical images. These images include X-Ray, CT, MRI, clinical photography, dermoscopy, histopathology, ultrasound, and mammography images. Rigorous evaluations demonstrate MedImageInsight's ability to achieve state-of-the-art (SOTA) or human expert-level performance across classification, image-to-image search, and fine-tuning tasks. Specifically, on public datasets, MedImageInsight achieves or exceeds SOTA performance in chest X-ray disease classification and search, dermatology classification and search, Optical coherence tomography (OCT) classification and search, and 3D medical image retrieval. The model also achieves near-SOTA performance for histopathology classification and search.  
+MedImageInsight foundation model for health is a powerful model that can process a wide variety of medical images. These images include X-Ray, CT, MRI, clinical photography, dermoscopy, histopathology, ultrasound, and mammography images. Rigorous evaluations demonstrate MedImageInsight's ability to achieve state-of-the-art (SOTA) or human expert-level performance across classification, image-to-image search, and fine-tuning tasks. Specifically, on public datasets, MedImageInsight achieves or exceeds SOTA performance in chest X-ray disease classification and search, dermatology classification and search, Optical coherence tomography (OCT) classification and search, and 3D medical image retrieval. The model also achieves near-SOTA performance for histopathology classification and search.  
 
 An embedding model is capable of serving as the basis of many different solutions—from classification to more complex scenarios like group matching or outlier detection. The following animation shows an embedding model being used for image similarity search and to detect images that are outliers.
 
@@ -35,19 +33,18 @@ An embedding model is capable of serving as the basis of many different solution
 
 ## Prerequisites
 
-[!INCLUDE [shared-ai-studio-and-azure-ml-articles](../../includes/shared-ai-studio-and-azure-ml-articles.md)]
-
-To use MedImageInsight models with Azure AI Studio or Azure Machine Learning studio, you need the following prerequisites:
+To use the MedImageInsight model, you need the following prerequisites:
 
 ### A model deployment
 
 **Deployment to a self-hosted managed compute**
 
-MedImageInsight model can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served. You can deploy the model through the model catalog UI or programmatically.
+MedImageInsight model can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served. You can deploy the model through the catalog UI (in [Azure AI Foundry](https://aka.ms/healthcaremodelstudio) or [Azure Machine Learning studio](https://ml.azure.com/model/catalog)) or deploy programmatically.
 
 To __deploy the model through the UI__:
 
-1. Go to the [model card in the catalog](https://aka.ms/mi2modelcard). 
+1. Go to the catalog.
+1. Search for _MedImageInsight_ and select the model card.
 1. On the model's overview page, select __Deploy__. 
 1. If given the option to choose between serverless API deployment and deployment using a managed compute, select **Managed Compute**.
 1. Fill out the details in the deployment window.

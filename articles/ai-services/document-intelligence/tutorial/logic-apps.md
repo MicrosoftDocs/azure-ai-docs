@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: tutorial
-ms.date: 10/15/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 zone_pivot_groups: cloud-location
 monikerRange: '<=doc-intel-4.0.0'

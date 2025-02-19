@@ -5,7 +5,7 @@ author: blackmist
 ms.service: azure-machine-learning
 services: machine-learning
 ms.topic: include
-ms.date: 01/10/2023
+ms.date: 02/10/2025
 ms.author: larryfr
 ms.custom: include file
 ---
@@ -13,7 +13,7 @@ ms.custom: include file
 Azure Machine Learning requires both inbound and outbound access to the public internet. The following tables provide an overview of the required access and what purpose it serves. For service tags that end in `.region`, replace `region` with the Azure region that contains your workspace. For example, `Storage.westus`:
 
 > [!TIP]
-> The required tab lists the required inbound and outbound configuration. The situational tab lists optional inbound and outbound configurations required by specific configurations you may want to enable.
+> The required tab lists the required inbound and outbound configuration. The situational tab lists optional inbound and outbound configurations required by specific configurations you might want to enable.
 
 # [Required](#tab/required)
 
@@ -56,7 +56,7 @@ You may also need to allow __outbound__ traffic to Visual Studio Code and non-Mi
 | `pypi.org` | Used to list dependencies from the default index, if any, and the index isn't overwritten by user settings. If the index is overwritten, you must also allow `*.pythonhosted.org`. |
 | `cloud.r-project.org` | Used when installing CRAN packages for R development. |
 | `*.pytorch.org` | Used by some examples based on PyTorch. |
-| `*.tensorflow.org` | Used by some examples based on Tensorflow. |
+| `*.tensorflow.org` | Used by some examples based on TensorFlow. |
 | `code.visualstudio.com` | Required to download and install Visual Studio Code desktop. This isn't required for Visual Studio Code Web. |
 | `update.code.visualstudio.com`</br>`*.vo.msecnd.net` | Used to retrieve Visual Studio Code server bits that are installed on the compute instance through a setup script. |
 | `marketplace.visualstudio.com`</br>`vscode.blob.core.windows.net`</br>`*.gallerycdn.vsassets.io` | Required to download and install Visual Studio Code extensions. These hosts enable the remote connection to Compute Instances provided by the Azure ML extension for Visual Studio Code. For more information, see [Connect to an Azure Machine Learning compute instance in Visual Studio Code](../how-to-set-up-vs-code-remote.md). |
@@ -68,5 +68,5 @@ You may also need to allow __outbound__ traffic to Visual Studio Code and non-Mi
 When using Azure Kubernetes Service (AKS) with Azure Machine Learning, allow the following traffic to the AKS VNet:
 
 * General inbound/outbound requirements for AKS as described in the [Restrict egress traffic in Azure Kubernetes Service](/azure/aks/limit-egress-traffic) article.
-* __Outbound__ to mcr.microsoft.com.
+* **Outbound** to mcr.microsoft.com.
 * When deploying a model to an AKS cluster, use the guidance in the [Deploy ML models to Azure Kubernetes Service](../v1/how-to-deploy-azure-kubernetes-service.md#connectivity) article.

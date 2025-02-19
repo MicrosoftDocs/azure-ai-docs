@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 11/08/2023
+ms.date: 8/28/2024
 manager: nitinme
 ---
 

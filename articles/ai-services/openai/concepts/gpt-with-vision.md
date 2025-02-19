@@ -1,5 +1,5 @@
 ---
-title: GPT-4 Turbo with Vision concepts
+title: Vision-enabled chat model concepts
 titleSuffix: Azure OpenAI
 description: Learn concepts related to using images in your AI model chats, enabled through GPT-4 Turbo with Vision and other models.
 author: PatrickFarley
@@ -10,15 +10,15 @@ ms.date: 09/24/2024
 manager: nitinme
 ---
 
-# GPT-4 Turbo with Vision concepts
+# Vision-enabled chat model concepts
 
-GPT-4 Turbo with Vision is a large multimodal model (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. It incorporates both natural language processing and visual understanding. This guide provides details on the capabilities and limitations of GPT-4 Turbo with Vision.
+Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. The current vision-enabled models are GPT-4 Turbo with Vision, GPT-4o, and GPT-4o-mini. This guide provides details on their capabilities and limitations.
 
-To try out GPT-4 Turbo with Vision, see the [quickstart](/azure/ai-services/openai/gpt-v-quickstart).
+To try out vision-enabled chat models, see the [quickstart](/azure/ai-services/openai/gpt-v-quickstart).
 
-## Chats with vision
+## Vision-enabled chats
 
-The GPT-4 Turbo with Vision model answers general questions about what's present in the images or videos you upload.
+The vision-enabled models answer general questions about what's present in the images or videos you upload.
 
 
 ## Special pricing information
@@ -26,7 +26,7 @@ The GPT-4 Turbo with Vision model answers general questions about what's present
 > [!IMPORTANT]
 > Pricing details are subject to change in the future.
 
-GPT-4 Turbo with Vision accrues charges like other Azure OpenAI chat models. You pay a per-token rate for the prompts and completions, detailed on the [Pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). The base charges and additional features are outlined here:
+Vision-enabled models accrue charges like other Azure OpenAI chat models. You pay a per-token rate for the prompts and completions, detailed on the [Pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). The base charges and additional features are outlined here:
 
 Base Pricing for GPT-4 Turbo with Vision is:
 - Input: $0.01 per 1000 tokens
@@ -71,24 +71,24 @@ Additionally, there's a one-time indexing cost of $0.15 to generate the Video Re
 
 ## Input limitations
 
-This section describes the limitations of GPT-4 Turbo with Vision.
+This section describes the limitations of vision-enabled chat models.
 
 ### Image support
 
 - **Maximum input image size**: The maximum size for input images is restricted to 20 MB.
 - **Low resolution accuracy**: When images are analyzed using the "low resolution" setting, it allows for faster responses and uses fewer input tokens for certain use cases. However, this could impact the accuracy of object and text recognition within the image.
-- **Image chat restriction**: When you upload images in Azure OpenAI Studio or the API, there is a limit of 10 images per chat call.
+- **Image chat restriction**: When you upload images in Azure AI Foundry portal or the API, there is a limit of 10 images per chat call.
 
 ### Video support
 
 - **Low resolution**: Video frames are analyzed using GPT-4 Turbo with Vision's "low resolution" setting, which may affect the accuracy of small object and text recognition in the video.
-- **Video file limits**: Both MP4 and MOV file types are supported. In Azure OpenAI Studio, videos must be less than 3 minutes long. When you use the API there is no such limitation.
-- **Prompt limits**: Video prompts only contain one video and no images. In Azure OpenAI Studio, you can clear the session to try another video or images.
+- **Video file limits**: Both MP4 and MOV file types are supported. In Azure AI Foundry portal, videos must be less than 3 minutes long. When you use the API there is no such limitation.
+- **Prompt limits**: Video prompts only contain one video and no images. In Azure AI Foundry portal, you can clear the session to try another video or images.
 - **Limited frame selection**: The service selects 20 frames from the entire video, which might not capture all the critical moments or details. Frame selection can be approximately evenly spread through the video or focused by a specific video retrieval query, depending on the prompt.
 - **Language support**: The service primarily supports English for grounding with transcripts. Transcripts don't provide accurate information on lyrics in songs.
 
 ## Next steps
 
-- Get started using GPT-4 Turbo with Vision by following the [quickstart](/azure/ai-services/openai/gpt-v-quickstart).
+- Get started using vision-enabled models by following the [quickstart](/azure/ai-services/openai/gpt-v-quickstart).
 - For a more in-depth look at the APIs, and to use video prompts in chat, follow the [how-to guide](../how-to/gpt-with-vision.md).
 - See the [completions and embeddings API reference](../reference.md)

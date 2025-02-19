@@ -67,7 +67,7 @@ You should have an Azure Function app that contains the decryption logic and an 
 
 ## Grant permissions in Azure Key Vault
 
-1. Navigate to your Azure Key Vault service in the portal. [Create an access policy](/azure/key-vault/general/assign-access-policy-portal) in the Azure Key Vault that grants key access to the custom skill.
+1. Navigate to your Azure Key Vault service in the Azure portal. [Create an access policy](/azure/key-vault/general/assign-access-policy-portal) in the Azure Key Vault that grants key access to the custom skill.
 
 1. On the left navigation pane, select **Access policies**, and then select **+ Create** to start the **Create an access policy** wizard.
 
@@ -85,7 +85,7 @@ You should have an Azure Function app that contains the decryption logic and an 
 
 ## Collect app information
 
-1. Navigate to the **psdbf-function-app** function in the portal, and make a note of the following properties you'll need for the REST calls:
+1. Navigate to the **psdbf-function-app** function in the Azure portal, and make a note of the following properties you'll need for the REST calls:
 
 1. Get the function URL, which can be found under **Essentials** on the main page for the function.
 
@@ -143,13 +143,13 @@ If you're using the Free tier, the following message is expected: `"Could not ex
 
 ## Search your content
 
-After indexer execution is finished, you can run some queries to verify that the data has been successfully decrypted and indexed. Navigate to your Azure AI Search service in the portal, and use the [Search Explorer](search-explorer.md) to run queries over the indexed data.
+After indexer execution is finished, you can run some queries to verify that the data has been successfully decrypted and indexed. Navigate to your Azure AI Search service in the Azure portal, and use the [Search Explorer](search-explorer.md) to run queries over the indexed data.
 
 ## Clean up resources
 
 When you're working in your own subscription, at the end of a project, it's a good idea to remove the resources that you no longer need. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal, using the All resources or Resource groups link in the left-navigation pane.
+You can find and manage resources in the Azure portal, using the All resources or Resource groups link in the left-navigation pane.
 
 ## Next steps
 

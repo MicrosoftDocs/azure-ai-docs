@@ -39,7 +39,7 @@ are no prerequisites, state that no prerequisites are needed for this tutorial.
 ## Prerequisites
 ### Create a Metrics Advisor resource
 
-To explore capabilities of Metrics Advisor, you may need to <a href="https://go.microsoft.com/fwlink/?linkid=2142156"  title="Create a Metrics Advisor resource"  target="_blank">create a Metrics Advisor resource </a> in the Azure portal to deploy your Metrics Advisor instance.
+To explore capabilities of Metrics Advisor, you might need to <a href="https://go.microsoft.com/fwlink/?linkid=2142156"  title="Create a Metrics Advisor resource"  target="_blank">create a Metrics Advisor resource </a> in the Azure portal to deploy your Metrics Advisor instance.
 
 ### Create a hook in Metrics Advisor
 A hook in Metrics Advisor is a bridge that enables customer to subscribe to metrics anomalies and send notifications through different channels. There are four types of hooks in Metrics Advisor: 
@@ -313,8 +313,8 @@ Parameters to be filled out:
 
 - SMTP server name (**required**): Fill in the name of your SMTP server provider, most server names are written in the form “smtp.domain.com” or “mail.domain.com”. Take Office365 as an example, it should be set as 'smtp.office365.com'. 
 - SMTP server port (**required**): Port 587 is the default port for SMTP submission on the modern web. While you can use other ports for submission (more on those next), you should always start with port 587 as the default and only use a different port if circumstances dictate (like your host blocking port 587 for some reason).
-- Email sender(s)(**required**): This is the real email account that takes responsibility to send emails. You may need to fill in the account name and password of the sender. You can set a quota threshold for the maximum number of alert emails to be sent within one minute for one account. You can set multiple senders if there's possibility of having large volume of alerts to be sent in one minute, but at least one account should be set. 
-- Send on behalf of (optional): If you have multiple senders configured, but you'd like alert emails to appear to be sent from one account. You can use this field to align them. But note you may need to grant permission to the senders to allow sending emails on behalf of their account.  
+- Email sender(s)(**required**): This is the real email account that takes responsibility to send emails. You might need to fill in the account name and password of the sender. You can set a quota threshold for the maximum number of alert emails to be sent within one minute for one account. You can set multiple senders if there's possibility of having large volume of alerts to be sent in one minute, but at least one account should be set. 
+- Send on behalf of (optional): If you have multiple senders configured, but you'd like alert emails to appear to be sent from one account. You can use this field to align them. But note you might need to grant permission to the senders to allow sending emails on behalf of their account.  
 - Default CC (optional): To set a default email address that will be cc'd in all email alerts. 
 
 Below is an example of a configured SMTP server:

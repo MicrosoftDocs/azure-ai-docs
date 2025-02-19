@@ -5,7 +5,7 @@ author: mrbullwinkle #travisw
 ms.author: mbullwin #travisw
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 03/07/2024
+ms.date: 01/10/2025
 ---
 
 [!INCLUDE [Set up required variables](./use-your-data-common-variables.md)]
@@ -59,7 +59,7 @@ deployment = os.environ.get("AZURE_OPENAI_DEPLOYMENT_ID")
 client = openai.AzureOpenAI(
     azure_endpoint=endpoint,
     api_key=api_key,
-    api_version="2024-02-01",
+    api_version="2024-10-21",
 )
 
 completion = client.chat.completions.create(
@@ -87,7 +87,8 @@ completion = client.chat.completions.create(
     }
 )
 
-print(completion.model_dump_json(indent=2))
+print(f"{completion.choices[0].message.role}: {completion.choices[0].message.content}")
+
 ```
 
 # [OpenAI Python 0.28.1](#tab/python)
@@ -163,6 +164,3 @@ python main.py
 ```
 
 The application prints the response in a JSON format suitable for use in many scenarios. It includes both answers to your query and citations from your uploaded files.
-
-> [!div class="nextstepaction"]
-> [I ran into an issue when running the code samples.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=dotnet&Pillar=AOAI&Product=ownData&Page=quickstart&Section=Create-dotnet-application)

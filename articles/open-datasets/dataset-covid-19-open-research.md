@@ -66,7 +66,7 @@ The goal of this notebook is two-fold:
 
 Dependencies: This notebook requires the following libraries:
 
-- Azure storage (for example, `pip install azure-storage`)
+- Azure storage (for example, `pip install azure-storage-blob`)
 - NLTK ([docs](https://www.nltk.org/install.html))
 - Pandas (for example, `pip install pandas`)
 

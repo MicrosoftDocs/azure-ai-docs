@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use GPT-4 Turbo with Vision on your images and videos with the JavaScript SDK'
+title: 'Quickstart: Use GPT-4 Turbo with Vision on your images with the JavaScript SDK'
 titleSuffix: Azure OpenAI
 description: Get started using the OpenAI JavaScript SDK to deploy and use the GPT-4 Turbo with Vision model.
 services: cognitive-services
@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
 ms.custom: references_regions
-ms.date: 09/06/2024
+ms.date: 10/23/2024
 ---
 
 Use this article to get started using the OpenAI JavaScript SDK to deploy and use the GPT-4 Turbo with Vision model. 
@@ -18,30 +18,26 @@ This SDK is provided by OpenAI with Azure specific types provided by Azure.
 
 ## Prerequisites
 
-## [**TypeScript**](#tab/typescript)
-
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
-- [TypeScript](https://www.typescriptlang.org/download/)
+- [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
-
-
-## [**JavaScript**](#tab/javascript)
-
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
-- [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
-- An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
-
----
-
 
 > [!NOTE]
 > This library is maintained by OpenAI. Refer to the [release history](https://github.com/openai/openai-node/releases) to track the latest updates to the library.
 
-[!INCLUDE [get-key-endpoint](get-key-endpoint.md)]
+### Microsoft Entra ID prerequisites
 
-[!INCLUDE [environment-variables](environment-variables.md)]
+For the recommended keyless authentication with Microsoft Entra ID, you need to:
+- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
+## Retrieve resource information
+
+[!INCLUDE [resource authentication](resource-authentication.md)]
+
+> [!CAUTION]
+> To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
 
 ## Create a Node application
 
@@ -65,36 +61,40 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 Select an image from the [azure-samples/cognitive-services-sample-data-files](https://github.com/Azure-Samples/cognitive-services-sample-data-files/tree/master/ComputerVision/Images) and set the URL for an image in the environment variables.
 
-## [**TypeScript**](#tab/typescript)
 
-1. Create a _quickstart.ts_ and paste in the following code. 
+## [Microsoft Entra ID](#tab/keyless)
+
+1. Replace the contents of _quickstart.js_ with the following code. 
     
-    ```typescript
-    import "dotenv/config";
-    import { AzureOpenAI } from "openai";
-    import type {
-      ChatCompletion,
-      ChatCompletionCreateParamsNonStreaming,
-    } from "openai/resources/index";
-    
+    ```javascript
+    const AzureOpenAI = require('openai').AzureOpenAI;
+    const { 
+        DefaultAzureCredential, 
+        getBearerTokenProvider 
+    } = require('@azure/identity');
+
     // You will need to set these environment variables or edit the following values
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
-    const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
     const imageUrl = process.env["IMAGE_URL"] || "<image url>";
     
     // Required Azure OpenAI deployment name and API version
     const apiVersion = "2024-07-01-preview";
     const deploymentName = "gpt-4-with-turbo";
     
+    // keyless authentication    
+    const credential = new DefaultAzureCredential();
+    const scope = "https://cognitiveservices.azure.com/.default";
+    const azureADTokenProvider = getBearerTokenProvider(credential, scope);
+
     function getClient(): AzureOpenAI {
       return new AzureOpenAI({
         endpoint,
-        apiKey,
+        azureADTokenProvider,
         apiVersion,
         deployment: deploymentName,
       });
     }
-    function createMessages(): ChatCompletionCreateParamsNonStreaming {
+    function createMessages() {
       return {
         messages: [
           { role: "system", content: "You are a helpful assistant." },
@@ -118,7 +118,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
         max_tokens: 2000,
       };
     }
-    async function printChoices(completion: ChatCompletion): Promise<void> {
+    async function printChoices(completion) {
       for (const choice of completion.choices) {
         console.log(choice.message);
       }
@@ -136,18 +136,12 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
       console.error("Error occurred:", err);
     });
     ```
+
 1. Make the following changes:
     1. Enter the name of your GPT-4 Turbo with Vision deployment in the appropriate field.
     1. Change the value of the `"url"` field to the URL of your image.
         > [!TIP]
         > You can also use a base 64 encoded image data instead of a URL. For more information, see the [GPT-4 Turbo with Vision how-to guide](../how-to/gpt-with-vision.md#use-a-local-image).
-
-1. Build the application with the following command:
-
-    ```console
-    tsc
-    ```
-
 1. Run the application with the following command:
 
     ```console
@@ -155,13 +149,13 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
     ```
 
 
-## [**JavaScript**](#tab/javascript)
+
+## [API key](#tab/api-key)
 
 1. Replace the contents of _quickstart.js_ with the following code. 
     
     ```javascript
-    import "dotenv/config";
-    import { AzureOpenAI } from "openai";
+    const { AzureOpenAI } = require("openai");
     
     // You will need to set these environment variables or edit the following values
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
@@ -233,6 +227,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
     ```console
     node quickstart.js
     ```
+[!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ---
 

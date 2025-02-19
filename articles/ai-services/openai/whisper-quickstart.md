@@ -44,6 +44,12 @@ The file size limit for the Whisper model is 25 MB. If you need to transcribe a 
 
 ::: zone-end
 
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [JavaScript quickstart](includes/whisper-typescript.md)]
+
+::: zone-end
+
 ::: zone pivot="programming-language-powershell"
 
 [!INCLUDE [PowerShell quickstart](includes/whisper-powershell.md)]
@@ -60,4 +66,4 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 ## Next steps
 
 * To learn how to convert audio data to text in batches, see [Create a batch transcription](../speech-service/batch-transcription-create.md).
-* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://aka.ms/AOAICodeSamples).
+* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai).

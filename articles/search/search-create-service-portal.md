@@ -1,5 +1,5 @@
 ---
-title: 'Create a search service in the portal'
+title: 'Create a search service in the Azure portal'
 titleSuffix: Azure AI Search
 description: Learn how to set up an Azure AI Search resource in the Azure portal. Choose resource groups, regions, and a pricing tier.
 
@@ -11,10 +11,10 @@ ms.custom:
   - references_regions
   - build-2024
 ms.topic: conceptual
-ms.date: 10/17/2024
+ms.date: 01/15/2025
 ---
 
-# Create an Azure AI Search service in the portal
+# Create an Azure AI Search service in the Azure portal
 
 [**Azure AI Search**](search-what-is-azure-search.md) is an information retrieval platform for the enterprise. It supports traditional search and conversational AI-driven search for "chat with your data" experiences over your proprietary content.
 
@@ -50,7 +50,7 @@ Alternatively, you can use free credits to try out paid Azure services. With thi
 
 1. Use the search bar to find "Azure AI Search*.
 
-:::image type="content" source="media/search-create-service-portal/find-search3.png" lightbox="media/search-create-service-portal/find-search3.png" alt-text="Screenshot of the Create Resource page in the portal." border="true":::
+:::image type="content" source="media/search-create-service-portal/find-search3.png" lightbox="media/search-create-service-portal/find-search3.png" alt-text="Screenshot of the Create Resource page in the Azure portal." border="true":::
 
 ## Choose a subscription
 
@@ -60,11 +60,11 @@ If you have more than one subscription, choose one for your search service. If y
 
 A resource group is a container that holds related resources for your Azure solution. It's useful for consolidating same-solution resources, monitoring costs, and for checking the creation date of your search service.
 
-:::image type="content" source="media/search-create-service-portal/new-resource-group.png" lightbox="media/search-create-service-portal/new-resource-group.png" alt-text="Screenshot of the Create Resource Group page in the portal." border="true":::
+:::image type="content" source="media/search-create-service-portal/new-resource-group.png" lightbox="media/search-create-service-portal/new-resource-group.png" alt-text="Screenshot of the Create Resource Group page in the Azure portal." border="true":::
 
 Over time, you can track current and projected costs all-up or you can view charges for individual resources. The following screenshot shows the kind of cost information you can expect to see when you combine multiple resources into one group.
 
-:::image type="content" source="media/search-create-service-portal/resource-group-cost-management.png" lightbox="media/search-create-service-portal/resource-group-cost-management.png" alt-text="Screenshot of the Managing costs page in the portal." border="true":::
+:::image type="content" source="media/search-create-service-portal/resource-group-cost-management.png" lightbox="media/search-create-service-portal/resource-group-cost-management.png" alt-text="Screenshot of the Managing costs page in the Azure portal." border="true":::
 
 > [!TIP]
 > Resource groups simplify cleanup because deleting a resource group deletes everything within it.
@@ -105,7 +105,7 @@ Generally, choose a region near you, unless the following considerations apply:
 
 1. Do you have a specific tier in mind? Check [region availability by tier](search-sku-tier.md#region-availability-by-tier).
 
-1. Do you have business continuity and disaster recovery (BCDR) requirements? Create two or more search services in [regional pairs](/azure/availability-zones/cross-region-replication-azure#azure-paired-regions) within [availability zones](search-reliability.md#availability-zones). For example, if you're operating in North America, you might choose East US and West US, or North Central US and South Central US, for each search service.
+1. Do you have business continuity and disaster recovery (BCDR) requirements? Create two or more search services in [regional pairs](/azure/reliability/cross-region-replication-azure#azure-paired-regions) within [availability zones](search-reliability.md#availability-zones). For example, if you're operating in North America, you might choose East US and West US, or North Central US and South Central US, for each search service.
 
 1. Do you need [AI enrichment](cognitive-search-concept-intro.md), [integrated data chunking and vectorization](vector-search-integrated-vectorization.md), or [multimodal image search](search-get-started-portal-image-search.md)? Azure AI Search, Azure OpenAI, and Azure AI multiservice must coexist in the same region.
 
@@ -119,8 +119,8 @@ Generally, choose a region near you, unless the following considerations apply:
 
 Currently, the following regions offer cross-region among all three services (Azure AI Search, Azure OpenAI, Azure AI Vision multimodal). This list isn't definitive, and there might be more choices beyond the regions listed here depending on the tier. Also, region status can change quickly, so be sure to confirm region choice before installing.
 
-+ **Americas**: West US
-+ **Europe**: France Central, North Europe, Sweden Central
++ **Americas**: West US, East US
++ **Europe**: Switzerland North, Sweden Central
 
 ## Choose a tier
 
@@ -148,7 +148,7 @@ Your service is deployed within minutes. You can monitor progress through Azure 
 
 ## Configure authentication
 
-Unless you're using the portal, programmatic access to your new service requires that you provide the URL endpoint and an authenticated connection. You can use either or both of these options:
+Unless you're using the Azure portal, programmatic access to your new service requires that you provide the URL endpoint and an authenticated connection. You can use either or both of these options:
 
 + [Connect using key-based authentication](search-security-api-keys.md)
 + [Connect using Azure roles](search-security-rbac.md)
@@ -161,7 +161,7 @@ Unless you're using the portal, programmatic access to your new service requires
 
    :::image type="content" source="media/search-create-service-portal/set-authentication-options.png" lightbox="media/search-create-service-portal/set-authentication-options.png" alt-text="Screenshot of the Keys page with authentication options." border="true":::
 
-An endpoint and key aren't needed for portal-based tasks. The portal is already linked to your Azure AI Search resource with admin rights. For a portal walkthrough, start with [Quickstart: Create an Azure AI Search index in the portal](search-get-started-portal.md).
+An endpoint and key aren't needed for portal-based tasks. The Azure portal is already linked to your Azure AI Search resource with admin rights. For a portal walkthrough, start with [Quickstart: Create an Azure AI Search index in the Azure portal](search-get-started-portal.md).
 
 ## Scale your service
 
@@ -188,14 +188,14 @@ Most customers use just one service provisioned at a tier [sufficient for expect
 
 Although most customers use just one service, service redundancy might be necessary if operational requirements include the following:
 
-+ [Business continuity and disaster recovery (BCDR)](/azure/availability-zones/cross-region-replication-azure). Azure AI Search doesn't provide instant failover if there's an outage.
++ [Business continuity and disaster recovery (BCDR)](/azure/reliability/cross-region-replication-azure). Azure AI Search doesn't provide instant failover if there's an outage.
 
 + [Multitenant architectures](search-modeling-multitenant-saas-applications.md) sometimes call for two or more services.
 
 + Globally deployed applications might require search services in each geography to minimize latency.
 
 > [!NOTE]
-> In Azure AI Search, you cannot segregate indexing and querying operations; thus, you would never create multiple services for segregated workloads. An index is always queried on the service in which it was created (you cannot create an index in one service and copy it to another).
+> In Azure AI Search, you can't segregate indexing and querying operations; thus, you would never create multiple services for segregated workloads. An index is always queried on the service in which it was created (you can't create an index in one service and copy it to another).
 
 A second service isn't required for high availability. High availability for queries is achieved when you use two or more replicas in the same service. Replica updates are sequential, which means at least one is operational when a service update is rolled out. For more information about uptime, see [Service Level Agreements](https://azure.microsoft.com/support/legal/sla/search/v1_0/).
 
@@ -228,10 +228,10 @@ Depending on region and datacenter capacity, you can automatically request more 
 
 ## Next steps
 
-After provisioning a service, you can continue in the portal to create your first index.
+After provisioning a service, you can continue in the Azure portal to create your first index.
 
 > [!div class="nextstepaction"]
-> [Quickstart: Create an Azure AI Search index in the portal](search-get-started-portal.md)
+> [Quickstart: Create an Azure AI Search index in the Azure portal](search-get-started-portal.md)
 
 Want to optimize and save on your cloud spending?
 

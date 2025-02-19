@@ -7,9 +7,9 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: references_regions
 ms.topic: how-to
-ms.date: 05/20/2024
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 01/28/2025
+author: aahill
+ms.author: aahi
 recommendations: false
 
 ---
@@ -22,14 +22,9 @@ Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to
 
 ## Assistants support
 
-### Region and model support
+### Region, model, and API support
 
-Code interpreter is available in all regions supported by Azure OpenAI Assistants. The [models page](../concepts/models.md#assistants-preview) contains the most up-to-date information on regions/models where Assistants are currently supported.
-
-### API Versions
-
-- `2024-02-15-preview`
-- `2024-05-01-preview`
+The [models page](../concepts/models.md#assistants-preview) contains the most up-to-date information on regions/models where Assistants are currently supported. Assistants can be used in version `2024-02-15-preview` and later of the Azure OpenAI inference [preview API](../reference-preview.md#api-specs). A full list of previous API versions can be found on [GitHub](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview).
 
 ### Supported file types
 
@@ -101,7 +96,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview",
+    api_version="2024-08-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 

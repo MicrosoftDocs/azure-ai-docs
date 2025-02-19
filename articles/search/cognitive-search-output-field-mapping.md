@@ -182,7 +182,7 @@ The source field path is skill output. In this example, the output is *text_vect
 ```json
 {
   "name": "test-vector-size-ss",  
-  "description": "Generate embeddings using AOAI",
+  "description": "Generate embeddings using Azure OpenAI Service",
   "skills": [
     {
       "@odata.type": "#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill",

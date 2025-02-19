@@ -1,11 +1,18 @@
 items:
 - name: Azure
   tocHref: /azure/
-  topicHref: /azure/index
+  topicHref: /azure/index/
   items:
-  - name: AI Studio
+  - name: AI Foundry
     tocHref: /azure/ai-studio/
     topicHref: /azure/ai-studio/
+  - name: AI Foundry
+    tocHref: /azure/ai-foundry/
+    topicHref: /azure/ai-studio/
+    items:
+    - name: Model Inference
+      tocHref: /azure/ai-foundry/model-inference/
+      topicHref: /azure/ai-foundry/model-inference/
   - name: AI Services
     tocHref: /azure/ai-services/
     topicHref: /azure/ai-services/
@@ -55,6 +62,12 @@ items:
     - name: Azure AI Search
       tocHref: /azure/search/
       topicHref: /azure/search/
+    - name: Content Understanding
+      tocHref: /azure/ai-services/content-understanding/
+      topicHref: /azure/ai-services/content-understanding/
+    - name: Agents
+      tocHref: /azure/ai-services/agents/
+      topicHref: /azure/ai-services/agents/
   - name: Genomics
     tocHref: /azure/genomics/
     topicHref: /azure/genomics/

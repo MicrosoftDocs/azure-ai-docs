@@ -5,6 +5,7 @@ ms.service: ai-services
 ms.subservice: computer-vision
 ms.topic: include
 ms.date: 08/01/2023
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
@@ -19,7 +20,7 @@ This guide assumes you have successfully followed the steps mentioned in the [qu
 
 To authenticate against the Image Analysis service, you need a Computer Vision key and endpoint URL.
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 The SDK example assumes that you defined the environment variables `VISION_KEY` and `VISION_ENDPOINT` with your key and endpoint.
 

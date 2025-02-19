@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 10/10/2024
+ms.date: 10/31/2024
 ---
 
 # Create a full text query in Azure AI Search
@@ -39,8 +39,8 @@ POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/
     "searchMode": "all",
     "searchFields": "HotelName, Description, Address/City, Address/StateProvince, Tags",
     "select": "HotelName, Description, Address/City, Address/StateProvince, Tags",
-    "top": "10",
-    "count": "true"
+    "top": 10,
+    "count": true
 }
 ```
 
@@ -72,13 +72,13 @@ To call search from within an app, use the `Azure.Document.Search` client librar
 
 ### [**Azure portal**](#tab/portal-text-query)
 
-In the portal, when you open an index, you can work with Search Explorer alongside the index JSON definition in side-by-side tabs for easy access to field attributes. Check the **Fields** table to see which ones are searchable, sortable, filterable, and facetable while testing queries.
+In the Azure portal, when you open an index, you can work with Search Explorer alongside the index JSON definition in side-by-side tabs for easy access to field attributes. Check the **Fields** table to see which ones are searchable, sortable, filterable, and facetable while testing queries.
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
 1. In your service, select **Indexes** and choose an index.
 
-1. An index opens to the [**Search explorer**](search-explorer.md) tab so that you can query right away. Switch to **Edit JSON** to specify query syntax. 
+1. An index opens to the [**Search explorer**](search-explorer.md) tab so that you can query right away. Switch to **JSON view** to specify query syntax. 
 
    Here's a full text search query expression that works for the Hotels sample index:
 

@@ -8,7 +8,7 @@ author: Blackmist
 ms.service: azure-machine-learning
 ms.reviewer: kritifaujdar
 ms.subservice: mlops
-ms.date: 11/03/2023
+ms.date: 11/20/2024
 ms.topic: conceptual
 ms.custom: cli-v2, sdk-v2
 ---

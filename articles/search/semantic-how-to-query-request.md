@@ -9,15 +9,16 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
+  - ignite-2024
 ms.topic: how-to
-ms.date: 09/24/2024
+ms.date: 02/18/2025
 ---
 
 # Add semantic ranking to queries in Azure AI Search
 
 You can apply semantic ranking to text queries, hybrid queries, and vector queries if your search documents contain string fields and the [vector query has a text representation](vector-search-how-to-query.md#query-with-integrated-vectorization) in the search document.
 
-This article explains how to invoke the semantic ranker on queries. 
+This article explains how to invoke the semantic ranker on queries. It assumes you're using the most recent stable or preview APIs. For help with older versions, see [Migrate semantic ranking code](semantic-code-migration.md).
 
 ## Prerequisites
 
@@ -28,7 +29,7 @@ This article explains how to invoke the semantic ranker on queries.
 + Review [semantic ranking](semantic-search-overview.md) if you need an introduction to the feature.
 
 > [!NOTE]
-> Captions and answers are extracted verbatim from text in the search document. The semantic subsystem uses machine reading comprehension to recognize content having the characteristics of a caption or answer, but doesn't compose new sentences or phrases. For this reason, content that includes explanations or definitions work best for semantic ranking. If you want chat-style interaction with generated responses, see [Retrieval Augmented Generation (RAG)](retrieval-augmented-generation-overview.md).
+> Captions and answers are extracted verbatim from text in the search document. The semantic subsystem uses machine reading comprehension to recognize content having the characteristics of a caption or answer, but doesn't compose new sentences or phrases except in the case of [query rewrite](semantic-how-to-query-rewrite.md). For this reason, content that includes explanations or definitions work best for semantic ranking. If you want chat-style interaction with generated responses, see [Retrieval Augmented Generation (RAG)](retrieval-augmented-generation-overview.md).
 
 ## Choose a client
 
@@ -51,11 +52,35 @@ A few query capabilities bypass relevance scoring, which makes them incompatible
 
 ## Set up the query
 
-In this step, add parameters to the query request. To be successful, your query should be full text search (using the `search` parameter to pass in a string) or a vector query, and the index should contain text fields with rich semantic content and a semantic configuration.
+By default, queries don't use semantic ranking. To use semantic ranking, two different parameters can be used. Each parameter supports a different set of scenarios.
+
+Semantic queries, whether specified through `search` plus `queryType`, or through `semanticQuery`, must be plain text and they can't be empty. Empty queries result in no semantic ranking being applied to the results.
+
+<!-- 
+1. Set `queryType` to `semantic`:
+  + [Text search](search-lucene-query-architecture.md) with a simple plain text query. Empty queries result in no semantic ranking being applied to the results.
+  + [Hybrid search](hybrid-search-overview.md).
+  + [Simple](query-simple-syntax.md) or [full](query-lucene-syntax.md) syntax can't be used.
+1. Specify `semanticQuery`:
+  + [Text search](search-lucene-query-architecture.md) using the [simple](query-simple-syntax.md) or [full](query-lucene-syntax.md) syntax.
+  + [Vector search](vector-search-overview.md).
+  + [Hybrid search](hybrid-search-overview.md).
+  + The query specified for `semanticQuery` must be a plain text query. Empty queries aren't supported. -->
+
+| Semantic ranker parameter | [Plain text search](search-query-create.md) | [Simple text search syntax](query-simple-syntax.md) | [Full text search syntax](query-lucene-syntax.md) | [Vector search](vector-search-how-to-query.md) | [Hybrid Search](hybrid-search-how-to-query.md) | [Semantic answers](semantic-answers.md) and captions |
+|-|-|-|-|-|-|-|
+| `queryType-semantic` <sup>1</sup> | ✅ | ❌ | ❌ | ❌ | ✅ | ✅ |
+| `semanticQuery="<your plain text query>"`<sup>2</sup> | ✅ | ✅ | ✅ | ✅ |✅ | ✅ |
+
+<sup>1</sup> `queryType=semantic` can't support explicit `simple` or `full` values because the `queryType` parameter is being used for `semantic`. The effective query behaviors are the defaults of the simple parser.
+
+<sup>2</sup> The `semanticQuery` parameter can be used for all query types. However, it isn't supported in the Azure portal [Search Explorer](search-explorer.md).
+
+Regardless of the parameter chosen, the index should contain text fields with rich semantic content and a [semantic configuration](semantic-how-to-configure.md).
 
 ### [**Azure portal**](#tab/portal-query)
 
-[Search explorer](search-explorer.md) includes options for semantic ranking. 
+[Search explorer](search-explorer.md) includes options for semantic ranking. Recall that you can't set the `semanticQuery` parameter in the Azure portal.
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
@@ -67,21 +92,20 @@ In this step, add parameters to the query request. To be successful, your query 
 
 1. Enter a query, such as "historic hotel with good food", and select **Search**.
 
-1. Alternatively, select **JSON view** and paste definitions into the query editor:
+1. Alternatively, select **JSON view** and paste definitions into the query editor. The Azure portal doesn't support using `semanticQuery`, so setting `queryType` to `"semantic"` is required:
 
    :::image type="content" source="./media/semantic-search-overview/semantic-portal-json-query.png" alt-text="Screenshot showing JSON query syntax in the Azure portal." border="true":::
 
-   Here's a JSON example that you can paste into the view:
+   JSON example for setting query type to semantic that you can paste into the view:
 
     ```json
     {
-      "search": "historic hotel with good food",
+      "search": "funky or interesting hotel with good food on site",
       "count": true,
       "queryType": "semantic",
       "semanticConfiguration": "my-semantic-config",
       "captions": "extractive|highlight-true",
       "answers": "extractive|count-3",
-      "queryLanguage": "en-us",
       "highlightPreTag": "<strong>",
       "highlightPostTag": "</strong>",
       "select": "HotelId,HotelName,Description,Category"
@@ -92,48 +116,76 @@ In this step, add parameters to the query request. To be successful, your query 
 
 Use [Search Documents](/rest/api/searchservice/documents/search-post) to formulate the request.
 
-A response includes an `@search.rerankerScore` automatically. If you want captions or answers in the response, add captions and answers to the request.
+A response includes an `@search.rerankerScore` automatically. If you want captions or answers in the response, enable semantic ranking by setting `queryType` to `semantic` or setting `semanticQuery` and adding captions and answers to the request.
 
-The following example in this section uses the [hotels-sample-index](search-get-started-portal.md) to demonstrate semantic ranking with semantic answers and captions.
+The following examples in this section use the [hotels-sample-index](search-get-started-portal.md) to demonstrate semantic ranking with semantic answers and captions.
 
-1. Paste the following request into a web client as a template. Replace `search-service-name` with your search service name and replace `hotels-sample-index` if you have a different index name.
+#### Use queryType=semantic
 
-    ```http
-    POST https://[search-service-name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-07-01      
-    {
-        "queryType": "semantic",
-        "search": "newer hotel near the water with a great restaurant",
-        "semanticConfiguration": "my-semantic-config",
-        "answers": "extractive|count-3",
-        "captions": "extractive|highlight-true",
-        "highlightPreTag": "<strong>",
-        "highlightPostTag": "</strong>",
-        "select": "HotelId,HotelName,Description,Category",
-        "count": true
-    }
-    ```
+If you want to set `queryType` to `semantic`, paste the following request into a web client as a template. Replace `search-service-name` with your search service name and replace `hotels-sample-index` if you have a different index name.
 
-1. Set "queryType" to "semantic".
+```http
+POST https://[search-service-name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-07-01
+{
+      "search": "interesting hotel with restaurant on site and cozy lobby or shared area",
+      "count": true,
+      "queryType": "semantic",
+      "semanticConfiguration": "semantic-config",
+      "captions": "extractive|highlight-true",
+      "answers": "extractive|count-3",
+      "highlightPreTag": "<strong>",
+      "highlightPostTag": "</strong>",
+      "select": "HotelId,HotelName,Description,Category"
+}
+```
 
-1. Set "search" to a full text search query. Your search string can support either the [simple syntax](query-simple-syntax.md) or [full Lucene syntax](query-lucene-syntax.md). Semantic ranking is an extension of full text search, so while "search" isn't required, you won't get an expected outcome if it's an empty search (`"search": "*"`).
+1. Set `queryType` to `semantic`.
 
-1. Set "semanticConfiguration" to a [predefined semantic configuration](semantic-how-to-configure.md) that's embedded in your index.
+1. Set `search` to a simple plain text query. Since the `queryType` is set to `semantic`,  [simple syntax](query-simple-syntax.md) or [full Lucene syntax](query-lucene-syntax.md) aren't supported. Supplying `*` or an empty string results in no semantic ranking being applied to the query.
 
-1. Set "answers" to specify whether [semantic answers](semantic-answers.md) are included in the result. Currently, the only valid value for this parameter is `extractive`. Answers can be configured to return a maximum of 10. The default is one. This example shows a count of three answers: `extractive|count-3`.
+1. Set `semanticConfiguration` to a [predefined semantic configuration](semantic-how-to-configure.md) that's embedded in your index.
+
+1. Set `answers` to specify whether [semantic answers](semantic-answers.md) are included in the result. Currently, the only valid value for this parameter is `extractive`. Answers can be configured to return a maximum of 10. The default is one. This example shows a count of three answers: `extractive|count-3`.
 
    Answers aren't guaranteed on every request. To get an answer, the query must look like a question and the content must include text that looks like an answer.
 
-1. Set "captions" to specify whether semantic captions are included in the result. Currently, the only valid value for this parameter is `extractive`. Captions can be configured to return results with or without highlights. The default is for highlights to be returned. This example returns captions without highlights: `extractive|highlight-false`.
+1. Set `captions` to specify whether semantic captions are included in the result. Currently, the only valid value for this parameter is `extractive`. Captions can be configured to return results with or without highlights. The default is for highlights to be returned. This example returns captions without highlights: `extractive|highlight-false`.
 
    The basis for captions and answers are the fields referenced in the "semanticConfiguration". These fields are under a combined limit in the range of 2,000 tokens or approximately 20,000 characters. If you anticipate a token count exceeding this limit, consider a [data chunking step](vector-search-how-to-chunk-documents.md) using the [Text split skill](cognitive-search-skill-textsplit.md). This approach introduces a dependency on an [AI enrichment pipeline](cognitive-search-concept-intro.md) and [indexers](search-indexer-overview.md).
 
-1. Set "highlightPreTag" and "highlightPostTag" if you want to override the default highlight formatting that's applied to captions.
+1. Set `highlightPreTag` and `highlightPostTag` if you want to override the default highlight formatting that's applied to captions.
 
    Captions apply highlight formatting over key passages in the document that summarize the response. The default is `<em>`. If you want to specify the type of formatting (for example, yellow background), you can set the highlightPreTag and highlightPostTag.
 
-1. Set ["select"](search-query-odata-select.md) to specify which fields are returned in the response, and "count" to return the number of matches in the index. These parameters improve the quality of the request and readability of the response.
+1. Set [select](search-query-odata-select.md) to specify which fields are returned in the response, and "count" to return the number of matches in the index. These parameters improve the quality of the request and readability of the response.
 
 1. Send the request to execute the query and return results.
+
+#### Use semanticQuery
+
+By using `semanticQuery`, you can explicitly apply [simple text syntax](query-simple-syntax.md) or [full text syntax](query-lucene-syntax.md), which means you can now do fielded search, term boosting, and proximity search. You can also specify a [pure vector query](vector-search-how-to-query.md) instead of just hybrid.
+
+Adjust your request to the following JSON to use `semanticQuery`.
+
+```http
+POST https://[search-service-name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-07-01
+{
+    "search": "Description:breakfast",
+    "semanticQuery": "interesting hotel with restaurant on site and cozy lobby or shared area",
+    "count": true,
+    "queryType": "full",
+    "semanticConfiguration": "semantic-config",
+    "captions": "extractive|highlight-true",
+    "answers": "extractive|count-3",
+    "highlightPreTag": "<strong>",
+    "highlightPostTag": "</strong>",
+    "select": "HotelId,HotelName,Description,Category"
+}
+```
+
+1. Set `queryType` to the search syntax you're using, either [simple](query-simple-syntax.md) or [full](query-lucene-syntax.md).
+
+1. Set `semanticQuery` to the simple plain text query you want to use for semantic ranking. Empty queries aren't supported. Avoid operators or any query syntax inside the string itself.
 
 ### [**.NET SDK**](#tab/dotnet-query)
 
@@ -141,7 +193,7 @@ Use QueryType or SemanticQuery to invoke semantic ranker on a semantic query. Th
 
 ```csharp
 SearchResults<Hotel> response = await searchClient.SearchAsync<Hotel>(
-    "Is there any hotel located on the main commercial artery of the city in the heart of New York?",
+    "interesting hotel with restaurant on site and cozy lobby or shared area",
     new SearchOptions
     {
         SemanticSearch = new()
@@ -150,7 +202,6 @@ SearchResults<Hotel> response = await searchClient.SearchAsync<Hotel>(
             QueryCaption = new(QueryCaptionType.Extractive),
             QueryAnswer = new(QueryAnswerType.Extractive)
         },
-        QueryLanguage = QueryLanguage.EnUs,
         QueryType = SearchQueryType.Semantic
     });
 
@@ -186,6 +237,23 @@ await foreach (SearchResult<Hotel> result in response.GetResultsAsync())
 Console.WriteLine($"Total number of search results:{count}");
 ```
 
+To use `semanticQuery` instead of setting `queryType` to `semantic`, the search code snippet can be replaced with the following code snippet:
+
+```csharp
+SearchResults<Hotel> response = await searchClient.SearchAsync<Hotel>(
+    "Luxury hotel",
+    new SearchOptions
+    {
+        SemanticSearch = new()
+        {
+            SemanticConfigurationName = "my-semantic-config",
+            QueryCaption = new(QueryCaptionType.Extractive),
+            QueryAnswer = new(QueryAnswerType.Extractive),
+            SemanticQuery = "Is there any hotel located on the main commercial artery of the city in the heart of New York?"
+        }
+    });
+```
+
 ---
 
 ## Evaluate the response
@@ -196,27 +264,77 @@ In semantic ranking, the response has more elements: a new [semantically ranked 
 
 In a client app, you can structure the search page to include a caption as the description of the match, rather than the entire contents of a specific field. This approach is useful when individual fields are too dense for the search results page.
 
-The response for the above example query returns the following match as the top pick. Captions are returned because the "captions" property is set, with plain text and highlighted versions. Answers are omitted from the example because one couldn't be determined for this particular query and corpus.
+The response for the above example query (*"interesting hotel with restaurant on site and cozy lobby or shared area"*) returns three answers (`"answers": "extractive|count-e"`). Captions are returned because the "captions" property is set, with plain text and highlighted versions. If an answer can't be determined, it's omitted from the response. For brevity, this example shows just the three answers and the three highest scoring results from the query.
 
 ```json
-"@odata.count": 35,
-"@search.answers": [],
-"value": [
+{
+  "@odata.count": 29,
+  "@search.answers": [
     {
-        "@search.score": 1.8810667,
-        "@search.rerankerScore": 1.1446577133610845,
-        "@search.captions": [
-            {
-                "text": "Oceanside Resort. Luxury. New Luxury Hotel. Be the first to stay. Bay views from every room, location near the pier, rooftop pool, waterfront dining & more.",
-                "highlights": "<strong>Oceanside Resort.</strong> Luxury. New Luxury Hotel. Be the first to stay.<strong> Bay</strong> views from every room, location near the pier, rooftop pool, waterfront dining & more."
-            }
-        ],
-        "HotelName": "Oceanside Resort",
-        "Description": "New Luxury Hotel. Be the first to stay. Bay views from every room, location near the pier, rooftop pool, waterfront dining & more.",
-        "Category": "Luxury"
+      "key": "24",
+      "text": "Chic hotel near the city. High-rise hotel in downtown, within walking distance to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.",
+      "highlights": "Chic hotel near the city. <strong>High-rise hotel in downtown, </strong>within<strong> walking distance to </strong>theaters, art<strong> galleries, restaurants and shops.</strong> Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.",
+      "score": 0.9340000152587891
     },
-  ...
-]
+    {
+      "key": "40",
+      "text": "Only 8 miles from Downtown. On-site bar/restaurant, Free hot breakfast buffet, Free wireless internet, All non-smoking hotel. Only 15 miles from airport.",
+      "highlights": "Only 8 miles from Downtown. <strong>On-site bar/restaurant, Free hot breakfast buffet, Free wireless internet, </strong>All non-smoking<strong> hotel.</strong> Only 15 miles from airport.",
+      "score": 0.9210000038146973
+    },
+    {
+      "key": "38",
+      "text": "Nature is Home on the beach. Explore the shore by day, and then come home to our shared living space to relax around a stone fireplace, sip something warm, and explore the library by night. Save up to 30 percent. Valid Now through the end of the year. Restrictions and blackouts may apply.",
+      "highlights": "Nature is Home on the beach. Explore the shore by day, and then come home to our<strong> shared living space </strong>to relax around a stone fireplace, sip something warm, and explore the library by night. Save up to 30 percent. Valid Now through the end of the year. Restrictions and blackouts may apply.",
+      "score": 0.9200000166893005
+    }
+  ],
+  "value": [
+    {
+      "@search.score": 3.2328331,
+      "@search.rerankerScore": 2.575303316116333,
+      "@search.captions": [
+        {
+          "text": "The best of old town hospitality combined with views of the river and cool breezes off the prairie. Our penthouse suites offer views for miles and the rooftop plaza is open to all guests from sunset to 10 p.m. Enjoy a complimentary continental breakfast in the lobby, and free Wi-Fi throughout the hotel.",
+          "highlights": "The best of old town hospitality combined with views of the river and cool breezes off the prairie. Our<strong> penthouse </strong>suites offer views for miles and the rooftop<strong> plaza </strong>is open to all guests from sunset to 10 p.m. Enjoy a<strong> complimentary continental breakfast in the lobby, </strong>and free Wi-Fi<strong> throughout </strong>the hotel."
+        }
+      ],
+      "HotelId": "50",
+      "HotelName": "Head Wind Resort",
+      "Description": "The best of old town hospitality combined with views of the river and cool breezes off the prairie. Our penthouse suites offer views for miles and the rooftop plaza is open to all guests from sunset to 10 p.m. Enjoy a complimentary continental breakfast in the lobby, and free Wi-Fi throughout the hotel.",
+      "Category": "Suite"
+    },
+    {
+      "@search.score": 0.632956,
+      "@search.rerankerScore": 2.5425150394439697,
+      "@search.captions": [
+        {
+          "text": "Every stay starts with a warm cookie. Amenities like the Counting Sheep sleep experience, our Wake-up glorious breakfast buffet and spacious workout facilities await.",
+          "highlights": "Every stay starts with a warm cookie. Amenities like the<strong> Counting Sheep sleep experience, </strong>our<strong> Wake-up glorious breakfast buffet and spacious workout facilities </strong>await."
+        }
+      ],
+      "HotelId": "34",
+      "HotelName": "Lakefront Captain Inn",
+      "Description": "Every stay starts with a warm cookie. Amenities like the Counting Sheep sleep experience, our Wake-up glorious breakfast buffet and spacious workout facilities await.",
+      "Category": "Budget"
+    },
+    {
+      "@search.score": 3.7076726,
+      "@search.rerankerScore": 2.4554927349090576,
+      "@search.captions": [
+        {
+          "text": "Chic hotel near the city. High-rise hotel in downtown, within walking distance to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.",
+          "highlights": "Chic hotel near the city. <strong>High-rise hotel in downtown, </strong>within<strong> walking distance to </strong>theaters, art<strong> galleries, restaurants and shops.</strong> Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance."
+        }
+      ],
+      "HotelId": "24",
+      "HotelName": "Uptown Chic Hotel",
+      "Description": "Chic hotel near the city. High-rise hotel in downtown, within walking distance to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.",
+      "Category": "Suite"
+    },
+   . . .
+  ]
+}
 ```
 
 ## Expected workloads

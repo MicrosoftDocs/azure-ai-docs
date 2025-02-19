@@ -38,8 +38,6 @@ West US 2: 'https://dataset1000genomes.blob.core.windows.net/dataset'
 
 West Central US: 'https://dataset1000genomes-secondary.blob.core.windows.net/dataset'
 
-[SAS Token](/azure/storage/common/storage-sas-overview): sv=2019-10-10&si=prod&sr=c&sig=9nzcxaQn0NprMPlSh4RhFQHcXedLQIcFgbERiooHEqM%3D
-
 ## Use terms
 
 To learn more about the data use terms refer the [publication](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7418738/) and [Terms of Use](https://clients.adaptivebiotech.com/terms-of-use).

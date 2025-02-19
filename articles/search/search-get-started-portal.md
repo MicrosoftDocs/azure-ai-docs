@@ -7,10 +7,11 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 05/30/2024
+ms.date: 11/19/2024
 ms.custom:
   - mode-ui
   - ignite-2023
+  - ignite-2024
 ---
 
 # Quickstart: Create a search index in the Azure portal
@@ -20,15 +21,17 @@ In this Azure AI Search quickstart, create your first _search index_ by using th
 The wizard creates multiple objects on your search service - [searchable index](search-what-is-an-index.md) - but also an [indexer](search-indexer-overview.md) and data source connection for automated data retrieval. At the end of this quickstart, we review each object. 
 
 > [!NOTE]
-> The **Import data** wizard includes options for OCR, text translation, and other AI enrichments that aren't covered in this quickstart. For a similar walkthrough that focuses on applied AI, see [Quickstart: Create a skillset in the Azure portal](cognitive-search-quickstart-blob.md).
+> The **Import data** wizard includes options for OCR, text translation, and other AI enrichments that aren't covered in this quickstart. For a similar walkthrough that focuses on applied AI, see [Quickstart: Create a skillset in the Azure portal](search-get-started-skillset.md).
 
 ## Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
 
-- An Azure AI Search service for any tier and any region. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription. You can use a free service for this quickstart. 
+- An Azure AI Search service for any tier and any region. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription. You can use a free service for this quickstart.
 
-For this quickstart, which uses built-in sample data, make sure the search service doesn't have [network access controls](service-configure-firewall.md) in place. The portal controller uses the public endpoint to retrieve data and metadata from the built-in sample data source hosted by Microsoft. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
+- Familiarity with the wizard. See [Import data wizards in the Azure portal](search-import-data-portal.md) for details.
+
+For this quickstart, which uses built-in sample data, make sure the search service doesn't have [network access controls](service-configure-firewall.md) in place. the Azure portal controller uses the public endpoint to retrieve data and metadata from the built-in sample data source hosted by Microsoft. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
 
 ### Check for space
 
@@ -73,11 +76,11 @@ The **Import data** wizard supports the creation of a skillset and [AI-enrichmen
    :::image type="content" source="media/search-get-started-portal/skip-cognitive-skills.png" alt-text="Screenshot that shows how to Skip to the Customize target index tab in the Import data wizard.":::
 
 > [!TIP]
-> Interested in AI enrichment? Try this [Quickstart: Create a skillset in the Azure portal](cognitive-search-quickstart-blob.md)
+> Interested in AI enrichment? Try this [Quickstart: Create a skillset in the Azure portal](search-get-started-skillset.md)
 
 ### Configure the index
 
-The wizard infers a schema for the built-in hotels-sample index. Follow these steps to configure the index:
+The wizard infers a schema for the built-in hotels-sample index. To configure the index, follow these steps:
 
 1. Accept the system-generated values for the **Index name** (_hotels-sample-index_) and **Key** field (_HotelId_).
 
@@ -117,7 +120,7 @@ The last step configures and runs the indexer. This object defines an executable
 
 ## Monitor indexer progress
 
-You can monitor creation of the indexer or index in the portal. The service **Overview** page provides links to the resources created in your Azure AI Search service.
+You can monitor creation of the indexer or index in the Azure portal. The service **Overview** page provides links to the resources created in your Azure AI Search service.
 
 1. On the left, select **Indexers**.
 
@@ -174,7 +177,7 @@ The following examples assume the JSON view and the 2024-05-01-preview REST API 
 
 ### Filter examples
 
-Parking, tags, renovation date, rating and location are filterable.
+Parking, tags, renovation date, rating, and location are filterable.
 
 ```json
 {
@@ -223,7 +226,7 @@ The default syntax is [simple syntax](query-simple-syntax.md), but if you want f
 }
 ```
 
-By default, misspelled query terms like `seatle` for `Seattle` fail to return matches in a typical search. The `queryType=full` parameter invokes the full Lucene query parser, which supports the tilde `~` operand. When these parameters are present, the query performs a fuzzy search for the specified keyword. The query seeks matching results along with results that are similar to but not an exact match to the keyword. 
+By default, misspelled query terms like `seatle` for `Seattle` fail to return matches in a typical search. The `queryType=full` parameter invokes the full Lucene query parser, which supports the tilde `~` operand. When these parameters are present, the query performs a fuzzy search for the specified keyword. The query matches on documents that are similar to but not an exact match to the keyword. 
 
 Take a minute to try a few of these example queries for your index. To learn more about queries, see [Querying in Azure AI Search](search-query-overview.md).
 
@@ -240,4 +243,4 @@ If you use a free service, remember that the limit is three indexes, indexers, a
 Try an Azure portal wizard to generate a ready-to-use web app that runs in a browser. Use this wizard on the small index you created in this quickstart, or use one of the built-in sample data sets for a richer search experience.
 
 > [!div class="nextstepaction"]
-> [Create a demo app in the portal](search-create-app-portal.md)
+> [Create a demo app in the Azure portal](search-create-app-portal.md)

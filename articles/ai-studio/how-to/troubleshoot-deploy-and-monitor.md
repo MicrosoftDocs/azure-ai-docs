@@ -1,12 +1,13 @@
 ---
-title: How to troubleshoot your deployments and monitors in Azure AI Studio
-titleSuffix: Azure AI Studio
-description: This article provides instructions on how to troubleshoot your deployments and monitors in Azure AI Studio.
+title: How to troubleshoot your deployments and monitors in Azure AI Foundry portal
+titleSuffix: Azure AI Foundry
+description: This article provides instructions on how to troubleshoot your deployments and monitors in Azure AI Foundry portal.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
+  - ignite-2024
 ms.topic: how-to
 ms.date: 5/21/2024
 ms.reviewer: fasantia
@@ -15,15 +16,15 @@ ms.author: mopeakande
 author: msakande
 ---
 
-# How to troubleshoot your deployments and monitors in Azure AI Studio
+# How to troubleshoot your deployments and monitors in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-This article provides instructions on how to troubleshoot your deployments and monitors in Azure AI Studio. 
+This article provides instructions on how to troubleshoot your deployments and monitors in Azure AI Foundry portal. 
 
 ## Deployment issues
 
-For the general deployment error code reference, see [Troubleshooting online endpoints deployment and scoring](/azure/machine-learning/how-to-troubleshoot-online-endpoints) in the Azure Machine Learning documentation. Much of the information there also apply to Azure AI Studio deployments.
+For the general deployment error code reference, see [Troubleshooting online endpoints deployment and scoring](/azure/machine-learning/how-to-troubleshoot-online-endpoints) in the Azure Machine Learning documentation. Much of the information there also apply to Azure AI Foundry deployments.
 
 
 ### Error: Use of Azure OpenAI models in Azure Machine Learning requires Azure OpenAI Services resources
@@ -38,7 +39,7 @@ For more information about managing quota, see:
 
 - [Quota for deploying and inferencing a model](../how-to/deploy-models-openai.md#quota-for-deploying-and-inferencing-a-model)
 - [Manage Azure OpenAI Service quota documentation](/azure/ai-services/openai/how-to/quota?tabs=rest)
-- [Manage and increase quotas for resources with Azure AI Studio](quota.md)
+- [Manage and increase quotas for resources with Azure AI Foundry](quota.md)
 
 ### Error: `ToolLoadError`
 
@@ -46,8 +47,9 @@ After you deployed a prompt flow, you got the error message: "Tool load failed i
 
 To fix this error, take the following steps to manually assign the ML Data scientist role to your endpoint. It might take several minutes for the new role to take effect.
 
-1. Go to your project in [Azure AI Studio](https://ai.azure.com) and select **Settings** from the left navigation menu to open the settings page.
-1. In the section for "Project properties", select the link to your resource group to open it in the Azure portal. 
+1. Go to your project in [Azure AI Foundry](https://ai.azure.com) and select **Management center** from the left navigation menu to open the settings page.
+1. Under the **Project** heading, select **Overview**.
+1. Under **Quick reference**, select the link to your resource group to open it in the Azure portal. 
 1. Select **Access control (IAM)** from the left navigation menu in the Azure portal.
 1. Select **Add role assignment**.
 1. Select **Azure ML Data Scientist**, and select __Next__.
@@ -57,7 +59,7 @@ To fix this error, take the following steps to manually assign the ML Data scien
 1. Select your endpoint's name.
 1. Select **Select**.
 1. Select **Review + Assign**.
-1. Return to your project in AI Studio and select **Deployments** from the left navigation menu. 
+1. Return to your project in Azure AI Foundry portal and select **Deployments** from the left navigation menu. 
 1. Select your deployment.
 1. Test the prompt flow deployment.
 
@@ -73,9 +75,9 @@ This error message refers to a situation where the deployment build failed. You 
 
 __Option 1: Find the build log for the Azure default blob storage.__
 
-1. Go to your project in [Azure AI Studio](https://ai.azure.com) and select **Settings** from the left navigation menu to open the settings page.
-1. In the section for "Project properties", select the link to your hub to open the hub overview page.
-1. In the section for "Resource configuration" on the hub overview page, select the link to your storage account name. This name should be the name of the storage account listed in the error message you received. You'll be taken to the storage account page in the [Azure portal](https://portal.azure.com).
+1. Go to your project in [Azure AI Foundry](https://ai.azure.com) and select **Management center** from the left navigation menu to open the settings page.
+1. Under the **Hub** heading, select **Overview**.
+1. In the section for **Connected resources**, select the link to your storage account name. This name should be the name of the storage account listed in the error message you received. You'll be taken to the storage account page in the [Azure portal](https://portal.azure.com).
 1. On the storage account page, select **Data Storage** > **Containers** from the left navigation menu.
 1. Select the container name that's listed in the error message you received.
 1. Select through folders to find the build logs.
@@ -83,7 +85,7 @@ __Option 1: Find the build log for the Azure default blob storage.__
 __Option 2: Find the build log within Azure Machine Learning studio.__
 
 > [!NOTE]
-> This option to access the build log uses [Azure Machine Learning studio](https://ml.azure.com), which is a different portal than [Azure AI Studio](https://ai.azure.com).
+> This option to access the build log uses [Azure Machine Learning studio](https://ml.azure.com), which is a different portal than [Azure AI Foundry](https://ai.azure.com).
 
 1. Go to [Azure Machine Learning studio](https://ml.azure.com).
 2. Select **Endpoints** from the left navigation menu.
@@ -107,5 +109,5 @@ Playground only supports select models, such as Azure OpenAI models and Llama-2.
 
 ## Related content
 
-- [Azure AI Studio overview](../what-is-ai-studio.md)
+- [Azure AI Foundry overview](../what-is-ai-studio.md)
 - [Azure AI FAQ](../faq.yml)

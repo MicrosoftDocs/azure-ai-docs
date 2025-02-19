@@ -1,13 +1,14 @@
 ---
-title: How to add a new connection in AI Studio using the Azure Machine Learning SDK
-titleSuffix: Azure AI Studio
+title: How to add a new connection in Azure AI Foundry portal using the Azure Machine Learning SDK
+titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to add connections to other resources using the Azure Machine Learning SDK.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
+  - ignite-2024
 ms.topic: how-to
-ms.date: 9/12/2024
+ms.date: 12/05/2024
 ms.reviewer: dantaylo
 ms.author: larryfr
 author: Blackmist
@@ -19,12 +20,12 @@ author: Blackmist
 
 In this article, you learn how to add a new connection using the Azure Machine Learning SDK.
 
-Connections are a way to authenticate and consume both Microsoft and other resources within your Azure AI Studio projects. For example, connections can be used for prompt flow, training data, and deployments. [Connections can be created](../../how-to/connections-add.md) exclusively for one project or shared with all projects in the same Azure AI Studio hub. For more information, see [Connections in Azure AI Studio](../../concepts/connections.md).
+Connections are a way to authenticate and consume both Microsoft and other resources within your Azure AI Foundry projects. For example, connections can be used for prompt flow, training data, and deployments. [Connections can be created](../../how-to/connections-add.md) exclusively for one project or shared with all projects in the same Azure AI Foundry hub. For more information, see [Connections in Azure AI Foundry portal](../../concepts/connections.md).
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure AI Studio](https://azure.microsoft.com/free/) today.
-- An Azure AI Studio hub. For information on creating a hub, see [Create AI Studio resources with the SDK](./create-hub-project-sdk.md).
+- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure AI Foundry](https://azure.microsoft.com/free/) today.
+- An Azure AI Foundry hub. For information on creating a hub, see [Create Azure AI Foundry resources with the SDK](./create-hub-project-sdk.md).
 - A resource to create a connection to. For example, an AI Services resource. The examples in this article use placeholders that you must replace with your own values when running the code.
 
 ## Set up your environment
@@ -35,11 +36,7 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 
 There are various authentication methods for the different connection types. When you use Microsoft Entra ID, in addition to creating the connection you might also need to grant Azure role-based access control permissions before the connection can be used. For more information, visit [Role-based access control](../../concepts/rbac-ai-studio.md#scenario-connections-using-microsoft-entra-id-authentication).
 
-> [!IMPORTANT]
-> We recommend Microsoft Entra ID authentication with [managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview) to avoid storing credentials with your applications that run in the cloud.
->
-> If you use an API key, store it securely somewhere else, such as in [Azure Key Vault](/azure/key-vault/general/overview). Don't include the API key directly in your code, and never post it publicly.
-
+[!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 ## Azure OpenAI Service
 
@@ -76,7 +73,7 @@ ml_client.connections.create_or_update(wps_connection)
 
 ## Azure AI services
 
-The following example creates an Azure AI services connection. This example creates one connection for the AI services documented in the [Connect to Azure AI services](../../ai-services/connect-ai-services.md) article. The same connection also supports the Azure OpenAI service.
+The following example creates an Azure AI services connection. This example creates one connection for the AI services documented in the [Connect to Azure AI services](../../ai-services/how-to/connect-ai-services.md) article. The same connection also supports the Azure OpenAI service.
 
 ```python
 from azure.ai.ml.entities import AzureAIServicesConnection, ApiKeyConfiguration
@@ -102,7 +99,7 @@ wps_connection = AzureAIServicesConnection(
 ml_client.connections.create_or_update(wps_connection)
 ```
 
-## Azure AI Search (preview)
+## Azure AI Search
 
 The following example creates an Azure AI Search connection:
 
@@ -127,7 +124,7 @@ wps_connection = AzureAISearchConnection(
 ml_client.connections.create_or_update(wps_connection)
 ```
 
-## Azure AI Content Safety (preview)
+## Azure AI Content Safety
 
 The following example creates an Azure AI Content Safety connection:
 
@@ -169,7 +166,7 @@ wps_connection = ServerlessConnection(
 ml_client.connections.create_or_update(wps_connection)
 ```
 
-## Azure Blob Storage (preview)
+## Azure Blob Storage
 
 The following example creates an Azure Blob Storage connection. This connection is authenticated with an account key or a SAS token:
 
@@ -193,7 +190,7 @@ wps_connection = AzureBlobStoreConnection(
 ml_client.connections.create_or_update(wps_connection)
 ```
 
-## Azure Data Lake Storage Gen 2 (preview)
+## Azure Data Lake Storage Gen 2
 
 The following example creates Azure Data Lake Storage Gen 2 connection. This connection is authenticated with a Service Principal:
 
@@ -221,7 +218,7 @@ wps_connection = WorkspaceConnection(
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
 ```
 
-## Microsoft OneLake (preview)
+## Microsoft OneLake
 
 The following example creates a Microsoft OneLake connection. This connection is authenticated with a Service Principal:
 
@@ -334,4 +331,4 @@ ml_client.connections.delete(name)
 
 - [Get started building a chat app using the prompt flow SDK](../../quickstarts/get-started-code.md)
 - [Work with projects in VS Code](vscode.md)
-- [Connections in Azure AI Studio](../../concepts/connections.md)
+- [Connections in Azure AI Foundry portal](../../concepts/connections.md)

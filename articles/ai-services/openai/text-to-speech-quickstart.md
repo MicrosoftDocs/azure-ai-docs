@@ -31,6 +31,12 @@ The available voices are: `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer
 
 ::: zone-end
 
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [TypeScript quickstart](includes/text-to-speech-typescript.md)]
+
+::: zone-end
+
 ::: zone pivot="programming-language-dotnet"
 
 [!INCLUDE [.NET quickstart](includes/text-to-speech-dotnet.md)]
@@ -47,4 +53,4 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 ## Next steps
 
 * Learn more about how to work with text to speech with Azure OpenAI Service in the [Azure OpenAI Service reference documentation](./reference.md#text-to-speech).
-* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://aka.ms/AOAICodeSamples)
+* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai)

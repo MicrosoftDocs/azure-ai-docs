@@ -17,7 +17,7 @@ Before you get started, make sure to:
 > * Make sure that you have access to a microphone for audio capture
 
   > [!NOTE]
-  > Please refer to [the list of supported regions for voice assistants](~/articles/ai-services/speech-service/regions.md#voice-assistants) and ensure your resources are deployed in one of those regions.
+  > Please refer to [the list of supported regions for voice assistants](~/articles/ai-services/speech-service/regions.md#regions) and ensure your resources are deployed in one of those regions.
 
 ## Create and configure project
 
@@ -114,7 +114,7 @@ Additionally, to enable logging, update the _pom.xml_ file to include the follow
    - Replace the string `YourServiceRegion` with the [region](~/articles/ai-services/speech-service/regions.md) associated with your Speech resource.
 
    > [!NOTE]
-   > Please refer to [the list of supported regions for voice assistants](~/articles/ai-services/speech-service/regions.md#voice-assistants) and ensure your resources are deployed in one of those regions.
+   > Please refer to [the list of supported regions for voice assistants](~/articles/ai-services/speech-service/regions.md#regions) and ensure your resources are deployed in one of those regions.
 
    ```java
    final String subscriptionKey = "YourSubscriptionKey"; // Your subscription key

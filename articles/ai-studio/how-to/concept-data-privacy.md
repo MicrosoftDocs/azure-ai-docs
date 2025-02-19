@@ -1,24 +1,29 @@
 ---
-title: Data, privacy, and security for use of models through the model catalog in AI Studio
-titleSuffix: Azure AI Studio
+title: Data, privacy, and security for use of models through the model catalog in Azure AI Foundry portal
+titleSuffix: Azure AI Foundry
 description: Get details about how data that customers provide is processed, used, and stored when a user deploys a model from the model catalog.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom: references_regions, build-2024
 ms.topic: conceptual
-ms.date: 5/21/2024
+ms.date: 12/19/2024
 ms.reviewer: shubhirajMsft
 ms.author: scottpolly
 author: s-polly
 #Customer intent: As a data scientist, I want to learn about data privacy and security for use of models in the model catalog.
 ---
-# Data, privacy, and security for use of models through the model catalog in AI Studio
+# Data, privacy, and security for use of models through the model catalog in Azure AI Foundry portal
+
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 This article describes how the data that you provide is processed, used, and stored when you deploy models from the model catalog. Also see the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), which governs data processing by Azure services.
 
-## What data is processed for models deployed in Azure AI Studio?
+> [!IMPORTANT]
+> For information about responsible AI in Azure OpenAI and AI services, see [Responsible use of AI](../../ai-services/responsible-use-of-ai-overview.md?context=/azure/ai-studio/context/context).
 
-When you deploy models in Azure AI Studio, the following types of data are processed to provide the service:
+## What data is processed for models deployed in Azure AI Foundry portal?
+
+When you deploy models in Azure AI Foundry portal, the following types of data are processed to provide the service:
 
 * **Prompts and generated content**. A user submits a prompt, and the model generates content (output) via the operations that the model supports. Prompts might include content added via retrieval-augmented generation (RAG), metaprompts, or other functionality included in an application.
 
@@ -26,9 +31,9 @@ When you deploy models in Azure AI Studio, the following types of data are proce
 
 ## Generation of inferencing outputs with managed compute
 
-Deploying models to managed compute deploys model weights to dedicated virtual machines and exposes a REST API for real-time inference. To learn more about deploying models from the model catalog to managed compute, see [Model catalog and collections in Azure AI Studio](model-catalog-overview.md).
+Deploying models to managed compute deploys model weights to dedicated virtual machines and exposes a REST API for real-time inference. To learn more about deploying models from the model catalog to managed compute, see [Model catalog and collections in Azure AI Foundry portal](model-catalog-overview.md).
 
-You manage the infrastructure for these managed compute resources. Azure data, privacy, and security commitments apply. To learn more about Azure compliance offerings applicable to Azure AI Studio, see the [Azure Compliance Offerings page](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
+You manage the infrastructure for these managed compute resources. Azure data, privacy, and security commitments apply. To learn more about Azure compliance offerings applicable to Azure AI Foundry, see the [Azure Compliance Offerings page](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
 
 Although containers for **Curated by Azure AI** models are scanned for vulnerabilities that could exfiltrate data, not all models available through the model catalog are scanned. To reduce the risk of data exfiltration, you can [help protect your deployment by using virtual networks](configure-managed-network.md). You can also use [Azure Policy](../../ai-services/policy-reference.md) to regulate the models that your users can deploy.
 
@@ -38,9 +43,7 @@ Although containers for **Curated by Azure AI** models are scanned for vulnerabi
 
 When you deploy a model from the model catalog (base or fine-tuned) by using serverless APIs with pay-as-you-go billing for inferencing, an API is provisioned. The API gives you access to the model that the Azure Machine Learning service hosts and manages. Learn more about serverless APIs in [Model catalog and collections](./model-catalog-overview.md).
 
-The model processes your input prompts and generates outputs based on its functionality, as described in the model details. Your use of the model (along with the provider's accountability for the model and its outputs) is subject to the license terms for the model. Microsoft provides and manages the hosting infrastructure and API endpoint. The models hosted in this *model as a service* (MaaS) scenario are subject to Azure data, privacy, and security commitments. [Learn more about Azure compliance offerings applicable to Azure AI Studio](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
-
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+The model processes your input prompts and generates outputs based on its functionality, as described in the model details. Your use of the model (along with the provider's accountability for the model and its outputs) is subject to the license terms for the model. Microsoft provides and manages the hosting infrastructure and API endpoint. The models hosted in this *model as a service* (MaaS) scenario are subject to Azure data, privacy, and security commitments. [Learn more about Azure compliance offerings applicable to Azure AI Foundry](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
 
 Microsoft acts as the data processor for prompts and outputs sent to, and generated by, a model deployed for pay-as-you-go inferencing (MaaS). Microsoft doesn't share these prompts and outputs with the model provider. Also, Microsoft doesn't use these prompts and outputs to train or improve Microsoft models, the model provider's models, or any third party's models.
 

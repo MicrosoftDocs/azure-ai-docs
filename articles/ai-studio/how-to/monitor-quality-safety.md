@@ -1,12 +1,13 @@
 ---
 title: Monitor quality and token usage of deployed prompt flow applications (preview)
-titleSuffix: Azure AI Studio
-description: Learn how to monitor quality and token usage of deployed prompt flow applications with Azure AI Studio.
+titleSuffix: Azure AI Foundry
+description: Learn how to monitor quality and token usage of deployed prompt flow applications with Azure AI Foundry.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
+  - ignite-2024
 ms.topic: how-to
 ms.date: 7/31/2024
 ms.reviewer: alehughes
@@ -21,6 +22,9 @@ author: msakande
 
 Monitoring applications that are deployed to production is an essential part of the generative AI application lifecycle. Changes in data and consumer behavior can influence your application over time, resulting in outdated systems that negatively affect business outcomes and expose organizations to compliance, economic, and reputation risks. 
 
+> [!NOTE]
+> For an improved way to perform continuous monitoring of deployed applications (other than prompt flow), consider using [Azure AI online evaluation](./online-evaluation.md).
+
 Azure AI monitoring for generative AI applications enables you to monitor your applications in production for token usage, generation quality, and operational metrics.
 
 Integrations for monitoring a prompt flow deployment allow you to:
@@ -30,7 +34,7 @@ Integrations for monitoring a prompt flow deployment allow you to:
 - Monitor prompts, completion, and total token usage across each model deployment in your prompt flow.
 - Monitor operational metrics, such as request count, latency, and error rate.
 - Use preconfigured alerts and defaults to run monitoring on a recurring basis.
-- Consume data visualizations and configure advanced behavior in Azure AI Studio.
+- Consume data visualizations and configure advanced behavior in Azure AI Foundry portal.
 
 ## Prerequisites
 
@@ -40,13 +44,11 @@ Before following the steps in this article, make sure you have the following pre
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions aren't supported for this scenario. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- An [Azure AI Studio hub](create-azure-ai-resource.md).
-
-- An [Azure AI Studio project](create-projects.md).
+- An [Azure AI Foundry project](create-projects.md).
 
 - A prompt flow ready for deployment. If you don't have one, see [Develop a prompt flow](flow-develop.md).
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Studio. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Studio](../concepts/rbac-ai-studio.md).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).
   
 # [Python SDK](#tab/python)
 
@@ -100,9 +102,9 @@ The parameters that are configured in your data asset dictate what metrics you c
 | Groundedness | Required | Required   | Required|
 | Relevance    | Required | Required   | Required|
 
-For more information on the specific data mapping requirements for each metric, see [Question answering metric requirements](evaluate-generative-ai-app.md#question-answering-metric-requirements).
+For more information on the specific data mapping requirements for each metric, see [Query and response metric requirements](evaluate-generative-ai-app.md#query-and-response-metric-requirements).
 
-## Set up monitoring for prompt flow 
+## Set up monitoring for prompt flow
 
 To set up monitoring for your prompt flow application, you first have to deploy your prompt flow application with inferencing data collection, then you can configure monitoring for the deployed application.
 
@@ -110,9 +112,9 @@ To set up monitoring for your prompt flow application, you first have to deploy 
 
 In this section, you learn to deploy your prompt flow with inferencing data collection enabled. For detailed information on deploying your prompt flow, see [Deploy a flow for real-time inference](flow-deploy.md). 
 
-1. Sign in to [Azure AI Studio](https://ai.azure.com).
-1. Go to your Azure AI Studio project.
-1. From the left navigation bar, go to **Tools** > **Prompt flow**.
+1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+1. If you're not already in your project, select it.
+1. Select **Prompt flow** from the left navigation bar.
 1. Select the prompt flow that you created previously.
 
     > [!NOTE]
@@ -151,7 +153,7 @@ In this section, you learn how to configure monitoring for your deployed prompt 
 
 # [Studio](#tab/azure-studio)
 
-1. From the left navigation bar, go to **Components** > **Deployments**.
+1. From the left navigation bar, go to **My assets** > **Models + endpoints**.
 1. Select the prompt flow deployment that you created.
 1. Select **Enable** within the **Enable generation quality monitoring** box. 
 
@@ -204,7 +206,7 @@ credential = DefaultAzureCredential()
 # Update your azure resources details
 subscription_id = "INSERT YOUR SUBSCRIPTION ID"
 resource_group = "INSERT YOUR RESOURCE GROUP NAME"
-project_name = "INSERT YOUR PROJECT NAME" # This is the same as your AI Studio project name
+project_name = "INSERT YOUR PROJECT NAME" # This is the same as your Azure AI Foundry project name
 endpoint_name = "INSERT YOUR ENDPOINT NAME" # This is your deployment name without the suffix (e.g., deployment is "contoso-chatbot-1", endpoint is "contoso-chatbot")
 deployment_name = "INSERT YOUR DEPLOYMENT NAME"
 aoai_deployment_name ="INSERT YOUR AOAI DEPLOYMENT NAME"
@@ -371,7 +373,7 @@ credential = DefaultAzureCredential()
 # Update your azure resources details
 subscription_id = "INSERT YOUR SUBSCRIPTION ID"
 resource_group = "INSERT YOUR RESOURCE GROUP NAME"
-project_name = "INSERT YOUR PROJECT NAME" # This is the same as your AI Studio project name
+project_name = "INSERT YOUR PROJECT NAME" # This is the same as your Azure AI Foundry project name
 endpoint_name = "INSERT YOUR ENDPOINT NAME" # This is your deployment name without the suffix (e.g., deployment is "contoso-chatbot-1", endpoint is "contoso-chatbot")
 deployment_name = "INSERT YOUR DEPLOYMENT NAME"
 
@@ -448,7 +450,7 @@ credential = DefaultAzureCredential()
 # Update your azure resources details
 subscription_id = "INSERT YOUR SUBSCRIPTION ID"
 resource_group = "INSERT YOUR RESOURCE GROUP NAME"
-project_name = "INSERT YOUR PROJECT NAME" # This is the same as your AI Studio project name
+project_name = "INSERT YOUR PROJECT NAME" # This is the same as your Azure AI Foundry project name
 endpoint_name = "INSERT YOUR ENDPOINT NAME" # This is your deployment name without the suffix (e.g., deployment is "contoso-chatbot-1", endpoint is "contoso-chatbot")
 deployment_name = "INSERT YOUR DEPLOYMENT NAME"
 aoai_deployment_name ="INSERT YOUR AOAI DEPLOYMENT NAME"
@@ -533,9 +535,9 @@ model_monitor = MonitorSchedule(
 ml_client.schedules.begin_create_or_update(model_monitor)
 ```
 
-After you create your monitor from the SDK, you can [consume the monitoring results](#consume-monitoring-results) in AI Studio. 
+After you create your monitor from the SDK, you can [consume the monitoring results](#consume-monitoring-results) in Azure AI Foundry portal. 
 
 ## Related content
 
-- Learn more about what you can do in [Azure AI Studio](../what-is-ai-studio.md).
+- Learn more about what you can do in [Azure AI Foundry](../what-is-ai-studio.md).
 - Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml).

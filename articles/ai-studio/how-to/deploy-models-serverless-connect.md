@@ -1,21 +1,22 @@
 ---
 title: Consume deployed serverless API endpoints from a different project or hub
-titleSuffix: Azure AI Studio
+titleSuffix: Azure AI Foundry
 description: Learn how to consume deployed serverless API endpoints from a different project or hub.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 5/21/2024
-ms.author: mopeakande 
+ms.date: 12/20/2024
+ms.author: mopeakande
 author: msakande
 ms.reviewer: fasantia
 reviewer: santiagxf
-ms.custom: 
- - build-2024
- - serverless
+ms.custom:
+  - build-2024
+  - serverless
+  - ignite-2024
 ---
 
-# Consume serverless API endpoints from a different Azure AI Studio project or hub
+# Consume serverless API endpoints from a different Azure AI Foundry project or hub
 
 In this article, you learn how to configure an existing serverless API endpoint in a different project or hub than the one that was used to create the deployment.
 
@@ -32,17 +33,17 @@ The need to consume a serverless API endpoint in a different project or hub than
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- An [Azure AI Studio hub](create-azure-ai-resource.md).
+- An [Azure AI Foundry hub](create-azure-ai-resource.md).
 
-- An [Azure AI Studio project](create-projects.md).
+- An [Azure AI Foundry project](create-projects.md).
 
 - A model [deployed to a serverless API endpoint](deploy-models-serverless.md). This article assumes that you previously deployed the **Meta-Llama-3-8B-Instruct** model. To learn how to deploy this model as a serverless API, see [Deploy models as serverless APIs](deploy-models-serverless.md).
 
-- You need to install the following software to work with Azure AI Studio:
+- You need to install the following software to work with Azure AI Foundry:
 
-    # [AI Studio](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
-    You can use any compatible web browser to navigate [Azure AI Studio](https://ai.azure.com).
+    You can use any compatible web browser to navigate [Azure AI Foundry](https://ai.azure.com).
 
     # [Azure CLI](#tab/cli)
 
@@ -87,9 +88,9 @@ Follow these steps to create a connection:
 
 1. Connect to the project or hub where the endpoint is deployed:
 
-    # [AI Studio](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
-    Go to [Azure AI Studio](https://ai.azure.com) and navigate to the project where the endpoint you want to connect to is deployed.
+    Go to [Azure AI Foundry](https://ai.azure.com) and navigate to the project where the endpoint you want to connect to is deployed.
 
     # [Azure CLI](#tab/cli)
 
@@ -115,9 +116,9 @@ Follow these steps to create a connection:
 
 1. Get the endpoint's URL and credentials for the endpoint you want to connect to. In this example, you get the details for an endpoint name **meta-llama3-8b-qwerty**.
 
-    # [AI Studio](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
-    1. From the left sidebar of your project in AI Studio, go to **Components** > **Deployments** to see the list of deployments in the project.
+    1. From the left sidebar of your project in Azure AI Foundry portal, go to **My assets** > **Models + endpoints** to see the list of deployments in the project.
 
     1. Select the deployment you want to connect to.
 
@@ -140,7 +141,7 @@ Follow these steps to create a connection:
 
 1. Now, connect to the project or hub **where you want to create the connection**:
 
-    # [AI Studio](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
     Go to the project where the connection needs to be created to.
 
@@ -168,11 +169,13 @@ Follow these steps to create a connection:
 
 1. Create the connection in the project:
 
-    # [AI Studio](#tab/azure-ai-studio)
+    # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
-    1. From the left sidebar of your project in AI Studio, select **Settings**.
+    1. From your project in Azure AI Foundry portal, go to the bottom part of the left sidebar and select **Management center**.
 
-    1. In the **Connected resources** section, select **New connection**.
+    1. From the left sidebar of the management center, select **Connected resources**.
+    
+    1. Select **New connection**.
 
     1. Select **Serverless Model**.
 
@@ -215,7 +218,9 @@ Follow these steps to create a connection:
 
 1. To validate that the connection is working:
 
-    1. From the left sidebar of your project in AI Studio, go to **Tools** > **Prompt flow**.
+    1. Return to your project in Azure AI Foundry portal.
+
+    1. From the left sidebar of your project, go to **Build and customize** > **Prompt flow**.
 
     1. Select **Create** to create a new flow.
 
@@ -234,5 +239,5 @@ Follow these steps to create a connection:
 
 ## Related content
 
-- [What is Azure AI Studio?](../what-is-ai-studio.md)
+- [What is Azure AI Foundry?](../what-is-ai-studio.md)
 - [Azure AI FAQ article](../faq.yml)

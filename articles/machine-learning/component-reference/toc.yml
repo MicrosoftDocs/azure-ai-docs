@@ -112,7 +112,7 @@
     href: train-clustering-model.md
   - name: Train Model
     href: train-model.md
-  - name: Train Pytorch Model
+  - name: Train PyTorch Model
     href: train-pytorch-model.md
   - name: Tune Model Hyperparameters
     href: tune-model-hyperparameters.md

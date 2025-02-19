@@ -3,7 +3,7 @@ ms.topic: include
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 9/12/2024
+ms.date: 10/22/2024
 ms.reviewer: v-baolianzou
 ms.author: eur
 author: eric-urban
@@ -13,84 +13,23 @@ author: eric-urban
 
 ## Prerequisites
 
-#### [JavaScript](#tab/javascript)
-
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
+### Microsoft Entra ID prerequisites
 
+For the recommended keyless authentication with Microsoft Entra ID, you need to:
+- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
-#### [TypeScript](#tab/typescript)
+## Retrieve resource information
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
-- [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
-- [TypeScript](https://www.typescriptlang.org/download/)
-- An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+[!INCLUDE [resource authentication](resource-authentication.md)]
 
-
----
-
-
-## Set up
-
-### Retrieve key and endpoint
-
-To successfully make a call against Azure OpenAI, you need an *endpoint* and a *key*.
-
-|Variable name | Value |
-|--------------------------|-------------|
-| `AZURE_OPENAI_ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the value in the **Azure OpenAI Studio** > **Playground** > **Code View**. An example endpoint is: `https://aoai-docs.openai.azure.com/`.|
-| `AZURE_OPENAI_API_KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either `KEY1` or `KEY2`.|
-
-Go to your resource in the Azure portal. The **Endpoint and Keys** can be found in the **Resource Management** section. Copy your endpoint and access key as you'll need both for authenticating your API calls. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
-
-:::image type="content" source="../media/quickstarts/endpoint.png" alt-text="Screenshot of the overview UI for an Azure OpenAI resource in the Azure portal with the endpoint & access keys location circled in red." lightbox="../media/quickstarts/endpoint.png":::
-
-### Environment variables
-
-Create and assign persistent environment variables for your key and endpoint.
-
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
-
-# [Command Line](#tab/command-line)
-
-```CMD
-setx AZURE_OPENAI_API_KEY "REPLACE_WITH_YOUR_KEY_VALUE_HERE" 
-```
-
-```CMD
-setx AZURE_OPENAI_ENDPOINT "REPLACE_WITH_YOUR_ENDPOINT_HERE" 
-```
-
-# [PowerShell](#tab/powershell)
-
-```powershell
-[System.Environment]::SetEnvironmentVariable('AZURE_OPENAI_API_KEY', 'REPLACE_WITH_YOUR_KEY_VALUE_HERE', 'User')
-```
-
-```powershell
-[System.Environment]::SetEnvironmentVariable('AZURE_OPENAI_ENDPOINT', 'REPLACE_WITH_YOUR_ENDPOINT_HERE', 'User')
-```
-
-# [Bash](#tab/bash)
-
-```Bash
-echo export AZURE_OPENAI_API_KEY="REPLACE_WITH_YOUR_KEY_VALUE_HERE" >> /etc/environment && source /etc/environment
-```
-
-```Bash
-echo export AZURE_OPENAI_ENDPOINT="REPLACE_WITH_YOUR_ENDPOINT_HERE" >> /etc/environment && source /etc/environment
-```
----
-
-## Passwordless authentication is recommended
-
-For passwordless authentication, you need to 
-
-1. Use the `@azure/identity` package.
-1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal under **Access control (IAM)** > **Add role assignment**.
-1. Sign in with the Azure CLI such as `az login`.
+> [!CAUTION]
+> To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
 
 ## Create a Node application
 
@@ -113,29 +52,32 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 ## Create a sample application
 
-
-#### [JavaScript](#tab/javascript)
+#### [Microsoft Entra ID](#tab/keyless)
 
 1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
 
     ```javascript
-    require("dotenv/config");
     const { createReadStream } = require("fs");
     const { AzureOpenAI } = require("openai");
+    const { DefaultAzureCredential, getBearerTokenProvider } = require("@azure/identity");
     
     // You will need to set these environment variables or edit the following values
-    const audioFilePath = process.env["AUDIO_FILE_PATH"] || "<audio file path>";
+    const audioFilePath = "<audio file path>";
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
-    const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
     
     // Required Azure OpenAI deployment name and API version
     const apiVersion = "2024-08-01-preview";
     const deploymentName = "whisper";
     
+    // keyless authentication    
+    const credential = new DefaultAzureCredential();
+    const scope = "https://cognitiveservices.azure.com/.default";
+    const azureADTokenProvider = getBearerTokenProvider(credential, scope);
+
     function getClient() {
       return new AzureOpenAI({
         endpoint,
-        apiKey,
+        azureADTokenProvider,
         apiVersion,
         deployment: deploymentName,
       });
@@ -165,17 +107,17 @@ Your app's _package.json_ file will be updated with the dependencies.
     ```
 
 
-#### [TypeScript](#tab/typescript)
+
+#### [API key](#tab/typescript-key)
 
 1. Create a new file named _Whisper.js_ and open it in your preferred code editor. Copy the following code into the _Whisper.js_ file:
     
-    ```typescript
-    import "dotenv/config";
+    ```javascript
     import { createReadStream } from "fs";
     import { AzureOpenAI } from "openai";
     
     // You will need to set these environment variables or edit the following values
-    const audioFilePath = process.env["AUDIO_FILE_PATH"] || "<audio file path>";
+    const audioFilePath = "<audio file path>";
     const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
     const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
     
@@ -225,8 +167,7 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 You can get sample audio files, such as *wikipediaOcelot.wav*, from the [Azure AI Speech SDK repository at GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/sampledata/audiofiles).
 
-> [!IMPORTANT]
-> For production, store and access your credentials using a secure method, such as [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see [Azure AI services security](../../security-features.md).
+[!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ## Output
 
