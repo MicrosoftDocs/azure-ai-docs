@@ -70,7 +70,7 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/studio-examples/sentiment-analysis.png" alt-text="A screenshot of sentiment analysis in Azure AI Foundry." lightbox="media/studio-examples/sentiment-analysis.png":::
+      :::image type="content" source="media/overview/sentiment-analysis.png" alt-text="A screenshot of sentiment analysis in Azure AI Foundry." lightbox="media/overview/sentiment-analysis.png":::
    :::column-end:::
    :::column span="":::
       [Sentiment analysis and opinion mining](./sentiment-opinion-mining/overview.md) are preconfigured features that help you find out what people think of your brand or topic by mining text for clues about positive or negative sentiment, and can associate them with specific aspects of the text.
@@ -82,9 +82,9 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/conversation-summarization.png" alt-text="A screenshot of conversation summarization  in Azure AI Foundry." lightbox="media/overview/summarization.png":::
-      :::image type="content" source="media/overview/call-center-summarization.png" alt-text="A screenshot of call center summarization in Azure AI Foundry." lightbox="media/overview/summarization.png":::
-      :::image type="content" source="media/overview/text-summarization.png" alt-text="A screenshot of text summarization in Azure AI Foundry." lightbox="media/overview/summarization.png":::
+      :::image type="content" source="media/overview/conversation-summarization.png" alt-text="A screenshot of conversation summarization  in Azure AI Foundry." lightbox="media/overview/conversation-summarization.png":::
+      :::image type="content" source="media/overview/call-center-summarization.png" alt-text="A screenshot of call center summarization in Azure AI Foundry." lightbox="media/overview/call-center-summarization.png":::
+      :::image type="content" source="media/overview/text-summarization.png" alt-text="A screenshot of text summarization in Azure AI Foundry." lightbox="media/overview/text-summarization.png":::
    :::column-end:::
    :::column span="":::
       [Summarization](./summarization/overview.md) recaps and summarizes customer issues and resolution, conversation and segment long meetings into timestamps and chapters, and key information at scale from text.
@@ -95,7 +95,7 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/studio-examples/key-phrase-extraction.png" alt-text="A screenshot of key phrase extraction in Azure AI Foundry." lightbox="media/studio-examples/key-phrase-extraction.png":::
+      :::image type="content" source="media/overview/key-phrase-extraction.png" alt-text="A screenshot of key phrase extraction in Azure AI Foundry." lightbox="media/overview/key-phrase-extraction.png":::
    :::column-end:::
    :::column span="":::
       [Key phrase extraction](./key-phrase-extraction/overview.md) is a preconfigured feature that evaluates and returns the main concepts in unstructured text, and returns them as a list.
