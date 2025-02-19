@@ -72,6 +72,9 @@ const client = AIProjectsClient.fromConnectionString(
 );
 ```
 
+# [REST API](#tab/rest)
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`.
+
 ---
 
 ## Step 2: Upload files and add them to a Vector Store
@@ -127,6 +130,35 @@ const vectorStore = await client.agents.createVectorStore({
 console.log(`Created vector store, ID: ${vectorStore.id}`);
 ```
 
+# [REST API](#tab/rest)
+### Upload a file
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/files?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -F purpose="assistants" \
+  -F file="@c:\\path_to_file\\sample_file_for_upload.txt"
+```
+
+### Create a vector store
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/vector_stores?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "my_vector_store"
+  }'
+
+```
+
+### Attach the uploaded file to the vector store
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/vector_stores/vs_abc123/files?api-version=2024-12-01-preview \
+    -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "file_id": "assistant-abc123"
+    }'
+```
 
 ---
 
@@ -181,6 +213,21 @@ const agent = await client.agents.createAgent("gpt-4o-mini", {
 });
 console.log(`Created agent, agent ID : ${agent.id}`);
 ```
+
+# [REST API](#tab/rest)
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "name": "Financial Analyst Assistant",
+    "instructions": "You are an expert financial analyst. Use your knowledge base to answer questions about audited financial statements.",
+    "tools": [{"type": "file_search"}],
+    "model": "gpt-4o-mini",
+    "tool_resources": {"file_search": {"vector_store_ids": ["vs_1234abcd"]}}
+  }'
+```
+
 ---
 
 ## Step 4: Create a thread
@@ -233,6 +280,28 @@ await client.agents.createMessage(
     role: "user",
     content: "Can you give me the documented codes for 'banana' and 'orange'?",
 });
+```
+
+# [REST API](#tab/rest)
+### Create a thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d ''
+```
+
+### Add a user question to the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+      "role": "user",
+      "content": "Which months do we have covered in the financial statements?"
+    }'
 ```
 
 ---
@@ -337,6 +406,32 @@ foreach (ThreadMessage threadMessage in messages)
       console.log(`---------------------------------`);
     }
   }
+```
+
+# [REST API](#tab/rest)
+### Run the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistant_id": "asst_abc123",
+  }'
+```
+
+### Retrieve the status of the run
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+```
+
+### Retrieve the agent response
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
 ---
