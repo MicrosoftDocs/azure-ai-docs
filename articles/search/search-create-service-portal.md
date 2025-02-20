@@ -220,7 +220,7 @@ However, you might need a second service for the following operational requireme
 + Globally deployed applications that require services in each geography to minimize latency.
 
 > [!NOTE]
-> In Azure AI Search, you can't separate indexing and querying operations, so don't create multiple services for separate workloads.  An index is always queried on the service in which it was created, and you can't copy an index to another service.
+> In Azure AI Search, you can't separate indexing and querying operations, so don't create multiple services for separate workloads. An index is always queried on the service in which it was created, and you can't copy an index to another service.
 
 A second service isn't required for high availability. You achieve high availability for queries by using two or more replicas in the same service. Because the replicas are updated sequentially, at least one is operational when a service update is rolled out. For more information about uptime, see [Service Level Agreements](https://azure.microsoft.com/support/legal/sla/search/v1_0/).
 
@@ -248,7 +248,7 @@ To request more subscription quota:
 
 1. Next to the tier and region that need more quota, select **Request adjustment** <img src=media/search-create-service-portal/request-adjustment-icon.png alt="Screenshot of the Request Adjustment icon, which is the outline of a pencil." width="14">.
 
-1. On **New Quota Request**, enter a new limit for your subscription quota. The new limit must be greater than your current limit. If regional capacity is constrained, your request won't be automatically approved, and an incident report will be generated on your behalf for investigation and resolution.
+1. In **New Quota Request**, enter a new limit for your subscription quota. The new limit must be greater than your current limit. If regional capacity is constrained, your request won't be automatically approved, and an incident report will be generated on your behalf for investigation and resolution.
 
 1. Submit your request.
 
