@@ -46,7 +46,7 @@ Instructions vary by sample, but most include how to:
   * VS Code Dev Containers
   * Your local IDE
 * Deploy the application to Azure
-* Steps for how to test the app
+* How to test the app
 
 The README also includes information about the application, such as the use case, architecture, and pricing information.
 
