@@ -23,7 +23,7 @@ Direct Line Speech supports these locales: `ar-eg`, `ar-sa`, `ca-es`, `da-dk`, `
 
 ## Getting started with Direct Line Speech
 
-To create a voice assistant using Direct Line Speech, create a Speech resource and Azure Bot resource in the [Azure portal](https://portal.azure.com). Then [connect the bot](/azure/bot-service/bot-service-channel-connect-directlinespeech) to the Direct Line Speech channel.
+To create a voice assistant using Direct Line Speech, create an AI Services resource for Speech and Azure Bot resource in the [Azure portal](https://portal.azure.com). Then [connect the bot](/azure/bot-service/bot-service-channel-connect-directlinespeech) to the Direct Line Speech channel.
 
    ![Conceptual diagram of the Direct Line Speech orchestration service flow](media/voice-assistants/overview-directlinespeech.png "The Speech Channel flow")
 
