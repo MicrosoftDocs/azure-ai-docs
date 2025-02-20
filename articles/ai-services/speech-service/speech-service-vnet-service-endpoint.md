@@ -21,7 +21,7 @@ This article explains how to set up and use Virtual Network service endpoints wi
 > [!NOTE]
 > Before you start, review [how to use virtual networks with Azure AI services](../cognitive-services-virtual-networks.md).
 
-This article also describes [how to remove Virtual Network service endpoints later but still use the Speech resource](#use-a-speech-resource-that-has-a-custom-domain-name-but-that-doesnt-have-allowed-virtual-networks).
+This article also describes [how to remove Virtual Network service endpoints later but still use the Speech resource](#use-an-ai-services-resource-for-speech-that-has-a-custom-domain-name-but-that-doesnt-have-allowed-virtual-networks).
 
 To set up an AI Services resource for Speech for Virtual Network service endpoint scenarios, you need to:
 1. [Create a custom domain name for the Speech resource](#create-a-custom-domain-name).
@@ -75,7 +75,7 @@ An AI Services resource for Speech that has a custom domain enabled interacts wi
 
 ### Use an AI Services resource for Speech that has a custom domain name and allowed virtual networks 
 
-In this scenario, the **Selected Networks and Private Endpoints** option is selected in the networking settings of the Speech resource and at least one virtual network is allowed. This scenario is equivalent to [using an AI Services resource for Speech that has a custom domain name and a private endpoint enabled](speech-services-private-link.md#adjust-an-application-to-use-a-speech-resource-with-a-private-endpoint).
+In this scenario, the **Selected Networks and Private Endpoints** option is selected in the networking settings of the Speech resource and at least one virtual network is allowed. This scenario is equivalent to [using an AI Services resource for Speech that has a custom domain name and a private endpoint enabled](speech-services-private-link.md#adjust-an-application-to-use-an-ai-services-resource-for-speech-with-a-private-endpoint).
 
 
 ### Use an AI Services resource for Speech that has a custom domain name but that doesn't have allowed virtual networks
@@ -85,7 +85,7 @@ In this scenario, private endpoints aren't enabled and one of these statements i
 - The **Selected Networks and Private Endpoints** option is selected in the networking settings of the Speech resource, but no allowed virtual networks are configured.
 - The **All networks** option is selected in the networking settings of the Speech resource.
 
-This scenario is equivalent to [using an AI Services resource for Speech that has a custom domain name and that doesn't have private endpoints](speech-services-private-link.md#adjust-an-application-to-use-a-speech-resource-without-private-endpoints).
+This scenario is equivalent to [using an AI Services resource for Speech that has a custom domain name and that doesn't have private endpoints](speech-services-private-link.md#adjust-an-application-to-use-an-ai-services-resource-for-speech-without-private-endpoints).
 
 [!INCLUDE [](includes/speech-studio-vnet.md)]
 
