@@ -355,8 +355,6 @@ items:
       href: /azure/search/search-what-is-azure-search?context=/azure/ai-studio/context/context
     - name: Build and consume vector indexes (Portal)
       href: how-to/index-add.md
-    - name: Build and consume vector indexes (Code)
-      href: how-to/develop/index-build-consume-sdk.md
     - name: Build a RAG solution using Azure AI Search
       href: /azure/search/tutorial-rag-build-solution?context=/azure/ai-studio/context/context
   - name: Develop with code
