@@ -46,8 +46,8 @@ After your operation is completed, the **Details** section contains the followin
 |------|----------------------------|
 |Sentence|
 |Recap| A recap of the processed text. The **Recap** Summarization aspect must be toggled on for this to appear.|
-|Chapter Title|  Titles for the interpreted chapters of the input text. The **Chapter title** Summarization aspect must be toggled on for this to appear.|
-|Narrative|  A narrative perspective summary of the input text. The **Narrative** Summarization aspect must be toggled on for this to appear.|
+|Chapter Title|  A list of titles for semantically segmented chapters with corresponding timestamps. The **Chapter title** Summarization aspect must be toggled on for this to appear.|
+|Narrative|  A list of narrative summaries for semantically segmented chapters with corresponding timestamps. The **Narrative** Summarization aspect must be toggled on for this to appear.|
 
 :::image type="content" source="../../media/quickstarts/azure-ai-foundry/conversation-summarization.png" alt-text="An example of summarize conversation in azure AI studio" lightbox="../../media/quickstarts/azure-ai-foundry/conversation-summarization.png":::
 
@@ -92,7 +92,7 @@ After your operation is completed, the **Details** section contains the followin
 
 |Field | Description                |
 |------|----------------------------|
-|Extractive summary| Extracted sentences from the input text, ranked by detected relevance and prioritized by words in the **Defined keywords for summary focus** field, if any. Sentences are sorted by rank score of detected relevance.|
+|Extractive summary| Extracted sentences from the input text, ranked by detected relevance and prioritized for words in the **Defined keywords for summary focus** field, if any. Sentences are sorted by rank score of detected relevance (default) or order of appearance in the input text.|
 |Abstractive summary| A summary of the input text of the length chosen in the **Summary length** field and prioritized for words in the **Defined keywords for summary focus** field, if any.|
 
 :::image type="content" source="../../media/quickstarts/azure-ai-foundry/text-summarization.png" alt-text="An example of summarize text in azure AI studio" lightbox="../../media/quickstarts/azure-ai-foundry/text-summarization.png":::
