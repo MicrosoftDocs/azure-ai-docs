@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 06/10/2024
+ms.date: 02/20/2025
 manager: nitinme
 ---
 
@@ -14,20 +14,19 @@ manager: nitinme
 
 To unlock the full potential of vision-enabled chat models like GPT-4 Turbo with Vision and GPT-4o, it's essential to tailor the prompts to your specific needs. Here are some guidelines to enhance the accuracy and efficiency of your prompts.
 
-## Fundamentals of crafting your image prompt
+## Fundamentals of writing an image prompt
+
 - **Contextual specificity:** Adding context to the scenario at hand gives the model a better understanding of an appropriate output. This level of specificity aids in focusing on relevant aspects and avoiding extraneous details.
 - **Task-oriented prompts:** Focusing on a specific task helps the model to develop the output while taking that perspective into consideration.  
-- **Handling refusals:** When the model indicates an inability to perform a task, refining the prompt can be an effective solution. More specific prompts can guide the model towards a clearer understanding and better execution of the task. Some tips to keep in mind: 
-
+- **Handle refusals:** When the model indicates an inability to perform a task, refining the prompt can be an effective solution. More specific prompts can guide the model towards a clearer understanding and better execution of the task. Keep these tips in mind:
    - Request explanations for generated responses to enhance transparency in the model's output <br>
    - If using a single-image prompt, place the image before the text <br>
    - Ask the model to describe the image in details first and complete your specific task from the description
-
-- **Adding examples:** Add examples that represent the type of responses you're looking for
+- **Add examples:** Add examples that represent the type of responses you're looking for
 - **Break down requests:** Try breaking down complex requests step-by-step to create manageable sub-goals
 - **Define output format:** Clearly mention the desired format for the output, such as markdown, JSON, HTML, etc. You can also suggest a specific structure, length, or specific attributes about the response.
 
-## Example prompt inputs & outputs
+## Example prompt inputs and outputs
 There are many ways to craft system prompts to tailor the output specifically to your needs. The following sample inputs and outputs showcase how adjusting your prompts can give you different results. Try out the model for yourself using these images and adjusting the system prompt in the [Azure AI Foundry playground](https://ai.azure.com/).
 
 ### Contextual specificity  
@@ -74,7 +73,7 @@ When you receive a refusal output from a model, there are several ways you can t
 |--------|-----------|
 | Q: What is this dog breed and what is its average weight & height? :::image type="content" source="../media/concepts/gpt-v/pomeranian.jpg" lightbox="../media/concepts/gpt-v/pomeranian.jpg" alt-text="Photograph of a pomeranian dog sitting on a pool diving board above the water."::: <br> A: Breed: pomeranian; average weight: 3-7 lbs; average height: 8-14 inches <br> :::image type="content" source="../media/concepts/gpt-v/bulldog.jpg" lightbox="../media/concepts/gpt-v/bulldog.jpg" alt-text="Photograph of a bulldog laying in a grass field."::: A: Breed: English bulldog; average weight: 50-55 lbs; average height: 14-16 inches :::image type="content" source="../media/concepts/gpt-v/border-collie.jpg" lightbox="../media/concepts/gpt-v/border-collie.jpg" alt-text="Photograph of a border collie dog laying in a grass field."::: | `A: Breed: Border Collie; average weight: 30-45 lbs; average height: 18-22 inches` |
 
-### Break down requests
+### Breaking down requests
 
 |Basic prompt|Model output|
 |--------|-----------|
@@ -84,7 +83,7 @@ When you receive a refusal output from a model, there are several ways you can t
 |----------|-----------|
 | :::image type="content" source="../media/concepts/gpt-v/grandmas-recipe.jpg" lightbox="../media/concepts/gpt-v/grandmas-recipe.jpg" alt-text="Photograph of a recipe card detailing a recipe for Grandma's Apple Crumb Pie."::: You are an AI assistant that helps create shopping lists and instructions to prep food based on recipes. Please provide a list of ingredients to purchase, and then provide a list of instructions to prep the ingredients based on the recipe card.  | Sure, here's a shopping list based on the recipe card: <br>Shopping List:</br><ol><li>5-7 apples (suitable for baking, such as Granny Smith or Honeycrisp)</li> <li>1 ready-made pie crust (9-inch) </li><li>Sugar (ensure you have enough for 1/2 cup)</li><li>All-purpose flour (ensure you have enough for 3/4 cup)</li><li>Ground cinnamon</li><li>Salt</li><li>Butter (ensure you have enough for 3 tablespoons)</li></ol><br>Prepping Instructions:</br> <ul><li>Peel the apples: Using a vegetable peeler or a paring knife, remove the skin from 5 to 7 apples.</li><li>Core and slice the apples: Cut the apples into quarters, remove the cores, and then slice the apple quarters into thin slices or chunks, depending on your preference for pie texture.</li><li>Measure the ingredients: Measure out 3/4 cups of sugar, 1/2 teaspoon of cinnamon, a dash of salt (about 1/8 teaspoon), and 3 tablespoons of butter.</li><li>Prepare the butter: Cut the butter into small pieces to be ready to use in the recipe. It's often easier to incorporate if it's cold, so keep it refrigerated until it's needed</li><li>Preheat your oven according to the pie recipe's instructions so it's ready for baking once your pie is assembled.</li><li>Remember to follow any additional preparation or baking instructions provided in the full recipe for your apple crumb pie.</li></ul> |
 
-### Define output format
+### Defining output format
 
 |Basic prompt|Model output|
 |----------|-----------|
