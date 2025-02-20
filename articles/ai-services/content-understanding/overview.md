@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 11/19/2024
+ms.date: 02/19/2025
 ms.custom: ignite-2024-understanding-release
 
 #customer intent: As a user, I want to learn more about Content Understanding solutions.
@@ -51,10 +51,10 @@ Common applications for Content Understanding include:
 
 |Application|Description|Quickstart|
 |:---------|:----------|:----------|
-|Post-call analytics| Businesses and call centers can generate insights from call recordings to track key KPIs, improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.| [**Post-call analytics quickstart**](quickstart/use-ai-foundry.md?tabs=audio#analyzer-templates) |
-|Media asset management| Software and media vendors can use Content Understanding to extract richer, targeted information from videos for media asset management solutions.| [**Media asset management quickstart**](quickstart/use-ai-foundry.md?tabs=video#analyzer-templates) |
-|Tax automation| Tax preparation companies can use Content Understanding to generate a unified view of information from various documents and create comprehensive tax returns.| [**Tax automation quickstart**](quickstart/use-ai-foundry.md?tabs=document#analyzer-templates) | 
-|Chart understanding| Businesses can enhance chart understanding by automating the analysis and interpretation of various types of charts and diagrams using Content Understanding.| [**Chart understanding quickstart**](quickstart/use-ai-foundry.md?tabs=image#analyzer-templates) |
+|Post-call analytics| Businesses and call centers can generate insights from call recordings to track key KPIs, improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.| [**Post-call analytics quickstart**](concepts/analyzer-templates.md#audio) |
+|Media asset management| Software and media vendors can use Content Understanding to extract richer, targeted information from videos for media asset management solutions.| [**Media asset management quickstart**](concepts/analyzer-templates.md#video) |
+|Tax automation| Tax preparation companies can use Content Understanding to generate a unified view of information from various documents and create comprehensive tax returns.| [**Tax automation quickstart**](concepts/analyzer-templates.md#document) | 
+|Chart understanding| Businesses can enhance chart understanding by automating the analysis and interpretation of various types of charts and diagrams using Content Understanding.| [**Chart understanding quickstart**](concepts/analyzer-templates.md#image) |
 
 See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 

@@ -48,11 +48,11 @@ items:
   - name: Video
     href: video/overview.md
     displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-  - name: Concepts
-    items:
-      - name: Azure AI Foundry analyzer templates
-        displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-        href: concepts/analyzer-templates.md
+- name: Concepts
+  items:
+    - name: Azure AI Foundry analyzer templates
+      displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+      href: concepts/analyzer-templates.md
 - name: Responsible AI
   items:
     - name: Transparency note

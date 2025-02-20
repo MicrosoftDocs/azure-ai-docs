@@ -1,10 +1,23 @@
+---
+title: Azure AI Content Understanding analyzer templates
+titleSuffix: Azure AI services
+description: Learn about Azure AI Content Understanding analyzer templates.
+author: laujan
+ms.author: kabrow
+manager: nitinme
+ms.service: azure-ai-content-understanding
+ms.topic: overview
+ms.date: 02/19/2025
+ms.custom: ignite-2024-understanding-release
+---
+
 # Analyzer templates offered with Content Understanding
 
-Content Understanding analyzer templates give you a head start in developing your Content Understanding solution by allowing you to build your analyzer without creating schemas from scratch. 
-There are analyzer templates specific to common scenarios in each modality, such as call center audio analytics and advertising analysis for videos. Templates are also fully customizable, allowing you to adjust any 
-fields in the schemas to better fit your needs. Learn more about the analyzer templates offered for each modality by viewing the tabs below.
+Content Understanding analyzer templates give you a head start in developing your Content Understanding solution by allowing you to build your analyzer without creating schemas from scratch.
+There are analyzer templates specific to common scenarios in each modality, such as call center audio analytics and advertising analysis for videos. Templates are also fully customizable, allowing you to adjust any
+fields in the schemas to better fit your needs. Learn more about the analyzer templates offered for each modality by viewing the following tabs.
 
-The following analyzer templates are available for use in the [Azure AI Foundry Content Understanding experience](https://ai.azure.com/). Check out [Use Content Understanding in the Azure AI Foundry](../quickstart/use-ai-foundry.md) for a step-by-step 
+The following analyzer templates are available for use in the [Azure AI Foundry Content Understanding experience](https://ai.azure.com/). Check out [Use Content Understanding in the Azure AI Foundry](../quickstart/use-ai-foundry.md) for a step-by-step
 on how to create your first analyzer using the below templates.
 
 
