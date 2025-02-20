@@ -16,7 +16,7 @@ ms.date: 02/20/2025
 
 # Create an Azure AI Search service in the Azure portal
 
-[Azure AI Search](search-what-is-azure-search.md) is an information-retrieval platform for the enterprise. It supports traditional search and conversational, AI-driven search for "chat with your data" experiences across your proprietary content.
+[Azure AI Search](search-what-is-azure-search.md) is an information retrieval platform for the enterprise. It supports traditional search and conversational, AI-driven search for "chat with your data" experiences across your proprietary content.
 
 The easiest way to create a search service is through the [Azure portal](https://portal.azure.com/), which is covered in this article.
 
@@ -41,7 +41,7 @@ Some properties are fixed for the lifetime of the search service. Before creatin
 
 + [Service tier](search-sku-tier.md) determines infrastructure, service limits, and billing. Some features aren't available on lower or specialized tiers. -->
 
-| Service property | Description |
+| Property | Description |
 |--|--|
 | [Name](#name-your-service) | Becomes part of the URL endpoint. The name must be unique and follow naming rules. |
 | [Region](search-region-support.md) | Determines data residency and availability of certain features. For example, semantic ranker and Azure AI integration have region requirements. Choose a region that supports the features you need. |
@@ -155,7 +155,7 @@ The Basic and Standard tiers are the most common for production workloads, but m
 :::image type="content" source="media/search-create-service-portal/select-pricing-tier.png" lightbox="media/search-create-service-portal/select-pricing-tier.png" alt-text="Screenshot of the Select Pricing Tier page in the Azure portal." border="true":::
 
 > [!NOTE]
-> + You can't change the tier after creating your search service, so choose wisely.
+> + You can't change the tier after creating your search service, so choose carefully.
 > + Search services created after April 3, 2024 have larger partitions and higher vector quotas at every billable tier.
 
 ## Create your service
@@ -166,25 +166,17 @@ After providing the necessary inputs, create your search service.
 
 Your service is deployed within minutes, and you can monitor its progress with Azure notifications. Consider pinning the service to your dashboard for easy access in the future.
 
-:::image type="content" source="media/search-create-service-portal/portal-notifications.png" lightbox="media/search-create-service-portal/portal-notifications.png" alt-text="Screenshot of the Notifications tab in the Azure portal." border="true":::
+:::image type="content" source="media/search-create-service-portal/" lightbox="media/search-create-service-portal/" alt-text="Screenshot of the Notifications tab in the Azure portal." border="true":::
 
 ## Configure authentication
 
 When you create a search service, key-based authentication is the default, but it's not the most secure option. We recommend that you replace it with role-based access.
 
-The Azure portal is already linked to your service with admin rights, so you don't need an endpoint or keys for portal-based tasks. For a portal walkthrough, see [Quickstart: Create an Azure AI Search index in the Azure portal](search-get-started-portal.md).
-
-<!-- Programmatic access to your service requires the URL endpoint and an authenticated connection. -->
-
-To configure programmatic access to your service:
+To enable role-based access for your service:
 
 1. Go to your search service in the [Azure portal](https://portal.azure.com/).
 
-1. From the left pane, select **Overview**. Use the URL endpoint to set up a programmatic connection.
-
-   :::image type="content" source="media/search-create-service-portal/URL-endpoint.png" lightbox="media/search-create-service-portal/URL-endpoint.png" alt-text="Screenshot of the Overview tab with the URL endpoint." border="true":::
-
-1. From the left pane, select **Settings** > **Keys**. You can connect to your service using [API keys](search-security-api-keys.md), [Azure roles](search-security-rbac.md), or both. Most quickstarts and tutorials use keys for simplicity, but if you're setting up a service for production workloads, consider using roles.
+1. From the left pane, select **Settings** > **Keys**. You can connect to your service using [API keys](search-security-api-keys.md), [Azure roles](search-security-rbac.md), or both. Select **Both** until you assign roles, after which you can select **Role-based access control**.
 
    :::image type="content" source="media/search-create-service-portal/authentication-options.png" lightbox="media/search-create-service-portal/authentication-options.png" alt-text="Screenshot of the Keys tab with authentication options." border="true":::
 
