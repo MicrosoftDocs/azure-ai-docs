@@ -284,13 +284,13 @@ During cluster creation or when editing compute cluster details, in the **Advanc
 The **default managed identity** is the system-assigned managed identity or the first user-assigned managed identity.
 
 
-During a run there are two applications of an identity:
+During a run, there are two applications of an identity:
 
-1. The system uses an identity to set up the user's storage mounts, container registry, and datastores.
+- The system uses an identity to set up the user's storage mounts, container registry, and datastores.
 
     * In this case, the system will use the default-managed identity.
 
-1. You apply an identity to access resources from within the code for a submitted job:
+- You apply an identity to access resources from within the code for a submitted job:
 
     * In the case of kubernetes cluster compute, the ManagedIdentityCredential object should be provided **without any client_id**.
 
