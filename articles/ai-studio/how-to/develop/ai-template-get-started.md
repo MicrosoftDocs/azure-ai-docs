@@ -13,7 +13,7 @@ ms.author: sgilley
 author: sdgilley
 ---
 
-# How to get started with an AI template
+# Get started with an AI template
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
