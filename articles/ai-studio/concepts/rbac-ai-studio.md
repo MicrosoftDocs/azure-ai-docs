@@ -49,7 +49,7 @@ The key difference between Contributor and Azure AI Developer is the ability to 
 
 Only the Owner and Contributor roles allow you to make a hub. At this time, custom roles can't grant you permission to make hubs.
 
-### Azure AI Administrator role preview
+### Azure AI Administrator role (preview)
 
 Prior to 11/19/2024, the system-assigned managed identity created for the hub was automatically assigned the __Contributor__ role for the resource group that contains the hub and projects. Hubs created after this date have the system-assigned managed identity assigned to the __Azure AI Administrator__ role. This role is more narrowly scoped to the minimum permissions needed for the managed identity to perform its tasks.
 
