@@ -54,7 +54,7 @@ Azure AI Search requires a free or pay-as-you-go Azure subscription.
 To try Azure AI Search for free, [start a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) and then [create your search service on the Free tier](#choose-a-tier). Each Azure subscription can have one free search service, which is intended for short-term, non-production evaluation of the product. You can complete all of our quickstarts and most of our tutorials on the Free tier. For more information, see [Try Azure AI Search for free](search-try-for-free.md).
 
 > [!IMPORTANT]
-> To make room for other services, Microsoft might delete free services that have been inactive for an extended period of time.
+> To make room for other services, Microsoft might delete free services that are inactive for an extended period of time.
 
 ## Find the Azure AI Search offering
 
@@ -152,7 +152,7 @@ Each tier has its own [capacity and limits](search-limits-quotas-capacity.md), a
 
 The Basic and Standard tiers are the most common for production workloads, but many customers start with the Free tier. The billable tiers differ primarily in partition size, partition speed, and limits on the number of objects you can create.
 
-:::image type="content" source="media/search-create-service-portal/select-pricing-tier.png" lightbox="media/search-create-service-portal/select-pricing-tier.png" alt-text="Screenshot of the Select Pricing Tier blade in the Azure portal." border="true":::
+:::image type="content" source="media/search-create-service-portal/select-pricing-tier.png" lightbox="media/search-create-service-portal/select-pricing-tier.png" alt-text="Screenshot of the Select Pricing Tier page in the Azure portal." border="true":::
 
 > [!NOTE]
 > + You can't change the tier after creating your search service, so choose wisely.
@@ -228,7 +228,7 @@ A second service isn't required for high availability. You achieve high availabi
 
 Azure AI Search limits the [number of search services](search-limits-quotas-capacity.md#subscription-limits) you can initially create in a subscription. If you reach your limit, you can request more quota.
 
-You must have Owner or Contributor permissions for the subscription to request quota. Depending on your region and data center capacity, you might be able to automatically request quota to add services to your subscription. If the request fails, reduce the number or file a support ticket. Expect a one-month turnaround for a large quota increase, such as more than 30 additional services.
+You must have Owner or Contributor permissions for the subscription to request quota. Depending on your region and data center capacity, you might be able to automatically request quota to add services to your subscription. If the request fails, reduce the number or file a support ticket. Expect a one-month turnaround for a large quota increase, such as more than 30 extra services.
 
 To request more subscription quota:
 
@@ -248,7 +248,7 @@ To request more subscription quota:
 
 1. Next to the tier and region that need more quota, select **Request adjustment** <img src=media/search-create-service-portal/request-adjustment-icon.png alt="Screenshot of the Request Adjustment icon, which is the outline of a pencil." width="14">.
 
-1. On the **New Quota Request** blade, enter a new limit for your subscription quota. The new limit must be greater than your current limit. If regional capacity is constrained, your request won't be automatically approved, and an incident report will be generated on your behalf for investigation and resolution.
+1. On **New Quota Request**, enter a new limit for your subscription quota. The new limit must be greater than your current limit. If regional capacity is constrained, your request won't be automatically approved, and an incident report will be generated on your behalf for investigation and resolution.
 
 1. Submit your request.
 
