@@ -22,7 +22,7 @@ Streamline your code-first development with prebuilt, task-specific Azure AI tem
 ## Prerequisites
 
 - [Azure subscription](https://azure.microsoft.com/free)
-- An [Azure AI Foundry project](../how-to/create-projects.md).
+- An [Azure AI Foundry project](../create-projects.md).
 
 ## Start with a sample application
 
