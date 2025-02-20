@@ -166,7 +166,7 @@ After providing the necessary inputs, create your search service.
 
 Your service is deployed within minutes, and you can monitor its progress with Azure notifications. Consider pinning the service to your dashboard for easy access in the future.
 
-:::image type="content" source="media/search-create-service-portal/" lightbox="media/search-create-service-portal/" alt-text="Screenshot of the Notifications tab in the Azure portal." border="true":::
+:::image type="content" source="media/search-create-service-portal/portal-notifications.png" lightbox="media/search-create-service-portal/portal-notifications.png" alt-text="Screenshot of the Notifications tab in the Azure portal." border="true":::
 
 ## Configure authentication
 
