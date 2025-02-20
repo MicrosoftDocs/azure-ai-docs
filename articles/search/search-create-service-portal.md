@@ -11,7 +11,7 @@ ms.custom:
   - references_regions
   - build-2024
 ms.topic: how-to
-ms.date: 02/19/2025
+ms.date: 02/20/2025
 ---
 
 # Create an Azure AI Search service in the Azure portal
@@ -126,7 +126,7 @@ In most cases, choose a region near you, unless any of the following apply:
 
    + Start with [Azure OpenAI regions](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) because they have the most variability. Azure OpenAI provides embedding models and chat models for RAG and integrated vectorization.
 
-   + Check [Azure AI Search regions](search-region-support.md#azure-public-regions) for a match to your Azure OpenAI region. If you're using OCR, entity recognition, or other skills backed by Azure AI, the AI Service Integration column indicates whether Azure AI multiservice and Azure AI Search are in the same region.
+   + Check [Azure AI Search regions](search-region-support.md#azure-public-regions) for a match to your Azure OpenAI region. If you're using OCR, entity recognition, or other skills backed by Azure AI, the **AI service integration** column indicates whether Azure AI multiservice and Azure AI Search are in the same region.
 
    + Check [multimodal embedding regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for multimodal APIs and image search. This API is accessed through an Azure AI multiservice account, but in general, it's available in fewer regions than Azure AI multiservice.
 
@@ -148,16 +148,15 @@ Azure AI Search is offered in multiple [pricing tiers](https://azure.microsoft.c
 + Standard
 + Storage Optimized
 
-Each tier has its own [capacity and limits](search-limits-quotas-capacity.md), and some features are tier dependent. For detailed information about computing characteristics, feature availability, and region availability, see [Choose a service tier for Azure AI Search](search-sku-tier.md).
+Each tier has its own [capacity and limits](search-limits-quotas-capacity.md), and some features are tier dependent. For information about computing characteristics, feature availability, and region availability, see [Choose a service tier for Azure AI Search](search-sku-tier.md).
 
 The Basic and Standard tiers are the most common for production workloads, but many customers start with the Free tier. The billable tiers differ primarily in partition size, partition speed, and limits on the number of objects you can create.
 
-Search services created after April 3, 2024 have larger partitions and higher vector quotas at every billable tier.
+:::image type="content" source="media/search-create-service-portal/select-pricing-tier.png" lightbox="media/search-create-service-portal/select-pricing-tier.png" alt-text="Screenshot of the Select Pricing Tier blade in the Azure portal." border="true":::
 
-:::image type="content" source="media/search-create-service-portal/select-pricing-tier.png" lightbox="media/search-create-service-portal/select-pricing-tier.png" alt-text="Screenshot of the Select Pricing Tier pane in the Azure portal." border="true":::
-
-> [!IMPORTANT]
-> Remember, you can't change the pricing tier after creating your search service. If you need a lower or higher tier, you must recreate the service.
+> [!NOTE]
+> + You can't change the tier after creating your search service, so choose wisely.
+> + Search services created after April 3, 2024 have larger partitions and higher vector quotas at every billable tier.
 
 ## Create your service
 
@@ -181,17 +180,17 @@ To configure programmatic access to your service:
 
 1. Go to your search service in the [Azure portal](https://portal.azure.com/).
 
-1. From the navigation pane, select **Overview**. Use the URL endpoint to set up a programmatic connection.
+1. From the left pane, select **Overview**. Use the URL endpoint to set up a programmatic connection.
 
    :::image type="content" source="media/search-create-service-portal/URL-endpoint.png" lightbox="media/search-create-service-portal/URL-endpoint.png" alt-text="Screenshot of the Overview tab with the URL endpoint." border="true":::
 
-1. From the navigation pane, select **Settings** > **Keys**. You can connect to your service using [API keys](search-security-api-keys.md), [Azure roles](search-security-rbac.md), or both. Most quickstarts and tutorials use keys for simplicity, but if you're setting up a service for production workloads, consider using roles.
+1. From the left pane, select **Settings** > **Keys**. You can connect to your service using [API keys](search-security-api-keys.md), [Azure roles](search-security-rbac.md), or both. Most quickstarts and tutorials use keys for simplicity, but if you're setting up a service for production workloads, consider using roles.
 
    :::image type="content" source="media/search-create-service-portal/authentication-options.png" lightbox="media/search-create-service-portal/authentication-options.png" alt-text="Screenshot of the Keys tab with authentication options." border="true":::
 
 ## Scale your service
 
-After deploying your search service, you can [scale it to meet your needs](search-limits-quotas-capacity.md). There are two scaling options: *replicas* and *partitions*. Replicas allow your service to handle a higher load of search queries, while partitions allow your service to store and search through more documents.
+After deploying your search service, you can [scale it to meet your needs](search-limits-quotas-capacity.md). Azure AI Search offers two scaling dimensions: *replicas* and *partitions*. Replicas allow your service to handle a higher load of search queries, while partitions allow your service to store and search through more documents.
 
 Scaling is available only on billable tiers. On the Free tier, you can't scale your service or configure replicas and partitions.
 
@@ -204,15 +203,15 @@ To scale your service:
 
 1. Go to your search service in the [Azure portal](https://portal.azure.com/).
 
-1. From the navigation pane, select **Settings** > **Scale**.
+1. From the left pane, select **Settings** > **Scale**.
 
    :::image type="content" source="media/search-create-service-portal/scale-settings.png" lightbox="media/search-create-service-portal/scale-settings.png" alt-text="Screenshot of the Scale tab with sliders for adding replicas and partitions." border="true":::
 
 1. Use the sliders to add replicas and partitions.
 
-## When to create a second service
+## When to add a second service
 
-Most customers use a single search service at a tier [sufficient for the expected load](search-capacity-planning.md). One service can host multiple indexes, each isolated from the others, within the [maximum limits of your chosen tier](search-limits-quotas-capacity.md#index-limits). In Azure AI Search, requests are directed to one index, which reduces the risk of retrieving data from other indexes in the same service.
+Most customers use a single search service at a tier [sufficient for the expected load](search-capacity-planning.md). One service can host multiple indexes, each isolated from the others, within the [maximum limits of your chosen tier](search-limits-quotas-capacity.md#index-limits). In Azure AI Search, you can direct requests to only one index, reducing the chance of retrieving data from other indexes in the same service.
 
 However, you might need a second service for the following operational requirements:
 
@@ -247,9 +246,9 @@ To request more subscription quota:
 
     :::image type="content" source="media/search-create-service-portal/usage-filter.png" lightbox="media/search-create-service-portal/usage-filter.png" alt-text="Screenshot of the Usage filter for search services in your current subscription.":::
 
-1. Next to the tier and region that need more quota, select **Request Adjustment** <img src=media/search-create-service-portal/request-adjustment-icon.png alt="Screenshot of the Request Adjustment icon, which is the outline of a pencil." width="13">.
+1. Next to the tier and region that need more quota, select **Request adjustment** <img src=media/search-create-service-portal/request-adjustment-icon.png alt="Screenshot of the Request Adjustment icon, which is the outline of a pencil." width="14">.
 
-1. In the **New Quota Request** pane, enter a new limit for your subscription quota. The new limit must be greater than your current limit. If regional capacity is constrained, your request won't be automatically approved, and an incident report will be generated on your behalf for investigation and resolution.
+1. On the **New Quota Request** blade, enter a new limit for your subscription quota. The new limit must be greater than your current limit. If regional capacity is constrained, your request won't be automatically approved, and an incident report will be generated on your behalf for investigation and resolution.
 
 1. Submit your request.
 
