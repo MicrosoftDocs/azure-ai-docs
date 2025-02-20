@@ -31,11 +31,9 @@ Configurable content filters for inputs (prompts) and outputs (completions) are 
 * GPT-4 Turbo Vision GA<sup>*</sup> (`turbo-2024-04-09`)
 * GPT-4o
 * GPT-4o mini
+* o1 model series
 * DALL-E 2 and 3
 
-Configurable content filters are not available for 
-- o1-preview
-- o1-mini 
 
 <sup>*</sup>Only available for GPT-4 Turbo Vision GA, does not apply to GPT-4 Turbo Vision preview 
 
