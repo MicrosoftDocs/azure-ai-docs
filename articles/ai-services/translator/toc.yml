@@ -309,12 +309,15 @@ items:
     href: /legal/cognitive-services/translator/data-privacy-security?context=/azure/ai-services/translator/context/context
 - name: Resources
   items:
-  - name: Modifications to Translator Service
-    displayName: deprecation, deprecate, changes, modify, modifications
-    href: modifications-deprecations.md
   - name: Translator in sovereign clouds
     displayName: fairfax,compliant,secret,compliance,government,government cloud,dod,china,batch,region
     href: sovereign-clouds.md
+  - name: Modifications to Translator Service
+    displayName: deprecation, deprecate, changes, modify, modifications
+    href: modifications-deprecations.md
+  - name: Known issues
+    displayName: error, bug, issue, problem, troubleshoot, troubleshooting
+    href: known-issues.md  
   - name: Compliance and certification
     href: https://www.microsoft.com/translator/business/notrace/
   - name: Code samples on GitHub
