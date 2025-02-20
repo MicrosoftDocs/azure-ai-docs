@@ -46,7 +46,7 @@ The following section details the content extraction capabilities and optional a
 
 |Content Extraction|Add-on Capabilities|
 |-------------|-------------|
-|&bullet; **Optical Character Recognition (OCR)**: Extract printed and handwritten text from </br> documents in various file formats, converting it into structured data. </br>|  &bullet; **Layout**:Extracts layout information such as paragraphs, sections, tables, and more.. </br>&bullet; **Barcode**:  Identifies and decodes all barcodes in the documents. </br> &bullet; **Formula**: Recognizes all identified mathematical equations from the documents. </br> |
+|&bullet; **Optical Character Recognition (OCR)**: Extract printed and handwritten text from documents in various file formats, converting it into structured data. </br>|  &bullet; **Layout**:Extracts layout information such as paragraphs, sections, tables, and more.. </br> &bullet; **Barcode**:  Identifies and decodes all barcodes in the documents. </br> &bullet; **Formula**: Recognizes all identified mathematical equations from the documents. </br> |
 
 # [Image](#tab/image)
 > [!NOTE]
@@ -56,13 +56,13 @@ The following section details the content extraction capabilities and optional a
 
 |Content Extraction|Add-on Capabilities|
 |-------------|-------------|
-|&bullet; **Transcription**:Converts conversational audio into searchable and analyzable text-based transcripts </br> in WebVTT format. Customizable fields can be generated from transcription data. Sentence-level and word-level </br> timestamps are available upon request. </br> &bullet; **Diarization**:  Distinguishes between speakers in a conversation, attributing parts of the transcript to specific speakers. </br>  &bullet; **Language detection**: Automatically detects the language spoken in the audio to be processed.</br> | &bullet;  **Speaker role detection**: Identifies speaker roles based on diarization results and replaces generic </br> labels like "Speaker 1" with specific role names, such as "Agent" or "Customer." </br>|
+|&bullet; **Transcription**:Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Customizable fields can be generated from transcription data. Sentence-level and word-level timestamps are available upon request. </br> &bullet; **Diarization**:  Distinguishes between speakers in a conversation, attributing parts of the transcript to specific speakers. </br>  &bullet; **Language detection**: Automatically detects the language spoken in the audio to be processed.</br>| &bullet;  **Speaker role detection**: Identifies speaker roles based on diarization results and replaces generic labels like "Speaker 1" with specific role names, such as "Agent" or "Customer." </br>|
 
 # [Video](#tab/video)
 
 |Content Extraction|Add-on Capabilities|
 |-------------|-------------|
-|&bullet; **Transcription**: Converts speech to structured, searchable text via Azure AI Speech, allowing users to specify recognition languages. </br>&bullet; **Shot Detection**:  Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and </br> repackaging of content with breaks exactly on shot boundaries. </br> &bullet; **Key Frame Extraction**: Extracts key frames from videos to represent each shot completely, ensuring each </br> shot has enough key frames to enable Field Extraction to work effectively.</br> | &bullet; **Face Grouping**: Grouped faces appearing in a video to extract one representative face image for each person and provides segments where each one is present. </br> The grouped face data is available as metadata and can be used to generate customized metadata fields.</br> This feature is limited access and involves face identification and grouping; customers need to register for access at Face Recognition. |
+|&bullet; **Transcription**: Converts speech to structured, searchable text via Azure AI Speech, allowing users to specify recognition languages. </br>&bullet; **Shot Detection**:  Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly on shot boundaries. </br> &bullet; **Key Frame Extraction**: Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable Field Extraction to work effectively.</br> | &bullet; **Face Grouping**: Grouped faces appearing in a video to extract one representative face image for each person and provides segments where each one is present. The grouped face data is available as metadata and can be used to generate customized metadata fields.This feature is limited access and involves face identification and grouping; customers need to register for access at Face Recognition. |
 
 ----
 ### Field Extraction
