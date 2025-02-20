@@ -43,7 +43,8 @@ Install the package `azure-ai-inference` using your package manager, like pip:
 Install the Azure Core OpenTelemetry Tracing plugin, OpenTelemetry, and the OTLP exporter for sending telemetry to your observability backend. To install the necessary packages for Python, use the following pip commands:
 
 ```bash
-pip install opentelemetry 
+pip install opentelemetry-api
+pip install opentelemetry-sdk
 
 pip install opentelemetry-exporter-otlp 
 ```
