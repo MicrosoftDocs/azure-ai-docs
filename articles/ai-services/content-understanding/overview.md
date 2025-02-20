@@ -51,10 +51,10 @@ Common applications for Content Understanding include:
 
 |Application|Description|Quickstart|
 |:---------|:----------|:----------|
-|Post-call analytics| Businesses and call centers can generate insights from call recordings to track key KPIs, improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.| [**Post-call analytics quickstart**](concepts/analyzer-templates.md#audio) |
-|Media asset management| Software and media vendors can use Content Understanding to extract richer, targeted information from videos for media asset management solutions.| [**Media asset management quickstart**](concepts/analyzer-templates.md#video) |
-|Tax automation| Tax preparation companies can use Content Understanding to generate a unified view of information from various documents and create comprehensive tax returns.| [**Tax automation quickstart**](concepts/analyzer-templates.md#document) | 
-|Chart understanding| Businesses can enhance chart understanding by automating the analysis and interpretation of various types of charts and diagrams using Content Understanding.| [**Chart understanding quickstart**](concepts/analyzer-templates.md#image) |
+|Post-call analytics| Businesses and call centers can generate insights from call recordings to track key KPIs, improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.| [**Post-call analytics quickstart**](concepts/analyzer-templates.md#modality-templates) |
+|Media asset management| Software and media vendors can use Content Understanding to extract richer, targeted information from videos for media asset management solutions.| [**Media asset management quickstart**](concepts/analyzer-templates.md#modality-templates) |
+|Tax automation| Tax preparation companies can use Content Understanding to generate a unified view of information from various documents and create comprehensive tax returns.| [**Tax automation quickstart**](concepts/analyzer-templates.md#modality-templates) | 
+|Chart understanding| Businesses can enhance chart understanding by automating the analysis and interpretation of various types of charts and diagrams using Content Understanding.| [**Chart understanding quickstart**](concepts/analyzer-templates.md#modality-templates) |
 
 See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 
