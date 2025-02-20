@@ -34,7 +34,7 @@ The service employs a customizable dual-pipeline architecture that combines [con
 Content extraction in Content Understanding is a powerful feature that transforms unstructured data into structured data, powering advanced AI processing capabilities. The structured data enables efficient downstream processing while maintaining contextual relationships in the source content.
 
 Content extraction provides foundational data that grounds the generative capabilities of Field Extraction, offering essential context about the input content. Users will find content extraction invaluable for converting diverse data formats into a structured format, this capability excels in scenarios requiring:
-* Document digitization and OCR
+* Document digitization, indexing and retrieval by structure
 * Audio/video transcription
 * Metadata generation at scale
 
