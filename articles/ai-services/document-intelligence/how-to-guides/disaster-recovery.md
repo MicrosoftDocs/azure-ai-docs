@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 02/20/2025
 ms.author: lajanuar
 ---
 
@@ -38,7 +38,7 @@ When you create a Document Intelligence resource in the Azure portal, you specif
 The Copy API enables this scenario by allowing you to copy custom models and classifiers from one Document Intelligence account or into others, which can exist in any supported geographical region. This guide shows you how to use the Copy REST API with cURL for custom models. You can also use an HTTP request service to issue the requests.
 
 > [!NOTE]
-> The 2024-11-30 (GA) API custom classification model supports the Copy API. This guide specifically uses custom models to copy models. For classifier model copy, follow the [train a custom classifier guide](../train/custom-classifier.md#copy-a-model).
+> The `2024-11-30` (GA) API custom classification model supports the Copy API. This guide specifically uses custom models to copy models. For classifier model copy, follow the [train a custom classifier guide](../train/custom-classifier.md#copy-a-model).
 
 ## Business scenarios
 
@@ -122,7 +122,7 @@ Operation-Location: https://<your-resource-endpoint>.cognitiveservices.azure.com
 ```
 
 > [!NOTE]
-> The Copy API transparently supports the [AEK/CMK](https://msazure.visualstudio.com/Cognitive%20Services/_wiki/wikis/Cognitive%20Services.wiki/52146/Customer-Managed-Keys) feature. This doesn't require any special treatment, but note that if you're copying between an unencrypted resource to an encrypted resource, you need to include the request header `x-ms-forms-copy-degrade: true`. If this header is not included, the copy operation will fail and return a `DataProtectionTransformServiceError`.
+> The Copy API transparently supports the [AEK/CMK](https://msazure.visualstudio.com/Cognitive%20Services/_wiki/wikis/Cognitive%20Services.wiki/52146/Customer-Managed-Keys) feature. This action doesn't require any special treatment, but note that if you're copying between an unencrypted resource to an encrypted resource, you need to include the request header `x-ms-forms-copy-degrade: true`. If this header isn't included, the copy operation fails and returns a `DataProtectionTransformServiceError`.
 
 ## Track Copy progress
 
@@ -289,7 +289,7 @@ Operation-Location: https://{source-resource}.cognitiveservices.azure.com/formre
 ```
 
 > [!NOTE]
-> The Copy API transparently supports the [AEK/CMK](https://msazure.visualstudio.com/Cognitive%20Services/_wiki/wikis/Cognitive%20Services.wiki/52146/Customer-Managed-Keys) feature. This doesn't require any special treatment, but note that if you're copying between an unencrypted resource to an encrypted resource, you need to include the request header `x-ms-forms-copy-degrade: true`. If this header is not included, the copy operation will fail and return a `DataProtectionTransformServiceError`.
+> The Copy API transparently supports the [AEK/CMK](https://msazure.visualstudio.com/Cognitive%20Services/_wiki/wikis/Cognitive%20Services.wiki/52146/Customer-Managed-Keys) feature. This action doesn't require any special treatment, but note that if you're copying between an unencrypted resource to an encrypted resource, you need to include the request header `x-ms-forms-copy-degrade: true`. If this header isn't included, the copy operation fails and returns a `DataProtectionTransformServiceError`.
 
 ## Track Copy progress
 
@@ -439,7 +439,7 @@ Operation-Location: https://{SOURCE_FORM_RECOGNIZER_RESOURCE_ENDPOINT}/formrecog
 ```
 
 > [!NOTE]
-> The Copy API transparently supports the [AEK/CMK](https://msazure.visualstudio.com/Cognitive%20Services/_wiki/wikis/Cognitive%20Services.wiki/52146/Customer-Managed-Keys) feature. This operation doesn't require any special treatment, but note that if you're copying between an unencrypted resource to an encrypted resource, you need to include the request header `x-ms-forms-copy-degrade: true`. If this header is not included, the copy operation will fail and return a `DataProtectionTransformServiceError`.
+> The Copy API transparently supports the [AEK/CMK](https://msazure.visualstudio.com/Cognitive%20Services/_wiki/wikis/Cognitive%20Services.wiki/52146/Customer-Managed-Keys) feature. This operation doesn't require any special treatment, but note that if you're copying between an unencrypted resource to an encrypted resource, you need to include the request header `x-ms-forms-copy-degrade: true`. If this header isn't included, the copy operation fails and returns a `DataProtectionTransformServiceError`.
 
 ### Track operation progress
 
@@ -508,7 +508,7 @@ curl -i GET "https://<SOURCE_FORM_RECOGNIZER_RESOURCE_ENDPOINT>/formrecognizer/v
 | 400 / Bad Request with `"code:" "1002"` | Indicates validation error or badly formed copy request. Common issues include: a) Invalid or modified `copyAuthorization` payload. b) Expired value for `expirationDateTimeTicks` token (`copyAuthorization` payload is valid for 24 hours). c) Invalid or unsupported `targetResourceRegion`. d) Invalid or malformed `targetResourceId` string.
 |*Authorization failure due to missing or invalid authorization claims*.| Occurs when the `copyAuthorization` payload or content is modified from the `copyAuthorization` API. Ensure that the payload is the same exact content that was returned from the earlier `copyAuthorization` call.|
 |*Couldn't retrieve authorization metadata*.| Indicates that the `copyAuthorization` payload is being reused with a copy request. A copy request that succeeds doesn't allow any further requests that use the same `copyAuthorization` payload. If you raise a separate error and you later retry the copy with the same authorization payload, this error gets raised. The resolution is to generate a new `copyAuthorization` payload and then reissue the copy request.|
-|*Data transfer request isn't allowed as it downgrades to a less secure data protection scheme*.| Occurs when copying between an `AEK` enabled resource to a non `AEK` enabled resource. To allow copying encrypted model to the target as unencrypted, specify `x-ms-forms-copy-degrade: true` header with the copy request.|
+|*Data transfer request isn't allowed as it downgrades to a less secure data protection scheme*.| Occurs when copying between an `AEK` enabled resource to a non- `AEK` enabled resource. To allow copying encrypted model to the target as unencrypted, specify `x-ms-forms-copy-degrade: true` header with the copy request.|
 |"Couldn't fetch information for Cognitive resource with ID...". | Indicates that the Azure resource indicated by the `targetResourceId` isn't a valid Cognitive resource or doesn't exist. To resolve this issue, verify and reissue the copy request.</br> Ensure the resource is valid and exists in the specified region, such as, `westus2`|
 
 ::: moniker-end
