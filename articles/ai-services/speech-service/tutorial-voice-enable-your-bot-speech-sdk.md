@@ -84,7 +84,7 @@ Now that you have a resource group in a supported region, the next step is to cr
 
 ### Create a Speech service resource
 
-1. Go to the [Azure portal page for creating a Speech service resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices).
+1. Go to the [Azure portal page for creating a Speech service resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices).
 1. Provide the following information:
    * For **Name**, we recommend **SpeechEchoBotTutorial-Speech** as the name of your resource.
    * For **Subscription**, make sure that **Free Trial** is selected.

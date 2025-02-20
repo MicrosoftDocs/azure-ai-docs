@@ -15,7 +15,7 @@ ms.custom:
   - ignite-2023
 ms.topic: quickstart
 zone_pivot_groups: search-quickstart-full-text
-ms.date: 2/12/2025
+ms.date: 2/19/2025
 ---
 
 # Quickstart: Full text search using the Azure SDKs

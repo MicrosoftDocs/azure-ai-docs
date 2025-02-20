@@ -6,7 +6,7 @@ author: Blackmist
 ms.author: larryfr
 ms.service: azure-ai-foundry
 ms.topic: how-to #Don't change
-ms.date: 10/25/2024
+ms.date: 02/19/2025
 
 #customer intent: As an admin, I want control what Managed AI Services (MaaS) and Model-as-a-Platform (MaaP) AI models can be deployed by my developers.
 
