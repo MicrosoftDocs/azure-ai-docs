@@ -52,11 +52,13 @@ You can combine the roles to grant different levels of access. For example, you 
 > [!IMPORTANT]
 > Role access can be scoped to multiple levels in Azure. For example, someone with owner access to a workspace may not have owner access to the resource group that contains the workspace. For more information, see [How Azure RBAC works](/azure/role-based-access-control/overview#how-azure-rbac-works).
 
-## Azure AI Administrator role
+## Azure AI Administrator role (preview)
 
 Prior to 11/19/2024, the system-assigned managed identity created for the workspace was automatically assigned the __Contributor__ role for the resource group that contains the workspace. Workspaces created after this date have the system-assigned managed identity assigned to the __Azure AI Administrator__ role. This role is more narrowly scoped to the minimum permissions needed for the managed identity to perform its tasks.
 
 The __Azure AI Administrator__ role is currently in public preview. If you encounter issues when using the Azure AI Administrator role with your workspace's managed identity, you can try [reverting to the Contributor role](#revert-to-the-contributor-role).
+
+The __Azure AI Administrator__ role is currently in public preview.
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 

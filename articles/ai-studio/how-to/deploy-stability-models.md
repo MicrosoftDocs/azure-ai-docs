@@ -98,7 +98,7 @@ Stability AI models on Models as a Service implement the [Azure AI Model Inferen
 }
 ```
 
-Follow this link for a full encoded [image generation response](https://github.com/MicrosoftDocs/azure-ai-docs-pr/pull/2896/$0). 
+Follow this link for a full encoded [image generation response](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Sample_image_generation_response.txt). 
 
 ## Cost and quotas
 
