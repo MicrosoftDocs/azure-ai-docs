@@ -46,7 +46,7 @@ For a complete voice assistant experience, the application needs a dialog servic
 
 Here are the requirements to create a basic dialog service using Direct Line Speech.
 
-- **Speech resource:** An Azure resource for Speech features such as speech to text and text to speech. Create a Speech resource on the [Azure portal](https://portal.azure.com). For more information, see [Create a new Azure AI services resource](../multi-service-resource.md?pivots=azportal).
+- **Speech resource:** An Azure resource for Speech features such as speech to text and text to speech. Create an AI Services resource for Speech on the [Azure portal](https://portal.azure.com). For more information, see [Create a new Azure AI services resource](../multi-service-resource.md?pivots=azportal).
 - **Bot Framework bot:**  A bot created using Bot Framework version 4.2 or above subscribed to [Direct Line Speech](./direct-line-speech.md) to enable voice input and output. [This guide](./tutorial-voice-enable-your-bot-speech-sdk.md) contains step-by-step instructions to make an "echo bot" and subscribe it to Direct Line Speech. You can also go [this Bot Framework article](https://blog.botframework.com/2018/05/07/build-a-microsoft-bot-framework-bot-with-the-bot-builder-sdk-v4/) for steps on how to create a customized bot. Then follow the same steps [here](./tutorial-voice-enable-your-bot-speech-sdk.md) to subscribe it to Direct Line Speech, but with your new bot rather than the "echo bot".
 
 ## Try out the sample app

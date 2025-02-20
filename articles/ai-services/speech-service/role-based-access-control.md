@@ -1,26 +1,26 @@
 ---
 title: Role-based access control for Speech resources
 titleSuffix: Azure AI services
-description: Learn how to assign access roles for a Speech resource.
+description: Learn how to assign access roles for an AI Services resource for Speech.
 author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
 ms.date: 11/19/2024
 ms.author: eur
-# Customer intent: As a developer, I want to learn how to assign access roles for a Speech resource.
+# Customer intent: As a developer, I want to learn how to assign access roles for an AI Services resource for Speech.
 ---
 
 # Role-based access control for Speech resources
 
-You can manage access and permissions to your Speech resources with Azure role-based access control (Azure RBAC). Assigned roles can vary across Speech resources. For example, you can assign a role to a Speech resource that should only be used to train a custom speech model. You can assign another role to a Speech resource that is used to transcribe audio files. Depending on who can access each Speech resource, you can effectively set a different level of access per application or user. For more information on Azure RBAC, see the [Azure RBAC documentation](/azure/role-based-access-control/overview).
+You can manage access and permissions to your Speech resources with Azure role-based access control (Azure RBAC). Assigned roles can vary across Speech resources. For example, you can assign a role to an AI Services resource for Speech that should only be used to train a custom speech model. You can assign another role to an AI Services resource for Speech that is used to transcribe audio files. Depending on who can access each Speech resource, you can effectively set a different level of access per application or user. For more information on Azure RBAC, see the [Azure RBAC documentation](/azure/role-based-access-control/overview).
 
 > [!NOTE]
-> A Speech resource can inherit or be assigned multiple roles. The final level of access to the resource is a combination of all role permissions.
+> An AI Services resource for Speech can inherit or be assigned multiple roles. The final level of access to the resource is a combination of all role permissions.
 
 ## Roles for Speech resources
 
-A role definition is a collection of permissions. When you create a Speech resource, the built-in roles in the following table are available for assignment. 
+A role definition is a collection of permissions. When you create an AI Services resource for Speech, the built-in roles in the following table are available for assignment. 
 
 > [!WARNING]
 > Speech service architecture differs from other Azure AI services in the way it uses [Azure control plane and data plane](/azure/azure-resource-manager/management/control-plane-and-data-plane). Speech service is extensively using data plane comparing to other Azure AI services, and this requires different set up for the roles. Because of this some general Cognitive Services roles have actual access right set that doesn't exactly match their name when used in Speech services scenario. For instance *Cognitive Services User* provides in effect the Contributor rights, while *Cognitive Services Contributor* provides no access at all. The same is true for generic *Owner* and *Contributor* roles which have no data plane rights and consequently provide no access to Speech resource. To keep consistency we recommend to use roles containing *Speech* in their names. These roles are *Cognitive Services Speech User* and *Cognitive Services Speech Contributor*. Their access right sets were designed specifically for the Speech service. In case you would like to use general Cognitive Services roles and Azure generic roles, we ask you to very carefully study the following access right table.
@@ -50,11 +50,11 @@ To authenticate with Speech resource keys, all you need is the key and region. T
 
 ### Speech SDK authentication
 
-For the SDK, you configure whether to authenticate with a Speech resource key or Microsoft Entra token. For details, see [Microsoft Entra authentication with the Speech SDK](how-to-configure-azure-ad-auth.md).
+For the SDK, you configure whether to authenticate with an API key or Microsoft Entra token. For details, see [Microsoft Entra authentication with the Speech SDK](how-to-configure-azure-ad-auth.md).
 
 ### Speech Studio authentication
 
-Once you're signed into [Speech Studio](speech-studio-overview.md), you select a subscription and Speech resource. You don't choose whether to authenticate with a Speech resource key or Microsoft Entra token. Speech Studio gets the key or token automatically from the Speech resource. If one of the assigned [roles](#roles-for-speech-resources) has permission to list resource keys and the key authentication is not disabled, Speech Studio authenticates with the key. Otherwise, Speech Studio authenticates with the Microsoft Entra token.
+Once you're signed into [Speech Studio](speech-studio-overview.md), you select a subscription and Speech resource. You don't choose whether to authenticate with an API key or Microsoft Entra token. Speech Studio gets the key or token automatically from the Speech resource. If one of the assigned [roles](#roles-for-speech-resources) has permission to list resource keys and the key authentication is not disabled, Speech Studio authenticates with the key. Otherwise, Speech Studio authenticates with the Microsoft Entra token.
 
 If Speech Studio utilizes your Microsoft Entra token and your Speech resource lacks a properly configured custom subdomain, Role-based access control (RBAC) will not be activated, and you will be unable to access any features in Speech Studio. RBAC determines your access to features based on the role assigned to you and the permissions associated with that role. If your role does not grant access to a specific feature, a warning message will be displayed on the page. Ensure you have the appropriate role to access the desired feature.
 
