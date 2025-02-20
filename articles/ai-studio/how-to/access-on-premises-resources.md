@@ -5,7 +5,7 @@ description: Learn how to configure an Azure AI Foundry managed network to secur
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 11/22/2024
+ms.date: 02/20/2025
 ms.reviewer: meerakurup 
 ms.author: larryfr
 author: Blackmist

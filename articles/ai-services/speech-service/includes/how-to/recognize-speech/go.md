@@ -12,7 +12,7 @@ ms.author: eur
 
 ## Recognize speech to text from a microphone
 
-1. Create a Speech resource in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices). Get the Speech resource key and region.
+1. Create an AI Services resource for Speech in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices). Get the Speech resource key and region.
 1. Use the following code sample to run speech recognition from your default device microphone. Replace `YourSpeechKey` and `YourSpeechRegion` with your Speech resource key and region. Running the script starts a recognition session on your default microphone and output text:
 
 ```go

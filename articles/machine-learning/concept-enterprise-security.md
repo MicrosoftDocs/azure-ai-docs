@@ -52,6 +52,8 @@ The system-assigned managed identity is used for internal service-to-service aut
 
 We don't recommend that admins revoke the access of the managed identity to the resources mentioned in the preceding table. You can restore access by using the [resync keys operation](how-to-change-storage-access-key.md).
 
+You should not grant users to have permission on the workspace's storage account to users that you do not want to be able to access workspace computes or identities. The workspace's storage account contains code and executables that will be run on your workspace computes. Users that have access to that storage account can edit or change code that will be executed in the context of the workspace, allowing access to workspace data and credentials.
+
 > [!NOTE]
 > If your Azure Machine Learning workspace has compute targets (for example, compute cluster, compute instance, or Azure Kubernetes Service [AKS] instance) that were created _before May 14, 2021_, you might have an additional Microsoft Entra account. The account name starts with `Microsoft-AzureML-Support-App-` and has contributor-level access to your subscription for every workspace region.
 >

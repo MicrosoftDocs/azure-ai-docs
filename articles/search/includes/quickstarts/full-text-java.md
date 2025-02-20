@@ -93,11 +93,11 @@ The sample in this quickstart works with the Java Runtime. Install a Java Develo
 
 ## Create, load, and query a search index
 
-In the prior [set up](#set-up) section, you created a new console application and installed the Azure AI Search client library. 
+In the prior [set up](#set-up) section, you installed the Azure AI Search client library and other dependencies. 
 
 In this section, you add code to create a search index, load it with documents, and run queries. You run the program to see the results in the console. For a detailed explanation of the code, see the [explaining the code](#explaining-the-code) section.
 
-The sample code in this quickstart uses Microsoft Entra ID for authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
+The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
 
 #### [Microsoft Entra ID](#tab/keyless)
 
@@ -540,7 +540,7 @@ In *App.java* you created two clients:
 
 Both clients need the search service endpoint and credentials described previously in the resource information section.
 
-The sample code in this quickstart uses Microsoft Entra ID for authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
+The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
 
 #### [Microsoft Entra ID](#tab/keyless)
 

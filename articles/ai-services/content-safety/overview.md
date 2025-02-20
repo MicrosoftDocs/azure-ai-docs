@@ -135,7 +135,7 @@ See the following list for the input requirements for each feature.
   - Maximum length for grounding sources: 55,000 characters (per API call).
   - Maximum text and query length: 7,500 characters.
 - **Protected material detection APIs**: 
-  - Default maximum length: 1K characters.
+  - Default maximum length: 10K characters.
   - Default minimum length: 110 characters (for scanning LLM completions, not user prompts).
 - **Custom categories (standard) API (preview)**:
   - Maximum inference input length: 1K characters.
@@ -188,6 +188,14 @@ Content Safety features have query rate limits in requests-per-second (RPS) or r
 | S0    | 1000 RP10S    | 1000 RP10S   | 1000 RP10S    | 50 RPS | 1000 RP10S | 5 RPS|10 RPS|
 
 If you need a faster rate, please [contact us](mailto:contentsafetysupport@microsoft.com) to request it.
+
+### Encryption
+
+Content Safety encryption protects your data at rest. It encrypts your data as it is written in our datacenters and automatically decrypts it when you access it.
+
+By default, data in Content Safety is encrypted using Microsoft Managed Keys (MMK). However, Content Safety supports both Microsoft Managed Keys (MMK) and Customer Managed Keys (CMK) for encryption. When CMK is selected, users can choose CMK and have the ability to select either user-assigned managed identities (UMI) or system-assigned managed identities (SMI).
+
+
 
 
 ## Contact us
