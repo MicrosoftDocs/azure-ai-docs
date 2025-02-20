@@ -15,7 +15,7 @@ We're continually improving and enhancing Azure AI Translator and its features. 
 
 ## Active Known Issues
 
-For more information regarding service-level outages, *see* the [Azure status page](https://azure.status.microsoft/en-us/status). To set up outage notifications and alerts, *see* the [Azure Service Health Portal](/service-health/service-health-portal-update).
+For more information regarding service-level outages, *see* the [Azure status page](https://azure.status.microsoft/en-us/status). To set up outage notifications and alerts, *see* the [Azure Service Health Portal](/azure/service-health/service-health-portal-update).
 
 ### Text Translation
 
@@ -46,6 +46,6 @@ Resolved known issues are organized in this section in descending order by fixed
 
 ## Related content
 
-* [Azure Service Health Portal](/service-health/service-health-portal-update).
-* [Azure Status overview](/service-health/azure-status-overview)
+* [Azure Service Health Portal](/azure/service-health/service-health-portal-update).
+* [Azure Status overview](/azure/service-health/azure-status-overview)
 * [What's new in Azure AI Translator?](../whats-new.md)
