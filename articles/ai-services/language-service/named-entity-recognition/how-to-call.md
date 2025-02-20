@@ -25,7 +25,7 @@ The NER feature can evaluate unstructured text, and extract named entities from 
 
 ### Input languages
 
-When you submit documents to be processed, you can specify which of [the supported languages](language-support.md) they're written in. if you don't specify a language, key phrase extraction defaults to English. The API may return offsets in the response to support different [multilingual and emoji encodings](../concepts/multilingual-emoji-support.md). 
+When you submit input text to be processed, you can specify which of [the supported languages](language-support.md) they're written in. if you don't specify a language, named entity recognition defaults to English. The API may return offsets in the response to support different [multilingual and emoji encodings](../concepts/multilingual-emoji-support.md). 
 
 ## Submitting data
 
@@ -41,7 +41,7 @@ When you get results from NER, you can stream the results to an application or s
 
 ## Select which entities to be returned
 
-The API attempts to detect the [defined entity types and tags](concepts/named-entity-categories.md) for a given document language. The entity types and tags replace the categories and subcategories structure the older models use to define entities for more flexibility. You can also specify which entities are detected and returned, use the optional `includeList` and `excludeList` parameters with the appropriate entity types. The following example would detect only `Location`. You can specify one or more [entity types](concepts/named-entity-categories.md) to be returned. Given the types and tags hierarchy introduced for this version, you have the flexibility to filter on different granularity levels as so:
+The API attempts to detect the [defined entity types and tags](concepts/named-entity-categories.md) for a given input text language. The entity types and tags replace the categories and subcategories structure the older models use to define entities for more flexibility. You can also specify which entities are detected and returned, use the optional `includeList` and `excludeList` parameters with the appropriate entity types. The following example would detect only `Location`. You can specify one or more [entity types](concepts/named-entity-categories.md) to be returned. Given the types and tags hierarchy introduced for this version, you have the flexibility to filter on different granularity levels as so:
 
 **Input:**
 
