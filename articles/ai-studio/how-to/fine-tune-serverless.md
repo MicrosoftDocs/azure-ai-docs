@@ -160,11 +160,11 @@ Once your model is fine-tuned, you can deploy it and use it in your own applicat
 Several enterprise scenarios are supported for MaaS finetuning. The table below outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
 
 **Note:**  
-- Datastore auth can be changed via AI Studio by clicking on the datastore which your dataset is stored in, and navigating to the Authentication section.  
+- Data connections auth can be changed via AI Studio by clicking on the datastore connection which your dataset is stored in, and navigating to the "Access details" > "Authentication Method" setting.  
 - Storage auth can be changed in Azure Storage > "Settings" > "Configurations" page > "Allow storage account key access"  
 - Storage networking can be changed in Azure Storage > "Networking" page
 
-| **Storage Networking**                                       | **Storage Auth**               | **Datastore Auth**               | **Supported**           |
+| **Storage Networking**                                       | **Storage Auth**               | **Data Connection Auth**               | **Support**           |
 | ------------------------------------------------------------ | ------------------------------ | --------------------------------- | ----------------------- |
 | Public Network Access = Enabled                               | Account key enabled            | SAS/Account Key                  | Yes, UX and SDK         |
 | Public Network Access = Enabled                               | Account key disabled           | Entra-Based Auth (Credentialless) | Yes, UX and SDK <br><br> *Note:* for UX, you may need to add Storage Blob Data Reader or Storage Blob Data Contributor for your user ID on the storage account, or change the connection's authentication to use Account key/SAS token |                               |                                   |                         |
@@ -175,8 +175,10 @@ Several enterprise scenarios are supported for MaaS finetuning. The table below 
 | Public Network Access = Disabled                              | Account key disabled           | Entra-Based Auth (Credentialless) | Yes, UX and SDK. <br><br> *Note:* for UX data upload and submission to work, the workspace _needs to be accessed from within the Vnet_ that has appropriate access to the storage                |
 
 
-The scenarios above should work in a Managed Vnet workspace as well. Customer-Managed Keys (CMKs) is not a supported enterprise scenario with MaaS finetuning.
-Issues with finetuning with unique network setups on the workspace and storage usually points to a networking setup issue.
+The scenarios above should work in a Managed Vnet workspace as well. See setup of Managed Vnet AI Studio hub here: https://learn.microsoft.com/en-us/azure/ai-studio/how-to/configure-managed-network?tabs=portal
+Customer-Managed Keys (CMKs) is **not** a supported enterprise scenario with MaaS finetuning.
+
+Issues finetuning with unique network setups on the workspace and storage usually points to a networking setup issue.
 
 ---
 
