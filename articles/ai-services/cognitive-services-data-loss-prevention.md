@@ -19,12 +19,13 @@ Before you make a request, you need an Azure account and an Azure AI services su
 
 ## Enabling data loss prevention
 
-There are two parts to enable data loss prevention. First, the resource property `restrictOutboundNetworkAccess` must be set to `true`. When this is set to true, you also need to provide the list of approved URLs. The list of URLs is added to the `allowedFqdnList` property. The `allowedFqdnList` property contains an array of comma-separated URLs.
+There are two parts to enable data loss prevention. First, the resource property `restrictOutboundNetworkAccess` must be set to `true`. When this is set to true, you also need to provide the list of approved URLs. The list of URLs is added to the `allowedFqdnList` property. The `allowedFqdnList` property contains an array of comma-separated URLs, sans `http:` or `https:` prefixes.
 
 >[!NOTE]
 >
 > * The `allowedFqdnList`  property value supports a maximum of 1000 URLs.
-> * The property supports both IP addresses (IPv4 only) and fully qualified domain names (i.e., `www.microsoft.com`) as values.
+> * The property supports both IP addresses (IPv4 only) and fully qualified domain names (i.e., `www.microsoft.com`) as values. Remember, `www.microsoft.com` is an example; you don't likely want or need this URL in your actual call.
+> * If you are enabling encryption via customer-managed key (CMK), the URL of the key vault containing your key `yourkeyvaultname.vault.azure.net` should be included as one of the allowed FQDNs or the commands in the examples below will fail.
 > * It can take up to 15 minutes for the updated list to take effect. 
 
 # [Azure CLI](#tab/azure-cli)
@@ -50,14 +51,14 @@ There are two parts to enable data loss prevention. First, the resource property
     ```azurecli-interactive
     az rest -m patch \
         -u /subscriptions/{subscription ID}/resourceGroups/{resource group}/providers/Microsoft.CognitiveServices/accounts/{account name}?api-version=2021-04-30 \
-        -b '{"properties": { "restrictOutboundNetworkAccess": true, "allowedFqdnList": [ "microsoft.com" ] }}'
+        -b '{"properties": { "restrictOutboundNetworkAccess": true, "allowedFqdnList": [ "www.microsoft.com" ] }}'
     ```
 
 # [PowerShell](#tab/powershell)
 
 1. Install the [Azure PowerShell](/powershell/azure/install-azure-powershell) and [sign in](/powershell/azure/authenticate-azureps), or select **Try it**.
 
-1. Display the current properties for Azure AI services resource.
+1. Display the current properties for the Azure AI services resource.
 
     ```azurepowershell-interactive
     $getParams = @{
@@ -71,7 +72,7 @@ There are two parts to enable data loss prevention. First, the resource property
     Invoke-AzRestMethod @getParams
     ```
 
-1. Configure the restrictOutboundNetworkAccess property and update the allowed FqdnList with the approved URLs
+1. Configure the restrictOutboundNetworkAccess property and update the allowed FQDN List with the approved URLs.
 
     ```azurepowershell-interactive
     $patchParams = @{
@@ -80,7 +81,7 @@ There are two parts to enable data loss prevention. First, the resource property
         ResourceType = 'accounts'
         Name = 'myaccount'
         ApiVersion = '2021-04-30'
-        Payload = '{"properties": { "restrictOutboundNetworkAccess": true, "allowedFqdnList": [ "microsoft.com" ] }}'
+        Payload = '{"properties": { "restrictOutboundNetworkAccess": true, "allowedFqdnList": [ "www.microsoft.com" ] }}'
         Method = 'PATCH'
     }
     Invoke-AzRestMethod @patchParams
