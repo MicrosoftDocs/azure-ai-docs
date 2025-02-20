@@ -1,7 +1,7 @@
 ---
 title: How to get started with an AI template
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to get started with an AI template.
+description: This article provides instructions on how to use an AI template to get started with Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
@@ -11,13 +11,14 @@ ms.date: 02/20/2025
 ms.reviewer: varundua
 ms.author: sgilley
 author: sdgilley
+#customer intent: As a developer, I want to jump start my journey with an AI template.
 ---
 
 # Get started with an AI template
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
-
 Streamline your code-first development with prebuilt, task-specific Azure AI templates. Benefit from using the latest features and best practices from Microsoft Azure AI, with popular frameworks like LangChain, prompt flow, and Semantic Kernel in multiple languages.
+
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 ## Prerequisites
 
@@ -34,9 +35,11 @@ Streamline your code-first development with prebuilt, task-specific Azure AI tem
 1. Or, clone the repository to your local machine with the provided command.
 1. In some cases, you can also view a step-by-step tutorial that explains the AI code.
 
+## Explore the sample application
+
 Once you're looking at the GitHub repository for your sample, refer to the README for more instructions and information on how to deploy your own version of the application.
 
-Instructions will vary by sample, but most will include how to:
+Instructions vary by sample, but most include how to:
 
 * Open the solution in the location of your choice:
   * GitHub Codespaces
