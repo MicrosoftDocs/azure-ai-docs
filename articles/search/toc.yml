@@ -6,11 +6,11 @@ items:
   items:
   - name: What's Azure AI Search?
     href: search-what-is-azure-search.md
-  - name: New in Search
+  - name: New in AI Search
     href: whats-new.md
   - name: Features
     href: search-features-list.md
-  - name: Try search for free
+  - name: Try AI Search for free
     href: search-try-for-free.md
   - name: FAQ
     href: search-faq-frequently-asked-questions.yml
