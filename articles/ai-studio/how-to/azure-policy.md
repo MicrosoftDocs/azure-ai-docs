@@ -12,7 +12,7 @@ ms.topic: how-to
 
 # Audit and manage Azure AI Foundry hubs and projects
 
-As a platform administrator, you can use policies to lay out guardrails for teams to manage their own resources. [Azure Policy](/azure/governance/policy/) helps audit and govern resource state. This article explains how you can use audit controls and governance practices for Azure AI Foundry.
+As a platform administrator, you can use policies to lay out guardrails for teams to manage their own resources. [Azure Policy](/azure/governance/policy/) helps audit and govern resource state. This article explains how you can use audit controls and governance practices for [Azure AI Foundry](https://ai.portal.com).
 
 ## Policies for Azure AI Foundry hubs and projects
 

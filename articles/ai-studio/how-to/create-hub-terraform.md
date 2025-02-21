@@ -27,8 +27,8 @@ In this article, you use Terraform to create an [Azure AI Foundry](https://ai.az
 > * Set up a storage account
 > * Establish a key vault
 > * Configure AI services
-> * Build an [Azure AI Foundry](https://ai.azure.com) hub
-> * Develop an [Azure AI Foundry](https://ai.azure.com) project
+> * Build an Azure AI Foundry hub
+> * Develop an Azure AI Foundry project
 > * Establish an AI services connection
 
 ## Prerequisites
