@@ -289,6 +289,16 @@
             "source_path_from_root": "/articles/ai-studio/concepts/related-content.md",
             "redirect_url": "/azure/ai-studio/concepts/what-are-ai-services",
             "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/evaluate-sdk.md#cloud-evaluation-preview-on-test-datasets",
+            "redirect_url": "/azure/ai-studio/how-to/develop/cloud-evaluation.md",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/evaluate-sdk.md#cloud-evaluation-on-test-datasets",
+            "redirect_url": "/azure/ai-studio/how-to/develop/cloud-evaluation.md",
+            "redirect_document_id": false
           }
     ]
 }

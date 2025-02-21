@@ -413,6 +413,8 @@ items:
     - name: Evaluate with the Azure AI Evaluation SDK
       href: how-to/develop/evaluate-sdk.md
       displayName: code,accuracy,metrics
+    - name: Evaluate your application remotely on the cloud
+      href: how-to/develop/cloud-evaluation.md
     - name: Run evaluations from the portal
       href: how-to/evaluate-generative-ai-app.md
     - name: View evaluation results in the portal
