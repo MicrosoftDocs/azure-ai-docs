@@ -1,12 +1,12 @@
 ---
 title: Responsible AI for Azure AI Foundry
 titleSuffix: Azure AI Foundry
-description: Learn how to use AI responsibly with Azure AI Foundry.
+description: Learn how to use AI services and features responsibly with Azure AI Foundry.
 manager: nitinme
 keywords: Azure AI services, cognitive
 ms.service: azure-ai-foundry
 ms.topic: overview
-ms.date: 11/06/2024
+ms.date: 02/20/2025
 ms.author: pafarley
 author: PatrickFarley
 ms.custom: ignite-2024
@@ -14,7 +14,7 @@ ms.custom: ignite-2024
 
 # Responsible AI for Azure AI Foundry
 
-This article aims to provide an overview of the resources available to help you use AI responsibly. Our recommended essential development steps are grounded in the [Microsoft Responsible AI Standard](https://aka.ms/RAI), which sets policy requirements that our own engineering teams follow. Much of the content of the Standard follows a pattern, asking teams to Identify, Measure, and Mitigate potential content risks, and plan for how to Operate the AI system as well.  
+This article provides an overview of the resources available to help you use AI responsibly. Our recommended essential development steps are grounded in the [Microsoft Responsible AI Standard](https://aka.ms/RAI), which sets policy requirements that our own engineering teams follow. Much of the content of the Standard follows a pattern, asking teams to Identify, Measure, and Mitigate potential content risks, and plan for how to Operate the AI system as well.  
 
 At Microsoft, our approach is guided by a governance framework rooted in AI principles, which establish product requirements and serve as our "north star." When we identify a business use case for generative AI, we first assess the potential risks of the AI system to pinpoint critical focus areas. 
 
@@ -22,9 +22,9 @@ Once we identify these risks, we evaluate their prevalence within the AI system 
 
 Finally, we examine strategies for managing risks in production, including deployment and operational readiness and setting up monitoring to support ongoing improvement after the application is live. 
 
-:::image type="content" source="media/content-safety/safety-pattern.png" alt-text="Diagram of the content safety pattern.":::
+:::image type="content" source="media/content-safety/safety-pattern.png" alt-text="Diagram of the content safety pattern: Map, Measure, and Manage.":::
 
-In alignment with those Microsoft's RAI practices, these recommendations are organized into four stages:
+In alignment with Microsoft's RAI practices, these recommendations are organized into four stages:
 - **Map**: Identify and prioritize potential content risks that could result from your AI system through iterative red-teaming, stress-testing, and analysis. 
 - **Measure**: Measure the frequency and severity of those content risks by establishing clear metrics, creating measurement test sets, and completing iterative, systematic testing (both manual and automated). 
 - **Mitigate**: Mitigate content risks by implementing tools and strategies such as prompt engineering and using our content filters. Repeat measurement to test effectiveness after implementing mitigations. 
