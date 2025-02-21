@@ -91,6 +91,8 @@ items:
     items:
       - name: Set up Virtual Networks
         href: ../cognitive-services-virtual-networks.md?context=/azure/ai-services/content-safety/context/context
+      - name: Use customer-managed keys 
+        href: ./encrypt-data-at-rest.md
 
 - name: Reference
   items:
