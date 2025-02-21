@@ -42,7 +42,7 @@ You can also [deploy to other platforms, such as Docker container, Kubernetes cl
 
 ## Enable trace and collect system metrics for your deployment
 
-If you're using Azure AI Foundry portal to deploy, then you can turn-on **Application Insights diagnostics** in **Advanced settings** > **Deployment** step in the deployment wizard, in which way the tracing data and system metrics are collected to the project linked to Application Insights.
+If you're using Azure AI Foundry portal to deploy, you can turn on **Application Insights diagnostics** in the **Advanced settings** > **Deployment** step in the deployment wizard, in which way the tracing data and system metrics are collected to the project linked to Application Insights.
 
 If you're using the SDK or CLI, you can add a property `app_insights_enabled: true` in the deployment yaml file that collects data to the project linked to application insights.
 
@@ -70,7 +70,7 @@ Traces record specific events or the state of an application during execution. I
 
 You can view the detailed trace in the specified Application Insights. The following screenshot shows an example of an event of a deployed flow containing multiple nodes. In Application Insights -> Investigate -> Transaction search, and you can select each node to view its detailed trace. 
 
-The **Dependency** type events record calls from your deployments. The name of that event is the name of flow folder. Learn more about [Transaction search and diagnostics in Application Insights](/azure/azure-monitor/app/transaction-search-and-diagnostics).
+The **Dependency** type events record calls from your deployments. The name of that event is the name of the flow folder. Learn more about [Transaction search and diagnostics in Application Insights](/azure/azure-monitor/app/transaction-search-and-diagnostics).
 
 ## View system metrics in Application Insights
 
