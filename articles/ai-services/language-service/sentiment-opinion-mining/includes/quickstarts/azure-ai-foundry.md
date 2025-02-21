@@ -41,7 +41,7 @@ In **Configuration** there are the following options:
 |Select text language| Select the language of the input text. |
 |Enable opinion mining| Enables or disables the opinion mining skill.|
 
-After your operation is completed, in the center pane, the each sentence will be numbered and opinions will be labelled if **Enable opinion mining** was checked and the **Details** section contains the following fields for the overall sentiment and the sentiment of each sentence:
+After your operation is completed, in the center pane, each sentence will be numbered and opinions will be labeled if **Enable opinion mining** was checked and the **Details** section contains the following fields for the overall sentiment and the sentiment of each sentence:
 
 |Field | Description                |
 |------|----------------------------|

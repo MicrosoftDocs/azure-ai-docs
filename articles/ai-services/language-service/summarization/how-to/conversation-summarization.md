@@ -25,11 +25,11 @@ ms.custom:
 
 - Issue and resolution (call center focused) is designed to summarize text chat logs between customers and customer-service agents. This feature is capable of providing both issues and resolutions present in these logs, which occur between two parties.
 
-- Narrative is designed to summarize the narrative of a conversation.
+- **Narrative** is designed to summarize the narrative of a conversation.
 
-- Recap is designed to condense lengthy meetings or conversations into a concise one-paragraph summary to provide a quick overview.
+- **Recap** is designed to condense lengthy meetings or conversations into a concise one-paragraph summary to provide a quick overview.
 
-- Follow-up tasks is designed to summarize action items and tasks that arise during a meeting.
+- **Follow-up tasks** is designed to summarize action items and tasks that arise during a meeting.
 
 :::image type="content" source="../media/conversation-summary-diagram.svg" alt-text="A diagram for sending data to the conversation summarization issues and resolution feature.":::
 

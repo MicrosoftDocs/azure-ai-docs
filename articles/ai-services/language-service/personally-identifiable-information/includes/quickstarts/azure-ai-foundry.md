@@ -29,7 +29,7 @@ The **Language Playground** consists of four sections:
 
 Here you can select from two Personally Identifying Information (PII) detection capabilities by choosing the top banner tiles, **Extract PII from conversation** or **Extract PII from text**. Each is for a different scenario.
 
-### Extract PII from coversation
+### Extract PII from conversation
 
 **Extract PII from conversation** is designed to identify and mask personally identifying information in conversational text.
 
@@ -54,7 +54,7 @@ After your operation is completed, the type of entity is displayed beneath each 
 |Length| The character length of the entity.|
 |Confidence| How confident the model is in the correctness of identification of entity's type.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/conversation-pii.png" alt-text="an example of extract PII from conversation in azure AI studio" lightbox="../../media/quickstarts/azure-ai-foundry/conversation-pii.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/conversation-pii.png" alt-text="A screenshot of an example of extract PII from conversation in azure AI studio." lightbox="../../media/quickstarts/azure-ai-foundry/conversation-pii.png":::
 
 ### Extract PII from text
 
@@ -82,5 +82,5 @@ After your operation is completed, the type of entity is displayed beneath each 
 |Confidence| How confident the model is in the correctness of identification of entity's type.|
 |Tags| How confident the model is in the correctness for each identified entity type.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/text-pii.png" alt-text="an example of extract PII from text in azure AI studio" lightbox="../../media/quickstarts/azure-ai-foundry/text-pii.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/text-pii.png" alt-text="A screenshot of an example of extract PII from text in azure AI studio." lightbox="../../media/quickstarts/azure-ai-foundry/text-pii.png":::
 

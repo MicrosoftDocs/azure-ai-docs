@@ -49,4 +49,4 @@ After your operation is completed, the type of entity is displayed beneath each 
 |Category| The type of entity that was detected.|
 |Confidence| How confident the model is in the correctness of identification of entity's type.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/text-analytics-for-health.png" alt-text="An example of extract health information in azure AI studio" lightbox="../../media/quickstarts/azure-ai-foundry/text-analytics-for-health.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/text-analytics-for-health.png" alt-text="A screenshot of an example of extract health information in azure AI studio." lightbox="../../media/quickstarts/azure-ai-foundry/text-analytics-for-health.png":::
