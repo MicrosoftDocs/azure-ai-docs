@@ -11,7 +11,7 @@ ms.date: 01/10/2025
 ms.custom: azure-ai-agents
 ---
 
-# What is Azure AI Agent Service?
+# What is Azure AI Agent Service (Preview)?
 
 [Azure AI Agent Service](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/introducing-azure-ai-agent-service/4298357) is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents without needing to manage the underlying compute and storage resources. What originally took hundreds of lines of code to support [client side function calling](/azure/ai-services/openai/how-to/function-calling) can now be done in just a few lines of code with Azure AI Agent Service.
 

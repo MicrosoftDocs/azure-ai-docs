@@ -8,7 +8,7 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 01/19/2024
+ms.date: 02/21/2025
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
@@ -36,7 +36,7 @@ By managing queue wait time and making informed decisions, you can help your bus
 * **Make long-term data-driven decisions**: predict ideal future store operations by analyzing the traffic at different times of the day and on different days. 
  
 
-## Next steps
+## Next step
 
 Get started using Spatial Analysis in a container.
 

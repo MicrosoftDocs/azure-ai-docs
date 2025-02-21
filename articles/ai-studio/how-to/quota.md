@@ -44,7 +44,7 @@ Default limits vary by offer category type, such as free trial, pay-as-you-go, a
 
 ## Azure AI Foundry quota 
 
-The following actions in Azure AI Foundry portal consume quota: 
+The following actions in [Azure AI Foundry portal](https://ai.azure.com) consume quota: 
 
 - Creating a compute instance.
 - Building a vector index.

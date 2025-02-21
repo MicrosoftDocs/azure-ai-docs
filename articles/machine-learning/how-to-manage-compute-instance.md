@@ -159,7 +159,7 @@ For each compute instance in a workspace that you created (or that was created f
 ---
 
 > [!Caution]
-> Applying resource locks, such as "Delete" or "Read-only", to the resource group containing your compute instances can prevent operations like creation, resizing, or deletion of these instances. Ensure that resource locks are configured appropriately to avoid unintended disruptions. 
+> Applying resource locks, such as "Delete" or "Read-only", to the resource group that contains your Machine Learning workspace or to a separate resource group where you've configured a virtual network can prevent operations like creation, resizing, or deletion of these instances. Ensure that resource locks are configured appropriately to avoid unintended disruptions. 
 
 [Azure RBAC](/azure/role-based-access-control/overview) allows you to control which users in the workspace can create, delete, start, stop, restart a compute instance. All users in the workspace contributor and owner role can create, delete, start, stop, and restart compute instances across the workspace. However, only the creator of a specific compute instance, or the user assigned if it was created on their behalf, is allowed to access Jupyter, JupyterLab, and RStudio on that compute instance. A compute instance is dedicated to a single user who has root access. That user has access to Jupyter/JupyterLab/RStudio running on the instance. Compute instance has single-user sign-in and all actions use that user's identity for Azure RBAC and attribution of experiment jobs. SSH access is controlled through public/private key mechanism.
 

@@ -763,7 +763,7 @@ groups:
   - id: programming-language-swift
     title: Swift (iOS)
 - id: usage-custom-language-features
-# Owner aahill
+# Owner jboback
   title: Usage methods
   prompt: Choose your preferred usage method
   pivots:
@@ -772,6 +772,23 @@ groups:
   - id: rest-api
     title: REST API
 - id: programming-languages-text-analytics
+# Owner jboback
+  title: Programming languages
+  prompt: Choose one of the client library languages or REST API.
+  pivots:
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-java
+    title: Java
+  - id: rest-api
+    title: REST API
+  - id: azure-ai-foundry
+    title: Azure AI Foundry
+- id: programming-languages-entity-linking
   title: Programming languages
   prompt: Choose one of the client library languages or REST API.
   pivots:
