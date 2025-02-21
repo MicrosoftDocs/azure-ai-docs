@@ -15,6 +15,6 @@ author: PatrickFarley
 
 # Use blocklists in Azure AI Foundry portal 
 
-You can create custom blocklists in the Azure AI Foundry portal as part of your content filtering configurations. The following steps show how to create custom blocklists as part of your content filters in Azure AI Foundry portal.
+You can create custom blocklists in the [Azure AI Foundry portal](https://ai.azure.com) as part of your content filtering configurations. The following steps show how to create custom blocklists as part of your content filters in [Azure AI Foundry portal](https://ai.azure.com).
 
 [!INCLUDE [use-blocklists](../includes/use-blocklists.md)]
