@@ -7,8 +7,8 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 5/21/2024
-ms.reviewer: keli19
+ms.date: 02/14/2025
+ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 ---
@@ -38,13 +38,13 @@ After you test your flow properly, either a flex flow or a DAG flow, you can dep
 You can also [deploy to other platforms, such as Docker container, Kubernetes cluster, and more](https://microsoft.github.io/promptflow/how-to-guides/deploy-a-flow/index.html).
 
 > [!NOTE]
-> You need to use the latest prompt flow base image to deploy the flow, so that it support the tracing and feedback collection API.
+> You need to use the latest prompt flow base image to deploy the flow, so that it supports the tracing and feedback collection API.
 
 ## Enable trace and collect system metrics for your deployment
 
 If you're using Azure AI Foundry portal to deploy, then you can turn-on **Application Insights diagnostics** in **Advanced settings** > **Deployment** step in the deployment wizard, in which way the tracing data and system metrics are collected to the project linked to Application Insights.
 
-If you're using SDK or CLI, you can by adding a property `app_insights_enabled: true` in the deployment yaml file that collects data to the project linked to application insights. 
+If you're using the SDK or CLI, you can add a property `app_insights_enabled: true` in the deployment yaml file that collects data to the project linked to application insights.
 
 ```yaml
 app_insights_enabled: true
@@ -58,11 +58,12 @@ environment_variables:
 ```
 
 > [!NOTE]
-> If you only set `app_insights_enabled: true` but your project doesn't have a linked Application Insights resource, your deployment will not fail but there will be no data collected.
+> If you only set `app_insights_enabled: true` but your project doesn't have a linked Application Insights resource, your deployment won't fail but there will be no data collected.
 >
-> If you specify both `app_insights_enabled: true` and the above environment variable at the same time, the tracing data and metrics will be sent to the project linked to application insights. Hence, if you want to specify a different Application Insights, you only need to keep the environment variable.
+> If you specify both `app_insights_enabled: true` and the previous environment variable at the same time, the tracing data and metrics will be sent to the project linked to application insights. Hence, if you want to specify a different Application Insights, you only need to keep the environment variable.
 > 
-> If you deploy to other platforms, you can also use the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING: <connection_string>` to collect trace data and metrics to speicifed Application Insights.
+> If you deploy to other platforms, you can also use the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING: <connection_string>` to collect trace data and metrics to specified Application Insights.
+
 ## View tracing data in Application Insights
 
 Traces record specific events or the state of an application during execution. It can include data about function calls, variable values, system events and more. Traces help breakdown an application's components into discrete inputs and outputs, which is crucial for debugging and understanding an application. You can learn more from [here](https://opentelemetry.io/docs/concepts/signals/traces/) on traces. The trace data follows [OpenTelemetry specification](https://opentelemetry.io/docs/specs/otel/).
@@ -75,13 +76,13 @@ The **Dependency** type events record calls from your deployments. The name of t
 
 | Metrics Name                         | Type      | Dimensions                                | Description                                                                     |
 |--------------------------------------|-----------|-------------------------------------------|---------------------------------------------------------------------------------|
-| token_consumption                    | counter   | - flow <br> - node<br> - llm_engine<br> - token_type:  `prompt_tokens`: LLM API input tokens;  `completion_tokens`: LLM API response tokens ; `total_tokens` = `prompt_tokens + completion tokens`          | OpenAI token consumption metrics                                                |
-| flow_latency                         | histogram | flow,response_code,streaming,response_type| request execution cost, response_type means whether it's full/firstbyte/lastbyte|
-| flow_request                         | counter   | flow,response_code,exception,streaming    | flow request count                                                              |
-| node_latency                         | histogram | flow,node,run_status                      | node execution cost                                                             |
-| node_request                         | counter   | flow,node,exception,run_status            | node execution count                                                    |
-| rpc_latency                          | histogram | flow,node,api_call                        | rpc cost                                                                        |
-| rpc_request                          | counter   | flow,node,api_call,exception              | rpc count                                                                       |
+| token_consumption                    | counter   | - flow <br> - node<br> - llm_engine<br> - token_type:  `prompt_tokens`: LLM API input tokens;  `completion_tokens`: LLM API response tokens; `total_tokens` = `prompt_tokens + completion tokens`          | OpenAI token consumption metrics                                                |
+| flow_latency                         | histogram | flow, response_code, streaming, response_type | request execution cost, response_type means whether it's full/firstbyte/lastbyte|
+| flow_request                         | counter   | flow, response_code, exception, streaming    | flow request count                                                              |
+| node_latency                         | histogram | flow, node, run_status                      | node execution cost                                                             |
+| node_request                         | counter   | flow, node, exception, run_status            | node execution count                                                    |
+| rpc_latency                          | histogram | flow, node, api_call                        | rpc cost                                                                        |
+| rpc_request                          | counter   | flow, node, api_call, exception              | rpc count                                                                       |
 | flow_streaming_response_duration     | histogram | flow                                      | streaming response sending cost, from sending first byte to sending last byte   |
 
 You can find the workspace default Application Insights in your workspace overview page in Azure portal.
