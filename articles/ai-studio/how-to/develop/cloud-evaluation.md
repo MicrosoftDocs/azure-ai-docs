@@ -1,5 +1,5 @@
 ---
-title: Evaluate your Generative AI application remotely on the Cloud
+title: Cloud evaluation with Azure AI Projects SDK
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to evaluate a Generative AI application on the cloud.
 manager: scottpolly
@@ -13,7 +13,7 @@ ms.reviewer: changliu2
 ms.author: lagayhar
 author: lgayhardt
 ---
-# Evaluate your Generative AI application remotely on the cloud (preview)
+# Evaluate your Generative AI application on the cloud with Azure AI Projects SDK (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
