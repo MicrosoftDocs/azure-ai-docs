@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - code01
 ms.topic: conceptual
-ms.date: 10/31/2024
+ms.date: 02/21/2025
 ms.reviewer: sgilley
 ms.author: sgilley
 author: sdgilley
@@ -18,7 +18,7 @@ author: sdgilley
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Fine-tuning refers to customizing a pre-trained generative AI model with additional training on a specific task or new dataset for enhanced performance, new skills, or improved accuracy. The result is a new, custom GenAI model that's optimized based on the provided examples.
+Fine-tuning customizes a pretrained AI model with additional training on a specific task or dataset to improve performance, add new skills, or enhance accuracy. The result is a new, optimized GenAI model based on the provided examples.
 
 Consider fine-tuning GenAI models to:
 - Scale and adapt to specific enterprise needs
@@ -27,11 +27,11 @@ Consider fine-tuning GenAI models to:
 - Save time and resources with faster and more precise results
 - Get more relevant and context-aware outcomes as models are fine-tuned for specific use cases
 
-[Azure AI Foundry](https://ai.azure.com) offers several models across model providers enabling you to get access to the latest and greatest in the market. You can discover supported models for fine-tuning through our model catalog by using the **Fine-tuning tasks** filter and selecting the model card to learn detailed information about each model. Specific models may be subjected to regional constraints, [view this list for more details](#supported-models-for-fine-tuning). 
+[Azure AI Foundry](https://ai.azure.com) offers several models across model providers enabling you to get access to the latest and greatest in the market. You can discover supported models for fine-tuning through our model catalog by using the **Fine-tuning tasks** filter and selecting the model card to learn detailed information about each model. Specific models might be subjected to regional constraints. [View this list for more details](#supported-models-for-fine-tuning). 
 
 :::image type="content" source="../media/concepts/model-catalog-fine-tuning.png" alt-text="Screenshot of Azure AI Foundry model catalog and filtering by Fine-tuning tasks." lightbox="../media/concepts/model-catalog-fine-tuning.png":::
 
-This article will walk you through use-cases for fine-tuning and how this can help you in your GenAI journey.
+This article walks you through use-cases for fine-tuning and how it helps you in your GenAI journey.
 
 ## Getting started with fine-tuning
 
@@ -39,7 +39,8 @@ When starting out on your generative AI journey, we recommend you begin with pro
 - [Prompt engineering](../../ai-services/openai/concepts/prompt-engineering.md) is a technique that involves designing prompts using tone and style details, example responses, and intent mapping for natural language processing models. This process improves accuracy and relevancy in responses, to optimize the performance of the model.
 - [Retrieval-augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) improves LLM performance by retrieving data from external sources and incorporating it into a prompt. RAG can help businesses achieve customized solutions while maintaining data relevance and optimizing costs.
 
-As you get comfortable and begin building your solution, it's important to understand where prompt engineering falls short and that will help you realize if you should try fine-tuning. 
+As you get comfortable and begin building your solution, it's important to understand where prompt engineering falls short and when you should try fine-tuning.
+
 - Is the base model failing on edge cases or exceptions? 
 - Is the base model not consistently providing output in the right format?
 - Is it difficult to fit enough examples in the context window to steer the model?
@@ -53,16 +54,17 @@ _A customer wants to use GPT-3.5 Turbo to turn natural language questions into q
 
 ### Use cases
 
-Base models are already pre-trained on vast amounts of data and most times you'll add instructions and examples to the prompt to get the quality responses that you're looking for - this process is called "few-shot learning". Fine-tuning allows you to train a model with many more examples that you can tailor to meet your specific use-case, thus improving on few-shot learning. This can reduce the number of tokens in the prompt leading to potential cost savings and requests with lower latency. 
+Base models are already pretrained on vast amounts of data. Most times you add instructions and examples to the prompt to get the quality responses that you're looking for - this process is called "few-shot learning." Fine-tuning allows you to train a model with many more examples that you can tailor to meet your specific use-case, thus improving on few-shot learning. Fine-tuning can reduce the number of tokens in the prompt leading to potential cost savings and requests with lower latency. 
 
-Turning natural language into a query language is just one use case where you can  _show not tell_ the model how to behave. Here are some additional use cases:
+Turning natural language into a query language is just one use case where you can  "_show not tell_" the model how to behave. Here are some other use cases:
+
 - Improve the model's handling of retrieved data
 - Steer model to output content in a specific style, tone, or format
 - Improve the accuracy when you look up information
 - Reduce the length of your prompt
-- Teach new skills (i.e. natural language to code)
+- Teach new skills (that is, natural language to code)
 
-If you identify cost as your primary motivator, proceed with caution. Fine-tuning might reduce costs for certain use cases by shortening prompts or allowing you to use a smaller model. But there may be a higher upfront cost to training, and you have to pay for hosting your own custom model. 
+If you identify cost as your primary motivator, proceed with caution. Fine-tuning might reduce costs for certain use cases by shortening prompts or allowing you to use a smaller model. But there might be a higher upfront cost to training, and you have to pay for hosting your own custom model. 
 
 ### Steps to fine-tune a model
 Here are the general steps to fine-tune a model:
