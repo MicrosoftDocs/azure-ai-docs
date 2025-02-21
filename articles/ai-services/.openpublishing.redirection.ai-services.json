@@ -781,6 +781,36 @@
       "redirect_document_id": true
     },
     {
+      "source_path_from_root": "/articles/ai-services/speech-service/windows-voice-assistants-overview.md",
+      "redirect_url": "/windows/apps/design/input/speech-interactions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-windows-voice-assistants-get-started.md",
+      "redirect_url": "/windows/apps/design/input/speech-interactions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/windows-voice-assistants-implementation-guide.md",
+      "redirect_url": "/windows/apps/design/input/speech-interactions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/windows-voice-assistants-automatic-enablement-guidelines.md",
+      "redirect_url": "/windows/apps/design/input/speech-interactions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/windows-voice-assistants-best-practices.md",
+      "redirect_url": "/windows/apps/design/input/speech-interactions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/windows-voice-assistants-faq.yml",
+      "redirect_url": "/windows/apps/design/input/speech-interactions",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/qnamaker/how-to/migrate-to-openai.md",
       "redirect_url": "/azure/ai-services/qnamaker/overview/overview",
       "redirect_document_id": true
