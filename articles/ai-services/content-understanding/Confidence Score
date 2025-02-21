@@ -1,3 +1,17 @@
+---
+title: Understanding Confidence Scores in Azure AI Content Understanding    
+titleSuffix: Azure AI services
+description: Learn about confidence score use-cases, and tips to improve.
+author: admaheshwari
+ms.author: lajanuar
+manager: nitinme
+ms.service: azure-ai-content-understanding
+ms.topic: overview
+ms.date: 02/20/2025
+ms.custom: ignite-2024-understanding-release
+
+#customer intent: As a user, I want to learn more about Content Understanding confidence scores. 
+---
 # Confidence Scores in Azure AI Content Understanding
 Understanding Confidence Scores
 What are confidence scores?
@@ -20,9 +34,7 @@ It can improved accuracy and reliability of the predictions, reduced errors, and
 How can customers access confidence score in CU?
 For every field extraction, confidence score is listed as part of the field extraction output. You can also check confidence score as part of your JSON output under “confidence”
  
- 
-
-Tips to improve confidence score
+ Tips to improve confidence score
 1.	Correcting an expected output so that the model can understand the definition better.  Example: Here we can see the confidence score is 12%, to improve confidence score, we can go to label data, select auto label which will give us predicted field labels. Now we can correct our definition and it will show corrected field label. Test the analyzer again for better confidence score. Here it jumped to 98%. Confidence improvement will vary as per the complexity and nature of document. 
  
  
