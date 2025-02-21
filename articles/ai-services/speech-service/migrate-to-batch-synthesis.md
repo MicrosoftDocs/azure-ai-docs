@@ -6,7 +6,7 @@ author: eric-urban
 ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: reference
+ms.topic: concept-article
 ms.date: 9/20/2024
 ms.reviewer: heikora
 ms.devlang: csharp

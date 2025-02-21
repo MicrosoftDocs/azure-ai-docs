@@ -258,9 +258,7 @@ Azure AI Speech supports OpenAI's Whisper model by using the batch transcription
 To use a Whisper model for batch transcription, you need to set the `model` property. Whisper is a display-only model, so the lexical field isn't populated in the response.
 
 > [!IMPORTANT]
-> For Whisper models, you should always use [version 3.2](./migrate-v3-1-to-v3-2.md) of the speech to text API.
->
-> Batch transcription using Whisper models is available in the following regions: Australia East, East US, North Central US, South Central US, Southeast Asia, UK South, and West Europe.
+> Batch transcription using Whisper models is available in the following regions: Australia East, East US, Japan East, North Central US, South Central US, Southeast Asia, UK South, and West Europe.
 
 ::: zone pivot="rest-api"
 You can make a [Models_ListBaseModels](/rest/api/speechtotext/models/list-base-models) request to get available base models for all locales.
@@ -280,7 +278,7 @@ curl -v -X GET "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/mod
 ::: zone-end
 
 ::: zone pivot="speech-cli"
-Make sure that you set the [configuration variables](spx-basics.md#create-a-resource-configuration) for a Speech resource in one of the supported regions. You can run the `spx csr list --base` command to get available base models for all locales.
+Make sure that you set the [configuration variables](spx-basics.md#create-a-resource-configuration) for an AI Services resource for Speech in one of the supported regions. You can run the `spx csr list --base` command to get available base models for all locales.
 
 ```azurecli
 spx csr list --base --api-version v3.2

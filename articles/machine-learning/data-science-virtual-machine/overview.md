@@ -30,7 +30,7 @@ Additionally, we offer Azure DSVM for PyTorch - an Ubuntu 20.04 image from Azure
 - MSCCL​
 - ORTMoE​
 - Fairscale​
-- Nvidia Apex​
+- NVIDIA Apex​
 - An up-to-date stack with the latest compatible versions of Ubuntu, Python, PyTorch, and CUDA
 
 ## Comparison with Azure Machine Learning

@@ -23,7 +23,7 @@ Keep in mind the following points:
 - Keys created for a region are valid only in that region. If you attempt to use them with other regions, you get authentication errors.
 
 > [!NOTE]
-> Speech service doesn't store or process your data outside the region of your Speech resource. The data is only stored or processed in the region where the resource is created. For example, if you create a Speech resource in the `westus` region, the data is only in the `westus` region.
+> Speech service doesn't store or process your data outside the region of your Speech resource. The data is only stored or processed in the region where the resource is created. For example, if you create an AI Services resource for Speech in the `westus` region, the data is only in the `westus` region.
 
 ## Regions
 
@@ -93,7 +93,7 @@ The regions in these tables support most of the core features of the Speech serv
 | switzerlandnorth   |  | ✅ |  |
 | switzerlandwest    |  | ✅ |  |
 | uaenorth           |  | ✅ |  |
-| uksouth            |  | ✅ | ✅ |
+| uksouth            | ✅ | ✅ | ✅ |
 | westcentralus      |  | ✅ |  |
 | westeurope         | ✅ | ✅ | ✅ |
 | westus             | ✅ | ✅ |  |
@@ -111,7 +111,7 @@ The regions in these tables support most of the core features of the Speech serv
 | canadacentral      | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |  |
 | centralindia       | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
 | centralus          | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| eastasia           | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
+| eastasia           | ✅ | ✅ |  |  | ✅ |  |  | ✅ |  |  |  |
 | eastus             | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ |  |  |  |
 | eastus2            | ✅ | ✅ |  |  | ✅ | ✅ |  |  | ✅ | ✅ |  |
 | francecentral      | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
@@ -134,7 +134,7 @@ The regions in these tables support most of the core features of the Speech serv
 | westcentralus      | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
 | westeurope         | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | westus             | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| westus2            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ |
+| westus2            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | westus3            | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
 
 # [Speech translation](#tab/speech-translation)
@@ -208,7 +208,7 @@ The regions in these tables support most of the core features of the Speech serv
 | westus3            |  |
 
 > [!NOTE]
-> The [Speech SDK](speech-sdk.md) supports intent recognition through [Direct Line Speech](./direct-line-speech.md).
+> The [Speech SDK](speech-sdk.md) supports intent recognition through Direct Line Speech.
 
 
 # [Keyword recognition](#tab/keyword-recognition)
@@ -283,7 +283,7 @@ The regions in these tables support most of the core features of the Speech serv
 | westus3            | ✅ | ✅ |  |
 
 > [!NOTE]
-> The [Speech SDK](speech-sdk.md) supports voice assistant capabilities through [Direct Line Speech](./direct-line-speech.md).
+> The [Speech SDK](speech-sdk.md) supports voice assistant capabilities through Direct Line Speech.
 
 ---
 

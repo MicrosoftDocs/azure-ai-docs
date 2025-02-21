@@ -125,10 +125,10 @@ You can use any of the supported SDKs to get predictions out from the endpoint. 
 
 * OpenAI SDK
 * Azure OpenAI SDK
-* Azure AI Inference SDK
-* Azure AI Foundry SDK
+* Azure AI Inference package
+* Azure AI Projects package
 
-See the [supported languages and SDKs](../supported-languages.md) section for more details and examples. The following example shows how to use the Azure AI model inference SDK with the newly deployed model:
+See the [supported languages and SDKs](../supported-languages.md) section for more details and examples. The following example shows how to use the Azure AI Inference package with the newly deployed model:
 
 [!INCLUDE [code-create-chat-client](../includes/code-create-chat-client.md)]
 
@@ -141,7 +141,7 @@ Use the parameter `model="<deployment-name>` to route your request to this deplo
 
 ## Move from Serverless API Endpoints to Azure AI model inference
 
-Although you configured the project to use the Azure AI model inference, existing model deployments continue to exit within the project as Serverless API Endpoints. Those deployments aren't moved for you. Hence, you can progressively upgrade any existing code that reference previous model deployments. To start moving the model deployments, we recommend the following workflow:
+Although you configured the project to use the Azure AI model inference, existing model deployments continue to exist within the project as Serverless API Endpoints. Those deployments aren't moved for you. Hence, you can progressively upgrade any existing code that reference previous model deployments. To start moving the model deployments, we recommend the following workflow:
 
 1. Recreate the model deployment in Azure AI model inference. This model deployment is accessible under the **Azure AI model inference endpoint**.
 

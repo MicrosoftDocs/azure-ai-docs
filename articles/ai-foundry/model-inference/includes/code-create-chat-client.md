@@ -12,11 +12,8 @@ author: santiagxf
 Install the package `azure-ai-inference` using your package manager, like pip:
 
 ```bash
-pip install azure-ai-inference>=1.0.0b5
+pip install azure-ai-inference
 ```
-
-> [!WARNING]
-> Azure AI Services resource requires the version `azure-ai-inference>=1.0.0b5` for Python.
 
 Then, you can use the package to consume the model. The following example shows how to create a client to consume chat completions:
 
@@ -115,7 +112,7 @@ __Request__
 
 ```HTTP/1.1
 POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
-Authorization: Bearer <bearer-token>
+api-key: <api-key>
 Content-Type: application/json
 ```
 ---

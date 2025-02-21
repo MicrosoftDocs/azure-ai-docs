@@ -14,7 +14,7 @@ ms.author: eur
 
 To call the Speech service by using the Speech SDK, you need to create a [`SpeechConfig`](/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.speechconfig) instance. This class includes information about your subscription, like your speech key and associated region, endpoint, host, or authorization token.
 
-1. Create a Speech resource in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices). Get the Speech resource key and region.
+1. Create an AI Services resource for Speech in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices). Get the Speech resource key and region.
 1. Create a `SpeechConfig` instance by using the following code. Replace `YourSpeechKey` and `YourSpeechRegion` with your Speech resource key and region.
 
 ```Python
@@ -118,7 +118,7 @@ Now, create a callback to stop continuous recognition when `evt` is received. Ke
 def stop_cb(evt):
     print('CLOSING on {}'.format(evt))
     speech_recognizer.stop_continuous_recognition()
-    nonlocal done
+    global done
     done = True
 ```
 
@@ -199,5 +199,5 @@ speech_config.set_property(speechsdk.PropertyId.Speech_SegmentationStrategy, "Se
 Some of the limitations of semantic segmentation are as follows:
 - You need the Speech SDK version 1.41 or later to use semantic segmentation.
 - Semantic segmentation is only intended for use in [continuous recognition](#use-continuous-recognition). This includes scenarios such as dictation and captioning. It shouldn't be used in the single recognition mode or interactive scenarios. 
-- Semantic segmentation isn't available for all languages and locales. Currently, semantic segmentation is only available for English (en) locales such as en-US, en-GB, en-IN, and en-AU.
+- Semantic segmentation isn't available for all languages and locales. 
 - Semantic segmentation doesn't yet support confidence scores and NBest lists. As such, we don't recommend semantic segmentation if you're using confidence scores or NBest lists.

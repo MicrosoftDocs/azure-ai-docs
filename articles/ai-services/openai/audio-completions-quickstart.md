@@ -5,7 +5,7 @@ description: Walkthrough on how to get started with audio generation using Azure
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 1/21/2025
+ms.date: 2/6/2025
 author: eric-urban
 ms.author: eur
 ms.custom: references_regions
@@ -55,5 +55,5 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 ## Related content
 
-* Learn more about Azure OpenAI [deployment types](./how-to/deployment-types.md)
-* Learn more about Azure OpenAI [quotas and limits](quotas-limits.md)
+* Learn more about Azure OpenAI [deployment types](./how-to/deployment-types.md).
+* Learn more about Azure OpenAI [quotas and limits](quotas-limits.md).

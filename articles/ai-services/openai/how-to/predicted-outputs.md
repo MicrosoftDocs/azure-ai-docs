@@ -19,7 +19,6 @@ Predicted outputs can improve model response latency for chat completions calls 
 ## Model support
 
 - `gpt-4o-mini` version: `2024-07-18`
-- `gpt-4o` version: `2024-05-13`
 - `gpt-4o` version: `2024-08-06`
 - `gpt-4o` version: `2024-11-20`
 

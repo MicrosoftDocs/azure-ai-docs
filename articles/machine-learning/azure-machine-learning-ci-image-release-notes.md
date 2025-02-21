@@ -36,7 +36,7 @@ gnomeshell: removed
 
 ml: '2.32.4'
 
-Nvidia Driver:  `535.216.03`
+NVIDIA Driver:  `535.216.03`
 
 `CUDA`: `12.2`
 
@@ -50,7 +50,7 @@ SDK Version: `1.57.0`
 
 Python: `3.10.11`
 
-Nvidia Driver:  `535.183.06`
+NVIDIA Driver:  `535.183.06`
 
 `CUDA`: `12.2`
 
@@ -88,7 +88,7 @@ python3-jupyter-core: `4.6.3-3`
 
 libzmq5: `4.3.2-2ubuntu1` 
 
-Tensorflow: `2.17.0`
+TensorFlow: `2.17.0`
 
 python3.8, python3.8-minimal: `3.8.10-0`
 
@@ -136,7 +136,7 @@ Ray: `2.31.0`
 
 Nvidia-docker2
 
-Tensorflow: `2.15.0`
+TensorFlow: `2.15.0`
 
 Pandas: `1.3.5`
 
@@ -223,7 +223,7 @@ Python: `3.9`
 
 CUDnn==`9.1.1`
 
-Nvidia Driver: `535.171.04`
+NVIDIA Driver: `535.171.04`
 
 PyTorch: `1.13.1`
 
@@ -242,7 +242,7 @@ Version: `24.01.30`
 
 Main changes:
 
-- Enable Tensorflow in GPU compute to detect GPU device.
+- Enable TensorFlow in GPU compute to detect GPU device.
 
 Main environment specific updates:
 

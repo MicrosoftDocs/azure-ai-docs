@@ -6,14 +6,14 @@ description: Learn how to use blocklists with Azure OpenAI Service
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 12/05/2024
+ms.date: 02/20/2025
 author: PatrickFarley
 ms.author: pafarley
 ---
 
 # Use a blocklist with Azure OpenAI
 
-The configurable content filters are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. 
+The [configurable content filters](/azure/ai-services/openai/how-to/content-filters) available in Azure OpenAI are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom blocklists.
 
 ## Prerequisites
 
@@ -63,7 +63,7 @@ The response code should be `201` (created a new list) or `200` (updated an exis
 
 ### Apply a blocklist to a content filter
 
-If you haven't yet created a content filter, you can do so in Azure AI Foundry. See [Content filtering](/azure/ai-services/openai/how-to/content-filters#create-a-content-filter-in-azure-ai-foundry).
+If you haven't yet created a content filter, you can do so in [Azure AI Foundry](https://ai.azure.com/). See [Content filtering](/azure/ai-services/openai/how-to/content-filters#create-a-content-filter-in-azure-ai-foundry).
 
 To apply a **completion** blocklist to a content filter, use the following cURL command: 
 
@@ -178,7 +178,7 @@ In the below example, a GPT-35-Turbo deployment with a blocklist is blocking the
 } 
 ```
 
-If the completion itself is blocked, the response returns `200`, as the completion only cuts off when the blocklist content is matched. The annotations show that a blocklist was matched. 
+If the completion itself is blocked, the response returns `200`, as the completion only cuts off when the blocklist content is matched. The annotations show that a blocklist item was matched. 
 
 ```json
 { 
@@ -257,7 +257,7 @@ If the completion itself is blocked, the response returns `200`, as the completi
 
 ---
 
-## Next steps
+## Related content
 
 - Learn more about Responsible AI practices for Azure OpenAI: [Overview of Responsible AI practices for Azure OpenAI models](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext). 
 

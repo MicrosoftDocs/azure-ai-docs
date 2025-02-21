@@ -7,7 +7,7 @@ ms.author: mbullwin
 ms.service: azure-ai-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 07/11/2024
+ms.date: 01/31/2025
 manager: nitinme
 ---
 

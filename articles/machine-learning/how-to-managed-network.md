@@ -1091,6 +1091,9 @@ For more information, see [Configure private link](how-to-configure-private-link
 
 ## Private endpoints
 
+> [!IMPORTANT]
+> As of March 31st 2025, the Azure AI Enterprise Network Connection Approver role must be assigned to the Azure Machine Learning workspace's managed identity to approve private endpoints to securely access your Azure resources from the managed virtual network. This does not impact existing resources with approved private endpoints as the role is correctly assigned by the service. For new resources, please ensure the role is assigned to the workspace's managed identity. For Azure Data Factory, Azure Databricks, and Azure Function Apps, the Contributor role should instead be assigned to your workspace's managed identity. This role assignment is applicable to both User-assigned identity and System-assigned identity workspaces. 
+
 Private endpoints are currently supported for the following Azure services:
 
 * Azure Machine Learning
@@ -1175,7 +1178,8 @@ The Azure Machine Learning managed virtual network feature is free. However, you
 
 * Once you enable managed virtual network isolation of your workspace (either allow internet outbound or allow only approved outbound), you can't disable it.
 * Managed virtual network uses private endpoint connection to access your private resources. You can't have a private endpoint and a service endpoint at the same time for your Azure resources, such as a storage account. We recommend using private endpoints in all scenarios.
-* The managed virtual network is deleted when the workspace is deleted. When deleting Azure Machine Learning resources in your Azure subscription, disable any resource locks or locks which prevent deletion of resources you created, or were created by Microsoft for the managed virtual network.
+* The managed virtual network is deleted when the workspace is deleted.
+* Make sure there are no __scope locks__ on the Azure Machine Learning resources and resource group. Internal operations related to managed virtual network might be blocked.
 * Data exfiltration protection is automatically enabled for the only approved outbound mode. If you add other outbound rules, such as to FQDNs, Microsoft can't guarantee that you're protected from data exfiltration to those outbound destinations.
 * Creating a compute cluster in a different region than the workspace isn't supported when using a managed virtual network.
 * Kubernetes and attached VMs aren't supported in an Azure Machine Learning managed virtual network.

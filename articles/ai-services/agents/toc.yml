@@ -4,54 +4,54 @@ items:
 - name: Overview
   expanded: true
   items:
-    - name: What is Azure AI Agent Service?
-      href: overview.md
+  - name: What is Azure AI Agent Service (Preview)?
+    href: overview.md
+  - name: What's new
+    href: ./whats-new.md
+  - name: FAQ
+    href: faq.yml
+- name: Getting started
+  expanded: true
+  items:
+    - name: Quickstart
+      href: quickstart.md
     - name: Quotas and limits
       href: quotas-limits.md
     - name: Model and region support
       href: ./concepts/model-region-support.md
     - name: Pricing
       href: https://azure.microsoft.com/pricing/details/ai-studio/
-    - name: What's new
-      href: ./whats-new.md
-    - name: FAQ
-      href: faq.yml
-- name: Quickstart
-  href: quickstart.md
 - name: Concepts
-  items:
-    - name: Agents
-      href: concepts/agents.md
-    - name: Tracing with Application Insights
-      href: concepts/tracing.md
-- name: How-to
+  expanded: true
   items:
     - name: Tools
       items:
-      - name: Overview
-        href: how-to/tools/overview.md
-      - name: Knowledge tools
-        items:
-        - name: Grounding with Bing Search
-          href: how-to/tools/bing-grounding.md
-        - name: File search
-          href: how-to/tools/file-search.md
-        - name: Azure AI Search
-          href: how-to/tools/azure-ai-search.md 
-      - name: Action tools
-        items:
-        - name: Function calling
-          href: how-to/tools/function-calling.md
-        - name: Code interpreter
-          href: how-to/tools/code-interpreter.md
-        - name: Use OpenAPI defined tools
-          href: how-to/tools/openapi-spec.md
-        - name: Azure Functions
-          href: how-to/tools/azure-functions.md
-    - name: Content filtering
-      href: ../openai/how-to/content-filters.md?context=/azure/ai-services/agents/context/context
-    - name: Use your own resources
-      href: how-to/use-your-own-resources.md
+        - name: Knowledge tools
+          items:
+          - name: Grounding with Bing Search
+            href: how-to/tools/bing-grounding.md
+          - name: File search
+            href: how-to/tools/file-search.md
+          - name: Azure AI Search
+            href: how-to/tools/azure-ai-search.md 
+        - name: Action tools
+          items:
+          - name: Function calling
+            href: how-to/tools/function-calling.md
+          - name: Code interpreter
+            href: how-to/tools/code-interpreter.md
+          - name: Use OpenAPI defined tools
+            href: how-to/tools/openapi-spec.md
+          - name: Azure Functions
+            href: how-to/tools/azure-functions.md
+    - name: Enterprise features
+      items: 
+        - name: Use your own resources
+          href: how-to/use-your-own-resources.md
+        - name: Tracing with Application Insights
+          href: concepts/tracing.md
+        - name: Content filtering
+          href: ../openai/how-to/content-filters.md?context=/azure/ai-services/agents/context/context
 - name: Responsible AI
   items:
     - name: Transparency note
@@ -68,6 +68,8 @@ items:
           href: /dotnet/api/overview/azure/ai.projects-readme?context=/azure/ai-services/agents/context/context
         - name: Python
           href: /python/api/overview/azure/ai-projects-readme?context=/azure/ai-services/agents/context/context
+        - name: JavaScript
+          href: /javascript/api/@azure/ai-projects/?context=/azure/ai-services/agents/context/context
       - name: OpenAI SDK
         items:
         - name: C#
@@ -78,9 +80,5 @@ items:
   items: 
     - name: Support and help options
       href: ../cognitive-services-support-options.md?context=/azure/ai-services/agents/context/context
-    - name: Region support
-      href: https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services
     - name: Terms of use
       href: https://www.microsoft.com/licensing/terms/productoffering/MicrosoftAzure/MCA#ServiceSpecificTerms
-    - name: Azure compliance offerings
-      href: https://azure.microsoft.com/resources/microsoft-azure-compliance-offerings/

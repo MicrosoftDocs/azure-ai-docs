@@ -48,7 +48,6 @@ Follow these steps to configure Microsoft Entra ID for inference:
 
 Notice that key-based access is still possible for users that already have keys available to them. If you want to revoke the keys, in the Azure portal, on the left navigation, select **Resource Management** > **Keys and Endpoints** > **Regenerate Key1** and **Regenerate Key2**.
 
-
 ## Use Microsoft Entra ID in your code
 
 Once you configured Microsoft Entra ID in your resource, you need to update your code to use it when consuming the inference endpoint. The following example shows how to use a chat completions model:
@@ -56,6 +55,10 @@ Once you configured Microsoft Entra ID in your resource, you need to update your
 [!INCLUDE [code](../code-create-chat-client-entra.md)]
 
 [!INCLUDE [about-credentials](about-credentials.md)]
+
+## Troubleshooting
+
+[!INCLUDE [troubleshooting](troubleshooting.md)]
 
 ## Use Microsoft Entra ID in your project
 
@@ -78,7 +81,6 @@ To change this behavior, you have to update the connections from your projects t
 6. Select **Update**.
 
 7. Your connection is configured to work with Microsoft Entra ID now.
-
 
 ## Disable key-based authentication in the resource
 

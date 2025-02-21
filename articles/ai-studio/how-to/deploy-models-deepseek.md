@@ -5,7 +5,7 @@ description: Learn how to use DeepSeek-R1 reasoning model with Azure AI Foundry.
 manager: scottpolly
 author: msakande
 reviewer: santiagxf
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 01/29/2025
 ms.author: mopeakande
@@ -21,6 +21,7 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 In this article, you learn about DeepSeek-R1 and how to use them.
 DeepSeek-R1 excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks. It features 671B total parameters with 37B active parameters, and 128k context length.
 
+[!INCLUDE [models-preview](../includes/models-preview.md)]
 
 
 ::: zone pivot="programming-language-python"
@@ -240,7 +241,7 @@ print_stream(result)
 
 ### Apply content safety
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
 
@@ -268,8 +269,8 @@ except HttpResponseError as ex:
     raise
 ```
 
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+[!INCLUDE [content-safety-serverless-apis-note](../includes/content-safety-serverless-apis-note.md)]
+
 
 ::: zone-end
 
@@ -507,7 +508,7 @@ for await (const event of sses) {
 
 ### Apply content safety
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
 
@@ -541,8 +542,8 @@ catch (error) {
 }
 ```
 
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+[!INCLUDE [content-safety-serverless-apis-note](../includes/content-safety-serverless-apis-note.md)]
+
 
 ::: zone-end
 
@@ -800,7 +801,7 @@ StreamMessageAsync(client).GetAwaiter().GetResult();
 
 ### Apply content safety
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
 
@@ -834,8 +835,8 @@ catch (RequestFailedException ex)
 }
 ```
 
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+[!INCLUDE [content-safety-serverless-apis-note](../includes/content-safety-serverless-apis-note.md)]
+
 
 ::: zone-end
 
@@ -1086,7 +1087,7 @@ The last message in the stream has `finish_reason` set, indicating the reason fo
 
 ### Apply content safety
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
 
@@ -1120,8 +1121,8 @@ The following example shows how to handle events when the model detects harmful 
 }
 ```
 
-> [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+[!INCLUDE [content-safety-serverless-apis-note](../includes/content-safety-serverless-apis-note.md)]
+
 
 ::: zone-end
 
@@ -1142,7 +1143,7 @@ Quota is managed per deployment. Each deployment has a rate limit of 200,000 tok
 
 ## Related content
 
-
+* [Explore DeepSeek-related Azure samples in various languages](https://github.com/azure-samples/deepseek)
 * [Azure AI Model Inference API](../reference/reference-model-inference-api.md)
 * [Deploy models as serverless APIs](deploy-models-serverless.md)
 * [Consume serverless API endpoints from a different Azure AI Studio project or hub](deploy-models-serverless-connect.md)

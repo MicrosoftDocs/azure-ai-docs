@@ -3,13 +3,13 @@ title: "Tutorial: Deploy an enterprise chat web app in the Azure AI Foundry port
 titleSuffix: Azure AI Foundry
 description: Use this article to deploy an enterprise chat web app in the Azure AI Foundry portal playground.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
 ms.topic: tutorial
-ms.date: 12/27/2024
+ms.date: 02/13/2025
 ms.reviewer: tgokal
 ms.author: sgilley
 author: sdgilley
@@ -41,7 +41,7 @@ The steps in this tutorial are:
 
 - A local copy of product data. The [Azure-Samples/rag-data-openai-python-promptflow repository on GitHub](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/) contains sample retail product information that's relevant for this tutorial scenario. Specifically, the `product_info_11.md` file contains product information about the TrailWalker hiking shoes that's relevant for this tutorial example. [Download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/raw/refs/heads/main/tutorial/data/product-info.zip) to your local machine.
 
-- A **Microsoft.Web** resource provider registered in the selected subscription, to be able to deploy to a web app. For more information on registering a resource provide, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1).
+- A **Microsoft.Web** resource provider registered in the selected subscription, to be able to deploy to a web app. For more information on registering a resource provider, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1).
 
 - Necessary permissions to add role assignments in your Azure subscription. Granting permissions by role assignment is only allowed by the Owner of the specific Azure resources.
 
@@ -207,6 +207,7 @@ You're almost there. Now you can test the web app.
 1. If you changed settings, wait 10 minutes or so for the authentication settings to take effect.
 1. Return to the browser tab containing the chat playground page in the Azure AI Foundry portal.
 1. Select **Launch** to launch the deployed web app. If prompted, accept the permissions request.
+1. If you don't see **Launch** in the playground, select **Web apps** from the left pane, then select your app from the list to launch it.
 
     *If the authentication settings haven't yet taken effect, close the browser tab for your web app and return to the chat playground in the Azure AI Foundry portal. Then wait a little longer and try again.*
 

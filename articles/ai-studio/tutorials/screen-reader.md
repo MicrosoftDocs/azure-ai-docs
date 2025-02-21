@@ -3,7 +3,7 @@ title: Get started using Azure AI Foundry with a screen reader
 titleSuffix: Azure AI Foundry
 description: This quickstart guides you in how to get oriented and navigate Azure AI Foundry with a screen reader.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024

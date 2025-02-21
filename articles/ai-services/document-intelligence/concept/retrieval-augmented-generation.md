@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 02/07/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.1.0'
 ---
@@ -119,7 +119,6 @@ If you're looking for a specific section in a document, you can use semantic chu
 
 ```python
 
-# Using SDK targeting 2024-11-30 (GA), make sure your resource is in one of these regions: East US, West US2, West Europe
 # pip install azure-ai-documentintelligence==1.0.0b1
 # pip install langchain langchain-community azure-ai-documentintelligence
 

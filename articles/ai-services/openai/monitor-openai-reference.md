@@ -1,7 +1,7 @@
 ---
 title: Monitoring data reference for Azure OpenAI
 description: This article contains important reference material you need when you monitor Azure OpenAI Service by using Azure Monitor.
-ms.date: 08/20/2024
+ms.date: 02/20/2025
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: reference
 author: mrbullwinkle
@@ -31,10 +31,9 @@ Here are the most important metrics we think you should monitor for Azure OpenAI
 - Prompt Token Cache Match Rate
 - Time to Response
 - Time Between Tokens
-
 - Time to Last Byte
-
-- Normalized Time to First Byte 
+- Normalized Time to First Byte
+- Tokens per Second
 
 You can also monitor Content Safety metrics that are used by other Azure AI services. 
 - Blocked Volume

@@ -3,7 +3,7 @@ title: How to configure a managed network for Azure AI Foundry hubs
 titleSuffix: Azure AI Foundry
 description: Learn how to configure a managed network for Azure AI Foundry hubs.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom: ignite-2023, build-2024, devx-track-azurecli, ignite-2024
 ms.topic: how-to
 ms.date: 11/19/2024
@@ -15,7 +15,7 @@ zone_pivot_groups: azure-ai-studio-sdk-cli
 
 # How to configure a managed network for Azure AI Foundry hubs
 
-We have two network isolation aspects. One is the network isolation to access an Azure AI Foundry hub. Another is the network isolation of computing resources for both your hub and project (such as compute instance, serverless and managed online endpoint.) This document explains the latter highlighted in the diagram. You can use hub built-in network isolation to protect your computing resources.
+We have two network isolation aspects. One is the network isolation to access an [Azure AI Foundry](https://ai.azure.com) hub. Another is the network isolation of computing resources for both your hub and project (such as compute instance, serverless and managed online endpoint.) This document explains the latter highlighted in the diagram. You can use hub built-in network isolation to protect your computing resources.
 
 :::image type="content" source="../media/how-to/network/azure-ai-network-outbound.svg" alt-text="Diagram of hub network isolation." lightbox="../media/how-to/network/azure-ai-network-outbound.png":::
 
@@ -135,13 +135,14 @@ Before following the steps in this article, make sure you have the following pre
 
 ## Limitations
 
-* Azure AI Foundry currently doesn't support bringing your own virtual network, it only supports managed virtual network isolation.
+* Azure AI Foundry supports managed virtual network isolation for securing your compute resources. Azure AI Foundry does not support bring your own virtual network for securing compute resources. Please note bring your own virtual network for securing computes is different than your Azure virtual network that is required to access Azure AI Foundry from your on-premises network. 
 * Once you enable managed virtual network isolation of your Azure AI, you can't disable it.
 * Managed virtual network uses private endpoint connection to access your private resources. You can't have a private endpoint and a service endpoint at the same time for your Azure resources, such as a storage account. We recommend using private endpoints in all scenarios.
 * The managed virtual network is deleted when the Azure AI is deleted. 
 * Data exfiltration protection is automatically enabled for the only approved outbound mode. If you add other outbound rules, such as to FQDNs, Microsoft can't guarantee that you're protected from data exfiltration to those outbound destinations.
 * Using FQDN outbound rules increases the cost of the managed virtual network because FQDN rules use Azure Firewall. For more information, see [Pricing](#pricing).
 * FQDN outbound rules only support ports 80 and 443.
+* If you want to disable compute instance's Public IP, you must add a private endpoint to a hub.
 * When using a compute instance with a managed network, use the `az ml compute connect-ssh` command to connect to the compute using SSH.
 * If your managed network is configured to __allow only approved outbound__, you can't use an FQDN rule to access Azure Storage Accounts. You must use a private endpoint instead.
 
@@ -768,7 +769,7 @@ To allow installation of __Python packages for training and deployment__, add ou
 | `*.anaconda.org` | Used to get repo data. |
 | `pypi.org` | Used to list dependencies from the default index, if any, and the index isn't overwritten by user settings. If the index is overwritten, you must also allow `*.pythonhosted.org`. |
 | `pytorch.org`<br>`*.pytorch.org` | Used by some examples based on PyTorch. |
-| `*.tensorflow.org` | Used by some examples based on Tensorflow. |
+| `*.tensorflow.org` | Used by some examples based on TensorFlow. |
 
 ### Scenario: Use Visual Studio Code
 Visual Studio Code relies on specific hosts and ports to establish a remote connection.
@@ -844,6 +845,9 @@ When you create a private endpoint, you provide the _resource type_ and _subreso
 When you create a private endpoint for hub dependency resources, such as Azure Storage, Azure Container Registry, and Azure Key Vault, the resource can be in a different Azure subscription. However, the resource must be in the same tenant as the hub.
 
 A private endpoint is automatically created for a connection if the target resource is an Azure resource listed previously. A valid target ID is expected for the private endpoint. A valid target ID for the connection can be the Azure Resource Manager ID of a parent resource. The target ID is also expected in the target of the connection or in `metadata.resourceid`. For more on connections, see [How to add a new connection in Azure AI Foundry portal](connections-add.md).
+
+> [!IMPORTANT]
+> As of March 31st 2025, the Azure AI Enterprise Network Connection Approver role must be assigned to the Azure AI Foundry hub's managed identity to approve private endpoints to securely access your Azure resources from the managed virtual network. This does not impact existing resources with approved private endpoints as the role is correctly assigned by the service. For new resources, please ensure the role is assigned to the hub's managed identity. For Azure Data Factory, Azure Databricks, and Azure Function Apps, the Contributor role should instead be assigned to your hub's managed identity. This role assignment is applicable to both User-assigned identity and System-assigned identity workspaces. 
 
 ## Select an Azure Firewall version for allowed only approved outbound (Preview)
 

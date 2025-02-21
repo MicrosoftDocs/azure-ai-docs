@@ -315,32 +315,8 @@ items:
       items:
         - name: Voice assistants overview
           href: voice-assistants.md
-        - name: Voice Assistants Samples (GitHub)
-          href: https://aka.ms/speech/va-samples
         - name: Custom commands
           href: custom-commands.md
-        - name: Direct Line Speech
-          items:
-            - name: Direct Line Speech overview
-              href: direct-line-speech.md
-            - name: Custom voice assistant quickstart
-              href: quickstarts/voice-assistants.md
-            - name: Voice enable your bot
-              href: tutorial-voice-enable-your-bot-speech-sdk.md
-        - name: Voice assistants on Windows
-          items:
-            - name: Voice assistants on Windows overview
-              href: windows-voice-assistants-overview.md
-            - name: 'Start developing your assistant with Windows'
-              href: how-to-windows-voice-assistants-get-started.md
-            - name: 'Enable voice activation'
-              href: windows-voice-assistants-implementation-guide.md
-            - name: 'Privacy requirements and guidelines'
-              href: windows-voice-assistants-automatic-enablement-guidelines.md
-            - name: 'Best practices for assistant experiences'
-              href: windows-voice-assistants-best-practices.md
-            - name: 'Samples and frequently asked questions'
-              href: windows-voice-assistants-faq.yml
     - name: Speaker recognition
       href: speaker-recognition-overview.md
 - name: Infrastructure & security

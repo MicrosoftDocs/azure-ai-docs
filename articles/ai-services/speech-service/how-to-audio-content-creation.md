@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/9/2024
+ms.date: 2/7/2025
 ms.author: eur
 ---
 
@@ -19,15 +19,13 @@ Build highly natural audio content for various scenarios, such as audiobooks, ne
 The tool is based on [Speech Synthesis Markup Language (SSML)](speech-synthesis-markup.md). It allows you to adjust text to speech output attributes in real-time or batch synthesis, such as voice characters, voice styles, speaking speed, pronunciation, and prosody.
 
 - No-code approach: You can use the Audio Content Creation tool for text to speech synthesis without writing any code. The output audio might be the final deliverable that you want. For example, you can use the output audio for a podcast or a video narration. 
-- Developer-friendly: You can listen to the output audio and adjust the SSML to improve speech synthesis. Then you can use the [Speech SDK](speech-sdk.md) or [Speech CLI](spx-basics.md) to integrate the SSML into your applications. For example, you can use the SSML for building a chat bot.
+- Developer-friendly: You can listen to the output audio and adjust the SSML to improve speech synthesis. Then you can use the [Speech SDK](speech-sdk.md) or [Speech CLI](spx-basics.md) to integrate the SSML into your applications. 
 
 You have easy access to a broad portfolio of [languages and voices](language-support.md?tabs=tts). These voices include state-of-the-art prebuilt neural voices and your custom neural voice, if you built one.
 
-To learn more, view the Audio Content Creation tutorial video [on YouTube](https://youtu.be/ygApYuOOG6w).
-
 ## Get started
 
-The Audio Content Creation tool in Speech Studio is free to access, but you pay for Speech service usage. To work with the tool, you need to sign in with an Azure account and create a Speech resource. For each Azure account, you have free monthly speech quotas, which include 0.5 million characters for prebuilt neural voices (referred to as *Neural* on the [pricing page](https://aka.ms/speech-pricing)). Usually, the monthly allotted amount is enough for a small content team of around 3-5 people. 
+The Audio Content Creation tool in Speech Studio is free to access, but you pay for Speech service usage. To work with the tool, you need to sign in with an Azure account and create a Speech resource. 
 
 The next sections cover how to create an Azure account and get a Speech resource.
 
@@ -39,12 +37,12 @@ To work with Audio Content Creation, you need a [Microsoft account](https://acco
 
 ### Step 2: Create a Speech resource
 
-After you sign up for the Azure account, you need to create a Speech resource in your Azure account to access Speech services. Create a Speech resource on the [Azure portal](https://portal.azure.com). For more information, see [Create an Azure AI services resource](../multi-service-resource.md?pivots=azportal).
+After you sign up for the Azure account, you need to create a Speech resource in your Azure account to access Speech services. Create a Speech resource on the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices). For more information, see [Create an Azure AI services resource](../multi-service-resource.md?pivots=azportal).
 
 It takes a few moments to deploy your new Speech resource. After the deployment is complete, you can start using the Audio Content Creation tool.
 
- > [!NOTE]
-   > If you plan to use neural voices, make sure that you create your resource in [a region that supports neural voices](regions.md#regions).
+> [!NOTE]
+> If you plan to use neural voices, make sure that you create your resource in [a region that supports neural voices](regions.md#regions).
 
 ### Step 3: Sign in to Audio Content Creation with your Azure account and Speech resource
 
@@ -52,15 +50,15 @@ It takes a few moments to deploy your new Speech resource. After the deployment 
     
 1. Select the Azure subscription and the Speech resource you want to work with, and then select **Use resource**. 
 
-   The next time you sign in to Audio Content Creation, you're linked directly to the audio work files under the current Speech resource. You can check your Azure subscription details and status in the [Azure portal](https://portal.azure.com/).  
-   
-   If you don't have an available Speech resource and you're the owner or admin of an Azure subscription, you can create a Speech resource in Speech Studio by selecting **Create a new resource**. 
-   
-   If you have a user role for a certain Azure subscription, you might not have permissions to create a new Speech resource. To get access, contact your admin. 
+The next time you sign in to Audio Content Creation, you're linked directly to the audio work files under the current Speech resource. You can check your Azure subscription details and status in the [Azure portal](https://portal.azure.com/).  
 
-   To switch your Speech resource at any time, select **Settings** at the top of the page.
+If you don't have an available Speech resource and you're the owner or admin of an Azure subscription, you can create a Speech resource in Speech Studio by selecting **Create a new resource**. 
 
-   To switch directories, select **Settings** or go to your profile. 
+If you have a user role for a certain Azure subscription, you might not have permissions to create a new Speech resource. To get access, contact your admin. 
+
+To switch your Speech resource at any time, select **Settings** at the top of the page.
+
+To switch directories, select **Settings** or go to your profile. 
 
 ## Use the tool
 
@@ -93,7 +91,6 @@ Each step in the preceding diagram is described here:
 ## Create an audio tuning file
 
 You can get your content into the Audio Content Creation tool in either of two ways:
-
 
 ### Option 1: Create a new audio tuning file
 
@@ -179,8 +176,10 @@ To add users to a Speech resource so that they can use Audio Content Creation, d
 
 1. In the [Azure portal](https://portal.azure.com/), select **All services** from the left navigation pane, and then search for **Azure AI services** or **Speech**.
 1. Select your Speech resource.
+
    > [!NOTE]
    > You can also set up Azure RBAC for whole resource groups, subscriptions, or management groups. Do this by selecting the desired scope level and then navigating to the desired item (for example, selecting **Resource groups** and then selecting your resource group).
+
 1. Select **Access control (IAM)** on the left navigation pane.
 1. Select **Add** > **Add role assignment**.
 1. On the **Role** tab on the next screen, select a role (such as **Owner**) that you want to add.

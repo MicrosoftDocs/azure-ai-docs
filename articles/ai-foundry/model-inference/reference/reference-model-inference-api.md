@@ -3,9 +3,9 @@ title: Azure AI Model Inference API
 titleSuffix: Azure AI Foundry
 description: Learn about how to use the Azure AI Model Inference API
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: conceptual
-ms.date: 5/21/2024
+ms.date: 01/31/2025
 ms.reviewer: fasantia 
 reviewer: santiagxf
 ms.author: mopeakande
@@ -49,7 +49,8 @@ Models deployed to [serverless API endpoints](../../../ai-studio/how-to/deploy-m
 > * [Mistral-Large](../../../ai-studio/how-to/deploy-models-mistral.md)
 > * [Jais](../../../ai-studio/how-to/deploy-jais-models.md) family of models
 > * [Jamba](../../../ai-studio/how-to/deploy-models-jamba.md) family of models
-> * [Phi-3](../../../ai-studio/how-to/deploy-models-phi-3.md) family of models
+> * [Phi-3](../../../ai-studio/how-to/deploy-models-phi-3.md) and [Phi-4](../../../ai-studio/how-to/deploy-models-phi-4.md) family of models
+> * [DeepSeek-R1](../../../ai-studio/how-to/deploy-models-deepseek.md) family of models.
 
 Models deployed to [managed inference](../../../ai-studio/concepts/deployments-overview.md):
 

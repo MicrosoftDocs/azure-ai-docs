@@ -44,7 +44,7 @@ Training with plain text or structured text usually finishes within a few minute
 > 
 > Start with small sets of sample data that match the language, acoustics, and hardware where your model will be used. Small datasets of representative data can expose problems before you invest in gathering larger datasets for training. For sample custom speech data, see <a href="https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/sampledata/customspeech" target="_target">this GitHub repository</a>.
 
-If you train a custom model with audio data, choose a Speech resource region with dedicated hardware for training audio data. For more information, see footnotes in the [regions](regions.md#regions) table. In regions with dedicated hardware for custom speech training, the Speech service uses up to 100 hours of your audio training data, and can process about 10 hours of data per day. After the model is trained, you can copy the model to another region as needed with the [Models_CopyTo](/rest/api/speechtotext/models/copy-to) REST API.
+If you train a custom model with audio data, choose an AI Services resource for Speech region with dedicated hardware for training audio data. For more information, see footnotes in the [regions](regions.md#regions) table. In regions with dedicated hardware for custom speech training, the Speech service uses up to 100 hours of your audio training data, and can process about 10 hours of data per day. After the model is trained, you can copy the model to another region as needed with the [Models_CopyTo](/rest/api/speechtotext/models/copy-to) REST API.
 
 ## Consider datasets by scenario
 

@@ -68,6 +68,8 @@ AzureOpenAIClient azureClient = new(
 ChatClient chatClient = azureClient.GetChatClient("my-gpt-4o-mini-deployment");
 ```
 
+For more information about Azure OpenAI keyless authentication, see the "[Get started with the Azure OpenAI security building block](/azure/developer/ai/get-started-securing-your-ai-app?tabs=github-codespaces&pivots=dotnet)" QuickStart article. 
+
 # [API Key](#tab/dotnet-key)
 
 ```csharp

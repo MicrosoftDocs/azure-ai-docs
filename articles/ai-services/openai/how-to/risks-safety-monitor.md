@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley 
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 12/05/2024
+ms.date: 02/20/2025
 manager: nitinme
 ---
 
@@ -50,13 +50,13 @@ To use Potentially abusive user detection, you need:
 - A content filter configuration applied to your deployment.
 - You must be sending user ID information in your Chat Completion requests (see the _user_ parameter of the [Completions API](/azure/ai-services/openai/reference#completions), for example).
     > [!CAUTION]
-    > Use GUID strings to identify individual users. Do not include sensitive personal information in the "user" field.
+    > Use GUID strings to identify individual users. Do not include sensitive personal information in the _user_ field.
 - An Azure Data Explorer database set up to store the user analysis results (instructions below).
 
 ### Set up your Azure Data Explorer database
 
 In order to protect the data privacy of user information and manage the permission of the data, we support the option for our customers to bring their own storage to get the detailed potentially abusive user detection insights (including user GUID and statistics on harmful request by category) stored in a compliant way and with full control. Follow these steps to enable it:
-1. In Azure AI Foundry, navigate to the model deployment that you'd like to set up user abuse analysis with, and select **Add a data store**. 
+1. In [Azure AI Foundry](https://ai.azure.com/), navigate to the model deployment that you'd like to set up user abuse analysis with, and select **Add a data store**. 
 1. Fill in the required information and select **Save**. We recommend you create a new database to store the analysis results.
 1. After you connect the data store, take the following steps to grant permission to write analysis results to the connected database:
     1. Go to your Azure OpenAI resource's page in the Azure portal, and choose the **Identity** tab.
@@ -89,8 +89,9 @@ The potentially abusive user detection relies on the user information that custo
 
 Combine this data with enriched signals to validate whether the detected users are truly abusive or not. If they are, then take responsive action such as throttling or suspending the user to ensure the responsible use of your application.
 
-## Next steps
+## Next step
 
 Next, create or edit a content filter configuration in Azure AI Foundry.
 
-- [Configure content filters with Azure OpenAI Service](/azure/ai-services/openai/how-to/content-filters)
+> [!div class="nextstepaction"]
+> [Configure content filters with Azure OpenAI Service](/azure/ai-services/openai/how-to/content-filters)

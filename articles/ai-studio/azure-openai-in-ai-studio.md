@@ -4,9 +4,9 @@ titleSuffix: Azure AI Foundry
 description: Learn about using Azure OpenAI models in Azure AI Foundry portal, including when to use a project and when to use without a project.
 manager: scottpolly
 keywords: Azure AI services, cognitive, Azure OpenAI
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: overview
-ms.date: 11/04/2024
+ms.date: 02/13/2025
 ms.reviewer: shwinne
 ms.author: sgilley
 author: sdgilley

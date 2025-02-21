@@ -2,7 +2,7 @@
 title: Use Content Safety in Azure AI Foundry portal
 titleSuffix: Azure AI services
 description: Learn how to use the Content Safety try it out page in Azure AI Foundry portal to experiment with various content safety features such as text and image content, using adjustable thresholds to filter for inappropriate or harmful content.
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
@@ -14,7 +14,7 @@ ms.author: pafarley
 
 # Use Content Safety in Azure AI Foundry portal 
 
-Azure AI Foundry includes a Content Safety **try it out** page that lets you use the core detection models and other content safety features.
+[Azure AI Foundry](https://ai.azure.com) includes a Content Safety **try it out** page that lets you use the core detection models and other content safety features.
 
 ## Prerequisites 
 
