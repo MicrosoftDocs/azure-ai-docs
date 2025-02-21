@@ -9,7 +9,7 @@ ms.custom:
   - code01
 ms.topic: concept-article
 ms.date: 02/21/2025
-ms.reviewer: meerakurup
+ms.reviewer: keli19
 ms.author: sgilley
 author: sdgilley
 #customer intent: As a developer, I want to learn what it means to fine-tune a model.
