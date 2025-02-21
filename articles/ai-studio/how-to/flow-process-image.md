@@ -109,7 +109,7 @@ Assume you want to build a chatbot that can answer any questions about the image
     :::image type="content" source="../media/prompt-flow/how-to-process-image/gpt-4v-tool-in-chatflow.png" alt-text=" Screenshot of GPT-4V tool in chat flow." lightbox = "../media/prompt-flow/how-to-process-image/gpt-4v-tool-in-chatflow.png":::  
 
     In this example, `{{question}}` refers to the chat input, which is a list of texts and images.
-1. In *Outputs*, change the value of "answer" to the name of your vision tool's output, for example,`${gpt_vision.output}`.
+1. In *Outputs*, change the value of "answer" to the name of your vision tool's output, for example, `${gpt_vision.output}`.
     :::image type="content" source="../media/prompt-flow/how-to-process-image/chat-output-definition.png" alt-text="Screenshot of chat output type configuration." lightbox = "../media/prompt-flow/how-to-process-image/chat-output-definition.png":::  
 1. (Optional) You can add any custom logic to the flow to process the GPT-4V output. For example, you can add content safety tool to detect if the answer contains any inappropriate content, and return a final answer to the user.
     :::image type="content" source="../media/prompt-flow/how-to-process-image/chat-flow-postprocess.png" alt-text="Screenshot of processing gpt-4v output with content safety tool." lightbox = "../media/prompt-flow/how-to-process-image/chat-flow-postprocess.png":::
