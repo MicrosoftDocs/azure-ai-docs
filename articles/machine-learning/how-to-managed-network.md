@@ -826,14 +826,14 @@ The managed virtual network is automatically provisioned when you create a compu
 
 To reduce the wait time and avoid potential timeout errors, we recommend manually provisioning the managed network. Then wait until the provisioning completes before you create a compute instance.
 
-Alternatively, you can use the `provision_network_now` flag to provision the managed network as part of workspace creation. This flag is in preview.
+Alternatively, you can use the `provision_network_now` flag to provision the managed network as part of workspace creation.
 
 > [!NOTE]
 > To create an online deployment, you must manually provision the managed network, or create a compute instance first which will automatically provision it. 
 
 # [Azure CLI](#tab/azure-cli)
 
-The following example shows how to provision a managed virtual network during workspace creation. The `--provision-network-now` flag is in preview.
+The following example shows how to provision a managed virtual network during workspace creation.
     
 ```azurecli
 az ml workspace create -n myworkspace -g my_resource_group --managed-network AllowInternetOutbound --provision-network-now
@@ -856,7 +856,7 @@ az ml workspace show -n my_workspace_name -g my_resource_group --query managed_n
 
 # [Python SDK](#tab/python)
 
-To provision the managed network during workspace creation, set the `provision_network_now` flag to `True`. This flag is in preview.
+To provision the managed network during workspace creation, set the `provision_network_now` flag to `True`.
 
 ```python
 provision_network_now: True
@@ -883,7 +883,7 @@ print(ws.managed_network.status)
 
 # [Azure portal](#tab/portal)
 
-During workspace creation, select __Provision managed network proactively at creation__ to provision the managed network. Charges are incurred from network resources, such as private endpoints, once the virtual network is provisioned. This configuration option is only available during workspace creation, and is in preview.
+During workspace creation, select __Provision managed network proactively at creation__ to provision the managed network. Charges are incurred from network resources, such as private endpoints, once the virtual network is provisioned. This configuration option is only available during workspace creation.
 
 --- 
 
@@ -1122,7 +1122,7 @@ When you create a private endpoint for Azure Machine Learning dependency resourc
 > [!IMPORTANT]
 > When configuring private endpoints for an Azure Machine Learning managed VNet, the private endpoints are only created when created when the first _compute is created_ or when managed VNet provisioning is forced. For more information on forcing the managed VNet provisioning, see [Configure for serverless Spark jobs](#manually-provision-a-managed-vnet).
 
-## Select an Azure Firewall version for allowed only approved outbound (Preview)
+## Select an Azure Firewall version for allowed only approved outbound
 
 An Azure Firewall is deployed if an FQDN outbound rule is created while in the _allow only approved outbound_ mode. Charges for the Azure Firewall are included in your billing. By default, a __Standard__ version of AzureFirewall is created. Optionally, you can select to use a __Basic__ version. You can change the firewall version used as needed. To figure out which version is best for you, visit [Choose the right Azure Firewall version](/azure/firewall/choose-firewall-sku).
 
@@ -1169,7 +1169,7 @@ network = ManagedNetwork(isolation_mode=IsolationMode.ALLOW_INTERNET_OUTBOUND,
 The Azure Machine Learning managed virtual network feature is free. However, you're charged for the following resources that are used by the managed virtual network:
 
 * Azure Private Link - Private endpoints used to secure communications between the managed virtual network and Azure resources relies on Azure Private Link. For more information on pricing, see [Azure Private Link pricing](https://azure.microsoft.com/pricing/details/private-link/).
-* FQDN outbound rules - FQDN outbound rules are implemented using Azure Firewall. If you use outbound FQDN rules, charges for Azure Firewall are added to your billing. A standard version of Azure Firewall is used by default. For information on selecting the basic version, see [Select an Azure Firewall version](#select-an-azure-firewall-version-for-allowed-only-approved-outbound-preview).
+* FQDN outbound rules - FQDN outbound rules are implemented using Azure Firewall. If you use outbound FQDN rules, charges for Azure Firewall are added to your billing. A standard version of Azure Firewall is used by default. For information on selecting the basic version, see [Select an Azure Firewall version](#select-an-azure-firewall-version-for-allowed-only-approved-outbound).
 
     > [!IMPORTANT]
     > The firewall isn't created until you add an outbound FQDN rule. For more information on pricing, see [Azure Firewall pricing](https://azure.microsoft.com/pricing/details/azure-firewall/) and view prices for the _standard_ version.
