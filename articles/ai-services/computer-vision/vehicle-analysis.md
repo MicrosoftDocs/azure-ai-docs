@@ -7,7 +7,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 01/20/2024
+ms.date: 02/21/2025
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
@@ -663,6 +663,7 @@ The vehicle analysis container sends billing information to Azure, using a Visio
 
 Azure AI containers aren't licensed to run without being connected to the metering / billing endpoint. You must enable the containers to communicate billing information with the billing endpoint always. Azure AI containers don't send customer data, such as the video or image that's being analyzed, to Microsoft.
 
-## Next steps
+## Next step
 
-* Set up a [Spatial Analysis container](spatial-analysis-container.md)
+> [!div class="nextstepaction"]
+> [Set up a Spatial Analysis container](spatial-analysis-container.md)

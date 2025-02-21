@@ -7,7 +7,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: overview
-ms.date: 09/04/2024
+ms.date: 02/21/2025
 ms.author: pafarley
 keywords: content safety, Azure AI Content Safety, online content safety, content filtering software, content moderation service, content moderation
 ms.custom: references_regions, build-2023, build-2023-dataai
@@ -83,7 +83,7 @@ In Content Safety Studio, the following Azure AI Content Safety features are ava
 
 <a name='use-azure-active-directory-or-managed-identity-to-manage-access'></a>
 
-### Use Microsoft Entra ID or Managed Identity to manage access
+### Microsoft Entra ID or Managed Identity
 
 For enhanced security, you can use Microsoft Entra ID or Managed Identity (MI) to manage access to your resources.
 * Managed Identity is automatically enabled when you create a Content Safety resource.
@@ -91,15 +91,17 @@ For enhanced security, you can use Microsoft Entra ID or Managed Identity (MI) t
 
 ### Encryption of data at rest
 
+### Encryption
+
 Learn how Azure AI Content Safety handles the [encryption and decryption of your data](./how-to/encrypt-data-at-rest.md). Customer-managed keys (CMK), also known as Bring Your Own Key (BYOK), offer greater flexibility to create, rotate, disable, and revoke access controls. You can also audit the encryption keys used to protect your data.
 
 ## Pricing
 
-Currently, Azure AI Content Safety has an **F0** and **S0** pricing tier. See the Azure [pricing page](https://aka.ms/content-safety-pricing) for more information.
+Azure AI Content Safety has an **F0** and **S0** pricing tier. See the Azure [pricing page](https://aka.ms/content-safety-pricing) for more information.
 
 ## Service limits
 
-> [!CAUTION]
+> [!IMPORTANT]
 > **Deprecation Notice**
 >
 > As part of Content Safety versioning and lifecycle management, we are announcing the deprecation of certain Public Preview and GA versions of our service APIs. Following our deprecation policy:
