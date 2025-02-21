@@ -13,7 +13,7 @@ ms.reviewer: changliu2
 ms.author: lagayhar
 author: lgayhardt
 ---
-# Evaluate your Generative AI application remotely on the cloud
+# Evaluate your Generative AI application remotely on the cloud (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
