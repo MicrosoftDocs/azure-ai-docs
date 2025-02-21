@@ -36,11 +36,6 @@ For every field extraction, confidence score is listed as part of the field extr
  
  Tips to improve confidence score
 1.	Correcting an expected output so that the model can understand the definition better.  Example: Here we can see the confidence score is 12%, to improve confidence score, we can go to label data, select auto label which will give us predicted field labels. Now we can correct our definition and it will show corrected field label. Test the analyzer again for better confidence score. Here it jumped to 98%. Confidence improvement will vary as per the complexity and nature of document. 
- 
- 
-
- 
- 
 
 2.	Adding more samples and label them for different variation and templates the model may expect. 
 3.	Add documents that contains various input values for the schema you want to extract. 
