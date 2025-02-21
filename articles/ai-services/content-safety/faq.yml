@@ -93,7 +93,7 @@ sections:
       - question: |
           Can I access multiple models with a single API call? 
         answer: | 
-          We have developed an API to combine several classifications into a single API endpoint, enabling users to access both model outputs with a single task, but this API is in private preview. [Email us](mailto:contentsafetysupport@microsoft.com) to apply for access.
+          We have developed an API to combine several classifications into a single API endpoint, enabling users to access both model outputs with a single task, but this API is in preview. [Email us](mailto:contentsafetysupport@microsoft.com) to apply for access.
   - name: Dissatisfied cases
     questions:
       - question: |
