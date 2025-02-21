@@ -1,6 +1,16 @@
 {
   "redirections": [
     {
+      "source_path": "articles/genomics/frequently-asked-questions-genomics.yml",
+      "redirect_url": "/previous-versions/azure/genomics/frequently-asked-questions-genomics",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/genomics/index.yml",
+      "redirect_url": "/previous-versions/azure/genomics/index",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/genomics/business-continuity-genomics.md",
       "redirect_url": "/previous-versions/azure/genomics/business-continuity-genomics",
       "redirect_document_id": false
