@@ -1,24 +1,25 @@
 ---
 title: Fine-tuning in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
-description: This article introduces fine-tuning of models in Azure AI Foundry portal.
+description: This article explains what fine-tuning is and under what circumstances you should consider doing it.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - code01
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 02/21/2025
-ms.reviewer: sgilley
+ms.reviewer: meerakurup
 ms.author: sgilley
 author: sdgilley
+#customer intent: As a developer, I want to learn what it means to fine-tune a model.
 ---
 
 # Fine-tune models with Azure AI Foundry
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
-
 Fine-tuning customizes a pretrained AI model with additional training on a specific task or dataset to improve performance, add new skills, or enhance accuracy. The result is a new, optimized GenAI model based on the provided examples.
+
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Consider fine-tuning GenAI models to:
 - Scale and adapt to specific enterprise needs
@@ -67,14 +68,16 @@ Turning natural language into a query language is just one use case where you ca
 If you identify cost as your primary motivator, proceed with caution. Fine-tuning might reduce costs for certain use cases by shortening prompts or allowing you to use a smaller model. But there might be a higher upfront cost to training, and you have to pay for hosting your own custom model. 
 
 ### Steps to fine-tune a model
+
 Here are the general steps to fine-tune a model:
-1. Based on your use case, choose a model that supports your task
-2. Prepare and upload training data
-3. (Optional) Prepare and upload validation data
-4. (Optional) Configure task parameters
-5. Train your model. 
-6. Once completed, review metrics and evaluate model. If the results don't meet your benchmark, then go back to step 2.
-7. Use your fine-tuned model
+
+1. Choose a model that supports your task.
+1. Prepare and upload training data.
+1. (Optional) Prepare and upload validation data.
+1. (Optional) Configure task parameters.
+1. Train your model. 
+1. Once completed, review metrics and evaluate model. If the results don't meet your benchmark, then go back to step 2.
+1. Use your fine-tuned model.
 
 It's important to call out that fine-tuning is heavily dependent on the quality of data that you can provide. It's best practice to provide hundreds, if not thousands, of training examples to be successful and get your desired results.
 
@@ -88,7 +91,6 @@ Fine-tuning is available in specific Azure regions for some models that are depl
 For more information on fine-tuning using a managed compute (preview), see [Fine-tune models using managed compute (preview)](../how-to/fine-tune-managed-compute.md).
 
 For details about Azure OpenAI models that are available for fine-tuning, see the [Azure OpenAI Service models documentation](../../ai-services/openai/concepts/models.md#fine-tuning-models) or the [Azure OpenAI models table](#fine-tuning-azure-openai-models) later in this guide.
-
 
 For the Azure OpenAI  Service models that you can fine tune, supported regions for fine-tuning include North Central US, Sweden Central, and more.
 
