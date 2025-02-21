@@ -53,6 +53,9 @@ items:
     - name: Azure AI Foundry analyzer templates
       displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
       href: concepts/analyzer-templates.md
+    - name: Accuracy and confidence scores
+      displayName: accuracy, confidence, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+      href: concepts/accuracy-confidence.md  
 - name: Responsible AI
   items:
     - name: Transparency note
