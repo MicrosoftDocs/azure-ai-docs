@@ -33,13 +33,7 @@ You can also use:
 
 ## Before you start
 
-Some properties are fixed for the lifetime of the search service. Before creating your service, decide on the following:
-
-<!-- + [Service name](#name-your-service) becomes part of the URL endpoint. The name must be unique and follow naming rules.
-
-+ [Region](search-region-support.md) determines data residency and availability of certain features. For example, semantic ranker and Azure AI integration have region requirements. Choose a region that supports the features you need.
-
-+ [Service tier](search-sku-tier.md) determines infrastructure, service limits, and billing. Some features aren't available on lower or specialized tiers. -->
+Some properties are fixed for the lifetime of the search service. Before creating your service, decide on the following properties:
 
 | Property | Description |
 |--|--|
@@ -218,7 +212,7 @@ A second service isn't required for high availability. You achieve high availabi
 
 ## Add more services to your subscription
 
-Azure AI Search limits the [number of search services](search-limits-quotas-capacity.md#subscription-limits) you can initially create in a subscription. If you reach your limit, you can request more quota.
+Azure AI Search limits the [number of search services](search-limits-quotas-capacity.md#subscription-limits) you can initially create in a subscription. If you reach your limit, you can request more quotas.
 
 You must have Owner or Contributor permissions for the subscription to request quota. Depending on your region and data center capacity, you might be able to automatically request quota to add services to your subscription. If the request fails, reduce the number or file a support ticket. Expect a one-month turnaround for a large quota increase, such as more than 30 extra services.
 
@@ -238,13 +232,13 @@ To request more subscription quota:
 
     :::image type="content" source="media/search-create-service-portal/usage-filter.png" lightbox="media/search-create-service-portal/usage-filter.png" alt-text="Screenshot of the Usage filter for search services in your current subscription.":::
 
-1. Next to the tier and region that need more quota, select **Request adjustment** <img src=media/search-create-service-portal/request-adjustment-icon.png alt="Screenshot of the Request Adjustment icon, which is the outline of a pencil." width="14">.
+1. Next to the tier and region that need more quotas, select **Request adjustment** <img src=media/search-create-service-portal/request-adjustment-icon.png alt="Screenshot of the Request Adjustment icon, which is the outline of a pencil." width="14">.
 
 1. In **New Quota Request**, enter a new limit for your subscription quota. The new limit must be greater than your current limit. If regional capacity is constrained, your request won't be automatically approved, and an incident report will be generated on your behalf for investigation and resolution.
 
 1. Submit your request.
 
-1. Monitor notifications in the Azure portal for status updates on the new limit. Most requests are approved within 24 hours.
+1. Monitor notifications in the Azure portal for updates on the new limit. Most requests are approved within 24 hours.
 
 ## Next steps
 
