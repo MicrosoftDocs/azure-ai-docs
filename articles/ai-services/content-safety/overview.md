@@ -7,7 +7,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: overview
-ms.date: 09/04/2024
+ms.date: 02/21/2025
 ms.author: pafarley
 keywords: content safety, Azure AI Content Safety, online content safety, content filtering software, content moderation service, content moderation
 ms.custom: references_regions, build-2023, build-2023-dataai
@@ -83,7 +83,7 @@ In Content Safety Studio, the following Azure AI Content Safety features are ava
 
 <a name='use-azure-active-directory-or-managed-identity-to-manage-access'></a>
 
-### Use Microsoft Entra ID or Managed Identity to manage access
+### Microsoft Entra ID or Managed Identity
 
 For enhanced security, you can use Microsoft Entra ID or Managed Identity (MI) to manage access to your resources.
 * Managed Identity is automatically enabled when you create a Content Safety resource.
@@ -91,15 +91,23 @@ For enhanced security, you can use Microsoft Entra ID or Managed Identity (MI) t
 
 ### Encryption of data at rest
 
-Learn how Azure AI Content Safety handles the [encryption and decryption of your data](./how-to/encrypt-data-at-rest.md). Customer-managed keys (CMK), also known as Bring Your Own Key (BYOK), offer greater flexibility to create, rotate, disable, and revoke access controls. You can also audit the encryption keys used to protect your data.
+### Encryption
+
+Content Safety encryption protects your data at rest. It encrypts your data as it is written in our datacenters and automatically decrypts it when you access it.
+
+By default, data in Content Safety is encrypted using Microsoft Managed Keys (MMK). However, Content Safety supports both Microsoft Managed Keys (MMK) and Customer Managed Keys (CMK), also known as Bring Your Own Key (BYOK), for encryption. CMK offers greater flexibility to create, rotate, disable, and revoke access controls. You can also audit the encryption keys used to protect your data.
+
+When CMK is selected, users can choose CMK and have the ability to select either user-assigned managed identities (UMI) or system-assigned managed identities (SMI).
+
+Learn how Azure AI Content Safety handles the [encryption and decryption of your data](./how-to/encrypt-data-at-rest.md).
 
 ## Pricing
 
-Currently, Azure AI Content Safety has an **F0** and **S0** pricing tier. See the Azure [pricing page](https://aka.ms/content-safety-pricing) for more information.
+Azure AI Content Safety has an **F0** and **S0** pricing tier. See the Azure [pricing page](https://aka.ms/content-safety-pricing) for more information.
 
 ## Service limits
 
-> [!CAUTION]
+> [!IMPORTANT]
 > **Deprecation Notice**
 >
 > As part of Content Safety versioning and lifecycle management, we are announcing the deprecation of certain Public Preview and GA versions of our service APIs. Following our deprecation policy:
@@ -189,11 +197,7 @@ Content Safety features have query rate limits in requests-per-second (RPS) or r
 
 If you need a faster rate, please [contact us](mailto:contentsafetysupport@microsoft.com) to request it.
 
-### Encryption
 
-Content Safety encryption protects your data at rest. It encrypts your data as it is written in our datacenters and automatically decrypts it when you access it.
-
-By default, data in Content Safety is encrypted using Microsoft Managed Keys (MMK). However, Content Safety supports both Microsoft Managed Keys (MMK) and Customer Managed Keys (CMK) for encryption. When CMK is selected, users can choose CMK and have the ability to select either user-assigned managed identities (UMI) or system-assigned managed identities (SMI).
 
 
 
