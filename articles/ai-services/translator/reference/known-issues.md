@@ -9,11 +9,11 @@ ms.date: 02/20/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Translator Known Issues
+# Azure AI Translator known issues
 
 Azure AI Translator is updated regularly and we're continually improving and enhancing its features and capabilities. This page details known issues related to Azure AI Translator and provides steps to resolve them. Before submitting a support request, review the following list to see if your problem is already being addressed and to find a possible solution.
 
-## Active Known Issues
+## Active known issues
 
 * For more information regarding service-level outages, *see* the [Azure status page](https://azure.status.microsoft/en-us/status). 
 * To set up outage notifications and alerts, *see* the [Azure Service Health Portal](/azure/service-health/service-health-portal-update).
@@ -31,7 +31,7 @@ This table lists the current known issues and workarounds for the Text Translato
 
 ### Document Translation
 
-This table list the active known issues for the Document Translator feature. This table includes existing challenges and new items related to complex or mixed content inputs.
+This table lists the active known issues for the Document Translator feature. This table includes existing challenges and new items related to complex or mixed content inputs.
 
 | **Issue ID** | **Category / Feature Area** | **Title**  | **Description**| **Workaround**| **Issues publish date** |
 | --- | --- | --- | --- | --- | --- |
@@ -42,6 +42,6 @@ This table list the active known issues for the Document Translator feature. Thi
 
 ## Related content
 
-* [Azure Service Health Portal](/azure/service-health/service-health-portal-update).
+* [Azure Service Health Portal](/azure/service-health/service-health-portal-update)
 * [Azure Status overview](/azure/service-health/azure-status-overview)
 * [What's new in Azure AI Translator?](../whats-new.md)

@@ -11,6 +11,11 @@
             "redirect_document_id": false
         },
         {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/index-build-consume-sdk.md",
+            "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-create-resources",
+            "redirect_document_id": false
+        },
+        {
             "source_path_from_root": "/articles/ai-studio/how-to/deploy-models.md",
             "redirect_url": "/azure/ai-studio/concepts/deployments-overview",
             "redirect_document_id": true
