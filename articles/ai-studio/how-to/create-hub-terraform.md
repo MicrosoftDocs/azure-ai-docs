@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 # Use Terraform to create an Azure AI Foundry hub
 
-In this article, you use Terraform to create an Azure AI Foundry hub, a project, and AI services connection. A hub is a central place for data scientists and developers to collaborate on machine learning projects. It provides a shared, collaborative space to build, train, and deploy machine learning models. The hub is integrated with Azure Machine Learning and other Azure services, making it a comprehensive solution for machine learning tasks. The hub also allows you to manage and monitor your AI deployments, ensuring they're performing as expected.
+In this article, you use Terraform to create an [Azure AI Foundry](https://ai.azure.com) hub, a project, and AI services connection. A hub is a central place for data scientists and developers to collaborate on machine learning projects. It provides a shared, collaborative space to build, train, and deploy machine learning models. The hub is integrated with Azure Machine Learning and other Azure services, making it a comprehensive solution for machine learning tasks. The hub also allows you to manage and monitor your AI deployments, ensuring they're performing as expected.
 
 [!INCLUDE [About Terraform](~/azure-dev-docs-pr/articles/terraform/includes/abstract.md)]
 
@@ -27,8 +27,8 @@ In this article, you use Terraform to create an Azure AI Foundry hub, a project,
 > * Set up a storage account
 > * Establish a key vault
 > * Configure AI services
-> * Build an Azure AI Foundry hub
-> * Develop an Azure AI Foundry project
+> * Build an [Azure AI Foundry](https://ai.azure.com) hub
+> * Develop an [Azure AI Foundry](https://ai.azure.com) project
 > * Establish an AI services connection
 
 ## Prerequisites
