@@ -6,7 +6,7 @@ manager: scottpolly
 keywords: Azure AI services, cognitive
 ms.service: azure-ai-foundry
 ms.topic: overview
-ms.date: 10/31/2024
+ms.date: 02/20/2025
 ms.reviewer: sgilley
 ms.author: sgilley
 author: sdgilley
@@ -16,7 +16,7 @@ ms.custom: ignite-2023, build-2024, ignite-2024
 
 # What is Azure AI Foundry?
 
-[Azure AI Foundry](https://ai.azure.com) is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way.
+[Azure AI Foundry](https://ai.azure.com) provides a unified platform for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, ensuring organizations can build and operate AI applications with confidence. 
 
 [Azure AI Foundry](https://ai.azure.com) is designed for developers to:
 
@@ -24,7 +24,7 @@ ms.custom: ignite-2023, build-2024, ignite-2024
 - Explore, build, test, and deploy using cutting-edge AI tools and ML models, grounded in responsible AI practices.
 - Collaborate with a team for the full life-cycle of application development.
 
-With Azure AI Foundry, you can explore a wide variety of models, services and capabilities, and get to building AI applications that best serve your goals. The Azure AI Foundry platform facilitates scalability for transforming proof of concepts into full-fledged production applications with ease. Continuous monitoring and refinement support long-term success.  
+With Azure AI Foundry, you can explore a wide variety of models, services and capabilities, and get to building AI applications that best serve your goals. Azure AI Foundry facilitates scalability for transforming proof of concepts into full-fledged production applications with ease. Continuous monitoring and refinement support long-term success.  
 
 :::image type="content" source="./media/explore/ai-studio-home.png" alt-text="Screenshot of the Azure AI Foundry home page with links to get started." lightbox="./media/explore/ai-studio-home.png":::
 
