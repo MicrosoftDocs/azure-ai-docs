@@ -317,14 +317,6 @@ items:
           href: voice-assistants.md
         - name: Custom commands
           href: custom-commands.md
-        - name: Direct Line Speech
-          items:
-            - name: Direct Line Speech overview
-              href: direct-line-speech.md
-            - name: Custom voice assistant quickstart
-              href: quickstarts/voice-assistants.md
-            - name: Voice enable your bot
-              href: tutorial-voice-enable-your-bot-speech-sdk.md
     - name: Speaker recognition
       href: speaker-recognition-overview.md
 - name: Infrastructure & security

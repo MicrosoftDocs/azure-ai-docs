@@ -811,6 +811,31 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/speech-service/direct-line-speech.md",
+      "redirect_url": "/azure/ai-services/speech-service/voice-assistants",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/voice-assistants.md",
+      "redirect_url": "/azure/ai-services/speech-service/voice-assistants",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/tutorial-voice-enable-your-bot-speech-sdk.md",
+      "redirect_url": "/azure/ai-services/speech-service/voice-assistants",
+      "redirect_document_id": false
+    },
+
+    - name: Direct Line Speech
+    items:
+      - name: Direct Line Speech overview
+        href: direct-line-speech.md
+      - name: Custom voice assistant quickstart
+        href: quickstarts/voice-assistants.md
+      - name: Voice enable your bot
+        href: tutorial-voice-enable-your-bot-speech-sdk.md
+
+    {
       "source_path_from_root": "/articles/ai-services/qnamaker/how-to/migrate-to-openai.md",
       "redirect_url": "/azure/ai-services/qnamaker/overview/overview",
       "redirect_document_id": true
