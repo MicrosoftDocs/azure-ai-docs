@@ -159,19 +159,19 @@ To use the Content Safety APIs, you must create your Azure AI Content Safety res
 | East US            | ✅                 |  ✅                 | ✅    |  ✅                        | ✅               | ✅             | ✅                     | ✅                       | ✅    |
 | East US 2           |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | France Central        |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                       | ✅    | 
-| Japan East            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | ✅           |
+| Japan East            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | North Central US      |                    |                    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | ✅           |
-| Poland Central        |                    |                    | ✅    |                            |                 | ✅             | ✅                     | ✅                        | ✅    | ✅           |
-| South Central US     |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | ✅           |
-| South India           |                    |                    | ✅    |                            | ✅               |               | ✅                     | ✅                        | ✅    | ✅           |
-| Sweden Central        |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                       | ✅    | ✅           |
-| Switzerland North     | ✅                 |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                       | ✅    | ✅           |
+| Poland Central        |                    |                    | ✅    |                            |                 | ✅             | ✅                     | ✅                        | ✅    | 
+| South Central US     |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
+| South India           |                    |                    | ✅    |                            | ✅               |               | ✅                     | ✅                        | ✅    | 
+| Sweden Central        |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                       | ✅    | 
+| Switzerland North     | ✅                 |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                       | ✅    | 
 | Switzerland West      |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    |             |
 | UAE North            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    |              |
-| UK South             |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | ✅           |
-| West Europe          |                    |                    | ✅    | ✅                         | ✅               | ✅             | ✅                     | ✅                        | ✅    | ✅           |
-| West US              |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | ✅           |
-| West US 2            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | ✅           |
+| UK South             |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
+| West Europe          |                    |                    | ✅    | ✅                         | ✅               | ✅             | ✅                     | ✅                        | ✅    |
+| West US              |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
+| West US 2            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | West US 3            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | FairFax - USGovArizona|                   |                   | ✅     |                            |                 | ✅              | ✅                      |                           | ✅    | 
 | FairFax - USGovVirginia|                   |                  | ✅     |                            |                 | ✅              | ✅                      |                           | ✅    | 
