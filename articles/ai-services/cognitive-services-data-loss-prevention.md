@@ -42,14 +42,14 @@ There are two parts to enable data loss prevention. First, the resource property
 
     ```azurecli-interactive
     az rest -m get \
-        -u /subscriptions/{subscription ID}/resourceGroups/{resource group}/providers/Microsoft.CognitiveServices/accounts/{account name}?api-version=2021-04-30 \
+        -u /subscriptions/{subscription ID}/resourceGroups/{resource group}/providers/Microsoft.CognitiveServices/accounts/{account name}?api-version=2024-10-01 \
     ```
 
 1. Configure the restrictOutboundNetworkAccess property and update the allowed FqdnList with the approved URLs
 
     ```azurecli-interactive
     az rest -m patch \
-        -u /subscriptions/{subscription ID}/resourceGroups/{resource group}/providers/Microsoft.CognitiveServices/accounts/{account name}?api-version=2021-04-30 \
+        -u /subscriptions/{subscription ID}/resourceGroups/{resource group}/providers/Microsoft.CognitiveServices/accounts/{account name}?api-version=2024-10-01 \
         -b '{"properties": { "restrictOutboundNetworkAccess": true, "allowedFqdnList": [ "microsoft.com" ] }}'
     ```
 
@@ -65,7 +65,7 @@ There are two parts to enable data loss prevention. First, the resource property
         ResourceProviderName = 'Microsoft.CognitiveServices'
         ResourceType = 'accounts'
         Name = 'myaccount'
-        ApiVersion = '2021-04-30'
+        ApiVersion = '2024-10-01'
         Method = 'GET'
     }
     Invoke-AzRestMethod @getParams
@@ -79,7 +79,7 @@ There are two parts to enable data loss prevention. First, the resource property
         ResourceProviderName = 'Microsoft.CognitiveServices'
         ResourceType = 'accounts'
         Name = 'myaccount'
-        ApiVersion = '2021-04-30'
+        ApiVersion = '2024-10-01'
         Payload = '{"properties": { "restrictOutboundNetworkAccess": true, "allowedFqdnList": [ "microsoft.com" ] }}'
         Method = 'PATCH'
     }
