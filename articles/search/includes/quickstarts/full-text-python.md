@@ -16,7 +16,7 @@ ms.date: 2/22/2025
 
 - An active Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
 - An Azure AI Search service. [Create a service](../../search-create-service-portal.md) if you don't have one. You can use a free tier for this quickstart.
-- [Visual Studio Code with the Python extension](https://code.visualstudio.com/docs/languages/python), or an equivalent IDE, with Python 3.10 or later. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
+- [Visual Studio Code with the Python extension](https://code.visualstudio.com/docs/languages/python), or an equivalent IDE, with Python 3.10 or later. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter).
 
 ## Microsoft Entra ID prerequisites
 
@@ -77,13 +77,13 @@ You run the sample code in a Jupyter notebook. So, you need to set up your envir
 1. Select the notebook kernel.
 
     1. In the top right corner of the notebook, select **Select Kernel**.
-    1. If you see **.venv** in the list, select it. If you don't see it, select **Select Another Kernel** > **Python environments** > **.venv**.
+    1. If you see `.venv` in the list, select it. If you don't see it, select **Select Another Kernel** > **Python environments** > `.venv`.
 
 ## Create, load, and query a search index
 
 In this section, you add code to create a search index, load it with documents, and run queries. You run the program to see the results in the console. For a detailed explanation of the code, see the [explaining the code](#explaining-the-code) section.
 
-1. Make sure the notebook is open in the **.venv** kernel as described in the previous section.
+1. Make sure the notebook is open in the `.venv` kernel as described in the previous section.
 1. Run the first code cell to install the required packages, including [azure-search-documents](/python/api/azure-search-documents). 
 
     ```python
@@ -137,58 +137,29 @@ In this section, you add code to create a search index, load it with documents, 
 
 ### Create an index
 
+`SearchIndexClient` is used to create and manage indexes for Azure AI Search. Each field is identified by a `name` and has a specified `type`. 
 
+Each field also has a series of index attributes that specify whether Azure AI Search can search, filter, sort, and facet upon the field. Most of the fields are simple data types, but some, like `AddressType` are complex types that allow you to create rich data structures in your index. You can read more about [supported data types](/rest/api/searchservice/supported-data-types) and index attributes described in [Create Index (REST)](/rest/api/searchservice/indexes/create). 
 
-### Create a documents payload
+### Create a documents payload and upload documents
 
 Use an [index action](/python/api/azure-search-documents/azure.search.documents.models.indexaction) for the operation type, such as upload or merge-and-upload. Documents originate from the [HotelsData](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/hotels/HotelsData_toAzureSearch.JSON) sample on GitHub.
 
+### Search an index
 
-### Upload documents
-
-Upload documents to the index
-
-
-### Run your first query
+You can get query results as soon as the first document is indexed, but actual testing of your index should wait until all documents are indexed.
 
 Use the *search* method of the [search.client class](/python/api/azure-search-documents/azure.search.documents.searchclient).
 
-This example executes an empty search (`search=*`), returning an unranked list (search score = 1.0) of arbitrary documents. Because there are no criteria, all documents are included in results.
+The sample queries in the notebook are:
+- Basic query: Executes an empty search (`search=*`), returning an unranked list (search score = 1.0) of arbitrary documents. Because there are no criteria, all documents are included in results.
+- Term query: Adds whole terms to the search expression ("wifi"). This query specifies that results contain only those fields in the `select` statement. Limiting the fields that come back minimizes the amount of data sent back over the wire and reduces search latency.
+- Filtered query: Add a filter expression, returning only those hotels with a rating greater than four, sorted in descending order.
+- Fielded scoping: Add `search_fields` to scope query execution to specific fields.
+- Facets: Generate facets for positive matches found in search results. There are no zero matches. If search results don't include the term *wifi*, then *wifi* doesn't appear in the faceted navigation structure.
+- Look up a document: Return a document based on its key. This operation is useful if you want to provide drill through when a user selects an item in a search result.
+- Autocomplete: Provide potential matches as the user types into the search box. Autocomplete uses a suggester (`sg`) to know which fields contain potential matches to suggester requests. In this quickstart, those fields are `Tags`, `Address/City`, `Address/Country`. To simulate autocomplete, pass in the letters *sa* as a partial string. The autocomplete method of [SearchClient](/python/api/azure-search-documents/azure.search.documents.searchclient) sends back potential term matches.
 
+### Remove the index
 
-### Run a term query
-
-The next query adds whole terms to the search expression ("wifi"). This query specifies that results contain only those fields in the `select` statement. Limiting the fields that come back minimizes the amount of data sent back over the wire and reduces search latency.
-
-
-### Add a filter
-
-Add a filter expression, returning only those hotels with a rating greater than four, sorted in descending order.
-
-
-### Add field scoping
-
-Add `search_fields` to scope query execution to specific fields.
-
-
-### Add facets
-
-Facets are generated for positive matches found in search results. There are no zero matches. If search results don't include the term *wifi*, then *wifi* doesn't appear in the faceted navigation structure.
-
-
-### Look up a document
-
-Return a document based on its key. This operation is useful if you want to provide drill through when a user selects an item in a search result.
-
-
-### Add autocomplete
-
-Autocomplete can provide potential matches as the user types into the search box.
-
-Autocomplete uses a suggester (`sg`) to know which fields contain potential matches to suggester requests. In this quickstart, those fields are `Tags`, `Address/City`, `Address/Country`. 
-
-To simulate autocomplete, pass in the letters *sa* as a partial string. The autocomplete method of [SearchClient](/python/api/azure-search-documents/azure.search.documents.searchclient) sends back potential term matches.
-
-## Remove the index
-
-If you are finished with this index, you can delete it by running the **Clean up** code cell. Deleting unnecessary indexes frees up space for stepping through more quickstarts and tutorials.
+If you're finished with this index, you can delete it by running the **Clean up** code cell. Deleting unnecessary indexes frees up space for stepping through more quickstarts and tutorials.
