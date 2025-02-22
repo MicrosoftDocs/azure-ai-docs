@@ -1,13 +1,13 @@
 ---
 title: What are OpenAI text to speech voices?
 titleSuffix: Azure AI services
-description: Learn about OpenAI text to speech voices that you can use with speech synthesis.
+description: Learn about OpenAI voices that you can use for text to speech in Azure AI services.
 author: eric-urban
 ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 9/20/2024
+ms.date: 2/22/2025
 ms.reviewer: eur
 ms.custom: references_regions
 #customer intent: As a user who implements text to speech, I want to understand the options and differences between available OpenAI text to speech voices in Azure AI services.
@@ -58,6 +58,31 @@ There are additional features and capabilities available in Azure AI Speech that
 - OpenAI text to speech voices in Azure AI Speech [only support a subset of SSML elements](#ssml-elements-supported-by-openai-text-to-speech-voices-in-azure-ai-speech). Azure AI Speech voices support the full set of SSML elements.
 - Azure AI Speech supports [word boundary events](./how-to-speech-synthesis.md#subscribe-to-synthesizer-events). OpenAI voices don't support word boundary events. 
 
+### Available OpenAI text to speech voices
+
+The available voices in Azure OpenAI Service are: 
+
+- `alloy`
+- `echo`
+- `fable`
+- `onyx`
+- `nova`
+- `shimmer` 
+
+The available voices in Azure AI Speech are:
+
+- `en-US-AlloyMultilingualNeural`
+- `en-US-EchoMultilingualNeural`
+- `en-US-FableMultilingualNeural`
+- `en-US-OnyxMultilingualNeural`
+- `en-US-NovaMultilingualNeural`
+- `en-US-ShimmerMultilingualNeural`
+- `en-US-AlloyMultilingualNeuralHD`
+- `en-US-EchoMultilingualNeuralHD`
+- `en-US-FableMultilingualNeuralHD`
+- `en-US-OnyxMultilingualNeuralHD`
+- `en-US-NovaMultilingualNeuralHD`
+- `en-US-ShimmerMultilingualNeuralHD`
 
 ## SSML elements supported by OpenAI text to speech voices in Azure AI Speech
 
