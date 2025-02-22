@@ -211,12 +211,12 @@ You can use our built-in AI-assisted and NLP quality evaluators to assess the pe
 
 #### Set up
 
-1. For AI-assisted quality evaluators except for `GroundednessProEvaluator` (preview), you must specify a GPT model (`gpt-35-turbo`, `gpt-4`, `gpt-4-turbo`, `gpt-4o` or `gpt-4o-mini`) in your `model_config` to act as a judge to score the evaluation data. We support both Azure OpenAI or OpenAI model configuration schema. We recommend using GPT models that aren't in preview for the best performance and parseable responses with our evaluators.
+1. For AI-assisted quality evaluators except for `GroundednessProEvaluator` (preview), you must specify a GPT model (`gpt-35-turbo`, `gpt-4`, `gpt-4-turbo`, `gpt-4o`, or `gpt-4o-mini`) in your `model_config` to act as a judge to score the evaluation data. We support both Azure OpenAI or OpenAI model configuration schema. We recommend using GPT models that aren't in preview for the best performance and parseable responses with our evaluators.
 
 > [!NOTE]
-> It's strongly recommended that `gpt-3.5-turbo` should be replaced by `gpt-4o-mini` for your evaluator model, as the latter is cheaper, more capable, and just as fast according to [OpenAI](https://platform.openai.com/docs/models/gpt-4#gpt-3-5-turbo). 
-
-> Make sure the you have at least `Cognitive Services OpenAI User` role for the Azure OpenAI resource to make inference calls with API key. For more permissions, learn more about [permissioning for Azure OpenAI resource](../../../ai-services/openai/how-to/role-based-access-control.md#summary).  
+> It's strongly recommended that `gpt-3.5-turbo` should be replaced by `gpt-4o-mini` for your evaluator model, as the latter is cheaper, more capable, and just as fast according to [OpenAI](https://platform.openai.com/docs/models/gpt-4#gpt-3-5-turbo).
+>
+> Make sure the you have at least `Cognitive Services OpenAI User` role for the Azure OpenAI resource to make inference calls with API key. To learn more about permissions, see [permissions for Azure OpenAI resource](../../../ai-services/openai/how-to/role-based-access-control.md#summary).  
 
 2. For `GroundednessProEvaluator` (preview), instead of a GPT deployment in `model_config`, you must provide your `azure_ai_project` information. This accesses the backend evaluation service of your Azure AI project.
 
