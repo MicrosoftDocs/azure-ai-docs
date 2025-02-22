@@ -50,7 +50,7 @@ To create a custom extraction model, label a dataset of documents with the value
 > Document Intelligence `v4.0 2024-11-30 (GA)` API supports custom neural model **overlapping fields**, **signature detection** and  **table, row and cell level confidence**.
 >
 
-The custom neural (custom document) model uses deep learning models and  base model trained on a large collection of documents. This model is then fine-tuned or adapted to your data when you train the model with a labeled dataset. Custom neural models support extracting key data fields from structured, semi-structured, and unstructured documents. When you're choosing between the two model types, start with a neural model to determine if it meets your functional needs. See [neural models](custom-neural.md) to learn more about custom document models.
+The custom neural (custom document) model uses deep learning models and  base model trained on a large collection of documents. This model is then fine-tuned or adapted to your data when you train the model with a labeled dataset. Custom neural models support extracting key data fields from structured, semi-structured, and unstructured documents. When you're choosing between the two model types, start with a neural model to determine if it meets your functional needs. With V4.0, custom neural model supports signature detection, table confidence and overlapping fields. See [neural models](custom-neural.md) to learn more about custom document models.
 
 ### Custom template model
 
@@ -145,11 +145,14 @@ The following table compares custom template and custom neural features:
 |Feature|Custom template (form) | Custom neural (document) |
 |---|---|---|
 |Document structure|Template, form, and structured | Structured, semi-structured, and unstructured|
-|Training time | 1 to 5 minutes | 20 minutes to 1 hour |
+|Training time | 1 to 5 minutes | 30 minutes to 12 hour* |
 |Data extraction | Key-value pairs, tables, selection marks, coordinates, and signatures | Key-value pairs, selection marks, and tables|
 |Overlapping fields | Not supported | Supported |
 |Document variations | Requires a model per each variation | Uses a single model for all variations |
 |Language support | [**Language support custom template**](../language-support/custom.md#custom-template)  | [**Language support custom neural**](../language-support/custom.md#custom-neural) |
+
+
+*-Default training time is 30 mins, enable paid training to train a model longer than 30 mins. Check more details under [training support for custom neural](../train/custom-neural.md) 
 
 ### Custom classification model
 
@@ -249,7 +252,7 @@ This table compares the supported data extraction areas:
 **Table symbols**:<br>
 ✔—Supported<br>
 **n/a—Currently unavailable;<br>
-*-Behaves differently depending upon model. With template models, synthetic data is generated at training time. With neural models, exiting text recognized in the region is selected.
+*-Behaves differently depending upon model. With template models, synthetic data is generated at training time. With neural models, existing text recognized in the region is selected.
 
 > [!TIP]
 > To choose between the two model types, start with a custom neural model if it meets your functional needs. See [custom neural](custom-neural.md) to learn more about custom neural models.
