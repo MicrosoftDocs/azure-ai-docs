@@ -60,7 +60,7 @@ There are additional features and capabilities available in Azure AI Speech that
 
 ### Available OpenAI text to speech voices
 
-The available voices in Azure OpenAI Service are: 
+The available OpenAI voices in Azure OpenAI Service are: 
 
 - `alloy`
 - `echo`
@@ -69,7 +69,7 @@ The available voices in Azure OpenAI Service are:
 - `nova`
 - `shimmer` 
 
-The available voices in Azure AI Speech are:
+The available OpenAI voices in Azure AI Speech are:
 
 - `en-US-AlloyMultilingualNeural`
 - `en-US-EchoMultilingualNeural`
