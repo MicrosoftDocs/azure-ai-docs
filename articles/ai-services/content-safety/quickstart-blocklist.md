@@ -13,7 +13,7 @@ ms.author: pafarley
 zone_pivot_groups: programming-languages-content-safety-abridged
 ---
 
-# QuickStart: Analyze text content
+# QuickStart: Use a text blocklist
 
 Get started using Azure AI Content Safety to create a custom text blocklist and use it to detect harmful content in text.
 
