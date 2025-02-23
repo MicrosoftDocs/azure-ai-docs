@@ -66,6 +66,17 @@ groups:
     title: Java
   - id: programming-language-javascript
     title: JavaScript
+- id: programming-languages-content-safety-abridged
+# Owner: pafarley
+  title: Programming languages
+  prompt: Choose a platform
+  pivots:
+  - id: programming-language-rest
+    title: REST
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-python
+    title: Python
 - id: cloud-location
   # Owner: lajanuar
   title: Workflow
