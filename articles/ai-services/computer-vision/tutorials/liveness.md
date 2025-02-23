@@ -16,10 +16,10 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 
 In this tutorial, you learn how to detect liveness in faces, using a combination of server-side code and a client-side mobile application. For general information about face liveness detection, see the [conceptual guide](../concept-face-liveness-detection.md).
 
+This tutorial demonstrates how to operate a frontend application and an app server to perform liveness detection, including the optional step of [face verification](#perform-liveness-detection-with-face-verification), across various language SDKs.
+
+
 [!INCLUDE [liveness-sdk-gate](../includes/liveness-sdk-gate.md)]
-
-This tutorial demonstrates how to operate a frontend application and an app server to perform [liveness detection](#perform-liveness-detection), including the optional step of [face verification](#perform-liveness-detection-with-face-verification), across various language SDKs.
-
 
 > [!TIP]
 > After you complete the prerequisites, you can get started faster by building and running a complete frontend sample (either on iOS, Android, or Web) from the [SDK samples folder](https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/samples).  
@@ -35,7 +35,7 @@ This tutorial demonstrates how to operate a frontend application and an app serv
 
 ## Prepare SDKs
 
-We provide SDKs in different languages to simplify development on frontend applications and app servers.
+We provide SDKs in different languages to simplify development on frontend applications and app servers:
 
 ### Download SDK for frontend application
 
@@ -396,11 +396,10 @@ The high-level steps involved in liveness orchestration are illustrated below:
 ## Perform liveness detection with face verification
 
 Combining face verification with liveness detection enables biometric verification of a particular person of interest with an added guarantee that the person is physically present in the system. 
-There are two parts to integrating liveness with verification:
-1. Select a good reference image.
-2. Set up the orchestration of liveness with verification.
 
 :::image type="content" source="../media/liveness/liveness-verify-diagram.jpg" alt-text="Diagram of the liveness-with-face-verification workflow of Azure AI Face." lightbox="../media/liveness/liveness-verify-diagram.jpg":::
+
+There are two parts to integrating liveness with verification:
 
 ### Step 1 - Select a reference image
 
