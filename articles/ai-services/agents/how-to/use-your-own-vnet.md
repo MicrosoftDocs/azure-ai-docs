@@ -16,6 +16,9 @@ ms.custom: azure-ai-agents
 
 Azure AI Agent Service offers a standard agent configuration with private networking, allowing you to bring your own private virtual network. This setup creates an isolated network environment that lets you securely access data and perform actions while maintaining full control over your network infrastructure. This guide provides a step-by-step walkthrough of the setup process and outlines all necessary requirements.
 
+> [!NOTE]
+> Standard setup with private networking can only be configured by deploying the Bicep template. Once deployed, agents must be created using the SDK. You cannot use the UI to create agents in a project with private networking enabled.
+
 For more details [BYO Vnet overview](byo-vnet-overview.md).
 
 ## Prerequisites
