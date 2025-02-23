@@ -1,5 +1,5 @@
 ---
-title: 'Setup an agent with standard setup and your own vnet in the Azure AI Agent Service'
+title: 'Set up an agent with standard setup and your own vnet in the Azure AI Agent Service'
 titleSuffix: Azure OpenAI
 description: Learn how to use your own vnet with the Azure AI Agent Service. 
 services: cognitive-services
@@ -18,9 +18,9 @@ ms.custom: azure-ai-agents
 
 1. An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
 2. [Python 3.8 or later](https://www.python.org/)
-3. Make the person deploying the template has the role: **Contributor** assigned at the resource group level and they are deploying this template in that specific resource group (specific role). [Learn more](https://learn.microsoft.com/azure/ai-studio/concepts/rbac-ai-studio)
-4. To deploy the bicep template and configure RBAC you need to have the role: **Role Based Access Administrator** at the subscription level.  
-    * Note: The **Owner** role at the subscription level satisfies this.
+3. Make sure the person deploying the template has the role: **Contributor** assigned at the resource group level, and they're deploying this template in that specific resource group (specific role). [Learn more](https://learn.microsoft.com/azure/ai-studio/concepts/rbac-ai-studio)
+4. To deploy the bicep template and configure RBAC (Role-Based Access Control), you need to have the role: **Role Based Access Administrator** at the subscription level.  
+    * Note: The **Owner** role at the subscription level satisfies this requirement.
 5. Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
 6. Register providers
     The following providers must be registered:
@@ -45,10 +45,10 @@ ms.custom: azure-ai-agents
 
 ## Deploy the Bicep Template
 
-**Network Secured Setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you will incur costs based on your usage.
+**Network Secured Setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage.
 
-* Resources for the hub, project, storage account, key vault, AI Services, and Azure AI Search will be created for you. The AI Services, AI Search, and Azure Blob Storage account will be connected to your project/hub and a gpt-4o-mini model will be deployed in the westus2 region.
-* Customer owned resources will be secured with a provisioned managed network and authenticated with a User Managed Identity with the necessary RBAC permissions. Private links and DNS zones will be created on behalf of the customer to ensure network connectivity.
+* Resources for the hub, project, storage account, key vault, AI Services, and Azure AI Search are created for you. The AI Services, AI Search, and Azure Blob Storage account are connected to your project/hub, and a gpt-4o-mini model is deployed in the westus2 region.
+* Customer-owned resources are secured with a provisioned managed network and authenticated with a User Managed Identity with the necessary RBAC permissions. Private links and DNS zones are created on behalf of the customer to ensure network connectivity.
 
 <br/>
 
@@ -56,9 +56,16 @@ ms.custom: azure-ai-agents
 <summary><b> Bicep Technical Details</b>
 </summary>   
 
-**The Bicep template automates the following configurations and resource provisions:**
-* Creates a User Assigned Identify. [Learn more](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp#create-a-user-assigned-managed-identity)
-  * The User Assigned Managed Identity requires the following Role Based Access Roles: KeyVault Secret Officer, KeyVault Contributor , Storage Blob Data Owner, Storage Queue Data Contributor, Cognitive Services Contributor, Cognitive Services OpenAI User, Search Index Data Contributor, Search Service Contributor 
+**The Bicep template automates the following configurations and resource provisions:*** Creates a User Assigned Identity. [Learn more](../../../azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp#create-a-user-assigned-managed-identity)
+  * The User Assigned Managed Identity requires the following Role-Based Access Roles: 
+    * KeyVault Secret Officer
+    * KeyVault Contributor
+    * Storage Blob Data Owner
+    * Storage Queue Data Contributor
+    * Cognitive Services Contributor
+    * Cognitive Services OpenAI User
+    * Search Index Data Contributor
+    * Search Service Contributor
 
 * Configures a managed virtual network with two subnet resources:
    * Azure Resource Subnet
@@ -76,21 +83,21 @@ ms.custom: azure-ai-agents
       * Private endpoints in the Azure Resource subnet
       * Private DNS integration enabled
       * User Assigned Identity for authentication
-* Creates a hub and project using the resources provisioned above and configures them to use the Agent Resource Subnet.  
-   * Accomplished by configuring the capabilityHost (a sub-resource of hub/project) to use the Agent Resource Subnet for network isolation and secure communication. 
+* Creates a hub and project using the resources provisioned and configures them to use the Agent Resource Subnet.  
+   * Accomplished by configuring the capabilityHost (a subresource of hub/project) to use the Agent Resource Subnet for network isolation and secure communication. 
 </details>
 
 <br/>
 
-### Option 1: Auto-Deploy the Bicep Template
+### Option 1: Autodeploy the Bicep Template
 
-| Template | Description   | Auto-deploy |
+| Template | Description   | Autodeploy |
 | ------------------- | -----------------------------------------------| -----------------------|
 | `network-secured-agent.bicep`  | Deploy a network secured agent setup that uses User Managed Identity authentication on the Agent Connections. | [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Frefs%2Fheads%2Fmaster%2Fquickstarts%2Fmicrosoft.azure-ai-agent-service%2Fnetwork-secured-agent%2Fazuredeploy.json)
 
 ### Option 2: Manually Deploy the Bicep Template
 
-1. If you want to manually run the bicep templates, you can [download the template from GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.azure-ai-agent-service/network-secured-agent). Download the following from the network-secured-agent folder:
+1. To manually run the bicep templates, [download the template from GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.azure-ai-agent-service/network-secured-agent). Download the following from the network-secured-agent folder:
     1. main.bicep
     1. azuredeploy.parameters.json
     1. modules-network-secured folder
@@ -106,7 +113,7 @@ ms.custom: azure-ai-agents
         az group create --name {my_resource_group} --location eastus
     ```
 
-    Make sure you have the role Azure AI Developer on the resource group you just created. 
+    Make sure you have the role Azure AI Developer on the resource group you created. 
 1. Using the resource group you created in the previous step and one of the template files (either basic-agent-keys.bicep or basic-agent-identity.bicep), run one of the following commands: 
 
     1. To use default resource names, run:
@@ -115,14 +122,14 @@ ms.custom: azure-ai-agents
         az deployment group create --resource-group {my_resource_group} --template-file main.bicep
     ```
 
-    1. To specify custom names for the hub, project, storage account, and/or Azure AI service resources (Note: a randomly generated suffix will be added to prevent accidental duplication), run:
+    1. To specify custom names for the hub, project, storage account, and/or Azure AI service resources (Note: a randomly generated suffix is added to prevent accidental duplication), run:
 
     ```console
         az deployment group create --resource-group {my_resource_group} --template-file main.bicep --parameters aiHubName='your-hub-name' aiProjectName='your-project-name' storageName='your-storage-name' aiServicesName='your-ai-services-name' 
 
     ```
 
-     1. To customize additional parameters, including the OpenAI model deployment, download and edit the azuredeploy.parameters.json file, then run:
+     1. To customize other parameters, including the OpenAI model deployment, download and edit the azuredeploy.parameters.json file, then run:
 
     ```console
         az deployment group create --resource-group {my_resource_group} --template-file main.bicep --parameters @azuredeploy.parameters.json 
@@ -132,7 +139,7 @@ ms.custom: azure-ai-agents
 
 | Component | Description                                                                                                                                                                                                                               |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Agent     | Custom AI that uses AI models in conjunction with tools.                                                                                                                                                                                  |
+| Agent     | Custom AI that uses AI models with tools.                                                                                                                                                                                  |
 | Tool      | Tools help extend an agent’s ability to reliably and accurately respond during conversation. Such as connecting to user-defined knowledge bases to ground the model, or enabling web search to provide current information.               |
 | Thread    | A conversation session between an agent and a user. Threads store Messages and automatically handle truncation to fit content into a model’s context.                                                                                     |
 | Message   | A message created by an agent or a user. Messages can include text, images, and other files. Messages are stored as a list on the Thread.                                                                                                 |
@@ -156,11 +163,11 @@ Next, to authenticate your API requests and run the program, use the [az login](
 az login
 ```
 
-Use the following code to create and run an agent. To run this code, you will need to create a connection string using information from your project. This string is in the format:
+Use the following code to create and run an agent. To run this code, you need to create a connection string using information from your project. This string is in the format:
 
 `<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>`
 
-[!INCLUDE [connection-string-portal](connection-string-portal.md)]
+[!INCLUDE [connection-string-portal](../includes/connection-string-portal.md)]
 
 `HostName` can be found by navigating to your `discovery_url` and removing the leading `https://` and trailing `/discovery`. To find your `discovery_url`, run this CLI command:
 
