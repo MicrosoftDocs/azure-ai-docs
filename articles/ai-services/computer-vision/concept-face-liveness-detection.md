@@ -69,7 +69,7 @@ Use the following tips to ensure that your input images give the most accurate r
 
 The liveness detection API returns a JSON object with the following information:
 - A Real or a Spoof Face Liveness Decision. We handle the underlying accuracy and thresholding, so you don’t have to worry about interpreting “confidence scores” or making inferences yourself. This makes integration easier and more seamless for developers.
-- Optionally a Face Verification result can be obtained if the liveness check is performed with verification (see [Perform liveness detection with face verification](#perform-liveness-detection-with-face-verification)).
+- Optionally a Face Verification result can be obtained if the liveness check is performed with verification (see [Perform liveness detection with face verification](./tutorials/liveness.md#perform-liveness-detection-with-face-verification)).
 - A quality filtered "session-image" that can be used to store for auditing purposes or for human review or to perform further analysis using the Face service APIs.
 
 
@@ -83,7 +83,7 @@ We include additional runtime application self-protections (RASP), provided by [
 
 ## Support options
 
-In addition to using the main [Azure AI services support options](../../cognitive-services-support-options.md), you can also post your questions in the [issues](https://github.com/Azure-Samples/azure-ai-vision-sdk/issues) section of the SDK repo. 
+In addition to using the main [Azure AI services support options](../cognitive-services-support-options.md), you can also post your questions in the [issues](https://github.com/Azure-Samples/azure-ai-vision-sdk/issues) section of the SDK repo. 
 
 
 ## Next step
