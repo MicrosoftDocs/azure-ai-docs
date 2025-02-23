@@ -56,7 +56,7 @@ ms.custom: azure-ai-agents
 <summary><b> Bicep Technical Details</b>
 </summary>   
 
-**The Bicep template automates the following configurations and resource provisions:*** Creates a User Assigned Identity. [Learn more](../../../azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp#create-a-user-assigned-managed-identity)
+**The Bicep template automates the following configurations and resource provisions:*** Creates a User Assigned Identity. [Learn more](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp#create-a-user-assigned-managed-identity)
   * The User Assigned Managed Identity requires the following Role-Based Access Roles: 
     * KeyVault Secret Officer
     * KeyVault Contributor
