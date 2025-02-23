@@ -14,23 +14,23 @@ ms.custom: azure-ai-agents
 
 # QuickStart: Create a new network-secured agent with user-managed identity
 
-Azure AI Agent Service offers a standard agent configuration with private networking, allowing you to bring your own private virtual network. This setup creates an isolated network environment that lets you securely access data and perform actions while maintaining full control over your network infrastructure. This guide provides a step-by-step walkthrough of the setup process and outlines all necessary requirements.
+Azure AI Agent Service offers a standard agent configuration with private networking, allowing you to bring your own (BYO) private virtual network. This setup creates an isolated network environment that lets you securely access data and perform actions while maintaining full control over your network infrastructure. This guide provides a step-by-step walkthrough of the setup process and outlines all necessary requirements.
 
 > [!NOTE]
-> Standard setup with private networking can only be configured by deploying the Bicep template. Once deployed, agents must be created using the SDK. You cannot use the UI to create agents in a project with private networking enabled.
+> Standard setup with private networking can only be configured by deploying the Bicep template. Once deployed, agents must be created using the SDK. You can't use the UI to create agents in a project with private networking enabled.
 
-For more details [BYO Vnet overview](byo-vnet-overview.md).
+For more details, see the [BYO Vnet overview](byo-vnet-overview.md).
 
 ## Prerequisites
 
 1. An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
 2. [Python 3.8 or later](https://www.python.org/)
-3. Ensure that the individual deploying the template has the the role: **Azure AI Developer** assigned at the resource group level where the template is being deployed. [Learn more](https://learn.microsoft.com/azure/ai-studio/concepts/rbac-ai-studio)
-4. Additionally, to deploy the temaplete you need to have the preset role: **Role Based Access Administrator** at the subscription level. [Learn more](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator)
+3. Ensure that the individual deploying the template has the role: **Azure AI Developer** assigned at the resource group level where the template is being deployed. [Learn more](https://learn.microsoft.com/azure/ai-studio/concepts/rbac-ai-studio)
+4. Additionally, to deploy the template, you need to have the preset role: **Role Based Access Administrator** at the subscription level. [Learn more](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator)
     * Note: The **Owner** role at the subscription level satisfies this requirement.
     * Note: The specific admin role that is needed is: **'Microsoft.Authorization/roleAssignments/write'** 
-1. Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
-1. Register providers
+5. Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
+6. Register providers
     The following providers must be registered:
 
     * Microsoft.KeyVault
@@ -56,7 +56,7 @@ For more details [BYO Vnet overview](byo-vnet-overview.md).
 **Network Secured Setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage.
 
 * Resources for the hub, project, storage account, key vault, AI Services, and Azure AI Search are created for you. The AI Services, AI Search, and Azure Blob Storage account are connected to your project/hub, and a gpt-4o-mini model is deployed in the westus2 region.
-* Customer-owned resources are secured with a provisioned managed network and authenticated with a User Managed Identity with the necessary RBAC permissions. Private links and DNS zones are created on behalf of the customer to ensure network connectivity.
+* Customer-owned resources are secured with a provisioned managed network and authenticated with a User Managed Identity with the necessary RBAC (Role-Based Access Control) permissions. Private links and DNS (Domain Name System) zones are created on behalf of the customer to ensure network connectivity.
 
 <br/>
 
@@ -64,7 +64,8 @@ For more details [BYO Vnet overview](byo-vnet-overview.md).
 <summary><b> Bicep Technical Details</b>
 </summary>   
 
-**The Bicep template automates the following configurations and resource provisions:*** Creates a User Assigned Identity. [Learn more](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp#create-a-user-assigned-managed-identity)
+**The Bicep template automates the following configurations and resource provisions:**
+* Creates a User Assigned Identity. [Learn more](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp#create-a-user-assigned-managed-identity)
   * The User Assigned Managed Identity requires the following Role-Based Access Roles: 
     * KeyVault Secret Officer
     * KeyVault Contributor
@@ -137,7 +138,7 @@ For more details [BYO Vnet overview](byo-vnet-overview.md).
 
     ```
 
-     1. To customize other parameters, including the OpenAI model deployment, download and edit the azuredeploy.parameters.json file, then run:
+     1. To customize other parameters, including the OpenAI model deployment, download, and edit the azuredeploy.parameters.json file, then run:
 
     ```console
         az deployment group create --resource-group {my_resource_group} --template-file main.bicep --parameters @azuredeploy.parameters.json 
@@ -271,3 +272,4 @@ with project_client:
     # Delete the agent once done
     project_client.agents.delete_agent(agent.id)
     print("Deleted agent")
+```

@@ -11,7 +11,7 @@ author: fosteramanda
 ms.author: fosteramanda
 ms.custom: azure-ai-agents
 ---
-# Overview Standard setup with Virtual Networking
+# Overview Standard setup with BYO Vnet
 
 Azure AI Agent Service offers a standard agent configuration with private networking, allowing you to bring your own (BYO) private virtual network.
 
