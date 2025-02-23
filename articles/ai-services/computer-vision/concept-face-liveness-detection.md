@@ -61,7 +61,7 @@ You can combine face verification with liveness detection to verify that the fac
 
 Use the following tips to ensure that your input images give the most accurate recognition results:
 
-[!INCLUDE [identity-input-id-verification-composition](includes/identity-input-id-verification-composition.md)]
+[!INCLUDE [identity-input-id-verification-composition](includes/identity-input-verification.md)]
 
 
 
