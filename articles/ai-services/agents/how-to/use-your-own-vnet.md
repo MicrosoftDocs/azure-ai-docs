@@ -13,16 +13,10 @@ ms.custom: azure-ai-agents
 ---
 
 # QuickStart: Create a new network-secured agent with user-managed identity
+
 Azure AI Agent Service offers a standard agent configuration with private networking, allowing you to bring your own private virtual network. This setup creates an isolated network environment that lets you securely access data and perform actions while maintaining full control over your network infrastructure. This guide provides a step-by-step walkthrough of the setup process and outlines all necessary requirements.
 
-### Security Benefits of BYO Virtual Network
-
-- **No public egress**: foundational infrastructure ensures the right authentication and security for your agents and tools, without you having to do trusted service bypass.
-
-- **Container injection**: allows the platform network to host APIs and inject a subnet into your network, enabling local communication of your Azure resources within the same virtual network (VNet).
-
-- **Private resource access**: If your resources are marked as private and non-discoverable from the Internet, the platform network can still access them, provided the necessary credentials and authorization are in place.
-
+For more details [BYO Vnet overview](byo-vnet-overview.md).
 
 ## Prerequisites
 
