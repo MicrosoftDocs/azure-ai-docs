@@ -773,28 +773,22 @@ The high-level steps involved in liveness with verification orchestration are il
     curl --request DELETE --location "${FACE_ENDPOINT}/face/v1.2/detectLivenesswithVerify-sessions/<session-id>" \
     --header "Ocp-Apim-Subscription-Key: ${FACE_APIKEY}"
     ```
-
     ---
 
-## (optional) do additional face tbd
 
-Optionally, you can do further face identity operations after the liveness check.
+## Next step 
 
-TBD Can I perform further face analysis (e.g. age) and/or face identity operations along with a Face Liveness Check? (tutorial – at the end as a next step to do more face analysis) 
-
-Yes, you can.  
-
-- To enable this, you will need to set the "enableSessionImage" parameter to "true" during the Session-Creation step (see step 2 of [Perform liveness detection](#perform-liveness-detection)).  
-
-- After the session completes, you can extract the "sessionImageId" from the Session-Get-Result step (see step 8 of [Perform liveness detection](#perform-liveness-detection)). 
-
-- You can now either download the session-image (referenced in [Liveness Get Session Image Operation](/rest/api/face/liveness-session-operations/get-session-image)), or provide "sessionImageId" in the [/detect](/rest/api/face/face-detection-operations/detect-from-session-image-id) operation to continue to perform other face analysis or face identity operations (referenced in [Concept Face Detection](../concept-face-detection.md) and [Concept Face Recognition](../concept-face-recognition.md)). 
-
+Optionally, you can do further face identity operations after the liveness check, such as face analysis (to get face attributes, for example) and/or face identity operations.
+1. To enable this, you'll need to set the "enableSessionImage" parameter to "true" during the [Session-Creation step](#perform-liveness-detection).  
+1. After the session completes, you can extract the "sessionImageId" from the [Session-Get-Result step](#perform-liveness-detection).
+1. You can now either download the session-image (referenced in [Liveness Get Session Image Operation API](/rest/api/face/liveness-session-operations/get-session-image)), or provide the "sessionImageId" in the [Detect from Session Image ID API](/rest/api/face/face-detection-operations/detect-from-session-image-id) operation to continue to perform other face analysis or face identity operations. 
+For more information on these operations, see [Face detection concepts](../concept-face-detection.md) and [Face Recognition concepts](../concept-face-recognition.md). 
 
 
 ## Support options
 
 In addition to using the main [Azure AI services support options](../../cognitive-services-support-options.md), you can also post your questions in the [issues](https://github.com/Azure-Samples/azure-ai-vision-sdk/issues) section of the SDK repo. 
+
 
 ## Related content
 

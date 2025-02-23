@@ -18,7 +18,7 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 
 This article explains the concept of Face liveness detection, its input and output schema, and related concepts.
 
-## What it does
+## Introduction
 
 Face Liveness detection is used to determine if a face in an input video stream is real (live) or fake (spoofed). It's an important building block in a biometric authentication system to prevent imposters from gaining access to the system using a photograph, video, mask, or other means to impersonate another person.
 
@@ -61,18 +61,9 @@ You can combine face verification with liveness detection to verify that the fac
 
 Use the following tips to ensure that your input images give the most accurate recognition results:
 
-TBD
+[!INCLUDE [identity-input-id-verification-composition](includes/identity-input-id-verification-composition.md)]
 
-<!--[!INCLUDE [identity-input-id-verification-composition](includes/identity-input-id-verification-composition.md)]-->
 
-### Data privacy
-
-We do not store any images or videos from the Face Liveness Check. No image/video data is stored in the liveness service after the liveness session has been concluded. Moreover, the image/video uploaded during the liveness check is only used to perform the liveness classification to determine if the user is real or a spoof (and optionally to perform a match against a reference image in the liveness-with-verify-scenario), and it cannot be viewed by any human and will not be used for any AI model improvements.
-
-TBD
-#### - Do you include any runtime application self-protections (RASP)? (concept) 
-
-Yes, we include additional RASP protections on our Mobile SDKs (iOS and Android) provided by [GuardSquare]( https://www.guardsquare.com/blog/why-guardsquare). 
 
 ## Output format
 
@@ -81,13 +72,23 @@ The liveness detection API returns a JSON object with the following information:
 - Optionally a Face Verification result can be obtained if the liveness check is performed with verification (see [Perform liveness detection with face verification](#perform-liveness-detection-with-face-verification)).
 - A quality filtered "session-image" that can be used to store for auditing purposes or for human review or to perform further analysis using the Face service APIs.
 
+
+### Data privacy
+
+We do not store any images or videos from the Face Liveness Check. No image/video data is stored in the liveness service after the liveness session has been concluded. Moreover, the image/video uploaded during the liveness check is only used to perform the liveness classification to determine if the user is real or a spoof (and optionally to perform a match against a reference image in the liveness-with-verify-scenario), and it cannot be viewed by any human and will not be used for any AI model improvements.
+
+## Security
+
+We include additional runtime application self-protections (RASP), provided by [GuardSquare]( https://www.guardsquare.com/blog/why-guardsquare), in our Mobile SDKs (iOS and Android). 
+
 ## Support options
 
 In addition to using the main [Azure AI services support options](../../cognitive-services-support-options.md), you can also post your questions in the [issues](https://github.com/Azure-Samples/azure-ai-vision-sdk/issues) section of the SDK repo. 
 
 
-## Next steps
+## Next step
 
 Now that you're familiar with liveness detection concepts, implement liveness detection in your app.
 
-* [Face liveness detection](./tutorials/liveness.md)
+> [!div class="nextstepaction"]
+> [Face liveness detection](./tutorials/liveness.md)
