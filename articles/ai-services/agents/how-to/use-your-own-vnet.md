@@ -18,11 +18,12 @@ ms.custom: azure-ai-agents
 
 1. An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
 2. [Python 3.8 or later](https://www.python.org/)
-3. Make sure the person deploying the template has the role: **Contributor** assigned at the resource group level, and they're deploying this template in that specific resource group (specific role). [Learn more](https://learn.microsoft.com/azure/ai-studio/concepts/rbac-ai-studio)
-4. To deploy the bicep template and configure RBAC (Role-Based Access Control), you need to have the role: **Role Based Access Administrator** at the subscription level.  
+3. Ensure that the individual deploying the template has the the role: **Azure AI Developer** assigned at the resource group level where the template is being deployed. [Learn more](https://learn.microsoft.com/azure/ai-studio/concepts/rbac-ai-studio)
+4. Additionally, to deploy the temaplete you need to have the preset role: **Role Based Access Administrator** at the subscription level. [Learn more](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator)
     * Note: The **Owner** role at the subscription level satisfies this requirement.
-5. Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
-6. Register providers
+    * Note: The specific admin role that is needed is: **'Microsoft.Authorization/roleAssignments/write'** 
+1. Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
+1. Register providers
     The following providers must be registered:
 
     * Microsoft.KeyVault
