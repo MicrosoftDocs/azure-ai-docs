@@ -57,7 +57,7 @@ ms.custom: azure-ai-agents
 </summary>   
 
 **The Bicep template automates the following configurations and resource provisions:**
-* Creates a User Assigned Identify. [Learn more](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp#create-a-user-assigned-managed-identity)
+* Creates a User Assigned Identify. [Learn more](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp#create-a-user-assigned-managed-identity)
   * The User Assigned Managed Identity requires the following Role Based Access Roles: KeyVault Secret Officer, KeyVault Contributor , Storage Blob Data Owner, Storage Queue Data Contributor, Cognitive Services Contributor, Cognitive Services OpenAI User, Search Index Data Contributor, Search Service Contributor 
 
 * Configures a managed virtual network with two subnet resources:
@@ -141,8 +141,8 @@ ms.custom: azure-ai-agents
 
 **The following code shows how to create and run an agent using Python (Azure SDK):**
 
-* C#: See the [C# quickstart](https://learn.microsoft.com/azure/ai-services/agents/quickstart?pivots=programming-language-csharp)
-* Python OpenAI SDK: See the [Python OpenAI SDK quickstart](https://learn.microsoft.com/azure/ai-services/agents/quickstart?pivots=programming-language-python-openai)
+* C#: See the [C# quickstart](../includes/quickstart-csharp.md)
+* Python OpenAI SDK: See the [Python OpenAI SDK quickstart](../includes/quickstart-python-openai.md)
 
 Run the following commands to install the python packages.
 
@@ -150,14 +150,17 @@ Run the following commands to install the python packages.
 pip install azure-ai-projects
 pip install azure-identity
 ```
+Next, to authenticate your API requests and run the program, use the [az login](/cli/azure/authenticate-azure-cli-interactively) command to sign into your Azure subscription.
+
+```azurecli
+az login
+```
 
 Use the following code to create and run an agent. To run this code, you will need to create a connection string using information from your project. This string is in the format:
 
 `<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>`
 
-> [!TIP]
-> You can also find your connection string in the **overview** for your project in the [Azure AI Foundry portal](https://ai.azure.com/), under **Project details** > **Project connection string**.
-> :::image type="content" source="portal-connection-string.png" alt-text="A screenshot showing the connection string in the Azure AI Foundry portal." lightbox="portal-connection-string.png":::
+[!INCLUDE [connection-string-portal](connection-string-portal.md)]
 
 `HostName` can be found by navigating to your `discovery_url` and removing the leading `https://` and trailing `/discovery`. To find your `discovery_url`, run this CLI command:
 
@@ -229,7 +232,7 @@ with project_client:
     print(f"Messages: {messages}")
 
     # Get the last message from the sender
-    last_msg = messages.get_last_text_message_by_sender("assistant")
+    last_msg = messages.get_last_text_message_by_role("assistant")
     if last_msg:
         print(f"Last Message: {last_msg.text.value}")
 
@@ -253,4 +256,3 @@ with project_client:
     # Delete the agent once done
     project_client.agents.delete_agent(agent.id)
     print("Deleted agent")
-```
