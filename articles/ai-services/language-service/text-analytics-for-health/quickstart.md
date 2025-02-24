@@ -51,7 +51,7 @@ This article contains Text Analytics for health quickstarts that help with using
 
 ::: zone-end
 
-::: zone pivot="azure-ai-foundry"
+::: zone pivot="ai-foundry-portal"
 
 [!INCLUDE [Azure AI Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
 
