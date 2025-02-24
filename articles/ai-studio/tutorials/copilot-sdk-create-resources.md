@@ -110,11 +110,10 @@ In the Azure AI Foundry portal, check for an Azure AI Search connected resource.
 
 1. Select **Add connection**.  
 
-## <a name="installs"></a> Install the Azure CLI and sign in 
-
-[!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
 
 ## Create a new Python environment
+
+In the IDE of your choice, create a new folder for your project.  Open a terminal window in that folder.
 
 [!INCLUDE [Install Python](../includes/install-python.md)]
 
@@ -144,6 +143,12 @@ Create a folder for your work. Create a file called **config.py** in this folder
 ## Configure environment variables
 
 [!INCLUDE [create-env-file](../includes/create-env-file-tutorial.md)]
+
+## <a name="installs"></a> Install the Azure CLI and sign in 
+
+[!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
+
+Keep this terminal window open to run your python scripts from here as well, now that you've signed in.
 
 ## Clean up resources
 
