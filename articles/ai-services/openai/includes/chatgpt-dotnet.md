@@ -37,6 +37,7 @@ From the project directory, open the *program.cs* file and replace with the foll
 ```csharp
 using Azure;
 using Azure.AI.OpenAI;
+using OpenAI.Chat;
 using static System.Environment;
 
 string endpoint = GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
