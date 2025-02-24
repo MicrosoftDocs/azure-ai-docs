@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 01/29/2025
+ms.date: 02/24/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -21,6 +21,10 @@ Stored completions allow you to capture the conversation history from chat compl
 ### API support
 
 Support first added in `2024-10-01-preview`
+
+### Deployment type
+
+Currently only `Standard` model deployments support stored completions.
 
 ### Model & region availability
 
