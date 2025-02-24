@@ -16,7 +16,7 @@ ms.custom: azure-ai-agents
 
 Azure AI Agent Service allows you to create AI agents tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions.
 
-::: zone pivot="ai-foundry"
+::: zone pivot="ai-foundry-portal"
 
 [!INCLUDE [quickstart-ai-foundry](includes/quickstart-foundry.md)]
 

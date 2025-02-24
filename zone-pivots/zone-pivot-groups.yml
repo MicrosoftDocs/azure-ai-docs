@@ -131,7 +131,7 @@ groups:
   prompt: Choose your preferred usage method
   pivots:
   - id: ai-foundry-portal
-    title: Portal
+    title: Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-javascript
@@ -195,7 +195,7 @@ groups:
   prompt: Choose your preferred usage method
   pivots:
   - id: ai-foundry-portal
-    title: Portal
+    title: Foundry portal
   - id: programming-language-dotnet
     title: C#
   - id: programming-language-javascript
@@ -212,7 +212,7 @@ groups:
   prompt: Choose your preferred usage method
   pivots:
   - id: ai-foundry-portal
-    title: Portal
+    title: Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-go
@@ -799,7 +799,7 @@ groups:
   title: Programming languages
   prompt: Choose one of the client library languages or REST API.
   pivots:
-  - id: azure-ai-foundry
+  - id: ai-foundry-portal
     title: Foundry portal
   - id: programming-language-csharp
     title: C#
@@ -853,7 +853,7 @@ groups:
   prompt: Choose your preferred usage method
   pivots:
   - id: ai-foundry-portal
-    title: Portal
+    title: Foundry portal
   - id: programming-language-python
     title: Python
   - id: rest-api
@@ -964,7 +964,7 @@ groups:
   prompt: Choose your preferred usage method
   pivots:
   - id: ai-foundry-portal
-    title: Portal
+    title: Foundry portal
   - id: programming-language-javascript
     title: JavaScript
 - id: openai-portal-js-python-ts
@@ -972,7 +972,7 @@ groups:
   prompt: Choose your preferred usage method
   pivots:
   - id: ai-foundry-portal
-    title: Portal
+    title: Foundry portal
   - id: programming-language-javascript
     title: JavaScript
   - id: programming-language-python
@@ -983,8 +983,8 @@ groups:
   title: Usage methods
   prompt: Choose a usage method
   pivots:
-  - id: ai-foundry
-    title: AI Foundry
+  - id: ai-foundry-portal
+    title: Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-javascript
@@ -1064,7 +1064,7 @@ groups:
   prompt: Choose a tool or API
   pivots:
   - id: ai-foundry-portal
-    title: Portal
+    title: Foundry portal
   - id: programming-language-javascript
     title: JavaScript
   - id: programming-language-python
