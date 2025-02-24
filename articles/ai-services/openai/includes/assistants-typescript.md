@@ -34,7 +34,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Create a new folder `assistants-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
 
     ```shell
-    mkdir assistants-quickstart && code assistants-quickstart
+    mkdir assistants-quickstart && cd assistants-quickstart
     ```
     
 
@@ -110,15 +110,15 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     } from "@azure/identity";
     
     // Get environment variables
-    const azureOpenAIEndpoint = process.env.AZURE_OPENAI_ENDPOINT as string;
+    const azureOpenAIEndpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint" as string;
     const azureOpenAIDeployment = process.env
-      .AZURE_OPENAI_DEPLOYMENT_NAME as string;
-    const openAIVersion = process.env.OPENAI_API_VERSION as string;
+      .AZURE_OPENAI_DEPLOYMENT_NAME  || "Your deployment name" as string;
+    const openAIVersion = process.env.OPENAI_API_VERSION || "A supported API version" as string;
     
     // Check env variables
     if (!azureOpenAIEndpoint || !azureOpenAIDeployment || !openAIVersion) {
       throw new Error(
-        "Please ensure to set AZURE_OPENAI_DEPLOYMENT_NAME and AZURE_OPENAI_ENDPOINT in your environment variables."
+        "You need to set the endpoint, deployment name, and API version."
       );
     }
     

@@ -74,7 +74,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
     } = require('@azure/identity');
 
     // You will need to set these environment variables or edit the following values
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "<endpoint>";
     const imageUrl = process.env["IMAGE_URL"] || "<image url>";
     
     // Required Azure OpenAI deployment name and API version
@@ -158,8 +158,8 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
     const { AzureOpenAI } = require("openai");
     
     // You will need to set these environment variables or edit the following values
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
-    const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "<endpoint>";
+    const apiKey = process.env.AZURE_OPENAI_API_KEY || "<api key>";
     const imageUrl = process.env["IMAGE_URL"] || "<image url>";
     
     // Required Azure OpenAI deployment name and API version

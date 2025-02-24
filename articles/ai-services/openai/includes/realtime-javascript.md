@@ -29,7 +29,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Create a new folder `realtime-audio-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
 
     ```shell
-    mkdir realtime-audio-quickstart && code realtime-audio-quickstart
+    mkdir realtime-audio-quickstart && cd realtime-audio-quickstart
     ```
     
 1. Create the `package.json` with the following command:
@@ -37,13 +37,6 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     ```shell
     npm init -y
     ```
-
-1. Update the `package.json` to ECMAScript with the following command: 
-
-    ```shell
-    npm pkg set type=module
-    ```
-    
 
 1. Install the real-time audio client library for JavaScript with:
 
@@ -77,8 +70,8 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     dotenv.config();
     async function text_in_audio_out() {
         // Set environment variables or edit the corresponding values here.
-        const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "yourEndpoint";
-        const deployment = "gpt-4o-mini-realtime-preview";
+        const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "YourEndpoint";
+        const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4o-mini-realtime-preview";
         if (!endpoint || !deployment) {
             throw new Error("You didn't set the environment variables.");
         }
@@ -146,8 +139,8 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     dotenv.config();
     async function text_in_audio_out() {
         // Set environment variables or edit the corresponding values here.
-        const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "yourKey";
-        const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "yourEndpoint";
+        const apiKey = process.env.AZURE_OPENAI_API_KEY || "yourKey";
+        const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "yourEndpoint";
         const deployment = "gpt-4o-mini-realtime-preview";
         if (!endpoint || !deployment) {
             throw new Error("You didn't set the environment variables.");

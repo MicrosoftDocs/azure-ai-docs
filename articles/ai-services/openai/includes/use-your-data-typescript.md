@@ -44,7 +44,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     import "@azure/openai/types";
     
     // Set the Azure and AI Search values from environment variables
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"];
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
     const searchEndpoint = process.env["AZURE_AI_SEARCH_ENDPOINT"];
     const searchIndex = process.env["AZURE_AI_SEARCH_INDEX"];
     
@@ -142,8 +142,8 @@ Your app's _package.json_ file will be updated with the dependencies.
     import "@azure/openai/types";
     
     // Set the Azure and AI Search values from environment variables
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"];
-    const apiKey = process.env["AZURE_OPENAI_API_KEY"];
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
+    const apiKey = process.env.AZURE_OPENAI_API_KEY;
     const searchEndpoint = process.env["AZURE_AI_SEARCH_ENDPOINT"];
     const searchKey = process.env["AZURE_AI_SEARCH_API_KEY"];
     const searchIndex = process.env["AZURE_AI_SEARCH_INDEX"];

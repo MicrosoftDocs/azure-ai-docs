@@ -30,7 +30,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Create a new folder `realtime-audio-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
 
     ```shell
-    mkdir realtime-audio-quickstart && code realtime-audio-quickstart
+    mkdir realtime-audio-quickstart && cd realtime-audio-quickstart
     ```
     
 
@@ -79,8 +79,8 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
     async function text_in_audio_out() {
         // Set environment variables or edit the corresponding values here.
-        const endpoint: string = process.env["AZURE_OPENAI_ENDPOINT"] || "yourEndpoint";
-        const deployment = "gpt-4o-mini-realtime-preview";
+        const endpoint: string = process.env.AZURE_OPENAI_ENDPOINT || "yourEndpoint";
+        const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4o-mini-realtime-preview";
         if (!endpoint || !deployment) {
             throw new Error("You didn't set the environment variables.");
         }
@@ -174,8 +174,8 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
     async function text_in_audio_out() {
         // Set environment variables or edit the corresponding values here.
-        const apiKey: string = process.env["AZURE_OPENAI_API_KEY"] || "yourKey";
-        const endpoint: string = process.env["AZURE_OPENAI_ENDPOINT"] || "yourEndpoint";
+        const apiKey: string = process.env.AZURE_OPENAI_API_KEY || "yourKey";
+        const endpoint: string = process.env.AZURE_OPENAI_ENDPOINT || "yourEndpoint";
         const deployment = "gpt-4o-mini-realtime-preview";
         if (!endpoint || !deployment) {
             throw new Error("You didn't set the environment variables.");

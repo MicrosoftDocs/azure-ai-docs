@@ -63,7 +63,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     
     // You will need to set these environment variables or edit the following values
     const audioFilePath = "<audio file path>";
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "<endpoint>";
     
     // Required Azure OpenAI deployment name and API version
     const apiVersion = "2024-08-01-preview";
@@ -118,8 +118,8 @@ Your app's _package.json_ file will be updated with the dependencies.
     
     // You will need to set these environment variables or edit the following values
     const audioFilePath = "<audio file path>";
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
-    const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "<endpoint>";
+    const apiKey = process.env.AZURE_OPENAI_API_KEY || "<api key>";
     
     // Required Azure OpenAI deployment name and API version
     const apiVersion = "2024-08-01-preview";
