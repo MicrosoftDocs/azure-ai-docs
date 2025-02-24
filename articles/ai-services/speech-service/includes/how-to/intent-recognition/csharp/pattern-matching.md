@@ -5,7 +5,6 @@ ms.service: azure-ai-speech
 ms.date: 11/15/2021
 ms.topic: include
 ms.author: ralphe
-zone_pivot_groups: programming-languages-set-two
 ---
 
 ## Create a project
