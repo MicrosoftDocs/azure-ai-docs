@@ -155,14 +155,14 @@ The supported file type is JSON Lines. Files are uploaded to the default datasto
 Once your model is fine-tuned, you can deploy it and use it in your own application, in the playground, or in prompt flow. For more information on how to use deployed models, see [How to use Mistral premium chat models](./deploy-models-mistral.md).
 
 ---
-## Supported Enterprise Scenarios for Finetuning
+## Supported enterprise scenarios for finetuning
 
 Several enterprise scenarios are supported for MaaS finetuning. The table below outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
 
-**Note:**  
-- Data connections auth can be changed via AI Studio by clicking on the datastore connection which your dataset is stored in, and navigating to the "Access details" > "Authentication Method" setting.  
-- Storage auth can be changed in Azure Storage > "Settings" > "Configurations" page > "Allow storage account key access"  
-- Storage networking can be changed in Azure Storage > "Networking" page
+>[!Note]  
+>- Data connections auth can be changed via AI Studio by clicking on the datastore connection which your dataset is stored in, and navigating to the **Access details** > **Authentication Method** setting.  
+>- Storage auth can be changed in Azure Storage > **Settings** > **Configurations** page > **Allow storage account key access**.  
+>- Storage networking can be changed in Azure Storage > **Networking** page.
 
 | **Storage Networking**                                       |  **Storage Auth**               | **Data Connection Auth**               | **Support**           |
 | ------------------------------------------------------------ | ------------------------------ | --------------------------------- | ----------------------- |
