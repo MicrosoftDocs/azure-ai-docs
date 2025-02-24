@@ -19,24 +19,28 @@ Azure AI Content Understanding in an innovative Generative AI service designed t
 
 When defining a schema, it's essential to provide detailed field descriptions. Clear and concise descriptions guide the model to focus on the correct information, improving the accuracy of the output.
 
-### &emsp;&emsp; **Example**
+##### &emsp; ***Example***
 
   * If you want to extract the date from an invoice, in addition to naming the field `"Date"`, provide a description such as:
-   > **"The date when the invoice was issued, typically found at the top right corner of the document."**
 
-### &emsp;&emsp; **Example**
+     **"The date when the invoice was issued, typically found at the top right corner of the document."**
+
+##### &emsp; ***Example***
 
    * Suppose you want to extract the `"Customer Name"` from an invoice. Your description might read:
-   > **"The name of the customer or client to whom this invoice is addressed, usually located near the billing address. It should be the name of the business or person, but not the entire mailing address."**
+
+     **"The name of the customer or client to whom this invoice is addressed, usually located near the billing address. It should be the name of the business or person, but not the entire mailing address."**
+---
 
 ## Correct mistakes by editing field descriptions
 
 If the system's output isn't meeting expectations, the first thing to try is refining and updating the field descriptions. By clarifying the context and being more explicit about what you need, you reduce ambiguity and improve accuracy.
 
-### &emsp;&emsp; **Example**
+##### &emsp; ***Example***
 
-   * If the `"Shipping date"` field generated inconsistent or incorrect extraction, often after a "Dispatch Date" label, update it to something more precise like:
-   > **"The date when the products were shipped, typically found below the item list. It may also be labeled something similar like Delivery Date or Dispatch Date. Dates should typically have a format like 1/23/2024 or 01-04-2025."**
+   * If the `"shipping date"` field generated inconsistent or incorrect extraction, often after a "Dispatch Date" label, update it to something more precise like:
+
+     **"The date when the products were shipped, typically found below the item list. It may also be labeled something similar like Delivery Date or Dispatch Date. Dates should typically have a format like 1/23/2024 or 01-04-2025."**
 
    * This extra context guides the model to the right location in the document.
 
@@ -45,17 +49,17 @@ If the system's output isn't meeting expectations, the first thing to try is ref
 
 When you need the system to choose from a set of predefined options (for example, document type, product category, or status), use classification fields. When there's ambiguity with the options, provide clear descriptions for each option, enabling the model to categorize the data accurately.
 
-### &emsp;&emsp; **Example**
+##### &emsp; ***Example***
 
    * If you need to classify documents as either `"Invoice"`, `"Claim"`, or `"Report"`, create a classification field with these words as category names.
 
-### &emsp;&emsp; **Example**
+##### &emsp; ***Example***
 
    * When processing product images, you might need to assign them to categories like `"AlcoholicDrinks"`, `"SoftDrinks"`, `"Snacks"`, and `"DairyProducts"`. Since some items can appear similar, providing precise definitions for close-call cases can help. For example:
 
-   * **`"Alcoholic Drinks"`**: Beverages containing alcohol, such as beer, wine, and spirits. This category excludes soft drinks or other nonalcoholic beverages.
+     * **`"Alcoholic Drinks"`**: Beverages containing alcohol, such as beer, wine, and spirits. This category excludes soft drinks or other nonalcoholic beverages.
 
-   * **`"Soft Drinks"`**: Carbonated nonalcoholic beverages, such as soda and sparkling water. This category doesn't include juices or alcoholic drinks.
+     * **`"Soft Drinks"`**: Carbonated nonalcoholic beverages, such as soda and sparkling water. This category doesn't include juices or alcoholic drinks.
 
    * By clearly defining each category, you ensure that the system correctly classifies products while minimizing misclassification.
 
@@ -63,7 +67,7 @@ When you need the system to choose from a set of predefined options (for example
 
 Confidence scores help you decide when to involve human reviewers. Customers can interpret confidence scores using thresholds to decide which results need more reviews, minimizing the risk of errors.
 
-   ### &emsp;&emsp; **Example**
+   ##### &emsp; ***Example***
 
    * For an invoice review use case, if a key extracted field like `"TotalInvoiceAmount"` has a confidence score under **0.80**, route that document to manual review. This helps ensure that a human verifies critical fields like invoice totals or legal statements when necessary.
 
@@ -73,7 +77,7 @@ Confidence scores help you decide when to involve human reviewers. Customers can
 
 When you're working with audio and video content, selecting a narrow set of languages for transcription can potentially reduce errors. The more languages you include, the more the system has to guess which language is being spoken, which cam increase misrecognition.
 
-### &emsp;&emsp; **Example**
+##### &emsp; ***Example***
 
    * If you're certain that the content only contains English and Spanish, configuring your transcription to these two languages only can improve quality. But if the content accidentally includes other languages, such configuration can actually degrade overall quality.
 

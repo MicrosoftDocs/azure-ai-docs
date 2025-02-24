@@ -23,9 +23,6 @@ items:
   - name: FAQ
     displayName: FAQ, definition, updates, previews
     href: faq.yml
-  - name: Best Practices
-    displayName: Best Practices, analyzers, optimization, fields
-    href: best-practices.md
   - name: Glossary
     displayName: glossary, definition, updates, previews
     href: glossary.md
