@@ -14,7 +14,10 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 
 # Tutorial: Detect liveness in faces
 
-In this tutorial, you learn how to detect liveness in faces, using a combination of server-side code and a client-side mobile application. For general information about face liveness detection, see the [conceptual guide](../concept-face-liveness-detection.md).
+In this tutorial, you learn how to detect liveness in faces, using a combination of server-side code and a client-side mobile application. 
+
+> [!TIP]
+> For general information about face liveness detection, see the [conceptual guide](../concept-face-liveness-detection.md).
 
 This tutorial demonstrates how to operate a frontend application and an app server to perform liveness detection, including the optional step of [face verification](#perform-liveness-detection-with-face-verification), across various platforms and languages.
 
