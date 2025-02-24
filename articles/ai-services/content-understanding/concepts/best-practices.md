@@ -22,7 +22,7 @@ This document provides guidance and best practices to effectively utilize Conten
 
 When defining a schema, it's essential to provide detailed field descriptions. Clear and concise descriptions guide the model to focus on the correct information, improving the accuracy of the output.
 
-##### &emsp; ***Example***
+##### &emsp; ***Example 1***
 
   * If you want to extract the date from an invoice, in addition to naming the field `Date`, provide a description such as:
 
@@ -30,7 +30,7 @@ When defining a schema, it's essential to provide detailed field descriptions. C
     > `The date when the invoice was issued, typically found at the top right corner of the document.`
 
 
-##### &emsp; ***Example***
+##### &emsp; ***Example 2***
 
    * Suppose you want to extract the `Customer Name` from an invoice. Your description might read:
 
@@ -41,7 +41,7 @@ When defining a schema, it's essential to provide detailed field descriptions. C
 
 If the system's output isn't meeting expectations, the first step is to try refining and updating the field descriptions. Clarifying the context and being more explicit about what you need, reduces ambiguity and improves accuracy.
 
-##### &emsp; ***Example***
+##### &emsp; ***Example 3***
 
    * If the `Shipping date` field generated inconsistent or incorrect extraction, often after a `Dispatch Date` label, update it to something more precise like:
 
@@ -54,11 +54,11 @@ If the system's output isn't meeting expectations, the first step is to try refi
 
 When you need the system to choose from a set of predefined options, for example, document type, product category, or status, use classification fields. Where there's ambiguity with the options, provide clear descriptions for each option, enabling the model to categorize the data accurately.
 
-##### &emsp; ***Example***
+##### &emsp; ***Example 4***
 
    * If you need to classify documents as either `Invoice`, `Claim`, or `Report`, create a classification field with these words as category names.
 
-##### &emsp; ***Example***
+##### &emsp; ***Example 5***
 
    * When processing product images, you might need to assign them to categories like `AlcoholicDrinks`, `SoftDrinks`, `Snacks`, and `DairyProducts`. Since some items can appear similar, providing precise definitions for close-call cases can help. For example:
 
@@ -72,7 +72,7 @@ When you need the system to choose from a set of predefined options, for example
 
 Confidence scores help you decide when to involve human reviewers. Customers can interpret confidence scores using thresholds to decide which results need more reviews, minimizing the risk of errors.
 
-   ##### &emsp; ***Example***
+   ##### &emsp; ***Example 6***
 
    * For an invoice review use case, if a key extracted field like `TotalInvoiceAmount` has a confidence score under **0.80**, route that document to manual review. This helps ensure that a human verifies critical fields like invoice totals or legal statements when necessary.
 
@@ -82,7 +82,7 @@ Confidence scores help you decide when to involve human reviewers. Customers can
 
 When you're working with audio and video content, selecting a narrow set of languages for transcription can potentially reduce errors. The more languages you include, the more the system has to guess which language is being spoken, which cam increase misrecognition.
 
-##### &emsp; ***Example***
+##### &emsp; ***Example 7***
 
    * If you're certain that the content only contains English and Spanish, configuring your transcription to only these two languages can improve quality. But if the content accidentally includes other languages, such configuration can actually degrade overall quality.
 
