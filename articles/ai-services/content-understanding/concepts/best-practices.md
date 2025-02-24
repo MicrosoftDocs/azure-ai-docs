@@ -23,7 +23,7 @@ When defining a schema, it's essential to provide detailed field descriptions. C
 
   * If you want to extract the date from an invoice, in addition to naming the field `"Date"`, provide a description such as:
 
-     **"The date when the invoice was issued, typically found at the top right corner of the document."**
+        **"The date when the invoice was issued, typically found at the top right corner of the document."**
 
 ##### &emsp; ***Example***
 
