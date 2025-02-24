@@ -1,4 +1,4 @@
-
+---
 title: Best practices for using Content Understanding
 titleSuffix: Azure AI services
 description: Learn how to best use Azure AI Content Understanding for document, image, video, and audio file content and field extractions.
@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.date: 02/24/2025
-
+---
 
 # Best Practices for Content Understanding
 
@@ -32,7 +32,7 @@ When defining a schema, it's essential to provide detailed field descriptions. C
 
    * Suppose you want to extract the `Customer Name` from an invoice. Your description might read:
 
-    > `The name of the customer or client to whom this invoice is addressed, usually located near the billing address. It should be the name of the business or person, but not the entire mailing address.`
+     > `The name of the customer or client to whom this invoice is addressed, usually located near the billing address. It should be the name of the business or person, but not the entire mailing address.`
 
 ## Correct mistakes by editing field descriptions
 
