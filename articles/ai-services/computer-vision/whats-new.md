@@ -19,7 +19,19 @@ ms.author: pafarley
 
 Learn what's new in Azure AI Vision. Check this page to stay up to date with new features, enhancements, fixes, and documentation updates. 
 
+## February 2025
 
+### Face liveness client-side SDK 1.1.0 release
+
+Liveness client-side SDK released [1.1.0](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases/tag/1.1.0)
+
+This update includes a few improvements:
+
+* Increased timeout for the head-turn scenario to provide end-users more time to complete the flow.
+* Fixes to iOS and Android SDKs to resolve compatibility issues with Microsoft Intune Mobile Application Management SDKs.
+* Security related fixes/improvements.
+
+For more information, see the [SDK release notes](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases/tag/1.1.0).
 
 ## January 2025
 

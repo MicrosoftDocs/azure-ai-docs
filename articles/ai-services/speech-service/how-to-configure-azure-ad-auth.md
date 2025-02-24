@@ -113,11 +113,11 @@ aadToken = ibc.get_token("https://cognitiveservices.azure.com/.default")
 ```
 ::: zone-end
 
-::: zone pivot="programming-language-more"
+### More samples
+
 Find samples that get a Microsoft Entra access token in [Microsoft identity platform code samples](/azure/active-directory/develop/sample-v2-code).
 
 For programming languages where a Microsoft identity platform client library isn't available, you can directly [request an access token](/azure/active-directory/develop/v2-oauth-ropc).
-::: zone-end
 
 ## Get the Speech resource ID
 
