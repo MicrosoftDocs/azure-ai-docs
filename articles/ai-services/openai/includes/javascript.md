@@ -59,9 +59,9 @@ const {
 } = require("@azure/identity");
 
 // You will need to set these environment variables or edit the following values
-const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "<endpoint>";
-const apiVersion = "2024-04-01-preview";
-const deployment = "gpt-35-turbo-instruct"; //The deployment name for your completions API model. The instruct model is the only new model that supports the legacy API.
+const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+const apiVersion = process.env.OPENAI_API_VERSION || "2024-04-01-preview";
+const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-35-turbo-instruct"; //The deployment name for your completions API model. The instruct model is the only new model that supports the legacy API.
 
 // keyless authentication    
 const credential = new DefaultAzureCredential();
@@ -102,10 +102,10 @@ node.exe Completion.js
 const { AzureOpenAI } = require("openai");
 
 // You will need to set these environment variables or edit the following values
-const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "<endpoint>";
-const apiKey = process.env.AZURE_OPENAI_API_KEY || "<api key>";
-const apiVersion = "2024-04-01-preview";
-const deployment = "gpt-35-turbo-instruct"; //The deployment name for your completions API model. The instruct model is the only new model that supports the legacy API.
+const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+const apiKey = process.env.AZURE_OPENAI_API_KEY || "Your API key";
+const apiVersion = process.env.OPENAI_API_VERSION || "2024-04-01-preview";
+const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-35-turbo-instruct"; //The deployment name for your completions API model. The instruct model is the only new model that supports the legacy API.
 
 const prompt = ["When was Microsoft founded?"];
 

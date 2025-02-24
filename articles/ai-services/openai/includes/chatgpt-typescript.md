@@ -70,7 +70,7 @@ import type {
 } from "openai/resources/index";
 
 // You will need to set these environment variables or edit the following values
-const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "<endpoint>";
+const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
 
 // Required Azure OpenAI deployment name and API version
 const apiVersion = process.env.OPENAI_API_VERSION || "2024-08-01-preview";

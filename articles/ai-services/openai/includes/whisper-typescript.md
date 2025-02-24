@@ -63,11 +63,11 @@ Your app's _package.json_ file will be updated with the dependencies.
 
     // You will need to set these environment variables or edit the following values
     const audioFilePath = "<audio file path>";
-    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "<endpoint>";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
     
     // Required Azure OpenAI deployment name and API version
-    const apiVersion = "2024-08-01-preview";
-    const deploymentName = "whisper";
+    const apiVersion = process.env.OPENAI_API_VERSION || "2024-08-01-preview";
+    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "whisper";
 
     // keyless authentication    
     const credential = new DefaultAzureCredential();
@@ -122,12 +122,12 @@ Your app's _package.json_ file will be updated with the dependencies.
     
     // You will need to set these environment variables or edit the following values
     const audioFilePath = "<audio file path>";
-    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "<endpoint>";
-    const apiKey = process.env.AZURE_OPENAI_API_KEY || "<api key>";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+    const apiKey = process.env.AZURE_OPENAI_API_KEY || "Your API key";
     
     // Required Azure OpenAI deployment name and API version
-    const apiVersion = "2024-08-01-preview";
-    const deploymentName = "whisper";
+    const apiVersion = process.env.OPENAI_API_VERSION || "2024-08-01-preview";
+    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "whisper";
     
     function getClient(): AzureOpenAI {
       return new AzureOpenAI({

@@ -65,12 +65,12 @@ Your app's _package.json_ file will be updated with the dependencies.
     require("openai/shims/node");
     
     // You will need to set these environment variables or edit the following values
-    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "<endpoint>";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
     const speechFilePath = "<path to save the speech file>";
     
     // Required Azure OpenAI deployment name and API version
-    const deploymentName = "tts";
-    const apiVersion = "2024-08-01-preview";
+    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "tts";
+    const apiVersion = process.env.OPENAI_AOI_VERSION || "2024-08-01-preview";
     
     // keyless authentication    
     const credential = new DefaultAzureCredential();
@@ -131,13 +131,13 @@ Your app's _package.json_ file will be updated with the dependencies.
     require("openai/shims/node");
     
     // You will need to set these environment variables or edit the following values
-    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "<endpoint>";
-    const apiKey = process.env.AZURE_OPENAI_API_KEY || "<api key>";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+    const apiKey = process.env.AZURE_OPENAI_API_KEY || "Your API key";
     const speechFilePath = "<path to save the speech file>";
     
     // Required Azure OpenAI deployment name and API version
-    const deploymentName = "tts";
-    const apiVersion = "2024-08-01-preview";
+    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "tts";
+    const apiVersion = process.env.OPENAI_API_VERSION || "2024-08-01-preview";
     
     function getClient() {
       return new AzureOpenAI({

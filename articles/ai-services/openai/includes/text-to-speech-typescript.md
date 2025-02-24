@@ -53,8 +53,6 @@ Your app's _package.json_ file will be updated with the dependencies.
 
 ## Create a speech file
 
-    
-
 #### [Microsoft Entra ID](#tab/typescript-keyless)
 
 1. Create a new file named _Text-to-speech.ts_ and open it in your preferred code editor. Copy the following code into the _Text-to-speech.ts_ file:
@@ -67,12 +65,12 @@ Your app's _package.json_ file will be updated with the dependencies.
     import "openai/shims/node";
     
     // You will need to set these environment variables or edit the following values
-    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "<endpoint>";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
     const speechFilePath = "<path to save the speech file>";
     
     // Required Azure OpenAI deployment name and API version
-    const deploymentName = "tts";
-    const apiVersion = "2024-08-01-preview";
+    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "tts";
+    const apiVersion = process.env.OPENAI_API_VERSION || "2024-08-01-preview";
 
     // keyless authentication    
     const credential = new DefaultAzureCredential();
@@ -143,14 +141,14 @@ Your app's _package.json_ file will be updated with the dependencies.
     import "openai/shims/node";
     
     // You will need to set these environment variables or edit the following values
-    const endpoint = "<endpoint>";
-    const apiKey = process.env.AZURE_OPENAI_API_KEY || "<api key>";
+    const endpoint = "Your endpoint";
+    const apiKey = process.env.AZURE_OPENAI_API_KEY || "Your API key";
     const speechFilePath =
       process.env["SPEECH_FILE_PATH"] || "<path to save the speech file>";
     
     // Required Azure OpenAI deployment name and API version
-    const deploymentName = "tts";
-    const apiVersion = "2024-08-01-preview";
+    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "tts";
+    const apiVersion = process.env.OPENAI_API_VERSION || "2024-08-01-preview";
     
     function getClient(): AzureOpenAI {
       return new AzureOpenAI({

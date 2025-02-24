@@ -66,7 +66,7 @@ const {
 } = require("@azure/identity");
 
 // You will need to set these environment variables or edit the following values
-const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "<endpoint>";
+const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
 const apiVersion = process.env.OPENAI_API_VERSION || "2024-05-01-preview";
 const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4o"; //This must match your deployment name.
 
@@ -114,10 +114,10 @@ node.exe ChatCompletion.js
 const { AzureOpenAI } = require("openai");
 
 // You will need to set these environment variables or edit the following values
-const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "<endpoint>";
-const apiKey = process.env.AZURE_OPENAI_API_KEY || "<api key>";
-const apiVersion = "2024-05-01-preview";
-const deployment = "gpt-4o"; //This must match your deployment name.
+const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+const apiKey = process.env.AZURE_OPENAI_API_KEY || "Your API key";
+const apiVersion = process.env.OPENAI_API_VERSION || "2024-05-01-preview";
+const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4o"; //This must match your deployment name.
 
 async function main() {
 

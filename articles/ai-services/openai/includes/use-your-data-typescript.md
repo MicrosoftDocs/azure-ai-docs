@@ -44,9 +44,9 @@ Your app's _package.json_ file will be updated with the dependencies.
     import "@azure/openai/types";
     
     // Set the Azure and AI Search values from environment variables
-    const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
-    const searchEndpoint = process.env["AZURE_AI_SEARCH_ENDPOINT"];
-    const searchIndex = process.env["AZURE_AI_SEARCH_INDEX"];
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+    const searchEndpoint = process.env.AZURE_AI_SEARCH_ENDPOINT || "Your search endpoint";
+    const searchIndex = process.env.AZURE_AI_SEARCH_INDEX || "Your search index";
     
     // keyless authentication    
     const credential = new DefaultAzureCredential();
@@ -54,8 +54,8 @@ Your app's _package.json_ file will be updated with the dependencies.
     const azureADTokenProvider = getBearerTokenProvider(credential, scope);
 
     // Required Azure OpenAI deployment name and API version
-    const deploymentName = "gpt-4";
-    const apiVersion = "2024-07-01-preview";
+    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4";
+    const apiVersion = process.env.OPENAI_API_VERSION || "2024-07-01-preview";
     
     function getClient(): AzureOpenAI {
       return new AzureOpenAI({
@@ -142,15 +142,15 @@ Your app's _package.json_ file will be updated with the dependencies.
     import "@azure/openai/types";
     
     // Set the Azure and AI Search values from environment variables
-    const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
-    const apiKey = process.env.AZURE_OPENAI_API_KEY;
-    const searchEndpoint = process.env["AZURE_AI_SEARCH_ENDPOINT"];
-    const searchKey = process.env["AZURE_AI_SEARCH_API_KEY"];
-    const searchIndex = process.env["AZURE_AI_SEARCH_INDEX"];
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+    const apiKey = process.env.AZURE_OPENAI_API_KEY || "Your API key";
+    const searchEndpoint = process.env.AZURE_AI_SEARCH_ENDPOINT || "Your search endpoint";
+    const searchKey = process.env.AZURE_AI_SEARCH_API_KEY || "Your search key";
+    const searchIndex = process.env.AZURE_AI_SEARCH_INDEX || "Your search index";
     
     // Required Azure OpenAI deployment name and API version
-    const deploymentName = "gpt-4";
-    const apiVersion = "2024-07-01-preview";
+    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4";
+    const apiVersion = process.env.OPENAI_API_VERSION || "2024-07-01-preview";
     
     function getClient(): AzureOpenAI {
       return new AzureOpenAI({

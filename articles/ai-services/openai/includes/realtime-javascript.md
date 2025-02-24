@@ -139,9 +139,9 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     dotenv.config();
     async function text_in_audio_out() {
         // Set environment variables or edit the corresponding values here.
-        const apiKey = process.env.AZURE_OPENAI_API_KEY || "yourKey";
-        const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "yourEndpoint";
-        const deployment = "gpt-4o-mini-realtime-preview";
+        const apiKey = process.env.AZURE_OPENAI_API_KEY || "Your API key";
+        const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+        const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4o-mini-realtime-preview";
         if (!endpoint || !deployment) {
             throw new Error("You didn't set the environment variables.");
         }
