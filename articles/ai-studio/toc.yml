@@ -384,7 +384,9 @@ items:
     items:
     - name: Fine-tuning in Azure AI Foundry
       href: concepts/fine-tuning-overview.md
-    - name: Fine-tune with a managed compute
+    - name: Fine-tune models deployed via serverless API
+      href: how-to/fine-tune-serverless.md
+    - name: Fine-tune models deployed via managed compute
       href: how-to/fine-tune-managed-compute.md
     - name: Fine-tune Azure OpenAI models
       href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context
