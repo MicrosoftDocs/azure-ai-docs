@@ -1,4 +1,4 @@
----
+
 title: Best practices for using Content Understanding
 titleSuffix: Azure AI services
 description: Learn how to best use Azure AI Content Understanding for document, image, video, and audio file content and field extractions.
@@ -8,15 +8,13 @@ manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.date: 02/24/2025
----
+
 
 # Best Practices for Content Understanding
 
 Azure AI Content Understanding is an innovative Generative AI service designed to facilitate the precise and accurate analysis of extensive data sets. The service processes various content modalities, including documents, images, videos, and audio, transforming them into user-specified output formats.
 
 This document provides guidance and best practices to effectively utilize Content Understanding for your data processing and analysis requirements.
-
----
 
 ## Use field descriptions to guide output
 
@@ -34,8 +32,7 @@ When defining a schema, it's essential to provide detailed field descriptions. C
 
    * Suppose you want to extract the `Customer Name` from an invoice. Your description might read:
 
-     > `The name of the customer or client to whom this invoice is addressed, usually located near the billing address. It should be the name of the business or person, but not the entire mailing address.`
----
+    > `The name of the customer or client to whom this invoice is addressed, usually located near the billing address. It should be the name of the business or person, but not the entire mailing address.`
 
 ## Correct mistakes by editing field descriptions
 
@@ -85,7 +82,6 @@ When you're working with audio and video content, selecting a narrow set of lang
 ##### &emsp; ***Example 7***
 
    * If you're certain that the content only contains English and Spanish, configuring your transcription to only these two languages can improve quality. But if the content accidentally includes other languages, such configuration can actually degrade overall quality.
-
 
 ## Transcript, document text, and speaker data don't require fields
 
