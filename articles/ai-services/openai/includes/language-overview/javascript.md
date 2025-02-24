@@ -5,7 +5,7 @@ description: Azure OpenAI JavaScript support
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 11/18/2024
+ms.date: 02/13/2025
 ---
 
 [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Reference](../../reference.md) |
@@ -36,7 +36,7 @@ import { DefaultAzureCredential } from "@azure/identity";
 const credential = new DefaultAzureCredential();
 ```
 
-This object is then passed to the second argument of the `OpenAIClient` and `AssistantsClient` client constructors.
+This object is then passed as part of the [`AzureClientOptions`](#configuration) object to the `AzureOpenAI` and `AssistantsClient` client constructors.
 
 In order to authenticate the `AzureOpenAI` client, however, we need to use the `getBearerTokenProvider` function from the `@azure/identity` package. This function creates a token provider that `AzureOpenAI` uses internally to obtain tokens for each request. The token provider is created as follows:
 
@@ -48,35 +48,63 @@ const endpoint = "https://your-azure-openai-resource.com";
 const apiVersion = "2024-10-21"
 const scope = "https://cognitiveservices.azure.com/.default";
 const azureADTokenProvider = getBearerTokenProvider(credential, scope);
-
+const deployment = "gpt-35-turbo";
 
 const client = new AzureOpenAI({ 
     endpoint, 
-    apiVersions,
+    apiVersion,
+    deployment,
     azureADTokenProvider
-     });
+});
 ```
+
+For more information about Azure OpenAI keyless authentication, see the "[Get started with the Azure OpenAI security building block](/azure/developer/ai/get-started-securing-your-ai-app?tabs=github-codespaces&pivots=typescript)" QuickStart article. 
+
+
+### Configuration
+
+The `AzureClientOptions` object extends the OpenAI `ClientOptions` object. This Azure-specific client object is used to configure the connection and behavior of the Azure OpenAI client. It includes properties for specifying the properties unique to Azure.
+
+| Property | Details |
+|--|--|
+| apiVersion: `string` | Specifies the API version to use. |
+| azureADTokenProvider: `(() => Promise<string>)` | A function that returns an access token for Microsoft Entra (formerly known as Azure Active Directory), invoked on every request.|
+| deployment: `string` | A model deployment. If provided, sets the base client URL to include `/deployments/{deployment}`. Non-deployment endpoints can't be used (not supported with Assistants APIs).|
+| endpoint: `string` | Your Azure OpenAI endpoint with the following format: `https://RESOURCE-NAME.azure.openai.com/`.|
 
 # [API Key](#tab/api-key)
 
-API Key
-
-API keys are not recommended for production use because they are less secure than other authentication methods. 
+API keys aren't recommended for production use because they're less secure than other authentication methods. 
 
 ```typescript
 import { AzureKeyCredential } from "@azure/openai";
 const apiKey = new AzureKeyCredential("your API key");
-const endpoint = "https://your-azure-openai-resource.com";0
+const endpoint = "https://your-azure-openai-resource.com";
 const apiVersion = "2024-10-21"
+const deployment = "gpt-35-turbo";
 
-const client = new AzureOpenAI({ apiKey, endpoint, apiVersion });
+const client = new AzureOpenAI({ 
+    apiKey, 
+    endpoint, 
+    apiVersion, 
+    deployment 
+});
 ```
 
-`AzureOpenAI` can be authenticated with an API key by setting the `AZURE_OPENAI_API_KEY` environment variable or by setting the `apiKey` string property in the options object when creating the `AzureOpenAI` client.
+### Configuration
+
+The `AzureClientOptions` object extends the OpenAI `ClientOptions` object. This Azure-specific client object is used to configure the connection and behavior of the Azure OpenAI client. It includes properties for specifying the properties unique to Azure.
+
+| Property | Details |
+|--|--|
+| apiKey: `string` | Your API key for authenticating requests. |
+| apiVersion: `string` | Specifies the API version to use. |
+| deployment: `string` | A model deployment. If provided, sets the base client URL to include `/deployments/{deployment}`. Non-deployment endpoints can't be used (not supported with Assistants APIs).|
+| endpoint: `string` | Your Azure OpenAI endpoint with the following format: `https://RESOURCE-NAME.azure.openai.com/`.|
 
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
-
 ---
+
 
 ## Audio
 

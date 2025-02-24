@@ -32,7 +32,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Create a new folder `full-text-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
 
     ```shell
-    mkdir full-text-quickstart && cd full-text-quickstart
+    mkdir full-text-quickstart && code full-text-quickstart
     ```
 
 1. Create a new console application with the following command:
@@ -65,7 +65,7 @@ In the prior [set up](#set-up) section, you created a new console application an
 
 In this section, you add code to create a search index, load it with documents, and run queries. You run the program to see the results in the console. For a detailed explanation of the code, see the [explaining the code](#explaining-the-code) section.
 
-The sample code in this quickstart uses Microsoft Entra ID for authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
+The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
 
 #### [Microsoft Entra ID](#tab/keyless)
 
@@ -108,21 +108,21 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
                 //AzureKeyCredential credential = new AzureKeyCredential("Your search service admin key");
     
                 // Create a SearchIndexClient to send create/delete index commands
-                SearchIndexClient adminClient = new SearchIndexClient(serviceEndpoint, credential);
+                SearchIndexClient searchIndexClient = new SearchIndexClient(serviceEndpoint, credential);
     
                 // Create a SearchClient to load and query documents
                 string indexName = "hotels-quickstart";
-                SearchClient srchclient = new SearchClient(serviceEndpoint, indexName, credential);
+                SearchClient searchClient = new SearchClient(serviceEndpoint, indexName, credential);
     
                 // Delete index if it exists
                 Console.WriteLine("{0}", "Deleting index...\n");
-                DeleteIndexIfExists(indexName, adminClient);
+                DeleteIndexIfExists(indexName, searchIndexClient);
     
                 // Create index
                 Console.WriteLine("{0}", "Creating index...\n");
-                CreateIndex(indexName, adminClient);
+                CreateIndex(indexName, searchIndexClient);
     
-                SearchClient ingesterClient = adminClient.GetSearchClient(indexName);
+                SearchClient ingesterClient = searchIndexClient.GetSearchClient(indexName);
     
                 // Load documents
                 Console.WriteLine("{0}", "Uploading documents...\n");
@@ -134,7 +134,7 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
     
                 // Call the RunQueries method to invoke a series of queries
                 Console.WriteLine("Starting queries...\n");
-                RunQueries(srchclient);
+                RunQueries(searchClient);
     
                 // End the program
                 Console.WriteLine("{0}", "Complete. Press any key to end this program...\n");
@@ -142,15 +142,15 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
             }
     
             // Delete the hotels-quickstart index to reuse its name
-            private static void DeleteIndexIfExists(string indexName, SearchIndexClient adminClient)
+            private static void DeleteIndexIfExists(string indexName, SearchIndexClient searchIndexClient)
             {
-                adminClient.GetIndexNames();
+                searchIndexClient.GetIndexNames();
                 {
-                    adminClient.DeleteIndex(indexName);
+                    searchIndexClient.DeleteIndex(indexName);
                 }
             }
             // Create hotels-quickstart index
-            private static void CreateIndex(string indexName, SearchIndexClient adminClient)
+            private static void CreateIndex(string indexName, SearchIndexClient searchIndexClient)
             {
                 FieldBuilder fieldBuilder = new FieldBuilder();
                 var searchFields = fieldBuilder.Build(typeof(Hotel));
@@ -160,7 +160,7 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
                 var suggester = new SearchSuggester("sg", new[] { "HotelName", "Category", "Address/City", "Address/StateProvince" });
                 definition.Suggesters.Add(suggester);
     
-                adminClient.CreateOrUpdateIndex(definition);
+                searchIndexClient.CreateOrUpdateIndex(definition);
             }
     
             // Upload documents in a single Upload request.
@@ -266,7 +266,7 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
             }
     
             // Run queries, use WriteDocuments to print output
-            private static void RunQueries(SearchClient srchclient)
+            private static void RunQueries(SearchClient searchClient)
             {
                 SearchOptions options;
                 SearchResults<Hotel> response;
@@ -285,7 +285,7 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
                 options.Select.Add("HotelName");
                 options.Select.Add("Rating");
     
-                response = srchclient.Search<Hotel>("*", options);
+                response = searchClient.Search<Hotel>("*", options);
                 WriteDocuments(response);
     
                 // Query 2
@@ -301,7 +301,7 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
                 options.Select.Add("HotelName");
                 options.Select.Add("Rating");
     
-                response = srchclient.Search<Hotel>("hotels", options);
+                response = searchClient.Search<Hotel>("hotels", options);
                 WriteDocuments(response);
     
                 // Query 3
@@ -316,7 +316,7 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
                 options.Select.Add("HotelName");
                 options.Select.Add("Tags");
     
-                response = srchclient.Search<Hotel>("pool", options);
+                response = searchClient.Search<Hotel>("pool", options);
                 WriteDocuments(response);
     
                 // Query 4 - Use Facets to return a faceted navigation structure for a given query
@@ -334,14 +334,14 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
                 options.Select.Add("HotelName");
                 options.Select.Add("Category");
     
-                response = srchclient.Search<Hotel>("*", options);
+                response = searchClient.Search<Hotel>("*", options);
                 WriteDocuments(response);
     
                 // Query 5
                 Console.WriteLine("Query #5: Look up a specific document...\n");
     
                 Response<Hotel> lookupResponse;
-                lookupResponse = srchclient.GetDocument<Hotel>("3");
+                lookupResponse = searchClient.GetDocument<Hotel>("3");
     
                 Console.WriteLine(lookupResponse.Value.HotelId);
     
@@ -349,7 +349,7 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
                 // Query 6
                 Console.WriteLine("Query #6: Call Autocomplete on HotelName...\n");
     
-                var autoresponse = srchclient.Autocomplete("sa", "sg");
+                var autoresponse = searchClient.Autocomplete("sa", "sg");
                 WriteDocuments(autoresponse);
     
             }
@@ -623,7 +623,7 @@ In *Program.cs*, you created two clients:
 
 Both clients need the search service endpoint and credentials described previously in the [resource information](#retrieve-resource-information) section.
 
-The sample code in this quickstart uses Microsoft Entra ID for authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
+The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
 
 #### [Microsoft Entra ID](#tab/keyless)
 
@@ -651,11 +651,11 @@ static void Main(string[] args)
     //AzureKeyCredential credential = new AzureKeyCredential("Your search service admin key");
 
     // Create a SearchIndexClient to send create/delete index commands
-    SearchIndexClient adminClient = new SearchIndexClient(serviceEndpoint, credential);
+    SearchIndexClient searchIndexClient = new SearchIndexClient(serviceEndpoint, credential);
 
     // Create a SearchClient to load and query documents
     string indexName = "hotels-quickstart";
-    SearchClient srchclient = new SearchClient(serviceEndpoint, indexName, credential);
+    SearchClient searchClient = new SearchClient(serviceEndpoint, indexName, credential);
     
     // REDACTED FOR BREVITY . . . 
 }
@@ -685,7 +685,7 @@ In *Program.cs*, you create a [SearchIndex](/dotnet/api/azure.search.documents.i
 
 ```csharp
 // Create hotels-quickstart index
-private static void CreateIndex(string indexName, SearchIndexClient adminClient)
+private static void CreateIndex(string indexName, SearchIndexClient searchIndexClient)
 {
     FieldBuilder fieldBuilder = new FieldBuilder();
     var searchFields = fieldBuilder.Build(typeof(Hotel));
@@ -695,7 +695,7 @@ private static void CreateIndex(string indexName, SearchIndexClient adminClient)
     var suggester = new SearchSuggester("sg", new[] { "HotelName", "Category", "Address/City", "Address/StateProvince" });
     definition.Suggesters.Add(suggester);
 
-    adminClient.CreateOrUpdateIndex(definition);
+    searchIndexClient.CreateOrUpdateIndex(definition);
 }
 ```
 
@@ -741,10 +741,10 @@ private static void UploadDocuments(SearchClient searchClient)
 
 Once you initialize the [IndexDocumentsBatch](/dotnet/api/azure.search.documents.models.indexdocumentsbatch-1) object, you can send it to the index by calling [IndexDocuments](/dotnet/api/azure.search.documents.searchclient.indexdocuments) on your [SearchClient](/dotnet/api/azure.search.documents.searchclient) object.
 
-You load documents using SearchClient in `Main()`, but the operation also requires admin rights on the service, which is typically associated with SearchIndexClient. One way to set up this operation is to get SearchClient through `SearchIndexClient` (`adminClient` in this example).
+You load documents using SearchClient in `Main()`, but the operation also requires admin rights on the service, which is typically associated with SearchIndexClient. One way to set up this operation is to get SearchClient through `SearchIndexClient` (`searchIndexClient` in this example).
 
 ```csharp
-SearchClient ingesterClient = adminClient.GetSearchClient(indexName);
+SearchClient ingesterClient = searchIndexClient.GetSearchClient(indexName);
 
 // Load documents
 Console.WriteLine("{0}", "Uploading documents...\n");
@@ -796,11 +796,11 @@ private static void WriteDocuments(AutocompleteResults autoResults)
 
 #### Query example 1
 
-The `RunQueries` method executes queries and returns results. Results are Hotel objects. This sample shows the method signature and the first query. This query demonstrates the Select parameter that lets you compose the result using selected fields from the document.
+The `RunQueries` method executes queries and returns results. Results are Hotel objects. This sample shows the method signature and the first query. This query demonstrates the `Select` parameter that lets you compose the result using selected fields from the document.
 
 ```csharp
 // Run queries, use WriteDocuments to print output
-private static void RunQueries(SearchClient srchclient)
+private static void RunQueries(SearchClient searchClient)
 {
     SearchOptions options;
     SearchResults<Hotel> response;
@@ -819,7 +819,7 @@ private static void RunQueries(SearchClient srchclient)
     options.Select.Add("HotelName");
     options.Select.Add("Address/City");
 
-    response = srchclient.Search<Hotel>("*", options);
+    response = searchClient.Search<Hotel>("*", options);
     WriteDocuments(response);
     // REDACTED FOR BREVITY
 }
@@ -843,7 +843,7 @@ options.Select.Add("HotelId");
 options.Select.Add("HotelName");
 options.Select.Add("Rating");
 
-response = srchclient.Search<Hotel>("hotels", options);
+response = searchClient.Search<Hotel>("hotels", options);
 WriteDocuments(response);
 ```
 
@@ -863,7 +863,7 @@ options.Select.Add("HotelId");
 options.Select.Add("HotelName");
 options.Select.Add("Tags");
 
-response = srchclient.Search<Hotel>("pool", options);
+response = searchClient.Search<Hotel>("pool", options);
 WriteDocuments(response);
 ```
 
@@ -886,7 +886,7 @@ options.Select.Add("HotelId");
 options.Select.Add("HotelName");
 options.Select.Add("Category");
 
-response = srchclient.Search<Hotel>("*", options);
+response = searchClient.Search<Hotel>("*", options);
 WriteDocuments(response);
 ```
 
@@ -899,7 +899,7 @@ In the fifth query, return a specific document. A document lookup is a typical r
 Console.WriteLine("Query #5: Look up a specific document...\n");
 
 Response<Hotel> lookupResponse;
-lookupResponse = srchclient.GetDocument<Hotel>("3");
+lookupResponse = searchClient.GetDocument<Hotel>("3");
 
 Console.WriteLine(lookupResponse.Value.HotelId);
 ```
@@ -912,7 +912,7 @@ The last query shows the syntax for autocomplete, simulating a partial user inpu
 // Query 6
 Console.WriteLine("Query #6: Call Autocomplete on HotelName that starts with 'sa'...\n");
 
-var autoresponse = srchclient.Autocomplete("sa", "sg");
+var autoresponse = searchClient.Autocomplete("sa", "sg");
 WriteDocuments(autoresponse);
 ```
 

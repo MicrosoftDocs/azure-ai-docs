@@ -12,7 +12,7 @@ zone_pivot_groups: agents-quickstart
 ms.custom: azure-ai-agents
 ---
 
-# Quickstart: Create a new agent
+# Quickstart: Create a new agent (Preview)
 
 Azure AI Agent Service allows you to create AI agents tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions.
 
@@ -48,6 +48,11 @@ Azure AI Agent Service allows you to create AI agents tailored to your needs thr
 
 [!INCLUDE [quickstart-typescript](includes/quickstart-typescript.md)]
 [!INCLUDE [quickstart-output](includes/quickstart-output.md)]
+
+::: zone-end
+::: zone pivot="rest-api"
+
+[!INCLUDE [quickstart-rest](includes/quickstart-rest.md)]
 
 ::: zone-end
 

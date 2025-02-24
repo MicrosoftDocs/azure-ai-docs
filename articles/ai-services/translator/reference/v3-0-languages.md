@@ -247,3 +247,7 @@ The following example shows how to retrieve languages supported for text transla
 ```curl
 curl "https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation"
 ```
+
+## Related content
+
+For more information, *see* [Language support](../language-support.md).

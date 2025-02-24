@@ -66,6 +66,17 @@ groups:
     title: Java
   - id: programming-language-javascript
     title: JavaScript
+- id: programming-languages-content-safety-abridged
+# Owner: pafarley
+  title: Programming languages
+  prompt: Choose a platform
+  pivots:
+  - id: programming-language-rest
+    title: REST
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-python
+    title: Python
 - id: cloud-location
   # Owner: lajanuar
   title: Workflow
@@ -763,7 +774,7 @@ groups:
   - id: programming-language-swift
     title: Swift (iOS)
 - id: usage-custom-language-features
-# Owner aahill
+# Owner jboback
   title: Usage methods
   prompt: Choose your preferred usage method
   pivots:
@@ -772,6 +783,23 @@ groups:
   - id: rest-api
     title: REST API
 - id: programming-languages-text-analytics
+# Owner jboback
+  title: Programming languages
+  prompt: Choose one of the client library languages or REST API.
+  pivots:
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-java
+    title: Java
+  - id: rest-api
+    title: REST API
+  - id: azure-ai-foundry
+    title: Azure AI Foundry
+- id: programming-languages-entity-linking
   title: Programming languages
   prompt: Choose one of the client library languages or REST API.
   pivots:
@@ -967,6 +995,8 @@ groups:
     title: Python (OpenAI SDK)
   - id: programming-language-typescript
     title: TypeScript
+  - id: rest-api
+    title: REST API
 # owner: aahi
 - id: selection-code-interpreter
   title: Selections

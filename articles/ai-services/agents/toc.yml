@@ -4,7 +4,7 @@ items:
 - name: Overview
   expanded: true
   items:
-  - name: What is Azure AI Agent Service?
+  - name: What is Azure AI Agent Service (Preview)?
     href: overview.md
   - name: What's new
     href: ./whats-new.md

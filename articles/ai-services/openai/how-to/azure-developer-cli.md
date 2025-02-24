@@ -19,6 +19,7 @@ Use this article to learn how to automate resource deployment for Azure OpenAI S
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/cognitive-services).
 - The Azure Developer CLI [installed](/azure/developer/azure-developer-cli/install-azd) on your machine.
+- Ability to assign permissions at the Subscription level (Owner or User Access Administrator).
 
 ## Clone and initialize the Azure Developer CLI template
 

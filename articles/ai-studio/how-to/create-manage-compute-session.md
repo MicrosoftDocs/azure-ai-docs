@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/07/2024
+ms.date: 02/14/2025
 ms.reviewer: lochen
 ms.author: sgilley
 author: sdgilley
@@ -80,7 +80,7 @@ To manage a compute session, select the **Compute session running** on the top t
 - **Install packages from requirements.txt** Opens `requirements.txt` in prompt flow UI so you can add packages.
 - **View installed packages** shows the packages that are installed in the compute session. It includes the packages baked into base image and packages specified in the `requirements.txt` file in the flow folder.
 - **Reset compute session** deletes the current compute session and creates a new one with the same environment. If you encounter a package conflict, you can try this option.
-- **Stop compute session** deletes the current compute session. If there's no active compute session on an underlying serverless compute, the compute resource is also deleted. If the compute session is on a compute instance, stopping the session will allow the instance to become idle.
+- **Stop compute session** deletes the current compute session. If there's no active compute session on an underlying serverless compute, the compute resource is also deleted. If the compute session is on a compute instance, stopping the session allows the instance to become idle.
 
 :::image type="content" source="../media/prompt-flow/how-to-create-manage-compute-session/compute-session-create-automatic-actions.png" alt-text="Screenshot of actions for a compute session on a flow page." lightbox = "../media/prompt-flow/how-to-create-manage-compute-session/compute-session-create-automatic-actions.png":::
 
@@ -94,7 +94,7 @@ You can customize the environment that you use to run this flow by adding packag
 > [!NOTE]
 > You can change the location and even the file name of `requirements.txt`, but be sure to also change it in the `flow.dag.yaml` file in the flow folder.
 >
-> Don't pin the version of `promptflow` and `promptflow-tools` in `requirements.txt`, because they are already included in the compute session base image.
+> Don't pin the version of `promptflow` and `promptflow-tools` in `requirements.txt`, because they're already included in the compute session base image.
 
 ### Add packages in a private feed in Azure DevOps
 
@@ -140,7 +140,7 @@ By default, we use the latest prompt flow image as the base image. If you want t
 
 If you previously created a compute instance runtime, switch it to a compute session by using the following steps:
 
-- Prepare your `requirements.txt` file in the flow folder. See [Manage a compute session](#manage-a-compute-session) for more information.
+- Prepare your `requirements.txt` file in the flow folder. For more information, see [Manage a compute session](#manage-a-compute-session).
 - If you created a custom environment, get the image from the environment detail page, and specify it in the `flow.dag.yaml` file in the flow folder. To learn more, see [Change the base image](#change-the-base-image). Make sure you have `acr pull` permission for the image.
 
 - You can continue to use the existing compute instance if you would like to manually manage the lifecycle.

@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 08/22/2024
+ms.date: 02/20/2025
 ms.custom: template-concept, devx-track-python
 manager: nitinme
 ---

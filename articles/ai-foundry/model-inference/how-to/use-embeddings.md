@@ -48,5 +48,5 @@ zone_pivot_groups: azure-ai-inference-samples
 
 ## Related content
 
-* [Use embeddings models](use-embeddings.md)
+* [Use image embeddings models](use-image-embeddings.md)
 * [Azure AI Model Inference API](.././reference/reference-model-inference-api.md)

@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
 ms.topic: how-to
 ms.date: 01/16/2025
-ms.reviewer: alehughes
+ms.reviewer: mesameki
 ms.author: lagayhar  
 author: lgayhardt
 ---
@@ -92,7 +92,7 @@ pip install azure-identity azure-ai-projects azure-ai-ml
 ```
 
 > [!TIP]
-> Optionally, you can use `pip install azure-ai-evaluation` if you want a code-first experience to fetch evaluator ID for built-in evaluators in code. To learn how to do this, see [Specifying evaluators from evaluator library](./develop/evaluate-sdk.md#specifying-evaluators-from-evaluator-library).
+> Optionally, you can use `pip install azure-ai-evaluation` if you want a code-first experience to fetch evaluator ID for built-in evaluators in code. To learn how to do this, see [Specifying evaluators from evaluator library](./develop/cloud-evaluation.md#specifying-evaluators-from-evaluator-library).
 
 ### Set up tracing for your generative AI application
 
@@ -165,7 +165,7 @@ Optionally, you can use the [sample operator](/kusto/query/sample-operator?view=
 
 ### Set up online evaluation with Azure AI Project SDK
 
-You can submit an online evaluation scheduled job with the Azure AI Project SDK via a Python API. See the below script to learn how to set up online evaluation with performance and quality (AI-assisted) evaluators. To view a comprehensive list of supported evaluators, see [Evaluate with the Azure AI Evaluation SDK](./develop/evaluate-sdk.md). To learn how to use custom evaluators, see [custom evaluators](./develop/evaluate-sdk.md#specifying-custom-evaluators).
+You can submit an online evaluation scheduled job with the Azure AI Project SDK via a Python API. See the below script to learn how to set up online evaluation with performance and quality (AI-assisted) evaluators. To view a comprehensive list of supported evaluators, see [Evaluate with the Azure AI Evaluation SDK](./develop/evaluate-sdk.md). To learn how to use custom evaluators, see [custom evaluators](./develop/cloud-evaluation.md#specifying-custom-evaluators).
 
 Start by importing the required packages and configuring the required variables:
 

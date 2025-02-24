@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.topic: overview
-ms.date: 08/21/2024
+ms.date: 02/21/2025
 ms.author: pafarley
 ms.custom:
   - ignite-2023
@@ -21,6 +21,10 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 
 The Azure AI Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many scenarios, such as identification, touchless access control, and automatic face blurring for privacy.
 
+[!INCLUDE [Gate notice](./includes/identity-gate-notice.md)]
+
+[!INCLUDE [GDPR-related guidance](./includes/identity-data-notice.md)]
+
 You can use the Face service through a client library SDK or by calling the REST API directly. Follow the quickstart to get started.
 
 > [!div class="nextstepaction"]
@@ -31,9 +35,6 @@ Or, you can try out the capabilities of Face service quickly and easily in your 
 > [!div class="nextstepaction"]
 > [Try Vision Studio for Face](https://portal.vision.cognitive.azure.com/gallery/face)
 
-[!INCLUDE [Gate notice](./includes/identity-gate-notice.md)]
-
-[!INCLUDE [GDPR-related guidance](./includes/identity-data-notice.md)]
 
 
 This documentation contains the following types of articles:
@@ -87,9 +88,9 @@ The goal of liveness detection is to ensure that the system is interacting with 
 
 The liveness detection solution successfully defends against a variety of spoof types ranging from paper printouts, 2d/3d masks, and spoof presentations on phones and laptops. Liveness detection is an active area of research, with continuous improvements being made to counteract increasingly sophisticated spoofing attacks over time. Continuous improvements will be rolled out to the client and the service components over time as the overall solution gets more robust to new types of attacks.
 
-Our liveness detection solution meets [iBeta Level 1 and 2 ISO/IEC 30107-3](https://www.ibeta.com/iso-30107-3-presentation-attack-detection-confirmation-letters/#letters) compliance.
+Our liveness detection solution meets [iBeta Level 1 and 2 ISO/IEC 30107-3](https://www.ibeta.com/wp-content/uploads/2023/11/230622-Microsoft-PAD-Level-2-Confirmation-Letter.pdf) compliance.
 
-Tutorial
+Tutorials
 - [Face liveness Tutorial](Tutorials/liveness.md)
 Concepts
 - [Abuse monitoring](concept-liveness-abuse-monitoring.md)
@@ -161,7 +162,7 @@ Input requirements for face recognition:
 
 As with all of the Azure AI services resources, developers who use the Face service must be aware of Microsoft's policies on customer data. For more information, see the [Azure AI services page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center.
 
-## Next steps
+## Next step
 
 Follow a quickstart to code the basic components of a face recognition app in the language of your choice.
 

@@ -17,7 +17,7 @@ author: PatrickFarley
 
 # Content filtering in Azure AI Foundry portal
 
-Azure AI Foundry includes a content filtering system that works alongside core models and DALL-E image generation models.
+[Azure AI Foundry](https://ai.azure.com) includes a content filtering system that works alongside core models and DALL-E image generation models.
 
 > [!IMPORTANT]
 > The content filtering system isn't applied to prompts and completions processed by the Whisper model in Azure OpenAI Service. Learn more about the [Whisper model in Azure OpenAI](../../ai-services/openai/concepts/models.md).

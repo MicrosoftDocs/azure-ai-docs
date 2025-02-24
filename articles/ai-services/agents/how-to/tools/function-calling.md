@@ -24,9 +24,9 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 
 ### Usage support
 
-|Azure AI foundry support  | Python SDK |	C# SDK | Function calling | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|
-|      | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|---------|
+|      | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ::: zone-end
 
@@ -58,7 +58,7 @@ def fetch_weather(location: str) -> str:
     weather_json = json.dumps({"weather": weather})
     return weather_json
     
-    # Statically defined user functions for fast reference
+# Statically defined user functions for fast reference
 user_functions: Set[Callable[..., Any]] = {
     fetch_weather,
 }
@@ -197,6 +197,8 @@ class FunctionToolExecutor {
 }
 ```
 
+# [REST API](#tab/rest)
+Function definition and agent creation are combined in the next section.
 
 ---
 
@@ -264,6 +266,32 @@ const agent = await client.agents.createAgent("gpt-4o",
 console.log(`Created agent, agent ID: ${agent.id}`);
 ```
 
+# [REST API](#tab/rest)
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`.
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "instructions": "You are a weather bot. Use the provided functions to answer questions.",
+    "model": "gpt-4o-mini",
+    tools=[{
+      "type": "function",
+      "function": {
+        "name": "get_weather",
+        "description": "Get the weather in location",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "location": {"type": "string", "description": "The city name, for example San Francisco"}
+          },
+          "required": ["location"]
+        }
+      }
+    }]
+  }'
+```
+
 ---
 
 ## Create a thread
@@ -309,6 +337,28 @@ await client.agents.createMessage(
     role: "user",
     content: "What is the weather in Seattle?",
 });
+```
+
+# [REST API](#tab/rest)
+### Create a thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d ''
+```
+
+### Add a user question to the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+      "role": "user",
+      "content": "What is the weather in Seattle?"
+    }'
 ```
 
 ---
@@ -429,6 +479,32 @@ foreach (ThreadMessage threadMessage in messages)
       console.log(`---------------------------------`);
     }
   }
+```
+
+# [REST API](#tab/rest)
+### Run the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistant_id": "asst_abc123",
+  }'
+```
+
+### Retrieve the status of the run
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+```
+
+### Retrieve the agent response
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
 ---
