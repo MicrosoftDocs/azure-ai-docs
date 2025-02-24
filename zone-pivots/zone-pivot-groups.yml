@@ -438,7 +438,7 @@ groups:
     title: Java
   - id: programming-language-python
     title: Python
-- id: programming-languages-set-two-obj
+- id: programming-languages-set-two-objective-c
 # Owner: eur
   title: Programming languages
   prompt: Choose a programming language
