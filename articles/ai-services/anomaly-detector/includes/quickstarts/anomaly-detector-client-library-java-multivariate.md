@@ -241,7 +241,7 @@ UUID resultId = UUID.fromString(substring[substring.length - 1]);
 DetectionResult detectionResult;
 while (true) {
     detectionResult = anomalyDetectorClient.getDetectionResult(resultId);
-    DetectionStatus detectionStatus = detectionResult.getSummary().getStatus();;
+    DetectionStatus detectionStatus = detectionResult.getSummary().getStatus();
     if (detectionStatus == DetectionStatus.READY || detectionStatus == DetectionStatus.FAILED) {
         break;
     }
