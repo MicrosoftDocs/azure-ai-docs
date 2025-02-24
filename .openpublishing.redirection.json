@@ -172,12 +172,12 @@
     },
     {
       "source_path_from_root": "/articles/open-datasets/dataset-covid-19-open-research.md",
-      "redirect_url": "/articles/open-datasets/dataset-catalog.md",
+      "redirect_url": "/azure/open-datasets/dataset-catalog",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/open-datasets/dataset-genomics-data-lake.md",
-      "redirect_url": "/articles/open-datasets/dataset-catalog.md",
+      "redirect_url": "/azure/open-datasets/dataset-catalog",
       "redirect_document_id": false
     }
   ]
