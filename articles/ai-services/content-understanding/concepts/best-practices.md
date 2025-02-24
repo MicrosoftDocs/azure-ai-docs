@@ -77,13 +77,13 @@ Confidence scores help you decide when to involve human reviewers. Customers can
 
 ## Reduce errors by narrowing language selection for audio and video
 
-When you're working with audio and video content, selecting a narrow set of languages for transcription can potentially reduce errors. The more languages you include, the more the system has to guess which language is being spoken, which cam increase misrecognition.
+When you're working with audio and video content, selecting a narrow set of languages for transcription can potentially reduce errors. The more languages you include, the more the system has to guess which language is being spoken, which can increase misrecognition.
 
 ##### &emsp; ***Example 7***
 
    * If you're certain that the content only contains English and Spanish, configuring your transcription to only these two languages can improve quality. But if the content accidentally includes other languages, such configuration can actually degrade overall quality.
 
-## Transcript, document text, and speaker data don't require fields
+## Transcript, document text, and speaker data: fields not required
 
 By default, Content Extraction information such as speech transcripts, document text extracted by `OCR`, and video key frames can be accessed directly from the analyzer output for immediate review or custom processing. There's no need to define a field in the schema for these items. Fields can be used when more processing is needed, for example, summarizing transcripts, identifying entities, or extracting specific items from `OCR`. Each field can instruct the system to extract or generate the content you need.
 
