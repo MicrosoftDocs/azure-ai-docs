@@ -27,7 +27,7 @@ Liveness client-side SDK released [1.1.0](https://github.com/Azure-Samples/azure
 
 This update includes a few improvements:
 
-* Increased time-out for the head-turn scenario to provide end-users more time to complete the flow.
+* Increased timeout for the head-turn scenario to provide end-users more time to complete the flow.
 * Fixes to iOS and Android SDKs to resolve compatibility issues with Microsoft Intune Mobile Application Management SDKs.
 * Security related fixes/improvements.
 
