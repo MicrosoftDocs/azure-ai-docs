@@ -141,7 +141,7 @@ Follow our quickstart guide to [build your first analyzer](../quickstart/use-ai-
 
 ### Best Practices
 
-For guidance on optimizing your Content Understanding implementations, including schema design tips, see our detailed [Best practices guide](../how-to/best-practices.md). This guide helps you maximize the value of Content Understanding while avoiding common pitfalls.
+For guidance on optimizing your Content Understanding implementations, including schema design tips, see our detailed [Best practices guide](../best-practices.md). This guide helps you maximize the value of Content Understanding while avoiding common pitfalls.
 
 ### Input requirements
 For detailed information on supported input document formats, refer to our [Service quotas and limits](../service-limits.md) page.
