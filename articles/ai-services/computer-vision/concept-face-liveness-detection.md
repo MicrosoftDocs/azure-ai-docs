@@ -57,11 +57,6 @@ You can combine face verification with liveness detection to verify that the fac
 | Liveness detection | Determine an input is real or fake, and only the app server has the authority to start the liveness check and query the result. |
 | Liveness detection with face verification | Determine an input is real or fake and verify the identity of the person based on a reference image you provided. Either the app server or the frontend application can provide a reference image. Only the app server has the authority to initial the liveness check and query the result. |
 
-## Input requirements
-
-Use the following tips to ensure that your input images give the most accurate recognition results:
-
-[!INCLUDE [identity-input-id-verification-composition](includes/identity-input-verification.md)]
 
 
 
