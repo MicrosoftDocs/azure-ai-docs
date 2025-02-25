@@ -21,6 +21,16 @@
             "redirect_document_id": false
         },
         {
+            "source_path_from_root": "/articles/ai-studio/ai-services/how-to/fine-tune-model-llama.md",
+            "redirect_url": "/azure/ai-studio/ai-services/how-to/fine-tune-serverless",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/ai-services/how-to/fine-tune-models-tsuzumi.md",
+            "redirect_url": "/azure/ai-studio/ai-services/how-to/fine-tune-serverless",
+            "redirect_document_id": false
+        },
+        {
             "source_path_from_root": "/articles/ai-studio/how-to/deploy-models.md",
             "redirect_url": "/azure/ai-studio/concepts/deployments-overview",
             "redirect_document_id": true
