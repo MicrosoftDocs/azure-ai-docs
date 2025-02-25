@@ -70,7 +70,7 @@ Your app's _package.json_ file will be updated with the dependencies.
     
     // Required Azure OpenAI deployment name and API version
     const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "tts";
-    const apiVersion = process.env.OPENAI_AOI_VERSION || "2024-08-01-preview";
+    const apiVersion = process.env.OPENAI_API_VERSION || "2024-08-01-preview";
     
     // keyless authentication    
     const credential = new DefaultAzureCredential();
