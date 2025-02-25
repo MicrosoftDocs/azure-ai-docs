@@ -171,7 +171,7 @@ If you're an existing customer looking for information about these models, see [
 
 ## Retirement and deprecation history
 
-## February 25,2025
+## February 25, 2025
 
 -  `dalle-3` updated to no earlier than June 30, 2025.
 
