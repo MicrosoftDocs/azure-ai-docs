@@ -76,6 +76,7 @@ Rerank multilingual performs well on multilingual benchmarks such as Miracl.
 #### Pricing for Cohere Rerank v3 Multilingual
 
 *Queries*, not to be confused with a user's query, is a pricing meter that refers to the cost associated with the tokens used as input for inference of a Cohere Rerank model. Cohere counts a single search unit as a query with up to 100 documents to be ranked. Documents longer than 4096 tokens when including the length of the search query are split up into multiple chunks, where each chunk counts as a single document.
+
 ---
 
 ## Deploy Cohere Rerank models as serverless APIs
