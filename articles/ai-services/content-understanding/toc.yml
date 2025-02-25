@@ -53,7 +53,7 @@ items:
     - name: Azure AI Foundry analyzer templates
       displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
       href: concepts/analyzer-templates.md
-    - name: Azure AI Content Understanding best Practices
+    - name: Azure AI Content Understanding best practices
       displayName: best practices, analyzers, optimization, fields
       href: concepts/best-practices.md
 - name: Responsible AI
