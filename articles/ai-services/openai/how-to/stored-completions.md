@@ -315,6 +315,13 @@ pip install --upgrade openai
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
+Additional parameters:
+
+* `metadata`: Filter by the key/value pair in the stored completions
+* `after`: Identifier for the last stored completion message from the previous pagination request.
+* `limit`: Number of stored completions messages to retrieve.
+* `order`: Order of the results by index (ascending or descending).
+
 ```python
 from openai import AzureOpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
@@ -534,9 +541,9 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmp
 
 Additional parameters:
 
-`after`: Identifier for the last stored completion message from the previous pagination request.
-`limit`: Number of stored completions messages to retrieve.
-`order`: Order of the results by index (ascending or descending).
+* `after`: Identifier for the last stored completion message from the previous pagination request.
+* `limit`: Number of stored completions messages to retrieve.
+* `order`: Order of the results by index (ascending or descending).
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
