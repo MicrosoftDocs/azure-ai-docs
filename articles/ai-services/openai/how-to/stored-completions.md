@@ -528,6 +528,8 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmp
 }
 ```
 
+---
+
 ### Get stored chat completion messages
 
 Additional parameters:
