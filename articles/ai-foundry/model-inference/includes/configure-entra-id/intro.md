@@ -47,3 +47,17 @@ To complete this article, you need:
   * Security principal: e.g. your user account.
   * Role definition: the *Cognitive Services User* role.
   * Scope: the Azure AI Services resource.
+
+* If you want to create a custom role definition instead of using *Cognitive Services User* role, ensure the role has the following permissions:
+
+  ```json
+  {
+    "permissions": [
+      {
+        "dataActions": [
+          "Microsoft.CognitiveServices/accounts/MaaS/*"
+        ]
+      }
+    ]
+  }
+  ```
