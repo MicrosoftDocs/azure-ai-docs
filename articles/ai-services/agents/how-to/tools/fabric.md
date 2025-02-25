@@ -1,7 +1,7 @@
 ---
-title: 'How to use Fabric AI skill in Azure AI Agent Service'
+title: 'How to use the Microsoft Fabric tool in Azure AI Agent Service'
 titleSuffix: Azure OpenAI
-description: Learn how to ground Azure AI Agents using Fabric AI skill.
+description: Learn how to ground Azure AI Agents using Microsfot Fabric.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
@@ -12,7 +12,8 @@ ms.author: aahi
 zone_pivot_groups: selection-fabric-ai-skill
 ms.custom: azure-ai-agents
 ---
-# Fabric AI skill
+
+# Microsoft Fabric tool
 
 ::: zone pivot="overview"
 Integrate your Azure AI Agent with [**Fabric AI skill**](/fabric/data-science/concept-ai-skill) to unlock powerful data analysis capabilities. Fabric AI skill transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights effortlessly. 
@@ -46,7 +47,8 @@ You need to firstly build and publish a Fabric AI skill and then connect your Fa
    1. To create a new connection, you need to find `workspace-id` and `artifact-id` in your published AI skill endpoint. Your AI skill endpoint would look like `https://daily.powerbi.com/groups/<workspace_id>/aiskills/<artifact-id>`
 
    1. Then, you can add both to your connection. Make sure you have checked `is secret` for both of them
-   ![image](https://github.com/user-attachments/assets/d742169a-fe26-4cff-a3bb-aad38bd56078)
+   
+        :::image type="content" source="../../media/tools/fabric-foundry.png" alt-text="A screenshot showing the fabric connection in the Azure AI Foundry portal." lightbox="../../media/tools/fabric-foundry.png":::
 
 ::: zone-end
 
