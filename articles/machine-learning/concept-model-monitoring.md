@@ -9,7 +9,7 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.reviewer: alehughes
 ms.topic: concept-article
-ms.date: 09/27/2024
+ms.date: 02/25/2025
 ms.custom: devplatv2, FY25Q1-Linter
 #Customer intent: As a data scientist, I want to understand Azure Machine Learning monitoring so I can keep my machine learning models fresh and performant.
 ---
@@ -172,23 +172,23 @@ For example, if the accuracy of your classification model in production dips bel
 
 ## Model monitoring authentication options
 
-Azure Machine Learning model monitoring supports both credential-based and credential-less authentication to the datastore with the collected production inference data from your model. To configure credential-less authentication, follow the steps below:
+Azure Machine Learning model monitoring supports both credential-based and credential-less authentication to the datastore with the collected production inference data from your model. To configure credential-less authentication, follow these steps:
 
-1) Create a User-Assigned Managed Identity (UAMI) and attach it to your Azure Machine Learning workspace
-2) Grant the UAMI [proper permissions](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-identity-based-service-authentication?view=azureml-api-2&tabs=cli#user-assigned-managed-identity) to access your datastore.
-3) Update the workspace level property `systemDatastoresAuthMode` to `'identity'`.
+1. Create a User-Assigned Managed Identity (UAMI) and attach it to your Azure Machine Learning workspace.
+1. Grant the UAMI [proper permissions](how-to-identity-based-service-authentication.md#user-assigned-managed-identity) to access your datastore.
+1. Update the value of the workspace level property `systemDatastoresAuthMode` to `'identity'`.
 
-Or, you can simply add credentials to the datastore where your production inference data is being stored.
+Alternatively, you can add credentials to the datastore where your production inference data is stored.
 
-To learn more about credential-less authentication with Azure Machine Learning, see [here](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-identity-based-service-authentication?view=azureml-api-2&tabs=cli#user-assigned-managed-identity).
+To learn more about credential-less authentication with Azure Machine Learning, see [User-assigned managed identity](how-to-identity-based-service-authentication.md#user-assigned-managed-identity).
 
-## Model monitoring networking limitations
+## Model monitoring limitations
 
-Azure Machine Learning model monitoring does not support the `AllowOnlyApprovedOutbound` managed virtual network isolation setting. To learn more about managed virtual network isolation in Azure Machine Learning, see [here](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-managed-network?view=azureml-api-2&tabs=azure-cli).
+Azure Machine Learning model monitoring has the following limitations:
 
-## Model monitoring other limitations
+- It doesn't support the `AllowOnlyApprovedOutbound` managed virtual network isolation setting. To learn more about managed virtual network isolation in Azure Machine Learning, see [Workspace Managed Virtual Network Isolation](how-to-managed-network.md).
 
-Azure Machine Learning model monitoring has a dependency on `Spark` to compute metrics over large-scale datasets. `MLTable` is not well-supported by `Spark`, and thus it is recommended to avoid using `MLTable` whenever possible with model monitoring jobs. Only basic `MLTable` files are guaranteed to be supported. For complex or custom operations, we recommend using the `Spark` API directly in your code.
+- It depends on `Spark` to compute metrics over large-scale datasets. Because `MLTable` isn't well-supported by `Spark`, it's best to avoid using `MLTable` whenever possible with model monitoring jobs. Only basic `MLTable` files have guaranteed support. For complex or custom operations, consider using the `Spark` API directly in your code.
 
 ## Related content
 
