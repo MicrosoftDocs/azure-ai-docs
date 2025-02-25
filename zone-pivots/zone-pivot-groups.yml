@@ -1008,6 +1008,15 @@ groups:
     title: Code examples
   - id: supported-filetypes
     title: Supported file types
+# owner: aahi
+- id: selection-fabric-ai-skill
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: overview
+    title: Overview
+  - id: code-example
+    title: Code examples
 # owner: fosteramanda
 - id: selection-file-search
   title: Selections
