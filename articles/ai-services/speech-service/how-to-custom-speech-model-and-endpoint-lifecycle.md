@@ -9,7 +9,7 @@ ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 9/19/2024
 ms.reviewer: heikora
-zone_pivot_groups: speech-studio-cli-rest
+zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to understand the lifecycle of custom speech models and endpoints so that I can plan for the expiration of my models.
 ---
 
@@ -47,6 +47,12 @@ When a custom model or base model expires, it's no longer available for transcri
 
 
 ## Get base model expiration dates
+
+::: zone pivot="ai-foundry-portal"
+
+
+
+::: zone-end
 
 ::: zone pivot="speech-studio"
 
@@ -149,6 +155,12 @@ You should receive a response body in the following format:
 
 
 ## Get custom model expiration dates
+
+::: zone pivot="ai-foundry-portal"
+
+
+
+::: zone-end
 
 ::: zone pivot="speech-studio"
 

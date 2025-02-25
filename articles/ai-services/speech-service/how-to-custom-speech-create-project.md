@@ -8,7 +8,7 @@ ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 9/19/2024
 ms.author: eur
-zone_pivot_groups: speech-studio-cli-rest
+zone_pivot_groups: foundry-speech-studio
 #Customer intent: As a developer, I want to learn how to create a project for custom speech so that I can train and deploy a custom model.
 ---
 
@@ -35,52 +35,9 @@ Select the new project by name or select **Go to project**. You'll see these men
 
 ::: zone-end
 
-::: zone pivot="speech-cli"
+::: zone pivot="ai-foundry-portal"
 
-To create a project, use the `spx csr project create` command. Construct the request parameters according to the following instructions:
 
-- Set the required `language` parameter. The locale of the project and the contained datasets should be the same. The locale can't be changed later. The Speech CLI `language` parameter corresponds to the `locale` property in the JSON request and response.
-- Set the required `name` parameter. This is the name that is displayed in the Speech Studio. The Speech CLI `name` parameter corresponds to the `displayName` property in the JSON request and response.
-
-Here's an example Speech CLI command that creates a project:
-
-```azurecli-interactive
-spx csr project create --api-version v3.2 --name "My Project" --description "My Project Description" --language "en-US"
-```
-
-You should receive a response body in the following format:
-
-```json
-{
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52",
-  "links": {
-    "evaluations": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52/evaluations",
-    "datasets": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52/datasets",
-    "models": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52/models",
-    "endpoints": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52/endpoints",
-    "transcriptions": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52/transcriptions"
-  },
-  "properties": {
-    "datasetCount": 0,
-    "evaluationCount": 0,
-    "modelCount": 0,
-    "transcriptionCount": 0,
-    "endpointCount": 0
-  },
-  "createdDateTime": "2024-07-14T17:15:55Z",
-  "locale": "en-US",
-  "displayName": "My Project",
-  "description": "My Project Description"
-}
-```
-
-The top-level `self` property in the response body is the project's URI. Use this URI to get details about the project's evaluations, datasets, models, endpoints, and transcriptions. You also use this URI to update or delete a project.
-
-For Speech CLI help with projects, run the following command:
-
-```azurecli-interactive
-spx help csr project
-```
 
 ::: zone-end
 

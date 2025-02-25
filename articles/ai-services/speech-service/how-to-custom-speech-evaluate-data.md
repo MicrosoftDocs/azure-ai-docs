@@ -8,7 +8,7 @@ ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 9/19/2024
 ms.author: eur
-zone_pivot_groups: speech-studio-cli-rest
+zone_pivot_groups: foundry-speech-studio-cli-rest
 show_latex: true
 no-loc: [$$, '\times', '\over']
 #Customer intent: As a developer, I want to test the accuracy of a custom speech model so that I can evaluate whether it meets my requirements.
@@ -23,6 +23,12 @@ In this article, you learn how to quantitatively measure and improve the accurac
 ## Create a test
 
 You can test the accuracy of your custom model by creating a test. A test requires a collection of audio files and their corresponding transcriptions. You can compare a custom model's accuracy with a speech to text base model or another custom model. After you [get](#get-test-results) the test results, [evaluate the word error rate (WER)](#evaluate-word-error-rate-wer) compared to speech recognition results.
+
+::: zone pivot="ai-foundry-portal"
+
+
+
+::: zone-end
 
 ::: zone pivot="speech-studio"
 
@@ -226,6 +232,12 @@ The top-level `self` property in the response body is the evaluation's URI. Use 
 ## Get test results
 
 You should get the test results and [evaluate](#evaluate-word-error-rate-wer) the word error rate (WER) compared to speech recognition results.
+
+::: zone pivot="ai-foundry-portal"
+
+
+
+::: zone-end
 
 ::: zone pivot="speech-studio"
 

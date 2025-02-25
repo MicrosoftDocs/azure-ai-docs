@@ -8,7 +8,7 @@ ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 9/19/2024
 ms.author: eur
-zone_pivot_groups: speech-studio-cli-rest
+zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to learn how to deploy a custom speech model so that I can use it in my applications.
 ---
 
@@ -25,6 +25,12 @@ You can deploy an endpoint for a base or custom model, and then [update](#change
 > Endpoints used by `F0` Speech resources are deleted after seven days. 
 
 ## Add a deployment endpoint
+
+::: zone pivot="ai-foundry-portal"
+
+
+
+::: zone-end
 
 ::: zone pivot="speech-studio"
 
@@ -183,6 +189,12 @@ The top-level `self` property in the response body is the endpoint's URI. Use th
 
 An endpoint can be updated to use another model that was created by the same Speech resource. As previously mentioned, you must update the endpoint's model before the [model expires](./how-to-custom-speech-model-and-endpoint-lifecycle.md). 
 
+::: zone pivot="ai-foundry-portal"
+
+
+
+::: zone-end
+
 ::: zone pivot="speech-studio"
 
 To use a new model and redeploy the custom endpoint:
@@ -303,6 +315,12 @@ The redeployment takes several minutes to complete. In the meantime, your endpoi
 ## View logging data
 
 Logging data is available for export if you configured it while creating the endpoint. 
+
+::: zone pivot="ai-foundry-portal"
+
+
+
+::: zone-end
 
 ::: zone pivot="speech-studio"
 

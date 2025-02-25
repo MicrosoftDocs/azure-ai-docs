@@ -8,7 +8,7 @@ ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 9/19/2024
 ms.author: eur
-zone_pivot_groups: speech-studio-cli-rest
+zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to test the recognition quality of a custom speech model so that I can determine if the provided recognition result is correct.
 ---
 
@@ -21,6 +21,12 @@ Side-by-side model testing is useful to validate which speech recognition model 
 [!INCLUDE [service-pricing-advisory](includes/service-pricing-advisory.md)]
 
 ## Create a test
+
+::: zone pivot="ai-foundry-portal"
+
+
+
+::: zone-end
 
 ::: zone pivot="speech-studio"
 
@@ -214,6 +220,12 @@ The top-level `self` property in the response body is the evaluation's URI. Use 
 ## Get test results
 
 You should get the test results and [inspect](#compare-transcription-with-audio) the audio datasets compared to transcription results for each model.
+
+::: zone pivot="ai-foundry-portal"
+
+
+
+::: zone-end
 
 ::: zone pivot="speech-studio"
 
@@ -485,6 +497,12 @@ You should receive a response body in the following format:
 ## Compare transcription with audio
 
 You can inspect the transcription output by each model tested, against the audio input dataset. If you included two models in the test, you can compare their transcription quality side by side. 
+
+::: zone pivot="ai-foundry-portal"
+
+
+
+::: zone-end
 
 ::: zone pivot="speech-studio"
 

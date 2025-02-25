@@ -8,7 +8,7 @@ ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 9/19/2024
 ms.author: eur
-zone_pivot_groups: speech-studio-cli-rest
+zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to train a custom speech model to improve recognition accuracy for the Microsoft base model or a custom model.
 ---
 
@@ -29,6 +29,12 @@ You can use a custom model for a limited time after it was trained. You must per
 > In regions with dedicated hardware for custom speech training, the Speech service will use up to 100 hours of your audio training data, and can process about 10 hours of data per day. See footnotes in the [regions](regions.md#regions) table for more information.  
 
 ## Create a model
+
+::: zone pivot="ai-foundry-portal"
+
+
+
+::: zone-end
 
 ::: zone pivot="speech-studio"
 
@@ -223,6 +229,12 @@ The top-level `self` property in the response body is the model's URI. Use this 
 
 You can copy a model to another project that uses the same locale. For example, after a model is trained with audio data in a [region](regions.md#regions) with dedicated hardware for training, you can copy it to an AI Services resource for Speech in another region as needed. 
 
+::: zone pivot="ai-foundry-portal"
+
+
+
+::: zone-end
+
 ::: zone pivot="speech-studio"
 
 Follow these instructions to copy a model to a project in another region:
@@ -304,6 +316,12 @@ You should receive a response body in the following format:
 ## Connect a model
 
 Models might have been copied from one project using the Speech CLI or REST API, without being connected to another project. Connecting a model is a matter of updating the model with a reference to the project.
+
+::: zone pivot="ai-foundry-portal"
+
+
+
+::: zone-end
 
 ::: zone pivot="speech-studio"
 
