@@ -21,7 +21,7 @@ The following table provides links to language support reference articles by sup
 | Azure AI Language support | Description |
 | --- | --- |
 |![Content Moderator icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-moderator.svg)</br>[Content Moderator](./content-moderator/language-support.md) (retired) | Detect potentially offensive or unwanted content. |
-|![Content Understanding](~/reusable-content/ce-skilling/azure/media/ai-services/.svg)</br>[Content Understanding](./content-understanding/language-region-support.md)|Process, analyze, and transform multimodal content including document, image, video, and audio input files.|
+|![Content Understanding](~/reusable-content/ce-skilling/azure/media/ai-services/content-understanding.svg)</br>[Content Understanding](./content-understanding/language-region-support.md)|Process, analyze, and transform multimodal content including document, image, video, and audio input files.|
 |![Document Intelligence icon](~/reusable-content/ce-skilling/azure/media/ai-services/document-intelligence.svg)</br>[Document Intelligence](./document-intelligence/language-support.md) | Turn documents into intelligent data-driven solutions. |
 |![Immersive Reader icon](~/reusable-content/ce-skilling/azure/media/ai-services/immersive-reader.svg)</br>[Immersive Reader](./immersive-reader/language-support.md) | Help users read and comprehend text. |
 |![Language icon](~/reusable-content/ce-skilling/azure/media/ai-services/language.svg)</br>[Language service](./language-service/concepts/language-support.md) | Build apps with industry-leading natural language understanding capabilities. |
