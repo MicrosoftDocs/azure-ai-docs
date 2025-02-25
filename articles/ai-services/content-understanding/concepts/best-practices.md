@@ -10,7 +10,7 @@ ms.topic: overview
 ms.date: 02/24/2025
 ---
 
-# Best Practices for Content Understanding
+# Best practices for Content Understanding
 
 Azure AI Content Understanding is an innovative Generative AI service designed to facilitate the precise and accurate analysis of extensive data sets. The service processes various content modalities, including documents, images, videos, and audio, transforming them into user-specified output formats.
 
