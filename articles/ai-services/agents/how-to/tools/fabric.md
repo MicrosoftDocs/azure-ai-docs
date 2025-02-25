@@ -27,7 +27,7 @@ You need to first build and publish a Fabric AI skill and then connect your Fabr
 |---------|---------|---------|---------|---------|---------|---------|
 | ✔️ | ✔️ | - | - | ✔️ | ✔️ | ✔️ |
 
-## Prerequisite
+## Prerequisites
 1. You have created and published an AI skill endpoint
 
 1. Developers and end users have at least `AI Developer` RBAC role. 
