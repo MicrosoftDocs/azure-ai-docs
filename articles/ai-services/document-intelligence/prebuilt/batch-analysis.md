@@ -73,12 +73,14 @@ The batch API supports two options for specifying the files to be processed.
     }
 
     ```
+
 * If you don't want to process all the files in a container or folder, but rather specific files in that container or folder, use the ```azureBlobFileListSource``` object. This operation requires a File List JSONL file which lists the files to be processed. Store the JSONL file in the root folder of the container. Here's an example JSONL file with two files listed:
 
   ```json
   {"file": "Adatum Corporation.pdf"}
   {"file": "Best For You Organics Company.pdf"}
   ```
+
 Use a file list `JSONL` file with the following conditions:
 
   * When you need to process specific files instead of all files in a container;
@@ -98,7 +100,9 @@ Use a file list `JSONL` file with the following conditions:
     }
 
     ```
+
 A container URL or a container SAS URL is required in both options. Use container URL if using managed Identity to access your storage container. If you're using Shared Access Signature (SAS), use a SAS URL.
+
 
 ### 2. Specify the results location
 
@@ -128,7 +132,9 @@ POST /documentModels/{modelId}:analyzeBatch
 }
 
 ```
+
 This example shows a POST request with `azureBlobFileListSource` and a file list input
+
 
 ```bash
 POST /documentModels/{modelId}:analyzeBatch
@@ -182,6 +188,7 @@ For each document processed, a status is assigned, either `succeeded`, `failed`,
 
   Example of a `succeeded` status response:
 
+
   ```bash
   {
       "resultId": "myresultId-",
@@ -210,6 +217,7 @@ For each document processed, a status is assigned, either `succeeded`, `failed`,
        }
   }
   ```
+
 * Status `failed`. This error is only returned if there are errors in the overall batch request. Once the batch analysis operation starts, the individual document operation status doesn't affect the status of the overall batch job, even if all the files have the status `failed`.
 
     Example of a `failed` status response:
@@ -236,6 +244,7 @@ For each document processed, a status is assigned, either `succeeded`, `failed`,
     ]
     ...
     ```
+    
 * Status `skipped`: Typically, this status happens when output for the document is already present in the specified output folder and the `overwriteExisting` Boolean property is set to `false`
 
   Example of `skipped` status response:
