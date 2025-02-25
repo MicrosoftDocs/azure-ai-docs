@@ -381,7 +381,7 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions?api-ver
 {
   "data": [
     {
-      "id": "chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh",
+      "id": "chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u",
       "choices": [
         {
           "finish_reason": null,
@@ -409,7 +409,7 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions?api-ver
         "completion_tokens_details": null,
         "prompt_tokens_details": null
       },
-      "request_id": "cd0334e8-7541-4ec2-bab7-49ae8cf3c87a",
+      "request_id": "0000aaaa-11bb-cccc-dd22-eeeeee333333",
       "seed": -430976584126747957,
       "top_p": 1,
       "temperature": 1,
@@ -424,8 +424,8 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions?api-ver
   "has_more": false,
   "object": "list",
   "total": 1,
-  "first_id": "chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh",
-  "last_id": "chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh"
+  "first_id": "chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u",
+  "last_id": "chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u"
 }
 ```
 
@@ -451,7 +451,7 @@ client = AzureOpenAI(
   api_version="2025-02-01-preview"
 )
 
-response = client.chat.completions.retrieve("chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh")
+response = client.chat.completions.retrieve("chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u")
 
 print(response.model_dump_json(indent=2))
 ```
@@ -467,7 +467,7 @@ client = AzureOpenAI(
   api_version="2025-02-01-preview"
 )
 
-response = client.chat.completions.retrieve("chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh")
+response = client.chat.completions.retrieve("chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u")
 
 print(response.model_dump_json(indent=2))
 ```
@@ -477,7 +477,7 @@ print(response.model_dump_json(indent=2))
 ### Microsoft Entra ID
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh?api-version=2025-02-01-preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u?api-version=2025-02-01-preview \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
 ```
@@ -485,7 +485,7 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmp
 ### API Key
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh?api-version=2025-02-01-preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u?api-version=2025-02-01-preview \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
 ```
@@ -494,7 +494,7 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmp
 
 ```json
 {
-  "id": "chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh",
+  "id": "chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u",
   "choices": [
     {
       "finish_reason": null,
@@ -522,7 +522,7 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmp
     "completion_tokens_details": null,
     "prompt_tokens_details": null
   },
-  "request_id": "cd0334e8-7541-4ec2-bab7-49ae8cf3c87a",
+  "request_id": "0000aaaa-11bb-cccc-dd22-eeeeee333333",
   "seed": -430976584126747957,
   "top_p": 1,
   "temperature": 1,
@@ -561,7 +561,7 @@ client = AzureOpenAI(
   api_version="2025-02-01-preview"
 )
 
-response = client.chat.completions.messages.list("chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh", limit=2)
+response = client.chat.completions.messages.list("chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u", limit=2)
 
 print(response.model_dump_json(indent=2))
 ```
@@ -577,7 +577,7 @@ client = AzureOpenAI(
   api_version="2025-02-01-preview"
 )
 
-response = client.chat.completions.messages.list("chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh", limit=2)
+response = client.chat.completions.messages.list("chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u", limit=2)
 
 print(response.model_dump_json(indent=2))
 ```
@@ -587,7 +587,7 @@ print(response.model_dump_json(indent=2))
 ### Microsoft Entra ID
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh/messages?api-version=2025-02-01-preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u/messages?api-version=2025-02-01-preview \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
 ```
@@ -595,7 +595,7 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmp
 ### API Key
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh/messages?api-version=2025-02-01-preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u/messages?api-version=2025-02-01-preview \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
 ```
@@ -612,7 +612,7 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmp
       "audio": null,
       "function_call": null,
       "tool_calls": null,
-      "id": "chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh-0"
+      "id": "chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u-0"
     },
     {
       "content": "Ensemble methods combine multiple machine learning models to create a more robust and accurate predictor. Common techniques include bagging (training models on random subsets of data), boosting (sequentially training models to correct previous errors), and stacking (using a meta-model to combine base model predictions). Random Forests, a popular bagging method, create multiple decision trees using random feature subsets. Gradient Boosting builds trees sequentially, with each tree focusing on correcting the errors of previous trees. These methods often achieve better performance than single models by reducing overfitting and variance while capturing different aspects of the data.",
@@ -621,14 +621,14 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmp
       "audio": null,
       "function_call": null,
       "tool_calls": null,
-      "id": "chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh-1"
+      "id": "chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u-1"
     }
   ],
   "has_more": false,
   "object": "list",
   "total": 2,
-  "first_id": "chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh-0",
-  "last_id": "chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh-1"
+  "first_id": "chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u-0",
+  "last_id": "chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u-1"
 }
 ```
 
@@ -655,7 +655,7 @@ client = AzureOpenAI(
 )
 
 response = client.chat.completions.update(
-    "chatcmpl-B4g4TYatiSBUZbl5Uv938zXpYBqKL",
+    "chatcmpl-C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w",
     metadata={"fizz": "buzz"}
 )
 
@@ -674,7 +674,7 @@ client = AzureOpenAI(
 )
 
 response = client.chat.completions.update(
-    "chatcmpl-B4g4TYatiSBUZbl5Uv938zXpYBqKL",
+    "chatcmpl-C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w",
     metadata={"fizz": "buzz"}
 )
 
@@ -686,7 +686,7 @@ print(response.model_dump_json(indent=2))
 ### Microsoft Entra ID
 
 ```bash
-curl -X https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh?api-version=2025-02-01-preview \
+curl -X https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u?api-version=2025-02-01-preview \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
   -d '{
@@ -699,7 +699,7 @@ curl -X https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chat
 ### API Key
 
 ```bash
-curl -X https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh?api-version=2025-02-01-preview \
+curl -X https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u?api-version=2025-02-01-preview \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
   -d '{
@@ -712,7 +712,7 @@ curl -X https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chat
 # [Output](#tab/output)
 
 ```json
-  "id": "chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh",
+  "id": "chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u",
   "choices": [
     {
       "finish_reason": null,
@@ -740,7 +740,7 @@ curl -X https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chat
     "completion_tokens_details": null,
     "prompt_tokens_details": null
   },
-  "request_id": "cd0334e8-7541-4ec2-bab7-49ae8cf3c87a",
+  "request_id": "0000aaaa-11bb-cccc-dd22-eeeeee333333",
   "seed": -430976584126747957,
   "top_p": 1,
   "temperature": 1,
@@ -778,7 +778,7 @@ client = AzureOpenAI(
   api_version="2025-02-01-preview"
 )
 
-response = client.chat.completions.delete("chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh")
+response = client.chat.completions.delete("chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u")
 
 print(response.model_dump_json(indent=2))
 
@@ -795,7 +795,7 @@ client = AzureOpenAI(
   api_version="2025-02-01-preview"
 )
 
-response = client.chat.completions.delete("chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh")
+response = client.chat.completions.delete("chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u")
 
 print(response.model_dump_json(indent=2))
 ```
@@ -803,7 +803,7 @@ print(response.model_dump_json(indent=2))
 # [REST API](#tab/rest-api)
 
 ```bash
-curl -X DELETE -D - https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh?api-version=2025-02-01-preview \
+curl -X DELETE -D - https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u?api-version=2025-02-01-preview \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
 ```
@@ -811,7 +811,7 @@ curl -X DELETE -D - https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/comp
 ### API Key
 
 ```bash
-curl -X DELETE -D - https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-B4eEKDztBNE2XH9bWB8AMQh2hO3Sh?api-version=2025-02-01-preview \
+curl -X DELETE -D - https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u?api-version=2025-02-01-preview \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
@@ -819,7 +819,7 @@ curl -X DELETE -D - https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/comp
 # [Output](#tab/output)
 
 ```json
-"id"• "chatcmp1-B4eEKDztBNE2XH9bWB8AMQh2h03Sh", 
+"id"• "chatcmp1-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u", 
 "deleted": true, 
 "object": "chat. completion. deleted" 
 ```
