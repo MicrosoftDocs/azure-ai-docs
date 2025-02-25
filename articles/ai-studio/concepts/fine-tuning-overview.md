@@ -98,7 +98,5 @@ For the Azure OpenAI  Service models that you can fine tune, supported regions f
 
 - [Fine-tune models using managed compute (preview)](../how-to/fine-tune-managed-compute.md)
 - [Fine-tune an Azure OpenAI model in Azure AI Foundry portal](../../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context)
-- [Fine-tune a Llama 2 model in Azure AI Foundry portal](../how-to/fine-tune-model-llama.md)
-- [Fine-tune a Phi-3 model in Azure AI Foundry portal](../how-to/fine-tune-phi-3.md)
-- [Deploy Phi-3 family of small language models with Azure AI Foundry](../how-to/deploy-models-phi-3.md)
+- [Fine-tune models using serverless api](../how-to/fine-tune-serverless.md)
 
