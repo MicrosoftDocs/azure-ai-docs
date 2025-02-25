@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/19/2024
+ms.date: 2/25/2025
 ms.author: eur
 zone_pivot_groups: foundry-speech-studio
 #Customer intent: As a developer, I want to learn how to create a project for custom speech so that I can train and deploy a custom model.
@@ -17,6 +17,12 @@ zone_pivot_groups: foundry-speech-studio
 Custom speech projects contain models, training and testing datasets, and deployment endpoints. Each project is specific to a [locale](language-support.md?tabs=stt). For example, you might create a project for English in the United States.
 
 ## Create a project
+
+::: zone pivot="ai-foundry-portal"
+
+
+
+::: zone-end
 
 ::: zone pivot="speech-studio"
 
@@ -35,58 +41,6 @@ Select the new project by name or select **Go to project**. You'll see these men
 
 ::: zone-end
 
-::: zone pivot="ai-foundry-portal"
-
-
-
-::: zone-end
-
-::: zone pivot="rest-api"
-
-To create a project, use the [Projects_Create](/rest/api/speechtotext/projects/create) operation of the [Speech to text REST API](rest-speech-to-text.md). Construct the request body according to the following instructions:
-
-- Set the required `locale` property. This should be the locale of the contained datasets. The locale can't be changed later.
-- Set the required `displayName` property. This is the project name that is displayed in the Speech Studio.
-
-Make an HTTP POST request using the URI as shown in the following [Projects_Create](/rest/api/speechtotext/projects/create) example. Replace `YourSubscriptionKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
-
-```azurecli-interactive
-curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content-Type: application/json" -d '{
-  "displayName": "My Project",
-  "description": "My Project Description",
-  "locale": "en-US"
-} '  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/projects"
-```
-
-You should receive a response body in the following format:
-
-```json
-{
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52",
-  "links": {
-    "evaluations": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52/evaluations",
-    "datasets": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52/datasets",
-    "models": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52/models",
-    "endpoints": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52/endpoints",
-    "transcriptions": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52/transcriptions"
-  },
-  "properties": {
-    "datasetCount": 0,
-    "evaluationCount": 0,
-    "modelCount": 0,
-    "transcriptionCount": 0,
-    "endpointCount": 0
-  },
-  "createdDateTime": "2024-07-14T17:15:55Z",
-  "locale": "en-US",
-  "displayName": "My Project",
-  "description": "My Project Description"
-}
-```
-
-The top-level `self` property in the response body is the project's URI. Use this URI to [get](/rest/api/speechtotext/projects/get) details about the project's evaluations, datasets, models, endpoints, and transcriptions. You also use this URI to [update](/rest/api/speechtotext/projects/update) or [delete](/rest/api/speechtotext/projects/delete) a project.
-
-::: zone-end
 
 ## Choose your model
 
