@@ -1,5 +1,5 @@
 ---
-title: 'How to use the Microsoft Fabric tool in Azure AI Agent Service'
+title: 'How to use the Microsoft Fabric AI skill with Azure AI Agent Service'
 titleSuffix: Azure OpenAI
 description: Learn how to ground Azure AI Agents using Microsfot Fabric.
 services: cognitive-services
