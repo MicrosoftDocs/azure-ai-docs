@@ -11,6 +11,26 @@
             "redirect_document_id": false
         },
         {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/index-build-consume-sdk.md",
+            "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-create-resources",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/fine-tune-phi-3.md",
+            "redirect_url": "/azure/ai-studio/how-to/fine-tune-serverless",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/fine-tune-model-llama.md",
+            "redirect_url": "/azure/ai-studio/how-to/fine-tune-serverless",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/fine-tune-models-tsuzumi.md",
+            "redirect_url": "/azure/ai-studio/how-to/fine-tune-serverless",
+            "redirect_document_id": false
+        },
+        {
             "source_path_from_root": "/articles/ai-studio/how-to/deploy-models.md",
             "redirect_url": "/azure/ai-studio/concepts/deployments-overview",
             "redirect_document_id": true
@@ -211,6 +231,11 @@
             "redirect_document_id": false
           },
           {
+            "source_path_from_root": "/articles/ai-studio/how-to/custom-policy-model-deployment.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/how-to/configure-deployment-policies",
+            "redirect_document_id": true
+          },
+          {
             "source_path_from_root": "/articles/ai-studio/ai-services/how-to/content-safety.md",
             "redirect_url": "/azure/ai-services/content-safety/how-to/foundry",
             "redirect_document_id": true
@@ -241,6 +266,11 @@
               "redirect_document_id": false
           },
           {
+            "source_path_from_root": "/articles/ai-studio/quickstarts/multimodal-vision.md",
+            "redirect_url": "/azure/ai-services/openai/gpt-v-quickstart",
+            "redirect_document_id": false
+          },
+          {
             "source_path_from_root": "/articles/ai-studio/reference/reference-model-inference-api.md",
             "redirect_url": "/azure/ai-foundry/model-inference/reference/reference-model-inference-api",
             "redirect_document_id": false
@@ -263,6 +293,26 @@
           {
             "source_path_from_root": "/articles/ai-studio/reference/reference-model-inference-images-embeddings.md",
             "redirect_url": "/azure/ai-foundry/model-inference/reference/reference-model-inference-images-embeddings",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/concepts/about-capabilities.md",
+            "redirect_url": "/azure/ai-studio/concepts/what-are-ai-services",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/concepts/related-content.md",
+            "redirect_url": "/azure/ai-studio/concepts/what-are-ai-services",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/evaluate-sdk.md#cloud-evaluation-preview-on-test-datasets",
+            "redirect_url": "/azure/ai-studio/how-to/develop/cloud-evaluation",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/evaluate-sdk.md#cloud-evaluation-on-test-datasets",
+            "redirect_url": "/azure/ai-studio/how-to/develop/cloud-evaluation",
             "redirect_document_id": false
           }
     ]

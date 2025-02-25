@@ -3,7 +3,7 @@ title: "Part 3: Evaluate a chat app with the Azure AI SDK"
 titleSuffix: Azure AI Foundry
 description: Evaluate and deploy a custom chat app with the prompt flow SDK. This tutorial is part 3 of a 3-part tutorial series.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: tutorial
@@ -85,7 +85,7 @@ In Part 1 of this tutorial series, you created an **.env** file that specifies t
 1. In your project in Azure AI Foundry portal, select **Models + endpoints**.
 1. Select **gpt-4o-mini**.  
 1. Select **Edit**.
-1. If you have quota to increase the **Tokens per Minute Rate Limit**, try increasing it to 30. 
+1. If you have quota to increase the **Tokens per Minute Rate Limit**, try increasing it to 30 or above. 
 1. Select **Save and close**.
 
 ### Run the evaluation script
@@ -107,6 +107,8 @@ In Part 1 of this tutorial series, you created an **.env** file that specifies t
     ```bash
     python evaluate.py
     ```
+
+Expect the evaluation to take a few minutes to complete.
 
 ### Interpret the evaluation output
 
@@ -160,7 +162,7 @@ For more information about evaluation results in Azure AI Foundry portal, see [H
 
 Notice that the responses are not well grounded. In many cases, the model replies with a question rather than an answer. This is a result of the prompt template instructions. 
  
-* In your **assets/grounded_chat.prompty** file, find the sentence "If the question is related to outdoor/camping gear and clothing but vague, ask for clarifying questions instead of referencing documents."
+* In your **assets/grounded_chat.prompty** file, find the sentence "If the question is not related to outdoor/camping gear and clothing, just say 'Sorry, I only can answer queries related to outdoor/camping gear and clothing. So, how can I help?'"
 * Change the sentence to "If the question is related to outdoor/camping gear and clothing but vague, try to answer based on the reference documents, then ask for clarifying questions."  
 * Save the file and re-run the evaluation script.
 

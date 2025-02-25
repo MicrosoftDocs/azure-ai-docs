@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: how-to
-ms.date: 9/11/2024
+ms.date: 02/21/2025
 ms.author: pafarley
 keywords: on-premises, Docker, container
 ---
@@ -21,7 +21,7 @@ For more information about prerequisites, validating that a container is running
 
 The content safety analyze text container image for all supported versions can be found on the [Microsoft Container Registry (MCR)](https://aka.ms/aacscontainermcr) syndicate. It resides within the `azure-cognitive-services/contentsafety` repository and is named `text-analyze`. 
 
-:::image type="content" source="../../media/text-container.png" alt-text="Screenshot of text container on registry website.":::
+:::image type="content" source="../../media/text-container.png" lightbox="../../media/text-container.png" alt-text="Screenshot of text container on registry website.":::
 
 The fully qualified container image name is, `mcr.microsoft.com/azure-cognitive-services/contentsafety/text-analyze`. Append a specific container version, or append `:latest` to get the most recent version. For example:
 

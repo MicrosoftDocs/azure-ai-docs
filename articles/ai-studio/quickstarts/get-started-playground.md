@@ -3,12 +3,12 @@ title: Use the chat playground in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: Use this article to learn how to deploy a chat model and use it in the chat playground in Azure AI Foundry portal.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 10/22/2024
+ms.date: 02/12/2025
 ms.reviewer: zuramir
 ms.author: sgilley
 author: sdgilley
@@ -38,7 +38,7 @@ If you don't have an Azure subscription, <a href="https://azure.microsoft.com/fr
 
 7. Once the model is deployed, select **Open in playground** to test your model.
 
-You're now in a project, with a deployed model.  You can use the chat playground to interact with your model.
+You're now in a project, with a deployed model. You can use the chat playground to interact with your model.
 
 For more information about deploying models, see [how to deploy models](../how-to/deploy-models-openai.md).
 

@@ -7,7 +7,7 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 08/29/2024
+ms.date: 02/24/2025
 ms.author: mbullwin
 recommendations: false
 ---
@@ -74,7 +74,8 @@ This role has all the permissions of Cognitive Services OpenAI User and is also 
 ✅ Create custom fine-tuned models <br>
 ✅ Upload datasets for fine-tuning <br>
 ✅ View, query, filter Stored completions data <br>
-✅ Create new model deployments or edit existing model deployments **[Added Fall 2023]**
+✅ Create new model deployments or edit existing model deployments **[Added Fall 2023]** <br>
+✅ Add data sources to Azure OpenAI On Your Data. **You must also have the [Cognitive Services Contributor](#cognitive-services-contributor) role as well**.
 
 A user with only this role assigned would be unable to:
 
@@ -82,7 +83,7 @@ A user with only this role assigned would be unable to:
 ❌ View/Copy/Regenerate keys under **Keys and Endpoint** <br>
 ❌ Access quota <br>
 ❌ Create customized content filters <br>
-❌ Add a data source for the use your data feature
+❌ Add a data source for Azure OpenAI On Your Data
 
 ### Cognitive Services Contributor
 
@@ -95,13 +96,12 @@ This role is typically granted access at the resource group level for a user in 
 ✅ Ability to view what models are available for deployment in Azure AI Foundry portal <br>
 ✅ Use the Chat, Completions, and DALL-E (preview) playground experiences to generate text and images with any models that have already been deployed to this Azure OpenAI resource <br>
 ✅ Create customized content filters <br>
-✅ Add a data source for the use your data feature <br>
+✅ Add data sources to Azure OpenAI On Your Data. **You must also have the [Cognitive Services OpenAI Contributor](#cognitive-services-openai-contributor) role as well**.
 ✅ Create new model deployments or edit existing model deployments (via API) <br>
 ✅ Create custom fine-tuned models **[Added Fall 2023]**<br>
 ✅ Upload datasets for fine-tuning **[Added Fall 2023]**<br>
 ✅ Create new model deployments or edit existing model deployments (via Azure AI Foundry) **[Added Fall 2023]**<br>
 ✅ View, query, filter Stored completions data <br>
-
 
 A user with only this role assigned would be unable to:
 
@@ -208,5 +208,6 @@ Possible reasons why the user may **not** have permissions:
 
 ## Next steps
 
+- [Get started with the Azure OpenAI security building block](/azure/developer/ai/get-started-securing-your-ai-app?tabs=github-codespaces&pivots=python)
 - Learn more about [Azure-role based access control (Azure RBAC)](/azure/role-based-access-control/).
 - Also check out[assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).

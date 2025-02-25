@@ -3,13 +3,13 @@ title: "Tutorial: Deploy an enterprise chat web app in the Azure AI Foundry port
 titleSuffix: Azure AI Foundry
 description: Use this article to deploy an enterprise chat web app in the Azure AI Foundry portal playground.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
 ms.topic: tutorial
-ms.date: 12/27/2024
+ms.date: 02/13/2025
 ms.reviewer: tgokal
 ms.author: sgilley
 author: sdgilley

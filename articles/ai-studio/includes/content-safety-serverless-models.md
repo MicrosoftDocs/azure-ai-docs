@@ -1,7 +1,7 @@
 ---
 title: Include file
 description: Include file
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 07/12/2024
 ms.author: mopeakande
@@ -13,7 +13,7 @@ ms.custom: include file
 # Also used in Azure Machine Learning documentation
 ---
 
-For language models deployed via serverless APIs, Azure AI implements a default configuration of [Azure AI Content Safety](/azure/ai-services/content-safety/overview) text moderation filters that detect harmful content such as hate, self-harm, sexual, and violent content. To learn more about content filtering (preview), see [Harm categories in Azure AI Content Safety](/azure/ai-services/content-safety/concepts/harm-categories).
+For language models deployed via serverless APIs, Azure AI implements a default configuration of [Azure AI Content Safety](../../ai-services/content-safety/overview.md) text moderation filters that detect harmful content such as hate, self-harm, sexual, and violent content. To learn more about content filtering (preview), see [Content safety for models curated by Azure AI in the model catalog](../concepts/model-catalog-content-safety.md). 
 
 > [!TIP]
 > Content filtering (preview) is not available for certain model types that are deployed via serverless APIs. These model types include embedding models and time series models.

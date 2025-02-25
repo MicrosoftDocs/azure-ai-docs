@@ -57,6 +57,24 @@ var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
 AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredential());
 ```
 
+# [JavaScript](#tab/javascript)
+
+```javascript
+const connectionString =
+  process.env["AZURE_AI_PROJECTS_CONNECTION_STRING"] || "<project connection string>";
+
+if (!connectionString) {
+  throw new Error("AZURE_AI_PROJECTS_CONNECTION_STRING must be set.");
+}
+const client = AIProjectsClient.fromConnectionString(
+    connectionString || "",
+    new DefaultAzureCredential(),
+);
+```
+
+# [REST API](#tab/rest)
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`.
+
 ---
 
 ## Step 2: Upload files and add them to a Vector Store
@@ -95,6 +113,53 @@ VectorStore vectorStore = await client.CreateVectorStoreAsync(
     fileIds:  new List<string> { uploadedAgentFile.Id },
     name: "my_vector_store");
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+const localFileStream = fs.createReadStream("sample_file_for_upload.txt");
+const file = await client.agents.uploadFile(localFileStream, "assistants", {
+  fileName: "sample_file_for_upload.txt",
+});
+console.log(`Uploaded file, ID: ${file.id}`);
+
+const vectorStore = await client.agents.createVectorStore({
+  fileIds: [file.id],
+  name: "my_vector_store",
+});
+console.log(`Created vector store, ID: ${vectorStore.id}`);
+```
+
+# [REST API](#tab/rest)
+### Upload a file
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/files?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -F purpose="assistants" \
+  -F file="@c:\\path_to_file\\sample_file_for_upload.txt"
+```
+
+### Create a vector store
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/vector_stores?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "my_vector_store"
+  }'
+
+```
+
+### Attach the uploaded file to the vector store
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/vector_stores/vs_abc123/files?api-version=2024-12-01-preview \
+    -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "file_id": "assistant-abc123"
+    }'
+```
+
 ---
 
 ## Step 3: Create an agent and enable file search
@@ -135,6 +200,34 @@ Response<Agent> agentResponse = await client.CreateAgentAsync(
 Agent agent = agentResponse.Value;
 ```
 
+# [JavaScript](#tab/javascript)
+
+```javascript
+const fileSearchTool = ToolUtility.createFileSearchTool([vectorStore.id]);
+
+const agent = await client.agents.createAgent("gpt-4o-mini", {
+  name: "SDK Test Agent - Retrieval",
+  instructions: "You are helpful agent that can help fetch data from files you know about.",
+  tools: [fileSearchTool.definition],
+  toolResources: fileSearchTool.resources,
+});
+console.log(`Created agent, agent ID : ${agent.id}`);
+```
+
+# [REST API](#tab/rest)
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "name": "Financial Analyst Assistant",
+    "instructions": "You are an expert financial analyst. Use your knowledge base to answer questions about audited financial statements.",
+    "tools": [{"type": "file_search"}],
+    "model": "gpt-4o-mini",
+    "tool_resources": {"file_search": {"vector_store_ids": ["vs_1234abcd"]}}
+  }'
+```
+
 ---
 
 ## Step 4: Create a thread
@@ -173,6 +266,44 @@ Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
     "Can you give me the documented codes for 'banana' and 'orange'?");
 ThreadMessage message = messageResponse.Value;
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+// Create thread with file resources.
+// If the agent has multiple threads, only this thread can search this file.
+const thread = await client.agents.createThread({ toolResources: fileSearchTool.resources });
+
+// add a message to thread
+await client.agents.createMessage(
+    thread.id, {
+    role: "user",
+    content: "Can you give me the documented codes for 'banana' and 'orange'?",
+});
+```
+
+# [REST API](#tab/rest)
+### Create a thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d ''
+```
+
+### Add a user question to the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+      "role": "user",
+      "content": "Which months do we have covered in the financial statements?"
+    }'
+```
+
 ---
 
 ## Step 5: Create a run and check the output
@@ -228,4 +359,79 @@ foreach (ThreadMessage threadMessage in messages)
     }
 }
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+
+  // create a run
+  const streamEventMessages = await client.agents.createRun(thread.id, agent.id).stream();
+
+  for await (const eventMessage of streamEventMessages) {
+    switch (eventMessage.event) {
+      case RunStreamEvent.ThreadRunCreated:
+        break;
+      case MessageStreamEvent.ThreadMessageDelta:
+        {
+          const messageDelta = eventMessage.data;
+          messageDelta.delta.content.forEach((contentPart) => {
+            if (contentPart.type === "text") {
+              const textContent = contentPart;
+              const textValue = textContent.text?.value || "No text";
+            }
+          });
+        }
+        break;
+
+      case RunStreamEvent.ThreadRunCompleted:
+        break;
+      case ErrorEvent.Error:
+        console.log(`An error occurred. Data ${eventMessage.data}`);
+        break;
+      case DoneEvent.Done:
+        break;
+    }
+  }
+
+  // Print the messages from the agent
+  const messages = await client.agents.listMessages(thread.id);
+
+  // Messages iterate from oldest to newest
+  // messages[0] is the most recent
+  for (let i = messages.data.length - 1; i >= 0; i--) {
+    const m = messages.data[i];
+    if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
+      const textContent = m.content[0];
+      console.log(`${textContent.text.value}`);
+      console.log(`---------------------------------`);
+    }
+  }
+```
+
+# [REST API](#tab/rest)
+### Run the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistant_id": "asst_abc123",
+  }'
+```
+
+### Retrieve the status of the run
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+```
+
+### Retrieve the agent response
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+```
+
 ---

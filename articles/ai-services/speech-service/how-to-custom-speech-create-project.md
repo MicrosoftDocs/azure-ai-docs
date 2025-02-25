@@ -26,7 +26,7 @@ To create a custom speech project, follow these steps:
 1. Select the subscription and Speech resource to work with. 
 
     > [!IMPORTANT]
-    > If you will train a custom model with audio data, choose a Speech resource region with dedicated hardware for training audio data. See footnotes in the [regions](regions.md#regions) table for more information.
+    > If you will train a custom model with audio data, choose a region with dedicated hardware for training audio data. See footnotes in the [regions](regions.md#regions) table for more information.
 
 1. Select **Custom speech** > **Create a new project**. 
 1. Follow the instructions provided by the wizard to create your project. 

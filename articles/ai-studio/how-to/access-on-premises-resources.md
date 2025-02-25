@@ -3,9 +3,9 @@ title: How to access on-premises resources
 titleSuffix: Azure AI Foundry
 description: Learn how to configure an Azure AI Foundry managed network to securely allow access to your on-premises resources.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 11/22/2024
+ms.date: 02/20/2025
 ms.reviewer: meerakurup 
 ms.author: larryfr
 author: Blackmist
@@ -14,7 +14,7 @@ author: Blackmist
 
 # Access on-premises resources from your Azure AI Foundry's managed network (preview)
 
-To access your non-Azure resources located in a different virtual network or located entirely on-premises from your Azure AI Foundry's managed virtual network, an Application Gateway must be configured. Through this Application Gateway, full end to end access can be configured to your resources.
+To access your non-Azure resources located in a different virtual network or located entirely on-premises from your [Azure AI Foundry](https://ai.azure.com)'s managed virtual network, an Application Gateway must be configured. Through this Application Gateway, full end to end access can be configured to your resources.
 
 Azure Application Gateway is a load balancer that makes routing decisions based on the URL of an HTTPS request. Azure Machine Learning supports using an application gateway to securely communicate with non-Azure resources. For more on Application Gateway, see [What is Azure Application Gateway](/azure/application-gateway/overview).
 

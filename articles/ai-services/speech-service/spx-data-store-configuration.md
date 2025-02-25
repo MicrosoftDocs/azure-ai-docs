@@ -5,7 +5,7 @@ description: Learn how to configure the Speech CLI datastore.
 author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: reference
+ms.topic: how-to
 ms.date: 9/24/2024
 ms.author: eur
 ms.custom: mode-api

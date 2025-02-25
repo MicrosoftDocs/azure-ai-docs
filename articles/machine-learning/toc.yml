@@ -634,8 +634,12 @@ items:
       href: how-to-deploy-models-jais.md
     - name: AI21 Jamba models
       href: how-to-deploy-models-jamba.md
-    - name: Regulate deployments using policy
-      href: how-to-regulate-registry-deployments.md
+    - name: Built-in policy to allow specific models
+      href: how-to-built-in-policy-model-deployment.md
+    - name: Custom policy to allow specific models
+      href: how-to-custom-policy-model-deployment.md
+    - name: Stability AI models
+      href: deploy-stability-models.md
     - name: Use Model Catalog collections with virtual network
       href: how-to-network-isolation-model-catalog.md
     - name: Azure AI Model Inference API

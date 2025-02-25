@@ -3,7 +3,7 @@ title: Deploy models as serverless APIs
 titleSuffix: Azure AI Foundry
 description: Learn to deploy models as serverless APIs, using Azure AI Foundry.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 12/20/2024
 ms.author: mopeakande
@@ -692,4 +692,4 @@ For more information on permissions, see [Role-based access control in Azure AI 
 ## Related content
 
 * [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)
-* [Fine-tune a Meta Llama 2 model in Azure AI Foundry portal](fine-tune-model-llama.md)
+* [Fine-tune models using serverless API](../how-to/fine-tune-serverless.md)

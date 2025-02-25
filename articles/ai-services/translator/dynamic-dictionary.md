@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 01/28/2025
+ms.date: 02/11/2025
 ms.author: lajanuar
 ---
 
@@ -32,4 +32,4 @@ Target output: `Das Wort "wordomatic" ist ein Wörterbucheintrag.`
 
 This feature works the same way with and without HTML mode.
 
-Use the feature sparingly. A better way to customize translation is by using Azure AI Custom Translator. Custom Translator makes full use of context and statistical probabilities. If you have or can create training data that shows your work or phrase in context, you get better results. You can find more information about Custom Translator at [https://aka.ms/CustomTranslator](https://aka.ms/CustomTranslator).
+Using the dynamic dictionary feature is considered one of the simplest methods to customize translation output. While it's highly effective, the process of creating and maintaining dynamic dictionaries for a large number of terms can be challenging and time-intensive. In such cases, a custom translation using Azure AI Custom Translator can be a more viable choice. Custom Translator makes full use of context and statistical probabilities. If you have or can create training data that shows your work or phrase in context, you get better results. You can find more information about Custom Translator at [https://aka.ms/CustomTranslator](https://aka.ms/CustomTranslator).
