@@ -68,8 +68,6 @@ from azure.ai.projects.models import FabricTool
 
 To make the Fabric AI skill tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Azure AI Foundry portal.
 
-# [Python](#tab/python)
-
 ```python
 # The Fabric connection id can be found in the Azure AI Foundry project as a property of the Fabric tool
 # Your connection id is in the format /subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<your-project-name>/connections/<your-fabric-connection-name>
@@ -92,8 +90,6 @@ with project_client:
 
 ## Step 3: Create a thread
 
-# [Python](#tab/python)
-
 ```python
 # Create thread for communication
 thread = project_client.agents.create_thread()
@@ -112,8 +108,6 @@ print(f"Created message, ID: {message.id}")
 ## Step 4: Create a run and check the output
 
 Create a run and observe that the model uses the Fabric AI skill tool to provide a response to the user's question.
-
-# [Python](#tab/python)
 
 ```python
 # Create and process agent run in thread with tools
