@@ -88,18 +88,18 @@ Use a file list `JSONL` file with the following conditions:
   * When you want more control over which files get processed in each batch request;
 
    ```bash
-    POST /documentModels/{modelId}:analyzeBatch
+   POST /documentModels/{modelId}:analyzeBatch
 
-    {
-      "azureBlobFileListSource": {
-        "containerUrl": "https://myStorageAccount.blob.core.windows.net/myContainer?mySasToken",
-        "fileList": "myFileList.jsonl"
-        ...
-      },
+   {
+     "azureBlobFileListSource": {
+       "containerUrl": "https://myStorageAccount.blob.core.windows.net/myContainer?mySasToken",
+       "fileList": "myFileList.jsonl"
+       ...
+     },
      ...
-    }
+   }
 
-    ```
+   ```
 
 A container URL or a container SAS URL is required in both options. Use container URL if using managed Identity to access your storage container. If you're using Shared Access Signature (SAS), use a SAS URL.
 
@@ -244,7 +244,7 @@ For each document processed, a status is assigned, either `succeeded`, `failed`,
     ]
     ...
     ```
-    
+
 * Status `skipped`: Typically, this status happens when output for the document is already present in the specified output folder and the `overwriteExisting` Boolean property is set to `false`
 
   Example of `skipped` status response:
