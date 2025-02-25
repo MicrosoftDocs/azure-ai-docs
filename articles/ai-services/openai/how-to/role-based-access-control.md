@@ -208,5 +208,6 @@ Possible reasons why the user may **not** have permissions:
 
 ## Next steps
 
+- [Get started with the Azure OpenAI security building block](/azure/developer/ai/get-started-securing-your-ai-app?tabs=github-codespaces&pivots=python)
 - Learn more about [Azure-role based access control (Azure RBAC)](/azure/role-based-access-control/).
 - Also check out[assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
