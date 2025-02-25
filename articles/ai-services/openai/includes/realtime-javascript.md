@@ -61,7 +61,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 #### [Microsoft Entra ID](#tab/keyless)
 
-1. Create the `text-in-audio-out.js` file with the following code:
+1. Create the `index.js` file with the following code:
 
     ```javascript 
     import { DefaultAzureCredential } from "@azure/identity";
@@ -124,13 +124,12 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Run the JavaScript file.
 
     ```shell
-    node text-in-audio-out.js
+    node index.js
     ```
-
 
 #### [API key](#tab/api-key)
 
-1. Create the `text-in-audio-out.js` file with the following code:
+1. Create the `index.js` file with the following code:
 
     ```javascript 
     import { AzureKeyCredential } from "@azure/core-auth";
@@ -188,7 +187,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Run the JavaScript file.
 
     ```shell
-    node text-in-audio-out.js
+    node index.js
     ```
 
 ---

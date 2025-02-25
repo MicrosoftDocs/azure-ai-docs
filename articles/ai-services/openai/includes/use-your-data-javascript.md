@@ -10,30 +10,37 @@ ms.date: 01/10/2025
 
 [!INCLUDE [Set up required variables](./use-your-data-common-variables.md)]
 
+## Set up
+ 
+1. Create a new folder `use-data-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
 
-## Initialize a Node.js application
+    ```shell
+    mkdir use-data-quickstart && cd use-data-quickstart
+    ```
+    
+1. Create the `package.json` with the following command:
 
-In a console window (such as cmd, PowerShell, or Bash), create a new directory for your app, and navigate to it. Then run the `npm init` command to create a node application with a _package.json_ file.
+    ```shell
+    npm init -y
+    ```   
 
-```console
-npm init
-```
+1. Install the OpenAI client library for JavaScript with:
 
-## Install the client library
+    ```console
+    npm install openai
+    ```
 
-Install the Azure OpenAI client and Azure Identity libraries for JavaScript with npm:
+1. For the **recommended** passwordless authentication:
 
-```console
-npm install openai @azure/identity
-```
-
-Your app's _package.json_ file will be updated with the dependencies.
+    ```console
+    npm install @azure/identity
+    ```
 
 ## Add the JavaScript code
 
 #### [Microsoft Entra ID](#tab/keyless)
 
-1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.js`. Copy the following code into the `ChatWithOwnData.js` file.
+1. Create the `index.js` file with the following code: 
     
     ```javascript
     const { DefaultAzureCredential, getBearerTokenProvider } = require("@azure/identity");
@@ -116,16 +123,21 @@ Your app's _package.json_ file will be updated with the dependencies.
     });
     ```
 
-1. Run the application with the following command:
+1. Sign in to Azure with the following command:
 
-    ```console
-    node ChatWithOwnData.js
+    ```shell
+    az login
     ```
 
+1. Run the JavaScript file.
 
-#### [API key](#tab/api-key)
+    ```shell
+    node index.js
+    ```
 
-1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.js`. Copy the following code into the `ChatWithOwnData.js` file.
+## [API key](#tab/api-key)
+
+1. Create the `index.js` file with the following code: 
     
     ```javascript
     const { AzureOpenAI } = require("openai");
@@ -204,17 +216,13 @@ Your app's _package.json_ file will be updated with the dependencies.
     });
     ```
 
-1. Run the application with the following command:
+1. Run the JavaScript file.
 
-    ```console
-    node ChatWithOwnData.js
+    ```shell
+    node index.js
     ```
 
 ---
-
-
-> [!IMPORTANT]
-> For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
 
 
 ## Output

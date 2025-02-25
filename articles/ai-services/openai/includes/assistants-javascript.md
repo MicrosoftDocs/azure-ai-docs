@@ -43,7 +43,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     npm init -y
     ```   
 
-1. Install the OpenAI Assistants client library for JavaScript with:
+1. Install the OpenAI client library for JavaScript with:
 
     ```console
     npm install openai
@@ -93,8 +93,8 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     } = require("@azure/identity");
     
     // Get environment variables
-    const azureOpenAIEndpoint = process.env.AZURE_OPENAI_ENDPOINT || "https://<your-resource-name>.openai.azure.com/";
-    const azureOpenAIDeployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "Your Deployment Name";
+    const azureOpenAIEndpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+    const azureOpenAIDeployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "Your deployment name";
     const azureOpenAIVersion = process.env.OPENAI_API_VERSION || "A supported API version";
     
     // Check env variables
@@ -186,8 +186,6 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     node index.js
     ```
 
-
-
 #### [API key](#tab/api-key)
 
 1. Create the `index.js` file with the following code:
@@ -196,15 +194,15 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     const { AzureOpenAI } = require("openai");
     
     // Get environment variables
-    const azureOpenAIKey = process.env.AZURE_OPENAI_KEY;
-    const azureOpenAIEndpoint = process.env.AZURE_OPENAI_ENDPOINT;
-    const azureOpenAIDeployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME;
-    const azureOpenAIVersion = process.env.OPENAI_API_VERSION;
+    const azureOpenAIKey = process.env.AZURE_OPENAI_KEY || "Your API key";
+    const azureOpenAIEndpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+    const azureOpenAIDeployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "Your deployment name";
+    const azureOpenAIVersion = process.env.OPENAI_API_VERSION || "A supported API version";
     
     // Check env variables
     if (!azureOpenAIKey || !azureOpenAIEndpoint || !azureOpenAIDeployment || !azureOpenAIVersion) {
       throw new Error(
-        "Please set AZURE_OPENAI_KEY and AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_DEPLOYMENT_NAME in your environment variables."
+        "You need to set the endpoint, deployment name, and API version."
       );
     }
     

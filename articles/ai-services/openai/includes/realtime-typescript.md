@@ -69,7 +69,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 #### [Microsoft Entra ID](#tab/keyless)
 
-1. Create the `text-in-audio-out.ts` file with the following code:
+1. Create the `index.ts` file with the following code:
 
     ```typescript
     import { DefaultAzureCredential } from "@azure/identity";
@@ -159,12 +159,12 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Run the code with the following command:
 
     ```shell
-    node text-in-audio-out.js
+    node index.js
     ```
 
 #### [API key](#tab/api-key)
 
-1. Create the `text-in-audio-out.ts` file with the following code:
+1. Create the `index.ts` file with the following code:
 
     ```typescript
     import { AzureKeyCredential } from "@azure/core-auth";
@@ -249,7 +249,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Run the code with the following command:
 
     ```shell
-    node text-in-audio-out.js
+    node index.js
     ```
 
 ---

@@ -10,33 +10,43 @@ ms.date: 10/22/2024
 
 [!INCLUDE [Set up required variables](./use-your-data-common-variables.md)]
 
+## Set up
 
-## Initialize a Node.js application
+1. Create a new folder `use-data-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
 
-In a console window (such as cmd, PowerShell, or Bash), create a new directory for your app, and navigate to it. Then run the `npm init` command to create a node application with a _package.json_ file.
+    ```shell
+    mkdir use-data-quickstart && cd use-data-quickstart
+    ```
+    
+1. Create the `package.json` with the following command:
 
-```console
-npm init
-```
+    ```shell
+    npm init -y
+    ```
 
-## Install the client library
+1. Update the `package.json` to ECMAScript with the following command: 
 
-Install the Azure OpenAI client and Azure Identity libraries for JavaScript with npm:
+    ```shell
+    npm pkg set type=module
+    ```
+    
+1. Install the OpenAI client library for JavaScript with:
 
-```console
-npm install openai @azure/identity @azure/openai 
-```
+    ```console
+    npm install openai
+    ```
 
-The `@azure/openai/types` dependency is included to extend the Azure OpenAI model for the `data_sources` property. This import is only necessary for TypeScript.
+1. For the **recommended** passwordless authentication:
 
-
-Your app's _package.json_ file will be updated with the dependencies.
+    ```console
+    npm install @azure/identity
+    ```
 
 ## Add the TypeScript code
 
 #### [Microsoft Entra ID](#tab/typescript-keyless)
 
-1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.ts`. Copy the following code into the `ChatWithOwnData.ts` file.
+1. Create the `index.ts` file with the following code:
     
     ```typescript
     import { AzureOpenAI } from "openai";
@@ -120,22 +130,42 @@ Your app's _package.json_ file will be updated with the dependencies.
     });
     ```
 
-1. Build the application with the following command:
+1. Create the `tsconfig.json` file to transpile the TypeScript code and copy the following code for ECMAScript.
 
-    ```console
+    ```json
+    {
+        "compilerOptions": {
+          "module": "NodeNext",
+          "target": "ES2022", // Supports top-level await
+          "moduleResolution": "NodeNext",
+          "skipLibCheck": true, // Avoid type errors from node_modules
+          "strict": true // Enable strict type-checking options
+        },
+        "include": ["*.ts"]
+    }
+    ```
+
+1. Transpile from TypeScript to JavaScript.
+
+    ```shell
     tsc
     ```
+    
+1. Sign in to Azure with the following command:
 
-1. Run the application with the following command:
-
-    ```console
-    node ChatWithOwnData.js
+    ```shell
+    az login
     ```
 
+1. Run the code with the following command:
+
+    ```shell
+    node index.js
+    ```
 
 #### [API key](#tab/typescript-key)
 
-1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.ts`. Copy the following code into the `ChatWithOwnData.ts` file.
+1. Create the `index.ts` file with the following code:
     
     ```typescript
     import { AzureOpenAI } from "openai";
@@ -215,18 +245,32 @@ Your app's _package.json_ file will be updated with the dependencies.
     });
     ```
 
-1. Build the application with the following command:
+1. Create the `tsconfig.json` file to transpile the TypeScript code and copy the following code for ECMAScript.
 
-    ```console
+    ```json
+    {
+        "compilerOptions": {
+          "module": "NodeNext",
+          "target": "ES2022", // Supports top-level await
+          "moduleResolution": "NodeNext",
+          "skipLibCheck": true, // Avoid type errors from node_modules
+          "strict": true // Enable strict type-checking options
+        },
+        "include": ["*.ts"]
+    }
+    ```
+
+1. Transpile from TypeScript to JavaScript.
+
+    ```shell
     tsc
     ```
 
-1. Run the application with the following command:
+1. Run the code with the following command:
 
-    ```console
-    node ChatWithOwnData.js
+    ```shell
+    node index.js
     ```
-
 
 ---
 
@@ -240,6 +284,5 @@ Your app's _package.json_ file will be updated with the dependencies.
 ```output
 Message: What are my available health plans?
 The available health plans in the Contoso Electronics plan and benefit packages are the Northwind Health Plus and Northwind Standard plans.
-
 ```
 
