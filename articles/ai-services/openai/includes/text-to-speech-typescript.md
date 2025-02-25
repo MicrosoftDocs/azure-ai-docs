@@ -4,7 +4,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 09/12/2024
-ms.reviewer: v-baolianzou
+ms.reviewer: eur
 ms.author: eur
 author: eric-urban
 recommendations: false
@@ -26,6 +26,40 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 - Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
 - Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
+## Set up
+
+1. Create a new folder `assistants-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
+
+    ```shell
+    mkdir assistants-quickstart && cd assistants-quickstart
+    ```
+    
+
+1. Create the `package.json` with the following command:
+
+    ```shell
+    npm init -y
+    ```
+
+1. Update the `package.json` to ECMAScript with the following command: 
+
+    ```shell
+    npm pkg set type=module
+    ```
+    
+
+1. Install the OpenAI client library for JavaScript with:
+
+    ```console
+    npm install openai
+    ```
+
+1. For the **recommended** passwordless authentication:
+
+    ```console
+    npm install @azure/identity
+    ```
+
 ## Retrieve resource information
 
 [!INCLUDE [resource authentication](resource-authentication.md)]
@@ -33,31 +67,11 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 > [!CAUTION]
 > To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
 
-## Create a Node application
-
-In a console window (such as cmd, PowerShell, or Bash), create a new directory for your app, and navigate to it. Then run the `npm init` command to create a node application with a _package.json_ file.
-
-```console
-npm init
-```
-
-## Install the client library
-
-Install the client libraries with:
-
-```console
-npm install openai @azure/identity
-```
-
-Your app's _package.json_ file will be updated with the dependencies.
-
 ## Create a speech file
-
-    
 
 #### [Microsoft Entra ID](#tab/typescript-keyless)
 
-1. Create a new file named _Text-to-speech.ts_ and open it in your preferred code editor. Copy the following code into the _Text-to-speech.ts_ file:
+1. Create the `index.ts` file with the following code:
 
     ```typescript
     import { writeFile } from "fs/promises";
@@ -67,12 +81,12 @@ Your app's _package.json_ file will be updated with the dependencies.
     import "openai/shims/node";
     
     // You will need to set these environment variables or edit the following values
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
     const speechFilePath = "<path to save the speech file>";
     
     // Required Azure OpenAI deployment name and API version
-    const deploymentName = "tts";
-    const apiVersion = "2024-08-01-preview";
+    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "tts";
+    const apiVersion = process.env.OPENAI_API_VERSION || "2024-08-01-preview";
 
     // keyless authentication    
     const credential = new DefaultAzureCredential();
@@ -119,22 +133,42 @@ Your app's _package.json_ file will be updated with the dependencies.
     
    The import of `"openai/shims/node"` is necessary when running the code in a Node.js environment. It ensures that the output type of the `client.audio.speech.create` method is correctly set to `NodeJS.ReadableStream`.
 
-1. Build the application with the following command:
+1. Create the `tsconfig.json` file to transpile the TypeScript code and copy the following code for ECMAScript.
 
-    ```console
+    ```json
+    {
+        "compilerOptions": {
+          "module": "NodeNext",
+          "target": "ES2022", // Supports top-level await
+          "moduleResolution": "NodeNext",
+          "skipLibCheck": true, // Avoid type errors from node_modules
+          "strict": true // Enable strict type-checking options
+        },
+        "include": ["*.ts"]
+    }
+    ```
+
+1. Transpile from TypeScript to JavaScript.
+
+    ```shell
     tsc
     ```
+    
+1. Sign in to Azure with the following command:
 
-1. Run the application with the following command:
-
-    ```console
-    node Text-to-speech.js
+    ```shell
+    az login
     ```
 
+1. Run the code with the following command:
+
+    ```shell
+    node index.js
+    ```
 
 #### [API key](#tab/typescript-key)
 
-1. Create a new file named _Text-to-speech.ts_ and open it in your preferred code editor. Copy the following code into the _Text-to-speech.ts_ file:
+1. Create the `index.ts` file with the following code:
 
     ```typescript
     import { writeFile } from "fs/promises";
@@ -143,14 +177,14 @@ Your app's _package.json_ file will be updated with the dependencies.
     import "openai/shims/node";
     
     // You will need to set these environment variables or edit the following values
-    const endpoint = "<endpoint>";
-    const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
+    const endpoint = "Your endpoint";
+    const apiKey = process.env.AZURE_OPENAI_API_KEY || "Your API key";
     const speechFilePath =
       process.env["SPEECH_FILE_PATH"] || "<path to save the speech file>";
     
     // Required Azure OpenAI deployment name and API version
-    const deploymentName = "tts";
-    const apiVersion = "2024-08-01-preview";
+    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "tts";
+    const apiVersion = process.env.OPENAI_API_VERSION || "2024-08-01-preview";
     
     function getClient(): AzureOpenAI {
       return new AzureOpenAI({
@@ -192,17 +226,31 @@ Your app's _package.json_ file will be updated with the dependencies.
     
    The import of `"openai/shims/node"` is necessary when running the code in a Node.js environment. It ensures that the output type of the `client.audio.speech.create` method is correctly set to `NodeJS.ReadableStream`.
 
-1. Build the application with the following command:
+1. Create the `tsconfig.json` file to transpile the TypeScript code and copy the following code for ECMAScript.
 
-    ```console
+    ```json
+    {
+        "compilerOptions": {
+          "module": "NodeNext",
+          "target": "ES2022", // Supports top-level await
+          "moduleResolution": "NodeNext",
+          "skipLibCheck": true, // Avoid type errors from node_modules
+          "strict": true // Enable strict type-checking options
+        },
+        "include": ["*.ts"]
+    }
+    ```
+
+1. Transpile from TypeScript to JavaScript.
+
+    ```shell
     tsc
     ```
+    
+1. Run the code with the following command:
 
-1. Run the application with the following command:
-
-    ```console
-    node Text-to-speech.js
+    ```shell
+    node index.js
     ```
 
-[!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 ---

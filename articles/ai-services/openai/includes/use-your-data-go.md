@@ -39,7 +39,7 @@ ms.date: 01/17/2025
    
    func main() {
    	azureOpenAIKey := os.Getenv("AZURE_OPENAI_API_KEY")
-   	modelDeploymentID := os.Getenv("AZURE_OPENAI_DEPLOYMENT_ID")
+   	modelDeploymentID := os.Getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
    
    	// Ex: "https://<your-azure-openai-host>.openai.azure.com"
    	azureOpenAIEndpoint := os.Getenv("AZURE_OPENAI_ENDPOINT")
