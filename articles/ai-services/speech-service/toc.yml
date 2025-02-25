@@ -64,12 +64,12 @@ items:
             href: how-to-custom-speech-create-project.md
           - name: "Part 2: Upload training and testing datasets"
             href: how-to-custom-speech-upload-data.md
-          - name: "Part 3: Test recognition quality"
-            href: how-to-custom-speech-inspect-data.md
-          - name: "Part 4: Test model quantitatively"
-            href: how-to-custom-speech-evaluate-data.md
-          - name: "Part 5: Train a model"
+          - name: "Part 3: Train a model"
             href: how-to-custom-speech-train-model.md
+          - name: "Part 4: Test recognition quality"
+            href: how-to-custom-speech-inspect-data.md
+          - name: "Part 5: Test model quantitatively"
+            href: how-to-custom-speech-evaluate-data.md
           - name: "Part 6: Deploy a model"
             href: how-to-custom-speech-deploy-model.md
         - name: Custom speech datasets
