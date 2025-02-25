@@ -83,7 +83,7 @@ You should receive a response body in the following format:
   "inputKind": "SSML",
   "customVoices": {},
   "properties": {
-    "timeToLiveInHours": 744,
+    "timeToLiveInHours": 168,
     "outputFormat": "riff-24khz-16bit-mono-pcm",
     "concatenateResult": false,
     "decompressOutputFiles": false,
@@ -115,7 +115,7 @@ You should receive a response body in the following format:
   "inputKind": "SSML",
   "customVoices": {},
   "properties": {
-    "timeToLiveInHours": 744,
+    "timeToLiveInHours": 168,
     "outputFormat": "riff-24khz-16bit-mono-pcm",
     "concatenateResult": false,
     "decompressOutputFiles": false,
@@ -159,7 +159,7 @@ You should receive a response body in the following format:
       "inputKind": "SSML",
       "customVoices": {},
       "properties": {
-        "timeToLiveInHours": 744,
+        "timeToLiveInHours": 168,
         "outputFormat": "riff-24khz-16bit-mono-pcm",
         "concatenateResult": false,
         "decompressOutputFiles": false,
@@ -186,7 +186,7 @@ You should receive a response body in the following format:
       "inputKind": "SSML",
       "customVoices": {},
       "properties": {
-        "timeToLiveInHours": 744,
+        "timeToLiveInHours": 168,
         "outputFormat": "riff-24khz-16bit-mono-pcm",
         "concatenateResult": false,
         "decompressOutputFiles": false,
@@ -215,7 +215,7 @@ The `value` property in the json response lists your synthesis requests. The lis
 
 ## Delete batch synthesis
 
-Delete the batch synthesis job history after you retrieved the audio output results. The Speech service keeps batch synthesis history for up to 31 days, or the duration of the request `timeToLiveInHours` property, whichever comes sooner. The date and time of automatic deletion (for synthesis jobs with a status of "Succeeded" or "Failed") is equal to the `lastActionDateTime` + `timeToLiveInHours` properties.
+Delete the batch synthesis job history after you retrieved the audio output results. The Speech service keeps batch synthesis history for 168 hours (7 days) by default. Alternatively, you can specify this retention period using the `timeToLiveInHours` property, up to 744 hours (31 days). The date and time of automatic deletion (for synthesis jobs with a status of "Succeeded" or "Failed") is equal to the `lastActionDateTime` + `timeToLiveInHours` properties.
 
 To delete a batch synthesis job, make an HTTP DELETE request using the URI as shown in the following example. Replace `YourSynthesisId` with your batch synthesis ID, replace `YourSpeechKey` with your Speech resource key, and replace `YourSpeechRegion` with your Speech resource region.
 
@@ -248,9 +248,7 @@ The summary file contains the synthesis results for each text input. Here's an e
   "status": "Succeeded",
   "results": [
     {
-      "contents": [
-        "<speak version=\"1.0\" xml:lang=\"en-US\"><voice name=\"en-US-JennyNeural\">The rainbow has seven colors.</voice></speak>"
-      ],
+      "contents": ["<speak version=\"1.0\" xml:lang=\"en-US\"><voice name=\"en-US-JennyNeural\">The rainbow has seven colors.</voice></speak>"],
       "status": "Succeeded",
       "audioFileName": "0001.wav",
       "properties": {
