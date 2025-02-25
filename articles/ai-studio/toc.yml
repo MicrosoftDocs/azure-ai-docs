@@ -300,7 +300,7 @@ items:
       - name: Hear and speak with chat in the playground
         href: quickstarts/hear-speak-playground.md
       - name: Custom speech fine-tuning
-        href: ../ai-services/speech-service/custom-speech-ai-foundry-portal.md?context=/azure/ai-studio/context/context
+        href: ../ai-services/speech-service/how-to-custom-speech-create-project.md?context=/azure/ai-studio/context/context
     - name:  Translator
       items:
       - name: What is Azure AI Translator?
