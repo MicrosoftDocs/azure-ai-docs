@@ -67,11 +67,11 @@ Limit increase requests can be submitted and evaluated per request. [Open an onl
 
 1. On the **Additional details** tab, you need to provide detailed reasons for the limit increase in order for your request to be processed. Be sure to add the following information into the reason for limit increase:
 
-  * Model name, model version (if applicable), and deployment type (SKU).
-  * Description of your scenario and workload.
-  * Rationale for the requested increase.
-  * Provide the target throughput: Tokens per minute, requests per minute, etc.
-  * Provide planned time plan (by when you need increased limits).
+   * Model name, model version (if applicable), and deployment type (SKU).
+   * Description of your scenario and workload.
+   * Rationale for the requested increase.
+   * Provide the target throughput: Tokens per minute, requests per minute, etc.
+   * Provide planned time plan (by when you need increased limits).
 
 1. Finally, select **Save and continue** to continue.
 
