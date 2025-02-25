@@ -34,7 +34,7 @@ Azure uses quotas and limits to prevent budget overruns due to fraud, and to hon
 | Requests per minute  | Azure OpenAI models | Varies per model and SKU. See [limits for Azure OpenAI](../../ai-services/openai/quotas-limits.md). |
 | Tokens per minute    | DeepSeek models     | 5.000.000 |
 | Requests per minute  | DeepSeek models     | 5.000     |
-| Concurrent requests  | DeepSeek models     | 20        |
+| Concurrent requests  | DeepSeek models     | 300        |
 | Tokens per minute    | Rest of models      | 200.000   |
 | Requests per minute  | Rest of models      | 1.000     |
 | Concurrent requests  | Rest of models      | 300       |
