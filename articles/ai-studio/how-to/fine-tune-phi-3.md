@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: references_regions
 ms.topic: how-to
-ms.date: 12/16/2024
+ms.date: 01/16/2025
 ms.reviewer: v-vkonjarla
 reviewer: VindyaKonjarla
 ms.author: ssalgado
