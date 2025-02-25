@@ -15,7 +15,7 @@ ms.custom: azure-ai-agents
 # Fabric AI skill
 
 ::: zone pivot="overview"
-Integrate your Azure AI Agent with [**Fabric AI skill**](https://learn.microsoft.com/en-us/fabric/data-science/concept-ai-skill) to unlock powerful data analysis capabilities. Fabric AI skill transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights effortlessly. 
+Integrate your Azure AI Agent with [**Fabric AI skill**](/fabric/data-science/concept-ai-skill) to unlock powerful data analysis capabilities. Fabric AI skill transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights effortlessly. 
 
 You need to firstly build and publish a Fabric AI skill and then connect your Fabric AI skill with the published endpoint. When a user sends a query, Azure AI Agent will first determine if Fabric AI skill should be leveraged or not. If so, it will use the end user’s identity to generate queries over data they have access to. Lastly, Azure AI Agent will generate responses based on queries returned from Fabric AI skills. With Identity Passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in Fabric while maintaining robust security, ensuring proper access control and enterprise-grade protection. 
 
@@ -35,7 +35,7 @@ You need to firstly build and publish a Fabric AI skill and then connect your Fa
 > 1. The model you selected in Azure AI Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric AI skill uses for NL2SQL operation.
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
 
-1. Create and publish [AI skill](https://learn.microsoft.com/en-us/fabric/data-science/how-to-create-ai-skill)
+1. Create and publish [AI skill](/fabric/data-science/how-to-create-ai-skill)
 
 1. You can add the Fabric AI skill tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal, in the Create and debug screen for your agent, scroll down the Setup pane on the right to knowledge. Then select Add.
    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
@@ -43,9 +43,9 @@ You need to firstly build and publish a Fabric AI skill and then connect your Fa
 1. Select **Microsoft Fabric** and follow the prompts to add the tool. Note you can add only one per agent.
 
 1. Click to add new connections. Once you have added a connection, you can directly select from existing list.
-   1. To create a new connection, you need to find `workspace-id` and `artifact-id` in your published AI skill endpoint. Your AI skill endpoint would look like "https://daily.powerbi.com/groups/<workspace_id>/aiskills/<artifact-id>"
+   1. To create a new connection, you need to find `workspace-id` and `artifact-id` in your published AI skill endpoint. Your AI skill endpoint would look like `https://daily.powerbi.com/groups/<workspace_id>/aiskills/<artifact-id>`
 
-   1. Then, you can add both in your connection and please make sure you have checked `is secret` for both of them
+   1. Then, you can add both to your connection. Make sure you have checked `is secret` for both of them
    ![image](https://github.com/user-attachments/assets/d742169a-fe26-4cff-a3bb-aad38bd56078)
 
 ::: zone-end
