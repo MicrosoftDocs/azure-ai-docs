@@ -21,11 +21,11 @@ The batch analysis API allows you to bulk process up to 10,000 documents using o
 
 ## Prerequisites
 
-1.    An active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* An active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
 
-1. A [Document Intelligence Azure Resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer): once you have your Azure subscription, create a Document Intelligence resource in the Azure portal. You can use the free pricing tier (F0) to try the service. After your resource is deployed, select on **"Go to resource"** to retrieve your **key** and **endpoint**. You need the resource key and endpoint to connect your application to the Document Intelligence service. You can also find these values on the **Keys and Endpoint** page in Azure portal.
+*  A [Document Intelligence Azure Resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer): once you have your Azure subscription, create a Document Intelligence resource in the Azure portal. You can use the free pricing tier (F0) to try the service. After your resource is deployed, select **"Go to resource"** to retrieve your **key** and **endpoint**. You need the resource key and endpoint to connect your application to the Document Intelligence service. You can also find these values on the **Keys and Endpoint** page in Azure portal.
 
-1. An [Azure Blob Storage account](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). [Create two containers](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container) in your Azure Blob Storage account for your source and result files:
+*  An [Azure Blob Storage account](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). [Create two containers](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container) in your Azure Blob Storage account for your source and result files:
 
      * **Source container**: This container is where you upload document files for analysis.
      * **Result container**: This container is where results from the batch analysis API are stored.
@@ -37,14 +37,14 @@ To allow the API to process documents and write results in your Azure storage co
 
 **✔️ Managed Identity**. A managed identity is a service principal that creates a Microsoft Entra identity and specific permissions for an Azure managed resource. Managed identities enable you to run your Document Intelligence application without having to embed credentials in your code, a safer way to grant access to storage data without including access signature tokens (SAS) in your code.
 
-Review [Managed identities for Document Intelligence](../authentication/managed-identities.md) to learn how to enable a managed identity for your resource and grant it access to your storage container
+Review [Managed identities for Document Intelligence](../authentication/managed-identities.md) to learn how to enable a managed identity for your resource and grant it access to your storage container.
 
 > [!IMPORTANT]
 >
 > When using managed identities, don't include a SAS token URL with your HTTP requests. Using managed identities replaces the requirement for you to include shared access signature tokens (SAS).
 
 
-**✔️ Shared Access Signature (SAS)**. A shared access signature is a URL that grants restricted access to your storage container. To use this method, create Shared Access Signature (SAS) tokens for your source and result containers. Go to the storage container in Azure portal and select on "Shared access tokens" to generate SAS token and URL
+**✔️ Shared Access Signature (SAS)**. A shared access signature is a URL that grants restricted access to your storage container. To use this method, create Shared Access Signature (SAS) tokens for your source and result containers. Go to the storage container in Azure portal and select **"Shared access tokens"** to generate SAS token and URL.
 
 * Your **source** container or blob must designate **read**, **write**, **list**, and **delete** permissions.
 * Your **result** container or blob must designate **write**, **list**, **delete** permissions.
@@ -178,7 +178,7 @@ GET /documentModels/{modelId}/analyzeBatchResults/{resultId}
 
 ### 5. Interpret status messages
 
-For each document processed, a status is assigned, either `succeeded`, `failed`, `running`, `notStarted`, or `skipped`. A source URL, which is the source blob storage container for the input document is provided.
+For each document processed, a status is assigned, either `succeeded`, `failed`, `running`, `notStarted`, or `skipped`. A source URL, which is the source blob storage container for the input document, is provided.
 
 * Status `notStarted` or `running`. The batch analysis operation isn't initiated or isn't completed. Wait until the operation is completed for all documents.
 
@@ -245,7 +245,7 @@ For each document processed, a status is assigned, either `succeeded`, `failed`,
     ...
     ```
 
-* Status `skipped`: Typically, this status happens when output for the document is already present in the specified output folder and the `overwriteExisting` Boolean property is set to `false`
+* Status `skipped`: Typically, this status happens when output for the document is already present in the specified output folder and the `overwriteExisting` Boolean property is set to `false`.
 
   Example of `skipped` status response:
 
