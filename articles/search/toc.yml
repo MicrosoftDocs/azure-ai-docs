@@ -2,7 +2,6 @@ items:
 - name: Azure AI Search Documentation
   href: index.yml
 - name: Overview
-  expanded: true
   items:
   - name: What's Azure AI Search?
     href: search-what-is-azure-search.md
@@ -14,6 +13,7 @@ items:
     href: search-try-for-free.md
   - name: FAQ
     href: search-faq-frequently-asked-questions.yml
+  expanded: true
 - name: Quickstarts
   items:
   - name: Vector search
@@ -24,7 +24,7 @@ items:
     href: search-get-started-text.md
   - name: Semantic ranking
     href: search-get-started-semantic.md
-  - name: Chat with your data 
+  - name: Chat with your data
     href: /azure/ai-services/openai/use-your-data-quickstart?context=/azure/search/context/context
   - name: Connect without keys
     href: search-get-started-rbac.md
@@ -51,7 +51,7 @@ items:
   - name: Deployment
     items:
     - name: ARM template
-      displayName: Resource Manager 
+      displayName: Resource Manager
       href: search-get-started-arm.md
     - name: Bicep
       displayName: ARM, Resource Manager, Template
@@ -65,17 +65,17 @@ items:
     - name: Add search to ASP.NET Core (MVC)
       href: tutorial-csharp-create-mvc-app.md
     - name: Add search to static web apps
-      items: 
-        - name: Overview
-          href: tutorial-csharp-overview.md
-        - name: Create a search index
-          href: tutorial-csharp-create-load-index.md
-        - name: Deploy static web app
-          href: tutorial-csharp-deploy-static-web-app.md
-        - name: Explore the code
-          href: tutorial-csharp-search-query-integration.md          
-    - name: Query from Power Apps   
-      href: search-howto-powerapps.md     
+      items:
+      - name: Overview
+        href: tutorial-csharp-overview.md
+      - name: Create a search index
+        href: tutorial-csharp-create-load-index.md
+      - name: Deploy static web app
+        href: tutorial-csharp-deploy-static-web-app.md
+      - name: Explore the code
+        href: tutorial-csharp-search-query-integration.md
+    - name: Query from Power Apps
+      href: search-howto-powerapps.md
   - name: Indexing tutorials
     items:
     - name: Index any data
@@ -88,7 +88,7 @@ items:
       href: search-semi-structured-data.md
     - name: Index Markdown in Azure blobs
       href: search-markdown-data-tutorial.md
-    - name: Index multiple Azure data sources 
+    - name: Index multiple Azure data sources
       href: tutorial-multiple-data-sources.md
     - name: Index encrypted blobs
       href: search-howto-index-encrypted-blobs.md
@@ -140,7 +140,7 @@ items:
       href: search-what-is-an-index.md
     - name: Vector store
       href: vector-store.md
-    - name: Knowledge store 
+    - name: Knowledge store
       href: knowledge-store-concept-intro.md
     - name: Data import strategies
       href: search-what-is-data-import.md
@@ -267,44 +267,44 @@ items:
         href: cognitive-search-common-errors-warnings.md
     - name: Data sources (indexers)
       items:
-        - name: Data sources gallery
-          href: search-data-sources-gallery.md
-        - name: Azure Storage
-          items:
-          - name: Search over blobs
-            href: search-blob-storage-integration.md
-          - name: ADLS Gen2
-            href: search-howto-index-azure-data-lake-storage.md
-          - name: Blobs
-            href: search-howto-indexing-azure-blob-storage.md
-          - name: Files
-            href: search-file-storage-integration.md
-          - name: Tables
-            href: search-howto-indexing-azure-tables.md
-          - name: Index changed and deleted content
-            href: search-howto-index-changed-deleted-blobs.md
-        - name: Azure Cosmos DB
-          items:
-          - name: Azure Cosmos DB for NoSQL
-            href: search-howto-index-cosmosdb.md
-          - name: Azure Cosmos DB for MongoDB
-            href: search-howto-index-cosmosdb-mongodb.md
-          - name: Azure Cosmos DB for Apache Gremlin
-            href: search-howto-index-cosmosdb-gremlin.md
-        - name: Azure DB for MySQL
-          href: search-howto-index-mysql.md
-        - name: Azure SQL
-          items:
-          - name: Azure SQL Databases
-            href: search-how-to-index-sql-database.md
-          - name: Azure SQL Managed Instances
-            href: search-how-to-index-sql-managed-instance.md
-          - name: Azure SQL Server VMs
-            href: search-how-to-index-sql-server.md
-        - name: OneLake files
-          href: search-how-to-index-onelake-files.md
-        - name: SharePoint Online
-          href: search-howto-index-sharepoint-online.md
+      - name: Data sources gallery
+        href: search-data-sources-gallery.md
+      - name: Azure Storage
+        items:
+        - name: Search over blobs
+          href: search-blob-storage-integration.md
+        - name: ADLS Gen2
+          href: search-howto-index-azure-data-lake-storage.md
+        - name: Blobs
+          href: search-howto-indexing-azure-blob-storage.md
+        - name: Files
+          href: search-file-storage-integration.md
+        - name: Tables
+          href: search-howto-indexing-azure-tables.md
+        - name: Index changed and deleted content
+          href: search-howto-index-changed-deleted-blobs.md
+      - name: Azure Cosmos DB
+        items:
+        - name: Azure Cosmos DB for NoSQL
+          href: search-howto-index-cosmosdb.md
+        - name: Azure Cosmos DB for MongoDB
+          href: search-howto-index-cosmosdb-mongodb.md
+        - name: Azure Cosmos DB for Apache Gremlin
+          href: search-howto-index-cosmosdb-gremlin.md
+      - name: Azure DB for MySQL
+        href: search-howto-index-mysql.md
+      - name: Azure SQL
+        items:
+        - name: Azure SQL Databases
+          href: search-how-to-index-sql-database.md
+        - name: Azure SQL Managed Instances
+          href: search-how-to-index-sql-managed-instance.md
+        - name: Azure SQL Server VMs
+          href: search-how-to-index-sql-server.md
+      - name: OneLake files
+        href: search-how-to-index-onelake-files.md
+      - name: SharePoint Online
+        href: search-howto-index-sharepoint-online.md
     - name: Skillsets
       items:
       - name: Create a skillset
@@ -342,7 +342,7 @@ items:
     - name: Chunk documents
       href: vector-search-how-to-chunk-documents.md
     - name: Chunk and vectorize by document layout
-      href: search-how-to-semantic-chunking.md   
+      href: search-how-to-semantic-chunking.md
     - name: Generate embeddings
       href: vector-search-how-to-generate-embeddings.md
     - name: Use embedding models from Azure AI Foundry
@@ -412,7 +412,7 @@ items:
         href: search-query-troubleshoot-collection-filters.md
       - name: Normalize text for filters
         href: search-normalizers.md
-    - name: Search results 
+    - name: Search results
       items:
       - name: Page, sort, and shape results
         href: search-pagination-page-layout.md
@@ -435,7 +435,7 @@ items:
     - name: Configure BM25 ranking
       href: index-ranking-similarity.md
     - name: Enable or disable semantic ranker
-      href: semantic-how-to-enable-disable.md      
+      href: semantic-how-to-enable-disable.md
     - name: Configure semantic ranker
       href: semantic-how-to-configure.md
     - name: Add semantic ranking to queries
@@ -522,14 +522,10 @@ items:
       href: search-monitor-queries.md
     - name: Monitor indexer-based indexing
       href: search-howto-monitor-indexers.md
-    - name: Monitor client-side interactions
-      href: search-traffic-analytics.md
     - name: Visualize resource logs
       href: search-monitor-logs-powerbi.md
     - name: Performance analysis
       href: search-performance-analysis.md
-    - name: Performance benchmarks
-      href: performance-benchmarks.md
     - name: Tips for better performance
       href: search-performance-tips.md
   - name: Knowledge store
@@ -543,7 +539,7 @@ items:
     - name: Shape data
       href: knowledge-store-projection-shape.md
     - name: Define projections
-      href: knowledge-store-projections-examples.md 
+      href: knowledge-store-projections-examples.md
     - name: Projection example
       href: knowledge-store-projection-example-long.md
     - name: Connect with Power BI
@@ -633,7 +629,7 @@ items:
     - name: Azure CLI
       href: /cli/azure/search
     - name: Azure PowerShell
-      href: /powershell/module/az.search 
+      href: /powershell/module/az.search
     - name: Azure Resource Manager template
       href: /azure/templates/microsoft.search/searchservices
     - name: Azure Policy built-ins
@@ -650,27 +646,27 @@ items:
     - name: Azure AI resource skills
       items:
       - name: Document Layout skill
-        href: cognitive-search-skill-document-intelligence-layout.md  
+        href: cognitive-search-skill-document-intelligence-layout.md
       - name: Entity Linking (v3)
         href: cognitive-search-skill-entity-linking-v3.md
       - name: Entity Recognition (v3)
         href: cognitive-search-skill-entity-recognition-v3.md
       - name: Image Analysis
         href: cognitive-search-skill-image-analysis.md
-      - name: Key Phrase Extraction 
+      - name: Key Phrase Extraction
         href: cognitive-search-skill-keyphrases.md
       - name: Language Detection
         href: cognitive-search-skill-language-detection.md
       - name: OCR
         href: cognitive-search-skill-ocr.md
       - name: PII Detection
-        href: cognitive-search-skill-pii-detection.md  
+        href: cognitive-search-skill-pii-detection.md
       - name: Sentiment (v3)
         href: cognitive-search-skill-sentiment-v3.md
       - name: Text Translation
         href: cognitive-search-skill-text-translation.md
       - name: AI Vision multimodal embeddings
-        href: cognitive-search-skill-vision-vectorize.md      
+        href: cognitive-search-skill-vision-vectorize.md
     - name: Azure AI Search utility skills (nonbillable)
       items:
       - name: Conditional
@@ -686,7 +682,7 @@ items:
     - name: Azure OpenAI skills
       items:
       - name: Azure OpenAI Embedding
-        href: cognitive-search-skill-azure-openai-embedding.md 
+        href: cognitive-search-skill-azure-openai-embedding.md
     - name: Custom skills
       items:
       - name: Azure Machine Learning (AML)
