@@ -426,7 +426,7 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions?api-ver
 
 ### Get stored completion
 
-Get stored completion by id.
+Get stored completion by ID.
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
@@ -752,6 +752,8 @@ curl -X https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chat
 ### Delete stored chat completion
 
 Delete stored completion by completion ID.
+
+### Microsoft Entra ID
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
