@@ -26,12 +26,11 @@ You can test the accuracy of your custom model by creating a test. A test requir
 
 ::: zone pivot="ai-foundry-portal"
 
-
 1. After the model is trained, select **Test models** from the left menu. Then select **+ Create test**.
 
     :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-test-model.png" alt-text="Screenshot of the page with an option to test your custom speech model." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-test-model.png":::
 
-1. In the **Create a new test** wizard, select the test type. In this example, we select **Evaluate accuracy (Audio + transcript data)**. Then select **Next**.
+1. In the **Create a new test** wizard, select the test type. For an accuracy (quantitative) test, select **Evaluate accuracy (Audio + transcript data)**. Then select **Next**.
 
     :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-test-model-select-type.png" alt-text="Screenshot of the page with an option to select the test type." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-test-model-select-type.png":::
 
@@ -45,13 +44,11 @@ You can test the accuracy of your custom model by creating a test. A test requir
 
     :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-test-model-status-processing.png" alt-text="Screenshot of the page that shows the status of the test as processing." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-test-model-status-processing.png":::
 
-
-
 ::: zone-end
 
 ::: zone pivot="speech-studio"
 
-Follow these steps to create a test:
+Follow these steps to create an accuracy test:
 
 1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customspeech).
 1. Select **Custom speech** > Your project name > **Test models**.
@@ -255,7 +252,6 @@ You should get the test results and [evaluate](#evaluate-word-error-rate-wer) th
 ::: zone pivot="ai-foundry-portal"
 
 When the test status is **Succeeded**, you can view the results. Select the test to view the results.
-
 
 ::: zone-end
 
