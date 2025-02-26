@@ -30,7 +30,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Create a new folder `audio-completions-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
 
     ```shell
-    mkdir audio-completions-quickstart && code audio-completions-quickstart
+    mkdir audio-completions-quickstart && cd audio-completions-quickstart
     ```
     
 
@@ -82,9 +82,9 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
       } from "@azure/identity";
     
     // Set environment variables or edit the corresponding values here.
-    const endpoint: string = process.env["AZURE_OPENAI_ENDPOINT"] || "AZURE_OPENAI_ENDPOINT";
-    const apiVersion: string = "2025-01-01-preview"; 
-    const deployment: string = "gpt-4o-mini-audio-preview"; 
+    const endpoint: string = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
+    const deployment: string = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4o-mini-audio-preview"; 
+    const apiVersion: string = process.env.OPENAI_API_VERSION || "2025-01-01-preview"; 
     
     // Keyless authentication 
     const getClient = (): AzureOpenAI => {
@@ -180,8 +180,8 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     import { AzureOpenAI } from "openai/index.mjs";
     
     // Set environment variables or edit the corresponding values here.
-    const endpoint: string = process.env["AZURE_OPENAI_ENDPOINT"] || "AZURE_OPENAI_ENDPOINT";
-    const apiKey: string = process.env["AZURE_OPENAI_API_KEY"] || "AZURE_OPENAI_API_KEY";
+    const endpoint: string = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
+    const apiKey: string = process.env.AZURE_OPENAI_API_KEY || "AZURE_OPENAI_API_KEY";
     const apiVersion: string = "2025-01-01-preview"; 
     const deployment: string = "gpt-4o-mini-audio-preview"; 
     
@@ -280,7 +280,7 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
       } from "@azure/identity";
     
     // Set environment variables or edit the corresponding values here.
-    const endpoint: string = process.env["AZURE_OPENAI_ENDPOINT"] || "AZURE_OPENAI_ENDPOINT";
+    const endpoint: string = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
     const apiVersion: string = "2025-01-01-preview"; 
     const deployment: string = "gpt-4o-mini-audio-preview"; 
     
@@ -391,8 +391,8 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
     import { promises as fs } from 'fs';
     
     // Set environment variables or edit the corresponding values here.
-    const endpoint: string = process.env["AZURE_OPENAI_ENDPOINT"] || "AZURE_OPENAI_ENDPOINT";
-    const apiKey: string = process.env["AZURE_OPENAI_API_KEY"] || "AZURE_OPENAI_API_KEY";
+    const endpoint: string = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
+    const apiKey: string = process.env.AZURE_OPENAI_API_KEY || "AZURE_OPENAI_API_KEY";
     const apiVersion: string = "2025-01-01-preview"; 
     const deployment: string = "gpt-4o-mini-audio-preview"; 
     
@@ -503,7 +503,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
       } from "@azure/identity";
     
     // Set environment variables or edit the corresponding values here.
-    const endpoint: string = process.env["AZURE_OPENAI_ENDPOINT"] || "AZURE_OPENAI_ENDPOINT";
+    const endpoint: string = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
     const apiVersion: string = "2025-01-01-preview"; 
     const deployment: string = "gpt-4o-mini-audio-preview"; 
     
@@ -635,8 +635,8 @@ The script generates a transcript of the summary of the spoken audio input. It a
     import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
     
     // Set environment variables or edit the corresponding values here.
-    const endpoint: string = process.env["AZURE_OPENAI_ENDPOINT"] || "AZURE_OPENAI_ENDPOINT" as string;
-    const apiKey: string = process.env["AZURE_OPENAI_API_KEY"] || "AZURE_OPENAI_API_KEY";
+    const endpoint: string = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT" as string;
+    const apiKey: string = process.env.AZURE_OPENAI_API_KEY || "AZURE_OPENAI_API_KEY";
     const apiVersion: string = "2025-01-01-preview"; 
     const deployment: string = "gpt-4o-mini-audio-preview"; 
     

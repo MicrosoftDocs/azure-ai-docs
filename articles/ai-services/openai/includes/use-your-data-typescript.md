@@ -10,33 +10,43 @@ ms.date: 10/22/2024
 
 [!INCLUDE [Set up required variables](./use-your-data-common-variables.md)]
 
+## Set up
 
-## Initialize a Node.js application
+1. Create a new folder `use-data-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
 
-In a console window (such as cmd, PowerShell, or Bash), create a new directory for your app, and navigate to it. Then run the `npm init` command to create a node application with a _package.json_ file.
+    ```shell
+    mkdir use-data-quickstart && cd use-data-quickstart
+    ```
+    
+1. Create the `package.json` with the following command:
 
-```console
-npm init
-```
+    ```shell
+    npm init -y
+    ```
 
-## Install the client library
+1. Update the `package.json` to ECMAScript with the following command: 
 
-Install the Azure OpenAI client and Azure Identity libraries for JavaScript with npm:
+    ```shell
+    npm pkg set type=module
+    ```
+    
+1. Install the OpenAI client library for JavaScript with:
 
-```console
-npm install openai @azure/identity @azure/openai 
-```
+    ```console
+    npm install openai
+    ```
 
-The `@azure/openai/types` dependency is included to extend the Azure OpenAI model for the `data_sources` property. This import is only necessary for TypeScript.
+1. For the **recommended** passwordless authentication:
 
-
-Your app's _package.json_ file will be updated with the dependencies.
+    ```console
+    npm install @azure/identity
+    ```
 
 ## Add the TypeScript code
 
 #### [Microsoft Entra ID](#tab/typescript-keyless)
 
-1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.ts`. Copy the following code into the `ChatWithOwnData.ts` file.
+1. Create the `index.ts` file with the following code:
     
     ```typescript
     import { AzureOpenAI } from "openai";
@@ -44,9 +54,9 @@ Your app's _package.json_ file will be updated with the dependencies.
     import "@azure/openai/types";
     
     // Set the Azure and AI Search values from environment variables
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"];
-    const searchEndpoint = process.env["AZURE_AI_SEARCH_ENDPOINT"];
-    const searchIndex = process.env["AZURE_AI_SEARCH_INDEX"];
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+    const searchEndpoint = process.env.AZURE_AI_SEARCH_ENDPOINT || "Your search endpoint";
+    const searchIndex = process.env.AZURE_AI_SEARCH_INDEX || "Your search index";
     
     // keyless authentication    
     const credential = new DefaultAzureCredential();
@@ -54,8 +64,8 @@ Your app's _package.json_ file will be updated with the dependencies.
     const azureADTokenProvider = getBearerTokenProvider(credential, scope);
 
     // Required Azure OpenAI deployment name and API version
-    const deploymentName = "gpt-4";
-    const apiVersion = "2024-07-01-preview";
+    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4";
+    const apiVersion = process.env.OPENAI_API_VERSION || "2024-07-01-preview";
     
     function getClient(): AzureOpenAI {
       return new AzureOpenAI({
@@ -120,37 +130,57 @@ Your app's _package.json_ file will be updated with the dependencies.
     });
     ```
 
-1. Build the application with the following command:
+1. Create the `tsconfig.json` file to transpile the TypeScript code and copy the following code for ECMAScript.
 
-    ```console
+    ```json
+    {
+        "compilerOptions": {
+          "module": "NodeNext",
+          "target": "ES2022", // Supports top-level await
+          "moduleResolution": "NodeNext",
+          "skipLibCheck": true, // Avoid type errors from node_modules
+          "strict": true // Enable strict type-checking options
+        },
+        "include": ["*.ts"]
+    }
+    ```
+
+1. Transpile from TypeScript to JavaScript.
+
+    ```shell
     tsc
     ```
+    
+1. Sign in to Azure with the following command:
 
-1. Run the application with the following command:
-
-    ```console
-    node ChatWithOwnData.js
+    ```shell
+    az login
     ```
 
+1. Run the code with the following command:
+
+    ```shell
+    node index.js
+    ```
 
 #### [API key](#tab/typescript-key)
 
-1. Open a command prompt where you want the new project, and create a new file named `ChatWithOwnData.ts`. Copy the following code into the `ChatWithOwnData.ts` file.
+1. Create the `index.ts` file with the following code:
     
     ```typescript
     import { AzureOpenAI } from "openai";
     import "@azure/openai/types";
     
     // Set the Azure and AI Search values from environment variables
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"];
-    const apiKey = process.env["AZURE_OPENAI_API_KEY"];
-    const searchEndpoint = process.env["AZURE_AI_SEARCH_ENDPOINT"];
-    const searchKey = process.env["AZURE_AI_SEARCH_API_KEY"];
-    const searchIndex = process.env["AZURE_AI_SEARCH_INDEX"];
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+    const apiKey = process.env.AZURE_OPENAI_API_KEY || "Your API key";
+    const searchEndpoint = process.env.AZURE_AI_SEARCH_ENDPOINT || "Your search endpoint";
+    const searchKey = process.env.AZURE_AI_SEARCH_API_KEY || "Your search key";
+    const searchIndex = process.env.AZURE_AI_SEARCH_INDEX || "Your search index";
     
     // Required Azure OpenAI deployment name and API version
-    const deploymentName = "gpt-4";
-    const apiVersion = "2024-07-01-preview";
+    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4";
+    const apiVersion = process.env.OPENAI_API_VERSION || "2024-07-01-preview";
     
     function getClient(): AzureOpenAI {
       return new AzureOpenAI({
@@ -215,18 +245,32 @@ Your app's _package.json_ file will be updated with the dependencies.
     });
     ```
 
-1. Build the application with the following command:
+1. Create the `tsconfig.json` file to transpile the TypeScript code and copy the following code for ECMAScript.
 
-    ```console
+    ```json
+    {
+        "compilerOptions": {
+          "module": "NodeNext",
+          "target": "ES2022", // Supports top-level await
+          "moduleResolution": "NodeNext",
+          "skipLibCheck": true, // Avoid type errors from node_modules
+          "strict": true // Enable strict type-checking options
+        },
+        "include": ["*.ts"]
+    }
+    ```
+
+1. Transpile from TypeScript to JavaScript.
+
+    ```shell
     tsc
     ```
 
-1. Run the application with the following command:
+1. Run the code with the following command:
 
-    ```console
-    node ChatWithOwnData.js
+    ```shell
+    node index.js
     ```
-
 
 ---
 
@@ -240,6 +284,5 @@ Your app's _package.json_ file will be updated with the dependencies.
 ```output
 Message: What are my available health plans?
 The available health plans in the Contoso Electronics plan and benefit packages are the Northwind Health Plus and Northwind Standard plans.
-
 ```
 

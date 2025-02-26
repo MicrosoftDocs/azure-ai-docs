@@ -32,7 +32,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Create a new folder `full-text-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
 
     ```shell
-    mkdir full-text-quickstart && code full-text-quickstart
+    mkdir full-text-quickstart && cd full-text-quickstart
     ```
 
 1. Create the `package.json` with the following command:
