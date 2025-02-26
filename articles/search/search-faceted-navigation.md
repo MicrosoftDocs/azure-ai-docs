@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 01/16/2025
+ms.date: 02/26/2025
 ---
 
 # Add faceted navigation to a search app
@@ -17,11 +17,11 @@ Faceted navigation is used for self-directed drilldown filtering on query result
 
 In this article, learn the basic steps for creating a faceted navigation structure in Azure AI Search.
 
-> [!div class="checklist"]
+<!-- > [!div class="checklist"]
 > * Set field attributes in the index
 > * Structure the request and response
 > * Add navigation controls and filters in the presentation layer
-
+ -->
 Code in the presentation layer does the heavy lifting in a faceted navigation experience. The demos and samples listed at the end of this article provide working code that shows you how to bring everything together.
 
 ## Faceted navigation in a search page
@@ -204,7 +204,7 @@ Here's another example from the hotels sample. The following code snippet adds `
 if (!String.IsNullOrEmpty(categoryFacet))
     filter = $"category eq '{categoryFacet}'";
 ```
-
+<!-- 
 ### HTML for faceted navigation
 
 The following example, taken from the `index.cshtml` file of the NYCJobs sample application, shows the static HTML structure for displaying faceted navigation on the search results page. The list of facets is built or rebuilt dynamically when you submit a search term, or select or clear a facet.
@@ -247,7 +247,7 @@ function UpdateBusinessTitleFacets(data) {
 
   $("#business_title_facets").html(facetResultsHTML);
 }
-```
+``` -->
 
 ## Tips for working with facets
 
