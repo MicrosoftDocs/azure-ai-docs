@@ -85,4 +85,4 @@ You must have:
 ## Related content
 
 - [Learn more about RAG](../concepts/retrieval-augmented-generation.md)
-- [Build and consume an index using code](./develop/index-build-consume-sdk.md)
+- [Build and consume an index using code](../tutorials/copilot-sdk-create-resources.md)

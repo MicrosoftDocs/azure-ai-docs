@@ -66,5 +66,5 @@ Azure AI Foundry encourages customers to explore the deployment options and pick
 * [Configure your AI project to use Azure AI model inference](../../ai-foundry/model-inference/how-to/quickstart-ai-project.md)
 * [Add and configure models to Azure AI model inference](../model-inference/how-to/create-model-deployments.md)
 * [Deploy Azure OpenAI models with Azure AI Foundry](../how-to/deploy-models-openai.md)
-* [Deploy open models with Azure AI Foundry](../how-to/deploy-models-open.md)
+* [Deploy open models with Azure AI Foundry](../how-to/deploy-models-managed.md)
 * [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md)

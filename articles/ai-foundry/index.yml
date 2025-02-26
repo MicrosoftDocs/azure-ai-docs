@@ -27,9 +27,9 @@ landingContent:
       - linkListType: overview
         links:
           - text: What is Azure AI Foundry?
-            url: what-is-ai-studio.md
+            url: what-is-ai-foundry.md
           - text: Azure OpenAI Service in Azure AI Foundry
-            url: azure-openai-in-ai-studio.md
+            url: azure-openai-in-ai-foundry.md
           - text: Retrieval Augmented Generation (RAG)
             url: concepts/retrieval-augmented-generation.md
           - text: Evaluation and monitoring metrics for generative AI

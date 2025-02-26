@@ -33,7 +33,7 @@ The model catalog organizes models into different collections:
 
 * **Azure OpenAI models exclusively available on Azure**: Flagship Azure OpenAI models available through an integration with Azure OpenAI Service. Microsoft supports these models and their use according to the product terms and [SLA for Azure OpenAI Service](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
 
-* **Open models from the Hugging Face hub**: Hundreds of models from the Hugging Face hub for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn more in [Deploy open models with Azure AI Foundry](deploy-models-open.md).
+* **Open models from the Hugging Face hub**: Hundreds of models from the Hugging Face hub for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn more in [Deploy open models with Azure AI Foundry](deploy-models-managed.md).
 
 You can submit a request to add a model to the model catalog by using [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR_frVPkg_MhOoQxyrjmm7ZJUM09WNktBMURLSktOWEdDODBDRjg2NExKUy4u).
 
@@ -97,7 +97,7 @@ Nixtla | Not available | TimeGEN-1
 AI models evolve fast, and when a new version or a new model with updated capabilities in the same model family become available, older models may be retired in the AI Foundry model catalog. To allow for a smooth transition to a newer model version, some models provide users with the option to enable automatic updates. To learn more about the model lifecycle of different models, upcoming model retirement dates, and suggested replacement models and versions, see:
 
 - [Azure OpenAI Service model deprecations and retirements](../../ai-services/openai/concepts/model-retirements.md)
-- [Serverless API model deprecations and retirements](../../ai-studio/concepts/model-lifecycle-retirement.md)
+- [Serverless API model deprecations and retirements](../concepts/model-lifecycle-retirement.md)
 
 ## Managed compute
 
@@ -117,12 +117,12 @@ The registries build on top of a highly scalable and enterprise-ready infrastruc
 
 ### Deployment of models for inference with managed compute
 
-Models available for deployment to managed compute can be deployed to Azure Machine Learning managed compute for real-time inference. Deploying to managed compute requires you to have a virtual machine quota in your Azure subscription for the specific products that you need to optimally run the model. Some models allow you to deploy to a [temporarily shared quota for model testing](deploy-models-open.md).
+Models available for deployment to managed compute can be deployed to Azure Machine Learning managed compute for real-time inference. Deploying to managed compute requires you to have a virtual machine quota in your Azure subscription for the specific products that you need to optimally run the model. Some models allow you to deploy to a [temporarily shared quota for model testing](deploy-models-managed.md).
 
 Learn more about deploying models:
 
 * [Deploy Meta Llama models](deploy-models-llama.md)
-* [Deploy Azure AI Foundry open models](deploy-models-open.md)
+* [Deploy Azure AI Foundry open models](deploy-models-managed.md)
 
 ### Building generative AI apps with managed compute
 
@@ -199,5 +199,5 @@ To set the public network access flag for the Azure AI Foundry hub:
 
 ## Related content
 
-* [Explore foundation models in Azure AI Foundry portal](models-foundation-azure-ai.md)
-* [Model deprecation and retirement in Azure AI model catalog](../concepts/model-lifecycle-and-retirement.md)
+* [Explore foundation models in Azure AI Foundry portal](../ai-services/how-to/connect-ai-services.md)
+* [Model deprecation and retirement in Azure AI model catalog](../concepts/model-lifecycle-retirement.md)

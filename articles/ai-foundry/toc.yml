@@ -2,7 +2,7 @@ items:
 - name: Azure AI Foundry documentation
   href: index.yml
 - name: What is Azure AI Foundry?
-  href: what-is-ai-studio.md
+  href: what-is-ai-foundry.md
 - name: What's new in Azure AI Foundry?
   href: whats-new-ai-foundry.md
 - name: Get started
@@ -173,7 +173,7 @@ items:
       - name: Deploy Azure OpenAI models
         items: 
         - name: Azure OpenAI in Azure AI Foundry
-          href: azure-openai-in-ai-studio.md
+          href: azure-openai-in-ai-foundry.md
         - name: Model region availability
           href:  ../ai-services/openai/concepts/models.md?context=/azure/ai-studio/context/context
           displayName: OpenAI, gpt-4o, gpt-4o-mini, whisper
@@ -528,7 +528,7 @@ items:
   - name: Identity & access management
     items:
     - name: Role-based access control in Azure AI Foundry portal
-      href: concepts/rbac-ai-studio.md
+      href: concepts/rbac-ai-foundry.md
   - name: Network security
     items:
     - name: Configure managed network
@@ -557,7 +557,7 @@ items:
     - name: Built-in policy to allow specific models
       href: how-to/built-in-policy-model-deployment.md
     - name: Custom policy to allow specific models
-      href: how-to/custom-policy-model-deployment.md
+      href: model-inference/how-to/configure-deployment-policies.md
   - name: Vulnerability management
     href: concepts/vulnerability-management.md
   - name: Disaster recovery

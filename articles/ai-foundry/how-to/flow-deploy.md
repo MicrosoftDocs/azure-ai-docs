@@ -79,7 +79,7 @@ Follow the steps below to deploy a prompt flow as an online endpoint in Azure AI
 For more information, see the sections below.
 
 > [!TIP]
-> For a guide about how to deploy a base model, see [Deploying models with Azure AI Foundry](deploy-models-open.md).
+> For a guide about how to deploy a base model, see [Deploying models with Azure AI Foundry](deploy-models-managed.md).
 
 ## Settings and configurations
 
@@ -246,6 +246,6 @@ If you aren't going use the endpoint after completing this tutorial, you should 
 
 ## Next steps
 
-- Learn more about what you can do in [Azure AI Foundry](../what-is-ai-studio.md)
+- Learn more about what you can do in [Azure AI Foundry](../what-is-ai-foundry.md)
 - Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml)
 - [Enable trace and collect feedback for your deployment](./develop/trace-production-sdk.md)

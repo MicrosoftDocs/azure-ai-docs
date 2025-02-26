@@ -76,7 +76,7 @@
             "redirect_document_id": true
         },
         {
-            "source_path_from_root": "/articles/ai-studio/concepts/modele-lifecycle-retirement.md",
+            "source_path_from_root": "/articles/ai-studio/concepts/model-lifecycle-retirement.md",
             "redirect_url": "/azure/ai-foundry/concepts/model-lifecycle-retirement",
             "redirect_document_id": true
         },

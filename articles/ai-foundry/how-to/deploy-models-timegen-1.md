@@ -18,7 +18,7 @@ ms.custom: references_regions, build-2024, ignite-2024
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you learn how to use Azure AI Foundry to deploy the TimeGEN-1 model as a serverless API with pay-as-you-go billing.
-You filter on the Nixtla collection to browse the TimeGEN-1 model in the [Model Catalog](model-catalog.md).
+You filter on the Nixtla collection to browse the TimeGEN-1 model in the [Model Catalog](model-catalog-overview.md).
 
 The Nixtla TimeGEN-1 is a generative, pretrained forecasting and anomaly detection model for time series data. TimeGEN-1 can produce accurate forecasts for new time series without training, using only historical values and exogenous covariates as inputs.
 

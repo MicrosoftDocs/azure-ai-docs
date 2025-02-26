@@ -109,5 +109,5 @@ Playground only supports select models, such as Azure OpenAI models and Llama-2.
 
 ## Related content
 
-- [Azure AI Foundry overview](../what-is-ai-studio.md)
+- [Azure AI Foundry overview](../what-is-ai-foundry.md)
 - [Azure AI FAQ](../faq.yml)

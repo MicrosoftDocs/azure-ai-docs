@@ -48,7 +48,7 @@ Before following the steps in this article, make sure you have the following pre
 
 - A prompt flow ready for deployment. If you don't have one, see [Develop a prompt flow](flow-develop.md).
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
   
 # [Python SDK](#tab/python)
 
@@ -539,5 +539,5 @@ After you create your monitor from the SDK, you can [consume the monitoring resu
 
 ## Related content
 
-- Learn more about what you can do in [Azure AI Foundry](../what-is-ai-studio.md).
+- Learn more about what you can do in [Azure AI Foundry](../what-is-ai-foundry.md).
 - Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml).

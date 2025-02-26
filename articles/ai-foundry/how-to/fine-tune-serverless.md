@@ -32,7 +32,7 @@ In this article, you learn how to fine-tune models that are deployed via serverl
 
 - An [Azure AI Foundry project](create-projects.md).
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
 
 
 ## Find models with fine-tuning support
@@ -256,6 +256,6 @@ Models deployed as a service with pay-as-you-go billing are protected by Azure A
 
 
 ## Next steps
-- [What is Azure AI Foundry?](../what-is-ai-studio.md)
+- [What is Azure AI Foundry?](../what-is-ai-foundry.md)
 - [Learn more about deploying Mistral models](./deploy-models-mistral.md)
 - [Azure AI FAQ article](../faq.yml)
