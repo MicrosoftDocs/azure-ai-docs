@@ -1,6 +1,5 @@
 {
     "redirections": [
-        // rebrand: Move from ai-studio to ai-foundry folder
         {
             "source_path_from_root": "/articles/ai-studio/concepts/a-b-experimentation.md",
             "redirect_url": "/azure/ai-foundry/concepts/a-b-experimentation",
@@ -106,8 +105,27 @@
             "redirect_url": "/azure/ai-foundry/concepts/vulnerability-management",
             "redirect_document_id": true
         },
-
-        // end rebrand
+        {
+            "source_path_from_root": "/articles/ai-studio/azure-openai-in-ai-studio.md",
+            "redirect_url": "/azure/ai-foundry/azure-openai-in-ai-foundry",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/responsible-use-of-ai-overview.md",
+            "redirect_url": "/azure/ai-foundry/responsible-use-of-ai-overview",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/what-is-ai-studio.md",
+            "redirect_url": "/azure/ai-foundry/what-is-ai-foundry",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/whats-new-ai-foundry.md",
+            "redirect_url": "/azure/ai-foundry/whats-new-ai-foundry",
+            "redirect_document_id": true
+        },
+        
         {
             "source_path_from_root": "/articles/ai-studio/how-to/create-manage-runtime.md",
             "redirect_url": "/azure/ai-studio/how-to/create-manage-compute-session",
