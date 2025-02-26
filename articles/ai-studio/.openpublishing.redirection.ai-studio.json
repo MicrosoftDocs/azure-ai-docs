@@ -1,5 +1,113 @@
 {
     "redirections": [
+        // rebrand: Move from ai-studio to ai-foundry folder
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/a-b-experimentation.md",
+            "redirect_url": "/azure/ai-foundry/concepts/a-b-experimentation",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/ai-resources.md",
+            "redirect_url": "/azure/ai-foundry/concepts/ai-resources",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/architecture.md",
+            "redirect_url": "/azure/ai-foundry/concepts/architecture",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/concept-model-distillation.md",
+            "redirect_url": "/azure/ai-foundry/concepts/model-distillation",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/concept-synthetic-data.md",
+            "redirect_url": "/azure/ai-foundry/concepts/synthetic-data",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/connections.md",
+            "redirect_url": "/azure/ai-foundry/concepts/connections",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/content-filtering.md",
+            "redirect_url": "/azure/ai-foundry/concepts/content-filtering",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/deployments-overview.md",
+            "redirect_url": "/azure/ai-foundry/concepts/deployments-overview",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/encryption-keys-portal.md",
+            "redirect_url": "/azure/ai-foundry/concepts/encryption-keys-portal",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/evaluation-approach-gen-ai.md",
+            "redirect_url": "/azure/ai-foundry/concepts/evaluation-approach-gen-ai",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/evaluation-metrics-built-in.md",
+            "redirect_url": "/azure/ai-foundry/concepts/evaluation-metrics-built-in",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/fine-tuning-overview.md",
+            "redirect_url": "/azure/ai-foundry/concepts/fine-tuning-overview",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/management-center.md",
+            "redirect_url": "/azure/ai-foundry/concepts/management-center",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/model-benchmarks.md",
+            "redirect_url": "/azure/ai-foundry/concepts/model-benchmarks",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/model-catalog-content-safety.md",
+            "redirect_url": "/azure/ai-foundry/concepts/model-catalog-content-safety",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/modele-lifecycle-retirement.md",
+            "redirect_url": "/azure/ai-foundry/concepts/model-lifecycle-retirement",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/rbac-ai-studio.md",
+            "redirect_url": "/azure/ai-foundry/concepts/rbac-ai-foundry",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/retrieval-augmented-generation.md",
+            "redirect_url": "/azure/ai-foundry/concepts/retrieval-augmented-generation",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/safety-evaluations-transparency-note.md",
+            "redirect_url": "/azure/ai-foundry/concepts/safety-evaluations-transparency-note",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/trace.md",
+            "redirect_url": "/azure/ai-foundry/concepts/trace",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/vulnerability-management.md",
+            "redirect_url": "/azure/ai-foundry/concepts/vulnerability-management",
+            "redirect_document_id": true
+        },
+
+        // end rebrand
         {
             "source_path_from_root": "/articles/ai-studio/how-to/create-manage-runtime.md",
             "redirect_url": "/azure/ai-studio/how-to/create-manage-compute-session",
