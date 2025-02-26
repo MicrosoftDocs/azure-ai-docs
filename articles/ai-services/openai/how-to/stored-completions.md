@@ -88,7 +88,7 @@ client = AzureOpenAI(
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
-ompletion = client.chat.completions.create(
+completion = client.chat.completions.create(
     
     model="gpt-4o", # replace with model deployment name
     store= True,
