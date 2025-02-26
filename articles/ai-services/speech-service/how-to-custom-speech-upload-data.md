@@ -25,17 +25,17 @@ You need audio or text data for testing the accuracy of speech recognition or tr
 
 1. From the new left menu in the fine-tuning page, select **Manage data** and then select **Add data**.
 
-    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-add-data.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-studio/custom-speech/new-fine-tune-add-data.png":::
+    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-add-data.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-add-data.png":::
 
 1. In the **Add data** wizard, select the type of training data you want to add. In this example, we select **Audio + human-labeled transcript**. Then select **Next**.
 
-    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-add-data-select-type.png" alt-text="Screenshot of the page with an option to select the type of training data you want to add." lightbox="./media/ai-studio/custom-speech/new-fine-tune-add-data-select-type.png":::
+    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-add-data-select-type.png" alt-text="Screenshot of the page with an option to select the type of training data you want to add." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-add-data-select-type.png":::
 
 1. On the **Upload your data** page, select local files, Azure Blob Storage, or other shared web locations. Then select **Next**.
 1. Enter a name and description for the data. Then select **Next**.
 1. Review the data and select **Upload**. You're taken back to the **Manage data** page. The status of the data is **Processing**.
 
-    :::image type="content" source="./media/ai-studio/custom-speech/new-fine-tune-add-data-status-processing.png" alt-text="Screenshot of the page that shows the status of the data as processing." lightbox="./media/ai-studio/custom-speech/new-fine-tune-add-data-status-processing.png":::
+    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-add-data-status-processing.png" alt-text="Screenshot of the page that shows the status of the data as processing." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-add-data-status-processing.png":::
 
 ::: zone-end
 
