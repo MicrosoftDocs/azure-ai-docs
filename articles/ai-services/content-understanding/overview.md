@@ -29,7 +29,7 @@ Content Understanding offers a streamlined process to reason over large amounts 
 
 ## Why process with Content Understanding?
 
-&nbsp; * **Simplify and streamline workflows**. Azure AI Content Understanding standardizes the extraction of content, structure, and insights from various content types into a unified process.
+* **Simplify and streamline workflows**. Azure AI Content Understanding standardizes the extraction of content, structure, and insights from various content types into a unified process.
 
 * **Simplify field extraction**. Content Understanding's field extraction makes it easier to generate structured output from unstructured content. Define a schema to extract, classify, or generate field values with no complex prompt engineering
 
