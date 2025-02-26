@@ -15,14 +15,15 @@ ms.date: 02/26/2025
 
 Faceted navigation is used for self-directed drilldown filtering on query results in a search app, where your application offers form controls for scoping search to groups of documents (for example, categories or brands), and Azure AI Search provides the data structures and filters to back the experience. 
 
-In this article, learn the basic steps for creating a faceted navigation structure in Azure AI Search.
+In this article, learn how to create a faceted navigation structure in Azure AI Search.
 
 <!-- > [!div class="checklist"]
 > * Set field attributes in the index
 > * Structure the request and response
 > * Add navigation controls and filters in the presentation layer
- -->
+
 Code in the presentation layer does the heavy lifting in a faceted navigation experience. The demos and samples listed at the end of this article provide working code that shows you how to bring everything together.
+ -->
 
 ## Faceted navigation in a search page
 
@@ -34,9 +35,9 @@ In Azure AI Search, facets are one layer deep and can't be hierarchical. If you 
 
 Facets can help you find what you're looking for, while ensuring that you don't get zero results. As a developer, facets let you expose the most useful search criteria for navigating your search index.
 
-## Enable facets in the index
+## Add facets to an index
 
-Faceting is enabled on a field-by-field basis in an index definition when you set the "facetable" attribute to true.
+Facets are enabled on a field-by-field basis in an index definition when you set the "facetable" attribute to true.
 
 Although it's not strictly required, you should also set the "filterable" attribute so that you can build the necessary filters that back the faceted navigation experience in your search application.
 
@@ -65,7 +66,12 @@ Facets can be calculated over single-value fields and collections. Fields that w
 
 * Short descriptive values (one or two words) that render nicely in a navigation tree
 
-The values within a field, and not the field name itself, produces the facets in a faceted navigation structure. If the facet is a string field named *Color*, facets are blue, green, and any other value for that field.
+The values within a field, and not the field name itself, produce the facets in a faceted navigation structure. If the facet is a string field named *Color*, facets are blue, green, and any other value for that field.
+
+You can't use `Edm.GeographyPoint` or `Collection(Edm.GeographyPoint)` fields in faceted navigation. Facets work best on fields with low cardinality. Due to the resolution of geo-coordinates, it's rare that any two sets of coordinates are equal in a given dataset. As such, facets aren't supported for geo-coordinates. You should use a city or region field to facet by location.
+
+> [!TIP]
+> As a best practice for performance and storage optimization, turn faceting off for fields that should never be used as a facet. In particular, string fields for unique values, such as an ID or product name, should be set to `"facetable": false` to prevent their accidental (and ineffective) use in faceted navigation. This is especially true for the REST API that enables filters and facets by default.
 
 As a best practice, check fields for null values, misspellings or case discrepancies, and single and plural versions of the same word. By default, filters and facets don't undergo lexical analysis or [spell check](speller-how-to-add.md), which means that all values of a "facetable" field are potential facets, even if the words differ by one character. Optionally, you can [assign a normalizer](search-normalizers.md) to a "filterable" and "facetable" field to smooth out variations in casing and characters.
 
@@ -79,14 +85,9 @@ If you're using one of the Azure SDKs, your code must explicitly set the field a
 * `Edm.Int32`, `Edm.Int64`, `Edm.Double`
 * Collections of any of the above types, for example `Collection(Edm.String)` or `Collection(Edm.Double)`
 
-You can't use `Edm.GeographyPoint` or `Collection(Edm.GeographyPoint)` fields in faceted navigation. Facets work best on fields with low cardinality. Due to the resolution of geo-coordinates, it's rare that any two sets of coordinates are equal in a given dataset. As such, facets aren't supported for geo-coordinates. You would need a city or region field to facet by location.
-
-> [!TIP]
-> As a best practice for performance and storage optimization, turn faceting off for fields that should never be used as a facet. In particular, string fields for unique values, such as an ID or product name, should be set to `"facetable": false` to prevent their accidental (and ineffective) use in faceted navigation. This is especially true for the REST API that enables filters and facets by default.
-
 ## Facet request and response
 
-Facets are specified on the query, and the faceted navigation structure is returned at the top of the response. The structure of a request and response is fairly simple. In fact, the real work behind faceted navigation lies in the presentation layer, covered in a later section. 
+Facets are specified on the query, and the faceted navigation structure is returned at the top of the response.
 
 The following REST example is an unqualified query (`"search": "*"`) that is scoped to the entire index (see the [built-in hotels sample](search-get-started-portal.md)). Facets are usually a list of fields, but this query shows just one for a more readable response.
 
