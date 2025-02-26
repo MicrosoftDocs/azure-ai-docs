@@ -58,20 +58,18 @@ items:
       items:
         - name: Custom speech overview
           href: custom-speech-overview.md
-        - name: Fine-tune in the Azure AI Foundry portal
-          href: custom-speech-ai-foundry-portal.md
-        - name: Create a custom speech model 
+        - name: Fine-tune for custom speech
           items:
           - name: "Part 1: Create a project"
             href: how-to-custom-speech-create-project.md
           - name: "Part 2: Upload training and testing datasets"
             href: how-to-custom-speech-upload-data.md
-          - name: "Part 3: Test recognition quality"
-            href: how-to-custom-speech-inspect-data.md
-          - name: "Part 4: Test model quantitatively"
-            href: how-to-custom-speech-evaluate-data.md
-          - name: "Part 5: Train a model"
+          - name: "Part 3: Train a model"
             href: how-to-custom-speech-train-model.md
+          - name: "Part 4: Test recognition quality"
+            href: how-to-custom-speech-inspect-data.md
+          - name: "Part 5: Test model quantitatively"
+            href: how-to-custom-speech-evaluate-data.md
           - name: "Part 6: Deploy a model"
             href: how-to-custom-speech-deploy-model.md
         - name: Custom speech datasets
