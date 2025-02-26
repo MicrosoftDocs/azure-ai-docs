@@ -125,6 +125,21 @@
             "redirect_url": "/azure/ai-foundry/whats-new-ai-foundry",
             "redirect_document_id": true
         },
+        {
+            "source_path_from_root": "/articles/ai-studio/quickstarts/get-started-code.md",
+            "redirect_url": "/azure/ai-foundry/quickstarts/get-started-code",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/quickstarts/get-started-playground.md",
+            "redirect_url": "/azure/ai-foundry/quickstarts/get-started-playground",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/quickstarts/hear-speak-playground.md",
+            "redirect_url": "/azure/ai-foundry/quickstarts/hear-speak-playground",
+            "redirect_document_id": true
+        },
         
         {
             "source_path_from_root": "/articles/ai-studio/how-to/create-manage-runtime.md",
