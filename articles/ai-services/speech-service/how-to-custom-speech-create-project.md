@@ -63,6 +63,7 @@ Go to the Azure AI Speech documentation to learn how to continue fine-tuning you
 
 After fine-tuning, you can access your custom speech models and deployments from the **Fine-tuning** page. 
 
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning**.
 

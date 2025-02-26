@@ -48,17 +48,22 @@ When a custom model or base model expires, it's no longer available for transcri
 
 ## Get base model expiration dates
 
+The last date that you could use the base model for training was shown when you created the custom model. For more information, see [Train a custom speech model](how-to-custom-speech-train-model.md).
+
+Follow these instructions to get the transcription expiration date for a base model:
+
 ::: zone pivot="ai-foundry-portal"
 
-
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Select **Fine-tuning** from the left pane.
+1. Select **AI Service fine-tuning**.
+1. Select the custom model that you want to check from the **Model name** column.
+1. Select **Deploy models**.
+1. The expiration date for the model is shown in the **Expiration** column. This date is the last date that you can use the model for transcription.
 
 ::: zone-end
 
 ::: zone pivot="speech-studio"
-
-The last date that you could use the base model for training was shown when you created the custom model. For more information, see [Train a custom speech model](how-to-custom-speech-train-model.md).
-
-Follow these instructions to get the transcription expiration date for a base model:
 
 1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customspeech). 
 1. Select **Custom speech** > Your project name > **Deploy models**.

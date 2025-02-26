@@ -24,6 +24,10 @@ Side-by-side model testing is useful to validate which speech recognition model 
 
 ::: zone pivot="ai-foundry-portal"
 
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Select **Fine-tuning** from the left pane.
+1. Select **AI Service fine-tuning**.
+1. Select the custom model that you want to manage from the **Model name** column.
 1. After the model is trained, select **Test models** from the left menu. Then select **+ Create test**.
 
     :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-test-model.png" alt-text="Screenshot of the page with an option to test your custom speech model." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-test-model.png":::

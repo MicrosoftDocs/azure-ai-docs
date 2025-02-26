@@ -23,7 +23,11 @@ You need audio or text data for testing the accuracy of speech recognition or tr
 
 ::: zone pivot="ai-foundry-portal"
 
-1. From the new left menu in the fine-tuning page, select **Manage data** and then select **Add data**.
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Select **Fine-tuning** from the left pane.
+1. Select **AI Service fine-tuning**.
+1. Select the custom model that you want to manage from the **Model name** column.
+1. Select **Manage data** and then select **Add data**.
 
     :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-add-data.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-add-data.png":::
 

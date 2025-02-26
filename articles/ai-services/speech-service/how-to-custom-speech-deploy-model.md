@@ -28,7 +28,10 @@ You can deploy an endpoint for a base or custom model, and then [update](#change
 
 ::: zone pivot="ai-foundry-portal"
 
-
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Select **Fine-tuning** from the left pane.
+1. Select **AI Service fine-tuning**.
+1. Select the custom model that you want to manage from the **Model name** column.
 1. After you're satisfied with the test results, select **Deploy models** from the left menu. Then select **+ Deploy model**.
 
     :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-deploy-model.png" alt-text="Screenshot of the page with an option to deploy the custom speech model." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-deploy-model.png":::
