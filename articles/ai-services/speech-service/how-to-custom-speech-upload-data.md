@@ -31,7 +31,14 @@ You need audio or text data for testing the accuracy of speech recognition or tr
 
     :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-add-data-select-type.png" alt-text="Screenshot of the page with an option to select the type of training data you want to add." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-add-data-select-type.png":::
 
-1. On the **Upload your data** page, select local files, Azure Blob Storage, or other shared web locations. Then select **Next**.
+1. On the **Upload your data** page, select local files, Azure Blob Storage, or other shared web locations. Then select **Next**. 
+
+
+    If you select a remote location and you don't use trusted Azure services security mechanism, then the remote location should be a URL that can be retrieved with a simple anonymous GET request. For example, a [SAS URL](/azure/storage/common/storage-sas-overview) or a publicly accessible URL. URLs that require extra authorization or expect user interaction aren't supported.
+
+    > [!NOTE]
+    > If you use Azure Blob URL, you can ensure maximum security of your dataset files by using trusted Azure services security mechanism. You will use the same techniques as for Batch transcription and plain Storage Account URLs for your dataset files. See details [here](batch-transcription-audio-data.md#trusted-azure-services-security-mechanism). 
+
 1. Enter a name and description for the data. Then select **Next**.
 1. Review the data and select **Upload**. You're taken back to the **Manage data** page. The status of the data is **Processing**.
 
@@ -47,7 +54,7 @@ To upload your own datasets in Speech Studio, follow these steps:
 1. Select **Custom speech** > Your project name > **Speech datasets** > **Upload data**.
 1. Select the **Training data** or **Testing data** tab.
 1. Select a dataset type, and then select **Next**.
-1. Specify the dataset location, and then select **Next**. You can choose a local file or enter a remote location such as Azure Blob URL. If you select remote location, and you don't use trusted Azure services security mechanism, then the remote location should be a URL that can be retrieved with a simple anonymous GET request. For example, a [SAS URL](/azure/storage/common/storage-sas-overview) or a publicly accessible URL. URLs that require extra authorization, or expect user interaction aren't supported.
+1. Specify the dataset location, and then select **Next**. You can choose a local file or enter a remote location such as Azure Blob URL. If you select a remote location and you don't use trusted Azure services security mechanism, then the remote location should be a URL that can be retrieved with a simple anonymous GET request. For example, a [SAS URL](/azure/storage/common/storage-sas-overview) or a publicly accessible URL. URLs that require extra authorization or expect user interaction aren't supported.
 
     > [!NOTE]
     > If you use Azure Blob URL, you can ensure maximum security of your dataset files by using trusted Azure services security mechanism. You will use the same techniques as for Batch transcription and plain Storage Account URLs for your dataset files. See details [here](batch-transcription-audio-data.md#trusted-azure-services-security-mechanism). 
