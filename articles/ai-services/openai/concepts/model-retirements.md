@@ -174,6 +174,7 @@ If you're an existing customer looking for information about these models, see [
 ## February 25, 2025
 
 -  `dalle-3` updated to no earlier than June 30, 2025.
+- `gpt-4o-realtime-preview` (2024-10-01) No earlier than March 26, 2025.
 
 ## February 20, 2025
 
