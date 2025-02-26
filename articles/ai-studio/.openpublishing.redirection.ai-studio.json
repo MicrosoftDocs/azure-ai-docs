@@ -150,8 +150,13 @@
             "redirect_url": "/azure/ai-foundry/tutorials/screen-reader",
             "redirect_document_id": true
         },
+        {
+            "source_path_from_root": "/articles/ai-studio/reference/region-support.md",
+            "redirect_url": "/azure/ai-foundry/reference/region-support",
+            "redirect_document_id": true
+        },
 
-        
+
         {
             "source_path_from_root": "/articles/ai-studio/responsible-use-of-ai-overview.md",
             "redirect_url": "/azure/ai-foundry/responsible-use-of-ai-overview",
