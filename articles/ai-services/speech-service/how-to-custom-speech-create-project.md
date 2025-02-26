@@ -78,7 +78,7 @@ To create a custom speech project in [Speech Studio](https://aka.ms/speechstudio
 1. Select the subscription and Speech resource to work with. 
 
     > [!IMPORTANT]
-    > If you'll train a custom model with audio data, select a service resource in a region with dedicated hardware for training audio data. See footnotes in the [regions](regions.md#regions) table for more information.
+    > If you train a custom model with audio data, select a service resource in a region with dedicated hardware for training audio data. See footnotes in the [regions](regions.md#regions) table for more information.
 
 1. Select **Custom speech** > **Create a new project**. 
 1. Follow the instructions provided by the wizard to create your project. 

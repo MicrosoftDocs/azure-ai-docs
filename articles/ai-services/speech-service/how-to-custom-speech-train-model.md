@@ -24,14 +24,13 @@ Training a model is typically an iterative process. You first select a base mode
 You can use a custom model for a limited time after it was trained. You must periodically recreate and adapt your custom model from the latest base model to take advantage of the improved accuracy and quality. For more information, see [Model and endpoint lifecycle](./how-to-custom-speech-model-and-endpoint-lifecycle.md).
 
 > [!IMPORTANT]
-> If you will train a custom model with audio data, choose an AI Services resource for Speech region with dedicated hardware for training audio data. After a model is trained, you can [copy it to an AI Services resource for Speech](#copy-a-model) in another region as needed. 
+> If you train a custom model with audio data, select a service resource in a region with dedicated hardware for training audio data. After a model is trained, you can [copy it to an AI Services resource for Speech](#copy-a-model) in another region as needed. 
 > 
 > In regions with dedicated hardware for custom speech training, the Speech service will use up to 100 hours of your audio training data, and can process about 10 hours of data per day. See footnotes in the [regions](regions.md#regions) table for more information.  
 
 ## Create a model
 
 ::: zone pivot="ai-foundry-portal"
-
 
 1. After the data is processed, select **Train model** from the left menu. Then select **+ Train model**.
 
