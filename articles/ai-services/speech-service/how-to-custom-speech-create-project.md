@@ -51,7 +51,7 @@ In the [Azure AI Foundry portal](https://ai.azure.com), you can fine-tune some A
 Go to the Azure AI Speech documentation to continue fine-tuning your model.
 * [Upload training and testing datasets](./how-to-custom-speech-upload-data.md)
 * [Train a model](how-to-custom-speech-train-model.md)
-* [Test model quantitatively](how-to-custom-speech-evaluate-data.md) and [test model qualitatively](how-to-custom-speech-test-model-qualitatively.md)
+* [Test model quantitatively](how-to-custom-speech-evaluate-data.md) and [test model qualitatively](./how-to-custom-speech-inspect-data.md)
 * [Deploy a model](how-to-custom-speech-deploy-model.md)
 
 ## View fine-tuned models
