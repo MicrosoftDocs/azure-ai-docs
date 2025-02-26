@@ -32,7 +32,7 @@ Follow these steps to configure Microsoft Entra ID for inference:
 
 2. On the left navigation bar, select **Access control (IAM)** and then select **Add** > **Add role assignment**.
 
-   :::image type="content" source="../../media/configure-entra-id/resource-iam.png" alt-text="Screenshot showing how to add a role assignment in the Access control section of the resource in the Azure portal." lightbox="../../media/configure-entra-id/resource-aim.png":::
+   :::image type="content" source="../../media/configure-entra-id/resource-aim.png" alt-text="Screenshot showing how to add a role assignment in the Access control section of the resource in the Azure portal." lightbox="../../media/configure-entra-id/resource-aim.png":::
 
    > [!TIP]
    > Use the **View my access** option to verify which roles are already assigned to you.
@@ -41,15 +41,15 @@ Follow these steps to configure Microsoft Entra ID for inference:
 
    :::image type="content" source="../../media/configure-entra-id/cognitive-services-user.png" alt-text="Screenshot showing how to select the Cognitive Services User role assignment." lightbox="../../media/configure-entra-id/cognitive-services-user.png":::
 
-4.  Select the role and select **Next**.
+4. Select the role and select **Next**.
 
-5.  On **Members**, select the user or group you want to grant access to. We recommend using security groups whenever possible as they are easier to manage and maintain. 
+5. On **Members**, select the user or group you want to grant access to. We recommend using security groups whenever possible as they are easier to manage and maintain. 
 
    :::image type="content" source="../../media/configure-entra-id/select-user.png" alt-text="Screenshot showing how to select the user to whom assign the role." lightbox="../../media/configure-entra-id/select-user.png":::
 
-6.  Select **Next** and finish the wizard.
+6. Select **Next** and finish the wizard.
 
-7.  The selected user can now use Microsoft Entra ID for inference.
+7. The selected user can now use Microsoft Entra ID for inference.
 
     > [!TIP]
     > Keep in mind that Azure role assignments may take up to five minutes to propagate. When working with security groups, adding or removing users from the security group propagates immediately.
