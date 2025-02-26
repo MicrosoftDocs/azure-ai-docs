@@ -48,7 +48,9 @@ In the [Azure AI Foundry portal](https://ai.azure.com), you can fine-tune some A
 
 1. Enter the language, name, and description for the fine-tuning job. Then select **Create**.
 
-Go to the Azure AI Speech documentation to continue fine-tuning your model.
+## Continue fine-tuning
+
+Go to the Azure AI Speech documentation to learn how to continue fine-tuning your custom speech model:
 * [Upload training and testing datasets](./how-to-custom-speech-upload-data.md)
 * [Train a model](how-to-custom-speech-train-model.md)
 * [Test model quantitatively](how-to-custom-speech-evaluate-data.md) and [test model qualitatively](./how-to-custom-speech-inspect-data.md)
@@ -56,7 +58,7 @@ Go to the Azure AI Speech documentation to continue fine-tuning your model.
 
 ## View fine-tuned models
 
-You can access your custom speech models and deployments from the **Fine-tuning** page. 
+After fine-tuning, you can access your custom speech models and deployments from the **Fine-tuning** page. 
 
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning**.
@@ -81,23 +83,6 @@ To create a custom speech project, follow these steps:
 Select the new project by name or select **Go to project**. You'll see these menu items in the left panel: **Speech datasets**, **Train custom models**, **Test models**, and **Deploy models**. 
 
 ::: zone-end
-
-## Choose your model
-
-There are a few approaches to using custom speech models:
-- The base model provides accurate speech recognition out of the box for a range of [scenarios](overview.md#speech-scenarios). Base models are updated periodically to improve accuracy and quality. We recommend that if you use base models, use the latest default base models. If a required customization capability is only available with an older model, then you can choose an older base model. 
-- A custom model augments the base model to include domain-specific vocabulary shared across all areas of the custom domain.
-- Multiple custom models can be used when the custom domain has multiple areas, each with a specific vocabulary.
-
-One recommended way to see if the base model suffices is to analyze the transcription produced from the base model and compare it with a human-generated transcript for the same audio. You can compare the transcripts and obtain a [word error rate (WER)](how-to-custom-speech-evaluate-data.md#evaluate-word-error-rate-wer) score. If the WER score is high, training a custom model to recognize the incorrectly identified words is recommended.
-
-Multiple models are recommended if the vocabulary varies across the domain areas. For instance, Olympic commentators report on various events, each associated with its own vernacular. Because each Olympic event vocabulary differs significantly from others, building a custom model specific to an event increases accuracy by limiting the utterance data relative to that particular event. As a result, the model doesn't need to sift through unrelated data to make a match. Regardless, training still requires a decent variety of training data. Include audio from various commentators who have different accents, gender, age, etcetera. 
-
-## Model stability and lifecycle
-
-A base model or custom model deployed to an endpoint using custom speech is fixed until you decide to update it. The speech recognition accuracy and quality remain consistent, even when a new base model is released. This allows you to lock in the behavior of a specific model until you decide to use a newer model.
-
-Whether you train your own model or use a snapshot of a base model, you can use the model for a limited time. For more information, see [Model and endpoint lifecycle](./how-to-custom-speech-model-and-endpoint-lifecycle.md).
 
 ## Related content
 
