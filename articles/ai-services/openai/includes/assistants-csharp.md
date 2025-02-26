@@ -71,9 +71,10 @@ Passwordless authentication is more secure than key-based alternatives and is th
 
 ### Create the assistant
 
-Note: For this sample, the following libraries were used:
-- Azure.AI.OpenAI(2.1.0-beta2)
-- Azure.AI.OpenAI.Assistants(1.0.0-beta4)
+>[!Note]
+> For this sample, the following libraries were used:
+>- Azure.AI.OpenAI(2.1.0-beta2)
+>- Azure.AI.OpenAI.Assistants(1.0.0-beta4)
 
 Update the `Program.cs` file with the following code to create an assistant:
 
