@@ -36,6 +36,9 @@ items:
     href: quickstart/use-ai-foundry.md
 - name: Capabilities
   items:
+  - name: Overview
+    displayName: content understanding capabilities, document, text, images, video, audio, visual, structured, content, field, extraction
+    href: concepts/capabilities.md
   - name: Document
     displayName: document, text, images, video, audio, visual, structured, content, field, extraction
     href: document/overview.md
