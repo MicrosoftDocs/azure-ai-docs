@@ -178,7 +178,7 @@ chain.invoke({"language": "italian", "text": "hi"})
 
 Models deployed to Azure AI Foundry support the Azure AI model inference API, which is standard across all the models. Chain multiple LLM operations based on the capabilities of each model so you can optimize for the right model based on capabilities. 
 
-In the following example, we create two model clients, one is a producer and another one is a verifier. To make the distinction clear, we are using a multi-model endpoint like the [Azure AI model inference service](../../ai-services/model-inference.md) and hence we are passing the parameter `model_name` to use a `Mistral-Large` and a `Mistral-Small` model, quoting the fact that **producing content is more complex than verifying it**.
+In the following example, we create two model clients, one is a producer and another one is a verifier. To make the distinction clear, we are using a multi-model endpoint like the [Azure AI model inference service](../../model-inference/overview.md) and hence we are passing the parameter `model_name` to use a `Mistral-Large` and a `Mistral-Small` model, quoting the fact that **producing content is more complex than verifying it**.
 
 ```python
 from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
@@ -466,5 +466,5 @@ Learn more about [how to visualize and manage traces](visualize-traces.md).
 
 * [Develop applications with LlamaIndex](llama-index.md)
 * [Visualize and manage traces in Azure AI Foundry](visualize-traces.md)
-* [Use the Azure AI model inference service](../../ai-services/model-inference.md)
+* [Use the Azure AI model inference service](../../model-inference/overview.md)
 * [Reference: Azure AI model inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md)

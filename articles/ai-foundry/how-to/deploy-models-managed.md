@@ -165,5 +165,5 @@ To deploy and perform inferencing with real-time endpoints, you consume Virtual 
 
 ## Next steps
 
-- Learn more about what you can do in [Azure AI Foundry](../what-is-ai-studio.md)
+- Learn more about what you can do in [Azure AI Foundry](../what-is-ai-foundry.md)
 - Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml)

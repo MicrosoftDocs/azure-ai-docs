@@ -34,7 +34,7 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 
 ## Authenticating with Microsoft Entra ID
 
-There are various authentication methods for the different connection types. When you use Microsoft Entra ID, in addition to creating the connection you might also need to grant Azure role-based access control permissions before the connection can be used. For more information, visit [Role-based access control](../../concepts/rbac-ai-studio.md#scenario-connections-using-microsoft-entra-id-authentication).
+There are various authentication methods for the different connection types. When you use Microsoft Entra ID, in addition to creating the connection you might also need to grant Azure role-based access control permissions before the connection can be used. For more information, visit [Role-based access control](../../concepts/rbac-ai-foundry.md#scenario-connections-using-microsoft-entra-id-authentication).
 
 [!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 

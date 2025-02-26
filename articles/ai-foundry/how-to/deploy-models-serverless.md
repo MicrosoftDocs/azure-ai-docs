@@ -31,7 +31,7 @@ This article uses a Meta Llama model deployment for illustration. However, you c
 
 - An [Azure AI Foundry project](create-projects.md).
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
 
 - You need to install the following software to work with Azure AI Foundry:
 
@@ -687,7 +687,7 @@ Azure role-based access controls (Azure RBAC) are used to grant access to operat
   - `Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*`  
   - `Microsoft.MachineLearningServices/workspaces/serverlessEndpoints/*`
 
-For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).
+For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
 
 ## Related content
 

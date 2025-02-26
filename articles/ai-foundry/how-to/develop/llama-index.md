@@ -88,7 +88,7 @@ llm = AzureAICompletionsModel(
 > [!TIP]
 > If your model deployment is hosted in Azure OpenAI service or Azure AI Services resource, configure the client as indicated at [Azure OpenAI models and Azure AI model inference service](#azure-openai-models-and-azure-ai-model-inference-service).
 
-If your endpoint is serving more than one model, like with the [Azure AI model inference service](../../ai-services/model-inference.md) or [GitHub Models](https://github.com/marketplace/models), you have to indicate `model_name` parameter:
+If your endpoint is serving more than one model, like with the [Azure AI model inference service](../../model-inference/overview.md) or [GitHub Models](https://github.com/marketplace/models), you have to indicate `model_name` parameter:
 
 ```python
 import os
@@ -133,9 +133,9 @@ llm = AzureAICompletionsModel(
 
 ### Azure OpenAI models and Azure AI model inference service
 
-If you are using Azure OpenAI service or [Azure AI model inference service](../../ai-services/model-inference.md), ensure you have at least version `0.2.4` of the LlamaIndex integration. Use `api_version` parameter in case you need to select a specific `api_version`. 
+If you are using Azure OpenAI service or [Azure AI model inference service](../../model-inference/overview.md), ensure you have at least version `0.2.4` of the LlamaIndex integration. Use `api_version` parameter in case you need to select a specific `api_version`. 
 
-For the [Azure AI model inference service](../../ai-services/model-inference.md), you need to pass `model_name` parameter:
+For the [Azure AI model inference service](../../model-inference/overview.md), you need to pass `model_name` parameter:
 
 ```python
 from llama_index.llms.azure_inference import AzureAICompletionsModel

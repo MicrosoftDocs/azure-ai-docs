@@ -66,7 +66,7 @@ To get started with Jamba 1.5 mini deployed as a serverless API, explore our int
       - `Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*`  
       - `Microsoft.MachineLearningServices/workspaces/serverlessEndpoints/*`
 
-    For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).
+    For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
 
 
 ### Create a new deployment
@@ -402,6 +402,6 @@ Models deployed as a serverless API are protected by Azure AI content safety. Wi
 
 ## Related content
 
-- [What is Azure AI Foundry?](../what-is-ai-studio.md)
+- [What is Azure AI Foundry?](../what-is-ai-foundry.md)
 - [Azure AI FAQ article](../faq.yml)
 - [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)

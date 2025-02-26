@@ -38,7 +38,7 @@ You can deploy TimeGEN-1 as a serverless API with pay-as-you-go billing. Nixtla 
 
 - An [Azure AI Foundry project](../how-to/create-projects.md).
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, visit [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, visit [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
 
 
 #### Estimate the number of tokens needed
@@ -281,6 +281,6 @@ Quota is managed per deployment. Each deployment has a rate limit of 200,000 tok
 
 ## Related content
 
-- [What is Azure AI Foundry?](../what-is-ai-studio.md)
+- [What is Azure AI Foundry?](../what-is-ai-foundry.md)
 - [Azure AI FAQ article](../faq.yml)
 - [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)

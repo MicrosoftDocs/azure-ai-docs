@@ -29,7 +29,7 @@ In this article, you learn to enable tracing, collect aggregated metrics, and co
 - The Azure CLI and the Azure Machine Learning extension to the Azure CLI. 
 - An Azure AI Foundry project. If you don't already have a project, you can [create one here](../../how-to/create-projects.md).
 - An Application Insights. If you don't already have an Application Insights resource, you can [create one here](/azure/azure-monitor/app/create-workspace-resource).
-- Azure role-based access controls are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, you must have **Owner** or **Contributor** permissions on the selected resource group. For more information, see [Role-based access control in Azure AI Foundry portal](../../concepts/rbac-ai-studio.md).
+- Azure role-based access controls are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, you must have **Owner** or **Contributor** permissions on the selected resource group. For more information, see [Role-based access control in Azure AI Foundry portal](../../concepts/rbac-ai-foundry.md).
 
 ## Deploy a flow for real-time inference
 

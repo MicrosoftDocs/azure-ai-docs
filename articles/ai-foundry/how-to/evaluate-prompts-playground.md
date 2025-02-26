@@ -83,4 +83,4 @@ Learn more about how to evaluate your generative AI applications:
 - [Evaluate your generative AI apps with the Azure AI Foundry portal or SDK](./evaluate-generative-ai-app.md)
 - [View the evaluation results](./evaluate-results.md)
 
-Learn more about [harm mitigation techniques](../concepts/evaluation-improvement-strategies.md).
+Learn more about [harm mitigation techniques](../concepts/evaluation-approach-gen-ai.md).

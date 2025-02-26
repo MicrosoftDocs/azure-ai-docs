@@ -250,5 +250,5 @@ Learn more about how to evaluate your generative AI applications:
 
 - [Evaluate your generative AI apps via the playground](./evaluate-prompts-playground.md)
 - [View the evaluation results](./evaluate-results.md)
-- Learn more about [harm mitigation techniques](../concepts/evaluation-improvement-strategies.md).
+- Learn more about [harm mitigation techniques](../concepts/evaluation-approach-gen-ai.md).
 - [Transparency Note for Azure AI Foundry safety evaluations](../concepts/safety-evaluations-transparency-note.md).

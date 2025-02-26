@@ -171,4 +171,4 @@ Learn more about how to evaluate your generative AI applications:
 - [Evaluate your generative AI apps via the playground](../how-to/evaluate-prompts-playground.md)
 - [Evaluate your generative AI apps with the Azure AI Foundry portal or SDK](../how-to/evaluate-generative-ai-app.md)
 
-Learn more about [harm mitigation techniques](../concepts/evaluation-improvement-strategies.md).
+Learn more about [harm mitigation techniques](../concepts/evaluation-approach-gen-ai.md).

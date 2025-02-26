@@ -71,7 +71,7 @@ Deployment to a serverless API endpoint doesn't require quota from your subscrip
 
 ### Reference for Stability AI models deployed as a serverless API
 
-Stability AI models on Models as a Service implement the [Azure AI Model Inference API](../reference/reference-model-inference-api.md) on the route `/image/generations` 
+Stability AI models on Models as a Service implement the [Azure AI Model Inference API](../model-inference/reference/reference-model-inference-api.md) on the route `/image/generations` 
 
 #### Request example 
 

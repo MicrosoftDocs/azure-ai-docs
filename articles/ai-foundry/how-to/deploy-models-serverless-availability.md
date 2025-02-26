@@ -39,7 +39,7 @@ Read [Consume serverless API endpoints from a different hub or project](deploy-m
 
 ## Related content
 
-- [Model Catalog and Collections](model-catalog.md)
+- [Model Catalog and Collections](model-catalog-overview.md)
 - [Deploy models as serverless API endpoints](deploy-models-serverless.md)
 
 
