@@ -6,9 +6,9 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/19/2024
+ms.date: 2/25/2025
 ms.author: eur
-zone_pivot_groups: speech-studio-cli-rest
+zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to train a custom speech model to improve recognition accuracy for the Microsoft base model or a custom model.
 ---
 
@@ -24,11 +24,33 @@ Training a model is typically an iterative process. You first select a base mode
 You can use a custom model for a limited time after it was trained. You must periodically recreate and adapt your custom model from the latest base model to take advantage of the improved accuracy and quality. For more information, see [Model and endpoint lifecycle](./how-to-custom-speech-model-and-endpoint-lifecycle.md).
 
 > [!IMPORTANT]
-> If you will train a custom model with audio data, choose an AI Services resource for Speech region with dedicated hardware for training audio data. After a model is trained, you can [copy it to an AI Services resource for Speech](#copy-a-model) in another region as needed. 
+> If you train a custom model with audio data, select a service resource in a region with dedicated hardware for training audio data. After a model is trained, you can [copy it to an AI Services resource for Speech](#copy-a-model) in another region as needed. 
 > 
 > In regions with dedicated hardware for custom speech training, the Speech service will use up to 100 hours of your audio training data, and can process about 10 hours of data per day. See footnotes in the [regions](regions.md#regions) table for more information.  
 
 ## Create a model
+
+::: zone pivot="ai-foundry-portal"
+
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Select **Fine-tuning** from the left pane.
+1. Select **AI Service fine-tuning**.
+1. Select the custom model that you want to manage from the **Model name** column.
+1. After the data is processed, select **Train model** from the left menu. Then select **+ Train model**.
+
+    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-train-model.png" alt-text="Screenshot of the page with an option to start training for a custom speech model." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-train-model.png":::
+
+1. In the **Train a new model** wizard, select the base model that you want to fine-tune. Then select **Next**.
+
+    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-train-model-select-base.png" alt-text="Screenshot of the page with an option to select the base model that you want to fine-tune." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-train-model-select-base.png":::
+
+1. Select the data that you want to use for training. Then select **Next**.
+1. Enter a name and description for the model. Then select **Next**.
+1. Review the settings and select **Train a new model**. You're taken back to the **Train model** page. The status of the data is **Processing**.
+
+    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-train-model-status-processing.png" alt-text="Screenshot of the page that shows the status of the training as processing." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-train-model-status-processing.png":::
+
+::: zone-end
 
 ::: zone pivot="speech-studio"
 
@@ -57,11 +79,11 @@ After you upload [training datasets](./how-to-custom-speech-test-and-train.md), 
 
 To create a model with datasets for training, use the `spx csr model create` command. Construct the request parameters according to the following instructions:
 
-- Set the `project` parameter to the ID of an existing project. This parameter is recommended so that you can also view and manage the model in Speech Studio. You can run the `spx csr project list` command to get available projects.
-- Set the required `dataset` parameter to the ID of a dataset that you want used for training. To specify multiple datasets, set the `datasets` (plural) parameter and separate the IDs with a semicolon.
-- Set the required `language` parameter. The dataset locale must match the locale of the project. The locale can't be changed later. The Speech CLI `language` parameter corresponds to the `locale` property in the JSON request and response.
-- Set the required `name` parameter. This parameter is the name that is displayed in the Speech Studio. The Speech CLI `name` parameter corresponds to the `displayName` property in the JSON request and response.
-- Optionally, you can set the `base` property. For example: `--base 5988d691-0893-472c-851e-8e36a0fe7aaf`. If you don't specify the `base`, the default base model for the locale is used. The Speech CLI `base` parameter corresponds to the `baseModel` property in the JSON request and response.
+- Set the `project` property to the ID of an existing project. This property is recommended so that you can also view and manage the model in the [Azure AI Foundry portal](https://ai.azure.com). You can run the `spx csr project list` command to get available projects.
+- Set the required `dataset` property to the ID of a dataset that you want used for training. To specify multiple datasets, set the `datasets` (plural) parameter and separate the IDs with a semicolon.
+- Set the required `language` property. The dataset locale must match the locale of the project. The locale can't be changed later. The Speech CLI `language` property corresponds to the `locale` property in the JSON request and response.
+- Set the required `name` property. This parameter is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com). The Speech CLI `name` property corresponds to the `displayName` property in the JSON request and response.
+- Optionally, you can set the `base` property. For example: `--base 5988d691-0893-472c-851e-8e36a0fe7aaf`. If you don't specify the `base`, the default base model for the locale is used. The Speech CLI `base` property corresponds to the `baseModel` property in the JSON request and response.
 
 Here's an example Speech CLI command that creates a model with datasets for training:
 
@@ -136,10 +158,10 @@ spx help csr model
 
 To create a model with datasets for training, use the [Models_Create](/rest/api/speechtotext/models/create) operation of the [Speech to text REST API](rest-speech-to-text.md). Construct the request body according to the following instructions:
 
-- Set the `project` property to the URI of an existing project. This property is recommended so that you can also view and manage the model in Speech Studio. You can make a [Projects_List](/rest/api/speechtotext/projects/list) request to get available projects.
+- Set the `project` property to the URI of an existing project. This property is recommended so that you can also view and manage the model in the [Azure AI Foundry portal](https://ai.azure.com). You can make a [Projects_List](/rest/api/speechtotext/projects/list) request to get available projects.
 - Set the required `datasets` property to the URI of the datasets that you want used for training.
 - Set the required `locale` property. The model locale must match the locale of the project and base model. The locale can't be changed later.
-- Set the required `displayName` property. This property is the name that is displayed in the Speech Studio.
+- Set the required `displayName` property. This property is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com).
 - Optionally, you can set the `baseModel` property. For example: `"baseModel": {"self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/5988d691-0893-472c-851e-8e36a0fe7aaf"}`. If you don't specify the `baseModel`, the default base model for the locale is used. 
 
 Make an HTTP POST request using the URI as shown in the following example. Replace `YourSubscriptionKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
@@ -223,6 +245,12 @@ The top-level `self` property in the response body is the model's URI. Use this 
 
 You can copy a model to another project that uses the same locale. For example, after a model is trained with audio data in a [region](regions.md#regions) with dedicated hardware for training, you can copy it to an AI Services resource for Speech in another region as needed. 
 
+::: zone pivot="ai-foundry-portal"
+
+
+
+::: zone-end
+
 ::: zone pivot="speech-studio"
 
 Follow these instructions to copy a model to a project in another region:
@@ -242,7 +270,7 @@ After the model is successfully copied, you'll be notified and can view it in th
 
 ::: zone pivot="speech-cli"
 
-Copying a model directly to a project in another region isn't supported with the Speech CLI. You can copy a model to a project in another region using the [Speech Studio](https://aka.ms/speechstudio/customspeech) or [Speech to text REST API](rest-speech-to-text.md).
+Copying a model directly to a project in another region isn't supported with the Speech CLI. You can copy a model to a project in another region using the [Azure AI Foundry portal](https://ai.azure.com), [Speech Studio](https://aka.ms/speechstudio/customspeech), or [Speech to text REST API](rest-speech-to-text.md).
 
 ::: zone-end
 
@@ -305,6 +333,12 @@ You should receive a response body in the following format:
 
 Models might have been copied from one project using the Speech CLI or REST API, without being connected to another project. Connecting a model is a matter of updating the model with a reference to the project.
 
+::: zone pivot="ai-foundry-portal"
+
+
+
+::: zone-end
+
 ::: zone pivot="speech-studio"
 
 If you're prompted in Speech Studio, you can connect them by selecting the **Connect** button. 
@@ -317,8 +351,8 @@ If you're prompted in Speech Studio, you can connect them by selecting the **Con
 
 To connect a model to a project, use the `spx csr model update` command. Construct the request parameters according to the following instructions:
 
-- Set the `project` parameter to the URI of an existing project. This parameter is recommended so that you can also view and manage the model in Speech Studio. You can run the `spx csr project list` command to get available projects.
-- Set the required `modelId` parameter to the ID of the model that you want to connect to the project.
+- Set the `project` property to the URI of an existing project. This property is recommended so that you can also view and manage the model in the [Azure AI Foundry portal](https://ai.azure.com). You can run the `spx csr project list` command to get available projects.
+- Set the required `modelId` property to the ID of the model that you want to connect to the project.
 
 Here's an example Speech CLI command that connects a model to a project:
 
@@ -348,7 +382,7 @@ spx help csr model
 
 To connect a new model to a project of the Speech resource where the model was copied, use the [Models_Update](/rest/api/speechtotext/models/update) operation of the [Speech to text REST API](rest-speech-to-text.md). Construct the request body according to the following instructions:
 
-- Set the required `project` property to the URI of an existing project. This property is recommended so that you can also view and manage the model in Speech Studio. You can make a [Projects_List](/rest/api/speechtotext/projects/list) request to get available projects.
+- Set the required `project` property to the URI of an existing project. This property is recommended so that you can also view and manage the model in the [Azure AI Foundry portal](https://ai.azure.com). You can make a [Projects_List](/rest/api/speechtotext/projects/list) request to get available projects.
 
 Make an HTTP PATCH request using the URI as shown in the following example. Use the URI of the new model. You can get the new model ID from the `self` property of the [Models_Copy](/rest/api/speechtotext/models/copy) response body. Replace `YourSubscriptionKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
 
