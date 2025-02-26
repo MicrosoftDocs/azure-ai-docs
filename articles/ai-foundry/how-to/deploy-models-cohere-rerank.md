@@ -28,7 +28,7 @@ Cohere offers rerank models in [Azure AI Foundry](https://ai.azure.com). These m
 - Cohere Rerank v3 - English
 - Cohere Rerank v3 - Multilingual
 
-You can browse the Cohere family of models in the [Model Catalog](model-catalog.md) by filtering on the Cohere collection.
+You can browse the Cohere family of models in the [Model Catalog](./model-catalog-overview.md) by filtering on the Cohere collection.
 
 # [Cohere Rerank v3.5](#tab/cohere-rerank-3-5)
 
