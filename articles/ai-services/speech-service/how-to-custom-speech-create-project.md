@@ -42,6 +42,9 @@ In the [Azure AI Foundry portal](https://ai.azure.com), you can fine-tune some A
 
     :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-select-connection.png" alt-text="Screenshot of the page to select the connected service resource that you want to use for fine-tuning." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-select-connection.png":::
 
+    > [!IMPORTANT]
+    > If you train a custom model with audio data, select a service resource in a region with dedicated hardware for training audio data. See footnotes in the [regions](regions.md#regions) table for more information.
+
     You can choose from the following connected resource types:
     - **AI Service**: The Azure AI Services multi-service resource that [came with the Azure AI Foundry project](../../ai-studio/ai-services/how-to/connect-ai-services.md#connect-azure-ai-services-when-you-create-a-project-for-the-first-time).
     - **Speech Service**: An Azure AI Speech resource that was [connected after the project was created](../../ai-studio/ai-services/how-to/connect-ai-services.md#connect-azure-ai-services-after-you-create-a-project). 
@@ -69,18 +72,18 @@ After fine-tuning, you can access your custom speech models and deployments from
 
 ::: zone pivot="speech-studio"
 
-To create a custom speech project, follow these steps:
+To create a custom speech project in [Speech Studio](https://aka.ms/speechstudio/customspeech), follow these steps:
 
 1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customspeech).
 1. Select the subscription and Speech resource to work with. 
 
     > [!IMPORTANT]
-    > If you will train a custom model with audio data, choose a region with dedicated hardware for training audio data. See footnotes in the [regions](regions.md#regions) table for more information.
+    > If you'll train a custom model with audio data, select a service resource in a region with dedicated hardware for training audio data. See footnotes in the [regions](regions.md#regions) table for more information.
 
 1. Select **Custom speech** > **Create a new project**. 
 1. Follow the instructions provided by the wizard to create your project. 
 
-Select the new project by name or select **Go to project**. You'll see these menu items in the left panel: **Speech datasets**, **Train custom models**, **Test models**, and **Deploy models**. 
+Select the new project by name or select **Go to project**. Then you should see these menu items in the left panel: **Speech datasets**, **Train custom models**, **Test models**, and **Deploy models**. 
 
 ::: zone-end
 
