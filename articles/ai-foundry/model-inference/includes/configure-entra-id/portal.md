@@ -22,9 +22,9 @@ Follow these steps to configure Microsoft Entra ID for inference:
 
    3. Go to the section **Connected resources** and select the connection to the Azure AI Services resource that you want to configure. If it isn't listed, select **View all** to see the full list.
 
-   4. On the **Connection details** section, under **Resource**, select the name of the Azure resource. A new page opens.
+      :::image type="content" source="../../media/configure-entra-id/resource-behind-select.png" alt-text="Screenshot showing how to navigate to the details of the connection in Azure AI Foundry in the management center." lightbox="../../media/configure-entra-id/resource-behind-select.png":::
 
-      :::image type="content" source="../../media/configure-entra-id/resource-behind-open.png" alt-text="Screenshot showing how to navigate to the details of the connection in Azure AI Foundry in the management center." lightbox="../../media/configure-entra-id/resource-behind-open.png":::
+   4. On the **Connection details** section, under **Resource**, select the name of the Azure resource. A new page opens.
 
    5. You're now in [Azure portal](https://portal.azure.com) where you can manage all the aspects of the resource itself.
 
@@ -92,6 +92,4 @@ To change this behavior, you have to update the connections from your projects t
 
 ## Disable key-based authentication in the resource
 
-Disabling key-based authentication is advisable when you implemented Microsoft Entra ID and fully addressed compatibility or fallback concerns in all the applications that consume the service.
-
-
+Disabling key-based authentication is advisable when you implemented Microsoft Entra ID and fully addressed compatibility or fallback concerns in all the applications that consume the service. [Disabling key-based authentication is only available when deploying using Bicep/ARM](../../how-to/configure-entra-id.md?dpivots=programming-language-bicep#disable-key-based-authentication-in-the-resource).
