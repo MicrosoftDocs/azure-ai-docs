@@ -41,6 +41,6 @@ We used an advanced prompt during synthetic data generation. The advanced prompt
 
 ## Related content
 
-- [What is Azure AI Foundry?](../what-is-ai-studio.md)
+- [What is Azure AI Foundry?](../what-is-ai-foundry.md)
 - [Deploy Meta Llama 3.1 models with Azure AI Foundry](../how-to/deploy-models-llama.md)
 - [Azure AI Foundry FAQ](../faq.yml)

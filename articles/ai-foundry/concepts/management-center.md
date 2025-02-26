@@ -40,10 +40,10 @@ Assign roles, manage users, and ensure that all settings comply with organizatio
 
 :::image type="content" source="../media/management-center/user-management.png" alt-text="Screenshot of the user management section of the management center." lightbox="../media/management-center/user-management.png":::
 
-For more information, see [Role-based access control](rbac-ai-studio.md#assigning-roles-in-azure-ai-foundry-portal).
+For more information, see [Role-based access control](rbac-ai-foundry.md#assigning-roles-in-azure-ai-foundry-portal).
 
 ## Related content
 
 - [Security baseline](/security/benchmark/azure/baselines/azure-ai-studio-security-baseline)
 - [Built-in policy to allow specific models](../how-to/built-in-policy-model-deployment.md)
-- [Custom policy to allow specific models](../how-to/custom-policy-model-deployment.md)
+- [Custom policy to allow specific models](../model-inference/how-to/configure-deployment-policies.md)
