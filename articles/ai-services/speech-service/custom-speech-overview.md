@@ -50,7 +50,7 @@ Here's more information about the sequence of steps shown in the previous diagra
 ## Choose your model
 
 There are a few approaches to using custom speech models:
-- The base model provides accurate speech recognition out of the box for a range of [scenarios](#speech-scenarios). Base models are updated periodically to improve accuracy and quality. We recommend that if you use base models, use the latest default base models. If a required customization capability is only available with an older model, then you can choose an older base model. 
+- The base model provides accurate speech recognition out of the box for a range of [scenarios](./overview.md#speech-scenarios). Base models are updated periodically to improve accuracy and quality. We recommend that if you use base models, use the latest default base models. If a required customization capability is only available with an older model, then you can choose an older base model. 
 - A custom model augments the base model to include domain-specific vocabulary shared across all areas of the custom domain.
 - Multiple custom models can be used when the custom domain has multiple areas, each with a specific vocabulary.
 
