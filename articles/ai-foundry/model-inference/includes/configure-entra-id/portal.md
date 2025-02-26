@@ -24,7 +24,7 @@ Follow these steps to configure Microsoft Entra ID for inference:
 
    4. On the **Connection details** section, under **Resource**, select the name of the Azure resource. A new page opens.
 
-      :::image type="content" source="../../media/configure-entra-id/resource-behind-select.png" alt-text="Screenshot showing how to navigate to the details of the connection in Azure AI Foundry in the management center." lightbox="../../media/configure-entra-id/resource-behind-select.png":::
+      :::image type="content" source="../../media/configure-entra-id/resource-behind-open.png" alt-text="Screenshot showing how to navigate to the details of the connection in Azure AI Foundry in the management center." lightbox="../../media/configure-entra-id/resource-behind-open.png":::
 
    5. You're now in [Azure portal](https://portal.azure.com) where you can manage all the aspects of the resource itself.
 
