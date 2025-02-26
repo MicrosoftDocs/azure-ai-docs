@@ -92,4 +92,4 @@ To change this behavior, you have to update the connections from your projects t
 
 ## Disable key-based authentication in the resource
 
-Disabling key-based authentication is advisable when you implemented Microsoft Entra ID and fully addressed compatibility or fallback concerns in all the applications that consume the service. [Disabling key-based authentication is only available when deploying using Bicep/ARM](../../how-to/configure-entra-id.md?dpivots=programming-language-bicep#disable-key-based-authentication-in-the-resource).
+Disabling key-based authentication is advisable when you implemented Microsoft Entra ID and fully addressed compatibility or fallback concerns in all the applications that consume the service. Disabling key-based authentication is only available when deploying using Bicep/ARM.
