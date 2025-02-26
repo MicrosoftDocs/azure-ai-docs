@@ -163,6 +163,14 @@ You should receive a response body in the following format:
 
 ::: zone pivot="ai-foundry-portal"
 
+Follow these instructions to get the transcription expiration date for a custom model:
+
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Select **Fine-tuning** from the left pane.
+1. Select **AI Service fine-tuning**.
+1. Select the custom model that you want to check from the **Model name** column.
+1. Select **Deploy models**.
+1. The expiration date for the model is shown in the **Expiration** column. This date is the last date that you can use the model for transcription.
 
 ::: zone-end
 
