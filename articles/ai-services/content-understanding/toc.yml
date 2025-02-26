@@ -38,7 +38,7 @@ items:
   items:
   - name: Overview
     displayName: content understanding capabilities, document, text, images, video, audio, visual, structured, content, field, extraction
-    href: capabilities/overview.md
+    href: concepts/capabilities-overview.md
   - name: Document
     displayName: document, text, images, video, audio, visual, structured, content, field, extraction
     href: document/overview.md
