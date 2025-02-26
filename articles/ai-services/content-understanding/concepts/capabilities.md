@@ -109,12 +109,12 @@ Each modality supports specific generation approaches optimized for that content
 |--------------|
 |&bullet; **Generate**: In video, users can derive values from the input content, such as summaries of video segments and product characteristics. <br> &bullet; **Classify**: In video, users can categorize values from the input content, such as determining the sentiment of conversations (positive, neutral, or negative). <br>|
 
-:::image type="content" source="../media/capabilities/mediaasset.gif" alt-text="Illustration of Video Generation and Classification workflow.":::
+:::image type="content" source="../media/capabilities/media-asset.gif" alt-text="Illustration of Video Generation and Classification workflow.":::
 
 -------
 
 
-Follow our quickstart guide [to build your first schema](../quickstart/use-ai-foundry.md#build-a-schema).
+Follow our quickstart guide [to build your first schema](../quickstart/use-ai-foundry.md#build-your-first-analyzer).
 
 #### Grounding and Confidence Scores
 
@@ -139,7 +139,7 @@ Key benefits of analyzers include:
 
 For example, you might create an analyzer for processing customer service calls that combines audio transcription (content extraction) with sentiment analysis and topic classification (field extraction). This analyzer can then consistently process thousands of calls, providing structured insights for your customer experience analytics.
 
-Follow our quickstart guide to [build your first analyzer](../quickstart/use-ai-foundry.md#analyzer-templates).
+To get started, you can follow our guide for [building your first analyzer](../concepts/analyzer-templates.md).
 
 ### Best Practices
 
