@@ -93,7 +93,7 @@ You can deploy the previously mentioned Cohere models as a service with pay-as-y
 
 - An [Azure AI Foundry project](../how-to/create-projects.md).
 
-- Azure role-based access controls are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-studio.md).
+- Azure role-based access controls are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
 
 ### Create a new deployment 
 The following steps demonstrate the deployment of Cohere Rerank v3.5, but you can use the same steps to deploy the other Cohere rerank models by replacing the model name.
@@ -360,6 +360,6 @@ For more information on how to track costs, see [monitor costs for models offere
 
 ## Related content
 
-- [What is Azure AI Foundry?](../what-is-ai-studio.md)
+- [What is Azure AI Foundry?](../what-is-ai-foundry.md)
 - [Azure AI FAQ article](../faq.yml)
 - [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)
