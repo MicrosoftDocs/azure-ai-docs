@@ -185,6 +185,7 @@ To guarantee accuracy, you can artificially inflate the count:\<number> to a lar
 
 The tradeoff with this workaround is increased query latency, so use it only when necessary.
 
+<!-- 
 ## Presentation layer
 
 In application code, the pattern is to use facet query parameters to return the faceted navigation structure along with facet results, plus a `$filter` expression.  The filter expression handles the click event and further narrows the search result based on the facet selection.
@@ -204,7 +205,7 @@ Here's another example from the hotels sample. The following code snippet adds `
 if (!String.IsNullOrEmpty(categoryFacet))
     filter = $"category eq '{categoryFacet}'";
 ```
-<!-- 
+
 ### HTML for faceted navigation
 
 The following example, taken from the `index.cshtml` file of the NYCJobs sample application, shows the static HTML structure for displaying faceted navigation on the search results page. The list of facets is built or rebuilt dynamically when you submit a search term, or select or clear a facet.
@@ -255,13 +256,13 @@ This section is a collection of tips and workarounds that might be helpful.
 
 ### Preserve a facet navigation structure asynchronously of filtered results
 
-One of the challenges of faceted navigation in Azure AI Search is that facets exist for current results only. In practice, it's common to retain a static set of facets so that the user can navigate in reverse, retracing steps to explore alternative paths through search content. 
+In Azure AI Search, facets exist for current results only. However, it's a common application requirement to retain a static set of facets so that the user can navigate in reverse, retracing steps to explore alternative paths through search content. 
 
-Although this is a common use case, it's not something the faceted navigation structure currently provides out-of-the-box. Developers who want static facets typically work around the limitation by issuing two filtered queries: one scoped to the results, the other used to create a static list of facets for navigation purposes.
+If you want a static set of facets alongside a dynamic drilldown experience, you can implement it by using two filtered queries: one scoped to the results, the other used to create a static list of facets for navigation purposes.
 
 ### Clear facets
 
-When you design the search results page, remember to add a mechanism for clearing facets. If you add check boxes, you can easily see how to clear the filters. For other layouts, you might need a breadcrumb pattern or another creative approach. In the hotels C# sample, you can send an empty search to reset the page. In contrast, the NYCJobs sample application provides a clickable `[X]` after a selected facet to clear the facet, which is a stronger visual queue to the user.
+When you design the user experience, remember to add a mechanism for clearing facets. A common approach for clearing facets is issue an empty search request to reset the page.
 
 ### Trim facet results with more filters
 
@@ -276,16 +277,6 @@ Content type
 
 In general, if you find that facet results are consistently too large, we recommend that you add more filters to give users more options for narrowing the search.
 
-### A facet-only search experience
+## Next steps
 
-If your application uses faceted navigation exclusively (that is, no search box), you can mark the field as `searchable=false`, `filterable=true`, `facetable=true` to produce a more compact index. Your index won't include inverted indexes and there is no text analysis or tokenization during indexing. Filters are made on exact matches at the character level.
-
-### Validate inputs at query-time
-
-If you build the list of facets dynamically based on untrusted user input, validate that the names of the faceted fields are valid. Or, escape the names when building URLs by using either `Uri.EscapeDataString()` in .NET, or the equivalent in your platform of choice.
-
-## Samples
-
-We recommend the following samples for faceted navigation. The samples also include filters, suggestions, and autocomplete. These samples use React for the presentation layer.
-
-* [C#: Add search to web apps](tutorial-csharp-overview.md)
+We recommend the [C#: Add search to web apps](tutorial-csharp-overview.md) for an example of faceted navigation. The sample also includes filters, suggestions, and autocomplete. It uses JavaScript and React for the presentation layer.
