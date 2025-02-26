@@ -73,7 +73,7 @@ Follow these instructions to get the transcription expiration date for a base mo
 
 To get the training and transcription expiration dates for a base model, use the `spx csr model status` command. Construct the request parameters according to the following instructions:
 
-- Set the `url` parameter to the URI of the base model that you want to get. You can run the `spx csr list --base` command to get available base models for all locales.
+- Set the `url` property to the URI of the base model that you want to get. You can run the `spx csr list --base` command to get available base models for all locales.
 
 Here's an example Speech CLI command to get the training and transcription expiration dates for a base model:
 
@@ -159,7 +159,6 @@ You should receive a response body in the following format:
 ::: zone pivot="ai-foundry-portal"
 
 
-
 ::: zone-end
 
 ::: zone pivot="speech-studio"
@@ -187,7 +186,7 @@ You can also follow these instructions to get the transcription expiration date 
 
 To get the transcription expiration date for your custom model, use the `spx csr model status` command. Construct the request parameters according to the following instructions:
 
-- Set the `url` parameter to the URI of the model that you want to get. Replace `YourModelId` with your model ID and replace `YourServiceRegion` with your Speech resource region.
+- Set the `url` property to the URI of the model that you want to get. Replace `YourModelId` with your model ID and replace `YourServiceRegion` with your Speech resource region.
 
 Here's an example Speech CLI command to get the transcription expiration date for your custom model:
 

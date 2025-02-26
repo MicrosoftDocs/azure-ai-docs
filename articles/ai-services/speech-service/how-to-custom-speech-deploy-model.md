@@ -80,11 +80,11 @@ Select the endpoint link to view information specific to it, such as the endpoin
 
 To create an endpoint and deploy a model, use the `spx csr endpoint create` command. Construct the request parameters according to the following instructions:
 
-- Set the `project` parameter to the ID of an existing project. This is recommended so that you can also view and manage the endpoint in Speech Studio. You can run the `spx csr project list` command to get available projects.
-- Set the required `model` parameter to the ID of the model that you want deployed to the endpoint. 
-- Set the required `language` parameter. The endpoint locale must match the locale of the model. The locale can't be changed later. The Speech CLI `language` parameter corresponds to the `locale` property in the JSON request and response.
-- Set the required `name` parameter. This is the name that is displayed in the Speech Studio. The Speech CLI `name` parameter corresponds to the `displayName` property in the JSON request and response.
-- Optionally, you can set the `logging` parameter. Set this to `enabled` to enable audio and diagnostic [logging](#view-logging-data) of the endpoint's traffic. The default is `false`. 
+- Set the `project` property to the ID of an existing project. This property is recommended so that you can also view and manage the endpoint in the [Azure AI Foundry portal](https://ai.azure.com). You can run the `spx csr project list` command to get available projects.
+- Set the required `model` property to the ID of the model that you want deployed to the endpoint. 
+- Set the required `language` property. The endpoint locale must match the locale of the model. The locale can't be changed later. The Speech CLI `language` property corresponds to the `locale` property in the JSON request and response.
+- Set the required `name` property. This is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com). The Speech CLI `name` property corresponds to the `displayName` property in the JSON request and response.
+- Optionally, you can set the `logging` property. Set this to `enabled` to enable audio and diagnostic [logging](#view-logging-data) of the endpoint's traffic. The default is `false`. 
 
 Here's an example Speech CLI command to create an endpoint and deploy a model:
 
@@ -138,10 +138,10 @@ spx help csr endpoint
 
 To create an endpoint and deploy a model, use the [Endpoints_Create](/rest/api/speechtotext/endpoints/create) operation of the [Speech to text REST API](rest-speech-to-text.md). Construct the request body according to the following instructions:
 
-- Set the `project` property to the URI of an existing project. This is recommended so that you can also view and manage the endpoint in Speech Studio. You can make a [Projects_List](/rest/api/speechtotext/projects/list) request to get available projects.
+- Set the `project` property to the URI of an existing project. This property is recommended so that you can also view and manage the endpoint in the [Azure AI Foundry portal](https://ai.azure.com). You can make a [Projects_List](/rest/api/speechtotext/projects/list) request to get available projects.
 - Set the required `model` property to the URI of the model that you want deployed to the endpoint. 
 - Set the required `locale` property. The endpoint locale must match the locale of the model. The locale can't be changed later.
-- Set the required `displayName` property. This is the name that is displayed in the Speech Studio.
+- Set the required `displayName` property. This is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com).
 - Optionally, you can set the `loggingEnabled` property within `properties`. Set this to `true` to enable audio and diagnostic [logging](#view-logging-data) of the endpoint's traffic. The default is `false`. 
 
 Make an HTTP POST request using the URI as shown in the following [Endpoints_Create](/rest/api/speechtotext/endpoints/create) example. Replace `YourSubscriptionKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
@@ -225,8 +225,8 @@ To use a new model and redeploy the custom endpoint:
 
 To redeploy the custom endpoint with a new model, use the `spx csr model update` command. Construct the request parameters according to the following instructions:
 
-- Set the required `endpoint` parameter to the ID of the endpoint that you want deployed.
-- Set the required `model` parameter to the ID of the model that you want deployed to the endpoint.
+- Set the required `endpoint` property to the ID of the endpoint that you want deployed.
+- Set the required `model` property to the ID of the model that you want deployed to the endpoint.
 
 Here's an example Speech CLI command that redeploys the custom endpoint with a new model:
 
@@ -351,7 +351,7 @@ To download the endpoint logs:
 
 To get logs for an endpoint, use the `spx csr endpoint list` command. Construct the request parameters according to the following instructions:
 
-- Set the required `endpoint` parameter to the ID of the endpoint that you want to get logs.
+- Set the required `endpoint` property to the ID of the endpoint that you want to get logs.
 
 Here's an example Speech CLI command that gets logs for an endpoint:
 

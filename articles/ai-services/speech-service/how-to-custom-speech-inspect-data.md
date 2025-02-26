@@ -14,7 +14,7 @@ zone_pivot_groups: foundry-speech-studio-cli-rest
 
 # Test recognition quality of a custom speech model
 
-You can inspect the recognition quality of a custom speech model in the [Speech Studio](https://aka.ms/speechstudio/customspeech). You can play back uploaded audio and determine if the provided recognition result is correct. After a test is successfully created, you can see how a model transcribed the audio dataset, or compare results from two models side by side.
+You can inspect the recognition quality of a custom speech model. You can play back uploaded audio and determine if the provided recognition result is correct. After a test is successfully created, you can see how a model transcribed the audio dataset, or compare results from two models side by side.
 
 Side-by-side model testing is useful to validate which speech recognition model is best for an application. For an objective measure of accuracy, which requires transcription datasets input, see [Test model quantitatively](how-to-custom-speech-evaluate-data.md).
 
@@ -23,7 +23,6 @@ Side-by-side model testing is useful to validate which speech recognition model 
 ## Create a test
 
 ::: zone pivot="ai-foundry-portal"
-
 
 1. After the model is trained, select **Test models** from the left menu. Then select **+ Create test**.
 
@@ -62,12 +61,12 @@ Follow these instructions to create a test:
 
 To create a test, use the `spx csr evaluation create` command. Construct the request parameters according to the following instructions:
 
-- Set the `project` parameter to the ID of an existing project. This parameter is recommended so that you can also view the test in Speech Studio. You can run the `spx csr project list` command to get available projects.
-- Set the required `model1` parameter to the ID of a model that you want to test.
-- Set the required `model2` parameter to the ID of another model that you want to test. If you don't want to compare two models, use the same model for both `model1` and `model2`.
-- Set the required `dataset` parameter to the ID of a dataset that you want to use for the test.
-- Set the `language` parameter, otherwise the Speech CLI sets "en-US" by default. This parameter should be the locale of the dataset contents. The locale can't be changed later. The Speech CLI `language` parameter corresponds to the `locale` property in the JSON request and response.
-- Set the required `name` parameter. This parameter is the name that is displayed in the Speech Studio. The Speech CLI `name` parameter corresponds to the `displayName` property in the JSON request and response.
+- Set the `project` property to the ID of an existing project. This property is recommended so that you can also view the test in the [Azure AI Foundry portal](https://ai.azure.com). You can run the `spx csr project list` command to get available projects.
+- Set the required `model1` property to the ID of a model that you want to test.
+- Set the required `model2` property to the ID of another model that you want to test. If you don't want to compare two models, use the same model for both `model1` and `model2`.
+- Set the required `dataset` property to the ID of a dataset that you want to use for the test.
+- Set the `language` property, otherwise the Speech CLI sets "en-US" by default. This parameter should be the locale of the dataset contents. The locale can't be changed later. The Speech CLI `language` property corresponds to the `locale` property in the JSON request and response.
+- Set the required `name` property. This parameter is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com). The Speech CLI `name` property corresponds to the `displayName` property in the JSON request and response.
 
 Here's an example Speech CLI command that creates a test:
 
@@ -142,12 +141,12 @@ spx help csr evaluation
 
 To create a test, use the [Evaluations_Create](/rest/api/speechtotext/evaluations/create) operation of the [Speech to text REST API](rest-speech-to-text.md). Construct the request body according to the following instructions:
 
-- Set the `project` property to the URI of an existing project. This property is recommended so that you can also view the test in Speech Studio. You can make a [Projects_List](/rest/api/speechtotext/projects/list) request to get available projects.
+- Set the `project` property to the URI of an existing project. This property is recommended so that you can also view the test in the [Azure AI Foundry portal](https://ai.azure.com). You can make a [Projects_List](/rest/api/speechtotext/projects/list) request to get available projects.
 - Set the required `model1` property to the URI of a model that you want to test. 
 - Set the required `model2` property to the URI of another model that you want to test. If you don't want to compare two models, use the same model for both `model1` and `model2`.
 - Set the required `dataset` property to the URI of a dataset that you want to use for the test.
 - Set the required `locale` property. This property should be the locale of the dataset contents. The locale can't be changed later.
-- Set the required `displayName` property. This property is the name that is displayed in the Speech Studio.
+- Set the required `displayName` property. This property is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com).
 
 Make an HTTP POST request using the URI as shown in the following example. Replace `YourSubscriptionKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
 
@@ -256,7 +255,7 @@ This page lists all the utterances in your dataset and the recognition results, 
 
 To get test results, use the `spx csr evaluation status` command. Construct the request parameters according to the following instructions:
 
-- Set the required `evaluation` parameter to the ID of the evaluation that you want to get test results.
+- Set the required `evaluation` property to the ID of the evaluation that you want to get test results.
 
 Here's an example Speech CLI command that gets test results:
 
