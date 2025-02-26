@@ -155,7 +155,16 @@
             "redirect_url": "/azure/ai-foundry/reference/region-support",
             "redirect_document_id": true
         },
-
+        {
+            "source_path_from_root": "/articles/ai-studio/index",
+            "redirect_url": "/azure/ai-foundry/index",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/faq.md",
+            "redirect_url": "/azure/ai-foundry/faq",
+            "redirect_document_id": true
+        },
 
         {
             "source_path_from_root": "/articles/ai-studio/responsible-use-of-ai-overview.md",

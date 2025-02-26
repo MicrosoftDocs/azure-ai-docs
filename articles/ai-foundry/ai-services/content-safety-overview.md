@@ -46,4 +46,4 @@ Refer to the [Content Safety overview](/azure/ai-services/content-safety/overvie
 
 ## Next step
 
-Get started using Azure AI Content Safety in [Azure AI Foundry portal](https://ai.azure.com) by following the [How-to guide](./how-to/content-safety.md).
+Get started using Azure AI Content Safety in [Azure AI Foundry portal](https://ai.azure.com) by following the [How-to guide](/azure/ai-services/content-safety/how-to/foundry).

@@ -100,7 +100,7 @@ Here are a few guides to help you get started with Azure OpenAI Service playgrou
 - [Quickstart: Use the chat playground](../../quickstarts/get-started-playground.md)
 - [Quickstart: Get started using Azure OpenAI Assistants](../../../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context)
 - [Quickstart: Use GPT-4o in the real-time audio playground](../../../ai-services/openai/realtime-audio-quickstart.md?context=/azure/ai-studio/context/context)
-- [Quickstart: Analyze images and video in the chat playground](../../quickstarts/multimodal-vision.md)
+- [Quickstart: Analyze images and video in the chat playground](/azure/ai-services/openai/gpt-v-quickstart)
 
 Each playground has different model requirements and capabilities. The supported regions vary depending on the model. For more information about model availability per region, see the [Azure OpenAI Service models documentation](../../../ai-services/openai/concepts/models.md).
 
@@ -145,5 +145,5 @@ At some point, you want to develop apps with code. Here are some developer resou
 
 ## Related content
 
-- [Azure OpenAI in Azure AI Foundry portal](../../azure-openai-in-ai-studio.md)
+- [Azure OpenAI in Azure AI Foundry portal](../../azure-openai-in-ai-foundry.md)
 - [Use Azure AI services resources](./connect-ai-services.md)
