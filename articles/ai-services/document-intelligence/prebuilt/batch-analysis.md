@@ -1,119 +1,140 @@
 ---
 title: "Batch analysis and processing"
 titleSuffix: Azure AI services
-description: Learn about the Document Intelligence Batch analysis API 
+description: Learn about the Document Intelligence Batch analysis API
 author: laujan
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 02/07/2025
+ms.date: 02/25/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---
 
-# Document Intelligence batch analysis 
+# Document Intelligence batch analysis
 
-The batch analysis API allows you to bulk process multiple documents using one asynchronous request. Rather than having to submit documents individually and track multiple request IDs, you can analyze a collection of documents like invoices, a series of loan documents, or a group of custom documents simultaneously. The batch API supports reading the documents from Azure blob storage and writing the results to blob storage.
+The batch analysis API allows you to bulk process up to 10,000 documents using one request. Instead of analyzing documents one by one and keeping track of their respective request IDs, you can simultaneously analyze a collection of documents like invoices, loan papers, or custom documents. The input documents must be stored in an Azure blob storage container. Once the documents are processed, the API writes the results to a specified storage container.
 
-* To utilize batch analysis, you need an Azure Blob storage account with specific containers for both your source documents and the processed outputs.
-* Upon completion, the batch operation result lists all of the individual documents processed with their status, such as `succeeded`, `skipped`, or `failed`.
-* The Batch API preview version is available via pay-as-you-go pricing.
+## Batch analysis limits
 
-## Batch analysis guidance
-
-* The maximum number of documents processed per single batch analyze request (including skipped documents) is 10,000.
-
-* Operation results are retained for 24 hours after completion. The documents and results are in the storage account provided, but operation status is no longer available 24 hours after completion.
-
-Ready to get started?
+* The maximum number of document files that can be in a single batch request is 10,000.
+* Batch operation results are retained for 24 hours after completion. The batch operation status is no longer available 24 hours after batch processing is completed. The input documents and respective result files remain in the storage containers provided.
 
 ## Prerequisites
 
-* You need an active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* An active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
 
-* Once you have your Azure subscription A [Document Intelligence](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) instance in the Azure portal. You can use the free pricing tier (`F0`) to try the service.
+*  A [Document Intelligence Azure Resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer): once you have your Azure subscription, create a Document Intelligence resource in the Azure portal. You can use the free pricing tier (F0) to try the service. After your resource is deployed, select **"Go to resource"** to retrieve your **key** and **endpoint**. You need the resource key and endpoint to connect your application to the Document Intelligence service. You can also find these values on the **Keys and Endpoint** page in Azure portal.
 
-* After your resource deploys, select **Go to resource** and retrieve your key and endpoint.
+*  An [Azure Blob Storage account](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). [Create two containers](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container) in your Azure Blob Storage account for your source and result files:
 
-  * You need the key and endpoint from the resource to connect your application to the Document Intelligence service. You paste your key and endpoint into the code later in the quickstart. You can find these values on the Azure portal **Keys and Endpoint** page.
-
-* An [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). You'll [**create containers**](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container) in your Azure Blob Storage account for your source and result files:
-
-  * **Source container**. This container is where you upload your files for analysis (required).
-  * **Result container**. This container is where your processed files are stored (optional).
-
-You can designate the same Azure Blob Storage container for source and processed documents. However, to minimize potential chances of accidentally overwriting data, we recommend choosing separate containers.
+     * **Source container**: This container is where you upload document files for analysis.
+     * **Result container**: This container is where results from the batch analysis API are stored.
 
 ### Storage container authorization
 
-You can choose one of the following options to authorize access to your Document resource.
+To allow the API to process documents and write results in your Azure storage containers, you must authorize using one of the following two options:
 
-**✔️ Managed Identity**. A managed identity is a service principal that creates a Microsoft Entra identity and specific permissions for an Azure managed resource. Managed identities enable you to run your Document Intelligence application without having to embed credentials in your code. Managed identities are a safer way to grant access to storage data and replace the requirement for you to include shared access signature tokens (SAS) with your source and result URLs.
 
-To learn more, *see* [Managed identities for Document Intelligence](../authentication/managed-identities.md).
+**✔️ Managed Identity**. A managed identity is a service principal that creates a Microsoft Entra identity and specific permissions for an Azure managed resource. Managed identities enable you to run your Document Intelligence application without having to embed credentials in your code, a safer way to grant access to storage data without including access signature tokens (SAS) in your code.
 
-  :::image type="content" source="../media/managed-identities/rbac-flow.png" alt-text="Screenshot of managed identity flow (role-based access control).":::
+Review [Managed identities for Document Intelligence](../authentication/managed-identities.md) to learn how to enable a managed identity for your resource and grant it access to your storage container.
 
 > [!IMPORTANT]
 >
-> * When using managed identities, don't include a SAS token URL with your HTTP requests—your requests will fail. Using managed identities replaces the requirement for you to include shared access signature tokens (SAS).
+> When using managed identities, don't include a SAS token URL with your HTTP requests. Using managed identities replaces the requirement for you to include shared access signature tokens (SAS).
 
-**✔️ Shared Access Signature (SAS)**. A shared access signature is a URL that grants restricted access for a specified period of time to your Document Intelligence service. To use this method, you need to create Shared Access Signature (SAS) tokens for your source and result containers. The source and result containers must include a Shared Access Signature (SAS) token, appended as a query string. The token can be assigned to your container or specific blobs.
 
-:::image type="content" source="../media/sas-tokens/sas-url-token.png" alt-text="Screenshot of storage URI with SAS token appended.":::
+**✔️ Shared Access Signature (SAS)**. A shared access signature is a URL that grants restricted access to your storage container. To use this method, create Shared Access Signature (SAS) tokens for your source and result containers. Go to the storage container in Azure portal and select **"Shared access tokens"** to generate SAS token and URL.
 
-* Your **source** container or blob must designate **read**, **write**, **list**, and **delete** access.
-* Your **result** container or blob must designate **write**, **list**, **delete** access.
+* Your **source** container or blob must designate **read**, **write**, **list**, and **delete** permissions.
+* Your **result** container or blob must designate **write**, **list**, **delete** permissions.
 
-To learn more, *see* [**Create SAS tokens**](../authentication/create-sas-tokens.md).
+:::image type="content" source="../media/sas-tokens/sas-permissions.png" alt-text="Screenshot that shows the SAS permission fields in the Azure portal.":::
+
+Review [**Create SAS tokens**](../authentication/create-sas-tokens.md) to learn more about generating SAS tokens and how they work.
 
 ## Calling the batch analysis API
 
-* Specify the Azure Blob Storage container URL for your source document set within the `azureBlobSource` or `azureBlobFileListSource` objects.
+### 1. Specify the input files
 
-### Specify the input files
+The batch API supports two options for specifying the files to be processed.
 
-The batch API supports two options for specifying the files to be processed. If you need all files in a container or folder processed, and the number of files is less than the 10000 limit for a single batch request, use the ```azureBlobSource``` container. 
+* If you want to process all the files in a container or a folder, and the number of files is less than the 10000 limit, use the ```azureBlobSource``` object in your request.
 
-If you have specific files in the container or folder to process or the number of files to be processed is over the max limit for a single batch, use the ```azureBlobFileListSource```. Split the dataset into multiple batches and add a file with the list of files to be processed in a JSONL format in the root folder of the container. An example of the file list format is.
+    ```bash
+    POST /documentModels/{modelId}:analyzeBatch
 
-```JSON
-{"file": "Adatum Corporation.pdf"}
-{"file": "Best For You Organics Company.pdf"}
-```
-### Specify the results location
+    {
+      "azureBlobSource": {
+        "containerUrl": "https://myStorageAccount.blob.core.windows.net/myContainer?mySasToken",
+        ...
+      },
+     ...
+    }
 
-Specify the Azure Blob Storage container URL for your batch analysis results using `resultContainerUrl`. To avoid accidental overwriting, we recommend using separate containers for source and processed documents.
+    ```
 
-Set the ```overwriteExisting``` boolean property to false if you don't want any existing results with the same file names overwritten. This setting doesn't affect the billing and only prevents results from being overwritten after the input file is processed.
+* If you don't want to process all the files in a container or folder, but rather specific files in that container or folder, use the ```azureBlobFileListSource``` object. This operation requires a File List JSONL file which lists the files to be processed. Store the JSONL file in the root folder of the container. Here's an example JSONL file with two files listed:
 
-Set the ```resultPrefix``` to namespace the results from this run of the batch API. 
+  ```json
+  {"file": "Adatum Corporation.pdf"}
+  {"file": "Best For You Organics Company.pdf"}
+  ```
 
-  * If you plan to use the same container for both input and output, set `resultContainerUrl` and `resultPrefix` to match your input `azureBlobSource`.
-  * When using the same container, you can include the `overwriteExisting` field to decide whether to overwrite any files with the analysis result files.
+Use a file list `JSONL` file with the following conditions:
 
-## Build and run the POST request
+  * When you need to process specific files instead of all files in a container;
+  * When the total number of files in the input container or folder exceeds the 10,000 file batch processing limit;
+  * When you want more control over which files get processed in each batch request;
 
-Before you run the POST request, replace {your-source-container-SAS-URL} and {your-result-container-SAS-URL} with the values from your Azure Blob storage container instances.
+   ```bash
+   POST /documentModels/{modelId}:analyzeBatch
 
-The following sample shows how to add the ```azureBlobSource``` property to the request:
+   {
+     "azureBlobFileListSource": {
+       "containerUrl": "https://myStorageAccount.blob.core.windows.net/myContainer?mySasToken",
+       "fileList": "myFileList.jsonl"
+       ...
+     },
+     ...
+   }
 
-**Allow only one either `azureBlobSource` or `azureBlobFileListSource`.**
+   ```
 
+A container URL or a container SAS URL is required in both options. Use container URL if using managed Identity to access your storage container. If you're using Shared Access Signature (SAS), use a SAS URL.
+
+
+### 2. Specify the results location
+
+* Specify the Azure Blob Storage container URL (or container SAS URL) for where you want your results to be stored using `resultContainerURL` parameter. We recommend using separate containers for source and results to prevent accidental overwriting.
+
+* Set the `overwriteExisting` Boolean property to `False` and prevent overwriting any existing results for the same document. If you'd like to overwrite any existing results, set the Boolean to `True`. You're still billed for processing the document even if any existing results aren't overwritten.
+
+* Use `resultPrefix` to group and store results in a specific container folder.
+
+
+### 3. Build and run the POST request
+
+Remember to replace the following sample container URL values with real values from your Azure Blob storage containers.
+
+This example shows a POST request with `azureBlobSource` input
 ```bash
 POST /documentModels/{modelId}:analyzeBatch
 
 {
   "azureBlobSource": {
     "containerUrl": "https://myStorageAccount.blob.core.windows.net/myContainer?mySasToken",
-    "prefix": "trainingDocs/"
+    "prefix": "inputDocs/"
   },
   "resultContainerUrl": "https://myStorageAccount.blob.core.windows.net/myOutputContainer?mySasToken",
-  "resultPrefix": "layoutresult/",
+  "resultPrefix": "batchResults/",
   "overwriteExisting": true
 }
 
 ```
-The following sample shows how to add the ```azureBlobFileListSource``` property to the request:
+
+This example shows a POST request with `azureBlobFileListSource` and a file list input
+
 
 ```bash
 POST /documentModels/{modelId}:analyzeBatch
@@ -124,22 +145,23 @@ POST /documentModels/{modelId}:analyzeBatch
       "fileList": "myFileList.jsonl"
     },
   "resultContainerUrl": "https://myStorageAccount.blob.core.windows.net/myOutputContainer?mySasToken",
-  "resultPrefix": "customresult/",
+  "resultPrefix": "batchResults/",
   "overwriteExisting": true
 }
 
 ```
 
-***Successful response***
+Here's an example **successful** response
 
 ```bash
 202 Accepted
 Operation-Location: /documentModels/{modelId}/analyzeBatchResults/{resultId}
 ```
 
-## Retrieve batch analysis API results
+### 4. Retrieve API results
 
-After the Batch API operation is executed, you can retrieve the batch analysis results using the`GET` operation. This operation fetches operation status information, operation completion percentage, and operation creation and update date/time.
+Use the `GET` operation to retrieve batch analysis results after the POST operation is executed. The GET operation fetches status information, batch completion percentage, and operation creation and update date/time. This information is **only retained for 24 hours** after the batch analysis is completed.
+
 
 ```bash
 GET /documentModels/{modelId}/analyzeBatchResults/{resultId}
@@ -154,99 +176,101 @@ GET /documentModels/{modelId}/analyzeBatchResults/{resultId}
 }
 ```
 
-## Interpreting status messages
+### 5. Interpret status messages
 
-For each document a set, there a status is assigned, either `succeeded`, `failed`, or `skipped`. For each document, there are two URLs provided to validate the results: `sourceUrl`, which is the source blob storage container for your succeeded input document, and `resultUrl`, which is constructed by combining `resultContainerUrl` and`resultPrefix` to create the relative path for the source file and `.ocr.json`.
+For each document processed, a status is assigned, either `succeeded`, `failed`, `running`, `notStarted`, or `skipped`. A source URL, which is the source blob storage container for the input document, is provided.
 
 * Status `notStarted` or `running`. The batch analysis operation isn't initiated or isn't completed. Wait until the operation is completed for all documents.
 
 * Status `completed`. The batch analysis operation is finished.
 
-* Status `failed`. The batch operation failed. This response usually occurs if there are overall issues with the request. Failures on individual files are returned in the batch report response, even if all the files failed. For example, storage errors don't halt the batch operation as a whole, so that you can access partial results via the batch report response.
+* Status `succeeded`. The batch operation was successful, and input document was processed. The results are available at `resultUrl`, which is created by combining `resultContainerUrl`, `resultPrefix`, `input filename`, and `.ocr.json` extension. **Only files that have succeeded have the property `resultUrl`**.
 
-Only files that have a `succeeded` status have the property `resultUrl` generated in the response. This enables model training to detect file names that end with `.ocr.json` and identify them as the only files that can be used for training.
+  Example of a `succeeded` status response:
 
-Example of a `succeeded` status response:
 
-```bash
-[
-  "result": {
-    "succeededCount": 0,
-    "failedCount": 2,
-    "skippedCount": 2,
-    "details": [
-      {
-        "sourceUrl": "https://{your-source-container}/myContainer/trainingDocs/file2.jpg",
-        "status": "failed",
-        "error": {
-          "code": "InvalidArgument",
-          "message": "Invalid argument.",
-          "innererror": {
-            "code": "InvalidSasToken",
-            "message": "The shared access signature (SAS) is invalid: {details}"
-                   }
-               }
-          }
-      ]
-   }
-]
-...
-```
+  ```bash
+  {
+      "resultId": "myresultId-",
+      "status": "succeeded",
+      "percentCompleted": 100,
+      "createdDateTime": "2025-01-01T00:00:000",
+      "lastUpdatedDateTime": "2025-01-01T00:00:000",
+      "result": {
+          "succeededCount": 10,000,
+          "failedCount": 0,
+          "skippedCount": 0,
+          "details": [
+              {
+                  "sourceUrl": "https://{your-source-container}/inputFolder/document1.pdf",
+                  "resultUrl": "https://{your-result-container}/resultsFolder/document1.pdf.ocr.json",
+                  "status": "succeeded"
+              },
+            ...
+              {
+                  "sourceUrl": "https://{your-source-container}/inputFolder/document10000.pdf",
+                  "resultUrl": "https://{your-result-container}/resultsFolder/document10000.pdf.ocr.json",
+                  "status": "succeeded"
+              }
+         ]
 
-Example of a `failed` status response:
+       }
+  }
+  ```
 
-* This error is only returned if there are errors in the overall batch request.
-* Once the batch analysis operation is started, individual document operation status doesn't affect the status of the overall batch job, even if all the files have the status `failed`.
+* Status `failed`. This error is only returned if there are errors in the overall batch request. Once the batch analysis operation starts, the individual document operation status doesn't affect the status of the overall batch job, even if all the files have the status `failed`.
 
-```bash
-[
-    "result": {
-    "succeededCount": 0,
-    "failedCount": 2,
-    "skippedCount": 2,
-    "details": [
-        "sourceUrl": "https://{your-source-container}/myContainer/trainingDocs/file2.jpg",
-        "status": "failed",
-        "error": {
-            "code": "InvalidArgument",
-            "message": "Invalid argument.",
-            "innererror": {
-              "code": "InvalidSasToken",
-              "message": "The shared access signature (SAS) is invalid: {details}"
+    Example of a `failed` status response:
+
+    ```bash
+    [
+        "result": {
+        "succeededCount": 0,
+        "failedCount": 2,
+        "skippedCount": 0,
+        "details": [
+            "sourceUrl": "https://{your-source-container}/inputFolder/document1.jpg",
+            "status": "failed",
+            "error": {
+                "code": "InvalidArgument",
+                "message": "Invalid argument.",
+                "innererror": {
+                  "code": "InvalidSasToken",
+                  "message": "The shared access signature (SAS) is invalid: {details}"
+                    }
                 }
-            }
-        ]
-    }
-]
-...
-```
+            ]
+        }
+    ]
+    ...
+    ```
 
-Example of `skipped` status response:
+* Status `skipped`: Typically, this status happens when output for the document is already present in the specified output folder and the `overwriteExisting` Boolean property is set to `false`.
 
-```bash
-[
-    "result": {
-    "succeededCount": 3,
-    "failedCount": 0,
-    "skippedCount": 2,
-    "details": [
-        ...
-        "sourceUrl": "https://myStorageAccount.blob.core.windows.net/myContainer/trainingDocs/file4.jpg",
-        "status": "skipped",
-        "error": {
-            "code": "OutputExists",
-            "message": "Analysis skipped because result file {path} already exists."
-             }
-        ]
-    }
-]
-...
-```
+  Example of `skipped` status response:
 
-The batch analysis results help you identify which files are successfully analyzed and validate the analysis results by comparing the file in the `resultUrl` with the output file in the `resultContainerUrl`.
+   ```bash
+   [
+       "result": {
+       "succeededCount": 3,
+       "failedCount": 0,
+       "skippedCount": 2,
+       "details": [
+           ...
+           "sourceUrl": "https://{your-source-container}/inputFolder/document1.pdf",
+           "status": "skipped",
+           "error": {
+               "code": "OutputExists",
+               "message": "Analysis skipped because result file https://{your-result-container}/resultsFolder/document1.pdf.ocr.json already exists."
+                }
+           ]
+       }
+   ]
+   ...
+   ```
 
-> [!NOTE]
-> Analysis results aren't returned for individual files until the entire document set batch analysis is completed. To track detailed progress beyond `percentCompleted`, you can monitor `*.ocr.json` files as they are written into the `resultContainerUrl`.
+  > [!NOTE]
+  > Analysis results aren't returned for individual files until analysis for the entire batch is completed. To track detailed progress beyond `percentCompleted`, you can monitor `*.ocr.json` files as they're written into the    `resultContainerUrl`.
 
 ## Next steps
 
