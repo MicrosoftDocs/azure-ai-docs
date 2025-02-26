@@ -31,7 +31,7 @@ With Azure AI Foundry, you can explore a wide variety of models, services and ca
 When you come to the Azure AI Foundry portal, you find that all paths lead to a project. Projects are easy-to-manage containers for your work—and the key to collaboration, organization, and connecting data and other services. Before you create your first project, you can explore models from many providers, and try out AI services and capabilities. When you're ready to move forward with a model or service, Azure AI Foundry guides you to create a project. Once you are in a project, all of the Azure AI capabilities come to life.
 
 > [!NOTE]
-> If you want to focus only on Azure OpenAI models and capabilities, we have a place where you can work with your Azure OpenAI resource instead of a project. For more information, see [What is Azure OpenAI in Azure AI Foundry?](azure-openai-in-ai-studio.md). However, for most situations, we recommend an Azure AI Foundry project to build with a wide range of AI models, functionalities and tools as you build, test, and deploy AI solutions.
+> If you want to focus only on Azure OpenAI models and capabilities, we have a place where you can work with your Azure OpenAI resource instead of a project. For more information, see [What is Azure OpenAI in Azure AI Foundry?](azure-openai-in-ai-foundry.md). However, for most situations, we recommend an Azure AI Foundry project to build with a wide range of AI models, functionalities and tools as you build, test, and deploy AI solutions.
 
 ## Work in an Azure AI Foundry project
 
@@ -78,7 +78,7 @@ Azure AI Foundry is available in most regions where Azure AI services are availa
 
 ## How to get access
 
-You can [explore Azure AI Foundry portal (including the model catalog)](./how-to/model-catalog.md) without signing in. 
+You can [explore Azure AI Foundry portal (including the model catalog)](./how-to/model-catalog-overview.md) without signing in. 
 
 But for full functionality there are some requirements:
 

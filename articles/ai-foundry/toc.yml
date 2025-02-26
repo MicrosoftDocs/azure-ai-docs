@@ -167,7 +167,7 @@ items:
       href: ai-services/how-to/connect-ai-services.md
       displayName: cognitive,task
     - name: What are Azure AI services?
-      href: concepts/what-are-ai-services.md
+      href: /azure/ai-services/what-are-ai-services
     - name: Azure OpenAI
       items:
       - name: Deploy Azure OpenAI models

@@ -43,15 +43,15 @@ Welcome to what's new in the Azure AI Services docs for January 2025. This artic
 
 ### New articles
 
-- [Audit and manage Azure AI Foundry hubs and projects](../ai-studio/how-to/azure-policy.md)
-- [Continuously monitor your generative AI applications](../ai-studio/how-to/monitor-applications.md)
-- [How to use Codestral chat model](../ai-studio/how-to/deploy-models-mistral-codestral.md)
-- [How to use DeepSeek-R1 reasoning model](../ai-studio/how-to/deploy-models-deepseek.md)
-- [How to use Gretel Navigator chat model](../ai-studio/how-to/deploy-models-gretel-navigator.md)
+- [Audit and manage Azure AI Foundry hubs and projects](../ai-foundry/how-to/azure-policy.md)
+- [Continuously monitor your generative AI applications](../ai-foundry/how-to/monitor-applications.md)
+- [How to use Codestral chat model](../ai-foundry/how-to/deploy-models-mistral-codestral.md)
+- [How to use DeepSeek-R1 reasoning model](../ai-foundry/how-to/deploy-models-deepseek.md)
+- [How to use Gretel Navigator chat model](../ai-foundry/how-to/deploy-models-gretel-navigator.md)
 
 ### Updated articles
 
-- [How to use Phi-4 family chat models](../ai-studio/how-to/deploy-models-phi-4.md)
+- [How to use Phi-4 family chat models](../ai-foundry/how-to/deploy-models-phi-4.md)
 
 ## Azure Machine Learning
 

@@ -216,7 +216,7 @@ For more information on assigning roles, see [Tutorial: Grant a user access to r
 
 ## Use your data in Azure AI Foundry portal  
 
-Now, the data you add to Azure AI Foundry is secured to the isolated network provided by your Azure AI Foundry hub and project. For an example of using data, visit the [build a question and answer copilot](../tutorials/deploy-copilot-ai-foundry.md) tutorial.
+Now, the data you add to Azure AI Foundry is secured to the isolated network provided by your Azure AI Foundry hub and project. For an example of using data, visit the [build a question and answer copilot](../tutorials/copilot-sdk-build-rag.md) tutorial.
 
 ## Deploy web apps
 

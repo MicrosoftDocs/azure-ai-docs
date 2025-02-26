@@ -86,7 +86,7 @@ Yes, you can disable the autoscale feature through Azure portal or CLI and retur
 
 ## Next steps
 
-* [Plan and Manage costs for Azure AI services](../ai-studio/how-to/costs-plan-manage.md).
+* [Plan and Manage costs for Azure AI services](../ai-foundry/how-to/costs-plan-manage.md).
 * [Optimize your cloud investment with Microsoft Cost Management](/azure/cost-management-billing/costs/cost-mgt-best-practices?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 * Learn about how to [prevent unexpected costs](/azure/cost-management-billing/cost-management-billing-overview?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 * Take the [Cost Management](/training/paths/control-spending-manage-bills?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) guided learning course.

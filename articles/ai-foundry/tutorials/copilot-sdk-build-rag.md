@@ -177,9 +177,9 @@ Follow the link in the console output to see the telemetry data in your Applicat
 
 To avoid incurring unnecessary Azure costs, you should delete the resources you created in this tutorial if they're no longer needed. To manage resources, you can use the [Azure portal](https://portal.azure.com?azure-portal=true).
 
-But don't delete them yet, if you want to deploy your chat app to Azure in [the next part of this tutorial series](copilot-sdk-evaluate-deploy.md).
+But don't delete them yet, if you want to deploy your chat app to Azure in [the next part of this tutorial series](copilot-sdk-evaluate.md).
 
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Part 3: Evaluate your chat app to Azure](copilot-sdk-evaluate-deploy.md)
+> [Part 3: Evaluate your chat app to Azure](copilot-sdk-evaluate.md)

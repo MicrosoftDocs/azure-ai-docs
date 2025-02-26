@@ -50,7 +50,7 @@ landingContent:
       - linkListType: how-to-guide
         links:
           - text: Select and deploy models from the catalog
-            url: how-to/model-catalog.md
+            url: how-to/model-catalog-overview.md
           - text: Compare benchmarks across models and datasets
             url: how-to/benchmark-model-in-catalog.md
           - text: What is Azure AI Agent service?
