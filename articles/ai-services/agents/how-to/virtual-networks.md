@@ -196,6 +196,9 @@ For example, your connection string might look something like:
 
 Set this connection string as an environment variable named `PROJECT_CONNECTION_STRING`.
 
+> [!NOTE]
+> The following code sample shows creating an agent uisng Python. See the [quickstart](../quickstart.md) for examples in other programming languages.
+
 ```python
 import os
 from azure.ai.projects import AIProjectClient
