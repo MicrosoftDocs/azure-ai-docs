@@ -13,17 +13,9 @@ ms.date: 02/26/2025
 
 # Add faceted navigation to a search app
 
-Faceted navigation is used for self-directed drilldown filtering on query results in a search app, where your application offers form controls for scoping search to groups of documents (for example, categories or brands), and Azure AI Search provides the data structures and filters to back the experience. 
+Faceted navigation is used for self-directed drill-down filtering on query results in a search app, where your application offers form controls for scoping search to groups of documents (for example, categories or brands), and Azure AI Search provides the data structures and filters to back the experience. 
 
 In this article, learn how to create a faceted navigation structure in Azure AI Search.
-
-<!-- > [!div class="checklist"]
-> * Set field attributes in the index
-> * Structure the request and response
-> * Add navigation controls and filters in the presentation layer
-
-Code in the presentation layer does the heavy lifting in a faceted navigation experience. The demos and samples listed at the end of this article provide working code that shows you how to bring everything together.
- -->
 
 ## Faceted navigation in a search page
 
@@ -39,9 +31,9 @@ Facets can help you find what you're looking for, while ensuring that you don't 
 
 Facets are enabled on a field-by-field basis in an index definition when you set the "facetable" attribute to true.
 
-Although it's not strictly required, you should also set the "filterable" attribute so that you can build the necessary filters that back the faceted navigation experience in your search application.
+Although it's not strictly required, it's a best practice to also set the "filterable" attribute so that you can build the necessary filters that back the faceted navigation experience in your search application.
 
-The following example of the "hotels" sample index shows "facetable" and "filterable" on low cardinality fields that contain single values or short phrases: "Category", "Tags", "Rating".
+The following example of the hotels sample index shows "facetable" and "filterable" on low cardinality fields that contain single values or short phrases: "Category", "Tags", "Rating".
 
 ```json
 {
@@ -62,28 +54,30 @@ The following example of the "hotels" sample index shows "facetable" and "filter
 
 Facets can be calculated over single-value fields and collections. Fields that work best in faceted navigation have these characteristics:
 
+* Human readable (nonvector) content
+
 * Low cardinality (a small number of distinct values that repeat throughout documents in your search corpus)
 
 * Short descriptive values (one or two words) that render nicely in a navigation tree
 
 The values within a field, and not the field name itself, produce the facets in a faceted navigation structure. If the facet is a string field named *Color*, facets are blue, green, and any other value for that field.
 
-You can't use `Edm.GeographyPoint` or `Collection(Edm.GeographyPoint)` fields in faceted navigation. Facets work best on fields with low cardinality. Due to the resolution of geo-coordinates, it's rare that any two sets of coordinates are equal in a given dataset. As such, facets aren't supported for geo-coordinates. You should use a city or region field to facet by location.
+You can't use `Edm.GeographyPoint` or `Collection(Edm.GeographyPoint)` fields in faceted navigation. Recall that facets work best on fields with low cardinality. Due to the resolution of geo-coordinates, it's rare that any two sets of coordinates are equal in a given dataset. As such, facets aren't supported for geo-coordinates. You should use a city or region field to facet by location.
 
-> [!TIP]
-> As a best practice for performance and storage optimization, turn faceting off for fields that should never be used as a facet. In particular, string fields for unique values, such as an ID or product name, should be set to `"facetable": false` to prevent their accidental (and ineffective) use in faceted navigation. This is especially true for the REST API that enables filters and facets by default.
+As a best practice for performance and storage optimization, turn faceting off for fields that should never be used as a facet. In particular, string fields for unique values, such as an ID or product name, should be set to `"facetable": false` to prevent their accidental (and ineffective) use in faceted navigation. This is especially true for the REST API that enables filters and facets on string fields by default.
 
-As a best practice, check fields for null values, misspellings or case discrepancies, and single and plural versions of the same word. By default, filters and facets don't undergo lexical analysis or [spell check](speller-how-to-add.md), which means that all values of a "facetable" field are potential facets, even if the words differ by one character. Optionally, you can [assign a normalizer](search-normalizers.md) to a "filterable" and "facetable" field to smooth out variations in casing and characters.
+In your code, check fields for null values, misspellings or case discrepancies, and single and plural versions of the same word. By default, filters and facets don't undergo lexical analysis or [spell check](speller-how-to-add.md), which means that all values of a "facetable" field are potential facets, even if the words differ by one character. Optionally, you can [assign a normalizer](search-normalizers.md) to a "filterable" and "facetable" field to smooth out variations in casing and characters.
 
 ### Defaults in REST and Azure SDKs
 
-If you're using one of the Azure SDKs, your code must explicitly set the field attributes. In contrast, the REST API has defaults for field attributes based on the [data type](/rest/api/searchservice/supported-data-types). The following data types are "filterable" and "facetable" by default:
+If you're using one of the Azure SDKs, your code must explicitly set the "facetable" attribute on a field.
 
-* `Edm.String`
-* `Edm.DateTimeOffset`
-* `Edm.Boolean`
-* `Edm.Int32`, `Edm.Int64`, `Edm.Double`
-* Collections of any of the above types, for example `Collection(Edm.String)` or `Collection(Edm.Double)`
+The REST API has defaults for field attributes based on the [data type](/rest/api/searchservice/supported-data-types). The following data types are "filterable" and "facetable" by default:
+
+* `Edm.String` and `Collection(Edm.String)`
+* `Edm.DateTimeOffset` and `Collection(Edm.DateTimeOffset)`
+* `Edm.Boolean` and`Collection(Edm.Boolean)`
+* `Edm.Int32`, `Edm.Int64`, `Edm.Double` and their collection equivalents
 
 ## Facet request and response
 
@@ -205,35 +199,6 @@ Here's another example from the hotels sample. The following code snippet adds `
 ```csharp
 if (!String.IsNullOrEmpty(categoryFacet))
     filter = $"category eq '{categoryFacet}'";
-```
-
-### HTML for faceted navigation
-
-The following example, taken from the `index.cshtml` file of the NYCJobs sample application, shows the static HTML structure for displaying faceted navigation on the search results page. The list of facets is built or rebuilt dynamically when you submit a search term, or select or clear a facet.
-
-```html
-<div class="widget sidebar-widget jobs-filter-widget">
-  <h5 class="widget-title">Filter Results</h5>
-    <p id="filterReset"></p>
-    <div class="widget-content">
-
-      <h6 id="businessTitleFacetTitle">Business Title</h6>
-      <ul class="filter-list" id="business_title_facets">
-      </ul>
-
-      <h6>Location</h6>
-      <ul class="filter-list" id="posting_type_facets">
-      </ul>
-
-      <h6>Posting Type</h6>
-      <ul class="filter-list" id="posting_type_facets"></ul>
-
-      <h6>Minimum Salary</h6>
-      <ul class="filter-list" id="salary_range_facets">
-      </ul>
-
-  </div>
-</div>
 ```
 
 ### Build HTML dynamically
