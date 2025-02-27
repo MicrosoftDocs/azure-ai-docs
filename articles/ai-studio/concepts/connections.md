@@ -17,7 +17,7 @@ author: sdgilley
 
 # Connections in Azure AI Foundry portal
 
-Connections in Azure AI Foundry portal are a way to authenticate and consume both Microsoft and non-Microsoft resources within your Azure AI Foundry projects. For example, connections can be used for prompt flow, training data, and deployments. [Connections can be created](../how-to/connections-add.md) exclusively for one project or shared with all projects in the same hub. 
+Connections in [Azure AI Foundry](https://ai.azure.com) are a way to authenticate and consume both Microsoft and non-Microsoft resources within your Azure AI Foundry projects. For example, connections can be used for prompt flow, training data, and deployments. [Connections can be created](../how-to/connections-add.md) exclusively for one project or shared with all projects in the same hub. 
 
 ## Connections to Azure AI services
 
