@@ -136,7 +136,7 @@ See the following list for the input requirements for each feature.
 - **Groundedness detection API (preview)**: 
   - Maximum length for grounding sources: 55,000 characters (per API call).
   - Maximum text and query length: 7,500 characters.
-  - Minimum text and query length: 3 words.
+  - Minimum query length: 3 words.
 - **Protected material detection APIs**: 
   - Default maximum length: 10K characters.
   - Default minimum length: 110 characters (for scanning LLM completions, not user prompts).
