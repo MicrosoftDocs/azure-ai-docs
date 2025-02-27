@@ -247,9 +247,9 @@ The default syntax is [simple syntax](query-simple-syntax.md), but if you want f
 }
 ```
 
-Misspelled query terms, like `seatle` instead of `Seattle`, don't return matches in a typical search. The `queryType=full` parameter invokes the full Lucene query parser, which supports the tilde (`~`) operand. When these parameters are present, the query performs a fuzzy search for the specified keyword and matches on terms that are similar but not an exact match.
+Misspelled query terms, like `seatle` instead of `Seattle`, don't return matches in a typical search. The `queryType=full` parameter invokes the full Lucene query parser, which supports the tilde (`~`) operand. When you use these parameters, the query performs a fuzzy search for the specified keyword and matches on terms that are similar but not an exact match.
 
-Take a minute to try these example queries on your index. For more information, see [Querying in Azure AI Search](search-query-overview.md).
+Take a minute to try these example queries on your index. To learn more about queries, see [Querying in Azure AI Search](search-query-overview.md).
 
 ## Clean up resources
 
