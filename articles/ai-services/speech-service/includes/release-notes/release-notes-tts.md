@@ -71,26 +71,39 @@ These turbo voices are now generally available:
 
 #### Voice quality improvements
 
-Improved the quality of 16 voices.
+Improved the quality of voices below with latest recipe
 
 | **Locale (BCP-47)** | **Voice name**              |
-|---------------------|---------------------------|
-| `ar-EG`   | `ar-EG-ShakirNeural` (Male) |
-| `ca-ES`   | `ca-ES-EnricNeural` (Male) |
-| `en-IE`   | `en-IE-EmilyNeural` (Female) |
-| `fi-FI`   | `fi-FI-HarriNeural` (Male) |
-| `fi-FI`   | `fi-FI-SelmaNeural` (Female) |
-| `fr-CH`   | `fr-CH-FabriceNeural` (Female) |
-| `hr-HR`   | `hr-HR-GabrijelaNeural` (Female) |
-| `nl-NL`   | `nl-NL-MaartenNeural` (Male) |
-| `pt-PT`   | `pt-PT-RaquelNeural` (Female) |
-| `ro-RO`   | `ro-RO-AlinaNeural` (Female) |
-| `sv-SE`   | `sv-SE-MattiasNeural` (Male) |
-| `sv-SE`   | `sv-SE-SofieNeural` (Female) |
-| `vi-VN`   | `vi-VN-HoaiMyNeural` (Female) |
-| `vi-VN`   | `vi-VN-NamMinhNeural` (Male) |
-| `zh-HK`   | `zh-HK-HiuMaanNeural` (Female) |
-| `zh-HK`   | `zh-HK-WanLungNeural` (Male) |
+|---------------------|-----------------------------|
+| `ar-EG`             | `ar-EG-ShakirNeural` (Male) |
+| `bg-BG`             | `bg-BG-KalinaNeural` (Female) |
+| `ca-ES`             | `ca-ES-EnricNeural` (Male) |
+| `ca-ES`             | `ca-ES-JoanaNeural` (Female) |
+| `da-DK`             | `da-DK-JeppeNeural` (Male) |
+| `el-GR`             | `el-GR-NestorasNeural` (Male) |
+| `en-IE`             | `en-IE-EmilyNeural` (Female) |
+| `fi-FI`             | `fi-FI-HarriNeural` (Male) |
+| `fi-FI`             | `fi-FI-SelmaNeural` (Female) |
+| `fr-CH`             | `fr-CH-FabriceNeural` (Female) |
+| `fr-CH`             | `fr-CH-ArianeNeural` (Female) |
+| `he-IL`             | `he-IL-HilaNeural` (Female) |
+| `he-IL`             | `he-IL-AvriNeural` (Male) |
+| `hr-HR`             | `hr-HR-GabrijelaNeural` (Female) |
+| `id-ID`             | `id-ID-ArdiNeural` (Male) |
+| `ms-MY`             | `ms-MY-YasminNeural` (Female) |
+| `nb-NO`             | `nb-NO-PernilleNeural` (Female) |
+| `nb-NO`             | `nb-NO-FinnNeural` (Male) |
+| `nl-NL`             | `nl-NL-MaartenNeural` (Male) |
+| `pt-PT`             | `pt-PT-RaquelNeural` (Female) |
+| `ro-RO`             | `ro-RO-AlinaNeural` (Female) |
+| `ro-RO`             | `ro-RO-EmilNeural` (Male) |
+| `ru-RU`             | `ru-RU-SvetlanaNeural` (Female) |
+| `sv-SE`             | `sv-SE-MattiasNeural` (Male) |
+| `sv-SE`             | `sv-SE-SofieNeural` (Female) |
+| `vi-VN`             | `vi-VN-HoaiMyNeural` (Female) |
+| `vi-VN`             | `vi-VN-NamMinhNeural` (Male) |
+| `zh-HK`             | `zh-HK-HiuMaanNeural` (Female) |
+| `zh-HK`             | `zh-HK-WanLungNeural` (Male) |
 
 #### GA - Multi-style embedded Jenny
 
