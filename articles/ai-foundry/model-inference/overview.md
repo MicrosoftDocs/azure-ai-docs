@@ -59,7 +59,7 @@ At Microsoft, we're committed to the advancement of AI driven by principles that
 Microsoft helps guard against abuse and unintended harm by taking the following actions:
 
 - Incorporating Microsoft's [principles for responsible AI use](https://www.microsoft.com/ai/responsible-ai)
-- Adopting a [code of conduct](/legal/cognitive-services/openai/code-of-conduct?context=/azure/ai-services/openai/context/context) for use of the service
+- Adopting a [code of conduct](legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context) for use of the service
 - Building [content filters](/azure/ai-services/content-safety/overview) to support customers
 - Providing responsible AI [information and guidance](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=image) that customers should consider when using Azure OpenAI.
 
