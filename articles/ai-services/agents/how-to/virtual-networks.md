@@ -91,7 +91,7 @@ Azure AI Agent Service offers a standard agent configuration with private networ
          * `Microsoft.KeyVault`
          * `Microsoft.Storage`
          * `Microsoft.CognitiveServices`
-   * Agent resource subnet
+   * Agent resources subnet
       * Configured with subnet delegations for:
          * `Microsoft.app/environments` 
 * Provisions dependent resources
