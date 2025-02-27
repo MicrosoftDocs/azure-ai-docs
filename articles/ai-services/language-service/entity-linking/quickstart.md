@@ -13,7 +13,7 @@ ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: language-service-entity-linking, mode-api, devx-track-extended-java, devx-track-js, devx-track-python
 keywords: text mining, entity linking
-zone_pivot_groups: programming-languages-text-analytics
+zone_pivot_groups: programming-languages-entity-linking
 ---
 
 # Quickstart: Entity Linking using the client library and REST API

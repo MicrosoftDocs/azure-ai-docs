@@ -13,15 +13,8 @@ ms.date: 12/10/2024
 A prerequisite of using the Azure AI Search tool is to have an existing Azure AI Search index. If you don't have an existing index, you can create one in the Azure portal using the import and vectorize data wizard.
 -  [Quickstart: Create a vector index with the import and vectorize data wizard in the Azure portal](../../../../search/search-get-started-portal-import-vectors.md)
 
-
-#### Complete the agent setup
-- **Option 1: Standard Agent Setup using an existing AI Search resource** If you want your agent to use an existing AI Search resource to create new indexes or bring existing ones you should use the [standard agent setup and add your AI Search resource ID](../../quickstart.md). 
-    - You can provide your Azure AI Search resource ID in the bicep file. Your resource ID should be in the format: `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}`.
-- **Option 2: Standard Agent Setup** If you want to create a new Azure AI Search resource for your agents to use when creating new indexes follow the [standard agent setup](../../quickstart.md).
-
-
 #### Create a project connection to the Azure AI Search resource with the index you want to use
-Once you have completed the standard agent setup, you must create a project connection to the Azure AI Search resource that contains the index you want to use. 
+Once you have completed the agent setup, you must create a project connection to the Azure AI Search resource that contains the index you want to use. 
 
 If you already connected the AI Search resource that contains the index you want to use to your project, skip this step. 
 
@@ -104,3 +97,16 @@ ml_client.connections.create_or_update(my_connection)
 ---
 
 Now that you have created a project connection to your Azure AI Search resource, you can configure and start using the Azure AI Search tool with the SDK. See the code examples tab to get started.
+
+
+## Add the Azure AI Search tool to an agent
+
+you can add the Azure AI Search tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal:
+
+1. In the **Create and debug** screen for your agent, scroll down the **Setup** pane on the right to **knowledge**. Then select **Add**.
+
+    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
+
+1. Select **Azure AI Search** and follow the prompts to add the tool. 
+
+    :::image type="content" source="../../media/tools/knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools-list.png":::

@@ -41,7 +41,7 @@ A labeled dataset consists of several files:
 
 * We explore how to create a balanced data set and select the right documents to label. This process sets you on the path to higher quality models.
 
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RWWHru]
+> [!VIDEO 1190c010-ef3e-4cc6-8ffc-6d896fbb9711]
 
 ## Create a balanced dataset
 

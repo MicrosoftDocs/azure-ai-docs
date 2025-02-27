@@ -1,16 +1,16 @@
 ---
-title: Create and manage a project
+title: Create and manage an Azure AI Custom Translator project
 titleSuffix: Azure AI services
-description: How to create and manage a project in the Azure AI Translator Custom Translator.
+description: How to create and manage a project in the Azure AI Custom Translator.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 07/10/2024
+ms.date: 01/28/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
 
-# Create and manage a project
+# Create and manage an Azure AI Custom Translator project
 
 A project contains translation models for one language pair. Each project includes all documents that were uploaded into that workspace with the correct language pair.
 

@@ -121,7 +121,7 @@ The URL of the generated image is printed to the console.
 
 ```console
 Image generated, HEAD request on URL returned 200
-Image URL: https://dalleproduse.blob.core.windows.net/private/images/d7b28a5c-ca32-4792-8c2a-6a5d8d8e5e45/generated_00.png?se=2023-08-29T17%3A05%3A37Z&sig=loqntaPypYVr9VTT5vpbsjsCz31g1GsdoQi0smbGkks%3D&ske=2023-09-02T18%3A53%3A23Z&skoid=09ba021e-c417-441c-b203-c81e5dcd7b7f&sks=b&skt=2023-08-26T18%3A53%3A23Z&sktid=33e01921-4d64-4f8c-a055-5bdaffd5e33d&skv=2020-10-02&sp=r&spr=https&sr=b&sv=2020-10-02
+Image URL: <SAS URL>
 ```
 > [!NOTE]
 > The image generation APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it won't return a generated image. For more information, see the [content filter](../concepts/content-filter.md) article.

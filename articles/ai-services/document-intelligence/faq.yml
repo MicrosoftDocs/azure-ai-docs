@@ -175,13 +175,13 @@ sections:
 
           - [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio)
 
-          - [C#/.NET](https://www.nuget.org/packages/Azure.AI.FormRecognizer/4.0.0)
+          - [C#/.NET](https://www.nuget.org/packages/Azure.AI.DocumentIntelligence/1.0.0)
 
-          - [Java](https://oss.sonatype.org/#nexus-search;quick~azure-ai-formrecognizer)
+          - [Java](https://central.sonatype.com/artifact/com.azure/azure-ai-documentintelligence/1.0.0)
 
-          - [JavaScript/TypeScript](https://www.npmjs.com/package/@azure/ai-form-recognizer/v/4.0.0-beta.4)
+          - [JavaScript/TypeScript](https://www.npmjs.com/package/@azure-rest/ai-document-intelligence/v/1.0.0)
 
-          - [Python](https://pypi.org/project/azure-ai-formrecognizer/3.2.0/)
+          - [Python](https://pypi.org/project/azure-ai-documentintelligence/1.0.0/)
 
       - question: |
            Can I migrate my application to the latest version of Document Intelligence?
@@ -383,7 +383,8 @@ sections:
         answer: |
           **Yes,** briefly.
 
-          For all features, Document Intelligence temporarily stores data and results in Azure Storage in the same region as the request. Your data is then deleted within 24 hours from the time that you submit an analyze request.
+          For all features, Document Intelligence temporarily stores data and results in Azure Storage in the same region as the request. Your data is then deleted 24 hours from the time that you submit an analyze request. If you would like the data deleted sooner, you can call the [delete analyze response](https://learn.microsoft.com/rest/api/aiservices/document-models/delete-analyze-result?view=rest-aiservices-v4.0%20(2024-11-30)&tabs=HTTP). This API marks the results for deletion and is available in the v4.0 API.
+    
 
           Learn more about [data, privacy, and security for Document Intelligence](/legal/cognitive-services/document-intelligence/data-privacy-security?toc=/azure/ai-services/document-intelligence/toc.json&bc=/azure/ai-services/document-intelligence/breadcrumb/toc.json).
 

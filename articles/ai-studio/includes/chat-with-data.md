@@ -4,7 +4,7 @@ description: include file
 author: sdgilley
 ms.reviewer: sgilley
 ms.author: sgilley
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 5/21/2024
 ms.custom: include, build-2024, ignite-2024

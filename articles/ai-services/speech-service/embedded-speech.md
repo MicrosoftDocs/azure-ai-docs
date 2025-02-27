@@ -166,7 +166,7 @@ All text to speech locales [here](language-support.md?tabs=tts) (except fa-IR, P
 
 ## Embedded speech configuration
 
-For cloud connected applications, as shown in most Speech SDK samples, you use the `SpeechConfig` object with a Speech resource key and region. For embedded speech, you don't use a Speech resource. Instead of a cloud resource, you use the [models and voices](#models-and-voices) that you download to your local device.
+For cloud connected applications, as shown in most Speech SDK samples, you use the `SpeechConfig` object with an API key and region. For embedded speech, you don't use an AI Services resource for Speech. Instead of a cloud resource, you use the [models and voices](#models-and-voices) that you download to your local device.
 
 Use the `EmbeddedSpeechConfig` object to set the location of the models or voices. If your application is used for both speech to text and text to speech, you can use the same `EmbeddedSpeechConfig` object to set the location of the models and voices.
 
@@ -280,7 +280,7 @@ For cloud speech, you use the `SpeechConfig` object, as shown in the [speech to 
 
 ## Embedded voices capabilities
 
-For embedded voices, it's essential to note that certain SSML tags might not be currently supported due to differences in the model structure. For detailed information regarding the unsupported SSML tags, refer to the following table.
+For embedded voices, it's essential to note that certain [Speech synthesis markup language (SSML)](./speech-synthesis-markup.md) tags might not be currently supported due to differences in the model structure. For detailed information regarding the unsupported SSML tags, refer to the following table.
 
 | Level 1 | Level 2 | Sub values | Support in embedded NTTS |
 |---------|---------|---------|---------|
@@ -299,7 +299,7 @@ For embedded voices, it's essential to note that certain SSML tags might not be 
 |                 | volume    |                                                       | No                       |
 |                 | fadein    |                                                       | No                       |
 |                 | fadeout   |                                                       | No                       |
-| msttsexpress-as | style     |                                                       | No                       |
+| msttsexpress-as | style     |                                                       | Yes<sup>1</sup>          |
 |                 | styledegree |                                                     | No                       |
 |                 | role      |                                                       | No                       |
 | msttssilence    |           |                                                       | No                       |
@@ -319,6 +319,8 @@ For embedded voices, it's essential to note that certain SSML tags might not be 
 | sub             | alias     |                                                       | Yes                      |
 | speak           |           |                                                       | Yes                      |
 | voice           |           |                                                       | No                       |
+
+<sup>1</sup> The [`msttsexpress-as`](./speech-synthesis-markup-voice.md#use-speaking-styles-and-roles) style is supported only for the `en-US-JennyNeural` voice.
 
 ## Related content
 

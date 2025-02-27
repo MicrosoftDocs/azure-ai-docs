@@ -3,7 +3,7 @@ title: Autoscale Azure AI limits
 titleSuffix: Azure AI Foundry
 description: Learn how you can manage and increase quotas for resources with Azure AI Foundry.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
@@ -16,7 +16,7 @@ author: Blackmist
 
 # Autoscale Azure AI limits
 
-This article provides guidance for how you can manage and increase quotas for Azure AI services resources with Azure AI Foundry.
+This article provides guidance for how you can manage and increase quotas for Azure AI services resources with [Azure AI Foundry](https://ai.azure.com).
 
 ## Overview
 

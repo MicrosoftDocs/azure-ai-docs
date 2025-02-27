@@ -3,13 +3,13 @@ title: Hear and speak with chat models in the Azure AI Foundry portal chat playg
 titleSuffix: Azure AI Foundry
 description: Hear and speak with chat models in the Azure AI Foundry portal chat playground.
 manager: nitinme
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 11/19/2024
+ms.date: 2/12/2025
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
@@ -36,7 +36,7 @@ The speech to text and text to speech features can be used together or separatel
 
 Before you can start a chat session, you need to configure the chat playground to use the speech to text and text to speech features.
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
 1. Go to your Azure AI Foundry project. If you need to create a project, see [Create an Azure AI Foundry project](../how-to/create-projects.md).
 1. Select **Playgrounds** from the left pane and then select a playground to use. In this example, select **Try the chat playground**.
 1. Select your deployed chat model from the **Deployment** dropdown. 
@@ -48,9 +48,9 @@ Before you can start a chat session, you need to configure the chat playground t
     :::image type="content" source="../media/quickstarts/hear-speak/playground-settings-select.png" alt-text="Screenshot of the chat playground with options to get to the chat capabilities settings." lightbox="../media/quickstarts/hear-speak/playground-settings-select.png":::
 
     > [!NOTE]
-    > You should also see the options to select the microphone or speaker buttons. If you select either of these buttons, but haven't yet enabled speech to text or text to speech, you are prompted to enable them in **Chat capabilities**. 
+    > You should also see the options to select the microphone or speaker buttons. If you select either of these buttons, but didn't yet enable speech to text or text to speech, you're prompted to enable them in **Chat capabilities**. 
 
-1. On the **Chat capabilities** page, select the box to acknowledge that usage of the speech feature will incur additional costs. For more information, see [Azure AI Speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
+1. On the **Chat capabilities** page, select the box to acknowledge that usage of the speech feature incurs extra costs. For more information, see [Azure AI Speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
 1. Select **Enable speech to text** and **Enable text to speech**.  
 
@@ -67,7 +67,7 @@ Before you can start a chat session, you need to configure the chat playground t
 
 In this chat session, you use both speech to text and text to speech. You use the speech to text feature to speak to the assistant, and the text to speech feature to hear the assistant's response. 
 
-1. Complete the steps in the [Configure the playground](#configure-the-chat-playground) section if you haven't already done so. To complete this quickstart you need to enable the speech to text and text to speech features.
+1. Complete the steps in the [Configure the playground](#configure-the-chat-playground) section. To complete this quickstart, you need to enable the speech to text and text to speech features.
 1. Select the microphone button and speak to the assistant. For example, you can say "Do you know where I can get an Xbox".
 
     :::image type="content" source="../media/quickstarts/hear-speak/chat-session-speaking.png" alt-text="Screenshot of the chat session with the enabled microphone icon and send button highlighted." lightbox="../media/quickstarts/hear-speak/chat-session-speaking.png":::
@@ -76,7 +76,7 @@ In this chat session, you use both speech to text and text to speech. You use th
 1. Select the send button (right arrow) to send your message to the assistant. The assistant's response is displayed in the chat session pane.
 
     > [!NOTE]
-    > If the speaker button is turned on, you'll hear the assistant's response. If the speaker button is turned off, you won't hear the assistant's response, but the response will still be displayed in the chat session pane.
+    > If the speaker button is turned on, you hear the assistant's response. If the speaker button is turned off, you don't hear the assistant's response, but the response is still displayed in the chat session pane.
 
 1. You can change the system prompt to change the assistant's response format or style. 
 

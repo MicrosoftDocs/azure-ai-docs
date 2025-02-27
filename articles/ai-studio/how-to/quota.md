@@ -1,18 +1,19 @@
 ---
-title: Manage and increase quotas for resources with Azure AI Foundry
+title: Manage and increase quotas for resources
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to manage and increase quotas for resources with Azure AI Foundry.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 02/19/2025
 ms.reviewer: siarora
 ms.author: larryfr
 author: Blackmist
+# Customer intent: As an Azure AI Foundry user, I want to know how to manage and increase quotas for resources with Azure AI Foundry.
 ---
 
 # Manage and increase quotas for resources with Azure AI Foundry
@@ -43,7 +44,7 @@ Default limits vary by offer category type, such as free trial, pay-as-you-go, a
 
 ## Azure AI Foundry quota 
 
-The following actions in Azure AI Foundry portal consume quota: 
+The following actions in [Azure AI Foundry portal](https://ai.azure.com) consume quota: 
 
 - Creating a compute instance.
 - Building a vector index.

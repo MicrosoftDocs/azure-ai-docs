@@ -3,7 +3,7 @@ title: How to trace your application with Azure AI Inference SDK
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to trace your application with  Azure AI Inference SDK.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - ignite-2024
@@ -72,7 +72,7 @@ To learn more Azure AI Inference SDK for C# and observability, see the [Tracing 
 
 ---
 
-To learn more , see the [Inference SDK reference](../../reference/reference-model-inference-api.md).
+To learn more , see the [Inference SDK reference](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md).
 
 ### Configuration
 

@@ -3,12 +3,12 @@ title: Process images in prompt flow
 titleSuffix: Azure AI Foundry
 description: Learn how to use images in prompt flow.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 5/21/2024
-ms.reviewer: jinzhong
+ms.date: 02/14/2025
+ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 ---
@@ -39,6 +39,35 @@ To use image data in prompt flow authoring page:
    :::image type="content" source="../media/prompt-flow/how-to-process-image/flow-input-image-preview.png" alt-text="Screenshot of flow authoring page showing image preview flow input." lightbox = "../media/prompt-flow/how-to-process-image/flow-input-image-preview.png":::
 3. You might want to preprocess the image using the [Python tool](./prompt-flow-tools/python-tool.md) before feeding it to the LLM. For example, you can resize or crop the image to a smaller size.
    :::image type="content" source="../media/prompt-flow/how-to-process-image/process-image-using-python.png" alt-text="Screenshot of using python tool to do image preprocessing." lightbox = "../media/prompt-flow/how-to-process-image/process-image-using-python.png":::
+
+    ```python
+    from promptflow import tool
+    from promptflow.contracts.multimedia import Image as PFImage 
+    from PIL import Image as Image 
+    import io
+    
+    @tool
+    def process_image(input_image: PFImage) -> PFImage:
+        # convert the input image data to a BytesIO object
+        data_byteIO = io.BytesIO(input_image)
+    
+        # Open the image data as a PIL Image object
+        image = Image.open(data_byteIO)
+    
+        # crop image
+        cropped_image = image.crop((100, 100, 900, 900))
+    
+        # Convert the cropped image back to BytesIO
+        byte_arr = io.BytesIO()
+        cropped_image.save(byte_arr, format = 'JPEG')
+    
+        # Create a new prompt flow Image object with the cropped image data
+        # This image is now ready to be returned
+        cropped_PF_image = PFImage(byte_arr.getvalue(), mime_type = "image/jpeg")
+    
+        return cropped_PF_image
+       ```
+    
     > [!IMPORTANT]
     > To process images using a Python function, you need to use the `Image` class that you import from the `promptflow.contracts.multimedia` package. The `Image` class is used to represent an `Image` type within prompt flow. It is designed to work with image data in byte format, which is convenient when you need to handle or manipulate the image data directly.
     >
@@ -46,7 +75,8 @@ To use image data in prompt flow authoring page:
 
 4. Run the Python node and check the output. In this example, the Python function returns the processed Image object. Select the image output to preview the image.
    :::image type="content" source="../media/prompt-flow/how-to-process-image/python-node-image-output.png" alt-text="Screenshot of Python node's image output." lightbox = "../media/prompt-flow/how-to-process-image/python-node-image-output.png"::: 
-If the Image object from Python node is set as the flow output, you can preview the image in the flow output page as well.
+
+    If the Image object from Python node is set as the flow output, you can preview the image in the flow output page as well.
 
 ## Use GPT-4V tool
 
@@ -56,7 +86,7 @@ Add the [Azure OpenAI GPT-4 Turbo with Vision tool](./prompt-flow-tools/azure-op
 
 :::image type="content" source="../media/prompt-flow/how-to-process-image/gpt-4v-tool.png" alt-text="Screenshot of GPT-4V tool." lightbox = "../media/prompt-flow/how-to-process-image/gpt-4v-tool.png":::
 
-The Jinja template for composing prompts in the GPT-4V tool follows a similar structure to the chat API in the LLM tool. To represent an image input within your prompt, you can use the syntax `![image]({{INPUT NAME}})`. Image input can be passed in the `user`, `system` and `assistant` messages.
+The Jinja template for composing prompts in the GPT-4V tool follows a similar structure to the chat API in the LLM tool. To represent an image input within your prompt, you can use the syntax `![image]({{INPUT NAME}})`. Image input can be passed in the `user`, `system`, and `assistant` messages.
 
 Once you've composed the prompt, select the **Validate and parse input** button to parse the input placeholders. The image input represented by `![image]({{INPUT NAME}})` will be parsed as image type with the input name as INPUT NAME.
 
@@ -64,24 +94,26 @@ You can assign a value to the image input through the following ways:
 
 - Reference from the flow input of Image type.
 - Reference from other node's output of Image type.
-- Upload, drag, or paste an image, or specify an image URL or the relative image path.
+- Upload, drag, paste an image, or specify an image URL or the relative image path.
 
 ## Build a chatbot to process images
 
 In this section, you learn how to build a chatbot that can process image and text inputs.
 
-Assume you want to build a chatbot that can answer any questions about the image and text together. You can achieve this by following the steps below:
+Assume you want to build a chatbot that can answer any questions about the image and text together. You can achieve this by following the steps in this section.
 
 1. Create a **chat flow**.
-1. Add a **chat input**, select the data type as **"list"**. In the chat box, user can input a mixed sequence of texts and images, and prompt flow service will transform that into a list.
+1. In *Inputs*, select the data type as **"list"**. In the chat box, user can input a mixed sequence of texts and images, and prompt flow service will transform that into a list.
    :::image type="content" source="../media/prompt-flow/how-to-process-image/chat-input-definition.png" alt-text="Screenshot of chat input type configuration." lightbox = "../media/prompt-flow/how-to-process-image/chat-input-definition.png":::  
-1. Add **GPT-4V** tool to the flow.
+1. Add **GPT-4V** tool to the flow. You can copy the prompt from the default LLM tool chat and paste it into the GPT 4V tool. Then you delete the default LLM tool chat from the flow.
     :::image type="content" source="../media/prompt-flow/how-to-process-image/gpt-4v-tool-in-chatflow.png" alt-text=" Screenshot of GPT-4V tool in chat flow." lightbox = "../media/prompt-flow/how-to-process-image/gpt-4v-tool-in-chatflow.png":::  
 
     In this example, `{{question}}` refers to the chat input, which is a list of texts and images.
+1. In *Outputs*, change the value of "answer" to the name of your vision tool's output, for example, `${gpt_vision.output}`.
+    :::image type="content" source="../media/prompt-flow/how-to-process-image/chat-output-definition.png" alt-text="Screenshot of chat output type configuration." lightbox = "../media/prompt-flow/how-to-process-image/chat-output-definition.png":::  
 1. (Optional) You can add any custom logic to the flow to process the GPT-4V output. For example, you can add content safety tool to detect if the answer contains any inappropriate content, and return a final answer to the user.
     :::image type="content" source="../media/prompt-flow/how-to-process-image/chat-flow-postprocess.png" alt-text="Screenshot of processing gpt-4v output with content safety tool." lightbox = "../media/prompt-flow/how-to-process-image/chat-flow-postprocess.png":::
-1. Now you can **test the chatbot**.  Open the chat window, and input any questions with images. The chatbot will answer the questions based on the image and text inputs. The chat input value is automatically backfilled from the input in the chat window. You can find the texts with images in the chat box which is translated into a list of texts and images.
+1. Now you can **test the chatbot**. Open the chat window, and input any questions with images. The chatbot will answer the questions based on the image and text inputs. The chat input value is automatically backfilled from the input in the chat window. You can find the texts with images in the chat box which is translated into a list of texts and images.
     :::image type="content" source="../media/prompt-flow/how-to-process-image/chatbot-test.png" alt-text="Screenshot of chatbot interaction with images." lightbox = "../media/prompt-flow/how-to-process-image/chatbot-test.png":::
 
 > [!NOTE]
@@ -98,7 +130,7 @@ A batch run allows you to test the flow with an extensive dataset. There are thr
 - **Public image URL:** You can also reference the image URL in the entry file using this format: `{"data:<mime type>;url": "<image URL>"}`. For example, `{"data:image/png;url": "https://www.example.com/images/1.png"}`.
 - **Base64 string:** A Base64 string can be referenced in the entry file using this format: `{"data:<mime type>;base64": "<base64 string>"}`. For example, `{"data:image/png;base64": "iVBORw0KGgoAAAANSUhEUgAAAGQAAABLAQMAAAC81rD0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABlBMVEUAAP7////DYP5JAAAAAWJLR0QB/wIt3gAAAAlwSFlzAAALEgAACxIB0t1+/AAAAAd0SU1FB+QIGBcKN7/nP/UAAAASSURBVDjLY2AYBaNgFIwCdAAABBoAAaNglfsAAAAZdEVYdGNvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVDnr0DLAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA4LTI0VDIzOjEwOjU1KzAzOjAwkHdeuQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wOC0yNFQyMzoxMDo1NSswMzowMOEq5gUAAAAASUVORK5CYII="}`.
 
-In summary, prompt flow uses a unique dictionary format to represent an image, which is `{"data:<mime type>;<representation>": "<value>"}`. Here, `<mime type>` refers to HTML standard [MIME](https://developer.mozilla.org/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types) image types, and `<representation>` refers to the supported image representations: `path`,`url` and `base64`.
+In summary, prompt flow uses a unique dictionary format to represent an image, which is `{"data:<mime type>;<representation>": "<value>"}`. Here, `<mime type>` refers to HTML standard [MIME](https://developer.mozilla.org/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types) image types, and `<representation>` refers to the supported image representations: `path`,`url`, and `base64`.
 
 ### Create a batch run
 
@@ -125,7 +157,7 @@ For now, you can test the endpoint by sending request including image inputs.
 
 To consume the online endpoint with image input, you should represent the image by using the format `{"data:<mime type>;<representation>": "<value>"}`. In this case, `<representation>` can either be `url` or `base64`.
 
-If the flow generates image output, it is returned with `base64` format, for example, `{"data:<mime type>;base64": "<base64 string>"}`.
+If the flow generates image output, it's returned with `base64` format, for example, `{"data:<mime type>;base64": "<base64 string>"}`.
 
 ## Next steps
 
