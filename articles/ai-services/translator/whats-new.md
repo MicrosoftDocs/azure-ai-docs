@@ -27,8 +27,8 @@ Azure AI Translator service supports language translation for more than 100 lang
 
 [**Microsoft Translator Pro**](translator-pro/overview.md) is a mobile app, designed specifically for enterprises, that enables seamless real-time speech-to-speech translation. The following new and updated capabilities are now available:
 
-* **Enhanced Enterprise Administrator experience**. The history section now includes options for recording transcript and audio, exporting sessions/audio, sharing sessions, and toggling transcript/audio history without exporting to cloud storage. Additionally, you can now enable or disable the use of a custom phrasebook and easily browse the current phrasebook.
-* **Added content filtering**. Enterprise Administrators can now enable or disable content filtering and censoring, providing greater control over content visibility.
+* **Enhanced administrator experience**. The history section now includes options for recording transcript and audio, exporting sessions/audio, sharing sessions, and toggling transcript/audio history without exporting to cloud storage. Additionally, administrators can now enable or disable the use of a custom phrasebook and easily browse the current phrasebook.
+* **Added content filtering**. Administrators can now enable or disable content filtering and censoring, providing greater control over content visibility.
 * **Enabled full screen mode**. A full screen viewing option is now available, enabling translations to be viewed on a single screen rather than a split-screen view.
 * **Expanded source language support**. Translation source language support is broadened to include all languages.
 
