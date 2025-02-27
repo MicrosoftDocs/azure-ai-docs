@@ -32,6 +32,8 @@ You need to first build and publish a Fabric AI skill and then connect your Fabr
 
 1. Developers and end users have at least `AI Developer` RBAC role. 
 
+1. Developers and end users have at least `READ` access to the AI skill and the underlying data sources it connects with.
+
 ## Setup  
 > [!NOTE]
 > 1. The model you selected in Azure AI Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric AI skill uses for NL2SQL operation.
