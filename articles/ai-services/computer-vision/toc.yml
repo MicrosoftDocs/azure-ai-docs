@@ -350,7 +350,7 @@ items:
     - name: Best practices for enrolling users
       href: enrollment-overview.md
     - name: Code of conduct
-      href: /legal/cognitive-services/face/code-of-conduct?context=/azure/ai-services/computer-vision/context/context
+      href: /legal/ai-code-of-conduct?context=/azure/ai-services/computer-vision/context/context
     - name: Data privacy and security
       href: /legal/cognitive-services/face/data-privacy-security?context=/azure/ai-services/computer-vision/context/context
     - name: Limited Access features

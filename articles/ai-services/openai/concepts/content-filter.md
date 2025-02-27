@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 08/22/2024
+ms.date: 02/27/2025
 ms.custom: template-concept, devx-track-python
 manager: nitinme
 ---
@@ -620,8 +620,8 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 // You will need to set these environment variables or edit the following values
-const endpoint = process.env["ENDPOINT"] || "<endpoint>";
-const azureApiKey = process.env["AZURE_API_KEY"] || "<api key>";
+const endpoint = process.env["ENDPOINT"] || "Your endpoint";
+const azureApiKey = process.env["AZURE_API_KEY"] || "Your API key";
 
 const messages = [
   { role: "system", content: "You are a helpful assistant. You will talk like a pirate." },
@@ -820,9 +820,7 @@ This is an example message array:
 In addition to detection on last user content, Azure OpenAI also supports the detection of specific risks inside context documents via Prompt Shields – Indirect Prompt Attack Detection. You should identify parts of the input that are a document (for example, retrieved website, email, etc.) with the following document delimiter.  
 
 ```
-<documents> 
-*insert your document content here* 
-</documents>
+\"\"\" <documents> *insert your document content here* </documents> \"\"\" 
 ```
 
 When you do so, the following options are available for detection on tagged documents: 

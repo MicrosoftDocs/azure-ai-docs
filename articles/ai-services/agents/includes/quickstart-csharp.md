@@ -75,7 +75,7 @@ public class Sample_Agent
 {
     static async Task Main()
     {
-        var connectionString = Environment.GetEnvironmentVariable("AZURE_AI_CONNECTION_STRING");
+        var connectionString = Environment.GetEnvironmentVariable("PROJECT_CONNECTION_STRING");
 
         AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredential());
 

@@ -208,7 +208,7 @@ The regions in these tables support most of the core features of the Speech serv
 | westus3            |  |
 
 > [!NOTE]
-> The [Speech SDK](speech-sdk.md) supports intent recognition through [Direct Line Speech](./direct-line-speech.md).
+> The [Speech SDK](speech-sdk.md) supports intent recognition through Direct Line Speech.
 
 
 # [Keyword recognition](#tab/keyword-recognition)
@@ -283,7 +283,7 @@ The regions in these tables support most of the core features of the Speech serv
 | westus3            | ✅ | ✅ |  |
 
 > [!NOTE]
-> The [Speech SDK](speech-sdk.md) supports voice assistant capabilities through [Direct Line Speech](./direct-line-speech.md).
+> The [Speech SDK](speech-sdk.md) supports voice assistant capabilities through Direct Line Speech.
 
 ---
 

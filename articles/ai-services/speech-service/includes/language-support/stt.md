@@ -119,7 +119,7 @@ ms.author: eur
 | `nb-NO` | Norwegian Bokmål (Norway) | No | Plain text<br/><br/>Output format |
 | `ne-NP` | Nepali (Nepal) | No | Plain text |
 | `nl-BE` | Dutch (Belgium) | No | Plain text |
-| `nl-NL` | Dutch (Netherlands) | No | Plain text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `nl-NL` | Dutch (Netherlands) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `or-IN` | Odia (India) | No | Audio + human-labeled transcript |
 | `pa-IN` | Punjabi (India) | No | Audio + human-labeled transcript |
 | `pl-PL` | Polish (Poland) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |

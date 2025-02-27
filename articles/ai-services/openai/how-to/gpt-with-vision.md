@@ -1,35 +1,36 @@
 ---
 title: How to use vision-enabled chat models
 titleSuffix: Azure OpenAI Service
-description: Learn about the options for using vision-enabled chat models
+description: Learn how to use vision-enabled chat models in Azure OpenAI Service, including how to call the Chat Completion API and process images.
 author: PatrickFarley #dereklegenzoff
 ms.author: pafarley #delegenz
+#customer intent: As a developer, I want to learn how to use vision-enabled chat models so that I can integrate image processing capabilities into my applications.
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 08/21/2024
+ms.date: 02/20/2025
 manager: nitinme
 ---
 
 # Use vision-enabled chat models
 
 
-Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. The current vision-enabled models are [o1](./reasoning.md), GPT-4o, and GPT-4o-mini, GPT-4 Turbo with Vision.
+Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. The current vision-enabled models are [o1](./reasoning.md), GPT-4o, GPT-4o-mini, and GPT-4 Turbo with Vision.
 
-The vision-enabled models answer general questions about what's present in the images you upload.
+The vision-enabled models can answer general questions about what's present in the images you upload.
 
 > [!TIP]
 > To use vision-enabled models, you call the Chat Completion API on a supported model that you have deployed. If you're not familiar with the Chat Completion API, see the [Vision-enabled chat how-to guide](/azure/ai-services/openai/how-to/chatgpt?tabs=python&pivots=programming-language-chat-completions).
 
 ## Call the Chat Completion APIs
 
-The following command shows the most basic way to use the GPT-4 Turbo with Vision model with code. If this is your first time using these models programmatically, we recommend starting with our [GPT-4 Turbo with Vision quickstart](../gpt-v-quickstart.md). 
+The following command shows the most basic way to use a vision-enabled chat model with code. If this is your first time using these models programmatically, we recommend starting with our [Chat with images quickstart](../gpt-v-quickstart.md). 
 
 #### [REST](#tab/rest)
 
 Send a POST request to `https://{RESOURCE_NAME}.openai.azure.com/openai/deployments/{DEPLOYMENT_NAME}/chat/completions?api-version=2024-02-15-preview` where 
 
 - RESOURCE_NAME is the name of your Azure OpenAI resource 
-- DEPLOYMENT_NAME is the name of your GPT-4 Turbo with Vision model deployment 
+- DEPLOYMENT_NAME is the name of your model deployment 
 
 **Required headers**: 
 - `Content-Type`: application/json 
@@ -75,7 +76,7 @@ The following is a sample request body. The format is the same as the chat compl
 #### [Python](#tab/python)
 
 1. Define your Azure OpenAI resource endpoint and key. 
-1. Enter the name of your GPT-4 Turbo with Vision model deployment.
+1. Enter the name of your model deployment.
 1. Create a client object using those values.
 
     ```python

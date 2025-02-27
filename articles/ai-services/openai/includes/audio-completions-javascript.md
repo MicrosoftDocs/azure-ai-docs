@@ -29,7 +29,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Create a new folder `audio-completions-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
 
     ```shell
-    mkdir audio-completions-quickstart && code audio-completions-quickstart
+    mkdir audio-completions-quickstart && cd audio-completions-quickstart
     ```
     
 1. Create the `package.json` with the following command:
@@ -37,13 +37,6 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     ```shell
     npm init -y
     ```
-
-1. Update the `package.json` to ECMAScript with the following command: 
-
-    ```shell
-    npm pkg set type=module
-    ```
-    
 
 1. Install the OpenAI client library for JavaScript with:
 
@@ -83,9 +76,9 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     const azureADTokenProvider = getBearerTokenProvider(credential, scope);
     
     // Set environment variables or edit the corresponding values here.
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "AZURE_OPENAI_ENDPOINT";
-    const apiVersion = "2025-01-01-preview"; 
-    const deployment = "gpt-4o-mini-audio-preview"; 
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
+    const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4o-mini-audio-preview"; 
+    const apiVersion = process.env.OPENAI_API_VERSION || "2025-01-01-preview"; 
     
     const client = new AzureOpenAI({ 
         endpoint, 
@@ -150,8 +143,8 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     const { writeFileSync } = require("node:fs");
     
     // Set environment variables or edit the corresponding values here.
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "AZURE_OPENAI_ENDPOINT";
-    const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "AZURE_OPENAI_API_KEY";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
+    const apiKey = process.env.AZURE_OPENAI_API_KEY || "AZURE_OPENAI_API_KEY";
     const apiVersion = "2025-01-01-preview"; 
     const deployment = "gpt-4o-mini-audio-preview"; 
     
@@ -229,7 +222,7 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
     const azureADTokenProvider = getBearerTokenProvider(credential, scope);
     
     // Set environment variables or edit the corresponding values here.
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "AZURE_OPENAI_ENDPOINT";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
     const apiVersion = "2025-01-01-preview"; 
     const deployment = "gpt-4o-mini-audio-preview"; 
     
@@ -312,8 +305,8 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
     const { writeFileSync } = require("node:fs");
     
     // Set environment variables or edit the corresponding values here.
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "AZURE_OPENAI_ENDPOINT";
-    const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "AZURE_OPENAI_API_KEY";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
+    const apiKey = process.env.AZURE_OPENAI_API_KEY || "AZURE_OPENAI_API_KEY";
     const apiVersion = "2025-01-01-preview"; 
     const deployment = "gpt-4o-mini-audio-preview"; 
     
@@ -404,7 +397,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     const azureADTokenProvider = getBearerTokenProvider(credential, scope);
     
     // Set environment variables or edit the corresponding values here.
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "AZURE_OPENAI_ENDPOINT";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
     const apiVersion = "2025-01-01-preview"; 
     const deployment = "gpt-4o-mini-audio-preview"; 
     
@@ -508,8 +501,8 @@ The script generates a transcript of the summary of the spoken audio input. It a
     const fs = require('fs').promises;
     
     // Set environment variables or edit the corresponding values here.
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "AZURE_OPENAI_ENDPOINT";
-    const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "AZURE_OPENAI_API_KEY";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
+    const apiKey = process.env.AZURE_OPENAI_API_KEY || "AZURE_OPENAI_API_KEY";
     const apiVersion = "2025-01-01-preview"; 
     const deployment = "gpt-4o-mini-audio-preview"; 
     

@@ -42,7 +42,7 @@ landingContent:
     linkLists:   
       - linkListType: quickstart
         links:
-          - text: Build a chap app in the playground
+          - text: Build a chat app in the playground
             url: quickstarts/get-started-playground.md
           - text: Build a chat app using the Azure AI SDK
             url: quickstarts/get-started-code.md

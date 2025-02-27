@@ -16,7 +16,7 @@ To use summarization, you submit for analysis and handle the API output in your 
 
 |Development option  |Description  |
 |---------|---------|
-|Language studio     | Language Studio is a web-based platform that lets you try entity linking with text examples without an Azure account, and your own data when you sign up. For more information, see the [Language Studio website](https://language.cognitive.azure.com/tryout/summarization) or [language studio quickstart](../../language-studio.md).         |
+|Azure AI Foundry     | Azure AI Foundry is a web-based platform that lets you use entity linking with text examples with your own data when you sign up. For more information, see the [Azure AI Foundry website](https://ai.azure.com) or [Azure AI Foundry documentation](../../../../ai-studio/what-is-ai-studio.md).         |
 |REST API or Client library (Azure SDK)      | Integrate text summarization into your applications using the REST API, or the client library available in various languages. For more information, see the [summarization quickstart](../quickstart.md).        |
 
 
@@ -30,7 +30,7 @@ To use summarization, you submit for analysis and handle the API output in your 
 
 |Development option  |Description  |
 |---------|---------|
-|Language studio     | Language Studio is a web-based platform that lets you try entity linking with text examples without an Azure account, and your own data when you sign up. For more information, see the [Language Studio website](https://language.cognitive.azure.com/tryout/summarization) or [language studio quickstart](../../language-studio.md).         |
+|Azure AI Foundry     | Azure AI Foundry is a web-based platform that lets you use entity linking with text examples with your own data when you sign up. For more information, see the [Azure AI Foundry website](https://ai.azure.com) or [Azure AI Foundry documentation](../../../../ai-studio/what-is-ai-studio.md).         |
 |REST API or Client library (Azure SDK)      | Integrate text summarization into your applications using the REST API, or the client library available in various languages. For more information, see the [summarization quickstart](../quickstart.md).  
 
 ---

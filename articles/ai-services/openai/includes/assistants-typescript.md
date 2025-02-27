@@ -34,7 +34,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Create a new folder `assistants-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
 
     ```shell
-    mkdir assistants-quickstart && code assistants-quickstart
+    mkdir assistants-quickstart && cd assistants-quickstart
     ```
     
 
@@ -51,7 +51,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     ```
     
 
-1. Install the OpenAI Assistants client library for JavaScript with:
+1. Install the OpenAI client library for JavaScript with:
 
     ```console
     npm install openai
@@ -110,15 +110,15 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     } from "@azure/identity";
     
     // Get environment variables
-    const azureOpenAIEndpoint = process.env.AZURE_OPENAI_ENDPOINT as string;
+    const azureOpenAIEndpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint" as string;
     const azureOpenAIDeployment = process.env
-      .AZURE_OPENAI_DEPLOYMENT_NAME as string;
-    const openAIVersion = process.env.OPENAI_API_VERSION as string;
+      .AZURE_OPENAI_DEPLOYMENT_NAME  || "Your deployment name" as string;
+    const openAIVersion = process.env.OPENAI_API_VERSION || "A supported API version" as string;
     
     // Check env variables
     if (!azureOpenAIEndpoint || !azureOpenAIDeployment || !openAIVersion) {
       throw new Error(
-        "Please ensure to set AZURE_OPENAI_DEPLOYMENT_NAME and AZURE_OPENAI_ENDPOINT in your environment variables."
+        "You need to set the endpoint, deployment name, and API version."
       );
     }
     
@@ -186,8 +186,6 @@ An individual assistant can access up to 128 tools including `code interpreter`,
       }
     }
     ```
-    
-
 
 1. Create the `tsconfig.json` file to transpile the TypeScript code and copy the following code for ECMAScript.
 
@@ -222,8 +220,6 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     node index.js
     ```
 
-
-
 #### [API key](#tab/typescript-key)
 
 1. Create the `index.ts` file with the following code:
@@ -240,16 +236,16 @@ An individual assistant can access up to 128 tools including `code interpreter`,
     import { Thread } from "openai/resources/beta/threads/threads";
     
     // Get environment variables
-    const azureOpenAIKey = process.env.AZURE_OPENAI_KEY as string;
-    const azureOpenAIEndpoint = process.env.AZURE_OPENAI_ENDPOINT as string;
+    const azureOpenAIKey = process.env.AZURE_OPENAI_KEY || "Your API key" as string;
+    const azureOpenAIEndpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint" as string;
     const azureOpenAIDeployment = process.env
-      .AZURE_OPENAI_DEPLOYMENT_NAME as string;
-    const openAIVersion = process.env.OPENAI_API_VERSION as string;
+      .AZURE_OPENAI_DEPLOYMENT_NAME || "Your deployment name" as string;
+    const openAIVersion = process.env.OPENAI_API_VERSION || "A supported API version" as string;
     
     // Check env variables
     if (!azureOpenAIKey || !azureOpenAIEndpoint || !azureOpenAIDeployment || !openAIVersion) {
       throw new Error(
-        "Please set AZURE_OPENAI_KEY and AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_DEPLOYMENT_NAME in your environment variables."
+        "You need to set the endpoint, deployment name, and API version."
       );
     }
     
@@ -314,7 +310,6 @@ An individual assistant can access up to 128 tools including `code interpreter`,
       }
     }
     ```
-    
 
 1. Create the `tsconfig.json` file to transpile the TypeScript code and copy the following code for ECMAScript.
 

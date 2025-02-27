@@ -8,7 +8,7 @@ ms.service: azure-ai-openai
 ms.custom:
   - ignite-2023
 ms.topic: include
-ms.date: 08/08/2023
+ms.date: 02/20/2025
 ---
 
 Use this guide to get started calling the Azure OpenAI Service image generation REST APIs by using Python.
