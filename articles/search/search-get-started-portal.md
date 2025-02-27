@@ -29,7 +29,7 @@ The wizard creates multiple objects on your search service, including a [searcha
 
 + An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. You can use a free service for this quickstart.
 
-+ Completion of [Import data wizards in the Azure portal](search-import-data-portal.md).
++ Familiarity with the wizard. See [Import data wizards in the Azure portal](search-import-data-portal.md) for details.
 
 ### Check for network access
 
@@ -95,7 +95,7 @@ To skip this step in the wizard:
 
 The wizard infers a schema for the hotels-sample index. To configure the index:
 
-1. Accept the system-generated values for the **Index name** (_hotels-sample-index_) and **Key** (_HotelId_) fields.
+1. Accept the system-generated values for the **Index name** (_hotels-sample-index_) and **Key** (_HotelId_).
 
 1. Accept the system-generated values for all field attributes.
 
@@ -107,7 +107,7 @@ At a minimum, the search index requires a name and a collection of fields. The w
 
 Each field has a name, a data type, and attributes that control how the field is used in the index. Use the checkboxes to enable or disable the following attributes:
 
-| Attribute | Description | Possible data types |
+| Attribute | Description | Applicable data types |
 |-----------|-------------|------------------------|
 | Retrievable | Fields returned in a query response. | Strings and integers |
 | Filterable | Fields that accept a filter expression. | Integers |
@@ -181,7 +181,7 @@ To query your search index:
 
    :::image type="content" source="media/search-get-started-portal/search-explorer-query-string.png" alt-text="Screenshot that shows how to enter and run a query in the  Search Explorer tool.":::
 
-1. Use the mini map to jump to nonvisible areas of the output.
+1. To jump to nonvisible areas of the output, use the mini map.
 
    :::image type="content" source="media/search-get-started-portal/search-explorer-query-results.png" alt-text="Screenshot that shows long results for a query in the Search Explorer tool and the mini-map.":::
 
@@ -249,7 +249,7 @@ The default syntax is [simple syntax](query-simple-syntax.md), but if you want f
 
 Misspelled query terms, like `seatle` instead of `Seattle`, don't return matches in a typical search. The `queryType=full` parameter invokes the full Lucene query parser, which supports the tilde (`~`) operand. When these parameters are present, the query performs a fuzzy search for the specified keyword and matches on terms that are similar but not an exact match.
 
-Take a minute to try these example queries for your index. To learn more about queries, see [Querying in Azure AI Search](search-query-overview.md).
+Take a minute to try these example queries on your index. For more information, see [Querying in Azure AI Search](search-query-overview.md).
 
 ## Clean up resources
 
@@ -258,7 +258,7 @@ When you work in your own subscription, it's a good idea at the end of a project
 In the Azure portal, you can find and manage resources for your service under **All resources** or **Resource groups** in the left pane.
 
 > [!NOTE]
-> Free search services are limited to three indexes, three indexers, and three data sources. To stay under the limit, you can delete individual objects in the Azure portal.
+> If you're using a free search service, remember that the limit is three indexes, three indexers, and three data sources. You can delete individual objects in the Azure portal to stay under the limit.
 
 ## Next steps
 
