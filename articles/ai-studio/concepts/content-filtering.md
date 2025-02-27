@@ -86,7 +86,7 @@ The configurability feature allows customers to adjust the settings, separately 
 
 <sup>1</sup> For Azure OpenAI models, only customers who have been approved for modified content filtering have full content filtering control, including configuring content filters at severity level high only or turning off content filters. Apply for modified content filters via these forms: [Azure OpenAI Limited Access Review: Modified Content Filters](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu), and [Modified Abuse Monitoring](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOE9MUTFMUlpBNk5IQlZWWkcyUEpWWEhGOCQlQCN0PWcu).
 
-Customers are responsible for ensuring that applications integrating Azure OpenAI comply with the [Code of Conduct](legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext). 
+Customers are responsible for ensuring that applications integrating Azure OpenAI comply with the [Code of Conduct](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext). 
 
 
 ## Next steps
