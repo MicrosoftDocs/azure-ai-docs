@@ -163,7 +163,7 @@ Azure AI Agent Service offers a standard agent configuration with private networ
 | Run       | Activation of an agent to begin running based on the contents of Thread. The agent uses its configuration and Thread's Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread. |
 | Run Step  | A detailed list of steps the agent took as part of a Run. An agent can call tools or create Messages during its run. Examining Run Steps allows you to understand how the agent is getting to its results.                                |
 
-> [!TIP
+> [!TIP]
 > The following code shows how to create and run an agent using the Python Azure SDK. For additional languages, see the [quickstart](../quickstart.md).
 
 Run the following commands to install the python packages.
