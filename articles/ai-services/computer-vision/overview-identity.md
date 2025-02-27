@@ -157,6 +157,8 @@ Input requirements for face detection:
 Input requirements for face recognition:
 [!INCLUDE [identity-input-composition](includes/identity-input-composition.md)]
 
+Input requirements for face verification:
+[!INCLUDE [identity-input-verification](includes/identity-input-verification.md)]
 
 ## Data privacy and security
 

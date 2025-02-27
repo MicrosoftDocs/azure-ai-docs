@@ -351,13 +351,15 @@ To configure the compute cluster for data access, follow these steps:
 
 1. Go to [Azure Machine Learning studio](https://ml.azure.com).
 
-1. Navigate to __Compute__, then __Compute clusters__, and select the compute cluster your deployment is using.
+1. Navigate to __Compute__, then __Compute clusters__.
+
+1. Select the compute cluster your deployment is using. This action opens the compute cluster's __Details__ page.
 
 1. Assign a managed identity to the compute cluster:
 
-   1. In the __Managed identity__ section, verify if the compute has a managed identity assigned. If not, select the option __Edit__.
+   1. Go to the __Managed identity__ section of the page and verify if the compute has a managed identity assigned. If not, select the pencil icon to edit the managed identity.
       
-   1. Select __Assign a managed identity__ and configure it as needed. You can use a System-Assigned Managed Identity or a User-Assigned Managed Identity. If using a System-Assigned Managed Identity, it is named as "[workspace name]/computes/[compute cluster name]".
+   1. Select the slider next to __Assign a managed identity__ to enable and configure it as needed. You can use a System-Assigned Managed Identity or a User-Assigned Managed Identity. If using a System-Assigned Managed Identity, it is named as "[workspace name]/computes/[compute cluster name]".
 
    1. Save the changes. 
 

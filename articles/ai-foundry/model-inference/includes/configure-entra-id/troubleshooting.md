@@ -7,6 +7,21 @@ ms.date: 01/23/2025
 ms.topic: include
 ---
 
+Before troubleshooting, verify that you have the right permissions assigned:
+
+1. Go to the [Azure portal](https://portal.azure.com) and locate the **Azure AI Services** resource you're using.
+
+2. On the left navigation bar, select **Access control (IAM)** and then select **Check access**.
+
+3. Type the name of the user or identity you are using to connect to the service.
+
+4. Verify that the role **Cognitive Services User** is listed (or a role that contains the required permissions as explained in [Prerequisites](#prerequisites)).
+
+    > [!IMPORTANT]
+    > Roles like **Owner** or **Contributor** don't provide access via Microsoft Entra ID.
+
+5. If not listed, follow the steps in this guide before continuing.
+
 The following table contains multiple scenarios that can help troubleshooting Microsoft Entra ID:
 
 | Error / Scenario     | Root cause    | Solution |

@@ -4,7 +4,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 2/1/2024
-ms.reviewer: v-baolianzou
+ms.reviewer: eur
 ms.author: eur
 author: eric-urban
 recommendations: false
