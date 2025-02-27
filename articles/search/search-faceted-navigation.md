@@ -13,7 +13,7 @@ ms.date: 02/26/2025
 
 # Add faceted navigation to a search app
 
-Faceted navigation is used for self-directed drill-down filtering on query results in a search app, where your application offers form controls for scoping search to groups of documents (for example, categories or brands), and Azure AI Search provides the data structures and filters to back the experience. 
+Faceted navigation is used for self-directed drill-down filtering on query results in a search app, where your application offers form controls for scoping search to groups of documents (for example, categories or brands), and Azure AI Search provides the data structures and filters to back the experience.
 
 In this article, learn how to return a faceted navigation structure in Azure AI Search.
 
@@ -175,9 +175,9 @@ Recall that facets are calculated from results in a query response. You only get
 
 Interval facets on date time are computed based on the UTC time if `timeoffset` isn't specified. For example: for "facet=lastRenovationDate,interval:day", the day boundary starts at 00:00:00 UTC.
 
-### Facet example
+### Basic facet example
 
-The following example works against the hotels sample index. It shows three facets for "Category", "Tags", and "Rating", with a count override on "Tags" and explicit whole number values set on "Rating", which is otherwise a float value in the index.
+The following example works against the [hotels sample index](search-get-started-portal.md). You can use **JSON view** in Search Explorer to paste in the JSON query. This example shows three facets for "Category", "Tags", and "Rating", with a count override on "Tags" and explicit whole number values set on "Rating", which is otherwise a float value in the index.
 
 ```http
 POST https://{{service_name}}.search.windows.net/indexes/hotels/docs/search?api-version={{api_version}}
@@ -192,11 +192,108 @@ POST https://{{service_name}}.search.windows.net/indexes/hotels/docs/search?api-
 }
 ```
 
-For each faceted navigation tree, there's a default limit of the top 10 facet instances found in search results. This default makes sense for navigation structures because it keeps the values list to a manageable size. You can override the default by assigning a value to "count". For example, `"Tags,count:5"` reduces the number of tags under the Tags section to the top five.
+For each faceted navigation tree, there's a default limit of the top 10 facet instances found by the query. This default makes sense for navigation structures because it keeps the values list to a manageable size. You can override the default by assigning a value to "count". For example, `"Tags,count:5"` reduces the number of tags under the Tags section to the top five.
 
 For Numeric and DateTime values only, you can explicitly set values on the facet field (for example, `facet=Rating,values:1|2|3|4|5`) to separate results into contiguous ranges (either ranges based on numeric values or time periods). Alternatively, you can add "interval", as in `facet=Rating,interval:1`. 
 
 Each range is built using 0 as a starting point, a value from the list as an endpoint, and then trimmed of the previous range to create discrete intervals.
+
+### Distinct values example
+
+You can formulate a query that returns a distinct value count for each facetable field. This example formulates a query that sets `top` to zero, returning just the counts, with no results.
+
+For brevity, it includes just two fields marked as "facetable" in the hotels sample index.
+
+```http
+POST https://{{service_name}}.search.windows.net/indexes/hotels/docs/search?api-version={{api_version}}
+{
+    "search": "*",
+    "count": true,
+    "top": 0,
+    "facets": [ 
+        "Category", "Address/StateProvince""
+    ]
+}
+```
+
+Results from this query are as follows:
+
+```json
+{
+  "@odata.count": 50,
+  "@search.facets": {
+    "Address/StateProvince": [
+      {
+        "count": 9,
+        "value": "WA"
+      },
+      {
+        "count": 6,
+        "value": "CA "
+      },
+      {
+        "count": 4,
+        "value": "FL"
+      },
+      {
+        "count": 3,
+        "value": "NY"
+      },
+      {
+        "count": 3,
+        "value": "OR"
+      },
+      {
+        "count": 3,
+        "value": "TX"
+      },
+      {
+        "count": 2,
+        "value": "GA"
+      },
+      {
+        "count": 2,
+        "value": "MA"
+      },
+      {
+        "count": 2,
+        "value": "TN"
+      },
+      {
+        "count": 1,
+        "value": "AZ"
+      }
+    ],
+    "Category": [
+      {
+        "count": 13,
+        "value": "Budget"
+      },
+      {
+        "count": 12,
+        "value": "Suite"
+      },
+      {
+        "count": 7,
+        "value": "Boutique"
+      },
+      {
+        "count": 7,
+        "value": "Resort and Spa"
+      },
+      {
+        "count": 6,
+        "value": "Extended-Stay"
+      },
+      {
+        "count": 5,
+        "value": "Luxury"
+      }
+    ]
+  },
+  "value": []
+}
+```
 
 ## Best practices for working with facets
 
@@ -230,9 +327,11 @@ If you want a static set of facets alongside a dynamic drilldown experience, you
 
 When you design the user experience, remember to add a mechanism for clearing facets. A common approach for clearing facets is issuing an empty search request to reset the page.
 
-### Trim facet results with more filters
+### Handling large facet counts
 
-Facet results are documents found in the search results that match a facet term. In the following example, in search results for *cloud computing*, 254 items also have *internal specification* as a content type. Items aren't necessarily mutually exclusive. If an item meets the criteria of both filters, it's counted in each one. This duplication is possible when faceting on `Collection(Edm.String)` fields, which are often used to implement document tagging.
+Search results and facet results that are too large can be trimmed by [adding filters](search-filters.md). In the following example, in the query for *cloud computing*, 254 items have *internal specification* as a content type. If results are too large, adding filters can help your users re-scope the query by adding more criteria.
+
+Items aren't necessarily mutually exclusive. If an item meets the criteria of both filters, it's counted in each one. This duplication is possible when faceting on `Collection(Edm.String)` fields, which are often used to implement document tagging.
 
 ```output
 Search term: "cloud computing"
@@ -241,8 +340,6 @@ Content type
    Video (10)
 ```
 
-In general, if you find that facet results are consistently too large, we recommend that you add more filters to give users more options for narrowing the search.
-
 ## Next steps
 
-We recommend the [C#: Add search to web apps](tutorial-csharp-overview.md) for an example of faceted navigation. The sample also includes filters, suggestions, and autocomplete. It uses JavaScript and React for the presentation layer.
+We recommend the [C#: Add search to web apps](tutorial-csharp-overview.md) for an example of faceted navigation that includes code for the presentation layer. The sample also includes filters, suggestions, and autocomplete. It uses JavaScript and React for the presentation layer.
