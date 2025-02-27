@@ -17,6 +17,11 @@ zone_pivot_groups: selection-azure-ai-search
 ::: zone pivot="overview-azure-ai-search"
 Use an existing Azure AI Search index with the agent's Azure AI Search tool.
 
+> [!NOTE] 
+> Azure AI Search indexes must meet the following requirements:
+> - The index must contain at least one searchable & retrievable text field (type Edm.String) 
+> - The index must contain at least one searchable vector field (type Collection(Edm.Single)) 
+> - The index is assumed to be configured properly
 
 ## Search types
 You can specify the search type for your index by choosing one of the following
