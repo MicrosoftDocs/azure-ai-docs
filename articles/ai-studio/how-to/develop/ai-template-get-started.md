@@ -56,5 +56,4 @@ The README also includes information about the application, such as the use case
 ## Related content
 
 - [Get started building a chat app using the Azure AI Foundry SDK](../../quickstarts/get-started-code.md)
-- [Work with projects in VS Code](vscode.md)
-- [Connections in Azure AI Foundry portal](../../concepts/connections.md)
+- [Develop AI apps using Azure AI services](/azure/developer/ai/)
