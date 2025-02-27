@@ -147,10 +147,10 @@ Azure AI Agent Service offers a standard agent configuration with private networ
         ```
 
     1. To customize other parameters, including the OpenAI model deployment, download, and edit the `azuredeploy.parameters.json` file, then run:
-
-    ```console
-    az deployment group create --resource-group {my_resource_group} --template-file main.bicep --parameters @azuredeploy.parameters.json 
-    ```
+    
+        ```console
+        az deployment group create --resource-group {my_resource_group} --template-file main.bicep --parameters @azuredeploy.parameters.json 
+        ```
 
 ## Configure and run an agent
 
