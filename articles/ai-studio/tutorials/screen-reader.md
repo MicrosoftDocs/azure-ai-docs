@@ -20,7 +20,7 @@ This article is for people who use screen readers such as [Microsoft's Narrator]
 
 ## Getting oriented in Azure AI Foundry portal 
 
-Most Azure AI Foundry pages are composed of the following landmark structure: 
+Most [Azure AI Foundry](https://ai.azure.com) pages are composed of the following landmark structure: 
 
 - Banner (contains Azure AI Foundry app title, settings, and profile information)
     - Might sometimes contain a breadcrumb navigation element 
