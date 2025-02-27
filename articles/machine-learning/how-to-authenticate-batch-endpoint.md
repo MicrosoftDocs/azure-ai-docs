@@ -381,8 +381,6 @@ To configure the compute cluster for data access, follow these steps:
 
    1. Add the account, and complete the wizard.
   
-    :::image type="content" source="media/how-to-authenticate-batch-endpoint/guide-manage-identity-assign.gif" alt-text="Animation showing the steps to assign the created managed identity to the storage account.":::
-  
 1. Your endpoint is ready to receive jobs and input data from the selected storage account. 
 
 ## Next steps
