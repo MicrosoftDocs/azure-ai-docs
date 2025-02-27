@@ -74,7 +74,7 @@ Azure AI Agent Service offers a standard agent configuration with private networ
 </summary>   
 
 **The Bicep template automates the following configurations and resource provisions:**
-* Creates a User Assigned Identity. [Learn more](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp#create-a-user-assigned-managed-identity)
+* Creates a [User Assigned Identity](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp#create-a-user-assigned-managed-identity).
   * The User Assigned Managed Identity requires the following Role-Based Access Roles: 
     * KeyVault Secret Officer
     * KeyVault Contributor
@@ -280,6 +280,6 @@ with project_client:
     print("Deleted agent")
 ```
 
-# Next steps
+## Next steps
 
 Once you've provisioned your agent, you can add tools such as [Grounding with Bing Search](./tools/bing-grounding.md) to enhance their capabilities.
