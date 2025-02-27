@@ -48,3 +48,7 @@ The Document translation API now supports two translation operations:
 
 * [Synchronous](document-translation/overview.md#synchronous-translation) document translation supports synchronous processing of single file translations. The file translation process doesn't require an Azure Blob storage account. The final response contains the translated document and is returned directly to the calling client.
 
+## Related content
+
+[Azure AI Translator release history](reference/release-history.md)
+
