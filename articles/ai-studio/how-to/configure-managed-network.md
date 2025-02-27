@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, build-2024, devx-track-azurecli, ignite-2024
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 02/27/2025
 ms.reviewer: meerakurup
 ms.author: larryfr
 author: Blackmist
@@ -54,7 +54,7 @@ The following diagram shows a managed virtual network configured to __allow inte
 The following diagram shows a managed virtual network configured to __allow only approved outbound__:
 
 > [!NOTE]
-> In this configuration, the storage, key vault, and container registry used by the hub are flagged as private. Since they are flagged as private, a private endpoint is used to communicate with them.
+> In this configuration, the storage, key vault, and container registry used by the hub are flagged as private. Since they're flagged as private, a private endpoint is used to communicate with them.
 
 :::image type="content" source="../media/how-to/network/only-approved-outbound.svg" alt-text="Diagram of managed virtual network isolation configured for allow only approved outbound." lightbox="../media/how-to/network/only-approved-outbound.png":::
 
@@ -135,7 +135,7 @@ Before following the steps in this article, make sure you have the following pre
 
 ## Limitations
 
-* Azure AI Foundry supports managed virtual network isolation for securing your compute resources. Azure AI Foundry does not support bring your own virtual network for securing compute resources. Please note bring your own virtual network for securing computes is different than your Azure virtual network that is required to access Azure AI Foundry from your on-premises network. 
+* Azure AI Foundry supports managed virtual network isolation for securing your compute resources. Azure AI Foundry doesn't support bring your own virtual network for securing compute resources. Note bring your own virtual network for securing computes is different than your Azure virtual network that is required to access Azure AI Foundry from your on-premises network. 
 * Once you enable managed virtual network isolation of your Azure AI, you can't disable it.
 * Managed virtual network uses private endpoint connection to access your private resources. You can't have a private endpoint and a service endpoint at the same time for your Azure resources, such as a storage account. We recommend using private endpoints in all scenarios.
 * The managed virtual network is deleted when the Azure AI is deleted. 
@@ -149,7 +149,7 @@ Before following the steps in this article, make sure you have the following pre
 ## Configure a managed virtual network to allow internet outbound
 
 > [!TIP]
-> The creation of the managed VNet is deferred until a compute resource is created or provisioning is manually started. When allowing automatic creation, it can take around __30 minutes__ to create the first compute resource as it is also provisioning the network.
+> The creation of the managed VNet is deferred until a compute resource is created or provisioning is manually started. When you allow automatic creation, it can take around __30 minutes__ to create the first compute resource as it is also provisioning the network.
 
 # [Azure portal](#tab/portal)
 
@@ -332,7 +332,7 @@ To configure a managed virtual network that allows internet outbound communicati
 ## Configure a managed virtual network to allow only approved outbound
 
 > [!TIP]
-> The managed VNet is automatically provisioned when you create a compute resource. When allowing automatic creation, it can take around __30 minutes__ to create the first compute resource as it is also provisioning the network. If you configured FQDN outbound rules, the first FQDN rule adds around __10 minutes__ to the provisioning time.
+> The managed VNet is automatically provisioned when you create a compute resource. When you allow automatic creation, it can take around __30 minutes__ to create the first compute resource as it is also provisioning the network. If you configured FQDN outbound rules, the first FQDN rule adds around __10 minutes__ to the provisioning time.
 
 # [Azure portal](#tab/portal)
 
@@ -761,7 +761,7 @@ __Inbound__ service tag rules:
 To allow installation of __Python packages for training and deployment__, add outbound _FQDN_ rules to allow traffic to the following host names:
 
 > [!NOTE]
-> This is not a complete list of the hosts required for all Python resources on the internet, only the most commonly used. For example, if you need access to a GitHub repository or other host, you must identify and add the required hosts for that scenario.
+> This isn't a complete list of the hosts required for all Python resources on the internet, only the most commonly used. For example, if you need access to a GitHub repository or other host, you must identify and add the required hosts for that scenario.
 
 | __Host name__ | __Purpose__ |
 | ---- | ---- |
@@ -779,7 +779,7 @@ Visual Studio Code relies on specific hosts and ports to establish a remote conn
 The hosts in this section are used to install Visual Studio Code packages to establish a remote connection between Visual Studio Code and the compute instances for your project.
 
 > [!NOTE]
-> This is not a complete list of the hosts required for all Visual Studio Code resources on the internet, only the most commonly used. For example, if you need access to a GitHub repository or other host, you must identify and add the required hosts for that scenario. For a complete list of host names, see [Network Connections in Visual Studio Code](https://code.visualstudio.com/docs/setup/network).
+> This isn't a complete list of the hosts required for all Visual Studio Code resources on the internet, only the most commonly used. For example, if you need access to a GitHub repository or other host, you must identify and add the required hosts for that scenario. For a complete list of host names, see [Network Connections in Visual Studio Code](https://code.visualstudio.com/docs/setup/network).
 
 | __Host name__ | __Purpose__ |
 | ---- | ---- |
@@ -847,7 +847,7 @@ When you create a private endpoint for hub dependency resources, such as Azure S
 A private endpoint is automatically created for a connection if the target resource is an Azure resource listed previously. A valid target ID is expected for the private endpoint. A valid target ID for the connection can be the Azure Resource Manager ID of a parent resource. The target ID is also expected in the target of the connection or in `metadata.resourceid`. For more on connections, see [How to add a new connection in Azure AI Foundry portal](connections-add.md).
 
 > [!IMPORTANT]
-> As of March 31st 2025, the Azure AI Enterprise Network Connection Approver role must be assigned to the Azure AI Foundry hub's managed identity to approve private endpoints to securely access your Azure resources from the managed virtual network. This does not impact existing resources with approved private endpoints as the role is correctly assigned by the service. For new resources, please ensure the role is assigned to the hub's managed identity. For Azure Data Factory, Azure Databricks, and Azure Function Apps, the Contributor role should instead be assigned to your hub's managed identity. This role assignment is applicable to both User-assigned identity and System-assigned identity workspaces. 
+> As of March 31st 2025, the Azure AI Enterprise Network Connection Approver role must be assigned to the Azure AI Foundry hub's managed identity to approve private endpoints to securely access your Azure resources from the managed virtual network. This doesn't impact existing resources with approved private endpoints as the role is correctly assigned by the service. For new resources, ensure the role is assigned to the hub's managed identity. For Azure Data Factory, Azure Databricks, and Azure Function Apps, the Contributor role should instead be assigned to your hub's managed identity. This role assignment is applicable to both User-assigned identity and System-assigned identity workspaces. 
 
 ## Select an Azure Firewall version for allowed only approved outbound
 
@@ -899,7 +899,7 @@ The hub managed virtual network feature is free. However, you're charged for the
 * FQDN outbound rules - FQDN outbound rules are implemented using Azure Firewall. If you use outbound FQDN rules, charges for Azure Firewall are included in your billing. A standard version of Azure Firewall is used by default. For information on selecting the basic version, see [Select an Azure Firewall version](#select-an-azure-firewall-version-for-allowed-only-approved-outbound). Azure Firewall is provisioned per hub.
 
     > [!IMPORTANT]
-    > The firewall isn't created until you add an outbound FQDN rule. If you don't use FQDN rules, you will not be charged for Azure Firewall. For more information on pricing, see [Azure Firewall pricing](https://azure.microsoft.com/pricing/details/azure-firewall/).
+    > The firewall isn't created until you add an outbound FQDN rule. If you don't use FQDN rules, you won't be charged for Azure Firewall. For more information on pricing, see [Azure Firewall pricing](https://azure.microsoft.com/pricing/details/azure-firewall/).
 
 ## Related content
 
