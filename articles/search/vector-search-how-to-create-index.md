@@ -128,7 +128,7 @@ Be sure to have a strategy for [vectorizing your content](vector-search-how-to-g
                 "name": "binary-quantization",
                 "kind": "binaryQuantization",
                 "rerankWithOriginalVectors": true,
-                "defaultOversampling": 10.0,
+                "defaultOversampling": 10.0
             }
         ],
         "algorithms": [
