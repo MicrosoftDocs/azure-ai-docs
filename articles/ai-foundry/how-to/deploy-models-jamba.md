@@ -7,6 +7,7 @@ ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 08/06/2024
 ms.author: ssalgado
+author: ssalgadodev
 ms.reviewer: tgokal
 reviewer: tgokal
 ms.custom: references_regions, ignite-2024
