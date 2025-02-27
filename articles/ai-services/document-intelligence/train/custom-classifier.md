@@ -153,7 +153,7 @@ When using the REST API, if you organize your documents by folders, you can use 
 
 ```json
 
-https://{endpoint}/documentintelligence/documentClassifiers:build?api-version=2024-02-29-preview
+https://{endpoint}/documentintelligence/documentClassifiers:build?api-version=2024-11-30
 
 {
   "classifierId": "demo2.1",
@@ -350,7 +350,7 @@ Analyze an input file with the document classification model.
 :::moniker range="doc-intel-4.0.0"
 
 ```json
-https://{endpoint}/documentintelligence/documentClassifiers/{classifier}:analyze?api-version=2024-02-29-preview
+https://{endpoint}/documentintelligence/documentClassifiers/{classifier}:analyze?api-version=2024-11-30
 ```
 
 The `v4.0 2024-11-30 (GA)` API enables you to specify pages to analyze from the input document using the `pages` query parameter in the request.

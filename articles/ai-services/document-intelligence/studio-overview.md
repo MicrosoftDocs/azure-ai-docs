@@ -39,7 +39,7 @@ Document Intelligence Studio contains all features released on or before Novembe
 
 ### When to use [Azure AI Foundry portal](https://ai.azure.com/explore/aiservices/vision)
 
-Start with the new Azure AI Foundry and try any of the prebuilt document models from `2024-02-29-preview` version including general extraction models like Read or Layout.
+Start with the new Azure AI Foundry and try any of the prebuilt document models from `2024-11-30` version including general extraction models like Read or Layout.
 
 ## Learn more about Document Intelligence Studio
 
