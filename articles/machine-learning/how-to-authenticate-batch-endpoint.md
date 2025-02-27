@@ -38,7 +38,7 @@ See [Configure RBAC for batch endpoint invoke](#configure-rbac-for-batch-endpoin
 The following examples show different ways to start batch deployment jobs using different types of credentials:
 
 > [!IMPORTANT]
-> When working on a private link-enabled workspaces, batch endpoints can't be invoked from the UI in Azure Machine Learning studio. Please use the Azure Machine Learning CLI v2 instead for job creation.
+> When working on private link-enabled workspaces, batch endpoints can't be invoked from the UI in Azure Machine Learning studio. Please use the Azure Machine Learning CLI v2 instead for job creation.
 
 ### Prerequisites
 
