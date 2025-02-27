@@ -5,7 +5,7 @@ description: Learn how to configure an Azure AI Foundry managed network to secur
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 02/24/2025
+ms.date: 02/27/2025
 ms.reviewer: meerakurup 
 ms.author: larryfr
 author: Blackmist
@@ -96,6 +96,7 @@ To create a private endpoint to Application Gateway with the Azure CLI, use the 
 - Application Gateway supports only HTTP(s) endpoints in the Backend pool. There's no support for non-HTTP(s) network traffic. Ensure your resources support HTTP(S) protocol.
 - To connect to Snowflake using the Application Gateway, you should add your own FQDN outbound rules to enable package/driver download and OCSP validation.
   - The Snowflake JDBC driver uses HTTPS calls, but different drivers might have different implementations. Check if your resource uses HTTP(S) protocol or not.
+- Application Gateway isn't supported for Spark scenarios, such as Spark compute or serverless Spark compute. DNS resolution (for example, nslookup) fails when trying to resolve an FQDN from the Spark compute.
 - For more information on limitations, see [Frequently asked questions about Application Gateway](/azure/application-gateway/application-gateway-faq).
 
 ## Application Gateway Errors

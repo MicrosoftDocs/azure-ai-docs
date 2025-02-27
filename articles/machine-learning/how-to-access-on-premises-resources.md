@@ -5,14 +5,14 @@ description: Learn how to configure an Azure Machine Learning's managed network 
 manager: scottpolly
 ms.service: azure-machine-learning
 ms.topic: how-to
-ms.date: 10/24/2024
+ms.date: 02/27/2025
 ms.reviewer: meerakurup 
 ms.author: larryfr
 author: Blackmist
 # Customer intent: As an admin, I want to allow my developers to securely access on-premises resources from Azure Machine Learning.
 ---
 
-# Access on-premises resources from your Azure Machine Learning workspace's managed network (preview)
+# Access on-premises resources from your Azure Machine Learning workspace's managed network
 
 To access your non-Azure resources located in a different virtual network or located entirely on-premises from your Azure Machine Learning workspace's managed virtual network, an Application Gateway must be configured. Through this Application Gateway, full end to end access can be configured to your resources.
 
@@ -96,6 +96,7 @@ To create a private endpoint to Application Gateway with the Azure CLI, use the 
 - Application Gateway supports only HTTP(s) endpoints in the Backend pool. There's no support for non-HTTP(s) network traffic. Ensure your resources support HTTP(S) protocol.
 - To connect to Snowflake using the Application Gateway, you should add your own FQDN outbound rules to enable package/driver download and OCSP validation.
   - The Snowflake JDBC driver uses HTTPS calls, but different drivers might have different implementations. Check if your resource uses HTTP(S) protocol or not.
+- Application Gateway isn't supported for Spark scenarios, such as Spark compute or serverless Spark compute. DNS resolution (for example, nslookup) fails when trying to resolve an FQDN from the Spark compute.
 - For more information on limitations, see [Frequently asked questions about Application Gateway](/azure/application-gateway/application-gateway-faq).
 
 ## Application Gateway Errors
