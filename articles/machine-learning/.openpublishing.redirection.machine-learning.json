@@ -31,6 +31,11 @@
         "redirect_document_id": false
     },
     {
+        "source_path_from_root": "/articles/machine-learning/concept-model-lifecycle-retirement.md",
+        "redirect_url": "/azure/ai-studio/concepts/model-lifecycle-retirement?context=%2Fazure%2Fmachine-learning%2Fcontext%2Fcontext",
+        "redirect_document_id": false
+    },
+    {
         "source_path_from_root": "/articles/machine-learning/v-fake/tutorial-pipeline-python-sdk.md",
         "redirect_url": "/azure/machine-learning/tutorial-pipeline-python-sdk",
         "redirect_document_id": false
