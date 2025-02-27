@@ -29,6 +29,7 @@ Some summarization features are only available in limited regions. More regions 
 |East US           |&#9989;                           |&#9989;                                        |
 |East US 2         |&#9989;                           |&#9989;                                        |
 |France Central    |&#9989;                           |&#9989;                                        |
+|Germany West Central  |&#9989;                           |&#9989;                                        |
 |Italy North       |&#9989;                           |&#9989;                                        |
 |Japan East        |&#9989;                           |&#9989;                                        |
 |North Central US  |&#9989;                           |&#9989;                                        |
