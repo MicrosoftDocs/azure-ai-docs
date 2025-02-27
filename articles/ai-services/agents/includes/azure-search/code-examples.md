@@ -85,13 +85,18 @@ Get the connection ID of the Azure AI Search connection in the project. You can 
 
 ```python
 # AI Search resource connection ID
-# This code prints out the connection ID of all the Azure AI Search connections in the project
-# If you have more than one AI search connection, make sure to select the correct one that contains the index you want to use.
-conn_list = project_client.connections.list()
+# This code look for the AI Search Connection ID and safe it as variable conn_id
+# If you have more than one AI search connection, try to stablished the value into your .env file.
+# Extract the connection list.
+conn_list = project_client.connections._list_connections()["value"]
 conn_id = ""
+
+# Search into the metadata field the azure_ai_search type and get the id value to stablished the variable
 for conn in conn_list:
-    if conn.connection_type == "AZURE_AI_SEARCH":
-        print(f"Connection ID: {conn.id}")
+    metadata = conn["properties"].get("metadata", {})
+    if metadata.get("type", "").upper() == "AZURE_AI_SEARCH":
+        conn_id = conn["id"]
+        break
 ```
 # [C#](#tab/csharp)
 ```csharp
