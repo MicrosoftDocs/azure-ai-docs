@@ -180,42 +180,6 @@ To guarantee accuracy, you can artificially inflate the count:\<number> to a lar
 
 The tradeoff with this workaround is increased query latency, so use it only when necessary.
 
-<!-- 
-## Presentation layer
-
-In application code, the pattern is to use facet query parameters to return the faceted navigation structure along with facet results, plus a `$filter` expression.  The filter expression handles the click event and further narrows the search result based on the facet selection.
-
-### Facet and filter combination
-
-The following code snippet from the `JobsSearch.cs` file in the [NYCJobs demo](/samples/azure-samples/search-dotnet-asp-net-mvc-jobs/search-dotnet-asp-net-mvc-jobs/) adds the selected Business Title to the filter if you select a value from the Business Title facet.
-
-```cs
-if (businessTitleFacet != "")
-  filter = "business_title eq '" + businessTitleFacet + "'";
-```
-
-Here's another example from the hotels sample. The following code snippet adds `categoryFacet` to the filter if a user selects a value from the category facet.
-
-```csharp
-if (!String.IsNullOrEmpty(categoryFacet))
-    filter = $"category eq '{categoryFacet}'";
-```
-
-### Build HTML dynamically
-
-The following code snippet from the `index.cshtml` (also from NYCJobs demo) dynamically builds the HTML to display the first facet, Business Title. Similar functions dynamically build the HTML for the other facets. Each facet has a label and a count, which displays the number of items found for that facet result.
-
-```js
-function UpdateBusinessTitleFacets(data) {
-  var facetResultsHTML = '';
-  for (var i = 0; i < data.length; i++) {
-    facetResultsHTML += '<li><a href="javascript:void(0)" onclick="ChooseBusinessTitleFacet(\'' + data[i].Value + '\');">' + data[i].Value + ' (' + data[i].Count + ')</span></a></li>';
-  }
-
-  $("#business_title_facets").html(facetResultsHTML);
-}
-``` -->
-
 ## Tips for working with facets
 
 This section is a collection of tips and workarounds that might be helpful.
