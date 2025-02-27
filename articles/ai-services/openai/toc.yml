@@ -171,9 +171,9 @@ items:
       - name: Fine-tuning your model
         href: ./how-to/fine-tuning.md
         displayName: finetuning 
-      - name: Function calling
+      - name: Tool calling
         href: ./how-to/fine-tuning-functions.md
-        displayName: fine-tuning, finetuning
+        displayName: fine-tuning, finetuning, function calling
       - name: Weights & Biases integration (preview)
         href: ./how-to/weights-and-biases-integration.md
   - name: Stored completions
