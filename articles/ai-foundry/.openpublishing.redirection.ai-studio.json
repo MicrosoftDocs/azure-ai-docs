@@ -634,13 +634,13 @@
         },
         {
             "source_path_from_root": "/articles/ai-studio/index.yml",
-            "redirect_url": "/azure/ai-foundry",
-            "redirect_document_id": true
+            "redirect_url": "/azure/ai-foundry/",
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/ai-studio/faq.yml",
             "redirect_url": "/azure/ai-foundry/faq/",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
           "source_path_from_root": "/articles/ai-studio/context/context.yml",
@@ -659,7 +659,7 @@
             "redirect_document_id": true
         },
         {
-            "source_path_from_root": "/articles/ai-studio/whats-new-ai-foundry.md",
+            "source_path_from_root": "/articles/ai-studio/whats-new-ai-studio.md",
             "redirect_url": "/azure/ai-foundry/whats-new-ai-foundry",
             "redirect_document_id": true
         },
