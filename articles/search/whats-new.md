@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: overview
-ms.date: 12/11/2024
+ms.date: 02/28/2025
 ms.custom:
   - references_regions
   - ignite-2024
@@ -19,6 +19,12 @@ ms.custom:
 
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
+
+## February 2025
+
+| Item&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Type |  Description |
+|-----------------------------|------|--------------|
+| [**HSM support for customer-managed keys**](search-security-manage-encryption-keys.md) | Security | Use either Azure Key Vault or Key Vault Managed Hardware Security Model (HSM) to store customer-managed keys for extra encryption of sensitive content. |
 
 ## December 2024
 
