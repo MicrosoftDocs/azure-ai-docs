@@ -2,7 +2,7 @@
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: include
 ms.date: 01/21/2025
 ---

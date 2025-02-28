@@ -18,7 +18,7 @@ author: sdgilley
 
 # Create a project in Azure AI Foundry portal
 
-This article describes how to create an Azure AI Foundry project. A project is used to organize your work and save state while building customized AI apps. 
+This article describes how to create an [Azure AI Foundry](https://ai.azure.com) project. A project is used to organize your work and save state while building customized AI apps. 
 
 Projects are hosted by an Azure AI Foundry hub. If your company has an administrative team that has created a hub for you, you can create a project from that hub. If you are working on your own, you can create a project and a default hub will automatically be created for you.
 

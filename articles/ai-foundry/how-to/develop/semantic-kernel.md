@@ -5,7 +5,7 @@ description: Develop applications with Semantic Kernel and Azure AI Foundry.
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: taochen
-ms.date: 12/04/2024
+ms.date: 02/27/2025
 ms.topic: how-to
 ms.service: azure-ai-foundry
 manager: scottpolly
@@ -29,7 +29,9 @@ In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overvie
     ```bash
     pip install semantic-kernel
     ```
-- In this example, we are working with the Azure AI model inference API, hence we install the relevant Azure dependencies. You can do it with:
+
+- In this example, we're working with the Azure AI model inference API, so we need to install the relevant Azure dependencies. You can do it with:
+
     ```bash
     pip install semantic-kernel[azure]
     ```

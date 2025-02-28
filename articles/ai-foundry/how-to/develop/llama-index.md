@@ -17,7 +17,7 @@ author: sdgilley
 
 In this article, you learn how to use [LlamaIndex](https://github.com/run-llama/llama_index) with models deployed from the Azure AI model catalog in Azure AI Foundry portal.
 
-Models deployed to Azure AI Foundry can be used with LlamaIndex in two ways:
+Models deployed to [Azure AI Foundry](https://ai.azure.com) can be used with LlamaIndex in two ways:
 
 - **Using the Azure AI model inference API:** All models deployed to Azure AI Foundry support the [Azure AI model inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LlamaIndex, install the extensions `llama-index-llms-azure-inference` and `llama-index-embeddings-azure-inference`.
 

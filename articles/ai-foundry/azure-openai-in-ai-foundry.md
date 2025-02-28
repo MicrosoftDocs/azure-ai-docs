@@ -16,7 +16,7 @@ ms.custom: ignite-2023, build-2024, ignite-2024
 
 # What is Azure OpenAI in Azure AI Foundry portal?
 
-Azure OpenAI Service provides REST API access to OpenAI's powerful language models. Azure OpenAI Studio was previously where you went to access and work with the Azure OpenAI Service. This studio is now integrated into Azure AI Foundry portal. 
+Azure OpenAI Service provides REST API access to OpenAI's powerful language models. Azure OpenAI Studio was previously where you went to access and work with the Azure OpenAI Service. This studio is now integrated into [Azure AI Foundry portal](https://ai.azure.com). 
 
 ## Access Azure OpenAI Service in Azure AI Foundry portal
 

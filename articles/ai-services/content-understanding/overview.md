@@ -73,7 +73,7 @@ See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 
 
 ## Responsible AI
- Azure AI Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. For more information and a full list of prohibited content, *see* our [**Transparency note**](/legal/cognitive-services/content-understanding/transparency-note?toc=/azure/ai-services/content-understanding/toc.json&bc=/azure/ai-services/content-understanding/breadcrumb/toc.json) and our [**Code of Conduct**](/legal/cognitive-services/openai/code-of-conduct).
+ Azure AI Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. For more information and a full list of prohibited content, *see* our [**Transparency note**](/legal/cognitive-services/content-understanding/transparency-note?toc=/azure/ai-services/content-understanding/toc.json&bc=/azure/ai-services/content-understanding/breadcrumb/toc.json) and our [**Code of Conduct**](https://aka.ms/AI-CoC).
 
 ### Modified Content Filtering
 

@@ -29,6 +29,18 @@ The Phi-4 family of small language models (SLMs) is a collection of instruction-
 
 The Phi-4 family chat models include the following models:
 
+# [Phi-4-multimodal-instruct](#tab/phi-4-multimodal-instruct)
+
+Phi-4-multimodal-instruct is a lightweight open multimodal foundation model that leverages the language, vision, and speech research and datasets used for Phi-3.5 and 4.0 models. The model processes text, image, and audio inputs, and generates text outputs. The model underwent an enhancement process, incorporating both supervised fine-tuning, and direct preference optimization to support precise instruction adherence and safety measures.
+
+The Phi-4-multimodal-instruct model comes in the following variant with a 128K token length.
+
+
+The following models are available:
+
+* [Phi-4-multimodal-instruct](https://aka.ms/azureai/landing/Phi-4-multimodal-instruct)
+
+
 # [Phi-4-mini-instruct](#tab/phi-4-mini-instruct)
 
 Phi-4-mini-instruct is a lightweight open model built upon synthetic data and filtered publicly available websites - with a focus on high-quality, reasoning dense data. The model belongs to the Phi-4 model family and supports 128K token context length. The model underwent an enhancement process, incorporating both supervised fine-tuning and direct preference optimization to support precise instruction adherence and robust safety measures. 
@@ -155,7 +167,7 @@ print("Model provider name:", model_info.model_provider_name)
 ```
 
 ```console
-Model name: Phi-4-mini-instruct
+Model name: Phi-4-multimodal-instruct
 Model type: chat-completions
 Model provider name: Microsoft
 ```
@@ -176,7 +188,7 @@ response = client.complete(
 ```
 
 > [!NOTE]
-> Phi-4-mini-instruct and Phi-4 don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+> Phi-4-multimodal-instruct, Phi-4-mini-instruct, and Phi-4 don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -192,7 +204,7 @@ print("\tCompletion tokens:", response.usage.completion_tokens)
 
 ```console
 Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
-Model: Phi-4-mini-instruct
+Model: Phi-4-multimodal-instruct
 Usage: 
   Prompt tokens: 19
   Total tokens: 91
@@ -341,6 +353,18 @@ except HttpResponseError as ex:
 
 The Phi-4 family chat models include the following models:
 
+# [Phi-4-multimodal-instruct](#tab/phi-4-multimodal-instruct)
+
+Phi-4-multimodal-instruct is a lightweight open multimodal foundation model that leverages the language, vision, and speech research and datasets used for Phi-3.5 and 4.0 models. The model processes text, image, and audio inputs, and generates text outputs. The model underwent an enhancement process, incorporating both supervised fine-tuning, and direct preference optimization to support precise instruction adherence and safety measures.
+
+The Phi-4-multimodal-instruct model comes in the following variant with a 128K token length.
+
+
+The following models are available:
+
+* [Phi-4-multimodal-instruct](https://aka.ms/azureai/landing/Phi-4-multimodal-instruct)
+
+
 # [Phi-4-mini-instruct](#tab/phi-4-mini-instruct)
 
 Phi-4-mini-instruct is a lightweight open model built upon synthetic data and filtered publicly available websites - with a focus on high-quality, reasoning dense data. The model belongs to the Phi-4 model family and supports 128K token context length. The model underwent an enhancement process, incorporating both supervised fine-tuning and direct preference optimization to support precise instruction adherence and robust safety measures. 
@@ -465,7 +489,7 @@ console.log("Model provider name: ", model_info.body.model_provider_name)
 ```
 
 ```console
-Model name: Phi-4-mini-instruct
+Model name: Phi-4-multimodal-instruct
 Model type: chat-completions
 Model provider name: Microsoft
 ```
@@ -488,7 +512,7 @@ var response = await client.path("/chat/completions").post({
 ```
 
 > [!NOTE]
-> Phi-4-mini-instruct and Phi-4 don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+> Phi-4-multimodal-instruct, Phi-4-mini-instruct, and Phi-4 don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -508,7 +532,7 @@ console.log("\tCompletion tokens:", response.body.usage.completion_tokens);
 
 ```console
 Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
-Model: Phi-4-mini-instruct
+Model: Phi-4-multimodal-instruct
 Usage: 
   Prompt tokens: 19
   Total tokens: 91
@@ -676,6 +700,18 @@ catch (error) {
 
 The Phi-4 family chat models include the following models:
 
+# [Phi-4-multimodal-instruct](#tab/phi-4-multimodal-instruct)
+
+Phi-4-multimodal-instruct is a lightweight open multimodal foundation model that leverages the language, vision, and speech research and datasets used for Phi-3.5 and 4.0 models. The model processes text, image, and audio inputs, and generates text outputs. The model underwent an enhancement process, incorporating both supervised fine-tuning, and direct preference optimization to support precise instruction adherence and safety measures.
+
+The Phi-4-multimodal-instruct model comes in the following variant with a 128K token length.
+
+
+The following models are available:
+
+* [Phi-4-multimodal-instruct](https://aka.ms/azureai/landing/Phi-4-multimodal-instruct)
+
+
 # [Phi-4-mini-instruct](#tab/phi-4-mini-instruct)
 
 Phi-4-mini-instruct is a lightweight open model built upon synthetic data and filtered publicly available websites - with a focus on high-quality, reasoning dense data. The model belongs to the Phi-4 model family and supports 128K token context length. The model underwent an enhancement process, incorporating both supervised fine-tuning and direct preference optimization to support precise instruction adherence and robust safety measures. 
@@ -815,7 +851,7 @@ Console.WriteLine($"Model provider name: {modelInfo.Value.ModelProviderName}");
 ```
 
 ```console
-Model name: Phi-4-mini-instruct
+Model name: Phi-4-multimodal-instruct
 Model type: chat-completions
 Model provider name: Microsoft
 ```
@@ -837,7 +873,7 @@ Response<ChatCompletions> response = client.Complete(requestOptions);
 ```
 
 > [!NOTE]
-> Phi-4-mini-instruct and Phi-4 don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+> Phi-4-multimodal-instruct, Phi-4-mini-instruct, and Phi-4 don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -853,7 +889,7 @@ Console.WriteLine($"\tCompletion tokens: {response.Value.Usage.CompletionTokens}
 
 ```console
 Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
-Model: Phi-4-mini-instruct
+Model: Phi-4-multimodal-instruct
 Usage: 
   Prompt tokens: 19
   Total tokens: 91
@@ -1023,6 +1059,18 @@ catch (RequestFailedException ex)
 
 The Phi-4 family chat models include the following models:
 
+# [Phi-4-multimodal-instruct](#tab/phi-4-multimodal-instruct)
+
+Phi-4-multimodal-instruct is a lightweight open multimodal foundation model that leverages the language, vision, and speech research and datasets used for Phi-3.5 and 4.0 models. The model processes text, image, and audio inputs, and generates text outputs. The model underwent an enhancement process, incorporating both supervised fine-tuning, and direct preference optimization to support precise instruction adherence and safety measures.
+
+The Phi-4-multimodal-instruct model comes in the following variant with a 128K token length.
+
+
+The following models are available:
+
+* [Phi-4-multimodal-instruct](https://aka.ms/azureai/landing/Phi-4-multimodal-instruct)
+
+
 # [Phi-4-mini-instruct](#tab/phi-4-mini-instruct)
 
 Phi-4-mini-instruct is a lightweight open model built upon synthetic data and filtered publicly available websites - with a focus on high-quality, reasoning dense data. The model belongs to the Phi-4 model family and supports 128K token context length. The model underwent an enhancement process, incorporating both supervised fine-tuning and direct preference optimization to support precise instruction adherence and robust safety measures. 
@@ -1113,7 +1161,7 @@ The response is as follows:
 
 ```json
 {
-    "model_name": "Phi-4-mini-instruct",
+    "model_name": "Phi-4-multimodal-instruct",
     "model_type": "chat-completions",
     "model_provider_name": "Microsoft"
 }
@@ -1139,7 +1187,7 @@ The following example shows how you can create a basic chat completions request 
 ```
 
 > [!NOTE]
-> Phi-4-mini-instruct and Phi-4 don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+> Phi-4-multimodal-instruct, Phi-4-mini-instruct, and Phi-4 don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -1149,7 +1197,7 @@ The response is as follows, where you can see the model's usage statistics:
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718726686,
-    "model": "Phi-4-mini-instruct",
+    "model": "Phi-4-multimodal-instruct",
     "choices": [
         {
             "index": 0,
@@ -1206,7 +1254,7 @@ You can visualize how streaming generates content:
     "id": "23b54589eba14564ad8a2e6978775a39",
     "object": "chat.completion.chunk",
     "created": 1718726371,
-    "model": "Phi-4-mini-instruct",
+    "model": "Phi-4-multimodal-instruct",
     "choices": [
         {
             "index": 0,
@@ -1229,7 +1277,7 @@ The last message in the stream has `finish_reason` set, indicating the reason fo
     "id": "23b54589eba14564ad8a2e6978775a39",
     "object": "chat.completion.chunk",
     "created": 1718726371,
-    "model": "Phi-4-mini-instruct",
+    "model": "Phi-4-multimodal-instruct",
     "choices": [
         {
             "index": 0,
@@ -1280,7 +1328,7 @@ Explore other parameters that you can specify in the inference client. For a ful
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718726686,
-    "model": "Phi-4-mini-instruct",
+    "model": "Phi-4-multimodal-instruct",
     "choices": [
         {
             "index": 0,
