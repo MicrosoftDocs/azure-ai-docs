@@ -36,9 +36,6 @@ The conversational PII API supports all Azure regions supported by the Language 
 
 ## Submitting data
 
-> [!NOTE]
-> See the [Language Studio](../language-studio.md#valid-text-formats-for-conversation-features) article for information on formatting conversational text to submit using Language Studio. 
-
 You can submit the input to the API as list of conversation items. Analysis is performed upon receipt of the request. Because the API is asynchronous, there may be a delay between sending an API request, and receiving the results. For information on the size and number of requests you can send per minute and second, see the data limits below.
 
 When using the async feature, the API results are available for 24 hours from the time the request was ingested, and is indicated in the response. After this time period, the results are purged and are no longer available for retrieval.
