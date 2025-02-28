@@ -1,7 +1,7 @@
 ---
 title: How to trace your application with Azure AI Inference SDK
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to trace your application with  Azure AI Inference SDK.
+description: This article provides instructions on how to trace your application with Azure AI Inference SDK.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
@@ -14,7 +14,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# How to trace your application with Azure AI Foundry Project Library
+# How to trace your application with Azure AI Foundry project library
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -28,7 +28,7 @@ In this article, you'll learn how to trace your application with Azure AI Foundr
 - If using Python, you need Python 3.8 or later installed, including pip.
 - If using JavaScript, the supported environments are LTS versions of Node.js.
 
-## Tracing using Azure AI Foundry Project Library
+## Tracing using Azure AI Foundry project library
 
 # [Python](#tab/python)
 
@@ -255,7 +255,7 @@ Install the package `opentelemetry-instrumentation-langchain` using your package
   pip install opentelemetry-instrumentation-langchain
 ```
 
-Once necessary packages are installed, you can easily enable tracing via [Tracing using Azure AI Foundry Project Library](#tracing-using-azure-ai-foundry-project-library)
+Once necessary packages are installed, you can easily enable tracing via [Tracing using Azure AI Foundry project library](#tracing-using-azure-ai-foundry-project-library)
 
 # [JavaScript](#tab/javascript)
 Currently this is supported in Python only.
