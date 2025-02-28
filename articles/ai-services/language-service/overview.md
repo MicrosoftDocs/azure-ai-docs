@@ -87,8 +87,8 @@ The Language service also provides several new features as well, which can eithe
       :::image type="content" source="media/overview/text-summarization.png" alt-text="A screenshot of text summarization in Azure AI Foundry." lightbox="media/overview/text-summarization.png":::
    :::column-end:::
    :::column span="":::
-      [Summarization](./summarization/overview.md) condenses information for text and conversations (chat and transcripts). 
-Text summarization generates a summary, supporting two approaches: [Extractive summarization](summarization/how-to/document-summarization.md) produces a summary by extracting salient sentences within the document along with the positioning information of these sentences, and abstractive summarization, which generates a summary with concise, coherent sentences or words that aren't verbatim extract sentences from the original document.  
+      [Summarization](./summarization/overview.md) condenses information for text and conversations (chat and transcripts).
+      Text summarization generates a summary, supporting two approaches: Extractive summarizationproduces a summary by extracting salient sentences within the document along with the positioning information of these sentences, and abstractive summarization, which generates a summary with concise, coherent sentences or words that aren't verbatim extract sentences from the original document.  
 Conversation summarization recaps and segments long meetings into timestamped chapters. Call center summarization summarizes customer issues and resolution.
    :::column-end:::
 :::row-end:::
