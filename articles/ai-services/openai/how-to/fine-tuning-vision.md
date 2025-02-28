@@ -1,7 +1,7 @@
 ---
-title: 'Customize a model with Azure OpenAI Service'
+title: 'Vision customization'
 titleSuffix: Azure OpenAI
-description: Learn how to create your own customized model with Azure OpenAI Service by using Python, the REST APIs, or Azure AI Foundry portal.
+description: Learn how to fine-tune a model with image inputs.
 #services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
@@ -13,17 +13,17 @@ ms.author: mbullwin
 zone_pivot_groups: openai-fine-tuning
 ---
 
-## Vision fine-tuning
+# Vision fine-tuning
 
 Fine-tuning is also possible with images in your JSONL files. Just as you can send one or many image inputs to chat completions, you can include those same message types within your training data. Images can be provided either as publicly accessible URLs or data URIs containing [base64 encoded images](/azure/ai-services/openai/how-to/gpt-with-vision?tabs=rest#call-the-chat-completion-apis). 
 
-### Image dataset requirements
+## Image dataset requirements
 
 - Your training file can contain a maximum of 50,000 examples that contain images (not including text examples).
 - Each example can have at most 64 images.
 - Each image can be at most 10 MB.
 
-### Format
+## Format
 
 Images must be:
 
@@ -37,7 +37,7 @@ You cannot include images as output from messages with the assistant role.
 
 As with all fine-tuning training your example file requires at least 10 examples.
 
-#### Example file format
+### Example file format
 
 ```json
 {
@@ -59,7 +59,7 @@ As with all fine-tuning training your example file requires at least 10 examples
 ```
 
 
-### Content moderation policy
+## Content moderation policy
 
 We scan your images before training to ensure that they comply with our usage policy [Transparency Note](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=text). This may introduce latency in file validation before fine tuning begins.
 
