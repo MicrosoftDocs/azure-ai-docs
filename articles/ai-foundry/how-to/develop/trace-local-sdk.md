@@ -255,13 +255,13 @@ Install the package `opentelemetry-instrumentation-langchain` using your package
   pip install opentelemetry-instrumentation-langchain
 ```
 
-Once necessary packages are installed, you can easily enable tracing via [Tracing using Azure AI Foundry Project](#tracing-using-azure-ai-foundry-project)
+Once necessary packages are installed, you can easily enable tracing via [Tracing using Azure AI Foundry Project Library](#tracing-using-azure-ai-foundry-project-library)
 
 # [JavaScript](#tab/javascript)
-Currently this is supported in Python only. 
+Currently this is supported in Python only.
 
 # [C#](#tab/csharp)
-Currently this is supported in Python only. 
+Currently this is supported in Python only.
 
 ---
 
