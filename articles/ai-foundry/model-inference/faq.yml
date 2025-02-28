@@ -102,7 +102,7 @@ sections:
       - question: |
           How are third-party models available? 
         answer: |
-          Third-party models available for deployment in Azure AI Services with pay-as-you-go billing (for example, Meta AI models or Mistral models) are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API in the Azure AI model inference endpoint. Model providers define the license terms and set the price for use of their models, while Azure AI Services service manages the hosting infrastructure, makes the inference APIs available, and acts as the data processor for prompts submitted and content output by models deployed. Read about [Data privacy, and security for third-party models](../../ai-studio/how-to/concept-data-privacy.md#generation-of-inferencing-outputs-with-models-as-a-service-under-azure-ai-services).
+          Third-party models available for deployment in Azure AI Services with pay-as-you-go billing (for example, Meta AI models or Mistral models) are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API in the Azure AI model inference endpoint. Model providers define the license terms and set the price for use of their models, while Azure AI Services service manages the hosting infrastructure, makes the inference APIs available, and acts as the data processor for prompts submitted and content output by models deployed. Read about [Data privacy, and security for third-party models](../../ai-studio/how-to/concept-data-privacy.md).
       - question: |
           How is data processed by the Global-Standard deployment type?
         answer: |
