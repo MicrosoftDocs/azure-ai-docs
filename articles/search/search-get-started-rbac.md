@@ -2,8 +2,8 @@
 title: Quickstart keyless connection
 titleSuffix: Azure AI Search
 description: In this quickstart, learn how to switch from API keys to Microsoft Entra identities and role-based access control (RBAC).
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 
 ms.topic: quickstart
