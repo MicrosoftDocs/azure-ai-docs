@@ -32,6 +32,7 @@ The **Deploy model** dialog box opens. In the dialog box, enter your **Deploymen
 You can monitor the progress of your deployment on the **Deployments** pane in Azure AI Foundry portal.
 
 The UI does not support corss region deployment, while Python SDK or REST supports.
+---
 
 ## [Python](#tab/python)
 
@@ -190,6 +191,7 @@ response = requests.put(url, headers=headers, json=payload)
 print(f"Status Code: {response.status_code}")
 print(f"Response: {response.json()}")
 ```
+---
 
 ## [REST](#tab/rest)
 
@@ -297,7 +299,7 @@ az cognitiveservices account deployment create
     --sku-capacity "1" 
     --sku-name "Standard"
 ```
-
+---
 
 [!INCLUDE [Fine-tuning deletion](../includes/fine-tune.md)]
 
@@ -308,6 +310,8 @@ az cognitiveservices account deployment create
 After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in [Azure AI Foundry portal](https://oai.azure.com) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models.
 
 :::image type="content" source="../media/quickstarts/playground-load-new.png" alt-text="Screenshot of the Playground pane in Azure AI Foundry portal, with sections highlighted." lightbox="../media/quickstarts/playground-load-new.png":::
+
+---
 
 ## [Python](#tab/python)
 
@@ -333,7 +337,7 @@ response = client.chat.completions.create(
 
 print(response.choices[0].message.content)
 ```
-
+---
 
 ## [REST](#tab/rest)
 
@@ -343,6 +347,7 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/<deployment_name>/chat/completion
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{"messages":[{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},{"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},{"role": "user", "content": "Do other Azure AI services support this too?"}]}'
 ```
+---
 
 ### Prompt caching
 
