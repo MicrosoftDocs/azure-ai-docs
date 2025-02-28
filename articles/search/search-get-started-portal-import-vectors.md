@@ -2,8 +2,8 @@
 title: "Quickstart: Vectorize text and images by using the Azure portal"
 titleSuffix: Azure AI Search
 description: Use a wizard to automate data chunking and vectorization in a search index.
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - build-2024

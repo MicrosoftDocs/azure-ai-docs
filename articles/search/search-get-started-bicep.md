@@ -2,8 +2,8 @@
 title: 'Quickstart: Deploy using Bicep'
 titleSuffix: Azure AI Search
 description: You can quickly deploy an Azure AI Search service instance using Bicep.
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.custom:
