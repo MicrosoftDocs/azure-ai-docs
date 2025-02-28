@@ -38,7 +38,7 @@ See [Configure RBAC for batch endpoint invoke](#configure-rbac-for-batch-endpoin
 The following examples show different ways to start batch deployment jobs using different types of credentials:
 
 > [!IMPORTANT]
-> When working on a private link-enabled workspaces, batch endpoints can't be invoked from the UI in Azure Machine Learning studio. Please use the Azure Machine Learning CLI v2 instead for job creation.
+> When working on private link-enabled workspaces, batch endpoints can't be invoked from the UI in Azure Machine Learning studio. Please use the Azure Machine Learning CLI v2 instead for job creation.
 
 ### Prerequisites
 
@@ -380,8 +380,6 @@ To configure the compute cluster for data access, follow these steps:
    1. Look for the managed identity you have created. If using a System-Assigned Managed Identity, it is named as __"[workspace name]/computes/[compute cluster name]"__.
 
    1. Add the account, and complete the wizard.
-  
-    :::image type="content" source="media/how-to-authenticate-batch-endpoint/guide-manage-identity-assign.gif" alt-text="Animation showing the steps to assign the created managed identity to the storage account.":::
   
 1. Your endpoint is ready to receive jobs and input data from the selected storage account. 
 

@@ -175,13 +175,33 @@ Custom text classification is only available in some Azure regions. Some regions
 
 ## Summarization
 
-|Region|Document abstractive summarization|Conversation issue and resolution summarization|Conversation narrative summarization with chapters|Custom summarization|
-|------------|------------------|------------------|------------------|------------------|-|
-|North Europe| ✓ | ✓ | ✓ | |
-|East US| ✓ | ✓ | ✓ | ✓ |
-|UK South| ✓ | ✓ | ✓ | |
-|Southeast Asia| ✓ | ✓ | ✓ | |
-
+|Region                |Text abstractive summarization|Conversation summarization               |
+|----------------------|------------------------------|-----------------------------------------|
+|US Gov Virginia       |✓                             |✓                                        |
+|US Gov Arizona        |✓                             |✓                                        |
+|Australia East        |✓                             |✓                                        |
+|Canada Central        |✓                             |✓                                        |
+|Central US            |✓                             |✓                                        |
+|China North 3         |✓                             |✓                                        |
+|East US               |✓                             |✓                                        |
+|East US 2             |✓                             |✓                                        |
+|France Central        |✓                             |✓                                        |
+|Germany West Central  |✓                             |✓                                        |
+|Italy North           |✓                             |✓                                        |
+|Japan East            |✓                             |✓                                        |
+|North Central US      |✓                             |✓                                        |
+|North Europe          |✓                             |✓                                        |
+|South Central US      |✓                             |✓                                        |
+|South UK              |✓                             |✓                                        |
+|Southeast Asia        |✓                             |✓                                        |
+|Switzerland North     |✓                             |✓                                        |
+|USNat East            |✓                             |✓                                        |
+|USNat West            |✓                             |✓                                        |
+|USSec East            |✓                             |✓                                        |
+|USSec West            |✓                             |✓                                        |
+|West Europe           |✓                             |✓                                        |
+|West US               |✓                             |✓                                        |
+|West US 2             |✓                             |✓                                        |
 
 ## Custom Text Analytics for health
 
