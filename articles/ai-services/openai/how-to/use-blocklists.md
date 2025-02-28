@@ -253,7 +253,7 @@ If the completion itself is blocked, the response returns `200`, as the completi
 
 #### [Azure AI Foundry](#tab/foundry)
 
-[!INCLUDE [use-blocklists](../../../ai-studio/includes/use-blocklists.md)]
+[!INCLUDE [use-blocklists](../../../ai-foundry/includes/use-blocklists.md)]
 
 ---
 

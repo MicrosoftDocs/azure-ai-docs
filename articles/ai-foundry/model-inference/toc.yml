@@ -81,11 +81,11 @@ items:
         - name: Work with reasoning models
           href: ./how-to/use-chat-reasoning.md
     - name: Develop with LangChain and LangGraph
-      href: ../../ai-studio/how-to/develop/langchain.md?context=/azure/ai-foundry/model-inference/context/context
+      href: ../how-to/develop/langchain.md?context=/azure/ai-foundry/model-inference/context/context
     - name: Develop with Llama-Index
-      href: ../../ai-studio/how-to/develop/llama-index.md?context=/azure/ai-foundry/model-inference/context/context
+      href: ../how-to/develop/llama-index.md?context=/azure/ai-foundry/model-inference/context/context
     - name: Develop with Semantic Kernel
-      href: ../../ai-studio/how-to/develop/semantic-kernel.md?context=/azure/ai-foundry/model-inference/context/context
+      href: ../how-to/develop/semantic-kernel.md?context=/azure/ai-foundry/model-inference/context/context
 - name: Reference
   items:
     - name: Azure AI Model Inference API
