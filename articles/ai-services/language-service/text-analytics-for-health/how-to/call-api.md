@@ -36,12 +36,12 @@ The Text Analytics for health supports English in addition to multiple languages
 
 ## Submitting data
 
-To send an API request, you will need your Language resource endpoint and key.
+To send an API request, you need your Language resource endpoint and key.
 
 > [!NOTE]
-> You can find the key and endpoint for your Language resource on the Azure portal. They will be located on the resource's **Key and endpoint** page, under **resource management**. 
+> You can find the key and endpoint for your Language resource on the Azure portal. They are located on the resource's **Key and endpoint** page, under **resource management**. 
 
-Analysis is performed upon receipt of the request. If you send a request using the REST API or client library, the results will be returned asynchronously. If you're using the Docker container, they will be returned synchronously.  
+Analysis is performed upon receipt of the request. If you send a request using the REST API or client library, the results are returned asynchronously. If you're using the Docker container, they are returned synchronously.  
 
 [!INCLUDE [asynchronous-result-availability](../../includes/async-result-availability.md)]
 
@@ -58,7 +58,7 @@ Fast Healthcare Interoperability Resources (FHIR) is the health industry communi
 
 ## Getting results from the feature
 
-Depending on your API request, and the data you submit to the Text Analytics for health, you will get:
+Depending on your API request, and the data you submit to the Text Analytics for health, you get:
 
 [!INCLUDE [Text Analytics for health features](../includes/features.md)]
 
