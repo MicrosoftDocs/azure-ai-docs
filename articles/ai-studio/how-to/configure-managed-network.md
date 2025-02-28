@@ -910,3 +910,4 @@ The hub managed virtual network feature is free. However, you're charged for the
 ## Related content
 
 - [Create Azure AI Foundry hub and project using the SDK](./develop/create-hub-project-sdk.md)
+- [Access on-premises resources from Azure AI Foundry](access-on-premises-resources.md)
