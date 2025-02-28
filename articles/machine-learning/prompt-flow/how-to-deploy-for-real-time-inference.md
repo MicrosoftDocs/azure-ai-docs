@@ -288,7 +288,7 @@ You can view various metrics (request numbers, request latency, network bytes, C
 
 :::image type="content" source="./media/how-to-deploy-for-real-time-inference/view-metrics.png" alt-text="Screenshot of the endpoint detail page with view metrics highlighted. " lightbox = "./media/how-to-deploy-for-real-time-inference/view-metrics.png":::
 
-For more information on how to view online endpoint metrics, see [Monitor online endpoints](../how-to-monitor-online-endpoints.md#metrics).
+For more information on how to view online endpoint metrics, see [Monitor online endpoints](../how-to-monitor-online-endpoints.md#use-metrics).
 
 ### View prompt flow endpoints specific metrics and tracing data (optional)
 

@@ -577,7 +577,7 @@ Mirroring has the following limitations:
 * Mirroring is supported for the CLI (v2) (version 2.4.0 or above) and Python SDK (v2) (version 1.0.0 or above). If you use an older version of CLI/SDK to update an endpoint, you'll lose the mirror traffic setting.
 * Mirroring isn't currently supported for Kubernetes online endpoints.
 * You can mirror traffic to only one deployment in an endpoint.
-* The maximum percentage of traffic you can mirror is 50%. This limit is to reduce the effect on your [endpoint bandwidth quota](how-to-manage-quotas.md#azure-machine-learning-online-endpoints-and-batch-endpoints) (default 5 MBPS)—your endpoint bandwidth is throttled if you exceed the allocated quota. For information on monitoring bandwidth throttling, see [Monitor managed online endpoints](how-to-monitor-online-endpoints.md#metrics-at-endpoint-scope).
+* The maximum percentage of traffic you can mirror is 50%. This limit is to reduce the effect on your [endpoint bandwidth quota](how-to-manage-quotas.md#azure-machine-learning-online-endpoints-and-batch-endpoints) (default 5 MBPS)—your endpoint bandwidth is throttled if you exceed the allocated quota. For information on monitoring bandwidth throttling, see [Monitor managed online endpoints](how-to-monitor-online-endpoints.md#metrics-at-the-endpoint-scope).
 
 Also note the following behaviors:
 

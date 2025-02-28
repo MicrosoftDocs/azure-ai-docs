@@ -12,11 +12,8 @@ author: santiagxf
 Install the package `azure-ai-inference` using your package manager, like pip:
 
 ```bash
-pip install azure-ai-inference>=1.0.0b5
+pip install azure-ai-inference
 ```
-
-> [!WARNING]
-> Azure AI Services resource requires the version `azure-ai-inference>=1.0.0b5` for Python.
 
 Then, you can use the package to consume the model. The following example shows how to create a client to consume chat completions:
 
@@ -26,7 +23,7 @@ from azure.ai.inference import ChatCompletionsClient
 from azure.core.credentials import AzureKeyCredential
 
 model = ChatCompletionsClient(
-    endpoint=os.environ["AZUREAI_ENDPOINT_URL"],
+    endpoint="https://<resource>.services.ai.azure.com/models",
     credential=AzureKeyCredential(os.environ["AZUREAI_ENDPOINT_KEY"]),
 )
 ```
@@ -49,7 +46,7 @@ import { isUnexpected } from "@azure-rest/ai-inference";
 import { AzureKeyCredential } from "@azure/core-auth";
 
 const client = new ModelClient(
-    process.env.AZUREAI_ENDPOINT_URL, 
+    "https://<resource>.services.ai.azure.com/models", 
     new AzureKeyCredential(process.env.AZUREAI_ENDPOINT_KEY)
 );
 ```
@@ -76,7 +73,7 @@ Then, you can use the package to consume the model. The following example shows 
 
 ```csharp
 ChatCompletionsClient client = new ChatCompletionsClient(
-    new Uri(Environment.GetEnvironmentVariable("AZURE_INFERENCE_ENDPOINT")),
+    new Uri("https://<resource>.services.ai.azure.com/models"),
     new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL"))
 );
 ```
@@ -109,13 +106,13 @@ Explore our [samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/
 
 # [REST](#tab/rest)
 
-Use the reference section to explore the API design and which parameters are available. For example, the reference section for [Chat completions](../../../ai-studio/reference/reference-model-inference-chat-completions.md) details how to use the route `/chat/completions` to generate predictions based on chat-formatted instructions. Notice that the path `/models` is included to the root of the URL:
+Use the reference section to explore the API design and which parameters are available. For example, the reference section for [Chat completions](.././reference/reference-model-inference-chat-completions.md) details how to use the route `/chat/completions` to generate predictions based on chat-formatted instructions. Notice that the path `/models` is included to the root of the URL:
 
 __Request__
 
 ```HTTP/1.1
-POST models/chat/completions?api-version=2024-04-01-preview
-Authorization: Bearer <bearer-token>
+POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
+api-key: <api-key>
 Content-Type: application/json
 ```
 ---

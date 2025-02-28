@@ -8,7 +8,7 @@ ms.subservice: core
 ms.topic: how-to
 author: sdgilley
 ms.author: sgilley
-ms.date: 10/14/2024
+ms.date: 02/03/2025
 ms.reviewer: paulsh
 ms.custom: devplatv2, devx-track-python
 monikerRange: 'azureml-api-2 || azureml-api-1'
@@ -18,6 +18,11 @@ monikerRange: 'azureml-api-2 || azureml-api-1'
 # Upgrade to v2
 
 Azure Machine Learning's v2 REST APIs, Azure CLI extension, and Python SDK introduce consistency and a set of new features to accelerate the production machine learning lifecycle. This article provides an overview of upgrading to v2 with recommendations to help you decide on v1, v2, or both.
+
+> [!IMPORTANT]
+> The designations "v1" and "v2" refer to the API, SDK, and CLI extension used by clients to interact with the service, and not the Azure Machine Learning service itself. There is no upgrade process for the service or your existing workspaces, only for your client code. Your Azure Machine Learning workspaces can be used with both the v1 and v2 APIs. However, new features will only be available through the v2 APIs.
+>
+> For more information on v2, see [what is v2](concept-v2.md?view=azureml-api-2&preserve-view=true). For a mapping of differences between v1 and v2 SDKs, with links to articles with example code, see [Mapping of Python SDK v1 to v2](#mapping-of-python-sdk-v1-to-v2).
 
 ## Prerequisites
 

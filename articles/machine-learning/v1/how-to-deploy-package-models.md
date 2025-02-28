@@ -5,7 +5,7 @@ description: 'Package a model. Models can be packaged as either a docker image, 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.date: 10/21/2021
+ms.date: 02/05/2025
 ms.topic: how-to
 author: Blackmist
 ms.author: larryfr

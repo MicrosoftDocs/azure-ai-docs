@@ -5,7 +5,7 @@ description: Azure OpenAI model global batch limits
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 01/14/2025
+ms.date: 02/12/2025
 ---
 
 ## Batch limits
@@ -29,6 +29,7 @@ The table shows the batch quota limit. Quota values for global batch are represe
 | `gpt-4-turbo` | 300 M | 80 M | 40 M | 90 K | N/A |
 | `gpt-4` | 150 M | 30 M | 5 M | 100 K | N/A |
 | `gpt-35-turbo` | 10 B | 1 B | 100 M | 2 M | 50 K |
+| `o3-mini`| 15 B | 1 B | 50 M | 90 K | N/A |
 
 B = billion | M = million | K = thousand
 
@@ -38,3 +39,4 @@ B = billion | M = million | K = thousand
 |---|---|---|---|---|---|
 | `gpt-4o` | 500 M | 30 M | 30 M | 90 K | N/A|
 | `gpt-4o-mini` | 1.5 B | 100 M | 50 M | 90 K | N/A |
+| `o3-mini` | 1.5 B | 100 M | 50 M | 90 K | N/A |

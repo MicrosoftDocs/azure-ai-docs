@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 10/15/2024
+ms.date: 02/03/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -32,8 +32,7 @@ We recommend using assistants with the latest models to take advantage of the ne
 
 ### API Versions
 
-- `2024-02-15-preview`
-- `2024-05-01-preview`
+- Starting in `2024-02-15-preview`
 
 ### Supported file types
 
@@ -94,7 +93,7 @@ assistant = client.beta.assistants.create(
 # [REST](#tab/rest)
 
 > [!NOTE]
-> With Azure OpenAI the `model` parameter requires model deployment name. If your model deployment name is different than the underlying model name then you would adjust your code to ` "model": "{your-custom-model-deployment-name}"`.
+> With Azure OpenAI the `model` parameter requires model deployment name. If your model deployment name is different than the underlying model name, then you would adjust your code to ` "model": "{your-custom-model-deployment-name}"`.
 
 ```console
 curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants?api-version=2024-05-01-preview \
@@ -105,7 +104,12 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants?api-version=2
     "tools": [
       { "type": "code_interpreter" }
     ],
-    "model": "gpt-4-1106-preview"
+    "model": "gpt-4-1106-preview",
+    "tool_resources": {
+      "code_interpreter": {
+        "file_ids": ["assistant-123abc456"]
+      }
+    }
   }'
 ```
 
@@ -160,9 +164,10 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants?api-version=2
     "tools": [
       { "type": "code_interpreter" }
     ],
-    "model": "gpt-4-1106-preview",
-    "tool_resources"{
-      "code interpreter": {
+    "name": "Assistants playground",
+    "model": "Replace it with your-custom-model-deployment-name",
+    "tool_resources":{
+      "code_interpreter": {
           "file_ids": ["assistant-1234"]
       }
     }

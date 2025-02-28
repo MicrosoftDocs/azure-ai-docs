@@ -3,12 +3,12 @@ title: How to get started with Azure AI Foundry SDK
 titleSuffix: Azure AI Foundry
 description: This article provides an overview of the Azure AI Foundry SDK and how to get started using it.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: overview
-ms.date: 11/25/2024
+ms.date: 02/27/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -18,7 +18,7 @@ zone_pivot_groups: programming-languages-sdk-overview
 
 # The Azure AI Foundry SDK
 
-The Azure AI Foundry SDK is a comprehensive toolchain designed to simplify the development of AI applications on Azure. It enables developers to:
+The [Azure AI Foundry](https://ai.azure.com) SDK is a comprehensive toolchain designed to simplify the development of AI applications on Azure. It enables developers to:
 
 - Access popular models from various model providers through a single interface
 - Easily combine together models, data, and AI services to build AI-powered applications
@@ -111,7 +111,7 @@ Not yet available in C#.
 
 Copy the **Project connection string** from the **Overview** page of the project and update the connections string value above.
 
-Once you have created the project client, you can use the client for the capabilities in the following sections.
+Once you create the project client, you can use the client for the capabilities in the following sections.
 
 ::: zone pivot="programming-language-python"
 
@@ -127,7 +127,7 @@ Be sure to check out the [reference](https://aka.ms/aifoundrysdk/reference) and 
 
 ## Azure OpenAI Service
 
-The [Azure OpenAI Service](../../../ai-services/openai/overview.md) provides access to OpenAI's models including the GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, DALLE-3, Whisper, and Embeddings model series with the data residency, scalability, safety, security and enterprise capabilities of Azure.
+The [Azure OpenAI Service](../../../ai-services/openai/overview.md) provides access to OpenAI's models including the GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, DALLE-3, Whisper, and Embeddings model series with the data residency, scalability, safety, security, and enterprise capabilities of Azure.
 
 If you have code that uses the OpenAI SDK, you can easily target your code to use the Azure OpenAI service. First, install the OpenAI SDK:
 
@@ -233,9 +233,9 @@ To learn more about using the Azure AI inferencing client, check out the [Azure 
 
 ::: zone pivot="programming-language-python"
 
-## Prompt Templates
+## Prompt templates
 
-The inferencing client supports for creating prompt messages from templates.  The template allows you to dynamically generate prompts using inputs that are available at runtime.
+The inferencing client supports creating prompt messages from templates. The template allows you to dynamically generate prompts using inputs that are available at runtime.
 
 To use prompt templates, install the `azure-ai-inference` package:
 
@@ -356,9 +356,7 @@ To learn more about using Azure AI Search, check out [Azure AI Search documentat
 
 ## Azure AI Agent Service
 
-Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. Using an extensive ecosystem of models, tools and capabilities from OpenAI, Microsoft, and third-party providers, Azure AI Agent Service enables building agents for a wide range of generative AI use cases.
-
-To get access to agents, [sign-up for the preview](https://nam.dcv.ms/nzy5CEG6Br).
+Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. To enable building agents for a wide range of generative AI use cases, [Azure AI Agent Service](/azure/ai-services/agents) uses an extensive ecosystem of models, tools and capabilities from OpenAI, Microsoft, and third-party providers.
 
 ## Evaluation
 
@@ -395,7 +393,7 @@ To learn more, check out [Evaluation using the SDK](evaluate-sdk.md).
 
 ::: zone pivot="programming-language-csharp"
 
-An Azure AI evaluation package is not yet available for C#. For a sample on how to use Prompty and Semantic Kernel for evaluation, see the [contoso-chat-csharp-prompty](https://github.com/Azure-Samples/contoso-chat-csharp-prompty/blob/main/src/ContosoChatAPI/ContosoChat.Evaluation.Tests/Evalutate.cs) sample.
+An Azure AI evaluation package isn't yet available for C#. For a sample on how to use Prompty and Semantic Kernel for evaluation, see the [contoso-chat-csharp-prompty](https://github.com/Azure-Samples/contoso-chat-csharp-prompty/blob/main/src/ContosoChatAPI/ContosoChat.Evaluation.Tests/Evalutate.cs) sample.
 
 ::: zone-end
 
@@ -430,41 +428,43 @@ if application_insights_connection_string:
 
 ::: zone pivot="programming-language-csharp"
 
-Tracing is not yet integrated into the projects package. For instructions on how to instrument and log traces from the Azure AI Inferencing package, see [azure-sdk-for-dotnet](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Inference/samples/Sample8_ChatCompletionsWithOpenTelemetry.md).
+Tracing isn't yet integrated into the projects package. For instructions on how to instrument and log traces from the Azure AI Inferencing package, see [azure-sdk-for-dotnet](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Inference/samples/Sample8_ChatCompletionsWithOpenTelemetry.md).
 
 ::: zone-end
 
-## Related content
+## Other services and frameworks
 
-Below are some helpful links to other services and frameworks that you can use with the Azure AI Foundry SDK.
+The following sections provide helpful links to other services and frameworks that you can use with the Azure AI Foundry SDK.
 
 ### Azure AI Services
 
-Client libraries:
+* Client libraries:
 
-* [Azure AI services SDKs](../../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-studio/context/context)
-* [Azure AI services REST APIs](../../../ai-services/reference/rest-api-resources.md?context=/azure/ai-studio/context/context) 
+    * [Azure AI services SDKs](../../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-studio/context/context)
+    * [Azure AI services REST APIs](../../../ai-services/reference/rest-api-resources.md?context=/azure/ai-studio/context/context) 
 
-Management libraries:
-* [Azure AI Services Python Management Library](/python/api/overview/azure/mgmt-cognitiveservices-readme)
-* [Azure AI Search Python Management Library](/python/api/azure-mgmt-search/azure.mgmt.search)
+* Management libraries:
+
+    * [Azure AI Services Python Management Library](/python/api/overview/azure/mgmt-cognitiveservices-readme)
+    * [Azure AI Search Python Management Library](/python/api/azure-mgmt-search/azure.mgmt.search)
 
 ### Frameworks
 
-Azure Machine Learning
+* Azure Machine Learning
 
-* [Azure Machine Learning Python SDK (v2)](/python/api/overview/azure/ai-ml-readme)
-* [Azure Machine Learning CLI (v2)](/azure/machine-learning/how-to-configure-cli)
-* [Azure Machine Learning REST API](/rest/api/azureml) 
+    * [Azure Machine Learning Python SDK (v2)](/python/api/overview/azure/ai-ml-readme)
+    * [Azure Machine Learning CLI (v2)](/azure/machine-learning/how-to-configure-cli)
+    * [Azure Machine Learning REST API](/rest/api/azureml) 
 
-Prompt flow
+* Prompt flow
 
-* [Prompt flow SDK](https://microsoft.github.io/promptflow/how-to-guides/quick-start.html)
-* [pfazure CLI](https://microsoft.github.io/promptflow/reference/pfazure-command-reference.html)
-* [pfazure Python library](https://microsoft.github.io/promptflow/reference/python-library-reference/promptflow-azure/promptflow.azure.html)
+    * [Prompt flow SDK](https://microsoft.github.io/promptflow/how-to-guides/quick-start.html)
+    * [pfazure CLI](https://microsoft.github.io/promptflow/reference/pfazure-command-reference.html)
+    * [pfazure Python library](https://microsoft.github.io/promptflow/reference/python-library-reference/promptflow-azure/promptflow.azure.html)
 
-Semantic Kernel
- * [Semantic Kernel Overview](/semantic-kernel/overview/)
-Agentic frameworks
+* Semantic Kernel
+    * [Semantic Kernel Overview](/semantic-kernel/overview/)
 
-* [LlamaIndex](llama-index.md)
+* Agentic frameworks
+
+    * [LlamaIndex](llama-index.md)

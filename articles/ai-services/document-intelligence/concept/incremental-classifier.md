@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 02/27/2025
 ms.author: vikurpad
 ms.custom:
 monikerRange: '>=doc-intel-4.0.0'
@@ -50,13 +50,13 @@ Incremental training is useful when you want to improve the quality of a custom 
 
 ### Create an incremental classifier build request
 
-The incremental classifier build request is similar to the [`classify document` build request](/rest/api/aiservices/document-classifiers?view=rest-aiservices-v4.0%20(2024-02-29-preview)&preserve-view=true) but includes the new `baseClassifierId` property. The `baseClassifierId` is set to the existing classifier that you want to extend. You also need to provide the `docTypes` for the different document types in the sample set. By providing a `docType` that exists in the baseClassifier, the samples provided in the request are added to the samples provided when the base classifier was trained. New `docType` values added in the incremental training are only added to the new classifier. The process to specify the samples remains unchanged. For more information, *see* [training a classifier model](../train/custom-classifier.md#training-a-model).
+The incremental classifier build request is similar to the [`classify document` build request](/rest/api/aiservices/document-classifiers?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) but includes the new `baseClassifierId` property. The `baseClassifierId` is set to the existing classifier that you want to extend. You also need to provide the `docTypes` for the different document types in the sample set. By providing a `docType` that exists in the baseClassifier, the samples provided in the request are added to the samples provided when the base classifier was trained. New `docType` values added in the incremental training are only added to the new classifier. The process to specify the samples remains unchanged. For more information, *see* [training a classifier model](../train/custom-classifier.md#training-a-model).
 
 ### Sample POST request
 
 ***Sample `POST` request to build an incremental document classifier***
 
-**`POST` {your-endpoint}/documentintelligence/documentClassifiers:build?api-version=2024-02-29-preview**
+**`POST` {your-endpoint}/documentintelligence/documentClassifiers:build?api-version=2024-11-30**
 
 ```json
 {
@@ -94,7 +94,7 @@ Upon successful completion:
 
 ***Sample `GET` request to retrieve the result of an incremental document classifier***
 
-**`GET` {your-endpoint}/documentintelligence/documentClassifiers/{classifierId}/analyzeResults/{resultId}?api-version=2024-02-29-preview**
+**`GET` {your-endpoint}/documentintelligence/documentClassifiers/{classifierId}/analyzeResults/{resultId}?api-version=2024-11-30**
 
 ```json
 
@@ -103,7 +103,7 @@ Upon successful completion:
   "description": "Classifier description",
   "createdDateTime": "2022-07-30T00:00:00Z",
   "expirationDateTime": "2023-01-01T00:00:00Z",
-  "apiVersion": "2024-02-29-preview",
+  "apiVersion": "2024-11-30",
 
   "baseClassifierId": "myOriginalClassifier",
 

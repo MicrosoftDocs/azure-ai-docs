@@ -11,7 +11,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: whats-new
-ms.date: 1/21/2025
+ms.date: 2/27/2025
 recommendations: false
 ---
 
@@ -19,7 +19,41 @@ recommendations: false
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI Service.
 
+## February 2025
+
+### GPT-4.5 Preview
+
+The latest GPT model that excels at diverse text and image tasks is now available on Azure OpenAI.
+
+**For access to `gpt-4.5-preview` registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who have access to other limited access models will still need to request access for this model.
+
+Request access: [GPT-4.5-preview limited access model application](https://aka.ms/oai/gptaccess)
+
+For more information on model capabilities, and region availability see the [models documentation](./concepts/models.md#gpt-45-preview).
+
+### Stored completions API
+
+[Stored completions](./how-to/stored-completions.md#stored-completions-api) allow you to capture the conversation history from chat completions sessions to use as datasets for evaluations and fine-tuning.
+
+### o3-mini datazone standard deployments
+
+`o3-mini` is now available for global standard, and data zone standard deployments for registered limited access customers.
+
+For more information, see our [reasoning model guide](./how-to/reasoning.md). 
+
+### gpt-4o mini audio released
+
+The `gpt-4o-mini-audio-preview` (2024-12-17) model is the latest audio completions model. For more information, see the [audio generation quickstart](./audio-completions-quickstart.md).
+
+The `gpt-4o-mini-realtime-preview` (2024-12-17) model is the latest real-time audio model. The real-time models use the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions. For more information, see the [real-time audio quickstart](./realtime-audio-quickstart.md).
+
+For more information about available models, see the [models and versions documentation](./concepts/models.md#gpt-4o-audio).
+
 ## January 2025
+
+### o3-mini released
+
+`o3-mini` (2025-01-31) is the latest reasoning model, offering enhanced reasoning abilities. For more information, see our [reasoning model guide](./how-to/reasoning.md).
 
 ### GPT-4o audio completions
 

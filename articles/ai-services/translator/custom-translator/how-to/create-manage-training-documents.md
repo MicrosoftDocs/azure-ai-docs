@@ -1,18 +1,18 @@
 ---
-title: Build and upload training documents
+title: Build and upload Azure AI Custom Translator training documents
 titleSuffix: Azure AI services
-description: How to build and upload parallel documents (two documents where one is the origin and the other is the translation) using Custom Translator.
+description: How to build and upload parallel documents (two documents where one is the origin and the other is the translation) using Azure AI Custom Translator.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 07/09/2024
+ms.date: 02/10/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
 
-# Build and manage training documents
+# Build and manage Azure AI Custom Translator training documents
 
-[Custom Translator](../overview.md) enables you to build translation models that reflect your business, industry, and domain-specific terminology and style. Training and deploying a custom model is easy and doesn't require any programming skills. Custom Translator allows you to upload parallel files, translation memory files, or zip files.
+[Azure AI Custom Translator](../overview.md) enables you to build translation models that reflect your business, industry, and domain-specific terminology and style. Training and deploying a custom model is easy and doesn't require any programming skills. Custom Translator allows you to upload parallel files, translation memory files, or zip files.
 
 [Parallel documents](../concepts/parallel-documents.md) are pairs of documents where one (target) is a translation of the other (source). One document in the pair contains sentences in the source language and the other document contains those sentences translated into the target language.
 
@@ -20,7 +20,7 @@ Before uploading your documents, review the [document formats and naming convent
 
 ## How to create document sets
 
-Finding in-domain quality data is often a challenging task that varies based on user classification. Here are some questions you can ask yourself as you evaluate what data may be available to you:
+Finding in-domain quality data is often a challenging task that varies based on user classification. Here are some questions you can ask yourself as you evaluate what data can be available to you:
 
 - Does your company have previous translation data available that you can use? Enterprises often have a wealth of translation data accumulated over many years of using human translation.
 
@@ -44,7 +44,7 @@ Document types are associated with the language pair selected when you create a 
 
 1. Sign-in to [Custom Translator](https://portal.customtranslator.azure.ai) portal. Your default workspace is loaded and a list of previously created projects are displayed.
 
-1. Select the desired project **Name**. By default, the **Manage documents** blade is selected and a list of previously uploaded documents is displayed.
+1. Select the desired project **Name**. By default, the **`Manage documents`** blade is selected and a list of previously uploaded documents is displayed.
 
 1. Select **Add document set** and choose the document type:
 
@@ -94,7 +94,8 @@ In workspace page you can view history of all document uploads details like docu
 
 ## Next steps
 
-- Learn [how to train a model](train-custom-model.md).
+- Learn [how to train an Azure AI Custom Translator model](train-custom-model.md).
 - Learn [how to test and evaluate model quality](test-your-model.md).
-- Learn [how to publish model](publish-model.md).
+- Learn [how to publish an Azure AI Custom Translator model](publish-model.md).
 - Learn [how to translate with custom models](translate-with-custom-model.md).
+- Visit the [Custom Translator portal](https://portal.customtranslator.azure.ai)

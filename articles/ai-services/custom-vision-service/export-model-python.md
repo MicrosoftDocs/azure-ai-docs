@@ -5,36 +5,35 @@ description: Run a TensorFlow model in Python. This article only applies to mode
 #services: cognitive-services
 author: PatrickFarley
 manager: nitinme
+#customer intent: As a developer, I want to run a TensorFlow model in Python so that I can classify images locally.
 
 ms.service: azure-ai-custom-vision
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 01/29/2025
 ms.author: pafarley
 ms.devlang: python
 ms.custom: devx-track-python
 ---
 
-# Tutorial: Run a TensorFlow model in Python
+# Run a TensorFlow model in Python
 
-This tutorial shows you how to use an [exported TensorFlow model](./export-your-model.md) locally to classify images.
+This guide shows you how to use an [exported TensorFlow model](./export-your-model.md) locally to classify images.
 
 > [!NOTE]
-> This tutorial applies only to models exported from "General (compact)" image classification projects. If you exported other models, please visit our [sample code repository](https://github.com/Azure-Samples/customvision-export-samples).
+> This guide only applies to models exported from "General (compact)" image classification projects. If you exported other models, please visit our [sample code repository](https://github.com/Azure-Samples/customvision-export-samples).
 
 ## Prerequisites
 
 - Install either Python 2.7+ or Python 3.6+.
 - Install pip.
-
-Next, you'll need to install the following packages:
-
-```bash
-pip install tensorflow
-pip install pillow
-pip install numpy
-pip install opencv-python
-```
-
+- Then install the following packages:
+    ```bash
+    pip install tensorflow
+    pip install pillow
+    pip install numpy
+    pip install opencv-python
+    ```
+    
 ## Load your model and tags
 
 The downloaded _.zip_ file from the export step contains a _model.pb_ and a _labels.txt_ file. These files represent the trained model and the classification labels. The first step is to load the model into your project. Add the following code to a new Python script.
@@ -198,9 +197,9 @@ The results of running the image tensor through the model will then need to be m
         label_index += 1
 ```
 
-## Next steps
+## Related content
 
 Next, learn how to wrap your model into a mobile application:
-* [Use your exported Tensorflow model in an Android application](https://github.com/Azure-Samples/cognitive-services-android-customvision-sample)
+* [Use your exported TensorFlow model in an Android application](https://github.com/Azure-Samples/cognitive-services-android-customvision-sample)
 * [Use your exported CoreML model in a Swift iOS application](https://go.microsoft.com/fwlink/?linkid=857726)
 * [Use your exported CoreML model in an iOS application with Xamarin](https://github.com/xamarin/ios-samples/tree/master/ios11/CoreMLAzureModel)

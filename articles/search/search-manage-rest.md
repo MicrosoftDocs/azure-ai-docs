@@ -229,7 +229,7 @@ PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegrou
 
 ## Disable semantic ranker
 
-Although [semantic ranker isn't enabled](semantic-how-to-enable-disable.md) by default, you could lock down the feature at the service level for greater certainty it can't be used.
+[Semantic ranker is enabled](semantic-how-to-enable-disable.md) by default at the free plan that allows up to 1,000 requests per month at no charge. You can lock down the feature at the service level to prevent usage.
 
 ```http
 ### disable semantic ranker

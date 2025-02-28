@@ -2,7 +2,7 @@
 title: Understanding deployment types in Azure AI model inference
 titleSuffix: Azure AI Foundry
 description: Learn how to use deployment types in Azure AI model deployments
-author: mrbullwinkle
+author: santiagxf
 manager: nitinme
 ms.service: azure-ai-model-inference
 ms.topic: how-to
@@ -13,43 +13,36 @@ ms.custom: ignite-2024, github-universe-2024
 
 # Deployment types in Azure AI model inference
 
-Azure AI model inference in Azure AI services provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main types of deployment: **standard** and **provisioned**. Standard is offered with a global deployment option, routing traffic globally to provide higher throughput. Provisioned is also offered with a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
+Azure AI model inference makes models available using the *model deployment* concept in Azure AI Services resources. *Model deployments* are also Azure resources and, when created, they give access to a given model under certain configurations. Such configuration includes the infrastructure require to process the requests. 
 
-All deployments can perform the exact same inference operations, however the billing, scale, and performance are substantially different. As part of your solution design, you need to make two key decisions:
+Azure AI model inference provides customers with choices on the hosting structure that fits their business and usage patterns. Those options are translated to different deployments types (or SKUs) that are available at model deployment time in the Azure AI Services resource.
 
-- **Data residency needs**: global vs. regional resources  
-- **Call volume**: standard vs. provisioned
+:::image type="content" source="../media/add-model-deployments/models-deploy-deployment-type.png" alt-text="Screenshot showing how to customize the deployment type for a given model deployment." lightbox="../media/add-model-deployments/models-deploy-deployment-type.png":::
 
-Deployment types support varies by model and model provider. You can see which deployment type (SKU) each model supports in the [Models section](models.md). 
+Different model providers offer different deployments SKUs that you can select from. When selecting a deployment type, consider your **data residency needs** and **call volume/capacity** requirements.
 
-## Global versus regional deployment types
+## Deployment types for Azure OpenAI models
 
-For standard and provisioned deployments, you have an option of two types of configurations within your resource – **global** or **regional**. Global standard is the recommended starting point. 
+The service offers two main types of deployments: **standard** and **provisioned**. For a given deployment type, customers can align their workloads with their data processing requirements by choosing an Azure geography (`Standard` or `Provisioned-Managed`), Microsoft specified data zone (`DataZone-Standard` or `DataZone Provisioned-Managed`), or Global (`Global-Standard` or `Global Provisioned-Managed`) processing options.
 
-Global deployments leverage Azure's global infrastructure, dynamically route customer traffic to the data center with best availability for the customer's inference requests. This means you get the highest initial throughput limits and best model availability with Global while still providing our uptime SLA and low latency. For high volume workloads above the specified usage tiers on standard and global standard, you may experience increased latency variation. For customers that require the lower latency variance at large workload usage, we recommend purchasing provisioned throughput.
+To learn more about deployment options for Azure OpenAI models see [Azure OpenAI documentation](../../../ai-services/openai/how-to/deployment-types.md).
 
-Our global deployments are the first location for all new models and features. Customers with large throughput requirements should consider our provisioned deployment offering.
+## Deployment types for Models-as-a-Service models
 
-## Standard
+Models from third-party model providers with pay-as-you-go billing (collectively called Models-as-a-Service), makes models available in Azure AI model inference under **standard** deployments with a Global processing option (`Global-Standard`). 
 
-Standard deployments provide a pay-per-call billing model on the chosen model. Provides the fastest way to get started as you only pay for what you consume. Models available in each region and throughput may be limited.  
+### Global-Standard
 
-Standard deployments are optimized for low to medium volume workloads with high burstiness. Customers with high consistent volume may experience greater latency variability.
+Global deployments leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request. Global standard provides the highest default quota and eliminates the need to load balance across multiple resources. Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure location. Learn more about [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-Only Azure OpenAI models support this deployment type.
+> [!NOTE]
+> Models-as-a-Service offers regional deployment options under [Serverless API endpoints](../../../ai-studio/how-to/deploy-models-serverless.md) in Azure AI Foundry. Prompts and outputs are processed within the geography specified during deployment. However, those deployments can't be accessed using the Azure AI model inference endpoint in Azure AI Services.
 
-## Global standard
+## Control deployment options
 
-Global deployments are available in the same Azure AI services resources as non-global deployment types but allow you to leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request.  Global standard provides the highest default quota and eliminates the need to load balance across multiple resources.  
+Administrators can control which model deployment types are available to their users by using Azure Policies. Learn more about [How to control AI model deployment with custom policies](../../../ai-studio/how-to/custom-policy-model-deployment.md).
 
-Customers with high consistent volume may experience greater latency variability. The threshold is set per model. For applications that require the lower latency variance at large workload usage, we recommend purchasing provisioned throughput if available.
-
-## Global provisioned
-
-Global deployments are available in the same Azure AI services resources as non-global deployment types but allow you to leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request. Global provisioned deployments provide reserved model processing capacity for high and predictable throughput using Azure global infrastructure.
-
-Only Azure OpenAI models support this deployment type.
-
-## Next steps
+## Related content
 
 - [Quotas & limits](../quotas-limits.md)
+- [Data privacy, and security for Models-as-a-Service models](../../../ai-studio/how-to/concept-data-privacy.md)

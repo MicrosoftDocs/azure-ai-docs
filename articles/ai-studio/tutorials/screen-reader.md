@@ -3,7 +3,7 @@ title: Get started using Azure AI Foundry with a screen reader
 titleSuffix: Azure AI Foundry
 description: This quickstart guides you in how to get oriented and navigate Azure AI Foundry with a screen reader.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
@@ -20,7 +20,7 @@ This article is for people who use screen readers such as [Microsoft's Narrator]
 
 ## Getting oriented in Azure AI Foundry portal 
 
-Most Azure AI Foundry pages are composed of the following landmark structure: 
+Most [Azure AI Foundry](https://ai.azure.com) pages are composed of the following landmark structure: 
 
 - Banner (contains Azure AI Foundry app title, settings, and profile information)
     - Might sometimes contain a breadcrumb navigation element 

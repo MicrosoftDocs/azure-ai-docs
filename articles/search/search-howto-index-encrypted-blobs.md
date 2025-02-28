@@ -11,7 +11,7 @@ ms.custom:
   - ignite-2023
 ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 09/04/2024
+ms.date: 02/24/2025
 ---
 
 # Tutorial: Index and enrich encrypted blobs for full-text search in Azure AI Search
@@ -100,8 +100,6 @@ You should have an Azure Function app that contains the decryption logic and an 
 1. Sign in to the [Azure portal](https://portal.azure.com), and in your search service **Overview** page, get the name of your search service. You can confirm your service name by reviewing the endpoint URL. If your endpoint URL were `https://mydemo.search.windows.net`, your service name would be `mydemo`.
 
 2. In **Settings** > **Keys**, get an admin key for full rights on the service. There are two interchangeable admin keys, provided for business continuity in case you need to roll one over. You can use either the primary or secondary key on requests for adding, modifying, and deleting objects.
-
-   ![Get the service name and admin and query keys](media/search-get-started-javascript/service-name-and-keys.png)
 
 All requests require an api-key in the header of every request sent to your service. A valid key establishes trust, on a per request basis, between the application sending the request and the service that handles it.
 

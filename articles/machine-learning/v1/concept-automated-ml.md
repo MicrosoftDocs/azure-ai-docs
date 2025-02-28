@@ -180,7 +180,7 @@ Using **Azure Machine Learning**, you can design and run your automated ML train
    * For limited or no code experience, try the Azure Machine Learning studio web experience at [https://ml.azure.com](https://ml.azure.com/)  
    * For Python developers, check out the [Azure Machine Learning Python SDK (v1)](../how-to-configure-auto-train.md) 
     
-1. **Specify the source and format of the labeled training data**: Numpy arrays or Pandas dataframe
+1. **Specify the source and format of the labeled training data**: NumPy arrays or Pandas dataframe
 
 1. **Configure the compute target for model training**, such as your [local computer, Azure Machine Learning Computes, remote VMs, or Azure Databricks with SDK v1](how-to-set-up-training-targets.md).
 

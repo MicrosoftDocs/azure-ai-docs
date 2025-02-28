@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2023
 ms.service: azure-ai-services
 ms.topic: conceptual
-ms.date: 01/22/2024
+ms.date: 01/31/2025
 ---
 
 # Purchase commitment tier pricing
@@ -73,8 +73,6 @@ If you use the resource above the quota provided, you're charged for the additio
 ## Purchase a different commitment plan
 
 The commitment plans have a calendar month commitment period. You can purchase a commitment plan at any time from the default pay-as-you-go pricing model. When you purchase a plan, you're charged a pro-rated price for the remaining month. During the commitment period, you can't change the commitment plan for the current month. However, you can choose a different commitment plan for the next calendar month. The billing for the next month would happen on the first day of the next month.
-
-If you need a larger commitment plan than any of the ones offered, contact `csgate@microsoft.com`.
 
 ## End a commitment plan
 

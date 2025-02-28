@@ -179,7 +179,7 @@ Gson gson = new Gson();
 
 HttpRequest tokenAuthenticationRequest = tokenAuthenticationRequest(tenantId, clientId, clientSecret, resourceManagerUrl);
 Optional<String> authBody = getRequestBody(client, tokenAuthenticationRequest);
-Optional<String> authKey = authBody.flatMap(body -> Optional.of(gson.fromJson(body, AuthenticationBody.class).access_token);;
+Optional<String> authKey = authBody.flatMap(body -> Optional.of(gson.fromJson(body, AuthenticationBody.class).access_token));
 Optional<HttpRequest> scoringRequest = authKey.flatMap(key -> Optional.of(scoringRequest(key, scoringUri, dataToBeScored)));
 Optional<String> scoringResult = scoringRequest.flatMap(req -> getRequestBody(client, req));
 // ... etc (`scoringResult.orElse()`) ... 

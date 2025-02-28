@@ -3,10 +3,10 @@ title: Get started building a chat app using the Azure AI Foundry SDK
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to build a custom chat app in Python using the Azure AI SDK.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom: build-2024, devx-track-azurecli, devx-track-python, ignite-2024
 ms.topic: how-to
-ms.date: 11/07/2024
+ms.date: 02/12/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -16,17 +16,15 @@ author: sdgilley
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this quickstart, we walk you through setting up your local development environment with the Azure AI Foundry SDK. We write a prompt, run it as part of your app code, trace the LLM calls being made, and run a basic evaluation on the outputs of the LLM.
+In this quickstart, we walk you through setting up your local development environment with the [Azure AI Foundry](https://ai.azure.com) SDK. We write a prompt, run it as part of your app code, trace the LLM calls being made, and run a basic evaluation on the outputs of the LLM.
 
 ## Prerequisites
 
 * Before you can follow this quickstart, complete the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md) to deploy a **gpt-4o-mini** model into a project.
 
-## Install the Azure CLI and sign in 
-
-[!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
-
 ## Create a new Python environment
+
+In the IDE of your choice, create a new folder for your project.  Open a terminal window in that folder.
 
 [!INCLUDE [Install Python](../includes/install-python.md)]
 
@@ -37,6 +35,12 @@ Install `azure-ai-projects`(preview), `azure-ai-inference` (preview), and azure-
 ```bash
 pip install azure-ai-projects azure-ai-inference azure-identity 
 ```
+
+## Install the Azure CLI and sign in 
+
+[!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
+
+Keep this terminal window open to run your python scripts from here as well, now that you've signed in.
 
 ## Build your chat app
 

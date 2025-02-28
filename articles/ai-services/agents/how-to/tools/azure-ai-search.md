@@ -32,6 +32,12 @@ Use an existing Azure AI Search index with the agent's Azure AI Search tool.
 **Index with semantic configuration**
 - By default, the Azure AI Search tool runs hybrid + semantic search on all text fields.
 
+## Usage support
+
+|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|---------|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
 [!INCLUDE [setup](../../includes/azure-search/setup.md)]
 
 ::: zone-end

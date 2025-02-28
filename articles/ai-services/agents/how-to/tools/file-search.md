@@ -31,6 +31,11 @@ File search augments agents with knowledge from outside its model, such as propr
 - Upload local files 
 - Azure Blob Storage 
 
+### Usage support
+
+|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|---------|
+| ✔️  | ✔️ | ✔️ | ✔️ | ✔️ | File upload only | File upload and using  BYO blob storage | 
 
 ## Dependency on agent setup
 
@@ -83,6 +88,20 @@ The maximum file size is 512 MB. Each file should contain no more than 5,000,000
 We highly recommend that you ensure all files in a vector_store are fully processed before you create a run. This ensures that all the data in your vector store is searchable. You can check for vector store readiness by using the polling helpers in the SDKs, or by manually polling the vector store object to ensure the status is completed.
 
 As a fallback, there's a 60-second maximum wait in the run object when the thread's vector store contains files that are still being processed. This is to ensure that any files your users upload in a thread a fully searchable before the run proceeds. This fallback wait does not apply to the agent's vector store.
+
+## Add file search to an agent using the Azure AI Foundry portal
+
+You can add the Bing Search tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal:
+
+1. In the **Create and debug** screen for your agent, scroll down the **Setup** pane on the right to **knowledge**. Then select **Add**.
+
+    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
+
+1. Select **Files** and follow the prompts to add the tool. 
+
+    :::image type="content" source="../../media/tools/knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools-list.png":::
+
+    :::image type="content" source="../../media/tools/file-upload.png" alt-text="A screenshot showing the file upload page." lightbox="../../media/tools/file-upload.png":::
 
 ::: zone-end
 

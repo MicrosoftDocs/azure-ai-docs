@@ -28,10 +28,10 @@ To use embedding models in your application, you need:
 
 ## Use embeddings
 
-To use the text embeddings, use the route `/embeddings` along with your credential indicated in `api-key`. `Authorization` header is also supported with the format `Bearer <key>`.
+To use the text embeddings, use the route `/embeddings` appended to the base URL along with your credential indicated in `api-key`. `Authorization` header is also supported with the format `Bearer <key>`.
 
 ```http
-POST /embeddings
+POST https://<resource>.services.ai.azure.com/models/embeddings?api-version=2024-05-01-preview
 Content-Type: application/json
 api-key: <key>
 ```
@@ -39,7 +39,7 @@ api-key: <key>
 If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header:
 
 ```http
-POST /embeddings
+POST https://<resource>.services.ai.azure.com/models/embeddings?api-version=2024-05-01-preview
 Content-Type: application/json
 Authorization: Bearer <token>
 ```
@@ -50,6 +50,7 @@ Create an embedding request to see the output of the model.
 
 ```json
 {
+    "model": "text-embedding-3-small",
     "input": [
         "The ultimate answer to the question of life"
     ]
@@ -93,6 +94,7 @@ It can be useful to compute embeddings in input batches. The parameter `inputs` 
 
 ```json
 {
+    "model": "text-embedding-3-small",
     "input": [
         "The ultimate answer to the question of life", 
         "The largest planet in our solar system is Jupiter"
@@ -150,6 +152,7 @@ You can specify the number of dimensions for the embeddings. The following examp
 
 ```json
 {
+    "model": "text-embedding-3-small",
     "input": [
         "The ultimate answer to the question of life"
     ],
@@ -161,11 +164,12 @@ You can specify the number of dimensions for the embeddings. The following examp
 
 Some models can generate multiple embeddings for the same input depending on how you plan to use them. This capability allows you to retrieve more accurate embeddings for RAG patterns. 
 
-The following example shows how to create embeddings that are used to create an embedding for a document that will be stored in a vector database:
+The following example shows how to create embeddings that are used to create an embedding for a document that will be stored in a vector database. Since `text-embedding-3-small` doesn't support this capability, we are using an embedding model from Cohere in the following example:
 
 
 ```json
 {
+    "model": "cohere-embed-v3-english",
     "input": [
         "The answer to the ultimate question of life, the universe, and everything is 42"
     ],
@@ -173,11 +177,12 @@ The following example shows how to create embeddings that are used to create an 
 }
 ```
 
-When you work on a query to retrieve such a document, you can use the following code snippet to create the embeddings for the query and maximize the retrieval performance.
+When you work on a query to retrieve such a document, you can use the following code snippet to create the embeddings for the query and maximize the retrieval performance. Since `text-embedding-3-small` doesn't support this capability, we are using an embedding model from Cohere in the following example:
 
 
 ```json
 {
+    "model": "cohere-embed-v3-english",
     "input": [
         "What's the ultimate meaning of life?"
     ],

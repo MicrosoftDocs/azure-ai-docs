@@ -7,7 +7,7 @@ ms.topic: how-to
 ms.date: 1/21/2025
 ms.custom: ignite-2024, github-universe-2024
 manager: nitinme
-author: mrbullwinkle
+author: santiagxf
 ms.author: fasantia 
 recommendations: false
 ---
@@ -47,7 +47,7 @@ To obtain the key and endpoint:
 
 5. If your existing account is a free account, you first have to upgrade to a Pay as you go plan. Once you upgrade, go back to the playground and select **Get API key** again, then sign in with your upgraded account.
 
-6. Once you've signed in to your Azure account, you're taken to [Azure AI Studio > GitHub](https://ai-azure.com/GitHub). It might take one or two minutes to load your initial model details in AI Studio.
+6. Once you've signed in to your Azure account, you're taken to [Azure AI Studio > GitHub](https://ai.azure.com/GitHub). It might take one or two minutes to load your initial model details in AI Studio.
 
 7. The page is loaded with your model's details. Select the **Deploy** button to deploy the model to your account.
 
@@ -85,6 +85,7 @@ Use the parameter `model="<deployment-name>` to route your request to this deplo
 Azure AI model inference supports additional features not available in GitHub Models, including:
 
 * [Explore the model catalog](https://ai.azure.com/github/models) to see additional models not available in GitHub Models.
+* Configure [key-less authentication](configure-entra-id.md).
 * Configure [content filtering](configure-content-filters.md).
 * Configure rate limiting (for specific models).
 * Explore additional [deployment SKUs (for specific models)](../concepts/deployment-types.md).

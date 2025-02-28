@@ -4,9 +4,9 @@ titleSuffix: Azure AI Foundry
 description: Learn about using Azure OpenAI models in Azure AI Foundry portal, including when to use a project and when to use without a project.
 manager: scottpolly
 keywords: Azure AI services, cognitive, Azure OpenAI
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: overview
-ms.date: 11/04/2024
+ms.date: 02/13/2025
 ms.reviewer: shwinne
 ms.author: sgilley
 author: sdgilley
@@ -16,7 +16,7 @@ ms.custom: ignite-2023, build-2024, ignite-2024
 
 # What is Azure OpenAI in Azure AI Foundry portal?
 
-Azure OpenAI Service provides REST API access to OpenAI's powerful language models. Azure OpenAI Studio was previously where you went to access and work with the Azure OpenAI Service. This studio is now integrated into Azure AI Foundry portal. 
+Azure OpenAI Service provides REST API access to OpenAI's powerful language models. Azure OpenAI Studio was previously where you went to access and work with the Azure OpenAI Service. This studio is now integrated into [Azure AI Foundry portal](https://ai.azure.com). 
 
 ## Access Azure OpenAI Service in Azure AI Foundry portal
 

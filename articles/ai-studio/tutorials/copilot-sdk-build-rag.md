@@ -3,9 +3,9 @@ title: "Part 2: Build a custom knowledge retrieval (RAG) app with the Azure AI F
 titleSuffix: Azure AI Foundry
 description:  Learn how to build a RAG-based chat app using the Azure AI Foundry SDK. This tutorial is part 2 of a 3-part tutorial series.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.topic: tutorial
-ms.date: 12/18/2024
+ms.date: 02/12/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
@@ -15,7 +15,7 @@ ms.custom: copilot-learning-hub, ignite-2024
 
 # Tutorial:  Part 2 - Build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK
 
-In this tutorial, you use the Azure AI Foundry SDK (and other libraries) to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
+In this tutorial, you use the [Azure AI Foundry](https://ai.azure.com) SDK (and other libraries) to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
 This part two shows you how to enhance a basic chat application by adding [retrieval augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) to ground the responses in your custom data. Retrieval Augmented Generation (RAG) is a pattern that uses your data with a large language model (LLM) to generate answers specific to your data. In this part two, you learn how to:
 
@@ -77,11 +77,6 @@ The search index is used to store vectorized data from the embeddings model. The
     ```bash
     python create_search_index.py
     ```
-
-1. Once the script is run, you can view your newly created index in the **Data + indexes** page of your Azure AI Foundry project. For more information, see [How to build and consume vector indexes in Azure AI Foundry portal](../how-to/index-add.md).
-
-1. If you run the script again with the same index name, it creates a new version of the same index.
-
 
 ## <a name="get-documents"></a> Get product documents
 
@@ -176,6 +171,7 @@ To enable logging of telemetry to your project:
    python chat_with_products.py --query "I need a new tent for 4 people, what would you recommend?" --enable-telemetry 
    ```
 
+Follow the link in the console output to see the telemetry data in your Application Insights resource. If it doesn't appear right away, wait a few minutes and select **Refresh** in the toolbar.
 
 ## Clean up resources
 
