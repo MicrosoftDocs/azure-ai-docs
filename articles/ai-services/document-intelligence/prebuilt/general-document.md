@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 02/27/2025
 ms.author: lajanuar
 ---
 
@@ -17,7 +17,7 @@ ms.author: lajanuar
 :::moniker range="doc-intel-4.0.0"
 
 > [!IMPORTANT]
-> Starting with Document Intelligence versions **v4.0 preview versions** and going forward, the general document model (prebuilt-document) is deprecated. To extract key-value pairs, selection marks, text, tables, and structure from documents, use the following models:
+> For Document Intelligence versions **v4.0 preview versions** and going forward, the general document model (prebuilt-document) is deprecated. To extract key-value pairs, selection marks, text, tables, and structure from documents, use the following models:
 >
 >| Feature   | version| Model ID |
 >|----------  |---------|--------|

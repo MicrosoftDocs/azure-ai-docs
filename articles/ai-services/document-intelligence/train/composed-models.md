@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 02/27/2025
 ms.author: lajanuar
 ---
 
@@ -29,7 +29,7 @@ ms.author: lajanuar
 
 > [!IMPORTANT]
 >
-> The v4.0 2024-11-30 (GA) [`model compose` ](#benefits-of-the-new-model-compose-operation) operation adds an explicitly trained classifier instead of an implicit classifier for analysis. For the previous composed model version, *see* Composed custom models v3.1.  If you are currently using composed models consider upgrading to the latest implementation.
+> The v4.0 `2024-11-30` (GA) [`model compose` ](#benefits-of-the-new-model-compose-operation) operation adds an explicitly trained classifier instead of an implicit classifier for analysis. For the previous composed model version, *see* Composed custom models v3.1. If you're currently using composed models, consider upgrading to the latest implementation.
 
 ## What is a composed model?
 
@@ -119,7 +119,7 @@ Composed models are billed the same as individual custom models. The pricing is 
 
 ### Composed model compatibility
 
-|Custom model type|Models trained with v2.1 and v2.0 | Custom template and neural models v3.1 and v3.0 |Custom template and neural models v4.0 2024-11-30 (GA)|
+|Custom model type|Models trained with v2.1 and v2.0 | Custom template and neural models v3.1 and v3.0 |Custom template and neural models v4.0 `2024-11-30` (GA)|
 |--|--|--|--|
 |**Models trained with version 2.1 and v2.0** |Not Supported|Not Supported|Not Supported|
 |**Custom template and neural models v3.0 and v3.1** |Not Supported|Supported|Supported|

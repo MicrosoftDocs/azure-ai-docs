@@ -6,7 +6,7 @@ author: jaep3347
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 01/15/2025
+ms.date: 02/27/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.1.0'
 ---
