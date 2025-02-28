@@ -3,13 +3,13 @@ title: Work with Azure AI Foundry projects in VS Code
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to get started with Azure AI Foundry projects in VS Code.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 10/30/2024
+ms.date: 02/14/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
@@ -20,7 +20,7 @@ author: sdgilley
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Azure AI Foundry supports developing in VS Code - Desktop and Web. In each scenario, your VS Code instance is remotely connected to a prebuilt custom container running on a virtual machine, also known as a compute instance.
+[Azure AI Foundry](https://ai.azure.com) supports developing in VS Code - Desktop and Web. In each scenario, your VS Code instance is remotely connected to a prebuilt custom container running on a virtual machine, also known as a compute instance.
 
 ## Launch VS Code from Azure AI Foundry
 
@@ -31,7 +31,8 @@ Azure AI Foundry supports developing in VS Code - Desktop and Web. In each scena
 1. For **Compute**, select an existing compute instance or create a new one.
     * Select a compute instance to use. If it's stopped, select **Start compute** and wait for it to switch to **Running**. You'll see a **Ready** status when the compute is ready for use.
     * If you don't have a compute instance, select **Create compute**.  Then enter a name, compute details, and select **Create compute**. Wait until the compute instance is ready.
-1. For **VS Code container**, select **Set up container** once the button enables. This configures the container on the compute for you. The container setup might take a few minutes to complete. Once you set up the container for the first time, you can directly launch subsequent times. You might need to authenticate your compute when prompted. When setup is complete, you'll see **Ready**.
+1. If prompted, select **Authenticate** to authenticate your compute instance.
+1. For **VS Code container**, select **Set up container** once the button enables. This configures the container on the compute for you. The container setup might take a few minutes to complete. Once you set up the container for the first time, you can directly launch subsequent times. When setup is complete, you'll see **Ready**.
 
     > [!WARNING]
      > Even if you [enable idle shutdown on your compute instance](../create-manage-compute.md#configure-idle-shutdown), idle shutdown will not occur for any compute that is set up with this custom VS Code container. This is to ensure the compute doesn't shut down unexpectedly while you're working within a container.
@@ -59,7 +60,7 @@ This table summarizes the folder structure:
 | `shared` | Use for working with a project's shared files and assets such as prompt flows.<br/><br/>For example, `shared\Users\{user-name}\promptflow` is where you find the project's prompt flows. |
 
 > [!IMPORTANT]
-> It's recommended that you work within this project directory. Files, folders, and repos you include in your project directory persist on your host machine (your compute instance). Files stored in the code and data folders will persist even when the compute instance is stopped or restarted, but will be lost if the compute is deleted. However, the shared files are saved in your hub's storage account, and therefore aren't lost if the compute instance is deleted.
+> It's recommended that you work within this project directory. Files, folders, and repos you include in your project directory persist on your host machine (your compute instance). Files stored in the code and data folders persist even when the compute instance is stopped or restarted, but are lost if the compute is deleted. However, the shared files are saved in your hub's storage account, and therefore aren't lost if the compute instance is deleted.
 
 ## Working with prompt flows
 

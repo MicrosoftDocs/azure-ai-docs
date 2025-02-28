@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 05/21/2024
+ms.date: 01/28/2025
 author: aahill
 ms.author: aahi
 recommendations: false

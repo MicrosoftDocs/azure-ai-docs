@@ -3,13 +3,13 @@ title: How to add a new connection in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: Learn how to add a new connection in Azure AI Foundry portal.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 02/12/2025
 ms.reviewer: larryfr
 ms.author: larryfr
 author: Blackmist
@@ -20,7 +20,7 @@ author: Blackmist
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn how to add a new connection in Azure AI Foundry portal.
+In this article, you learn how to add a new connection in [Azure AI Foundry portal](https://ai.azure.com).
 
 Connections are a way to authenticate and consume both Microsoft and other resources within your Azure AI Foundry projects. For example, connections can be used for prompt flow, training data, and deployments. [Connections can be created](../how-to/connections-add.md) exclusively for one project or shared with all projects in the same Azure AI Foundry hub. 
 
@@ -36,7 +36,7 @@ Here's a table of some of the available connection types in Azure AI Foundry por
 | Azure Content Safety | | Azure AI Content Safety is a service that detects potentially unsafe content in text, images, and videos. |
 | Azure OpenAI || Azure OpenAI is a service that provides access to OpenAI's models including the GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, GPT-3.5-Turbo, DALLE-3 and Embeddings model series with the security and enterprise capabilities of Azure. |
 | Serverless Model | ✓ | Serverless Model connections allow you to [serverless API deployment](deploy-models-serverless.md). |
-| Microsoft OneLake | | Microsoft OneLake provides open access to all of your Fabric items through Azure Data Lake Storage (ADLS) Gen2 APIs and SDKs.<br/><br/>In Azure AI Foundry portal you can set up a connection to your OneLake data using a OneLake URI. You can find the information that Azure AI Foundry requires to construct a __OneLake Artifact URL__ (workspace and item GUIDs) in the URL on the Fabric portal. For information about the URI syntax, see [Connecting to Microsoft OneLake](/fabric/onelake/onelake-access-api). |
+| Microsoft OneLake | | Microsoft OneLake provides open access to all of your Fabric items through Azure Data Lake Storage (ADLS) Gen2 APIs and SDKs.<br/><br/>In Azure AI Foundry portal, you can set up a connection to your OneLake data using a OneLake URI. You can find the information that Azure AI Foundry requires to construct a __OneLake Artifact URL__ (workspace and item GUIDs) in the URL on the Fabric portal. For information about the URI syntax, see [Connecting to Microsoft OneLake](/fabric/onelake/onelake-access-api). |
 | API key || API Key connections handle authentication to your specified target on an individual basis. For example, you can use this connection with the SerpApi tool in prompt flow.  |
 | Custom || Custom connections allow you to securely store and access keys while storing related properties, such as targets and versions. Custom connections are useful when you have many targets that or cases where you wouldn't need a credential to access. LangChain scenarios are a good example where you would use custom service connections. Custom connections don't manage authentication, so you have to manage authentication on your own. |
 
@@ -44,7 +44,7 @@ Here's a table of some of the available connection types in Azure AI Foundry por
 
 Follow these steps to create a new connection that's only available for the current project.
 
-1. Go to your project in Azure AI Foundry portal. If you don't have a project, [create a new project](./create-projects.md).
+1. Go to your project in [Azure AI Foundry portal](https://ai.azure.com). If you don't have a project, [create a new project](./create-projects.md).
 1. Select __Management center__ from the bottom left navigation.
 1. Select __Connected resources__ from the __Project__ section.
 1. Select __+ New connection__ from the __Connected resources__ section.
@@ -58,7 +58,7 @@ Follow these steps to create a new connection that's only available for the curr
 1. Browse for and select your Azure AI Search service from the list of available services and then select the type of __Authentication__ to use for the resource. Select __Add connection__.
 
     > [!TIP]
-    > Different connection types support different authentication methods. Using Microsoft Entra ID may require specific Azure role-based access permissions for your developers. For more information, visit [Role-based access control](../concepts/rbac-ai-studio.md#scenario-connections-using-microsoft-entra-id-authentication).
+    > Different connection types support different authentication methods. Using Microsoft Entra ID might require specific Azure role-based access permissions for your developers. For more information, visit [Role-based access control](../concepts/rbac-ai-studio.md#scenario-connections-using-microsoft-entra-id-authentication).
 
     :::image type="content" source="../media/data-connections/connection-add-azure-ai-search-connect-entra-id.png" alt-text="Screenshot of the page to select the Azure AI Search service that you want to connect to." lightbox="../media/data-connections/connection-add-azure-ai-search-connect-entra-id.png":::
 

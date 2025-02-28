@@ -15,8 +15,8 @@ ms.date: 1/21/2025
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
 - <a href="https://nodejs.org/" target="_blank">Node.js LTS or ESM support.</a>
-- An Azure OpenAI resource created in the East US 2 or Sweden Central regions. See [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).
-- Then, you need to deploy a `gpt-4o-audio-preview` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md). 
+- An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](../concepts/models.md#global-standard-model-availability).
+- Then, you need to deploy a `gpt-4o-mini-audio-preview` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md). 
 
 ## Microsoft Entra ID prerequisites
 
@@ -29,7 +29,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Create a new folder `audio-completions-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
 
     ```shell
-    mkdir audio-completions-quickstart && code audio-completions-quickstart
+    mkdir audio-completions-quickstart && cd audio-completions-quickstart
     ```
     
 1. Create the `package.json` with the following command:
@@ -37,13 +37,6 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     ```shell
     npm init -y
     ```
-
-1. Update the `package.json` to ECMAScript with the following command: 
-
-    ```shell
-    npm pkg set type=module
-    ```
-    
 
 1. Install the OpenAI client library for JavaScript with:
 
@@ -83,9 +76,9 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     const azureADTokenProvider = getBearerTokenProvider(credential, scope);
     
     // Set environment variables or edit the corresponding values here.
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "AZURE_OPENAI_ENDPOINT";
-    const apiVersion = "2025-01-01-preview"; 
-    const deployment = "gpt-4o-audio-preview"; 
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
+    const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4o-mini-audio-preview"; 
+    const apiVersion = process.env.OPENAI_API_VERSION || "2025-01-01-preview"; 
     
     const client = new AzureOpenAI({ 
         endpoint, 
@@ -98,7 +91,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
         // Make the audio chat completions request
         const response = await client.chat.completions.create({ 
-            model: "gpt-4o-audio-preview", 
+            model: "gpt-4o-mini-audio-preview", 
             modalities: ["text", "audio"], 
             audio: { voice: "alloy", format: "wav" }, 
             messages: [ 
@@ -150,10 +143,10 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     const { writeFileSync } = require("node:fs");
     
     // Set environment variables or edit the corresponding values here.
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "AZURE_OPENAI_ENDPOINT";
-    const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "AZURE_OPENAI_API_KEY";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
+    const apiKey = process.env.AZURE_OPENAI_API_KEY || "AZURE_OPENAI_API_KEY";
     const apiVersion = "2025-01-01-preview"; 
-    const deployment = "gpt-4o-audio-preview"; 
+    const deployment = "gpt-4o-mini-audio-preview"; 
     
     const client = new AzureOpenAI({ 
         endpoint, 
@@ -166,7 +159,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
         // Make the audio chat completions request
         const response = await client.chat.completions.create({ 
-            model: "gpt-4o-audio-preview", 
+            model: "gpt-4o-mini-audio-preview", 
             modalities: ["text", "audio"], 
             audio: { voice: "alloy", format: "wav" }, 
             messages: [ 
@@ -229,9 +222,9 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
     const azureADTokenProvider = getBearerTokenProvider(credential, scope);
     
     // Set environment variables or edit the corresponding values here.
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "AZURE_OPENAI_ENDPOINT";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
     const apiVersion = "2025-01-01-preview"; 
-    const deployment = "gpt-4o-audio-preview"; 
+    const deployment = "gpt-4o-mini-audio-preview"; 
     
     const client = new AzureOpenAI({ 
         endpoint, 
@@ -248,7 +241,7 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
         
         // Make the audio chat completions request
         const response = await client.chat.completions.create({
-            model: "gpt-4o-audio-preview",
+            model: "gpt-4o-mini-audio-preview",
             modalities: ["text", "audio"],
             audio: { voice: "alloy", format: "wav" }, 
             messages: [
@@ -312,10 +305,10 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
     const { writeFileSync } = require("node:fs");
     
     // Set environment variables or edit the corresponding values here.
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "AZURE_OPENAI_ENDPOINT";
-    const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "AZURE_OPENAI_API_KEY";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
+    const apiKey = process.env.AZURE_OPENAI_API_KEY || "AZURE_OPENAI_API_KEY";
     const apiVersion = "2025-01-01-preview"; 
-    const deployment = "gpt-4o-audio-preview"; 
+    const deployment = "gpt-4o-mini-audio-preview"; 
     
     const client = new AzureOpenAI({ 
         endpoint, 
@@ -332,7 +325,7 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
         
         // Make the audio chat completions request
         const response = await client.chat.completions.create({
-            model: "gpt-4o-audio-preview",
+            model: "gpt-4o-mini-audio-preview",
             modalities: ["text", "audio"],
             audio: { voice: "alloy", format: "wav" }, 
             messages: [
@@ -404,9 +397,9 @@ The script generates a transcript of the summary of the spoken audio input. It a
     const azureADTokenProvider = getBearerTokenProvider(credential, scope);
     
     // Set environment variables or edit the corresponding values here.
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "AZURE_OPENAI_ENDPOINT";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
     const apiVersion = "2025-01-01-preview"; 
-    const deployment = "gpt-4o-audio-preview"; 
+    const deployment = "gpt-4o-mini-audio-preview"; 
     
     const client = new AzureOpenAI({ 
         endpoint, 
@@ -444,7 +437,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
         // Get the first turn's response 
     
         const response = await client.chat.completions.create({ 
-            model: "gpt-4o-audio-preview",
+            model: "gpt-4o-mini-audio-preview",
             modalities: ["text", "audio"], 
             audio: { voice: "alloy", format: "wav" }, 
             messages: messages
@@ -471,7 +464,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     
         // Send the follow-up request with the accumulated messages
         const followResponse = await client.chat.completions.create({ 
-            model: "gpt-4o-audio-preview",
+            model: "gpt-4o-mini-audio-preview",
             messages: messages
         });
     
@@ -508,10 +501,10 @@ The script generates a transcript of the summary of the spoken audio input. It a
     const fs = require('fs').promises;
     
     // Set environment variables or edit the corresponding values here.
-    const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "AZURE_OPENAI_ENDPOINT";
-    const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "AZURE_OPENAI_API_KEY";
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
+    const apiKey = process.env.AZURE_OPENAI_API_KEY || "AZURE_OPENAI_API_KEY";
     const apiVersion = "2025-01-01-preview"; 
-    const deployment = "gpt-4o-audio-preview"; 
+    const deployment = "gpt-4o-mini-audio-preview"; 
     
     const client = new AzureOpenAI({ 
         endpoint, 
@@ -549,7 +542,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
         // Get the first turn's response 
     
         const response = await client.chat.completions.create({ 
-            model: "gpt-4o-audio-preview",
+            model: "gpt-4o-mini-audio-preview",
             modalities: ["text", "audio"], 
             audio: { voice: "alloy", format: "wav" }, 
             messages: messages
@@ -576,7 +569,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     
         // Send the follow-up request with the accumulated messages
         const followResponse = await client.chat.completions.create({ 
-            model: "gpt-4o-audio-preview",
+            model: "gpt-4o-mini-audio-preview",
             messages: messages
         });
     

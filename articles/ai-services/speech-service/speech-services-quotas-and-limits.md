@@ -25,7 +25,7 @@ The following sections provide you with a quick guide to the quotas and limits t
 For information about adjustable quotas for Standard (S0) Speech resources, see [more explanations](#detailed-description-quota-adjustment-and-best-practices), [best practices](#general-best-practices-to-mitigate-throttling-during-autoscaling), and [adjustment instructions](#speech-to-text-increase-real-time-speech-to-text-concurrent-request-limit). The quotas and limits for Free (F0) Speech resources aren't adjustable. 
 
 > [!IMPORTANT]
-> If you switch a Speech resource from Free (F0) to Standard (S0) pricing tier, the change of the corresponding quotas may take up to several hours.
+> If you switch an AI Services resource for Speech from Free (F0) to Standard (S0) pricing tier, the change of the corresponding quotas may take up to several hours.
 
 ### Speech to text quotas and limits per resource
 
@@ -137,10 +137,10 @@ The limits in this table apply per Speech resource when you create a personal vo
 | Quota | Free (F0)| Standard (S0) |
 |-----|-----|-----|
 | New connections per minute | Not available for F0 | 2 new connections per minute |
-| Max connection duration with speaking | Not available for F0 | 20 minutes<sup>1</sup> |
+| Max connection duration with speaking | Not available for F0 | 30 minutes<sup>1</sup> |
 | Max connection duration with idle state | Not available for F0 | 5 minutes |
 
-<sup>1</sup> To ensure continuous operation of the real-time avatar for more than 20 minutes, you can enable auto-reconnect. For information about how to set up auto-reconnect, refer to this [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/README.md) (search "auto reconnect").
+<sup>1</sup> To ensure continuous operation of the real-time avatar for more than 30 minutes, you can enable auto-reconnect. For information about how to set up auto-reconnect, refer to this [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/README.md) (search "auto reconnect").
 
 #### Audio Content Creation tool
 

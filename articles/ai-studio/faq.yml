@@ -1,10 +1,10 @@
 ### YamlMime:FAQ
 metadata:
-  title: Azure AI frequently asked questions
+  title: Azure AI Foundry frequently asked questions
   titleSuffix: Azure AI Foundry
   description: Get answers to the most popular questions about Azure AI services.
   manager: scottpolly
-  ms.service: azure-ai-studio
+  ms.service: azure-ai-foundry
   ms.custom:
     - build-2024
   ms.topic: faq
@@ -12,9 +12,9 @@ metadata:
   ms.reviewer: sgilley
   ms.author: sgilley
   author: sdgilley
-title: Azure AI frequently asked questions
+title: Azure AI Foundry frequently asked questions
 summary: |
-  If you can't find answers to your questions in this document, and still need help check the [Azure AI services support options guide](../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context). Azure OpenAI is part of Azure AI services.
+  FAQ for [Azure AI Foundry](https://ai.azure.com). If you can't find answers to your questions in this document, and still need help check the [Azure AI services support options guide](../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context). Azure OpenAI is part of Azure AI services.
 sections:
   - name: General questions
     questions:
@@ -41,7 +41,7 @@ sections:
       - question: |
           Will there be multiple varying model benchmarks in Azure AI Foundry portal based on individual projects and data sources? 
         answer: |
-          In the model benchmarks view, customers can view varying model benchmarks published by Azure AI. 
+          In the model benchmarks view, customers can view varying model benchmarks published by Azure AI Foundry. 
       - question: |
           Is prompt flow Microsoft's equivalent to LangChain? 
         answer: |

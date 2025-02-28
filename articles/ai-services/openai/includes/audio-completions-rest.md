@@ -15,8 +15,8 @@ ms.date: 1/21/2025
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>. We recommend using Python 3.10 or later, but having at least Python 3.8 is required. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
-- An Azure OpenAI resource created in the East US 2 or Sweden Central regions. See [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).
-- Then, you need to deploy a `gpt-4o-audio-preview` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](../concepts/models.md#global-standard-model-availability).
+- Then, you need to deploy a `gpt-4o-mini-audio-preview` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 ## Microsoft Entra ID prerequisites
 
@@ -29,7 +29,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Create a new folder `audio-completions-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
 
     ```shell
-    mkdir audio-completions-quickstart && code audio-completions-quickstart
+    mkdir audio-completions-quickstart && cd audio-completions-quickstart
     ```
     
 1. Create a virtual environment. If you already have Python 3.10 or higher installed, you can create a virtual environment using the following commands:
@@ -101,11 +101,11 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     token = credential.get_token("https://cognitiveservices.azure.com/.default")
     
     api_version = '2025-01-01-preview'
-    url = f"{endpoint}/openai/deployments/gpt-4o-audio-preview/chat/completions?api-version={api_version}"
+    url = f"{endpoint}/openai/deployments/gpt-4o-mini-audio-preview/chat/completions?api-version={api_version}"
     headers= { "Authorization": f"Bearer {token.token}", "Content-Type": "application/json" }
     body = {
       "modalities": ["audio", "text"],
-      "model": "gpt-4o-audio-preview",
+      "model": "gpt-4o-mini-audio-preview",
       "audio": {
           "format": "wav",
           "voice": "alloy"
@@ -154,11 +154,11 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     api_key = os.environ['AZURE_OPENAI_API_KEY']
     
     api_version = '2025-01-01-preview'
-    url = f"{endpoint}/openai/deployments/gpt-4o-audio-preview/chat/completions?api-version={api_version}"
+    url = f"{endpoint}/openai/deployments/gpt-4o-mini-audio-preview/chat/completions?api-version={api_version}"
     headers= { "api-key": api_key, "Content-Type": "application/json" }
     body = {
       "modalities": ["audio", "text"],
-      "model": "gpt-4o-audio-preview",
+      "model": "gpt-4o-mini-audio-preview",
       "audio": {
           "format": "wav",
           "voice": "alloy"
@@ -224,11 +224,11 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
       encoded_string = base64.b64encode(wav_reader.read()).decode('utf-8') 
     
     api_version = '2025-01-01-preview'
-    url = f"{endpoint}/openai/deployments/gpt-4o-audio-preview/chat/completions?api-version={api_version}"
+    url = f"{endpoint}/openai/deployments/gpt-4o-mini-audio-preview/chat/completions?api-version={api_version}"
     headers= { "Authorization": f"Bearer {token.token}", "Content-Type": "application/json" }
     body = {
       "modalities": ["audio", "text"],
-      "model": "gpt-4o-audio-preview",
+      "model": "gpt-4o-mini-audio-preview",
       "audio": {
           "format": "wav",
           "voice": "alloy"
@@ -288,11 +288,11 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
       encoded_string = base64.b64encode(wav_reader.read()).decode('utf-8') 
     
     api_version = '2025-01-01-preview'
-    url = f"{endpoint}/openai/deployments/gpt-4o-audio-preview/chat/completions?api-version={api_version}"
+    url = f"{endpoint}/openai/deployments/gpt-4o-mini-audio-preview/chat/completions?api-version={api_version}"
     headers= { "api-key": api_key, "Content-Type": "application/json" }
     body = {
       "modalities": ["audio", "text"],
-      "model": "gpt-4o-audio-preview",
+      "model": "gpt-4o-mini-audio-preview",
       "audio": {
           "format": "wav",
           "voice": "alloy"
@@ -364,7 +364,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     token = credential.get_token("https://cognitiveservices.azure.com/.default")
     
     api_version = '2025-01-01-preview'
-    url = f"{endpoint}/openai/deployments/gpt-4o-audio-preview/chat/completions?api-version={api_version}"
+    url = f"{endpoint}/openai/deployments/gpt-4o-mini-audio-preview/chat/completions?api-version={api_version}"
     headers= { "Authorization": f"Bearer {token.token}", "Content-Type": "application/json" }
     
     # Read and encode audio file  
@@ -392,7 +392,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     
     body = {
       "modalities": ["audio", "text"],
-      "model": "gpt-4o-audio-preview",
+      "model": "gpt-4o-mini-audio-preview",
       "audio": {
           "format": "wav",
           "voice": "alloy"
@@ -422,7 +422,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     }) 
     
     body = {
-      "model": "gpt-4o-audio-preview",
+      "model": "gpt-4o-mini-audio-preview",
       "messages": messages
     }
     
@@ -454,7 +454,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     api_key = os.environ['AZURE_OPENAI_API_KEY']
     
     api_version = '2025-01-01-preview'
-    url = f"{endpoint}/openai/deployments/gpt-4o-audio-preview/chat/completions?api-version={api_version}"
+    url = f"{endpoint}/openai/deployments/gpt-4o-mini-audio-preview/chat/completions?api-version={api_version}"
     headers= { "api-key": api_key, "Content-Type": "application/json" }
     
     # Read and encode audio file  
@@ -482,7 +482,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     
     body = {
       "modalities": ["audio", "text"],
-      "model": "gpt-4o-audio-preview",
+      "model": "gpt-4o-mini-audio-preview",
       "audio": {
           "format": "wav",
           "voice": "alloy"
@@ -513,7 +513,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     }) 
     
     body = {
-      "model": "gpt-4o-audio-preview",
+      "model": "gpt-4o-mini-audio-preview",
       "messages": messages
     }
     

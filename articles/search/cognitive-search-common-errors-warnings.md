@@ -9,8 +9,8 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: reference
-ms.date: 09/19/2024
+ms.topic: concept-article
+ms.date: 02/19/2025
 ---
 
 # Troubleshooting common indexer errors and warnings in Azure AI Search

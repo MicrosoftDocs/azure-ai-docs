@@ -3,7 +3,7 @@ title: Visualize your traces
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to visualize your traces.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to

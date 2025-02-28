@@ -1,24 +1,25 @@
 ---
-title: Create and manage a workspace
+title: Create and manage a workspace—Azure AI Custom Translator
 titleSuffix: Azure AI services
 description: How to create and manage workspaces
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 01/08/2024
+ms.date: 01/28/2025
 ms.author: lajanuar
 ms.topic: how-to
 
 ---
 
-# Create and manage a workspace 
+# Create and manage an Azure AI Custom Translator workspace 
 
- Workspaces are places to manage your documents, projects, and models. When you create a workspace, you can choose to use the workspace independently, or share it with teammates to divide up the work.
+ Custom Translator workspaces are places to manage your documents, projects, and models. When you create a workspace, you can choose to use the workspace independently, or share it with teammates to divide up the work.
 
   > [!NOTE]
   >
-  > * [Custom Translator Portal](https://portal.customtranslator.azure.ai/) access can only be enabled through a public network.
-  > * For information on how to use selected networks and private endpoints, see [Enable Custom Translator through Azure Virtual Network](enable-vnet-service-endpoint.md).
+  > [Azure AI Custom Translator Portal](https://portal.customtranslator.azure.ai/) access can only be enabled through a public network.
+  >
+  > For information on how to use selected networks and private endpoints, see [Enable Custom Translator through Azure Virtual Network](enable-vnet-service-endpoint.md).
 
 ## Create workspace
 
@@ -73,7 +74,7 @@ The person who created the workspace is the owner. Within **Workspace settings**
 * **Reader**. A reader can view (and download if available) all information in the workspace.
 
 > [!NOTE]
-> The Custom Translator workspace sharing policy has changed. For additional security measures, you can share a workspace only with people who have recently signed in to the Custom Translator portal.
+> The Custom Translator workspace sharing policy is changed. For increased security measures, you can share a workspace only with people who are recently signed in to the Custom Translator portal.
 
 1. Select **Share**.
 
@@ -107,4 +108,4 @@ Select the **Yes** checkbox. Within few minutes, all published models are secure
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn how to manage projects](create-manage-project.md)
+> [Learn how to manage Azure AI Custom Translator projects](create-manage-project.md)

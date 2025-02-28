@@ -3,7 +3,7 @@ title: Azure AI Foundry content filtering
 titleSuffix: Azure AI Foundry
 description: Learn about the content filtering capabilities of Azure OpenAI in Azure AI Foundry portal.
 manager: nitinme
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
@@ -17,7 +17,7 @@ author: PatrickFarley
 
 # Content filtering in Azure AI Foundry portal
 
-Azure AI Foundry includes a content filtering system that works alongside core models and DALL-E image generation models.
+[Azure AI Foundry](https://ai.azure.com) includes a content filtering system that works alongside core models and DALL-E image generation models.
 
 > [!IMPORTANT]
 > The content filtering system isn't applied to prompts and completions processed by the Whisper model in Azure OpenAI Service. Learn more about the [Whisper model in Azure OpenAI](../../ai-services/openai/concepts/models.md).
@@ -26,7 +26,7 @@ Azure AI Foundry includes a content filtering system that works alongside core m
 
 This content filtering system is powered by [Azure AI Content Safety](../../ai-services/content-safety/overview.md), and it works by running both the prompt input and completion output through an ensemble of classification models aimed at detecting and preventing the output of harmful content. Variations in API configurations and application design might affect completions and thus filtering behavior.
 
-With Azure OpenAI model deployments, you can use the default content filter or create your own content filter (described later on). The default content filter is also available for other text models curated by Azure AI in the [model catalog](../how-to/model-catalog.md), but custom content filters aren't yet available for those models. Models available through **Models as a Service** have content filtering enabled by default and can't be configured.
+With Azure OpenAI model deployments, you can use the default content filter or create your own content filter (described later on).  Models available through **serverless APIs** have content filtering enabled by default. To learn more about the default content filter enabled for serverless APIs, see [Content safety for models curated by Azure AI in the model catalog](model-catalog-content-safety.md).
 
 ## Language support
 
@@ -86,7 +86,7 @@ The configurability feature allows customers to adjust the settings, separately 
 
 <sup>1</sup> For Azure OpenAI models, only customers who have been approved for modified content filtering have full content filtering control, including configuring content filters at severity level high only or turning off content filters. Apply for modified content filters via these forms: [Azure OpenAI Limited Access Review: Modified Content Filters](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu), and [Modified Abuse Monitoring](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOE9MUTFMUlpBNk5IQlZWWkcyUEpWWEhGOCQlQCN0PWcu).
 
-Customers are responsible for ensuring that applications integrating Azure OpenAI comply with the [Code of Conduct](/legal/cognitive-services/openai/code-of-conduct?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext). 
+Customers are responsible for ensuring that applications integrating Azure OpenAI comply with the [Code of Conduct](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext). 
 
 
 ## Next steps

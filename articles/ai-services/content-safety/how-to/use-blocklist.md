@@ -249,10 +249,10 @@ Copy the cURL command below to a text editor and make the following changes:
 curl --location --request POST '<endpoint>/contentsafety/text/blocklists/<your_list_name>:addOrUpdateBlocklistItems?api-version=2024-09-01' \
 --header 'Ocp-Apim-Subscription-Key: <enter_your_key_here>' \
 --header 'Content-Type: application/json' \
---data-raw '"blocklistItems": [{
+--data-raw '{"blocklistItems": [{
     "description": "string",
     "text": "bleed"
-}]'
+}]}'
 ```
 
 > [!TIP]
@@ -379,7 +379,7 @@ blocklist_item_text_2 = "<block_item_text_2>"
 blocklist_items = [TextBlocklistItem(text=blocklist_item_text_1), TextBlocklistItem(text=blocklist_item_text_2)]
 try:
     result = client.add_or_update_blocklist_items(
-        blocklist_name=blocklist_name, options=AddOrUpdateTextBlocklistItemsOptions(blocklist_items=blocklist_items)
+        blocklist_name=blocklist_name, options=AddOrUpdateTextBlocklistItemsOptions(blocklist_items=blocklist_items))
     for blocklist_item in result.blocklist_items:
         print(
             f"BlocklistItemId: {blocklist_item.blocklist_item_id}, Text: {blocklist_item.text}, Description: {blocklist_item.description}"
@@ -1391,9 +1391,9 @@ Copy the cURL command below to a text editor and make the following changes:
 curl --location --request POST '<endpoint>/contentsafety/text/blocklists/<your_list_name>:removeBlocklistItems?api-version=2024-09-01' \
 --header 'Ocp-Apim-Subscription-Key: <enter_your_key_here>' \
 --header 'Content-Type: application/json'
---data-raw '"blocklistItemIds":[
+--data-raw '{"blocklistItemIds":[
     "<item_id>"
-]'
+]}'
 ```
 
 > [!TIP]

@@ -8,7 +8,7 @@ ms.subservice: mldata
 ms.reviewer: franksolomon
 ms.author: xunwan
 author: SturgeonMi
-ms.date: 08/08/2023
+ms.date: 02/04/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, data4ml, sdkv1
 #Customer intent: As a data scientist, I want to detect data drift in my datasets and set alerts for when drift is large.
@@ -16,12 +16,16 @@ ms.custom: UpdateFrequency5, data4ml, sdkv1
 
 # Data drift (preview) will be retired, and replaced by Model Monitor
 
+<<<<<<< HEAD
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 Data drift(preview) will be retired at 09/01/2025, and you can start to use [Model Monitor](../how-to-monitor-model-performance.md) for your data drift tasks.
 Please check the content below to understand the replacement, feature gaps and manual change steps.
+=======
+Data (preview) will be retired at 09/01/2025, and you can start to use [Model Monitor](../how-to-monitor-model-performance.md) for your data drift tasks. Please check the content below to understand the replacement, feature gaps and manual change steps.
+>>>>>>> 107abc4d4e0ab48f2b7032c69183b1713d2796d7
 
 
 Learn how to monitor data drift and set alerts when drift is high.
@@ -58,7 +62,6 @@ To create and work with dataset monitors, you need:
 ## Prerequisites (Migrate to Model Monitor)
 When you migrate to Model Monitor, please check the prerequisites as mentioned in this article [Prerequisites of Azure Machine Learning model monitoring](../how-to-monitor-model-performance.md#prerequisites).
 
-
 ## What is data drift?
 
 Model accuracy degrades over time, largely because of data drift. For machine learning models, data drift is the change in model input data that leads to model performance degradation. Monitoring data drift helps detect these model performance issues.
@@ -92,7 +95,7 @@ Conceptually, there are three primary scenarios for setting up dataset monitors 
 
 Scenario | Description
 ---|---
-Monitor a model's serving data for drift from the training data | Results from this scenario can be interpreted as monitoring a proxy for the model's accuracy, since model accuracy degrades when the serving data drifts from the training data.
+Monitor serving data of a model for drift from the training data | Results from this scenario can be interpreted as monitoring a proxy for the model's accuracy, since model accuracy degrades when the serving data drifts from the training data.
 Monitor a time series dataset for drift from a previous time period. | This scenario is more general, and can be used to monitor datasets involved upstream or downstream of model building. The target dataset must have a timestamp column. The baseline dataset can be any tabular dataset that has features in common with the target dataset.
 Perform analysis on past data. | This scenario can be used to understand historical data and inform decisions in settings for dataset monitors.
 
@@ -117,7 +120,6 @@ The monitor compares the baseline and target datasets.
 In Model Monitor, you can find corresponding concepts as following, and you can find more details in this article [Set up model monitoring by bringing in your production data to Azure Machine Learning](../how-to-monitor-model-performance.md#set-up-out-of-box-model-monitoring):
 *	Reference dataset: similar to your baseline dataset for data drift detection, it is set as the recent past production inference dataset.
 *	Production inference data: similar to your target dataset in data drift detection, the production inference data can be collected automatically from models deployed in production. It can also be inference data you store.
-
 
 ## Create target dataset
 
@@ -182,9 +184,6 @@ If your data is already partitioned by date or time, as is the case here, you ca
 Not supported.
 
 ---
-
-
-
 
 ## Create dataset monitor
 
@@ -257,7 +256,6 @@ monitor = monitor.enable_schedule()
 > [!TIP]
 > For a full example of setting up a `timeseries` dataset and data drift detector, see our [example notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/work-with-data/datasets-tutorial/train-with-datasets/train-with-datasets.ipynb).
 
-
 # [Studio](#tab/azure-studio)
 <a name="studio-monitor"></a>
 
@@ -270,7 +268,7 @@ monitor = monitor.enable_schedule()
 
 :::image type="content" source="media/how-to-monitor-datasets/wizard.png" alt-text="Create a monitor wizard":::
 
-1. **Select target dataset**. The target dataset is a tabular dataset with timestamp column specified which to analyze for data drift. The target dataset must have features in common with the baseline dataset, and should be a `timeseries` dataset, which new data is appended to. Historical data in the target dataset can be analyzed, or new data can be monitored.
+1. **Select target dataset**. The target dataset is a tabular dataset with a timestamp column specified which to analyze for data drift. The target dataset must have features in common with the baseline dataset, and should be a `timeseries` dataset, which new data is appended to. Historical data in the target dataset can be analyzed, or new data can be monitored.
 
 1. **Select baseline dataset.**  Select the tabular dataset to be used as the baseline for comparison of the target dataset over time. The baseline dataset must have features in common with the target dataset. Select a time range to use a slice of the target dataset, or specify a separate dataset to use as the baseline.
 
@@ -295,7 +293,6 @@ After completion of the wizard, the resulting dataset monitor will appear in the
 Not supported
 
 ---
-
 
 ## Create Model Monitor (Migrate to Model Monitor)
 When you migrate to Model Monitor, if you have deployed your model to production in an Azure Machine Learning online endpoint and enabled [data collection](../how-to-collect-production-data.md) at deployment time, Azure Machine Learning collects production inference data, and automatically stores it in Microsoft Azure Blob Storage. You can then use Azure Machine Learning model monitoring to continuously monitor this production inference data, and you can directly choose the model to create target dataset (production inference data in Model Monitor).
@@ -419,7 +416,6 @@ The following YAML contains the definition for the out-of-box model monitoring.
 
 ---
 
-
 ## Create Model Monitor via custom data preprocessing component (Migrate to Model Monitor)
 When you migrate to Model Monitor, if you didn't deploy your model to production in an Azure Machine Learning online endpoint, or you don't want to use [data collection](../how-to-collect-production-data.md), you can also [set up model monitoring with custom signals and metrics](../how-to-monitor-model-performance.md#set-up-model-monitoring-with-custom-signals-and-metrics).
 
@@ -442,8 +438,6 @@ Your custom preprocessing component must have these input and output signatures:
 
 For an example of a custom data preprocessing component, see [custom_preprocessing in the azuremml-examples GitHub repo](https://github.com/Azure/azureml-examples/tree/main/cli/monitoring/components/custom_preprocessing).
 
-
-
 ## Understand data drift results
 
 This section shows you the results of monitoring a dataset, found in the **Datasets** / **Dataset monitors** page in Azure studio. You can update the settings, and analyze existing data for a specific time period on this page.
@@ -451,7 +445,6 @@ This section shows you the results of monitoring a dataset, found in the **Datas
 Start with the top-level insights into the magnitude of data drift and a highlight of features to be further investigated.
 
 :::image type="content" source="media/how-to-monitor-datasets/drift-overview.png" alt-text="Drift overview":::
-
 
 | Metric | Description |
 | ------ | ----------- |

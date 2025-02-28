@@ -8,7 +8,7 @@ ms.subservice: core
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: deeikele
-ms.date: 09/13/2023
+ms.date: 02/05/2025
 ms.topic: how-to
 ms.custom: devx-track-azurepowershell
 ---

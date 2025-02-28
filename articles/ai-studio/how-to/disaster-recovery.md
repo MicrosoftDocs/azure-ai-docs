@@ -3,7 +3,7 @@ title: Customer enabled disaster recovery
 titleSuffix: Azure AI Foundry
 description: Learn how to plan for disaster recovery for Azure AI Foundry.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to
@@ -17,7 +17,7 @@ ms.date: 12/05/2024
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-To maximize your uptime, plan ahead to maintain business continuity and prepare for disaster recovery with Azure AI Foundry. Since Azure AI Foundry builds on [Azure Machine Learning architecture](/azure/machine-learning/concept-workspace), it's beneficial to reference the foundational architecture.
+To maximize your uptime, plan ahead to maintain business continuity and prepare for disaster recovery with [Azure AI Foundry](https://ai.azure.com). Since Azure AI Foundry builds on [Azure Machine Learning architecture](/azure/machine-learning/concept-workspace), it's beneficial to reference the foundational architecture.
 
 Microsoft strives to ensure that Azure services are always available. However, unplanned service outages might occur. We recommend having a disaster recovery plan in place for handling regional service outages. In this article, you learn how to:
 

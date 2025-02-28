@@ -3,7 +3,7 @@ title: Develop application with LlamaIndex and Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: This article explains how to use LlamaIndex with models deployed in Azure AI Foundry portal to build advance intelligent applications.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
@@ -17,9 +17,9 @@ author: sdgilley
 
 In this article, you learn how to use [LlamaIndex](https://github.com/run-llama/llama_index) with models deployed from the Azure AI model catalog in Azure AI Foundry portal.
 
-Models deployed to Azure AI Foundry can be used with LlamaIndex in two ways:
+Models deployed to [Azure AI Foundry](https://ai.azure.com) can be used with LlamaIndex in two ways:
 
-- **Using the Azure AI model inference API:** All models deployed to Azure AI Foundry support the [Azure AI model inference API](../../reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LlamaIndex, install the extensions `llama-index-llms-azure-inference` and `llama-index-embeddings-azure-inference`.
+- **Using the Azure AI model inference API:** All models deployed to Azure AI Foundry support the [Azure AI model inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LlamaIndex, install the extensions `llama-index-llms-azure-inference` and `llama-index-embeddings-azure-inference`.
 
 - **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LlamaIndex. Those extensions may include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with `llama-index`, install the extension specific for the model you want to use, like `llama-index-llms-openai` or `llama-index-llms-cohere`.
 
@@ -175,7 +175,7 @@ llm = AzureAICompletionsModel(
 )
 ```
 
-Parameters not supported in the Azure AI model inference API ([reference](../../reference/reference-model-inference-chat-completions.md)) but available in the underlying model, you can use the `model_extras` argument. In the following example, the parameter `safe_prompt`, only available for Mistral models, is being passed.
+Parameters not supported in the Azure AI model inference API ([reference](../../../ai-foundry/model-inference/reference/reference-model-inference-chat-completions.md)) but available in the underlying model, you can use the `model_extras` argument. In the following example, the parameter `safe_prompt`, only available for Mistral models, is being passed.
 
 ```python
 llm = AzureAICompletionsModel(

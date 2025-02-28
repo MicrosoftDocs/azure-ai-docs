@@ -1,23 +1,23 @@
 ---
-title: Profanity filtering - Translator
+title: Profanity filtering - Azure AI Translator
 titleSuffix: Azure AI services
-description: Use Translator profanity filtering to determine the level of profanity translated in your text.
+description: Use Azure AI Translator profanity filtering to determine the level of profanity translated in your text.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 07/10/2024
+ms.date: 01/28/2025
 ms.author: lajanuar
 ---
 
-# Add profanity filtering with Translator
+# Add profanity filtering with Azure AI Translator
 
-Normally the Translator service retains profanity that is present in the source in the translation. The degree of profanity and the context that makes words profane differ between cultures. As a result, the degree of profanity in the target language may be amplified or reduced.
+In most cases, the Azure AI Translator service retains profanity that is present in the source in the translation. The degree of profanity and the context that makes words profane differ between cultures. As a result, the degree of profanity in the target language can be amplified or reduced.
 
-If you want to avoid seeing profanity in the translation, even if profanity is present in the source text, use the profanity filtering option available in the Translate() method. This option allows you to choose whether you want the profanity deleted, marked with appropriate tags, or no action taken.
+If you want to avoid seeing profanity in the translation, even if profanity is present in the source text, use the profanity filtering option available in the `Translate()` method. This option allows you to choose whether you want the profanity deleted, marked with appropriate tags, or no action taken.
 
-The Translate() method takes the "options" parameter, which contains the new element "ProfanityAction." The accepted values of ProfanityAction are "NoAction," "Marked," and "Deleted." For the value of "Marked," another optional element "ProfanityMarker" can take the values "Asterisk" (default) and "Tag."
+The `Translate()` method takes the "options" parameter, which contains the new element "ProfanityAction." The accepted values of ProfanityAction are "NoAction," "Marked," and "Deleted." For the value of "Marked," another optional element "ProfanityMarker" can take the values "Asterisk" (default) and "Tag."
 
 ## Accepted values and examples of ProfanityMarker and ProfanityAction
 

@@ -7,7 +7,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 01/20/2024
+ms.date: 02/21/2025
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
@@ -78,7 +78,7 @@ The following examples show poorly defined lines.
 
 ![Line is too high and doesn't cover the entirety of the door](./media/spatial-analysis/zone-line-too-high.png)
 
-## Next steps
+## Related content
 
 <!--* [Deploy a People Counting web application](spatial-analysis-web-app.md)-->
 * [Configure Spatial Analysis operations](./spatial-analysis-operations.md)

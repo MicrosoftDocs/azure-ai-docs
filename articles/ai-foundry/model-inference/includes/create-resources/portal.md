@@ -1,6 +1,6 @@
 ---
 manager: nitinme
-author: mrbullwinkle
+author: santiagxf
 ms.author: fasantia 
 ms.service: azure-ai-model-inference
 ms.date: 1/21/2025
@@ -54,5 +54,7 @@ To create a project with an Azure AI Services account, follow these steps:
 
 10. To use Azure AI model inference, you need to add model deployments to your Azure AI services account.
 
-    > [!div class="nextstepaction"]
-    > [Add and configure models](../../how-to/create-model-deployments.md)
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Add and configure models](../../how-to/create-model-deployments.md)

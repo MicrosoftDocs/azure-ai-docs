@@ -12,22 +12,20 @@ author: santiagxf
 Install the package `azure-ai-inference` using your package manager, like pip:
 
 ```bash
-pip install azure-ai-inference>=1.0.0b5
+pip install azure-ai-inference
 ```
-
-> [!WARNING]
-> Azure AI Services resource requires the version `azure-ai-inference>=1.0.0b5` for Python.
 
 Then, you can use the package to consume the model. The following example shows how to create a client to consume chat completions with Entra ID:
 
 ```python
 import os
 from azure.ai.inference import ChatCompletionsClient
-from azure.identity import AzureDefaultCredential
+from azure.identity import DefaultAzureCredential
 
-model = ChatCompletionsClient(
-    endpoint=os.environ["AZUREAI_ENDPOINT_URL"],
-    credential=AzureDefaultCredential(),
+client = ChatCompletionsClient(
+    endpoint="https://<resource>.services.ai.azure.com/models",
+    credential=DefaultAzureCredential(),
+    credential_scopes=["https://cognitiveservices.azure.com/.default"],
 )
 ```
 
@@ -44,11 +42,14 @@ Then, you can use the package to consume the model. The following example shows 
 ```javascript
 import ModelClient from "@azure-rest/ai-inference";
 import { isUnexpected } from "@azure-rest/ai-inference";
-import { AzureDefaultCredential } from "@azure/identity";
+import { DefaultAzureCredential } from "@azure/identity";
+
+const clientOptions = { credentials: { "https://cognitiveservices.azure.com" } };
 
 const client = new ModelClient(
-    process.env.AZUREAI_ENDPOINT_URL, 
-    new AzureDefaultCredential()
+    "https://<resource>.services.ai.azure.com/models", 
+    new DefaultAzureCredential(),
+    clientOptions,
 );
 ```
 
@@ -77,21 +78,64 @@ using Azure.AI.Inference;
 Then, you can use the package to consume the model. The following example shows how to create a client to consume chat completions with Entra ID:
 
 ```csharp
+TokenCredential credential = new DefaultAzureCredential();
+AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions();
+BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(credential, new string[] { "https://cognitiveservices.azure.com/.default" });
+clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
+
 ChatCompletionsClient client = new ChatCompletionsClient(
-    new Uri(Environment.GetEnvironmentVariable("AZURE_INFERENCE_ENDPOINT")),
-    new DefaultAzureCredential(includeInteractiveCredentials: true)
+    new Uri("https://<resource>.services.ai.azure.com/models"),
+    credential,
+    clientOptions.
 );
 ```
 
+# [Java](#tab/java)
+
+Add the package to your project:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-inference</artifactId>
+    <version>1.0.0-beta.1</version>
+</dependency>
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-identity</artifactId>
+    <version>1.13.3</version>
+</dependency>
+```
+
+Then, you can use the package to consume the model. The following example shows how to create a client to consume chat completions:
+
+```java
+TokenCredential defaultCredential = new DefaultAzureCredentialBuilder().build();
+ChatCompletionsClient client = new ChatCompletionsClientBuilder()
+    .credential(defaultCredential)
+    .endpoint("https://<resource>.services.ai.azure.com/models")
+    .buildClient();
+```
+
+Explore our [samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-inference/src/samples) and read the [API reference documentation](https://aka.ms/azsdk/azure-ai-inference/java/reference) to get yourself started.
+
 # [REST](#tab/rest)
 
-Use the reference section to explore the API design and which parameters are available and indicate authentication token in the header `Authorization`. For example, the reference section for [Chat completions](reference-model-inference-chat-completions.md) details how to use the route `/chat/completions` to generate predictions based on chat-formatted instructions. Notice that the path `/models` is included to the root of the URL:
+Use the reference section to explore the API design and which parameters are available and indicate authentication token in the header `Authorization`. For example, the reference section for [Chat completions](.././reference/reference-model-inference-chat-completions.md) details how to use the route `/chat/completions` to generate predictions based on chat-formatted instructions. Notice that the path `/models` is included to the root of the URL:
 
 __Request__
 
 ```HTTP/1.1
-POST models/chat/completions?api-version=2024-04-01-preview
+POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
 Authorization: Bearer <bearer-token>
 Content-Type: application/json
+```
+
+Tokens have to be issued with scope `https://cognitiveservices.azure.com/.default`.
+
+For testing purposes, the easiest way to get a valid token for your user account is to use the Azure CLI. In a console, run the following Azure CLI command:
+
+```azurecli
+az account get-access-token --resource https://cognitiveservices.azure.com --query "accessToken" --output tsv
 ```
 ---

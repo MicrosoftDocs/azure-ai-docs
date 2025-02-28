@@ -43,6 +43,8 @@ items:
     href: studio-quickstart.md
   - name: Text moderation
     href: quickstart-text.md
+  - name: Blocklists
+    href: quickstart-blocklist.md
   - name: Image moderation
     href: quickstart-image.md
   - name: Multimodal moderation (preview)
@@ -69,6 +71,8 @@ items:
     href: how-to/use-blocklist.md
   - name: Mitigate false results
     href: how-to/improve-performance.md
+  - name: Use Content Safety in AI Foundry portal
+    href: how-to/foundry.md
   - name: Containers (preview)
     items:
     - name: Content Safety containers overview
@@ -80,7 +84,7 @@ items:
     - name: Image analysis container
       href: how-to/containers/image-container.md
   - name: Embedded Content Safety (preview)
-    href: how-to/embedded-content-safety.md 
+    href: how-to/embedded-content-safety.md
   - name: Encryption of data at rest
     href: how-to/encrypt-data-at-rest.md
   - name: Migrate from public preview to GA

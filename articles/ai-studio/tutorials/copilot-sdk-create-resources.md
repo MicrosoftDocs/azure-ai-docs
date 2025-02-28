@@ -3,11 +3,11 @@ title: "Part 1: Set up project and development environment to build a custom kno
 titleSuffix: Azure AI Foundry
 description:  Build a custom chat app using the Azure AI Foundry SDK. Part 1 of a 3-part tutorial series, which shows how to create the resources you need for parts 2 and 3.
 manager: scottpolly
-ms.service: azure-ai-studio
+ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: tutorial
-ms.date: 12/18/2024
+ms.date: 02/12/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
@@ -16,7 +16,7 @@ author: sdgilley
 
 # Tutorial:  Part 1 - Set up project and development environment to build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK
 
-In this tutorial, you use the Azure AI Foundry SDK (and other libraries) to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
+In this tutorial, you use the [Azure AI Foundry](https://ai.azure.com) SDK (and other libraries) to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
 This tutorial is part one of a three-part tutorial.  This part one gets you ready to write code in part two and evaluate your chat app in part three. In this part, you:
 
@@ -110,11 +110,10 @@ In the Azure AI Foundry portal, check for an Azure AI Search connected resource.
 
 1. Select **Add connection**.  
 
-## <a name="installs"></a> Install the Azure CLI and sign in 
-
-[!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
 
 ## Create a new Python environment
+
+In the IDE of your choice, create a new folder for your project.  Open a terminal window in that folder.
 
 [!INCLUDE [Install Python](../includes/install-python.md)]
 
@@ -138,10 +137,18 @@ Create a folder for your work. Create a file called **config.py** in this folder
 
 :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/config.py":::
 
+> [!NOTE]
+> This script also uses a package you haven't installed yet, `azure.monitor.opentelemetry`.  You'll install this package in the next part of the tutorial series.
 
 ## Configure environment variables
 
 [!INCLUDE [create-env-file](../includes/create-env-file-tutorial.md)]
+
+## <a name="installs"></a> Install the Azure CLI and sign in 
+
+[!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
+
+Keep this terminal window open to run your python scripts from here as well, now that you've signed in.
 
 ## Clean up resources
 

@@ -1,18 +1,18 @@
 ---
-title:  Interpret and improve model accuracy and analysis confidence scores
+title:  Interpret and improve model accuracy and confidence scores
 titleSuffix: Azure AI services
-description: Best practices to interpret the accuracy score from the train model operation and the confidence score from analysis operations.
+description: Best practices to interpret and improve Azure AI Document Intelligence accuracy scores from train model operations and confidence scores from analysis operations.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 02/21/2025
 ms.author: lajanuar
 ---
 
 <!-- markdownlint-disable MD033 -->
 
-# Interpret and improve model accuracy and analysis confidence scores
+# Interpret and improve accuracy and confidence scores
 
 A confidence score indicates probability by measuring the degree of statistical certainty that the extracted result is detected correctly. The estimated accuracy is calculated by running a few different combinations of the training data to predict the labeled values. In this article, learn to interpret accuracy and confidence scores and best practices for using those scores to improve accuracy and confidence results.
 

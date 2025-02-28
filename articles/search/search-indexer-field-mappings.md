@@ -11,7 +11,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 08/09/2024
+ms.date: 02/24/2025
 ---
 
 # Field mappings and transformations using Azure AI Search indexers

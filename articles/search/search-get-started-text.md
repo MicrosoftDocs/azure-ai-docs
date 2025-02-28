@@ -3,8 +3,8 @@ title: 'Quickstart: Full text search using the Azure SDKs'
 titleSuffix: Azure AI Search
 description: "Learn how to create, load, and query a search index using the Azure SDKs for .NET, Python, Java, and JavaScript."
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: eric-urban
+ms.author: eur
 ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet
@@ -14,63 +14,43 @@ ms.custom:
   - devx-track-python
   - ignite-2023
 ms.topic: quickstart
-ms.date: 01/07/2025
+zone_pivot_groups: search-quickstart-full-text
+ms.date: 2/19/2025
 ---
 
 # Quickstart: Full text search using the Azure SDKs
 
-Learn how to use the *Azure.Search.Documents* client library in an Azure SDK to create, load, and query a search index using sample data for [full text search](search-lucene-query-architecture.md). Full text search uses Apache Lucene for indexing and queries, and a BM25 ranking algorithm for scoring results.
+::: zone pivot="programming-language-csharp"
 
-This quickstart creates and queries a small hotels-quickstart index containing data about 4 hotels.
+[!INCLUDE [C# quickstart](includes/quickstarts/full-text-csharp.md)]
 
-This quickstart has steps for the following SDKs:
+::: zone-end
 
-+ [Azure SDK for .NET](?tabs=dotnet#create-load-and-query-an-index)
-+ [Azure SDK for Python](?tabs=python#create-load-and-query-an-index)
-+ [Azure SDK for Java](?tabs=java#create-load-and-query-an-index)
-+ [Azure SDK for JavaScript/Typescript](?tabs=javascript#create-load-and-query-an-index)
+::: zone pivot="programming-language-java"
 
-## Prerequisites
+[!INCLUDE [Java quickstart](includes/quickstarts/full-text-java.md)]
 
-+ An Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount).
+::: zone-end
 
-+ An Azure AI Search service. [Create a service](search-create-service-portal.md) if you don't have one. You can use a free tier for this quickstart.
+::: zone pivot="programming-language-javascript"
 
-+ An API key and service endpoint for your service. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch).
+[!INCLUDE [JavaScript quickstart](includes/quickstarts/full-text-javascript.md)]
 
-  In the **Overview** section, copy the URL and save it to a text editor for a later step. An example endpoint might look like `https://mydemo.search.windows.net`.
+::: zone-end
 
-  In the **Settings** > **Keys** section, copy and save an admin key for full rights to create and delete objects. There are two interchangeable primary and secondary keys. Choose either one.
+::: zone pivot="programming-language-python"
 
-  :::image type="content" source="media/search-get-started-rest/get-url-key.png" alt-text="Screenshot that shows the HTTP endpoint and the primary and secondary API key locations.":::
+[!INCLUDE [Python SDK quickstart](includes/quickstarts/full-text-python.md)]
 
-## Create, load, and query an index
+::: zone-end
 
-Choose a programming language for the next step. The **Azure.Search.Documents** client libraries are available in Azure SDKs for .NET, Python, Java, and JavaScript/Typescript.
+::: zone pivot="programming-language-typescript"
 
-## [**.NET**](#tab/dotnet)
+[!INCLUDE [TypeScript quickstart](includes/quickstarts/full-text-typescript.md)]
 
-[!INCLUDE [dotnet-sdk-quickstart](includes/quickstarts/dotnet.md)]
+::: zone-end
 
-## [**Python**](#tab/python)
-
-[!INCLUDE [python-sdk-quickstart](includes/quickstarts/python.md)]
-
-## [**Java**](#tab/java)
-
-[!INCLUDE [java-sdk-quickstart](includes/quickstarts/java.md)]
-
-## [**JavaScript**](#tab/javascript)
-
-[!INCLUDE [javascript-sdk-quickstart](includes/quickstarts/javascript.md)]
-
-## [**TypeScript**](#tab/typescript)
-
-[!INCLUDE [typescript-sdk-quickstart](includes/quickstarts/typescript.md)]
-
----
-
-## Clean up resources
+## Clean-up resources
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 

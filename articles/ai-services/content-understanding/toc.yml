@@ -36,6 +36,9 @@ items:
     href: quickstart/use-ai-foundry.md
 - name: Capabilities
   items:
+  - name: Overview
+    displayName: content understanding capabilities, document, text, images, video, audio, visual, structured, content, field, extraction
+    href: concepts/capabilities.md
   - name: Document
     displayName: document, text, images, video, audio, visual, structured, content, field, extraction
     href: document/overview.md
@@ -48,6 +51,14 @@ items:
   - name: Video
     href: video/overview.md
     displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+- name: Concepts
+  items:
+    - name: Azure AI Foundry analyzer templates
+      displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+      href: concepts/analyzer-templates.md
+    - name: Azure AI Content Understanding best practices
+      displayName: best practices, analyzers, optimization, fields
+      href: concepts/best-practices.md
 - name: Responsible AI
   items:
     - name: Transparency note
