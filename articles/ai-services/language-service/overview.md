@@ -27,7 +27,7 @@ The Language service also provides several new features as well, which can eithe
 > [!TIP]
 > Unsure which feature to use? See [Which Language service feature should I use?](#which-language-service-feature-should-i-use) to help you decide.
 
-[**Language Studio**](./language-studio.md) enables you to use the below service features without needing to write code.
+[**Azure AI Foundry**](https://ai.azure.com) enables you to use most of the below service features without needing to write code.
 
 ### Named Entity Recognition (NER)
 
