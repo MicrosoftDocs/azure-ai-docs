@@ -47,7 +47,7 @@ You can configure the following filter categories in addition to the default har
 | Protected material - text | GA| On | Completion | Identifies and blocks known text content from being displayed in the model output (for example, song lyrics, recipes, and selected web content).  |
 | Groundedness* | Preview |Off | Completion |Detects whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users. Ungroundedness refers to instances where the LLMs produce information that is non-factual or inaccurate from what was present in the source materials. Requires: [Document embedding and formatting](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new#embedding-documents-in-your-prompt).|
 
-[!INCLUDE [create-content-filter](../../../ai-studio/includes/create-content-filter.md)]
+[!INCLUDE [create-content-filter](../../../ai-foundry/includes/create-content-filter.md)]
 
 ## Report content filtering feedback
 

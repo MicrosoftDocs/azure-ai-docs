@@ -25,17 +25,18 @@ sections:
 
           While Azure AI model inference focus on inference, Azure OpenAI Service can be used with more advanced APIs like batch, fine-tuning, assistants, and files.
       - question: |
-          What's the difference between OpenAI and Azure OpenAI?
-        answer: |
-          Azure AI Models and Azure OpenAI Service give customers access to advanced language models from OpenAI with the security and enterprise promise of Azure. Azure OpenAI codevelops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
-
-          Customers get the security capabilities of Microsoft Azure while running the same models as OpenAI. It offers private networking, regional availability, and responsible AI content filtering.  
-
-          Learn more about the [Azure OpenAI service](../../ai-services/openai/overview.md).
-      - question: |
           What's the difference between Azure AI services and Azure AI Foundry?
         answer: |
           Azure AI services are a suite of AI services that provide prebuilt APIs for common AI scenarios. Azure AI Services is part of the Azure AI Foundry platform. Azure AI services can be used in Azure AI Foundry portal to enhance your models with prebuilt AI capabilities.
+      - question: |
+          What's the difference between Serverless API Endpoints and Azure AI model inference?
+        answer: |
+          Both features allow you to deploy Models-as-a-Service models in Azure AI Foundry. However, there are some differences between them:
+          - *Resource involved*: Serverless API Endpoints are deployed within an AI project resource, while Azure AI model inference is part of the Azure AI services resource.
+          - *Deployment options*: Serverless API Endpoints allow regional deployments, while Azure AI model inference allows deployments under a global capacity.
+          - *Models*: Azure AI model inference also supports deploying Azure OpenAI models.
+          - *Endpoint*: Serverless API Endpoints creates one endpoint and credential per deployment, while Azure AI model inference creates one endpoint and credential per resource.
+          - *Model router*: Azure AI model inference allows you to switch between models without changing your code using a model router.
   - name: Models
     questions:
       - question: |
@@ -44,6 +45,10 @@ sections:
           Azure AI model inference in AI services supports all the models in the Azure AI catalog having pay-as-you-go billing. For more information, see [the Models article](concepts/models.md).
 
           The Azure AI model catalog contains a wider list of models, however, those models require compute quota from your subscription. They also need to have a project or AI hub where to host the deployment. For more information, see [deployment options in Azure AI Foundry](../../ai-studio/concepts/deployments-overview.md).
+      - question: |
+          My company hasn't approved specific models for use. How can I prevent users from deploying them?
+        answer: |
+          You can restrict the models available for deployment in Azure AI services by using the Azure policies. Models are listed in the catalog but any attempt to deploy them is blocked. Read [Control AI model deployment with custom policies](how-to/configure-deployment-policies.md).
   - name: SDKs and programming languages
     questions:
       - question: |
@@ -95,9 +100,22 @@ sections:
   - name: Data and Privacy
     questions:
       - question: |
+          How are third-party models available? 
+        answer: |
+          Third-party models available for deployment in Azure AI Services with pay-as-you-go billing (for example, Meta AI models or Mistral models) are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API in the Azure AI model inference endpoint. Model providers define the license terms and set the price for use of their models, while Azure AI Services service manages the hosting infrastructure, makes the inference APIs available, and acts as the data processor for prompts submitted and content output by models deployed. Read about [Data privacy, and security for third-party models](../../ai-studio/how-to/concept-data-privacy.md).
+      - question: |
+          How is data processed by the Global-Standard deployment type?
+        answer: |
+          For model deployments under Azure AI Services resources, prompts and outputs are processed using Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request. Global standard provides the highest default quota and eliminates the need to load balance across multiple resources. Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure location. Learn more about [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+      - question: |
           Do you use my company data to train any of the models? 
         answer: |
-          Azure AI model inference doesn't use customer data to retrain models, and customer data is never shared with model providers.    
+          Azure AI model inference doesn't use customer data to retrain models, and customer data is never shared with model providers.
+      - question: |
+          Is data shared with model providers?
+        answer: |
+          Microsoft acts as the data processor for prompts and outputs sent to, and generated by, a model deployment under Azure AI services resources. Microsoft doesn't share these prompts and outputs with the model provider. Also, Microsoft doesn't use these prompts and outputs to train or improve Microsoft models, the model provider's models, or any third party's models.
+          As explained during the deployment process for Models-as-a-Service models, Microsoft might share customer contact information and transaction details (including the usage volume associated with the offering) with the model publisher so that the publisher can contact customers regarding the model. Learn more about information available to model publishers in [Access insights for the Microsoft commercial marketplace in Partner Center](/partner-center/analytics).
   - name: Customer Copyright Commitment
     questions:
       - question: |

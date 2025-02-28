@@ -2,9 +2,10 @@
 title: Demo sites for search features
 titleSuffix: Azure AI Search
 description: This page provides links to demo sites that are built on Azure AI Search. Try a web app to see how search performs.
-author: HeidiSteen
+
 manager: nitinme
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
