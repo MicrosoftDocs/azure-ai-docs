@@ -1,5 +1,5 @@
 ---
-title: Trace your application with Azure AI Foundry SDK
+title: Trace your application with Azure AI Foundry Project Library
 titleSuffix: Azure AI Foundry
 description: This article provides an overview of tracing with the Azure AI Foundry SDK.
 manager: scottpolly
@@ -13,7 +13,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Trace your application with Azure AI Foundry SDK overview
+# Trace your application with Azure AI Foundry Project Library overview
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
