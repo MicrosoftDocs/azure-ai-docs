@@ -10,16 +10,17 @@ ms.topic: how-to
 ms.date: 02/24/2025
 author: mrbullwinkle
 ms.author: mbullwin
-zone_pivot_groups: openai-fine-tuning
 ---
 
-# Deploy a finetuned model
+# Deploy a finetuned model for inferecing
 
 Once your model is fine-tuned, you can deploy the model and can use it in your own application.
 
 When you deploy the model, you make the model available for inferencing, and that incurs an hourly hosting charge. Fine-tuned models, however, can be stored in Azure AI Foundry at no cost until you're ready to use them.
 
 Azure OpenAI provides choices of deployment types for fine-tuned models on the hosting structure that fits different business and usage patterns: **Standard**, **Global Standard** (preview) and **Provisioned Managed** (preview). Learn more about [deployment types for fine-tuned models](#deployment-types) and the [concepts of all deployment types](./deployment-types.md).
+
+## Deploy your finetuned model
 
 ## [Portal](#tab/portal)
 
