@@ -5,8 +5,8 @@ metadata:
   description: Get answers to common questions about Microsoft Azure AI Search service, a cloud hosted search service on Microsoft Azure.
   
   manager: nitinme
-  author: HeidiSteen
-  ms.author: heidist
+  author: haileytap
+  ms.author: haileytapia
   ms.service: azure-ai-search
   ms.topic: faq
   ms.date: 01/16/2025

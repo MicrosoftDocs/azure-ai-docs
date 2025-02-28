@@ -3,8 +3,8 @@ title: "Quickstart: Search for images by using Search Explorer in the Azure port
 titleSuffix: Azure AI Search
 description: Search for images on an Azure AI Search index by using the Azure portal. Run a wizard to vectorize images, and then use Search Explorer to provide an image as your query input.
 
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.date: 10/18/2024
