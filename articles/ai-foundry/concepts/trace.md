@@ -1,7 +1,7 @@
 ---
-title: Tracing in Azure AI Inference SDK
+title: Trace your application with Azure AI Foundry Project Library
 titleSuffix: Azure AI Foundry
-description: This article provides an overview of tracing with the Azure AI Inference SDK.
+description: This article provides an overview of tracing with the Azure AI Foundry SDK.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
@@ -13,7 +13,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Tracing in Azure AI Inference SDK overview
+# Trace your application with Azure AI Foundry Project Library Overview
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -75,5 +75,5 @@ Azure AI's tracing capabilities are designed to empower developers with the tool
 
 ## Related content
 
-- [Trace your application with Azure AI Inference SDK](../how-to/develop/trace-local-sdk.md)
+- [Trace your application with Azure AI Foundry Project Library](../how-to/develop/trace-local-sdk.md)
 - [Visualize your traces](../how-to/develop/visualize-traces.md)
