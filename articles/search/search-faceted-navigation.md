@@ -126,9 +126,13 @@ Add faceting to new fields that contain plain text or numeric content. Supported
 
 You can't set facets on existing fields, on vector fields, or fields of type `Edm.GeographyPoint` or `Collection(Edm.GeographyPoint)`.
 
-On complex fields, facetable must be null.
+On complex fields, "facetable" must be null.
 
-### Choosing fields
+### Start with new field definitions
+
+Because attribution determines how a field is indexed, many attributes can only be set when fields are created. This restriction applies to facets and filters. If your index already exists and you add a new field definition, existing documents in the index get a null value for the new field. This null value is replaced the next time you [refresh the index](search-howto-reindex.md).
+
+### Choosing which fields to attribute
 
 Facets can be calculated over single-value fields and collections. Fields that work best in faceted navigation have these characteristics:
 
@@ -157,15 +161,15 @@ Recall that facets are calculated from results in a query response. You only get
 
 1. Facets are configured at query-time. Use the [Search POST](/rest/api/searchservice/documents/search-post) or [Search GET](/rest/api/searchservice/documents/search-get) request, or an equivalent Azure SDK API, to specify facets. 
 
-1. Set facet query parameters in the quest. In Search POST, facets are an array of facet expressions to apply to the search query. Each facet expression contains a field name, optionally followed by a comma-separated list of name:value pairs. Valid facet parameters are `count`, `sort`, `values`, `interval`, and `timeoffset`.
+1. Set facet query parameters in the request. In Search POST, facets are an array of facet expressions to apply to the search query. Each facet expression contains a field name, optionally followed by a comma-separated list of name:value pairs. Valid facet parameters are `count`, `sort`, `values`, `interval`, and `timeoffset`.
 
     | Facet parameter | Description and usage |
     |-----------------|-----------------------|
     | `count` | Maximum number of facet terms; default is 10. An example is `Tags,count:5`. There's no upper limit on the number of terms, but higher values degrade performance, especially if the faceted field contains a large number of unique terms. This is due to the way faceting queries are distributed across shards. You can set count to zero or to a value that's greater than or equal to the number of unique values in the facetable field to get an accurate count across all shards. The tradeoff is increased latency.
-    | `sort` | Set to "count", "-count", "value", "-value". Use count to sort descending by count. Use -count to sort ascending by count. Use value to sort ascending by value. Use -value to sort descending by value (for example, "facet=category,count:3,sort:count" gets the top three categories in facet results in descending order by the number of documents with each city name). If the top three categories are Budget, Motel, and Luxury, and Budget has five hits, Motel has 6, and Luxury has 4, then the buckets are in the order Motel, Budget, Luxury. For -value, "facet=rating,sort:-value" produces buckets for all possible ratings, in descending order by value (for example, if the ratings are from 1 to 5, the buckets are ordered 5, 4, 3, 2, 1, irrespective of how many documents match each rating). |
-    | `values` | Set to pipe-delimited numeric or `Edm.DateTimeOffset` values specifying a dynamic set of facet entry values. For example, "facet=baseRate,values:10 \| 20" produces three buckets: one for base rate 0 up to but not including 10, one for 10 up to but not including 20, and one for 20 and higher. A string "facet=lastRenovationDate,values:2010-02-01T00:00:00Z" produces two buckets: one for hotels renovated before February 2010, and one for hotels renovated February 1, 2010 or later. The values must be listed in sequential, ascending order to get the expected results. |
-    | interval| An integer interval greater than zero for numbers, or minute, hour, day, week, month, quarter, year for date time values. For example, "facet=baseRate,interval:100" produces buckets based on base rate ranges of size 100. If base rates are all between $60 and $600, there are buckets for 0-100, 100-200, 200-300, 300-400, 400-500, and 500-600. The string "facet=lastRenovationDate,interval:year" produces one bucket for each year when hotels were renovated. |
-    | `timeoffset` | Can be set to ([+-]hh:mm, [+-]hhmm, or [+-]hh). If used, the timeoffset parameter must be combined with the interval option, and only when applied to a field of type Edm.DateTimeOffset. The value specifies the UTC time offset to account for in setting time boundaries. For example: "facet=lastRenovationDate,interval:day,timeoffset:-01:00" uses the day boundary that starts at 01:00:00 UTC (midnight in the target time zone).
+    | `sort` | Set to "count", "-count", "value", "-value". Use count to sort descending by count. Use -count to sort ascending by count. Use value to sort ascending by value. Use -value to sort descending by value (for example, `"facet=category,count:3,sort:count"` gets the top three categories in facet results in descending order by the number of documents with each city name). If the top three categories are Budget, Motel, and Luxury, and Budget has five hits, Motel has 6, and Luxury has 4, then the buckets are in the order Motel, Budget, Luxury. For -value, `"facet=rating,sort:-value"` produces buckets for all possible ratings, in descending order by value (for example, if the ratings are from 1 to 5, the buckets are ordered 5, 4, 3, 2, 1, irrespective of how many documents match each rating). |
+    | `values` | Set to pipe-delimited numeric or `Edm.DateTimeOffset` values specifying a dynamic set of facet entry values. For example, `"facet=baseRate,values:10 \| 20"` produces three buckets: one for base rate 0 up to but not including 10, one for 10 up to but not including 20, and one for 20 and higher. A string "`facet=lastRenovationDate,values:2010-02-01T00:00:00Z"` produces two buckets: one for hotels renovated before February 2010, and one for hotels renovated February 1, 2010 or later. The values must be listed in sequential, ascending order to get the expected results. |
+    | interval| An integer interval greater than zero for numbers, or minute, hour, day, week, month, quarter, year for date time values. For example, `"facet=baseRate,interval:100"` produces buckets based on base rate ranges of size 100. If base rates are all between $60 and $600, there are buckets for 0-100, 100-200, 200-300, 300-400, 400-500, and 500-600. The string `"facet=lastRenovationDate,interval:year"` produces one bucket for each year when hotels were renovated. |
+    | `timeoffset` | Can be set to ([+-]hh:mm, [+-]hhmm, or [+-]hh). If used, the timeoffset parameter must be combined with the interval option, and only when applied to a field of type Edm.DateTimeOffset. The value specifies the UTC time offset to account for in setting time boundaries. For example: `"facet=lastRenovationDate,interval:day,timeoffset:-01:00"` uses the day boundary that starts at 01:00:00 UTC (midnight in the target time zone).
 
 `count` and `sort` can be combined in the same facet specification, but they can't be combined with interval or values, and interval and values can't be combined together.
 
@@ -196,7 +200,7 @@ Each range is built using 0 as a starting point, a value from the list as an end
 
 ### Distinct values example
 
-You can formulate a query that returns a distinct value count for each facetable field. This example formulates a query that sets `top` to zero, returning just the counts, with no results.
+You can formulate a query that returns a distinct value count for each "facetable" field. This example formulates a query that sets `top` to zero, returning just the counts, with no results.
 
 For brevity, it includes just two fields marked as "facetable" in the hotels sample index.
 
@@ -297,11 +301,11 @@ This section is a collection of tips and workarounds that are helpful for applic
 
 ### Initialize a faceted navigation structure
 
-It's useful to initialize a search page with an open query to completely fill in the faceted navigation structure. As soon as you pass query terms in the request, the faceted navigation structure is scoped to just the matches in the results, rather than the entire index.
+It's useful to initialize a search page with an open query (`"search": "*"`) to completely fill in the faceted navigation structure. As soon as you pass query terms in the request, the faceted navigation structure is scoped to just the matches in the results, rather than the entire index.
 
 ### Clear facets
 
-When you design the user experience, remember to add a mechanism for clearing facets. A common approach for clearing facets is issuing an empty search request to reset the page.
+When you design the user experience, remember to add a mechanism for clearing facets. A common approach for clearing facets is issuing an open query to reset the page.
 
 ### Disable faceting to save on storage and improve performance
 
