@@ -237,8 +237,6 @@ If you aren't going to use the endpoint after you finish this tutorial, delete t
 
 ## Related content
 
-## Next steps
-
 - Learn more about what you can do in [Azure AI Foundry](../what-is-ai-foundry.md).
 - Get answers to frequently asked questions in the [Azure AI Foundry FAQ](../faq.yml).
 - [Enable trace and collect feedback for your deployment](./develop/trace-production-sdk.md).

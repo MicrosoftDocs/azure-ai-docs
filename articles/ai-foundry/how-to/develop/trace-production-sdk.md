@@ -75,14 +75,14 @@ The **Dependency** type event records calls from your deployments. The name of t
 
 | Metrics name                         | Type      | Dimensions                                | Description                                                                     |
 |--------------------------------------|-----------|-------------------------------------------|---------------------------------------------------------------------------------|
-| token_consumption                    | counter   | - flow <br> - node<br> - llm_engine<br> - token_type:  `prompt_tokens`: LLM API input tokens;  `completion_tokens`: LLM API response tokens; `total_tokens` = `prompt_tokens + completion tokens`          | OpenAI token consumption metrics                                                |
-| flow_latency                         | histogram | flow, response_code, streaming, response_type | request execution cost, response_type means whether it's full/firstbyte/lastbyte|
-| flow_request                         | counter   | flow, response_code, exception, streaming    | flow request count                                                              |
-| node_latency                         | histogram | flow, node, run_status                      | node execution cost                                                             |
-| node_request                         | counter   | flow, node, exception, run_status            | node execution count                                                    |
-| rpc_latency                          | histogram | flow, node, api_call                        | rpc cost                                                                        |
-| rpc_request                          | counter   | flow, node, api_call, exception              | rpc count                                                                       |
-| flow_streaming_response_duration     | histogram | flow                                      | streaming response sending cost, from sending first byte to sending last byte   |
+| `token_consumption`                    | counter   | - flow <br> - node<br> - `llm_engine`<br> - `token_type`:  `prompt_tokens`: LLM API input tokens;  `completion_tokens`: LLM API response tokens; `total_tokens` = `prompt_tokens + completion tokens`          | OpenAI token consumption metrics                                                |
+| `flow_latency`                         | histogram | flow, `response_code`, streaming, `response_type` | request execution cost, `response_type` means whether it's full/firstbyte/lastbyte|
+| `flow_request`                         | counter   | flow, `response_code`, exception, streaming    | flow request count                                                              |
+| `node_latency`                         | histogram | flow, node, `run_status`                      | node execution cost                                                             |
+| `node_request`                         | counter   | flow, node, exception, `run_status`            | node execution count                                                    |
+| `rpc_latency`                          | histogram | flow, node, `api_call`                        | rpc cost                                                                        |
+| `rpc_request`                          | counter   | flow, node, `api_call`, exception              | rpc count                                                                       |
+| `flow_streaming_response_duration`     | histogram | flow                                      | streaming response sending cost, from sending first byte to sending last byte   |
 
 You can find the workspace default Application Insights metrics on your workspace overview page in the Azure portal.
 

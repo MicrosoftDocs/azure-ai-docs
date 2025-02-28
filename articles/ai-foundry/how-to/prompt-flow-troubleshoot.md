@@ -37,7 +37,7 @@ Errors related to compute session failures that use a custom base image are disc
 
 Flow run-related issues are discussed.
 
-### How do I find the raw inputs and outputs of in the LLM tool for further investigation?
+### How do I find the raw inputs and outputs of the LLM tool for further investigation?
 
 In a prompt flow, on a **Flow** page with a successful run and run detail page, you can find the raw inputs and outputs of the LLM tool in the output section. Select **View full output** to view the full output.
 
@@ -87,7 +87,7 @@ You might encounter a 409 error from Azure OpenAI. This error means that you rea
 
 Flow deployment-related issues are discussed.
 
-### Upstream request time-out issue when consuming the endpoint
+### How do I resolve an upstream request time-out issue?
 
 If you use the Azure CLI or SDK to deploy the flow, you might encounter a time-out error. By default, `request_timeout_ms` is 5000. You can specify a maximum of five minutes, which is 300,000 ms. The following example shows how to specify a `request timeout` in the deployment yaml file. To learn more, see [deployment schema](/azure/machine-learning/reference-yaml-deployment-managed-online).
 
@@ -96,7 +96,7 @@ request_settings:
   request_timeout_ms: 300000
 ```
 
-### What do I do when OpenAI API hits an authentication error?
+### What do I do when OpenAI API generates an authentication error?
 
 If you regenerate your Azure OpenAI key and manually update the connection used in a prompt flow, you might encounter errors like "Unauthorized. Access token is missing, invalid, audience is incorrect or have expired." You might see these messages when you invoke an existing endpoint that was created before the key was regenerated.
 
