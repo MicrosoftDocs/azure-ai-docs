@@ -322,3 +322,5 @@ items:
     href: https://www.microsoft.com/translator/business/notrace/
   - name: Code samples on GitHub
     href: https://aka.ms/TranslatorGitHub
+  - name: Azure AI Translator release history
+    href: reference/release-history.md
