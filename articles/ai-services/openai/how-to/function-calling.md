@@ -39,6 +39,7 @@ At a high level you can break down working with functions into three steps:
 * `gpt-4o` (`2024-08-06`)
 * `gpt-4o` (`2024-11-20`)
 * `gpt-4o-mini` (`2024-07-18`)
+* `gpt-4.5-preview` (`2025-02-07`)
 
 Support for parallel function was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 
@@ -272,6 +273,7 @@ TIMEZONE_DATA = {
 
 def get_current_weather(location, unit=None):
     """Get the current weather for a given location"""
+    location_lower = location.lower()
     print(f"get_current_weather called with location: {location}, unit: {unit}")  
     
     for key in WEATHER_DATA:
