@@ -27,15 +27,15 @@ In the list of global Azure regions, there are several regions that serve specif
 
 Azure Machine Learning is still in development in air-gap Regions. 
 
-For the Italy North Region, Application Insights is not available until 12/12/2023 without allow list. This will effect the following service until then - Job schedule  - Feature store  - Model monitor - Data import
+For the Italy North Region, Application Insights isn't available until 12/12/2023 without allow list. This will effect the following service until then - Job schedule  - Feature store  - Model monitor - Data import
 
 
 
 The information in the rest of this document provides information on what features of Azure Machine Learning are available in these regions, along with region-specific information on using these features.
 ## Azure Government    
 
-### Model Catalog in USGOV virginia and Arizonia 
-| Model Name | MaaP Inference  | Batch Endabled | MaaS (serverless Compute Inferencing)|  MaaS (Finetunning) | 
+### Model Catalog in USGOV Virginia and Arizona 
+| Model Name | MaaP Inference  | Batch Enabled | MaaS (serverless Compute Inferencing)|  MaaS (Fine-tuning) | 
 |----------------------------------------------------------------------------|:----------------------:|:--------------------:|:-------------:|:-------------:|
 |ALLaM-2-7b-instruct	|maap-inference		||||	
 |Aurora	|maap-inference			||||
@@ -190,8 +190,8 @@ The information in the rest of this document provides information on what featur
 |Virchow2|	maap-inference|	batch-enabled	|||	
 
 
-### AOAI Models in Model Catalog in USGOV virginia and Arizonia 
-| Model Name | AOAI-Deployment | MaaP Inference  | Batch Endabled | MaaS (serverless Compute Inferencing)|
+### Azure OpenAI Models in Model Catalog in USGOV Virginia and Arizona 
+| Model Name | Azure OpenAI Deployment | MaaP Inference  | Batch Enabled | MaaS (serverless Compute Inferencing)|
 |----------------------------------------------------------------------------|:----------------------:|:--------------------:|:-------------:|:-------------:|
 |gpt-35-turbo|	aoai-deployment	
 |gpt-4	|aoai-deployment	
@@ -214,7 +214,7 @@ The information in the rest of this document provides information on what featur
 
 
 
-### AzureML Features
+### Azure Machine Learning Features
 
 | Feature | Public cloud status  | US-Virginia | US-Arizona| 
 |----------------------------------------------------------------------------|:----------------------:|:--------------------:|:-------------:|
@@ -314,11 +314,11 @@ The information in the rest of this document provides information on what featur
 
 ### Other Azure Government limitations
 
-* For Azure Machine Learning compute instances, the ability to refresh a token lasting more than 24 hours is not available in Azure Government.
-* Model Profiling does not support 4 CPUs in the US-Arizona region.   
+* For Azure Machine Learning compute instances, the ability to refresh a token lasting more than 24 hours isn't available in Azure Government.
+* Model Profiling doesn't support 4 CPUs in the US-Arizona region.   
 * Sample notebooks may not work in Azure Government if it needs access to public data.
-* IP addresses: The CLI command used in the [required public internet access](how-to-secure-training-vnet.md#required-public-internet-access-to-train-models) instructions does not return IP ranges. Use the [Azure IP ranges and service tags for Azure Government](https://www.microsoft.com/download/details.aspx?id=57063) instead.
-* For scheduled pipelines, we also provide a blob-based trigger mechanism. This mechanism is not supported for CMK workspaces. For enabling a blob-based trigger for CMK workspaces, you have to do extra setup. For more information, see [Trigger a run of a machine learning pipeline from a Logic App (SDK/CLI v1)](v1/how-to-trigger-published-pipeline.md).
+* IP addresses: The CLI command used in the [required public internet access](how-to-secure-training-vnet.md#required-public-internet-access-to-train-models) instructions doesn't return IP ranges. Use the [Azure IP ranges and service tags for Azure Government](https://www.microsoft.com/download/details.aspx?id=57063) instead.
+* For scheduled pipelines, we also provide a blob-based trigger mechanism. This mechanism isn't supported for CMK workspaces. For enabling a blob-based trigger for CMK workspaces, you have to do extra setup. For more information, see [Trigger a run of a machine learning pipeline from a Logic App (SDK/CLI v1)](v1/how-to-trigger-published-pipeline.md).
 * Firewalls: When using an Azure Government region, add the following hosts to your firewall setting:
 
     * For Arizona use: `usgovarizona.api.ml.azure.us`
@@ -419,9 +419,9 @@ The information in the rest of this document provides information on what featur
     | Microsoft Entra ID              | `https://login.microsoftonline.com`          | `https://login.chinacloudapi.cn`             |
 
 * Sample notebook may not work, if it needs access to public data.
-* IP address ranges: The CLI command used in the [required public internet access](how-to-secure-training-vnet.md#required-public-internet-access-to-train-models) instructions does not return IP ranges. Use the [Azure IP ranges and service tags for Microsoft Azure operated by 21Vianet](https://www.microsoft.com//download/details.aspx?id=57062) instead.
-* Azure Machine Learning compute instances preview is not supported in a workspace where Private Endpoint is enabled for now, but CI will be supported in the next deployment for the service expansion to all Azure Machine Learning regions.
-* Searching for assets in the web UI with Chinese characters will not work correctly.
+* IP address ranges: The CLI command used in the [required public internet access](how-to-secure-training-vnet.md#required-public-internet-access-to-train-models) instructions doesn't return IP ranges. Use the [Azure IP ranges and service tags for Microsoft Azure operated by 21Vianet](https://www.microsoft.com//download/details.aspx?id=57062) instead.
+* Azure Machine Learning compute instances preview isn't supported in a workspace where Private Endpoint is enabled for now, but CI will be supported in the next deployment for the service expansion to all Azure Machine Learning regions.
+* Searching for assets in the web UI with Chinese characters won't work correctly.
 
 ## Next steps
 
