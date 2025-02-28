@@ -47,8 +47,6 @@ POST https://{{service_name}}.search.windows.net/indexes/hotels/docs/search?api-
 }
 ```
 
-It's useful to initialize a search page with an open query to completely fill in the faceted navigation structure. As soon as you pass query terms in the request, the faceted navigation structure is scoped to just the matches in the results, rather than the entire index.
-
 The response for the example includes the faceted navigation structure at the top. The structure consists of "Category" values and a count of the hotels for each one. It's followed by the rest of the search results, trimmed here to just one document for brevity. This example works well for several reasons. The number of facets for this field fall under the limit (default is 10) so all of them appear, and every hotel in the index of 50 hotels is represented in exactly one of these categories.
 
 ```json
@@ -101,11 +99,9 @@ The response for the example includes the faceted navigation structure at the to
 }
 ```
 
-## Add facets to an index
+## Enable facets on fields
 
-Facets are enabled on a field-by-field basis in an index definition when you set `"facetable": true` on field definitions.
-
-Although it's not strictly required, it's a best practice to also set the "filterable" attribute so that you can build the necessary filters that back the faceted navigation experience in your search application.
+During [index creation or update](search-how-to-create-search-index.md), facets are enabled when you set `"facetable": true` on new fields that you add to an index. Although it's not strictly required, it's a best practice to also set the "filterable" attribute so that you can build the necessary filters that back the faceted navigation experience in your search application.
 
 Here's a JSON example of the hotels sample index, showing "facetable" and "filterable" on low cardinality fields that contain single values or short phrases: "Category", "Tags", "Rating".
 
@@ -126,11 +122,11 @@ Here's a JSON example of the hotels sample index, showing "facetable" and "filte
 
 ### Prerequisites
 
-Add faceting to fields in a new or existing search index, on fields containing plain text or numeric content. Supported data types include strings, dates, boolean fields, and numeric fields (but not vectors).
+Add faceting to new fields that contain plain text or numeric content. Supported data types include strings, dates, boolean fields, and numeric fields (but not vectors).
 
-You can't set facets on vector fields or fields of type `Edm.GeographyPoint` or `Collection(Edm.GeographyPoint)`.
+You can't set facets on existing fields, on vector fields, or fields of type `Edm.GeographyPoint` or `Collection(Edm.GeographyPoint)`.
 
-Facetable must be null for complex fields.
+On complex fields, facetable must be null.
 
 ### Choosing fields
 
@@ -168,7 +164,7 @@ Recall that facets are calculated from results in a query response. You only get
     | `count` | Maximum number of facet terms; default is 10. An example is `Tags,count:5`. There's no upper limit on the number of terms, but higher values degrade performance, especially if the faceted field contains a large number of unique terms. This is due to the way faceting queries are distributed across shards. You can set count to zero or to a value that's greater than or equal to the number of unique values in the facetable field to get an accurate count across all shards. The tradeoff is increased latency.
     | `sort` | Set to "count", "-count", "value", "-value". Use count to sort descending by count. Use -count to sort ascending by count. Use value to sort ascending by value. Use -value to sort descending by value (for example, "facet=category,count:3,sort:count" gets the top three categories in facet results in descending order by the number of documents with each city name). If the top three categories are Budget, Motel, and Luxury, and Budget has five hits, Motel has 6, and Luxury has 4, then the buckets are in the order Motel, Budget, Luxury. For -value, "facet=rating,sort:-value" produces buckets for all possible ratings, in descending order by value (for example, if the ratings are from 1 to 5, the buckets are ordered 5, 4, 3, 2, 1, irrespective of how many documents match each rating). |
     | `values` | Set to pipe-delimited numeric or `Edm.DateTimeOffset` values specifying a dynamic set of facet entry values. For example, "facet=baseRate,values:10 \| 20" produces three buckets: one for base rate 0 up to but not including 10, one for 10 up to but not including 20, and one for 20 and higher. A string "facet=lastRenovationDate,values:2010-02-01T00:00:00Z" produces two buckets: one for hotels renovated before February 2010, and one for hotels renovated February 1, 2010 or later. The values must be listed in sequential, ascending order to get the expected results. |
-    | interval| An integer interval greater than 0 for numbers, or minute, hour, day, week, month, quarter, year for date time values. For example, "facet=baseRate,interval:100" produces buckets based on base rate ranges of size 100. If base rates are all between $60 and $600, there are buckets for 0-100, 100-200, 200-300, 300-400, 400-500, and 500-600. The string "facet=lastRenovationDate,interval:year" produces one bucket for each year when hotels were renovated. |
+    | interval| An integer interval greater than zero for numbers, or minute, hour, day, week, month, quarter, year for date time values. For example, "facet=baseRate,interval:100" produces buckets based on base rate ranges of size 100. If base rates are all between $60 and $600, there are buckets for 0-100, 100-200, 200-300, 300-400, 400-500, and 500-600. The string "facet=lastRenovationDate,interval:year" produces one bucket for each year when hotels were renovated. |
     | `timeoffset` | Can be set to ([+-]hh:mm, [+-]hhmm, or [+-]hh). If used, the timeoffset parameter must be combined with the interval option, and only when applied to a field of type Edm.DateTimeOffset. The value specifies the UTC time offset to account for in setting time boundaries. For example: "facet=lastRenovationDate,interval:day,timeoffset:-01:00" uses the day boundary that starts at 01:00:00 UTC (midnight in the target time zone).
 
 `count` and `sort` can be combined in the same facet specification, but they can't be combined with interval or values, and interval and values can't be combined together.
@@ -177,7 +173,7 @@ Interval facets on date time are computed based on the UTC time if `timeoffset` 
 
 ### Basic facet example
 
-The following example works against the [hotels sample index](search-get-started-portal.md). You can use **JSON view** in Search Explorer to paste in the JSON query. This example shows three facets for "Category", "Tags", and "Rating", with a count override on "Tags" and explicit whole number values set on "Rating", which is otherwise a float value in the index.
+The following example works against the [hotels sample index](search-get-started-portal.md). You can use **JSON view** in Search Explorer to paste in the JSON query. This example shows three facets for "Category", "Tags", and "Rating", with a count override on "Tags" and a range override for "Rating", which is otherwise stored as a double in the index.
 
 ```http
 POST https://{{service_name}}.search.windows.net/indexes/hotels/docs/search?api-version={{api_version}}
@@ -299,15 +295,23 @@ Results from this query are as follows:
 
 This section is a collection of tips and workarounds that are helpful for application development.
 
+### Initialize a faceted navigation structure
+
+It's useful to initialize a search page with an open query to completely fill in the faceted navigation structure. As soon as you pass query terms in the request, the faceted navigation structure is scoped to just the matches in the results, rather than the entire index.
+
+### Clear facets
+
+When you design the user experience, remember to add a mechanism for clearing facets. A common approach for clearing facets is issuing an empty search request to reset the page.
+
 ### Disable faceting to save on storage and improve performance
 
-For performance and storage optimization, set `"facetable": false` for fields that should never be used as a facet. These include string fields for unique values, such as an ID or product name, to prevent their accidental (and ineffective) use in faceted navigation. This is especially true for the REST API that enables filters and facets on string fields by default.
+For performance and storage optimization, set `"facetable": false` for fields that should never be used as a facet. Examples include string fields for unique values, such as an ID or product name, to prevent their accidental (and ineffective) use in faceted navigation. This best practice is especially important for the REST API, which enables filters and facets on string fields by default.
 
 Remember that you can't use `Edm.GeographyPoint` or `Collection(Edm.GeographyPoint)` fields in faceted navigation. Recall that facets work best on fields with low cardinality. Due to how geo-coordinates resolve, it's rare that any two sets of coordinates are equal in a given dataset. As such, facets aren't supported for geo-coordinates. You should use a city or region field to facet by location.
 
-### Add logic for checking facet quality
+### Check for bad data
 
-In your code, check fields for null values, misspellings or case discrepancies, and single and plural versions of the same word. By default, filters and facets don't undergo lexical analysis or [spell check](speller-how-to-add.md), which means that all values of a "facetable" field are potential facets, even if the words differ by one character. Optionally, you can [assign a normalizer](search-normalizers.md) to a "filterable" and "facetable" field to smooth out variations in casing and characters.
+As you prepare data for indexing, check fields for null values, misspellings or case discrepancies, and single and plural versions of the same word. By default, filters and facets don't undergo lexical analysis or [spell check](speller-how-to-add.md), which means that all values of a "facetable" field are potential facets, even if the words differ by one character. Optionally, you can [assign a normalizer](search-normalizers.md) to a "filterable" and "facetable" field to smooth out variations in casing and characters.
 
 ### Discrepancies in facet counts
 
@@ -323,15 +327,11 @@ In Azure AI Search, facets exist for current results only. However, it's a commo
 
 If you want a static set of facets alongside a dynamic drilldown experience, you can implement it by using two filtered queries: one scoped to the results, the other used to create a static list of facets for navigation purposes.
 
-### Clear facets
+### Offset large facet counts through filters
 
-When you design the user experience, remember to add a mechanism for clearing facets. A common approach for clearing facets is issuing an empty search request to reset the page.
+Search results and facet results that are too large can be trimmed by [adding filters](search-filters.md). In the following example, in the query for *cloud computing*, 254 items have *internal specification* as a content type. If results are too large, adding filters can help your users refine the query by adding more criteria.
 
-### Handling large facet counts
-
-Search results and facet results that are too large can be trimmed by [adding filters](search-filters.md). In the following example, in the query for *cloud computing*, 254 items have *internal specification* as a content type. If results are too large, adding filters can help your users re-scope the query by adding more criteria.
-
-Items aren't necessarily mutually exclusive. If an item meets the criteria of both filters, it's counted in each one. This duplication is possible when faceting on `Collection(Edm.String)` fields, which are often used to implement document tagging.
+Items aren't mutually exclusive. If an item meets the criteria of both filters, it's counted in each one. This duplication is possible when faceting on `Collection(Edm.String)` fields, which are often used to implement document tagging.
 
 ```output
 Search term: "cloud computing"
