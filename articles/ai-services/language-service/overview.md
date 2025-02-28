@@ -88,7 +88,7 @@ The Language service also provides several new features as well, which can eithe
    :::column-end:::
    :::column span="":::
       [Summarization](./summarization/overview.md) condenses information for text and conversations (chat and transcripts).
-      Text summarization generates a summary, supporting two approaches: Extractive summarizationproduces a summary by extracting salient sentences within the document along with the positioning information of these sentences, and abstractive summarization, which generates a summary with concise, coherent sentences or words that aren't verbatim extract sentences from the original document.  
+      Text summarization generates a summary, supporting two approaches: Extractive summarization produces a summary by extracting salient sentences within the document along with the positioning information of these sentences, and abstractive summarization, which generates a summary with concise, coherent sentences or words that aren't verbatim extract sentences from the original document.  
 Conversation summarization recaps and segments long meetings into timestamped chapters. Call center summarization summarizes customer issues and resolution.
    :::column-end:::
 :::row-end:::
@@ -219,7 +219,7 @@ After you've had a chance to get started with the Language service, try our tuto
 * [Use Power Automate to sort information in Microsoft Excel](named-entity-recognition/tutorials/extract-excel-information.md) 
 * [Use Flask to translate text, analyze sentiment, and synthesize speech](/training/modules/python-flask-build-ai-web-app/)
 * [Use Azure AI services in canvas apps](/powerapps/maker/canvas-apps/cognitive-services-api?context=/azure/ai-services/language-service/context/context)
-* [Create a FAQ Bot](question-answering/tutorials/bot-service.md)
+* [Create an FAQ Bot](question-answering/tutorials/bot-service.md)
 
 ## Additional code samples
 
