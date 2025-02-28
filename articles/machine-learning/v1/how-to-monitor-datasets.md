@@ -16,16 +16,12 @@ ms.custom: UpdateFrequency5, data4ml, sdkv1
 
 # Data drift (preview) will be retired, and replaced by Model Monitor
 
-<<<<<<< HEAD
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 Data drift(preview) will be retired at 09/01/2025, and you can start to use [Model Monitor](../how-to-monitor-model-performance.md) for your data drift tasks.
 Please check the content below to understand the replacement, feature gaps and manual change steps.
-=======
-Data (preview) will be retired at 09/01/2025, and you can start to use [Model Monitor](../how-to-monitor-model-performance.md) for your data drift tasks. Please check the content below to understand the replacement, feature gaps and manual change steps.
->>>>>>> 107abc4d4e0ab48f2b7032c69183b1713d2796d7
 
 
 Learn how to monitor data drift and set alerts when drift is high.
