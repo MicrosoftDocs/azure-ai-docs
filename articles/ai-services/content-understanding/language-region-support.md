@@ -33,6 +33,11 @@ To learn more Content Understanding language support, select a capability from t
 
 # [Document](#tab/document)
 
+> [!IMPORTANT]
+>
+> * Please note that the below list of supported languages are the ones that have locale-aware normalization of words enabled in post-processing.
+> * Content Understanding will still work with different languages so we encourage you to try it out and focus on the content and not the value itself.
+
 |Language|Language code and locale|
 |--------|-------------|
 |English|&bullet; `en-AU` (Australia)</br>&bullet; `en-CA` (Canada)</br>&bullet; `en-GB` (United Kingdom)</br>&bullet;  `en-IN` (India)</br>&bullet; `en-US` (United States)|
