@@ -280,8 +280,8 @@ The event name MUST be `gen_ai.evaluation.user_feedback`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.response.id`](/docs/attributes-registry/gen-ai.md) | string | The unique identifier for the completion. | `chatcmpl-123` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.evaluation.score`](/docs/attributes-registry/gen-ai.md) | double | Quantified score calculated based on the user reaction in [-1.0, 1.0] range with 0 representing a neutral reaction. | `0.42` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+|`gen_ai.response.id`| string | The unique identifier for the completion. | `chatcmpl-123` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen_ai.evaluation.score`| double | Quantified score calculated based on the user reaction in [-1.0, 1.0] range with 0 representing a neutral reaction. | `0.42` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
