@@ -2,9 +2,10 @@
 title: 'Quickstart: semantic ranking'
 titleSuffix: Azure AI Search
 description: Change an existing index to use semantic ranker to rescore search results and promote the most semantically relevant matches.
-author: HeidiSteen
+
 manager: nitinme
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet
