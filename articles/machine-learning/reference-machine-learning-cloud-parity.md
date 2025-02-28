@@ -10,7 +10,7 @@ ms.topic: reference
 ms.reviewer: None
 ms.author: larryfr
 author: Blackmist
-ms.date: 07/24/2024
+ms.date: 02/28/2025
 ms.custom:
   - references_regions
   - ignite-2023
@@ -34,8 +34,7 @@ For the Italy North Region, Application Insights is not available until 12/12/20
 The information in the rest of this document provides information on what features of Azure Machine Learning are available in these regions, along with region-specific information on using these features.
 ## Azure Government    
 
-
-# Model Catalog in USGOV virginia and Arizonia 
+### Model Catalog in USGOV virginia and Arizonia 
 | Model Name | MaaP Inference  | Batch Endabled | MaaS (serverless Compute Inferencing)|  MaaS (Finetunning) | 
 |----------------------------------------------------------------------------|:----------------------:|:--------------------:|:-------------:|:-------------:|
 |ALLaM-2-7b-instruct	|maap-inference		||||	
@@ -191,7 +190,7 @@ The information in the rest of this document provides information on what featur
 |Virchow2|	maap-inference|	batch-enabled	|||	
 
 
-## AOAI Models in Model Catalog in USGOV virginia and Arizonia 
+### AOAI Models in Model Catalog in USGOV virginia and Arizonia 
 | Model Name | AOAI-Deployment | MaaP Inference  | Batch Endabled | MaaS (serverless Compute Inferencing)|
 |----------------------------------------------------------------------------|:----------------------:|:--------------------:|:-------------:|:-------------:|
 |gpt-35-turbo|	aoai-deployment	
@@ -215,7 +214,7 @@ The information in the rest of this document provides information on what featur
 
 
 
-# AzureML Features
+### AzureML Features
 
 | Feature | Public cloud status  | US-Virginia | US-Arizona| 
 |----------------------------------------------------------------------------|:----------------------:|:--------------------:|:-------------:|
