@@ -7,6 +7,6 @@ ms.author: larryfr
 ---
 
 > [!IMPORTANT]
-> This article provides information on using the Azure Machine Learning SDK v1. Support for the SDK v1 will end on March DD, 2025. You will be able to install and use the SDK v1 until that date.
+> This article provides information on using the Azure Machine Learning SDK v1. The SDK v1 is deprecated as of March 31, 2025.
 >
-> We recommend that you transition to the SDK v2 before March DD, 2025. For more information on the SDK v2, see [Azure Machine Learning Python SDK v2](/python/api/overview/azure/ai-ml-readme).
+> We recommend that you transition to the SDK v2. For more information on the SDK v2, see [Azure Machine Learning Python SDK v2](/python/api/overview/azure/ai-ml-readme).
