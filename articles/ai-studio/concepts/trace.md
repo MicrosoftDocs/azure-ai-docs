@@ -13,7 +13,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Trace your application with Azure AI Foundry Project Library overview
+# Trace your application with Azure AI Foundry Project Library Overview
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -75,5 +75,5 @@ Azure AI's tracing capabilities are designed to empower developers with the tool
 
 ## Related content
 
-- [Trace your application with Azure AI Foundry SDK](../how-to/develop/trace-local-sdk.md)
+- [Trace your application with Azure AI Foundry Project Library](../how-to/develop/trace-local-sdk.md)
 - [Visualize your traces](../how-to/develop/visualize-traces.md)
