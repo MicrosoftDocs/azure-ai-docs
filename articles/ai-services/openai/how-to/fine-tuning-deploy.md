@@ -32,7 +32,6 @@ The **Deploy model** dialog box opens. In the dialog box, enter your **Deploymen
 You can monitor the progress of your deployment on the **Deployments** pane in Azure AI Foundry portal.
 
 The UI does not support corss region deployment, while Python SDK or REST supports.
----
 
 ## [Python](#tab/python)
 
@@ -191,7 +190,6 @@ response = requests.put(url, headers=headers, json=payload)
 print(f"Status Code: {response.status_code}")
 print(f"Response: {response.json()}")
 ```
----
 
 ## [REST](#tab/rest)
 
@@ -311,7 +309,6 @@ After your custom model deploys, you can use it like any other deployed model. Y
 
 :::image type="content" source="../media/quickstarts/playground-load-new.png" alt-text="Screenshot of the Playground pane in Azure AI Foundry portal, with sections highlighted." lightbox="../media/quickstarts/playground-load-new.png":::
 
----
 
 ## [Python](#tab/python)
 
@@ -337,7 +334,6 @@ response = client.chat.completions.create(
 
 print(response.choices[0].message.content)
 ```
----
 
 ## [REST](#tab/rest)
 
