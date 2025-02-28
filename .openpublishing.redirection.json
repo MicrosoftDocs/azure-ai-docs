@@ -1,6 +1,16 @@
 {
   "redirections": [
     {
+      "source_path": "articles/search/performance-benchmarks.md",
+      "redirect_url": "/previous-versions/azure/search/performance-benchmarks",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/search/search-traffic-analytics.md",
+      "redirect_url": "/previous-versions/azure/search/search-traffic-analytics",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/genomics/frequently-asked-questions-genomics.yml",
       "redirect_url": "/previous-versions/azure/genomics/frequently-asked-questions-genomics",
       "redirect_document_id": false
@@ -233,6 +243,16 @@
     {
       "source_path_from_root": "/articles/open-datasets/dataset-covid-19-open-research.md",
       "redirect_url": "/azure/open-datasets/dataset-catalog",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/language-studio.md",
+      "redirect_url": "/azure/ai-services/language-service/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/summarization/region-support.md",
+      "redirect_url": "/azure/ai-services/language-service/concepts/regional-support",
       "redirect_document_id": false
     },
     {

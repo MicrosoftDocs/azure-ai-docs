@@ -173,18 +173,18 @@ items:
         displayName: finetuning 
       - name: Deploy your fine-tuned model
         href: ./how-to/fine-tuning-deploy.md 
-      - name: Visiong fine-tuning
+      - name: Vision fine-tuning
         href: ./how-to/fine-tuning-vision.md
       - name: Preference fine-tuning
         href: ./how-to/fine-tuning-direct-preference-optimization.md
       - name: Safety evaluation
         href: ./how-to/fine-tuning-safety-evaluation.md
-      - name: Function calling
+      - name: Tool calling
         href: ./how-to/fine-tuning-functions.md
-        displayName: fine-tuning, finetuning
+        displayName: fine-tuning, finetuning, function calling
       - name: Weights & Biases integration (preview)
         href: ./how-to/weights-and-biases-integration.md
-      - name: Troubleshoo guidance
+      - name: Troubleshoot guidance
         href: ./how-to/fine-tuning-troubleshoot.md
   - name: Stored completions
     href: ./how-to/stored-completions.md
@@ -280,7 +280,7 @@ items:
     - name: Limited access
       href: /legal/cognitive-services/openai/limited-access?context=/azure/ai-services/openai/context/context
     - name: Code of conduct
-      href: /legal/cognitive-services/openai/code-of-conduct?context=/azure/ai-services/openai/context/context
+      href: /legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context
     - name: Data, privacy, and security
       href: /legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context
     - name: Customer Copyright Commitment

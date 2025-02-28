@@ -71,24 +71,35 @@ Passwordless authentication is more secure than key-based alternatives and is th
 
 ### Create the assistant
 
+>[!Note]
+> For this sample, the following libraries were used:
+>- Azure.AI.OpenAI(2.1.0-beta2)
+>- Azure.AI.OpenAI.Assistants(1.0.0-beta4)
+
 Update the `Program.cs` file with the following code to create an assistant:
 
 ```csharp
 using Azure;
-using Azure.AI.OpenAI.Assistants;
+using Azure.AI.OpenAI;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+using OpenAI.Assistants;
+using OpenAI.Files;
+using System.ClientModel;
 
 // Assistants is a beta API and subject to change
 // Acknowledge its experimental status by suppressing the matching warning.
 string endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
 string key = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
+string deploymentName = "<Replace with Deployment Name>"
 
 var openAIClient = new AzureOpenAIClient(new Uri(endpoint), new AzureKeyCredential(key));
 
 // Use for passwordless auth
 //var openAIClient = new AzureOpenAIClient(new Uri(endpoint), new DefaultAzureCredential()); 
 
-FileClient fileClient = openAIClient.GetFileClient();
-AssistantClient assistantClient = openAIClient.GetAssistantClient();
+OpenAIFileClient fileClient = azureClient.GetOpenAIFileClient();
+AssistantClient assistantClient = azureClient.GetAssistantClient();
 
 // First, let's contrive a document we'll use retrieval with and upload it.
 using Stream document = BinaryData.FromString("""
@@ -120,13 +131,13 @@ using Stream document = BinaryData.FromString("""
             }
             """).ToStream();
 
-OpenAIFileInfo salesFile = await fileClient.UploadFileAsync(
+OpenAI.Files.OpenAIFile salesFile = await fileClient.UploadFileAsync(
     document,
     "monthly_sales.json",
     FileUploadPurpose.Assistants);
 
 // Now, we'll create a client intended to help with that data
-AssistantCreationOptions assistantOptions = new()
+OpenAI.Assistants.AssistantCreationOptions assistantOptions = new()
 {
     Name = "Example: Contoso sales RAG",
     Instructions =
@@ -136,7 +147,7 @@ AssistantCreationOptions assistantOptions = new()
     Tools =
             {
                 new FileSearchToolDefinition(),
-                new CodeInterpreterToolDefinition(),
+                new OpenAI.Assistants.CodeInterpreterToolDefinition(),
             },
     ToolResources = new()
     {
@@ -158,7 +169,9 @@ ThreadCreationOptions threadOptions = new()
     InitialMessages = { "How well did product 113045 sell in February? Graph its trend over time." }
 };
 
-ThreadRun threadRun = await assistantClient.CreateThreadAndRunAsync(assistant.Id, threadOptions);
+var initialMessage = new OpenAI.Assistants.ThreadInitializationMessage(OpenAI.Assistants.MessageRole.User, ["hi"]);
+
+ThreadRun threadRun = await assistantClient.CreateThreadAndRunAsync(assistant.Value.Id, threadOptions);
 
 // Check back to see when the run is done
 do
@@ -168,15 +181,15 @@ do
 } while (!threadRun.Status.IsTerminal);
 
 // Finally, we'll print out the full history for the thread that includes the augmented generation
-AsyncCollectionResult<ThreadMessage> messages
+AsyncCollectionResult<OpenAI.Assistants.ThreadMessage> messages
     = assistantClient.GetMessagesAsync(
         threadRun.ThreadId,
         new MessageCollectionOptions() { Order = MessageCollectionOrder.Ascending });
 
-await foreach (ThreadMessage message in messages)
+await foreach (OpenAI.Assistants.ThreadMessage message in messages)
 {
     Console.Write($"[{message.Role.ToString().ToUpper()}]: ");
-    foreach (MessageContent contentItem in message.Content)
+    foreach (OpenAI.Assistants.MessageContent contentItem in message.Content)
     {
         if (!string.IsNullOrEmpty(contentItem.Text))
         {
@@ -202,9 +215,9 @@ await foreach (ThreadMessage message in messages)
         }
         if (!string.IsNullOrEmpty(contentItem.ImageFileId))
         {
-            OpenAIFileInfo imageInfo = await fileClient.GetFileAsync(contentItem.ImageFileId);
+            OpenAI.Files.OpenAIFile imageFile = await fileClient.GetFileAsync(contentItem.ImageFileId);
             BinaryData imageBytes = await fileClient.DownloadFileAsync(contentItem.ImageFileId);
-            using FileStream stream = File.OpenWrite($"{imageInfo.Filename}.png");
+            using FileStream stream = File.OpenWrite($"{imageFile.Filename}.png");
             imageBytes.ToStream().CopyTo(stream);
 
             Console.WriteLine($"<image: {imageInfo.Filename}.png>");
@@ -212,6 +225,22 @@ await foreach (ThreadMessage message in messages)
     }
     Console.WriteLine();
 }
+```
+
+It is recommended that you store the API Key in a secure location, such as a Key Vault. The following code snippet can replace the 
+```GetEnvironmentVariable``` lines to retrieve the Azure OpenAI API Key from your Key Vault instance:
+
+```csharp
+string keyVaultName = "<Replace with Key Vault Name>";
+var kvUri = $"https://{keyVaultName}.vault.azure.net/";
+
+var client = new SecretClient(new Uri(kvUri), new DefaultAzureCredential());
+
+KeyVaultSecret endpointSecret = await client.GetSecretAsync("AZURE-OPENAI-ENDPOINT");
+KeyVaultSecret apiKeySecret = await client.GetSecretAsync("AZURE-OPENAI-API-KEY");
+
+string endpoint = endpointSecret.Value;
+string key = apiKeySecret.Value;
 ```
 
 Run the app using the [`dotnet run`](/dotnet/core/tools/dotnet-run) command:

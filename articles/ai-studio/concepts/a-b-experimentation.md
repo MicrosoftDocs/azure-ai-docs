@@ -1,14 +1,15 @@
 ---
 title: A/B experiments for AI applications
+titleSuffix: Azure AI Foundry
 description: Learn about conducting A/B experiments for AI applications.
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.reviewer: skohlmeier
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: concept-article
-ms.date: 11/22/2024
+ms.date: 02/27/2025
 
 #CustomerIntent: As an AI application developer, I want to learn about A/B experiments so that I can evaluate and improve my applications.
 ---
@@ -18,7 +19,7 @@ ms.date: 11/22/2024
 > [!IMPORTANT]
 >Items marked (preview) in this article are currently in public or private preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-In the  field of AI application development, A/B experimentation has emerged as a critical practice. It allows for continuous evaluation of AI applications, balancing business impact, risk, and cost. While offline and online evaluations provide some insights, they need to be supplemented with A/B experimentation to ensure the use of right metrics for measuring success.  A/B experimentation involves comparing two versions of a feature, prompt, or model using feature flags or dynamic configuration to determine which performs better. This method is essential for several reasons:
+In the  field of AI application development, A/B experimentation has emerged as a critical practice. It allows for continuous evaluation of AI applications, balancing business impact, risk, and cost. While offline and online evaluations provide some insights, they need to be supplemented with A/B experimentation to ensure the use of right metrics for measuring success. A/B experimentation involves comparing two versions of a feature, prompt, or model using feature flags or dynamic configuration to determine which performs better. This method is essential for several reasons:
 
 - **Enhancing Model Performance** - A/B experimentation allows developers to systematically test different versions of AI models, algorithms, or features to identify the most effective version. With controlled experiments, you can measure the effect of changes on key performance metrics, such as accuracy, user engagement, and response time. This iterative process enables you to identify the best model, helps fine-tuning and ensures that your models deliver the best possible results.
 - **Reducing Bias and Improving Fairness** - AI models can inadvertently introduce biases, leading to unfair outcomes. A/B experimentation helps identify and mitigate these biases by comparing the performance of different model versions across diverse user groups. This ensures that the AI applications are fair and equitable, providing consistent performance for all users.
@@ -26,15 +27,13 @@ In the  field of AI application development, A/B experimentation has emerged as 
 - **Optimizing User Experience** - User experience is paramount in AI applications. A/B experimentation enables you to experiment with different user interface designs, interaction patterns, and personalization strategies. By analyzing user feedback and behavior, you can optimize the user experience, making AI applications more intuitive and engaging.
 - **Data-Driven Decision Making** - A/B experimentation provides a robust framework for data-driven decision making. Instead of relying on intuition or assumptions, you can base your decisions on empirical evidence. This leads to more informed and effective strategies for improving AI applications.
 
-
 ## How does A/B experimentation fit into the AI application lifecycle?
-
 
 A/B experimentation and offline evaluation are both essential components in the development of AI applications, each serving unique purposes that complement each other.
 
 Offline evaluation involves testing AI models using test datasets to measure their performance on various metrics such as fluency and coherence. After selecting a model in the Azure AI Model Catalog or GitHub Model marketplace, offline preproduction evaluation is crucial for initial model validation during integration testing, allowing you to identify potential issues and make improvements before deploying the model or application to production.
 
-However, offline evaluation has its limitations. It can't fully capture the complex interactions that occur in real-world scenarios. This is where A/B experimentation comes into play. By deploying different versions of the AI model or UX features to live users, A/B experimentation provides insights into how the model and application performs in real-world conditions. This helps you understand user behavior, identify unforeseen issues, and measure the impact of changes on model evaluation metrics, operational metrics (for example, latency) and business metrics (for example, account sign-ups, conversions, etc.).
+However, offline evaluation has its limitations. It can't fully capture the complex interactions that occur in real-world scenarios. This is where A/B experimentation comes into play. By deploying different versions of the AI model or UX features to live users, A/B experimentation provides insights into how the model and application performs in real-world conditions. This helps you understand user behavior, identify unforeseen issues, and measure the impact of changes on model evaluation metrics, operational metrics (for example, latency), and business metrics (for example, account sign-ups, conversions, etc.).
 
 As shown in the diagram, while offline evaluation is essential for initial model validation and refinement, A/B experimentation provides the real-world testing needed to ensure the AI application performs effectively and fairly in practice. Together, they form a comprehensive approach to developing robust, safe, and user-friendly AI applications.
 
@@ -52,8 +51,7 @@ We're significantly simplifying the evaluation and A/B experimentation process w
 
 ## Azure AI Partners
 
-
-You're also welcome to use your own A/B experimentation provider to run experiments on your AI applications. There are several solutions to choose from available in the Azure Marketplace:
+You're also welcome to use your own A/B experimentation provider to run experiments on your AI applications. There are several solutions to choose from available in Azure Marketplace:
 
 ### Statsig
 
@@ -66,8 +64,6 @@ You're also welcome to use your own A/B experimentation provider to run experime
 
 ### LaunchDarkly
 [LaunchDarkly](https://azuremarketplace.microsoft.com/marketplace/apps/aad.launchdarkly?tab=Overview) is a feature management and experimentation platform built with software developers in mind. It enables you to manage feature flags on a large scale, run A/B tests and experiments, and progressively deliver software to ship with confidence.
-
-
 
 ## Related content
 

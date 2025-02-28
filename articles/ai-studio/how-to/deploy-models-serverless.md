@@ -692,4 +692,4 @@ For more information on permissions, see [Role-based access control in Azure AI 
 ## Related content
 
 * [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)
-* [Fine-tune a Meta Llama 2 model in Azure AI Foundry portal](fine-tune-model-llama.md)
+* [Fine-tune models using serverless API](../how-to/fine-tune-serverless.md)

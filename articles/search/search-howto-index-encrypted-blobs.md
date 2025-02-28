@@ -11,7 +11,7 @@ ms.custom:
   - ignite-2023
 ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 09/04/2024
+ms.date: 02/24/2025
 ---
 
 # Tutorial: Index and enrich encrypted blobs for full-text search in Azure AI Search
