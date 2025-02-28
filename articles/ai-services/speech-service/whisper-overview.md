@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 9/18/2024
+ms.date: 2/28/2025
 ms.author: eur
 #Customer intent: As a developer, I want to learn about the Whisper model from OpenAI that I can use for speech to text and speech translation.
 ---
@@ -61,8 +61,8 @@ Whisper Model via Azure AI Speech batch transcription might be best for:
 - Supported file formats: mp3, wav, and ogg.
 
 Regional support is another consideration. 
-- The Whisper model via Azure OpenAI Service is available in the following regions: East US 2, India South, Japan East, North Central, Norway East, Sweden Central, Switzerland North, and West Europe. 
-- The Whisper model via Azure AI Speech is available in the following regions: Australia East, East US, North Central US, South Central US, Southeast Asia, UK South, and West Europe.
+- The Whisper model via Azure OpenAI Service is available in the following regions: East US 2, India South, North Central, Norway East, Sweden Central, Switzerland North, and West Europe. 
+- The Whisper model via Azure AI Speech is available in the following regions: Australia East, East US, North Central US, South Central US, Southeast Asia, and West Europe.
 
 ## Related content
 
