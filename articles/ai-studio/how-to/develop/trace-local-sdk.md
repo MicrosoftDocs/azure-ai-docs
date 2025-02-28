@@ -14,7 +14,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# How to trace your application with Azure AI Foundry Project
+# How to trace your application with Azure AI Foundry Project Library 
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -28,7 +28,7 @@ In this article you'll learn how to trace your application with Azure AI Foundry
 - If using Python, you need Python 3.8 or later installed, including pip.
 - If using JavaScript, the supported environments are LTS versions of Node.js.
 
-## Tracing using Azure AI Foundry Project
+## Tracing using Azure AI Foundry Project Library 
 # [Python](#tab/python)
 The best way to get started using the Azure AI Foundry SDK is by using a project. AI projects connect together different data, assets, and services you need to build AI applications. The AI project client allows you to easily access these project components from your code by using a single connection string. First follow steps to [create an AI Project](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/create-projects?tabs=ai-studio) if you don't have one already.
 To enable tracing, first ensure your project has an attached Application Insights resource. Go to the **Tracing** page of your project in Azure AI Foundry portal and follow instructions to create or attach Application Insights. If one was enabled, you can get the Application Insights connection string, and observe the full execution path through Azure Monitor. 
@@ -42,10 +42,10 @@ pip install azure-monitor-opentelemetry
 ```
 
 Refer the following samples to get started with tracing using Azure AI Project SDK:
-- [Python Sample with console tracing](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-inference/samples/sample_chat_completions_with_tracing.py) containing fully runnable Python code for tracing using synchronous and asynchronous clients.
-- [Python Sample with Azure Monitor](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-inference/samples/sample_chat_completions_with_tracing.py) containing fully runnable Python code for tracing using synchronous and asynchronous clients.
-
-
+- [Python Sample with console tracing for Azure AI Inference Client](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/inference/sample_chat_completions_with_azure_ai_inference_client_and_console_tracing.py) containing fully runnable Python code for tracing using synchronous and asynchronous clients.
+- [Python Sample with Azure Monitor for Azure AI Inference Client](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-inference/samples/sample_chat_completions_with_tracing.py) containing fully runnable Python code for tracing using synchronous and asynchronous clients.
+- [Python Sample with console tracing for Azure Open AI](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/inference/sample_chat_completions_with_azure_openai_client_and_console_tracing.py) containing fully runnable Python code for tracing using synchronous and asynchronous clients.
+- [Python Sample with Azure Monitor for Azure Open AI](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/inference/sample_chat_completions_with_azure_openai_client_and_azure_monitor_tracing.py) containing fully runnable Python code for tracing using synchronous and asynchronous clients.
 
 # [JavaScript](#tab/javascript)
 
@@ -57,21 +57,8 @@ Tracing is not yet integrated into the Azure AI Projects SDK for C#. For instruc
 
 ----
 
-## Enable Tracing for Azure Open AI
-The Azure OpenAI Service provides access to OpenAI's models including the GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, DALLE-3, Whisper, and Embeddings model series with the data residency, scalability, safety, security and enterprise capabilities of Azure. Refer this to learn more on how to get started with [Azure OpenAI Service](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/develop/sdk-overview?tabs=sync&pivots=programming-language-python#azure-openai-service)
-
-### [Python](#tab/python)
-Tracing in Azure Open AI follows Opentelemetry standards as per [opentelemetry-instrumentation-openai-v2 2.0b0](https://pypi.org/project/opentelemetry-instrumentation-openai-v2/) To enable tracing for Azure Open AI, follow following steps:
-
-Install the package `opentelemetry-instrumentation-openai-v2 2.0b0` using your package manager, like pip:
-
-```bash
-  pip install opentelemetry-instrumentation-openai-v2
-```
-
-Refer the following samples to get started with tracing using Azure AI Project SDK:
-- [Python Sample with console tracing](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/inference/sample_chat_completions_with_azure_openai_client_and_console_tracing.py) containing fully runnable Python code for tracing using synchronous and asynchronous clients.
-- [Python Sample with Azure Monitor](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/inference/sample_chat_completions_with_azure_openai_client_and_azure_monitor_tracing.py) containing fully runnable Python code for tracing using synchronous and asynchronous clients.
+\
+Refer the following samples to get started with tracing using Azure AI Project Library for Azure OpenAI:
 
 
 ### [JavaScript](#tab/javascript)
@@ -82,7 +69,7 @@ Currently this is supported in Python only.
 
 ----
 
-## Enable Tracing using Azure AI Inference SDK
+## Enable Tracing using Azure AI Inference Library
 
 ### Installation
 
@@ -135,14 +122,6 @@ To learn more , see the [Inference SDK reference](../../reference/reference-mode
 You need to add following configuration settings as per your use case:
 
 - To capture prompt and completion contents, set the `AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED` environment variable to true (case insensitive). By default, prompts, completions, function names, parameters, or outputs aren't recorded.
-- To enable Azure SDK tracing, set the `AZURE_SDK_TRACING_IMPLEMENTATION` environment variable to opentelemetry. Alternatively, you can configure it in the code with the following snippet:
-
-    ```python
-    from azure.core.settings import settings 
-    
-    settings.tracing_implementation = "opentelemetry" 
-    ```
-
     To learn more, see [Azure Core Tracing OpenTelemetry client library for Python](/python/api/overview/azure/core-tracing-opentelemetry-readme).
 
 # [JavaScript](#tab/javascript)
@@ -324,5 +303,7 @@ The user feedback event body has the following structure:
 ## Related content
 
 - [Python samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-inference/samples/sample_chat_completions_with_tracing.py) containing fully runnable Python code for tracing using synchronous and asynchronous clients.
+- [Sample Agents with Console tracing](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_functions_with_console_tracing.py)
+- [Sample Agents with Azure Monitor](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_basics_with_azure_monitor_tracing.py)
 - [JavaScript samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples/v1-beta/typescript/src) containing fully runnable JavaScript code for tracing using synchronous and asynchronous clients.
 - [C# Samples](https://github.com/Azure/azure-sdk-for-net/blob/Azure.AI.Inference_1.0.0-beta.2/sdk/ai/Azure.AI.Inference/samples/Sample8_ChatCompletionsWithOpenTelemetry.md) containing fully runnable C# code for doing inference using synchronous and asynchronous methods.
