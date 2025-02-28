@@ -13,7 +13,7 @@ items:
     - name: Quotas and limits
       href: ./quotas-limits.md
     - name: Model lifecycle and retirement
-      href: ../../ai-studio/concepts/model-lifecycle-retirement.md?context=/azure/ai-foundry/model-inference/context/context
+      href: ../concepts/model-lifecycle-retirement.md?context=/azure/ai-foundry/model-inference/context/context
     - name: FAQ
       href: faq.yml
 - name: Quickstarts
@@ -35,7 +35,7 @@ items:
     - name: Model versions
       href: ./concepts/model-versions.md
     - name: Model lifecycle and retirement
-      href: ../../ai-studio/concepts/model-lifecycle-retirement.md?context=/azure/ai-foundry/model-inference/context/context
+      href: ../concepts/model-lifecycle-retirement.md?context=/azure/ai-foundry/model-inference/context/context
     - name: Responsible AI
       items:
       - name: Content filtering
