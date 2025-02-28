@@ -42,6 +42,9 @@ Two types of quantization are supported:
 
 - Binary quantization converts floats into binary bits, which takes up 1 bit. This results in up to 28 times reduced vector index size.
 
+>[!Note]
+> While free services support quantization, they may not demonstrate the full storage savings due to the limited storage quota.
+
 ## Add "compressions" to a search index
 
 The following example shows a partial index definition with a fields collection that includes a vector field, and a `vectorSearch.compressions` section.

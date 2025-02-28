@@ -4,8 +4,8 @@ titleSuffix: Azure AI Search
 description: Manage an Azure AI Search resource using the Azure portal.
 
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 12/10/2024

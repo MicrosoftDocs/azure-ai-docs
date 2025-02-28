@@ -3,8 +3,8 @@ title: 'Quickstart: Deploy using templates'
 titleSuffix: Azure AI Search
 description: You can quickly deploy an Azure AI Search service instance using the Azure Resource Manager template.
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.custom:

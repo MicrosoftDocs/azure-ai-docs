@@ -36,6 +36,9 @@ items:
     href: quickstart/use-ai-foundry.md
 - name: Capabilities
   items:
+  - name: Overview
+    displayName: content understanding capabilities, document, text, images, video, audio, visual, structured, content, field, extraction
+    href: concepts/capabilities.md
   - name: Document
     displayName: document, text, images, video, audio, visual, structured, content, field, extraction
     href: document/overview.md
@@ -55,7 +58,10 @@ items:
       href: concepts/analyzer-templates.md
     - name: Accuracy and confidence scores
       displayName: accuracy, confidence, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-      href: concepts/accuracy-confidence.md  
+      href: concepts/accuracy-confidence.md
+    - name: Content Understanding best practices
+      displayName: best practices, analyzers, optimization, fields
+      href: concepts/best-practices.md
 - name: Responsible AI
   items:
     - name: Transparency note

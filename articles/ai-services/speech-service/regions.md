@@ -111,7 +111,7 @@ The regions in these tables support most of the core features of the Speech serv
 | canadacentral      | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |  |
 | centralindia       | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
 | centralus          | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| eastasia           | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
+| eastasia           | ✅ | ✅ |  |  | ✅ |  |  | ✅ |  |  |  |
 | eastus             | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ |  |  |  |
 | eastus2            | ✅ | ✅ |  |  | ✅ | ✅ |  |  | ✅ | ✅ |  |
 | francecentral      | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
@@ -134,7 +134,7 @@ The regions in these tables support most of the core features of the Speech serv
 | westcentralus      | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
 | westeurope         | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | westus             | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| westus2            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ |
+| westus2            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | westus3            | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
 
 # [Speech translation](#tab/speech-translation)
@@ -208,7 +208,7 @@ The regions in these tables support most of the core features of the Speech serv
 | westus3            |  |
 
 > [!NOTE]
-> The [Speech SDK](speech-sdk.md) supports intent recognition through [Direct Line Speech](./direct-line-speech.md).
+> The [Speech SDK](speech-sdk.md) supports intent recognition through Direct Line Speech.
 
 
 # [Keyword recognition](#tab/keyword-recognition)
@@ -283,7 +283,7 @@ The regions in these tables support most of the core features of the Speech serv
 | westus3            | ✅ | ✅ |  |
 
 > [!NOTE]
-> The [Speech SDK](speech-sdk.md) supports voice assistant capabilities through [Direct Line Speech](./direct-line-speech.md).
+> The [Speech SDK](speech-sdk.md) supports voice assistant capabilities through Direct Line Speech.
 
 ---
 

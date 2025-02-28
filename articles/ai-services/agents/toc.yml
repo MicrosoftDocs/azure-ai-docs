@@ -4,7 +4,7 @@ items:
 - name: Overview
   expanded: true
   items:
-  - name: What is Azure AI Agent Service?
+  - name: What is Azure AI Agent Service (Preview)?
     href: overview.md
   - name: What's new
     href: ./whats-new.md
@@ -52,6 +52,8 @@ items:
           href: concepts/tracing.md
         - name: Content filtering
           href: ../openai/how-to/content-filters.md?context=/azure/ai-services/agents/context/context
+        - name: Use virtual networks
+          href: how-to/virtual-networks.md
 - name: Responsible AI
   items:
     - name: Transparency note

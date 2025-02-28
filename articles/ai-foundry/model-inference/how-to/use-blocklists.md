@@ -28,7 +28,7 @@ The configurable content filters are sufficient for most content moderation need
     > [!NOTE]
     > Blocklist (preview) is only supported for Azure OpenAI models.
 
-[!INCLUDE [use-blocklists](../../../ai-studio/includes/use-blocklists.md)]
+[!INCLUDE [use-blocklists](../../includes/use-blocklists.md)]
 
 ## Next steps
 

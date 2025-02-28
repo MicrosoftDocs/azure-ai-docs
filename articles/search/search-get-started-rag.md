@@ -2,8 +2,8 @@
 title: Quickstart RAG
 titleSuffix: Azure AI Search
 description: In this quickstart, learn how to use grounding data from Azure AI Search with a chat model on Azure OpenAI.
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2024

@@ -30,7 +30,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Create a new folder `realtime-audio-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
 
     ```shell
-    mkdir realtime-audio-quickstart && code realtime-audio-quickstart
+    mkdir realtime-audio-quickstart && cd realtime-audio-quickstart
     ```
     
 
@@ -69,7 +69,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 #### [Microsoft Entra ID](#tab/keyless)
 
-1. Create the `text-in-audio-out.ts` file with the following code:
+1. Create the `index.ts` file with the following code:
 
     ```typescript
     import { DefaultAzureCredential } from "@azure/identity";
@@ -79,8 +79,8 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
     async function text_in_audio_out() {
         // Set environment variables or edit the corresponding values here.
-        const endpoint: string = process.env["AZURE_OPENAI_ENDPOINT"] || "yourEndpoint";
-        const deployment = "gpt-4o-mini-realtime-preview";
+        const endpoint: string = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+        const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4o-mini-realtime-preview";
         if (!endpoint || !deployment) {
             throw new Error("You didn't set the environment variables.");
         }
@@ -159,12 +159,12 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Run the code with the following command:
 
     ```shell
-    node text-in-audio-out.js
+    node index.js
     ```
 
 #### [API key](#tab/api-key)
 
-1. Create the `text-in-audio-out.ts` file with the following code:
+1. Create the `index.ts` file with the following code:
 
     ```typescript
     import { AzureKeyCredential } from "@azure/core-auth";
@@ -174,9 +174,9 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
     async function text_in_audio_out() {
         // Set environment variables or edit the corresponding values here.
-        const apiKey: string = process.env["AZURE_OPENAI_API_KEY"] || "yourKey";
-        const endpoint: string = process.env["AZURE_OPENAI_ENDPOINT"] || "yourEndpoint";
-        const deployment = "gpt-4o-mini-realtime-preview";
+        const apiKey: string = process.env.AZURE_OPENAI_API_KEY || "Your API key";
+        const endpoint: string = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+        const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4o-mini-realtime-preview";
         if (!endpoint || !deployment) {
             throw new Error("You didn't set the environment variables.");
         }
@@ -249,7 +249,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Run the code with the following command:
 
     ```shell
-    node text-in-audio-out.js
+    node index.js
     ```
 
 ---
