@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: reference
 ms.custom: references_regions, ignite-2024-understanding-release
-ms.date: 11/19/2024
+ms.date: 02/28/2025
 ---
 
 # Content Understanding region and language support
