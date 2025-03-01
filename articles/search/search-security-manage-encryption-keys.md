@@ -41,13 +41,9 @@ If you require CMK across your search service, [set an enforcement policy](#set-
 
 + [Azure AI Search](search-create-service-portal.md) on a [billable tier](search-sku-tier.md#tier-descriptions) (Basic or higher, in any region).
 
-+ New objects on Azure AI Search. You can't encrypt existing objects.
++ [Azure Key Vault](/azure/key-vault/general/overview) and a key vault with **soft-delete** and **purge protection** enabled. Or, [Azure Key Vault Managed HSM](/azure/key-vault/managed-hsm/overview). This resource can be in any subscription, but it must be in the same tenant as Azure AI Search.
 
-+ [Azure Key Vault](/azure/key-vault/general/overview) or [Azure Key Vault Managed HSM](/azure/key-vault/managed-hsm/overview) in any subscription.
-
-+ A key vault with **soft-delete** and **purge protection** enabled.
-
-+ An encryption key. You need its identifier when specifying the encryption key in Azure AI Search. Azure AI Search encryption supports RSA keys of sizes 2048, 3072 and 4096. For more information about supported key types, see [About keys](/azure/key-vault/keys/about-keys).
++ An encryption key. You need its identifier when specifying encryption in Azure AI Search. Azure AI Search encryption supports RSA keys of sizes 2048, 3072 and 4096. For more information about supported key types, see [About keys](/azure/key-vault/keys/about-keys).
 
 + Ability to set up permissions for key access. You must grant key access to the search service, and to yourself if you're testing locally. Required permissions are **Key Vault Crypto Officer** role in Azure Key Vault and **Managed HSM Administrator** in Azure Key Vault Managed HSM.
 
@@ -172,19 +168,20 @@ Follow these instructions if you can't use role assignments for search service a
 
 ## Step 3: Grant permissions
 
-Follow these steps if you configured your search service to use a managed identity. On Azure Key Vault, assign **Key Vault Crypto Service Encryption User** role to your search service. On Azure Key Vault Managed HSM, assign **Managed HSM Crypto Service Encryption User**. If you're testing locally, assign this role to yourself as well.
+Follow these steps if you configured your search service to use a managed identity.
 
 Role-based access control is recommended over key vault access policies. For more information, see [Provide access to Key Vault keys, certificates, and secrets using Azure roles](/azure/key-vault/general/rbac-guide).
-
-In this step, 
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and find your key vault.
 
 1. Select **Access control (IAM)** and select **Add role assignment**.
 
-1. Select a role. On Azure Key Vault, select **Key Vault Crypto Service Encryption User**. On Managed HSM, select **Managed HSM Crypto Service Encryption User**.
+1. Select a role:
 
-1. Select managed identities, select members, and then select the managed identity of your search service.
+   + On Azure Key Vault, select **Key Vault Crypto Service Encryption User**.
+   + On Managed HSM, select **Managed HSM Crypto Service Encryption User**.
+
+1. Select managed identities, select members, and then select the managed identity of your search service. If you're testing locally, assign this role to yourself as well.
 
 1. Select **Review + Assign**.
 
@@ -192,7 +189,7 @@ Wait a few minutes for the role assignment to become operational.
 
 ## Step 4: Encrypt content
 
-Encryption keys are added when you create an object. To add a customer-managed key on an index, synonym map, indexer, data source, or skillset, use the Azure portal, a [Search REST API](/rest/api/searchservice/), or an Azure SDK to create an object that has encryption enabled. To add encryption using the Azure SDK, see the [Python example](#python-example-of-an-encryption-key-configuration) in this article.
+Encryption keys are added when you create an object. You can use the Azure portal for selected objects. For any object, use the [Search REST API](/rest/api/searchservice/) or an Azure SDK. Review the [Python example](#python-example-of-an-encryption-key-configuration) in this article to see how content is encrypted programmatically.
 
 ### [**Azure portal**](#tab/portal)
 
@@ -226,7 +223,9 @@ In the Azure portal, skillsets are defined in JSON view. Use the JSON shown in t
    + [Create Data Source](/rest/api/searchservice/data-sources/create)
    + [Create Skillset](/rest/api/searchservice/skillsets/create)
 
-1. Insert the encryptionKey construct into the object definition. This property is a first-level property, on the same level as name and description. If you're using the same vault, key, and version, you can paste in the same encryptionKey construct into each object definition. If your key identifier is `https://contoso-keyvault.vault.azure.net/keys/contoso-cmk/aaaaaaaa-0b0b-1c1c-2d2d-333333333333`, then the URI is `https://contoso-keyvault.vault.azure.net`, the key name is `contoso-cmk`, and the version is `aaaaaaaa-0b0b-1c1c-2d2d-333333333333`.
+1. Insert the encryptionKey construct into the object definition. This property is a first-level property, on the same level as name and description. If you're using the same vault, key, and version, you can paste in the same encryptionKey construct into each object definition. 
+
+   If your key identifier is `https://contoso-keyvault.vault.azure.net/keys/contoso-cmk/aaaaaaaa-0b0b-1c1c-2d2d-333333333333`, then the URI is `https://contoso-keyvault.vault.azure.net`, the key name is `contoso-cmk`, and the version is `aaaaaaaa-0b0b-1c1c-2d2d-333333333333`.
 
     ```json
     {
@@ -333,15 +332,15 @@ Azure policies help to enforce organizational standards and to assess compliance
 
 In this section, you set the policy that defines a CMK standard for your search service. Then, you set up your search service to enforce this policy.
 
-1. Navigate to the [built-in policy](https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F76a56461-9dc0-40f0-82f5-2453283afa2f) in your web browser. Select **Assign**
+1. Navigate to the [built-in policy](https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F76a56461-9dc0-40f0-82f5-2453283afa2f) in your web browser. Select **Assign**.
 
    :::image type="content" source="media/search-security-manage-encryption-keys/assign-policy.png" alt-text="Screenshot of assigning built-in CMK policy." border="true":::
 
-1. Set up the [policy scope](/azure/governance/policy/concepts/scope). In the **Parameters** section, uncheck **Only show parameters...** and set **Effect** to [**Deny**](/azure/governance/policy/concepts/effects#deny). 
+1. Set up the [policy scope](/azure/governance/policy/concepts/scope). In the **Parameters** section, uncheck **Only show parameters...** and set **Effect** to [**AuditIfNotExists**](/azure/governance/policy/concepts/effect-audit-if-not-exists). 
 
-   During evaluation of the request, a request that matches a deny policy definition is marked as noncompliant. Assuming the standard for your service is CMK encryption, "deny" means that requests that *don't* specify CMK encryption are noncompliant.
+   During evaluation of the request, a request that matches the policy definition is marked as noncompliant. Assuming the standard for your service is CMK encryption, "audit if not exists" means that requests that *don't* specify CMK encryption are noncompliant.
 
-   :::image type="content" source="media/search-security-manage-encryption-keys/effect-deny.png" alt-text="Screenshot of changing built-in CMK policy effect to deny." border="true":::
+   :::image type="content" source="media/search-security-manage-encryption-keys/effect-deny.png" alt-text="Screenshot of changing built-in CMK policy effect to audit if not exists." border="true":::
 
 1. Finish creating the policy.
 
