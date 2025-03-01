@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.author: franksolomon
 author: fbsolo-ms1
 ms.reviewer: yogipandey
-ms.date: 02/11/2025
+ms.date: 02/20/2024
 ms.custom: data4ml, ignite-2023, devx-track-azurecli
 # Customer intent: As an experienced Python developer, I need to make my data in Azure storage available to my remote compute resource to train my machine learning models.
 ---
@@ -180,7 +180,7 @@ ml_client.create_or_update(store)
 
 ```python
 from azure.ai.ml.entities import AzureDataLakeGen2Datastore
-from azure.ai.ml.entities._credentials import ServicePrincipalConfiguration
+from azure.ai.ml.entities._datastore.credentials import ServicePrincipalCredentials
 
 from azure.ai.ml import MLClient
 
@@ -191,7 +191,7 @@ store = AzureDataLakeGen2Datastore(
     description="Datastore pointing to an Azure Data Lake Storage Gen2.",
     account_name="mytestdatalakegen2",
     filesystem="my-gen2-container",
-     credentials=ServicePrincipalConfiguration(
+     credentials=ServicePrincipalCredentials(
         tenant_id= "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
         client_id= "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
         client_secret= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
@@ -356,7 +356,7 @@ ml_client.create_or_update(store)
 
 ```python
 from azure.ai.ml.entities import AzureDataLakeGen1Datastore
-from azure.ai.ml.entities._credentials import ServicePrincipalConfiguration
+from azure.ai.ml.entities._datastore.credentials import ServicePrincipalCredentials
 from azure.ai.ml import MLClient
 
 ml_client = MLClient.from_config()
@@ -365,7 +365,7 @@ store = AzureDataLakeGen1Datastore(
     name="adls_gen1_example",
     description="Datastore pointing to an Azure Data Lake Storage Gen1.",
     store_name="mytestdatalakegen1",
-    credentials=ServicePrincipalConfiguration(
+    credentials=ServicePrincipalCredentials(
         tenant_id= "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
         client_id= "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
         client_secret= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
@@ -466,7 +466,7 @@ ml_client.create_or_update(store)
 
 ```python
 from azure.ai.ml.entities import AzureDataLakeGen1Datastore
-from azure.ai.ml.entities._credentials import ServicePrincipalConfiguration
+from azure.ai.ml.entities._datastore.credentials import ServicePrincipalCredentials
 from azure.ai.ml import MLClient
 
 ml_client = MLClient.from_config()
@@ -485,7 +485,7 @@ store = OneLakeDatastore(
     name="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/Files", #{your_one_lake_artifact_guid}/Files
     type="lake_house"
     )
-    credentials=ServicePrincipalConfiguration(
+    credentials=ServicePrincipalCredentials(
         tenant_id= "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
         client_id= "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
         client_secret= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
@@ -543,8 +543,6 @@ Create the Machine Learning datastore in the CLI:
 az ml datastore create --file my_onelakesp_datastore.yml
 ```
 ---
-
-## [Create a datastore for OneLake Table with UI](create-datastore-with-UI.md#create-datastore-with-UI)
 
 ## Next steps
 
