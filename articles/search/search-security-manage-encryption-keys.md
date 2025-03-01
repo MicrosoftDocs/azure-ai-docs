@@ -51,6 +51,8 @@ If you require CMK across your search service, [set an enforcement policy](#set-
 
 Use either Azure Key Vault or Azure Key Vault Managed HSM to create a key. We recommend reviewing [these tips](#key-vault-tips) before you start.
 
+Required operations are **Wrap**, **Unwrap**, **Encrypt**, and **Decrypt**.
+
 ### [**Azure Key Vault**](#tab/azure-key-vault)
 
 You can [create a key vault using the Azure portal](/azure/key-vault/general/quick-create-portal), [Azure CLI](/azure/key-vault/general/quick-create-cli), or [Azure PowerShell](/azure/key-vault/general/quick-create-powershell).
@@ -67,7 +69,7 @@ You can [create a key vault using the Azure portal](/azure/key-vault/general/qui
 
 1. Select **Create** to start the deployment.
 
-1. After the key is created, get its key identifier. Select the key, select the current version, and then copy the key identifier. It's composed of the **key value Uri**, the **key name**, and the **key version**. You need the identifier to define an encrypted index in Azure AI Search.
+1. After the key is created, get its key identifier. Select the key, select the current version, and then copy the key identifier. It's composed of the **key value Uri**, the **key name**, and the **key version**. You need the identifier to define an encrypted index in Azure AI Search. 
 
    :::image type="content" source="media/search-manage-encryption-keys/cmk-key-identifier.png" alt-text="Create a new key vault key" border="true":::
 
