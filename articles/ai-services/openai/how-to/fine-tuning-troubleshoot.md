@@ -64,7 +64,6 @@ If you set the detail parameter for an image to low, the image is resized 
 
 ```json
 { 
-
     "type": "image_url", 
 
     "image_url": { 
@@ -74,7 +73,6 @@ If you set the detail parameter for an image to low, the image is resized 
         "detail": "low" 
 
     } 
-
 } 
 ```
 
