@@ -149,9 +149,8 @@ Now that you successfully created the datastore in Azure Machine Learning, you c
 
 ## References
 
-+ [Read from a specified table from lakehouse in One workspace using Notebook in other workspace](https://community.fabric.microsoft.com/t5/Data-Engineering/)Read-from-a-specified-table-from-lakehouse-in-One-workspace/m-p/4234885  
++ [Read from a specified table from lakehouse in One workspace using Notebook in other workspace](https://community.fabric.microsoft.com/t5/Data-Engineering/Read-from-a-specified-table-from-lakehouse-in-One-workspace/m-p/4234885)
 + [Delta Lake Tables For Optimal Direct Lake Performance In Fabric Python Notebook](https://fabric.guru/delta-lake-tables-for-optimal-direct-lake-performance-in-fabric-python-notebook)
 + [Create a OneLake (Microsoft Fabric) datastore (preview)](./how-to-datastore.md#create-a-onelake-microsoft-fabric-datastore-preview)
 + [Spark connector for Microsoft Fabric Data Warehouse](/fabric/data-engineering/spark-data-warehouse-connector)
-+ [Use the Azure Data Lake Storage URI](azure/storage/blobs/data-lake-storage-abfs-driver)
 + [AML and OneLake and Fabric Better Together Demo](https://github.com/azeltov/aml_one_lake)
