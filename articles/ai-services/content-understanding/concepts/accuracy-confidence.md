@@ -14,9 +14,9 @@ ms.date: 02/28/2025
 
 > [!NOTE]
 >
-> Azure AI Content Understanding is currently available in preview. 
+> * Azure AI Content Understanding is currently available in preview. 
 >
-> While the service is in active development, confidence scores are only available for the document modality.
+> * While the service is in active development, confidence scores are only available for the document modality.
 
 Confidence scores quantify the probability that a result is accurately detected, by gauging the degree of statistical certainty. The estimated accuracy is derived from evaluating various combinations of the training data to forecast the labeled values. In this article, we share how to interpret accuracy and confidence scores and best practices for using those scores to improve both accuracy and confidence results.
 
