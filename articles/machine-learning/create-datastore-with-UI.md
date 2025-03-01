@@ -8,7 +8,7 @@ ms.reviewer:  franksolomon
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.date: 02/14/2025
+ms.date: 02/28/2025
 #Customer intent: Existing solutions help link lakehouse files to Azure Machine Learning resources, and create a datastore through the SDK. However, some customers have lakehouse tables, and they want to create a datastore in Azure Machine Learning through the UI.
 ---
 
