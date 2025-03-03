@@ -186,7 +186,7 @@ Usage:
 	Total tokens: 84
 ```
 
-If you want to avoid sending the information over the requests, you can place the content in an accessible cloud location and pass the URL as an input to the model. The Python SDK doesn't provide a direct way to do it, but you can indicate the payload as follows:
+The model can read the content from an **accessible cloud location** by passing the URL as an input. The Python SDK doesn't provide a direct way to do it, but you can indicate the payload as follows:
 
 ```python
 response = client.complete(
