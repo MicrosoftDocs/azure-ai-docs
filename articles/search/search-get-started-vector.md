@@ -1,17 +1,17 @@
 ---
-title: 'Quickstart: Use the Search REST APIs for Vector Search'
+title: 'Quickstart: Vector Search Using REST APIs'
 titleSuffix: Azure AI Search
-description: In this quickstart, you learn how to call the Search REST APIs for vector workloads in Azure AI Search.
+description: Learn how to call the Search REST APIs for vector workloads in Azure AI Search.
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: quickstart
-ms.date: 12/03/2024
+ms.date: 03/03/2025
 ---
 
-# Quickstart: Perform vector search using REST
+# Quickstart: Vector search using REST
 
 In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchservice) to create, load, and query vectors.
 
@@ -26,7 +26,7 @@ In Azure AI Search, a [vector store](vector-store.md) has an index schema that d
 
 - An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch) in your current subscription.
     - You can use a free search service for most of this quickstart, but we recommend the Basic tier or higher for larger data files.
-    - To run the query example that invokes [semantic reranking](semantic-search-overview.md), your search service must be the *Basic* tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md).
+    - To run the query example that invokes [semantic reranking](semantic-search-overview.md), your search service must be at the Basic tier or higher with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
 - [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 

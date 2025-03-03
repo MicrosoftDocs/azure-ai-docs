@@ -1,7 +1,7 @@
 ---
-title: 'Quickstart: Deploy using templates'
+title: 'Quickstart: Deploy Using ARM Templates'
 titleSuffix: Azure AI Search
-description: You can quickly deploy an Azure AI Search service instance using the Azure Resource Manager template.
+description: Learn how to deploy an Azure AI Search service instance using an Azure Resource Manager template.
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
@@ -12,12 +12,12 @@ ms.custom:
   - mode-arm
   - devx-track-arm-template
   - ignite-2023
-ms.date: 01/17/2025
+ms.date: 03/03/2025
 ---
 
 # Quickstart: Deploy Azure AI Search using an Azure Resource Manager template
 
-This article walks you through the process for using an Azure Resource Manager (ARM) template to deploy an Azure AI Search resource in the Azure portal.
+In this quickstart, you use an Azure Resource Manager (ARM) template to deploy an Azure AI Search service in the Azure portal.
 
 [!INCLUDE [About Azure Resource Manager](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-introduction.md)]
 
@@ -60,11 +60,11 @@ When your deployment is complete you can access your new resource group and new 
 
 Other Azure AI Search quickstarts and tutorials build upon this quickstart. If you plan to continue on to work with subsequent quickstarts and tutorials, you may wish to leave this resource in place. When no longer needed, you can delete the resource group, which deletes the Azure AI Search service and related resources.
 
-## Next steps
+## Related content
 
-In this quickstart, you created an Azure AI Search service using an ARM template, and validated the deployment. To learn more about Azure AI Search and Azure Resource Manager, continue on to the articles below.
+In this quickstart, you created an Azure AI Search service using an ARM template and then validated the deployment. To learn more about Azure AI Search and Azure Resource Manager, see the following articles:
 
-- Read an [overview of Azure AI Search](search-what-is-azure-search.md).
-- [Create an index](search-get-started-portal.md) for your search service.
-- [Create a demo app](search-create-app-portal.md) using the Azure portal wizard.
-- [Create a skillset](search-get-started-skillset.md) to extract information from your data.
+- [What is Azure AI Search?](search-what-is-azure-search.md)
+- [Quickstart: Create a search index in the Azure portal](search-get-started-portal.md)
+- [Quickstart: Create a demo search app in the Azure portal](search-create-app-portal.md)
+- [Quickstart: Create a skillset in the Azure portal](search-get-started-skillset.md)

@@ -1,7 +1,7 @@
 ---
-title: "Quickstart: Vectorize text and images by using the Azure portal"
+title: "Quickstart: Vectorize Text and Images in the Azure Portal"
 titleSuffix: Azure AI Search
-description: Use a wizard to automate data chunking and vectorization in a search index.
+description: Learn how to use a wizard to automate data chunking and vectorization in a search index.
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
@@ -9,22 +9,22 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 02/06/2025
+ms.date: 03/03/2025
 ---
 
-# Quickstart: Vectorize text and images by using the Azure portal
+# Quickstart: Vectorize text and images in the Azure portal
 
-This quickstart helps you get started with [integrated vectorization](vector-search-integrated-vectorization.md) by using the **Import and vectorize data** wizard in the Azure portal. The wizard chunks your content and calls an embedding model to vectorize content during indexing and for queries.
+In this quickstart, you use the **Import and vectorize data** wizard in the Azure portal to get started with [integrated vectorization](vector-search-integrated-vectorization.md). The wizard chunks your content and calls an embedding model to vectorize content during indexing and for queries.
 
 ## Prerequisites
 
-+ An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-+ [An Azure AI Search service](search-create-service-portal.md) in the same region as your Azure AI multi-service resource. We recommend the Basic tier or higher.
++ An [Azure AI Search service](search-create-service-portal.md) in the same region as your Azure AI multi-service resource. We recommend the Basic tier or higher.
 
-+ [A supported data source](#supported-data-sources) with the [Health Plan PDF](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) sample documents.
++ A [supported data source](#supported-data-sources) with the [Health Plan PDF](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) sample documents.
 
-+ [A supported embedding model](#supported-embedding-models).
++ A [supported embedding model](#supported-embedding-models).
 
 + Familiarity with the wizard. See [Import data wizards in the Azure portal](search-import-data-portal.md) for details.
 
