@@ -8,16 +8,17 @@ ms.reviewer:  franksolomon
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.date: 02/28/2025
+ms.date: 02/14/2025
 #Customer intent: Existing solutions help link lakehouse files to Azure Machine Learning resources, and create a datastore through the SDK. However, some customers have lakehouse tables, and they want to create a datastore in Azure Machine Learning through the UI.
 ---
 
 # Quickstart: Create a datastore in Azure Machine Learning through the UI to link a lakehouse table
 
-Existing solutions can link an Azure Machine Learning resource to OneLake, extract the data, and create a datastore in Azure Machine Learning. However, [in those solutions](#references), the OneLake data is of type "Files." Those solutions don't work for OneLake table-type data. Additionally, some customers might prefer to build the link in the UI. A solution that links Azure Machine Learning resources to OneLake tables is needed.
+Existing solutions can link an Azure Machine Learning resource to OneLake, extract the data, and create a datastore in Azure Machine Learning. However, [in those solutions](#references), the OneLake data is of type "Files." Those solutions don't work for OneLake table-type data, as shown in the following screenshot:
 
-:::image type="content" source="media/create-datastore-with-UI/table-in-fabric.png" alt-text="Screenshot showing how the table looks like in Microsoft Fabric." lightbox="./media/create-datastore-with-UI/table-in-fabric.png":::
+:::image type="content" source="media/create-datastore-with-ui/show-fabric-table.png" alt-text="Screenshot showing a table in Microsoft Fabric." lightbox="./media/create-datastore-with-ui/show-fabric-table.png":::
 
+Additionally, some customers might prefer to build the link in the UI. A solution that links Azure Machine Learning resources to OneLake tables is needed.
 In this article, you learn how to link OneLake tables to Azure Machine Learning studio resources through the UI.
 
 ## Prerequisites
@@ -31,7 +32,7 @@ In this article, you learn how to link OneLake tables to Azure Machine Learning 
 
 This solution has three parts. First, create and set up a Data Lake Storage account in the Azure portal. Next, copy the data from OneLake to Azure Data Lake Storage. Bring the data to the Azure Machine Learning resource, and lastly, create the datastore. The following screenshot shows the overall flow of the solution:
 
-:::image type="content" source="media/create-datastore-with-UI/overall-idea.png" alt-text="Screenshot showing the overall flow of the solution." lightbox="./media/create-datastore-with-UI/overall-idea.png":::
+:::image type="content" source="media/create-datastore-with-ui/overall-idea.png" alt-text="Screenshot showing the overall flow of the solution." lightbox="./media/create-datastore-with-ui/overall-idea.png":::
 
 ## Set up the Data Lake storage account in the Azure portal
 
@@ -44,63 +45,63 @@ Assign the **Storage Blob Data Contributor** and **Storage File Data Privileged 
 
 1. On the **Storage accounts** page, select the Data Lake Storage account you created in the prerequisite step. A page showing the storage account properties opens.
 
-     :::image type="content" source="media/create-datastore-with-UI/create-storage-account.png" alt-text="Screenshot showing the properties page of the data lake storage account." lightbox="./media/create-datastore-with-UI/create-storage-account.png":::
+     :::image type="content" source="media/create-datastore-with-ui/create-storage-account.png" alt-text="Screenshot showing the properties page of the data lake storage account." lightbox="./media/create-datastore-with-ui/create-storage-account.png":::
 
 1. Select the  **Access keys** from the left panel and record the key. This value is required in a later step.
 
 1. Select and enable **Allow storage account key access** as shown in the following screenshot:
 
-    :::image type="content" source="media/create-datastore-with-UI/enable-key-access.png" alt-text="Screenshot showing how to enable key access of data lake storage account in Azure portal." lightbox="./media/create-datastore-with-UI/enable-key-access.png":::
+    :::image type="content" source="media/create-datastore-with-ui/enable-key-access.png" alt-text="Screenshot showing how to enable key access of data lake storage account in Azure portal." lightbox="./media/create-datastore-with-ui/enable-key-access.png":::
 
 1. Select **Access Control (IAM)** from left panel, and assign the **Storage Blob Data Contributor** and **Storage File Data Privileged Contributor** roles to the service principal.
 
-    :::image type="content" source="media/create-datastore-with-UI/assign-roles.png" alt-text="Screenshot showing how to assign roles of data lake storage account in Azure portal." lightbox="./media/create-datastore-with-UI/assign-roles.png":::
+    :::image type="content" source="media/create-datastore-with-ui/assign-roles.png" alt-text="Screenshot showing how to assign roles of data lake storage account in Azure portal." lightbox="./media/create-datastore-with-ui/assign-roles.png":::
 
 1. Create a container in the storage account. Name it **onelake-table**.
 
-    :::image type="content" source="media/create-datastore-with-UI/create-container.png" alt-text="Screenshot showing creation of a data lake storage account container in the Azure portal." lightbox="./media/create-datastore-with-UI/create-container.png":::
+    :::image type="content" source="media/create-datastore-with-ui/create-container.png" alt-text="Screenshot showing creation of a data lake storage account container in the Azure portal." lightbox="./media/create-datastore-with-ui/create-container.png":::
 
 ## Use a Fabric data pipeline to copy data to an Azure Data Lake Storage account
 
 1. At the Fabric portal, select **Data pipeline** at the New item page.
 
-    :::image type="content" source="media/create-datastore-with-UI/create-pipeline.png" alt-text="Screenshot showing selection of data pipeline at the Fabric New item page." lightbox="./media/create-datastore-with-UI/create-pipeline.png":::
+    :::image type="content" source="media/create-datastore-with-ui/create-pipeline.png" alt-text="Screenshot showing selection of data pipeline at the Fabric New item page." lightbox="./media/create-datastore-with-ui/create-pipeline.png":::
 
 1. Select **Copy data assistant**.
 
-    :::image type="content" source="media/create-datastore-with-UI/copy-data-assistant.png" alt-text="Screenshot showing selection of Copy data assistant." lightbox="./media/create-datastore-with-UI/copy-data-assistant.png":::
+    :::image type="content" source="media/create-datastore-with-ui/copy-data-assistant.png" alt-text="Screenshot showing selection of Copy data assistant." lightbox="./media/create-datastore-with-ui/copy-data-assistant.png":::
 
 1. In  **Copy data assistant**, select **Azure Blobs**:
 
-    :::image type="content" source="media/create-datastore-with-UI/select-azure-blob.png" alt-text="Screenshot showing selection of Select Azure blobs in the Fabric Copy data assistant." lightbox="./media/create-datastore-with-UI/select-azure-blob.png":::
+    :::image type="content" source="media/create-datastore-with-ui/select-azure-blob.png" alt-text="Screenshot showing selection of Select Azure blobs in the Fabric Copy data assistant." lightbox="./media/create-datastore-with-ui/select-azure-blob.png":::
 
 1. To create a connection to the Azure Data Lake storage account, select **Authentication kind: Account key** and then **Next**:
 
     <!-- Maybe place a red highlight box around "Authentication kind: Account key" -->
 
-    :::image type="content" source="media/create-datastore-with-UI/create-connection.png" alt-text="Screenshot that shows how to create a connection in a Fabric data pipeline." lightbox="./media/create-datastore-with-UI/create-connection.png":::
+    :::image type="content" source="media/create-datastore-with-ui/create-connection.png" alt-text="Screenshot that shows how to create a connection in a Fabric data pipeline." lightbox="./media/create-datastore-with-ui/create-connection.png":::
 
 1. Select the data destination, and select Next:
 
     <!-- Maybe place red highlight boxes around "OK" and "Next" -->
 
-    :::image type="content" source="media/create-datastore-with-UI/select-destination-folder.png" alt-text="Screenshot that shows selection of the data destination." lightbox="./media/create-datastore-with-UI/select-destination-folder.png":::
+    :::image type="content" source="media/create-datastore-with-ui/select-destination-folder.png" alt-text="Screenshot that shows selection of the data destination." lightbox="./media/create-datastore-with-ui/select-destination-folder.png":::
 
 1. Connect to the data destination, and select Next:
 
-    :::image type="content" source="media/create-datastore-with-UI/connect-data-destination.png" alt-text="Screenshot that shows connection to the data destination." lightbox="./media/create-datastore-with-UI/connect-data-destination.png":::
+    :::image type="content" source="media/create-datastore-with-ui/connect-data-destination.png" alt-text="Screenshot that shows connection to the data destination." lightbox="./media/create-datastore-with-ui/connect-data-destination.png":::
 
 1. That step automatically starts the data copy job:
 
     <!-- This image does not seem to highlight how to start the data copy job - it does not seem to highlight a control that actually starts the data copy job -->
 
-    :::image type="content" source="media/create-datastore-with-UI/copy-activity-scheduled.png" alt-text="Screenshot that shows the copy activity is scheduled." lightbox="./media/create-datastore-with-UI/copy-activity-scheduled.png":::
+    :::image type="content" source="media/create-datastore-with-ui/copy-activity-scheduled.png" alt-text="Screenshot that shows the copy activity is scheduled." lightbox="./media/create-datastore-with-ui/copy-activity-scheduled.png":::
 
     This step might take a while. It directly leads to the next step.
 
 1. Check that the data copy job finished successfully:
 
-    :::image type="content" source="media/create-datastore-with-UI/copy-activity-success.png" alt-text="Screenshot showing that the copy operation succeeded." lightbox="./media/create-datastore-with-UI/copy-activity-success.png":::
+    :::image type="content" source="media/create-datastore-with-ui/copy-activity-success.png" alt-text="Screenshot showing that the copy operation succeeded." lightbox="./media/create-datastore-with-ui/copy-activity-success.png":::
 
 ## Create datastore in Azure Machine Learning linking to Azure Data Lake Storage container
 
@@ -113,27 +114,27 @@ Now that your data is in the Azure Data Lake storage resource, you can create an
     
          The create-container.png image step created the **onelake-table** container.-->
 
-    :::image type="content" source="media/create-datastore-with-UI/check-container.png" alt-text="Screenshot that shows how to verify the data in Azure storage account container." lightbox="./media/create-datastore-with-UI/check-container.png":::
+    :::image type="content" source="media/create-datastore-with-ui/check-container.png" alt-text="Screenshot that shows how to verify the data in Azure storage account container." lightbox="./media/create-datastore-with-ui/check-container.png":::
 
 1. In Machine Learning studio create data asset, select the **File (uri_file)** type:
 
-    :::image type="content" source="media/create-datastore-with-UI/create-data-asset.png" alt-text="Screenshot showing selection of the File (uri_file) type." lightbox="./media/create-datastore-with-UI/create-data-asset.png":::
+    :::image type="content" source="media/create-datastore-with-ui/create-data-asset.png" alt-text="Screenshot showing selection of the File (uri_file) type." lightbox="./media/create-datastore-with-ui/create-data-asset.png":::
 
 1. Select **From Azure storage**:
 
-    :::image type="content" source="media/create-datastore-with-UI/select-azure-storage.png" alt-text="Screenshot that shows how to select Azure storage." lightbox="./media/create-datastore-with-UI/select-azure-storage.png":::
+    :::image type="content" source="media/create-datastore-with-ui/select-azure-storage.png" alt-text="Screenshot that shows how to select Azure storage." lightbox="./media/create-datastore-with-ui/select-azure-storage.png":::
 
 1. Using the **Account key** value from the earlier **Create a connection to the Azure Data Lake storage account** step, create a **New datastore**:
 
-    :::image type="content" source="media/create-datastore-with-UI/new-datastore.png" alt-text="Screenshot that shows how to create new datastore in Azure Machine Learning." lightbox="./media/create-datastore-with-UI/new-datastore.png":::
+    :::image type="content" source="media/create-datastore-with-ui/new-datastore.png" alt-text="Screenshot that shows how to create new datastore in Azure Machine Learning." lightbox="./media/create-datastore-with-ui/new-datastore.png":::
 
 1. You can also directly create a datastore in the Azure Machine Learning Studio:
 
-    :::image type="content" source="media/create-datastore-with-UI/create-datastore.png" alt-text="Screenshot that shows how to create a datastore in Azure Machine Learning." lightbox="./media/create-datastore-with-UI/create-datastore.png":::
+    :::image type="content" source="media/create-datastore-with-ui/create-datastore.png" alt-text="Screenshot that shows how to create a datastore in Azure Machine Learning." lightbox="./media/create-datastore-with-ui/create-datastore.png":::
 
 1. You can review details of the datastore you created:
 
-:::image type="content" source="media/create-datastore-with-UI/datastore-created.png" alt-text="Screenshot that shows details of the datastore you created." lightbox="./media/create-datastore-with-UI/datastore-created.png":::
+    :::image type="content" source="media/create-datastore-with-ui/datastore-created.png" alt-text="Screenshot that shows details of the datastore you created." lightbox="./media/create-datastore-with-ui/datastore-created.png":::
 
 1. Review the data in the datastore
 
@@ -143,7 +144,7 @@ Now that your data is in the Azure Data Lake storage resource, you can create an
 
         resource.  -->
 
-:::image type="content" source="media/create-datastore-with-UI/access-datastore.png" alt-text="Screenshot that shows how to access a datastore in Azure Machine Learning." lightbox="./media/create-datastore-with-UI/access-datastore.png":::
+    :::image type="content" source="media/create-datastore-with-ui/access-datastore.png" alt-text="Screenshot that shows how to access a datastore in Azure Machine Learning." lightbox="./media/create-datastore-with-ui/access-datastore.png":::
 
 Now that you successfully created the datastore in Azure Machine Learning, you can use it in machine learning exercises.
 
