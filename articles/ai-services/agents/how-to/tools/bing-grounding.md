@@ -340,7 +340,7 @@ Create a run and observe that the model uses the Grounding with Bing Search tool
 
 ```python
 # Create and process agent run in thread with tools
-run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
+run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
 print(f"Run finished with status: {run.status}")
 
 # Retrieve run step details to get Bing Search query link

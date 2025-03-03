@@ -309,7 +309,7 @@ message = project_client.agents.create_message(
 print(f"Created message, message ID: {message.id}")
 
 # Run the agent
-run = project_client.agents.create_run(thread_id=thread.id, assistant_id=agent.id)
+run = project_client.agents.create_run(thread_id=thread.id, agent_id=agent.id)
 # Monitor and process the run status. The function call should be placed on the input queue by the Agent Service for the Azure Function to pick up when requires_action is returned
 while run.status in ["queued", "in_progress", "requires_action"]:
     time.sleep(1)
