@@ -68,6 +68,8 @@ items:
         href: ../ai-foundry/model-inference/overview.md?context=/azure/ai-studio/context/context
       - name: Add and configure models
         href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-studio/context/context
+      - name: Featured models supported in Azure AI model inference
+        href: ../ai-foundry/model-inference/concepts/models.md?context=/azure/ai-studio/context/context
       - name: Supported programming languages and SDKs
         href: ../ai-foundry/model-inference/supported-languages.md?context=/azure/ai-studio/context/context
       - name: Use the Azure AI model inference endpoint
@@ -84,8 +86,6 @@ items:
         href: how-to/troubleshoot-deploy-and-monitor.md
   - name: Work with models from the model catalog
     items:
-    - name: Featured models supported in Azure AI model inference
-      href: ../ai-foundry/model-inference/concepts/models.md?context=/azure/ai-studio/context/context
     - name: Work with embedding models
       items:
         - name: Work with text embedding models
