@@ -1,25 +1,18 @@
 ---
-title: Portal administration
+title: Service Configuration in the Azure Portal
 titleSuffix: Azure AI Search
-description: Manage an Azure AI Search resource using the Azure portal.
-
+description: Manage an Azure AI Search service in the Azure portal.
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 12/10/2024
+ms.date: 03/04/2025
 ---
 
-# Service administration for Azure AI Search in the Azure portal
+# Configure your Azure AI Search service in the Azure portal
 
-> [!div class="op_single_selector"]
->
-> + [PowerShell](search-manage-powershell.md)
-> + [Azure CLI](search-manage-azure-cli.md)
-> + [REST API](search-manage-rest.md)
-
-In Azure AI Search, the [Azure portal](https://portal.azure.com) supports a broad range of administrative and content management operations so that you don't have to write code unless you want automation. 
+In Azure AI Search, the [Azure portal](https://portal.azure.com) supports a broad range of administrative and content management operations so that you don't have to write code unless you want automation.
 
 Each search service is managed as a standalone resource. Your role assignment determines what operations are exposed in the Azure portal.
 
@@ -122,14 +115,14 @@ Developers need the following information to connect to Azure AI Search:
 
 We recommend portal access for the following wizards and tools: [Import data wizard](search-get-started-portal.md), [Import and vectorize data](search-get-started-portal-import-vectors.md), [Search explorer](search-explorer.md). Recall that a user must be a contributor or above to run the import wizards.
 
-## Next steps
+## Related content
 
-Programmatic support for service administration can be found in the following APIs and modules:
+For programmatic support for service administration, see the following APIs and modules:
 
-* [Management REST API reference](/rest/api/searchmanagement/)
-* [Az.Search PowerShell module](search-manage-powershell.md)
-* [az search Azure CLI module](search-manage-azure-cli.md)
++ [Management REST API reference](/rest/api/searchmanagement/)
++ [Az.Search PowerShell module](search-manage-powershell.md)
++ [az search Azure CLI module](search-manage-azure-cli.md)
 
-You can also use the management client libraries in the Azure SDKs for .NET, Python, Java, and JavaScript. 
+You can also use the management client libraries in the Azure SDKs for .NET, Python, Java, and JavaScript.
 
-There's feature parity across all modalities and languages, except for preview management features. As a general rule, preview management features are released through the Management REST API first. 
+There's feature parity across all modalities and languages, except for preview management features. As a general rule, preview management features are released through the Management REST API first.
