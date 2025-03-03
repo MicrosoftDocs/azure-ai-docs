@@ -33,7 +33,7 @@ Assistants API supports persistent automatically managed threads. This means tha
 > [!TIP]
 > There is no additional [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) or [quota](../quotas-limits.md) for using Assistants unless you use the [code interpreter](../how-to/code-interpreter.md) or [file search](../how-to/file-search.md) tools.
 
-Assistants API is built on the same capabilities that power OpenAI’s GPT product. Some possible use cases range from AI-powered product recommender, sales analyst app, coding assistant, employee Q&A chatbot, and more. Start building on the no-code Assistants playground on the Azure AI Foundry portal or start building with the API.
+Assistants API is built on the same capabilities that power OpenAI’s GPT product. Some possible use cases range from AI-powered product recommender, sales analyst app, coding assistant, employee Q&A chatbot, and more. Start building on the no-code Assistants playground on the [Azure AI Foundry portal](https://ai.azure.com/) or start building with the API.
 
 > [!IMPORTANT]
 > Retrieving untrusted data using Function calling, Code Interpreter or File Search with file input, and Assistant Threads functionalities could compromise the security of your Assistant, or the application that uses the Assistant. Learn about mitigation approaches [here](https://aka.ms/oai/assistant-rai).

@@ -50,7 +50,7 @@ To get started with Jamba 1.5 mini deployed as a serverless API, explore our int
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 - An [Azure AI Foundry project](../how-to/create-projects.md). The serverless API model deployment offering for Jamba family models is only available with projects created in specific regions. For a list of these regions, see [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md#ai21-models).
        
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. Alternatively, your account can be assigned a custom role that has the following permissions:
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in [Azure AI Foundry portal](https://ai.azure.com/). To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. Alternatively, your account can be assigned a custom role that has the following permissions:
 
     - On the Azure subscription—to subscribe the Azure AI Foundry project to the Azure Marketplace offering, once for each project, per offering:
       - `Microsoft.MarketplaceOrdering/agreements/offers/plans/read`
@@ -80,7 +80,7 @@ These steps demonstrate the deployment of `AI21 Jamba 1.5 Large` or `AI21 Jamba 
 
 1. Select **Deploy** to open a serverless API deployment window for the model.
 
-1. Alternatively, you can initiate a deployment by starting from the **Models + endpoints** page in Azure AI Foundry portal.
+1. Alternatively, you can initiate a deployment by starting from the **Models + endpoints** page in [Azure AI Foundry portal](https://ai.azure.com/).
 
     1. From the left navigation pane of your project, select **My assets** > **Models + endpoints**.
     1. Select **+ Deploy model** > **Deploy base model**.
