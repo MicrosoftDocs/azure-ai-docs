@@ -84,6 +84,8 @@ items:
           href: ./how-to/use-chat-completions.md
         - name: Work with reasoning models
           href: ./how-to/use-chat-reasoning.md
+        - name: Work with image and audio content
+          href: ./how-to/use-chat-multi-modal.md
     - name: Develop with LangChain and LangGraph
       href: ../how-to/develop/langchain.md?context=/azure/ai-foundry/model-inference/context/context
     - name: Develop with Llama-Index
