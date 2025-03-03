@@ -11,7 +11,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: whats-new
-ms.date: 2/19/2025
+ms.date: 2/27/2025
 recommendations: false
 ---
 
@@ -21,9 +21,23 @@ This article provides a summary of the latest releases and major documentation u
 
 ## February 2025
 
+### GPT-4.5 Preview
+
+The latest GPT model that excels at diverse text and image tasks is now available on Azure OpenAI.
+
+**For access to `gpt-4.5-preview` registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who have access to other limited access models will still need to request access for this model.
+
+Request access: [GPT-4.5-preview limited access model application](https://aka.ms/oai/gptaccess)
+
+For more information on model capabilities, and region availability see the [models documentation](./concepts/models.md#gpt-45-preview).
+
+### Stored completions API
+
+[Stored completions](./how-to/stored-completions.md#stored-completions-api) allow you to capture the conversation history from chat completions sessions to use as datasets for evaluations and fine-tuning.
+
 ### o3-mini datazone standard deployments
 
-`o3-mini` is now available for global standard, and data zone standard deployments for registered limited access customers. Data standard deployment regions are currently United States regions only.
+`o3-mini` is now available for global standard, and data zone standard deployments for registered limited access customers.
 
 For more information, see our [reasoning model guide](./how-to/reasoning.md). 
 

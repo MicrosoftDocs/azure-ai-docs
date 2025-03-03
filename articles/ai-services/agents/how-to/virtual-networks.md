@@ -48,6 +48,7 @@ Azure AI Agent Service offers a standard agent configuration with private networ
     * `Microsoft.MachineLearningServices`
     * `Microsoft.Search`
     * `Microsoft.Network`
+    * `Microsoft.App`
     * To use Bing Search tool: `Microsoft.Bing`
 
     ```console
@@ -109,7 +110,7 @@ Azure AI Agent Service offers a standard agent configuration with private networ
 
 | Template | Description   | Autodeploy |
 | ------------------- | -----------------------------------------------| -----------------------|
-| `network-secured-agent.bicep`  | Deploy a network secured agent setup that uses user-managed identity authentication on the Agent connections. | [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Frefs%2Fheads%2Fmaster%2Fquickstarts%2Fmicrosoft.azure-ai-agent-service%2Fnetwork-secured-agent%2Fazuredeploy.json)
+| `network-secured-agent.bicep`  | Deploy a network secured agent setup that uses user-managed identity authentication on the Agent connections. | [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazureai-samples%2Fmain%2Fscenarios%2FAgents%2Fsetup%2Fnetwork-secured-agent%2Fazuredeploy.json)
 
 ### Option 2: manually deploy the bicep template
 
@@ -131,7 +132,7 @@ Azure AI Agent Service offers a standard agent configuration with private networ
 
     Make sure you have the Azure AI Developer role for the resource group you created. 
 
-1. Using the resource group you created in the previous step and one of the template files (either `basic-agent-keys.bicep` or `basic-agent-identity.bicep`), run one of the following commands: 
+1. Using the resource group you created in the previous step and one of the template files (`network-secured-agent`), run one of the following commands: 
 
     1. To use default resource names, run:
 

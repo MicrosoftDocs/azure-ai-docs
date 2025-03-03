@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's Python & REST API runs with Assistants.
 manager: nitinme
 ms.service: azure-ai-openai
-ms.topic: conceptual
+ms.topic: reference
 ms.date: 09/17/2024
 author: aahill
 ms.author: aahi

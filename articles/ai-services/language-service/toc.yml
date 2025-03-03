@@ -640,8 +640,6 @@ items:
       displayName: native, native document
     - name: Summarization quickstart
       href: summarization/quickstart.md
-    - name: Summarization region support
-      href: summarization/region-support.md
     - name: Summarization language support
       href: summarization/language-support.md
     - name: How-to guides
@@ -678,8 +676,6 @@ items:
           
 - name: Concepts
   items:
-  - name: Language Studio
-    href: language-studio.md
   - name: Developer guide
     href: concepts/developer-guide.md
   - name: Role-based-access-control

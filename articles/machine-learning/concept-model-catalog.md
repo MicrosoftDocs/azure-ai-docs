@@ -126,7 +126,7 @@ Deploying a model through MaaS allows users to get access to ready to use infere
 
 ### Fine-tune models through MaaS with Pay-as-you-go 
 
-For models that are available through MaaS and support fine-tuning, users can take advantage of hosted fine-tuning with pay-as-you-go billing to tailor the models using data they provide. For more information, see [fine-tune a Llama 2 model](/azure/ai-studio/how-to/fine-tune-model-llama) in [Azure AI Foundry portal](https://ai.azure.com/). 
+For models that are available through MaaS and support fine-tuning, users can take advantage of hosted fine-tuning with pay-as-you-go billing to tailor the models using data they provide. For more information, see [fine-tune a Llama 2 model](/azure/ai-foundry/how-to/fine-tune-model-llama) in [Azure AI Foundry portal](https://ai.azure.com/). 
 
 ### RAG with models deployed through MaaS 
 
@@ -142,7 +142,7 @@ PPay-as-you-go billing is available only to users whose Azure subscription belon
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
-[!INCLUDE [content-safety-serverless-models](../ai-studio/includes/content-safety-serverless-models.md)]
+[!INCLUDE [content-safety-serverless-models](../ai-foundry/includes/content-safety-serverless-models.md)]
 
 ### Network isolation for models deployed via Serverless APIs
 

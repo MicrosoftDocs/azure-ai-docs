@@ -4,8 +4,8 @@ titleSuffix: Azure AI Search
 description: Find Azure AI Search demo Python code samples that use the Azure .NET SDK for Python or REST.
 
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet

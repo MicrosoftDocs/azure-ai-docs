@@ -4,8 +4,8 @@ titleSuffix: Azure AI Search
 description: In this quickstart, learn how to call the Azure AI Search REST APIs to create, load, and query a search index.
 zone_pivot_groups: URL-test-interface-rest-apis
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.devlang: rest-api

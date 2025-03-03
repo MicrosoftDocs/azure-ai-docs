@@ -12,6 +12,8 @@ items:
       href: ./supported-languages.md
     - name: Quotas and limits
       href: ./quotas-limits.md
+    - name: Model lifecycle and retirement
+      href: ../concepts/model-lifecycle-retirement.md?context=/azure/ai-foundry/model-inference/context/context
     - name: FAQ
       href: faq.yml
 - name: Quickstarts
@@ -32,6 +34,8 @@ items:
       href: ./concepts/deployment-types.md
     - name: Model versions
       href: ./concepts/model-versions.md
+    - name: Model lifecycle and retirement
+      href: ../concepts/model-lifecycle-retirement.md?context=/azure/ai-foundry/model-inference/context/context
     - name: Responsible AI
       items:
       - name: Content filtering
@@ -81,11 +85,11 @@ items:
         - name: Work with reasoning models
           href: ./how-to/use-chat-reasoning.md
     - name: Develop with LangChain and LangGraph
-      href: ../../ai-studio/how-to/develop/langchain.md?context=/azure/ai-foundry/model-inference/context/context
+      href: ../how-to/develop/langchain.md?context=/azure/ai-foundry/model-inference/context/context
     - name: Develop with Llama-Index
-      href: ../../ai-studio/how-to/develop/llama-index.md?context=/azure/ai-foundry/model-inference/context/context
+      href: ../how-to/develop/llama-index.md?context=/azure/ai-foundry/model-inference/context/context
     - name: Develop with Semantic Kernel
-      href: ../../ai-studio/how-to/develop/semantic-kernel.md?context=/azure/ai-foundry/model-inference/context/context
+      href: ../how-to/develop/semantic-kernel.md?context=/azure/ai-foundry/model-inference/context/context
 - name: Reference
   items:
     - name: Azure AI Model Inference API

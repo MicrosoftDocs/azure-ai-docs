@@ -27,7 +27,7 @@ The Language service also provides several new features as well, which can eithe
 > [!TIP]
 > Unsure which feature to use? See [Which Language service feature should I use?](#which-language-service-feature-should-i-use) to help you decide.
 
-[**Language Studio**](./language-studio.md) enables you to use the below service features without needing to write code.
+[**Azure AI Foundry**](https://ai.azure.com) enables you to use most of the below service features without needing to write code.
 
 ### Named Entity Recognition (NER)
 
@@ -87,8 +87,8 @@ The Language service also provides several new features as well, which can eithe
       :::image type="content" source="media/overview/text-summarization.png" alt-text="A screenshot of text summarization in Azure AI Foundry." lightbox="media/overview/text-summarization.png":::
    :::column-end:::
    :::column span="":::
-      [Summarization](./summarization/overview.md) condenses information for text and conversations (chat and transcripts). 
-Text summarization generates a summary, supporting two approaches: [Extractive summarization](summarization/how-to/document-summarization.md) produces a summary by extracting salient sentences within the document along with the positioning information of these sentences, and abstractive summarization, which generates a summary with concise, coherent sentences or words that aren't verbatim extract sentences from the original document.  
+      [Summarization](./summarization/overview.md) condenses information for text and conversations (chat and transcripts).
+      Text summarization generates a summary, supporting two approaches: Extractive summarization produces a summary by extracting salient sentences within the document along with the positioning information of these sentences, and abstractive summarization, which generates a summary with concise, coherent sentences or words that aren't verbatim extract sentences from the original document.  
 Conversation summarization recaps and segments long meetings into timestamped chapters. Call center summarization summarizes customer issues and resolution.
    :::column-end:::
 :::row-end:::
@@ -219,7 +219,7 @@ After you've had a chance to get started with the Language service, try our tuto
 * [Use Power Automate to sort information in Microsoft Excel](named-entity-recognition/tutorials/extract-excel-information.md) 
 * [Use Flask to translate text, analyze sentiment, and synthesize speech](/training/modules/python-flask-build-ai-web-app/)
 * [Use Azure AI services in canvas apps](/powerapps/maker/canvas-apps/cognitive-services-api?context=/azure/ai-services/language-service/context/context)
-* [Create a FAQ Bot](question-answering/tutorials/bot-service.md)
+* [Create an FAQ Bot](question-answering/tutorials/bot-service.md)
 
 ## Additional code samples
 

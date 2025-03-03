@@ -36,7 +36,7 @@ Powered by the advanced capabilities of Stable Diffusion 3.5 Large, Stable Image
 
 Stable Image Ultra supports text prompt inputs only for image generations.
 
-[!INCLUDE [models-preview](../ai-studio/includes/models-preview.md)]
+[!INCLUDE [models-preview](../ai-foundry/includes/models-preview.md)]
 
 
 ## Deploy a Stability AI model as a serverless API
@@ -151,7 +151,7 @@ The Stability AI models are deployed as a serverless API and is offered by Stabi
 
 Each time a workspace subscribes to a given model offering from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently.
 
-For more information on how to track costs, see [Monitor costs for models offered through the Azure Marketplace](/azure/ai-studio/how-to/costs-plan-manage#monitor-costs-for-models-offered-through-the-azure-marketplace).
+For more information on how to track costs, see [Monitor costs for models offered through the Azure Marketplace](/azure/ai-foundry/how-to/costs-plan-manage#monitor-costs-for-models-offered-through-the-azure-marketplace).
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
@@ -163,5 +163,5 @@ Models deployed as a serverless API are protected by Azure AI content safety. Wh
 
 - [Model Catalog and Collections](concept-model-catalog.md)
 - [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md)
-- [Plan and manage costs for Azure AI Foundry](/azure/ai-studio/how-to/costs-plan-manage)
+- [Plan and manage costs for Azure AI Foundry](/azure/ai-foundry/how-to/costs-plan-manage)
 - [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md)
