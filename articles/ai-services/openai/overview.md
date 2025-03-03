@@ -42,7 +42,7 @@ Start with the [Create and deploy an Azure OpenAI Service resource](./how-to/cre
 1. When you have an Azure OpenAI Service resource, you can deploy a model such as GPT-4o.
 1. When you have a deployed model, you can:
 
-    - Try out the Azure AI Foundry portal playgrounds to explore the capabilities of the models. 
+    - Try out the [Azure AI Foundry portal](https://ai.azure.com/) playgrounds to explore the capabilities of the models. 
     - You can also just start making API calls to the service using the REST API or SDKs.
     
     For example, you can try [real-time audio](./realtime-audio-quickstart.md) and [assistants](./assistants-quickstart.md) in the playgrounds or via code.
