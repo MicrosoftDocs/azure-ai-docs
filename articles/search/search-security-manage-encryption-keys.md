@@ -172,7 +172,7 @@ Follow these instructions if you can't use role assignments for search service a
 
 If you configured your search service to use a managed identity, assign roles that give it to access to the encryption key.
 
-Role-based access control is recommended over key vault access policies. For more information, see [Provide access to Key Vault keys, certificates, and secrets using Azure roles](/azure/key-vault/general/rbac-guide).
+Role-based access control is recommended over the Access Policy permission model. For more information or migration steps, start with [Azure role-based access control (Azure RBAC) vs. access policies (legacy)](/azure/key-vault/general/rbac-access-policy).
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and find your key vault.
 
@@ -191,11 +191,11 @@ Wait a few minutes for the role assignment to become operational.
 
 ## Step 4: Encrypt content
 
-Encryption keys are added when you create an object. You can use the Azure portal for selected objects. For any object, use the [Search REST API](/rest/api/searchservice/) or an Azure SDK. Review the [Python example](#python-example-of-an-encryption-key-configuration) in this article to see how content is encrypted programmatically.
+Encryption occurs when you create or update an object. You can use the Azure portal for selected objects. For any object, use the [Search REST API](/rest/api/searchservice/) or an Azure SDK. Review the [Python example](#python-example-of-an-encryption-key-configuration) in this article to see how content is encrypted programmatically.
 
 ### [**Azure portal**](#tab/portal)
 
-When you create a new object in the Azure portal, you can specify a predefined customer-managed key in a key vault. The Azure portal lets you set CMK-encryption for:
+When you create a new object in the Azure portal, you can specify a predefined customer-managed key in a key vault. The Azure portal lets you enable CMK encryption for:
 
 + Indexes
 + Data sources
@@ -319,7 +319,7 @@ Azure policies help to enforce organizational standards and to assess compliance
 | Effect | Effect if enabled|
 |--------|------------------|
 | [**AuditIfNotExists**](/azure/governance/policy/concepts/effect-audit-if-not-exists) | Identify data plane objects that lack CMK encryption and search services that don't enforce CMK encryption. Evaluate each time an object is created or updated, or [per the evaluation schedule](/azure/governance/policy/overview#understand-evaluation-outcomes). [Learn more...](https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F356da939-f20a-4bb9-86f8-5db445b0e354) |
-| [**Deny**](/azure/governance/policy/concepts/effect-deny) | Prevents usage of search services until `"encryptionWithCmk": {"enforcement": "Enabled"}` is set. New services can be created with [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2023-11-01&tabs=HTTP#searchencryptionwithcmk?preserve-view=true) set to `Enabled`. Existing non-compliant search services can be managed, but objects aren't usable until you make them CMK compliant. Attempting to use a non-compliant object returns a `403 Forbidden` error. On existing services that are returning error code 403, enable the policy and then recreate the objects with CMK enabled, or change the scope to exclude the search service. [Learn more...](https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F356da939-f20a-4bb9-86f8-5db445b0e354) |
+| [**Deny**](/azure/governance/policy/concepts/effect-deny) | Prevents usage of search services until `"encryptionWithCmk": {"enforcement": "Enabled"}` is set. New services can be created with [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2023-11-01&tabs=HTTP#searchencryptionwithcmk&preserve-view=true) set to `Enabled`. Existing non-compliant search services can be managed, but objects aren't usable until you make them CMK compliant. Attempting to use a non-compliant object returns a `403 Forbidden` error. On existing services that are returning error code 403, enable the policy and then recreate the objects with CMK enabled, or change the scope to exclude the search service. [Learn more...](https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F356da939-f20a-4bb9-86f8-5db445b0e354) |
 
 ### Assign a policy
 
@@ -337,7 +337,7 @@ Azure policies help to enforce organizational standards and to assess compliance
 
 ### Enable CMK policy enforcement
 
-+ For new search services, create them with [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2023-11-01&tabs=HTTP#searchencryptionwithcmk?preserve-view=true) set to `Enabled`.
++ For new search services, create them with [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2023-11-01&tabs=HTTP#searchencryptionwithcmk&preserve-view=true) set to `Enabled`. Neither the Azure portal nor the command line tools (the Azure CLI and Azure PowerShell) provide this property, but you can use [Management REST API](/rest/api/searchmanagement/services/create-or-update) to provision a search service with a CMK policy definition.
 
 + For existing search services, patch them using [Services - Update API](/rest/api/searchmanagement/services/update).
 
@@ -355,9 +355,7 @@ Azure policies help to enforce organizational standards and to assess compliance
 
 ## Rotate or update encryption keys
 
-Use the following instructions to rotate keys or to migrate from Azure Key Vault to the Hardware Security Model (HSM)l
-
-We recommend using the [autorotation capabilities of Azure Key Vault](/azure/key-vault/keys/how-to-configure-key-rotation), but you can also rotate keys manually. 
+Use the following instructions to rotate keys or to migrate from Azure Key Vault to the Hardware Security Model (HSM). We recommend using the [autorotation capabilities of Azure Key Vault](/azure/key-vault/keys/how-to-configure-key-rotation), but you can also rotate keys manually. 
 
 When you change a key or its version, any object that uses the key must first be updated to use the new values **before** you delete the old values. Otherwise, the object becomes unusable because it can't be decrypted. 
 
@@ -375,15 +373,13 @@ For performance reasons, the search service caches the key for up to several hou
 
 ## Key Vault tips
 
-If you're new to Azure Key Vault, review this quickstart to learn about basic tasks: [Set and retrieve a secret from Azure Key Vault using PowerShell](/azure/key-vault/secrets/quick-create-powershell). 
-
-Here are some tips for using Key Vault:
++ If you're new to Azure Key Vault, review this quickstart to learn about basic tasks: [Set and retrieve a secret from Azure Key Vault using PowerShell](/azure/key-vault/secrets/quick-create-powershell). 
 
 + Use as many key vaults as you need. Managed keys can be in different key vaults. A search service can have multiple encrypted objects, each one encrypted with a different customer-managed encryption key, stored in different key vaults.
 
-+ Use the same tenant so that you can retrieve your managed key by connecting through a system or user-managed identity. This behavior requires both services to share the same tenant. For more information about creating a tenant, see [Set up a new tenant](/azure/active-directory/develop/quickstart-create-new-tenant).
++ Use the same Azure tenant so that you can retrieve your managed key through role assignments and by connecting through a system or user-managed identity. For more information about creating a tenant, see [Set up a new tenant](/azure/active-directory/develop/quickstart-create-new-tenant).
 
-+ [Enable purge protection](/azure/key-vault/general/soft-delete-overview#purge-protection) and [soft-delete](/azure/key-vault/general/soft-delete-overview). Due to the nature of encryption with customer-managed keys, no one can retrieve your data if your Azure Key Vault key is deleted. To prevent data loss caused by accidental Key Vault key deletions, soft-delete and purge protection must be enabled on the key vault. Soft-delete is enabled by default, so you'll only encounter issues if you purposely disable it. Purge protection isn't enabled by default, but it's required for customer-managed key encryption in Azure AI Search.
++ [Enable purge protection](/azure/key-vault/general/soft-delete-overview#purge-protection) and [soft-delete](/azure/key-vault/general/soft-delete-overview) on a key vault. Due to the nature of encryption with customer-managed keys, no one can retrieve your data if your Azure Key Vault key is deleted. To prevent data loss caused by accidental Key Vault key deletions, soft-delete and purge protection must be enabled on the key vault. Soft-delete is enabled by default, so you'll only encounter issues if you purposely disable it. Purge protection isn't enabled by default, but it's required for CMK encryption in Azure AI Search.
 
 + [Enable logging](/azure/key-vault/general/logging) on the key vault so that you can monitor key usage.
 
@@ -391,7 +387,7 @@ Here are some tips for using Key Vault:
 
 ## Work with encrypted content
 
-With customer-managed key encryption, you might notice latency for both indexing and queries due to the extra encrypt/decrypt work. Azure AI Search doesn't log encryption activity, but you can monitor key access through key vault logging. 
+With CMK encryption, you might notice latency for both indexing and queries due to the extra encrypt/decrypt work. Azure AI Search doesn't log encryption activity, but you can monitor key access through key vault logging. 
 
 We recommend that you [enable logging](/azure/key-vault/general/logging) as part of key vault configuration.
 
