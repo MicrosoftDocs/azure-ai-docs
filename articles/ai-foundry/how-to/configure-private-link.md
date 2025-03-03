@@ -318,7 +318,7 @@ The following restrictions apply to IP address ranges:
 
 - When this feature is enabled, you can test public endpoints using any client tool such as Curl, but the Endpoint Test tool in the portal isn't supported.
 
-- You can only set the IP addresses for the workspace after the workspace has been created.
+- You can only set the IP addresses for the AI Foundry hub after the hub has been created.
 
 ## Private storage configuration
 
