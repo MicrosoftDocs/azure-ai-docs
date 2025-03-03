@@ -10,7 +10,7 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
 ms.custom: inference server, local development, local debugging, devplatv2
-ms.date: 01/06/2025
+ms.date: 03/03/2025
 
 #customer intent: As a developer, I want to work with the Azure Machine Learning inference HTTP server so I can debug scoring scripts or endpoints before deployment.
 ---
