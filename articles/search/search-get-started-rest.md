@@ -9,7 +9,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.devlang: rest-api
-ms.date: 03/03/2025
+ms.date: 03/04/2025
 ms.custom:
   - mode-api
   - ignite-2023

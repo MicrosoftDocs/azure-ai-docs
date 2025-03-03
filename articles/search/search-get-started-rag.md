@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: RAG Using Grounding Data'
+title: 'Quickstart: RAG'
 titleSuffix: Azure AI Search
 description: Learn how to use grounding data from Azure AI Search with a chat model on Azure OpenAI.
 author: haileytap
@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: quickstart
-ms.date: 03/03/2025
+ms.date: 03/04/2025
 ---
 
 # Quickstart: Generative search (RAG) using grounding data from Azure AI Search

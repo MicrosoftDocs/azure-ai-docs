@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Deploy Using ARM Templates'
+title: 'Quickstart: Deploy Using an ARM Template'
 titleSuffix: Azure AI Search
 description: Learn how to deploy an Azure AI Search service instance using an Azure Resource Manager template.
 manager: nitinme
@@ -12,7 +12,7 @@ ms.custom:
   - mode-arm
   - devx-track-arm-template
   - ignite-2023
-ms.date: 03/03/2025
+ms.date: 03/04/2025
 ---
 
 # Quickstart: Deploy Azure AI Search using an Azure Resource Manager template

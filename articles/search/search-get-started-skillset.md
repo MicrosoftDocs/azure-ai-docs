@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: quickstart
-ms.date: 03/03/2025
+ms.date: 03/04/2025
 ---
 
 # Quickstart: Create a skillset in the Azure portal

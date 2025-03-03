@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 03/03/2025
+ms.date: 03/04/2025
 ms.custom:
   - mode-ui
 ---
@@ -19,7 +19,7 @@ In this quickstart, you learn how to use **Search explorer**, a built-in query t
 This quickstart uses an existing index to demonstrate Search explorer.
 
 > [!TIP]
-> Search explorer now supports image search. [Quickstart: Image search in Azure portal](search-get-started-portal-image-search.md) provides the steps.
+> Search explorer now supports image search. To learn more, see[Quickstart: Image search in the Azure portal](search-get-started-portal-image-search.md).
 
 ## Prerequisites
 
@@ -27,7 +27,7 @@ This quickstart uses an existing index to demonstrate Search explorer.
 
 + An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. For this quickstart, you can use a free servic.
 
-+ This quickstart uses the realestate-us-sample-index. To create the index, use the [**Import data wizard**](search-import-data-portal.md), select the built-in sample data, and step through the wizard using all the default values.
++ This quickstart uses the realestate-us-sample index. To create the index, run the [**Import data wizard**](search-import-data-portal.md), select the built-in sample data, and step through the wizard using all the default values.
 
   :::image type="content" source="media/search-explorer/search-explorer-sample-data.png" alt-text="Screenshot of the sample data sets available in the Import data wizard." border="true":::  
 

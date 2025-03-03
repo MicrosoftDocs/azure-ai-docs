@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Deploy Using Bicep'
+title: 'Quickstart: Deploy Using a Bicep File'
 titleSuffix: Azure AI Search
 description: Learn how to deploy an Azure AI Search service instance using Bicep.
 author: haileytap
@@ -11,7 +11,7 @@ ms.custom:
   - mode-arm
   - devx-track-bicep
   - ignite-2023
-ms.date: 03/03/2025
+ms.date: 03/04/2025
 ---
 
 # Quickstart: Deploy Azure AI Search using Bicep
