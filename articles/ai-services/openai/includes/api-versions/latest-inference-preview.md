@@ -11,7 +11,7 @@ ms.date: 01/29/2025
 ## Completions - Create
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/completions?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/completions?api-version=2025-02-01-preview
 ```
 
 Creates a completion for the provided prompt, parameters and chosen model.
@@ -80,7 +80,7 @@ Creates a completion for the provided prompt, parameters and chosen model.
 Creates a completion for the provided prompt, parameters and chosen model.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/completions?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/completions?api-version=2025-02-01-preview
 
 {
  "prompt": [
@@ -120,7 +120,7 @@ Status Code: 200
 ## Embeddings - Create
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/embeddings?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/embeddings?api-version=2025-02-01-preview
 ```
 
 Get a vector representation of a given input that can be easily consumed by machine learning models and algorithms.
@@ -191,7 +191,7 @@ Get a vector representation of a given input that can be easily consumed by mach
 Return the embeddings for a given prompt.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/embeddings?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/embeddings?api-version=2025-02-01-preview
 
 {
  "input": [
@@ -265,7 +265,7 @@ Status Code: 200
 ## Chat completions - Create
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2025-02-01-preview
 ```
 
 Creates a completion for the chat message
@@ -360,7 +360,7 @@ Creates a completion for the chat message
 Creates a completion for the provided prompt, parameters and chosen model.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2025-02-01-preview
 
 {
  "messages": [
@@ -408,7 +408,7 @@ Status Code: 200
 Creates a completion based on Azure Search data and system-assigned managed identity.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2025-02-01-preview
 
 {
  "messages": [
@@ -476,7 +476,7 @@ Status Code: 200
 Creates a completion based on Azure Search image vector data.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2025-02-01-preview
 
 {
  "messages": [
@@ -539,7 +539,7 @@ Status Code: 200
 Creates a completion based on Azure Search vector data, previous assistant message and user-assigned managed identity.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2025-02-01-preview
 
 {
  "messages": [
@@ -640,7 +640,7 @@ Status Code: 200
 Creates a completion for the provided Azure Cosmos DB.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2025-02-01-preview
 
 {
  "messages": [
@@ -722,7 +722,7 @@ Status Code: 200
 Creates a completion for the provided Mongo DB.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2025-02-01-preview
 
 {
  "messages": [
@@ -807,7 +807,7 @@ Status Code: 200
 Creates a completion for the provided Elasticsearch.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2025-02-01-preview
 
 {
  "messages": [
@@ -877,7 +877,7 @@ Status Code: 200
 Creates a completion for the provided Pinecone resource.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2025-02-01-preview
 
 {
  "messages": [
@@ -957,7 +957,7 @@ Status Code: 200
 ## Transcriptions - Create
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/audio/transcriptions?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/audio/transcriptions?api-version=2025-02-01-preview
 ```
 
 Transcribes audio into the input language.
@@ -1007,7 +1007,7 @@ Transcribes audio into the input language.
 Gets transcribed text and associated metadata from provided spoken audio data.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/audio/transcriptions?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/audio/transcriptions?api-version=2025-02-01-preview
 
 ```
 
@@ -1026,7 +1026,7 @@ Status Code: 200
 Gets transcribed text and associated metadata from provided spoken audio data.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/audio/transcriptions?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/audio/transcriptions?api-version=2025-02-01-preview
 
 "---multipart-boundary\nContent-Disposition: form-data; name=\"file\"; filename=\"file.wav\"\nContent-Type: application/octet-stream\n\nRIFF..audio.data.omitted\n---multipart-boundary--"
 
@@ -1044,7 +1044,7 @@ Status Code: 200
 ## Translations - Create
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/audio/translations?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/audio/translations?api-version=2025-02-01-preview
 ```
 
 Transcribes and translates input audio into English text.
@@ -1092,7 +1092,7 @@ Transcribes and translates input audio into English text.
 Gets English language transcribed text and associated metadata from provided spoken audio data.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/audio/translations?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/audio/translations?api-version=2025-02-01-preview
 
 "---multipart-boundary\nContent-Disposition: form-data; name=\"file\"; filename=\"file.wav\"\nContent-Type: application/octet-stream\n\nRIFF..audio.data.omitted\n---multipart-boundary--"
 
@@ -1113,7 +1113,7 @@ Status Code: 200
 Gets English language transcribed text and associated metadata from provided spoken audio data.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/audio/translations?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/audio/translations?api-version=2025-02-01-preview
 
 "---multipart-boundary\nContent-Disposition: form-data; name=\"file\"; filename=\"file.wav\"\nContent-Type: application/octet-stream\n\nRIFF..audio.data.omitted\n---multipart-boundary--"
 
@@ -1131,7 +1131,7 @@ Status Code: 200
 ## Speech - Create
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/audio/speech?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/audio/speech?api-version=2025-02-01-preview
 ```
 
 Generates audio from the input text.
@@ -1178,7 +1178,7 @@ Generates audio from the input text.
 Synthesizes audio from the provided text.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/audio/speech?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/audio/speech?api-version=2025-02-01-preview
 
 {
  "input": "Hi! What are you going to make?",
@@ -1199,7 +1199,7 @@ Status Code: 200
 ## Image generations - Create
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?api-version=2025-02-01-preview
 ```
 
 Generates a batch of images from a text caption on a given DALLE model deployment
@@ -1257,7 +1257,7 @@ Generates a batch of images from a text caption on a given DALLE model deploymen
 Creates images given a prompt.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?api-version=2025-02-01-preview
 
 {
  "prompt": "In the style of WordArt, Microsoft Clippy wearing a cowboy hat.",
@@ -1331,7 +1331,7 @@ Status Code: 200
 ## List - Assistants
 
 ```HTTP
-GET https://{endpoint}/openai/assistants?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/assistants?api-version=2025-02-01-preview
 ```
 
 Returns a list of assistants.
@@ -1370,7 +1370,7 @@ Returns a list of assistants.
 Returns a list of assistants.
 
 ```HTTP
-GET https://{endpoint}/openai/assistants?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/assistants?api-version=2025-02-01-preview
 
 ```
 
@@ -1441,7 +1441,7 @@ Status Code: 200
 ## Create - Assistant
 
 ```HTTP
-POST https://{endpoint}/openai/assistants?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/assistants?api-version=2025-02-01-preview
 ```
 
 Create an assistant with a model and instructions.
@@ -1509,7 +1509,7 @@ Create an assistant with a model and instructions.
 Create an assistant with a model and instructions.
 
 ```HTTP
-POST https://{endpoint}/openai/assistants?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/assistants?api-version=2025-02-01-preview
 
 {
  "name": "Math Tutor",
@@ -1552,7 +1552,7 @@ Status Code: 200
 ## Get - Assistant
 
 ```HTTP
-GET https://{endpoint}/openai/assistants/{assistant_id}?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/assistants/{assistant_id}?api-version=2025-02-01-preview
 ```
 
 Retrieves an assistant.
@@ -1588,7 +1588,7 @@ Retrieves an assistant.
 Retrieves an assistant.
 
 ```HTTP
-GET https://{endpoint}/openai/assistants/{assistant_id}?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/assistants/{assistant_id}?api-version=2025-02-01-preview
 
 ```
 
@@ -1620,7 +1620,7 @@ Status Code: 200
 ## Modify - Assistant
 
 ```HTTP
-POST https://{endpoint}/openai/assistants/{assistant_id}?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/assistants/{assistant_id}?api-version=2025-02-01-preview
 ```
 
 Modifies an assistant.
@@ -1688,7 +1688,7 @@ Modifies an assistant.
 Modifies an assistant.
 
 ```HTTP
-POST https://{endpoint}/openai/assistants/{assistant_id}?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/assistants/{assistant_id}?api-version=2025-02-01-preview
 
 {
  "instructions": "You are an HR bot, and you have access to files to answer employee questions about company policies. Always response with info from either of the files.",
@@ -1735,7 +1735,7 @@ Status Code: 200
 ## Delete - Assistant
 
 ```HTTP
-DELETE https://{endpoint}/openai/assistants/{assistant_id}?api-version=2025-01-01-preview
+DELETE https://{endpoint}/openai/assistants/{assistant_id}?api-version=2025-02-01-preview
 ```
 
 Delete an assistant.
@@ -1771,7 +1771,7 @@ Delete an assistant.
 Deletes an assistant.
 
 ```HTTP
-DELETE https://{endpoint}/openai/assistants/{assistant_id}?api-version=2025-01-01-preview
+DELETE https://{endpoint}/openai/assistants/{assistant_id}?api-version=2025-02-01-preview
 
 ```
 
@@ -1790,7 +1790,7 @@ Status Code: 200
 ## Create - Thread
 
 ```HTTP
-POST https://{endpoint}/openai/threads?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/threads?api-version=2025-02-01-preview
 ```
 
 Create a thread.
@@ -1851,7 +1851,7 @@ Create a thread.
 Creates a thread.
 
 ```HTTP
-POST https://{endpoint}/openai/threads?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/threads?api-version=2025-02-01-preview
 
 ```
 
@@ -1871,7 +1871,7 @@ Status Code: 200
 ## Get - Thread
 
 ```HTTP
-GET https://{endpoint}/openai/threads/{thread_id}?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/threads/{thread_id}?api-version=2025-02-01-preview
 ```
 
 Retrieves a thread.
@@ -1907,7 +1907,7 @@ Retrieves a thread.
 Retrieves a thread.
 
 ```HTTP
-GET https://{endpoint}/openai/threads/{thread_id}?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/threads/{thread_id}?api-version=2025-02-01-preview
 
 ```
 
@@ -1932,7 +1932,7 @@ Status Code: 200
 ## Modify - Thread
 
 ```HTTP
-POST https://{endpoint}/openai/threads/{thread_id}?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/threads/{thread_id}?api-version=2025-02-01-preview
 ```
 
 Modifies a thread.
@@ -1992,7 +1992,7 @@ Modifies a thread.
 Modifies a thread.
 
 ```HTTP
-POST https://{endpoint}/openai/threads/{thread_id}?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/threads/{thread_id}?api-version=2025-02-01-preview
 
 {
  "metadata": {
@@ -2023,7 +2023,7 @@ Status Code: 200
 ## Delete - Thread
 
 ```HTTP
-DELETE https://{endpoint}/openai/threads/{thread_id}?api-version=2025-01-01-preview
+DELETE https://{endpoint}/openai/threads/{thread_id}?api-version=2025-02-01-preview
 ```
 
 Delete a thread.
@@ -2059,7 +2059,7 @@ Delete a thread.
 Deletes a thread.
 
 ```HTTP
-DELETE https://{endpoint}/openai/threads/{thread_id}?api-version=2025-01-01-preview
+DELETE https://{endpoint}/openai/threads/{thread_id}?api-version=2025-02-01-preview
 
 ```
 
@@ -2078,7 +2078,7 @@ Status Code: 200
 ## List - Messages
 
 ```HTTP
-GET https://{endpoint}/openai/threads/{thread_id}/messages?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/threads/{thread_id}/messages?api-version=2025-02-01-preview
 ```
 
 Returns a list of messages for a given thread.
@@ -2119,7 +2119,7 @@ Returns a list of messages for a given thread.
 List Messages
 
 ```HTTP
-GET https://{endpoint}/openai/threads/{thread_id}/messages?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/threads/{thread_id}/messages?api-version=2025-02-01-preview
 
 ```
 
@@ -2181,7 +2181,7 @@ Status Code: 200
 ## Create - Message
 
 ```HTTP
-POST https://{endpoint}/openai/threads/{thread_id}/messages?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/threads/{thread_id}/messages?api-version=2025-02-01-preview
 ```
 
 Create a message.
@@ -2228,7 +2228,7 @@ Create a message.
 Create a message.
 
 ```HTTP
-POST https://{endpoint}/openai/threads/{thread_id}/messages?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/threads/{thread_id}/messages?api-version=2025-02-01-preview
 
 {
  "role": "user",
@@ -2267,7 +2267,7 @@ Status Code: 200
 ## Get - Message
 
 ```HTTP
-GET https://{endpoint}/openai/threads/{thread_id}/messages/{message_id}?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/threads/{thread_id}/messages/{message_id}?api-version=2025-02-01-preview
 ```
 
 Retrieve a message.
@@ -2304,7 +2304,7 @@ Retrieve a message.
 Retrieve a message.
 
 ```HTTP
-GET https://{endpoint}/openai/threads/{thread_id}/messages/{message_id}?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/threads/{thread_id}/messages/{message_id}?api-version=2025-02-01-preview
 
 ```
 
@@ -2338,7 +2338,7 @@ Status Code: 200
 ## Modify - Message
 
 ```HTTP
-POST https://{endpoint}/openai/threads/{thread_id}/messages/{message_id}?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/threads/{thread_id}/messages/{message_id}?api-version=2025-02-01-preview
 ```
 
 Modifies a message.
@@ -2383,7 +2383,7 @@ Modifies a message.
 Modify a message.
 
 ```HTTP
-POST https://{endpoint}/openai/threads/{thread_id}/messages/{message_id}?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/threads/{thread_id}/messages/{message_id}?api-version=2025-02-01-preview
 
 {
  "metadata": {
@@ -2427,7 +2427,7 @@ Status Code: 200
 ## Create - Thread And Run
 
 ```HTTP
-POST https://{endpoint}/openai/threads/runs?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/threads/runs?api-version=2025-02-01-preview
 ```
 
 Create a thread and run it in one request.
@@ -2501,7 +2501,7 @@ Create a thread and run it in one request.
 Create a thread and run it in one request.
 
 ```HTTP
-POST https://{endpoint}/openai/threads/runs?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/threads/runs?api-version=2025-02-01-preview
 
 {
  "assistant_id": "asst_abc123",
@@ -2559,7 +2559,7 @@ Status Code: 200
 ## List - Runs
 
 ```HTTP
-GET https://{endpoint}/openai/threads/{thread_id}/runs?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/threads/{thread_id}/runs?api-version=2025-02-01-preview
 ```
 
 Returns a list of runs belonging to a thread.
@@ -2599,7 +2599,7 @@ Returns a list of runs belonging to a thread.
 Returns a list of runs belonging to a thread.
 
 ```HTTP
-GET https://{endpoint}/openai/threads/{thread_id}/runs?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/threads/{thread_id}/runs?api-version=2025-02-01-preview
 
 ```
 
@@ -2713,7 +2713,7 @@ Status Code: 200
 ## Create - Run
 
 ```HTTP
-POST https://{endpoint}/openai/threads/{thread_id}/runs?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/threads/{thread_id}/runs?api-version=2025-02-01-preview
 ```
 
 Create a run.
@@ -2773,7 +2773,7 @@ Create a run.
 Create a run.
 
 ```HTTP
-POST https://{endpoint}/openai/threads/{thread_id}/runs?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/threads/{thread_id}/runs?api-version=2025-02-01-preview
 
 {
  "assistant_id": "asst_abc123"
@@ -2825,7 +2825,7 @@ Status Code: 200
 ## Get - Run
 
 ```HTTP
-GET https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}?api-version=2025-02-01-preview
 ```
 
 Retrieves a run.
@@ -2862,7 +2862,7 @@ Retrieves a run.
 Gets a run.
 
 ```HTTP
-GET https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}?api-version=2025-02-01-preview
 
 ```
 
@@ -2895,7 +2895,7 @@ Status Code: 200
 ## Modify - Run
 
 ```HTTP
-POST https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}?api-version=2025-02-01-preview
 ```
 
 Modifies a run.
@@ -2940,7 +2940,7 @@ Modifies a run.
 Modifies a run.
 
 ```HTTP
-POST https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}?api-version=2025-02-01-preview
 
 {
  "metadata": {
@@ -3008,7 +3008,7 @@ Status Code: 200
 ## Submit - Tool Outputs To Run
 
 ```HTTP
-POST https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}/submit_tool_outputs?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}/submit_tool_outputs?api-version=2025-02-01-preview
 ```
 
 When a run has the `status: "requires_action"` and `required_action.type` is `submit_tool_outputs`, this endpoint can be used to submit the outputs from the tool calls once they're all completed. All outputs must be submitted in a single request.
@@ -3056,7 +3056,7 @@ When a run has the `status: "requires_action"` and `required_action.type` is `su
 
 
 ```HTTP
-POST https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}/submit_tool_outputs?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}/submit_tool_outputs?api-version=2025-02-01-preview
 
 {
  "tool_outputs": [
@@ -3135,7 +3135,7 @@ Status Code: 200
 ## Cancel - Run
 
 ```HTTP
-POST https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}/cancel?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}/cancel?api-version=2025-02-01-preview
 ```
 
 Cancels a run that is `in_progress`.
@@ -3173,7 +3173,7 @@ Cancels a run that is `in_progress`.
 
 
 ```HTTP
-POST https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}/cancel?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}/cancel?api-version=2025-02-01-preview
 
 ```
 
@@ -3220,7 +3220,7 @@ Status Code: 200
 ## List - Run Steps
 
 ```HTTP
-GET https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}/steps?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}/steps?api-version=2025-02-01-preview
 ```
 
 Returns a list of run steps belonging to a run.
@@ -3262,7 +3262,7 @@ Returns a list of run steps belonging to a run.
 Returns a list of run steps belonging to a run.
 
 ```HTTP
-GET https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}/steps?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}/steps?api-version=2025-02-01-preview
 
 ```
 
@@ -3310,7 +3310,7 @@ Status Code: 200
 ## Get - Run Step
 
 ```HTTP
-GET https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}/steps/{step_id}?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}/steps/{step_id}?api-version=2025-02-01-preview
 ```
 
 Retrieves a run step.
@@ -3350,7 +3350,7 @@ Retrieves a run step.
 Retrieves a run step.
 
 ```HTTP
-GET https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}/steps/{step_id}?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/threads/{thread_id}/runs/{run_id}/steps/{step_id}?api-version=2025-02-01-preview
 
 ```
 
@@ -3390,7 +3390,7 @@ Status Code: 200
 ## List - Vector Stores
 
 ```HTTP
-GET https://{endpoint}/openai/vector_stores?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/vector_stores?api-version=2025-02-01-preview
 ```
 
 Returns a list of vector stores.
@@ -3429,7 +3429,7 @@ Returns a list of vector stores.
 Returns a list of vector stores.
 
 ```HTTP
-GET https://{endpoint}/openai/vector_stores?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/vector_stores?api-version=2025-02-01-preview
 
 ```
 
@@ -3479,7 +3479,7 @@ Status Code: 200
 ## Create - Vector Store
 
 ```HTTP
-POST https://{endpoint}/openai/vector_stores?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/vector_stores?api-version=2025-02-01-preview
 ```
 
 Create a vector store.
@@ -3526,7 +3526,7 @@ Create a vector store.
 Creates a vector store.
 
 ```HTTP
-POST https://{endpoint}/openai/vector_stores?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/vector_stores?api-version=2025-02-01-preview
 
 ```
 
@@ -3554,7 +3554,7 @@ Status Code: 200
 ## Get - Vector Store
 
 ```HTTP
-GET https://{endpoint}/openai/vector_stores/{vector_store_id}?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/vector_stores/{vector_store_id}?api-version=2025-02-01-preview
 ```
 
 Retrieves a vector store.
@@ -3590,7 +3590,7 @@ Retrieves a vector store.
 Retrieves a vector store.
 
 ```HTTP
-GET https://{endpoint}/openai/vector_stores/{vector_store_id}?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/vector_stores/{vector_store_id}?api-version=2025-02-01-preview
 
 ```
 
@@ -3609,7 +3609,7 @@ Status Code: 200
 ## Modify - Vector Store
 
 ```HTTP
-POST https://{endpoint}/openai/vector_stores/{vector_store_id}?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/vector_stores/{vector_store_id}?api-version=2025-02-01-preview
 ```
 
 Modifies a vector store.
@@ -3655,7 +3655,7 @@ Modifies a vector store.
 Modifies a vector store.
 
 ```HTTP
-POST https://{endpoint}/openai/vector_stores/{vector_store_id}?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/vector_stores/{vector_store_id}?api-version=2025-02-01-preview
 
 {
  "name": "Support FAQ"
@@ -3687,7 +3687,7 @@ Status Code: 200
 ## Delete - Vector Store
 
 ```HTTP
-DELETE https://{endpoint}/openai/vector_stores/{vector_store_id}?api-version=2025-01-01-preview
+DELETE https://{endpoint}/openai/vector_stores/{vector_store_id}?api-version=2025-02-01-preview
 ```
 
 Delete a vector store.
@@ -3723,7 +3723,7 @@ Delete a vector store.
 Deletes a vector store.
 
 ```HTTP
-DELETE https://{endpoint}/openai/vector_stores/{vector_store_id}?api-version=2025-01-01-preview
+DELETE https://{endpoint}/openai/vector_stores/{vector_store_id}?api-version=2025-02-01-preview
 
 ```
 
@@ -3742,7 +3742,7 @@ Status Code: 200
 ## List - Vector Store Files
 
 ```HTTP
-GET https://{endpoint}/openai/vector_stores/{vector_store_id}/files?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/vector_stores/{vector_store_id}/files?api-version=2025-02-01-preview
 ```
 
 Returns a list of vector store files.
@@ -3783,7 +3783,7 @@ Returns a list of vector store files.
 Returns a list of vector store files.
 
 ```HTTP
-GET https://{endpoint}/openai/vector_stores/{vector_store_id}/files?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/vector_stores/{vector_store_id}/files?api-version=2025-02-01-preview
 
 ```
 
@@ -3817,7 +3817,7 @@ Status Code: 200
 ## Create - Vector Store File
 
 ```HTTP
-POST https://{endpoint}/openai/vector_stores/{vector_store_id}/files?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/vector_stores/{vector_store_id}/files?api-version=2025-02-01-preview
 ```
 
 Create a vector store file by attaching a File to a vector store.
@@ -3862,7 +3862,7 @@ Create a vector store file by attaching a File to a vector store.
 Create a vector store file by attaching a File to a vector store.
 
 ```HTTP
-POST https://{endpoint}/openai/vector_stores/{vector_store_id}/files?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/vector_stores/{vector_store_id}/files?api-version=2025-02-01-preview
 
 {
  "file_id": "file-abc123"
@@ -3889,7 +3889,7 @@ Status Code: 200
 ## Get - Vector Store File
 
 ```HTTP
-GET https://{endpoint}/openai/vector_stores/{vector_store_id}/files/{file_id}?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/vector_stores/{vector_store_id}/files/{file_id}?api-version=2025-02-01-preview
 ```
 
 Retrieves a vector store file.
@@ -3926,7 +3926,7 @@ Retrieves a vector store file.
 Retrieves a vector store file.
 
 ```HTTP
-GET https://{endpoint}/openai/vector_stores/{vector_store_id}/files/{file_id}?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/vector_stores/{vector_store_id}/files/{file_id}?api-version=2025-02-01-preview
 
 ```
 
@@ -3948,7 +3948,7 @@ Status Code: 200
 ## Delete - Vector Store File
 
 ```HTTP
-DELETE https://{endpoint}/openai/vector_stores/{vector_store_id}/files/{file_id}?api-version=2025-01-01-preview
+DELETE https://{endpoint}/openai/vector_stores/{vector_store_id}/files/{file_id}?api-version=2025-02-01-preview
 ```
 
 Delete a vector store file. This will remove the file from the vector store but the file itself won't be deleted. To delete the file, use the delete file endpoint.
@@ -3985,7 +3985,7 @@ Delete a vector store file. This will remove the file from the vector store but 
 Delete a vector store file. This will remove the file from the vector store but the file itself won't be deleted. To delete the file, use the delete file endpoint.
 
 ```HTTP
-DELETE https://{endpoint}/openai/vector_stores/{vector_store_id}/files/{file_id}?api-version=2025-01-01-preview
+DELETE https://{endpoint}/openai/vector_stores/{vector_store_id}/files/{file_id}?api-version=2025-02-01-preview
 
 ```
 
@@ -4004,7 +4004,7 @@ Status Code: 200
 ## Create - Vector Store File Batch
 
 ```HTTP
-POST https://{endpoint}/openai/vector_stores/{vector_store_id}/file_batches?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/vector_stores/{vector_store_id}/file_batches?api-version=2025-02-01-preview
 ```
 
 Create a vector store file batch.
@@ -4049,7 +4049,7 @@ Create a vector store file batch.
 Create a vector store file batch.
 
 ```HTTP
-POST https://{endpoint}/openai/vector_stores/{vector_store_id}/file_batches?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/vector_stores/{vector_store_id}/file_batches?api-version=2025-02-01-preview
 
 {
  "file_ids": [
@@ -4082,7 +4082,7 @@ Status Code: 200
 ## Get - Vector Store File Batch
 
 ```HTTP
-GET https://{endpoint}/openai/vector_stores/{vector_store_id}/file_batches/{batch_id}?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/vector_stores/{vector_store_id}/file_batches/{batch_id}?api-version=2025-02-01-preview
 ```
 
 Retrieves a vector store file batch.
@@ -4119,7 +4119,7 @@ Retrieves a vector store file batch.
 Retrieves a vector store file batch.
 
 ```HTTP
-GET https://{endpoint}/openai/vector_stores/{vector_store_id}/file_batches/{batch_id}?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/vector_stores/{vector_store_id}/file_batches/{batch_id}?api-version=2025-02-01-preview
 
 ```
 
@@ -4147,7 +4147,7 @@ Status Code: 200
 ## Cancel - Vector Store File Batch
 
 ```HTTP
-POST https://{endpoint}/openai/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel?api-version=2025-02-01-preview
 ```
 
 Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
@@ -4184,7 +4184,7 @@ Cancel a vector store file batch. This attempts to cancel the processing of file
 Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
 
 ```HTTP
-POST https://{endpoint}/openai/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel?api-version=2025-01-01-preview
+POST https://{endpoint}/openai/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel?api-version=2025-02-01-preview
 
 ```
 
@@ -4212,7 +4212,7 @@ Status Code: 200
 ## List - Vector Store File Batch Files
 
 ```HTTP
-GET https://{endpoint}/openai/vector_stores/{vector_store_id}/file_batches/{batch_id}/files?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/vector_stores/{vector_store_id}/file_batches/{batch_id}/files?api-version=2025-02-01-preview
 ```
 
 Returns a list of vector store files in a batch.
@@ -4254,7 +4254,7 @@ Returns a list of vector store files in a batch.
 Returns a list of vector store files.
 
 ```HTTP
-GET https://{endpoint}/openai/vector_stores/{vector_store_id}/file_batches/{batch_id}/files?api-version=2025-01-01-preview
+GET https://{endpoint}/openai/vector_stores/{vector_store_id}/file_batches/{batch_id}/files?api-version=2025-02-01-preview
 
 ```
 
