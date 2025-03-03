@@ -28,7 +28,7 @@ To use chat completion models in your application, you need:
 
 ## Use chat completions
 
-To use the text embeddings, use the route `/chat/completions` appended to the base URL along with your credential indicated in `api-key`. `Authorization` header is also supported with the format `Bearer <key>`.
+To use chat completions API, use the route `/chat/completions` appended to the base URL along with your credential indicated in `api-key`. `Authorization` header is also supported with the format `Bearer <key>`.
 
 ```http
 POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
