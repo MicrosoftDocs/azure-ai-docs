@@ -314,19 +314,12 @@ Use the Azure portal for this task. Make sure you have a role assignment that gr
 
 ## Set up a policy to enforce CMK compliance
 
-Azure policies help to enforce organizational standards and to assess compliance at-scale. Azure AI Search has two optional built-in policies related to CMK:
+Azure policies help to enforce organizational standards and to assess compliance at-scale. Azure AI Search has two optional built-in policies related to CMK. These policies apply to new and existing search services.
 
-| Effect | Applies to | Effect if enabled|
-|--------|------------|--------|
-| [**AuditIfNotExists**](/azure/governance/policy/concepts/effect-audit-if-not-exists) | New and existing services | Identify data plane objects that lack CMK encryption and search services that don't enforce CMK encryption. Evaluate each time an object is created or updated, or [per the evaluation schedule](/azure/governance/policy/overview#understand-evaluation-outcomes). [Learn more...](https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F356da939-f20a-4bb9-86f8-5db445b0e354) |
-| [**Deny**](/azure/governance/policy/concepts/effect-deny) | New and existing services | Prevents usage of search services until `"encryptionWithCmk": {"enforcement": "Enabled"}` is set. New services can be created with [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-updat#searchencryptionwithcmk) set to `Enabled`. Existing non-compliant search services can be managed, but objects aren't usable until you make them CMK compliant. Attempting to use a non-compliant object returns a `403 Forbidden` error. On existing services that are returning error code 403, enable the policy and then recreate the objects with CMK enabled, or change the scope to exclude the search service. [Learn more...](https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F356da939-f20a-4bb9-86f8-5db445b0e354) |
-
-There are several steps:
-
-+ Assign a policy
-+ Enable policy enforcement on the search service
-
-Follow these steps to set up a policy.
+| Effect | Effect if enabled|
+|--------|------------------|
+| [**AuditIfNotExists**](/azure/governance/policy/concepts/effect-audit-if-not-exists) | Identify data plane objects that lack CMK encryption and search services that don't enforce CMK encryption. Evaluate each time an object is created or updated, or [per the evaluation schedule](/azure/governance/policy/overview#understand-evaluation-outcomes). [Learn more...](https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F356da939-f20a-4bb9-86f8-5db445b0e354) |
+| [**Deny**](/azure/governance/policy/concepts/effect-deny) | Prevents usage of search services until `"encryptionWithCmk": {"enforcement": "Enabled"}` is set. New services can be created with [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2023-11-01&tabs=HTTP#searchencryptionwithcmk?preserve-view=true) set to `Enabled`. Existing non-compliant search services can be managed, but objects aren't usable until you make them CMK compliant. Attempting to use a non-compliant object returns a `403 Forbidden` error. On existing services that are returning error code 403, enable the policy and then recreate the objects with CMK enabled, or change the scope to exclude the search service. [Learn more...](https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F356da939-f20a-4bb9-86f8-5db445b0e354) |
 
 ### Assign a policy
 
@@ -340,11 +333,11 @@ Follow these steps to set up a policy.
 
 1. Set [policy scope](/azure/governance/policy/concepts/scope) by selecting the subscription and resource group. Exclude any search services for which the policy shouldn't apply.
 
-1. Accept the defaults and select **Review +create**, followed by **Create**.
+1. Accept or modify the defaults. Select **Review +create**, followed by **Create**.
 
 ### Enable CMK policy enforcement
 
-+ For new search services, create them with [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-updat#searchencryptionwithcmk) set to `Enabled`.
++ For new search services, create them with [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2023-11-01&tabs=HTTP#searchencryptionwithcmk?preserve-view=true) set to `Enabled`.
 
 + For existing search services, patch them using [Services - Update API](/rest/api/searchmanagement/services/update).
 
@@ -358,28 +351,7 @@ Follow these steps to set up a policy.
           }
       }
    }
-
-<!-- 1. In the **Parameters** section, uncheck **Only show parameters...** and set **Effect** to [**AuditIfNotExists**](/azure/governance/policy/concepts/effect-audit-if-not-exists). 
-
-   During evaluation of the request, a request that matches the policy definition is marked as noncompliant. Assuming the standard for your service is CMK encryption, "audit if not exists" means that requests that *don't* specify CMK encryption are noncompliant.
-
-   :::image type="content" source="media/search-security-manage-encryption-keys/effect-deny.png" alt-text="Screenshot of changing built-in CMK policy effect to audit if not exists." border="true":::
-
-1. Finish creating the policy.
-
-1. Call the [Services - Update API](/rest/api/searchmanagement/services/update) to enable CMK policy enforcement at the service level.
-
-   ```http
-   PATCH https://management.azure.com/subscriptions/<your-subscription-Id>/resourceGroups/<your-resource-group-name>/providers/Microsoft.Search/searchServices/<your-search-service-name>?api-version=2023-11-01
-  
-   {
-      "properties": {
-          "encryptionWithCmk": {
-              "enforcement": "Enabled"
-          }
-      }
-   }
-   ``` -->
+   ```
 
 ## Rotate or update encryption keys
 
