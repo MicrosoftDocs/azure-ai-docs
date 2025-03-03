@@ -40,7 +40,7 @@ Confidence scores are also part of extraction output JSON file:
  
 ## Improving accuracy results
 
-Common challenges with confidence scores include the quality of input documents, diversity in document types, complexity of the documents, and limitations of the model to recognize certain types of content or features. These limitations underscore the need for continuous improvements and adaptations in the modeling process to enhance reliability and accuracy. Here are some tips
+Common challenges with confidence scores include the quality of input documents, diversity in document types, complexity of the documents, and limitations of the model to recognize certain types of content or features. These limitations underscore the need for continuous improvements and adaptations in the modeling process to enhance reliability and accuracy. Here are some tips:
 
 * **Establish appropriate thresholds**. Setting thresholds can enhance the accuracy and reliability of predictions. These thresholds are predefined values that determine whether a prediction is considered reliable or requires further review. Establishing the right thresholds ensures that only high-confidence predictions are automated, while low-confidence predictions are flagged for human review. This approach helps increases the overall accuracy and reliability of predictions.
 
