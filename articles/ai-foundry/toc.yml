@@ -65,17 +65,17 @@ items:
     - name: Azure AI model inference
       items:
       - name: What is Azure AI model inference?
-        href: ../ai-foundry/model-inference/overview.md?context=/azure/ai-studio/context/context
+        href: ../ai-foundry/model-inference/overview.md?context=/azure/ai-foundry/context/context
       - name: Add and configure models
-        href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-studio/context/context
+        href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-foundry/context/context
       - name: Featured models supported in Azure AI model inference
-        href: ../ai-foundry/model-inference/concepts/models.md?context=/azure/ai-studio/context/context
+        href: ../ai-foundry/model-inference/concepts/models.md?context=/azure/ai-foundry/context/context
       - name: Supported programming languages and SDKs
-        href: ../ai-foundry/model-inference/supported-languages.md?context=/azure/ai-studio/context/context
+        href: ../ai-foundry/model-inference/supported-languages.md?context=/azure/ai-foundry/context/context
       - name: Use the Azure AI model inference endpoint
-        href: ../ai-foundry/model-inference/how-to/inference.md?context=/azure/ai-studio/context/context
+        href: ../ai-foundry/model-inference/how-to/inference.md?context=/azure/ai-foundry/context/context
       - name: Azure AI model inference quotas and limits
-        href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-studio/context/context
+        href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-foundry/context/context
     - name: Azure OpenAI Service
       items:
       - name: Deploy Azure OpenAI models
@@ -89,15 +89,15 @@ items:
     - name: Work with embedding models
       items:
         - name: Work with text embedding models
-          href: ../ai-foundry/model-inference/how-to/use-embeddings.md?context=/azure/ai-studio/context/context
+          href: ../ai-foundry/model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context
         - name: Work with image embedding models
-          href: ../ai-foundry/model-inference/how-to/use-image-embeddings.md?context=/azure/ai-studio/context/context
+          href: ../ai-foundry/model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context
     - name: Work with chat models
       items:
         - name: Work with chat completion models
-          href: ../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/ai-studio/context/context
+          href: ../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context
         - name: Work with reasoning models
-          href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-studio/context/context
+          href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context
     - name: Work with featured models
       items:
       - name: AI21 Jamba models
