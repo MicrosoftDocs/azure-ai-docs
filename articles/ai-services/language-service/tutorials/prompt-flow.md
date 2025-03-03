@@ -37,7 +37,7 @@ Your project is used to organize your work and save state.
 
 You can create an Azure AI Language flow by either cloning the samples available in the gallery or creating a flow from scratch. If you already have flow files in local or file share, you can also import the files to create a flow. For the purposes of this tutorial we'll be using the prebuilt **Analyze Conversations** flow.
 
-To create a prompt flow from the gallery in Azure AI Foundry portal:
+To create a prompt flow from the gallery in [Azure AI Foundry portal](https://ai.azure.com/):
 
 1. Sign in to Azure AI Foundry and select your project.
 

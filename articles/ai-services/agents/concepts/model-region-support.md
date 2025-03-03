@@ -43,7 +43,7 @@ The Azure AI Agent Service also supports the following models from the Azure AI 
 * Cohere-command-r-plus
 * Cohere-command-r
 
-To use these models, you can use Azure AI Foundry portal to make a deployment, and then reference the deployment name in your agent. For example:
+To use these models, you can use [Azure AI Foundry portal](https://ai.azure.com/) to make a deployment, and then reference the deployment name in your agent. For example:
 
 ```python
 agent = project_client.agents.create_agent( model="llama-3", name="my-agent", instructions="You are a helpful agent" ) 

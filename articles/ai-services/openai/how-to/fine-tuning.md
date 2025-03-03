@@ -238,7 +238,7 @@ In order to successfully access fine-tuning, you need **Cognitive Services OpenA
 
 ### Why did my upload fail?
 
-If your file upload fails in Azure AI Foundry portal, you can view the error message under **Data files** in Azure AI Foundry portal. Hover your mouse over where it says “error” (under the status column) and an explanation of the failure will be displayed.
+If your file upload fails in [Azure AI Foundry portal](https://ai.azure.com/), you can view the error message under **Data files** in [Azure AI Foundry portal](https://ai.azure.com/). Hover your mouse over where it says “error” (under the status column) and an explanation of the failure will be displayed.
 
 :::image type="content" source="../media/fine-tuning/error.png" alt-text="Screenshot of fine-tuning error message." lightbox="../media/fine-tuning/error.png":::
 
