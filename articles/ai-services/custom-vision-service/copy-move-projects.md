@@ -6,8 +6,10 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-custom-vision
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 01/22/2025
 ms.author: pafarley
+#customer intent: As a developer, I want to copy and back up Custom Vision projects so that I can ensure project availability and disaster recovery.
+
 ---
 
 # Copy and back up your Custom Vision projects
@@ -29,7 +31,7 @@ The **[ExportProject](/rest/api/customvision/projects/export)** and **[ImportPro
 - A created Custom Vision project. See [Build a classifier](./getting-started-build-a-classifier.md) for instructions on how to do this.
 * [PowerShell version 6.0+](/powershell/scripting/install/installing-powershell-core-on-windows), or a similar command-line utility.
 
-## Process overview
+## Understand the process
 
 The process for copying a project consists of the following steps:
 
@@ -137,7 +139,9 @@ You'll get a `200/OK` response with metadata about your newly imported project.
 }
 ```
 
-## Next steps
+## Next step
 
 In this guide, you learned how to copy and move a project between Custom Vision resources. Next, explore the API reference docs to see what else you can do with Custom Vision.
-* [REST API reference documentation](/rest/api/custom-vision/)
+
+> [!div class="nextstepaction"]
+> [REST API reference documentation](/rest/api/custom-vision/)

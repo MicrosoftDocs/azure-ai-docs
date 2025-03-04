@@ -19,7 +19,35 @@ ms.author: pafarley
 
 Learn what's new in Azure AI Vision. Check this page to stay up to date with new features, enhancements, fixes, and documentation updates. 
 
+## February 2025
+
+### Face liveness client-side SDK 1.1.0 release
+
+Liveness client-side SDK released [1.1.0](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases/tag/1.1.0)
+
+This update includes a few improvements:
+
+* Increased timeout for the head-turn scenario to provide end-users more time to complete the flow.
+* Fixes to iOS and Android SDKs to resolve compatibility issues with Microsoft Intune Mobile Application Management SDKs.
+* Security related fixes/improvements.
+
+For more information, see the [SDK release notes](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases/tag/1.1.0).
+
 ## January 2025
+
+### Face liveness detection GA
+
+The Face liveness detection feature is now generally available (GA).
+
+* Server-side API: [Face API v1.2](/rest/api/face/operation-groups?view=rest-face-v1.2)
+* Client-side SDK: [Azure AI Vision SDK 1.0.0](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases/tag/1.0.0)
+
+This SDK allows developers to utilize face liveness checks on both native-mobile applications and web-browsers applications for identity-verification scenarios.
+
+The new SDK supports both Passive and Passive-Active modes. The hybrid Passive-Active mode is designed to require Active motion only in poor lighting conditions, while using the speed and efficiency of Passive liveness checks in optimal lighting. 
+
+For more information, see the [SDK release notes](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases/tag/1.0.0).
+
 
 ### Image Analysis 4.0 Preview API deprecation
 

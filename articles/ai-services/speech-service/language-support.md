@@ -155,8 +155,9 @@ The following table illustrates the fixed mapping relationship between source an
 # [Language identification](#tab/language-identification)
 
 The table in this section summarizes the locales supported for [Language identification](language-identification.md).
-> [!NOTE]
-> Language Identification compares speech at the language level, such as English and German. Do not include multiple locales of the same language in your candidate list.
+
+> [!IMPORTANT]
+> Language Identification compares speech at the language level, such as English and German. Don't include multiple locales of the same language in your candidate list.
 
 [!INCLUDE [Language support include](includes/language-support/language-identification.md)]
 

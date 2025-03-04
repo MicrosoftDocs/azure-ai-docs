@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: devx-track-python
 ms.topic: conceptual
-ms.date: 06/19/2024
+ms.date: 01/27/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -209,7 +209,7 @@ result = poller.result()
 The [`Microsoft Q&A`](/answers/tags/132/azure-translator) and [Stack Overflow](https://stackoverflow.com/questions/tagged/microsoft-translator) forums are available for the developer community to ask and answer questions about Azure Text Translation and other services. Microsoft monitors the forums and replies to questions that the community has yet to answer.
 
 > [!TIP]
-> To make sure that we see your Microsoft Q&A question, tag it with **`microsoft-translator`**.
+> To make sure that we see your Microsoft `Q&A` question, tag it with **`microsoft-translator`**.
 > To make sure that we see your Stack Overflow question, tag it with **`Azure AI Translator`**.
 >
 

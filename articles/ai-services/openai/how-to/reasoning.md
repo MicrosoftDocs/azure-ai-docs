@@ -1,11 +1,11 @@
 ---
-title: Azure OpenAI o1 series reasoning models
+title: Azure OpenAI reasoning models - o3-mini, o1, o1-mini
 titleSuffix: Azure OpenAI
-description: Learn how to use Azure OpenAI's advanced o1 series reasoning models
+description: Learn how to use Azure OpenAI's advanced o3-mini, o1, & o1-mini reasoning models 
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 01/16/2025
+ms.date: 02/19/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 ---
@@ -13,9 +13,9 @@ ms.author: mbullwin
 
 # Azure OpenAI reasoning models
 
-Azure OpenAI `o1` and `o1-mini` models are designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math compared to previous iterations.
+Azure OpenAI `o-series` models are designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math compared to previous iterations.
 
-**Key capabilities of the o1 series:**
+**Key capabilities of the o-series models:**
 
 - Complex Code Generation: Capable of generating algorithms and handling advanced coding tasks to support developers.
 - Advanced Problem Solving: Ideal for comprehensive brainstorming sessions and addressing multifaceted challenges.
@@ -24,44 +24,46 @@ Azure OpenAI `o1` and `o1-mini` models are designed to tackle reasoning and prob
 
 ## Availability
 
-The **o1 series** models are now available for API access and model deployment. **Registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who previously applied and received access to `o1-preview`, don't need to reapply as they are automatically on the wait-list for the latest model.
+ **For access to `o3-mini`, `o1`, and `o1-preview`, registration is required, and access will be granted based on Microsoft's eligibility criteria**.
+
+ Customers who previously applied and received access to `o1` or `o1-preview`, don't need to reapply as they are automatically on the wait-list for the latest model.
 
 Request access: [limited access model application](https://aka.ms/OAI/o1access)
 
-Once access has been granted, you'll need to create a deployment for each model. If you have an existing `o1-preview` deployment, in-place upgrade is currently not supported, you'll need to create a new deployment.
-
 ### Region availability
 
-| Model | Region |
-|---|---|
-|`o1` | East US2 (Global Standard) <br> Sweden Central (Global Standard) |
-| `o1-preview` | See [models page](../concepts/models.md#global-standard-model-availability). |
-| `o1-mini` | See [models page](../concepts/models.md#global-standard-model-availability). |
+| Model | Region | Limited access |
+|---|---|---|
+| `o3-mini` | [Model availability](../concepts/models.md#global-standard-model-availability).  | [Limited access model application](https://aka.ms/OAI/o1access) |
+|`o1` | [Model availability](../concepts/models.md#global-standard-model-availability).  | [Limited access model application](https://aka.ms/OAI/o1access) |
+| `o1-preview` | [Model availability](../concepts/models.md#global-standard-model-availability). |This model is only available for customers who were granted access as part of the original limited access release. We're currently not expanding access to `o1-preview`. |
+| `o1-mini` | [Model availability](../concepts/models.md#global-standard-model-availability). | No access request needed for Global Standard deployments.<br><br>Standard (regional) deployments are currently only available to select customers who were previously granted access as part of the `o1-preview` release.|
 
 ## API & feature support
 
-| **Feature**     | **o1**, **2024-12-17**   | **o1-preview**, **2024-09-12**   | **o1-mini**, **2024-09-12**   |
-|:-------------------|:--------------------------:|:--------------------------:|:-------------------------------:|
-| **API Version**       | `2024-12-01-preview` | `2024-09-01-preview`  <br> `2024-10-01-preview` <br> `2024-12-01-preview`    | `2024-09-01-preview`  <br> `2024-10-01-preview` <br> `2024-12-01-preview`    |
-| **[Developer Messages](#developer-messages)** | ✅ | - | - |
-| **[Structured Outputs](./structured-outputs.md)** | ✅ | - | - |
-| **[Context Window](../concepts/models.md#o1-and-o1-mini-models-limited-access)** | Input: 200,000 <br> Output: 100,000 | Input: 128,000  <br> Output: 32,768 | Input: 128,000  <br> Output: 65,536 |
-| **[Reasoning effort](#reasoning-effort)** | ✅ | - | - |
-| System Messages | - | - | - |
-| Functions/Tools | ✅  | -  |  - |
-| `max_completion_tokens` |✅ |✅ |✅ |
+| **Feature**     | **o3-mini**, **2025-01-31**  |**o1**, **2024-12-17**   | **o1-preview**, **2024-09-12**   | **o1-mini**, **2024-09-12**   |
+|:-------------------|:--------------------------:|:--------------------------:|:-------------------------------:|:---:|
+| **API Version**    | `2024-12-01-preview` <br> `2025-01-01-preview`   | `2024-12-01-preview` <br> `2025-01-01-preview` | `2024-09-01-preview`  <br> `2024-10-01-preview` <br> `2024-12-01-preview`    | `2024-09-01-preview`  <br> `2024-10-01-preview` <br> `2024-12-01-preview`    |
+| **[Developer Messages](#developer-messages)** | ✅ | ✅ | - | - |
+| **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | - | - |
+| **[Context Window](../concepts/models.md#o-series-models)** | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 128,000  <br> Output: 32,768 | Input: 128,000  <br> Output: 65,536 |
+| **[Reasoning effort](#reasoning-effort)** | ✅ | ✅ | - | - |
+| **[Vision Support](./gpt-with-vision.md)** | - | ✅ | - | - |
+| Functions/Tools | ✅  | ✅  |  - | - |
+| `max_completion_tokens`<sup>*</sup> |✅ |✅ |✅ | ✅ |
+| System Messages<sup>**</sup> | ✅ | ✅ | - | - |
+| Streaming | ✅ | - | - | - |
 
-**o1 series** models will only work with the `max_completion_tokens` parameter.
+<sup>*</sup> Reasoning models will only work with the `max_completion_tokens` parameter. <br><br>
 
-> [!IMPORTANT]
-> There is a known issue with the `o1` model and the `tool_choice` parameter. Currently function calls that include the optional `tool_choice` parameter will fail. This page will be updated once the issue is resolved.
+<sup>**</sup>The latest o<sup>&#42;</sup> series model support system messages to make migration easier. When you use a system message with `o3-mini` and `o1` it will be treated as a developer message. You should not use both a developer message and a system message in the same API request.
+
+
 
 ### Not Supported
 
-The following are currently unsupported with o1-series models:
+The following are currently unsupported with reasoning models:
 
-- System Messages
-- Streaming
 - Parallel tool calling
 - `temperature`, `top_p`, `presence_penalty`, `frequency_penalty`, `logprobs`, `top_logprobs`, `logit_bias`, `max_tokens`
 
@@ -240,10 +242,7 @@ print(response.model_dump_json(indent=2))
 
 ## Developer messages
 
-Functionally developer messages ` "role": "developer"` are the same as system messages.
-
-- **System messages are not supported** with the **o1 series** reasoning models. 
-- `o1-2024-12-17` with API version: `2024-12-01-preview` and later adds support for developer messages. 
+Functionally developer messages ` "role": "developer"` are the same as system messages. 
 
 Adding a developer message to the previous code example would look as follows:
 
@@ -316,3 +315,15 @@ print(response.model_dump_json(indent=2))
 
 ---
 
+## Markdown output
+
+By default the `o3-mini` and `o1` models will not attempt to produce output that includes markdown formatting. A common use case where this behavior is undesirable is when you want the model to output code contained within a markdown code block. When the model generates output without markdown formatting you lose features like syntax highlighting, and copyable code blocks in interactive playground experiences. To override this new default behavior and encourage markdown inclusion in model responses, add the string `Formatting re-enabled` to the beginning of your developer message.
+
+Adding `Formatting re-enabled` to the beginning of your developer message does not guarantee that the model will include markdown formatting in its response, it only increases the likelihood. We have found from internal testing that `Formatting re-enabled` is less effective by itself with the `o1` model than with `o3-mini`.
+
+To improve the performance of `Formatting re-enabled` you can further augment the beginning of the developer message which will often result in the desired output. Rather than just adding `Formatting re-enabled` to the beginning of your developer message, you can experiment with adding a more descriptive initial instruction like one of the examples below:
+
+- `Formatting re-enabled - please enclose code blocks with appropriate markdown tags.`
+- `Formatting re-enabled - code output should be wrapped in markdown.`
+
+Depending on your expected output you may need to customize your initial developer message further to target your specific use case.

@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: overview
-ms.date: 01/15/2025
+ms.date: 02/27/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.0.0'
 ---
@@ -39,7 +39,7 @@ Document Intelligence Studio contains all features released on or before Novembe
 
 ### When to use [Azure AI Foundry portal](https://ai.azure.com/explore/aiservices/vision)
 
-Start with the new Azure AI Foundry and try any of the prebuilt document models from `2024-02-29-preview` version including general extraction models like Read or Layout.
+Start with the new Azure AI Foundry and try any of the prebuilt document models from `2024-11-30` version including general extraction models like Read or Layout.
 
 ## Learn more about Document Intelligence Studio
 
@@ -194,7 +194,7 @@ With Document Intelligence, you can quickly automate your data processing in app
 
 ### [**Azure AI Foundry portal**](#tab/ai-studio)
 
-Document Intelligence is part of the Azure AI services offerings in the Azure AI Foundry portal. Each of the Azure AI services helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models.
+Document Intelligence is part of the Azure AI services offerings in the [Azure AI Foundry portal](https://ai.azure.com/). Each of the Azure AI services helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models.
 
 Learn how to [connect your AI services hub](../../ai-studio/ai-services/how-to/connect-ai-services.md) with AI services and get started using Document Intelligence.
 

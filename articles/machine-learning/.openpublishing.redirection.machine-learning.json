@@ -1,6 +1,11 @@
 {
     "redirections": [
     {
+        "source_path_from_root": "/articles/machine-learning/how-to-regulate-registry-deployments.md",
+        "redirect_url": "/azure/machine-learning/how-to-built-in-policy-model-deployment",
+        "redirect_document_id": false
+    },
+    {
         "source_path_from_root": "/articles/machine-learning/tutorial-create-secure-workspace-template.md",
         "redirect_url": "/azure/machine-learning/tutorial-create-secure-workspace",
         "redirect_document_id": false
@@ -19,6 +24,16 @@
         "source_path_from_root": "/articles/machine-learning/concept-model-lifecycle-and-retirement.md",
         "redirect_url": "/azure/machine-learning/concept-model-lifecycle-retirement",
         "redirect_document_id": true
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/reference-model-inference-completions.md",
+        "redirect_url": "/azure/machine-learning/reference-model-inference-chat-completions",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/concept-model-lifecycle-retirement.md",
+        "redirect_url": "/azure/ai-foundry/concepts/model-lifecycle-retirement?context=/azure/machine-learning/context/context",
+        "redirect_document_id": false
     },
     {
         "source_path_from_root": "/articles/machine-learning/v-fake/tutorial-pipeline-python-sdk.md",

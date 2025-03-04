@@ -4,15 +4,15 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 12/26/2024
+ms.date: 1/21/2025
 ---
 
 ## Prerequisites
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
 - <a href="https://nodejs.org/" target="_blank">Node.js LTS or ESM support.</a>
-- An Azure OpenAI resource created in the East US 2 or Sweden Central regions. See [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).
-- Then, you need to deploy a `gpt-4o-realtime-preview` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md). 
+- An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](../concepts/models.md#global-standard-model-availability).
+- Then, you need to deploy a `gpt-4o-mini-realtime-preview` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md). 
 
 ### Microsoft Entra ID prerequisites
 
@@ -29,7 +29,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Create a new folder `realtime-audio-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
 
     ```shell
-    mkdir realtime-audio-quickstart && code realtime-audio-quickstart
+    mkdir realtime-audio-quickstart && cd realtime-audio-quickstart
     ```
     
 1. Create the `package.json` with the following command:
@@ -37,13 +37,6 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     ```shell
     npm init -y
     ```
-
-1. Update the `package.json` to ECMAScript with the following command: 
-
-    ```shell
-    npm pkg set type=module
-    ```
-    
 
 1. Install the real-time audio client library for JavaScript with:
 
@@ -59,7 +52,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Retrieve resource information
 
-[!INCLUDE [resource authentication](resource-auth.md)]
+[!INCLUDE [resource authentication](resource-authentication.md)]
 
 > [!CAUTION]
 > To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
@@ -68,7 +61,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 #### [Microsoft Entra ID](#tab/keyless)
 
-1. Create the `text-in-audio-out.js` file with the following code:
+1. Create the `index.js` file with the following code:
 
     ```javascript 
     import { DefaultAzureCredential } from "@azure/identity";
@@ -77,8 +70,8 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     dotenv.config();
     async function text_in_audio_out() {
         // Set environment variables or edit the corresponding values here.
-        const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "yourEndpoint";
-        const deployment = "gpt-4o-realtime-preview";
+        const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "YourEndpoint";
+        const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4o-mini-realtime-preview";
         if (!endpoint || !deployment) {
             throw new Error("You didn't set the environment variables.");
         }
@@ -131,13 +124,12 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Run the JavaScript file.
 
     ```shell
-    node text-in-audio-out.js
+    node index.js
     ```
-
 
 #### [API key](#tab/api-key)
 
-1. Create the `text-in-audio-out.js` file with the following code:
+1. Create the `index.js` file with the following code:
 
     ```javascript 
     import { AzureKeyCredential } from "@azure/core-auth";
@@ -146,9 +138,9 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     dotenv.config();
     async function text_in_audio_out() {
         // Set environment variables or edit the corresponding values here.
-        const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "yourKey";
-        const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "yourEndpoint";
-        const deployment = "gpt-4o-realtime-preview";
+        const apiKey = process.env.AZURE_OPENAI_API_KEY || "Your API key";
+        const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+        const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4o-mini-realtime-preview";
         if (!endpoint || !deployment) {
             throw new Error("You didn't set the environment variables.");
         }
@@ -195,7 +187,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Run the JavaScript file.
 
     ```shell
-    node text-in-audio-out.js
+    node index.js
     ```
 
 ---
@@ -261,7 +253,7 @@ You can run the sample code locally on your machine by following these steps. Re
 1. Enter the following information in the web interface:
     - **Endpoint**: The resource endpoint of an Azure OpenAI resource. You don't need to append the `/realtime` path. An example structure might be `https://my-azure-openai-resource-from-portal.openai.azure.com`.
     - **API Key**: A corresponding API key for the Azure OpenAI resource.
-    - **Deployment**: The name of the `gpt-4o-realtime-preview` model that [you deployed in the previous section](#deploy-a-model-for-real-time-audio).
+    - **Deployment**: The name of the `gpt-4o-mini-realtime-preview` model that [you deployed in the previous section](#deploy-a-model-for-real-time-audio).
     - **System Message**: Optionally, you can provide a system message such as "You always talk like a friendly pirate."
     - **Temperature**: Optionally, you can provide a custom temperature.
     - **Voice**: Optionally, you can select a voice.

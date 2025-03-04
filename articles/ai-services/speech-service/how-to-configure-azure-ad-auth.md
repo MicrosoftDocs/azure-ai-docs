@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/9/2024
+ms.date: 2/7/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-set-two
 ms.custom: devx-track-azurepowershell, devx-track-extended-java, devx-track-python, devx-track-azurecli
@@ -14,21 +14,21 @@ ms.custom: devx-track-azurepowershell, devx-track-extended-java, devx-track-pyth
 
 # Microsoft Entra authentication with the Speech SDK
 
-When using the Speech SDK to access the Speech service, there are three authentication methods available: service keys, a key-based token, and Microsoft Entra ID. This article describes how to configure a Speech resource and create a Speech SDK configuration object to use Microsoft Entra ID for authentication.
+When using the Speech SDK to access the Speech service, there are three authentication methods available: service keys, a key-based token, and Microsoft Entra ID. This article describes how to configure an AI Services resource for Speech and create a Speech SDK configuration object to use Microsoft Entra ID for authentication.
 
 This article shows how to use Microsoft Entra authentication with the Speech SDK. You learn how to:
 
 > [!div class="checklist"]
 >
-> - Create a Speech resource
+> - Create an AI Services resource for Speech
 > - Configure the Speech resource for Microsoft Entra authentication
 > - Get a Microsoft Entra access token
 > - Create the appropriate SDK configuration object.
 
 To learn more about Microsoft Entra access tokens, including token lifetime, visit [Access tokens in the Microsoft identity platform](/azure/active-directory/develop/access-tokens).
 
-## Create a Speech resource
-To create a Speech resource in the [Azure portal](https://portal.azure.com), see [this quickstart](~/articles/ai-services/multi-service-resource.md?pivots=azportal).
+## Create an AI Services resource for Speech
+To create an AI Services resource for Speech in the [Azure portal](https://portal.azure.com), see [this quickstart](~/articles/ai-services/multi-service-resource.md?pivots=azportal).
 
 <a name='configure-the-speech-resource-for-azure-ad-authentication'></a>
 
@@ -113,25 +113,22 @@ aadToken = ibc.get_token("https://cognitiveservices.azure.com/.default")
 ```
 ::: zone-end
 
-::: zone pivot="programming-language-more"
+### More samples
+
 Find samples that get a Microsoft Entra access token in [Microsoft identity platform code samples](/azure/active-directory/develop/sample-v2-code).
 
 For programming languages where a Microsoft identity platform client library isn't available, you can directly [request an access token](/azure/active-directory/develop/v2-oauth-ropc).
-::: zone-end
 
 ## Get the Speech resource ID
 
 You need your Speech resource ID to make SDK calls using Microsoft Entra authentication.
-
-> [!NOTE]
-> For Intent Recognition use your LUIS Prediction resource ID.
 
 # [Azure portal](#tab/portal)
 
 To get the resource ID in the Azure portal:
 
 1. Go to the [Azure portal](https://portal.azure.com/) and sign in to your Azure account.
-1. Select a Speech resource.
+1. Select an AI Services resource for Speech.
 1. In the **Resource Management** group on the left pane, select **Properties**.
 1. Copy the **Resource ID**
 
@@ -152,7 +149,6 @@ To get the resource ID using PowerShell, confirm that you have PowerShell versio
     If nothing appears, or if that version of the Azure PowerShell module is earlier than 5.1.0, follow the instructions at [Install the Azure PowerShell module](/powershell/azure/install-azure-powershell) to upgrade.
 
 Now run `Connect-AzAccount` to create a connection with Azure.
-
 
 ```azurepowershell
 Connect-AzAccount

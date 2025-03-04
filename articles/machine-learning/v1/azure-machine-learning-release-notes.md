@@ -2780,7 +2780,7 @@ At the time, of this release, the following browsers are supported: Chrome, Fire
 
 + **New features**
   + Introduced FileDataset, which references single or multiple files in your datastores or public urls. The files can be of any format. FileDataset provides you with the ability to download or mount the files to your compute.
-  + Added Pipeline Yaml Support for PythonScript Step, Adla Step, Databricks Step, DataTransferStep, and AzureBatch Step
+  + Added Pipeline YAML Support for PythonScript Step, Adla Step, Databricks Step, DataTransferStep, and AzureBatch Step
 
 + **Bug fixes and improvements**
   + **azureml-automl-core**

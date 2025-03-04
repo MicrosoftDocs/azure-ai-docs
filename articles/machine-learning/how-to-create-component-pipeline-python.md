@@ -166,7 +166,7 @@ Now, you've prepared all source files for the `Train Image Classification Keras`
 
 ### Create the score-model component
 
-In this section, other than the previous components, you'll create a component to score the trained model via Yaml specification and script.
+In this section, other than the previous components, you'll create a component to score the trained model via YAML specification and script.
 
 If you're following along with the example in the [Azure Machine Learning examples repo](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet), the source files are already available in `score/` folder. This folder contains three files to construct the component:
 
@@ -183,7 +183,7 @@ The `score.py` file contains a normal Python function, which performs the traini
 
 The code in score.py takes three command-line arguments: `input_data`, `input_model` and `output_result`. The program score the input model using input data and then output the scoring result.
 
-#### Define component via Yaml
+#### Define component via YAML
 
 In this section, you'll learn to create a component specification in the valid YAML component specification format. This file specifies the following information:
 

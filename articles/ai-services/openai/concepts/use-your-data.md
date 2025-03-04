@@ -8,7 +8,7 @@ ms.service: azure-ai-openai
 ms.topic: quickstart
 author: aahill
 ms.author: aahi
-ms.date: 10/25/2024
+ms.date: 02/13/2025
 recommendations: false
 ms.custom: references_regions, ignite-2024
 ---
@@ -26,7 +26,7 @@ Azure OpenAI On Your Data enables you to run advanced AI models such as GPT-35-T
 :::image type="content" source="../media/use-your-data/workflow-diagram.png" alt-text="A diagram showing an example workflow.":::
 
 Typically, the development process you'd use with Azure OpenAI On Your Data is:
-1. **Ingest**: Upload files using either Azure AI Foundry portal or the ingestion API. This enables your data to be cracked, chunked and embedded into an Azure AI Search instance that can be used by Azure OpenAI models. If you have an existing [supported data source](#supported-data-sources), you can also connect it directly.
+1. **Ingest**: Upload files using either [Azure AI Foundry portal](https://ai.azure.com/) or the ingestion API. This enables your data to be cracked, chunked and embedded into an Azure AI Search instance that can be used by Azure OpenAI models. If you have an existing [supported data source](#supported-data-sources), you can also connect it directly.
 
 1. **Develop**: After trying Azure OpenAI On Your Data, begin developing your application using the available REST API and SDKs, which are available in several languages. It will create prompts and search intents to pass to the Azure OpenAI service.
 
@@ -39,7 +39,7 @@ Typically, the development process you'd use with Azure OpenAI On Your Data is:
     
     1. **Response generation**: The resulting data is submitted along with other information like the system message to the Large Language Model (LLM) and the response is sent back to the application.
 
-To get started, [connect your data source](../use-your-data-quickstart.md) using Azure AI Foundry portal and start asking questions and chatting on your data.
+To get started, [connect your data source](../use-your-data-quickstart.md) using [Azure AI Foundry portal](https://ai.azure.com/) and start asking questions and chatting on your data.
 
 ## Azure Role-based access controls (Azure RBAC) for adding data sources
 
@@ -71,6 +71,9 @@ There's an [upload limit](../quotas-limits.md), and there are some caveats about
 
 You need to connect to a data source to upload your data. When you want to use your data to chat with an Azure OpenAI model, your data is chunked in a search index so that relevant data can be found based on user queries.
 
+> [!NOTE]
+> Your data should be unstructured text for best results. If you have non-textual semi-structured or structured data consider converting it to text. If your files have special formatting, such as tables and columns, or bullet points, prepare your data with the data preparation script available on [GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/tree/main/scripts#optional-crack-pdfs-to-text).
+
 The [Integrated Vector Database in vCore-based Azure Cosmos DB for MongoDB](/azure/cosmos-db/mongodb/vcore/vector-search) natively supports integration with Azure OpenAI On Your Data.
 
 For some data sources such as uploading files from your local machine (preview) or data contained in a blob storage account (preview), Azure AI Search is used. When you choose the following data sources, your data is ingested into an Azure AI Search index.
@@ -81,6 +84,7 @@ For some data sources such as uploading files from your local machine (preview) 
 |Upload files (preview)      | Upload files from your local machine to be stored in an Azure Blob Storage database, and ingested into Azure AI Search.         |
 |URL/Web address (preview)        | Web content from the URLs is stored in Azure Blob Storage.         |
 |Azure Blob Storage (preview) | Upload files from Azure Blob Storage to be ingested into an Azure AI Search index.         |
+
 
 :::image type="content" source="../media/use-your-data/azure-databases-and-ai-search.png" lightbox="../media/use-your-data/azure-databases-and-ai-search.png" alt-text="Diagram of vector indexing services.":::
 
@@ -93,7 +97,7 @@ You might want to consider using an Azure AI Search index when you either want t
 > [!NOTE]
 > * To use an existing index, it must have at least one searchable field.
 > * Set the CORS **Allow Origin Type** option to `all` and the **Allowed origins** option to `*`. 
-
+> * You cannot have complex fields in your search index. 
 
 ### Search types
 
@@ -136,7 +140,7 @@ Azure OpenAI On Your Data lets you restrict the documents that can be used in re
 
 ### Index field mapping 
 
-If you're using your own index, you'll be prompted in the Azure AI Foundry portal to define which fields you want to map for answering questions when you add your data source. You can provide multiple fields for *Content data*, and should include all fields that have text pertaining to your use case. 
+If you're using your own index, you'll be prompted in the [Azure AI Foundry portal](https://ai.azure.com/) to define which fields you want to map for answering questions when you add your data source. You can provide multiple fields for *Content data*, and should include all fields that have text pertaining to your use case. 
 
 :::image type="content" source="../media/use-your-data/index-data-mapping.png" alt-text="A screenshot showing the index field mapping options in Azure AI Foundry portal." lightbox="../media/use-your-data/index-data-mapping.png":::
 
@@ -189,7 +193,7 @@ You might want to use Azure Blob Storage as a data source if you want to connect
 
 To keep your Azure AI Search index up-to-date with your latest data, you can schedule an automatic index refresh rather than manually updating it every time your data is updated. Automatic index refresh is only available when you choose **Azure Blob Storage** as the data source. To enable an automatic index refresh:
 
-1. [Add a data source](../quickstart.md) using Azure AI Foundry portal.
+1. [Add a data source](../quickstart.md) using [Azure AI Foundry portal](https://ai.azure.com/).
 1. Under **Select or add data source** select **Indexer schedule** and choose the refresh cadence you would like to apply.
 
     :::image type="content" source="../media/use-your-data/indexer-schedule.png" alt-text="A screenshot of the indexer schedule in Azure AI Foundry portal." lightbox="../media/use-your-data/indexer-schedule.png":::
@@ -221,7 +225,7 @@ To modify the schedule, you can use the [Azure portal](https://portal.azure.com/
 
 # [Upload files (preview)](#tab/file-upload)
 
-Using Azure AI Foundry portal, you can upload files from your machine to try Azure OpenAI On Your Data. You also have the option to create a new Azure Blob Storage account and Azure AI Search resource. The service then stores the files to an Azure storage container and performs ingestion from the container. You can use the [quickstart](../use-your-data-quickstart.md) article to learn how to use this data source option.
+Using [Azure AI Foundry portal](https://ai.azure.com/), you can upload files from your machine to try Azure OpenAI On Your Data. You also have the option to create a new Azure Blob Storage account and Azure AI Search resource. The service then stores the files to an Azure storage container and performs ingestion from the container. You can use the [quickstart](../use-your-data-quickstart.md) article to learn how to use this data source option.
 
 :::image type="content" source="../media/quickstarts/add-your-data-source.png" alt-text="A screenshot showing options for selecting a data source in Azure AI Foundry portal." lightbox="../media/quickstarts/add-your-data-source.png":::
 
@@ -305,11 +309,11 @@ Mapping these fields correctly helps ensure the model has better response and ci
 
 ### Use Elasticsearch as a data source via API  
 
-Along with using Elasticsearch databases in Azure AI Foundry portal, you can also use your Elasticsearch database using the [API](../references/elasticsearch.md). 
+Along with using Elasticsearch databases in [Azure AI Foundry portal](https://ai.azure.com/), you can also use your Elasticsearch database using the [API](../references/elasticsearch.md). 
 
 # [MongoDB Atlas (preview)](#tab/mongo-db-atlas)
 
-You can connect your MongoDB Atlas vector index with Azure OpenAI On Your Data for inferencing. You can use it through the Azure AI Foundry portal, API and SDK.
+You can connect your MongoDB Atlas vector index with Azure OpenAI On Your Data for inferencing. You can use it through the [Azure AI Foundry portal](https://ai.azure.com/), API and SDK.
 
 ### Prerequisites 
 
@@ -360,7 +364,7 @@ When you add your MongoDB Atlas data source, you can specify data fields to prop
 
 ## Deploy to a copilot (preview), Teams app (preview), or web app 
 
-After you connect Azure OpenAI to your data, you can deploy it using the **Deploy to** button in Azure AI Foundry portal.
+After you connect Azure OpenAI to your data, you can deploy it using the **Deploy to** button in [Azure AI Foundry portal](https://ai.azure.com/).
 
 :::image type="content" source="../media/use-your-data/deploy-model.png" alt-text="A screenshot showing the model deployment button in Azure AI Foundry portal." lightbox="../media/use-your-data/deploy-model.png":::
 
@@ -368,7 +372,7 @@ This gives you multiple options for deploying your solution.
 
 #### [Copilot (preview)](#tab/copilot)
 
-You can deploy to a copilot in [Copilot Studio](/microsoft-copilot-studio/fundamentals-what-is-copilot-studio) (preview) directly from Azure AI Foundry portal, enabling you to bring conversational experiences to various channels such as: Microsoft Teams, websites, Dynamics 365, and other [Azure Bot Service channels](/microsoft-copilot-studio/publication-connect-bot-to-azure-bot-service-channels). The tenant used in the Azure OpenAI service and Copilot Studio (preview) should be the same. For more information, see [Use a connection to Azure OpenAI On Your Data](/microsoft-copilot-studio/nlu-generative-answers-azure-openai).
+You can deploy to a copilot in [Copilot Studio](/microsoft-copilot-studio/fundamentals-what-is-copilot-studio) (preview) directly from [Azure AI Foundry portal](https://ai.azure.com/), enabling you to bring conversational experiences to various channels such as: Microsoft Teams, websites, Dynamics 365, and other [Azure Bot Service channels](/microsoft-copilot-studio/publication-connect-bot-to-azure-bot-service-channels). The tenant used in the Azure OpenAI service and Copilot Studio (preview) should be the same. For more information, see [Use a connection to Azure OpenAI On Your Data](/microsoft-copilot-studio/nlu-generative-answers-azure-openai).
 
 > [!NOTE]
 > Deploying to a copilot in Copilot Studio (preview) is only available in US regions.
@@ -390,7 +394,7 @@ A Teams app lets you bring conversational experience to your users in Teams to i
 - Your Azure account has been assigned **Cognitive Services OpenAI user** or **Cognitive Services OpenAI Contributor** role of the Azure OpenAI resource you're using, allowing your account to make Azure OpenAI API calls. For more information, see [Azure OpenAI On Your data configuration](../how-to/on-your-data-configuration.md#using-the-api) and [Add role assignment to an Azure OpenAI resource](/azure/ai-services/openai/how-to/role-based-access-control#add-role-assignment-to-an-azure-openai-resource) for instructions on setting this role in the Azure portal. 
 
 
-You can deploy to a standalone Teams app directly from Azure AI Foundry portal. Follow the steps below: 
+You can deploy to a standalone Teams app directly from [Azure AI Foundry portal](https://ai.azure.com/). Follow the steps below: 
 
 1. After you've added your data to the chat model, select **Deploy** and then **a new Teams app (preview)**. 
 
@@ -398,7 +402,7 @@ You can deploy to a standalone Teams app directly from Azure AI Foundry portal. 
 
 1. Extract the .zip file and open the folder in Visual Studio Code.
 
-1. If you chose **API key** in the data connection step, manually copy and paste your Azure AI Search key into the `src\prompts\chat\config.json` file. Your Azure AI Search Key can be found in Azure AI Foundry portal Playground by selecting the **View code** button with the key located under Azure Search Resource Key. If you chose **System assigned managed identity**, you can skip this step. Learn more about different data connection options in the [Data connection](/azure/ai-services/openai/concepts/use-your-data?tabs=ai-search#data-connection) section.
+1. If you chose **API key** in the data connection step, manually copy and paste your Azure AI Search key into the `src\prompts\chat\config.json` file. Your Azure AI Search Key can be found in [Azure AI Foundry portal](https://ai.azure.com/) Playground by selecting the **View code** button with the key located under Azure Search Resource Key. If you chose **System assigned managed identity**, you can skip this step. Learn more about different data connection options in the [Data connection](/azure/ai-services/openai/concepts/use-your-data?tabs=ai-search#data-connection) section.
 
 1. Open the Visual Studio Code terminal and log into Azure CLI, selecting the account that you assigned **Cognitive Service OpenAI User** role to. Use the `az login` command in the terminal to log in.
 
@@ -464,7 +468,7 @@ A small chunk size like 256 produces more granular chunks. This size also means 
 
 ### Runtime parameters
 
-You can modify the following additional settings in the **Data parameters** section in Azure AI Foundry portal and [the API](../references/on-your-data.md). You don't need to reingest your data when you update these parameters. 
+You can modify the following additional settings in the **Data parameters** section in [Azure AI Foundry portal](https://ai.azure.com/) and [the API](../references/on-your-data.md). You don't need to reingest your data when you update these parameters. 
 
 
 |Parameter name  | Description  |
@@ -481,7 +485,7 @@ It's possible for the model to return `"TYPE":"UNCITED_REFERENCE"` instead of `"
 
 You can define a system message to steer the model's reply when using Azure OpenAI On Your Data. This message allows you to customize your replies on top of the retrieval augmented generation (RAG) pattern that Azure OpenAI On Your Data uses. The system message is used in addition to an internal base prompt to provide the experience. To support this, we truncate the system message after a specific [number of tokens](#token-usage-estimation-for-azure-openai-on-your-data) to ensure the model can answer questions using your data. If you are defining extra behavior on top of the default experience, ensure that your system prompt is detailed and explains the exact expected customization. 
 
-Once you select add your dataset, you can use the **System message** section in the Azure AI Foundry portal, or the `role_information` [parameter in the API](../references/on-your-data.md).
+Once you select add your dataset, you can use the **System message** section in the [Azure AI Foundry portal](https://ai.azure.com/), or the `role_information` [parameter in the API](../references/on-your-data.md).
 
 :::image type="content" source="../media/use-your-data/system-message.png" alt-text="A screenshot showing the system message option in Azure AI Foundry portal." lightbox="../media/use-your-data/system-message.png":::
 
@@ -514,11 +518,6 @@ There are many tricks in prompt engineering that you can try to improve the outp
 > The system message is used to modify how GPT assistant responds to a user question based on retrieved documentation. It doesn't affect the retrieval process. If you'd like to provide instructions for the retrieval process, it is better to include them in the questions.
 > The system message is only guidance. The model might not adhere to every instruction specified because it has been primed with certain behaviors such as objectivity, and avoiding controversial statements. Unexpected behavior might occur if the system message contradicts with these behaviors. 
 
-
-
-### Maximum response 
-
-Set a limit on the number of tokens per model response. The upper limit for Azure OpenAI On Your Data is 1500. This is equivalent to setting the `max_tokens` parameter in the API. 
 
 ### Limit responses to your data 
 
@@ -681,7 +680,7 @@ token_output = TokenEstimator.estimate_tokens(input_text)
 
 ## Troubleshooting 
 
-To troubleshoot failed operations, always look out for errors or warnings specified either in the API response or Azure AI Foundry portal. Here are some of the common errors and warnings: 
+To troubleshoot failed operations, always look out for errors or warnings specified either in the API response or [Azure AI Foundry portal](https://ai.azure.com/). Here are some of the common errors and warnings: 
 
 ### Failed ingestion jobs
 
@@ -718,6 +717,11 @@ This means the storage account isn't accessible with the given credentials. In t
 Each user message can translate to multiple search queries, all of which get sent to the search resource in parallel. This can produce throttling behavior when the number of search replicas and partitions is low. The maximum number of queries per second that a single partition and single replica can support might not be sufficient. In this case, consider increasing your replicas and partitions, or adding sleep/retry logic in your application. See the [Azure AI Search documentation](/azure/search/performance-benchmarks) for more information.
 
 ## Regional availability and model support
+
+> [!NOTE]
+> The following models are not supported by Azure OpenAI On Your Data:
+> * o1 models
+> * o3 models
 
 | Region | `gpt-35-turbo-16k (0613)` | `gpt-35-turbo (1106)` | `gpt-4-32k (0613)` | `gpt-4 (1106-preview)` | `gpt-4 (0125-preview)` | `gpt-4 (0613)`  | `gpt-4o`\*\* | `gpt-4 (turbo-2024-04-09)` |
 |------|---|---|---|---|---|----|----|----|

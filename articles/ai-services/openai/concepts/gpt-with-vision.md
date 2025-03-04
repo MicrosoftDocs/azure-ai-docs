@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 09/24/2024
+ms.date: 02/20/2025
 manager: nitinme
 ---
 
@@ -18,7 +18,7 @@ To try out vision-enabled chat models, see the [quickstart](/azure/ai-services/o
 
 ## Vision-enabled chats
 
-The vision-enabled models answer general questions about what's present in the images or videos you upload.
+The vision-enabled models answer general questions about what's present in the images you upload.
 
 
 ## Special pricing information
@@ -51,7 +51,7 @@ For a typical use case, take an image with both visible objects and text and a 1
 | Output Tokens      | 100 tokens (assumed)    | $0.003       |
 | **Total** |  |**$0.00955** |
 
-
+<!--
 ### Example video price calculation
 
 > [!IMPORTANT]
@@ -68,6 +68,7 @@ For a typical use case, take a 3-minute video with a 100-token prompt input. The
 | **Total**      |      | **$0.03025** |
 
 Additionally, there's a one-time indexing cost of $0.15 to generate the Video Retrieval index for this 3-minute video. This index can be reused across any number of Video Retrieval and GPT-4 Turbo with Vision API calls.
+-->
 
 ## Input limitations
 
@@ -77,18 +78,20 @@ This section describes the limitations of vision-enabled chat models.
 
 - **Maximum input image size**: The maximum size for input images is restricted to 20 MB.
 - **Low resolution accuracy**: When images are analyzed using the "low resolution" setting, it allows for faster responses and uses fewer input tokens for certain use cases. However, this could impact the accuracy of object and text recognition within the image.
-- **Image chat restriction**: When you upload images in Azure AI Foundry portal or the API, there is a limit of 10 images per chat call.
+- **Image chat restriction**: When you upload images in [Azure AI Foundry portal](https://ai.azure.com/) or the API, there is a limit of 10 images per chat call.
 
+<!--
 ### Video support
 
 - **Low resolution**: Video frames are analyzed using GPT-4 Turbo with Vision's "low resolution" setting, which may affect the accuracy of small object and text recognition in the video.
-- **Video file limits**: Both MP4 and MOV file types are supported. In Azure AI Foundry portal, videos must be less than 3 minutes long. When you use the API there is no such limitation.
-- **Prompt limits**: Video prompts only contain one video and no images. In Azure AI Foundry portal, you can clear the session to try another video or images.
+- **Video file limits**: Both MP4 and MOV file types are supported. In [Azure AI Foundry portal](https://ai.azure.com/), videos must be less than 3 minutes long. When you use the API there is no such limitation.
+- **Prompt limits**: Video prompts only contain one video and no images. In [Azure AI Foundry portal](https://ai.azure.com/), you can clear the session to try another video or images.
 - **Limited frame selection**: The service selects 20 frames from the entire video, which might not capture all the critical moments or details. Frame selection can be approximately evenly spread through the video or focused by a specific video retrieval query, depending on the prompt.
 - **Language support**: The service primarily supports English for grounding with transcripts. Transcripts don't provide accurate information on lyrics in songs.
+-->
 
 ## Next steps
 
 - Get started using vision-enabled models by following the [quickstart](/azure/ai-services/openai/gpt-v-quickstart).
-- For a more in-depth look at the APIs, and to use video prompts in chat, follow the [how-to guide](../how-to/gpt-with-vision.md).
+- For a more in-depth look at the APIs, follow the [how-to guide](../how-to/gpt-with-vision.md).
 - See the [completions and embeddings API reference](../reference.md)

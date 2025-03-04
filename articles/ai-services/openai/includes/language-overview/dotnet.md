@@ -9,7 +9,7 @@ ms.date: 11/18/2024
 ---
 
 
-The Azure OpenAI client library for .NET is a companion to the [official OpenAI client library for .NET](https://github.com/openai/openai-dotnet). The Azure OpenAI library configures a client for use with Azure OpenAI and provides additional strongly typed extension support for request and response models specific to Azure OpenAI scenarios.
+The Azure OpenAI client library for .NET is a companion to the [official OpenAI client library for .NET](https://github.com/openai/openai-dotnet). The Azure OpenAI library configures a client for use with Azure OpenAI and provides extra strongly typed extension support for request and response models specific to Azure OpenAI scenarios.
 
 ### Stable release: 
 
@@ -17,14 +17,14 @@ The Azure OpenAI client library for .NET is a companion to the [official OpenAI 
  
 ### Preview release: 
 
-The preview release will have access to the latest features.
+The preview release has access to the latest features.
 
 [Source code](https://github.com/Azure/azure-sdk-for-net/tree/Azure.AI.OpenAI_2.1.0-beta.2/sdk/openai/Azure.AI.OpenAI/src) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.OpenAI/2.1.0-beta.2) | [API reference documentation](../../reference.md) | [Package reference documentation](/dotnet/api/overview/azure/ai.openai-readme?view=azure-dotnet-preview&preserve-view=true)   [Samples](https://github.com/Azure/azure-sdk-for-net/tree/Azure.AI.OpenAI_2.1.0-beta.2/sdk/openai/Azure.AI.OpenAI/tests/Samples)
 
 
 ## Azure OpenAI API version support
 
-Unlike the Azure OpenAI client libraries for Python and JavaScript, the Azure OpenAI .NET package is limited to targeting a specific subset of the Azure OpenAI API versions. Generally each Azure OpenAI .NET package will unlock access to newer Azure OpenAI API release features. Having access to the latest API versions impacts feature availability.
+Unlike the Azure OpenAI client libraries for Python and JavaScript, the Azure OpenAI .NET package is limited to targeting a specific subset of the Azure OpenAI API versions. Generally each Azure OpenAI .NET package unlocks access to newer Azure OpenAI API release features. Having access to the latest API versions impacts feature availability.
 
 Version selection is controlled by the [`AzureOpenAIClientOptions.ServiceVersion`](/dotnet/api/azure.ai.openai.azureopenaiclientoptions.serviceversion?view=azure-dotnet&preserve-view=true) enum.
 
@@ -67,6 +67,8 @@ AzureOpenAIClient azureClient = new(
     new DefaultAzureCredential());
 ChatClient chatClient = azureClient.GetChatClient("my-gpt-4o-mini-deployment");
 ```
+
+For more information about Azure OpenAI keyless authentication, see the "[Get started with the Azure OpenAI security building block](/azure/developer/ai/get-started-securing-your-ai-app?tabs=github-codespaces&pivots=dotnet)" QuickStart article. 
 
 # [API Key](#tab/dotnet-key)
 
@@ -260,7 +262,7 @@ bytes.ToStream().CopyTo(stream);
 
 ```
 
-- [C# DALL-E quickstart guide](/azure/ai-services/openai/dall-e-quickstart?tabs=dalle3%2Ccommand-line%2Cjavascript-keyless%2Ctypescript-keyless&pivots=programming-language-csharp)
+- [C# DALL-E quickstart guide](/azure/ai-services/openai/dall-e-quickstart?tabs=dalle3%2Ccommand-line%2Ckeyless%2Ctypescript-keyless&pivots=programming-language-csharp)
 
 
 ## Completions (legacy)
@@ -286,7 +288,7 @@ Not supported with the Azure OpenAI .NET packages.
 
 ### Retries
 
-The client classes will automatically retry the following errors up to three additional times using exponential backoff:
+The client classes will automatically retry the following errors up to three more times using exponential backoff:
 
 - 408 Request Timeout
 - 429 Too Many Requests

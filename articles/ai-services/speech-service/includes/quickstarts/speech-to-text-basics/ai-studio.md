@@ -22,11 +22,11 @@ In this quickstart, you try real-time speech to text in [Azure AI Foundry](https
 1. Go to your Azure AI Foundry project. If you need to create a project, see [Create an Azure AI Foundry project](../../../../../ai-studio/how-to/create-projects.md).
 1. Select **Playgrounds** from the left pane and then select a playground to use. In this example, select **Try the Speech playground**.
 
-    :::image type="content" source="../../../../../ai-studio/media/ai-services/playgrounds/azure-ai-services-playgrounds.png" alt-text="Screenshot of the project level playgrounds that you can use." lightbox="../../../../../ai-studio/media/ai-services/playgrounds/azure-ai-services-playgrounds.png":::
+    :::image type="content" source="../../../../../ai-foundry/media/ai-services/playgrounds/azure-ai-services-playgrounds.png" alt-text="Screenshot of the project level playgrounds that you can use." lightbox="../../../../../ai-foundry/media/ai-services/playgrounds/azure-ai-services-playgrounds.png":::
 
 1. Optionally, you can select a different connection to use in the playground. In the Speech playground, you can connect to Azure AI Services multi-service resources or Speech service resources. 
 
-    :::image type="content" source="../../../../../ai-studio/media/ai-services/playgrounds/speech-playground.png" alt-text="Screenshot of the Speech playground in a project." lightbox="../../../../../ai-studio/media/ai-services/playgrounds/speech-playground.png":::
+    :::image type="content" source="../../../../../ai-foundry/media/ai-services/playgrounds/speech-playground.png" alt-text="Screenshot of the Speech playground in a project." lightbox="../../../../../ai-foundry/media/ai-services/playgrounds/speech-playground.png":::
 
 1. Select **Real-time transcription**.
 1. Select **Show advanced options** to configure speech to text options such as: 
@@ -39,12 +39,12 @@ In this quickstart, you try real-time speech to text in [Azure AI Foundry](https
 
 1. Select an audio file to upload, or record audio in real-time. In this example, we use the `Call1_separated_16k_health_insurance.wav` file that's available in the [Speech SDK repository on GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/raw/master/scenarios/call-center/sampledata/Call1_separated_16k_health_insurance.wav). You can download the file or use your own audio file.
 
-    :::image type="content" source="../../../media/ai-studio/real-time-speech-to-text-audio.png" alt-text="Screenshot of the option to select an audio file or speak into a microphone." lightbox="../../../media/ai-studio/real-time-speech-to-text-audio.png":::
+    :::image type="content" source="../../../media/ai-foundry/real-time-speech-to-text-audio.png" alt-text="Screenshot of the option to select an audio file or speak into a microphone." lightbox="../../../media/ai-foundry/real-time-speech-to-text-audio.png":::
 
 1. You can view the real-time transcription at the bottom of the page.
 
-    :::image type="content" source="../../../media/ai-studio/real-time-speech-to-text-results.png" alt-text="Screenshot of the real-time transcription results in Azure AI Foundry." lightbox="../../../media/ai-studio/real-time-speech-to-text-results.png":::
+    :::image type="content" source="../../../media/ai-foundry/real-time-speech-to-text-results.png" alt-text="Screenshot of the real-time transcription results in Azure AI Foundry." lightbox="../../../media/ai-foundry/real-time-speech-to-text-results.png":::
 
 1. You can select the **JSON** tab to see the JSON output of the transcription. Properties include `Offset`, `Duration`, `RecognitionStatus`, `Display`, `Lexical`, `ITN`, and more.
 
-    :::image type="content" source="../../../media/ai-studio/real-time-speech-to-text-results-json.png" alt-text="Screenshot of the real-time transcription results in JSON format in Azure AI Foundry." lightbox="../../../media/ai-studio/real-time-speech-to-text-results-json.png":::
+    :::image type="content" source="../../../media/ai-foundry/real-time-speech-to-text-results-json.png" alt-text="Screenshot of the real-time transcription results in JSON format in Azure AI Foundry." lightbox="../../../media/ai-foundry/real-time-speech-to-text-results-json.png":::

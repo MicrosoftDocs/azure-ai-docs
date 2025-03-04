@@ -14,7 +14,7 @@ ms.custom:
   - devx-track-python
   - ignite-2023
 ms.topic: conceptual
-ms.date: 01/16/2025
+ms.date: 02/18/2025
 ---
 
 # API versions in Azure AI Search
@@ -35,7 +35,7 @@ This was the first REST API that offered vector search support. Newer API versio
 
 ## Discontinued versions
 
-Some API versions are discontinued and are rejected by a search service:
+Some API versions are discontinued and are no longer documented or supported:
 
 + **2015-02-28**
 + **2015-02-28-Preview**

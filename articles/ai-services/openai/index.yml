@@ -133,7 +133,7 @@ landingContent:
         - text: Limited access
           url: /legal/cognitive-services/openai/limited-access?context=/azure/ai-services/openai/context/context
         - text: Code of conduct
-          url: /legal/cognitive-services/openai/code-of-conduct?context=/azure/ai-services/openai/context/context
+          url: /legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context
         - text: Data, privacy, and security
           url: /legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context
         - text: Customer Copyright Commitment

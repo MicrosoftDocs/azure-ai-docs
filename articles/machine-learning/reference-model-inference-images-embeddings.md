@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: conceptual
-ms.date: 05/03/2024
+ms.date: 01/28/2025
 ms.reviewer: None
 ms.author: mopeakande
 author: msakande
