@@ -144,9 +144,9 @@ Indexers can access other Azure resources [over private endpoints](search-indexe
 
 | Resource | Free | Basic | S1 | S2 | S3 | S3 HD | L1 | L2 |
 |----------|------|-------|----|----|----|-------|----|----|
-| Private endpoint indexer support<sup>1</sup> | No | Yes<sup>2</sup> | Yes<sup>3</sup> | Yes | Yes | No | Yes | Yes |
+| Private endpoint indexer support <sup>1</sup> | No | Yes <sup>2</sup> | Yes <sup>3</sup> | Yes | Yes | No | Yes | Yes |
 | Maximum private endpoints | N/A | 10 or 30 | 100 | 400 | 400 | N/A | 20 | 20 |
-| Maximum distinct resource types<sup>4</sup> | N/A | 4 | 7 | 15 | 15 | N/A | 4 | 4 |
+| Maximum distinct resource types <sup>4</sup> | N/A | 4 | 7 | 15 | 15 | N/A | 4 | 4 |
 
 <sup>1</sup> AI enrichment and image analysis are computationally intensive and consume disproportionate amounts of available processing power. For this reason, private connections are disabled on certain instances of lower tiers to ensure the performance and stability of the search service itself.
 
