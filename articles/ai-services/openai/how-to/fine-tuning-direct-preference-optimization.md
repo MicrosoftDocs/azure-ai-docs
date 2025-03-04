@@ -56,7 +56,7 @@ Training datasets must be in `jsonl` format:
 
 Users can use preference fine tuning with base models as well as models that have already been fine-tuned using supervised fine-tuning as long as they are of a supported model/version.
 
-## How to use direct preference optimization fine-tuning?
+## How to use direct preference optimization fine-tuning
 
    :::image type="content" border="true" source="/azure/ai-services/openai/media/fine-tuning/preference-optimization.gif" alt-text="GIF of preference optimization fine-tuning steps.":::
 

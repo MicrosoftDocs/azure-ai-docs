@@ -43,7 +43,7 @@ Take a moment to review the fine-tuning workflow for using Azure AI Foundry port
 
 1. Prepare your training and validation data.
 1. Use the **Create custom model** wizard in Azure AI Foundry portal to train your custom model.
-    1. Select a base mode.
+    1. Select a base model.
     1. [Choose your training data](#choose-your-training-data).
     1. Optionally, [choose your validation data](#choose-your-validation-data).
     1. Optionally, [configure task parameters](#configure-task-parameters) for your fine-tuning job.

@@ -255,7 +255,7 @@ print(response.model_dump_json(indent=2))
 
 ### List fine-tuning events
 
-To examine the individual fine-tuning events that were generated during training. You might need to upgrade your OpenAI client library to the latest version with `pip install openai --upgrade` to run this command.
+To examine the individual fine-tuning events that were generated during training, you might need to upgrade your OpenAI client library to the latest version with `pip install openai --upgrade` to run this command.
 
 ```python
 response = client.fine_tuning.jobs.list_events(fine_tuning_job_id=job_id, limit=10)
