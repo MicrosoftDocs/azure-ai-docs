@@ -11,14 +11,8 @@ ms.custom: references_regions
 
 #### Version 1.1 of HD voices (Public preview)
 
-Updated 13 current HD voices to the version 1.1 (latest) to support multilingual voices.
-
-- Specifying the "latest" model defaults to v1.1
-- v1.1 supports multilingual
-- If you want to call older version, specify the version in the voice name:
-    - Version 1.0: `en-US-Ava:DragonHDV1.0Neural`
-    - Latest (currently V1.1): `en-US-Ava:DragonHDLatestNeural`
-  
+Updated 13 current HD voices updated to support multilingual voices.
+ 
 | **Locale (BCP-47)** | **Voice name**              |
 |---------------------|---------------------------|
 | `de-DE`   | `de-DE-Seraphina:DragonHDLatestNeural` (Female) |
