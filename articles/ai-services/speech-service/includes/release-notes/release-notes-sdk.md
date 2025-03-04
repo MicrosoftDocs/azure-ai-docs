@@ -724,8 +724,8 @@ This table shows the previous and new object names for real-time diarization and
 
 ### Speech SDK 1.17.0: 2021-May release
 
->[!NOTE]
->Get started with the Speech SDK [here](../../quickstarts/setup-platform.md).
+> [!NOTE]
+> Get started with the Speech SDK [here](../../quickstarts/setup-platform.md).
 
 #### Highlights summary
 
