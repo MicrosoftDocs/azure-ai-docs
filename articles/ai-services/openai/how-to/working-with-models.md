@@ -20,7 +20,7 @@ You can get a list of models that are available for both inference and fine-tuni
 
 ## Model updates
 
-Azure OpenAI now supports automatic updates for select model deployments. On models where automatic update support is available, a model version drop-down is visible in Azure AI Foundry portal under **Deployments** and **Edit**:
+Azure OpenAI now supports automatic updates for select model deployments. On models where automatic update support is available, a model version drop-down is visible in [Azure AI Foundry portal](https://ai.azure.com/) under **Deployments** and **Edit**:
 
 :::image type="content" source="../media/models/auto-update-new.png" alt-text="Screenshot of the deploy model UI in the Azure AI Foundry portal." lightbox="../media/models/auto-update-new.png":::
 
@@ -43,7 +43,7 @@ When you select a specific model version for a deployment, this version remains 
 
 ## Viewing retirement dates
 
-For currently deployed models, in the Azure AI Foundry portal select **Deployments**:
+For currently deployed models, in the [Azure AI Foundry portal](https://ai.azure.com/) select **Deployments**:
 
 :::image type="content" source="../media/models/deployments-new.png" alt-text="Screenshot of the deployment UI of the Azure AI Foundry portal." lightbox="../media/models/deployments-new.png":::
 
