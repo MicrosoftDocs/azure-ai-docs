@@ -162,7 +162,6 @@ response = client.complete(
             ],
         ),
     ],
-    model="phi-4-omni",
 )
 ```
 
