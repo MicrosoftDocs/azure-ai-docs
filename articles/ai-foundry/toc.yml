@@ -584,7 +584,7 @@ items:
     href: ../ai-services/openai/concepts/system-message.md?context=/azure/ai-foundry/context/context
   - name: Transparency Note for safety evaluations
     href: ./concepts/safety-evaluations-transparency-note.md
-- name: Reference
+- name: SDK + API Reference
   items:
   - name: Azure AI Projects SDK
     href: /python/api/overview/azure/ai-projects-readme
@@ -601,7 +601,7 @@ items:
   - name: Azure AI Model Inference API
     href: ../ai-foundry/model-inference/reference/reference-model-inference-api.md
   
-- name: Resources
+- name: Other resources
   items:
   - name: Azure AI FAQ
     href: faq.yml
