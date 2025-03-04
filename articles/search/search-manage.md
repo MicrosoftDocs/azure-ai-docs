@@ -102,13 +102,7 @@ Developers need the following information to connect to Azure AI Search:
 + An endpoint or URL from the **Overview** page.
 + An API key from the **Keys** page or a role assignment (we recommend contributor).
 
-We recommend using the portal for the following wizards and tools:
-
-+ [**Import data** wizard](search-get-started-portal.md)
-+ [**Import and vectorize data** wizard](search-get-started-portal-import-vectors.md)
-+ [Search explorer](search-explorer.md)
-
-Recall that a user must be a contributor or higher to run the import wizards.
+We recommend portal access for the [**Import data** wizard](search-get-started-portal.md), the [**Import and vectorize data** wizard](search-get-started-portal-import-vectors.md), and [Search explorer](search-explorer.md). You must be a contributor or higher to run the wizards.
 
 ## Related content
 
