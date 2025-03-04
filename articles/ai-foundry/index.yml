@@ -4,7 +4,7 @@ title: Azure AI Foundry documentation # < 60 chars
 summary:  Safely design, customize, and manage AI applications and agents at scale.
 metadata:
   title: Azure AI Foundry documentation
-  description: Azure AI Foundry helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and pre-built and customizable APIs and models. Example applications include generative AI, natural language processing for conversations, search, monitoring, translation, speech, vision, and decision-making.
+  description: Azure AI Foundry helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models. Example applications include generative AI, natural language processing for conversations, search, monitoring, translation, speech, vision, and decision-making.
   ms.service: azure-ai-foundry
   ms.custom:
     - build-2024
@@ -30,9 +30,8 @@ landingContent:
             url: what-is-ai-foundry.md
           - text: Azure OpenAI Service in Azure AI Foundry
             url: azure-openai-in-ai-foundry.md
-
       - linkListType: concept
-        links
+        links:
           - text: Azure AI Agent service
             url: ../ai-services/agents/overview.md?context=/azure/ai-studio/context/context
           - text: Retrieval Augmented Generation (RAG)
