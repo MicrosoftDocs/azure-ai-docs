@@ -5,7 +5,7 @@ description: How to deploy AI21's Jamba family models with Azure AI Foundry
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 08/06/2024
+ms.date: 03/04/2025
 ms.author: ssalgado
 author: ssalgadodev
 ms.reviewer: tgokal

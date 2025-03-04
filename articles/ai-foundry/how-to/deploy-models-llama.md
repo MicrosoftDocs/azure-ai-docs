@@ -5,7 +5,7 @@ description: Learn how to use the Meta Llama family of models with Azure AI Foun
 ms.service: azure-ai-foundry
 manager: scottpolly
 ms.topic: how-to
-ms.date: 12/04/2024
+ms.date: 03/04/2025
 ms.reviewer: shubhiraj
 reviewer: shubhirajMsft
 ms.author: ssalgado
