@@ -40,7 +40,7 @@ To configure role-based access:
 
 1. [Enable roles](search-security-enable-roles.md) on your search service. We recommend using both API keys and roles.
 
-1. [Assign data plane roles](search-security-rbac.md) to replace the functionality lost when you disable API keys. An owner only needs Search Index Data Reader, but developers need [more roles](search-security-rbac#assign-roles).
+1. [Assign data plane roles](search-security-rbac.md) to replace the functionality lost when you disable API keys. An owner only needs Search Index Data Reader, but developers need [more roles](search-security-rbac.md#assign-roles).
 
    Role assignments can take several minutes to take effect. Until then, portal pages used for data plane operations display the following message:
 
