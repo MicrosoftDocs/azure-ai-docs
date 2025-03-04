@@ -148,7 +148,7 @@ Indexers can access other Azure resources [over private endpoints](search-indexe
 | Maximum private endpoints | N/A | 10 or 30 | 100 | 400 | 400 | N/A | 20 | 20 |
 | Maximum distinct resource types <sup>4</sup> | N/A | 4 | 7 | 15 | 15 | N/A | 4 | 4 |
 
-<sup>1</sup> AI enrichment and image analysis are computationally intensive and consume disproportionate amounts of available processing power. For this reason, private connections are disabled on certain instances of lower tiers to ensure the performance and stability of the search service itself.
+<sup>1</sup> Skillset processing is computationally intensive and consume disproportionate amounts of available processing power. For this reason, private connections are disabled on certain instances of lower tiers to ensure the performance and stability of the search service itself.
 
 <sup>2</sup> Shared private links are supported on the basic tier for any indexer that does not have a skillset. High-capacity basic services created after April 3, 2024 in the regions listed under [Partition Storage](search-limits-quotas-capacity.md#partition-storage-gb) and running [integrated vectorization](vector-search-integrated-vectorization.md) workloads at indexing time support shared private links, but the system must detect at least a skill that is embedding data. Other basic services and skillset configurations do not support shared private links. 
 
