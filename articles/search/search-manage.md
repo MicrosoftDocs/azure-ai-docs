@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/05/2025
+ms.date: 03/04/2025
 ---
 
 # Configure your Azure AI Search service in the Azure portal
@@ -18,12 +18,12 @@ After you create a search service, we recommend that you:
 
 > [!div class="checklist"]
 >
-> + [Configure role-based access](#configure-role-based-access).
-> + [Configure a managed identity](#configure-a-managed-identity).
-> + [Configure network security](#configure-network-security).
-> + [Check capacity and understand billing](#check-capacity-and-understand-billing).
-> + [Enable diagnostic logging](#enable-diagnostic-logging).
-> + [Provide connection information to developers](#provide-connection-information-to-developers).
+> + [Configure role-based access](#configure-role-based-access)
+> + [Configure a managed identity](#configure-a-managed-identity)
+> + [Configure network security](#configure-network-security)
+> + [Check capacity and understand billing](#check-capacity-and-understand-billing)
+> + [Enable diagnostic logging](#enable-diagnostic-logging)
+> + [Provide connection information to developers](#provide-connection-information-to-developers)
 
 ## Configure role-based access
 
@@ -36,14 +36,11 @@ Each search service comes with [API keys](search-security-api-keys.md) and uses 
 
 When you switch from key-based authentication to keyless authentication, service administrators must assign themselves data plane roles for full access to objects and data. These roles include Search Service Contributor, Search Index Data Contributor, and Search Index Data Reader.
 
-To configure RBAC:
+To configure role-based access:
 
-1. [Enable roles](search-security-enable-roles.md) on your search service. We recommend the roles-only option.
+1. [Enable roles](search-security-enable-roles.md) on your search service. We recommend using both API keys and roles.
 
-1. [Assign data plane roles](search-security-rbac.md) to replace the functionality lost when you disable API keys. You need the following roles:
-   + Search Service Contributor
-   + Search Index Data Contributor
-   + Search Index Data Reader
+1. [Assign data plane roles](search-security-rbac.md) to replace the functionality lost when you disable API keys. An owner only needs Search Index Data Reader, but developers need [more roles](search-security-rbac#assign-roles).
 
    Role assignments can take several minutes to take effect. Until then, portal pages used for data plane operations display the following message:
 
@@ -68,8 +65,8 @@ Before you move on to network security, consider testing all points of connectio
 
 By default, a search service accepts authenticated and authorized requests over public internet connections. You have two options for enhancing network security:
 
-1. [Configure firewall rules](service-configure-firewall.md) to restrict network access by IP address.
-2. [Configure a private endpoint](service-create-private-endpoint.md) to only allow traffic from Azure virtual networks.
++ [Configure firewall rules](service-configure-firewall.md) to restrict network access by IP address.
++ [Configure a private endpoint](service-create-private-endpoint.md) to only allow traffic from Azure virtual networks. Note that when you turn off the public endpoint, the import wizards won't run.
 
 To learn about inbound and outbound calls in Azure AI Search, see [Security in Azure AI Search](search-security-overview.md).
 
@@ -97,10 +94,10 @@ To enable semantic ranker in the portal, select **Settings** > **Semantic ranker
 
 ## Provide connection information to developers
 
-Developers need the following information to connect to Azure AI Search:
+To connect to Azure AI Search, developers need:
 
 + An endpoint or URL from the **Overview** page.
-+ An API key from the **Keys** page or a role assignment (we recommend contributor).
++ An API key from the **Keys** page or a role assignment. We recommend Search Service Contributor, Search Index Data Contributor, and Search Index Data Reader.
 
 We recommend portal access for the [**Import data** wizard](search-get-started-portal.md), the [**Import and vectorize data** wizard](search-get-started-portal-import-vectors.md), and [Search explorer](search-explorer.md). You must be a contributor or higher to run the wizards.
 
