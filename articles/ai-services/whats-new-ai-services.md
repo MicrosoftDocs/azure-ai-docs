@@ -18,7 +18,6 @@ Welcome to what's new in the Azure AI Services docs for February 2025. This arti
 ### New articles
 
 - [Analyzer templates offered with Content Understanding](../ai-services/content-understanding/concepts/analyzer-templates.md)
-- [Azure AI Services docs: What's new for January 2025](../ai-services/whats-new-ai-services.md)
 - [Azure AI Translator known issues](../ai-services/translator/reference/known-issues.md)
 - [Azure AI Translator release history](../ai-services/translator/reference/release-history.md)
 - [Best practices for Content Understanding](../ai-services/content-understanding/concepts/best-practices.md)
