@@ -5,7 +5,7 @@ description: Learn how to use tsuzumi-7b models with Azure AI Foundry.
 ms.service: azure-ai-foundry
 manager: scottpolly
 ms.topic: how-to
-ms.date: 10/24/2024
+ms.date: 03/04/2025
 ms.reviewer: haelhamm
 reviewer: hazemelh
 ms.author: ssalgado
