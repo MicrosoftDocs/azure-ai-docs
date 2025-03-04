@@ -145,8 +145,8 @@ The following example sends audio content encoded in `base64` data in the chat h
                     "text": "Please translate this audio snippet to spanish."
                 },
                 {
-                    "type": "audio_input",
-                    "audio_input": {
+                    "type": "input_audio",
+                    "input_audio": {
                         "data": "0xABCDFGHIJKLMNOPQRSTUVWXYZ...",
                         "format": "mp3"
                     }
