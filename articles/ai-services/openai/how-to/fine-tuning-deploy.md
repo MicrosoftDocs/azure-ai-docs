@@ -1,7 +1,7 @@
 ---
-title: 'Deploy a finetuned model'
+title: 'Deploy a fine-tuned model'
 titleSuffix: Azure OpenAI
-description: Learn how to deploy your finetuned model with Azure OpenAI Service by using Python, the REST APIs, or Azure AI Foundry portal.
+description: Learn how to deploy your fine-tuned model with Azure OpenAI Service by using Python, the REST APIs, or Azure AI Foundry portal.
 #services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
@@ -12,7 +12,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 ---
 
-# Deploy a finetuned model for inferecing
+# Deploy a fine-tuned model for inferencing
 
 Once your model is fine-tuned, you can deploy the model and can use it in your own application.
 
@@ -20,7 +20,7 @@ When you deploy the model, you make the model available for inferencing, and tha
 
 Azure OpenAI provides choices of deployment types for fine-tuned models on the hosting structure that fits different business and usage patterns: **Standard**, **Global Standard** (preview) and **Provisioned Managed** (preview). Learn more about [deployment types for fine-tuned models](#deployment-types) and the [concepts of all deployment types](./deployment-types.md).
 
-## Deploy your finetuned model
+## Deploy your fine-tuned model
 
 ## [Portal](#tab/portal)
 
@@ -398,7 +398,7 @@ Provisioned Managed fine-tuning deployments currently do not support vision and 
 
 To create a new deployment, make an HTTP PUT call via the [Deployments - Create or Update REST API](/rest/api/aiservices/accountmanagement/deployments/create-or-update?view=rest-aiservices-accountmanagement-2024-10-01&tabs=HTTP&preserve-view=true). The approach is similar to performing [cross region deployment](#cross-region-deployment) with the following exceptions:
 
-- You must provide a sku name of `ProvisionedStandard`.
+- You must provide a `sku` name of `ProvisionedStandard`.
 - The capacity must be declared in PTUs.
 - The `api-version` must be `2024-10-01` or newer.
 - The HTTP method should be `PUT`.
@@ -449,7 +449,7 @@ curl -X PUT "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceG
 
 To delete a deployment, use the [Deployments - Delete REST API](/rest/api/aiservices/accountmanagement/deployments/delete?view=rest-aiservices-accountmanagement-2024-10-01&tabs=HTTP&preserve-view=true) and send an HTTP DELETE to the deployment resource. Like with creating deployments, you must include the following parameters:
 
-- Azure subscription id
+- Azure subscription ID
 - Azure resource group name
 - Azure OpenAI resource name
 - Name of the deployment to delete
