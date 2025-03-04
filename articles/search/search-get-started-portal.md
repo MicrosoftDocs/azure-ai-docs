@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Create a Search Index in the Azure Portal"
+title: "Quickstart: Create an Index in the Azure Portal"
 titleSuffix: Azure AI Search
 description: Learn how to create, load, and query your first search index using the Import Data wizard in the Azure portal. This quickstart uses a fictitious hotel dataset for sample data.
 manager: nitinme
@@ -265,4 +265,4 @@ In the Azure portal, you can find and manage resources for your service under **
 Try an Azure portal wizard to generate a ready-to-use web app that runs in a browser. Use this wizard on the small index you created in this quickstart, or use one of the built-in sample datasets for a richer search experience.
 
 > [!div class="nextstepaction"]
-> [Create a demo app in the Azure portal](search-create-app-portal.md)
+> [Quickstart: Create a demo search app in the Azure portal](search-create-app-portal.md)

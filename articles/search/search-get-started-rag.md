@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: RAG'
+title: 'Quickstart: Generative Search (RAG)'
 titleSuffix: Azure AI Search
 description: Learn how to use grounding data from Azure AI Search with a chat model on Azure OpenAI.
 author: haileytap

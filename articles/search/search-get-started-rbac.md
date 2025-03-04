@@ -9,7 +9,7 @@ ms.topic: quickstart
 ms.date: 03/04/2025
 ---
 
-# Quickstart: Connect to Azure AI Search without keys
+# Quickstart: Connect without keys
 
 In this quickstart, you configure Azure AI Search to use Microsoft Entra ID authentication and role-based access control (RBAC) to connect from your local system without API keys. You then use Jupyter notebooks or a REST client to interact with your search service.
 

@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Vectorize Text and Images in the Azure Portal"
+title: "Quickstart: Vectorize Content in the Azure Portal"
 titleSuffix: Azure AI Search
 description: Learn how to use a wizard to automate data chunking and vectorization in a search index.
 author: haileytap
@@ -104,7 +104,7 @@ This section points you to the content that works for this quickstart.
 
    1. If you're using [native soft delete](search-howto-index-changed-deleted-blobs.md#native-blob-soft-delete), no further steps are required on Azure Storage.
 
-   1. Otherwise, [add custom metadata](search-howto-index-changed-deleted-blobs.md#soft-delete-strategy-using-custom-metadata) that an indexer can scan to determine which blobs are marked for deletion. Give your custom property a descriptive name. For example, you could name the property "IsDeleted", set to false. Do this for every blob in the container. Later, when you want to delete the blob, change the property to true. For more information, see [Change and delete detection when indexing from Azure Storage](search-howto-index-changed-deleted-blobs.md)
+   1. Otherwise, [add custom metadata](search-howto-index-changed-deleted-blobs.md#soft-delete-strategy-using-custom-metadata) that an indexer can scan to determine which blobs are marked for deletion. Give your custom property a descriptive name. For example, you could name the property "IsDeleted", set to false. Do this for every blob in the container. Later, when you want to delete the blob, change the property to true. For more information, see [Change and delete detection when indexing from Azure Storage](search-howto-index-changed-deleted-blobs.md).
 
 ### [ADLS Gen2](#tab/sample-data-adlsgen2)
 
