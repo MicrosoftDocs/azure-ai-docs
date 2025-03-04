@@ -7,14 +7,12 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/04/2025
+ms.date: 03/05/2025
 ---
 
 # Configure your Azure AI Search service in the Azure portal
 
 Configuring your new Azure AI Search service involves several tasks to optimize security, access, and performance. This article provides a day-one checklist to help you set up your service in the [Azure portal](https://portal.azure.com).
-
-## Day-one configuration checklist
 
 After you create a search service, we recommend that you:
 
@@ -27,7 +25,7 @@ After you create a search service, we recommend that you:
 > + [Enable diagnostic logging](#enable-diagnostic-logging).
 > + [Provide connection information to developers](#provide-connection-information-to-developers).
 
-### Configure role-based access
+## Configure role-based access
 
 Portal access is based on [role assignments](search-security-rbac.md). By default, new search services have at least one service administrator or owner. Service administrators, co-administrators, and owners have permission to create more administrators and assign other roles. They also have access to all portal pages and operations on default search services.
 
@@ -53,7 +51,7 @@ To configure RBAC:
 
 1. [Assign more roles](search-security-rbac.md) for solution developers and apps.
 
-### Configure a managed identity
+## Configure a managed identity
 
 If you plan to use indexers for automated indexing, applied AI, or integrated vectorization, you should [configure your search service to use a managed identity](search-howto-managed-identities-data-sources.md). You can then assign roles on other Azure services that authorize your search service to access data and operations.
 
@@ -64,9 +62,9 @@ For integrated vectorization, your search service identity needs the following r
 
 Role assignments can take several minutes to take effect.
 
-Before you move on to network security, consider testing all points of connection to validate role assignments. Run either the [Import data wizard](search-get-started-portal.md) or the [Import and vectorize data wizard](search-get-started-portal-image-search.md) to test permissions.
+Before you move on to network security, consider testing all points of connection to validate role assignments. Run either the [**Import data** wizard](search-get-started-portal.md) or the [**Import and vectorize data** wizard](search-get-started-portal-image-search.md) to test permissions.
 
-### Configure network security
+## Configure network security
 
 By default, a search service accepts authenticated and authorized requests over public internet connections. You have two options for enhancing network security:
 
@@ -75,7 +73,7 @@ By default, a search service accepts authenticated and authorized requests over 
 
 To learn about inbound and outbound calls in Azure AI Search, see [Security in Azure AI Search](search-security-overview.md).
 
-### Check capacity and understand billing
+## Check capacity and understand billing
 
 By default, a search service is created with one replica and one partition. You can [add capacity](search-capacity-planning.md) by adding replicas and partitions, but we recommend waiting until volumes require it. Many customers run production workloads on the minimum configuration.
 
@@ -83,7 +81,7 @@ Semantic ranker increases the cost of running your service. You can [disable sem
 
 To learn about other features that affect billing, see [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-azure-ai-search).
 
-### Enable diagnostic logging
+## Enable diagnostic logging
 
 [Enable diagnostic logging](search-monitor-enable-logging.md) to track user activity. If you skip this step, you still get [activity logs](/azure/azure-monitor/essentials/activity-log) and [platform metrics](/azure/azure-monitor/essentials/data-platform-metrics#types-of-metrics) automatically. However, if you want index and query usage information, you should enable diagnostic logging and choose a destination for logged operations. We recommend Log Analytics Workspace for durable storage so that you can run system queries in the Azure portal.
 
@@ -91,13 +89,13 @@ Internally, Microsoft collects telemetry data about your service and the platfor
 
 To learn more about data location and privacy, see [Data residency](search-security-overview.md#data-residency).
 
-### Enable semantic ranker
+## Enable semantic ranker
 
 Semantic ranker is free for the first 1,000 requests per month. It's enabled by default on newer search services.
 
 To enable semantic ranker in the portal, select **Settings** > **Semantic ranker** from the left pane, and then select the **Free** plan. For more information, see [Enable semantic ranker](semantic-how-to-enable-disable.md).
 
-### Provide connection information to developers
+## Provide connection information to developers
 
 Developers need the following information to connect to Azure AI Search:
 
@@ -106,8 +104,8 @@ Developers need the following information to connect to Azure AI Search:
 
 We recommend using the portal for the following wizards and tools:
 
-+ [Import data wizard](search-get-started-portal.md)
-+ [Import and vectorize data](search-get-started-portal-import-vectors.md)
++ [**Import data** wizard](search-get-started-portal.md)
++ [**Import and vectorize data** wizard](search-get-started-portal-import-vectors.md)
 + [Search explorer](search-explorer.md)
 
 Recall that a user must be a contributor or higher to run the import wizards.
