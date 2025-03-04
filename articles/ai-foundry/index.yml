@@ -15,7 +15,7 @@ metadata:
   ms.reviewer: sgilley
   ms.author: sgilley
   author: sdgilley
-  ms.date: 12/12/2024
+  ms.date: 03/04/2025
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
 landingContent:
@@ -30,6 +30,11 @@ landingContent:
             url: what-is-ai-foundry.md
           - text: Azure OpenAI Service in Azure AI Foundry
             url: azure-openai-in-ai-foundry.md
+
+      - linkListType: concept
+        links
+          - text: Azure AI Agent service
+            url: ../ai-services/agents/overview.md?context=/azure/ai-studio/context/context
           - text: Retrieval Augmented Generation (RAG)
             url: concepts/retrieval-augmented-generation.md
           - text: Evaluation and monitoring metrics for generative AI
@@ -53,8 +58,7 @@ landingContent:
             url: how-to/model-catalog-overview.md
           - text: Compare benchmarks across models and datasets
             url: how-to/benchmark-model-in-catalog.md
-          - text: What is Azure AI Agent service?
-            url: ../ai-services/agents/overview.md?context=/azure/ai-studio/context/context
+
       
   # Card
   - title: Azure AI Foundry SDK
@@ -89,7 +93,7 @@ landingContent:
             url: https://aka.ms/LearnAzureAIStudio
           - text: Vector search in Azure AI Search
             url: /training/modules/improve-search-results-vector-search/
-      - linkListType: concept
+      - linkListType: reference
         links:
           - text: Azure Machine Learning
             url: /azure/machine-learning/
