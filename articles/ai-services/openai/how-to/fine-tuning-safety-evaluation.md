@@ -10,7 +10,6 @@ ms.topic: how-to
 ms.date: 02/24/2025
 author: mrbullwinkle
 ms.author: mbullwin
-zone_pivot_groups: openai-fine-tuning
 ---
 
 # Safety evaluation for fine-tuning (preview)

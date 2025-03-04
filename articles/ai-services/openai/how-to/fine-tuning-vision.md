@@ -10,7 +10,6 @@ ms.topic: how-to
 ms.date: 02/24/2025
 author: mrbullwinkle
 ms.author: mbullwin
-zone_pivot_groups: openai-fine-tuning
 ---
 
 # Vision fine-tuning
@@ -42,18 +41,18 @@ As with all fine-tuning training your example file requires at least 10 examples
 ```json
 {
   "messages": [
-    { "role": "system", "content": "You are an assistant that identifies uncommon cheeses." },
-    { "role": "user", "content": "What is this cheese?" },
+    { "role": "system", "content": "You are a helpful AI assistant." },
+    { "role": "user", "content": "Describe the image?" },
     { "role": "user", "content": [
         {
           "type": "image_url",
           "image_url": {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/3/36/Danbo_Cheese.jpg"
+            "url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-ai-docs/main/articles/ai-services/openai/media/how-to/generated-seattle.png"
           }
         }
       ]
     },
-    { "role": "assistant", "content": "Danbo" }
+    { "role": "assistant", "content": "The image appears to be a watercolor painting of a city skyline, featuring tall buildings and a recognizable structure often associated with Seattle, like the Space Needle. The artwork uses soft colors and brushstrokes to create a somewhat abstract and artistic representation of the cityscape" }
   ]
 }
 ```
@@ -70,7 +69,7 @@ Images containing the following will be excluded from your dataset and not used 
 - CAPTCHAs
 
 > [!IMPORTANT]
->For  vision fine tuning face screening process: We screen for faces/people to skip those images from training the model. The screening capability leverages face detection **WITHOUT** Face identification which means we don't create facial templates or measure specific facial geometry, and the technology used to screen for faces is incapable of uniquely identifying the individuals. To know more about data and Privacy for face refer to - [Data and privacy for Face - Azure AI services | Microsoft Learn](/legal/cognitive-services/computer-vision/imageanalysis-data-privacy-security?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext).
+>For vision fine tuning face screening process: We screen for faces/people to skip those images from training the model. The screening capability leverages face detection **WITHOUT** Face identification which means we don't create facial templates or measure specific facial geometry, and the technology used to screen for faces is incapable of uniquely identifying the individuals. To know more about data and Privacy for face refer to - [Data and privacy for Face - Azure AI services | Microsoft Learn](/legal/cognitive-services/computer-vision/imageanalysis-data-privacy-security?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext).
 
 ## Next steps
 
