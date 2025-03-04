@@ -171,11 +171,21 @@ items:
       - name: Fine-tuning your model
         href: ./how-to/fine-tuning.md
         displayName: finetuning 
+      - name: Deploy your fine-tuned model
+        href: ./how-to/fine-tuning-deploy.md 
+      - name: Vision fine-tuning
+        href: ./how-to/fine-tuning-vision.md
+      - name: Preference fine-tuning
+        href: ./how-to/fine-tuning-direct-preference-optimization.md
+      - name: Safety evaluation
+        href: ./how-to/fine-tuning-safety-evaluation.md
       - name: Tool calling
         href: ./how-to/fine-tuning-functions.md
         displayName: fine-tuning, finetuning, function calling
       - name: Weights & Biases integration (preview)
         href: ./how-to/weights-and-biases-integration.md
+      - name: Troubleshoot guidance
+        href: ./how-to/fine-tuning-troubleshoot.md
   - name: Stored completions
     href: ./how-to/stored-completions.md
   - name: Use your data
