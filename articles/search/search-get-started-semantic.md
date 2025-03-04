@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Semantic Ranking Using .NET or Python'
+title: 'Quickstart: Add Semantic Ranking to an Index Using .NET or Python'
 titleSuffix: Azure AI Search
 description: Learn how to change an existing index to use semantic ranker, which helps rescore search results and promote the most semantically relevant matches.
 manager: nitinme
