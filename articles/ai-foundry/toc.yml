@@ -600,11 +600,7 @@ items:
     href: ../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context
   - name: Azure AI Model Inference API
     href: ../ai-foundry/model-inference/reference/reference-model-inference-api.md
-  - name: Azure Policy built-ins
-    displayName: samples, policies, definitions
-    href: ../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
-  - name: Region support
-    href: reference/region-support.md
+  
 - name: Resources
   items:
   - name: Azure AI FAQ
@@ -627,3 +623,7 @@ items:
     href: https://azure.microsoft.com/support/legal/sla/cognitive-services/v1_1/
   - name: Azure Government
     href: /azure/azure-government/compare-azure-government-global-azure
+  - name: Azure Policy built-ins
+    displayName: samples, policies, definitions
+    href: ../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
+
