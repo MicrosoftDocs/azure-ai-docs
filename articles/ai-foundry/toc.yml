@@ -584,7 +584,7 @@ items:
     href: ../ai-services/openai/concepts/system-message.md?context=/azure/ai-foundry/context/context
   - name: Transparency Note for safety evaluations
     href: ./concepts/safety-evaluations-transparency-note.md
-- name: Reference
+- name: SDK + API Reference
   items:
   - name: Azure AI Projects SDK
     href: /python/api/overview/azure/ai-projects-readme
@@ -600,12 +600,8 @@ items:
     href: ../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context
   - name: Azure AI Model Inference API
     href: ../ai-foundry/model-inference/reference/reference-model-inference-api.md
-  - name: Azure Policy built-ins
-    displayName: samples, policies, definitions
-    href: ../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
-  - name: Region support
-    href: reference/region-support.md
-- name: Resources
+  
+- name: Other resources
   items:
   - name: Azure AI FAQ
     href: faq.yml
@@ -627,3 +623,7 @@ items:
     href: https://azure.microsoft.com/support/legal/sla/cognitive-services/v1_1/
   - name: Azure Government
     href: /azure/azure-government/compare-azure-government-global-azure
+  - name: Azure Policy built-ins
+    displayName: samples, policies, definitions
+    href: ../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
+
