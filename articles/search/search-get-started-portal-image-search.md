@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Search for Images in the Azure Portal"
+title: "Quickstart: Image Search in the Azure Portal"
 titleSuffix: Azure AI Search
 description: Learn how to search for images on an Azure AI Search index in the Azure portal. Run a wizard to vectorize images, and then use Search Explorer to provide an image as your query input.
 author: haileytap

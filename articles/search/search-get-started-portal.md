@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Create an Index in the Azure Portal"
+title: "Quickstart: Keyword Search in the Azure Portal"
 titleSuffix: Azure AI Search
 description: Learn how to create, load, and query your first search index using the Import Data wizard in the Azure portal. This quickstart uses a fictitious hotel dataset for sample data.
 manager: nitinme
