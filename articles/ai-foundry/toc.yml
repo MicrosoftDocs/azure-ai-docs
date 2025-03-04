@@ -16,7 +16,7 @@ items:
       href: quickstarts/get-started-code.md
     - name: Get started with Azure AI Foundry SDK
       href: how-to/develop/sdk-overview.md
-  - name: Tutorials
+  - name: In-depth tutorials
     items:
     - name: Build a custom chat app with Azure AI Foundry SDK
       items:
