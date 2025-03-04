@@ -147,7 +147,7 @@ POST {{baseUrl}}/datasources?api-version=2024-07-01  HTTP/1.1
         "type": "azureblob",
         "subtype": null,
         "credentials": {
-            "connectionString": "{{storageConnectionString}}"
+            "connectionString": "{{storageConnection}}"
         },
         "container": {
             "name": "{{blobContainer}}",
