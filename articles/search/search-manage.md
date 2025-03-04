@@ -1,119 +1,116 @@
 ---
 title: Service Configuration in the Azure Portal
 titleSuffix: Azure AI Search
-description: Manage an Azure AI Search service in the Azure portal.
+description: Manage your new Azure AI Search service in the Azure portal. This article provides a day-one checklist for configuring RBAC, managed identities, network security, and more.
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 03/04/2025
 ---
 
 # Configure your Azure AI Search service in the Azure portal
 
-In Azure AI Search, the [Azure portal](https://portal.azure.com) supports a broad range of administrative and content management operations so that you don't have to write code unless you want automation.
+Configuring your new Azure AI Search service involves several tasks to optimize security, access, and performance. This article provides a day-one checklist to help you set up your service in the [Azure portal](https://portal.azure.com).
 
-Each search service is managed as a standalone resource. Your role assignment determines what operations are exposed in the Azure portal.
+## Day-one configuration checklist
 
-## Portal and administrator permissions
+After you create a search service, we recommend that you:
 
-Portal access is through [role assignments](search-security-rbac.md). By default, all search services start with at least one Service Administrator or Owner. Service administrators, co-administrators, and owners have permission to create other administrators and other role assignments. They have full access to all portal pages and operations on a default search service.
+> [!div class="checklist"]
+>
+> + [Configure role-based access](#configure-role-based-access).
+> + [Configure a managed identity](#configure-a-managed-identity).
+> + [Configure network security](#configure-network-security).
+> + [Check capacity and understand billing](#check-capacity-and-understand-billing).
+> + [Enable diagnostic logging](#enable-diagnostic-logging).
+> + [Provide connection information to developers](#provide-connection-information-to-developers).
 
-If you disable API keys on a search service and use roles only, administrators must grant themselves data plane role assignments for full access to objects and data. These role assignments include Search Service Contributor, Search Index Data Contributor, and Search Index Data Reader.
+### Configure role-based access
+
+Portal access is based on [role assignments](search-security-rbac.md). By default, new search services have at least one service administrator or owner. Service administrators, co-administrators, and owners have permission to create more administrators and assign other roles. They also have access to all portal pages and operations on default search services.
 
 > [!TIP]
-> By default, any owner or administrator can create or delete services. To prevent accidental deletions, you can [lock resources](/azure/azure-resource-manager/management/lock-resources).
+> By default, any administrator or owner can create or delete services. To prevent accidental deletions, consider [locking your resources](/azure/azure-resource-manager/management/lock-resources).
 
-## Azure portal at a glance
+Each search service comes with [API keys](search-security-api-keys.md) and uses key-based authentication by default. However, we recommend using Microsoft Entra ID and role-based access control (RBAC) for improved security. RBAC eliminates the need to store and pass API keys in plain text.
 
-The overview page is the home page of each service. In the following screenshot, the red boxes indicate tasks, tools, and tiles that you might use often, especially if you're new to the service.
+When you switch from key-based authentication to keyless authentication, service administrators must assign themselves data plane roles for full access to objects and data. These roles include Search Service Contributor, Search Index Data Contributor, and Search Index Data Reader.
 
-:::image type="content" source="media/search-manage/search-portal-overview-page.png" alt-text="Portal pages for a search service" border="true":::
-
-| Area | Description |
-|------|-------------|
-| 1 | A command bar at the top of the page includes [Import data wizard](search-get-started-portal.md) and [Search explorer](search-explorer.md), used for prototyping and exploration. |
-| 2 | The **Essentials** section lists service properties, such as the service endpoint, service tier, and replica and partition counts. |
-| 3 | Tabbed pages in the center provide quick access to usage statistics and service health metrics. |
-| 4 | Navigation links to existing indexes, indexers, data sources, and skillsets. |
-
-You can't change the search service name, subscription, resource group, region (location), or tier. Switching tiers requires creating a new service or filing a support ticket to request a tier upgrade, which is only supported for Basic and higher.
-
-## Day-one management checklist
-
-On a new search service, we recommend these configuration tasks.
-
-### Enable role-based access
-
-A search service is always created with [API keys](search-security-api-keys.md) and uses key-based authentication by default. However, using Microsoft Entra ID and role assignments is a more secure option because it eliminates storing and passing keys in plain text.
+To configure RBAC:
 
 1. [Enable roles](search-security-enable-roles.md) on your search service. We recommend the roles-only option.
 
-1. For administration, [assign data plane roles](search-security-rbac.md) to replace the functionality lost when you disable API keys. Role assignments include Search Service Contributor, Search Index Data Contributor, and Search Index Data Reader. You need all three.
+1. [Assign data plane roles](search-security-rbac.md) to replace the functionality lost when you disable API keys. You need the following roles:
+   + Search Service Contributor
+   + Search Index Data Contributor
+   + Search Index Data Reader
 
-   Sometimes it can take five to ten minutes for role assignments to take effect. Until that happens, the following message appears in the Azure portal pages used for data plane operations.
+   Role assignments can take several minutes to take effect. Until then, portal pages used for data plane operations display the following message:
 
-   :::image type="content" source="media/search-security-rbac/you-do-not-have-access.png" alt-text="Screenshot of portal message indicating insufficient permissions.":::
+   :::image type="content" source="media/search-security-rbac/you-do-not-have-access.png" alt-text="Screenshot of the portal message indicating insufficient permissions.":::
 
-1. Continue to [add more role assignments](search-security-rbac.md) for solution developers and apps.
+1. [Assign more roles](search-security-rbac.md) for solution developers and apps.
 
 ### Configure a managed identity
 
-If you plan to use indexers for automated indexing, applied AI, or integrated vectorization, you should [configure the search service to use a managed identity](search-howto-managed-identities-data-sources.md). You can then add role assignments on other Azure services that authorize your search service to access data and operations.
+If you plan to use indexers for automated indexing, applied AI, or integrated vectorization, you should [configure your search service to use a managed identity](search-howto-managed-identities-data-sources.md). You can then assign roles on other Azure services that authorize your search service to access data and operations.
 
-For integrated vectorization, a search service identity needs:
+For integrated vectorization, your search service identity needs the following roles:
 
 + Storage Blob Data Reader on Azure Storage
 + Cognitive Services Data User on an Azure AI multiservice account
 
-It can take several minutes for role assignments to take effect.
+Role assignments can take several minutes to take effect.
 
-Before moving on to network security, consider testing all points of connection to validate role assignments. Run either the [Import data wizard](search-get-started-portal.md) or the [Import and vectorize data wizard](search-get-started-portal-image-search.md) to test permissions. 
+Before you move on to network security, consider testing all points of connection to validate role assignments. Run either the [Import data wizard](search-get-started-portal.md) or the [Import and vectorize data wizard](search-get-started-portal-image-search.md) to test permissions.
 
 ### Configure network security
 
-By default, a search service accepts authenticated and authorized requests over public internet connections. Network security restricts access through firewall rules, or by disabling public connections and allowing requests only from Azure virtual networks.
+By default, a search service accepts authenticated and authorized requests over public internet connections. You have two options for enhancing network security:
 
-+ [Configure network access](service-configure-firewall.md) to restrict access by IP addresses.
-+ [Configure a private endpoint](service-create-private-endpoint.md) using Azure Private Link and a private virtual network.
+1. [Configure firewall rules](service-configure-firewall.md) to restrict network access by IP address.
+2. [Configure a private endpoint](service-create-private-endpoint.md) to only allow traffic from Azure virtual networks.
 
-[Security in Azure AI Search](search-security-overview.md) explains inbound and outbound calls in Azure AI Search.
+To learn about inbound and outbound calls in Azure AI Search, see [Security in Azure AI Search](search-security-overview.md).
 
 ### Check capacity and understand billing
 
-By default, a search service is created in a minimum configuration of one replica and partition each. You can [add capacity](search-capacity-planning.md) by adding replicas and partitions, but we recommend waiting until volumes require it. Many customers run production workloads on the minimum configuration.
+By default, a search service is created with one replica and one partition. You can [add capacity](search-capacity-planning.md) by adding replicas and partitions, but we recommend waiting until volumes require it. Many customers run production workloads on the minimum configuration.
 
-Some features add to the cost of running the service:
+Semantic ranker increases the cost of running your service. You can [disable semantic ranker](semantic-how-to-enable-disable.md) at the service level to prevent the use of this feature.
 
-+ [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-azure-ai-search) explains which features have billing impact.
-+ [(Optional) disable semantic ranker](semantic-how-to-enable-disable.md) at the service level to prevent usage of the feature.
+To learn about other features that affect billing, see [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-azure-ai-search).
 
 ### Enable diagnostic logging
 
-[Enable diagnostic logging](search-monitor-enable-logging.md) to track user activity. If you skip this step, you still get [activity logs](/azure/azure-monitor/essentials/activity-log)  and [platform metrics](/azure/azure-monitor/essentials/data-platform-metrics#types-of-metrics) automatically, but if you want index and query usage information, you should enable diagnostic logging and choose a destination for logged operations. 
-
-We recommend Log Analytics Workspace for durable storage so that you can run system queries in the Azure portal.
+[Enable diagnostic logging](search-monitor-enable-logging.md) to track user activity. If you skip this step, you still get [activity logs](/azure/azure-monitor/essentials/activity-log) and [platform metrics](/azure/azure-monitor/essentials/data-platform-metrics#types-of-metrics) automatically. However, if you want index and query usage information, you should enable diagnostic logging and choose a destination for logged operations. We recommend Log Analytics Workspace for durable storage so that you can run system queries in the Azure portal.
 
 Internally, Microsoft collects telemetry data about your service and the platform. To learn more about data retention, see [Retention of metrics](/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics).
 
-> [!NOTE]
-> See the ["Data residency"](search-security-overview.md#data-residency) section of the security overview article for more information about data location and privacy.
+To learn more about data location and privacy, see [Data residency](search-security-overview.md#data-residency).
 
 ### Enable semantic ranker
 
-Semantic ranker is free for the first 1,000 requests per month. It's enabled by default on newer services.
+Semantic ranker is free for the first 1,000 requests per month. It's enabled by default on newer search services.
 
-In Azure portal, under **Settings** on the leftmost pane, select **Semantic ranker** and then choose the Free plan. For more information, see [Enable semantic ranker](semantic-how-to-enable-disable.md).
+To enable semantic ranker in the portal, select **Settings** > **Semantic ranker** from the left pane, and then select the **Free** plan. For more information, see [Enable semantic ranker](semantic-how-to-enable-disable.md).
 
 ### Provide connection information to developers
 
 Developers need the following information to connect to Azure AI Search:
 
-+ An endpoint or URL, provided on the **Overview** page.
-+ An API key from the **Keys** page, or a role assignment (contributor is recommended).
++ An endpoint or URL from the **Overview** page.
++ An API key from the **Keys** page or a role assignment (we recommend contributor).
 
-We recommend portal access for the following wizards and tools: [Import data wizard](search-get-started-portal.md), [Import and vectorize data](search-get-started-portal-import-vectors.md), [Search explorer](search-explorer.md). Recall that a user must be a contributor or above to run the import wizards.
+We recommend using the portal for the following wizards and tools:
+
++ [Import data wizard](search-get-started-portal.md)
++ [Import and vectorize data](search-get-started-portal-import-vectors.md)
++ [Search explorer](search-explorer.md)
+
+Recall that a user must be a contributor or higher to run the import wizards.
 
 ## Related content
 
