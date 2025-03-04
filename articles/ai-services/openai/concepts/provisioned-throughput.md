@@ -55,7 +55,7 @@ To help with simplifying the sizing effort, the following table outlines the TPM
 |Regional provisioned minimum deployment|50|25|50|
 |Regional provisioned scale increment|50|25|50|
 |Input TPM per PTU |2,500|37,000|230|
-|Latency Target Value |25 Tokens Per Second|33 Tokens Per Second|25 Tokens Per Second
+|Latency Target Value |25 Tokens Per Second|33 Tokens Per Second|25 Tokens Per Second|
 
 For a full list see the [Azure OpenAI Service in Azure AI Foundry portal calculator](https://oai.azure.com/portal/calculator).
 
