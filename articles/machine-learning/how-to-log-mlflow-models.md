@@ -8,7 +8,7 @@ ms.author: mopeakande
 ms.reviewer: fasantia
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.date: 02/19/2025
+ms.date: 03/04/2025
 ms.topic: how-to
 ms.custom: cliv2, sdkv2
 # customer intent: As a developer, I want to see how to log MLflow models so that I can use automatic logging or custom models.
@@ -172,7 +172,7 @@ class ModelWrapper(PythonModel):
         self._model = model
 
     def predict(self, context: PythonModelContext, data):
-        # The next line doesn't have to predict values. Instead, you can use model.recommend(), model.forecast(), or a similar function.
+        # The next line uses a prediction function. However, you could also use model.recommend(), model.forecast(), or a similar function instead.
         return self._model.predict_proba(data)
 
     # You can add extra functions if you need to. Because the model is serialized,
@@ -381,6 +381,6 @@ mlflow.pyfunc.log_model("classifier",
 
 ---
 
-## Next steps
+## Next step
 
 * [Guidelines for deploying MLflow models](how-to-deploy-mlflow-models.md)
