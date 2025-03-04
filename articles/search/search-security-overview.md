@@ -221,6 +221,8 @@ Service-managed encryption applies to all content on long-term and short-term st
 
 #### Customer-managed keys (CMK)
 
+Customers use CMK for two reasons: extra protection, and the ability to revoke keys, preventing access to content.
+
 Customer-managed keys require another billable service, Azure Key Vault, which can be in a different region, but under the same Azure tenant, as Azure AI Search. 
 
 CMK support was rolled out in two phases. If you created your search service during the first phase, CMK encryption was restricted to long-term storage and specific regions. Services created in the second phase can use CMK encryption in any region. As part of the second wave rollout, content is CMK-encrypted on both long-term and short-term storage.
