@@ -465,8 +465,6 @@
       "redirect_url": "/azure/ai-services/speech-service/how-to-custom-speech-create-project",
       "redirect_document_id": false
     },
-
-    
     {
       "source_path_from_root": "/articles/ai-services/anomaly-detector/how-to/postman.md",
       "redirect_url": "/azure/ai-services/anomaly-detector/overview",
@@ -865,6 +863,21 @@
     {
       "source_path_from_root": "/articles/ai-services/ai-services-and-ecosystem.md",
       "redirect_url": "/azure/ai-services/what-are-ai-services",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/meeting-transcription.md",
+      "redirect_url": "/azure/ai-services/speech-service/multi-device-conversation",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-use-meeting-transcription.md",
+      "redirect_url": "/azure/ai-services/speech-service/multi-device-conversation",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-async-meeting-transcription.md",
+      "redirect_url": "/azure/ai-services/speech-service/multi-device-conversation",
       "redirect_document_id": false
     }
   ]
