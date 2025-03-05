@@ -21,17 +21,18 @@ For each vector field, Azure AI Search constructs an internal vector index using
 > A note about terminology. Internally, the physical data structures of a search index include raw content (used for retrieval patterns requiring non-tokenized content), inverted indexes (used for searchable text fields), and vector indexes (used for searchable vector fields). This article explains the limits for the internal vector indexes that back each of your vector fields.
 
 > [!TIP]
-> [Vector optimization techniques](vector-search-how-to-configure-compression-storage.md) are now generally available. Use capabilities like narrow data types, scalar and binary quantization, and elimination of redundant storage to stay under vector quota and storage quota.
+> [Vector optimization techniques](vector-search-how-to-configure-compression-storage.md) are now generally available. Use capabilities like narrow data types, scalar and binary quantization, and elimination of redundant storage to reduce your vector quota and storage quota consumption.
+
+> [!NOTE]
+> Not all algorithms will consume vector index size quota. Vector quotas are established based on memory requirements of approximate nearest neighbor search. Vector fields created with the Hierarchical Navigable Small World (HNSW) algorithm need to reside in memory during query execution because of the random-access nature of graph-based traversals. Vector fields using exhaustive KNN algorithm are loaded into memory dynamically in pages during query execution, and as a result do not consume vector quota.
 
 ## Key points about quota and vector index size
 
 + Vector index size is measured in bytes.
 
-+ Vector quotas are based on memory constraints. For vector indexes created using the Hierarchical Navigable Small World (HNSW) algorithm, searchable vector indexes reside in memory. At the same time, there must also be sufficient memory for other runtime operations. Vector quotas exist to ensure that the overall system remains stable and balanced for all workloads. If you use exhaustive KNN algorithm, indexes are loaded into memory only at query time.
++ The total storage of your service will contain all of your vector index files. Azure AI Search maintains different copies of vector index files for different purposes. We offer additional options to reduce the [storage overhead of vector indexes](vector-search-how-to-storage-options.md) by eliminating some of these copies.
 
-+ Vector indexes are also subject to disk quota, in the sense that all indexes are subject disk quota. There's no separate disk quota for vector indexes.
-
-+ Vector quotas are enforced on the search service as a whole, per partition, meaning that if you add partitions, vector quota goes up. Per-partition vector quotas are higher on newer services. For more information, see [Vector index size limits](search-limits-quotas-capacity.md#vector-index-size-limits).
++ Vector quotas are enforced on the search service as a whole, per partition. If you add partitions, vector quota will also increases. Per-partition vector quotas are higher on newer services. For more information, see [Vector index size limits](search-limits-quotas-capacity.md#vector-index-size-limits).
 
 ## How to check partition size and quantity
 
@@ -197,23 +198,25 @@ The storage size of one vector is determined by its dimensionality. Multiply the
   
 Every approximate nearest neighbor (ANN) algorithm generates extra data structures in memory to enable efficient searching. These structures consume extra space within memory.  
   
-**For the HNSW algorithm, the memory overhead ranges between 1% and 20%.**  
+**For the HNSW algorithm, the memory overhead ranges between 1% and 20% for uncompressed float32 (Edm.Single) vectors.**  
   
-The memory overhead is lower for higher dimensions because the raw size of the vectors increases, while the extra data structures remain a fixed size since they store information on the connectivity within the graph. Consequently, the contribution of the extra data structures constitutes a smaller portion of the overall size.  
+As dimensionality increases, the memory overhead percentage decreases. This occurs because the raw size of the vectors increases in size while the additional data structures, which store graph connectivity information, remain a fixed size for a given `m`. As a result, the relative impact of these extra data structures diminishes in relation to the overall vector size.
   
-The memory overhead is higher for larger values of the HNSW parameter `m`, which determines the number of bi-directional links created for every new vector during index construction. This is because `m` contributes approximately 8 bytes to 10 bytes per document multiplied by `m`.  
+The memory overhead increases with larger values of the HNSW parameter `m`, which specifies the number of bi-directional links created for each new vector during index construction. This happens because each link contributes approximately 8 to 10 bytes per document, and the total overhead scales proportionally with `m`.
   
-The following table summarizes the overhead percentages observed in internal tests:  
+The following table summarizes the overhead percentages observed in internal tests for *uncompressed* vector fields:  
   
 | Dimensions | HNSW Parameter (m) | Overhead Percentage |  
-|-------------------|--------------------|---------------------|
-| 96                | 4                  | 20%              |
-| 200               | 4                  | 8%               |  
-| 768               | 4                  | 2%               |  
-| 1536              | 4                  | 1%               |
-| 3072              | 4                  | 0.5%             |
+|------------|--------------------|---------------------|
+| 96         | 4                  | 20%                 |
+| 200        | 4                  | 8%                  |  
+| 768        | 4                  | 2%                  |  
+| 1536       | 4                  | 1%                  |
+| 3072       | 4                  | 0.5%                |
 
-These results demonstrate the relationship between dimensions, HNSW parameter `m`, and memory overhead for the HNSW algorithm.  
+These results demonstrate the relationship between dimensions, HNSW parameter `m`, and memory overhead for the HNSW algorithm.
+
+For vector fields which use compression techniques, such as [scalar or binary quantization](vector-search-how-to-quantization.md), the overhead percentage will appear to consume a greater percentage of the total vector index size. As the size of the data decreases, the relative impact of the fixed-size data structures used to store graph connectivity information becomes more significant.
 
 ### Overhead from deleting or updating documents within the index
 
@@ -237,4 +240,4 @@ To obtain the **vector index size**, multiply this **raw_size** by the **algorit
 
 ## How vector fields affect disk storage
 
-Most of this article provides information about the size of vectors in memory. If you want to know about vector size on disk, the disk consumption for vector data is roughly three times the size of the vector index in memory. For example, if your `vectorIndexSize` usage is at 100 megabytes (10 million bytes), you would have used least 300 megabytes of `storageSize` quota to accommodate your vector indexes.
+Most of this article provides information about the size of vectors in memory. Read more about the [storage overhead of vector indexes](vector-search-how-to-storage-options.md).
