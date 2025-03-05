@@ -254,7 +254,7 @@ speechConfig = SpeechConfig(auth_token=authorizationToken, region=region)
 ### TranslationRecognizer
 
 ::: zone pivot="programming-language-csharp"
-For ```TranslationRecognizer``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechTranslationConfig``` object.
+For ```TranslationRecognizer``` objects, use an instance of ```TokenCredential``` along with the endpoint that includes your custom domain to create a ```SpeechTranslationConfig``` object.
 
 ```C#
 // Use an appropriate [credential derived from TokenCredential](https://learn.microsoft.com/dotnet/api/azure.core.tokencredential) based on your authentication scenario.
