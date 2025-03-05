@@ -76,7 +76,7 @@ landingContent:
             url: how-to/develop/ai-template-get-started.md
       - linkListType: tutorial
         links:
-          - text: Build a custom app with Azure AI Foundry SDK
+          - text: Build a custom app
             url: tutorials/copilot-sdk-create-resources.md
             
       - linkListType: reference
