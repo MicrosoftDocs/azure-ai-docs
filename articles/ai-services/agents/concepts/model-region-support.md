@@ -49,7 +49,6 @@ Azure AI Agent Service supports the same models as the chat completions API in A
 The Azure AI Agent Service also supports the following models from the Azure AI Foundry model catalog.
 
 * Meta-Llama-405B-Instruct
-* Mistral-large-2407
 * Cohere-command-r-plus
 * Cohere-command-r
 
