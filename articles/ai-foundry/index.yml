@@ -50,7 +50,7 @@ landingContent:
         links:
           - text: Use the chat playground
             url: quickstarts/get-started-playground.md
-          - text: Build a simple app with Azure AI Foundry SDK
+          - text: Build a simple app
             url: quickstarts/get-started-code.md
           - text:  Create an agent
             url: ../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context
