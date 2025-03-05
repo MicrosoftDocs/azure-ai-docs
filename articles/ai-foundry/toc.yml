@@ -12,7 +12,7 @@ items:
     items:
     - name: Use the chat playground
       href: quickstarts/get-started-playground.md
-    - name: Build simple app with Azure AI Foundry SDK
+    - name: Build basic app with Azure AI Foundry SDK
       href: quickstarts/get-started-code.md
     - name: Get started with Azure AI Foundry SDK
       href: how-to/develop/sdk-overview.md
