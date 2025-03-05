@@ -178,13 +178,12 @@ The method of providing the token, and the method to construct the corresponding
 ::: zone pivot="programming-language-csharp"
 ### SpeechRecognizer, SourceLanguageRecognizer, ConversationTranscriber
 
-For ```SpeechRecognizer```, ```SourceLanguageRecognizer```, ```ConversationTranscriber``` objects, use an instance of ```TokenCredential``` along with the endpoint that includes your custom domain to create a ```SpeechConfig``` object.
+For ```SpeechRecognizer```, ```SourceLanguageRecognizer```, ```ConversationTranscriber``` objects, use an appropriate instance of [TokenCredential](https://learn.microsoft.com/dotnet/api/azure.core.tokencredential) for authentication, along with the endpoint that includes your [custom domain](https://learn.microsoft.com/azure/ai-services/speech-service/speech-services-private-link?tabs=portal#create-a-custom-domain-name) to, create a ```SpeechConfig``` object.
 
 ```C#
-// Use an appropriate [credential derived from TokenCredential](https://learn.microsoft.com/dotnet/api/azure.core.tokencredential) based on your authentication scenario.
 TokenCredential browserCredential = new InteractiveBrowserCredential();
 
-// Define the custom domain endpoint for your Speech resource. Learn more about [creating a custom domain](https://learn.microsoft.com/azure/ai-services/speech-service/speech-services-private-link?tabs=portal#create-a-custom-domain-name)
+// Define the custom domain endpoint for your Speech resource.
 var endpoint = "wss://{your custom name}.cognitiveservices.azure.com/stt/speech/universal/v2";
 
 // Create the SpeechConfig object using the custom domain endpoint and TokenCredential.
@@ -254,13 +253,12 @@ speechConfig = SpeechConfig(auth_token=authorizationToken, region=region)
 ### TranslationRecognizer
 
 ::: zone pivot="programming-language-csharp"
-For ```TranslationRecognizer``` objects, use an instance of ```TokenCredential``` along with the endpoint that includes your custom domain to create a ```SpeechTranslationConfig``` object.
+For ```TranslationRecognizer``` object, use an appropriate instance of [TokenCredential](https://learn.microsoft.com/dotnet/api/azure.core.tokencredential) for authentication, along with the endpoint that includes your [custom domain](https://learn.microsoft.com/azure/ai-services/speech-service/speech-services-private-link?tabs=portal#create-a-custom-domain-name) to, create a ```SpeechTranslationConfig``` object.
 
 ```C#
-// Use an appropriate [credential derived from TokenCredential](https://learn.microsoft.com/dotnet/api/azure.core.tokencredential) based on your authentication scenario.
 TokenCredential browserCredential = new InteractiveBrowserCredential();
 
-// Define the custom domain endpoint for your Speech resource. Learn more about [creating a custom domain](https://learn.microsoft.com/azure/ai-services/speech-service/speech-services-private-link?tabs=portal#create-a-custom-domain-name)
+// Define the custom domain endpoint for your Speech resource
 var endpoint = "wss://{your custom name}.cognitiveservices.azure.com/stt/speech/universal/v2";
 
 // Create the SpeechTranslationConfig object using the custom domain endpoint and TokenCredential.
