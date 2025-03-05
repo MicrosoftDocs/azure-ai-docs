@@ -72,8 +72,8 @@ landingContent:
         links:
           - text: Get started with the Azure AI Foundry SDKs
             url: how-to/develop/sdk-overview.md
-          - text: Work with Azure AI Foundry projects in VS Code
-            url: how-to/develop/vscode.md
+          - text: Start with an AI template
+            url: how-to/develop/ai-template-get-started.md
             
       - linkListType: reference
         links:
