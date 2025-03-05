@@ -27,7 +27,7 @@ The Jamba family models are AI21's production-grade Mamba-based large language m
 
 | Model  | Type | Description | 
 | ------ | ---- | --- | 
-| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21) | [chat-completion](use-chat-completions.md) | short description | 
+| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21) | [chat-completion](./use-chat-completions.md) | short description | 
 | [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) | [chat-completion](use-chat-completions.md) | short description |
 
 
