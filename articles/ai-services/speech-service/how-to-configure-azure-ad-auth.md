@@ -185,7 +185,7 @@ For ```SpeechRecognizer```, ```SourceLanguageRecognizer```, ```ConversationTrans
 TokenCredential browserCredential = new InteractiveBrowserCredential();
 
 // Define the custom domain endpoint for your Speech resource. Learn more about [creating a custom domain](https://learn.microsoft.com/azure/ai-services/speech-service/speech-services-private-link?tabs=portal#create-a-custom-domain-name)
-var endpoint = wss://{your custom name}.cognitiveservices.azure.com/stt/speech/universal/v2";
+var endpoint = "wss://{your custom name}.cognitiveservices.azure.com/stt/speech/universal/v2";
 
 // Create the SpeechConfig object using the custom domain endpoint and TokenCredential.
 var speechConfig = SpeechConfig.FromEndpoint(new Uri(endpoint), browserCredential);
@@ -261,7 +261,7 @@ For ```TranslationRecognizer``` objects, use an instance of ```TokenCredential``
 TokenCredential browserCredential = new InteractiveBrowserCredential();
 
 // Define the custom domain endpoint for your Speech resource. Learn more about [creating a custom domain](https://learn.microsoft.com/azure/ai-services/speech-service/speech-services-private-link?tabs=portal#create-a-custom-domain-name)
-var endpoint = wss://{your custom name}.cognitiveservices.azure.com/stt/speech/universal/v2";
+var endpoint = "wss://{your custom name}.cognitiveservices.azure.com/stt/speech/universal/v2";
 
 // Create the SpeechTranslationConfig object using the custom domain endpoint and TokenCredential.
 var speechConfig = SpeechTranslationConfig.FromEndpoint(new Uri(endpoint), browserCredential);
