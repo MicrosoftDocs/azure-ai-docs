@@ -1,12 +1,12 @@
 ---
-title: 'Use content filters (preview) with Azure AI Foundry'
+title: 'Use content filters (preview)'
 titleSuffix: Azure OpenAI
 description: Learn how to use and configure the content filters that come with Azure AI Foundry, including getting approval for gated modifications.
 #services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 12/05/2024
+ms.date: 03/05/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -14,7 +14,7 @@ ms.custom: FY25Q1-Linter
 # customer intent: As a developer, I want to learn how to configure content filters with Azure AI Foundry so that I can ensure that my applications comply with our Code of Conduct.
 ---
 
-# How to configure content filters with Azure AI Foundry
+# How to configure content filters
 
 The content filtering system integrated into Azure AI Foundry runs alongside the core models, including DALL-E image generation models. It uses an ensemble of multi-class classification models to detect four categories of harmful content (violence, hate, sexual, and self-harm) at four severity levels respectively (safe, low, medium, and high), and optional binary classifiers for detecting jailbreak risk, existing text, and code in public repositories. 
 
@@ -49,6 +49,42 @@ You can configure the following filter categories in addition to the default har
 
 [!INCLUDE [create-content-filter](../../../ai-foundry/includes/create-content-filter.md)]
 
+## Specify a content filtering configuration at request time (preview)
+
+In addition to the deployment-level content filtering configuration, we also provide a request header that allows you specify your custom configuration at request time for every API call. 
+
+```curl
+curl --request POST \ 
+    --url 'URL' \ 
+    --header 'Content-Type: application/json' \ 
+    --header 'api-key: API_KEY' \ 
+    --header 'x-policy-id: CUSTOM_CONTENT_FILTER_NAME' \ 
+    --data '{ 
+        "messages": [ 
+            { 
+                "role": "system", 
+                "content": "You are a creative assistant." 
+            }, 
+            { 
+                "role": "user", 
+                "content": "Write a poem about the beauty of nature." 
+            } 
+        ] 
+    }' 
+```
+
+The request-level content filtering configuration will override the deployment-level configuration, for the specific API call. If a configuration is specified that does not exist, the following error message will be returned. 
+
+```json
+{ 
+    "error": 
+        { 
+            "code": "InvalidContentFilterPolicy", 
+            "message": "Your request contains invalid content filter policy. Please provide a valid policy." 
+        } 
+} 
+```
+
 ## Report content filtering feedback
 
 If you are encountering a content filtering issue, select the **Filters Feedback** button at the top of the playground. This is enabled in the **Images, Chat, and Completions** playground once you submit a prompt. 
@@ -66,3 +102,4 @@ We recommend informing your content filtering configuration decisions through an
 - Learn more about Responsible AI practices for Azure OpenAI: [Overview of Responsible AI practices for Azure OpenAI models](/legal/cognitive-services/openai/overview?context=/azure/ai-services/openai/context/context).
 - Read more about [content filtering categories and severity levels](../concepts/content-filter.md) with Azure AI Foundry.
 - Learn more about red teaming from our: [Introduction to red teaming large language models (LLMs) article](../concepts/red-teaming.md).
+- Learn how to [configure content filters using the API](/rest/api/aiservices/accountmanagement/rai-policies/create-or-update)
