@@ -95,16 +95,16 @@ items:
     - name: Azure AI Model Inference API
       items:
       - name: What's the Azure AI Model Inference API?
-        href: reference/reference-model-inference-api.md
+        href: /rest/api/aifoundry/modelinference
       - name: Reference
         items:
-        - name: Get Info
-          href: reference/reference-model-inference-info.md
-        - name: Embeddings
-          href: reference/reference-model-inference-embeddings.md
-        - name: Chat Completions
-          href: reference/reference-model-inference-chat-completions.md
-        - name: Images Embeddings
-          href: reference/reference-model-inference-images-embeddings.md
+        - name: Get Model Info
+          href: /rest/api/aifoundry/model-inference/get-model-info/get-model-info
+        - name: Get Chat Completions
+          href: /rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions
+        - name: Get Embeddings
+          href: /rest/api/aifoundry/model-inference/get-embeddings/get-embeddings
+        - name: Get Image Embeddings
+          href: /rest/api/aifoundry/model-inference/get-image-embeddings/get-image-embeddings
     - name: Azure OpenAI API
       href: /azure/ai-services/openai/reference?context=/azure/ai-foundry/model-inference/context/context
