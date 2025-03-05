@@ -36,8 +36,10 @@ landingContent:
             url: ../ai-services/agents/overview.md?context=/azure/ai-studio/context/context
           - text: Retrieval Augmented Generation (RAG)
             url: concepts/retrieval-augmented-generation.md
-          - text: Evaluation and monitoring metrics for generative AI
+          - text: Evaluation and monitoring metrics
             url: concepts/evaluation-metrics-built-in.md
+          - text: Fine-tuning 
+            url: concepts/fine-tuning-overview.md
           - text: Model deployment options
             url: concepts/deployments-overview.md
 
@@ -50,6 +52,8 @@ landingContent:
             url: quickstarts/get-started-playground.md
           - text: Build a chat app using the Azure AI SDK
             url: quickstarts/get-started-code.md
+          - text:  Create an agent
+            url: ../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context
 
       - linkListType: how-to-guide
         links:
@@ -57,6 +61,8 @@ landingContent:
             url: how-to/model-catalog-overview.md
           - text: Compare benchmarks across models and datasets
             url: how-to/benchmark-model-in-catalog.md
+          - text: Plan and manage costs
+            url: how-to/costs-plan-manage.md
 
       
   # Card
@@ -68,13 +74,6 @@ landingContent:
             url: how-to/develop/sdk-overview.md
           - text: Work with Azure AI Foundry projects in VS Code
             url: how-to/develop/vscode.md
-
-      - linkListType: tutorial
-        links:
-          - text: Build a custom chat app with the Azure AI SDK
-            url: tutorials/copilot-sdk-create-resources.md
-          - text: Deploy an enterprise chat web app
-            url: tutorials/deploy-chat-web-app.md
             
       - linkListType: reference
         links:
