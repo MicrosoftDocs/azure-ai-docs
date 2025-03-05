@@ -190,6 +190,20 @@ var endpoint = "wss://{your custom name}.cognitiveservices.azure.com/stt/speech/
 var speechConfig = SpeechConfig.FromEndpoint(new Uri(endpoint), browserCredential);
 ```
 
+### TranslationRecognizer
+
+For ```TranslationRecognizer``` object, use an appropriate instance of [TokenCredential](https://learn.microsoft.com/dotnet/api/azure.core.tokencredential) for authentication, along with the endpoint that includes your [custom domain](https://learn.microsoft.com/azure/ai-services/speech-service/speech-services-private-link?tabs=portal#create-a-custom-domain-name), to create a ```SpeechTranslationConfig``` object.
+
+```C#
+TokenCredential browserCredential = new InteractiveBrowserCredential();
+
+// Define the custom domain endpoint for your Speech resource
+var endpoint = "wss://{your custom name}.cognitiveservices.azure.com/stt/speech/universal/v2";
+
+// Create the SpeechTranslationConfig object using the custom domain endpoint and TokenCredential.
+var speechConfig = SpeechTranslationConfig.FromEndpoint(new Uri(endpoint), browserCredential);
+```
+
 ### SpeechSynthesizer, IntentRecognizer
 
 For ```SpeechSynthesizer```, ```IntentRecognizer``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
@@ -250,23 +264,9 @@ speechConfig = SpeechConfig(auth_token=authorizationToken, region=region)
 ```
 ::: zone-end
 
+::: zone pivot="programming-language-cpp"
 ### TranslationRecognizer
 
-::: zone pivot="programming-language-csharp"
-For ```TranslationRecognizer``` object, use an appropriate instance of [TokenCredential](https://learn.microsoft.com/dotnet/api/azure.core.tokencredential) for authentication, along with the endpoint that includes your [custom domain](https://learn.microsoft.com/azure/ai-services/speech-service/speech-services-private-link?tabs=portal#create-a-custom-domain-name), to create a ```SpeechTranslationConfig``` object.
-
-```C#
-TokenCredential browserCredential = new InteractiveBrowserCredential();
-
-// Define the custom domain endpoint for your Speech resource
-var endpoint = "wss://{your custom name}.cognitiveservices.azure.com/stt/speech/universal/v2";
-
-// Create the SpeechTranslationConfig object using the custom domain endpoint and TokenCredential.
-var speechConfig = SpeechTranslationConfig.FromEndpoint(new Uri(endpoint), browserCredential);
-```
-::: zone-end
-
-::: zone pivot="programming-language-cpp"
 For the ```TranslationRecognizer```, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechTranslationConfig``` object.
 
 ```cpp
@@ -281,6 +281,8 @@ auto speechConfig = SpeechTranslationConfig::FromAuthorizationToken(authorizatio
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
+### TranslationRecognizer
+
 For the ```TranslationRecognizer```, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechTranslationConfig``` object.
 
 ```Java
@@ -294,6 +296,8 @@ SpeechTranslationConfig translationConfig = SpeechTranslationConfig.fromAuthoriz
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
+### TranslationRecognizer
+
 For the ```TranslationRecognizer```, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechTranslationConfig``` object.
 
 ```Python
