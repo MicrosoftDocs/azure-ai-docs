@@ -27,7 +27,7 @@ All deployments can perform the exact same inference operations, however the bil
 Azure AI Agent Service supports the same models as the chat completions API in Azure OpenAI, in the following regions.
 
 > [!NOTE]
-> The following table is for pay-as-you-go. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](../../openai/concepts/provisioned-throughput.md) in the Azure OpenAI documentation. You can use [global standard models](../../openai/concepts/models.md#global-standard-model-availability) if they're supported in the regions listed here. 
+> The following table is for pay-as-you-go. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](../../openai/concepts/provisioned-throughput.md) in the Azure OpenAI documentation. `GlobalStandard` customers also have access to [global standard models](../../openai/concepts/models.md#global-standard-model-availability). 
 
 | **Region**    | **gpt-4o**, **2024-05-13** | **gpt-4o**, **2024-08-06** | **gpt-4o-mini**, **2024-07-18** | **gpt-4**, **0613** | **gpt-4**, **1106-Preview** | **gpt-4**, **0125-Preview** | **gpt-4**, **turbo-2024-04-09** | **gpt-4-32k**, **0613** | **gpt-35-turbo**, **0613** | **gpt-35-turbo**, **1106** | **gpt-35-turbo**, **0125** | **gpt-35-turbo-16k**, **0613** |
 |:--------------|:--------------------------:|:--------------------------:|:-------------------------------:|:-------------------:|:---------------------------:|:---------------------------:|:-------------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:------------------------------:|
