@@ -427,7 +427,7 @@ One way to confirm your existing deployment is to invoke your endpoint so that i
 
 When you invoke an endpoint, you can specify the name of a deployment that you want to receive traffic. In this case, Azure Machine Learning routes the endpoint traffic directly to the specified deployment and returns its output. You can use the `--deployment-name` option [for the Azure Machine Learning CLI v2](/cli/azure/ml/online-endpoint#az-ml-online-endpoint-invoke-optional-parameters), or the `deployment_name` option [for the Python SDK v2](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-invoke) to specify the deployment.
 
-### Invoke an endpoint without specifying a deployment
+### Invoke the endpoint without specifying a deployment
 
 If you invoke the endpoint without specifying the deployment that you want to receive traffic, Azure Machine Learning routes the endpoint's incoming traffic to the deployments in the endpoint based on traffic control settings.
 
@@ -858,7 +858,7 @@ Alternatively, you can delete a managed online endpoint directly in the endpoint
 
 ## Related content
 
-- [Online endpoint samples](https://github.com/Azure/azureml-examples/tree/v2samplesreorg/sdk/python/endpoints)
 - [Deploy models with REST](how-to-deploy-with-rest.md)
+- [Online endpoint samples](https://github.com/Azure/azureml-examples/tree/v2samplesreorg/sdk/python/endpoints)
 - [Use network isolation with managed online endpoints](how-to-secure-online-endpoint.md)
 - [Access Azure resources from an online endpoint with a managed identity](how-to-access-resources-from-endpoints-managed-identities.md)
