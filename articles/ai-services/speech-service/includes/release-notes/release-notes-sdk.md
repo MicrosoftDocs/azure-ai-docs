@@ -530,7 +530,7 @@ This table shows the previous and new object names for real-time diarization and
   - Fix recognized callback when LUIS response `connectionMessage` is empty ([Customer issue](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/1644)).
   - Properly set speech segmentation timeout.
 - **Intent Recognition using pattern matching**:
-  - Non-json characters inside models now loads properly.
+  - Non-json characters inside models now load properly.
   - Fix hanging issue when `recognizeOnceAsync(text)` was called during continuous recognition.
 
 ### Speech SDK 1.23.0: July 2022 release
