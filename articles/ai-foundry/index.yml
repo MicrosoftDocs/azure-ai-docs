@@ -50,7 +50,7 @@ landingContent:
         links:
           - text: Use the chat playground
             url: quickstarts/get-started-playground.md
-          - text: Build a simple chat app with Azure AI Foundry SDK
+          - text: Build a simple app with Azure AI Foundry SDK
             url: quickstarts/get-started-code.md
           - text:  Create an agent
             url: ../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context
@@ -76,7 +76,7 @@ landingContent:
             url: how-to/develop/ai-template-get-started.md
       - linkListType: tutorial
         links:
-          - text: Build a custom chat app with Azure AI SDK
+          - text: Build a custom app with Azure AI Foundry SDK
             url: tutorials/copilot-sdk-create-resources.md
             
       - linkListType: reference
