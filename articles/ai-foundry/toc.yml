@@ -599,7 +599,7 @@ items:
     displayName: swagger http
     href: ../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context
   - name: Azure AI Model Inference API
-    href: ../ai-foundry/model-inference/reference/reference-model-inference-api.md
+    href: /rest/api/aifoundry/modelinference
   
 - name: Other resources
   items:
