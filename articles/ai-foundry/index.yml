@@ -48,9 +48,9 @@ landingContent:
     linkLists:   
       - linkListType: quickstart
         links:
-          - text: Build a chat app in the playground
+          - text: Use the chat playground
             url: quickstarts/get-started-playground.md
-          - text: Build a chat app using the Azure AI SDK
+          - text: Build a simple chat app with Azure AI SDK
             url: quickstarts/get-started-code.md
           - text:  Create an agent
             url: ../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context
@@ -74,6 +74,10 @@ landingContent:
             url: how-to/develop/sdk-overview.md
           - text: Start with an AI template
             url: how-to/develop/ai-template-get-started.md
+      - linkListType: tutorial
+        links:
+          - text: Build a custom chat app with Azure AI SDK
+            url: tutorials/copilot-sdk-create-resources.md
             
       - linkListType: reference
         links:
