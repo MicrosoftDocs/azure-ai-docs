@@ -17,7 +17,7 @@ Agents are powered by a diverse set of models with different capabilities and pr
 
 ## Azure OpenAI models
 
-Azure OpnAI models provide customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main types of deployment: 
+Azure OpenAI provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main types of deployment: 
 
 - **Standard** is offered with a global deployment option, routing traffic globally to provide higher throughput.
 - **Provisioned** is also offered with a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
