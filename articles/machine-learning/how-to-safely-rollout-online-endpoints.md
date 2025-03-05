@@ -8,7 +8,7 @@ ms.subservice: mlops
 author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
-ms.date: 02/18/2025
+ms.date: 03/05/2025
 ms.topic: how-to
 ms.custom: how-to, devplatv2, cliv2, sdkv2, update-code
 # customer intent: As a developer, I want to see how to use a blue-green deployment strategy in Azure Machine Learning so that I can roll out a new version of a machine learning model without causing disruption.
@@ -429,7 +429,7 @@ When you invoke an endpoint, you can specify the name of a deployment that you w
 
 ### Invoke an endpoint without specifying a deployment
 
-If you invoke an endpoint without specifying the deployment that you want to receive traffic, Azure Machine Learning routes the endpoint's incoming traffic to the deployments in the endpoint based on traffic control settings.
+If you invoke the endpoint without specifying the deployment that you want to receive traffic, Azure Machine Learning routes the endpoint's incoming traffic to the deployments in the endpoint based on traffic control settings.
 
 Traffic control settings allocate specified percentages of incoming traffic to each deployment in the endpoint. For example, if your traffic rules specify that a particular deployment in your endpoint should receive incoming traffic 40 percent of the time, Azure Machine Learning routes 40 percent of the endpoint traffic to that deployment.
 
@@ -859,5 +859,6 @@ Alternatively, you can delete a managed online endpoint directly in the endpoint
 ## Related content
 
 - [Online endpoint samples](https://github.com/Azure/azureml-examples/tree/v2samplesreorg/sdk/python/endpoints)
+- [Deploy models with REST](how-to-deploy-with-rest.md)
 - [Use network isolation with managed online endpoints](how-to-secure-online-endpoint.md)
 - [Access Azure resources from an online endpoint with a managed identity](how-to-access-resources-from-endpoints-managed-identities.md)
