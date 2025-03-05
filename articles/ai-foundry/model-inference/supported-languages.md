@@ -57,6 +57,8 @@ Azure OpenAI models can be consumed using the following SDKs and programming lan
 
 To use these SDKs, connect them to the [Azure OpenAI service URI](concepts/endpoints.md#azure-openai-inference-endpoint) (usually in the form `https://<resource-name>.openai.azure.com`).
 
+### OpenAI and Azure OpenAI SDK
+
 | Language   | Source code | Package | Examples |
 |------------|---------|-----|-------|
 | C#         | [Source code](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/openai/Azure.AI.OpenAI) | [Azure.AI.OpenAI (NuGet)](https://www.nuget.org/packages/Azure.AI.OpenAI/) | [C# examples](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/openai/Azure.AI.OpenAI/tests/Samples)       |

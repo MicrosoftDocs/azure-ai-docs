@@ -6,14 +6,16 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 9/18/2024
+ms.date: 2/28/2025
 ms.author: eur
 #Customer intent: As a developer, I want to learn about the Whisper model from OpenAI that I can use for speech to text and speech translation.
 ---
 
 # What is the Whisper model?
 
-The Whisper model is a speech to text model from OpenAI that you can use to transcribe audio files. The model is trained on a large dataset of English audio and text. The model is optimized for transcribing audio files that contain speech in English. The model can also be used to transcribe audio files that contain speech in other languages. The output of the model is English text.
+The Whisper model is a speech to text model from OpenAI that you can use to transcribe or translate audio files. The model is trained on a large dataset of English audio and text. 
+- The model is optimized for transcribing audio files that contain speech in English. 
+- The model can also be used to translate audio files that contain speech in other languages. The output of the transcription is English text.
 
 Whisper models are available via the Azure OpenAI Service or via Azure AI Speech. The features differ for those offerings. In [Azure AI Speech (batch transcription)](./batch-transcription-create.md#use-a-whisper-model), Whisper is just one of several models that you can use for speech to text.
 
@@ -38,20 +40,20 @@ Either the Whisper model or the Azure AI Speech models are appropriate depending
 | Contact center voice agent: Call routing and interactive voice response for call centers.​ | Available | Recommended |
 | Voice assistant: Application specific voice assistant for a set-top box, mobile app, in-car, and other scenarios. | Available | Recommended |
 | Pronunciation assessment: Assess the pronunciation of a speaker's voice. | Not available | Recommended |
-| Translate live audio from one language to another. | Not available | Recommended via the [speech translation API](./speech-translation.md) |
-| Translate prerecorded audio from other languages into English. | Recommended | Available via the [speech translation API](./speech-translation.md) |
-| Translate prerecorded audio into languages other than English. | Not available | Recommended via the [speech translation API](./speech-translation.md) |
+| Translate live audio from one language to another. | Not available | Recommended via the [speech translation API](./speech-translation.md). |
+| Translate prerecorded audio from other languages into English. | Recommended | Also available via the [speech translation API](./speech-translation.md). |
+| Translate prerecorded audio into languages other than English. | Not available | Recommended via the [speech translation API](./speech-translation.md). |
 
 ## Whisper model via Azure AI Speech or via Azure OpenAI Service?
 
-If you decide to use the Whisper model, you have two options. You can choose whether to use the Whisper Model via [Azure OpenAI](../openai/whisper-quickstart.md) or via [Azure AI Speech (batch transcription)](./batch-transcription-create.md#use-a-whisper-model). In either case, the readability of the transcribed text is the same. You can input mixed language audio and the output is in English. 
+If you decide to use the Whisper model, you have two options. You can choose whether to use the Whisper Model via [Azure OpenAI Service](../openai/whisper-quickstart.md) or via [Azure AI Speech (batch transcription)](./batch-transcription-create.md#use-a-whisper-model). In either case, the readability of the transcribed text is the same. 
 
 Whisper Model via Azure OpenAI Service might be best for:
-- Quickly transcribing audio files one at a time
-- Translate audio from other languages into English
-- Provide a prompt to the model to guide the output
-- Supported file formats: mp3, mp4, mpweg, mpga, m4a, wav, and webm
-- Only ASCII character supported for filename
+- Quickly transcribing audio files one at a time.
+- Translate audio from other languages into English. You can input mixed language audio and the output is in English. 
+- Provide a prompt to the model to guide the output.
+- Supported file formats: mp3, mp4, mpweg, mpga, m4a, wav, and webm.
+- Only ASCII character supported for filename.
 
 Whisper Model via Azure AI Speech batch transcription might be best for:
 - Transcribing files larger than 25MB (up to 1GB). The file size limit for the Azure OpenAI Whisper model is 25 MB.
@@ -61,8 +63,8 @@ Whisper Model via Azure AI Speech batch transcription might be best for:
 - Supported file formats: mp3, wav, and ogg.
 
 Regional support is another consideration. 
-- The Whisper model via Azure OpenAI Service is available in the following regions: East US 2, India South, Japan East, North Central, Norway East, Sweden Central, Switzerland North, and West Europe. 
-- The Whisper model via Azure AI Speech is available in the following regions: Australia East, East US, North Central US, South Central US, Southeast Asia, UK South, and West Europe.
+- The Whisper model via Azure OpenAI Service is available in the following regions: East US 2, India South, North Central, Norway East, Sweden Central, Switzerland North, and West Europe. 
+- The Whisper model via Azure AI Speech is available in the following regions: Australia East, East US, North Central US, South Central US, Southeast Asia, and West Europe.
 
 ## Related content
 

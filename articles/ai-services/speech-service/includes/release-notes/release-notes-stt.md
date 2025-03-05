@@ -1,8 +1,10 @@
+---
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 1/21/2025
+ms.date: 2/18/2025
 ms.author: eur
+ms.custom: references_regions
 ---
 
 ### January 2025 release

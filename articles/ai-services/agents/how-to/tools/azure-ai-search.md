@@ -21,16 +21,19 @@ Use an existing Azure AI Search index with the agent's Azure AI Search tool.
 > Azure AI Search indexes must meet the following requirements:
 > - The index must contain at least one searchable & retrievable text field (type Edm.String) 
 > - The index must contain at least one searchable vector field (type Collection(Edm.Single)) 
-> - The index must use a vector profile/integrated vectorization
+> - The index is assumed to be configured properly
 
 ## Search types
+You can specify the search type for your index by choosing one of the following
+- Simple
+- Semantic
+- Vector
+- Hybrid (Vector + Keyword)
+- Hybrid (Vector + Keyword + Semantic)
 
-**Index without semantic configuration**
-- By default, the Azure AI Search tool runs a hybrid search (keyword + vector) on all text fields. 
-<br>
 
-**Index with semantic configuration**
-- By default, the Azure AI Search tool runs hybrid + semantic search on all text fields.
+**Indexes without a specified search type**
+- By default, the Azure AI Search tool runs a hybrid search (keyword + vector) on all text fields 
 
 ## Usage support
 

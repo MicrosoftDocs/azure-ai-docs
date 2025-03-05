@@ -104,7 +104,7 @@ dotnet run
 The URL of the generated image is printed to the console.
 
 ```console
-https://dalleproduse.blob.core.windows.net/private/images/b7ac5e55-f1f8-497a-8d0e-8f51446bf538/generated_00.png?se=2024-07-12T13%3A47%3A56Z&sig=Zri37iYVTVtc52qzTFBOqPgSHvXwEhcO86Smv2ojB%2FE%3D&ske=2024-07-17T12%3A15%3A44Z&skoid=09ba021e-c417-441c-b203-c81e5dcd7b7f&sks=b&skt=2024-07-10T12%3A15%3A44Z&sktid=33e01921-4d64-4f8c-a055-5bdaffd5e33d&skv=2020-10-02&sp=r&spr=https&sr=b&sv=2020-10-02
+<SAS URL>
 ```
 
 > [!NOTE]

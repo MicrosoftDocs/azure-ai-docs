@@ -7,19 +7,21 @@ ms.service: azure-ai-openai
 ms.topic: how-to
 author: aahill
 ms.author: aahi
-ms.date: 01/08/2025
+ms.date: 02/19/2025
 recommendations: false
 ---
 
 
 # Use the Azure OpenAI web app
 
-Along with Azure AI Foundry portal, APIs, and SDKs, you can use the customizable standalone web app to interact with Azure OpenAI models by using a graphical user interface. Key features include:
+> [!NOTE]
+> The web app and its [source code](https://github.com/microsoft/sample-app-aoai-chatGPT) are provided "as is" and as a sample only. Customers are responsible for all customization and implementation of their web apps. See the support section for the web app on [GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/blob/main/SUPPORT.md) for more information.
+
+Along with [Azure AI Foundry portal](https://ai.azure.com/), APIs, and SDKs, you can use the customizable standalone web app to interact with Azure OpenAI models by using a graphical user interface. Key features include:
 * Connectivity with multiple data sources to support rich querying and retrieval-augmented generation, including Azure AI Search, Prompt Flow, and more.
 * Conversation history and user feedback collection through Cosmos DB.
 * Authentication with role-based access control via Microsoft Entra ID.
 * Customization of the user interface, data sources, and features using environment variables (no-code via Azure portal).
-* Sample source code for the web app is available on [GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT). Source code is provided "as is" and as a sample only. Customers are responsible for all customization and implementation of their web apps.
 
 You can deploy the app via the [Azure AI Foundry portal](/azure/ai-studio/tutorials/deploy-chat-web-app), the [Azure portal](https://portal.azure.com), or the Azure Developer CLI via your local machine [(instructions available at the repository here)](https://github.com/microsoft/sample-app-aoai-chatGPT). Depending on your deployment channel, you can preload a data source to chat with via the web application, but this can be changed after deployment. 
 
@@ -189,15 +191,15 @@ To connect to Azure AI Search without redeploying your app, you can modify the f
 - `AZURE_SEARCH_ENABLE_IN_DOMAIN`: Limits responses to queries related only to your data.
     - Data type: boolean, should be set to `True`.
 - `AZURE_SEARCH_CONTENT_COLUMNS`: Specifies the list of fields in your Azure AI Search index that contain the text content of your documents, used when formulating a bot response.
-    - Data type: text, defaults to `content` if deployed from Azure AI Foundry portal,
+    - Data type: text, defaults to `content` if deployed from [Azure AI Foundry portal](https://ai.azure.com/),
 - `AZURE_SEARCH_FILENAME_COLUMN`: Specifies the field from your Azure AI Search index that provides a unique identifier of the source data to display in the UI.
-    - Data type: text, defaults to `filepath` if deployed from Azure AI Foundry portal,
+    - Data type: text, defaults to `filepath` if deployed from [Azure AI Foundry portal](https://ai.azure.com/),
 - `AZURE_SEARCH_TITLE_COLUMN`: Specifies the field from your Azure AI Search index that provides a relevant title or header for your data content to display in the UI.
-    - Data type: text, defaults to `title` if deployed from Azure AI Foundry portal,
+    - Data type: text, defaults to `title` if deployed from [Azure AI Foundry portal](https://ai.azure.com/),
 - `AZURE_SEARCH_URL_COLUMN`: Specifies the field from your Azure AI Search index that contains a URL for the document.
-    - Data type: text, defaults to `url` if deployed from Azure AI Foundry portal,
+    - Data type: text, defaults to `url` if deployed from [Azure AI Foundry portal](https://ai.azure.com/),
 - `AZURE_SEARCH_VECTOR_COLUMNS`: Specifies the list of fields in your Azure AI Search index that contain vector embeddings of your documents, used when formulating a bot response.
-    - Data type: text, defaults to `contentVector` if deployed from Azure AI Foundry portal,
+    - Data type: text, defaults to `contentVector` if deployed from [Azure AI Foundry portal](https://ai.azure.com/),
 - `AZURE_SEARCH_QUERY_TYPE`: Specifies the query type to use: `simple`, `semantic`, `vector`, `vectorSimpleHybrid`, or `vectorSemanticHybrid`. This setting takes precedence over `AZURE_SEARCH_USE_SEMANTIC_SEARCH`.
     - Data type: text, we recommend testing with `vectorSemanticHybrid`.
 - `AZURE_SEARCH_PERMITTED_GROUPS_COLUMN`: Specifies the field from your Azure AI Search index that contains Microsoft Entra group IDs, determining document-level access control.
@@ -292,7 +294,7 @@ The JSON to paste in the Advanced edit JSON editor is:
 
 ### Creating and deploying your prompt flow in Azure AI Foundry portal
 
-Follow [this tutorial](/azure/ai-studio/tutorials/deploy-copilot-ai-studio) to create, test, and deploy an inferencing endpoint for your prompt flow in Azure AI Foundry portal.
+Follow [this tutorial](/azure/ai-studio/tutorials/deploy-copilot-ai-studio) to create, test, and deploy an inferencing endpoint for your prompt flow in [Azure AI Foundry portal](https://ai.azure.com/).
 
 ### Enable underlying citations from your prompt flow
 
@@ -402,7 +404,7 @@ If you customized or changed the app's source code, you need to update your app'
 
 ## Deleting your Cosmos DB instance
 
-Deleting your web app doesn't delete your Cosmos DB instance automatically. To delete your Cosmos DB instance along with all stored chats, you need to go to the associated resource in the [Azure portal](https://portal.azure.com) and delete it. If you delete the Cosmos DB resource but keep the chat history option selected on subsequent updates from the Azure AI Foundry portal, the application notifies the user of a connection error. However, the user can continue to use the web app without access to the chat history.
+Deleting your web app doesn't delete your Cosmos DB instance automatically. To delete your Cosmos DB instance along with all stored chats, you need to go to the associated resource in the [Azure portal](https://portal.azure.com) and delete it. If you delete the Cosmos DB resource but keep the chat history option selected on subsequent updates from the [Azure AI Foundry portal](https://ai.azure.com/), the application notifies the user of a connection error. However, the user can continue to use the web app without access to the chat history.
 
 ## Enabling Microsoft Entra ID authentication between services
 

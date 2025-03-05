@@ -7,7 +7,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 01/31/2025
+ms.date: 03/05/2025
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
@@ -31,9 +31,6 @@ See the [PII Language Support page](../language-support.md) for more details. Cu
 The conversational PII API supports all Azure regions supported by the Language service.
 
 ## Submitting data
-
-> [!NOTE]
-> See the [Language Studio](../../language-studio.md#valid-text-formats-for-conversation-features) article for information on formatting conversational text to submit using Language Studio. 
 
 You can submit the input to the API as list of conversation items. Analysis is performed upon receipt of the request. Because the API is asynchronous, there may be a delay between sending an API request, and receiving the results. For information on the size and number of requests you can send per minute and second, see the data limits below.
 
@@ -62,32 +59,32 @@ When you get results from PII detection, you can stream the results to an applic
 2. From the menu on the left side, select **Keys and Endpoint**. You'll need one of the keys and the endpoint to authenticate your API requests.
 
 3. Download and install the client library package for your language of choice:
-    
+
     |Language  |Package version  |
     |---------|---------|
     |.NET     | [1.0.0](https://www.nuget.org/packages/Azure.AI.Language.Conversations/1.0.0)        |
     |Python     | [1.0.0](https://pypi.org/project/azure-ai-language-conversations/1.1.0b2)         |
-    
+
 4. See the following reference documentation for more information on the client, and return object:
-    
+
     * [C#](/dotnet/api/azure.ai.language.conversations)
     * [Python](/python/api/azure-ai-language-conversations/azure.ai.language.conversations.aio)
-    
+
 # [REST API](#tab/rest-api)
 
 ## Redaction Policy (version 2024-11-15-preview only)
 
 In version 2024-11-15-preview, you're able to define the `redactionPolicy` parameter to reflect the redaction policy to be used when redacting the document in the response. The policy field supports 3 policy types:
 
-- `noMask` 
-- `characterMask` (default) 
-- `entityMask` 
+- `noMask`
+- `characterMask` (default)
+- `entityMask`
 
-The `noMask` policy allows the user to return the response without the `redactedText` field. 
+The `noMask` policy allows the user to return the response without the `redactedText` field.
 
 The `characterMask` policy allows the `redactedText` to be masked with a character, preserving the length and offset of the original text. This is the existing behavior.
 
-There is also an optional field called `redactionCharacter` where you can input the character to be used in redaction if you're using the `characterMask` policy 
+There is also an optional field called `redactionCharacter` where you can input the character to be used in redaction if you're using the `characterMask` policy
 
 The `entityMask` policy allows you to mask the detected PII entity text with the detected entity type
 
@@ -99,50 +96,50 @@ curl -i -X POST https://your-language-endpoint-here/language/analyze-conversatio
 -H "Ocp-Apim-Subscription-Key: your-key-here" \
 -d \
 '
-{ 
-    "displayName": "Analyze conversations from xxx", 
-    "analysisInput": { 
-        "conversations": [ 
-            { 
-                "id": "23611680-c4eb-4705-adef-4aa1c17507b5", 
-                "language": "en", 
-                "modality": "text", 
-                "conversationItems": [ 
-                    { 
-                        "participantId": "agent_1", 
-                        "id": "1", 
-                        "text": "Good morning." 
-                    }, 
-                    { 
-                        "participantId": "agent_1", 
-                        "id": "2", 
-                        "text": "Can I have your name?" 
-                    }, 
-                    { 
-                        "participantId": "customer_1", 
-                        "id": "3", 
-                        "text": "Sure that is John Doe." 
-                    } 
-                ] 
-            } 
-        ] 
-    }, 
-    "tasks": [ 
-        { 
-            "taskName": "analyze 1", 
-            "kind": "ConversationalPIITask", 
-            "parameters": { 
-                "modelVersion": "2023-04-15-preview", 
-                "redactionCharacter" 
-                "redactionPolicy": { 
-                    "policyKind": "characterMask", 
-                    //characterMask|entityMask|noMask 
-                    "redactionCharacter": "*" 
-                } 
-            } 
-        } 
-    ] 
-} 
+{
+    "displayName": "Analyze conversations from xxx",
+    "analysisInput": {
+        "conversations": [
+            {
+                "id": "23611680-c4eb-4705-adef-4aa1c17507b5",
+                "language": "en",
+                "modality": "text",
+                "conversationItems": [
+                    {
+                        "participantId": "agent_1",
+                        "id": "1",
+                        "text": "Good morning."
+                    },
+                    {
+                        "participantId": "agent_1",
+                        "id": "2",
+                        "text": "Can I have your name?"
+                    },
+                    {
+                        "participantId": "customer_1",
+                        "id": "3",
+                        "text": "Sure that is John Doe."
+                    }
+                ]
+            }
+        ]
+    },
+    "tasks": [
+        {
+            "taskName": "analyze 1",
+            "kind": "ConversationalPIITask",
+            "parameters": {
+                "modelVersion": "2023-04-15-preview",
+                "redactionCharacter"
+                "redactionPolicy": {
+                    "policyKind": "characterMask",
+                    //characterMask|entityMask|noMask
+                    "redactionCharacter": "*"
+                }
+            }
+        }
+    ]
+}
 `
 ```
 
@@ -155,7 +152,7 @@ curl -i -X POST https://your-language-endpoint-here/language/analyze-conversatio
 -H "Content-Type: application/json" \
 -H "Ocp-Apim-Subscription-Key: your-key-here" \
 -d \
-' 
+'
 {
     "displayName": "Analyze conversations from xxx",
     "analysisInput": {
@@ -286,7 +283,7 @@ curl -i -X POST https://your-language-endpoint-here/language/analyze-conversatio
 -H "Content-Type: application/json" \
 -H "Ocp-Apim-Subscription-Key: your-key-here" \
 -d \
-' 
+'
 {
     "displayName": "Analyze conversations from xxx",
     "analysisInput": {

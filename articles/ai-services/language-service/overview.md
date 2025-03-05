@@ -7,13 +7,13 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 08/23/2024
+ms.date: 03/05/2025
 ms.author: jboback
 ---
 
 # What is Azure AI Language?
 
-Azure AI Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Language Studio, REST APIs, and client libraries. 
+Azure AI Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Language Studio, REST APIs, and client libraries.
 
 ## Available features
 
@@ -27,16 +27,16 @@ The Language service also provides several new features as well, which can eithe
 > [!TIP]
 > Unsure which feature to use? See [Which Language service feature should I use](#which-language-service-feature-should-i-use) to help you decide.
 
-[**Language Studio**](./language-studio.md) enables you to use the following service features without needing to write code.
+[**Azure AI Foundry**](https://ai.azure.com) enables you to use most of the below service features without needing to write code.
 
 ### Named Entity Recognition (NER)
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/studio-examples/named-entity-recognition.png" alt-text="A screenshot of a named entity recognition example." lightbox="media/studio-examples/named-entity-recognition.png":::
+      :::image type="content" source="media/overview/named-entity-recognition.png" alt-text="A screenshot of named entity recognition in Azure AI Foundry."  lightbox="media/overview/named-entity-recognition.png":::
    :::column-end:::
    :::column span="":::
-      [Named entity recognition](./named-entity-recognition/overview.md) is a preconfigured feature that categorizes entities (words or phrases) in unstructured text across several predefined category groups. For example: people, events, places, dates, [and more](./named-entity-recognition/concepts/named-entity-categories.md).
+      [Named entity recognition](./named-entity-recognition/overview.md) identifies different entries in text and categorizes them into pre-defined types.
 
    :::column-end:::
 :::row-end:::
@@ -45,10 +45,11 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/studio-examples/personal-information-detection.png" alt-text="A screenshot of a PII detection example." lightbox="media/studio-examples/personal-information-detection.png":::
+      :::image type="content" source="media/overview/conversation-pii.png" alt-text="A screenshot of conversation personally identifying information in Azure AI Foundry." lightbox="media/overview/conversation-pii.png":::
+      :::image type="content" source="media/overview/text-pii.png" alt-text="A screenshot of text personally identifying information in Azure AI Foundry." lightbox="media/overview/text-pii.png":::
    :::column-end:::
    :::column span="":::
-      [PII detection](./personally-identifiable-information/overview.md) is a preconfigured feature that identifies, categorizes, and redacts sensitive information in [unstructured text documents](./personally-identifiable-information/how-to/redact-text-pii.md), [conversation transcripts](./personally-identifiable-information/how-to/redact-conversation-pii.md), and [native documents](./personally-identifiable-information/how-to/redact-document-pii.md). PII includes phone numbers, email addresses, forms of identification, [and more](./personally-identifiable-information/concepts/entity-categories.md).
+      [PII detection](./personally-identifiable-information/overview.md) identifies entities in text and conversations (chat or transcripts) that are associated with individuals.
 
    :::column-end:::
 :::row-end:::
@@ -57,10 +58,10 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/studio-examples/language-detection.png" alt-text="A screenshot of a language detection example." lightbox="media/studio-examples/language-detection.png":::
+      :::image type="content" source="media/overview/language-detection.png" alt-text="A screenshot of language detection in Azure AI Foundry." lightbox="media/overview/language-detection.png":::
    :::column-end:::
    :::column span="":::
-      [Language detection](./language-detection/overview.md) is a preconfigured feature that can detect the language a document is written in, and returns a language code for a wide range of languages, variants, dialects, and some regional/cultural languages.
+      [Language detection](./language-detection/overview.md) evaluates text and detects a wide range of languages and variant dialects.
 
    :::column-end:::
 :::row-end:::
@@ -69,7 +70,7 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/studio-examples/sentiment-analysis-example.png" alt-text="A screenshot of a sentiment analysis example." lightbox="media/studio-examples/sentiment-analysis-example.png":::
+      :::image type="content" source="media/overview/sentiment-analysis.png" alt-text="A screenshot of sentiment analysis in Azure AI Foundry." lightbox="media/overview/sentiment-analysis.png":::
    :::column-end:::
    :::column span="":::
       [Sentiment analysis and opinion mining](./sentiment-opinion-mining/overview.md) are preconfigured features that help you find out what people think of your brand or topic by mining text for clues about positive or negative sentiment, and can associate them with specific aspects of the text.
@@ -81,10 +82,14 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/studio-examples/summarization-example.png" alt-text="A screenshot of a summarization example." lightbox="media/studio-examples/summarization-example.png":::
+      :::image type="content" source="media/overview/conversation-summarization.png" alt-text="A screenshot of conversation summarization  in Azure AI Foundry." lightbox="media/overview/conversation-summarization.png":::
+      :::image type="content" source="media/overview/call-center-summarization.png" alt-text="A screenshot of call center summarization in Azure AI Foundry." lightbox="media/overview/call-center-summarization.png":::
+      :::image type="content" source="media/overview/text-summarization.png" alt-text="A screenshot of text summarization in Azure AI Foundry." lightbox="media/overview/text-summarization.png":::
    :::column-end:::
    :::column span="":::
-      [Summarization](./summarization/overview.md) is a preconfigured feature that uses extractive text summarization to produce a summary of documents and conversation transcriptions. It extracts sentences that collectively represent the most important or relevant information within the original content.
+      [Summarization](./summarization/overview.md) condenses information for text and conversations (chat and transcripts).
+      Text summarization generates a summary, supporting two approaches: Extractive summarization produces a summary by extracting salient sentences within the document along with the positioning information of these sentences, and abstractive summarization, which generates a summary with concise, coherent sentences or words that aren't verbatim extract sentences from the original document.
+Conversation summarization recaps and segments long meetings into timestamped chapters. Call center summarization summarizes customer issues and resolution.
    :::column-end:::
 :::row-end:::
 
@@ -92,7 +97,7 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/studio-examples/key-phrases.png" alt-text="A screenshot of a key phrase extraction example." lightbox="media/studio-examples/key-phrases.png":::
+      :::image type="content" source="media/overview/key-phrase-extraction.png" alt-text="A screenshot of key phrase extraction in Azure AI Foundry." lightbox="media/overview/key-phrase-extraction.png":::
    :::column-end:::
    :::column span="":::
       [Key phrase extraction](./key-phrase-extraction/overview.md) is a preconfigured feature that evaluates and returns the main concepts in unstructured text, and returns them as a list.
@@ -106,7 +111,7 @@ The Language service also provides several new features as well, which can eithe
       :::image type="content" source="media/studio-examples/entity-linking.png" alt-text="A screenshot of an entity linking example." lightbox="media/studio-examples/entity-linking.png":::
    :::column-end:::
    :::column span="":::
-      [Entity linking](./entity-linking/overview.md) is a preconfigured feature that disambiguates the identity of entities (words or phrases) found in unstructured text and returns links to Wikipedia. 
+      [Entity linking](./entity-linking/overview.md) is a preconfigured feature that disambiguates the identity of entities (words or phrases) found in unstructured text and returns links to Wikipedia.
    :::column-end:::
 :::row-end:::
 
@@ -114,10 +119,10 @@ The Language service also provides several new features as well, which can eithe
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="text-analytics-for-health/media/call-api/health-named-entity-recognition.png" alt-text="A screenshot of a text analytics for health example." lightbox="text-analytics-for-health/media/call-api/health-named-entity-recognition.png":::
+      :::image type="content" source="media/overview/text-analytics-for-health.png" alt-text="A screenshot of text analytics for health in Azure AI Foundry." lightbox="media/overview/text-analytics-for-health.png":::
    :::column-end:::
    :::column span="":::
-      [Text analytics for health](./text-analytics-for-health/overview.md) is a preconfigured feature that extracts and labels relevant medical information from unstructured texts such as doctor's notes, discharge summaries, clinical documents, and electronic health records. 
+      [Text analytics for health](./text-analytics-for-health/overview.md) Extracts and labels relevant health information from unstructured text.
    :::column-end:::
 :::row-end:::
 
@@ -140,7 +145,7 @@ The Language service also provides several new features as well, which can eithe
       :::image type="content" source="media/studio-examples/custom-named-entity-recognition.png" alt-text="A screenshot of a custom NER example." lightbox="media/studio-examples/custom-named-entity-recognition.png":::
    :::column-end:::
    :::column span="":::
-      [Custom NER](custom-named-entity-recognition/overview.md) enables you to build custom AI models to extract custom entity categories (labels for words or phrases), using unstructured text that you provide. 
+      [Custom NER](custom-named-entity-recognition/overview.md) enables you to build custom AI models to extract custom entity categories (labels for words or phrases), using unstructured text that you provide.
    :::column-end:::
 :::row-end:::
 
@@ -175,7 +180,7 @@ The Language service also provides several new features as well, which can eithe
       :::image type="content" source="media/studio-examples/question-answering.png" alt-text="A screenshot of a question answering example." lightbox="media/studio-examples/question-answering.png":::
    :::column-end:::
    :::column span="":::
-      [Question answering](./question-answering/overview.md) is a custom feature that finds the most appropriate answer for inputs from your users, and is commonly used to build conversational client applications, such as social media applications, chat bots, and speech-enabled desktop applications. 
+      [Question answering](./question-answering/overview.md) is a custom feature that finds the most appropriate answer for inputs from your users, and is commonly used to build conversational client applications, such as social media applications, chat bots, and speech-enabled desktop applications.
 
    :::column-end:::
 :::row-end:::
@@ -190,28 +195,28 @@ This section helps you decide which Language service feature you should use for 
 | Extract categories of information without creating a custom model.     | Unstructured text         | The [preconfigured NER feature](./named-entity-recognition/overview.md) |       |
 | Extract categories of information using a model specific to your data. | Unstructured text | [Custom NER](./custom-named-entity-recognition/overview.md) | ✓ |
 |Extract main topics and important phrases.     | Unstructured text        | [Key phrase extraction](./key-phrase-extraction/overview.md) |   |
-| Determine the sentiment and opinions expressed in text. | Unstructured text | [Sentiment analysis and opinion mining](./sentiment-opinion-mining/overview.md) | ✓ |
-| Summarize long chunks of text or conversations. | Unstructured text, <br> transcribed conversations. | [Summarization](./summarization/overview.md) | | 
-| Disambiguate entities and get links to Wikipedia. | Unstructured text | [Entity linking](./entity-linking/overview.md) | | 
+| Determine the sentiment and opinions expressed in text. | Unstructured text | [Sentiment analysis and opinion mining](./sentiment-opinion-mining/overview.md) |  |
+| Summarize long chunks of text or conversations. | Unstructured text, <br> transcribed conversations. | [Summarization](./summarization/overview.md) | |
+| Disambiguate entities and get links to Wikipedia. | Unstructured text | [Entity linking](./entity-linking/overview.md) | |
 | Classify documents into one or more categories. | Unstructured text | [Custom text classification](./custom-text-classification/overview.md) | ✓|
 | Extract medical information from clinical/medical documents, without building a model. | Unstructured text | [Text analytics for health](./text-analytics-for-health/overview.md) | |
 | Build a conversational application that responds to user inputs. | Unstructured user inputs | [Question answering](./question-answering/overview.md) | ✓ |
-| Detect the language that a text was written in. | Unstructured text | [Language detection](./language-detection/overview.md) | | 
+| Detect the language that a text was written in. | Unstructured text | [Language detection](./language-detection/overview.md) | |
 | Predict the intention of user inputs and extract information from them. | Unstructured user inputs | [Conversational language understanding](./conversational-language-understanding/overview.md) | ✓ |
-| Connect apps from conversational language understanding, LUIS, and question answering. | Unstructured user inputs | [Orchestration workflow](./orchestration-workflow/overview.md) | ✓ | 
+| Connect apps from conversational language understanding, LUIS, and question answering. | Unstructured user inputs | [Orchestration workflow](./orchestration-workflow/overview.md) | ✓ |
 
 \* If a feature is customizable, you can train an AI model using our tools to fit your data specifically. Otherwise a feature is preconfigured, meaning the AI models it uses can't be changed. You just send your data, and use the feature's output in your applications.
 
 ## Migrate from Text Analytics, QnA Maker, or Language Understanding (LUIS)
 
-Azure AI Language unifies three individual language services in Azure AI services - Text Analytics, QnA Maker, and Language Understanding (LUIS). If you have been using these three services, you can easily migrate to the new Azure AI Language. For instructions see [Migrating to Azure AI Language](concepts/migrate.md).  
+Azure AI Language unifies three individual language services in Azure AI services - Text Analytics, QnA Maker, and Language Understanding (LUIS). If you have been using these three services, you can easily migrate to the new Azure AI Language. For instructions see [Migrating to Azure AI Language](concepts/migrate.md).
 
 ## Tutorials
 
 After you get started with the Language service quickstarts, try our tutorials that show you how to solve various scenarios.
 
 * [Extract key phrases from text stored in Power BI](key-phrase-extraction/tutorials/integrate-power-bi.md)
-* [Use Power Automate to sort information in Microsoft Excel](named-entity-recognition/tutorials/extract-excel-information.md) 
+* [Use Power Automate to sort information in Microsoft Excel](named-entity-recognition/tutorials/extract-excel-information.md)
 * [Use Flask to translate text, analyze sentiment, and synthesize speech](/training/modules/python-flask-build-ai-web-app/)
 * [Use Azure AI services in canvas apps](/powerapps/maker/canvas-apps/cognitive-services-api?context=/azure/ai-services/language-service/context/context)
 * [Create an FAQ Bot](question-answering/tutorials/bot-service.md)
@@ -225,7 +230,7 @@ You can find more code samples on GitHub for the following languages:
 * [JavaScript](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/textanalytics/ai-text-analytics/samples)
 * [Python](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/textanalytics/azure-ai-textanalytics/samples)
 
-## Deploy on premises using Docker containers 
+## Deploy on premises using Docker containers
 Use Language service containers to deploy API features on-premises. These Docker containers enable you to bring the service closer to your data for compliance, security, or other operational reasons. The Language service offers the following containers:
 
 * [Sentiment analysis](sentiment-opinion-mining/how-to/use-containers.md)
@@ -235,7 +240,7 @@ Use Language service containers to deploy API features on-premises. These Docker
 * [Text Analytics for health](text-analytics-for-health/how-to/use-containers.md)
 * [Summarization](summarization/how-to/use-containers.md)
 
-## Responsible AI 
+## Responsible AI
 
 An AI system includes not only the technology, but also the people who use it, the people affected by it, and the deployment environment. Read the following articles to learn about responsible AI use and deployment in your systems:
 

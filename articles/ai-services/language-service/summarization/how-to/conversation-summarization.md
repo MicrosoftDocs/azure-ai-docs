@@ -23,11 +23,11 @@ ms.custom:
 
 - Issue and resolution (call center focused) is designed to summarize text chat logs between customers and customer-service agents. This feature is capable of providing both issues and resolutions present in these logs, which occur between two parties.
 
-- Narrative is designed to summarize the narrative of a conversation.
+- **Narrative** is designed to summarize the narrative of a conversation.
 
-- Recap is designed to condense lengthy meetings or conversations into a concise one-paragraph summary to provide a quick overview.
+- **Recap** is designed to condense lengthy meetings or conversations into a concise one-paragraph summary to provide a quick overview.
 
-- Follow-up tasks is designed to summarize action items and tasks that arise during a meeting.
+- **Follow-up tasks** is designed to summarize action items and tasks that arise during a meeting.
 
 :::image type="content" source="../media/conversation-summary-diagram.svg" alt-text="A diagram for sending data to the conversation summarization issues and resolution feature.":::
 
@@ -51,9 +51,6 @@ There's another feature in Azure AI Language named [text summarization](../overv
 * Purpose of summarization: for example, conversation issue and resolution summarization returns a reason and the resolution for a chat between a customer and a customer service agent.
 
 ## Submitting data
-
-> [!NOTE]
-> See the [Language Studio](../../language-studio.md#valid-text-formats-for-conversation-features) article for information on formatting conversational text to submit using Language Studio. 
 
 You submit documents to the API as strings of text. Analysis is performed upon receipt of the request. Because the API is [asynchronous](../../concepts/use-asynchronously.md), there might be a delay between sending an API request and receiving the results.  For information on the size and number of requests you can send per minute and second, see the data limits below.
 

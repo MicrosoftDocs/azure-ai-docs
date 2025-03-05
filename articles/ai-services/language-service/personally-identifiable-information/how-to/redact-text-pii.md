@@ -7,7 +7,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 01/31/2025
+ms.date: 03/05/2025
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
@@ -29,10 +29,10 @@ By default, this feature uses the latest available AI model on your text. You ca
 
 ### Input languages
 
-When you submit documents to be processed, you can specify which of [the supported languages](../language-support.md) they're written in. If you don't specify a language, extraction defaults to English. The API may return offsets in the response to support different [multilingual and emoji encodings](../../concepts/multilingual-emoji-support.md). 
+When you submit input text to be processed, you can specify which of [the supported languages](language-support.md) they're written in. If you don't specify a language, extraction defaults to English. The API may return offsets in the response to support different [multilingual and emoji encodings](../concepts/multilingual-emoji-support.md). 
 
 ### Redaction Policy (version 2024-11-5-preview only)
-In version 2024-11-5-preview, you're able to define the `redactionPolicy` parameter to reflect the redaction policy to be used when redacting text. The policy field supports three policy types:
+In version `2024-11-5-preview`, you're able to define the `redactionPolicy` parameter to reflect the redaction policy to be used when redacting text. The policy field supports three policy types:
 
 - `DoNotRedact` 
 - `MaskWithCharacter` (default) 
@@ -54,7 +54,7 @@ Analysis is performed upon receipt of the request. Using the PII detection featu
 
 ## Select which entities to be returned
 
-The API attempts to detect the [defined entity categories](../concepts/entity-categories.md) for a given document language. If you want to specify which entities are detected and returned, use the optional `piiCategories` parameter with the appropriate entity categories. This parameter can also let you detect entities that aren't enabled by default for your document language. The following example would detect only `Person`. You can specify one or more [entity types](../concepts/entity-categories.md) to be returned.
+The API attempts to detect the [defined entity categories](concepts/entity-categories.md) for a given input text language. If you want to specify which entities are detected and returned, use the optional `piiCategories` parameter with the appropriate entity categories. This parameter can also let you detect entities that aren't enabled by default for your input text language. The following example would detect only `Person`. You can specify one or more [entity types](concepts/entity-categories.md) to be returned.
 
 > [!TIP]
 > If you don't include `default` when specifying entity categories, The API only returns the entity categories you specify.
@@ -137,4 +137,4 @@ When you get results from PII detection, you can stream the results to an applic
 
 ## Next steps
 
-[Named Entity Recognition overview](../overview.md)
+[Personally Identifying Information (PII) overview](overview.md)
