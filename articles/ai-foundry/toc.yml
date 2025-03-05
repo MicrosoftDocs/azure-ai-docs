@@ -12,13 +12,13 @@ items:
     items:
     - name: Use the chat playground
       href: quickstarts/get-started-playground.md
-    - name: Build simple chat app with Azure AI Foundry SDK
+    - name: Build simple app with Azure AI Foundry SDK
       href: quickstarts/get-started-code.md
     - name: Get started with Azure AI Foundry SDK
       href: how-to/develop/sdk-overview.md
   - name: In-depth tutorials
     items:
-    - name: Build a custom chat app with Azure AI Foundry SDK
+    - name: Build a custom app with Azure AI Foundry SDK
       items:
         - name: "Part 1: Set up project and install SDK"
           href: tutorials/copilot-sdk-create-resources.md
