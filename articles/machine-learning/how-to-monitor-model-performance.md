@@ -8,8 +8,8 @@ ms.subservice: mlops
 ms.topic: how-to
 author: msakande
 ms.author: mopeakande
-ms.reviewer: alehughes
-ms.date: 12/13/2024
+ms.reviewer: mesameki
+ms.date: 03/05/2025
 ms.custom: devplatv2, update-code2, devx-track-azurecli
 # customer intent: As a developer, I want to see how to monitor the models that I deploy to production in Azure Machine Learning so that I can maintain the models and improve their performance.
 ---
