@@ -29,7 +29,7 @@ You can build a feature or solution that works across an array of devices. Each 
 
 Whereas [Meeting Transcription](meeting-transcription.md) works on a single device with a multichannel microphone array, Multi-device Conversation is suited for scenarios with multiple devices, each with a single microphone.
 
->[!IMPORTANT]
+> [!IMPORTANT]
 > Multi-device conversation does not support sending audio files between clients: only the transcription and/or translation.
 
 ## Key features
