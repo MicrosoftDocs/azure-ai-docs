@@ -996,27 +996,27 @@
           {
             "source_path_from_root": "/articles/ai-foundry/model-inference/reference/reference-model-inference-api.md",
             "redirect_url": "/rest/api/aifoundry/modelinference",
-            "redirect_document_id": true
+            "redirect_document_id": false
           },
           {
             "source_path_from_root": "/articles/ai-foundry/model-inference/reference/reference-model-inference-info.md",
             "redirect_url": "/rest/api/aifoundry/model-inference/get-model-info/get-model-info",
-            "redirect_document_id": true
+            "redirect_document_id": false
           },
           {
             "source_path_from_root": "/articles/ai-foundry/model-inference/reference/reference-model-inference-embeddings.md",
             "redirect_url": "/rest/api/aifoundry/model-inference/get-embeddings/get-embeddings",
-            "redirect_document_id": true
+            "redirect_document_id": false
           },
           {
             "source_path_from_root": "/articles/ai-foundry/model-inference/reference/reference-model-inference-chat-completions.md",
             "redirect_url": "/rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions",
-            "redirect_document_id": true
+            "redirect_document_id": false
           },
           {
             "source_path_from_root": "/articles/ai-foundry/model-inference/reference/reference-model-inference-images-embeddings.md",
             "redirect_url": "/rest/api/aifoundry/model-inference/get-image-embeddings/get-image-embeddings",
-            "redirect_document_id": true
+            "redirect_document_id": false
           }
     ]
 }
