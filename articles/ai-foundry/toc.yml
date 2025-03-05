@@ -18,7 +18,7 @@ items:
       href: how-to/develop/sdk-overview.md
   - name: In-depth tutorials
     items:
-    - name: Build a custom app with Azure AI Foundry SDK
+    - name: Build custom app with Azure AI Foundry SDK
       items:
         - name: "Part 1: Set up project and install SDK"
           href: tutorials/copilot-sdk-create-resources.md
