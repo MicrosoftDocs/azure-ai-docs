@@ -378,7 +378,7 @@ Azure OpenAI fine-tuning supports the following deployment types.
 
 :::image type="content" source="../media/fine-tuning/global-standard.png" alt-text="Screenshot of the global standard deployment user experience with a fine-tuned model." lightbox="../media/fine-tuning/global-standard.png":::
 
-Global Standard fine-tuning deployments currently do not support vision and structured outputs.
+Global Standard fine-tuned deployments currently support structured outputs only on GPT-4o.
 
 ### Provisioned Managed (preview)
 
@@ -392,7 +392,7 @@ Global Standard fine-tuning deployments currently do not support vision and stru
 
 [Provisioned managed](./deployment-types.md#provisioned) fine-tuned deployments offer [predictable performance](../concepts/provisioned-throughput.md#what-do-the-provisioned-deployment-types-provide) for fine-tuned deployments. As part of public preview, provisioned managed deployments may be created regionally via the data-plane [REST API](../reference.md#data-plane-inference) version `2024-10-01` or newer. See below for examples.
 
-Provisioned Managed fine-tuning deployments currently do not support vision and structured outputs.
+Provisioned Managed fine-tuned deployments currently support structured outputs only on GPT-4o.
 
 #### Creating a Provisioned Managed deployment
 

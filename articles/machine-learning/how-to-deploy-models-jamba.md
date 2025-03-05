@@ -5,7 +5,7 @@ description: How to deploy AI21's Jamba family models with Azure Machine Learnin
 manager: scottpolly
 ms.service: azure-machine-learning
 ms.topic: how-to
-ms.date: 09/06/2024
+ms.date: 03/04/2025
 ms.author: ssalgado
 ms.reviewer: tgokal
 author: ssalgadodev
