@@ -25,6 +25,13 @@ For some of these models, you can access them for inferencing only by using cust
 
 The Jamba family models are AI21's production-grade Mamba-based large language model (LLM) which uses AI21's hybrid Mamba-Transformer architecture. It's an instruction-tuned version of AI21's hybrid structured state space model (SSM) transformer Jamba model. The Jamba family models are built for reliable commercial use with respect to quality and performance.
 
+| Model  | Type | Description | 
+| ------ | ---- | --- | 
+| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21) | [chat-completion](use-chat-completions.md) | short description | 
+| [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) | [chat-completion](use-chat-completions.md) | short description |
+
+
+
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=ai21).
 
 ### Azure OpenAI
