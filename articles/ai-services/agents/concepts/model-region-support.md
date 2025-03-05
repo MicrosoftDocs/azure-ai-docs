@@ -13,7 +13,7 @@ ms.custom: azure-ai-agents
 
 # Models supported by Azure AI Agent Service
 
-Agents are powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. Certain tools and capabilities require the latest models. The following models are available in the available SDKs. 
+Agents are powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. Certain tools and capabilities require the latest models. The following models are available in the REST API and SDKs. 
 
 ## Azure OpenAI models
 
