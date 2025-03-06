@@ -63,7 +63,7 @@ The following custom roles give other levels of access for a data labeling proje
     > [!TIP]
     > Don't copy the entire JSON shown here, just the Actions and NotActions sections. Leave the rest of the JSON as it is in the editor.
 
-        [!INCLUDE [custom-role-data-labeling](includes/custom-role-data-labeling.md)]
+    [!INCLUDE [custom-role-data-labeling](includes/custom-role-data-labeling.md)]
 
     1. Select **Save** at the top of the edit box to save your changes.
 
