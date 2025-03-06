@@ -104,7 +104,7 @@ items:
           href: ../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context
         - name: Work with reasoning models
           href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context
-    - name: Work with featured models
+    - name: Other featured models
       items:
       - name: Gretel Navigator model
         href: how-to/deploy-models-gretel-navigator.md

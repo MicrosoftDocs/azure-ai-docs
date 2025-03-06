@@ -15,9 +15,13 @@ ms.custom: references_regions, tool_generated
 
 # Featured models of Azure AI Foundry
 
-The Azure AI model catalog offers a large selection of models, from a wide range of providers. This article lists featured models available in AI Foundry. Some of these models might require you to host them on your infrastructure, as in the case of deployment via managed compute, or host them on Microsoft's servers, as in the case of deployment via serverless APIs. See [Available models for supported deployment options](../how-to/model-catalog-overview.md#available-models-for-supported-deployment-options) for a list of models in the catalog that are available for deployment via managed compute or serverless API.
+The Azure AI model catalog offers a large selection of models, from a wide range of providers. This article lists featured models available in AI Foundry. 
 
-For some of these models, you can access them for inferencing only by using custom APIs from the model providers. For these type of models, this article lists the featured partner models and the APIs to use for inferencing. You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
+[!INCLUDE [models-preview](../includes/models-preview.md)]
+
+You have various options for deploying these models. For some models, you need to host them on your infrastructure, as in the case of deployment via managed compute, while for others, you can host them on Microsoft's servers, as in the case of deployment via serverless APIs. See [Available models for supported deployment options](../how-to/model-catalog-overview.md#available-models-for-supported-deployment-options) for a list of models in the catalog that are available for deployment via managed compute or serverless API.
+
+When it comes to performing inferencing with the models, some of these models are supported for inferencing using the [Azure AI model inference](../model-inference/overview.md), while others require you to use custom APIs from the model providers. You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
 
 
 :::image type="content" source="../media/models-featured/models-catalog.gif" alt-text="An animation showing Azure AI studio model catalog section and the models available." lightbox="../media/models-featured/models-catalog.gif":::
@@ -213,7 +217,7 @@ See the [Nixtla model collection in Azure AI Foundry portal](https://ai.azure.co
 | ------ | ---- | --- | 
 | [Tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | short description |
 
-## Next steps
+## Related content
 
-- Get started today and [deploy your fist model in Azure AI services](../how-to/create-model-deployments.md)
+- [Region availability for models in serverless API endpoints](../how-to/deploy-models-serverless-availability.md)
 
