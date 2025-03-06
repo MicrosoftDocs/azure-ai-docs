@@ -347,7 +347,7 @@ A policy that's assigned to a resource group in your subscription is effective i
 
 For new search services, create them with [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2023-11-01&tabs=HTTP#searchencryptionwithcmk&preserve-view=true) set to `Enabled`. 
 
-Neither the Azure portal nor the command line tools (the Azure CLI and Azure PowerShell) provide this property natively, but you can use [Management REST API](/rest/api/searchmanagement/services/create-or-update) to provision a search service with a CMK policy definition. You can also use the Azure CLI `az resource create` or `update` command to set properties as name-value pairs.
+Neither the Azure portal nor the command line tools (the Azure CLI and Azure PowerShell) provide this property natively, but you can use [Management REST API](/rest/api/searchmanagement/services/create-or-update) to provision a search service with a CMK policy definition.
 
 ### [**Management REST API**](#tab/mgmt-rest-create)
 
@@ -376,22 +376,22 @@ PUT https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups
       }
     }
 ```
-
+<!-- 
 ### [**Azure CLI**](#tab/azure-cli-create)
 
-1. Create your search service using the examples in [Manage your Azure AI Search service with the Azure CLI](search-manage-azure-cli.md).
+These instructions assume you have a Deny policy defined for the resource group into which you're deploying a new search service.
 
-1. Patch your service using the update command, substituting valid values for an existing search service and resource group.
+Run the following [`az resource`](/cli/azure/resource) command to create a new search service with CMK enforcement enabled. Substitute valid values for the name of the new search service and name of the existing resource group. The command includes eastus for a region so that you can see how regions are specified (lower case, no spaces).
 
-   ```azurecli
-   az resource update --name SEARCH-SERVICE-PLACEHOLDER --resource-group RESOURCE-GROUP-PLACEHOLDER --resource-type searchServices --namespace Microsoft.Search --set properties.encryptionWithCmk.enforcement=Enabled
-   ```
+```azurecli
+az resource create --name SEARCH-SERVICE-PLACEHOLDER --location eastus --resource-group RESOURCE-GROUP-PLACEHOLDER --resource-type searchServices --namespace Microsoft.Search --set properties.encryptionWithCmk.enforcement=Enabled
+``` -->
 
 ---
 
 #### Update an existing search service
 
-For existing search services that are now non-compliant, patch them using [Services - Update API](/rest/api/searchmanagement/services/update). Patching the services restores the ability to update search service properties.
+For existing search services that are now non-compliant, patch them using [Services - Update API](/rest/api/searchmanagement/services/update) or the Azure CLI [az resource update](/cli/azure/resource?view=azure-cli-latest#az-resource-update&preserve-view=true) command. Patching the services restores the ability to update search service properties.
 
 ### [**Management REST API**](#tab/mgmt-rest-update)
 
