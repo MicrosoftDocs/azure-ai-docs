@@ -27,8 +27,8 @@ The Jamba family models are AI21's production-grade Mamba-based large language m
 
 | Model  | Type | Description | 
 | ------ | ---- | --- | 
-| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21) | [chat-completion](./use-chat-completions.md) | short description | 
-| [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) | [chat-completion](use-chat-completions.md) | short description |
+| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description | 
+| [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
 
 
 
@@ -42,17 +42,41 @@ Azure OpenAI Service offers a diverse set of models with different capabilities 
 - Models that can understand and generate natural language and code
 - Models that can transcribe and translate speech to text
 
+| Model  | Type | Description | 
+| ------ | ---- | --- | 
+| [o3-mini](https://ai.azure.com/explore/models/o3-mini/version/2025-01-31/registry/azure-openai) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
+| [o1](https://ai.azure.com/explore/models/o1/version/2024-12-17/registry/azure-openai) | [chat-completion](./model-inference/how-to/use-chat-completions.md) |  short description|
+| [o1-preview](https://ai.azure.com/explore/models/o1-preview/version/1/registry/azure-openai) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
+| [o1-mini](https://ai.azure.com/explore/models/o1-mini/version/1/registry/azure-openai) | [chat-completion](./model-inference/how-to/use-chat-completions.md) |  short description |
+| [gpt-4o-realtime-preview](https://ai.azure.com/explore/models/gpt-4o-realtime-preview/version/2024-10-01/registry/azure-openai) | real-time |  short description |
+| [gpt-4o](https://ai.azure.com/explore/models/gpt-4o/version/2024-11-20/registry/azure-openai) | [chat-completion](./model-inference/how-to/use-chat-completions.md) |  short description |
+| [gpt-4o-mini](https://ai.azure.com/explore/models/gpt-4o-mini/version/2024-07-18/registry/azure-openai) | [chat-completion](./model-inference/how-to/use-chat-completions.md) |  short description |
+| [text-embedding-3-large](https://ai.azure.com/explore/models/text-embedding-3-large/version/1/registry/azure-openai) | [embeddings](./model-inference/how-to/use-embeddings.md) |  short description |
+| [text-embedding-3-small](https://ai.azure.com/explore/models/text-embedding-3-small/version/1/registry/azure-openai) | [embeddings](./model-inference/how-to/use-embeddings.md) |  short description |
+
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=aoai).
 
 ## Cohere
 
 The Cohere family of models includes various models optimized for different use cases, including rerank, chat completions, and embeddings. The following table lists the available Cohere rerank models. that can be accessed for inferencing, by using Cohere's rerank API. For other Cohere models that you can inference via the  Azure AI model Inference, see [Cohere models](https://learn.microsoft.com/azure/ai-foundry/model-inference/concepts/models?context=%2Fazure%2Fai-studio%2Fcontext%2Fcontext#cohere).
 
-| Model  | Type | Tier | Capabilities | Inference API|
-| ------ | ---- | --- | ------------ |
-| [Cohere-rerank-v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere) | rerank <br> text classification  | Standard | - **Input:** text (--- tokens) <br /> - **Output:**  text (4,096 tokens) <br /> - **Languages:** en <br />  - **Tool calling:**  <br /> - **Response formats:** Text, JSON  | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) |
-| [Cohere-rerank-v3-english](https://ai.azure.com/explore/models/Cohere-rerank-v3-english/version/1/registry/azureml-cohere) | rerank <br> text classification  | Standard | - **Input:** text (--- tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** en <br />  - **Tool calling:**  <br /> - **Response formats:** Text, JSON  | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) <br> [Cohere's v1/rerank API](https://docs.cohere.com/v1/reference/rerank) |
-| [Cohere-rerank-v3-multilingual](https://ai.azure.com/explore/models/Cohere-rerank-v3-multilingual/version/1/registry/azureml-cohere) | rerank <br> text classification  | Standard | - **Input:** text (--- tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Languages:** en <br />  - **Tool calling:**  <br /> - **Response formats:** Text, JSON  | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) <br> [Cohere's v1/rerank API](https://docs.cohere.com/v1/reference/rerank) |
+| Model  | Type | Description | 
+| ------ | ---- | --- | 
+| [Cohere-embed-v3-english](https://ai.azure.com/explore/models/Cohere-embed-v3-english/version/1/registry/azureml-cohere) | embeddings <br /> image-embeddings | short description |
+| [Cohere-embed-v3-multilingual](https://ai.azure.com/explore/models/Cohere-embed-v3-multilingual/version/1/registry/azureml-cohere) | embeddings <br /> image-embeddings | short description |
+| [Cohere-command-r-plus-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-plus-08-2024/version/1/registry/azureml-cohere) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
+| [Cohere-command-r-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-08-2024/version/1/registry/azureml-cohere) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
+| [Cohere-command-r-plus](https://ai.azure.com/explore/models/Cohere-command-r-plus/version/1/registry/azureml-cohere) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
+| [Cohere-command-r](https://ai.azure.com/explore/models/Cohere-command-r/version/1/registry/azureml-cohere) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
+
+### Cohere rerank models
+
+| Model  | Type | Description | Inference API | 
+| ------ | ---- | --- | --- | 
+| [Cohere-rerank-v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere) | rerank <br> text classification  | short description | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) |
+| [Cohere-rerank-v3-english](https://ai.azure.com/explore/models/Cohere-rerank-v3-english/version/1/registry/azureml-cohere) | rerank <br> text classification  | short description | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) <br> [Cohere's v1/rerank API](https://docs.cohere.com/v1/reference/rerank) |
+| [Cohere-rerank-v3-multilingual](https://ai.azure.com/explore/models/Cohere-rerank-v3-multilingual/version/1/registry/azureml-cohere) | rerank <br> text classification  | short description | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) <br> [Cohere's v1/rerank API](https://docs.cohere.com/v1/reference/rerank) |
+
 
 #### Pricing for Cohere Rerank models
 
