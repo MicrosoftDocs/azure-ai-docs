@@ -27,8 +27,8 @@ The Jamba family models are AI21's production-grade Mamba-based large language m
 
 | Model  | Type | Description | 
 | ------ | ---- | --- | 
-| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description | 
-| [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
+| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | short description | 
+| [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | short description |
 
 
 
@@ -44,15 +44,15 @@ Azure OpenAI Service offers a diverse set of models with different capabilities 
 
 | Model  | Type | Description | 
 | ------ | ---- | --- | 
-| [o3-mini](https://ai.azure.com/explore/models/o3-mini/version/2025-01-31/registry/azure-openai) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
-| [o1](https://ai.azure.com/explore/models/o1/version/2024-12-17/registry/azure-openai) | [chat-completion](./model-inference/how-to/use-chat-completions.md) |  short description|
-| [o1-preview](https://ai.azure.com/explore/models/o1-preview/version/1/registry/azure-openai) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
-| [o1-mini](https://ai.azure.com/explore/models/o1-mini/version/1/registry/azure-openai) | [chat-completion](./model-inference/how-to/use-chat-completions.md) |  short description |
+| [o3-mini](https://ai.azure.com/explore/models/o3-mini/version/2025-01-31/registry/azure-openai) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | short description |
+| [o1](https://ai.azure.com/explore/models/o1/version/2024-12-17/registry/azure-openai) | [chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description|
+| [o1-preview](https://ai.azure.com/explore/models/o1-preview/version/1/registry/azure-openai) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | short description |
+| [o1-mini](https://ai.azure.com/explore/models/o1-mini/version/1/registry/azure-openai) | [chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
 | [gpt-4o-realtime-preview](https://ai.azure.com/explore/models/gpt-4o-realtime-preview/version/2024-10-01/registry/azure-openai) | real-time |  short description |
-| [gpt-4o](https://ai.azure.com/explore/models/gpt-4o/version/2024-11-20/registry/azure-openai) | [chat-completion](./model-inference/how-to/use-chat-completions.md) |  short description |
-| [gpt-4o-mini](https://ai.azure.com/explore/models/gpt-4o-mini/version/2024-07-18/registry/azure-openai) | [chat-completion](./model-inference/how-to/use-chat-completions.md) |  short description |
-| [text-embedding-3-large](https://ai.azure.com/explore/models/text-embedding-3-large/version/1/registry/azure-openai) | [embeddings](./model-inference/how-to/use-embeddings.md) |  short description |
-| [text-embedding-3-small](https://ai.azure.com/explore/models/text-embedding-3-small/version/1/registry/azure-openai) | [embeddings](./model-inference/how-to/use-embeddings.md) |  short description |
+| [gpt-4o](https://ai.azure.com/explore/models/gpt-4o/version/2024-11-20/registry/azure-openai) | [chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
+| [gpt-4o-mini](https://ai.azure.com/explore/models/gpt-4o-mini/version/2024-07-18/registry/azure-openai) | [chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
+| [text-embedding-3-large](https://ai.azure.com/explore/models/text-embedding-3-large/version/1/registry/azure-openai) | [embeddings](../model-inference/how-to/use-embeddings.md) |  short description |
+| [text-embedding-3-small](https://ai.azure.com/explore/models/text-embedding-3-small/version/1/registry/azure-openai) | [embeddings](../model-inference/how-to/use-embeddings.md) |  short description |
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=aoai).
 
@@ -62,12 +62,12 @@ The Cohere family of models includes various models optimized for different use 
 
 | Model  | Type | Description | 
 | ------ | ---- | --- | 
-| [Cohere-embed-v3-english](https://ai.azure.com/explore/models/Cohere-embed-v3-english/version/1/registry/azureml-cohere) | embeddings <br /> [image-embeddings]((./model-inference/how-to/use-image-embeddings.md) | short description |
-| [Cohere-embed-v3-multilingual](https://ai.azure.com/explore/models/Cohere-embed-v3-multilingual/version/1/registry/azureml-cohere) | embeddings <br /> [image-embeddings]((./model-inference/how-to/use-image-embeddings.md) | short description |
-| [Cohere-command-r-plus-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-plus-08-2024/version/1/registry/azureml-cohere) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
-| [Cohere-command-r-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-08-2024/version/1/registry/azureml-cohere) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
-| [Cohere-command-r-plus](https://ai.azure.com/explore/models/Cohere-command-r-plus/version/1/registry/azureml-cohere) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
-| [Cohere-command-r](https://ai.azure.com/explore/models/Cohere-command-r/version/1/registry/azureml-cohere) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
+| [Cohere-embed-v3-english](https://ai.azure.com/explore/models/Cohere-embed-v3-english/version/1/registry/azureml-cohere) | embeddings <br /> [image-embeddings]((../model-inference/how-to/use-image-embeddings.md) | short description |
+| [Cohere-embed-v3-multilingual](https://ai.azure.com/explore/models/Cohere-embed-v3-multilingual/version/1/registry/azureml-cohere) | embeddings <br /> [image-embeddings]((../model-inference/how-to/use-image-embeddings.md) | short description |
+| [Cohere-command-r-plus-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-plus-08-2024/version/1/registry/azureml-cohere) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | short description |
+| [Cohere-command-r-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-08-2024/version/1/registry/azureml-cohere) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | short description |
+| [Cohere-command-r-plus](https://ai.azure.com/explore/models/Cohere-command-r-plus/version/1/registry/azureml-cohere) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | short description |
+| [Cohere-command-r](https://ai.azure.com/explore/models/Cohere-command-r/version/1/registry/azureml-cohere) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | short description |
 
 ### Cohere rerank models
 
@@ -90,7 +90,7 @@ Core42 includes autoregressive bi-lingual LLMs for Arabic & English with state-o
 
 | Model  | Type | Description | 
 | ------ | ---- | --- | 
-| [jais-30b-chat](https://ai.azure.com/explore/models/jais-30b-chat/version/1/registry/azureml-core42) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | Short description | 
+| [jais-30b-chat](https://ai.azure.com/explore/models/jais-30b-chat/version/1/registry/azureml-core42) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | Short description | 
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=core42).
 
@@ -114,14 +114,14 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 
 | Model  | Type | Description | 
 | ------ | ---- | --- | 
-| [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | Short description | 
-| [Llama-3.2-11B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-11B-Vision-Instruct/version/1/registry/azureml-meta) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | Short description | 
-| [Llama-3.2-90B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-90B-Vision-Instruct/version/1/registry/azureml-meta) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | Short description | 
-| [Meta-Llama-3.1-405B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-405B-Instruct/version/1/registry/azureml-meta) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | Short description | 
-| [Meta-Llama-3-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-8B-Instruct/version/9/registry/azureml-meta) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | Short description | 
-| [Meta-Llama-3.1-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-70B-Instruct/version/4/registry/azureml-meta) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | Short description | 
-| [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | Short description | 
-| [Meta-Llama-3-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-70B-Instruct/version/9/registry/azureml-meta) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | Short description | 
+| [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | Short description | 
+| [Llama-3.2-11B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-11B-Vision-Instruct/version/1/registry/azureml-meta) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | Short description | 
+| [Llama-3.2-90B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-90B-Vision-Instruct/version/1/registry/azureml-meta) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | Short description | 
+| [Meta-Llama-3.1-405B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-405B-Instruct/version/1/registry/azureml-meta) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | Short description | 
+| [Meta-Llama-3-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-8B-Instruct/version/9/registry/azureml-meta) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | Short description | 
+| [Meta-Llama-3.1-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-70B-Instruct/version/4/registry/azureml-meta) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | Short description | 
+| [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | Short description | 
+| [Meta-Llama-3-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-70B-Instruct/version/9/registry/azureml-meta) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | Short description | 
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=meta).
 
@@ -131,16 +131,16 @@ Phi is a family of lightweight, state-of-the-art open models. These models were 
 
 | Model  | Type | Description | 
 | ------ | ---- | --- | 
-| [Phi-3-mini-128k-instruct](https://ai.azure.com/explore/models/Phi-3-mini-128k-instruct/version/12/registry/azureml) | [chat-completion](./model-inference/how-to/use-chat-completions.md) |   short description |
-| [Phi-3-mini-4k-instruct](https://ai.azure.com/explore/models/Phi-3-mini-4k-instruct/version/14/registry/azureml) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
-| [Phi-3-small-8k-instruct](https://ai.azure.com/explore/models/Phi-3-small-8k-instruct/version/5/registry/azureml) | [chat-completion](./model-inference/how-to/use-chat-completions.md) |   short description |
-| [Phi-3-medium-128k-instruct](https://ai.azure.com/explore/models/Phi-3-medium-128k-instruct/version/6/registry/azureml) | [chat-completion](./model-inference/how-to/use-chat-completions.md) |   short description |
-| [Phi-3-medium-4k-instruct](https://ai.azure.com/explore/models/Phi-3-medium-4k-instruct/version/5/registry/azureml) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
-| [Phi-3.5-vision-instruct](https://ai.azure.com/explore/models/Phi-3.5-vision-instruct/version/2/registry/azureml) | [chat-completion](./model-inference/how-to/use-chat-completions.md) |  short description |
-| [Phi-3.5-MoE-instruct](https://ai.azure.com/explore/models/Phi-3.5-MoE-instruct/version/5/registry/azureml) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
-| [Phi-3-small-128k-instruct](https://ai.azure.com/explore/models/Phi-3-small-128k-instruct/version/4/registry/azureml) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
-| [Phi-3.5-mini-instruct](https://ai.azure.com/explore/models/Phi-3.5-mini-instruct/version/6/registry/azureml) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
-| [Phi-4](https://ai.azure.com/explore/models/Phi-4/version/2/registry/azureml) | [chat-completion](./model-inference/how-to/use-chat-completions.md) |  short description |
+| [Phi-3-mini-128k-instruct](https://ai.azure.com/explore/models/Phi-3-mini-128k-instruct/version/12/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md) |   short description |
+| [Phi-3-mini-4k-instruct](https://ai.azure.com/explore/models/Phi-3-mini-4k-instruct/version/14/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | short description |
+| [Phi-3-small-8k-instruct](https://ai.azure.com/explore/models/Phi-3-small-8k-instruct/version/5/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md) |   short description |
+| [Phi-3-medium-128k-instruct](https://ai.azure.com/explore/models/Phi-3-medium-128k-instruct/version/6/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md) |   short description |
+| [Phi-3-medium-4k-instruct](https://ai.azure.com/explore/models/Phi-3-medium-4k-instruct/version/5/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | short description |
+| [Phi-3.5-vision-instruct](https://ai.azure.com/explore/models/Phi-3.5-vision-instruct/version/2/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
+| [Phi-3.5-MoE-instruct](https://ai.azure.com/explore/models/Phi-3.5-MoE-instruct/version/5/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | short description |
+| [Phi-3-small-128k-instruct](https://ai.azure.com/explore/models/Phi-3-small-128k-instruct/version/4/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | short description |
+| [Phi-3.5-mini-instruct](https://ai.azure.com/explore/models/Phi-3.5-mini-instruct/version/6/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | short description |
+| [Phi-4](https://ai.azure.com/explore/models/Phi-4/version/2/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
 
@@ -150,13 +150,13 @@ Mistral AI offers two categories of models: premium models including Mistral Lar
 
 | Model  | Type | Description | 
 | ------ | ---- | --- | 
-| [Ministral-3B](https://ai.azure.com/explore/models/Ministral-3B/version/1/registry/azureml-mistral) | chat-completion](./model-inference/how-to/use-chat-completions.md) |  short description |
-| [Mistral-large](https://ai.azure.com/explore/models/Mistral-large/version/1/registry/azureml-mistral) <br /> (deprecated) | chat-completion](./model-inference/how-to/use-chat-completions.md) |  short description |
-| [Mistral-small](https://ai.azure.com/explore/models/Mistral-small/version/1/registry/azureml-mistral) | chat-completion](./model-inference/how-to/use-chat-completions.md) |  short description |
-| [Mistral-Nemo](https://ai.azure.com/explore/models/Mistral-Nemo/version/1/registry/azureml-mistral) | chat-completion](./model-inference/how-to/use-chat-completions.md) |  short description |
-| [Mistral-large-2407](https://ai.azure.com/explore/models/Mistral-large-2407/version/1/registry/azureml-mistral) <br /> (legacy) | chat-completion](./model-inference/how-to/use-chat-completions.md) |  short description |
-| [Mistral-Large-2411](https://ai.azure.com/explore/models/Mistral-Large-2411/version/2/registry/azureml-mistral) | chat-completion](./model-inference/how-to/use-chat-completions.md) |  short description |
-| [Codestral-2501](https://ai.azure.com/explore/models/Codestral-2501/version/2/registry/azureml-mistral) | chat-completion](./model-inference/how-to/use-chat-completions.md) |  short description |
+| [Ministral-3B](https://ai.azure.com/explore/models/Ministral-3B/version/1/registry/azureml-mistral) | chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
+| [Mistral-large](https://ai.azure.com/explore/models/Mistral-large/version/1/registry/azureml-mistral) <br /> (deprecated) | chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
+| [Mistral-small](https://ai.azure.com/explore/models/Mistral-small/version/1/registry/azureml-mistral) | chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
+| [Mistral-Nemo](https://ai.azure.com/explore/models/Mistral-Nemo/version/1/registry/azureml-mistral) | chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
+| [Mistral-large-2407](https://ai.azure.com/explore/models/Mistral-large-2407/version/1/registry/azureml-mistral) <br /> (legacy) | chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
+| [Mistral-Large-2411](https://ai.azure.com/explore/models/Mistral-Large-2411/version/2/registry/azureml-mistral) | chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
+| [Codestral-2501](https://ai.azure.com/explore/models/Codestral-2501/version/2/registry/azureml-mistral) | chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=mistral).
 
@@ -210,7 +210,7 @@ See the [Nixtla model collection in Azure AI Foundry portal](https://ai.azure.co
 
 | Model  | Type | Description | 
 | ------ | ---- | --- | 
-| [Tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
+| [Tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | short description |
 
 ## Next steps
 
