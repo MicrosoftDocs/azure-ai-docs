@@ -62,8 +62,8 @@ The Cohere family of models includes various models optimized for different use 
 
 | Model  | Type | Description | 
 | ------ | ---- | --- | 
-| [Cohere-embed-v3-english](https://ai.azure.com/explore/models/Cohere-embed-v3-english/version/1/registry/azureml-cohere) | embeddings <br /> image-embeddings | short description |
-| [Cohere-embed-v3-multilingual](https://ai.azure.com/explore/models/Cohere-embed-v3-multilingual/version/1/registry/azureml-cohere) | embeddings <br /> image-embeddings | short description |
+| [Cohere-embed-v3-english](https://ai.azure.com/explore/models/Cohere-embed-v3-english/version/1/registry/azureml-cohere) | embeddings <br /> [image-embeddings]((./model-inference/how-to/use-image-embeddings.md) | short description |
+| [Cohere-embed-v3-multilingual](https://ai.azure.com/explore/models/Cohere-embed-v3-multilingual/version/1/registry/azureml-cohere) | embeddings <br /> [image-embeddings]((./model-inference/how-to/use-image-embeddings.md) | short description |
 | [Cohere-command-r-plus-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-plus-08-2024/version/1/registry/azureml-cohere) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
 | [Cohere-command-r-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-08-2024/version/1/registry/azureml-cohere) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
 | [Cohere-command-r-plus](https://ai.azure.com/explore/models/Cohere-command-r-plus/version/1/registry/azureml-cohere) | [chat-completion](./model-inference/how-to/use-chat-completions.md) | short description |
