@@ -203,7 +203,7 @@ let recognizer = try! SPXSpeechRecognizer(speechConfiguration: speechConfig, lan
 > [!TIP]
 > If you aren't sure which locale to set for a language that has multiple locales, try each locale separately. For instance, for Spanish, try `es-ES` and `es-MX`. Determine which locale scores higher for your scenario.
 
-You must create a `PronunciationAssessmentConfig` object. You can set `EnableProsodyAssessment` and `EnableContentAssessmentWithTopic` to enable prosody and content assessment. For more information, see [configuration methods](#configuration-methods).
+You must create a `PronunciationAssessmentConfig` object. You can set `EnableProsodyAssessment` to enable prosody assessment. For more information, see [configuration methods](#configuration-methods).
 
 ::: zone pivot="programming-language-csharp"
 
@@ -214,8 +214,9 @@ var pronunciationAssessmentConfig = new PronunciationAssessmentConfig(
     granularity: Granularity.Phoneme,  
     enableMiscue: false); 
 pronunciationAssessmentConfig.EnableProsodyAssessment(); 
-pronunciationAssessmentConfig.EnableContentAssessmentWithTopic("greeting"); 
 ```
+
+We suggest to use LLM tools with recognized text for content assessment. The sample code for content assessment can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/speech_recognition_samples.cs) under the function `PronunciationAssessmentWithContentAssessment`.
 
 ::: zone-end  
 
@@ -224,8 +225,9 @@ pronunciationAssessmentConfig.EnableContentAssessmentWithTopic("greeting");
 ```cpp
 auto pronunciationConfig = PronunciationAssessmentConfig::Create("", PronunciationAssessmentGradingSystem::HundredMark, PronunciationAssessmentGranularity::Phoneme, false); 
 pronunciationConfig->EnableProsodyAssessment(); 
-pronunciationConfig->EnableContentAssessmentWithTopic("greeting"); 
 ```
+
+We suggest to use LLM tools with recognized text for content assessment. The sample code for content assessment can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/cpp/windows/console/samples/speech_recognition_samples.cpp) under the function `PronunciationAssessmentWithContentAssessment`.
 
 ::: zone-end
 
@@ -235,8 +237,9 @@ pronunciationConfig->EnableContentAssessmentWithTopic("greeting");
 PronunciationAssessmentConfig pronunciationConfig = new PronunciationAssessmentConfig("", 
     PronunciationAssessmentGradingSystem.HundredMark, PronunciationAssessmentGranularity.Phoneme, false); 
 pronunciationConfig.enableProsodyAssessment(); 
-pronunciationConfig.enableContentAssessmentWithTopic("greeting");
 ```
+
+We suggest to use LLM tools with recognized text for content assessment. The sample code for content assessment can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/java/jre/console/src/com/microsoft/cognitiveservices/speech/samples/console/SpeechRecognitionSamples.java) under the function `pronunciationAssessmentWithContentAssessment`.
 
 ::: zone-end
 
@@ -252,6 +255,8 @@ pronunciation_config.enable_prosody_assessment()
 pronunciation_config.enable_content_assessment_with_topic("greeting")
 ```
 
+We suggest to use LLM tools with recognized text for content assessment. The sample code for content assessment can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/python/console/speech_sample.py) under the function `pronunciation_assessment_with_content_assessment`.
+
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
@@ -263,8 +268,9 @@ var pronunciationAssessmentConfig = new sdk.PronunciationAssessmentConfig(
     granularity: sdk.PronunciationAssessmentGranularity.Phoneme,  
     enableMiscue: false); 
 pronunciationAssessmentConfig.enableProsodyAssessment(); 
-pronunciationAssessmentConfig.enableContentAssessmentWithTopic("greeting");  
 ```
+
+We suggest to use LLM tools with recognized text for content assessment. The sample code for content assessment can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/node/pronunciationAssessmentGetContentResult.js).
 
 ::: zone-end
 
@@ -274,8 +280,9 @@ pronunciationAssessmentConfig.enableContentAssessmentWithTopic("greeting");
 SPXPronunciationAssessmentConfiguration *pronunicationConfig = 
 [[SPXPronunciationAssessmentConfiguration alloc] init:@"" gradingSystem:SPXPronunciationAssessmentGradingSystem_HundredMark granularity:SPXPronunciationAssessmentGranularity_Phoneme enableMiscue:false]; 
 [pronunicationConfig enableProsodyAssessment]; 
-[pronunicationConfig enableContentAssessmentWithTopic:@"greeting"]; 
 ```
+
+We suggest to use LLM tools with recognized text for content assessment. The sample code for content assessment can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/objective-c/ios/speech-samples/speech-samples/ViewController.m) under the function `pronunciationAssessWithContentAssessment`.
 
 ::: zone-end
 
@@ -287,8 +294,9 @@ let pronAssessmentConfig = try! SPXPronunciationAssessmentConfiguration("",
     granularity: .phoneme, 
     enableMiscue: false) 
 pronAssessmentConfig.enableProsodyAssessment() 
-pronAssessmentConfig.enableContentAssessment(withTopic: "greeting")
 ```
+
+We suggest to use LLM tools with recognized text for content assessment. The sample code for content assessment can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/objective-c/ios/speech-samples/speech-samples/ViewController.m) under the function `pronunciationAssessmentWithContentAssessment`.
 
 ::: zone-end
 
@@ -311,16 +319,13 @@ This table lists some of the key configuration parameters for pronunciation asse
 This table lists some of the optional methods you can set for the `PronunciationAssessmentConfig` object.
 
 > [!NOTE]
-> Content and prosody assessments are only available in the [en-US](./language-support.md?tabs=pronunciation-assessment) locale.
+> Prosody assessments are only available in the [en-US](./language-support.md?tabs=pronunciation-assessment) locale.
 > 
-> To explore the content and prosody assessments, upgrade to the SDK version 1.35.0 or later.
->
-> There is no length limit for the topic parameter.
+> To explore the prosody assessments, upgrade to the SDK version 1.35.0 or later.
 
 | Method | Description |
 |-----------|-------------|
 | `EnableProsodyAssessment` | Enables prosody assessment for your pronunciation evaluation. This feature assesses aspects like stress, intonation, speaking speed, and rhythm. This feature provides insights into the naturalness and expressiveness of your speech.<br/><br/>Enabling prosody assessment is optional. If this method is called, the `ProsodyScore` result value is returned. |
-| `EnableContentAssessmentWithTopic` | Enables content assessment. A content assessment is part of the [unscripted assessment](#unscripted-assessment-results) for the speaking language learning scenario. By providing a description, you can enhance the assessment's understanding of the specific topic being spoken about. For example, in C# call `pronunciationAssessmentConfig.EnableContentAssessmentWithTopic("greeting");`. You can replace 'greeting' with your desired text to describe a topic. The description has no length limit and currently only supports the `en-US` locale. |
 
 ## Get pronunciation assessment results
 
@@ -528,19 +533,14 @@ This table lists some of the key pronunciation assessment results for the script
 
 This table lists some of the key pronunciation assessment results for the unscripted assessment, or speaking scenario.
 
-`VocabularyScore`, `GrammarScore`, and `TopicScore` parameters roll up to the combined content assessment.
-
 > [!NOTE]
-> Content and prosody assessments are only available in the [en-US](./language-support.md?tabs=pronunciation-assessment) locale.
+> Prosody assessments are only available in the [en-US](./language-support.md?tabs=pronunciation-assessment) locale.
 
 | Response parameter | Description | Granularity |
 |:-------------------|:------------|:------------|
 | `AccuracyScore`    | Pronunciation accuracy of the speech. Accuracy indicates how closely the phonemes match a native speaker's pronunciation. Syllable, word, and full text accuracy scores are aggregated from phoneme-level accuracy score, and refined with assessment objectives. | Phoneme level，<br>Syllable level (en-US only)，<br>Word level，<br>Full Text level |
 | `FluencyScore`     | Fluency of the given speech. Fluency indicates how closely the speech matches a native speaker's use of silent breaks between words. | Full Text level |
 | `ProsodyScore`     | Prosody of the given speech. Prosody indicates how natural the given speech is, including stress, intonation, speaking speed, and rhythm. | Full Text level |
-| `VocabularyScore`  | Proficiency in lexical usage. It evaluates the speaker's effective usage of words and their appropriateness within the given context to express ideas accurately, and the level of lexical complexity. | Full Text level |
-| `GrammarScore`     | Correctness in using grammar and variety of sentence patterns. Lexical accuracy, grammatical accuracy, and diversity of sentence structures jointly elevate grammatical errors. | Full Text level|
-| `TopicScore`       | Level of understanding and engagement with the topic, which provides insights into the speaker’s ability to express their thoughts and ideas effectively and the ability to engage with the topic. | Full Text level|
 | `PronScore`        | Overall score of the pronunciation quality of the given speech. `PronScore` is calculated from `AccuracyScore`, `FluencyScore`, and `ProsodyScore` with weight, provided that `ProsodyScore` is available. If `ProsodyScore` isn't available, `PronScore` won't consider that score.| Full Text level |
 | `ErrorType`        | A word is badly pronounced, improperly inserted with a break, or missing a break at punctuation. It also indicates whether a pronunciation is monotonically rising, falling, or flat on the utterance. Possible values are `None` for no error on this word, `Mispronunciation`, `UnexpectedBreak`, `MissingBreak`, and `Monotone`. | Word level |
 
