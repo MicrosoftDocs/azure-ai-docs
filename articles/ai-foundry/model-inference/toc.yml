@@ -24,6 +24,10 @@ items:
       href: ./how-to/quickstart-github-models.md 
     - name: Configure AI projects to work with Azure AI model inference
       href: ./how-to/quickstart-ai-project.md
+- name: Tutorials
+  items:
+    - name: Get started with DeepSeek-R1 reasoning model
+      href: ./tutorials/get-started-deepseek-r1.md
 - name: Concepts
   items:
     - name: Available models
