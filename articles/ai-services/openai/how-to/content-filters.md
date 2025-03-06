@@ -53,7 +53,7 @@ You can configure the following filter categories in addition to the default har
 
 In addition to the deployment-level content filtering configuration, we also provide a request header that allows you specify your custom configuration at request time for every API call. 
 
-```curl
+```bash
 curl --request POST \ 
     --url 'URL' \ 
     --header 'Content-Type: application/json' \ 
