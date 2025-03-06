@@ -27,7 +27,7 @@ Text summarization is designed to shorten content that users consider too long t
 
 Each of these capabilities is able to summarize around specific items of interest when specified.
 
-The AI models used by the API are provided by the service.You just have to send content for analysis.
+The AI models used by the API are provided by the service. You just have to send content for analysis.
 
 For easier navigation, here are links to the corresponding sections for each service:
 
