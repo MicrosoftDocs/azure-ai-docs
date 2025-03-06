@@ -1,5 +1,5 @@
 ---
-title: 'How to use Azure Functions with the Azure AI Search tool'
+title: How to use Azure Functions with the Azure AI Agent Service
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure functions with Azure AI Agents.
 services: azure-ai-agent-service
