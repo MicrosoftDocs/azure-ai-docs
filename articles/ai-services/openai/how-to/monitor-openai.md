@@ -15,9 +15,11 @@ ms.service: azure-ai-openai
 
 ## Dashboards
 
-Azure OpenAI provides out-of-box dashboards for each of your Azure OpenAI resources. To access the monitoring dashboards sign-in to [https://portal.azure.com](https://portal.azure.com) and select the overview pane for one of your Azure OpenAI resources.
+Azure OpenAI provides out-of-box dashboards for each of your Azure OpenAI resources. You can view out of the box dashboards in two places: 1) Overview pane for an Azure OpenAI resource in Azure Portal 2) "Metrics" tab within a AI Foundry Azure OpenAI resource. To access the monitoring dashboards sign-in to [https://portal.azure.com](https://portal.azure.com) and select the overview pane for one of your Azure OpenAI resources. You can also navigate to AI Foundry and click "Metrics" under the tools section. 
 
 :::image type="content" source="../media/monitoring/dashboard.png" alt-text="Screenshot that shows out-of-box dashboards for an Azure OpenAI resource in the Azure portal." lightbox="../media/monitoring/dashboard.png" border="false":::
+
+
 
 The dashboards are grouped into four categories: **HTTP Requests**, **Tokens-Based Usage**, **PTU Utilization**, and **Fine-tuning**.
 
