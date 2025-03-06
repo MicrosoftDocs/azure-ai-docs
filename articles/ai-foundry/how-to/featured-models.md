@@ -164,7 +164,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 Nixtla's TimeGEN-1 is a generative pre-trained forecasting and anomaly detection model for time series data. TimeGEN-1 can produce accurate forecasts for new time series without training, using only historical values and exogenous covariates as inputs.
 
-| Model  | Type | Inference API|
+| Model  | Type | Inference API |
 | ------ | ---- | ------------ |
 | [TimeGEN-1](https://ai.azure.com/explore/models/TimeGEN-1/version/1/registry/azureml-nixtla) | Forecasting | [Forecast client to interact with Nixtla's API](https://nixtlaverse.nixtla.io/nixtla/docs/reference/nixtla_client.html#nixtlaclient-forecast) |
 
@@ -196,7 +196,7 @@ You can also determine the number of tokens by counting the number of data point
 There are four pricing meters that determine the price you pay. These meters are as follows:
 
 | Pricing Meter | Description |
-|--|--|
+| -- | -- |
 | paygo-inference-input-tokens | Costs associated with the tokens used as input for inference when *finetune_steps* = 0 |
 | paygo-inference-output-tokens | Costs associated with the tokens used as output for inference when *finetune_steps* = 0 |
 | paygo-finetuned-model-inference-input-tokens | Costs associated with the tokens used as input for inference when *finetune_steps* > 0 |
