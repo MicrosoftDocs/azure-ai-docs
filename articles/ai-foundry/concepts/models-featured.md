@@ -70,7 +70,7 @@ The Cohere family of models includes various models optimized for different use 
 | [Cohere-command-r-plus](https://ai.azure.com/explore/models/Cohere-command-r-plus/version/1/registry/azureml-cohere) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | short description |
 | [Cohere-command-r](https://ai.azure.com/explore/models/Cohere-command-r/version/1/registry/azureml-cohere) | [chat-completion](../model-inference/how-to/use-chat-completions.md) | short description |
 
-### Cohere rerank models
+### Cohere rerank
 
 | Model  | Type | Description | Inference API | 
 | ------ | ---- | --- | --- | 
