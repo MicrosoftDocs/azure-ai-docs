@@ -13,7 +13,9 @@ ms.date: 01/15/2025
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
 * [The latest version of .NET](https://dotnet.microsoft.com/en-us/download)
-* Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio.md) assigned at the appropriate level.
+* Ensure that each team member who wants to use the Agent Playground or SDK to create or edit agents has been assigned the built-in **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio.md) for the project.
+    * **Note:** assign these roles after the template has been deployed
+    * The minimum set of permissions required is: **agents/*/read**, **agents/*/action**, **agents/*/delete**  
 * Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
 
 [!INCLUDE [bicep-setup](bicep-setup.md)]
