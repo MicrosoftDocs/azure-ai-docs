@@ -430,10 +430,12 @@ items:
         displayName: Data privacy, logging, data retention
     - name: How-to guides
       items:
-      - name: Call PII
-        href: personally-identifiable-information/how-to-call.md
-      - name: Call PII for conversations
-        href: personally-identifiable-information/how-to-call-for-conversations.md
+      - name: Redact PII from text
+        href: personally-identifiable-information/how-to/redact-text-pii.md
+      - name: Redact PII from conversations
+        href: personally-identifiable-information/how-to/redact-conversation-pii.md
+      - name: Redact PII from native documents
+        href: personally-identifiable-information/how-to/redact-document-pii.md
       - name: Use containers
         items:
           - name: Use Docker containers
@@ -644,10 +646,12 @@ items:
       href: summarization/language-support.md
     - name: How-to guides
       items:
-      - name: Call the document summarization API
-        href: summarization/how-to/document-summarization.md
       - name: Call the conversation summarization API
         href: summarization/how-to/conversation-summarization.md
+      - name: Call the text summarization API
+        href: summarization/how-to/text-summarization.md
+      - name: Call the document summarization API
+        href: summarization/how-to/document-summarization.md
       - name: Use containers
         items:
         - name: Use Docker Containers
@@ -673,7 +677,7 @@ items:
       - name: Data, privacy, and security
         href: /legal/cognitive-services/language-service/data-privacy?context=/azure/ai-services/language-service/context/context
         displayName: Data privacy, logging, data retention
-          
+
 - name: Concepts
   items:
   - name: Developer guide
@@ -711,12 +715,12 @@ items:
     href: tutorials/prompt-flow.md
   - name: Native document support
     items:
-    - name: Use native documents for language processing
-      href: native-document-support/use-native-documents.md
+    - name: Native documents for language processing
+      href: native-document-support/overview.md
     - name: Create SAS tokens for storage containers
       href: native-document-support/shared-access-signatures.md
     - name: Create a managed identity for storage containers
-      href: native-document-support/managed-identities.md  
+      href: native-document-support/managed-identities.md
   - name: Scenario deep-dives
     items:
       - name: Call Center
