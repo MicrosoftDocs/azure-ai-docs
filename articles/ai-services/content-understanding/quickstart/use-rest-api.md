@@ -89,7 +89,7 @@ First, create a JSON file named `request_body.json` with the following content:
 
 * To request modified content filtering, complete the following form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
 
-* Once approved, create or update your `request_body.json` file to include the `"disableContentFiltering": true` property:
+* Once approved, create or update your `request_body.json` file to include the `"disableContentFiltering": true` property. Here is an example:
 
    ```json
    {
@@ -103,7 +103,9 @@ First, create a JSON file named `request_body.json` with the following content:
        "returnDetails": true,
        },
        "fieldSchema": {
-   ...
+
+      <insert your schema here>
+
        }
    }
 
@@ -142,7 +144,7 @@ First, create a JSON file named `request_body.json` with the following content:
 
 * To request modified content filtering, complete the following form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
 
-* Once approved, create or update your `request_body.json` file to include the `"disableContentFiltering": true` property:
+* Once approved, create or update your `request_body.json` file to include the `"disableContentFiltering": true` property. Here is an example:
 
    ```json
    {
@@ -154,8 +156,10 @@ First, create a JSON file named `request_body.json` with the following content:
 
        "returnDetails": true,
        },
-       "fieldSchema": {
-   ...
+       "fieldSchema": { 
+
+       <insert your schema here>
+
        }
    }
 
@@ -209,7 +213,7 @@ First, create a JSON file named `request_body.json` with the following content:
 
 * To request modified content filtering, complete the following form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
 
-* Once approved, create or update your `request_body.json` file to include the `"disableContentFiltering": true` property:
+* Once approved, create or update your `request_body.json` file to include the `"disableContentFiltering": true` property. Here is an example:
 
    ```json
    {
@@ -223,7 +227,9 @@ First, create a JSON file named `request_body.json` with the following content:
        "locales": ["en-US"]
        },
        "fieldSchema": {
-   ...
+
+       <insert your schema here>
+
        }
    }
 
@@ -261,7 +267,7 @@ First, create a JSON file named `request_body.json` with the following content:
 
 * To request modified content filtering, complete the following form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
 
-* Once approved, create or update your `request_body.json` file to include the `"disableContentFiltering": true` property:
+* Once approved, create or update your `request_body.json` file to include the `"disableContentFiltering": true` property. Here is an example:
 
    ```json
    {
@@ -273,7 +279,9 @@ First, create a JSON file named `request_body.json` with the following content:
 
        },
        "fieldSchema": {
-   ...
+
+       <insert your schema here>
+
        }
    }
 
