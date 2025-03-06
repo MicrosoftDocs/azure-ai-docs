@@ -78,12 +78,14 @@ See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 
 ### Modified Content Filtering
 
-Azure AI Content Understanding now supports disabling content filtering for approved customers. The subscription IDs with approved modified content filtering impacts the Azure AI Content Understanding output. By default, Content Understanding employs a content filtering system that identifies specific risk categories for potentially harmful content in both submitted prompts and generated outputs. If content is flagged with a high severity level, indicating a significant potential for harm, the output is blocked. For more information on risk categories, *see* [Content filtering](../openai/concepts/content-filter.md#risk-categories).
+Azure AI Content Understanding now supports disabling content filtering for approved customers. The subscription IDs with approved modified content filtering impacts the Azure AI Content Understanding output. By default, Content Understanding employs a content filtering system that identifies specific risk categories for potentially harmful content in both submitted prompts and generated outputs. If content is flagged with a high severity level, indicating a significant potential for harm, the output is blocked. For more information on risk categories, *see* [Content filtering: risk categories](../openai/concepts/content-filter.md#risk-categories).
 
 > [!IMPORTANT]
 >
 > * Apply for modified content filters via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
 > * For more information, *see* [**Content Filtering**](../openai/concepts/content-filter.md).
+
+To learn more about how to add modified content filtering to your requests, *see* our [REST API quickstart](quickstart/use-rest-api.md).
 
 ## Data privacy and security
 Developers using the Content Understanding service should review Microsoft's policies on customer data. For more information, visit our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page.

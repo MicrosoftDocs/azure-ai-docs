@@ -83,7 +83,7 @@ First, create a JSON file named `request_body.json` with the following content:
 }
 ```
 
-### Content filtering
+##### Content filtering
 
 * Azure AI Content Understanding allows approved customers to disable content filtering.
 
@@ -136,7 +136,7 @@ First, create a JSON file named `request_body.json` with the following content:
 }
 ```
 
-### Content filtering
+##### Content filtering
 
 * Azure AI Content Understanding allows approved customers to disable content filtering.
 
@@ -203,7 +203,7 @@ First, create a JSON file named `request_body.json` with the following content:
 }
 ```
 
-### Content filtering
+##### Content filtering
 
 * Azure AI Content Understanding allows approved customers to disable content filtering.
 
@@ -255,7 +255,7 @@ First, create a JSON file named `request_body.json` with the following content:
   }
 }
 ```
-### Content filtering
+##### Content filtering
 
 * Azure AI Content Understanding allows approved customers to disable content filtering.
 
