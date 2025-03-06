@@ -77,25 +77,30 @@ To create an Azure AI project that supports model inference for DeepSeek-R1, fol
 
 Let's now create a new model deployment for DeepSeek-R1:
 
-1. Go to **Model catalog** section in [Azure AI Foundry portal](https://ai.azure.com/explore/models) and find the model [DeepSeek-R1]() model.
+1. Go to **Model catalog** section in [Azure AI Foundry portal](https://ai.azure.com/explore/models) and find the model [DeepSeek-R1](https://ai.azure.com/explore/models/DeepSeek-R1/version/1/registry/azureml-deepseek) model.
 
 3. You can review the details of the model in the model card.
 
 4. Select **Deploy**.
 
-5. The wizard shows the model's terms and conditions. DeepSeek-R1 is offered as a Microsoft first party consumption service. You can review our privacy and security commitments under [Data, privacy, and Security](). Accept the terms on those cases by selecting **Subscribe and deploy**.
+5. The wizard shows the model's terms and conditions for DeepSeek-R1, which is offered as a Microsoft first party consumption service. You can review our privacy and security commitments under [Data, privacy, and Security](../../../ai-studio/how-to/concept-data-privacy.md). 
+
+    > [!TIP]
+    > You can also review the pricing details for the model by seeing [Pricing and terms](https://aka.ms/DeepSeekPricing) tab.
+
+6. Accept the terms on those cases by selecting **Subscribe and deploy**.
 
    :::image type="content" source="../media/quickstart-get-started-deepseek-r1/models-deploy-agree.png" alt-text="Screenshot showing how to agree the terms and conditions of a DeepSeek-R1 model." lightbox="../media/quickstart-get-started-deepseek-r1/models-deploy-agree.png":::
 
-6. You can configure the deployment settings at this time. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for request to route to this particular model deployment. This allows you to also configure specific names for your models when you attach specific configurations.
+7. You can configure the deployment settings at this time. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for request to route to this particular model deployment. This allows you to also configure specific names for your models when you attach specific configurations.
 
-7. We automatically select an Azure AI Services connection depending on your project. Use the **Customize** option to change the connection based on your needs. DeepSeek-R1 is currently offered under the **Global Standard** deployment type which offers higher throughput and performance.
+8. We automatically select an Azure AI Services connection depending on your project. Use the **Customize** option to change the connection based on your needs. DeepSeek-R1 is currently offered under the **Global Standard** deployment type which offers higher throughput and performance.
 
-8. Select **Deploy**.
+9.  Select **Deploy**.
 
    :::image type="content" source="../media/quickstart-get-started-deepseek-r1/model-deploy.png" alt-text="Screenshot showing how to deploy the model." lightbox="../media/quickstart-get-started-deepseek-r1/model-deploy.png":::
 
-9.  Once the deployment completes, the new model is listed in the page and it's ready to be used.
+10. Once the deployment completes, the new model is listed in the page and it's ready to be used.
 
 ## Use the model in playground
 
