@@ -16,3 +16,10 @@ ms.date:     03/05/2025
 
 Spillover is a capability that automates the process of sending overage traffic from provisioned deployments to standard deployments when a 429 response is received. Spillover is an optional capability that can be set for all requests on a given deployment or can be managed on a per-request basis. When spillover is used, Azure OpenAI service will take care of 
 
+## When to enable spillover on provisioned deployments
+
+## When does spillover come into effect?
+
+## How does spillover impact cost?
+
+##
