@@ -14,7 +14,7 @@ from azure.ai.inference.models import SystemMessage, UserMessage
 
 response = client.complete(
     messages=[
-        UserMessage(content="Explain Riemann's conjecture in 1 paragraph"),
+        UserMessage(content="How many languages are in the world?"),
     ],
     model="DeepSeek-R1"
 )
@@ -26,7 +26,7 @@ print(response.choices[0].message.content)
 
 ```javascript
 var messages = [
-    { role: "user", content: "Explain Riemann's conjecture in 1 paragraph" },
+    { role: "user", content: "How many languages are in the world?" },
 ];
 
 var response = await client.path("/chat/completions").post({
@@ -45,7 +45,7 @@ console.log(response.choices[0].message.content)
 requestOptions = new ChatCompletionsOptions()
 {
     Messages = {
-        new ChatRequestUserMessage("Explain Riemann's conjecture in 1 paragraph")
+        new ChatRequestUserMessage("How many languages are in the world?")
     },
     Model = "DeepSeek-R1"
 };
@@ -58,7 +58,7 @@ Console.WriteLine($"Response: {response.Value.Content}");
 
 ```java
 List<ChatRequestMessage> chatMessages = new ArrayList<>();
-chatMessages.add(new ChatRequestUserMessage("Explain Riemann's conjecture in 1 paragraph"));
+chatMessages.add(new ChatRequestUserMessage("How many languages are in the world?"));
 
 ChatCompletions chatCompletions = client.complete(new ChatCompletionsOptions(chatMessages, "DeepSeek-R1"));
 
@@ -83,7 +83,7 @@ Content-Type: application/json
     "messages": [
         {
             "role": "user",
-            "content": "Explain Riemann's conjecture in 1 paragraph"
+            "content": "How many languages are in the world?"
         }
     ],
     "model": "DeepSeek-R1"
