@@ -57,7 +57,7 @@ Some models can reason across text and images and generate text completions base
 To see this capability, download an image and encode the information as `base64` string. The resulting data should be inside of a [data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs):
 
 > [!TIP]
-> You will need to construct the data URL using a scripting or programming language. This tutorial use [this sample image](../../../../ai-foundry/media/how-to/sdks/small-language-models-chart-example.jpg) in JPEG format. A data URL has a format as follows: `data:image/jpg;base64,0xABCDFGHIJKLMNOPQRSTUVWXYZ...`.
+> You will need to construct the data URL using a scripting or programming language. This tutorial uses [this sample image](../../../../ai-foundry/media/how-to/sdks/small-language-models-chart-example.jpg) in JPEG format. A data URL has a format as follows: `data:image/jpg;base64,0xABCDFGHIJKLMNOPQRSTUVWXYZ...`.
 
 Visualize the image:
 
@@ -121,11 +121,11 @@ The response is as follows, where you can see the model's usage statistics:
 }
 ```
 
-Images are broken into tokens and submitted to the model for processing. When referring to images, each of those tokens is typically referred as *patches*. Each model may break down a given image on a different amount of patches. Read the model card to learn the details.
+Images are broken into tokens and submitted to the model for processing. When referring to images, each of those tokens is typically referred as *patches*. Each model may break down a given image on a different number of patches. Read the model card to learn the details.
 
 ## Use chat completions with audio
 
-Some models can reason across text and audio inputs. The following example shows how you can send audio context to a chat completions models that also supports audio. 
+Some models can reason across text and audio inputs. The following example shows how you can send audio context to chat completions models that also supports audio. 
 
 The following example sends audio content encoded in `base64` data in the chat history:
 

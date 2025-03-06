@@ -124,9 +124,11 @@ Usage:
   Total tokens: 2506
 ```
 
+Images are broken into tokens and submitted to the model for processing. When referring to images, each of those tokens is typically referred as *patches*. Each model may break down a given image on a different number of patches. Read the model card to learn the details.
+
 ## Use chat completions with audio
 
-Some models can reason across text and audio inputs. The following example shows how you can send audio context to a chat completions models that also supports audio. Use `InputAudio` to load the content of the audio file into the payload. The content is encoded in `base64` data and sent over the payload.
+Some models can reason across text and audio inputs. The following example shows how you can send audio context to chat completions models that also supports audio. Use `InputAudio` to load the content of the audio file into the payload. The content is encoded in `base64` data and sent over the payload.
 
 ```csharp
 var requestOptions = new ChatCompletionsOptions()
