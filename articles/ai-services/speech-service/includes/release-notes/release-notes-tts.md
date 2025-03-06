@@ -7,6 +7,15 @@ ms.author: eur
 ms.custom: references_regions
 ---
 
+### March 2025 release
+
+#### Introduce 2 HD voices (Public preview)
+
+| **Locale (BCP-47)** | **Voice name**              |
+|---------------------|---------------------------|
+| `en-US`   | `en-US-Ava3:DragonHDLatestNeural` (Female) - optimized for Podcast | 
+| `en-US`   | `en-US-Andrew3:DragonHDLatestNeural` (Male) - optimized for Podcast | 
+
 ### February 2025 release
 
 #### Version 1.1 of HD voices (Public preview)
@@ -29,9 +38,9 @@ Updated 13 current HD voices updated to support multilingual voices.
 | `ja-JP`   | `ja-JP-Masaru:DragonHDLatestNeural` (Male) |
 | `zh-CN`   | `zh-CN-Xiaochen:DragonHDLatestNeural` (Female) |
 
-#### Public preview of new HD voices
+#### Introducing new HD voices (Public preview)
 
-Added 14 more HD voices that are only available in version 1.1. 
+Added 14 more HD voices
 
 | **Locale (BCP-47)** | **Voice name**              |
 |---------------------|---------------------------|
@@ -50,7 +59,17 @@ Added 14 more HD voices that are only available in version 1.1.
 | `ja-JP`   | `ja-JP-Nanami:DragonHDLatestNeural` (Female) |
 | `zh-CN`   | `zh-CN-Yunfan:DragonHDLatestNeural` (Male) |
 
-#### Azure OpenAI Service turbo voices
+#### Introducting new Multilingual voices (Public preview)
+Added 4 more multilingual voices in `en-US` with emotions support
+
+| **Locale (BCP-47)** | **Voice name**                | **Styles** |
+|---------------------|-----------------------------|------------|
+| `en-US`           | `DerekMultilingualNeural` (Male)  | `empathetic`, `excited`, `relieved`, `shy` |
+| `en-US`           | `PhoebeMultilingualNeural` (Female) | `empathetic`, `sad`, `serious` |
+| `en-US`           | `DavisMultilingualNeural` (Male)  | `empathetic`, `funny`, `relieved` |
+| `en-US`           | `NancyMultilingualNeural` (Female) | `excited`, `friendly`, `funny`, `relieved`, `shy` |
+
+#### Azure OpenAI Service turbo voices (Generally Available)
 
 These turbo voices are now generally available:
 
@@ -63,7 +82,7 @@ These turbo voices are now generally available:
 | `en-US`   | `en-US-OnyxTurboMultilingualNeural` (Male) |
 | `en-US`   | `en-US-ShimmerTurboMultilingualNeural` (Female) |
 
-#### Voice quality improvements
+#### Voice quality improvements (Generally Available)
 
 Improved the quality of 16 voices.
 
@@ -86,7 +105,7 @@ Improved the quality of 16 voices.
 | `zh-HK`   | `zh-HK-HiuMaanNeural` (Female) |
 | `zh-HK`   | `zh-HK-WanLungNeural` (Male) |
 
-#### GA - Multi-style embedded Jenny
+#### Multi-style embedded Jenny (Generally Available)
 
 Added style support for `en-US-JennyNeural` in [embedded speech](../../embedded-speech.md). The same styles are supported as in the cloud. The following styles are supported: `angry`, `assistant`, `chat`, `cheerful`, `customerservice`, `excited`, `friendly`, `hopeful`, `newscast`, `sad`, `shouting`, `terrified`, `unfriendly`, and `whispering`.
 
