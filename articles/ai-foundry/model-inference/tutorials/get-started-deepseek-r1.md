@@ -37,6 +37,9 @@ Azure AI model inference is a capability in Azure AI Services resources in Azure
 
 To create an Azure AI project that supports model inference for DeepSeek-R1, follow these steps:
 
+> [!TIP]
+> You can also create the resources using [Azure CLI](../how-to/quickstart-create-resources.md?pivots=programming-language-cli) or [infrastructure as code with Bicep](../how-to/quickstart-create-resources.md?pivots=programming-language-bicep).
+
 1. Go to [Azure AI Foundry portal](https://ai.azure.com) and log in with your account.
 
 2. On the landing page, select **Create project**.
@@ -86,7 +89,7 @@ Let's now create a new model deployment for DeepSeek-R1:
 5. The wizard shows the model's terms and conditions for DeepSeek-R1, which is offered as a Microsoft first party consumption service. You can review our privacy and security commitments under [Data, privacy, and Security](../../../ai-studio/how-to/concept-data-privacy.md). 
 
     > [!TIP]
-    > You can also review the pricing details for the model by seeing [Pricing and terms](https://aka.ms/DeepSeekPricing) tab.
+    > Review the pricing details for the model by selecting [Pricing and terms](https://aka.ms/DeepSeekPricing).
 
 6. Accept the terms on those cases by selecting **Subscribe and deploy**.
 
@@ -96,7 +99,7 @@ Let's now create a new model deployment for DeepSeek-R1:
 
 8. We automatically select an Azure AI Services connection depending on your project. Use the **Customize** option to change the connection based on your needs. DeepSeek-R1 is currently offered under the **Global Standard** deployment type which offers higher throughput and performance.
 
-9.  Select **Deploy**.
+9. Select **Deploy**.
 
    :::image type="content" source="../media/quickstart-get-started-deepseek-r1/model-deploy.png" alt-text="Screenshot showing how to deploy the model." lightbox="../media/quickstart-get-started-deepseek-r1/model-deploy.png":::
 
@@ -121,6 +124,12 @@ You can get started by using the model in the playground to have an idea of the 
 [!INCLUDE [best-practices](../includes/use-chat-reasoning/best-practices.md)]
 
 ## Use the model in code
+
+Use the Azure AI model inference endpoint and credentials to connect to the model:
+
+:::image type="content" source="../media/overview/overview-endpoint-and-key.png" alt-text="Screenshot showing how to get the URL and key associated with the resource." lightbox="../media/overview/overview-endpoint-and-key.png":::
+
+You can use the Azure AI Inference package to consume the model in code:
 
 [!INCLUDE [code-create-chat-client](../includes/code-create-chat-client.md)]
 
