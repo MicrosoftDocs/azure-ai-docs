@@ -8,7 +8,7 @@ ms.subservice: inferencing
 ms.reviewer: None
 author: Blackmist
 ms.author: larryfr
-ms.date: 11/16/2022
+ms.date: 03/06/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, deploy, devx-track-azurecli, mktng-kw-nov2021, cliv1, sdkv1
 adobe-target: true
