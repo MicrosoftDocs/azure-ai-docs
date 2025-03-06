@@ -24,7 +24,7 @@ By default, this feature uses the latest available AI model on your input. You c
 
 ### Language support
 
-See the [PII Language Support page](../language-support.md) for more details. Currently the conversational PII GA model only supports the English language. The preview model and API support the [same list languages](../../concepts/language-support.md) as the other Language services.
+For more information, *see* the [PII Language Support page](../language-support.md). Currently the conversational PII GA model only supports the English language. The preview model and API support the [same list languages](../../concepts/language-support.md) as the other Language services.
 
 ### Region support
 
@@ -32,15 +32,15 @@ The conversational PII API supports all Azure regions supported by the Language 
 
 ## Submitting data
 
-You can submit the input to the API as list of conversation items. Analysis is performed upon receipt of the request. Because the API is asynchronous, there may be a delay between sending an API request, and receiving the results. For information on the size and number of requests you can send per minute and second, see the data limits below.
+You can submit the input to the API as list of conversation items. Analysis is performed upon receipt of the request. Because the API is asynchronous, there may be a delay between sending an API request, and receiving the results. For information on the size and number of requests you can send per minute and second, see the following data limits.
 
-When using the async feature, the API results are available for 24 hours from the time the request was ingested, and is indicated in the response. After this time period, the results are purged and are no longer available for retrieval.
+When you use the async feature, the API results are available for 24 hours from the time the request was ingested, and is indicated in the response. After this time period, the results are purged and are no longer available for retrieval.
 
 When you submit data to conversational PII, you can send one conversation (chat or spoken) per request.
 
 The API attempts to detect all the [defined entity categories](../concepts/conversations-entity-categories.md) for a given conversation input. If you want to specify which entities are detected and returned, use the optional `piiCategories` parameter with the appropriate entity categories.
 
-For spoken transcripts, the entities detected are returned on the `redactionSource` parameter value provided. Currently, the supported values for `redactionSource` are `text`, `lexical`, `itn`, and `maskedItn` (which maps to Speech to text REST API's `display`\\`displayText`, `lexical`, `itn` and `maskedItn` format respectively). Additionally, for the spoken transcript input, this API also provides audio timing information to empower audio redaction. For using the audioRedaction feature, use the optional `includeAudioRedaction` flag with `true` value. The audio redaction is performed based on the lexical input format.
+For spoken transcripts, the entities detected are returned on the `redactionSource` parameter value provided. Currently, the supported values for `redactionSource` are `text`, `lexical`, `itn`, and `maskedItn` (which maps to Speech to text REST API's `display`\\`displayText`, `lexical`, `itn`, and `maskedItn` format respectively). Additionally, for the spoken transcript input, this API also provides audio timing information to empower audio redaction. For using the audioRedaction feature, use the optional `includeAudioRedaction` flag with `true` value. The audio redaction is performed based on the lexical input format.
 
 > [!NOTE]
 > Conversation PII now supports 40,000 characters as document size.
@@ -56,7 +56,7 @@ When you get results from PII detection, you can stream the results to an applic
 
 1. Go to your resource overview page in the [Azure portal](https://portal.azure.com/#home)
 
-2. From the menu on the left side, select **Keys and Endpoint**. You'll need one of the keys and the endpoint to authenticate your API requests.
+2. From the menu on the left side, select **Keys and Endpoint**. You need one of the keys and the endpoint to authenticate your API requests.
 
 3. Download and install the client library package for your language of choice:
 
@@ -65,7 +65,7 @@ When you get results from PII detection, you can stream the results to an applic
     |.NET     | [1.0.0](https://www.nuget.org/packages/Azure.AI.Language.Conversations/1.0.0)        |
     |Python     | [1.0.0](https://pypi.org/project/azure-ai-language-conversations/1.1.0b2)         |
 
-4. See the following reference documentation for more information on the client, and return object:
+4. For more information on the client and return object, *see* the following reference documentation:
 
     * [C#](/dotnet/api/azure.ai.language.conversations)
     * [Python](/python/api/azure-ai-language-conversations/azure.ai.language.conversations.aio)
@@ -74,7 +74,7 @@ When you get results from PII detection, you can stream the results to an applic
 
 ## Redaction Policy (version 2024-11-15-preview only)
 
-In version 2024-11-15-preview, you're able to define the `redactionPolicy` parameter to reflect the redaction policy to be used when redacting the document in the response. The policy field supports 3 policy types:
+In version 2024-11-15-preview, you're able to define the `redactionPolicy` parameter to reflect the redaction policy to be used when redacting the document in the response. The policy field supports three policy types:
 
 - `noMask`
 - `characterMask` (default)
@@ -82,9 +82,9 @@ In version 2024-11-15-preview, you're able to define the `redactionPolicy` param
 
 The `noMask` policy allows the user to return the response without the `redactedText` field.
 
-The `characterMask` policy allows the `redactedText` to be masked with a character, preserving the length and offset of the original text. This is the existing behavior.
+The `characterMask` policy allows the `redactedText` to be masked with a character, preserving the length and offset of the original text. This behavior is the existing expectation.
 
-There is also an optional field called `redactionCharacter` where you can input the character to be used in redaction if you're using the `characterMask` policy
+There's also an optional field called `redactionCharacter` where you can input the character to be used in redaction if you're using the `characterMask` policy
 
 The `entityMask` policy allows you to mask the detected PII entity text with the detected entity type
 
