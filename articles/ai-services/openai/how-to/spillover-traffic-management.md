@@ -6,7 +6,7 @@
 title: Manage traffic with spillover for Provisioned deployments
 description: Article outlining how to use the spillover feature to manage traffic bursts for Azure OpenAI Service provisioned deployments
 author:      sydneemayers # GitHub alias
-ms.author:   sydneedmayers # Microsoft alias
+ms.author: sydneemayers
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.date:     03/05/2025
