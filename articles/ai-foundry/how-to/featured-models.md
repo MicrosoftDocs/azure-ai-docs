@@ -150,13 +150,13 @@ Mistral AI offers two categories of models: premium models including Mistral Lar
 
 | Model  | Type | Description | 
 | ------ | ---- | --- | 
-| [Ministral-3B](https://ai.azure.com/explore/models/Ministral-3B/version/1/registry/azureml-mistral) | chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
-| [Mistral-large](https://ai.azure.com/explore/models/Mistral-large/version/1/registry/azureml-mistral) <br /> (deprecated) | chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
-| [Mistral-small](https://ai.azure.com/explore/models/Mistral-small/version/1/registry/azureml-mistral) | chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
-| [Mistral-Nemo](https://ai.azure.com/explore/models/Mistral-Nemo/version/1/registry/azureml-mistral) | chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
-| [Mistral-large-2407](https://ai.azure.com/explore/models/Mistral-large-2407/version/1/registry/azureml-mistral) <br /> (legacy) | chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
-| [Mistral-Large-2411](https://ai.azure.com/explore/models/Mistral-Large-2411/version/2/registry/azureml-mistral) | chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
-| [Codestral-2501](https://ai.azure.com/explore/models/Codestral-2501/version/2/registry/azureml-mistral) | chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
+| [Ministral-3B](https://ai.azure.com/explore/models/Ministral-3B/version/1/registry/azureml-mistral) | [chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
+| [Mistral-large](https://ai.azure.com/explore/models/Mistral-large/version/1/registry/azureml-mistral) <br /> (deprecated) | [chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
+| [Mistral-small](https://ai.azure.com/explore/models/Mistral-small/version/1/registry/azureml-mistral) | [chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
+| [Mistral-Nemo](https://ai.azure.com/explore/models/Mistral-Nemo/version/1/registry/azureml-mistral) | [chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
+| [Mistral-large-2407](https://ai.azure.com/explore/models/Mistral-large-2407/version/1/registry/azureml-mistral) <br /> (legacy) | [chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
+| [Mistral-Large-2411](https://ai.azure.com/explore/models/Mistral-Large-2411/version/2/registry/azureml-mistral) | [chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
+| [Codestral-2501](https://ai.azure.com/explore/models/Codestral-2501/version/2/registry/azureml-mistral) | [chat-completion](../model-inference/how-to/use-chat-completions.md) |  short description |
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=mistral).
 
