@@ -90,7 +90,7 @@ items:
         href: how-to/troubleshoot-deploy-and-monitor.md
   - name: Work with models from the model catalog
     items:
-    - name: Featured models in the Azure AI model catalog
+    - name: Featured models in the model catalog
       href: concepts/models-featured.md
     - name: Work with embedding models
       items:
