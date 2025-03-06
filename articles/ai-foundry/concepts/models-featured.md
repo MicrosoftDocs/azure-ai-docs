@@ -1,5 +1,5 @@
 ---
-title: Featured models of AI Foundry
+title: Featured models of Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Explore a variety of models available within AI Foundry
 manager: scottpolly
@@ -7,19 +7,20 @@ author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
 ms.topic: conceptual
-ms.date: 02/26/2025
+ms.date: 03/06/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
 ---
 
-# Featured models of AI Foundry
+# Featured models of Azure AI Foundry
 
 The Azure AI model catalog offers a large selection of models, from a wide range of providers. This article lists featured models available in AI Foundry. Some of these models might require you to host them on your infrastructure, as in the case of deployment via managed compute, or host them on Microsoft's servers, as in the case of deployment via serverless APIs. See [Available models for supported deployment options](../how-to/model-catalog-overview.md#available-models-for-supported-deployment-options) for a list of models in the catalog that are available for deployment via managed compute or serverless API.
 
 For some of these models, you can access them for inferencing only by using custom APIs from the model providers. For these type of models, this article lists the featured partner models and the APIs to use for inferencing. You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
 
-:::image type="content" source="../media/concepts/models-catalog.gif" alt-text="An animation showing Azure AI studio model catalog section and the models available." lightbox="../media/concepts/models-catalog.gif":::
+
+:::image type="content" source="../media/models-featured/models-catalog.gif" alt-text="An animation showing Azure AI studio model catalog section and the models available." lightbox="../media/models-featured/models-catalog.gif":::
 
 ### AI21 Labs
 
