@@ -22,7 +22,7 @@ ms.date: 11/19/2024
 
 ## Prerequisites
 
-To get started, you need **An active Azure subscription**. If you don't have an Azure account, you can [create a free subscription](https://azure.microsoft.com/free/). 
+To get started, you need **An active Azure subscription**. If you don't have an Azure account, you can [create a free subscription](https://azure.microsoft.com/free/).
 
 * Once you have your Azure subscription, create an [Azure AI Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal. This multi-service resource enables access to multiple Azure AI services with a single set of credentials.
 
@@ -83,6 +83,35 @@ First, create a JSON file named `request_body.json` with the following content:
 }
 ```
 
+### Content filtering
+
+* Azure AI Content Understanding allows approved customers to disable content filtering.
+
+* To request modified content filtering, complete the following form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
+
+* Once approved, create or update your `request_body.json` file to include the `"disableContentFiltering": true` property:
+
+   ```json
+   {
+     "description": "Sample invoice analyzer",
+     "scenario": "document",
+     "config": {
+
+       "disableContentFiltering": true,
+
+       "enableFace": true,
+       "returnDetails": true,
+       },
+       "fieldSchema": {
+   ...
+       }
+   }
+
+   ```
+
+For more information, *see* [**Content Filtering**](../../openai/concepts/content-filter.md).
+
+
 # [Image](#tab/image)
 
 To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for identifying detects in images of metal plates.
@@ -106,6 +135,33 @@ First, create a JSON file named `request_body.json` with the following content:
   }
 }
 ```
+
+### Content filtering
+
+* Azure AI Content Understanding allows approved customers to disable content filtering.
+
+* To request modified content filtering, complete the following form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
+
+* Once approved, create or update your `request_body.json` file to include the `"disableContentFiltering": true` property:
+
+   ```json
+   {
+     "description": "Sample chart analyzer",
+     "scenario": "image",
+     "config": {
+
+       "disableContentFiltering": true,
+
+       "returnDetails": true,
+       },
+       "fieldSchema": {
+   ...
+       }
+   }
+
+   ```
+
+For more information, *see* [**Content Filtering**](../../openai/concepts/content-filter.md).
 
 # [Audio](#tab/audio)
 
@@ -147,6 +203,34 @@ First, create a JSON file named `request_body.json` with the following content:
 }
 ```
 
+### Content filtering
+
+* Azure AI Content Understanding allows approved customers to disable content filtering.
+
+* To request modified content filtering, complete the following form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
+
+* Once approved, create or update your `request_body.json` file to include the `"disableContentFiltering": true` property:
+
+   ```json
+   {
+     "description": "Sample call transcript analyzer",
+     "scenario": "callCenter",
+     "config": {
+
+       "disableContentFiltering": true,
+
+       "returnDetails": true,
+       "locales": ["en-US"]
+       },
+       "fieldSchema": {
+   ...
+       }
+   }
+
+   ```
+
+For more information, *see* [**Content Filtering**](../../openai/concepts/content-filter.md).
+
 # [Video](#tab/video)
 
 To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for extracting basic information from marketing videos.
@@ -171,6 +255,31 @@ First, create a JSON file named `request_body.json` with the following content:
   }
 }
 ```
+### Content filtering
+
+* Azure AI Content Understanding allows approved customers to disable content filtering.
+
+* To request modified content filtering, complete the following form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
+
+* Once approved, create or update your `request_body.json` file to include the `"disableContentFiltering": true` property:
+
+   ```json
+   {
+     "description": "Sample marketing video analyzer",
+     "scenario": "videoShot",
+     "config": {
+
+       "disableContentFiltering": true,
+
+       },
+       "fieldSchema": {
+   ...
+       }
+   }
+
+   ```
+
+For more information, *see* [**Content Filtering**](../../openai/concepts/content-filter.md).
 
 ---
 
@@ -540,8 +649,8 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ---
 
-## Next steps 
+## Next steps
 
-* In this quickstart, you learned how to call the [REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true) to create a custom analyzer. For a user experience, try [**Azure AI Foundry portal**](https://ai.azure.com/). 
+* In this quickstart, you learned how to call the [REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true) to create a custom analyzer. For a user experience, try [**Azure AI Foundry portal**](https://ai.azure.com/).
 
 

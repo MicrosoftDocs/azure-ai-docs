@@ -73,36 +73,17 @@ See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 
 
 ## Responsible AI
+
  Azure AI Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. For more information and a full list of prohibited content, *see* our [**Transparency note**](/legal/cognitive-services/content-understanding/transparency-note?toc=/azure/ai-services/content-understanding/toc.json&bc=/azure/ai-services/content-understanding/breadcrumb/toc.json) and our [**Code of Conduct**](https://aka.ms/AI-CoC).
 
 ### Modified Content Filtering
 
-Azure AI Content Understanding now supports disabling content filtering for approved customers. The subscription IDs with approved modified content filtering impacts the Azure AI Content Understanding output.
+Azure AI Content Understanding now supports disabling content filtering for approved customers. The subscription IDs with approved modified content filtering impacts the Azure AI Content Understanding output. By default, Content Understanding employs a content filtering system that identifies specific risk categories for potentially harmful content in both submitted prompts and generated outputs. If content is flagged with a high severity level, indicating a significant potential for harm, the output is blocked. For more information on risk categories, *see* [Content filtering](../openai/concepts/content-filter.md#risk-categories).
 
 > [!IMPORTANT]
 >
 > * Apply for modified content filters via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
 > * For more information, *see* [**Content Filtering**](../openai/concepts/content-filter.md).
-
-By default, Content Understanding employs a content filtering system that identifies specific risk categories for potentially harmful content in both submitted prompts and generated outputs. If content is flagged with a high severity level, indicating a significant potential for harm, the output is blocked. For more information on risk categories, *see* [Content filtering](../openai/concepts/content-filter.md#risk-categories).
-
-To disable content filtering, follow these steps:
-
-* Complete the [Azure OpenAI Limited Access Review:  Modified Content Filtering](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu) for your subscription.
-
-* Once approved, create or update your Content Understanding analyzer to include the property `"disableContentFiltering": true`as follows:
-
-```bash
-  {
-    "config": {
-        "enableFace": true,
-        "returnDetails": true,
-        "disableContentFiltering": true
-  }
-```
-
-
-
 
 ## Data privacy and security
 Developers using the Content Understanding service should review Microsoft's policies on customer data. For more information, visit our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page.
