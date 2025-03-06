@@ -29,6 +29,7 @@ Azure AI Agent Service supports the same models as the chat completions API in A
 | norwayeast    |-  |  - |  - | -  | ✅ | -  |-  | -  | -  | -  | -  | - |
 | southindia    | - | - | - | - | ✅ | - | - | - | - | ✅ | ✅ | - |
 | swedencentral    | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | ✅ | - | ✅ |
+| uaenorth    | - | - | - | - | - | - | - | - | - | - | - | - |
 | uksouth       | -                          | -                          | -                               | -                   | ✅                          | ✅                           | -                               | -                       | ✅                          | ✅                         | ✅                          | ✅                             |
 | westus        | ✅                         | ✅                          | ✅                            | -                   | ✅                          | -                           | ✅                               | - | -                          | ✅                         | ✅                          | -                              |
 | westus3    | ✅ | ✅ | ✅ | - | ✅ | - | ✅ | - | - | - | ✅ | - |
