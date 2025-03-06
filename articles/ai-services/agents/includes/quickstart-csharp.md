@@ -13,6 +13,10 @@ ms.date: 01/15/2025
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
 * [The latest version of .NET](https://dotnet.microsoft.com/en-us/download)
+* Ensure that the individual deploying the template has the **Azure AI Developer** role assigned at the resource group level where the template is being deployed.
+* Additionally, to deploy the template, you need to have the preset **Role Based Access Administrator** role at the subscription level.
+   * The **Owner** role at the subscription level satisfies this requirement.
+   * The specific admin role that is needed is `Microsoft.Authorization/roleAssignments/write`
 * Ensure that each team member who wants to use the Agent Playground or SDK to create or edit agents has been assigned the built-in **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio.md) for the project.
     * Note: assign these roles after the template has been deployed
     * The minimum set of permissions required is: **agents/*/read**, **agents/*/action**, **agents/*/delete**  
