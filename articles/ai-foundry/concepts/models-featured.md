@@ -1,7 +1,7 @@
 ---
 title: Featured models of Azure AI Foundry
 titleSuffix: Azure AI Foundry
-description: Explore a variety of models available within AI Foundry
+description: Explore various models available within Azure AI Foundry.
 manager: scottpolly
 author: msakande
 reviewer: santiagxf
@@ -19,10 +19,17 @@ The Azure AI model catalog offers a large selection of models, from a wide range
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
-You have various options for deploying these models. For some models, you need to host them on your infrastructure, as in the case of deployment via managed compute, while for others, you can host them on Microsoft's servers, as in the case of deployment via serverless APIs. See [Available models for supported deployment options](../how-to/model-catalog-overview.md#available-models-for-supported-deployment-options) for a list of models in the catalog that are available for deployment via managed compute or serverless API.
+You have various options for deploying these models. For some models, you need to host them on your infrastructure, as in the case of deployment via managed compute. For other models, you can host them on Microsoft's servers, as in the case of deployment via serverless APIs. See [Available models for supported deployment options](../how-to/model-catalog-overview.md#available-models-for-supported-deployment-options) for a list of models in the catalog that are available for deployment via managed compute or serverless API.
 
-When it comes to performing inferencing with the models, some of these models are supported for inferencing using the [Azure AI model inference](../model-inference/overview.md), while others require you to use custom APIs from the model providers. You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
+When it comes to performing inferencing with the models, some of these models, such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank), require you to use custom APIs from the model providers. Others that belong to the following model types are supported for inferencing using the [Azure AI model inference](../model-inference/overview.md):
 
+- [Chat completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context)
+- [Chat completion (with reasoning content)](../model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context)
+- [Chat completion (with image and audio content)](../model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context)
+- [Embeddings](../model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context)
+- [Image embeddings](../model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context)
+
+You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
 
 :::image type="content" source="../media/models-featured/models-catalog.gif" alt-text="An animation showing Azure AI studio model catalog section and the models available." lightbox="../media/models-featured/models-catalog.gif":::
 
@@ -63,7 +70,11 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ## Cohere
 
-The Cohere family of models includes various models optimized for different use cases, including rerank, chat completions, and embeddings. The following table lists the available Cohere rerank models. that can be accessed for inferencing, by using Cohere's rerank API. For other Cohere models that you can inference via the  Azure AI model Inference, see [Cohere models](https://learn.microsoft.com/azure/ai-foundry/model-inference/concepts/models?context=%2Fazure%2Fai-studio%2Fcontext%2Fcontext#cohere).
+The Cohere family of models includes various models optimized for different use cases, including rerank, chat completions, and embeddings.
+
+### Cohere command and embed
+
+The following table lists the Cohere models that you can inference via the  Azure AI model Inference.
 
 | Model  | Type | Capabilities | 
 | ------ | ---- | --- | 
@@ -77,6 +88,8 @@ The Cohere family of models includes various models optimized for different use 
 
 
 ### Cohere rerank
+
+The following table lists the Cohere rerank models. To perform inferencing with these rerank models, you're required to use Cohere's custom rerank APIs that are listed in the table.
 
 | Model  | Type | Inference API | 
 | ------ | ---- | --- | 
@@ -103,7 +116,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ### DeepSeek
 
-DeepSeek family of models include DeepSeek-R1, which excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks, and DeepSeek-V3, a Mixture-of-Experts (MoE) language model. 
+DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks, and DeepSeek-V3, a Mixture-of-Experts (MoE) language model. 
 
 | Model  | Type | Capabilities | 
 | ------ | ---- | --- | 
@@ -151,8 +164,7 @@ Phi is a family of lightweight, state-of-the-art open models. These models were 
 | [Phi-3.5-mini-instruct](https://ai.azure.com/explore/models/Phi-3.5-mini-instruct/version/6/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:**  (4,096 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 | [Phi-4](https://ai.azure.com/explore/models/Phi-4/version/2/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (16,384 tokens) <br /> - **Output:**  (16,384 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
 | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:**  (4,096 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
-| [Phi-4-multimodal-instruct](https://ai.azure.com/explore/models/Phi-4-multimodal-instruct/version/1/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text, images, and audio (131,072 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
-
+| [Phi-4-multimodal-instruct](https://ai.azure.com/explore/models/Phi-4-multimodal-instruct/version/1/registry/azureml) | [chat-completion (with image and audio content)](../model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context) | - **Input:** text, images, and audio (131,072 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
 
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
@@ -176,6 +188,8 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 ## Nixtla
 
 Nixtla's TimeGEN-1 is a generative pre-trained forecasting and anomaly detection model for time series data. TimeGEN-1 can produce accurate forecasts for new time series without training, using only historical values and exogenous covariates as inputs.
+
+To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference API.
 
 | Model  | Type | Capabilities | Inference API|
 | ------ | ---- | --- | ------------ |
