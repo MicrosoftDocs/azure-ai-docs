@@ -117,7 +117,7 @@ ENV AZUREML_MODEL_DIR=/var/azureml-app/azureml-models
 The following example demonstrates installing `apt` packages, setting environment variables, and including code and models as part of the Dockerfile:
 
 > [!NOTE]
-> The following example uses the `mcr.microsoft.com/azureml/minimal-ubuntu20.04-py38-cpu-inference:latest` image as a base image. For information on the available images, see [Prebuilt Docker images for model inference](../concept-prebuilt-docker-images-inference.md#available-images).
+> The following example uses the `mcr.microsoft.com/azureml/minimal-ubuntu20.04-py38-cpu-inference:latest` image as a base image. For information on the available images, see [Prebuilt Docker images for model inference](../concept-prebuilt-docker-images-inference.md#list-of-prebuilt-docker-images-for-inference).
 
 ```Dockerfile
 FROM mcr.microsoft.com/azureml/minimal-ubuntu20.04-py38-cpu-inference:latest
