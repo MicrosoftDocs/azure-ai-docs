@@ -1,7 +1,7 @@
 ---
 title: Azure AI Translator release history
 titleSuffix: Azure AI services
-description: Release notes and updates to the Azure AI Translator Service API.
+description: Release notes and updates for Azure AI Translator Service API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
