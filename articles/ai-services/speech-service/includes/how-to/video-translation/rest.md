@@ -41,10 +41,10 @@ For code samples, see [GitHub](https://github.com/Azure-Samples/cognitive-servic
 ## Workflow
 
 Here are the steps to get a translated video using the REST API:
-1. [Create a translation object](#create-a-translation). Check the status of the operation periodically until it reaches `Succeeded` or `Failed`.
-1. [Create an iteration](#create-an-iteration) to start the translation process. Check the status of the iteration operation periodically until it reaches `Succeeded` or `Failed`.
-1. [Download](#download-the-translated-video-and-subtitles) the translated video and subtitles.
-1. Optionally, create additional iterations to improve the translation quality.
+1. [Create a translation object](#step-1-create-a-translation). Check the status of the operation periodically until it reaches `Succeeded` or `Failed`.
+1. [Create an iteration](#step-2-create-an-iteration) to start the translation process. Check the status of the iteration operation periodically until it reaches `Succeeded` or `Failed`.
+1. [Download](#step-3-download-the-translated-video-and-subtitles) the translated video and subtitles.
+1. Optionally, [create additional iterations](#step-4-create-additional-iterations-optional) to improve the translation quality.
 
 ## Step 1: Create a translation
 
