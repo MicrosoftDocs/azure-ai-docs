@@ -174,15 +174,13 @@ Some models can create JSON outputs. Set `response_format` to `json_object` to e
 
 
 ```python
-from azure.ai.inference.models import ChatCompletionsResponseFormatJSON
-
 response = client.complete(
     messages=[
         SystemMessage(content="You are a helpful assistant that always generate responses in JSON format, using."
                       " the following format: { ""answer"": ""response"" }."),
         UserMessage(content="How many languages are in the world?"),
     ],
-    response_format={ "type": ChatCompletionsResponseFormatJSON() }
+    response_format="json_object"
 )
 ```
 
@@ -213,9 +211,9 @@ The following code example creates a tool definition that is able to look from f
 
 
 ```python
-from azure.ai.inference.models import FunctionDefinition, ChatCompletionsFunctionToolDefinition
+from azure.ai.inference.models import FunctionDefinition, ChatCompletionsToolDefinition
 
-flight_info = ChatCompletionsFunctionToolDefinition(
+flight_info = ChatCompletionsToolDefinition(
     function=FunctionDefinition(
         name="get_flight_info",
         description="Returns information about the next flight between two cities. This includes the name of the airline, flight number and the date and time of the next flight",
