@@ -28,7 +28,7 @@ Spillover is a capability that automates the process of sending overage traffic 
 To maximize the utilization of your provisioned deployment, it is recommended to enable spillover for all global and data zone provisioned deployments. With spillover, bursts or fluctuations in traffic can be automatically managed by the service, which reduces the risk of experience disruptions caused by a fully utilized provisioned deployment. If there are particular use cases or workloads where spillover is not required, this capability can be controlled on a per-request basis with request headers to provide full configurability across different scenarios and workloads.  
 
 ## When does spillover come into effect?
-When spillover is enabled for a deployment or configured for a given inference request, the spillover capability will be initiated when a non-200 response code is received for a request originally sent to your primary provisioned deployment. When a request results in a non-200 response code, the Azure OpenAI Service will automatically send the request to the designated spillover standard deployment to be processed. Even if a subset of requests are routed to the standard spillover deployment, the service will prioritize sending requests to the primary provisioned deployment before sending any overage to the spillover standard deployment.
+When spillover is enabled for a deployment or configured for a given inference request, the spillover capability will be initiated when a non-200 response code is received for a request originally sent to your primary provisioned deployment. When a request results in a non-200 response code, the Azure OpenAI Service will automatically send the request to the designated spillover standard deployment to be processed. Even if a subset of requests is routed to the spillover standard deployment, the service will prioritize sending requests to the primary provisioned deployment before sending any overage requests to the spillover standard deployment.
 
 ## How does spillover impact cost?
 Since spillover leverages a combination of provisioned and standard deployments to manage traffic fluctuations, billing for spillover will involve two aspects:
@@ -36,10 +36,10 @@ Since spillover leverages a combination of provisioned and standard deployments 
 - For any requests that are routed to your spillover standard deployment, the request will be billed at the associated input token, cached token, and output token rates for the specified model version and deployment type.
 
 ## How to enable spillover
-The spillover capability can be enabled for two distinct scenarios: (1) enable spillover for all requests on a provisioned deployment or (2) only enable spillover for select inference requests. The following explains how to configure spillover for each of these scenarios. 
+The spillover capability can be enabled for all requests on a provisioned deployment using a deployment property or it can be managed on a per-request basis using request headers. The following explains how to configure spillover for each of these scenarios. 
 
 ### Enable spillover for all requests on a provisioned deployment
-To enable spillover for all requests on a provisioned deployment, the deployment property `spilloverDeploymentName` needs to be set to point to the spillover standard deployment required to support spillover requests. This property can be set during the creation of a new provisioned deployment or can be added to an existing provisioned deployment. The `spilloverDeploymentName` property needs to be set to the name of a newly created or existing standard deployment within the same Azure OpenAI Service resource as your provisioned deployment. 
+To enable spillover for all requests on a provisioned deployment, the deployment property `spilloverDeploymentName` needs to be set to the name of the standard deployment that will be used for spillover requests. This property can be set during the creation of a new provisioned deployment or can be added to an existing provisioned deployment. The `spilloverDeploymentName` property needs to be set to the name of a standard deployment within the same Azure OpenAI Service resource as your provisioned deployment. 
 
 ```Bash
 curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-temp/providers/Microsoft.CognitiveServices/accounts/docs-openai-test-001/deployments/spillover-ptu-deployment?api-version=2024-10-01 \
@@ -48,7 +48,7 @@ curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-0
   -d '{"sku":{"name":"GlobalProvisionedManaged","capacity":100},"properties": {"spilloverDeploymentName": "spillover-standard-deployment", "model":{"format": "OpenAI","name": "gpt-4o-mini","version": "2024-07-18"}}}'
 ```
 ### Enable spillover for select inference requests
-To selectively enable spillover on a per-request basis, the inference request header `x-ms-spillover-deployment` is used to specify the spillover standard deployment to direct overage traffic to in the event of a non-200 response code. If the `x-ms-spillover-deployment` header is not set on a request, spillover will not be initiated in the event of a non-200 response. The use or omission of this header provides the flexibility to control when spillover should or should not be initiated for a given workload or scenario.
+To selectively enable spillover on a per-request basis, the inference request header `x-ms-spillover-deployment` is used to specify the standard deployment where spillover requests will be processed in the event of a non-200 response code. If the `x-ms-spillover-deployment` header is not set on a given request, spillover will not be initiated in the event of a non-200 response. The use or omission of this header provides the flexibility to control when spillover should or should not be initiated for a given workload or scenario.
 
 ```bash
 curl $AZURE_OPENAI_ENDPOINT/openai/deployments/spillover-ptu-deployment/chat/completions?api-version=2025-02-01-preview \
