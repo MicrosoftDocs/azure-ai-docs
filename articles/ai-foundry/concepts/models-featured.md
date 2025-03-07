@@ -70,7 +70,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ## Cohere
 
-The Cohere family of models includes various models optimized for different use cases, including rerank, chat completions, and embeddings.
+The Cohere family of models includes various models optimized for different use cases, including rerank, chat completions, and embeddings models.
 
 ### Cohere command and embed
 
