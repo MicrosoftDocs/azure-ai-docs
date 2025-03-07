@@ -245,7 +245,7 @@ items:
       - name: Get started with Provisioned Deployments
         href: ./how-to/provisioned-get-started.md
         displayName: PTU, provisioned, provisioned throughput units
-      - name: Provisioned Spillover
+      - name: Provisioned spillover
         href: ./how-to/spillover-traffic-management.md
       - name: Plan and manage costs
         href: ./how-to/manage-costs.md
