@@ -82,7 +82,7 @@ You can [explore Azure AI Foundry portal (including the model catalog)](./how-to
 
 But for full functionality there are some requirements:
 
-- You need an [Azure account](https://azure.microsoft.com/free/). 
+You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account). 
 
 ## Related content
 
