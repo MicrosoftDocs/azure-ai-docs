@@ -78,14 +78,14 @@ See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 
 ### Modified Content Filtering
 
-Azure AI Content Understanding now supports modifying the content filtering system for approved customers. The subscription IDs with approved modified content filtering impacts the Azure AI Content Understanding output. By default, Content Understanding employs a content filtering system that identifies specific risk categories for potentially harmful content in both submitted prompts and generated outputs. By modifying the content filtering setting, the system will annotate rather than block potentially harmful output allowing you to decide how potentially harmful content is handled. For more information on content filter types, *see* [Content filtering: filter types](../openai/concepts/content-filter.md#content-filter-types).
+Content Understanding now supports modified content filtering for approved customers. The subscription IDs with approved modified content filtering impacts Content Understanding output. By default, Content Understanding employs a content filtering system that identifies specific risk categories for potentially harmful content in both submitted prompts and generated outputs. Modified content filtering allows the system to annotate rather than block potentially harmful output, giving you the ability to determine how to handle potentially harmful content. For more information on content filter types, *see* [Content filtering: filter types](../openai/concepts/content-filter.md#content-filter-types).
 
 > [!IMPORTANT]
 >
 > * Apply for modified content filters via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
 > * For more information, *see* [**Content Filtering**](../openai/concepts/content-filter.md).
 
-To learn more about how to add modified content filtering to your requests, *see* our [REST API quickstart](quickstart/use-rest-api.md).
+To learn more about how to add modified content filtering to your requests, *see* our [REST API quickstart](quickstart/use-rest-api.md#modified-content-filtering).
 
 ## Data privacy and security
 Developers using the Content Understanding service should review Microsoft's policies on customer data. For more information, visit our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page.
