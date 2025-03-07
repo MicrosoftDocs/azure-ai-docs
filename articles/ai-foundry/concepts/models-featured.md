@@ -76,11 +76,11 @@ The Cohere family of models includes various models optimized for different use 
 
 ### Cohere rerank
 
-| Model  | Type | Description | Inference API | 
-| ------ | ---- | --- | --- | 
-| [Cohere-rerank-v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere) | rerank <br> text classification  | short description | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) |
-| [Cohere-rerank-v3-english](https://ai.azure.com/explore/models/Cohere-rerank-v3-english/version/1/registry/azureml-cohere) | rerank <br> text classification  | short description | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) <br> [Cohere's v1/rerank API](https://docs.cohere.com/v1/reference/rerank) |
-| [Cohere-rerank-v3-multilingual](https://ai.azure.com/explore/models/Cohere-rerank-v3-multilingual/version/1/registry/azureml-cohere) | rerank <br> text classification  | short description | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) <br> [Cohere's v1/rerank API](https://docs.cohere.com/v1/reference/rerank) |
+| Model  | Type | Inference API | 
+| ------ | ---- | --- | 
+| [Cohere-rerank-v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere) | rerank <br> text classification | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) |
+| [Cohere-rerank-v3-english](https://ai.azure.com/explore/models/Cohere-rerank-v3-english/version/1/registry/azureml-cohere) | rerank <br> text classification  | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) <br> [Cohere's v1/rerank API](https://docs.cohere.com/v1/reference/rerank) |
+| [Cohere-rerank-v3-multilingual](https://ai.azure.com/explore/models/Cohere-rerank-v3-multilingual/version/1/registry/azureml-cohere) | rerank <br> text classification | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) <br> [Cohere's v1/rerank API](https://docs.cohere.com/v1/reference/rerank) |
 
 
 #### Pricing for Cohere Rerank models
@@ -93,9 +93,9 @@ See the [Cohere model collection in Azure AI Foundry portal](https://ai.azure.co
 
 Core42 includes autoregressive bi-lingual LLMs for Arabic & English with state-of-the-art capabilities in Arabic.
 
-| Model  | Type | Description | 
+| Model  | Type | Capabilities | 
 | ------ | ---- | --- | 
-| [jais-30b-chat](https://ai.azure.com/explore/models/jais-30b-chat/version/1/registry/azureml-core42) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | Short description | 
+| [jais-30b-chat](https://ai.azure.com/explore/models/jais-30b-chat/version/1/registry/azureml-core42) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (8,192 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | 
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=core42).
 
@@ -103,10 +103,10 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 DeepSeek family of models include DeepSeek-R1, which excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks, and DeepSeek-V3, a Mixture-of-Experts (MoE) language model. 
 
-| Model  | Type | Description | 
+| Model  | Type | Capabilities | 
 | ------ | ---- | --- | 
-| [DeekSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | [chat-completion with reasoning content](../how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context) |Short description |
-| [DeekSeek-V3](https://ai.azure.com/explore/models/deepseek-v3/version/1/registry/azureml-deepseek) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
+| [DeekSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | [chat-completion with reasoning content](../how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context) | - **Input:** text (16,384 tokens) <br /> - **Output:**  (163,840 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
+| [DeekSeek-V3](https://ai.azure.com/explore/models/deepseek-v3/version/1/registry/azureml-deepseek) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=deepseek).
 
