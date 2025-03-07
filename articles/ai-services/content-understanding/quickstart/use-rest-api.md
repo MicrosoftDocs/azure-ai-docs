@@ -176,7 +176,7 @@ First, create a JSON file named `request_body.json` with the following content:
 
 ### Modified content filtering
 
-* Customers who have been approved can customize the Content Understanding default content filtering system. After modifications, the output filters will annotate content rather than block it, offering improved control over content filtering in the Content Understanding output.
+* Customers, who are approved, can customize the Content Understanding default content filtering system. After modifications, the output filters will annotate content rather than block it, offering improved control over content filtering in the Content Understanding output.
 
 * To request approval for modified content filtering, complete the following form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
 
