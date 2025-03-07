@@ -18,7 +18,10 @@ Spillover is a capability that automates the process of sending overage traffic 
 
 ## Prerequisites
 - A global provisioned or data zone provisioned deployment to be used as your primary deployment.
-- A global or data zone standard deployment to be used as your spillover deployment. This deployment must be in the same Azure OpenAI Service resource as your primary provisioned deployment. 
+- A global or data zone standard deployment to be used as your spillover deployment. 
+
+- The provisioned and standard deployments must be in the same Azure OpenAI Service resource to be eligible for spillover.
+
 - The data processing level of your standard deployment must match your provisioned deployment (e.g. global provisioned deployment must be used with a global standard spillover deployment).
 
 ## When to enable spillover on provisioned deployments
