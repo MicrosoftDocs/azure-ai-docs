@@ -63,3 +63,8 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/spillover-ptu-deployment/chat/com
 Since the spillover capability relies on a combination of provisioned and standard deployments to manage traffic overages, monitoring can be conducted at the deployment level for each deployment. To view how many requests were processed on the primary provisioned deployment versus the spillover standard deployment, apply the splitting feature within Azure Monitor metrics to view the requests processed by each deployment and their respective status codes. Similarly, the splitting feature can be used to view how many tokens were processed on the primary provisioned deployment versus the spillover standard deployment for a given time period. For more information on observability within Azure OpenAI, review the [Monitor Azure OpenAI](./monitor-openai.md) documentation. 
 
 The following Azure Monitor metrics chart provides an example of the split of requests between the primary provisioned deployment and the spillover standard deployment when spillover is initiated. As shown in the chart, for every request that has a non-200 response code for the provisioned deployment ("gpt-4o-ptu"), there is a corresponding request with a 200-response code on the spillover standard deployment ("gpt-4o-paygo-spillover"), indicating that these overage requests were routed to the spillover standard deployment for successful processing. ![Azure monitor chart showing spillover requests from a provisioned deployment to a standard deployment.](media/spillover-traffic-management/monitor-spillover-usage.png)
+
+## See also
+
+* [What is provisioned throughput](/concepts/provisioned-throughput)
+* [Onboarding to provisioned throughput](../provisioned-throughput-onboarding.md)
