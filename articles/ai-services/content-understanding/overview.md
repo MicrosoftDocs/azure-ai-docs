@@ -78,7 +78,7 @@ See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 
 ### Modified Content Filtering
 
-Azure AI Content Understanding now supports disabling content filtering for approved customers. The subscription IDs with approved modified content filtering impacts the Azure AI Content Understanding output. By default, Content Understanding employs a content filtering system that identifies specific risk categories for potentially harmful content in both submitted prompts and generated outputs. If content is flagged with a high severity level, indicating a significant potential for harm, the output is blocked. For more information on risk categories, *see* [Content filtering: risk categories](../openai/concepts/content-filter.md#risk-categories).
+Azure AI Content Understanding now supports modifying the content filtering system for approved customers. The subscription IDs with approved modified content filtering impacts the Azure AI Content Understanding output. By default, Content Understanding employs a content filtering system that identifies specific risk categories for potentially harmful content in both submitted prompts and generated outputs. By modifying the content filtering setting, the system will annotate rather than block potentially harmful output allowing you to decide how potentially harmful content is handled. For more information on content filter types, *see* [Content filtering: filter types](../openai/concepts/content-filter.md#content-filter-types).
 
 > [!IMPORTANT]
 >

@@ -83,37 +83,6 @@ First, create a JSON file named `request_body.json` with the following content:
 }
 ```
 
-##### Content filtering
-
-* Azure AI Content Understanding allows approved customers to disable content filtering.
-
-* To request modified content filtering, complete the following form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
-
-* Once approved, create or update your `request_body.json` file to include the `"disableContentFiltering": true` property. Here is an example:
-
-   ```json
-   {
-     "description": "Sample invoice analyzer",
-     "scenario": "document",
-     "config": {
-
-       "disableContentFiltering": true,
-
-       "enableFace": true,
-       "returnDetails": true,
-       },
-       "fieldSchema": {
-
-      <insert your schema here>
-
-       }
-   }
-
-   ```
-
-For more information, *see* [**Content Filtering**](../../openai/concepts/content-filter.md).
-
-
 # [Image](#tab/image)
 
 To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for identifying detects in images of metal plates.
@@ -137,35 +106,6 @@ First, create a JSON file named `request_body.json` with the following content:
   }
 }
 ```
-
-##### Content filtering
-
-* Azure AI Content Understanding allows approved customers to disable content filtering.
-
-* To request modified content filtering, complete the following form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
-
-* Once approved, create or update your `request_body.json` file to include the `"disableContentFiltering": true` property. Here is an example:
-
-   ```json
-   {
-     "description": "Sample chart analyzer",
-     "scenario": "image",
-     "config": {
-
-       "disableContentFiltering": true,
-
-       "returnDetails": true,
-       },
-       "fieldSchema": { 
-
-       <insert your schema here>
-
-       }
-   }
-
-   ```
-
-For more information, *see* [**Content Filtering**](../../openai/concepts/content-filter.md).
 
 # [Audio](#tab/audio)
 
@@ -207,36 +147,6 @@ First, create a JSON file named `request_body.json` with the following content:
 }
 ```
 
-##### Content filtering
-
-* Azure AI Content Understanding allows approved customers to disable content filtering.
-
-* To request modified content filtering, complete the following form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
-
-* Once approved, create or update your `request_body.json` file to include the `"disableContentFiltering": true` property. Here is an example:
-
-   ```json
-   {
-     "description": "Sample call transcript analyzer",
-     "scenario": "callCenter",
-     "config": {
-
-       "disableContentFiltering": true,
-
-       "returnDetails": true,
-       "locales": ["en-US"]
-       },
-       "fieldSchema": {
-
-       <insert your schema here>
-
-       }
-   }
-
-   ```
-
-For more information, *see* [**Content Filtering**](../../openai/concepts/content-filter.md).
-
 # [Video](#tab/video)
 
 To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for extracting basic information from marketing videos.
@@ -261,13 +171,98 @@ First, create a JSON file named `request_body.json` with the following content:
   }
 }
 ```
-##### Content filtering
 
-* Azure AI Content Understanding allows approved customers to disable content filtering.
+---
 
-* To request modified content filtering, complete the following form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
+### Modified content filtering
 
-* Once approved, create or update your `request_body.json` file to include the `"disableContentFiltering": true` property. Here is an example:
+* Approved Azure AI Content Understanding customers can modify the default content filtering system. Once modified, the output filters annotate content instead of blocking it providing enhanced control over content filtering in the Content Understanding output.
+
+* To request approval for modified content filtering, complete the following form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
+
+* Once approved, create or update your `request_body.json` file to include the `"disableContentFiltering": true` property.
+
+# [Document](#tab/document)
+
+ Here's a document modality code sample using the`"disableContentFiltering": true` property:
+
+   ```json
+   {
+     "description": "Sample invoice analyzer",
+     "scenario": "document",
+     "config": {
+
+       "disableContentFiltering": true,
+
+       "enableFace": true,
+       "returnDetails": true,
+       },
+       "fieldSchema": {
+
+      <insert your schema here>
+
+       }
+   }
+
+   ```
+
+For more information, *see* [**Content Filtering**](../../openai/concepts/content-filter.md).
+
+# [Image](#tab/image)
+
+Here's an image modality code sample using the`"disableContentFiltering": true` property:
+
+   ```json
+   {
+     "description": "Sample chart analyzer",
+     "scenario": "image",
+     "config": {
+
+       "disableContentFiltering": true,
+
+       "returnDetails": true,
+       },
+       "fieldSchema": { 
+
+       <insert your schema here>
+
+       }
+   }
+
+   ```
+
+For more information, *see* [**Content Filtering**](../../openai/concepts/content-filter.md).
+
+# [Audio](#tab/audio)
+
+Here's an audio modality code sample using the`"disableContentFiltering": true` property:
+
+   ```json
+   {
+     "description": "Sample call transcript analyzer",
+     "scenario": "callCenter",
+     "config": {
+
+       "disableContentFiltering": true,
+
+       "returnDetails": true,
+       "locales": ["en-US"]
+       },
+       "fieldSchema": {
+
+       <insert your schema here>
+
+       }
+   }
+
+   ```
+
+For more information, *see* [**Content Filtering**](../../openai/concepts/content-filter.md).
+
+
+# [Video](#tab/video)
+
+ Here's a video modality code sample using the`"disableContentFiltering": true` property:
 
    ```json
    {
@@ -286,10 +281,10 @@ First, create a JSON file named `request_body.json` with the following content:
    }
 
    ```
-
 For more information, *see* [**Content Filtering**](../../openai/concepts/content-filter.md).
 
 ---
+
 
 Before running the following `cURL` commands, make the following changes to the HTTP request:
 
