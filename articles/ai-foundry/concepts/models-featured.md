@@ -107,7 +107,7 @@ DeepSeek family of models include DeepSeek-R1, which excels at reasoning tasks u
 
 | Model  | Type | Capabilities | 
 | ------ | ---- | --- | 
-| [DeekSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | [chat-completion with reasoning content](../how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context) | - **Input:** text (16,384 tokens) <br /> - **Output:**  (163,840 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
+| [DeekSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | [chat-completion with reasoning content](../model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context) | - **Input:** text (16,384 tokens) <br /> - **Output:**  (163,840 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
 | [DeekSeek-V3](https://ai.azure.com/explore/models/deepseek-v3/version/1/registry/azureml-deepseek) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=deepseek).
