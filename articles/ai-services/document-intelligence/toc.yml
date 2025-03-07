@@ -365,3 +365,5 @@ items:
     href: ../../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/document-intelligence/context/context
   - name: Privacy and cookies
     href: https://privacy.microsoft.com/en-US/privacystatement
+  - name: Azure AI Document Intelligence release history
+    href: reference/release-history.md
