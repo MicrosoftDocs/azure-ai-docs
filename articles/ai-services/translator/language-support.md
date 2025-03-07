@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 02/16/2024
+ms.date: 03/07/2025
 ms.author: lajanuar
 ---
 # Translator language support
@@ -16,16 +16,16 @@ ms.author: lajanuar
 
 **Translation – Containers:** Language support for Containers.
 
-**Custom Translator:** Custom Translator can be used to create customized translation models that you can then use to customize your translated output while using the Text Translation or Document Translation features.
+**Custom Translator:** Enables you to create tailored translation models. You can use these models to customize your translated output when utilizing the Text Translation or Document Translation features.
 
 **Auto Language Detection:** Automatically detect the language of the source text while using Text Translation or Document Translation.
 
-**Dictionary:** To display alternative translations from or to English and examples of words in context, use the [Dictionary Lookup](reference/v3-0-dictionary-lookup.md) or [Dictionary Examples](reference/v3-0-dictionary-examples.md) operations from the Text Translation feature.
+**Dictionary:** To display alternative translations from or to English and examples of words in context, use the [Dictionary Lookup](text-translation/reference/v3/dictionary-lookup.md) or [Dictionary Examples](text-translation/reference/v3/dictionary-examples.md) operations from the Text Translation feature.
 
 ## Translation
 
 > [!NOTE]
-> Language code `pt` will default to `pt-br`, Portuguese (Brazil).
+> Language code `pt` defaults to `pt-br`, Portuguese (Brazil).
 
 |Language|Language code|Cloud – Text Translation and Document Translation|Containers – Text Translation|Custom Translator|Auto Language Detection|Dictionary|
 |:----|:----|:----|:----|:----|:----|:----|
@@ -283,7 +283,7 @@ ms.author: lajanuar
 
 ## Transliteration
 
-The [Transliterate operation](reference/v3-0-transliterate.md) in the Text Translation feature supports the following languages. In the `To/From`, `<-->` indicates that the language can be transliterated from or to either of the scripts listed. The `-->` indicates that the language can only be transliterated from one script to the other.
+The [Transliterate operation](text-translation/reference/v3/transliterate.md) in the Text Translation feature supports the following languages. In the `To/From`, `<-->` indicates that the language can be transliterated from or to either of the scripts listed. The `-->` indicates that the language can only be transliterated from one script to the other.
 
 | Language    | Language code | Script | To/From | Script|
 |:----------- |:-------------:|:-------------:|:-------------:|:-------------:|
@@ -337,6 +337,6 @@ View all [Azure AI services](../index.yml).
 
 ## Next steps
 
-* [Text Translation reference](reference/v3-0-reference.md)
+* [Text Translation reference](text-translation/reference/v3/reference.md)
 * [Document Translation reference](document-translation/reference/rest-api-guide.md)
 * [Custom Translator overview](custom-translator/overview.md)

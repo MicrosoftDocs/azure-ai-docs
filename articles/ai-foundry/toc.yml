@@ -304,17 +304,17 @@ items:
   - name:  Translator
     items:
     - name: What is Azure AI Translator?
-      href: ../ai-services/translator/translator-overview.md?context=/azure/ai-foundry/context/context
+      href: ../ai-services/translator/overview.md?context=/azure/ai-foundry/context/context
     - name: Azure AI Translator language support
       href: ../ai-services/translator/language-support.md?context=/azure/ai-foundry/context/context
     - name: Text translation
-      href: ../ai-services/translator/text-translation-overview.md?context=/azure/ai-foundry/context/context
+      href: ../ai-services/translator/text-translation/overview.md?context=/azure/ai-foundry/context/context
     - name: Document translation
       href: ../ai-services/translator/document-translation/overview.md?context=/azure/ai-foundry/context/context
     - name: Custom Translator
       href: ../ai-services/translator/custom-translator/overview.md?context=/azure/ai-foundry/context/context
     - name: Prebuilt solutions
-      href: ../ai-services/translator/solutions-overview.md?context=/azure/ai-foundry/context/context
+      href: ../ai-services/translator/solutions/overview.md?context=/azure/ai-foundry/context/context
   - name:  Vision
     items:
     - name: Azure Image Analysis
