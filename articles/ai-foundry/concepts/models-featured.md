@@ -63,7 +63,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ## Cohere
 
-The Cohere family of models includes various models optimized for different use cases, including rerank, chat completions, and embeddings. The following table lists the available Cohere rerank models. that can be accessed for inferencing, by using Cohere's rerank API. For other Cohere models that you can inference via the  Azure AI model Inference, see [Cohere models](https://learn.microsoft.com/azure/ai-foundry/model-inference/concepts/models?context=%2Fazure%2Fai-studio%2Fcontext%2Fcontext#cohere).
+The Cohere family of models includes various models optimized for different use cases, including rerank, chat completions, and embeddings. The following table lists the available Cohere rerank models. that can be accessed for inferencing, by using Cohere's rerank API. For other Cohere models that you can inference via the  Azure AI model Inference, see [Cohere models](../model-inference/concepts/models.md?context=%2Fazure%2Fai-studio%2Fcontext%2Fcontext#cohere).
 
 | Model  | Type | Capabilities | 
 | ------ | ---- | --- | 
