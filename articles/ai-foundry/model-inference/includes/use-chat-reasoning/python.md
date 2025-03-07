@@ -23,7 +23,7 @@ To complete this tutorial, you need:
 
 * A model with reasoning capabilities model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a reasoning model. 
 
-  * This example use `DeepSeek-R1`.
+  * This example uses `DeepSeek-R1`.
 
 ## Use reasoning capabilities with chat
 
