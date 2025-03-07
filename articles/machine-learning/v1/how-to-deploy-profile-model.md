@@ -5,7 +5,7 @@ description: Use CLI (v1) or SDK (v1) to profile your model before deployment. P
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.date: 11/04/2022
+ms.date: 03/07/2025
 ms.topic: how-to
 zone_pivot_groups: aml-control-methods
 ms.reviewer: None
@@ -27,7 +27,7 @@ This article shows how to profile a machine learning to model to determine how m
 
 ## Prerequisites
 
-This article assumes you have trained and registered a model with Azure Machine Learning. See the [sample tutorial here](../how-to-train-scikit-learn.md) for an example of training and registering a scikit-learn model with Azure Machine Learning.
+This article assumes you have trained and registered a model with Azure Machine Learning. See the [sample tutorial here](how-to-train-scikit-learn.md) for an example of training and registering a scikit-learn model with Azure Machine Learning.
 
 ## Limitations
 
