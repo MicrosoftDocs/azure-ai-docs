@@ -9,7 +9,7 @@ ms.topic: overview
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: saoh
-ms.date: 09/21/2022
+ms.date: 03/06/2025
 monikerRange: 'azureml-api-2'
 ---
  
@@ -41,10 +41,10 @@ A compute is a designated compute resource where you run your job or host your e
 
 Machine Learning allows you to work with different types of data:
 
-* URIs (a location in local or cloud storage):
+* Uniform Resource Identifiers (URIs) - a location in local or cloud storage:
   * `uri_folder`
   * `uri_file`
-* Tables (a tabular data abstraction):
+* Tables - a tabular data abstraction:
   * `mltable`
 * Primitives:
   * `string`
