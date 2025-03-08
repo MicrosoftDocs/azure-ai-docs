@@ -19,8 +19,6 @@ This article addresses frequently asked questions about prompt flow usage.
 
 ## Compute session-related issues
 
-Errors related to compute sessions are discussed.
-
 ### Why did the run fail with a "No module named XXX" error?
 
 This type of error is related to a compute session that lacks required packages. If you use a default environment, make sure that the image of your compute session uses the latest version. If you use a custom base image, make sure that you installed all the required packages in your Docker context.
@@ -29,13 +27,7 @@ This type of error is related to a compute session that lacks required packages.
 
 You can view the serverless instance used by a compute session on the compute session list tab on the compute page. To learn more about how to manage serverless instance, see [Manage a compute session](./create-manage-compute-session.md#manage-a-compute-session).
 
-### Compute session failures that use a custom base image
-
-Errors related to compute session failures that use a custom base image are discussed.
-
-## Flow run-related issues
-
-Flow run-related issues are discussed.
+## Compute session failures that use a custom base image: Flow run-related issues
 
 ### How do I find the raw inputs and outputs of the LLM tool for further investigation?
 
@@ -57,7 +49,7 @@ You might encounter a 409 error from Azure OpenAI. This error means that you rea
 
 1. Check the compute session logs.
 
-1. Try to find the following warning log format: {node_name} has been running for {duration} seconds.
+1. Try to find the following warning log format: `<node_name> has been running for <duration> seconds`.
 
     For example:
 
@@ -83,13 +75,11 @@ You might encounter a 409 error from Azure OpenAI. This error means that you rea
 
     - Contact the prompt flow team ([promptflow-eng](mailto:aml-pt-eng@microsoft.com)) with the logs. We try to identify the root cause.
 
-## Flow deployment-related issues
-
-Flow deployment-related issues are discussed.
+## Compute session failures that use a custom base image: Flow deployment-related issues
 
 ### How do I resolve an upstream request time-out issue?
 
-If you use the Azure CLI or SDK to deploy the flow, you might encounter a time-out error. By default, `request_timeout_ms` is 5000. You can specify a maximum of five minutes, which is 300,000 ms. The following example shows how to specify a `request timeout` in the deployment yaml file. To learn more, see [deployment schema](/azure/machine-learning/reference-yaml-deployment-managed-online).
+If you use the Azure CLI or SDK to deploy the flow, you might encounter a time-out error. By default, `request_timeout_ms` is `5000`. You can specify a maximum of five minutes, which is 300,000 ms. The following example shows how to specify a request timeout in the deployment .yaml file. To learn more, see the [deployment schema](/azure/machine-learning/reference-yaml-deployment-managed-online).
 
 ```yaml
 request_settings:
@@ -141,7 +131,7 @@ There are two ways to fix this error:
 - Recommended: Find the container image URI on your custom environment detail page. Set it as the flow base image in the `flow.dag.yaml` file. When you deploy the flow in the UI, select **Use environment of current flow definition**. The back-end service creates the customized environment based on this base image and `requirement.txt` for your deployment. For more information, see [the environment specified in the flow definition](./flow-deploy.md#requirements-text-file).
 - Add `inference_config` in your custom environment definition.
 
-    The following sample is an example of a customized environment definition.
+The following sample is an example of a customized environment definition.
 
 ```yaml
 $schema: https://azuremlschemas.azureedge.net/latest/environment.schema.json
@@ -178,9 +168,9 @@ After you deploy the endpoint, you need to test it on the **Test** tab on the de
 
 :::image type="content" source="../media/prompt-flow//unable-to-fetch-deployment-schema.png" alt-text="Screenshot that shows the Test tab on the deployment detail page." lightbox = "../media/prompt-flow/unable-to-fetch-deployment-schema.png":::
 
-- Make sure that you granted the correct permission to the endpoint identity. For more information, see how to [grant permission to the endpoint identity](./flow-deploy.md#grant-permissions-to-the-endpoint).
+- Make sure that you granted the correct permission to the endpoint identity. For more information, see [how to grant permission to the endpoint identity](./flow-deploy.md#grant-permissions-to-the-endpoint).
 - Perhaps you ran your flow in an old version runtime and then deployed the flow, so the deployment used the environment of the runtime that was the old version. To update the runtime, follow the steps in [Update a runtime on the UI](./create-manage-compute-session.md#upgrade-compute-instance-runtime). Rerun the flow in the latest runtime, and then deploy the flow again.
 
 ### What do I do if I get an "Access denied to list workspace secret" error?
 
-If you encounter an error like "Access denied to list workspace secret," check whether you granted the correct permission to the endpoint identity. For more information, see how to [grant permission to the endpoint identity](./flow-deploy.md#grant-permissions-to-the-endpoint).
+If you encounter an error like "Access denied to list workspace secret," check whether you granted the correct permission to the endpoint identity. For more information, see [how to grant permission to the endpoint identity](./flow-deploy.md#grant-permissions-to-the-endpoint).

@@ -133,7 +133,7 @@ In this section, you learn how to deploy your prompt flow with inferencing data 
 
     :::image type="content" source="../media/deploy-monitor/monitor/deployment-with-data-collection-enabled.png" alt-text="Screenshot that shows the Review page in the deployment wizard with all settings completed." lightbox = "../media/deploy-monitor/monitor/deployment-with-data-collection-enabled.png":::
 
-    By default, all inputs and outputs of your deployed prompt flow application are collected to your Blob Storage. As users invoke the deployment, the data is collected for your monitor to use.
+    By default, all inputs and outputs of your deployed prompt flow application are collected to your blob storage. As users invoke the deployment, the data is collected for your monitor to use.
 
 1. Select the **Test** tab on the deployment page. Then test your deployment to ensure that it's working properly.
 
@@ -164,7 +164,7 @@ In this section, you learn how to configure monitoring for your deployed prompt 
 
    :::image type="content" source="../media/deploy-monitor/monitor/column-map-advanced-options.png" alt-text="Screenshot that shows advanced options when you map columns for monitoring metrics." lightbox = "../media/deploy-monitor/monitor/column-map-advanced-options.png":::
 
-    If data collection isn't enabled for your deployment, creation of a monitor enables collection of inferencing data to your Blob Storage. This task takes the deployment offline for a few minutes.
+    If data collection isn't enabled for your deployment, creation of a monitor enables collection of inferencing data to your blob storage. This task takes the deployment offline for a few minutes.
 
 1. Select **Create** to create your monitor.
 
@@ -196,7 +196,7 @@ from azure.identity import DefaultAzureCredential
 
 credential = DefaultAzureCredential()
 
-# Update your azure resources details
+# Update your Azure resources details
 subscription_id = "INSERT YOUR SUBSCRIPTION ID"
 resource_group = "INSERT YOUR RESOURCE GROUP NAME"
 project_name = "INSERT YOUR PROJECT NAME" # This is the same as your Azure AI Foundry project name
@@ -212,7 +212,7 @@ monitor_name ="gen_ai_monitor_both_signals"
 defaulttokenstatisticssignalname ="token-usage-signal" 
 defaultgsqsignalname ="gsq-signal"
 
-# Determine the frequency to run the monitor, and the emails to recieve email alerts
+# Determine the frequency to run the monitor, and the emails to receive email alerts
 trigger_schedule = CronTrigger(expression="15 10 * * *")
 notification_emails_list = ["test@example.com", "def@example.com"]
 
@@ -235,7 +235,7 @@ aggregated_relevance_pass_rate = 0.7
 aggregated_coherence_pass_rate = 0.7
 aggregated_fluency_pass_rate = 0.7
 
-# Create an instance of gsq signal
+# Create an instance of a gsq signal
 generation_quality_thresholds = GenerationSafetyQualityMonitoringMetricThreshold(
     groundedness = {"aggregated_groundedness_pass_rate": aggregated_groundedness_pass_rate},
     relevance={"aggregated_relevance_pass_rate": aggregated_relevance_pass_rate},
@@ -265,7 +265,7 @@ gsq_signal = GenerationSafetyQualitySignal(
     },
 )
 
-# Create an instance of token statistic signal
+# Create an instance of a token statistic signal
 token_statistic_signal = GenerationTokenStatisticsSignal()
 
 monitoring_signals = {
@@ -301,7 +301,7 @@ After you create your monitor, it runs daily to compute the token usage and gene
     - **Prompt token count**: The number of prompt tokens used by the deployment during the selected time window.
     - **Completion token count**: The number of completion tokens used by the deployment during the selected time window.
 
-1. View the metrics on the **Token usage** tab. (This tab is selected by default.) Here, you can view the token usage of your application over time. You can also view the distribution of prompt and completion tokens over time. You can change the **Trendline scope** value to monitor all tokens in the entire application or token usage for a particular deployment (for example, gpt-4) used within your application.
+1. View the metrics on the **Token usage** tab. (This tab is selected by default.) Here, you can view the token usage of your application over time. You can also view the distribution of prompt and completion tokens over time. You can change the **Trendline scope** value to monitor all tokens in the entire application or token usage for a particular deployment (for example, GPT-4) used within your application.
 
     :::image type="content" source="../media/deploy-monitor/monitor/monitor-token-usage.png" alt-text="Screenshot that shows the token usage on the deployment's monitoring page." lightbox = "../media/deploy-monitor/monitor/monitor-token-usage.png":::
 
@@ -362,7 +362,7 @@ from azure.identity import DefaultAzureCredential
 
 credential = DefaultAzureCredential()
 
-# Update your azure resources details
+# Update your Azure resources details
 subscription_id = "INSERT YOUR SUBSCRIPTION ID"
 resource_group = "INSERT YOUR RESOURCE GROUP NAME"
 project_name = "INSERT YOUR PROJECT NAME" # This is the same as your Azure AI Foundry project name
@@ -390,7 +390,7 @@ monitoring_target = MonitoringTarget(
     endpoint_deployment_id=f"azureml:{endpoint_name}:{deployment_name}",
 )
 
-# Create an instance of token statistic signal
+# Create an instance of a token statistic signal
 token_statistic_signal = GenerationTokenStatisticsSignal()
 
 monitoring_signals = {
@@ -439,7 +439,7 @@ from azure.identity import DefaultAzureCredential
 
 credential = DefaultAzureCredential()
 
-# Update your azure resources details
+# Update your Azure resources details
 subscription_id = "INSERT YOUR SUBSCRIPTION ID"
 resource_group = "INSERT YOUR RESOURCE GROUP NAME"
 project_name = "INSERT YOUR PROJECT NAME" # This is the same as your Azure AI Foundry project name
@@ -454,7 +454,7 @@ app_trace_Version = "1"
 monitor_name ="gen_ai_monitor_generation_quality" 
 defaultgsqsignalname ="gsq-signal"
 
-# Determine the frequency to run the monitor, and the emails to recieve email alerts
+# Determine the frequency to run the monitor and the emails to receive email alerts
 trigger_schedule = CronTrigger(expression="15 10 * * *")
 notification_emails_list = ["test@example.com", "def@example.com"]
 
@@ -471,13 +471,13 @@ monitoring_target = MonitoringTarget(
     endpoint_deployment_id=f"azureml:{endpoint_name}:{deployment_name}",
 )
 
-# Set thresholds for passing rate (0.7 = 70%)
+# Set thresholds for the passing rate (0.7 = 70%)
 aggregated_groundedness_pass_rate = 0.7
 aggregated_relevance_pass_rate = 0.7
 aggregated_coherence_pass_rate = 0.7
 aggregated_fluency_pass_rate = 0.7
 
-# Create an instance of gsq signal
+# Create an instance of a gsq signal
 generation_quality_thresholds = GenerationSafetyQualityMonitoringMetricThreshold(
     groundedness = {"aggregated_groundedness_pass_rate": aggregated_groundedness_pass_rate},
     relevance={"aggregated_relevance_pass_rate": aggregated_relevance_pass_rate},

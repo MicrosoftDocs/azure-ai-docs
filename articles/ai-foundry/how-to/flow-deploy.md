@@ -74,13 +74,9 @@ To deploy a prompt flow as an online endpoint in the Azure AI Foundry portal:
 
     :::image type="content" source="../media/prompt-flow/how-to-deploy-for-real-time-inference/deployments-score-url-samples.png" alt-text="Screenshot that shows the deployment endpoint and code samples." lightbox = "../media/prompt-flow/how-to-deploy-for-real-time-inference/deployments-score-url-samples.png":::
 
-For more information, see the following sections.
-
 For information about how to deploy a base model, see [Deploy models with Azure AI Foundry](deploy-models-managed.md).
 
 ## Settings and configurations
-
-This section discusses settings and configurations.
 
 ### Requirements text file
 
@@ -126,7 +122,9 @@ System-assigned identity is autocreated after your endpoint is created. The user
 
 ##### System assigned
 
-Notice the option **Enforce access to connection secrets (preview)**. If your flow uses connections, the endpoint needs to access connections to perform inference. The option is enabled by default. The endpoint is granted the Azure Machine Learning Workspace Connection Secrets Reader role to access connections automatically if you have connection secrets reader permission. If you disable this option, you need to grant this role to the system-assigned identity manually or ask your admin for help. For more information, see [Grant permission to the endpoint identity](#grant-permissions-to-the-endpoint).
+Notice the option **Enforce access to connection secrets (preview)**. If your flow uses connections, the endpoint needs to access connections to perform inference. The option is enabled by default. 
+
+The endpoint is granted the Azure Machine Learning Workspace Connection Secrets Reader role to access connections automatically if you have connection secrets reader permission. If you disable this option, you need to grant this role to the system-assigned identity manually or ask your admin for help. For more information, see [Grant permission to the endpoint identity](#grant-permissions-to-the-endpoint).
 
 ##### User assigned
 
@@ -136,9 +134,9 @@ If you created the associated endpoint with the **User Assigned Identity** optio
 
 |Scope|Role|Why it's needed|
 |---|---|---|
-|Azure AI Foundry project|**Azure Machine Learning Workspace Connection Secrets Reader** role or a customized role with `Microsoft.MachineLearningServices/workspaces/connections/listsecrets/action` | Get project connections.|
-|Azure AI Foundry project container registry |**ACR Pull** |Pull container image. |
-|Azure AI Foundry project default storage| **Storage Blob Data Reader**| Load model from storage. |
+|Azure AI Foundry project|**Azure Machine Learning Workspace Connection Secrets Reader** role or a customized role with `Microsoft.MachineLearningServices/workspaces/connections/listsecrets/action` | Gets project connections.|
+|Azure AI Foundry project container registry |**ACR Pull** |Pulls container images. |
+|Azure AI Foundry project default storage| **Storage Blob Data Reader**| Loads a model from storage. |
 |Azure AI Foundry project|**Azure Machine Learning Metrics Writer (preview)**| After you deploy the endpoint, if you want to monitor the endpoint-related metrics like CPU/GPU/Disk/Memory utilization, give this permission to the identity.<br/><br/>Optional|
 
 For more information about how to grant permissions to the endpoint identity, see [Grant permissions to the endpoint](#grant-permissions-to-the-endpoint).
@@ -214,7 +212,7 @@ For endpoints deployed from standard flow, you can input values in the form edit
 
 For endpoints deployed from a chat flow, you can test it in an immersive chat window.
 
-The `chat_input` was set during development of the chat flow. You can input the `chat_input` message in the input box. If your flow has multiple inputs, you can specify the values for other inputs besides the `chat_input` in the **Inputs** pane on the right side.
+The `chat_input` message was set during the development of the chat flow. You can put the `chat_input` message in the input box. If your flow has multiple inputs, you can specify the values for other inputs besides the `chat_input` message on the **Inputs** pane on the right side.
 
 ## Consume the endpoint
 

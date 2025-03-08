@@ -27,8 +27,8 @@ In this article, you learn to enable tracing, collect aggregated metrics, and co
 ## Prerequisites
 
 - The Azure CLI and the Azure Machine Learning extension to the Azure CLI.
-- An Azure AI Foundry project. If you don't already have a project, you can [create one here](../../how-to/create-projects.md).
-- An Application Insights resource. If you don't already have an Application Insights resource, you can [create one here](/azure/azure-monitor/app/create-workspace-resource).
+- An Azure AI Foundry project. If you don't already have a project, you can [create one](../../how-to/create-projects.md).
+- An Application Insights resource. If you don't already have an Application Insights resource, you can [create one](/azure/azure-monitor/app/create-workspace-resource).
 - Azure role-based access controls are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, you must have Owner or Contributor permissions on the selected resource group. For more information, see [Role-based access control in the Azure AI Foundry portal](../../concepts/rbac-ai-foundry.md).
 
 ## Deploy a flow for real-time inference
@@ -43,13 +43,13 @@ Use the latest prompt flow base image to deploy the flow so that it supports the
 
 If you're using the Azure AI Foundry portal to deploy, select **Deployment** > **Application Insights diagnostics** > **Advanced settings** in the deployment wizard. In this way, the tracing data and system metrics are collected to the project linked to Application Insights.
 
-If you're using the SDK or the CLI, add the `app_insights_enabled: true` property in the deployment yaml file that collects data to the project linked to Application Insights.
+If you're using the SDK or the CLI, add the `app_insights_enabled: true` property in the deployment .yaml file that collects data to the project linked to Application Insights.
 
 ```yaml
 app_insights_enabled: true
 ```
 
-You can also specify other application insights by the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING` in the deployment yaml file. You can find the connection string for Application Insights on the **Overview** page in the Azure portal.
+You can also specify other application insights by the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING` in the deployment .yaml file. You can find the connection string for Application Insights on the **Overview** page in the Azure portal.
 
 ```yaml
 environment_variables:
@@ -75,14 +75,14 @@ The **Dependency** type event records calls from your deployments. The name of t
 
 | Metrics name                         | Type      | Dimensions                                | Description                                                                     |
 |--------------------------------------|-----------|-------------------------------------------|---------------------------------------------------------------------------------|
-| `token_consumption`                    | counter   | - flow <br> - node<br> - `llm_engine`<br> - `token_type`:  `prompt_tokens`: LLM API input tokens;  `completion_tokens`: LLM API response tokens; `total_tokens` = `prompt_tokens + completion tokens`          | OpenAI token consumption metrics                                                |
-| `flow_latency`                         | histogram | flow, `response_code`, streaming, `response_type` | request execution cost, `response_type` means whether it's full/firstbyte/lastbyte|
-| `flow_request`                         | counter   | flow, `response_code`, exception, streaming    | flow request count                                                              |
-| `node_latency`                         | histogram | flow, node, `run_status`                      | node execution cost                                                             |
-| `node_request`                         | counter   | flow, node, exception, `run_status`            | node execution count                                                    |
-| `rpc_latency`                          | histogram | flow, node, `api_call`                        | rpc cost                                                                        |
-| `rpc_request`                          | counter   | flow, node, `api_call`, exception              | rpc count                                                                       |
-| `flow_streaming_response_duration`     | histogram | flow                                      | streaming response sending cost, from sending first byte to sending last byte   |
+| `token_consumption`                    | counter   | - `flow` <br> - `node`<br> - `llm_engine`<br> - `token_type`:  `prompt_tokens`: LLM API input tokens;  `completion_tokens`: LLM API response tokens; `total_tokens` = `prompt_tokens + completion tokens`          | OpenAI token consumption metrics.                                                |
+| `flow_latency`                         | histogram | `flow`, `response_code`, `streaming`, `response_type` | The request execution cost, `response_type`, means whether it's full or first byte or last byte.|
+| `flow_request`                         | counter   | `flow`, `response_code`, `exception`, `streaming`    | The flow request count.                                                              |
+| `node_latency`                         | histogram | `flow`, `node`, `run_status`                      | The node execution cost.                                                             |
+| `node_request`                         | counter   | `flow`, `node`, `exception`, `run_status`            | The node execution count.                                                    |
+| `rpc_latency`                          | histogram | `flow`, `node`, `api_call`                        | The rpc cost.                                                                        |
+| `rpc_request`                          | counter   | `flow`, `node`, `api_call`, `exception`              | The rpc count.                                                                       |
+| `flow_streaming_response_duration`     | histogram | `flow`                                      | The streaming response sending cost, ranging from sending the first byte to sending the last byte.   |
 
 You can find the workspace default Application Insights metrics on your workspace overview page in the Azure portal.
 
@@ -93,7 +93,7 @@ You can find the workspace default Application Insights metrics on your workspac
 
 Prompt flow serving provides a new `/feedback` API to help customers collect the feedback. The feedback payload can be any JSON format data. Prompt flow serving helps the customer save the feedback data to a trace span. Data is saved to the trace exporter target that the customer configured. Prompt flow serving also supports OpenTelemetry standard trace context propagation. It respects the trace context set in the request header and uses that context as the request parent span context. You can use the distributed tracing functionality to correlate the feedback trace to its chat request trace.
 
-The following sample code shows how to score a flow deployed to a managed endpoint that was enabled for tracing and send the feedback to the same trace span of a scoring request. The flow has the inputs `question` and `chat_history`. The output is `answer`. After the endpoint is scored, feedback is collected and sent to application insights that are specified when you deploy the flow.
+The following sample code shows how to score a flow deployed to a managed endpoint that was enabled for tracing and send the feedback to the same trace span of a scoring request. The flow has the inputs `question` and `chat_history`. The output is `answer`. After the endpoint is scored, feedback is collected and sent to Application Insights as specified when you deploy the flow.
 
 ```python
 import urllib.request
