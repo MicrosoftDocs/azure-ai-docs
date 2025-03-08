@@ -49,7 +49,7 @@ Here are the steps to get a translated video using the REST API:
 ## Step 1: Create a translation
 
 > [!IMPORTANT]
-> Creating a translation as described in this section doesn't initiate the translation process. You can start translating the video by [creating an iteration](#create-an-iteration). Translations and iterations created through the REST API aren't synchronized to the portal, and vice versa.
+> Creating a translation as described in this section doesn't initiate the translation process. You can start translating the video by [creating an iteration](#step-2-create-an-iteration). Translations and iterations created through the REST API aren't synchronized to the portal, and vice versa.
 
 To create a video translation, you need to construct an HTTP PUT request path and body according to the following instructions: 
 
@@ -89,7 +89,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" -H "Operati
 ```
 
 > [!IMPORTANT]
-> If you try to use an existing translation ID with different settings, the API will return an error. The translation ID must be unique for each translation. You can make changes to an existing translation by [creating an iteration](#create-an-iteration).
+> If you try to use an existing translation ID with different settings, the API will return an error. The translation ID must be unique for each translation. You can make changes to an existing translation by [creating an iteration](#step-2-create-an-iteration).
 
 You should receive a response body in the following format:
 

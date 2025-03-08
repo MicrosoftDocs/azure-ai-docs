@@ -14,7 +14,7 @@ zone_pivot_groups: foundry-speech-studio-rest
 
 # How to use video translation
 
-[!INCLUDE [Feature preview](./includes/preview-feature.md)]
+[!INCLUDE [Feature preview](../includes/preview-feature.md)]
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [Foundry portal include](./includes/how-to/video-translation/ai-foundry.md)]
