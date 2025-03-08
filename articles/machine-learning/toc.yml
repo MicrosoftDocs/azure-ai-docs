@@ -263,6 +263,9 @@ items:
     - name: Create Azure Machine Learning Datastores
       displayName: Create datastores
       href: how-to-datastore.md
+    - name: Create a Datastore with the User Interface
+      displayName: Create a datastore with the UI
+      href: create-datastore-with-user-interface.md
     - name: Setup storage authentication
       displayName: Data administration and authentication
       href: how-to-administrate-data-authentication.md
@@ -591,7 +594,7 @@ items:
     - name: Data, privacy, and security for Model Catalog
       href: concept-data-privacy.md
     - name: Model lifecycle and retirement
-      href: concept-model-lifecycle-retirement.md
+      href: ../ai-foundry/concepts/model-lifecycle-retirement.md?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
     - name: Open source models curated by Azure Machine Learning
       href: how-to-use-foundation-models.md
     - name: Hugging Face Hub community partner models
@@ -955,7 +958,7 @@ items:
           href: how-to-monitor-online-endpoints.md
         - name: Debug online endpoints locally VS Code
           href: how-to-debug-managed-online-endpoints-visual-studio-code.md
-        - name: Debug scoring script with inference HTTP server
+        - name: Debug scoring scripts with inference HTTP server
           href: how-to-inference-server-http.md
         - name: Troubleshoot online endpoints
           href: how-to-troubleshoot-online-endpoints.md

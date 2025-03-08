@@ -6,7 +6,7 @@ ms.reviewer: pafarley
 ms.author: pafarley
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 11/25/2024
+ms.date: 03/05/2025
 ms.custom: include
 ---
 
@@ -74,3 +74,5 @@ Follow these steps to apply a content filter to a deployment:
 
 Now, you can go to the playground to test whether the content filter works as expected.
 
+> [!TIP]
+> You can also create and update content filters using the REST APIs. For more information, see the [API reference](/rest/api/aiservices/accountmanagement/rai-policies/create-or-update). Content filters can be configured at the resource level. Once a new configuration is created, it can be associated with one or more deployments. For more information about model deployment, see the resource [deployment guide](../../ai-services/openai/how-to/create-resource.md). 

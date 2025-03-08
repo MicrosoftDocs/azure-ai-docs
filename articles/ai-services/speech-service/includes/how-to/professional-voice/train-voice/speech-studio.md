@@ -208,7 +208,7 @@ It was Janet Maslin.
 
 Each paragraph of the utterance results in a separate audio. If you want to combine all sentences into one audio, make them a single paragraph.
 
->[!NOTE]
+> [!NOTE]
 > The generated audio files are a combination of the automatic test scripts and custom test scripts.
 
 ### Update engine version for your voice model
