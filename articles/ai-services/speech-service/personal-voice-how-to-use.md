@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 9/20/2024
+ms.date: 3/10/2025
 ms.author: eur
 ms.custom: references_regions, build-2024
 #Customer intent: As a developer, I want to learn how to integrate personal voice in my application.
