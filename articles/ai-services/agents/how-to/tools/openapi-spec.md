@@ -41,7 +41,9 @@ work together, generate client code, create tests, apply design standards, and m
 
 ## Authenticating with API Key
 
-1. Verify that the OpenAPI spec supports API keys: it has `securitySchemes` section and has one scheme of type `apiKey`. For example:
+With API key authentication type, you can authenticate your OpenAPI spec with various methods such as API key, Bearer token. 
+
+1. Update your OpenAPI spec security schemes: it has `securitySchemes` section and has one scheme of type `apiKey`. For example:
    ```json
        "securitySchemes": {
           "apiKeyHeader": {
@@ -51,7 +53,16 @@ work together, generate client code, create tests, apply design standards, and m
                 }
         }
    ```
-   If the security schemes include multiple schemes, we recommend keeping only one of them.
+   You usually only need to update the `name` field, which corresponds to the name of `key` in the connection. If the security schemes include multiple schemes, we recommend keeping only one of them.
+
+1. Update your OpenAPI spec to include `security` section:
+   ```json
+   "security": [
+          {  
+            "apiKeyHeader": []  
+          }  
+        ]
+   ```
 
 1. Remove any parameter in the OpenAPI spec that needs API key, because API key will be stored and passed through a connection, as described later in this article.
 
@@ -71,7 +82,7 @@ work together, generate client code, create tests, apply design standards, and m
         :::image type="content" source="../../media/tools/bing/api-key-connection.png" alt-text="A screenshot of the custom keys selection for the AI project." lightbox="../../media/tools/bing/api-key-connection.png":::
     
    1. Enter the following information
-      - key: `name` of your security scheme. In this example, it should be `x-api-key`
+      - key: `name` field of your security scheme. In this example, it should be `x-api-key`
         ```json
                "securitySchemes": {
                   "apiKeyHeader": {
@@ -84,8 +95,34 @@ work together, generate client code, create tests, apply design standards, and m
       - value: YOUR_API_KEY
       - Connection name: YOUR_CONNECTION_NAME (You will use this connection name in the sample code below.)
       - Access: you can choose either *this project only* or *shared to all projects*. Just make sure in the sample code below, the project you entered connection string for has access to this connection.
-     
+
+1. Once you have created a connection, you can use it through SDK or REST API. Please use the tabs above to navigate to your preferred ways of usage.
+
+## Authenticating with Managed Identity (Microsoft Entra ID)
+[Managed Identity (Microsoft Entra ID)](https://learn.microsoft.com/en-us/entra/fundamentals/whatis) is a cloud-based identity and access management service that your employees can use to access external resources. Microsoft Entra ID allows you to authenticate your APIs with additional security without the need to pass in API keys. Once you have set up Managed Identity authentication, it will authenticate through the Azure AI Service your agent is using. 
+
+To set up authenticating with Managed Identity:
+1. Enable the Azure AI Service of your agent has `system assigned managed identity` enabled.
+   ![image](https://github.com/user-attachments/assets/55e3125c-ca97-43e7-80ef-d8f3cc005fe4)
+
+1. Create a resource of the service you want to connect to through OpenAPI spec
+
+1. Assign Azure AI Service proper access to the resource
+    1. Click "Access Control" of your resource
+       
+    1. Click "Add" and then "add role assignement" on the top
+
+    1. Select the proper role assignment needed, usually it will require at least READER role. Then click "Next"
+
+    1. Select "Managed identity" and then click "select members"
+
+    1. In the Managed Identity dropdown, search for "Azure AI services" and then select the AI Service of your agent.
+
+    1. Click "Finish"
+
+1. Once you have it set up, you can use continue creating the tool through SDK or REST API. Please use the tabs above to navigate to your preferred ways of usage.
 ::: zone-end
+
 
 ::: zone pivot="code-example"
 ## Step 1: Create a project client
