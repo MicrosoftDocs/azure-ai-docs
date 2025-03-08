@@ -5,7 +5,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 3/4/2025
+ms.date: 3/8/2025
 ms.custom: references_regions
 ---
 
@@ -528,6 +528,17 @@ WEBVTT
 }
 ```
 ---
+
+### WebVTT with JSON properties
+
+The WebVTT file with JSON properties contains metadata about the translation process. Each subtitle segment includes properties that provide additional information about the translation. Here's a breakdown of the properties:
+- `globalMetadata`: This section contains metadata about the speakers in the video. The "speakers" property is an object that contains information about each speaker. Each speaker is identified by a unique ID (e.g., "Speaker0"). The "defaultSsmlProperties" property contains the default SSML properties for the speaker's voice.
+- `id`: This is a unique identifier for each subtitle segment. It helps to identify the specific segment of text in the WebVTT file.
+- `speakerId`: This property indicates the ID of the speaker for the corresponding subtitle segment. It should match the speaker ID defined in the "globalMetadata" section.
+- `ssmlProperties`: This section contains properties related to the speaker's voice. It can include properties like "voiceName" and "voiceKind". The "voiceName" is the name of the voice used for synthesis, and the "voiceKind" indicates whether it's a platform voice or a personal voice.
+- `sourceLocaleText`: This property contains the original text in the source language. If you only make changes to `sourceLocaleText`, the system will translate the updated `sourceLocaleText` and use the new translation for synthesis. If you make changes to both `sourceLocaleText` and `translatedText`, the system will ignore the changes to `sourceLocaleText` and use the updated `translatedText` for synthesis.
+- `translatedText`: This property contains the translated text in the target language. It represents the text that will be synthesized in the translated video. If you only make changes to `translatedText`, the system will use the updated translatedText for synthesis.
+
 
 ## Step 4: Create additional iterations (Optional)
 
