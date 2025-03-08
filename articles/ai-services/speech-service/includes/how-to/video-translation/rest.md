@@ -69,7 +69,7 @@ To create a video translation, you need to construct an HTTP PUT request path an
 
 For authentication and authorization, you need to include the following headers and path IDs in your request:
 - Set the `Operation-Id` header: The `Operation-Id` must be unique for each operation, such as creating each iteration. Replace `Your-Operation-Id` with a unique ID for this operation.
-- Replace `Your-Translation-Id` in the path. The `translationId` must be unique. Replace `Your-Translation-Id` with a translation ID of your choice. You use this ID to refer to the translation in subsequent API calls.
+- Replace `Your-Translation-Id` in the path. The translation ID must be unique among all translations for the Speech resource. Replace `Your-Translation-Id` with a translation ID of your choice. You use this ID to refer to the translation in subsequent API calls.
 - Replace `YourSpeechResourceKey` with your Speech resource key and replace `YourSpeechResourceRegion` with your Speech resource region. 
 
 ```azurecli-interactive
