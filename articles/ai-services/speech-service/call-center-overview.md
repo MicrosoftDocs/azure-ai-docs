@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: Azure AI services for Language and Speech can help you realize partial or full automation of telephony-based customer interactions, and provide accessibility across multiple channels.
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 9/12/2024
+ms.date: 3/10/2025
 author: eric-urban
 ms.author: eur
 ms.reviewer: jagoerge
