@@ -41,7 +41,7 @@ work together, generate client code, create tests, apply design standards, and m
 
 ## Authenticating with API Key
 
-With API key authentication type, you can authenticate your OpenAPI spec with various methods such as API key, Bearer token. 
+With API key authentication type, you can authenticate your OpenAPI spec with various methods such as API key, Bearer token. Please note only one API key security schema is supported per OpenAPI spec. If you need multiple security schemas, please create multiple OpenAPI spec tools.
 
 1. Update your OpenAPI spec security schemes: it has `securitySchemes` section and has one scheme of type `apiKey`. For example:
    ```json
