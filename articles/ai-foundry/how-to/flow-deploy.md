@@ -137,7 +137,7 @@ If you created the associated endpoint with the **User Assigned Identity** optio
 |Azure AI Foundry project|**Azure Machine Learning Workspace Connection Secrets Reader** role or a customized role with `Microsoft.MachineLearningServices/workspaces/connections/listsecrets/action` | Gets project connections.|
 |Azure AI Foundry project container registry |**ACR Pull** |Pulls container images. |
 |Azure AI Foundry project default storage| **Storage Blob Data Reader**| Loads a model from storage. |
-|Azure AI Foundry project|**Azure Machine Learning Metrics Writer (preview)**| After you deploy the endpoint, if you want to monitor the endpoint-related metrics like CPU/GPU/Disk/Memory utilization, give this permission to the identity.<br/><br/>Optional|
+|Azure AI Foundry project|**Azure Machine Learning Metrics Writer (preview)**| After you deploy the endpoint, if you want to monitor the endpoint-related metrics like CPU/GPU/Disk/Memory utilization, give this permission to the identity.<br/><br/>Optional.|
 
 For more information about how to grant permissions to the endpoint identity, see [Grant permissions to the endpoint](#grant-permissions-to-the-endpoint).
 

@@ -80,8 +80,8 @@ The **Dependency** type event records calls from your deployments. The name of t
 | `flow_request`                         | counter   | `flow`, `response_code`, `exception`, `streaming`    | The flow request count.                                                              |
 | `node_latency`                         | histogram | `flow`, `node`, `run_status`                      | The node execution cost.                                                             |
 | `node_request`                         | counter   | `flow`, `node`, `exception`, `run_status`            | The node execution count.                                                    |
-| `rpc_latency`                          | histogram | `flow`, `node`, `api_call`                        | The rpc cost.                                                                        |
-| `rpc_request`                          | counter   | `flow`, `node`, `api_call`, `exception`              | The rpc count.                                                                       |
+| `rpc_latency`                          | histogram | `flow`, `node`, `api_call`                        | The Remote Procedure Call cost.                                                                        |
+| `rpc_request`                          | counter   | `flow`, `node`, `api_call`, `exception`              | The Remote Procedure Call count.                                                                       |
 | `flow_streaming_response_duration`     | histogram | `flow`                                      | The streaming response sending cost, ranging from sending the first byte to sending the last byte.   |
 
 You can find the workspace default Application Insights metrics on your workspace overview page in the Azure portal.
