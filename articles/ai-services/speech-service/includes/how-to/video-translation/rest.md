@@ -11,23 +11,6 @@ ms.custom: references_regions
 
 The video translation REST API facilitates seamless video translation integration into your applications. It supports uploading, managing, and refining video translations, with multiple iterations for continuous improvement. In this article, you learn how to utilize video translation through the REST API. 
 
-## REST API operations
-
-You can use the following REST API operations for video translation:
-
-| Operation | Method | REST API call |
-| ----------------------------------------------------- | ------ | ------------------------------------------------- |
-| [Create a translation](/rest/api/aiservices/videotranslation/translation-operations/create-translation) | `PUT` | `/translations/{translationId}` |
-| [List translations](/rest/api/aiservices/videotranslation/translation-operations/list-translation)   | `GET` | `/translations`|
-| [Get a translation by translation ID](/rest/api/aiservices/videotranslation/translation-operations/get-translation)   | `GET` | `/translations/{translationId}` |
-| [Create an iteration](/rest/api/aiservices/videotranslation/iteration-operations/create-iteration) | `PUT` | `/translations/{translationId}/iterations/{iterationId}` |
-| [List iterations](/rest/api/aiservices/videotranslation/iteration-operations/list-iteration)| `GET` | `/translations/{translationId}/iterations` |
-| [Get an iteration by iteration ID](/rest/api/aiservices/videotranslation/iteration-operations/get-iteration) | `GET` | `/translations/{translationId}/iterations/{iterationId}` |
-| [Get operation by operation ID](/rest/api/aiservices/videotranslation/operation-operations/get-operation) | `GET` | `/operations/{operationId}` |
-| [Delete a translation by translation ID](/rest/api/aiservices/videotranslation/translation-operations/delete-translation) | `DELETE`| `/translations/{translationId}` |
-
-For code samples, see [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/video-translation/csharp).
-
 ## Pre-requisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a free account before you begin.
@@ -610,7 +593,9 @@ You should receive a response body in the following format:
 
 ## Delete a translation by translation ID
 
-Remove a specific translation identified by `translationId`. This operation also removes all iterations associated with this translation. Replace `YourSpeechResourceKey` with your Speech resource key,  `YourSpeechResourceRegion` with your Speech resource region, and `Your-Translation-Id` with the translation ID you want to delete. If not deleted manually, the service retains the translation history for up to 31 days.
+Remove a specific translation identified by `translationId`. This operation also removes all iterations associated with this translation. 
+
+Replace `YourSpeechResourceKey` with your Speech resource key,  `YourSpeechResourceRegion` with your Speech resource region, and `Your-Translation-Id` with the translation ID you want to delete. If not deleted manually, the service retains the translation history for up to 31 days.
 
 ```azurecli-interactive
 curl -v -X DELETE -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id?api-version=2024-05-20-preview" 
@@ -618,9 +603,24 @@ curl -v -X DELETE -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https:/
 
 The response headers include `HTTP/1.1 204 No Content` if the delete request was successful.
 
-## More REST API examples
+## REST API operations
 
-This section provides curl commands for other video translation API calls that aren't described in detail previously. 
+You can use the following REST API operations for video translation:
+
+| Operation | Method | REST API call |
+| ----------------------------------------------------- | ------ | ------------------------------------------------- |
+| [Create a translation](/rest/api/aiservices/videotranslation/translation-operations/create-translation) | `PUT` | `/translations/{translationId}` |
+| [List translations](/rest/api/aiservices/videotranslation/translation-operations/list-translation)   | `GET` | `/translations`|
+| [Get a translation by translation ID](/rest/api/aiservices/videotranslation/translation-operations/get-translation)   | `GET` | `/translations/{translationId}` |
+| [Create an iteration](/rest/api/aiservices/videotranslation/iteration-operations/create-iteration) | `PUT` | `/translations/{translationId}/iterations/{iterationId}` |
+| [List iterations](/rest/api/aiservices/videotranslation/iteration-operations/list-iteration)| `GET` | `/translations/{translationId}/iterations` |
+| [Get an iteration by iteration ID](/rest/api/aiservices/videotranslation/iteration-operations/get-iteration) | `GET` | `/translations/{translationId}/iterations/{iterationId}` |
+| [Get operation by operation ID](/rest/api/aiservices/videotranslation/operation-operations/get-operation) | `GET` | `/operations/{operationId}` |
+| [Delete a translation by translation ID](/rest/api/aiservices/videotranslation/translation-operations/delete-translation) | `DELETE`| `/translations/{translationId}` |
+
+For code samples, see [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/video-translation/csharp).
+
+This section provides examples for other video translation API calls that aren't described in detail previously. 
 
 ### List translations
 
