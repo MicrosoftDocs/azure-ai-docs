@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 # Azure AI Translator release history
 
-Azure AI Translator is an innovative language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages. By utilizing the strengths of artificial intelligence and machine learning, this cutting-edge tool continually improved to offer more precise, swift, and adaptable translation services. Here, you can explore key milestones and enhancements in the evolution of Azure AI Translator. For more information on recent advances, *see* [What's new?](../whats-new.md).
+Azure AI Translator is an innovative language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages. By utilizing the strengths of artificial intelligence and machine learning, this cutting-edge tool continually improved to offer more precise, swift, and adaptable translation services. Here, you can explore key milestones and enhancements in the evolution of Azure AI Translator. For more information on recent advances, *see* [What's new?](whats-new.md).
 
 ## September 2023
 
