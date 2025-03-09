@@ -5,11 +5,9 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 3/4/2025
+ms.date: 3/8/2025
 ms.custom: references_regions
 ---
-
-[!INCLUDE [Feature preview](../../../../includes/preview-feature.md)]
 
 In this article, you learn how to use video translation with Azure AI Speech in the [Speech Studio](https://aka.ms/speechstudio).
 

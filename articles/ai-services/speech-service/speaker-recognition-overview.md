@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 9/23/2024
+ms.date: 3/10/2025
 ms.author: eur
 keywords: speaker recognition, voice biometry
 #customer intent: As a developer, I want to learn about speaker recognition in Azure AI Speech to verify and identify speakers by their unique voice characteristics.
