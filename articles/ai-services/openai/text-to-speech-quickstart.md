@@ -5,7 +5,7 @@ description: Use the Azure OpenAI Service for text to speech with OpenAI voices.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: quickstart
-ms.date: 9/12/2024
+ms.date: 3/10/2025
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
