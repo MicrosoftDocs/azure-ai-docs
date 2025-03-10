@@ -71,7 +71,7 @@ These turbo voices are now generally available:
 
 #### Voice quality improvements
 
-Improved the quality of voices below with latest recipe
+Improved the quality of the following voices with the latest recipe. 
 
 | **Locale (BCP-47)** | **Voice name**              |
 |---------------------|-----------------------------|
