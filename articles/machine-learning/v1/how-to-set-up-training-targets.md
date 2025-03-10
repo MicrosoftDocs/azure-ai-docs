@@ -194,13 +194,14 @@ See these notebooks for examples of configuring jobs for various training scenar
     
     Consider upgrading to the latest version of azureml-core: `pip install -U azureml-core`.
     
-If you run into this issue for local jobs, check the version of PyJWT installed in your environment where . you're starting jobs. The supported versions of PyJWT are < 2.0.0. Uninstall PyJWT from the environment if the version is >= 2.0.0. You may check the version of PyJWT, uninstall, and install the right version as follows:
+    If you run into this issue for local jobs, check the version of PyJWT installed in your environment where . you're starting jobs. The supported versions of PyJWT are < 2.0.0. Uninstall PyJWT from the environment if the version is >= 2.0.0. You may check the version of PyJWT, uninstall, and install the right version as follows:
+
     1. Start a command shell, activate conda environment where azureml-core is installed.
     2. Enter `pip freeze` and look for `PyJWT`, if found, the version listed should be < 2.0.0
     3. If the listed version isn't a supported version, `pip uninstall PyJWT` in the command shell and enter y for confirmation.
     4. Install using `pip install 'PyJWT<2.0.0'`
-    
-    If . you're submitting a user-created environment with your job, consider using the latest version of azureml-core in that environment. Versions >= 1.18.0 of azureml-core already pin PyJWT < 2.0.0. If you need to use a version of azureml-core < 1.18.0 in the environment you submit, make sure to specify PyJWT < 2.0.0 in your pip dependencies.
+
+    If you're submitting a user-created environment with your job, consider using the latest version of azureml-core in that environment. Versions >= 1.18.0 of azureml-core already pin PyJWT < 2.0.0. If you need to use a version of azureml-core < 1.18.0 in the environment you submit, make sure to specify PyJWT < 2.0.0 in your pip dependencies.
 
 
  * **ModuleErrors (No module named)**:  If . you're running into ModuleErrors while submitting experiments in Azure Machine Learning, the training script is expecting a package to be installed but it isn't added. Once you provide the package name, Azure Machine Learning installs the package in the environment used for your training job.
