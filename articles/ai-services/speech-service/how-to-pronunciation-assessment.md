@@ -1118,6 +1118,29 @@ For the speaking scenario (the completeness score isn't applicable):
 
 This formula provides a weighted calculation based on the importance of each score, ensuring a comprehensive evaluation of pronunciation.
 
+## Content assessment
+
+For some recognized speech, you might also want to get content assessment results for vocabulary, grammar, and topic relevance. You can use a chat model such as Azure OpenAI `gpt-4o` to get the content assessment results. For more information about using chat models, see [Azure OpenAI Service models](../openai/concepts/models.md) and the Azure AI Model Inference API [chat completions reference documentation](/rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions).
+
+The user and system messages are used to set the context for the chat model. In the following example, the user message contains the essay to be assessed, and the system message provides instructions on how to evaluate the essay.
+
+
+```json
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an English teacher and please help to grade a student's essay from vocabulary and grammar and topic relevance on how well the essay aligns with the title, and output format as: {\"vocabulary\": *.*(0-100), \"grammar\": *.*(0-100), \"topic\": *.*(0-100)}."
+    },
+    {
+      "role": "user",
+      "content": "Example1: this essay: \"sampleSentence1\" has vocabulary and grammar scores of ** and **, respectively. Example2: this essay: \"sampleSentence2\" has vocabulary and grammar scores of ** and **, respectively. Example3: this essay: \"sampleSentence3\" has vocabulary and grammar scores of ** and **, respectively. The essay for you to score is \"sendText\", and the title is \"topic\". The transcript is from speech recognition so that please first add punctuations when needed, remove duplicates and unnecessary un uh from oral speech, then find all the misuse of words and grammar errors in this essay, find advanced words and grammar usages, and finally give scores based on this information. Please only respond as this format {\"vocabulary\": *.*(0-100), \"grammar\": *.*(0-100)}, \"topic\": *.*(0-100)}. [THE TRANSCRIPT FROM SPEECH RECOGNITION IS REDACTED FOR BREVITY]"
+    }
+  ]
+}
+```
+
+
 ## Related content
 
 - Learn about quality [benchmark](https://aka.ms/pronunciationassessment/techblog).
