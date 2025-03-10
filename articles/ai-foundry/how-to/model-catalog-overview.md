@@ -78,6 +78,7 @@ The following list contains Serverless API models. For Azure OpenAI models, see 
 Model | Managed compute | Serverless API (pay-per-token)
 --|--|--
 AI21 family models | Not available | Jamba-1.5-Mini <br> Jamba-1.5-Large
+Bria | Not available | Bria-2.3-Fast
 Cohere family models | Not available | Cohere-command-r-plus-08-2024 <br> Cohere-command-r-08-2024 <br> Cohere-command-r-plus <br> Cohere-command-r <br> Cohere-embed-v3-english <br> Cohere-embed-v3-multilingual <br> Cohere-rerank-v3.5 <br> Cohere-rerank-v3-english <br> Cohere-rerank-v3-multilingual
 DeepSeek models from Microsoft | Not available | DeepSeek-V3 <br> DeepSeek-R1
 Gretel | Not available | Gretel-Navigator
@@ -88,7 +89,7 @@ Microsoft Phi family models | Phi-3-mini-4k-Instruct <br> Phi-3-mini-128k-Instru
 Mistral family models | mistralai-Mixtral-8x22B-v0-1 <br> mistralai-Mixtral-8x22B-Instruct-v0-1 <br> mistral-community-Mixtral-8x22B-v0-1 <br> mistralai-Mixtral-8x7B-v01 <br> mistralai-Mistral-7B-Instruct-v0-2 <br> mistralai-Mistral-7B-v01 <br> mistralai-Mixtral-8x7B-Instruct-v01 <br> mistralai-Mistral-7B-Instruct-v01 | Mistral-large (2411) <br> Mistral-large (2407) <br> Mistral-large (2402) <br> Mistral-small <br> Ministral-3B <br> Mistral-NeMo <br> Codestral-2501
 Nixtla | Not available | TimeGEN-1
 NTT DATA | Not available | tsuzumi-7b
-
+Stability AI | Not available | Stable Diffusion 3.5 Large <br> Stable Image Core <br> Stable Image Ultra
 
 <!-- docutune:enable -->
 
