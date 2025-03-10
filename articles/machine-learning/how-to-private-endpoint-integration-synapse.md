@@ -17,9 +17,6 @@ ms.date: 03/10/2025
 
 In this article, learn how to securely integrate with Azure Machine Learning from Azure Synapse. This integration enables you to use Azure Machine Learning from notebooks in your Azure Synapse workspace. Communication between the two workspaces is secured using an Azure Virtual Network.
 
-> [!WARNING]
-> The Azure Synapse Analytics integration with Azure Machine Learning, available in Python SDK v1, is deprecated. Users can still use Synapse workspace, registered with Azure Machine Learning, as a linked service. However, a new Synapse workspace can no longer be registered with Azure Machine Learning as a linked service. We recommend use of serverless Spark compute and attached Synapse Spark pools, available in CLI v2 and Python SDK v2. For more information, visit [https://aka.ms/aml-spark](https://aka.ms/aml-spark).
-
 ## Prerequisites
 
 * An Azure subscription.
