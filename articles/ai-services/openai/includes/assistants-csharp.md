@@ -69,13 +69,13 @@ The sample code in this quickstart uses Microsoft Entra ID for the recommended k
 #### [Microsoft Entra ID](#tab/keyless)
 
 ```csharp
-var openAIClient = new AzureOpenAIClient(new Uri(endpoint), new DefaultAzureCredential()); 
+AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new DefaultAzureCredential()); 
 ```
 
 #### [API key](#tab/api-key)
 
 ```csharp
-var openAIClient = new AzureOpenAIClient(new Uri(endpoint), new AzureKeyCredential(key));
+AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new AzureKeyCredential(key));
 ```
 ---
 
@@ -101,8 +101,8 @@ To create an assistant, you need to:
     string key = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY") ?? "<your-key>";
     
     // Use the recommended keyless credential instead of the AzureKeyCredential credential.
-    var openAIClient = new AzureOpenAIClient(new Uri(endpoint), new DefaultAzureCredential()); 
-    //var openAIClient = new AzureOpenAIClient(new Uri(endpoint), new AzureKeyCredential(key));
+    AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new DefaultAzureCredential()); 
+    //AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new AzureKeyCredential(key));
     
     OpenAIFileClient fileClient = openAIClient.GetOpenAIFileClient();
     AssistantClient assistantClient = openAIClient.GetAssistantClient();
