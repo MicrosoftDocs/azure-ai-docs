@@ -1051,6 +1051,11 @@
       "source_path_from_root": "/articles/ai-services/language-service/native-document-support/use-native-documents.md",
       "redirect_url": "/azure/ai-services/language-service/native-document-support/overview",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/text-translation/reference/release-history.md",
+      "redirect_url": "/azure/ai-services/translator/release-history.md",
+      "redirect_document_id": true
     }
   ]
 }
