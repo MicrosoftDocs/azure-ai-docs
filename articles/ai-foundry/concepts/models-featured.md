@@ -15,11 +15,9 @@ ms.custom: references_regions, tool_generated
 
 # Featured models of Azure AI Foundry
 
-The Azure AI model catalog offers a large selection of models from a wide range of providers. This article lists featured models available in Azure AI Foundry. 
+The Azure AI model catalog offers a large selection of models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists featured models in the model catalog that can be deployed and hosted on Microsoft's servers via serverless APIs. For some of these models, you can also host them on your infrastructure for deployment via managed compute. See [Available models for supported deployment options](../how-to/model-catalog-overview.md#available-models-for-supported-deployment-options) for a list of models in the catalog that are available for deployment via managed compute or serverless API.
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
-
-You have various options for deploying models from the model catalog. The models listed in this article can be deployed and hosted on Microsoft's servers via serverless APIs. For some  of these models, you can also host them on your infrastructure for deployment via managed compute. See [Available models for supported deployment options](../how-to/model-catalog-overview.md#available-models-for-supported-deployment-options) for a list of models in the catalog that are available for deployment via managed compute or serverless API.
 
 To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others that belong to the following model types support inferencing using the [Azure AI model inference](../model-inference/overview.md):
 
