@@ -69,8 +69,6 @@ For example, your connection string may look something like:
 
 Set this connection string as an environment variable named `PROJECT_CONNECTION_STRING` in a `.env` file.
 
-### Security Notice 
-
 > [!IMPORTANT] 
 > * This quickstart code uses environment variables for sensitive configuration. Never commit your `.env` file to version control by making sure `.env` is listed in your `.gitignore` file.
 > * _Remember: If you accidentally commit sensitive information, consider those credentials compromised and rotate them immediately._
