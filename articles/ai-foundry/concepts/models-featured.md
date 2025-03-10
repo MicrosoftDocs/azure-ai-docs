@@ -87,7 +87,7 @@ The following table lists the Cohere models that you can inference via the  Azur
 
 #### Inference examples: Cohere command and embed
 
-For more examples of how to use Cohere models, see the following examples and tutorials:
+For more examples of how to use Cohere models, see the following examples:
 
 | Description                               | Language          | Sample                                                          |
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|
@@ -100,7 +100,7 @@ For more examples of how to use Cohere models, see the following examples and tu
 | Cohere SDK                                | Python            | [Command](https://aka.ms/samples/cohere-python-sdk)  <br> [Embed](https://aka.ms/samples/cohere-embed/cohere-python-sdk)                  |
 | LiteLLM SDK                               | Python            | [Link](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/litellm.ipynb) |
 
-#### Retrieval Augmented Generation (RAG) and tool use samples
+#### Retrieval Augmented Generation (RAG) and tool use samples: Cohere command and embed
 
 | Description | Packages   | Sample          |
 |-------------|------------|-----------------|
@@ -138,6 +138,17 @@ Core42 includes autoregressive bi-lingual LLMs for Arabic & English with state-o
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=core42).
 
+#### Inference examples: Core42
+
+For more examples of how to use Jais models, see the following examples:    
+
+| Description                               | Language          | Sample                                                          |    
+|-------------------------------------------|-------------------|-----------------------------------------------------------------|    
+| Azure AI Inference package for C#         | C#                | [Link](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Inference/samples)   |      
+| Azure AI Inference package for JavaScript | JavaScript        | [Link](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples)  |    
+| Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)  |
+
+
 ## DeepSeek
 
 DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks, and DeepSeek-V3, a Mixture-of-Experts (MoE) language model. 
@@ -148,6 +159,18 @@ DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks 
 | [DeekSeek-V3](https://ai.azure.com/explore/models/deepseek-v3/version/1/registry/azureml-deepseek) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=deepseek).
+
+#### Inference examples: DeepSeek
+
+For more examples of how to use DeepSeek models, see the following examples:    
+
+| Description                               | Language          | Sample                                                          |    
+|-------------------------------------------|-------------------|-----------------------------------------------------------------|    
+| Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)  |    
+| Azure AI Inference package for JavaScript | JavaScript        | [Link](https://aka.ms/azsdk/azure-ai-inference/javascript/samples)  |    
+| Azure AI Inference package for C#         | C#                | [Link](https://aka.ms/azsdk/azure-ai-inference/csharp/samples)  |    
+| Azure AI Inference package for Java       | Java              | [Link](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-inference/src/samples)  |
+
 
 ## Meta
 
@@ -171,6 +194,20 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=meta).
 
+#### Inference examples: Meta Llama
+
+For more examples of how to use Meta Llama models, see the following examples:    
+| Description                               | Language          | Sample                                                             |    
+|-------------------------------------------|-------------------|------------------------------------------------------------------- |    
+| CURL request                              | Bash              | [Link](https://aka.ms/meta-llama-3.1-405B-instruct-webrequests)    |    
+| Azure AI Inference package for C#         | C#                | [Link](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Inference/samples)   |      
+| Azure AI Inference package for JavaScript | JavaScript        | [Link](https://github.com/Azure/azureml-examples/blob/main/sdk/typescript/README.md) |    
+| Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)     |    
+| Python web requests                       | Python            | [Link](https://aka.ms/meta-llama-3.1-405B-instruct-webrequests)    |    
+| OpenAI SDK (experimental)                 | Python            | [Link](https://aka.ms/meta-llama-3.1-405B-instruct-openai)         |    
+| LangChain                                 | Python            | [Link](https://aka.ms/meta-llama-3.1-405B-instruct-langchain)      |    
+| LiteLLM                                   | Python            | [Link](https://aka.ms/meta-llama-3.1-405B-instruct-litellm)        | 
+
 ## Microsoft
 
 Phi is a family of lightweight, state-of-the-art open models. These models were trained with Phi-3 datasets. The datasets include both synthetic data and the filtered, publicly available websites data, with a focus on high quality and reasoning-dense properties. The models underwent a rigorous enhancement process, incorporating both supervised fine-tuning, proximal policy optimization, and direct preference optimization to ensure precise instruction adherence and robust safety measures.
@@ -193,6 +230,18 @@ Phi is a family of lightweight, state-of-the-art open models. These models were 
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
 
+#### Inference examples: Microsoft Phi
+
+For more examples of how to use Phi-3 family models, see the following examples:    
+| Description                               | Language          | Sample                                                          |    
+|-------------------------------------------|-------------------|-----------------------------------------------------------------|    
+| Azure AI Inference package for C#         | C#                | [Link](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Inference/samples)                  |    
+| Azure AI Inference package for JavaScript | JavaScript        | [Link](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples) |    
+| Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)  |    
+| LangChain                                 | Python            | [Link](https://aka.ms/azureai/langchain)           |    
+| Llama-Index                               | Python            | [Link](https://aka.ms/azureai/llamaindex)             |  
+
+
 ## Mistral AI
 
 Mistral AI offers two categories of models: premium models including Mistral Large and Mistral Small and open models including Mistral Nemo.
@@ -208,6 +257,22 @@ Mistral AI offers two categories of models: premium models including Mistral Lar
 | [Codestral-2501](https://ai.azure.com/explore/models/Codestral-2501/version/2/registry/azureml-mistral) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text (262,144 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=mistral).
+
+#### Inference examples: Mistral
+
+For more examples of how to use Mistral models, see the following examples and tutorials:    
+
+| Description                               | Language          | Sample                                                          |    
+|-------------------------------------------|-------------------|-----------------------------------------------------------------|    
+| CURL request                              | Bash              | [Link](https://aka.ms/mistral-large/webrequests-sample)         |    
+| Azure AI Inference package for C#         | C#                | [Link](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Inference/samples)   |      
+| Azure AI Inference package for JavaScript | JavaScript        | [Link](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples)  |    
+| Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)  |    
+| Python web requests                       | Python            | [Link](https://aka.ms/mistral-large/webrequests-sample)         |    
+| OpenAI SDK (experimental)                 | Python            | [Mistral - OpenAI SDK sample](https://aka.ms/mistral-large/openaisdk)                  |    
+| LangChain                                 | Python            | [Mistral - LangChain sample](https://aka.ms/mistral-large/langchain-sample)           |    
+| Mistral AI                                | Python            | [Mistral - Mistral AI sample](https://aka.ms/mistral-large/mistralai-sample)           |    
+| LiteLLM                                   | Python            | [Mistral - LiteLLM sample](https://aka.ms/mistral-large/litellm-sample)             | 
 
 ## Nixtla
 
