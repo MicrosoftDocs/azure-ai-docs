@@ -319,7 +319,7 @@ This table lists some of the key configuration parameters for pronunciation asse
 This table lists some of the optional methods you can set for the `PronunciationAssessmentConfig` object.
 
 > [!NOTE]
-> Prosody assessments are only available in the [en-US](./language-support.md?tabs=pronunciation-assessment) locale.
+> Prosody assessment is only available in the [en-US](./language-support.md?tabs=pronunciation-assessment) locale.
 > 
 > To explore the prosody assessments, upgrade to the SDK version 1.35.0 or later.
 
