@@ -5,7 +5,7 @@ description: Learn how to work around, solve, and troubleshoot some common Docke
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.date: 11/16/2022
+ms.date: 03/10/2025
 author: Blackmist
 ms.author: larryfr
 ms.reviewer: sehan
