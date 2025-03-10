@@ -8,6 +8,7 @@ ms.service: azure-ai-document-intelligence
 ms.topic: reference
 ms.date: 03/07/2025
 ms.author: lajanuar
+ms.custom: references_regions
 ---
 
 # Azure AI Document Intelligence release history
