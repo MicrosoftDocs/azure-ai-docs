@@ -1054,7 +1054,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/text-translation/reference/release-history.md",
-      "redirect_url": "/azure/ai-services/translator/release-history.md",
+      "redirect_url": "/azure/ai-services/translator/release-history",
       "redirect_document_id": true
     }
   ]
