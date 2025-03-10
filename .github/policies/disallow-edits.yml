@@ -28,8 +28,8 @@ configuration:
               matchAny: true
               pattern: articles/ai-services/personalizer/*
           - not:
-              - activitySenderHasAssociation:
-                  association: Member
+              activitySenderHasAssociation:
+                association: Member
         then:
           - addReply:
               reply: >-
