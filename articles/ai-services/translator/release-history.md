@@ -58,7 +58,7 @@ Azure AI Translator is an innovative language service that enables users to tran
 
 The Text translation `SDK`s are now available in public preview for C#/.NET, Java, JavaScript/TypeScript, and Python programming languages.
 
-* To learn more, see [Text translation SDK overview](sdk-overview.md).
+* To learn more, see [Text translation SDK overview](text-translation/sdk-overview.md).
 * To get started, try a [Text Translation SDK quickstart](document-translation/document-sdk-overview.md) using a programming language of your choice.
 
 ### Microsoft Translator V3 Connector (preview)
@@ -81,9 +81,9 @@ Custom Translator version v2.0 is generally available and ready for use in your 
 ### Changes to Translator `Usage` metrics
 
 > [!IMPORTANT]
-> **`Characters Translated`** and **`Characters Trained`** metrics are deprecated and have been removed from the Azure portal.
+> **`Characters Translated`** and **`Characters Trained`** metrics are deprecated and are removed from the Azure portal.
 
-|Deprecated metric| Current metric(s) | Description|
+|Deprecated metric| Current metrics | Description|
 |---|---|---|
 |Characters Translated (Deprecated)</br></br></br></br>|**&bullet; Text Characters Translated**</br></br>**&bullet;Text Custom Characters Translated**| &bullet; Number of characters in incoming **text** translation request.</br></br> &bullet; Number of characters in incoming **custom** translation request.  |
 |Characters Trained (Deprecated) | **&bullet; Text Trained Characters** | &bullet; Number of characters **trained** using text translation service.|
@@ -92,7 +92,7 @@ Custom Translator version v2.0 is generally available and ready for use in your 
 
 * Similarly, the **Text Trained Characters** metric was added to replace the  **Characters Trained** metric.
 
-* **Characters Trained** and **Characters Translated** metrics have had continued support in the Azure portal with the deprecated flag to allow migration to the current metrics. As of October 2022, Characters Trained and Characters Translated are no longer available in the Azure portal.
+* **Characters Trained** and **Characters Translated** metrics support continues in the Azure portal with the deprecated flag to allow migration to the current metrics. As of October 2022, Characters Trained and Characters Translated are no longer available in the Azure portal.
 
 ## June 2022
 
