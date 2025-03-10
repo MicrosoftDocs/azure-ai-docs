@@ -50,4 +50,4 @@ After your operation is completed, the **Details** section contains the followin
 |Script Name| The name of the most detected script in the text.
 |Iso 15924 Script Code| The ISO 15924 script code for the most detected script.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/language-detection.png" alt-text="A screenshot of an example of detect language in azure AI studio." lightbox="../../media/quickstarts/azure-ai-foundry/language-detection.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/language-detection.png" alt-text="A screenshot of an example of detect language in Azure AI Studio." lightbox="../../media/quickstarts/azure-ai-foundry/language-detection.png":::

@@ -46,4 +46,4 @@ After your operation is completed, each entity is underlined in the center pane 
 |------|----------------------------|
 |Extracted key phrases|A list of the extracted key phrases.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/key-phrase-extraction.png" alt-text="A screenshot of an example of Extract key phrases in azure AI studio." lightbox="../../media/quickstarts/azure-ai-foundry/key-phrase-extraction.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/key-phrase-extraction.png" alt-text="A screenshot of an example of Extract key phrases in Azure AI Studio." lightbox="../../media/quickstarts/azure-ai-foundry/key-phrase-extraction.png":::
