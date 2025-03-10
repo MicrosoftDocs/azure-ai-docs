@@ -364,7 +364,7 @@ credential = DefaultAzureCredential()
 # Initializing Violence Evaluator with project information
 violence_eval = ViolenceEvaluator(credential=credential, azure_ai_project=azure_ai_project)
 # Running Violence Evaluator on a query and response pair
-violence_score = violence_eval(query="What is the capital of France?", answer="Paris.")
+violence_score = violence_eval(query="What is the capital of France?", response="Paris.")
 print(violence_score)
 
 # Conversation mode

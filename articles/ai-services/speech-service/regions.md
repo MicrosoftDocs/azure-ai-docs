@@ -249,7 +249,7 @@ The regions in these tables support most of the core features of the Speech serv
 
 # [Scenarios](#tab/scenarios)
 
-| **Region** | **Pronunciation Assessment** | **Speaker recognition** | **Voice assistants** |
+| **Region** | **Pronunciation assessment** | **Speaker recognition** | **Voice assistants** |
 |-----|-----|-----|-----|
 | australiaeast      | ✅ | ✅ |  |
 | brazilsouth        | ✅ |  |  |

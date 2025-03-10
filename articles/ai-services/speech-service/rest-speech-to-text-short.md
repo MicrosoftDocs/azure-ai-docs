@@ -19,7 +19,7 @@ Use cases for the Speech to text REST API for short audio are limited. Use it on
 
 Before you use the Speech to text REST API for short audio, consider the following limitations:
 
-* Requests that use the REST API for short audio and transmit audio directly can contain no more than 60 seconds of audio. The input [audio formats](#audio-formats) are more limited compared to the [Speech SDK](speech-sdk.md).
+* Requests that use the REST API for short audio and transmit audio directly can contain no more than 60 seconds of audio. For pronunciation assessment, the audio duration should be no more than 30 seconds. The input [audio formats](#audio-formats) are more limited compared to the [Speech SDK](speech-sdk.md).
 * The REST API for short audio returns only final results. It doesn't provide partial results.
 * [Speech translation](speech-translation.md) isn't supported via REST API for short audio. You need to use [Speech SDK](speech-sdk.md).
 * [Batch transcription](batch-transcription.md) and [custom speech](custom-speech-overview.md) aren't supported via REST API for short audio. You should always use the [Speech to text REST API](rest-speech-to-text.md) for batch transcription and custom speech.

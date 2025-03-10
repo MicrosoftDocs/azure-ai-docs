@@ -58,7 +58,7 @@ from azure.identity import DefaultAzureCredential
 client = ChatCompletionsClient(
     endpoint="https://<resource>.services.ai.azure.com/models",
     credential=DefaultAzureCredential(),
-    model="phi-4-omni"
+    model="Phi-4-multimodal-instruct"
 )
 ```
 
@@ -108,8 +108,7 @@ response = client.complete(
             ImageContentItem(image=ImageUrl(url=data_url))
         ]),
     ],
-    temperature=0,
-    top_p=1,
+    temperature=1,
     max_tokens=2048,
 )
 ```
