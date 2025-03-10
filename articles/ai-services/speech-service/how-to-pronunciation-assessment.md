@@ -321,7 +321,7 @@ This table lists some of the optional methods you can set for the `Pronunciation
 > [!NOTE]
 > Prosody assessment is only available in the [en-US](./language-support.md?tabs=pronunciation-assessment) locale.
 > 
-> To explore the prosody assessments, upgrade to the SDK version 1.35.0 or later.
+> To explore the prosody assessment, upgrade to the SDK version 1.35.0 or later.
 
 | Method | Description |
 |-----------|-------------|
@@ -534,7 +534,7 @@ This table lists some of the key pronunciation assessment results for the script
 This table lists some of the key pronunciation assessment results for the unscripted assessment, or speaking scenario.
 
 > [!NOTE]
-> Prosody assessments are only available in the [en-US](./language-support.md?tabs=pronunciation-assessment) locale.
+> Prosody assessment is only available in the [en-US](./language-support.md?tabs=pronunciation-assessment) locale.
 
 | Response parameter | Description | Granularity |
 |:-------------------|:------------|:------------|
