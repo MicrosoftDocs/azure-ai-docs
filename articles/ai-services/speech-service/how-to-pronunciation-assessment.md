@@ -216,8 +216,6 @@ var pronunciationAssessmentConfig = new PronunciationAssessmentConfig(
 pronunciationAssessmentConfig.EnableProsodyAssessment(); 
 ```
 
-We suggest to use LLM tools with recognized text for content assessment. The sample code for content assessment can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/speech_recognition_samples.cs) under the function `PronunciationAssessmentWithContentAssessment`.
-
 ::: zone-end  
 
 ::: zone pivot="programming-language-cpp"
@@ -226,8 +224,6 @@ We suggest to use LLM tools with recognized text for content assessment. The sam
 auto pronunciationConfig = PronunciationAssessmentConfig::Create("", PronunciationAssessmentGradingSystem::HundredMark, PronunciationAssessmentGranularity::Phoneme, false); 
 pronunciationConfig->EnableProsodyAssessment(); 
 ```
-
-We suggest to use LLM tools with recognized text for content assessment. The sample code for content assessment can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/cpp/windows/console/samples/speech_recognition_samples.cpp) under the function `PronunciationAssessmentWithContentAssessment`.
 
 ::: zone-end
 
@@ -238,8 +234,6 @@ PronunciationAssessmentConfig pronunciationConfig = new PronunciationAssessmentC
     PronunciationAssessmentGradingSystem.HundredMark, PronunciationAssessmentGranularity.Phoneme, false); 
 pronunciationConfig.enableProsodyAssessment(); 
 ```
-
-We suggest to use LLM tools with recognized text for content assessment. The sample code for content assessment can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/java/jre/console/src/com/microsoft/cognitiveservices/speech/samples/console/SpeechRecognitionSamples.java) under the function `pronunciationAssessmentWithContentAssessment`.
 
 ::: zone-end
 
@@ -255,8 +249,6 @@ pronunciation_config.enable_prosody_assessment()
 pronunciation_config.enable_content_assessment_with_topic("greeting")
 ```
 
-We suggest to use LLM tools with recognized text for content assessment. The sample code for content assessment can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/python/console/speech_sample.py) under the function `pronunciation_assessment_with_content_assessment`.
-
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
@@ -270,8 +262,6 @@ var pronunciationAssessmentConfig = new sdk.PronunciationAssessmentConfig(
 pronunciationAssessmentConfig.enableProsodyAssessment(); 
 ```
 
-We suggest to use LLM tools with recognized text for content assessment. The sample code for content assessment can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/node/pronunciationAssessmentGetContentResult.js).
-
 ::: zone-end
 
 ::: zone pivot="programming-language-objectivec"
@@ -281,8 +271,6 @@ SPXPronunciationAssessmentConfiguration *pronunicationConfig =
 [[SPXPronunciationAssessmentConfiguration alloc] init:@"" gradingSystem:SPXPronunciationAssessmentGradingSystem_HundredMark granularity:SPXPronunciationAssessmentGranularity_Phoneme enableMiscue:false]; 
 [pronunicationConfig enableProsodyAssessment]; 
 ```
-
-We suggest to use LLM tools with recognized text for content assessment. The sample code for content assessment can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/objective-c/ios/speech-samples/speech-samples/ViewController.m) under the function `pronunciationAssessWithContentAssessment`.
 
 ::: zone-end
 
@@ -295,8 +283,6 @@ let pronAssessmentConfig = try! SPXPronunciationAssessmentConfiguration("",
     enableMiscue: false) 
 pronAssessmentConfig.enableProsodyAssessment() 
 ```
-
-We suggest to use LLM tools with recognized text for content assessment. The sample code for content assessment can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/objective-c/ios/speech-samples/speech-samples/ViewController.m) under the function `pronunciationAssessmentWithContentAssessment`.
 
 ::: zone-end
 
