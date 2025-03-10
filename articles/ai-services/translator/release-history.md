@@ -1,22 +1,22 @@
 ---
 title: Azure AI Translator release history
 titleSuffix: Azure AI services
-description: Release notes and updates to the Azure AI Translator Service API.
+description: Release notes and updates for Azure AI Translator Service API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 02/27/2025
+ms.date: 03/10/2025
 ms.author: lajanuar
 ---
 
 # Azure AI Translator release history
 
-Azure AI Translator is an innovative language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages. By utilizing the strengths of artificial intelligence and machine learning, this cutting-edge tool continually improved to offer more precise, swift, and adaptable translation services. Here, you can explore the key milestones and enhancements in the evolution of Azure AI Translator. For more information on recent advances, *see* [What's new?](../../whats-new.md).
+Azure AI Translator is an innovative language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages. By utilizing the strengths of artificial intelligence and machine learning, this cutting-edge tool continually improved to offer more precise, swift, and adaptable translation services. Here, you can explore key milestones and enhancements in the evolution of Azure AI Translator. For more information on recent advances, *see* [What's new?](whats-new.md).
 
 ## September 2023
 
-* Translator service has [text, document translation, and container language support](../../language-support.md) for the following 18 languages:
+* Translator service has [text, document translation, and container language support](language-support.md) for the following 18 languages:
 
 |Language|Code|Cloud – Text Translation and Document Translation|Containers – Text Translation|Description
 |:----|:----|:----|:----|
@@ -47,8 +47,8 @@ Azure AI Translator is an innovative language service that enables users to tran
 
 **Documentation updates**
 
-* The [Document Translation SDK overview](../../document-translation/document-sdk-overview.md) is now available to provide guidance and resources for the .NET/C# and Python `SDK`s.
-* The [Document Translation SDK quickstart](../../document-translation/quickstarts/client-library-sdks.md) is now available for the C# and Python programming languages.
+* The [Document Translation SDK overview](document-translation/document-sdk-overview.md) is now available to provide guidance and resources for the .NET/C# and Python `SDK`s.
+* The [Document Translation SDK quickstart](document-translation/quickstarts/client-library-sdks.md) is now available for the C# and Python programming languages.
 
 ## May 2023
 
@@ -58,19 +58,19 @@ Azure AI Translator is an innovative language service that enables users to tran
 
 The Text translation `SDK`s are now available in public preview for C#/.NET, Java, JavaScript/TypeScript, and Python programming languages.
 
-* To learn more, see [Text translation SDK overview](../sdk-overview.md).
-* To get started, try a [Text Translation SDK quickstart](../../document-translation/document-sdk-overview.md) using a programming language of your choice.
+* To learn more, see [Text translation SDK overview](text-translation/sdk-overview.md).
+* To get started, try a [Text Translation SDK quickstart](document-translation/document-sdk-overview.md) using a programming language of your choice.
 
 ### Microsoft Translator V3 Connector (preview)
 
 The Translator V3 Connector is now available in public preview. The connector creates a connection between your Translator Service instance and Microsoft Power Automate enabling you to use one or more prebuilt operations as steps in your apps and workflows. To learn more, see the following documentation:
 
-* [Automate document translation](../../connector/document-translation-flow.md)
-* [Automate text translation](../../solutions/connector/text-translator-flow.md)
+* [Automate document translation](connector/document-translation-flow.md)
+* [Automate text translation](solutions/connector/text-translator-flow.md)
 
 ## February 2023
 
-[**Document Translation in Language Studio**](../../document-translation/language-studio.md) is now available for Public Preview. The feature provides a no-code user interface to interactively translate documents from local or Azure Blob Storage.
+[**Document Translation in Language Studio**](document-translation/language-studio.md) is now available for Public Preview. The feature provides a no-code user interface to interactively translate documents from local or Azure Blob Storage.
 
 ## November 2022
 
@@ -81,9 +81,9 @@ Custom Translator version v2.0 is generally available and ready for use in your 
 ### Changes to Translator `Usage` metrics
 
 > [!IMPORTANT]
-> **`Characters Translated`** and **`Characters Trained`** metrics are deprecated and have been removed from the Azure portal.
+> **`Characters Translated`** and **`Characters Trained`** metrics are deprecated and are removed from the Azure portal.
 
-|Deprecated metric| Current metric(s) | Description|
+|Deprecated metric| Current metrics | Description|
 |---|---|---|
 |Characters Translated (Deprecated)</br></br></br></br>|**&bullet; Text Characters Translated**</br></br>**&bullet;Text Custom Characters Translated**| &bullet; Number of characters in incoming **text** translation request.</br></br> &bullet; Number of characters in incoming **custom** translation request.  |
 |Characters Trained (Deprecated) | **&bullet; Text Trained Characters** | &bullet; Number of characters **trained** using text translation service.|
@@ -92,7 +92,7 @@ Custom Translator version v2.0 is generally available and ready for use in your 
 
 * Similarly, the **Text Trained Characters** metric was added to replace the  **Characters Trained** metric.
 
-* **Characters Trained** and **Characters Translated** metrics have had continued support in the Azure portal with the deprecated flag to allow migration to the current metrics. As of October 2022, Characters Trained and Characters Translated are no longer available in the Azure portal.
+* **Characters Trained** and **Characters Translated** metrics support continues in the Azure portal with the deprecated flag to allow migration to the current metrics. As of October 2022, Characters Trained and Characters Translated are no longer available in the Azure portal.
 
 ## June 2022
 
@@ -138,27 +138,27 @@ Document Translation .NET and Python client-library `SDK`s are now generally ava
 
 ### [Text and document translation support for Faroese](https://www.microsoft.com/translator/blog/2022/04/25/introducing-faroese-translation-for-faroese-flag-day/)
 
-* Translator service has [text and document translation language support](../../language-support.md) for Faroese, a Germanic language originating on the Faroe Islands. The Faroe Islands are a self-governing region within the Kingdom of Denmark located between Norway and Iceland. Faroese is descended from Old West Norse spoken by Vikings in the Middle Ages.
+* Translator service has [text and document translation language support](language-support.md) for Faroese, a Germanic language originating on the Faroe Islands. The Faroe Islands are a self-governing region within the Kingdom of Denmark located between Norway and Iceland. Faroese is descended from Old West Norse spoken by Vikings in the Middle Ages.
 
 ### [Text and document translation support for Basque and Galician](https://www.microsoft.com/translator/blog/2022/04/12/break-the-language-barrier-with-translator-now-with-two-new-languages/)
 
-* Translator service has [text and document translation language support](../../language-support.md) for Basque and Galician. Basque is a language isolate, meaning it isn't related to any other modern language and is spoken in parts of northern Spain and southern France. Galician is spoken in northern Portugal and western Spain. Both Basque and Galician are official languages of Spain.
+* Translator service has [text and document translation language support](language-support.md) for Basque and Galician. Basque is a language isolate, meaning it isn't related to any other modern language and is spoken in parts of northern Spain and southern France. Galician is spoken in northern Portugal and western Spain. Both Basque and Galician are official languages of Spain.
 
 ## March 2022
 
 ### [Text and document translation support for Somali and Zulu languages](https://www.microsoft.com/translator/blog/2022/03/29/translator-welcomes-two-new-languages-somali-and-zulu/)
 
-* Translator service has [text and document translation language support](../../language-support.md) for Somali and Zulu. The Somali language, spoken throughout Africa, has more than 21 million speakers and is in the Cushitic branch of the Afroasiatic language family. The Zulu language has 12 million speakers and is recognized as one of South Africa's 11 official languages.
+* Translator service has [text and document translation language support](language-support.md) for Somali and Zulu. The Somali language, spoken throughout Africa, has more than 21 million speakers and is in the Cushitic branch of the Afroasiatic language family. The Zulu language has 12 million speakers and is recognized as one of South Africa's 11 official languages.
 
 ## February 2022
 
 ### [Text and document translation support for Upper Sorbian](https://www.microsoft.com/translator/blog/2022/02/21/translator-celebrates-international-mother-language-day-by-adding-upper-sorbian/),
 
-* Translator service has [text and document translation language support](../../language-support.md) for Upper Sorbian. The Translator team works tirelessly to preserve indigenous and endangered languages around the world. Language data provided by the Upper Sorbian language community was instrumental in introducing this language to Translator.
+* Translator service has [text and document translation language support](language-support.md) for Upper Sorbian. The Translator team works tirelessly to preserve indigenous and endangered languages around the world. Language data provided by the Upper Sorbian language community was instrumental in introducing this language to Translator.
 
 ### [Text and document translation support for Inuinnaqtun and Romanized Inuktitut](https://www.microsoft.com/translator/blog/2022/02/01/introducing-inuinnaqtun-and-romanized-inuktitut/)
 
-* Translator service has [text and document translation language support](../../language-support.md) for Inuinnaqtun and Romanized Inuktitut. Both are indigenous languages that are essential and treasured foundations of Canadian culture and society.
+* Translator service has [text and document translation language support](language-support.md) for Inuinnaqtun and Romanized Inuktitut. Both are indigenous languages that are essential and treasured foundations of Canadian culture and society.
 
 ## January 2022
 
@@ -166,24 +166,24 @@ Document Translation .NET and Python client-library `SDK`s are now generally ava
 
 The [Custom Translator portal (v2.0)](https://portal.customtranslator.azure.ai/) is now in public preview and includes significant changes that makes it easier to create your custom translation systems.
 
-To learn more, see our Custom Translator [documentation](../../custom-translator/overview.md) and try our [quickstart](../../custom-translator/quickstart.md) for step-by-step instructions.
+To learn more, see our Custom Translator [documentation](custom-translator/overview.md) and try our [quickstart](custom-translator/quickstart.md) for step-by-step instructions.
 
 ## October 2021
 
 ### [Text and document support for more than 100 languages](https://www.microsoft.com/translator/blog/2021/10/11/translator-now-translates-more-than-100-languages/)
 
-* Translator service adds [text and document language support](../../language-support.md) for the following languages:
+* Translator service adds [text and document language support](language-support.md) for the following languages:
   * **Bashkir**. A Turkic language spoken by approximately 1.4 million native speakers. It has three regional language groups: Southern, Eastern, and Northwestern.
   * **Dhivehi**. Also known as Maldivian, it's an Indo-Iranian language primarily spoken in the island nation of Maldives.
   * **Georgian**. A Kartvelian language that is the official language of Georgia. It has approximately 4 million speakers.
   * **Kyrgyz**. A Turkic language that is the official language of Kyrgyzstan.
-  * **Macedonian (../cyrillic)**. An Eastern South Slavic language that is the official language of North Macedonia. It has approximately 2 million people.
-  * **Mongolian (../traditional)**. Traditional Mongolian script is the first writing system created specifically for the Mongolian language. Mongolian is the official language of Mongolia.
+  * **Macedonian (cyrillic)**. An Eastern South Slavic language that is the official language of North Macedonia. It has approximately 2 million people.
+  * **Mongolian (traditional)**. Traditional Mongolian script is the first writing system created specifically for the Mongolian language. Mongolian is the official language of Mongolia.
   * **Tatar**. A Turkic language used by speakers in modern Tatarstan closely related to Crimean Tatar and Siberian Tatar but each belongs to different subgroups.
   * **Tibetan**. It has nearly 6 million speakers and can be found in many Tibetan Buddhist publications.
   * **Turkmen**. The official language of Turkmenistan. It's similar to Turkish and Azerbaijani.
   * **Uyghur**. A Turkic language with nearly 15 million speakers spoken primarily in Western China.
-  * **Uzbek (../../latin)**. A Turkic language that is the official language of Uzbekistan. It has 34 million native speakers.
+  * **Uzbek (latin)**. A Turkic language that is the official language of Uzbekistan. It has 34 million native speakers.
 
 These additions bring the total number of languages supported in Translator to 103.
 
@@ -191,31 +191,31 @@ These additions bring the total number of languages supported in Translator to 1
 
 ### [Text and document translation support for literary Chinese](https://www.microsoft.com/translator/blog/2021/08/25/microsoft-translator-releases-literary-chinese-translation/)
 
-* Azure AI Translator has [text and document language support](../../language-support.md) for  literary Chinese. Classical or literary Chinese is a traditional style of written Chinese used by traditional Chinese poets and in ancient Chinese poetry.
+* Azure AI Translator has [text and document language support](language-support.md) for  literary Chinese. Classical or literary Chinese is a traditional style of written Chinese used by traditional Chinese poets and in ancient Chinese poetry.
 
 ## June 2021
 
-### [Document Translation client libraries for C#/.NET and Python](../../document-translation/document-sdk-overview.md)—now available in prerelease
+### [Document Translation client libraries for C#/.NET and Python](document-translation/document-sdk-overview.md)—now available in prerelease
 
 ## May 2021
 
 ### [Document Translation ― now generally available](https://www.microsoft.com/translator/blog/2021/05/25/translate-full-documents-with-document-translation-%e2%80%95-now-in-general-availability/)
 
-* **Feature release**: Translator's [Asynchronous batch translation](../../document-translation/overview.md)  feature is generally available. Document Translation is designed to translate large files and batch documents with rich content while preserving original structure and format. You can also use custom glossaries and custom models built with [Custom Translator](../../custom-translator/overview.md) to ensure your documents are translated quickly and accurately.
+* **Feature release**: Translator's [Asynchronous batch translation](document-translation/overview.md)  feature is generally available. Document Translation is designed to translate large files and batch documents with rich content while preserving original structure and format. You can also use custom glossaries and custom models built with [Custom Translator](custom-translator/overview.md) to ensure your documents are translated quickly and accurately.
 
 ### [Translator service available in containers](https://www.microsoft.com/translator/blog/2021/05/25/translator-service-now-available-in-containers/)
 
-* **New release**: Translator service is available in containers as a gated preview. [Submit an online request](https://aka.ms/csgate-translator) for approval to get started. Containers enable you to run several Translator service features in your own environment and are great for specific security and data governance requirements. For more information, *See* [Install and run Translator containers (preview)](../../containers/translator-how-to-install-container.md)
+* **New release**: Translator service is available in containers as a gated preview. [Submit an online request](https://aka.ms/csgate-translator) for approval to get started. Containers enable you to run several Translator service features in your own environment and are great for specific security and data governance requirements. For more information, *See* [Install and run Translator containers (preview)](containers/translator-how-to-install-container.md)
 
 ## February 2021
 
 ### [Document Translation public preview](https://www.microsoft.com/translator/blog/2021/02/17/introducing-document-translation/)
 
-* **New release**:  [Asynchronous batch translation](../../document-translation/overview.md) is available as a preview feature of the Translator Service. Preview features are still in development and aren't meant for production use. They're made available on a "preview" basis so customers can get early access and provide feedback. Document Translation enables you to translate large documents and process batch files while still preserving the original structure and format. _See_ [Microsoft Translator blog: Introducing Document Translation](https://www.microsoft.com/translator/blog/2021/02/17/introducing-document-translation/)
+* **New release**:  [Asynchronous batch translation](document-translation/overview.md) is available as a preview feature of the Translator Service. Preview features are still in development and aren't meant for production use. They're made available on a "preview" basis so customers can get early access and provide feedback. Document Translation enables you to translate large documents and process batch files while still preserving the original structure and format. _See_ [Microsoft Translator blog: Introducing Document Translation](https://www.microsoft.com/translator/blog/2021/02/17/introducing-document-translation/)
 
 ### [Text and document translation support for nine added languages](https://www.microsoft.com/translator/blog/2021/02/22/microsoft-translator-releases-nine-new-languages-for-international-mother-language-day-2021/)
 
-* Translator service has [text and document translation language support](../../language-support.md) for the following languages:
+* Translator service has [text and document translation language support](language-support.md) for the following languages:
 
   * **Albanian**. An isolate language unrelated to any other and spoken by nearly 8 million people.
   * **Amharic**. An official language of Ethiopia spoken by approximately 32 million people. It's also the liturgical language of the Ethiopian Orthodox church.
@@ -231,25 +231,25 @@ These additions bring the total number of languages supported in Translator to 1
 
 ### [Text and document translation support for Inuktitut](https://www.microsoft.com/translator/blog/2021/01/27/inuktitut-is-now-available-in-microsoft-translator/)
 
-* Translator service has [text and document translation language support](../../language-support.md) for **Inuktitut**, one of the principal Inuit languages of Canada. Inuktitut is one of eight official Aboriginal languages in the Northwest Territories.
+* Translator service has [text and document translation language support](language-support.md) for **Inuktitut**, one of the principal Inuit languages of Canada. Inuktitut is one of eight official Aboriginal languages in the Northwest Territories.
 
 ## November 2020
 
 ### [Custom Translator V2 is generally available](https://www.microsoft.com/translator/blog/2021/01/27/inuktitut-is-now-available-in-microsoft-translator/)
 
-* **New release**: Custom Translator V2 upgrade is fully available to the generally available (GA). The V2 platform enables you to build custom models with all document types (../training, testing, tuning, phrase dictionary, and sentence dictionary). _See_  [Microsoft Translator blog: Custom Translator pushes the translation quality bar closer to human parity](https://www.microsoft.com/translator/blog/2020/11/12/microsoft-custom-translator-pushes-the-translation-quality-bar-closer-to-human-parity).
+* **New release**: Custom Translator V2 upgrade is fully available to the generally available (GA). The V2 platform enables you to build custom models with all document types (training, testing, tuning, phrase dictionary, and sentence dictionary). _See_  [Microsoft Translator blog: Custom Translator pushes the translation quality bar closer to human parity](https://www.microsoft.com/translator/blog/2020/11/12/microsoft-custom-translator-pushes-the-translation-quality-bar-closer-to-human-parity).
 
 ## October 2020
 
 ### [Text and document translation support for Canadian French](https://www.microsoft.com/translator/blog/2020/10/20/cest-tiguidou-ca-translator-adds-canadian-french/)
 
-* Translator service has [text and document translation language support](../../language-support.md) for **Canadian French**. Canadian French and European French are similar to one another and are mutually understandable. However, there can be significant differences in vocabulary, grammar, writing, and pronunciation. Over 7 million Canadians (20 percent of the population) speak French as their first language.
+* Translator service has [text and document translation language support](language-support.md) for **Canadian French**. Canadian French and European French are similar to one another and are mutually understandable. However, there can be significant differences in vocabulary, grammar, writing, and pronunciation. Over 7 million Canadians (20 percent of the population) speak French as their first language.
 
 ## September 2020
 
 ### [Text and document translation support for Assamese and Axomiya](https://www.microsoft.com/translator/blog/2020/09/29/assamese-text-translation-is-here/)
 
-* Translator service has [text and document translation language support](../../language-support.md) for **Assamese** also knows as **Axomiya**. Assamese / Axomiya is primarily spoken in Eastern India by approximately 14 million people.
+* Translator service has [text and document translation language support](language-support.md) for **Assamese** also knows as **Axomiya**. Assamese / Axomiya is primarily spoken in Eastern India by approximately 14 million people.
 
 ## August 2020
 
