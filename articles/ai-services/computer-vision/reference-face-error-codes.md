@@ -17,7 +17,7 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 
 These error codes can be returned by any Face API calls.
 
-|Http status code|Error code|Error message|Description|
+|HTTP status code|Error code|Error message|Description|
 |----------------|----------|-------------|-----------|
 |Bad Request (400)|BadArgument|Request body is invalid.||
 |Bad Request (400)|BadArgument|JSON parsing error.|Bad or unrecognizable request JSON body.|
@@ -47,7 +47,7 @@ These error codes can be returned by any Face API calls.
 
 These error codes can be returned by Face Detection operation.
 
-|Http status code|Error code|Error message|Description|
+|HTTP status code|Error code|Error message|Description|
 |---|---|---|---|
 |Bad Request (400)|BadArgument|Invalid argument returnFaceAttributes.||
 |Bad Request (400)|BadArgument|'returnFaceAttributes' is not supported by detection_02.||
@@ -58,7 +58,7 @@ These error codes can be returned by Face Detection operation.
 
 These error codes can be returned by Face Liveness Session operations.
 
-|Http status code|Error code|Error message|Description|
+|HTTP status code|Error code|Error message|Description|
 |---|---|---|---|
 |Bad Request (400)|BadArgument|Start parameter is invalid. Please specify the 'Id' field of the last entry to continue the listing process.||
 |Bad Request (400)|BadArgument|Top parameter is invalid. Valid range is between 1 and 1000 inclusive.||
@@ -72,7 +72,7 @@ These error codes can be returned by Face Liveness Session operations.
 
 These error codes can be returned by Face Identify operation.
 
-|Http status code|Error code|Error message|Description|
+|HTTP status code|Error code|Error message|Description|
 |---|---|---|---|
 |Bad Request (400)|BadArgument|'recognitionModel' is incompatible.||
 |Bad Request (400)|BadArgument|Person group ID is invalid.||
@@ -98,7 +98,7 @@ These error codes can be returned by Face Identify operation.
 
 These error codes can be returned by Face Verify operation.
 
-|Http status code|Error code|Error message|Description|
+|HTTP status code|Error code|Error message|Description|
 |---|---|---|---|
 |Bad Request (400)|BadArgument|'recognitionModel' is incompatible.||
 |Bad Request (400)|BadArgument|Face ID is invalid.|A valid faceId comes from Face - Detect.|
@@ -116,7 +116,7 @@ These error codes can be returned by Face Verify operation.
 
 These error codes can be returned by Face Find Similar operation.
 
-|Http status code|Error code|Error message|Description|
+|HTTP status code|Error code|Error message|Description|
 |---|---|---|---|
 |Bad Request (400)|BadArgument|'recognitionModel' is incompatible.||
 |Bad Request (400)|BadArgument|Mode is invalid.||
@@ -138,7 +138,7 @@ These error codes can be returned by Face Find Similar operation.
 
 These error codes can be returned by Face Group operation.
 
-|Http status code|Error code|Error message|Description|
+|HTTP status code|Error code|Error message|Description|
 |---|---|---|---|
 |Bad Request (400)|BadArgument|'recognitionModel' is incompatible.||
 |Bad Request (400)|BadArgument|The length of faceIds is not in a valid range.|The valid range is between [2, 1000].|
@@ -150,7 +150,7 @@ These error codes can be returned by Person Group operations.
 
 ### Person Group error codes
 
-|Http status code|Error code|Error message|Description|
+|HTTP status code|Error code|Error message|Description|
 |---|---|---|---|
 |Bad Request (400)|BadArgument|Person group ID is invalid.|Valid character is English letter in lower case, digit, '-' or '_'. Maximum length is 64.|
 |Forbidden (403)|QuotaExceeded|Person group number reached subscription level limit.||
@@ -170,7 +170,7 @@ These error codes can be returned by Person Group operations.
 
 ### Large Person Group error codes
 
-|Http status code|Error code|Error message|Description|
+|HTTP status code|Error code|Error message|Description|
 |---|---|---|---|
 |Bad Request (400)|BadArgument|Large person group ID is invalid.|Valid character is English letter in lower case, digit, '-' or '_'. Maximum length is 64.|
 |Bad Request (400)|BadArgument|Both 'name' and 'userData' are empty.||
@@ -195,7 +195,7 @@ These error codes can be returned by Face List operations.
 
 ### Face List error codes
 
-|Http status code|Error code|Error message|Description|
+|HTTP status code|Error code|Error message|Description|
 |---|---|---|---|
 |Bad Request (400)|BadArgument|Face list ID is invalid.|Valid character is English letter in lower case, digit, '-' or '_'. Maximum length is 64.|
 |Forbidden (403)|QuotaExceeded|Persisted face number reached limit.||
@@ -207,7 +207,7 @@ These error codes can be returned by Face List operations.
 
 ### Large Face List error codes
 
-|Http status code|Error code|Error message|Description|
+|HTTP status code|Error code|Error message|Description|
 |---|---|---|---|
 |Bad Request (400)|BadArgument|Large face list ID is invalid.|Valid character is English letter in lower case, digit, '-' or '_'. Maximum length is 64.|
 |Bad Request (400)|BadArgument|Both 'name' and 'userData' are empty.||
@@ -227,7 +227,7 @@ These error codes can be returned by Person Directory operations.
 
 ### Person Directory error codes
 
-|Http status code|Error code|Error message|Description|
+|HTTP status code|Error code|Error message|Description|
 |---|---|---|---|
 |Bad Request (400)|BadArgument|Recognition model is not supported for this feature.||
 |Bad Request (400)|BadArgument|'start' is not valid person ID.||
