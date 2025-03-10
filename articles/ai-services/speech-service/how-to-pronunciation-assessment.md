@@ -203,7 +203,7 @@ let recognizer = try! SPXSpeechRecognizer(speechConfiguration: speechConfig, lan
 > [!TIP]
 > If you aren't sure which locale to set for a language that has multiple locales, try each locale separately. For instance, for Spanish, try `es-ES` and `es-MX`. Determine which locale scores higher for your scenario.
 
-You must create a `PronunciationAssessmentConfig` object. You can set `EnableProsodyAssessment` and `EnableContentAssessmentWithTopic` to enable prosody and content assessment. For more information, see [configuration methods](#configuration-methods).
+You must create a `PronunciationAssessmentConfig` object. You can set `EnableProsodyAssessment` to enable prosody assessment. For more information, see [configuration methods](#configuration-methods).
 
 ::: zone pivot="programming-language-csharp"
 
@@ -214,7 +214,6 @@ var pronunciationAssessmentConfig = new PronunciationAssessmentConfig(
     granularity: Granularity.Phoneme,  
     enableMiscue: false); 
 pronunciationAssessmentConfig.EnableProsodyAssessment(); 
-pronunciationAssessmentConfig.EnableContentAssessmentWithTopic("greeting"); 
 ```
 
 ::: zone-end  
@@ -224,7 +223,6 @@ pronunciationAssessmentConfig.EnableContentAssessmentWithTopic("greeting");
 ```cpp
 auto pronunciationConfig = PronunciationAssessmentConfig::Create("", PronunciationAssessmentGradingSystem::HundredMark, PronunciationAssessmentGranularity::Phoneme, false); 
 pronunciationConfig->EnableProsodyAssessment(); 
-pronunciationConfig->EnableContentAssessmentWithTopic("greeting"); 
 ```
 
 ::: zone-end
@@ -235,7 +233,6 @@ pronunciationConfig->EnableContentAssessmentWithTopic("greeting");
 PronunciationAssessmentConfig pronunciationConfig = new PronunciationAssessmentConfig("", 
     PronunciationAssessmentGradingSystem.HundredMark, PronunciationAssessmentGranularity.Phoneme, false); 
 pronunciationConfig.enableProsodyAssessment(); 
-pronunciationConfig.enableContentAssessmentWithTopic("greeting");
 ```
 
 ::: zone-end
@@ -263,7 +260,6 @@ var pronunciationAssessmentConfig = new sdk.PronunciationAssessmentConfig(
     granularity: sdk.PronunciationAssessmentGranularity.Phoneme,  
     enableMiscue: false); 
 pronunciationAssessmentConfig.enableProsodyAssessment(); 
-pronunciationAssessmentConfig.enableContentAssessmentWithTopic("greeting");  
 ```
 
 ::: zone-end
@@ -274,7 +270,6 @@ pronunciationAssessmentConfig.enableContentAssessmentWithTopic("greeting");
 SPXPronunciationAssessmentConfiguration *pronunicationConfig = 
 [[SPXPronunciationAssessmentConfiguration alloc] init:@"" gradingSystem:SPXPronunciationAssessmentGradingSystem_HundredMark granularity:SPXPronunciationAssessmentGranularity_Phoneme enableMiscue:false]; 
 [pronunicationConfig enableProsodyAssessment]; 
-[pronunicationConfig enableContentAssessmentWithTopic:@"greeting"]; 
 ```
 
 ::: zone-end
@@ -287,7 +282,6 @@ let pronAssessmentConfig = try! SPXPronunciationAssessmentConfiguration("",
     granularity: .phoneme, 
     enableMiscue: false) 
 pronAssessmentConfig.enableProsodyAssessment() 
-pronAssessmentConfig.enableContentAssessment(withTopic: "greeting")
 ```
 
 ::: zone-end
@@ -311,16 +305,13 @@ This table lists some of the key configuration parameters for pronunciation asse
 This table lists some of the optional methods you can set for the `PronunciationAssessmentConfig` object.
 
 > [!NOTE]
-> Content and prosody assessments are only available in the [en-US](./language-support.md?tabs=pronunciation-assessment) locale.
+> Prosody assessment is only available in the [en-US](./language-support.md?tabs=pronunciation-assessment) locale.
 > 
-> To explore the content and prosody assessments, upgrade to the SDK version 1.35.0 or later.
->
-> There is no length limit for the topic parameter.
+> To explore the prosody assessment, upgrade to the SDK version 1.35.0 or later.
 
 | Method | Description |
 |-----------|-------------|
 | `EnableProsodyAssessment` | Enables prosody assessment for your pronunciation evaluation. This feature assesses aspects like stress, intonation, speaking speed, and rhythm. This feature provides insights into the naturalness and expressiveness of your speech.<br/><br/>Enabling prosody assessment is optional. If this method is called, the `ProsodyScore` result value is returned. |
-| `EnableContentAssessmentWithTopic` | Enables content assessment. A content assessment is part of the [unscripted assessment](#unscripted-assessment-results) for the speaking language learning scenario. By providing a description, you can enhance the assessment's understanding of the specific topic being spoken about. For example, in C# call `pronunciationAssessmentConfig.EnableContentAssessmentWithTopic("greeting");`. You can replace 'greeting' with your desired text to describe a topic. The description has no length limit and currently only supports the `en-US` locale. |
 
 ## Get pronunciation assessment results
 
@@ -528,19 +519,14 @@ This table lists some of the key pronunciation assessment results for the script
 
 This table lists some of the key pronunciation assessment results for the unscripted assessment, or speaking scenario.
 
-`VocabularyScore`, `GrammarScore`, and `TopicScore` parameters roll up to the combined content assessment.
-
 > [!NOTE]
-> Content and prosody assessments are only available in the [en-US](./language-support.md?tabs=pronunciation-assessment) locale.
+> Prosody assessment is only available in the [en-US](./language-support.md?tabs=pronunciation-assessment) locale.
 
 | Response parameter | Description | Granularity |
 |:-------------------|:------------|:------------|
 | `AccuracyScore`    | Pronunciation accuracy of the speech. Accuracy indicates how closely the phonemes match a native speaker's pronunciation. Syllable, word, and full text accuracy scores are aggregated from phoneme-level accuracy score, and refined with assessment objectives. | Phoneme level，<br>Syllable level (en-US only)，<br>Word level，<br>Full Text level |
 | `FluencyScore`     | Fluency of the given speech. Fluency indicates how closely the speech matches a native speaker's use of silent breaks between words. | Full Text level |
 | `ProsodyScore`     | Prosody of the given speech. Prosody indicates how natural the given speech is, including stress, intonation, speaking speed, and rhythm. | Full Text level |
-| `VocabularyScore`  | Proficiency in lexical usage. It evaluates the speaker's effective usage of words and their appropriateness within the given context to express ideas accurately, and the level of lexical complexity. | Full Text level |
-| `GrammarScore`     | Correctness in using grammar and variety of sentence patterns. Lexical accuracy, grammatical accuracy, and diversity of sentence structures jointly elevate grammatical errors. | Full Text level|
-| `TopicScore`       | Level of understanding and engagement with the topic, which provides insights into the speaker’s ability to express their thoughts and ideas effectively and the ability to engage with the topic. | Full Text level|
 | `PronScore`        | Overall score of the pronunciation quality of the given speech. `PronScore` is calculated from `AccuracyScore`, `FluencyScore`, and `ProsodyScore` with weight, provided that `ProsodyScore` is available. If `ProsodyScore` isn't available, `PronScore` won't consider that score.| Full Text level |
 | `ErrorType`        | A word is badly pronounced, improperly inserted with a break, or missing a break at punctuation. It also indicates whether a pronunciation is monotonically rising, falling, or flat on the utterance. Possible values are `None` for no error on this word, `Mispronunciation`, `UnexpectedBreak`, `MissingBreak`, and `Monotone`. | Word level |
 
@@ -1117,6 +1103,29 @@ For the speaking scenario (the completeness score isn't applicable):
   - Without prosody score: PronScore = 0.6 * s0 + 0.4 * s1
 
 This formula provides a weighted calculation based on the importance of each score, ensuring a comprehensive evaluation of pronunciation.
+
+## Content assessment
+
+For some recognized speech, you might also want to get content assessment results for vocabulary, grammar, and topic relevance. You can use a chat model such as Azure OpenAI `gpt-4o` to get the content assessment results. For more information about using chat models, see [Azure OpenAI Service models](../openai/concepts/models.md) and the Azure AI Model Inference API [chat completions reference documentation](/rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions).
+
+The user and system messages are used to set the context for the chat model. In the following example, the user message contains the essay to be assessed, and the system message provides instructions on how to evaluate the essay.
+
+
+```json
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an English teacher and please help to grade a student's essay from vocabulary and grammar and topic relevance on how well the essay aligns with the title, and output format as: {\"vocabulary\": *.*(0-100), \"grammar\": *.*(0-100), \"topic\": *.*(0-100)}."
+    },
+    {
+      "role": "user",
+      "content": "Example1: this essay: \"sampleSentence1\" has vocabulary and grammar scores of ** and **, respectively. Example2: this essay: \"sampleSentence2\" has vocabulary and grammar scores of ** and **, respectively. Example3: this essay: \"sampleSentence3\" has vocabulary and grammar scores of ** and **, respectively. The essay for you to score is \"sendText\", and the title is \"topic\". The transcript is from speech recognition so that please first add punctuations when needed, remove duplicates and unnecessary un uh from oral speech, then find all the misuse of words and grammar errors in this essay, find advanced words and grammar usages, and finally give scores based on this information. Please only respond as this format {\"vocabulary\": *.*(0-100), \"grammar\": *.*(0-100)}, \"topic\": *.*(0-100)}. [THE TRANSCRIPT FROM SPEECH RECOGNITION IS REDACTED FOR BREVITY]"
+    }
+  ]
+}
+```
+
 
 ## Related content
 
