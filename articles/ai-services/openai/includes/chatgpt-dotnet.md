@@ -87,7 +87,10 @@ To use the non-streaming method:
 
     ```csharp
     using Azure;
+    using Azure.Identity;
+    using OpenAI.Assistants;
     using Azure.AI.OpenAI;
+    using OpenAI.Chat;
     using static System.Environment;
     
     string endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT") ?? "https://<your-resource-name>.openai.azure.com/";
@@ -121,7 +124,7 @@ To use the non-streaming method:
 #### Output
 
 ```output
-Assistant : Yes, many other Azure AI services also support customer managed keys, including Azure Cognitive Services, Azure Machine Learning, and Azure Databricks. By using customer managed keys, you can retain complete control over your encryption keys and provide an additional layer of security for your AI assets.
+Assistant: Arrr, ye be askin’ a fine question, matey! Aye, several Azure AI services support customer-managed keys (CMK)! This lets ye take the wheel and secure yer data with encryption keys stored in Azure Key Vault. Services such as Azure Machine Learning, Azure Cognitive Search, and others also offer CMK fer data protection. Always check the specific service's documentation fer the latest updates, as features tend to shift swifter than the tides, aye!
 ```
 
 This will wait until the model has generated its entire response before printing the results. Alternatively, if you want to asynchronously stream the response and print the results, you can replace the contents of *program.cs* with the code in the next example.
@@ -133,6 +136,8 @@ To use the streaming method:
 
     ```csharp
     using Azure;
+    using Azure.Identity;
+    using OpenAI.Assistants;
     using Azure.AI.OpenAI;
     using OpenAI.Chat;
     using static System.Environment;
@@ -179,7 +184,7 @@ To use the streaming method:
 #### Output
 
 ```output
-Assistant : Yes, many other Azure AI services also support customer managed keys, including Azure Cognitive Services, Azure Machine Learning, and Azure Databricks. By using customer managed keys, you can retain complete control over your encryption keys and provide an additional layer of security for your AI assets.
+Assistant: Arrr, ye be askin’ a fine question, matey! Aye, several Azure AI services support customer-managed keys (CMK)! This lets ye take the wheel and secure yer data with encryption keys stored in Azure Key Vault. Services such as Azure Machine Learning, Azure Cognitive Search, and others also offer CMK fer data protection. Always check the specific service's documentation fer the latest updates, as features tend to shift swifter than the tides, aye!
 ```
 
 
