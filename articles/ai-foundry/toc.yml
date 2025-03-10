@@ -58,6 +58,8 @@ items:
         href: how-to/deploy-models-serverless-connect.md
       - name: Model and region availability for Serverless API deployments
         href: how-to/deploy-models-serverless-availability.md
+      - name: Content safety for models deployed with serverless APIs
+        href: concepts/model-catalog-content-safety.md
     - name: Managed compute
       items:
       - name: Deploy models via managed compute
@@ -104,22 +106,10 @@ items:
           href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context
         - name: Work with image and audio content
           href: ../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context
-    - name: Work with featured models
+    - name: Featured models in the model catalog
+      href: concepts/models-featured.md
+    - name: Other featured models
       items:
-      - name: AI21 Jamba models
-        href: how-to/deploy-models-jamba.md
-      - name: Cohere models
-        items:
-        - name: Cohere Command models
-          href: how-to/deploy-models-cohere-command.md
-        - name: Cohere Embed models
-          href: how-to/deploy-models-cohere-embed.md
-        - name: Cohere Rerank models
-          href: how-to/deploy-models-cohere-rerank.md
-      - name: DeepSeek-R1 reasoning models
-        href: how-to/deploy-models-deepseek.md
-      - name: Gretel Navigator model
-        href: how-to/deploy-models-gretel-navigator.md
       - name: Healthcare AI models
         items:
         - name: Foundational AI models for healthcare
@@ -130,41 +120,12 @@ items:
           href: how-to/healthcare-ai/deploy-cxrreportgen.md
         - name: MedImageParse - prompted segmentation model
           href: how-to/healthcare-ai/deploy-medimageparse.md
-      - name: JAIS model
-        href: how-to/deploy-models-jais.md
-      - name: Meta Llama models
-        items:
-        - name: Meta Llama family models
-          href: how-to/deploy-models-llama.md
-      - name: Microsoft Phi family models
-        items:
-        - name: Phi-3 chat models
-          href: how-to/deploy-models-phi-3.md
-        - name: Phi-3 chat model with vision
-          href: how-to/deploy-models-phi-3-vision.md
-        - name: Phi-3.5 chat model with vision
-          href: how-to/deploy-models-phi-3-5-vision.md
-        - name: Phi-4 chat models
-          href: how-to/deploy-models-phi-4.md
-      - name: Mistral family models
-        items:
-        - name: Mistral premium models
-          href: how-to/deploy-models-mistral.md
-        - name: Codestral model
-          href: how-to/deploy-models-mistral-codestral.md
-        - name: Mistral Nemo model
-          href: how-to/deploy-models-mistral-nemo.md
-        - name: Mistral-7B and Mixtral models
-          href: how-to/deploy-models-mistral-open.md
-        displayName: maas
-      - name: NTTDATA tsuzumi model
-        items:
-          - name: NTTDATA tsuzumi model
-            href: how-to/deploy-models-tsuzumi.md
+      - name: Gretel Navigator model
+        href: how-to/deploy-models-gretel-navigator.md
+      - name: Mistral-7B and Mixtral models
+        href: how-to/deploy-models-mistral-open.md
       - name: Stability AI models
         href: ./how-to/deploy-stability-models.md
-      - name: TimeGEN-1 model
-        href: how-to/deploy-models-timegen-1.md
 - name: Azure OpenAI and AI services
   items:
   - name: Use Azure OpenAI Service in Azure AI Foundry portal
@@ -576,6 +537,8 @@ items:
     href: responsible-use-of-ai-overview.md
   - name: Azure AI Content Safety in AI Foundry portal overview
     href: ai-services/content-safety-overview.md
+  - name: Content safety for models deployed with serverless APIs
+    href: concepts/model-catalog-content-safety.md
   - name: Use Azure AI Content Safety in AI Foundry portal
     href: /azure/ai-services/content-safety/how-to/foundry?context=/azure/ai-foundry/context/context
   - name: Content filtering
