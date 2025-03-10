@@ -365,7 +365,7 @@ For example, the UID for the built-in microphone is `BuiltInMicrophoneDevice`.
 
 ## Audio device IDs on iOS
 
-Audio device selection with the Speech SDK isn't supported on iOS. Apps that use the SDK can influence audio routing through the [`AVAudioSession`](https://developer.apple.com/documentation/avfoundation/avaudiosession?language=objc) Framework.
+Audio device selection with the Speech SDK isn't supported on iOS. Apps that use the SDK can influence audio routing through the [`AVAudioSession`](https://developer.apple.com/documentation/avfoundation?language=objc) Framework.
 
 For example, the instruction
 
