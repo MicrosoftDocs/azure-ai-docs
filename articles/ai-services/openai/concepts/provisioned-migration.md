@@ -7,7 +7,7 @@ ms.service: azure-ai-openai
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 01/08/2025
+ms.date: 03/10/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -86,7 +86,7 @@ See the following links for more information. The guidance for reservations and 
 > [!NOTE]
 > The following description of payment models doesn't apply to the older "Provisioned Classic (PTU-C)" offering. They only affect the Provisioned (also known as Provisioned Managed) offering. Provisioned Classic continues to be governed by the unchanged monthly commitment payment model.
 
-Microsoft has introduced a new "Hourly/reservation" payment model for provisioned deployments. This is in addition to the current **Commitment** payment model, which will continue to be supported till end of life of the currently supported limited model list. Refer to the [supported models on **Commitment payment model**](./provisioned-migration.md#supported-models-on-commitment-payment-model) for the list of supported models on Commitment payment model.
+Microsoft has introduced a new "Hourly/reservation" payment model for provisioned deployments. This is in addition to the current **Commitment** payment model, which will continue to be supported until end of life of the currently supported limited model list. Refer to the [supported models on **Commitment payment model**](./provisioned-migration.md#supported-models-on-commitment-payment-model) for the list of supported models on Commitment payment model.
 
 ### Commitment payment model
 
@@ -96,15 +96,17 @@ Microsoft has introduced a new "Hourly/reservation" payment model for provisione
 
 - Commitments can't be canceled or altered during their term, except to add new PTUs.
 
-#### Supported models on Commitment payment model:
+#### Supported models on commitment payment model:
   Only the following list of Azure OpenAI models are supported in Commitments. For onboarding any other models that aren't in the list below, or any newer models on provisioned throughput offering,  refer to the [Azure OpenAI provisioned onboarding guide](../how-to/provisioned-throughput-onboarding.md) and [Azure Reservations for Azure OpenAI provisioned deployments](../how-to/provisioned-throughput-onboarding.md#azure-reservations-for-azure-openai-provisioned-deployments)
     
-|Supported models on Commitment plan |
-|-|
-|gpt-35-turbo|
-|gpt-4|
-|gpt-4-32k|
-|gpt-4o|
+|Supported models on Commitment plan |Versions|
+|-|-|
+|gpt-35-turbo| 0125,1106|
+|gpt-4| 0613, 1106-Preview, 0125-Preview|
+|gpt-4-turbo| 2024-04-09|
+|gpt-4-32k| 0613|
+|gpt-4o| 2042-05-13, 2024-08-06|
+|gpt-4o-mini| 2024-07-18|
 
 
 
@@ -122,7 +124,7 @@ Microsoft has introduced a new "Hourly/reservation" payment model for provisione
 - Supports all models, both old and new.
 
 > [!IMPORTANT]
-> More latest models are available in provisioned offering with Hourly/Reservation payment model. Check the list [**here**](https://learn.microsoft.com/azure/ai-services/openai/concepts/models?tabs=provisioned%2Cstandard-chat-completions#global-standard-model-availability) for the availabilityModels that aren't in the above [**list**](./provisioned-migration.md#supported-models-on-commitment-payment-model) aren't deployable on Azure OpenAI resources that have active commitments. To deploy models newer models you must either:
+> More latest models are available in provisioned offering with Hourly/Reservation payment model. Check the list [**here**](https://learn.microsoft.com/azure/ai-services/openai/concepts/models?tabs=provisioned%2Cstandard-chat-completions#global-standard-model-availability) for the availabilityModels that aren't in the above [**list**](./provisioned-migration.md#supported-models-on-commitment-payment-model) aren't deployable on Azure OpenAI resources that have active commitments. To deploy models newer models, you must either:
 > - Create deployments on Azure OpenAI resources without commitments.
 > - Migrate an existing resource off its commitments.
 
@@ -137,7 +139,7 @@ With the release of the hourly/reserved payment model, payment options are more 
 
 The key difference between this model and the new model is that previously the only way to pay for provisioned was through a one-month term discount. Now, you can deploy and pay for deployments hourly if you choose and make a separate decision on whether to discount them via **either** a one-month commitment (like before) or an Azure reservation. 
 
-With this insight, the new way to think about payment models is the following: 
+With this insight, the new way to think about payment models is: 
 
 1. Get a PTU quota using the self-service form.
 1. Create deployments using your quota.
@@ -155,7 +157,7 @@ Steps 1 and 2 are the same in all cases. The difference is whether a commitment 
     |Reservation     | Resource group, single subscription, management group (group of subscriptions), shared (all subscriptions in a billing account)          |
 
 * The discounted price is applied to deployed PTUs up to the number of discounted PTUs in the discount. 
-* The number of deployed PTUs exceeding the discounted PTUs (or not covered by any discount) are charged the hourly rate. 
+* The number of deployed PTUs exceeding the discounted PTUs (or not covered by any discount) will be charged the hourly rate. 
 * The best practice is to create deployments first, and then to apply discounts. This is to guarantee that service. capacity is available to support your deployments prior to creating a term agreement for PTUs you can't use. 
 
 > [!NOTE] 
@@ -170,7 +172,7 @@ Customers using Azure OpenAI Provisioned offer prior to August 2024 can use eith
 
 **Resource has an active Commitment** 
 
-* The commitment discounts all deployments on the resource up to the number of PTUs on the commitment. Any excess PTUs will be billed hourly unless the excess PTUs aren't in the scope of an active reservation. If the excess PTUs exist in the scope of an active reservation, will be discounted as a group up to the number of PTUs on the reservation and any excess spill still leftover will be billed hourly. 
+* The commitment discounts all deployments on the resource up to the number of PTUs on the commitment. Any excess PTUs is billed hourly unless the excess PTUs aren't in the scope of an active reservation. If the excess PTUs exist in the scope of an active reservation, will be discounted as a group up to the number of PTUs on the reservation and any excess spill still leftover will be billed hourly. 
 
 **Resource does not have an active commitment** 
 
@@ -179,12 +181,12 @@ Customers using Azure OpenAI Provisioned offer prior to August 2024 can use eith
 
 ### Changes to the existing payment mode
 
-Customers that have commitments today can continue to use them at least till the supported model's retirement. This includes purchasing new PTUs on new or existing commitments and managing commitment renewals. However, the August update has changed certain aspects of commitments operation.
+Customers that have commitments today can continue to use them at least until the supported model's retirement. This includes purchasing new PTUs on new or existing commitments and managing commitment renewals. However, the August update has changed certain aspects of commitments operation.
 
 - Azure OpenAI has stopped supporting enrollment on to new commitments, starting August 1, 2024
 - Only a limited set of models can be deployed on a resource with a commitment. Here's the [List of models](./provisioned-migration.md#supported-models-on-commitment-payment-model)
 
-- If the deployed PTUs under a commitment exceed the committed PTUs, the hourly overage charges will be emitted against the same hourly meter as used for the new hourly/reservation payment model. This allows the overage charges to be discounted via an Azure Reservation.
+- If the deployed PTUs under a commitment exceed the committed PTUs, the hourly overage charges are emitted against the same hourly meter as used for the new hourly/reservation payment model. This allows the overage charges to be discounted via an Azure Reservation.
 - It's possible to deploy more PTUs than are committed on the resource. This supports the ability to guarantee capacity availability prior to increasing the commitment size to cover it.
 
 ## Migrating existing resources off commitments
@@ -319,6 +321,15 @@ The manage commitments pane provides a subscription wide overview of all resourc
 - **Expiration policy and date** - The expiration date and policy tell you when a commitment will expire and what will happen when it does. A commitment set to autorenew will generate a billing event on the renewal date. For commitments that are expiring, be sure you delete deployments from these resources prior to the expiration date to prevent hourly overage billingThe current renewal settings for a commitment. 
 - **Notifications** - Alerts regarding important conditions like unused commitments, and configurations that might result in billing overages. Billing overages can be caused by situations such as when a commitment has expired and deployments are still present, but have shifted to hourly billing.
 
+> [!IMPORTANT]
+> If you set a commitment to *auto-renew* the renewal date will be the same date next month. If the date doesn't exist then the renewal date will be end of month.
+> Examples -  
+> *Scenario 1:* If you purchase a commitment on February 21st, and set the commitment on *auto-renew*, the next renewal date for the commitment will be March 21st.
+>
+> *Scenario 2:* If you purchase the commitment on May 31st, and set the commitment on *auto-renew*, the next renewal date for the commitment will be 30th June (end of month) as there is no 31st in the month of June.
+>
+> *Scenario 3:* If you purchase the commitment on January 31st, and set the commitment on *auto-renew*, the next renewal date for the commitment will be February 28th (end of month) as there is no 31st or 30th or 29th (in non-leap years) and the renewal date would be February 29th (in a leap-year) in the month of February. 
+
 ## Common Commitment Management Scenarios
 
 **Discontinue use of provisioned throughput**
@@ -327,6 +338,9 @@ To end use of provisioned throughput, and prevent hourly overage charges after c
 
 1. Set the renewal policy on all commitments to *Don't autorenew*.
 2. Delete the provisioned deployments using the quota.
+
+> [!IMPORTANT]
+> If you allow a commitment to expire with **an intent to discontinue provisioned throughput** and not delete the provisioned deployments, you'll receive hourly overage charges for all PTUs that are still in the deployment. For example, a resource that has deployments that total 500 PTUs and a commitment was selected to *Don't autorenew* will incur hourly charges after the time of expiry of the commitment until the deployment is deleted. There is no option available today that deletes the deployment automatically, it has to be deleted manually when you decide to discontinue use of provisioned throughput.
 
 **Move a commitment/deployment to a new resource in the same subscription/region**
 
