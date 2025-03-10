@@ -243,7 +243,7 @@ Primary changes:
 - `Intelijidea` to version `2022.2.2`
 - Microsoft Edge Browser to version `107.0.1379.1`
 - `Nodejs` to version `v16.17.0`
-- `Pycharm` to version `2022.2.1`
+- `PyCharm` to version `2022.2.1`
 
 Environment Specific Updates:
 
@@ -472,7 +472,7 @@ Primary changes:
 - Changed NVIDIA Drivers to version 470.103.01
 - Changed NVIDIA SMI to version 470.103.01
 - Changed Nodejs to version v16.13.0
-- Changed Pycharm to version 2021.2.3
+- Changed PyCharm to version 2021.2.3
 - Changed VS Code to version 1.61.2
 - Conda
   - *azureml_py36_automl*
@@ -503,7 +503,7 @@ Primary changes:
 - Changed Docker to version 20.10.9
 - Changed Intellijidea to version 2021.2.2
 - Changed Nodejs to version v14.18.0
-- Changed Pycharm to version 2021.2.2
+- Changed PyCharm to version 2021.2.2
 - Changed VS Code to version 1.60.2
 - Fixed AutoML environment (azureml_py36_automl)
 - Fixed Azure Storage Explorer stability
