@@ -15,13 +15,13 @@ ms.custom: references_regions, tool_generated
 
 # Featured models of Azure AI Foundry
 
-The Azure AI model catalog offers a large selection of models, from a wide range of providers. This article lists featured models available in AI Foundry. 
+The Azure AI model catalog offers a large selection of models, from a wide range of providers. This article lists featured models available in Azure AI Foundry. 
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
-You have various options for deploying these models. For some models, you need to host them on your infrastructure, as in the case of deployment via managed compute. For other models, you can host them on Microsoft's servers, as in the case of deployment via serverless APIs. See [Available models for supported deployment options](../how-to/model-catalog-overview.md#available-models-for-supported-deployment-options) for a list of models in the catalog that are available for deployment via managed compute or serverless API.
+You have various options for deploying models from the model catalog. For some models, you need to host them on your infrastructure, as in the case of deployment via managed compute. For others, you can host them on Microsoft's servers, as in the case of deployment via serverless APIs. See [Available models for supported deployment options](../how-to/model-catalog-overview.md#available-models-for-supported-deployment-options) for a list of models in the catalog that are available for deployment via managed compute or serverless API.
 
-When it comes to performing inferencing with the models, some of these models, such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank), require you to use custom APIs from the model providers. Others that belong to the following model types are supported for inferencing using the [Azure AI model inference](../model-inference/overview.md):
+To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others that belong to the following model types support inferencing using the [Azure AI model inference](../model-inference/overview.md):
 
 - [Chat completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context)
 - [Chat completion (with reasoning content)](../model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context)
@@ -39,8 +39,8 @@ The Jamba family models are AI21's production-grade Mamba-based large language m
 
 | Model  | Type | Capabilities | 
 | ------ | ---- | --- | 
-| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (262,144 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs | | 
-| [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (262,144 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
+| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (262,144 tokens) <br /> - **Output:**  text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs | | 
+| [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (262,144 tokens) <br /> - **Output:**  text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
 
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=ai21).
@@ -85,6 +85,30 @@ The following table lists the Cohere models that you can inference via the  Azur
 | [Cohere-command-r-plus](https://ai.azure.com/explore/models/Cohere-command-r-plus/version/1/registry/azureml-cohere) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Cohere-command-r](https://ai.azure.com/explore/models/Cohere-command-r/version/1/registry/azureml-cohere) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 
+#### Inference examples: Cohere command and embed
+
+For more examples of how to use Cohere models, see the following examples and tutorials:
+
+| Description                               | Language          | Sample                                                          |
+|-------------------------------------------|-------------------|-----------------------------------------------------------------|
+| Web requests                              | Bash              | [Command-R](https://aka.ms/samples/cohere-command-r/webrequests)  [Command-R+](https://aka.ms/samples/cohere-command-r-plus/webrequests) <br> [cohere-embed.ipynb](https://aka.ms/samples/embed-v3/webrequests) |
+| Azure AI Inference package for C#         | C#                | [Link](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Inference/samples)   |  
+| Azure AI Inference package for JavaScript | JavaScript        | [Link](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples)  |
+| Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)      |
+| OpenAI SDK (experimental)                 | Python            | [Link](https://aka.ms/samples/cohere-command/openaisdk)             |
+| LangChain                                 | Python            | [Link](https://aka.ms/samples/cohere/langchain)                     |
+| Cohere SDK                                | Python            | [Command](https://aka.ms/samples/cohere-python-sdk)  <br> [Embed](https://aka.ms/samples/cohere-embed/cohere-python-sdk)                  |
+| LiteLLM SDK                               | Python            | [Link](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/litellm.ipynb) |
+
+#### Retrieval Augmented Generation (RAG) and tool use samples
+
+| Description | Packages   | Sample          |
+|-------------|------------|-----------------|
+| Create a local Facebook AI similarity search (FAISS) vector index, using Cohere embeddings - Langchain | `langchain`, `langchain_cohere` | [cohere_faiss_langchain_embed.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/cohere_faiss_langchain_embed.ipynb) |
+| Use Cohere Command R/R+ to answer questions from data in local FAISS vector index - Langchain |`langchain`, `langchain_cohere` | [command_faiss_langchain.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/command_faiss_langchain.ipynb) |
+| Use Cohere Command R/R+ to answer questions from data in AI search vector index - Langchain | `langchain`, `langchain_cohere` | [cohere-aisearch-langchain-rag.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/cohere-aisearch-langchain-rag.ipynb) |
+| Use Cohere Command R/R+ to answer questions from data in AI search vector index - Cohere SDK | `cohere`, `azure_search_documents` | [cohere-aisearch-rag.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/cohere-aisearch-rag.ipynb) |
+| Command R+ tool/function calling, using LangChain | `cohere`, `langchain`, `langchain_cohere` | [command_tools-langchain.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/command_tools-langchain.ipynb) |
 
 
 ### Cohere rerank
