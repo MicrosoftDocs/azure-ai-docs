@@ -33,7 +33,7 @@ You can find more details about individual models by reviewing their model cards
 
 :::image type="content" source="../media/models-featured/models-catalog.gif" alt-text="An animation showing Azure AI studio model catalog section and the models available." lightbox="../media/models-featured/models-catalog.gif":::
 
-### AI21 Labs
+## AI21 Labs
 
 The Jamba family models are AI21's production-grade Mamba-based large language model (LLM) which uses AI21's hybrid Mamba-Transformer architecture. It's an instruction-tuned version of AI21's hybrid structured state space model (SSM) transformer Jamba model. The Jamba family models are built for reliable commercial use with respect to quality and performance.
 
@@ -45,7 +45,7 @@ The Jamba family models are AI21's production-grade Mamba-based large language m
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=ai21).
 
-### Azure OpenAI
+## Azure OpenAI
 
 Azure OpenAI Service offers a diverse set of models with different capabilities and price points. These models include:
 
@@ -128,7 +128,7 @@ The following table lists the Cohere rerank models. To perform inferencing with 
 
 See the [Cohere model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=cohere).
 
-### Core42
+## Core42
 
 Core42 includes autoregressive bi-lingual LLMs for Arabic & English with state-of-the-art capabilities in Arabic.
 
@@ -138,7 +138,7 @@ Core42 includes autoregressive bi-lingual LLMs for Arabic & English with state-o
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=core42).
 
-### DeepSeek
+## DeepSeek
 
 DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks, and DeepSeek-V3, a Mixture-of-Experts (MoE) language model. 
 
@@ -149,7 +149,7 @@ DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks 
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=deepseek).
 
-### Meta
+## Meta
 
 Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models. Meta models range is scale to include:
 
@@ -171,7 +171,7 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=meta).
 
-### Microsoft
+## Microsoft
 
 Phi is a family of lightweight, state-of-the-art open models. These models were trained with Phi-3 datasets. The datasets include both synthetic data and the filtered, publicly available websites data, with a focus on high quality and reasoning-dense properties. The models underwent a rigorous enhancement process, incorporating both supervised fine-tuning, proximal policy optimization, and direct preference optimization to ensure precise instruction adherence and robust safety measures.
 
@@ -193,7 +193,7 @@ Phi is a family of lightweight, state-of-the-art open models. These models were 
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
 
-### Mistral AI
+## Mistral AI
 
 Mistral AI offers two categories of models: premium models including Mistral Large and Mistral Small and open models including Mistral Nemo.
 
@@ -255,7 +255,7 @@ There are four pricing meters that determine the price you pay. These meters are
 
 See the [Nixtla model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=nixtla).
 
-### NTT Data
+## NTT Data
 
 **Tsuzumi** is an autoregressive language optimized transformer. The tuned versions use supervised fine-tuning (SFT). Tsuzumi is handles both Japanese and English language with high efficiency.
 
