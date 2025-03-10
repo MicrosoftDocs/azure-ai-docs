@@ -23,7 +23,7 @@ This article provides a summary of the latest releases and major documentation u
 
 ### Provisioned spillover (preview)
 
-Spillover manages traffic fluctuations on provisioned deployments by routing overages to a designated standard deployment. To learn more about how to maximize utilization for your provisioned deployments with spillover, see [Manage traffic with spillover for provisioned deployments (preview)](./how-to/spillover-traffic-management).
+Spillover manages traffic fluctuations on provisioned deployments by routing overages to a designated standard deployment. To learn more about how to maximize utilization for your provisioned deployments with spillover, see [Manage traffic with spillover for provisioned deployments (preview)](../how-to/spillover-traffic-management).
 
 ### Specify content filtering configurations 
 
