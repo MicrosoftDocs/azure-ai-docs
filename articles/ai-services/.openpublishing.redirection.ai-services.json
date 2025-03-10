@@ -980,7 +980,7 @@
     {
       "source_path_from_root": "/articles/ai-services/translator/reference/release-history.md",
       "redirect_url": "/azure/ai-services/translator/text-translation/reference/release-history",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/reference/rest-api-guide.md",
