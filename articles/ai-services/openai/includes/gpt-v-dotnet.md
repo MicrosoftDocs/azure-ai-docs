@@ -84,7 +84,7 @@ Passwordless authentication is more secure than key-based alternatives and is th
     // var credentials = new DefaultAzureCredential(); // Use this line for Passwordless auth
     var deploymentName = "gpt-4"; // Default name, update with your own if needed
     
-    var openAIClient = new AzureOpenAIClient(endpoint, credentials);
+    AzureOpenAIClient openAIClient = new AzureOpenAIClient(endpoint, credentials);
     var chatClient = openAIClient.GetChatClient(deploymentName);
     
     var imageUri = "YOUR_IMAGE_URL";

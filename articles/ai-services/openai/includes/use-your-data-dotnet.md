@@ -10,8 +10,6 @@ ms.date: 01/09/2025
 
 [!INCLUDE [Set up required variables](./use-your-data-common-variables.md)]
 
-[!INCLUDE [Create a new .NET application](./dotnet-new-application.md)]
-
 From the project directory, open the *Program.cs* file and replace its contents with the following code:
 
 ```csharp
@@ -29,10 +27,10 @@ string searchEndpoint = GetEnvironmentVariable("AZURE_AI_SEARCH_ENDPOINT");
 string searchKey = GetEnvironmentVariable("AZURE_AI_SEARCH_API_KEY");
 string searchIndex = GetEnvironmentVariable("AZURE_AI_SEARCH_INDEX");
 
-AzureOpenAIClient azureClient = new(
+AzureOpenAIClient openAIClient = new(
 			new Uri(azureOpenAIEndpoint),
 			new ApiKeyCredential(azureOpenAIKey));
-ChatClient chatClient = azureClient.GetChatClient(deploymentName);
+ChatClient chatClient = openAIClient.GetChatClient(deploymentName);
 
 // Extension methods to use data sources with options are subject to SDK surface changes. Suppress the
 // warning to acknowledge and this and use the subject-to-change AddDataSource method.

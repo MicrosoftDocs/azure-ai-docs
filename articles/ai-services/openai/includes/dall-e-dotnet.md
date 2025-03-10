@@ -74,12 +74,12 @@ using static System.Environment;
 string endpoint = GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
 string key = GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
 
-AzureOpenAIClient azureClient = new(
+AzureOpenAIClient openAIClient = new(
     new Uri(endpoint),
     new AzureKeyCredential(key));
 
 // This must match the custom deployment name you chose for your model
-ImageClient chatClient = azureClient.GetImageClient("dalle-3");
+ImageClient chatClient = openAIClient.GetImageClient("dalle-3");
 
 var imageGeneration = await chatClient.GenerateImageAsync(
         "a happy monkey sitting in a tree, in watercolor",
