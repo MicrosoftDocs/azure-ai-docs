@@ -196,7 +196,8 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 #### Inference examples: Meta Llama
 
-For more examples of how to use Meta Llama models, see the following examples:    
+For more examples of how to use Meta Llama models, see the following examples:  
+  
 | Description                               | Language          | Sample                                                             |    
 |-------------------------------------------|-------------------|------------------------------------------------------------------- |    
 | CURL request                              | Bash              | [Link](https://aka.ms/meta-llama-3.1-405B-instruct-webrequests)    |    
@@ -233,6 +234,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 #### Inference examples: Microsoft Phi
 
 For more examples of how to use Phi-3 family models, see the following examples:    
+
 | Description                               | Language          | Sample                                                          |    
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|    
 | Azure AI Inference package for C#         | C#                | [Link](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Inference/samples)                  |    
@@ -330,5 +332,8 @@ See the [Nixtla model collection in Azure AI Foundry portal](https://ai.azure.co
 
 ## Related content
 
+- [Deploy models as serverless APIs](../how-to/deploy-models-serverless.md)
+- [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md)
 - [Region availability for models in serverless API endpoints](../how-to/deploy-models-serverless-availability.md)
+- [Content safety for models curated by Azure AI in the model catalog](model-catalog-content-safety.md)
 
