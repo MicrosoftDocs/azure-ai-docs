@@ -31,7 +31,7 @@ Although you can call the Management REST API directly, it's easier to use the A
 
 + You should have a minimum of Contributor permissions on both Azure AI Search and SQL Managed Instance.
 
-+ Azure SQL Managed Instance connection string. Managed identity is not currently supported with shared private link. Your connection string must include a user name and password.
++ Azure SQL Managed Instance connection string. Managed identity isn't currently supported with shared private link. Your connection string must include a user name and password.
 
 > [!NOTE]
 > Shared private links are billable through [Azure Private Link pricing](https://azure.microsoft.com/pricing/details/private-link/) and charges are invoiced based on usage.
@@ -59,7 +59,7 @@ For more information about connection properties, see [Create an Azure SQL Manag
            "privateLinkResourceId": "/subscriptions/{{target-resource-subscription-ID}}/resourceGroups/{{target-resource-rg}}/providers/Microsoft.Sql/managedInstances/{{target-resource-name}}",
            "dnsZonePrefix": "a1b22c333d44",
            "groupId": "managedInstance",
-           "requestMessage": "please approve",
+           "requestMessage": "please approve"
        }
    }
    ```
@@ -96,15 +96,17 @@ For more information about connection properties, see [Create an Azure SQL Manag
 
    Provide a path to the *create-pe.json* file if you've navigated away from the file location. You can type `dir` at the command line to confirm the file is in the current directory.
 
-1. Press Enter to run the command.
+1. Run the command.
 
 When you complete these steps, you should have a shared private link that's provisioned in a pending state. **It takes several minutes to create the link**. Once it's created, the resource owner needs to approve the request before it's operational.
+
+You can check the status of the shared private link in the Azure portal. On your search service page, under **Settings** > **Properties**, scroll down to find the shared private link resources and view the JSON value. When the provisioning state changes from *pending* to *succeeded*, you can continue on to the next step.
 
 ## 4 - Approve the private endpoint connection
 
 On the SQL Managed Instance side, the resource owner must approve the private connection request you created. 
 
-1. In the Azure portal, open the **Private endpoint connections** tab of the managed instance.
+1. In the Azure portal, open the **Security** > **Private endpoint connections** of the managed instance.
 
 1. Find the section that lists the private endpoint connections.
 
@@ -124,9 +126,10 @@ You can now configure an indexer and its data source to use an outbound private 
 
 This article assumes a [REST client](search-get-started-rest.md) and uses the REST APIs.
 
+
 1. [Create the data source definition](search-how-to-index-sql-database.md) as you would normally for Azure SQL. By default, a managed instance listens on port 3342, but on a virtual network it listens on 1433.
 
-    Provide the connection string that you copied earlier with an Initial Catalog specified.
+    Provide the connection string that you copied earlier with an Initial Catalog set to your database name.
 
     ```http
     POST https://myservice.search.windows.net/datasources?api-version=2024-07-01
@@ -151,7 +154,7 @@ This article assumes a [REST client](search-get-started-rest.md) and uses the RE
 
 1. [Create the indexer definition](search-howto-create-indexers.md), setting the indexer `executionEnvironment` to "private".
 
-   [Indexer execution](search-howto-run-reset-indexers.md#indexer-execution-environment) occurs in either a private execution environment that's specific to your search service, or a multi-tenant environment hosted by Microsoft and used to offload expensive skillset processing for multiple customers. **When connecting over a private endpoint, indexer execution must be private.**
+   [Indexer execution](search-howto-run-reset-indexers.md#indexer-execution-environment) occurs in either a private execution environment that's specific to your search service, or a multitenant environment hosted by Microsoft and used to offload expensive skillset processing for multiple customers. **When connecting over a private endpoint, indexer execution must be private.**
 
    ```http
     POST https://myservice.search.windows.net/indexers?api-version=2024-07-01

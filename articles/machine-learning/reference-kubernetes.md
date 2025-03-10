@@ -10,7 +10,7 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom: devx-track-arm-template
 ms.topic: reference
-ms.date: 06/06/2022
+ms.date: 02/10/2025
 ---
 
 # Reference for configuring Kubernetes cluster for Azure Machine Learning
@@ -397,6 +397,8 @@ More information about how to use ARM template can be found from [ARM template d
 
 | Date | Version |Version description |
 |---|---|---|
+|Jan 28, 2025 | 1.1.71|  Fix vulnerable image. |
+|Jan 20, 2025 | 1.1.70|  Fix compatible issue with AKS autoscale for AKS 1.30. |
 |Sep 26, 2024 | 1.1.64|  Fixed vulnerabilities. |
 |Nov 21, 2023 | 1.1.39|  Fixed vulnerabilities. Refined error message. Increased stability for relayserver API. |
 |Nov 1, 2023 | 1.1.37|  Update data plane envoy version. |

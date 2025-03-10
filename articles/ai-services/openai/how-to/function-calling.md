@@ -7,7 +7,7 @@ ms.author: mbullwin #delegenz
 ms.service: azure-ai-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 01/17/2025
+ms.date: 02/28/2025
 manager: nitinme
 ---
 
@@ -39,20 +39,22 @@ At a high level you can break down working with functions into three steps:
 * `gpt-4o` (`2024-08-06`)
 * `gpt-4o` (`2024-11-20`)
 * `gpt-4o-mini` (`2024-07-18`)
+* `gpt-4.5-preview` (`2025-02-27`)
 
 Support for parallel function was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 
 ### Basic function calling with tools
 
 * All the models that support parallel function calling
+* `o3-mini` (`2025-01-31`)
 * `o1` (`2024-12-17`)
 * `gpt-4` (`0613`)
 * `gpt-4-32k` (`0613`)
 * `gpt-35-turbo-16k` (`0613`)
 * `gpt-35-turbo` (`0613`)
 
-> [!IMPORTANT]
-> There is a known issue with the `o1` model and the `tool_choice` parameter. Currently function calls that include the optional `tool_choice` parameter will fail. This page will be updated once the issue is resolved. For more information on what parameters are supported with the o1-series models see, the [reasoning models guide](./reasoning.md).
+> [!NOTE]
+> The `tool_choice` parameter is now supported with `o3-mini` and `o1`. For more information on what parameters are supported with the o-series models see, the [reasoning models guide](./reasoning.md).
 
 ## Single tool/function calling example
 
@@ -271,6 +273,7 @@ TIMEZONE_DATA = {
 
 def get_current_weather(location, unit=None):
     """Get the current weather for a given location"""
+    location_lower = location.lower()
     print(f"get_current_weather called with location: {location}, unit: {unit}")  
     
     for key in WEATHER_DATA:

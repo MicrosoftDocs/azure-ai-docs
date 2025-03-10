@@ -1,0 +1,35 @@
+{ 
+    "$schema": "https://whatsnewapi.azurewebsites.net/schema",
+    "docSetProductName": "Azure AI Services",
+    "rootDirectory": "articles/",
+    "docLinkSettings": {
+        "linkFormat": "relative",
+        "relativeLinkPrefix": "../"
+    },
+    "navigationOptions": {
+        "maximumNumberOfArticles": 5,
+        "tocParentNode": "Latest documentation updates",
+        "repoTocFolder": "articles/ai-services",
+        "indexParentNode": "Latest documentation updates",
+        "repoIndexFolder": "articles/ai-services"
+    },
+    "areas": [
+        {
+            "names": [ "ai-services" ],
+            "heading": "Azure AI Services"
+        },
+        {
+            "names": [ "ai-studio" ],
+            "heading": "Azure AI Foundry"
+        },
+        {
+            "names": [ "machine-learning" ],
+            "heading": "Azure Machine Learning"
+        },
+        {
+            "names": [ "search" ],
+            "heading": "Azure AI Search"
+    
+        }
+    ]
+}

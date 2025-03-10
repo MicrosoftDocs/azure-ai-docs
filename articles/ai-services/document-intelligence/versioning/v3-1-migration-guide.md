@@ -1,34 +1,30 @@
 ---
 title: "How-to: Migrate Document Intelligence applications to v3.1."
 titleSuffix: Azure AI services
-description: In this how-to guide, learn the differences between Document Intelligence API v3.0 and v3.1 and how to move to the newer version of the API.
+description: In this how-to guide, learn the differences between Document Intelligence API versions and how to move to the newer version of the API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 02/07/2025
 ms.author: lajanuar
-monikerRange: '<=doc-intel-3.1.0'
+monikerRange: '<=doc-intel-4.0.0'
 ---
 
 <!-- markdownlint-disable MD004 -->
-# Document Intelligence v3.1 migration
-
-::: moniker range="<=doc-intel-3.1.0"
-[!INCLUDE [applies to v3.1, v3.0, and v2.1](../includes/applies-to-v40-v31-v30-v21.md)]
-::: moniker-end
+# Document Intelligence v4.0 migration
 
 > [!IMPORTANT]
 >
-> Document Intelligence REST API v3.1 introduces breaking changes in the REST API request and analyze response JSON.
+> Document Intelligence REST API v4.0 introduces breaking changes in the REST API request and analyze response JSON.
 
-## Migrating from v3.1 API version
+## Migrating from v3.1 to v4.0
 
-Preview APIs are periodically deprecated. If you're using a preview API version, update your application to target the GA API version. To migrate from a preview API version to the `2023-11-30 (GA)` API version using the SDK, update to the [current version of the language specific SDK](sdk-overview-v3-1.md).
+Preview APIs are periodically deprecated. If you're using a preview API version, update your application to target the GA API version. To migrate from a preview API version to the `2024-11-30 (GA)` API version using the SDK, update to the [current version of the language specific SDK](sdk-overview-v4-0.md).
 
 ### Analysis features
 
-| Model ID | Text Extraction | Paragraphs | Paragraph Roles | Selection Marks | Tables | Key-Value Pairs | Languages | Barcodes | Document Analysis | Formulas* | StyleFont* | OCR High Resolution* |
+| Model ID | Text Extraction | Paragraphs | Paragraph Roles | Selection Marks | Tables | Key-Value Pairs | Languages | Barcodes | Document Analysis | Formulas* | StyleFont* | `OCR` High Resolution* |
 | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | prebuilt-read | ✓ | ✓ |  |  |  |  | O | O |  | O | O | O |
 | prebuilt-layout | ✓ | ✓ | ✓ | ✓ | ✓ |  | O | O |  | O | O | O |
@@ -60,7 +56,7 @@ Compared with v3.0, Document Intelligence v3.1 introduces several new features a
 * New document type support in [ID document](../prebuilt/id-document.md) model.
 * New prebuilt [Health insurance card](../prebuilt/health-insurance-card.md) model.
 * Office/HTML files are supported in prebuilt-read model, extracting words and paragraphs without bounding boxes. Embedded images are no longer supported. If add-on features are requested for Office/HTML files, an empty array is returned without errors.
-* Model expiration for custom extraction and classification models - Our new custom models build upon on a large base model that we update periodically for quality improvement. An expiration date is introduced to all custom models to enable the retirement of the corresponding base models.  Once a custom model expires, you need to retrain the model using the latest API version (base model).
+* Model expiration for custom extraction and classification models - Our new custom models build upon on a large base model that we update periodically for quality improvement. An expiration date is introduced to all custom models to enable the retirement of the corresponding base models. Once a custom model expires, you need to retrain the model using the latest API version (base model).
 
 ```http
 GET /documentModels/{customModelId}?api-version={apiVersion}
@@ -87,8 +83,8 @@ GET /documentModels/{customModelId}?api-version={apiVersion}
 }
 ```
 
-* An optional `features` query parameter to Analyze operations can optionally enable specific features.  Some premium features can incur added billing. Refer to [Analyze feature list](#analysis-features) for details.
-* Extend extracted currency field objects to output a normalized currency code field when possible.  Currently, current fields can return amount (ex. 123.45) and currencySymbol (ex. $).  This feature maps the currency symbol to a canonical ISO 4217 code (ex. USD).  The model can optionally utilize the global document content to disambiguate or infer the currency code.
+* An optional `features` query parameter to Analyze operations can optionally enable specific features. Some premium features can incur added billing. Refer to [Analyze feature list](#analysis-features) for details.
+* Extend extracted currency field objects to output a normalized currency code field when possible. Currently, current fields can return amount (ex. 123.45) and currencySymbol (ex. $). This feature maps the currency symbol to a canonical ISO 4217 code (ex. USD). The model can optionally utilize the global document content to disambiguate or infer the currency code.
 
 ```http
 {
@@ -140,8 +136,8 @@ https://{your-form-recognizer-endpoint}/formrecognizer/documentModels/{modelId}/
 ### Analyze operation
 
 * The request payload and call pattern remain unchanged.
-* The Analyze operation specifies the input document and content-specific configurations, it returns the analyze result URL via the Operation-Location header in the response.
-* Poll this Analyze Result URL, via a GET request to check the status of the analyze operation (minimum recommended interval between requests is 1 second).
+* The `Analyze` operation specifies the input document and content-specific configurations, it returns the analyzed result URL via the Operation-Location header in the response.
+* Poll the `Analyze Result` URL, via a GET request to check the status of the `Analyze` operation (minimum recommended interval between requests is 1 second).
 * Upon success, status is set to succeeded and [analyzeResult](#changes-to-analyze-result) is returned in the response body. If errors are encountered, status sets to `failed`, and an error is returned.
 
 | Model | v2.0 | v2.1 | v3.1 |
@@ -183,7 +179,7 @@ Base 64 encoding is also supported in Document Intelligence v3.0:
 Parameters that continue to be supported:
 
 * `pages` : Analyze only a specific subset of pages in the document. List of page numbers indexed from the number `1` to analyze. Ex. "1-3,5,7-9"
-* `locale` : Locale hint for text recognition and document analysis. Value can contain only the language code (ex. `en`, `fr`) or BCP 47 language tag (ex. "en-US").
+* `locale` : Locale hint for text recognition and document analysis. Value can contain only the language code (ex. `en`, `fr`) or `BCP` 47 language tag (ex. "en-US").
 
 Parameters no longer supported:
 
@@ -193,7 +189,7 @@ The new response format is more compact and the full output is always returned.
 
 ## Changes to analyze result
 
-Analyze response is refactored to the following top-level results to support multi-page elements.
+Analyze response is refactored to the following top-level results and supports multi-page elements.
 
 * `pages`
 * `tables`
@@ -204,7 +200,7 @@ Analyze response is refactored to the following top-level results to support mul
 
 > [!NOTE]
 >
-> The analyzeResult response changes includes a number of changes like moving up from a property of pages to a top lever property within analyzeResult.
+> The `analyzeResult` response changes include changes such as moving up from a property of pages to a top lever property within `analyzeResult`.
 
 ```json
 
@@ -373,7 +369,7 @@ POST https://{your-form-recognizer-endpoint}/formrecognizer/documentModels:compo
 The call pattern for copy model remains unchanged:
 
 * Authorize the copy operation with the target resource calling ```authorizeCopy```. Now a POST request.
-* Submit the authorization to the source resource to copy the model calling ```copyTo```
+* Submit the authorization to the source resource and copy the model calling ```copyTo```
 * Poll the returned operation to validate the operation completed successfully
 
 The only changes to the copy model function are:
@@ -415,9 +411,9 @@ List models are extended to now return prebuilt and custom models. All prebuilt 
 GET https://{your-form-recognizer-endpoint}/formrecognizer/documentModels?api-version=2022-08-31
 ```
 
-## Change to get model
+## Change to get model operation
 
-As get model now includes prebuilt models, the get operation returns a ```docTypes``` dictionary. Each document type description includes name, optional description, field schema, and optional field confidence. The field schema describes the list of fields potentially returned with the document type.
+As `Get Model` now includes prebuilt models, the `Get` operation returns a ```docTypes``` dictionary. Each document type description includes name, optional description, field schema, and optional field confidence. The field schema describes the list of fields potentially returned with the document type.
 
 ```json
 GET https://{your-form-recognizer-endpoint}/formrecognizer/documentModels/{modelId}?api-version=2022-08-31
@@ -447,3 +443,4 @@ GET https://{your-form-recognizer-endpoint}/formrecognizer/info? api-version=202
 * [Review the new REST API](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)
 * [What is Document Intelligence?](../overview.md)
 * [Document Intelligence quickstart](../quickstarts/get-started-sdks-rest-api.md)
+0

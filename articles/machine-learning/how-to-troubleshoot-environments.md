@@ -121,7 +121,7 @@ System vulnerabilities in an environment are usually introduced from the base im
 - Microsoft Artifact Registry (MAR) aka Microsoft Container Registry (mcr.microsoft.com). 
     - Images can be listed from MAR homepage, calling _catalog API, or [/tags/list](https://mcr.microsoft.com/v2/azureml/openmpi4.1.0-ubuntu20.04/tags/list)_
     - Source and release notes for training base images from AzureML can be found in [Azure/AzureML-Containers](https://github.com/Azure/AzureML-Containers)
-- Nvidia (nvcr.io, or [nvidia's Profile](https://hub.docker.com/u/nvidia/#!))
+- NVIDIA (nvcr.io, or [nvidia's Profile](https://hub.docker.com/u/nvidia/#!))
 
 If the latest version of your base image does not resolve your vulnerabilities, base image vulnerabilities can be addressed by installing versions recommended by a vulnerability scan:
 

@@ -1,6 +1,6 @@
 ---
 manager: nitinme
-author: mrbullwinkle
+author: santiagxf
 ms.author: fasantia 
 ms.service: azure-ai-model-inference
 ms.date: 1/21/2025
@@ -30,17 +30,9 @@ The files for this example are in:
 cd azureai-model-inference-bicep/infra
 ```
 
-## Understand the resources
+## Create the resources
 
-The tutorial helps you create:
-
-> [!div class="checklist"]
-> * An Azure AI Services resource.
-> * A model deployment in the Global standard SKU for each of the models supporting pay-as-you-go.
-> * (Optionally) An Azure AI project and hub.
-> * (Optionally) A connection between the hub and the models in Azure AI Services.
-
-You are using the following assets to create those resources:
+Follow these steps:
 
 1. Use the template `modules/ai-services-template.bicep` to describe your Azure AI Services resource:
 
@@ -54,7 +46,7 @@ You are using the following assets to create those resources:
 
     :::code language="bicep" source="~/azureai-model-inference-bicep/infra/modules/ai-services-deployment-template.bicep":::
 
-3. For convenience, we define the model we want to have available in the service using a JSON file. The file [__infra/models.json__](https://github.com/Azure-Samples/azureai-model-inference-bicep/blob/main/infra/models.json) contains a list of JSON object with keys `name`,`version`, `provider`, and `sku`, which defines the models the deployment will provision. Since the models support pay-as-you-go, adding model deployments doesn't incur on extra cost. Modify the file removing/adding the model entries you want to have available. The following example **shows only the first 7 lines** of the JSON file:
+3. For convenience, we define the model we want to have available in the service using a JSON file. The file [__infra/models.json__](https://github.com/Azure-Samples/azureai-model-inference-bicep/blob/main/infra/models.json) contains a list of JSON object with keys `name`,`version`, `provider`, and `sku`, which defines the models the deployment will provision. Since the models support pay-as-you-go, adding model deployments doesn't incur on extra cost. Modify the file by **removing/adding the model entries you want to have available**. The following example **shows only the first 7 lines** of the JSON file:
 
     __models.json__
 
@@ -69,10 +61,6 @@ You are using the following assets to create those resources:
     __modules/ai-services-connection-template.bicep__
 
     :::code language="bicep" source="~/azureai-model-inference-bicep/infra/modules/ai-services-connection-template.bicep":::
-
-## Create the resources
-
-In your console, follow these steps:
 
 1. Define the main deployment:
 
@@ -119,3 +107,8 @@ In your console, follow these steps:
     ```
 
 7. The template outputs the Azure AI model inference endpoint that you can use to consume any of the model deployments you have created.
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Use the inference endpoint](../../how-to/inference.md)

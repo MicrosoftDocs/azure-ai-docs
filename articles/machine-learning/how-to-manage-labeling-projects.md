@@ -8,7 +8,7 @@ ms.reviewer: vkann
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.date: 02/01/2024
+ms.date: 03/06/2025
 ms.custom: data4ml
 monikerRange: 'azureml-api-1 || azureml-api-2'
 # customer intent: As a project manager, I want to monitor and administer a labeling project in Azure Machine Learning.
@@ -80,7 +80,7 @@ Additionally, when ML-assisted labeling is enabled, you can scroll down to see t
 On the **Data** tab, preview the dataset and review labeled data.
 
 > [!TIP]
-> Before you review, coordinate with any other possible reviewers.  Otherwise, you might both be trying to approve the same label at the same time, which will keep one of you from updating it.
+> Before you review, coordinate with any other possible reviewers. Otherwise, you might both be trying to approve the same label at the same time, which will keep one of you from updating it.
 
 Scroll through the labeled data to see the labels. If you see data that's incorrectly labeled, select it and choose **Reject** to remove the labels and return the data to the unlabeled queue.
 
@@ -147,11 +147,11 @@ View and change details of your project on the **Details** tab. On this tab, you
 
 ### Projects created in Azure AI services
 
-If your labeling project was created from [Vision Studio](/azure/ai-services/computer-vision/how-to/model-customization) or [Language Studio](/azure/ai-services/language-service/custom/azure-machine-learning-labeling), you'll see an extra tab on the **Details** page. The tab allows you to switch between labeling in Azure Machine Learning and labeling in Vision Studio or Language Studio.
+If your labeling project was created from [Vision Studio](/azure/ai-services/computer-vision/how-to/model-customization) or [Language Studio](/azure/ai-services/language-service/custom/azure-machine-learning-labeling), you see an extra tab on the **Details** page. The tab allows you to switch between labeling in Azure Machine Learning and labeling in Vision Studio or Language Studio.
 
 #### [Image projects](#tab/image)
 
-If your project was created from [Vision Studio](/azure/ai-services/computer-vision/how-to/model-customization), you'll also see a **Vision Studio** tab. Select **Go to Vision Studio** to return to Vision Studio. Once you return to Vision Studio, you'll be able to import your labeled data.
+If your project was created from [Vision Studio](/azure/ai-services/computer-vision/how-to/model-customization), you also see a **Vision Studio** tab. Select **Go to Vision Studio** to return to Vision Studio. Once you return to Vision Studio, you'll be able to import your labeled data.
 
 #### [Text projects](#tab/text)
 

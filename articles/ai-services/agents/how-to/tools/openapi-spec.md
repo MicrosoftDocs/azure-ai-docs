@@ -27,15 +27,22 @@ automated, and scalable API integrations that enhance the capabilities and effic
 describing HTTP APIs. This allows people to understand how an API works, how a sequence of APIs 
 work together, generate client code, create tests, apply design standards, and more. Currently, we support 3 authentication types with the OpenAPI 3.0 specified tools: `anonymous`, `API key`, `managed identity`.
 
+### Usage support
+
+|Azure AI foundry support  | Python SDK |	C# SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|
+|      | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
 ## Prerequisites
 1. Ensure you've completed the prerequisites and setup steps in the [quickstart](../../quickstart.md).
 
 1. Check the OpenAPI spec for the following requirements:
+    1. Although not required by the OpenAPI spec, `operationId` is required for each function to be used with the OpenAPI tool.
     1. `operationId` should only contain letters, `-` and `_`. You can modify it to meet the requirement. We recommend using descriptive name to help models efficiently decide which function to use.
 
 ## Authenticating with API Key
 
-1. Verify that the OpenAPI spec supports API keys: it has `securitySchemes` section and has one scheme of type `apiKey". An example would be:
+1. Verify that the OpenAPI spec supports API keys: it has `securitySchemes` section and has one scheme of type `apiKey`. For example:
    ```json
        "securitySchemes": {
           "apiKeyHeader": {
@@ -56,7 +63,7 @@ work together, generate client code, create tests, apply design standards, and m
 
     1. Select **+ new connection** in the settings page. 
         >[!NOTE]
-        > If you re-generate the API key at a later date, you need to update the connection with the new key.
+        > If you regenerate the API key at a later date, you need to update the connection with the new key.
         
        :::image type="content" source="../../media/tools/bing/project-connections.png" alt-text="A screenshot of the connections screen for the AI project." lightbox="../../media/tools/bing/project-connections.png":::
 
@@ -82,7 +89,7 @@ work together, generate client code, create tests, apply design standards, and m
 ::: zone-end
 
 ::: zone pivot="code-example"
-## Step 1: Create an agent with OpenAPI Spec tool
+## Step 1: Create a project client
 Create a client object, which will contain the connection string for connecting to your AI project and other resources.
 # [Python](#tab/python)
 
@@ -134,11 +141,13 @@ public partial class Sample_Agent_OpenAPI : SamplesBase<AIProjectsTestEnvironmen
         AgentsClient client = new(connectionString, new DefaultAzureCredential());
         var file_path = GetFile();
 ```
+# [REST API](#tab/rest)
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`.
 
 ---
 
-## Step 2: Enable the OpenAPI Spec tool
-You might want to store the OpenAPI specification in another file and import the content to initialize the tool. Please note the sample code is using `anonymous` as authentication type.
+## Step 2: Create the OpenAPI Spec tool definition
+You might want to store the OpenAPI specification in another file and import the content to initialize the tool. Note the sample code is using `anonymous` as authentication type.
 
 # [Python](#tab/python)
 
@@ -176,10 +185,12 @@ An example of the audience would be ```https://cognitiveservices.azure.com/```.
         auth: oaiAuth
     );
 ```
+# [REST API](#tab/rest)
+We will create an agent with the tool configuration in the next section.
 
 ---
 
-## Step 3: Create a thread
+## Step 3: Create an agent and a thread
 
 # [Python](#tab/python)
 
@@ -187,7 +198,7 @@ An example of the audience would be ```https://cognitiveservices.azure.com/```.
 # Create agent with OpenAPI tool and process assistant run
 with project_client:
     agent = project_client.agents.create_agent(
-        model="gpt-4o-mini",
+        model="gpt-4o",
         name="my-assistant",
         instructions="You are a helpful assistant",
         tools=openapi.definitions
@@ -201,7 +212,7 @@ with project_client:
 # [C#](#tab/csharp)
 ```csharp
 Response<Agent> agentResponse = await client.CreateAgentAsync(
-            model: "gpt-4",
+            model: "gpt-4o",
             name: "azure-function-agent-foo",
             instructions: "You are a helpful assistant.",
             tools: new List<ToolDefinition> { openapiTool }
@@ -210,6 +221,87 @@ Agent agent = agentResponse.Value;
 #endregion
 Response<AgentThread> threadResponse = await client.CreateThreadAsync();
 AgentThread thread = threadResponse.Value;
+```
+
+# [REST API](#tab/rest)
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "instructions": "You are a weather bot. Use the provided functions to answer questions about the weather.",
+    "model": "gpt-4o",
+    "tools": [{
+        "type": "openapi",
+        "openapi": {
+          "name": "weatherapp",
+          "description": "Tool to get weather data",
+          "auth": {
+            "type": "anonymous"
+          },
+          "spec": {
+            "openapi": "3.1.0",
+            "info": {
+                "title": "get weather data",
+                "description": "Retrieves current weather data for a location.",
+                "version": "v1.0.0"
+            },
+            "servers": [{
+                "url": "https://wttr.in"
+            }],
+            "auth": [],
+            "paths": {
+                "/{location}": {
+                    "get": {
+                        "description": "Get weather information for a specific location",
+                        "operationId": "GetCurrentWeather",
+                        "parameters": [
+                        {
+                            "name": "location",
+                            "in": "path",
+                            "description": "City or location to retrieve the weather for",
+                            "required": true,
+                            "schema": {
+                            "type": "string"
+                            }
+                        },
+                        {
+                            "name": "format",
+                            "in": "query",
+                            "description": "Format in which to return data. Always use 3.",
+                            "required": true,
+                            "schema": {
+                            "type": "integer",
+                            "default": 3
+                            }
+                        }
+                        ],
+                        "responses": {
+                        "200": {
+                            "description": "Successful response",
+                            "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "string"
+                                }
+                            }
+                            }
+                        },
+                        "404": {
+                            "description": "Location not found"
+                        }
+                        },
+                        "deprecated": false
+                    }
+                }
+            },
+            "components": {
+                "schemes": { }
+            }
+            }
+        }
+    }]
+    }'
 ```
 
 ---
@@ -287,6 +379,52 @@ Create a run and observe that the model uses the OpenAPI Spec tool to provide a 
                 Console.WriteLine();
             }
         }
+```
+# [REST API](#tab/rest)
+### Create a thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d ''
+```
+
+### Add a user question to the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+      "role": "user",
+      "content": "What is the weather in Seattle?"
+    }'
+```
+
+### Run the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistant_id": "asst_abc123",
+  }'
+```
+
+### Retrieve the status of the run
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+```
+
+### Retrieve the agent response
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
 ---

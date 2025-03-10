@@ -16,8 +16,6 @@ ms.date: 01/15/2025
 * Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio.md) assigned at the appropriate level.
 * Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
 
-[!INCLUDE [rbac-roles](rbac-roles.md)]
-
 [!INCLUDE [bicep-setup](bicep-setup.md)]
 
 ## Configure and run an agent
@@ -77,7 +75,7 @@ public class Sample_Agent
 {
     static async Task Main()
     {
-        var connectionString = Environment.GetEnvironmentVariable("AZURE_AI_CONNECTION_STRING");
+        var connectionString = Environment.GetEnvironmentVariable("PROJECT_CONNECTION_STRING");
 
         AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredential());
 

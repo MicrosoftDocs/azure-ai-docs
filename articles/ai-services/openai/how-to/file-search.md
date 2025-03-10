@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 06/03/2024
+ms.date: 01/28/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -30,7 +30,7 @@ File search is available in [regions](../concepts/models.md#assistants-preview) 
 
 ### API Version
 
-* 2024-05-01-preview
+* Starting in 2024-05-01-preview
 
 ### Supported file types
 

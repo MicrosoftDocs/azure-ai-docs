@@ -2,28 +2,28 @@
 title: Authentication in Azure AI services
 titleSuffix: Azure AI services
 description: "There are three ways to authenticate a request to an Azure AI services resource: a resource key, a bearer token, or a multi-service subscription. In this article, you'll learn about each method, and how to make a request."
-author: mgreenegit
+author: eric-urban
 manager: nitinme
 ms.service: azure-ai-services
 ms.custom: devx-track-azurepowershell
 ms.topic: how-to
-ms.date: 8/1/2024
-ms.author: migreene
+ms.date: 2/7/2025
+ms.author: eur
 ---
 
 # Authenticate requests to Azure AI services
 
 Each request to an Azure AI service must include an authentication header. This header passes along a resource key or authentication token, which is used to validate your subscription for a service or group of services. In this article, you'll learn about three ways to authenticate a request and the requirements for each.
 
-* Authenticate with a [single-service](#authenticate-with-a-single-service-resource-key) or [multi-service](#authenticate-with-a-multi-service-resource-key) resource key
-* Authenticate with a [token](#authenticate-with-an-access-token)
-* Authenticate with [Microsoft Entra ID](#authenticate-with-azure-active-directory)
+* Authenticate with a [single-service](#authenticate-with-a-single-service-resource-key) or [multi-service](#authenticate-with-a-multi-service-resource-key) resource key.
+* Authenticate with a [token](#authenticate-with-an-access-token).
+* Authenticate with [Microsoft Entra ID](#authenticate-with-azure-active-directory).
 
 ## Prerequisites
 
 Before you make a request, you need an Azure account and an Azure AI services subscription. If you already have an account, go ahead and skip to the next section. If you don't have an account, we have a guide to get you set up in minutes: [Create an Azure AI services resource](multi-service-resource.md?pivots=azportal).
 
-Go to your resource in the Azure portal. The **Keys & Endpoint** section can be found in the **Resource Management** section. Copy your endpoint and access key as you'll need both for authenticating your API calls. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
+Go to your resource in the Azure portal. The **Keys & Endpoint** section can be found in the **Resource Management** section. Copy your endpoint and access key as you'll need both for authenticating your API calls. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption. The length of the key can vary depending on the API version used to create or regenerate the key.
 
 ## Authentication headers
 
@@ -32,7 +32,7 @@ Let's quickly review the authentication headers available for use with Azure AI 
 | Header | Description |
 |--------|-------------|
 | Ocp-Apim-Subscription-Key | Use this header to authenticate with a resource key for a specific service or a multi-service resource key. |
-| Ocp-Apim-Subscription-Region | This header is only required when using a multi-service resource key with the [Azure AI Translator service](./Translator/reference/v3-0-reference.md). Use this header to specify the resource region. |
+| Ocp-Apim-Subscription-Region | This header is only required when using a multi-service resource key with the [Azure AI Translator service](translator/text-translation/reference/v3/reference.md). Use this header to specify the resource region. |
 | Authorization | Use this header if you are using an access token. The steps to perform a token exchange are detailed in the following sections. The value provided follows this format: `Bearer <TOKEN>`. |
 
 ## Authenticate with a single-service resource key
@@ -106,7 +106,7 @@ Some Azure AI services accept, and in some cases require, an access token. Curre
 * Speech Services: Speech to text API
 * Speech Services: Text to speech API
 
->[!WARNING]
+> [!WARNING]
 > The services that support access tokens may change over time, please check the API reference for a service before using this authentication method.
 
 Both single service and multi-service resource keys can be exchanged for authentication tokens. Authentication tokens are valid for 10 minutes. They're stored in JSON Web Token (JWT) format and can be queried programmatically using the [JWT libraries](https://jwt.io/libraries). 
@@ -176,13 +176,13 @@ The first step is to create a custom subdomain. If you want to use an existing A
    Set-AzContext -SubscriptionName <SubscriptionName>
    ```
 
-2. Next, [create an Azure AI services resource](/powershell/module/az.cognitiveservices/new-azcognitiveservicesaccount) with a custom subdomain. The subdomain name needs to be globally unique and cannot include special characters, such as: ".", "!", ",".
+1. Next, [create an Azure AI services resource](/powershell/module/az.cognitiveservices/new-azcognitiveservicesaccount) with a custom subdomain. The subdomain name needs to be globally unique and cannot include special characters, such as: ".", "!", ",".
 
    ```powershell-interactive
    $account = New-AzCognitiveServicesAccount -ResourceGroupName <RESOURCE_GROUP_NAME> -name <ACCOUNT_NAME> -Type <ACCOUNT_TYPE> -SkuName <SUBSCRIPTION_TYPE> -Location <REGION> -CustomSubdomainName <UNIQUE_SUBDOMAIN>
    ```
 
-3. If successful, the **Endpoint** should show the subdomain name unique to your resource.
+1. If successful, the **Endpoint** should show the subdomain name unique to your resource.
 
 
 ### Assign a role to a service principal
@@ -202,7 +202,7 @@ Now that you have a custom subdomain associated with your resource, you're going
 
    You're going to need the **ApplicationId** in the next step.
 
-2. Next, you need to [create a service principal](/powershell/module/az.resources/new-azadserviceprincipal) for the Microsoft Entra application.
+1. Next, you need to [create a service principal](/powershell/module/az.resources/new-azadserviceprincipal) for the Microsoft Entra application.
 
    ```powershell-interactive
    New-AzADServicePrincipal -ApplicationId <APPLICATION_ID>
@@ -211,7 +211,7 @@ Now that you have a custom subdomain associated with your resource, you're going
    > [!NOTE]
    > If you register an application in the Azure portal, this step is completed for you.
 
-3. The last step is to [assign the "Cognitive Services User" role](/powershell/module/az.Resources/New-azRoleAssignment) to the service principal (scoped to the resource). By assigning a role, you're granting service principal access to this resource. You can grant the same service principal access to multiple resources in your subscription.
+1. The last step is to [assign the "Cognitive Services User" role](/powershell/module/az.Resources/New-azRoleAssignment) to the service principal (scoped to the resource). By assigning a role, you're granting service principal access to this resource. You can grant the same service principal access to multiple resources in your subscription.
 
    > [!NOTE]
    > The ObjectId of the service principal is used, not the ObjectId for the application.
@@ -231,7 +231,7 @@ In this sample, a password is used to authenticate the service principal. The to
    $context.Tenant.Id
    ```
 
-2. Get a token:
+1. Get a token:
    ```powershell-interactive
    $tenantId = $context.Tenant.Id
    $clientId = $app.ApplicationId
@@ -253,7 +253,7 @@ In this sample, a password is used to authenticate the service principal. The to
    > [!NOTE]
    > Anytime you use passwords in a script, the most secure option is to use the PowerShell Secrets Management module and integrate with a solution such as Azure Key Vault.
   
-3. Call the Computer Vision API:
+1. Call the Computer Vision API:
    ```powershell-interactive
    $url = $account.Endpoint+"vision/v1.0/models"
    $result = Invoke-RestMethod -Uri $url  -Method Get -Headers @{"Authorization"="Bearer $accessToken"} -Verbose
@@ -284,7 +284,7 @@ You can [use Azure Key Vault](./use-key-vault.md) to securely develop Azure AI s
 
 Authentication is done via Microsoft Entra ID. Authorization may be done via Azure role-based access control (Azure RBAC) or Key Vault access policy. Azure RBAC can be used for both management of the vaults and access data stored in a vault, while key vault access policy can only be used when attempting to access data stored in a vault.
 
-## See also
+## Related content
 
 * [What are Azure AI services?](./what-are-ai-services.md)
 * [Azure AI services pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)

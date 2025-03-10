@@ -6,12 +6,12 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 11/19/2024
+ms.date: 02/03/2025
 ms.author: lajanuar
 recommendations: false
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, javascript, python
-ms.custom: mode-other, build-2023, devx-track-extended-java, devx-track-python, ignite-2024
+ms.custom: mode-other, devx-track-extended-java, devx-track-python, ignite-2024
 ---
 
 # Use REST APIs programmatically
@@ -47,7 +47,7 @@ To get started, you need:
   1. **Name**. Enter the name you chose for your resource. The name you choose must be unique within Azure.
 
      > [!NOTE]
-     > Document Translation requires a custom domain endpoint. The value that you enter in the Name field will be the custom domain name parameter for your endpoint.
+     > Document Translation requires a custom domain endpoint. The value that you enter in the Name field is the custom domain name parameter for your endpoint.
 
   1. **Pricing tier**. Document Translation isn't supported in the free tier. To try the service, select Standard S1.
 
@@ -90,7 +90,7 @@ You need to  [**create containers**](/azure/storage/blobs/storage-quickstart-blo
 * **Target container**. This container is where your translated files are stored (required).
 
 > [!NOTE]
-> Document Translation supports glossaries as blobs in target containers (not separate glossary containers). If want to include a custom glossary, add it to the target container and include the` glossaryUrl` with the request.  If the translation language pair is not present in the glossary, it will not be applied. *See* [Translate documents using a custom glossary](#translate-documents-using-a-custom-glossary)
+> Document Translation supports glossaries as blobs in target containers (not separate glossary containers). If you want to include a custom glossary, add it to the target container and include the` glossaryUrl` with the request. If the translation language pair isn't present in the glossary, the glossary isn't applied. *See* [Translate documents using a custom glossary](#translate-documents-using-a-custom-glossary)
 
 ### **Create SAS access tokens for Document Translation**
 
@@ -131,7 +131,7 @@ The following headers are included with each Document Translation API request:
 * The `targetUrl` for each target language must be unique.
 
 >[!NOTE]
-> If a file with the same name already exists in the destination, the job will fail.
+> If a file with the same name already exists in the destination, the job fails.
 
 <!-- markdownlint-disable MD024 -->
 ### Translate all documents in a container
@@ -209,30 +209,6 @@ The following headers are included with each Document Translation API request:
     ]
 }
 ```
-
-### 🆕 Translate text embedded in images within documents
-
-> [!Note]
->
-> * This feature is optional and must be enabled for each translation request.
-> * Enabling this feature will incur additional costs based on usage. For more information, *see* [Azure AI Vision pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/)
-> * This feature is currently available only with the Batch Document Translation API.
-> * The Supported file format is `.docx` only.
-> * An Azure AI Services resource (not the standalone Translator resource) is required to use this feature.
-
-### Request configuration
-
-* Use the optional `translateTextWithinImage` parameter in the `options` field
-
-   * Data type: Boolean (`true` or `false`) 
-   * Default Boolean setting is `false`. Set the option to `true` to enable image text translation.
-
-* **Response Details**. When the feature is enabled, added image processing information is included with the response: 
-
-   * **`totalImageScansSucceeded`**. The number of successfully translated image scans.
-
-   * **`totalImageScansFailed`**. The number of image scans that failed processing.
-
 
 ## Use code to submit Document Translation requests
 
@@ -330,7 +306,7 @@ gradle init --type basic
 
 > [!IMPORTANT]
 >
-> For the code samples, you'll hard-code your Shared Access Signature (SAS) URL where indicated. Remember to remove the SAS URL from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Managed Identity](create-use-managed-identities.md). For more information, _see_ Azure Storage [security](/azure/storage/common/authorize-data-access).
+> For the code samples, hard-code your Shared Access Signature (SAS) URL where indicated. Remember to remove the SAS URL from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Managed Identity](create-use-managed-identities.md). For more information, _see_ Azure Storage [security](/azure/storage/common/authorize-data-access).
 
 > You might need to update the following fields, depending upon the operation:
 >>>
@@ -1307,7 +1283,7 @@ func main() {
 
 ## Learn more
 
-* [Translator v3 API reference](../../reference/v3-0-reference.md)
+* [Translator v3 API reference](../../text-translation/reference/v3/reference.md)
 * [Language support](../../language-support.md)
 
 ## Next steps

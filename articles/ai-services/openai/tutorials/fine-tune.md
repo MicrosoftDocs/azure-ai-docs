@@ -35,7 +35,7 @@ In this tutorial you learn how to:
 - [Jupyter Notebooks](https://jupyter.org/)
 - An Azure OpenAI resource in a [region where `gpt-4o-mini-2024-07-18` fine-tuning is available](../concepts/models.md). If you don't have a resource the process of creating one is documented in our resource [deployment guide](../how-to/create-resource.md).
 - Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
-- If you don't already have access to view quota and deploy models in Azure AI Foundry portal, then you need [more permissions](../how-to/role-based-access-control.md).
+- If you don't already have access to view quota and deploy models in [Azure AI Foundry portal](https://ai.azure.com/), then you need [more permissions](../how-to/role-based-access-control.md).
 
 > [!IMPORTANT]
 > We recommend reviewing the [pricing information](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing) for fine-tuning to familiarize yourself with the associated costs. Testing of this tutorial resulted in 48,000 tokens being billed (4,800 training tokens * 10 epochs of training). Training costs are in addition to the costs that are associated with fine-tuning inference, and the hourly hosting costs of having a fine-tuned model deployed. Once you have completed the tutorial, you should delete your fine-tuned model deployment otherwise you continue to incur the hourly hosting cost.
@@ -892,7 +892,7 @@ print(r.reason)
 print(r.json())
 ```
 
-You can check on your deployment progress in the Azure AI Foundry portal.
+You can check on your deployment progress in the [Azure AI Foundry portal](https://ai.azure.com/).
 
 It isn't uncommon for this process to take some time to complete when dealing with deploying fine-tuned models.
 

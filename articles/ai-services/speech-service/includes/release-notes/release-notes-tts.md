@@ -2,14 +2,117 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 1/13/2025
+ms.date: 3/6/2025
 ms.author: eur
 ms.custom: references_regions
 ---
 
+### March 2025 release
+
+#### New HD voices (Preview)
+
+| **Locale (BCP-47)** | **Voice name**              |
+|---------------------|---------------------------|
+| `en-US`   | `en-US-Ava3:DragonHDLatestNeural` (Female) - optimized for Podcast | 
+| `en-US`   | `en-US-Andrew3:DragonHDLatestNeural` (Male) - optimized for Podcast | 
+
+### February 2025 release
+
+#### Updated HD voices (Preview)
+
+Updated 13 current HD voices updated to support multilingual voices.
+ 
+| **Locale (BCP-47)** | **Voice name**              |
+|---------------------|---------------------------|
+| `de-DE`   | `de-DE-Seraphina:DragonHDLatestNeural` (Female) |
+| `en-US`   | `en-US-Brian:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Davis:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Ava:DragonHDLatestNeural` (Female) |
+| `en-US`   | `en-US-Andrew:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Andrew2:DragonHDLatestNeural` (Male) - optimized for free-talking | 
+| `en-US`   | `en-US-Emma:DragonHDLatestNeural` (Female) |
+| `en-US`   | `en-US-Emma2:DragonHDLatestNeural` (Female) - optimized for free-talking |
+| `en-US`   | `en-US-Steffan:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Aria:DragonHDLatestNeural` (Female) |
+| `en-US`   | `en-US-Jenny:DragonHDLatestNeural` (Female) |
+| `ja-JP`   | `ja-JP-Masaru:DragonHDLatestNeural` (Male) |
+| `zh-CN`   | `zh-CN-Xiaochen:DragonHDLatestNeural` (Female) |
+
+#### New HD voices (Preview)
+
+Added 14 more HD voices
+
+| **Locale (BCP-47)** | **Voice name**              |
+|---------------------|---------------------------|
+| `de-DE`   | `de-DE-Florian:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Adam:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Brain:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Davis:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Phoebe:DragonHDLatestNeural` (Female) |
+| `en-US`   | `en-US-Serena:DragonHDLatestNeural` (Female) |
+| `en-US`   | `en-US-Alloy:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Nova:DragonHDLatestNeural` (Female) |
+| `es-ES`   | `es-ES-Ximena:DragonHDLatestNeural` (Female) |
+| `es-ES`   | `es-ES-Tristan:DragonHDLatestNeural` (Male) |
+| `fr-FR`   | `fr-FR-Vivienne:DragonHDLatestNeural` (Female) |
+| `fr-FR`   | `fr-FR-Remy:DragonHDLatestNeural` (Male) |
+| `ja-JP`   | `ja-JP-Nanami:DragonHDLatestNeural` (Female) |
+| `zh-CN`   | `zh-CN-Yunfan:DragonHDLatestNeural` (Male) |
+
+#### Introducting new Multilingual voices (Preview)
+
+Added 4 more multilingual voices in `en-US` with emotions support.
+
+| **Locale (BCP-47)** | **Voice name**                | **Styles** |
+|---------------------|-----------------------------|------------|
+| `en-US`           | `DerekMultilingualNeural` (Male)  | `empathetic`, `excited`, `relieved`, `shy` |
+| `en-US`           | `PhoebeMultilingualNeural` (Female) | `empathetic`, `sad`, `serious` |
+| `en-US`           | `DavisMultilingualNeural` (Male)  | `empathetic`, `funny`, `relieved` |
+| `en-US`           | `NancyMultilingualNeural` (Female) | `excited`, `friendly`, `funny`, `relieved`, `shy` |
+
+#### Azure OpenAI Service turbo voices (Generally Available)
+
+These 6 turbo voices are now generally available:
+
+| **Locale (BCP-47)** | **Voice name**              |
+|---------------------|---------------------------|
+| `en-US`   | `en-US-AlloyTurboMultilingualNeural` (Male) |
+| `en-US`   | `en-US-EchoTurboMultilingualNeural` (Male) |
+| `en-US`   | `en-US-FableTurboMultilingualNeural` (Neutral) |
+| `en-US`   | `en-US-NovaTurboMultilingualNeural` (Female) |
+| `en-US`   | `en-US-OnyxTurboMultilingualNeural` (Male) |
+| `en-US`   | `en-US-ShimmerTurboMultilingualNeural` (Female) |
+
+#### Voice quality improvements (Generally Available)
+
+Improved the quality of 16 voices.
+
+| **Locale (BCP-47)** | **Voice name**              |
+|---------------------|---------------------------|
+| `ar-EG`   | `ar-EG-ShakirNeural` (Male) |
+| `ca-ES`   | `ca-ES-EnricNeural` (Male) |
+| `en-IE`   | `en-IE-EmilyNeural` (Female) |
+| `fi-FI`   | `fi-FI-HarriNeural` (Male) |
+| `fi-FI`   | `fi-FI-SelmaNeural` (Female) |
+| `fr-CH`   | `fr-CH-FabriceNeural` (Female) |
+| `hr-HR`   | `hr-HR-GabrijelaNeural` (Female) |
+| `nl-NL`   | `nl-NL-MaartenNeural` (Male) |
+| `pt-PT`   | `pt-PT-RaquelNeural` (Female) |
+| `ro-RO`   | `ro-RO-AlinaNeural` (Female) |
+| `sv-SE`   | `sv-SE-MattiasNeural` (Male) |
+| `sv-SE`   | `sv-SE-SofieNeural` (Female) |
+| `vi-VN`   | `vi-VN-HoaiMyNeural` (Female) |
+| `vi-VN`   | `vi-VN-NamMinhNeural` (Male) |
+| `zh-HK`   | `zh-HK-HiuMaanNeural` (Female) |
+| `zh-HK`   | `zh-HK-WanLungNeural` (Male) |
+
+#### Multi-style embedded Jenny (Generally Available)
+
+Added style support for `en-US-JennyNeural` in [embedded speech](../../embedded-speech.md). The same styles are supported as in the cloud. The following styles are supported: `angry`, `assistant`, `chat`, `cheerful`, `customerservice`, `excited`, `friendly`, `hopeful`, `newscast`, `sad`, `shouting`, `terrified`, `unfriendly`, and `whispering`.
+
 ### January 2025 release
 
-##### Custom avatar training
+#### Custom avatar training
 
 You can now train custom avatars in [Speech Studio](https://speech.microsoft.com/portal/talkingavatar). Previously, you had to wait for Microsoft to train your custom avatar. 
 
@@ -17,7 +120,7 @@ For more details about how to create a custom avatar, see [create a custom text 
 
 ### October 2024 release
 
-##### Prebuilt neural voice
+#### Prebuilt neural voice
 
 Introduced 4 turbo version of Azure OpenAI voices in public preview: `en-US-EchoTurboMultilingualNeural`, `en-US-FableTurboMultilingualNeural`, `en-US-OnyxTurboMultilingualNeural`, and `en-US-ShimmerTurboMultilingualNeural`. Turbo version of Azure OpenAI voices has the similar voice persona as Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features like word boundary, just like other Azure AI Speech voices. See the [full language and voice list](../../language-support.md?tabs=tts) for more information.
 

@@ -55,7 +55,28 @@ var clientOptions = new AIProjectClientOptions();
 clientOptions.AddPolicy(new CustomHeadersPolicy(), HttpPipelinePosition.PerCall);
 var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential(), clientOptions);
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+const connectionString =
+  process.env["AZURE_AI_PROJECTS_CONNECTION_STRING"] || "<project connection string>";
+
+if (!connectionString) {
+  throw new Error("AZURE_AI_PROJECTS_CONNECTION_STRING must be set in the environment variables");
+}
+
+const client = AIProjectsClient.fromConnectionString(
+    connectionString || "",
+    new DefaultAzureCredential(),
+);
+```
+
+# [REST API](#tab/rest)
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`.
+
 ---
+
 ### Step 2: Get the connection ID for the Azure AI Search resource
 
 Get the connection ID of the Azure AI Search connection in the project. You can use the code snippet to print the connection ID of all the Azure AI Search connections in the project. 
@@ -64,13 +85,19 @@ Get the connection ID of the Azure AI Search connection in the project. You can 
 
 ```python
 # AI Search resource connection ID
-# This code prints out the connection ID of all the Azure AI Search connections in the project
-# If you have more than one AI search connection, make sure to select the correct one that contains the index you want to use.
-conn_list = project_client.connections.list()
+# This code looks for the AI Search Connection ID and saves it as variable conn_id
+
+# If you have more than one AI search connection, try to establish the value in your .env file.
+# Extract the connection list.
+conn_list = project_client.connections._list_connections()["value"]
 conn_id = ""
+
+# Search in the metadata field of each connection in the list for the azure_ai_search type and get the id value to establish the variable
 for conn in conn_list:
-    if conn.connection_type == "AZURE_AI_SEARCH":
-        print(f"Connection ID: {conn.id}")
+    metadata = conn["properties"].get("metadata", {})
+    if metadata.get("type", "").upper() == "AZURE_AI_SEARCH":
+        conn_id = conn["id"]
+        break
 ```
 # [C#](#tab/csharp)
 ```csharp
@@ -80,8 +107,20 @@ ListConnectionsResponse connections = await projectClient.GetConnectionsClient()
         {
             throw new InvalidOperationException("No connections found for the Azure AI Search.");
         }
-
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+const cognitiveServicesConnectionName = "<cognitiveServicesConnectionName>";
+const cognitiveServicesConnection = await client.connections.getConnection(
+  cognitiveServicesConnectionName,
+);
+```
+
+# [REST API](#tab/rest)
+Follow the next section on how to get the connection ID from the Azure AI Foundry.
+
 ---
 The second way to get the connection ID is to navigate to the project in the Azure AI Foundry and click on the **Connected resources** tab and then select your Azure AI Search resource.
 :::image type="content" source="../../media/tools/ai-search/success-connection.png" alt-text="A screenshot of an AI Search resource connection page in Azure AI Foundry." lightbox="../../media/tools/ai-search/success-connection.png":::
@@ -97,7 +136,8 @@ conn_id =  "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-
 
 # Initialize agent AI search tool and add the search index connection ID and index name
 # TO DO: replace <your-index-name> with the name of the index you want to use
-ai_search = AzureAISearchTool(index_connection_id=conn_id, index_name="<your-index-name>")
+ai_search = AzureAISearchTool(index_connection_id=conn_id, index_name="<your-index-name>"
+query_type="<select-search-type>")
 ```
 # [C#](#tab/csharp)
 ```csharp
@@ -110,10 +150,32 @@ ToolResources searchResource = new ToolResources
 {
     AzureAISearch = new AzureAISearchResource
     {
-        IndexList = { new IndexResource(connection.Id, "<your-index-name>") }
+        IndexList = { new IndexResource(connection.Id, "<your-index-name>", "<select-search-type>") }
     }
 };
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+const azureAISearchTool = ToolUtility.createAzureAISearchTool(
+  cognitiveServicesConnection.id,
+  cognitiveServicesConnection.name,
+);
+
+// Create agent with the Azure AI search tool
+const agent = await client.agents.createAgent("gpt-4o-mini", {
+  name: "my-agent",
+  instructions: "You are a helpful agent",
+  tools: [azureAISearchTool.definition],
+  toolResources: azureAISearchTool.resources,
+});
+console.log(`Created agent, agent ID : ${agent.id}`);
+```
+
+# [REST API](#tab/rest)
+Not Applicable
+
 ---
 
 ### Step 4: Create an agent with the Azure AI Search tool enabled
@@ -141,6 +203,46 @@ Response<Agent> agentResponse = await agentClient.CreateAgentAsync(
     toolResources: searchResource);
 Agent agent = agentResponse.Value;
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+const agent = await client.agents.createAgent("gpt-4o-mini", {
+  name: "my-agent",
+  instructions: "You are a helpful agent",
+  tools: [azureAISearchTool.definition],
+  toolResources: azureAISearchTool.resources,
+});
+console.log(`Created agent, agent ID : ${agent.id}`);
+```
+
+# [REST API](#tab/rest)
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "instructions": "You are a helpful agent.",
+        "name": "my-agent",
+        "tools": [
+          {"type": "azure_ai_search"}
+        ],
+        "model": "gpt-4o-mini",
+        "tool_resources": {
+            "azure_ai_search": {
+              "indexes": [
+                  {
+                      "index_connection_id": "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<your-project-name>/connections/<your-azure-ai-search-connection-name>",
+                      "index_name": "<your-index-name>",
+                      "query_type": "semantic"
+                  }
+              ]
+            }
+        }
+      }'
+```
+
 ---
 
 ### Step 5: Ask the agent questions about data in the index
@@ -190,7 +292,7 @@ AgentThread thread = threadResponse.Value;
 Response<ThreadMessage> messageResponse = await agentClient.CreateMessageAsync(
     thread.Id,
     MessageRole.User,
-    "Hello, send an email with the datetime and weather information in New York?");
+    "what are my health insurance plan coverage types?");
 ThreadMessage message = messageResponse.Value;
 
 // Run the agent
@@ -226,4 +328,112 @@ foreach (ThreadMessage threadMessage in messages)
     }
 }
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+  // create a thread
+  const thread = await client.agents.createThread();
+
+  // add a message to thread
+  await client.agents.createMessage(
+    thread.id, {
+    role: "user",
+    content: "what are my health insurance plan coverage types?",
+  });
+
+  // Intermission is now correlated with thread
+  // Intermission messages will retrieve the message just added
+
+  // create a run
+  const streamEventMessages = await client.agents.createRun(thread.id, agent.id).stream();
+
+  for await (const eventMessage of streamEventMessages) {
+    switch (eventMessage.event) {
+      case RunStreamEvent.ThreadRunCreated:
+        break;
+      case MessageStreamEvent.ThreadMessageDelta:
+        {
+          const messageDelta = eventMessage.data;
+          messageDelta.delta.content.forEach((contentPart) => {
+            if (contentPart.type === "text") {
+              const textContent = contentPart;
+              const textValue = textContent.text?.value || "No text";
+            }
+          });
+        }
+        break;
+
+      case RunStreamEvent.ThreadRunCompleted:
+        break;
+      case ErrorEvent.Error:
+        console.log(`An error occurred. Data ${eventMessage.data}`);
+        break;
+      case DoneEvent.Done:
+        break;
+    }
+  }
+
+  // Print the messages from the agent
+  const messages = await client.agents.listMessages(thread.id);
+
+  // Messages iterate from oldest to newest
+  // messages[0] is the most recent
+  for (let i = messages.data.length - 1; i >= 0; i--) {
+    const m = messages.data[i];
+    if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
+      const textContent = m.content[0];
+      console.log(`${textContent.text.value}`);
+      console.log(`---------------------------------`);
+    }
+  }
+```
+
+# [REST API](#tab/rest)
+### Create a thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d ''
+```
+
+### Add a user question to the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+      "role": "user",
+      "content": "what are my health insurance plan coverage types?"
+    }'
+```
+
+### Run the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistant_id": "asst_abc123",
+  }'
+```
+
+### Retrieve the status of the run
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+```
+
+### Retrieve the agent response
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+```
+
 ---

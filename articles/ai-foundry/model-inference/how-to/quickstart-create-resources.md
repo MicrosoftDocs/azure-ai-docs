@@ -7,7 +7,7 @@ ms.topic: how-to
 ms.date: 1/21/2025
 ms.custom: ignite-2024, github-universe-2024
 manager: nitinme
-author: mrbullwinkle
+author: santiagxf
 ms.author: fasantia 
 recommendations: false
 zone_pivot_groups: azure-ai-models-deployment
@@ -26,7 +26,3 @@ zone_pivot_groups: azure-ai-models-deployment
 ::: zone pivot="programming-language-bicep"
 [!INCLUDE [bicep](../includes/create-resources/bicep.md)]
 ::: zone-end
-
-## Next steps
-
-* [Develop applications using Azure AI model inference service in Azure AI services](../supported-languages.md)
