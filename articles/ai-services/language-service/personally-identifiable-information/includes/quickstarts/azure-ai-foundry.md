@@ -23,7 +23,7 @@ Using the left side pane, select **Playgrounds**. Then select the **Try the Lang
 The **Language Playground** consists of four sections:
 
 * Top banner: You can select any of the currently available Language services here.
-* Right pane: This pane is where you can find the **Configuration** options for the service, such as the API and model version, along with features specific to the service.
+* Left pane: This pane is where you can find the **Configuration** options for the service, such as the API and model version, along with features specific to the service.
 * Center pane: This pane is where you enter your text for processing. After the operation is run, some results will be shown here.
 * Right pane: This pane is where **Details** of the run operation are shown.
 
