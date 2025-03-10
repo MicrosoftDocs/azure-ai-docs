@@ -10,8 +10,20 @@ ms.date: 08/05/2024
 ms.custom: include, references_regions
 ---
 
-### Cohere models
+### AI21 models
 
+| Model  |Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
+|---------|---------|---------|---------|
+AI21-Jamba-1.5-Mini | [Microsoft Managed countries/regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions) | East US 2 <br> South Central US <br> East US <br> West US 3 <br> West US <br> North Central US <br> Sweden Central      |  Not available       |
+AI21-Jamba-1.5-Large | [Microsoft Managed countries/regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions) | East US 2 <br> South Central US <br> East US <br> West US 3 <br> West US <br> North Central US <br> Sweden Central      |  Not available       |
+
+### Bria models
+
+|Model  |Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
+|---------|---------|---------|---------|
+Bria-2.3-Fast   | [Microsoft Managed Countries](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)  | East US 2   | Not available       |
+
+### Cohere models
 
 | Model   | Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
 |---------|---------|---------|---------|
@@ -29,8 +41,8 @@ Cohere Embed v3 -  Multilingual    |  [Microsoft Managed countries/regions](/par
 
 | Model | Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
 |---------|---------|---------|---------|
-DeepSeek-R1                       | Not applicable | East US <br> East US 2 <br> North Central US <br> South Central US <br> West US <br> West US 3  | Not available       |
 DeepSeek-V3                       | Not applicable | East US <br> East US 2 <br> North Central US <br> South Central US <br> West US <br> West US 3  | Not available       |
+DeepSeek-R1                       | Not applicable | East US <br> East US 2 <br> North Central US <br> South Central US <br> West US <br> West US 3  | Not available       |
 
 
 ### Gretel models
@@ -95,18 +107,6 @@ TimeGEN-1  | [Microsoft Managed countries/regions](/partner-center/marketplace/t
 |---------|---------|---------|---------|
 tsuzumi-7b    | [Microsoft Managed countries/regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions) | East US 2 <br> South Central US <br> East US <br> West US 3 <br> West US <br> North Central US       |  Not available       |
 
-### AI21 models
-
-| Model  |Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
-|---------|---------|---------|---------|
-AI21-Jamba-1.5-Mini | [Microsoft Managed countries/regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions) | East US 2 <br> South Central US <br> East US <br> West US 3 <br> West US <br> North Central US <br> Sweden Central      |  Not available       |
-AI21-Jamba-1.5-Large | [Microsoft Managed countries/regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions) | East US 2 <br> South Central US <br> East US <br> West US 3 <br> West US <br> North Central US <br> Sweden Central      |  Not available       |
-
-### Bria models
-
-|Model  |Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
-|---------|---------|---------|---------|
-Bria-2.3-Fast   | [Microsoft Managed Countries](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)  | East US 2   | Not available       |
 
 ### Stability AI models
 
