@@ -102,7 +102,7 @@ The `AzureClientOptions` object extends the OpenAI `ClientOptions` object. This 
 | deployment: `string` | A model deployment. If provided, sets the base client URL to include `/deployments/{deployment}`. Non-deployment endpoints can't be used (not supported with Assistants APIs).|
 | endpoint: `string` | Your Azure OpenAI endpoint with the following format: `https://RESOURCE-NAME.azure.openai.com/`.|
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 ---
 
 

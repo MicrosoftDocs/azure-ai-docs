@@ -25,7 +25,7 @@ To successfully make a call against Azure OpenAI, you need the following variabl
 
 Create and assign persistent environment variables for your key and endpoint.
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 > [!NOTE]
 > Spring AI defaults the model name to `gpt-35-turbo`. It's only necessary to provide the `SPRING_AI_AZURE_OPENAI_MODEL` value if you've deployed a model with a different name.

@@ -352,7 +352,7 @@ While using the [SpeechSynthesizer](/javascript/api/microsoft-cognitiveservices-
 
 Here's an example that shows how to subscribe to events for speech synthesis. 
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 You can follow the instructions in the [quickstart](../../../get-started-text-to-speech.md?pivots=javascript), but replace the contents of that *SpeechSynthesis.js* file with the following JavaScript code.
 

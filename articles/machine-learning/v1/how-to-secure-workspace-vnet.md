@@ -171,7 +171,7 @@ Azure Machine Learning uses an associated Key Vault instance to store the follow
 * Passwords to Azure Container Repository instances
 * Connection strings to data stores
 
-Azure key vault can be configured to use either a private endpoint or service endpoint. To use Azure Machine Learning experimentation capabilities with Azure Key Vault behind a virtual network, use the following steps:
+Azure Key Vault can be configured to use either a private endpoint or service endpoint. To use Azure Machine Learning experimentation capabilities with Azure Key Vault behind a virtual network, use the following steps:
 
 > [!TIP]
 > Regardless of whether you use a private endpoint or service endpoint, the key vault must be in the same network as the private endpoint of the workspace.
