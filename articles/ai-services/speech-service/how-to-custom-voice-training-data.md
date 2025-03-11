@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/20/2024
+ms.date: 3/10/2025
 ms.author: eur
 #Customer intent: As a developer, I want to learn about the data types that I can use to train a custom neural voice.
 ---

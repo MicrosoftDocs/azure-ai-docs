@@ -189,7 +189,7 @@ Be sure to have a strategy for [vectorizing your content](vector-search-how-to-g
  
    + `vectorSearch.algorithms.efConstruction` is the number of nearest neighbors used during indexing. Default is 400. The range is 100 to 1,000.
 
-   + `"vectorSearch.algorithms.fSearch` is the number of nearest neighbors used during search. Default is 500. The range is 100 to 1,000.
+   + `"vectorSearch.algorithms.efSearch` is the number of nearest neighbors used during search. Default is 500. The range is 100 to 1,000.
 
    + `vectorSearch.algorithms.metric` should be "cosine" if you're using Azure OpenAI, otherwise use the similarity metric associated with the embedding model you're using. Supported values are `cosine`, `dotProduct`, `euclidean`, `hamming` (used for [indexing binary data](vector-search-how-to-index-binary-data.md)).
 

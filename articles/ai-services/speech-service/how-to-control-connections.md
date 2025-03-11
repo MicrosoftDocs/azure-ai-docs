@@ -7,7 +7,7 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/19/2024
+ms.date: 3/10/2025
 ms.reviewer: travisw
 zone_pivot_groups: programming-languages-set-thirteen
 ms.devlang: cpp

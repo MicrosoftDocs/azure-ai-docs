@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 9/24/2024
+ms.date: 3/10/2025
 ms.author: eur
 #Customer intent: As a developer, I want to learn about the devices that work with the Speech service.
 ---

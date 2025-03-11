@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 12/05/2024
+ms.date: 03/04/2025
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
@@ -20,7 +20,7 @@ author: Blackmist
 In this article, you learn how to manage access (authorization) to an [Azure AI Foundry](https://ai.azure.com) hub. Azure role-based access control (Azure RBAC) is used to manage access to Azure resources, such as the ability to create new resources or use existing ones. Users in your Microsoft Entra ID are assigned specific roles, which grant access to resources. Azure provides both built-in roles and the ability to create custom roles. 
 
 > [!WARNING]
-> Applying some roles might limit UI functionality in Azure AI Foundry portal for other users. For example, if a user's role does not have the ability to create a compute instance, the option to create a compute instance will not be available in studio. This behavior is expected, and prevents the user from attempting operations that would return an access denied error. 
+> Applying some roles might limit UI functionality in Azure AI Foundry portal for other users. For example, if a user's role doesn't have the ability to create a compute instance, the option to create a compute instance isn't available in studio. This behavior is expected, and prevents the user from attempting operations that would return an access denied error. 
 
 ## Azure AI Foundry hub vs project
 
@@ -306,11 +306,11 @@ For more information on creating custom roles in general, visit the [Azure custo
 You can add users and assign roles directly from Azure AI Foundry at either the hub or project level. In the [management center](management-center.md), select **Users** in either the hub or project section, then select **New user** to add a user. 
 
 > [!NOTE]
-> You are limited to selecting built-in roles. If you need to assign custom roles, you must use the [Azure portal](/azure/role-based-access-control/role-assignments-portal), [Azure CLI](/azure/role-based-access-control/role-assignments-cli), or [Azure PowerShell](/azure/role-based-access-control/role-assignments-powershell).
+> You're limited to selecting built-in roles. If you need to assign custom roles, you must use the [Azure portal](/azure/role-based-access-control/role-assignments-portal), [Azure CLI](/azure/role-based-access-control/role-assignments-cli), or [Azure PowerShell](/azure/role-based-access-control/role-assignments-powershell).
 
 :::image type="content" source="../media/concepts/hub-overview-add-user.png" lightbox="../media/concepts/hub-overview-add-user.png" alt-text="Screenshot of the Azure AI Foundry hub overview with the new user button highlighted.":::
 
-You are then prompted to enter the user information and select a built-in role.
+You're then prompted to enter the user information and select a built-in role.
 
 :::image type="content" source="../media/concepts/add-resource-users.png" lightbox="../media/concepts/add-resource-users.png" alt-text="Screenshot of the add users prompt with the role set to Azure AI Developer.":::
 
@@ -339,10 +339,10 @@ When you create a connection that uses Microsoft Entra ID authentication, you mu
 | Azure AI services / Azure OpenAI | Cognitive Services Contributor | Allows for calls to the control plane. |
 | Azure Blob Storage | Storage Blob Data Contributor | Required for reading and writing data to the blob storage. |
 | Azure Data Lake Storage Gen 2 | Storage Blob Data Contributor | Required for reading and writing data to the data lake. |
-| Microsoft OneLake | Contributor | To give someone acess to Microsoft OneLake, you must [give them access to your Microsoft Fabric workspace](/fabric/get-started/give-access-workspaces). |
+| Microsoft OneLake | Contributor | To give someone access to Microsoft OneLake, you must [give them access to your Microsoft Fabric workspace](/fabric/get-started/give-access-workspaces). |
 
 > [!IMPORTANT]
-> If you are using Promptflow with Azure Storage (including Azure Data Lake Storage Gen 2), you must also assign the __Storage File Data Privileged Contributor__ role.
+> If you're using Promptflow with Azure Storage (including Azure Data Lake Storage Gen 2), you must also assign the __Storage File Data Privileged Contributor__ role.
 
 When using Microsoft Entra ID authenticated connections in the chat playground, the services need to authorize each other to access the required resources. The admin performing the configuration needs to have the __Owner__ role on these resources to add role assignments. The following table lists the required role assignments for each resource. The __Assignee__ column refers to the system-assigned managed identity of the listed resource. The __Resource__ column refers to the resource that the assignee needs to access. For example, Azure OpenAI has a system-assigned managed identity that needs to be assigned the __Search Index Data Reader__ role for the Azure AI Search resource.
 
@@ -357,7 +357,7 @@ When using Microsoft Entra ID authenticated connections in the chat playground, 
 | Storage Blob Data Contributor | Azure AI services / Azure OpenAI | Azure Storage Account | Reads from the input container and writes the preprocess results to the output container. |
 
 > [!NOTE]
-> The __Cognitive Services OpenAI User__ role is only required if you are using two Azure OpenAI resources: one for your chat model and one for your embedding model. If this applies, enable Trusted Services AND ensure the connection for your embedding model Azure OpenAI resource has Microsoft Entra ID enabled.  
+> The __Cognitive Services OpenAI User__ role is only required if you're using two Azure OpenAI resources: one for your chat model and one for your embedding model. If this applies, enable Trusted Services AND ensure the connection for your embedding model Azure OpenAI resource has Microsoft Entra ID enabled.  
 
 ## Scenario: Use an existing Azure OpenAI resource
 
@@ -485,19 +485,19 @@ The following example defines a role for a developer using [Azure OpenAI Assista
 
 ## Troubleshooting
 
-### Error: Principal does not have access to API/Operation
+### Error: Principal doesn't have access to API/Operation
 
 #### Symptoms
 
-When using the Azure AI Foundry portal chat playground, you receive an error message stating "Principal does not have access to API/Operation". The error may also include an "Apim-request-id".
+When using the Azure AI Foundry portal chat playground, you receive an error message stating "Principal doesn't have access to API/Operation". The error might also include an "Apim-request-id".
 
 #### Cause
 
-The user or service principal used to authenticate requests to Azure OpenAI or Azure AI Search does not have the required permissions to access the resource.
+The user or service principal used to authenticate requests to Azure OpenAI or Azure AI Search doesn't have the required permissions to access the resource.
 
 #### Solution
 
-Assign the following roles to the user or service principal. The role you assign depends on the services you are using and the level of access the user or service principal requires:
+Assign the following roles to the user or service principal. The role you assign depends on the services you're using and the level of access the user or service principal requires:
 
 | Service being accessed | Role | Description |
 | --- | --- | --- |
@@ -511,7 +511,7 @@ Assign the following roles to the user or service principal. The role you assign
 If you create a new hub and encounter errors with the new default role assignment of Azure AI Administrator for the managed identity, use the following steps to change the hub to the Contributor role:
 
 > [!IMPORTANT]
-> We don't recommend reverting a hub to the Contributor role unless you encounter problems. If reverting does solve the problems that you are encountering, please open a support incident with information on the problems that reverting solved so that we can invesitage further.
+> We don't recommend reverting a hub to the Contributor role unless you encounter problems. If reverting does solve the problems that you're encountering, open a support incident with information on the problems that reverting solved so that we can invesitage further.
 >
 > If you would like to revert to the Contributor role as the _default_ for new hubs, open a [support request](https://ms.portal.azure.com/#view/Microsoft_Azure_Support/NewSupportRequestV3Blade) with your Azure subscription details and request that your subscription be changed to use the Contributor role as the default for the system-assigned managed identity of new hubs.
 
@@ -522,13 +522,13 @@ If you create a new hub and encounter errors with the new default role assignmen
 
     From the Azure portal, navigate to the __resource group__ that contains the hub. Select __Access control (IAM)__, and then select __Role assignments__. In the list of role assignments, find the role assignment for the managed identity. Select it, and then select __Delete__.
 
-    For information on deleting a role assignment, see [Remove role assigngments](/azure/role-based-access-control/role-assignments-remove).
+    For information on deleting a role assignment, see [Remove role assignments](/azure/role-based-access-control/role-assignments-remove).
 
 1. Create a new role assignment on the __resource group__ for the __Contributor__ role. When adding this role assignment, select the managed-identity for the hub as the assignee. The name of the system-assigned managed identity is same as the hub name.
 
     1. From the Azure portal, navigate to the __resource group__ that contains the hub. Select __Access control (IAM)__, and then select __Add role assignment__. 
     1. From the __Role__ tab, select __Contributor__. 
-    1. From the __Members__ tab, select __Managed identity__, __+ Select members__, ans set the __Managed identity__ dropdown to __Azure AI hub__. In the __Select__ field, enter the name of the hub. Select the hub from the list, and then select __Select__.
+    1. From the __Members__ tab, select __Managed identity__, __+ Select members__, and set the __Managed identity__ dropdown to __Azure AI hub__. In the __Select__ field, enter the name of the hub. Select the hub from the list, and then select __Select__.
     1. From the __Review + assign__ tab, select __Review + assign__.
 
 ## Next steps

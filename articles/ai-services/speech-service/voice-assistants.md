@@ -7,7 +7,7 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 9/24/2024
+ms.date: 3/10/2025
 ms.reviewer: travisw
 ms.custom: cogserv-non-critical-speech
 # Customer intent: As a developer, I want to learn about voice assistants and how to create them by using the Speech SDK.

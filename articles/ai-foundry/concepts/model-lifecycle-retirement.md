@@ -1,11 +1,11 @@
 ---
-title: Deprecation and retirement for models in Azure AI model catalog
+title: Deprecation for models in Azure AI model catalog
 titleSuffix: Azure AI Foundry
 description: Learn about the lifecycle stages, deprecation, and retirement for models in the Azure AI model catalog.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 02/03/2025
+ms.date: 02/28/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: kritifaujdar
@@ -19,10 +19,10 @@ reviewer: fkriti
 Models in the model catalog are continually refreshed with newer and more capable models. As part of this process, model providers might deprecate and retire their older models, and you might need to update your applications to use a newer model. This document communicates information about the model lifecycle and deprecation timelines and explains how you're informed of model lifecycle stages.
 
 > [!IMPORTANT]
-> This article describes deprecation and retirement only for models that can be deployed to __serverless APIs__, not managed compute. To learn more about the differences between deployment to serverless APIs and managed computes, see [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md).
+> This article describes deprecation and retirement only for models that can be deployed to [serverless APIs](../how-to/model-catalog-overview.md#model-deployment-managed-compute-and-serverless-apis) or the [Azure AI model Inference](../../ai-foundry/model-inference/overview.md). This article doesn't cover deprecation information for models that can be deployed only to [managed computes](../how-to/model-catalog-overview.md#managed-compute). 
 
 > [!NOTE]
-> Azure OpenAI models in the model catalog are provided through Azure OpenAI Service. For information about Azure Open AI model deprecation and retirement, see the [Azure OpenAI service product documentation](/azure/ai-services/openai/concepts/model-retirements).
+> Azure OpenAI models in the model catalog are provided through Azure OpenAI Service. For information about Azure OpenAI model deprecation and retirement, see the [Azure OpenAI service product documentation](/azure/ai-services/openai/concepts/model-retirements).
 
 ## Model lifecycle stages
 
@@ -61,17 +61,28 @@ Models labeled _Retired_ are no longer available for use. You can't create new d
 
 - Models are labeled _Deprecated_ and remain in the deprecated state for at least 90 days before being moved to the retired state. During this notification period, you can migrate any existing deployments to newer or replacement models.
 
-- Members of the _owner_, _contributor_, _reader_, monitoring contributor_, and _monitoring reader_ roles for each Azure subscription with a serverless API model deployment receive a notification when a model deprecation is announced. The notification contains the dates when the model enters legacy, deprecated, and retired states. The notification might provide information about possible replacement model options, if applicable.
+- For each subscription that has a model deployed as a severless API or deployed to the Azure AI model inference, members of the _owner_, _contributor_, _reader_, monitoring contributor_, and _monitoring reader_ roles receive a notification when a model deprecation is announced. The notification contains the dates when the model enters legacy, deprecated, and retired states. The notification might provide information about possible replacement model options, if applicable.
 
 The following table lists the timelines for models that are on track for retirement. The specified dates are in UTC time.
 
 | Model provider | Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
-| ---- | ---- | ---- | --- | ---- | --- |
-| AI21 Labs | Jamba Instruct | February 1, 2025 | February 1, 2025 | March 1, 2025 | [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) or [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-staging) |
-| Cohere | [Command R](https://aka.ms/azureai/landing/Cohere-command-r) | February 24, 2025 | March 25, 2025 | June 30, 2025 | [Cohere Command R 08-2024](https://aka.ms/azureai/landing/Cohere-command-r-08-2024) |
-| Cohere | [Command R+](https://aka.ms/azureai/landing/Cohere-command-r-plus) | February 24, 2025 | March 25, 2025 | June 30, 2025 | [Cohere Command R+ 08-2024](https://aka.ms/azureai/landing/Cohere-command-r-plus-08-2024) |
-| Mistral AI | [Mistral-large-2407](https://aka.ms/azureai/landing/Mistral-Large-2407) | January 13, 2025 | February 13, 2025 | May 13, 2025 | [Mistral-large-2411](https://aka.ms/aistudio/landing/Mistral-Large-2411) |
-| Mistral AI | [Mistral-large](https://aka.ms/azureai/landing/Mistral-Large) | December 15, 2024 | January 15, 2025 | April 15, 2025 | [Mistral-large-2411](https://aka.ms/aistudio/landing/Mistral-Large-2411) |
+|----------------|-------|-------------------|------------------------|-----------------------|-----------------------------|
+| AI21 Labs      | Jamba Instruct | February 1, 2025 | February 1, 2025 | March 1, 2025 | [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) <br> [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-staging) |
+| Cohere         | [Command R](https://aka.ms/azureai/landing/Cohere-command-r) | February 24, 2025 | March 25, 2025 | June 30, 2025 | [Cohere Command R 08-2024](https://aka.ms/azureai/landing/Cohere-command-r-08-2024) |
+| Cohere         | [Command R+](https://aka.ms/azureai/landing/Cohere-command-r-plus) | February 24, 2025 | March 25, 2025 | June 30, 2025 | [Cohere Command R+ 08-2024](https://aka.ms/azureai/landing/Cohere-command-r-plus-08-2024) |
+| Cohere         | [Cohere-rerank-v3-english](https://ai.azure.com/explore/models/Cohere-rerank-v3-english/version/1/registry/azureml-cohere) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Cohere-rerank-v3.5-english](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere) |
+| Cohere         | [Cohere-rerank-v3-multilingual](https://ai.azure.com/explore/models/Cohere-rerank-v3-multilingual/version/1/registry/azureml-cohere) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Cohere-rerank-v3.5-multilingual](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere) |
+| Meta           | [Llama-2-13b](https://ai.azure.com/explore/models/Llama-2-13b/version/24/registry/azureml-meta) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta) |
+| Meta           | [Llama-2-13b-chat](https://ai.azure.com/explore/models/Llama-2-13b-chat/version/22/registry/azureml-meta) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta) |
+| Meta           | [Llama-2-70b](https://ai.azure.com/explore/models/Llama-2-70b/version/25/registry/azureml-meta) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta) |
+| Meta           | [Llama-2-70b-chat](https://ai.azure.com/explore/models/Llama-2-70b-chat/version/22/registry/azureml-meta) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta) |
+| Meta           | [Llama-2-7b](https://ai.azure.com/explore/models/Llama-2-7b/version/23/registry/azureml-meta) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta) |
+| Meta           | [Llama-2-7b-chat](https://ai.azure.com/explore/models/Llama-2-7b-chat/version/27/registry/azureml-meta) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta) |
+| Meta           | [Meta-Llama-3-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-70B-Instruct/version/9/registry/azureml-meta) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta) |
+| Meta           | [Meta-Llama-3-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-8B-Instruct/version/9/registry/azureml-meta) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta) |
+| Meta           | [Meta-Llama-3.1-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-70B-Instruct/version/4/registry/azureml-meta) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta) |
+| Mistral AI     | [Mistral-large-2407](https://aka.ms/azureai/landing/Mistral-Large-2407) | January 13, 2025 | February 13, 2025 | May 13, 2025 | [Mistral-large-2411](https://aka.ms/aistudio/landing/Mistral-Large-2411) |
+| Mistral AI     | [Mistral-large](https://aka.ms/azureai/landing/Mistral-Large) | December 15, 2024 | January 15, 2025 | April 15, 2025 | [Mistral-large-2411](https://aka.ms/aistudio/landing/Mistral-Large-2411) |
 
 ## Related content
 

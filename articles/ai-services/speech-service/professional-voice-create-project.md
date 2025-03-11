@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/23/2024
+ms.date: 3/10/2025
 ms.author: eur
 zone_pivot_groups: speech-studio-rest
 #Customer intent: As a developer, I want to learn how to create a project for professional voice.

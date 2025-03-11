@@ -333,7 +333,7 @@ The following data types are supported for batch inference when deploying MLflow
 Batch deployment jobs enforce the input's data types while reading the data by using the available MLflow model signature. As a result, your data input complies with the types indicated in the model signature. If the data can't be parsed as expected, the job fails with an error similar to _ERROR:azureml:Error processing input file: '/mnt/batch/tasks/.../a-given-file.csv'. Exception: invalid literal for int() with base 10: 'value'_.
 
 > [!TIP]
-> Signatures in MLflow models are optional, but they're highly encouraged. They provide a convenient way for early detection of data compatibility issues. For more information about how to log models with signatures, see [Logging models with a custom signature, environment or samples](how-to-log-mlflow-models.md#logging-models-with-a-custom-signature-environment-or-samples).
+> Signatures in MLflow models are optional, but they're highly encouraged. They provide a convenient way for early detection of data compatibility issues. For more information about how to log models with signatures, see [Log models that use a custom signature, environment, or samples](how-to-log-mlflow-models.md#log-models-that-use-a-custom-signature-environment-or-samples).
 
 You can inspect the model signature of your model by opening the `MLmodel` file associated with your MLflow model. For more information about how signatures work in MLflow, see [Signatures in MLflow](concept-mlflow-models.md#model-signature).
 
