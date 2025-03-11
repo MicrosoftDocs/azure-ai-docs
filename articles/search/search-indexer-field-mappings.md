@@ -157,7 +157,9 @@ A field mapping function transforms the contents of a field before it's stored i
 + [base64Encode](#base64EncodeFunction)
 + [base64Decode](#base64DecodeFunction)
 + [extractTokenAtPosition](#extractTokenAtPositionFunction)
++ [fixedLengthEncode](#fixedLengthEncodeFunction)
 + [jsonArrayToStringCollection](#jsonArrayToStringCollectionFunction)
++ [toJson](#toJsonFunction)
 + [urlEncode](#urlEncodeFunction)
 + [urlDecode](#urlDecodeFunction)
 
