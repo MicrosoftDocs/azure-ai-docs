@@ -40,7 +40,7 @@ ms.author: lajanuar
 |Bashkir|`ba`|✔|✔| |✔| |
 |Basque|`eu`|✔|✔| |✔| |
 |Bhojpuri|`bho`|✔|✔ | | | |
-|Bodo|brx    |✔|✔ | | | |
+|Bodo|`brx`    |✔|✔ | | | |
 |Bosnian (Latin)|`bs`|✔|✔|✔|✔|✔|
 |Bulgarian|`bg`|✔|✔|✔|✔|✔|
 |Cantonese (Traditional)|`yue`|✔|✔| |✔| |
@@ -283,7 +283,7 @@ ms.author: lajanuar
 
 ## Transliteration
 
-The [Transliterate operation](text-translation/reference/v3/transliterate.md) in the Text Translation feature supports the following languages. In the `To/From`, `<-->` indicates that the language can be transliterated from or to either of the scripts listed. The `-->` indicates that the language can only be transliterated from one script to the other.
+[Transliterate](text-translation/reference/v3/transliterate.md) is a Text Translation operation that supports the following languages. In the `To/From`, `<-->` indicates that the language can be transliterated from or to either of the scripts listed. The `-->` indicates that the language can only be transliterated from one script to the other.
 
 | Language    | Language code | Script | To/From | Script|
 |:----------- |:-------------:|:-------------:|:-------------:|:-------------:|
