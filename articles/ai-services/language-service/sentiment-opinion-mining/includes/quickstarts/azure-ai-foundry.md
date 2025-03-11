@@ -56,4 +56,4 @@ The following fields are only present if opinion mining is enabled:
 |Target|The target of the detected opinion.|
 |Assessments| The detected opinion and the detected persuasion (positive, neutral, negative), as well as the percent of detected persuasion.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/sentiment-opinion-mining.png" alt-text="An example of Analyze sentiment in Azure AI Studio" lightbox="../../media/quickstarts/azure-ai-foundry/sentiment-opinion-mining.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/sentiment-opinion-mining.png" alt-text="An example of Analyze sentiment in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/sentiment-opinion-mining.png":::

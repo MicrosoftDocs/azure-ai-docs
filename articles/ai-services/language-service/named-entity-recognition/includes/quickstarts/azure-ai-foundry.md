@@ -53,4 +53,4 @@ After your operation is completed, the type of entity is displayed beneath each 
 |Length| The character length of the entity.|
 |Confidence| How confident the model is in the correctness of identification of entity's type.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png" alt-text="A screenshot of an example of extract named entities in Azure AI Studio." lightbox="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png" alt-text="A screenshot of an example of extract named entities in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png":::
