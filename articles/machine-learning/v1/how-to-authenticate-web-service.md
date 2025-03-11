@@ -113,9 +113,9 @@ print(token)
 >
 > We strongly recommend that you create your Azure Machine Learning workspace in the same region as your Azure Kubernetes Service cluster.
 >
-> To authenticate with a token, the web service will make a call to the region in which your Azure Machine Learning workspace is created. If your workspace region is unavailable, you won't be able to fetch a token for your web service, even if your cluster is in a different region from your workspace. The result is that Microsoft Entra authentication is unavailable until your workspace region is available again.
+> To authenticate with a token, the web service makes a call to the region in which your Azure Machine Learning workspace is created. If your workspace region is unavailable, you aren't able to fetch a token for your web service, even if your cluster is in a different region from your workspace. The result is that Microsoft Entra authentication is unavailable until your workspace region is available again.
 >
-> Also, the greater the distance between your cluster's region and your workspace region, the longer it will take to fetch a token.
+> Also, the greater the distance between your cluster's region and your workspace region, the longer it takes to fetch a token.
 
 ## Next steps
 
