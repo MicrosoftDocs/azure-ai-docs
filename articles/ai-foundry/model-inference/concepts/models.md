@@ -35,6 +35,8 @@ Explore the following model families available:
 - [Mistral AI](#mistral-ai)
 - [NTT Data](#ntt-data)
 
+Model availability varies by model provider, deployment SKU, and cloud. All models available in Azure AI Model Inference support the [Global standard](deployment-types.md#global-standard) deployment type which uses global capacity to guarantee throughput. [Azure OpenAI models](#azure-openai) also support regional deployments and [sovereign clouds](/entra/identity-platform/authentication-national-cloud)—Azure Government, Azure Germany, and Azure China 21Vianet.
+
 > [!TIP]
 > The Azure AI model catalog offers a larger selection of models, from a bigger range of providers. However, those models might require you to host them on your infrastructure, including the creation of an AI hub and project. Azure AI model service provides a way to consume the models as APIs without hosting them on your infrastructure, with a pay-as-you-go billing. Learn more about the [Azure AI model catalog](../../../ai-studio/how-to/model-catalog-overview.md).
 
@@ -52,7 +54,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ### Azure OpenAI
 
-Azure OpenAI Service offers a diverse set of models with different capabilities and price points. These models include:
+Azure OpenAI Service offers a diverse set of models with different capabilities and price points. Learn more details at [Azure OpenAI Model availability](../../../ai-services/openai/concepts/models.md). These models include:
 
 - State-of-the-art models designed to tackle reasoning and problem-solving tasks with increased focus and capability
 - Models that can understand and generate natural language and code
@@ -179,12 +181,6 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 | Model  | Type | Tier | Capabilities |
 | ------ | ---- | --- | ------------ |
 | [Tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata) | chat-completion | Global standard | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` and `jp` <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
-
-## Model availability
-
-Model availability varies by model provider, deployment SKU, and cloud. All models available in Azure AI Model Inference support the [Global standard](deployment-types.md#global-standard) deployment type which uses global capacity to guarantee throughput. [Azure OpenAI models](#azure-openai) also support regional deployments and [sovereign clouds](/entra/identity-platform/authentication-national-cloud)—Azure Government, Azure Germany, and Azure China 21Vianet.
-
-Learn more about specific deployment capabilities for Azure OpenAI at [Azure OpenAI Model availability](../../../ai-services/openai/concepts/models.md).
 
 ## Next steps
 
