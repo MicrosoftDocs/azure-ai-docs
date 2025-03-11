@@ -57,7 +57,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Run the quickstart
 
-The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
+The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with an `AzureKeyCredential` object. 
 
 #### [Microsoft Entra ID](#tab/keyless)
 
