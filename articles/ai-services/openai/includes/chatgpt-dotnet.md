@@ -7,7 +7,7 @@ ms.service: azure-ai-openai
 ms.topic: include
 author: mrbullwinkle
 ms.author: mbullwin
-ms.date: 11/15/2023
+ms.date: 3/11/2025
 ---
 
 [Source code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/openai/Azure.AI.OpenAI/src) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.OpenAI/) | [Samples](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/openai/Azure.AI.OpenAI/tests/Samples)| [Retrieval Augmented Generation (RAG) enterprise chat template](/dotnet/ai/get-started-app-chat-template) |
@@ -60,7 +60,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 [!INCLUDE [resource authentication](resource-authentication.md)]
 
-## Add the code for chat completion
+## Run the quickstart
 
 The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
 
@@ -81,9 +81,9 @@ You can use streaming or non-streaming to get the chat completion. The following
 
 ### Without response streaming
 
-To use the non-streaming method:
+To run the quickstart, follow these steps:
 
-1. Update the `Program.cs` file with the following code:
+1. Replace the contents of `Program.cs` with the following code and update the placeholder values with your own.
 
     ```csharp
     using Azure;
@@ -127,12 +127,13 @@ To use the non-streaming method:
 Assistant: Arrr, ye be askin’ a fine question, matey! Aye, several Azure AI services support customer-managed keys (CMK)! This lets ye take the wheel and secure yer data with encryption keys stored in Azure Key Vault. Services such as Azure Machine Learning, Azure Cognitive Search, and others also offer CMK fer data protection. Always check the specific service's documentation fer the latest updates, as features tend to shift swifter than the tides, aye!
 ```
 
-This will wait until the model has generated its entire response before printing the results. Alternatively, if you want to asynchronously stream the response and print the results, you can replace the contents of *program.cs* with the code in the next example.
+This will wait until the model has generated its entire response before printing the results. Alternatively, if you want to asynchronously stream the response and print the results, you can replace the contents of *Program.cs* with the code in the next example.
 
 ### Async with streaming
 
-To use the streaming method:
-1. Update the `Program.cs` file with the following code:
+To run the quickstart, follow these steps:
+
+1. Replace the contents of `Program.cs` with the following code and update the placeholder values with your own.
 
     ```csharp
     using Azure;

@@ -62,7 +62,7 @@ dotnet add package Azure.AI.OpenAI --version 1.0.0-beta.17
 
 ## Create a sample application
 
-From the project directory, open the *program.cs* file and replace with the following code:
+From the project directory, open the *Program.cs* file and replace with the following code:
 
 ```csharp
 using Azure;
@@ -91,7 +91,7 @@ Console.WriteLine($"Chatbot: {completion}");
 > For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
 
 ```cmd
-dotnet run program.cs
+dotnet run Program.cs
 ```
 
 ## Output
