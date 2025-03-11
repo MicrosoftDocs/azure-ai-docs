@@ -11,7 +11,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 10/23/2024
+ms.date: 03/11/2025
 ---
 
 # Index CSV blobs and files using delimitedText parsing mode
