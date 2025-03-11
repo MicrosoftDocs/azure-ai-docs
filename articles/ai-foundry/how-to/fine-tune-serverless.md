@@ -5,7 +5,7 @@ description: Learn how to fine-tune models deployed via serverless APIs in Azure
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 01/31/2025
+ms.date: 03/11/2025
 ms.reviewer: rasavage
 reviewer: RSavage2
 ms.author: ssalgado
