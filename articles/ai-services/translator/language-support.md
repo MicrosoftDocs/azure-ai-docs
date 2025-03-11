@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 03/07/2025
+ms.date: 03/11/2025
 ms.author: lajanuar
 ---
 # Translator language support
@@ -204,7 +204,7 @@ ms.author: lajanuar
 |Greek|`el`|Yes|No|
 |Gujarati|`gu`|Yes|No|
 |Haitian Creole|`ht`|Yes|Yes|
-|Hebrew|`he`|Yes|No|
+|Hebrew|`he`|No|No|
 |Hindi|`hi`|Yes|Yes|
 |Hmong Daw (Latin)|`mww`|Yes|Yes|
 |Hungarian|`hu`|Yes|Yes|
@@ -265,7 +265,7 @@ ms.author: lajanuar
 |Tamil|`ta`|Yes|Yes|
 |Tatar (Latin)|`tt`|Yes|Yes|
 |Telugu|`te`|Yes|Yes|
-|Thai|`th`|Yes|No|
+|Thai|`th`|No|No|
 |Tibetan|`bo`|Yes|No|
 |Tigrinya|`ti`|Yes|No|
 |Tongan|`to`|Yes|Yes|
