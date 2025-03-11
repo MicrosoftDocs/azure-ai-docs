@@ -1087,7 +1087,7 @@ items:
     - name: Consume web service
       displayName: create client consume request response synchronous
       href: ./v1/how-to-consume-web-service.md
-    - name: Advanced entry scripts
+    - name: Author advanced entry scripts
       displayName: swagger inference schema binary cors
       href: ./v1/how-to-deploy-advanced-entry-script.md
     - name: Prebuilt Docker images

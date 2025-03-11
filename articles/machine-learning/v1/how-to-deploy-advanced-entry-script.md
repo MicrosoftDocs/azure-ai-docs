@@ -6,7 +6,7 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: how-to
-ms.date: 02/03/2025
+ms.date: 03/11/2025
 author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
