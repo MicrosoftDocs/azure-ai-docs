@@ -135,7 +135,7 @@ Azure AI Foundry portal provides the Create custom model wizard, so you can inte
 
 1. Choose the model you want to fine-tune from the Azure AI Foundry [model catalog](https://ai.azure.com/explore/models).
 2. On the model's **Details page**, select **fine-tune**. Some foundation models support both **Serverless API** and **Managed compute**, while others support one or the other.
-3. If you're presented the options for **Serverless API** and [**Managed compute**](./fine-tune-managed-compute), select **Serverless API** for fine-tuning. This action opens up a wizard that shows information about **pay-as-you-go** fine-tuning for your model.
+3. If you're presented the options for **Serverless API** and [**Managed compute**](./fine-tune-managed-compute.md), select **Serverless API** for fine-tuning. This action opens up a wizard that shows information about **pay-as-you-go** fine-tuning for your model.
 
 ### Choose your training data
 The next step is to either choose existing prepared training data or upload new prepared training data to use when customizing your model. The **Training data** pane displays any existing, previously uploaded datasets and also provides options to upload new training data.
