@@ -26,7 +26,7 @@ This article explains how to join an Azure AI Search service to a [network secur
 * Block any data exfiltration from a search service to other services outside the perimeter.
 * Allow access to your search service using inbound and outbound access capabilities of the network security perimeter.
 
-You can add a search service to a network security perimeter in the Azure portal, as described in this article. Alternatively, you can use the [Azure Virtual Network Manager REST API](/rest/api/networkmanager/) to join a search service, and use the [Search Management REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2024-06-01-preview&preserve-view=true) to view and synchronize the configuration settings.
+You can add a search service to a network security perimeter in the Azure portal, as described in this article. Alternatively, you can use the [Azure Virtual Network Manager REST API](/rest/api/networkmanager/) to join a search service, and use the [Search Management REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2025-05-01-preview&preserve-view=true) to view and synchronize the configuration settings.
 
 ## Limitations and considerations
 
@@ -270,9 +270,9 @@ In order to test your connection through network security perimeter, you need ac
 
 ## View and manage network security perimeter configuration
 
-You can use the [Network Security Perimeter Configuration REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2024-06-01-preview&preserve-view=true) to review and reconcile perimeter configurations.
+You can use the [Network Security Perimeter Configuration REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2025-05-01preview&preserve-view=true) to review and reconcile perimeter configurations.
 
-Be sure to use preview API version `2024-06-01-preview`. [Learn how to call the Management REST APIs](search-manage-rest.md).
+Be sure to use preview API version `2024-06-01-preview` or a later preview. [Learn how to call the Management REST APIs](search-manage-rest.md).
 
 ## See also
 

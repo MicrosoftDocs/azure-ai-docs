@@ -110,7 +110,7 @@ Enable the system assigned managed identity for your search service. It's a two-
 
 1. Give the identity a descriptive name.
 
-1. Next, assign the user-managed identity to the search service. This can be done using the latest preview [2024-06-01-preview](/rest/api/searchmanagement/management-api-versions) management API or the previous preview.
+1. Next, assign the user-managed identity to the search service. This can be done using the latest preview [2025-05-01-preview](/rest/api/searchmanagement/management-api-versions) management API or the previous preview.
 
     The identity property takes a type and one or more fully qualified user-assigned identities:
   
@@ -122,7 +122,7 @@ Enable the system assigned managed identity for your search service. It's a two-
     Example of how to assign a user-managed identity to a search service:
   
     ```http
-    PUT https://management.azure.com/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Search/searchServices/[search service name]?api-version=2024-06-01-preview
+    PUT https://management.azure.com/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Search/searchServices/[search service name]?api-version=2025-05-01-preview
     Content-Type: application/json
 
     {
