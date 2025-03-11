@@ -1,19 +1,20 @@
 ---
-title: Train model
+title: Train an Azure AI Custom Translator model
 titleSuffix: Azure AI services
 description: How to train a custom model
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 07/09/2024
+ms.date: 01/28/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
-# Train a custom model
 
-A model provides translations for a specific language pair. The outcome of a successful training is a model. To train a custom model, three mutually exclusive document types are required: training, tuning, and testing. If only training data is provided when queuing a training, Custom Translator automatically assembles tuning and testing data. It uses a random subset of sentences from your training documents, and exclude these sentences from the training data itself. A minimum of 10,000 parallel training sentences are required to train a full model.
+# Train an Azure AI Custom Translator model
 
-## Create model
+An Azure AI Custom Translator model provides translations for a specific language pair. The outcome of a successful training is a model. To train a custom model, three mutually exclusive document types are required: training, tuning, and testing. If only training data is provided when queuing a training, Custom Translator automatically assembles tuning and testing data. It uses a random subset of sentences from your training documents, and exclude these sentences from the training data itself. A minimum of 10,000 parallel training sentences are required to train a full model.
+
+## Create custom model
 
 1. Select the **Train model** blade.
 
@@ -70,7 +71,7 @@ For better results, we recommended letting the system learn from your training d
    >
    > If you save the model as `Draft`, **Model details** is updated with the model name in `Draft` status.
    >
-   > To add more documents, select on the model name and follow the steps in the [Create model](#create-model) section.
+   > To add more documents, select on the model name and follow the steps in the [Create model](#create-custom-model) section.
 
    :::image type="content" source="../media/how-to/duplicate-model.png" alt-text="Screenshot illustrating the duplicate model blade.":::
 

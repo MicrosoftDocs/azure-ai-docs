@@ -7,7 +7,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ms.author: jboback
 ms.custom: language-service-pii, build-2024
 ---
@@ -191,12 +191,8 @@ Use this article to learn which natural languages are supported by the text PII,
 
 ## PII language support
 
-| Language              | Language code | Notes              |
-|-----------------------|---------------|--------------------|
-|German                 |`de`           |                    |
-|English                |`en`           |                    |
-|Spanish                |`es`           |                    |
-|French                 |`fr`           |                    |
+The Generally Available Conversational PII serivce currently supports English. Preview model version `2023-04-15-preview` supports English, German, Spanish, and French. 
+
 
 ---
 

@@ -6,7 +6,7 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
-ms.custom: devx-track-azurecli, sdkv2, FY25Q1-Linter
+ms.custom: devx-track-azurecli, sdkv2, FY25Q1-Linter, ignite-2024
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: meerakurup
@@ -428,7 +428,7 @@ The following table shows the possible configurations for your workspace and man
 | Workspace</br>public network access | Managed online endpoint</br>public network access | Does the workspace</br>respect the selected IPs? | Does the online endpoint</br>respect the selected IPs? |
 | --- | --- | --- | --- |
 | Disabled | Disabled | No (all public traffic rejected) | No |
-| Disabled | Enabled | No (all public traffic rejected) | Yes |
+| Disabled | Enabled | No (all public traffic rejected) | Not supported |
 | Enabled from selected IPs | Disabled | Yes | No |
 | Enabled from selected IPs | Enabled | Yes | Yes |
 

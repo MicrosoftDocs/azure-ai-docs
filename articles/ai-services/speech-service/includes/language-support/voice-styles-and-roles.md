@@ -1,7 +1,7 @@
 ---
 author: eric-urban
 ms.service: azure-ai-speech
-ms.date: 02/01/2023
+ms.date: 2/13/2025
 ms.topic: include
 ms.author: eur
 ---
@@ -19,8 +19,8 @@ ms.author: eur
 |en-US-JaneNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
 |en-US-JasonNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
 |en-US-JennyNeural|`angry`, `assistant`, `chat`, `cheerful`, `customerservice`, `excited`, `friendly`, `hopeful`, `newscast`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
-|en-US-KaiNeural<sup>1</sup>|`conversation`|Not supported|
-|en-US-LunaNeural<sup>1</sup>|`conversation`|Not supported|
+|en-US-KaiNeural|`conversation`|Not supported|
+|en-US-LunaNeural|`conversation`|Not supported|
 |en-US-NancyNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
 |en-US-SaraNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
 |en-US-SerenaMultilingualNeural<sup>1</sup>|`empathetic`, `excited`, `friendly`, `relieved`, `sad`, `serious`, `shy`|Not supported|

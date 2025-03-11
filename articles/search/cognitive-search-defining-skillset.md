@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 10/04/2024
+ms.date: 12/06/2024
 ---
 
 # Create a skillset in Azure AI Search
@@ -75,7 +75,7 @@ After the name and description, a skillset has four main properties:
 
 Inside the skillset definition, the skills array specifies which skills to execute. Three to five skills are common, but you can add as many skills as necessary, subject to [service limits](search-limits-quotas-capacity.md#indexer-limits).
 
-The end result of an enrichment pipeline is textual content in either a search index or a knowledge store. For this reason, most skills either create text from images (OCR text, captions, tags), or analyze existing text to create new information (entities, key phrases, sentiment). Skills that operate independently are processed in parallel. Skills that depend on each other specify the output of one skill (such as key phrases) as the input of a second skill (such as text translation). The search service determines the order of skill execution and the execution environment.
+The end result of an enrichment pipeline is textual content in either a search index or a knowledge store. For this reason, most skills either create text from images (OCR text, captions, tags), or analyze existing text to create new information (entities, key phrases, sentiment). Skills that operate independently are processed in parallel. Skills that depend on each other specify the output of one skill (such as key phrases) as the input of a second skill (such as text translation). The search service determines the order of skill execution and the [execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment).
 
 All skills have a type, context, inputs, and outputs. A skill might optionally have a name and description. The following example shows two unrelated [built-in skills](cognitive-search-predefined-skills.md) so that you can compare the basic structure.
 
@@ -269,9 +269,9 @@ Although skill output can be optionally cached for reuse purposes, it's usually 
 
 ## Tips for a first skillset
 
-+ Try the [Import data wizard](search-import-data-portal.md). 
++ Try the [Import data wizard](search-get-started-portal.md) or [Import and vectorize data wizard](search-get-started-portal-import-vectors.md).
 
-  The wizard automates several steps that can be challenging the first time around. It defines the skillset, index, and indexer, including field mappings and output field mappings. It also defines projections in a knowledge store if you're using one. For some skills, such as OCR or image analysis, the wizard adds utility skills that merge the image and text content that was separated during document cracking.
+  The wizards automate several steps that can be challenging the first time around. It defines the skillset, index, and indexer, including field mappings and output field mappings. It also defines projections in a knowledge store if you're using one. For some skills, such as OCR or image analysis, the wizard adds utility skills that merge the image and text content that was separated during document cracking.
 
   After the wizard runs, you can open each object in the Azure portal to view its JSON definition.
 

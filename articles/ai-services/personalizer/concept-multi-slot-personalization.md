@@ -31,7 +31,7 @@ We encourage you to provide feedback on multi-slot personalization APIs via ...
 
 ## When to use Multi-Slot personalization
 
-Whenever you display products and/or content to users, you may want to show more than one item to your customers. For example:
+Whenever you display products and/or content to users, you might want to show more than one item to your customers. For example:
 
 * **Website layouts for home pages**: Many tiles and page areas are dedicated to highlighting content in boxes, banners, and sidebars of different shapes and sizes. Multi-slot personalization will learn how the characteristics of this layout affect customers' choices and actions.
 * **Carousels**: Carousels of dynamically changing content need a handful of items to cycle. Multi-slot personalization can learn how sequence and even display duration affects clicks and engagement.

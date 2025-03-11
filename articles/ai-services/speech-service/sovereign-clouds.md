@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 9/24/2024
+ms.date: 3/10/2025
 ms.reviewer: alexeyo
 #Customer intent: As a developer, I want to learn how to use Speech service in sovereign clouds.
 ---

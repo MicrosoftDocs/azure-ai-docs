@@ -8,10 +8,11 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 10/28/2024
+ms.date: 01/07/2025
 ms.custom:
   - references_regions
   - build-2024
+  - ignite-2024
 ---
 
 # Service limits in Azure AI Search
@@ -67,8 +68,6 @@ Maximum number of documents per index are:
 + 2 billion on S3 HD
 + 288 billion on L1
 + 576 billion on L2
-
-Each instance of a complex collection counts as a separate document in terms of these limits.
 
 Maximum size of each document is approximately 16 megabytes. Document size is actually a limit on the size of the indexing API request payload, which is 16 megabytes. That payload can be a single document, or a batch of documents. For a batch with a single document, the maximum document size is 16 MB of JSON. 
 
@@ -132,7 +131,7 @@ Maximum running times exist to provide balance and stability to the service as a
 
 <sup>4</sup> Maximum of 30 skills per skillset.
 
-<sup>5</sup> Regarding the 2 or 24 hour maximum duration for indexers: a 2-hour maximum is the most common and it's what you should plan for. It refers to indexers that run in the [public environment](search-howto-run-reset-indexers.md#indexer-execution), used to offload computationally intensive processing and leave more resources for queries. The 24-hour limit applies if you configure the indexer to run in a private environment using only the infrastructure that's allocated to your search service. Note that some older indexers are incapable of running in the public environment, and those indexers always have a 24-hour processing range. If you have unscheduled indexers that run continuously for 24 hours, you can assume those indexers couldn't be migrated to the newer infrastructure. As a general rule, for indexing jobs that can't finish within two hours, put the indexer on a [5 minute schedule](search-howto-schedule-indexers.md) so that the indexer can quickly pick up where it left off. On the Free tier, the 3-10 minute maximum running time is for indexers with skillsets.
+<sup>5</sup> Regarding the 2 or 24 hour maximum duration for indexers: a 2-hour maximum is the most common and it's what you should plan for. It refers to indexers that run in the [public environment](search-howto-run-reset-indexers.md#indexer-execution-environment), used to offload computationally intensive processing and leave more resources for queries. The 24-hour limit applies if you configure the indexer to run in a private environment using only the infrastructure that's allocated to your search service. Note that some older indexers are incapable of running in the public environment, and those indexers always have a 24-hour processing range. If you have unscheduled indexers that run continuously for 24 hours, you can assume those indexers couldn't be migrated to the newer infrastructure. As a general rule, for indexing jobs that can't finish within two hours, put the indexer on a [5 minute schedule](search-howto-schedule-indexers.md) so that the indexer can quickly pick up where it left off. On the Free tier, the 3-10 minute maximum running time is for indexers with skillsets.
 
 <sup>6</sup> The maximum number of characters is based on Unicode code units, specifically UTF-16.
 
@@ -146,14 +145,14 @@ Indexers can access other Azure resources [over private endpoints](search-indexe
 | Resource | Free | Basic | S1 | S2 | S3 | S3 HD | L1 | L2 |
 |----------|------|-------|----|----|----|-------|----|----|
 | Private endpoint indexer support | No | Yes | Yes | Yes | Yes | No | Yes | Yes |
-| Private endpoint support for indexers with a skillset<sup>1</sup> | No | No | No | Yes | Yes | No | Yes | Yes |
-| Private endpoint support for indexers with a skillset and integrated vectorization <sup>2</sup> | No | Yes | Yes | Yes | Yes | No | Yes | Yes |
+| Private endpoint support for indexers with a skillset <sup>1</sup> | No | No | Yes | Yes | Yes | No | Yes | Yes |
+| Private endpoint support for skillsets with an embedding skill <sup>2</sup> | No | Yes | Yes | Yes | Yes | No | Yes | Yes |
 | Maximum private endpoints | N/A | 10 or 30 | 100 | 400 | 400 | N/A | 20 | 20 |
-| Maximum distinct resource types<sup>3</sup> | N/A | 4 | 7 | 15 | 15 | N/A | 4 | 4 |
+| Maximum distinct resource types <sup>3</sup> | N/A | 4 | 7 | 15 | 15 | N/A | 4 | 4 |
 
-<sup>1</sup> AI enrichment and image analysis are computationally intensive and consume disproportionate amounts of available processing power. For this reason, private connections are disabled on lower tiers to ensure the performance and stability of the search service itself.
+<sup>1</sup> AI enrichment and image analysis are computationally intensive and consume disproportionate amounts of available processing power. For this reason, private connections are disabled on lower tiers to ensure the performance and stability of the search service itself. On basic services, private connections to an Azure AI multi-service resource are unsupported to preserve service stability. For the S1 tier, make sure the service was created with [higher limits](search-limits-quotas-capacity.md#partition-storage-gb) after April 3, 2024. 
 
-<sup>2</sup> High-capacity services created after April 3, 2024 in the regions listed under [Partition Storage](search-limits-quotas-capacity.md#partition-storage-gb) and running [integrated vectorization](vector-search-integrated-vectorization.md) workloads at indexing time support shared private links in paid tiers. The system must detect at least a skill that is embedding data.
+<sup>2</sup> Private connections to an embedding model are supported on basic and S1 high-capacity search services created after April 3, 2024, with the [higher limits](search-limits-quotas-capacity.md#partition-storage-gb) for storage and computational processing. 
 
 <sup>3</sup> The number of distinct resource types are computed as the number of unique `groupId` values used across all shared private link resources for a given search service, irrespective of the status of the resource.
 
@@ -197,17 +196,18 @@ Static rate request limits for operations related to a service:
 
 + Service Statistics (GET /servicestats): 4 per second per search unit
 
-### Semantic Ranker Throttling limits
+### Semantic ranker throttling limits
 
-[Semantic ranker](search-get-started-semantic.md) uses a queuing system to manage concurrent requests. This sytem allows search services get the highest amount of queries per second possible. When the limit of concurrent requests is reached, additional requests are placed in a queue. If the queue is full, further requests are rejected and must be retried.
+[Semantic ranker](search-get-started-semantic.md) uses a queuing system to manage concurrent requests. This system allows search services get the highest number of queries per second possible. When the limit of concurrent requests is reached, additional requests are placed in a queue. If the queue is full, further requests are rejected and must be retried.
 
 Total semantic ranker queries per second varies based on the following factors:
-+ The SKU of the search service. Both queue capacity and concurrent request limits vary by SKU.
-+ The number of search units in the search service. The simplest way to increase the maximum amount of concurrent semantic ranker queries is to [add additional search units to your search service](search-capacity-planning.md#how-to-change-capacity).
+
++ The tier of the search service. Both queue capacity and concurrent request limits vary by tier.
++ The number of search units in the search service. The simplest way to increase the maximum number of concurrent semantic ranker queries is to [add more search units to your search service](search-capacity-planning.md#how-to-change-capacity).
 + The total available semantic ranker capacity in the region.
 + The amount of time it takes to serve a query using semantic ranker. This varies based on how busy the search service is.
 
-The following table describes the semantic ranker throttling limits by SKU. Subject to available capacity in the region, contact support to request a limit increase.
+The following table describes the semantic ranker throttling limits by tier, subject to available capacity in the region. You can contact Microsoft support to request a limit increase.
 
 | Resource | Basic | S1 | S2 | S3 | S3-HD | L1 | L2 |
 |----------|-------|----|----|----|-------|----|----|
@@ -216,26 +216,41 @@ The following table describes the semantic ranker throttling limits by SKU. Subj
 
 ## API request limits
 
+Limits on queries exist because unbounded queries can destabilize your search service. Typically, such queries are created programmatically. If your application generates search queries programmatically, we recommend designing it in such a way that it doesn't generate queries of unbounded size.
+
+Limits on payloads exist for similar reasons, ensuring the stability of your search service. The limit applies to the entire request, inclusive of all its components. For example, if the request batches several documents or commands, the entire request must fit within the supported limit.
+
+If you must exceed a supported limit, you should [test your workload](search-performance-analysis.md#develop-baseline-numbers) so that you know what to expect.
+
 Except where noted, the following API requests apply to all programmable interfaces, including the Azure SDKs.
 
-+ Maximum of 16 MB per indexing or query request when pushing a payload to the search service <sup>1</sup>
-+ Maximum 8-KB URL length (applies to REST APIs only)
-+ Maximum 1,000 documents per batch of index uploads, merges, or deletes
-+ Maximum 32 fields in $orderby clause
-+ Maximum 100,000 characters in a search clause
-+ The maximum number of clauses in `search` (expressions separated by AND or OR) is 1024
-+ Maximum search term size is 32,766 bytes (32 KB minus 2 bytes) of UTF-8 encoded text
-+ Maximum search term size is 1,000 characters for [prefix search](query-simple-syntax.md#prefix-queries) and [regex search](query-lucene-syntax.md#bkmk_regex)
-+ [Wildcard search](query-lucene-syntax.md#bkmk_wildcard) and [Regular expression search](query-lucene-syntax.md#bkmk_regex) are limited to a maximum of 1,000 states when processed by [Lucene](https://lucene.apache.org/core/7_0_1/core/org/apache/lucene/util/automaton/RegExp.html).
+General:
 
-<sup>1</sup> In Azure AI Search, the body of a request is subject to an upper limit of 16 MB, imposing a practical limit on the contents of individual fields or collections that aren't otherwise constrained by theoretical limits (see [Supported data types](/rest/api/searchservice/supported-data-types) for more information about field composition and restrictions).
++ Supported maximum payload limit is 16 MB for indexing and query request via REST API and SDKs.
++ Maximum 8-KB URL length (applies to REST APIs only).
 
-Limits on query size and composition exist because unbounded queries can destabilize your search service. Typically, such queries are created programmatically. If your application generates search queries programmatically, we recommend designing it in such a way that it doesn't generate queries of unbounded size.
+Indexing APIs:
+
++ Supported maximum 1,000 documents per batch of index uploads, merges, or deletes.
+
+Query APIs:
+
++ Maximum 32 fields in $orderby clause.
++ Maximum 100,000 characters in a search clause.
++ Maximum number of clauses in search is 3,000.
++ Maximum limits on [wildcard](query-lucene-syntax.md#bkmk_wildcard) and [regular expression](query-lucene-syntax.md#bkmk_regex) queries, as enforced by [Lucene](https://lucene.apache.org/core/7_0_1/core/org/apache/lucene/util/automaton/RegExp.html). It caps the number of patterns, variations, or matches to 1,000 instances. This limit is in place to avoid engine overload.
+
+Search terms:
+
++ Supported maximum search term size is 32,766 bytes (32 KB minus 2 bytes) of UTF-8 encoded text. Applies to keyword search and the text property of vector search.
++ Supported maximum search term size is 1,000 characters for [prefix search](query-simple-syntax.md#prefix-queries) and [regex search](query-lucene-syntax.md#bkmk_regex).
 
 ## API response limits
 
 + Maximum 1,000 documents returned per page of search results
 + Maximum 100 suggestions returned per Suggest API request
+
+The search engine returns 50 results by default, but you can [override this parameter](search-pagination-page-layout.md#number-of-results-in-the-response) up to the maximum limit.
 
 ## API key limits
 

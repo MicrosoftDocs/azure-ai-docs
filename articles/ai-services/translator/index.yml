@@ -10,7 +10,7 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-translator
   ms.topic: landing-page
-  ms.date: 08/21/2024
+  ms.date: 02/10/2025
   ms.author: lajanuar
 
 
@@ -42,7 +42,7 @@ landingContent:
       - linkListType: concept
         links:
           - text: Text Translation
-            url: text-translation-overview.md
+            url: text-translation/overview.md
           - text: Document Translation
             url:  document-translation/overview.md
           - text: Custom Translator
@@ -81,9 +81,9 @@ landingContent:
       - linkListType: reference
         links:
           - text: Text Translation REST API
-            url: reference/v3-0-reference.md
+            url: text-translation/reference/v3/reference.md
           - text: Text Translation reference (v3)
-            url: reference/v3-0-reference.md
+            url: text-translation/reference/v3/reference.md
           - text: Request limits
             url: service-limits.md
       - linkListType: how-to-guide
@@ -125,9 +125,9 @@ landingContent:
             url: custom-translator/how-to/translate-with-custom-model.md
 
   # Card 6
-  - title: Containers
+  - title: Translator containers
     linkLists:
-      - linkListType: overview
+      - linkListType: reference
         links:
           - text: Azure AI Translator containers
             url: containers/overview.md
@@ -136,6 +136,19 @@ landingContent:
           - text: "Reference: translate text"
             url: containers/translate-text-parameters.md
   # Card 7
+  - title: Translator solutions
+    linkLists:
+      - linkListType: reference
+        links:
+          - text: Language Studio
+            url: document-translation/language-studio.md
+          - text: Microsoft Translator Pro
+            url: translator-pro/overview.md
+          - text: V3 connector (document translation)
+            url: solutions/connector/document-translation-flow.md
+          - text: V3 connector (text translation)
+            url: solutions/connector/text-translator-flow.md
+  #          
   - title: Resources
     linkLists:
       - linkListType: reference
@@ -147,7 +160,7 @@ landingContent:
           - text: stack overflow
             url: https://stackoverflow.com/questions/tagged/microsoft-translator
 
-  # Card 8
+  # Card 9
   - title: Help and support
     linkLists:
       - linkListType: reference

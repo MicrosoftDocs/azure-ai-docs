@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 05/23/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.0.0'
 ---
@@ -15,11 +15,6 @@ monikerRange: '>=doc-intel-3.0.0'
 # Build and train a custom classification model
 
 [!INCLUDE [applies to v4.0 v3.1 v3.0](../includes/applies-to-v40-v31-v30.md)]
-
-> [!IMPORTANT]
->
-> Custom classification model is currently in public preview. Features, approaches, and processes may change, prior to General Availability (GA), based on user feedback.
->
 
 Custom classification models can classify each page in an input file to identify one or more documents within. Classifier models can also identify multiple documents or multiple instances of a single document in the input file. Document Intelligence custom models require as few as five training documents per document class to get started. To get started training a custom classification model, you need at least **five documents** for each class and **two classes** of documents.
 
@@ -45,7 +40,7 @@ Once you put together the set of forms or documents for training, you need to up
 
 The Document Intelligence Studio provides and orchestrates all the API calls required to complete your dataset and train your model.
 
-1. Start by navigating to the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio). The first time you use the Studio, you need to [initialize your subscription, resource group, and resource](../quickstarts/try-document-intelligence-studio.md). Then, follow the [prerequisites for custom projects](../quickstarts/try-document-intelligence-studio.md#added-prerequisites-for-custom-projects) to configure the Studio to access your training dataset.
+1. Start by navigating to the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio). The first time you use the Studio, you need to [initialize your subscription, resource group, and resource](../studio-overview.md). Then, follow the [prerequisites for custom projects](../quickstarts/studio-custom-project.md#prerequisites-for-new-users) to configure the Studio to access your training dataset.
 
 1. In the Studio, select the **Custom classification model** tile, on the custom models section of the page and select the **Create a project** button.
 

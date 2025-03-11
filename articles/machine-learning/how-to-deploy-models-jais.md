@@ -5,7 +5,7 @@ description: Learn how to deploy JAIS models with Azure Machine Learning studio.
 manager: scottpolly
 ms.service: azure-machine-learning
 ms.topic: how-to
-ms.date: 05/02/2024
+ms.date: 03/04/2025
 ms.reviewer: haelhamm
 ms.author: ssalgado
 author: ssalgadodev
@@ -36,7 +36,7 @@ You can find the JAIS model in the model catalog by filtering on the JAIS collec
 
     For a list of  regions that are available for each of the models supporting serverless API endpoint deployments, see [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md).
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Studio. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Studio](/azure/ai-studio/concepts/rbac-ai-studio).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](/azure/ai-studio/concepts/rbac-ai-studio).
 
 
 ### JAIS 30b Chat
@@ -270,7 +270,7 @@ Response:
 
 ### Cost and quota considerations for models deployed as a service
 
-JAIS 30b Chat is deployed as a service are offered by Core42 through the Azure Marketplace and integrated with Azure AI Studio for use. You can find the Azure Marketplace pricing when deploying the model.
+JAIS 30b Chat is deployed as a service are offered by Core42 through the Azure Marketplace and integrated with Azure AI Foundry for use. You can find the Azure Marketplace pricing when deploying the model.
 
 Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
 
@@ -284,6 +284,6 @@ Models deployed as a service with pay-as-you-go are protected by [Azure AI Conte
 
 ## Next steps
 
-- [What is Azure AI Studio?](/azure/ai-studio/what-is-ai-studio)
+- [What is Azure AI Foundry?](/azure/ai-studio/what-is-ai-studio)
 - [Azure AI FAQ article](/azure/ai-studio/faq)
 - [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md)

@@ -17,29 +17,61 @@ ms.custom:
 This article provides you with background around how latency and throughput works with Azure OpenAI and how to optimize your environment to improve performance.
 
 ## Understanding throughput vs latency
-There are two key concepts to think about when sizing an application: (1) System level throughput and (2) Per-call response times (also known as Latency). 
+There are two key concepts to think about when sizing an application: (1) System level throughput measured in tokens per minute (TPM) and (2) Per-call response times (also known as latency). 
 
 ### System level throughput
 This looks at the overall capacity of your deployment – how many requests per minute and total tokens that can be processed.
 
 For a standard deployment, the quota assigned to your deployment partially determines the amount of throughput you can achieve. However, quota only determines the admission logic for calls to the deployment and isn't directly enforcing throughput. Due to per-call latency variations, you might not be able to achieve throughput as high as your quota. [Learn more on managing quota](./quota.md).
 
-In a provisioned deployment, A set amount of model processing capacity is allocated to your endpoint. The amount of throughput that you can achieve on the endpoint is a factor of the input size, output size, call rate and cache match rate. The number of concurrent calls and total tokens processed can vary based on these values. The following steps walk through how to assess the throughput you can get a given workload in a provisioned deployment:
+In a provisioned deployment, a set amount of model processing capacity is allocated to your endpoint. The amount of throughput that you can achieve on the endpoint is a factor of the workload shape including input token amount, output amount, call rate and cache match rate. The number of concurrent calls and total tokens processed can vary based on these values. 
 
-1.	Use the Capacity calculator for a sizing estimate. 
+For all deployment types, understanding system level throughput is a key component of optimizing performance. It is important to consider system level throughput for a given model, version, and workload combination as the throughput will vary across these factors. 
 
-2.	Benchmark the load using real traffic workload. Measure the utilization & tokens processed metrics from Azure Monitor. Run for an extended period. The [Azure OpenAI Benchmarking repository](https://aka.ms/aoai/benchmarking) contains code for running the benchmark. Finally, the most accurate approach is to run a  test with your own data and workload characteristics.
+#### Estimating system level throughput 
 
-Here are a few examples for GPT-4 0613 model:
+##### Estimating TPM with Azure Monitor metrics
 
-| Prompt  Size (tokens) |	Generation size (tokens) |	Calls per minute |	PTUs required |
-|--|--|--|--|
-| 800	 | 150 |	30 |	100 |
-| 1000 |	50 |	300	| 700 |
-| 5000 |	100 | 	50 |	600 |
+One approach to estimating system level throughput for a given workload is using historical token usage data. For Azure OpenAI workloads, all historical usage data can be accessed and visualized with the native monitoring capabilities offered within Azure OpenAI. Two metrics are needed to estimate system level throughput for Azure OpenAI workloads: (1) **Processed Prompt Tokens** and (2) **Generated Completion Tokens**. 
 
-The number of PTUs scales roughly linearly with call rate (might be sublinear) when the workload distribution remains constant.
+When combined, the **Processed Prompt Tokens** (input TPM) and **Generated Completion Tokens** (output TPM) metrics provide an estimated view of system level throughput based on actual workload traffic. This approach does not account for benefits from prompt caching, so it will be a conservative system throughput estimate. These metrics can be analyzed using minimum, average, and maximum aggregation over 1-minute windows across a multi-week time horizon. It is recommended to analyze this data over a multi-week time horizon to ensure there are enough data points to assess. The following screenshot shows an example of the **Processed Prompt Tokens** metric visualized in Azure Monitor, which is available directly through the Azure portal. 
 
+![Screenshot of Azure Monitor graph showcasing the Processed Prompt Tokens metric split by model and version.](media/latency/processed-prompt-token-graph.png)
+
+##### Estimating TPM from request data
+
+A second approach to estimated system level throughput involves collecting token usage information from API request data. This method provides a more granular approach to understanding workload shape per request. Combining per request token usage information with request volume, measured in requests per minute (RPM), provides an estimate for system level throughput. It is important to note that any assumptions made for consistency of token usage information across requests and request volume will impact the system throughput estimate. The token usage output data can be found in the API response details for a given Azure OpenAI Service chat completions request.
+
+```json
+{
+  "body": {
+    "id": "chatcmpl-7R1nGnsXO8n4oi9UPz2f3UHdgAYMn",
+    "created": 1686676106,
+    "choices": [...],
+    "usage": {
+      "completion_tokens": 557,
+      "prompt_tokens": 33,
+      "total_tokens": 590
+    }
+  }
+}
+```
+Assuming all requests for a given workload are uniform, the prompt tokens and completion tokens from the API response data can each be multiplied by the estimated RPM to identify the input and output TPM for the given workload. 
+
+##### How to use system level throughput estimates
+
+
+Once system level throughput has been estimated for a given workload, these estimates can be used to size Standard and Provisioned deployments. For Standard deployments, the input and output TPM values can be combined to estimate the total TPM to be assigned to a given deployment. For Provisioned deployments, the request token usage data or input and output TPM values can be used to estimate the number of PTUs required to support a given workload with the deployment capacity calculator experience. 
+
+Here are a few examples for the GPT-4o mini model:
+
+| Prompt  Size (tokens) |Generation size (tokens) |Requests per minute |Input TPM|Output TPM|Total TPM|PTUs required |
+|--|--|--| -------- | -------- | -------- |--|
+|800	 |150 |30 |24,000|4,500|28,500|15|
+|5,000 |50 |1,000|5,000,000|50,000|5,050,000|140|
+|1,000 |300 | 500 |500,000|150,000|650,000|30|
+
+The number of PTUs scales roughly linearly with call rate when the workload distribution remains constant.
 
 ### Latency: The per-call response times 
 

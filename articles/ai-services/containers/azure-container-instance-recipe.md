@@ -8,7 +8,7 @@ manager: nitinme
 ms.custom: devx-track-azurecli
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 02/22/2024
+ms.date: 01/21/2025
 ms.author: aahi
 # https://github.com/Azure/cognitiveservices-aci
 #Customer intent: As a potential customer, I want to know more about how Azure AI services provides and supports Docker containers for each service.
@@ -24,7 +24,7 @@ The recipe works with any Azure AI services container. The Azure AI services res
 
 * An Azure resource for the Azure AI service you're using.
 * Azure AI service resource **endpoint URL** - review your specific service's "How to install" for the container, to find where the endpoint URL is from within the Azure portal, and what a correct example of the URL looks like. The exact format can change from service to service.
-* Azure AI service resource **key** - the keys are on the **Keys** page for the Azure resource. You only need one of the two keys. The key is a string of 32 alpha-numeric characters.
+* Azure AI service resource **key** - the keys are on the **Keys** page for the Azure resource. You only need one of the two keys. The key is a string of 84 alpha-numeric characters.
 
 * A single Azure AI services container on your local host (your computer). Make sure you can:
   * Pull down the image with a `docker pull` command.
@@ -44,9 +44,9 @@ All variables in angle brackets, `<>`, need to be replaced with your own values.
 
 [!INCLUDE [Azure portal instructions for creating an ACI instance](includes/create-container-instances-resource.md)]
 
-# [CLI](#tab/cli)
+# [Azure CLI](#tab/cli)
 
-[!INCLUDE [CLI instructions for creating an ACI instance](../containers/includes/create-container-instances-resource-from-azure-cli.md)]
+[!INCLUDE [Azure CLI instructions for creating an ACI instance](../containers/includes/create-container-instances-resource-from-azure-cli.md)]
 
 ---
 
@@ -68,7 +68,7 @@ All variables in angle brackets, `<>`, need to be replaced with your own values.
 
     You have successfully created and used Azure AI containers in Azure Container Instance.
 
-# [CLI](#tab/cli)
+# [Azure CLI](#tab/cli)
 
 [!INCLUDE [API documentation](../includes/cognitive-services-containers-api-documentation.md)]
 

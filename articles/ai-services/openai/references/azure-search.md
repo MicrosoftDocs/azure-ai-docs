@@ -4,10 +4,10 @@ titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI on your Azure Search data Python & REST API.
 manager: nitinme
 ms.service: azure-ai-openai
-ms.topic: conceptual
-ms.date: 09/20/2024
-author: mrbullwinkle
-ms.author: mbullwin
+ms.topic: reference
+ms.date: 02/27/2025
+author: aahill
+ms.author: aahi
 recommendations: false
 ms.custom: devx-track-python
 ---

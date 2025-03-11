@@ -13,7 +13,7 @@ author: msakande
 ms.custom: references_regions, build-2024
 ms.collection: ce-skilling-ai-copilot
 
-#This functionality is also available in Azure AI Studio: /azure/ai-studio/how-to/deploy-models-cohere.md
+#This functionality is also available in Azure AI Foundry portal: /azure/ai-studio/how-to/deploy-models-cohere.md
 ---
 
 # How to deploy Cohere Rerank models with Azure Machine Learning studio
@@ -250,5 +250,5 @@ For more information on how to track costs, see [Monitor costs for models offere
 
 - [Model Catalog and Collections](concept-model-catalog.md)
 - [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md)
-- [Plan and manage costs for Azure AI Studio](concept-plan-manage-cost.md)
+- [Plan and manage costs for Azure AI Foundry](/azure/ai-studio/how-to/costs-plan-manage)
 - [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md)

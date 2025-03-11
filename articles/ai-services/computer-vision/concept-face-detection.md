@@ -13,6 +13,7 @@ ms.custom:
 ms.topic: conceptual
 ms.date: 09/18/2024
 ms.author: pafarley
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Face detection, attributes, and input data

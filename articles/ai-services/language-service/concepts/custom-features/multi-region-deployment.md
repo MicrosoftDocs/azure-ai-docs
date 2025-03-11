@@ -9,7 +9,7 @@ ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 11/04/2024
 ms.author: jboback
-ms.custom: language-service-clu
+ms.custom: language-service-clu, ignite-2024
 ---
 
 # Deploy custom language projects to multiple regions

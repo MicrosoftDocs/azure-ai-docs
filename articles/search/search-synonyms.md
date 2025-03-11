@@ -29,7 +29,7 @@ Some key points about synonym maps:
 
 A synonym map consists of name, format, and rules that function as synonym map entries. The only format that's supported is `solr`, and the `solr` format determines rule construction.
 
-To create a synonym map, do so programmatically. The portal doesn't support synonym map definitions.
+To create a synonym map, do so programmatically. the Azure portal doesn't support synonym map definitions.
 
 ### [REST](#tab/rest)
 
@@ -142,7 +142,7 @@ Creating, updating, and deleting a synonym map is always a whole-document operat
 
 ## Assign synonyms to fields
 
-After you create the synonym map, assign it to a field in your index. To assign synonym maps, do so programmatically. The portal doesn't support synonym map field associations.
+After you create the synonym map, assign it to a field in your index. To assign synonym maps, do so programmatically. the Azure portal doesn't support synonym map field associations.
 
 - A field must be of type `Edm.String` or `Collection(Edm.String)`
 - A field must have `"searchable":true`

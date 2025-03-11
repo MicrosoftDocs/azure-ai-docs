@@ -6,6 +6,8 @@ description: Configure built-in scalar or quantization for compressing vectors o
 author: heidisteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 11/19/2024
 ---
@@ -39,6 +41,9 @@ Two types of quantization are supported:
 - Scalar quantization compresses float values into narrower data types. AI Search currently supports int8, which is 8 bits, reducing vector index size fourfold.
 
 - Binary quantization converts floats into binary bits, which takes up 1 bit. This results in up to 28 times reduced vector index size.
+
+>[!Note]
+> While free services support quantization, they may not demonstrate the full storage savings due to the limited storage quota.
 
 ## Add "compressions" to a search index
 

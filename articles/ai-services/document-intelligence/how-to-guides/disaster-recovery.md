@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 10/15/2024
+ms.date: 02/27/2025
 ms.author: lajanuar
 ---
 
@@ -38,7 +38,7 @@ When you create a Document Intelligence resource in the Azure portal, you specif
 The Copy API enables this scenario by allowing you to copy custom models and classifiers from one Document Intelligence account or into others, which can exist in any supported geographical region. This guide shows you how to use the Copy REST API with cURL for custom models. You can also use an HTTP request service to issue the requests.
 
 > [!NOTE]
-> Starting with the `2024-07-31-preview` API, custom clasification models also support the Copy API. This guide specifically uses custom models to copy models. For classifier model copy, follow this [guide](../train/custom-classifier.md#copy-a-model).
+> The `2024-11-30` (GA) API custom classification model supports the Copy API. This guide specifically uses custom models to copy models. For classifier model copy, follow the [train a custom classifier guide](../train/custom-classifier.md#copy-a-model).
 
 ## Business scenarios
 
@@ -46,7 +46,7 @@ If your app or business depends on the use of a Document Intelligence custom mod
 
 ## Prerequisites
 
-1. Two Document Intelligence Azure resources in different Azure regions. If you don't have them, go to the Azure portal and [create a new Document Intelligence resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer).
+1. Two Document Intelligence Azure resources in different Azure subscriptions or regions. If you don't have them, go to the Azure portal and [create a new Document Intelligence resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer).
 1. The key, endpoint URL, and subscription ID for your Document Intelligence resource. You can find these values on the resource's **Overview** tab in the [Azure portal](https://portal.azure.com/#home).
 
 ::: moniker-end
@@ -66,7 +66,7 @@ The process for copying a custom model consists of the following steps:
 The following HTTP request gets copy authorization from your target resource. You need to enter the endpoint and key of your target resource as headers.
 
 ```http
-POST https://<your-resource-endpoint>/documentintelligence/documentModels:authorizeCopy?api-version=2024-02-29-preview
+POST https://<your-resource-endpoint>/documentintelligence/documentModels:authorizeCopy?api-version=2024-11-30
 Ocp-Apim-Subscription-Key: {<your-key>}
 ```
 
@@ -97,7 +97,7 @@ You receive a `200` response code with response body that contains the JSON payl
 The following HTTP request starts the copy operation on the source resource. You need to enter the endpoint and key of your source resource as the url and header. Notice that the request URL contains the model ID of the source model you want to copy.
 
 ```http
-POST https://<your-resource-endpoint>/documentintelligence/documentModels/{modelId}:copyTo?api-version=2024-02-29-preview
+POST https://<your-resource-endpoint>/documentintelligence/documentModels/{modelId}:copyTo?api-version=2024-11-30
 Ocp-Apim-Subscription-Key: {<your-key>}
 ```
 
@@ -118,16 +118,16 @@ You receive a `202\Accepted` response with an Operation-Location header. This va
 
 ```http
 HTTP/1.1 202 Accepted
-Operation-Location: https://<your-resource-endpoint>.cognitiveservices.azure.com/documentintelligence/operations/{operation-id}?api-version=2024-02-29-preview
+Operation-Location: https://<your-resource-endpoint>.cognitiveservices.azure.com/documentintelligence/operations/{operation-id}?api-version=2024-11-30
 ```
 
 > [!NOTE]
-> The Copy API transparently supports the [AEK/CMK](https://msazure.visualstudio.com/Cognitive%20Services/_wiki/wikis/Cognitive%20Services.wiki/52146/Customer-Managed-Keys) feature. This doesn't require any special treatment, but note that if you're copying between an unencrypted resource to an encrypted resource, you need to include the request header `x-ms-forms-copy-degrade: true`. If this header is not included, the copy operation will fail and return a `DataProtectionTransformServiceError`.
+> The Copy API transparently supports the [AEK/CMK](https://msazure.visualstudio.com/Cognitive%20Services/_wiki/wikis/Cognitive%20Services.wiki/52146/Customer-Managed-Keys) feature. This action doesn't require any special treatment, but note that if you're copying between an unencrypted resource to an encrypted resource, you need to include the request header `x-ms-forms-copy-degrade: true`. If this header isn't included, the copy operation fails and returns a `DataProtectionTransformServiceError`.
 
 ## Track Copy progress
 
 ```console
-GET https://<your-resource-endpoint>.cognitiveservices.azure.com/documentintelligence/operations/{<operation-id>}?api-version=2024-02-29-preview
+GET https://<your-resource-endpoint>.cognitiveservices.azure.com/documentintelligence/operations/{<operation-id>}?api-version=2024-11-30
 Ocp-Apim-Subscription-Key: {<your-key>}
 ```
 
@@ -136,7 +136,7 @@ Ocp-Apim-Subscription-Key: {<your-key>}
 You can also use the **[`Get model`](/rest/api/aiservices/document-models/get-model?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)** API to track the status of the operation by querying the target model. Call the API using the target model ID that you copied down from the [`Generate copy authorization` request](#generate-copy-authorization-request) response.
 
 ```http
-GET https://<your-resource-endpoint>/documentintelligence/documentModels/{modelId}?api-version=2024-02-29-preview" -H "Ocp-Apim-Subscription-Key: <your-key>
+GET https://<your-resource-endpoint>/documentintelligence/documentModels/{modelId}?api-version=2024-11-30" -H "Ocp-Apim-Subscription-Key: <your-key>
 ```
 
 In the response body, you see information about the model. Check the `"status"` field for the status of the model.
@@ -156,7 +156,7 @@ The following code snippets use cURL to make API calls. You also need to fill in
 **Request**
 
 ```bash
-curl -i -X POST "<your-resource-endpoint>/documentintelligence/documentModels:authorizeCopy?api-version=2024-02-29-preview"
+curl -i -X POST "<your-resource-endpoint>/documentintelligence/documentModels:authorizeCopy?api-version=2024-11-30"
 -H "Content-Type: application/json"
 -H "Ocp-Apim-Subscription-Key: <YOUR-KEY>"
 --data-ascii "{
@@ -183,7 +183,7 @@ curl -i -X POST "<your-resource-endpoint>/documentintelligence/documentModels:au
 **Request**
 
 ```bash
-curl -i -X POST "<your-resource-endpoint>/documentintelligence/documentModels/{modelId}:copyTo?api-version=2024-02-29-preview"
+curl -i -X POST "<your-resource-endpoint>/documentintelligence/documentModels/{modelId}:copyTo?api-version=2024-11-30"
 -H "Content-Type: application/json"
 -H "Ocp-Apim-Subscription-Key: <YOUR-KEY>"
 --data-ascii "{
@@ -201,7 +201,7 @@ curl -i -X POST "<your-resource-endpoint>/documentintelligence/documentModels/{m
 
 ```http
 HTTP/1.1 202 Accepted
-Operation-Location: https://<your-resource-endpoint>.cognitiveservices.azure.com/documentintelligence/operations/{operation-id}?api-version=2024-02-29-preview
+Operation-Location: https://<your-resource-endpoint>.cognitiveservices.azure.com/documentintelligence/operations/{operation-id}?api-version=2024-11-30
 ```
 
 ### Track copy operation progress
@@ -233,7 +233,7 @@ The process for copying a custom model consists of the following steps:
 The following HTTP request gets copy authorization from your target resource. You need to enter the endpoint and key of your target resource as headers.
 
 ```http
-POST https://{TARGET_FORM_RECOGNIZER_RESOURCE_ENDPOINT}/formrecognizer/documentModels:authorizeCopy?api-version=2024-02-29-preview
+POST https://{TARGET_FORM_RECOGNIZER_RESOURCE_ENDPOINT}/formrecognizer/documentModels:authorizeCopy?api-version=2024-11-30
 Ocp-Apim-Subscription-Key: {TARGET_FORM_RECOGNIZER_RESOURCE_KEY}
 ```
 
@@ -289,7 +289,7 @@ Operation-Location: https://{source-resource}.cognitiveservices.azure.com/formre
 ```
 
 > [!NOTE]
-> The Copy API transparently supports the [AEK/CMK](https://msazure.visualstudio.com/Cognitive%20Services/_wiki/wikis/Cognitive%20Services.wiki/52146/Customer-Managed-Keys) feature. This doesn't require any special treatment, but note that if you're copying between an unencrypted resource to an encrypted resource, you need to include the request header `x-ms-forms-copy-degrade: true`. If this header is not included, the copy operation will fail and return a `DataProtectionTransformServiceError`.
+> The Copy API transparently supports the [AEK/CMK](https://msazure.visualstudio.com/Cognitive%20Services/_wiki/wikis/Cognitive%20Services.wiki/52146/Customer-Managed-Keys) feature. This action doesn't require any special treatment, but note that if you're copying between an unencrypted resource to an encrypted resource, you need to include the request header `x-ms-forms-copy-degrade: true`. If this header isn't included, the copy operation fails and returns a `DataProtectionTransformServiceError`.
 
 ## Track Copy progress
 
@@ -439,7 +439,7 @@ Operation-Location: https://{SOURCE_FORM_RECOGNIZER_RESOURCE_ENDPOINT}/formrecog
 ```
 
 > [!NOTE]
-> The Copy API transparently supports the [AEK/CMK](https://msazure.visualstudio.com/Cognitive%20Services/_wiki/wikis/Cognitive%20Services.wiki/52146/Customer-Managed-Keys) feature. This operation doesn't require any special treatment, but note that if you're copying between an unencrypted resource to an encrypted resource, you need to include the request header `x-ms-forms-copy-degrade: true`. If this header is not included, the copy operation will fail and return a `DataProtectionTransformServiceError`.
+> The Copy API transparently supports the [AEK/CMK](https://msazure.visualstudio.com/Cognitive%20Services/_wiki/wikis/Cognitive%20Services.wiki/52146/Customer-Managed-Keys) feature. This operation doesn't require any special treatment, but note that if you're copying between an unencrypted resource to an encrypted resource, you need to include the request header `x-ms-forms-copy-degrade: true`. If this header isn't included, the copy operation fails and returns a `DataProtectionTransformServiceError`.
 
 ### Track operation progress
 
@@ -508,7 +508,7 @@ curl -i GET "https://<SOURCE_FORM_RECOGNIZER_RESOURCE_ENDPOINT>/formrecognizer/v
 | 400 / Bad Request with `"code:" "1002"` | Indicates validation error or badly formed copy request. Common issues include: a) Invalid or modified `copyAuthorization` payload. b) Expired value for `expirationDateTimeTicks` token (`copyAuthorization` payload is valid for 24 hours). c) Invalid or unsupported `targetResourceRegion`. d) Invalid or malformed `targetResourceId` string.
 |*Authorization failure due to missing or invalid authorization claims*.| Occurs when the `copyAuthorization` payload or content is modified from the `copyAuthorization` API. Ensure that the payload is the same exact content that was returned from the earlier `copyAuthorization` call.|
 |*Couldn't retrieve authorization metadata*.| Indicates that the `copyAuthorization` payload is being reused with a copy request. A copy request that succeeds doesn't allow any further requests that use the same `copyAuthorization` payload. If you raise a separate error and you later retry the copy with the same authorization payload, this error gets raised. The resolution is to generate a new `copyAuthorization` payload and then reissue the copy request.|
-|*Data transfer request isn't allowed as it downgrades to a less secure data protection scheme*.| Occurs when copying between an `AEK` enabled resource to a non `AEK` enabled resource. To allow copying encrypted model to the target as unencrypted, specify `x-ms-forms-copy-degrade: true` header with the copy request.|
+|*Data transfer request isn't allowed as it downgrades to a less secure data protection scheme*.| Occurs when copying between an `AEK` enabled resource to a non- `AEK` enabled resource. To allow copying encrypted model to the target as unencrypted, specify `x-ms-forms-copy-degrade: true` header with the copy request.|
 |"Couldn't fetch information for Cognitive resource with ID...". | Indicates that the Azure resource indicated by the `targetResourceId` isn't a valid Cognitive resource or doesn't exist. To resolve this issue, verify and reissue the copy request.</br> Ensure the resource is valid and exists in the specified region, such as, `westus2`|
 
 ::: moniker-end

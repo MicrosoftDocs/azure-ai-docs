@@ -9,7 +9,7 @@ ms.topic: conceptual
 author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
-ms.custom: devplatv2, moe-wsvnet
+ms.custom: devplatv2, moe-wsvnet, ignite-2024
 ms.date: 02/29/2024
 ---
 

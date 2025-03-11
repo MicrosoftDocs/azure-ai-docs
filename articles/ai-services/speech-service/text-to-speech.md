@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 9/24/2024
+ms.date: 3/10/2025
 ms.author: eur
 #Customer intent: As a developer, I want to learn about the benefits and capabilities of the text to speech feature of the Speech service.
 ---
@@ -107,16 +107,20 @@ Custom neural voice (CNV) endpoint hosting is measured by the actual time (hour)
 
 When you use the personal voice feature, you're billed for both profile storage and synthesis.
 
-*  **Profile storage**: After a personal voice profile is created, it will be billed until it is removed from the system. The billing unit is per voice per day. If voice storage lasts for a period of less than 24 hours, it will be billed as one full day.
+*  **Profile storage**: After a personal voice profile is created, it will be billed until it's removed from the system. The billing unit is per voice per day. If voice storage lasts for less than 24 hours, it's still billed as one full day.
 *  **Synthesis**: Billed per character. For details on billable characters, see the above [billable characters](#billable-characters).
 
 ### Text to speech avatar
 
-When using the text-to-speech avatar feature, charges will be incurred based on the length of video output and will be billed per second. However, for the real-time avatar, charges are based on the time when the avatar is active, regardless of whether it is speaking or remaining silent, and will also be billed per second. To optimize costs for real-time avatar usage, refer to the tips provided in the [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar#chat-sample) (search "Use Local Video for Idle"). Avatar hosting is billed per second per endpoint. You can suspend your endpoint to save costs. If you want to suspend your endpoint, you can delete it directly. To use it again, simply redeploy the endpoint.
+When you use the text-to-speech avatar feature, charges are billed per second based on the length of video output. However, for the real-time avatar, charges are billed per second based on the time when the avatar is active, regardless of whether it's speaking or remaining silent. To optimize costs for real-time avatar usage, refer to the "Use Local Video for Idle" tips provided in the [avatar chat sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar#chat-sample). 
+
+Custom text to speech avatar training is time is measured by "compute hour" (machine running time) and billed per second. Training duration varies depending on how much data you use. It normally takes 20-40 compute hours on average to train a custom avatar. The avatar training time is billed with a cap of 96 compute hours. So in the case that an avatar model is trained in 98 compute hours, you're only charged for 96 compute hours.
+
+Avatar hosting is billed per second per endpoint. You can suspend your endpoint to save costs. If you want to suspend your endpoint, you can delete it directly. To use it again, redeploy the endpoint.
 
 ## Monitor Azure text to speech metrics
 
-Monitoring key metrics associated with text to speech services is crucial for managing resource usage and controlling costs. This section will guide you on how to find usage information in the Azure portal and provide detailed definitions of the key metrics. For more details on Azure monitor metrics, refer to [Azure Monitor Metrics overview](/azure/azure-monitor/essentials/data-platform-metrics).
+Monitoring key metrics associated with text to speech services is crucial for managing resource usage and controlling costs. This section guides you on how to find usage information in the Azure portal and provide detailed definitions of the key metrics. For more information on Azure monitor metrics, see [Azure Monitor Metrics overview](/azure/azure-monitor/essentials/data-platform-metrics).
 
 ### How to find usage information in the Azure portal
 
@@ -140,7 +144,7 @@ To effectively manage your Azure resources, it's essential to access and review 
 
 ### Definition of metrics
 
-Below is a table summarizing the key metrics for Azure text to speech services. 
+Here's a table summarizing the key metrics for Azure text to speech. 
 
 | **Metric name**                  | **Description** |
 |----------------------------------|-----------------|

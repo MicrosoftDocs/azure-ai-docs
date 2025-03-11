@@ -106,7 +106,6 @@ semantic_config = SemanticConfiguration(
 # Create the semantic settings with the configuration
 semantic_search = SemanticSearch(configurations=[semantic_config])
 
-semantic_settings = SemanticSearch(configurations=[semantic_config])
 scoring_profiles = []
 suggester = [{'name': 'sg', 'source_fields': ['Tags', 'Address/City', 'Address/Country']}]
 

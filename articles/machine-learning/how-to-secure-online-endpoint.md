@@ -31,7 +31,7 @@ If you prefer to use the legacy method for network isolation, see the following 
 
 * An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
-* The [Azure CLI](/cli/azure/) and the Azure CLI `ml` extension, installed and configured. For more information, see [Install and set up the CLI (v2)](how-to-configure-cli.md).
+* The [Azure CLI](/cli/azure/install-azure-cli) and the Azure CLI `ml` extension, installed and configured. For more information, see [Install and set up the CLI (v2)](how-to-configure-cli.md).
 
   >[!TIP]
   > The Azure Machine Learning managed virtual network feature was introduced on May 23, 2023. If you have an older version of the `ml` extension, you might need to update it for the examples in this article to work. To update the extension, use the following Azure CLI command:

@@ -6,7 +6,7 @@ items:
     - name: What is Azure Machine Learning?
       displayName: AML, services, overview, introduction
       href: overview-what-is-azure-machine-learning.md
-    - name: "AI Studio or Azure Machine Learning Studio: Which should I choose?"
+    - name: "Azure AI Foundry or Azure Machine Learning studio: Which should I choose?"
       href: /ai/ai-studio-experiences-overview?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
     - name: Azure Machine Learning CLI and Python SDK
       href: concept-v2.md
@@ -263,6 +263,9 @@ items:
     - name: Create Azure Machine Learning Datastores
       displayName: Create datastores
       href: how-to-datastore.md
+    - name: Create a Datastore with the User Interface
+      displayName: Create a datastore with the UI
+      href: create-datastore-with-user-interface.md
     - name: Setup storage authentication
       displayName: Data administration and authentication
       href: how-to-administrate-data-authentication.md
@@ -590,6 +593,8 @@ items:
       href: concept-model-catalog.md
     - name: Data, privacy, and security for Model Catalog
       href: concept-data-privacy.md
+    - name: Model lifecycle and retirement
+      href: ../ai-foundry/concepts/model-lifecycle-retirement.md?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
     - name: Open source models curated by Azure Machine Learning
       href: how-to-use-foundation-models.md
     - name: Hugging Face Hub community partner models
@@ -632,8 +637,12 @@ items:
       href: how-to-deploy-models-jais.md
     - name: AI21 Jamba models
       href: how-to-deploy-models-jamba.md
-    - name: Regulate deployments using policy
-      href: how-to-regulate-registry-deployments.md
+    - name: Built-in policy to allow specific models
+      href: how-to-built-in-policy-model-deployment.md
+    - name: Custom policy to allow specific models
+      href: how-to-custom-policy-model-deployment.md
+    - name: Stability AI models
+      href: deploy-stability-models.md
     - name: Use Model Catalog collections with virtual network
       href: how-to-network-isolation-model-catalog.md
     - name: Azure AI Model Inference API
@@ -646,8 +655,6 @@ items:
               href: reference-model-inference-info.md
             - name: Embeddings
               href: reference-model-inference-embeddings.md
-            - name: Completions
-              href: reference-model-inference-completions.md
             - name: Chat Completions
               href: reference-model-inference-chat-completions.md
             - name: Images Embeddings
@@ -947,11 +954,11 @@ items:
           href: reference-managed-online-endpoints-vm-sku-list.md
         - name: Viewing managed online endpoint costs
           href: how-to-view-online-endpoints-costs.md
-        - name: Monitoring online endpoints
+        - name: Monitor online endpoints
           href: how-to-monitor-online-endpoints.md
         - name: Debug online endpoints locally VS Code
           href: how-to-debug-managed-online-endpoints-visual-studio-code.md
-        - name: Debug scoring script with inference HTTP server
+        - name: Debug scoring scripts with inference HTTP server
           href: how-to-inference-server-http.md
         - name: Troubleshoot online endpoints
           href: how-to-troubleshoot-online-endpoints.md
@@ -1006,7 +1013,7 @@ items:
               href: how-to-image-processing-batch.md
             - name: Deploy language models with batch model deployments
               href: how-to-nlp-processing-batch.md
-            - name: Run OpenAI models in batch endpoints to compute embeddings
+            - name: Run Azure OpenAI models in batch endpoints to compute embeddings
               href: how-to-use-batch-model-openai-embeddings.md
         - name: Deploy pipeline components
           items:
@@ -1786,6 +1793,9 @@ items:
         - name: "Pipelines"
           displayName: migration, v1, v2
           href: migrate-to-v2-execution-pipeline.md
+        - name: "Logging"
+          displayName: migration, v1, v2
+          href: reference-migrate-sdk-v1-mlflow-tracking.md
     - name: Upgrade endpoints
       items:
         - name: "Online endpoints"

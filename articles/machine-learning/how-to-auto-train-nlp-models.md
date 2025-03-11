@@ -10,7 +10,7 @@ ms.reviewer: wenxwei
 ms.subservice: automl
 ms.topic: how-to
 ms.custom: devplatv2, sdkv2, cliv2, build-2023, build-2023-dataai, devx-track-python
-ms.date: 06/15/2023
+ms.date: 02/26/2025
 #Customer intent: I'm a data scientist with ML knowledge in the natural language processing space, looking to build ML models using language specific data in Azure Machine Learning with full control of the model algorithm, hyperparameters, and training and deployment environments.
 ---
 

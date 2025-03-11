@@ -9,7 +9,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.custom: references_regions
-ms.date: 11/08/2024
+ms.date: 01/27/2025
 
 ---
 
@@ -19,52 +19,56 @@ This article identifies the cloud regions in which Azure AI Search is available.
 
 ## Features subject to regional availability
 
-| Feature | Availability |
-|---------|--------------|
-| [Extra capacity](search-limits-quotas-capacity.md#service-limits) | Higher capacity partitions became available in selected regions starting in April 2024 with a second wave following in May 2024. If you're using an older search service, create a new search service to benefit from more capacity at the same billing rate. To check existing capacity, [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) and select the **Properties** tab in the middle of the Overview page. To check search service age, follow [these instructions](vector-search-index-size.md#how-to-check-service-creation-date).  Currently, there are just a few regions that *don't* offer higher capacity partitions. Regional support for extra capacity is noted in the footnotes of this article.|
-| [Availability zones](search-reliability.md#availability-zone-support) | Divides a region's data centers into distinct physical location groups, providing high-availability within the same geo. Regional support is noted in this article. |
-| [Azure AI enrichment](cognitive-search-concept-intro.md) | Refers to skills that make internal calls to Azure AI for enrichment and transformation during indexing. Integration requires that Azure AI Search coexists with an [Azure AI multi-service account](/azure/ai-services/multi-service-resource) in the same physical region. Regional support is noted in this article. |
-| [Azure OpenAI integration](vector-search-integrated-vectorization.md)  | Refers to skills and vectorizers that make internal calls to deployed embedding and chat models on Azure OpenAI. Check [Azure OpenAI model region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) for the most current list of regions for each embedding and chat model. Specific Azure OpenAI models are in fewer regions, so be sure to check for joint regional availability before installing.|
-| [Azure AI Studio integration](vector-search-integrated-vectorization-ai-studio.md) | Refers to skills and vectorizers that make internal calls to the models hosted in the model catalog. Check [Azure AI Studio region availability](/azure/ai-studio/reference/region-support) for the most current list of regions. |
-| [Azure AI Vision 4.0 multimodal APIs for image vectorization](search-get-started-portal-image-search.md) | Refers to skills and vectorizers that call the multimodal embedding API. Check the [Azure AI Vision region list](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for joint regional availability. |
-| [Semantic ranker](semantic-search-overview.md) | Takes a dependency on Microsoft-hosted models in specific regions. Regional support is noted in this article. |
+Some features take a dependency on other Azure services or infrastructure that are subject to regional availability. If you need a specific feature, make sure it's available in the desired region.
+
+| Feature | Description | Availability |
+|---------|-------------|--------------|
+| [Extra capacity](search-limits-quotas-capacity.md#service-limits) | Higher capacity partitions became available in selected regions starting in April 2024 with a second wave following in May 2024. Currently, there are just a few regions that *don't* offer higher capacity partitions. If you're using an older search service, create a new search service to benefit from more capacity at the same billing rate. |  Regional support for extra capacity is noted in the footnotes of this article. <p>Check [service age](vector-search-index-size.md#how-to-check-service-creation-date) to see if your search service was created after high capacity partitions became available. <p>To check the capacity of an existing service, [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) and select the **Properties** tab in the middle of the Overview page.|
+| [Availability zones](search-reliability.md#availability-zone-support) | Divides a region's data centers into distinct physical location groups, providing high-availability within the same geo. | Regional support is noted in this article. |
+| [Semantic ranker](semantic-search-overview.md) | Takes a dependency on Microsoft-hosted models in specific regions. | Regional support is noted in this article. |
+| [AI service integration](cognitive-search-concept-intro.md) | Refers to [built-in skills](cognitive-search-predefined-skills.md) that make internal calls to Azure AI for enrichment and transformation during indexing. Integration requires that Azure AI Search coexists with an [Azure AI multi-service account](/azure/ai-services/multi-service-resource) in the same physical region. You can bypass region requirements if you use [identity-based connections](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection), currently in public review. | Regional support is noted in this article. |
+| [Azure OpenAI integration](vector-search-integrated-vectorization.md)  | Refers to the AzureOpenAIEmbedding skill and vectorizer that make internal calls to deployed embedding models on Azure OpenAI. | Check [Azure OpenAI model region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) for the most current list of regions for each embedding and chat model. Specific Azure OpenAI models are in fewer regions, so check for model availability first, and then verify Azure AI Search is available in the same region.|
+| [Azure AI Foundry integration](vector-search-integrated-vectorization-ai-studio.md) | Refers to skills and vectorizers that make internal calls to the models hosted in the model catalog. | Check [Azure AI Foundry region availability](/azure/ai-studio/reference/region-support) for the most current list of regions. |
+| [Azure AI Vision 4.0 multimodal APIs](search-get-started-portal-image-search.md) | Refers to the Azure AI Vision multimodal embeddings skill and vectorizer that call the multimodal embedding API. | Check the [Azure AI Vision region list](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) first, and then verify Azure AI Search is available in the same region.|
 
 ## Azure Public regions
 
 You can create an Azure AI Search resource in any of the following Azure public regions. Almost all of these regions support [higher capacity tiers](search-limits-quotas-capacity.md#service-limits). Exceptions are noted where they apply.
 
+AI service integration refers to internal connections to an Azure AI multi-service account and doesn't include Azure OpenAI integration.
+
 ### Americas
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
+| Region | AI service integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | Brazil South​​ ​ | ✅ | ✅ | |  |
 | Canada Central​​ | ✅ | ✅ | ✅ |  |
 | Canada East​​ ​ |  | ✅ | |  |
 | East US​ | ✅ | ✅ | ✅ |  |
-| East US 2 ​ | ✅ | ✅ | ✅ | Basic, S1 |
-| ​Central US​​ | ✅ | ✅ | ✅ |  |
+| East US 2 ​ | ✅ | ✅ | ✅ | |
+| ​Central US​​ | ✅ | ✅ | ✅ | |
 | North Central US​ ​ | ✅ | ✅ | |  | 
-| South Central US​  | ✅ | ✅ | ✅ | All Tiers |
+| South Central US​  | ✅ | ✅ | ✅ | |
 | West US​ ​ | ✅ | ✅ | |  |
 | West US 2​ ​ | ✅ | ✅ | ✅ | |
-| West US 3​ | ✅ | ✅ |✅ | Basic, S1 |
+| West US 3​ | ✅ | ✅ |✅ | |
 | West Central US​ ​ | ✅ | ✅ | | |
 
 ### Europe
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
+| Region | AI service integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
-| North Europe​​ | ✅ | ✅ | ✅ |  |
-| West Europe​​ <sup>1</sup>| ✅ | ✅ | ✅ | All Tiers |
-| France Central​​ | ✅ | ✅ | ✅ | |
-| Germany West Central​ <sup>1</sup>​| ✅ |  | ✅ | |
+| North Europe​​ | ✅ | ✅ | ✅ | S2, S3, L1, L2|
+| West Europe​​ | ✅ | ✅ | ✅ |  |
+| France Central​​ | ✅ | ✅ | ✅ | S2, S3, L1, L2|
+| Germany West Central​ ​| ✅ |  | ✅ | |
 | Italy North​​ |  |  | ✅ | |
 | Norway East​​ | ✅ |  | ✅ |  |
 | Poland Central​​ |  |  |  |  |
 | Spain Central <sup>1</sup> |  |  | ✅  |  |
 | Sweden Central​​ | ✅ |  | ✅ |  |
 | Switzerland North​ | ✅ | ✅ | ✅ |  |
-| Switzerland West​ <sup>1</sup>| ✅ | ✅ | ✅ |  |
+| Switzerland West​ | ✅ | ✅ | ✅ |  |
 | UK South​ | ✅ | ✅ | ✅ |  |
 | UK West​ ​|  | ✅ | |  |
 
@@ -72,7 +76,7 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 ### Middle East
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
+| Region | AI service integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | Israel Central​ <sup>1</sup> |  |  | ✅  |  |
 | Qatar Central​ <sup>1</sup> |  |  | ✅ | |
@@ -82,13 +86,13 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 ### Africa
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
+| Region | AI service integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | South Africa North​ | ✅ |  | ✅ |   |
 
 ### Asia Pacific
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
+| Region | AI service integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | Australia East​ ​ | ✅ | ✅ | ✅ |   |
 | Australia Southeast​​​ |  | ✅ |  | |
@@ -106,16 +110,15 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 ## Azure Government regions
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
+| Region | AI service integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | Arizona | ✅ | ✅  | | |
 | Texas |  | ✅ |  | |
-| Virginia | ✅ | ✅  | ✅ | All Tiers |
-
+| Virginia | ✅ | ✅  | ✅ | |
 
 ## Azure operated by 21Vianet
 
-| Region | AI integration | Semantic ranker | Availability zones | Capacity constrained |
+| Region | AI service integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | China East |  |  |  |
 | China East 2 <sup>1</sup> | ✅  | | | |
@@ -128,8 +131,8 @@ You can create an Azure AI Search resource in any of the following Azure public 
 
 ## See also
 
-- [Azure AI Studio region availability](/azure/ai-studio/reference/region-support)
+- [Azure AI Foundry region availability](/azure/ai-studio/reference/region-support)
 - [Azure OpenAI model region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)
 - [Azure AI Vision region list](/azure/ai-services/computer-vision/overview-image-analysis#region-availability)
-- [Availability zone region availability](/azure/reliability/availability-zones-service-support#azure-regions-with-availability-zone-support)
+- [Availability zone region availability](/azure/reliability/availability-zones-region-support)
 - [Azure product by region page](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=search)

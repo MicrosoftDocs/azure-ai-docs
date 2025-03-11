@@ -2,7 +2,7 @@
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-custom-vision
-ms.date: 12/09/2020
+ms.date: 11/11/2024
 ms.topic: include
 ---
 
@@ -11,7 +11,7 @@ Get started with the Custom Vision REST API. Follow these steps to call the API 
 > [!NOTE]
 > Custom Vision is most easily used through a client library SDK or through the [browser-based guidance](../../get-started-build-detector.md).
 
-Use the Custom Vision client library for .NET to:
+Use the Custom Vision client library for the REST API to:
 
 * Create a new Custom Vision project
 * Add tags to the project
@@ -22,9 +22,9 @@ Use the Custom Vision client library for .NET to:
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
-* Once you have your Azure subscription, <a href="https://portal.azure.com/?microsoft_azure_marketplace_ItemHideKey=microsoft_azure_cognitiveservices_customvision#create/Microsoft.CognitiveServicesCustomVision"  title="Create a Custom Vision resource"  target="_blank">create a Custom Vision resource </a> in the Azure portal to create a training and prediction resource and get your keys and endpoint. Wait for it to deploy and click the **Go to resource** button.
-    * You will need the key and endpoint from the resources you create to connect your application to Custom Vision. You'll paste your key and endpoint into the code below later in the quickstart.
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* Once you have your Azure subscription, create a [Custom Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesCustomVision) in the Azure portal to create a training and prediction resource.
+    * You need the key and endpoint from the resources you create to connect your application to Custom Vision. You'll paste your key and endpoint into the code later in the quickstart.
     * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 * [PowerShell version 6.0+](/powershell/scripting/install/installing-powershell-core-on-windows), or a similar command-line application.
 
@@ -38,13 +38,13 @@ You'll use a command like the following to create an image classification projec
 
 Copy the command to a text editor and make the following changes:
 
-* Replace `{subscription key}` with your valid Face key.
+* Replace `{subscription key}` with your valid key.
 * Replace `{endpoint}` with the endpoint that corresponds to your key.
    [!INCLUDE [subdomains-note](../../../includes/cognitive-services-custom-subdomains-note.md)]
 * Replace `{name}` with the name of your project.
-* Optionally set other URL parameters to configure what type of model your project will use. See the [CreatProject API](/rest/api/customvision/create-project) for options.
+* Optionally set other URL parameters to configure what type of model your project uses. See the [Create Project API](/rest/api/customvision/create-project) for options.
 
-You'll receive a JSON response like the following. Save the `"id"` value of your project to a temporary location.
+A JSON response like the following example appears. Save the `"id"` value of your project to a temporary location.
 
 ```json
 {
@@ -73,7 +73,7 @@ You'll receive a JSON response like the following. Save the `"id"` value of your
 
 ## Add tags to the project
 
-Use the following command to define the tags that you will train the model on.
+Use the following command to define the tags that you'll train the model on.
 
 :::code language="shell" source="~/cognitive-services-quickstart-code/curl/custom-vision/image-classifier.sh" ID="createtag":::
 
@@ -83,7 +83,7 @@ Use the following command to define the tags that you will train the model on.
 
 Repeat this process for all the tags you'd like to use in your project. If you're using the example images provided, add the tags `"Hemlock"` and `"Japanese Cherry"`.
 
-You'll get a JSON response like the following. Save the `"id"` value of each tag to a temporary location.
+A JSON response like the following example appears. Save the `"id"` value of each tag to a temporary location.
 
 ```json
 {
@@ -110,7 +110,7 @@ Use the following command to upload the images and apply tags; once for the "Hem
 
 ## Train the project
 
-This method trains the model on the tagged images you've uploaded and returns an ID for the current project iteration.
+This method trains the model on the tagged images you uploaded and returns an ID for the current project iteration.
 
 :::code language="shell" source="~/cognitive-services-quickstart-code/curl/custom-vision/image-classifier.sh" ID="trainproject":::
 
@@ -123,7 +123,7 @@ This method trains the model on the tagged images you've uploaded and returns an
 > [!TIP]
 > Train with selected tags
 >
-> You can optionally train on only a subset of your applied tags. You may want to do this if you haven't applied enough of certain tags yet, but you do have enough of others. Add the optional JSON content to the body of your request. Populate the `"selectedTags"` array with the IDs of the tags you want to use.
+> You can optionally train on only a subset of your applied tags. You might want to do this if you haven't applied enough of certain tags yet, but you do have enough of others. Add the optional JSON content to the body of your request. Populate the `"selectedTags"` array with the IDs of the tags you want to use.
 > ```json
 > {
 >   "selectedTags": [
@@ -172,7 +172,7 @@ This method makes the current iteration of the model available for querying. You
 
 ## Test the prediction endpoint
 
-Finally, use this command to test your trained model by uploading a new image for it to classify with tags. You may use the image in the "Test" folder of the sample files you downloaded earlier.
+Finally, use this command to test your trained model by uploading a new image for it to classify with tags. You can use the image in the *Test* folder of the sample files you downloaded earlier.
 
 :::code language="shell" source="~/cognitive-services-quickstart-code/curl/custom-vision/image-classifier.sh" ID="publish":::
 
@@ -182,7 +182,7 @@ Finally, use this command to test your trained model by uploading a new image fo
 * Add the binary data of your local image to the request body.
 * Optionally use other URL parameters. See the [Classify Image](/rest/api/customvision/train-project/train-project) API.
 
-The returned JSON response will list each of the tags that the model applied to your image, along with probability scores for each tag. 
+The returned JSON response lists each of the tags that the model applied to your image, along with probability scores for each tag. 
 
 ```json
 {
@@ -209,7 +209,7 @@ The returned JSON response will list each of the tags that the model applied to 
 
 [!INCLUDE [clean-ic-project](../../includes/clean-ic-project.md)]
 
-## Next steps
+## Related content
 
 Now you've done every step of the image classification process using the REST API. This sample executes a single training iteration, but often you'll need to train and test your model multiple times in order to make it more accurate.
 

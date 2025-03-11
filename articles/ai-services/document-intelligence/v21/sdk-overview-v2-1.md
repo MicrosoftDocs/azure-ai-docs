@@ -9,7 +9,7 @@ ms.custom:
   - devx-track-python
   - ignite-2023
 ms.topic: conceptual
-ms.date: 10/03/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: 'doc-intel-2.1.0'
 ---
@@ -144,7 +144,7 @@ Here's where to find your Document Intelligence API key in the Azure portal:
 
 :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of the keys and endpoint location in the Azure portal.":::
 
-[!INCLUDE [Microsoft Entra ID or AKV](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv.md)]
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 ### [C#/.NET](#tab/csharp)
 

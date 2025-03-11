@@ -2,9 +2,10 @@
 title: Training modules
 titleSuffix: Azure AI Search
 description: Get hands-on training on Azure AI Search from Microsoft and other third-party training providers.
-author: HeidiSteen
+
 manager: nitinme
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 10/28/2024
@@ -40,7 +41,7 @@ Learning paths are a collection of training modules that are organized around sp
 
 ## RAG-centric modules
 
-+ [Build a RAG-based copilot solution with your own data using Azure AI Studio](/training/modules/build-copilot-ai-studio/)
++ [Build a RAG-based copilot solution with your own data using Azure AI Foundry](/training/modules/build-copilot-ai-studio/)
 + [Implement Retrieval Augmented Generation (RAG) with Azure OpenAI Service](/training/modules/use-own-data-azure-openai/)
 
 ## Pluralsight training

@@ -6,8 +6,8 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: devx-track-python
 ms.topic: quickstart
-ms.date: 8/09/2024
-ms.reviewer: v-baolianzou
+ms.date: 3/10/2025
+ms.reviewer: eur
 ms.author: eur
 author: eric-urban
 recommendations: false
@@ -66,4 +66,4 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 ## Next steps
 
 * To learn how to convert audio data to text in batches, see [Create a batch transcription](../speech-service/batch-transcription-create.md).
-* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://aka.ms/AOAICodeSamples).
+* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai).

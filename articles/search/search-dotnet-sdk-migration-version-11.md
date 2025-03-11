@@ -9,7 +9,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.devlang: csharp
 ms.topic: conceptual
-ms.date: 10/19/2023
+ms.date: 12/10/2024
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet

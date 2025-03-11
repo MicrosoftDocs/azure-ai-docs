@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about model versions in Azure OpenAI. 
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 09/20/2024
+ms.date: 01/09/2025
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder
@@ -17,7 +17,10 @@ Azure OpenAI Service is committed to providing the best generative AI models for
 
 ## How model versions work
 
-We want to make it easy for customers to stay up to date as models improve.  Customers can choose to start with a particular version and to automatically update as new versions are released.
+We want to make it easy for customers to stay up to date as models improve. Customers can choose to start with a particular version and to automatically update as new versions are released.
+
+> [!NOTE]
+> The following upgrade guidance only applies to Standard deployment types. For guidance on updating or migrating provisioned deployment types, review the [model management documentation](../how-to/working-with-models.md).
 
 When you deploy a model you can choose an update policy, which can include the following options:
 
@@ -27,16 +30,24 @@ When you deploy a model you can choose an update policy, which can include the f
 
 ## How Azure updates OpenAI models
 
-Azure works closely with OpenAI to release new model versions.  When a new version of a model is released, a customer can immediately test it in new deployments.  Azure publishes when new versions of models are released, and notifies customers at least two weeks before a new version becomes the default version of the model.   Azure also maintains the previous major version of the model until its retirement date, so customers can switch back to it if desired.
+Azure works closely with OpenAI to release new model versions. When a new version of a model is released, a customer can immediately test it in new deployments. Azure publishes when new versions of models are released, and notifies customers at least two weeks before a new version becomes the default version of the model.   Azure also maintains the previous major version of the model until its retirement date, so customers can switch back to it if desired.
 
 ## What you need to know about Azure OpenAI model version upgrades
 
-As a customer of Azure OpenAI models, you might notice some changes in the model behavior and compatibility after a version upgrade.  These changes might affect your applications and workflows that rely on the models.  Here are some tips to help you prepare for version upgrades and minimize the impact:
+As a customer of Azure OpenAI models, you might notice some changes in the model behavior and compatibility after a version upgrade. These changes might affect your applications and workflows that rely on the models. Here are some tips to help you prepare for version upgrades:
 
 * Read [what’s new](../whats-new.md) and [models](../concepts/models.md) to understand the changes and new features.
 * Read the documentation on [model deployments](../how-to/create-resource.md) and [version upgrades](../how-to/working-with-models.md) to understand how to work with model versions.
 * Test your applications and workflows with the new model version after release.
 * Update your code and configuration to use the new features and capabilities of the new model version.
+
+### Will a model upgrade happen if the new model version is not yet available in that region?
+
+Yes, even in cases where the latest model version is not yet available in a region, we will automatically 
+upgrade deployments during the scheduled upgrade window. Our engineering team will begin rollout of the new model version starting on the announced 
+upgrade date. For example, if `gpt-35-turbo-0125` is not yet available in Japan East, we will deploy it to Japan East to upgrade older model 
+versions as part of the default model version upgrade process. 
+
 
 ## Next Steps
 

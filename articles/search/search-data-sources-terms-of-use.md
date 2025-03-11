@@ -8,8 +8,8 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 01/10/2024
+ms.topic: concept-article
+ms.date: 02/19/2025
 ---
 
 # Terms of Use: Partner data sources

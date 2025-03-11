@@ -20,7 +20,7 @@ Azure Machine Learning registry enables you to collaborate across workspaces wit
 There are two scenarios where you'd want to use the same set of models, components and environments in multiple workspaces:
 
 * __Cross-workspace MLOps__: You're training a model in a `dev` workspace and need to deploy it to `test` and `prod` workspaces. In this case you, want to have end-to-end lineage between endpoints to which the model is deployed in `test` or `prod` workspaces and the training job, metrics, code, data and environment that was used to train the model in the `dev` workspace.
-* __Share and reuse models and pipelines across different teams__: Sharing and reuse improve collaboration and productivity. In this scenario, you may want to publish a trained model and the associated components and environments used to train it to a central catalog. From there, colleagues from other teams can search and reuse the assets you shared in their own experiments.
+* __Share and reuse models and pipelines across different teams__: Sharing and reuse improve collaboration and productivity. In this scenario, you might want to publish a trained model and the associated components and environments used to train it to a central catalog. From there, colleagues from other teams can search and reuse the assets you shared in their own experiments.
 
 In this article, you'll learn how to:
 

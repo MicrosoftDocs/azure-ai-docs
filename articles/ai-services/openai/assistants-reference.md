@@ -4,8 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's Python & REST API with Assistants.
 manager: nitinme
 ms.service: azure-ai-openai
-ms.topic: conceptual
-ms.date: 09/17/2024
+ms.topic: reference
+ms.date: 02/27/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -41,6 +41,62 @@ Create an assistant with a model and instructions.
 | top_p | number or null | Optional | Defaults to 1. An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. We generally recommend altering this or temperature but not both. |
 | response_format | string or object | Optional | Specifies the format that the model must output. Compatible with GPT-4 Turbo and all GPT-3.5 Turbo models since gpt-3.5-turbo-1106. Setting this parameter to `{ "type": "json_object" }` enables JSON mode, which guarantees the message the model generates is valid JSON. Importantly, when using JSON mode, you must also instruct the model to produce JSON yourself using a system or user message. Without this instruction, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Additionally, the message content may be partially cut off if you use `finish_reason="length"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. |
 | tool_resources | object | Optional | A set of resources that are used by the assistant's tools. The resources are specific to the type of tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires a list of vector store IDs. |
+
+### response_format types
+
+**string**
+
+`auto` is the default value.
+
+**object**
+
+Possible `type` values: `text`, `json_object`, `json_schema`.
+
+***json_schema***
+
+| Name | Type | Description | Default | Required/Optional |
+|---  |---   |---       |--- |--- |
+| `description` | string | A description of what the response format is for, used by the model to determine how to respond in the format. |  | Optional |
+| `name` | string | The name of the response format. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. |  | Required |
+| `schema` | object | The schema for the response format, described as a JSON Schema object. |  | Optional |
+| `strict` | boolean or null | Whether to enable strict schema adherence when generating the output. If set to true, the model will always follow the exact schema defined in the `schema` field. Only a subset of JSON Schema is supported when `strict` is `true`. | false | Optional |
+
+### tool_resources properties
+
+**code_interpreter**
+
+| Name | Type | Description | Default |
+|---  |---   |---       |--- |
+| `file_ids` | array | A list of file IDs made available to the code_interpreter tool. There can be a maximum of 20 files associated with the tool. | `[]` |
+
+**file_search**
+
+| Name | Type | Description | Required/Optional |
+|---  |---   |---       |--- |
+| `vector_store_ids` | array | The vector store attached to this thread. There can be a maximum of 1 vector store attached to the thread. | Optional | 
+| `vector_stores` | array | A helper to create a vector store with file_ids and attach it to this thread. There can be a maximum of 1 vector store attached to the thread. | Optional |
+
+***vector_stores***
+
+| Name | Type | Description | Required/Optional |
+|---  |---   |---       |--- |
+| `file_ids` | array | A list of file IDs to add to the vector store. There can be a maximum of 10000 files in a vector store. | Optional | 
+| `chunking_strategy` | object | The chunking strategy used to chunk the file(s). If not set, will use the auto strategy. | Optional |
+| `metadata` | map | Set of 16 key-value pairs that can be attached to a vector store. This can be useful for storing additional information about the vector store in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. | Optional |
+
+***chunking_strategy***
+
+| Name | Type | Description | Required/optional | 
+|---  |---   |---       |---|
+| `Auto Chunking Strategy` | object | The default strategy. This strategy currently uses a `max_chunk_size_tokens` of `800` and `chunk_overlap_tokens` of `400`. `type` is always `auto` | Required |
+| `Static Chunking Strategy` | object | `type` Always `static`  | Required |
+
+***Static Chunking Strategy***
+
+| Name | Type | Description | Required/Optional |
+|---  |---   |---       |--- |
+| `max_chunk_size_tokens` | integer | The maximum number of tokens in each chunk. The default value is `800`. The minimum value is `100` and the maximum value is `4096`. | Required |
+| `chunk_overlap_tokens` | integer | The number of tokens that overlap between chunks. The default value is `400`. Note that the overlap must not exceed half of `max_chunk_size_tokens`. | Required |
 
 ### Returns
 

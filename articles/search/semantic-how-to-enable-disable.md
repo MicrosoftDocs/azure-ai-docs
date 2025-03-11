@@ -10,12 +10,12 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 10/28/2024
+ms.date: 01/28/2025
 ---
 
 # Enable or disable semantic ranker
 
-Semantic ranker is a premium feature billed by usage. By default, semantic ranker is turned off when you create a new search service, but anyone with *Contributor* permissions can enable it. If you don't want anyone enabling it inadvertently, you can [disable it using the REST API](#disable-semantic-ranker-using-the-rest-api).
+Semantic ranker is a premium feature billed by usage. By default, semantic ranker is turned on when you create a new billable search service, but anyone with *Contributor* permissions can disable it or change the billing plan. If you don't want anyone to use the feature, you can [disable it service-wide using the management REST API](#disable-semantic-ranker-using-the-rest-api).
 
 ## Check availability
 
@@ -23,7 +23,7 @@ To check if semantic ranker is available in your region, see the [Azure AI Searc
 
 ## Enable semantic ranker
 
-Follow these steps to enable [semantic ranker](semantic-search-overview.md) at the service level. Once enabled, it's available to all indexes. You can't turn it on or off for specific indexes.
+Semantic ranker might not be enabled on older services. Follow these steps to enable [semantic ranker](semantic-search-overview.md) at the service level. Once enabled, it's available to all indexes. You can't turn it on or off for specific indexes.
 
 ### [**Azure portal**](#tab/enable-portal)
 
@@ -33,11 +33,11 @@ Follow these steps to enable [semantic ranker](semantic-search-overview.md) at t
 
 1. On the left-navigation pane, select **Settings** > **Semantic ranker**.
 
-1. Select either the **Free plan** or the **Standard plan**. You can switch between the free plan and the standard plan at any time.
+1. Select either the **Free plan** (default) or the **Standard plan**. You can switch between the free plan and the standard plan at any time.
 
    :::image type="content" source="media/semantic-search-overview/semantic-search-billing.png" alt-text="Screenshot of enabling semantic ranking in the Azure portal." border="true":::
 
-The free plan is capped at 1,000 queries per month. After the first 1,000 queries in the free plan, an error message indicates you exhausted your quota on the next semantic query. When quota is exhausted, you should upgrade to the standard plan to continue using semantic ranking.
+The free plan is capped at 1,000 queries per month. After the first 1,000 queries in the free plan, an error message indicates you exhausted your quota on the next semantic query. When quota is exhausted, you can upgrade to the standard plan to continue using semantic ranking.
 
 ### [**REST**](#tab/enable-rest)
 

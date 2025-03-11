@@ -1,31 +1,31 @@
 ---
-title: 'Quickstart: Search index (REST)'
+title: 'Quickstart: Keyword Search Using REST APIs'
 titleSuffix: Azure AI Search
-description: In this quickstart, learn how to call the Azure AI Search REST APIs to create, load, and query a search index.
+description: Learn how to call the Azure AI Search REST APIs to create, load, and query a search index.
 zone_pivot_groups: URL-test-interface-rest-apis
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.devlang: rest-api
-ms.date: 10/31/2024
+ms.date: 03/04/2025
 ms.custom:
   - mode-api
   - ignite-2023
 ---
 
-# Quickstart: Keyword search by using REST
+# Quickstart: Keyword search using REST
 
-The REST APIs in Azure AI Search provide programmatic access to all of its capabilities, including preview features, and they're an easy way to learn how features work. In this quickstart, learn how to call the [Search REST APIs](/rest/api/searchservice) to create, load, and query a search index in Azure AI Search.
-
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+In this quickstart, you call the [Search REST APIs](/rest/api/searchservice) to create, load, and query a search index. The REST APIs in Azure AI Search provide programmatic access to all of its capabilities, including preview features, and are an easy way to learn how features work.
 
 ## Prerequisites
 
-- [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-- [Azure AI Search](search-what-is-azure-search.md). [Create](search-create-service-portal.md) or [find an existing Azure AI Search resource](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription. You can use a free service for this quickstart.
+- An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. For this quickstart, you can use a free service.
+
+- [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 ## Download files
 
@@ -116,7 +116,7 @@ If you're not familiar with the REST client for Visual Studio Code, this section
 
 1. Open or create a new file named with either a `.rest` or `.http` file extension.
 
-1. Paste in the following example if you're using API keys. Replace the `@baseUrl` and `@apiKey` placeholders with the values you copied earlier.
+1. Paste in the following example if you're using API keys. Replace the `@baseUrl` and `@apiKey` placeholders with the values you copied earlier, without quotes.
 
    ```http
    @baseUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
@@ -128,7 +128,7 @@ If you're not familiar with the REST client for Visual Studio Code, this section
       api-key: {{apiKey}}
     ```
 
-1. Or, paste in this example if your using roles. Replace the `@baseUrl` and `@token` placeholders with the values you copied earlier.
+1. Or, paste in this example if you're using roles. Replace the `@baseUrl` and `@token` placeholders with the values you copied earlier, without quotes.
 
    ```http
    @baseUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
@@ -143,6 +143,8 @@ If you're not familiar with the REST client for Visual Studio Code, this section
 1. Select **Send request**. A response should appear in an adjacent pane. If you have existing indexes, they're listed. Otherwise, the list is empty. If the HTTP code is `200 OK`, you're ready for the next steps.
 
    :::image type="content" source="media/search-get-started-rest/rest-client-request-setup.png" lightbox="media/search-get-started-rest/rest-client-request-setup.png" alt-text="Screenshot that shows a REST client configured for a search service request.":::
+
+    If you get `WWW-Authenticate: Bearer realm="Azure Cognitive Search" error="invalid_token" error_description="Authentication token failed validation."`, remove the quotes around the token, save the file, and retry your request.
 
     Key points:
   
@@ -397,7 +399,7 @@ You can also use [Get Statistics](/rest/api/searchservice/indexes/get-statistics
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal by using the **All resources** or **Resource groups** link in the leftmost pane.
+You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
 You can also try this `DELETE` command:
 
@@ -410,7 +412,7 @@ DELETE  {{baseUrl}}/indexes/hotels-quickstart?api-version=2024-07-01 HTTP/1.1
 
 ## Next step
 
-Now that you're familiar with the REST client and making REST calls to Azure AI Search, try another quickstart that demonstrates vector support.
+Now that you're familiar with the REST client and making REST calls to Azure AI Search, try another quickstart that demonstrates vector support:
 
 > [!div class="nextstepaction"]
 > [Quickstart: Vector search using REST](search-get-started-vector.md)

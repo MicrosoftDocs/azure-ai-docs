@@ -13,14 +13,14 @@ metadata:
   ms.author: eur
   manager: nitinme
   ms.custom: ignite-2023
-  ms.date: 9/5/2024
+  ms.date: 2/7/2025
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | whats-new
   items:
     - title: What are Azure AI services?
       itemType: overview # controls the icon image and super-title text
       url: ./what-are-ai-services.md
-    - title: What is Azure AI Studio?
+    - title: What is Azure AI Foundry?
       itemType: overview
       url: ../ai-studio/what-is-ai-studio.md
     - title: Chat with Azure OpenAI models using your own data
@@ -41,6 +41,11 @@ productDirectory:
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg
       summary: Perform a wide variety of natural language tasks.
       url: ./openai/index.yml
+    # Card
+    - title: Azure AI Agent Service
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-agents.png
+      summary: Develop AI agents to automate and execute business processes.
+      url: ./agents/index.yml
     # Card
     - title: Azure AI Search
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/search.svg
@@ -87,10 +92,10 @@ productDirectory:
       summary: Build apps with industry-leading natural language understanding capabilities.
       url: ./language-service/index.yml
     # Card
-    - title: Video Indexer
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/video-indexer.svg
-      summary: Extract actionable insights from your videos.
-      url: /azure/azure-video-indexer/
+    - title: Content Understanding
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/content-understanding.svg
+      summary: Transform multimodal data into task-specific insights.
+      url: ./content-understanding/index.yml
      # Card
     - title: Immersive Reader
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/immersive-reader.svg
@@ -103,10 +108,8 @@ additionalContent:
       items:
         - title: Demo & customization studios
           links:
-            - text: Azure AI Studio
+            - text: Azure AI Foundry portal
               url: https://ai.azure.com/
-            - text: Azure OpenAI Studio
-              url: https://oai.azure.com/
             - text: Content Safety
               url: https://contentsafety.cognitive.azure.com/
             - text: Speech
@@ -123,16 +126,16 @@ additionalContent:
               url: https://language.cognitive.azure.com/
         - title: Explore more AI resources
           links:
-            - text: Azure AI Studio
+            - text: Azure AI Foundry portal
               url: /azure/ai-studio/
             - text: Azure Machine Learning
               url: /azure/machine-learning/
+            - text: The Book of AI
+              url: https://aka.ms/bookofai
             - text: Semantic Kernel
               url: /semantic-kernel/
             - text: AI Builder
               url: /ai-builder/
-            - text: Windows AI
-              url: /windows/ai/
             - text: GitHub Copilot
               url: https://docs.github.com/copilot/getting-started-with-github-copilot
         - title: Training & certification

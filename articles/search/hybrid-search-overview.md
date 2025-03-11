@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 10/01/2024
+ms.date: 12/06/2024
 ---
 
 # Hybrid search using vectors and full text in Azure AI Search
@@ -20,13 +20,13 @@ Hybrid search is a combination of full text and vector queries that execute agai
 + Executing in parallel
 + With merged results in the query response, scored using [Reciprocal Rank Fusion (RRF)](hybrid-search-ranking.md)
 
-This article explains the concepts, benefits, and limitations of hybrid search. Watch this [embedded video](#why-choose-hybrid-search) for an explanation and short demos of how hybrid retrieval contributes to high quality chat-style and copilot apps. 
+This article explains the concepts, benefits, and limitations of hybrid search. Links at the end provide instructions and next steps. You can also watch this [embedded video](#why-choose-hybrid-search) for an explanation of how hybrid retrieval contributes to high quality RAG apps.
 
 ## How does hybrid search work?
 
-In Azure AI Search, vector fields containing embeddings can live alongside textual and numerical fields, allowing you to formulate hybrid queries that execute in parallel. Hybrid queries can take advantage of existing functionality like filtering, faceting, sorting, scoring profiles, and [semantic ranking](semantic-search-overview.md) in a single search request.
+In Azure AI Search, vector fields containing embeddings can live alongside textual and numerical fields, allowing you to formulate hybrid queries that execute in parallel. Hybrid queries can take advantage of existing text-based functionality like filtering, faceting, sorting, scoring profiles, and [semantic ranking](semantic-search-overview.md) on your text fields, while executing a similarity search against vectors, all in a single search request.
 
-Hybrid search combines results from both full text and vector queries, which use different ranking functions such as BM25, HNSW, and EKNN. A [Reciprocal Rank Fusion (RRF)](hybrid-search-ranking.md) algorithm merges the results. The query response provides just one result set, using RRF to rank the unified results.
+Hybrid search combines results from both full text and vector queries, which use different ranking functions such as BM25 for text, and Hierarchical Navigable Small World (HNSW) and exhaustive K Nearest Neighbors (eKNN) for vectors. A [Reciprocal Rank Fusion (RRF)](hybrid-search-ranking.md) algorithm merges the results. The query response provides just one result set, using RRF to rank the unified results.
 
 ## Structure of a hybrid query
 
@@ -42,19 +42,28 @@ POST https://{{searchServiceName}}.search.windows.net/indexes/hotels-vector-quic
     "search": "historic hotel walk to restaurants and shopping",
     "select": "HotelId, HotelName, Category, Description, Address/City, Address/StateProvince",
     "filter": "geo.distance(Location, geography'POINT(-77.03241 38.90166)') le 300",
+    "vectorFilterMode": "postFilter",
     "facets": [ "Address/StateProvince"], 
-    "vectors": [
+    "vectorQueries": [
         {
-            "value": [ <array of embeddings> ]
-            "k": 7,
-            "fields": "DescriptionVector"
+            "kind": "vector",
+            "vector": [ <array of embeddings> ]
+            "k": 50,
+            "fields": "DescriptionVector",
+            "exhaustive": true,
+            "oversampling": 20
         },
         {
-            "value": [ <array of embeddings> ]
-            "k": 7,
-            "fields": "Description_frVector"
+            "kind": "vector",
+            "vector": [ <array of embeddings> ]
+            "k": 50,
+            "fields": "Description_frVector",
+            "exhaustive": false,
+            "oversampling": 10
         }
     ],
+    "skip": 0,
+    "top": 10,
     "queryType": "semantic",
     "queryLanguage": "en-us",
     "semanticConfiguration": "my-semantic-config"
@@ -64,9 +73,9 @@ POST https://{{searchServiceName}}.search.windows.net/indexes/hotels-vector-quic
 Key points include:
 
 + `search` specifies a single full text search query.
-+ `vectors` for vector queries, which can be multiple, targeting multiple vector fields. If the embedding space includes multi-lingual content, vector queries can find the match with no language analyzers or translation required.
-+ `select` specifies which fields to return in results, which should be text fields that are human readable.
-+ `filters` can specify geospatial search or other include and exclude criteria, such as whether parking is included. The geospatial query in this example finds hotels within a 300-kilometer radius of Washington D.C.
++ `vectorQueries` for vector queries, which can be multiple, targeting multiple vector fields. If the embedding space includes multi-lingual content, vector queries can find the match with no language analyzers or translation required. If you're also using the semantic ranker, set `k` to 50 to maximize its inputs.
++ `select` specifies which fields to return in results, which should be text fields that are human readable if you're showing them to users or sending them to an LLM.
++ `filters` can specify geospatial search or other include and exclude criteria, such as whether parking is included. The geospatial query in this example finds hotels within a 300-kilometer radius of Washington D.C. You can apply the filter at the beginning or end of query processing. If you use the semantic ranker, you probably want post-filtering as the last step but you should test to confirm which behavior is best for your queries.
 + `facets` can be used to compute facet buckets over results that are returned from hybrid queries.
 + `queryType=semantic` invokes semantic ranker, applying machine reading comprehension to surface more relevant search results. Semantic ranking is optional. If you aren't using that feature, remove the last three lines of the hybrid query.
 
@@ -132,4 +141,6 @@ The following video explains how hybrid retrieval gives you optimal grounding da
 
 ## See also
 
-[Outperform vector search with hybrid retrieval and ranking (Tech blog)](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/azure-cognitive-search-outperforming-vector-search-with-hybrid/ba-p/3929167)
++ [Create a hybrid query](hybrid-search-how-to-query.md)
++ [Relevance scoring in hybrid search](hybrid-search-ranking.md)
++ [Outperform vector search with hybrid retrieval and ranking (Tech blog)](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/azure-cognitive-search-outperforming-vector-search-with-hybrid/ba-p/3929167)

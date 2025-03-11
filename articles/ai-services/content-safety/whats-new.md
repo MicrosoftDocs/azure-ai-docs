@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2023
 ms.topic: overview
-ms.date: 09/04/2024
+ms.date: 02/21/2025
 ms.author: pafarley
 ---
 
@@ -21,7 +21,7 @@ Learn what's new in the service. These items might be release notes, videos, blo
 ### Upcoming deprecations
 
 To align with Content Safety versioning and lifecycle management policies, the following versions are scheduled for deprecation:
-* **Effective January 28, 2024**: All versions except `2024-09-01`, `2024-09-15-preview`, and `2024-09-30-preview` will be deprecated and no longer supported. We encourage users to transition to the latest available versions to continue receiving full support and updates. If you have any questions about this process or need assistance with the transition, please reach out to our support team.
+* **Effective March 1st, 2025**: All API versions except `2024-09-01`, `2024-09-15-preview`, and `2024-09-30-preview` will be deprecated and no longer supported. We encourage users to transition to the latest available versions to continue receiving full support and updates. If you have any questions about this process or need assistance with the transition, please reach out to our support team.
 
 ## September 2024
 
@@ -34,8 +34,7 @@ The Multimodal API analyzes materials containing both image content and text con
 
 The Protected material code API flags protected code content (from known GitHub repositories, including software libraries, source code, algorithms, and other proprietary programming content) that might be output by large language models. Follow the [quickstart](./quickstart-protected-material-code.md) to get started.
 
-> [!CAUTION]
-> The content safety service's code scanner/indexer is only current through November 6, 2021. Code that was added to GitHub after this date will not be detected. Use your own discretion when using Protected Material for Code to detect recent bodies of code.
+[!INCLUDE [content-safety-code-indexer](./includes/code-indexer.md)]
 
 ### Groundedness correction (preview)
 

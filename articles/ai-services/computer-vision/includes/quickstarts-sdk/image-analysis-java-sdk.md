@@ -8,6 +8,7 @@ ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 12/30/2024
 ms.custom: devx-track-java
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 

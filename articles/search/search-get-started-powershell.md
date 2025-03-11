@@ -1,30 +1,32 @@
 ---
-title: 'Quickstart: Create a search index in PowerShell by using REST APIs'
+title: 'Quickstart: Create an Index Using PowerShell and REST APIs'
 titleSuffix: Azure AI Search
-description: In this REST API quickstart, learn how to create an index, load data, and run queries by using PowerShell's Invoke-RestMethod and the Azure AI Search REST API.
+description: Learn how to create an index, load data, and run queries using PowerShell's Invoke-RestMethod and the Azure AI Search REST APIs.
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.devlang: rest-api
-ms.date: 10/31/2024
+ms.date: 03/04/2025
 ms.custom:
   - mode-api
   - ignite-2023
 ---
-# Quickstart: Create a search index in PowerShell by using REST APIs
 
-In this Azure AI Search quickstart, learn how to create, load, and query a search index by using PowerShell and the [Azure AI Search REST APIs](/rest/api/searchservice/). This article explains how to run PowerShell commands interactively. Alternatively, you can [download and run a PowerShell script](https://github.com/Azure-Samples/azure-search-powershell-samples/tree/main/Quickstart) that performs the same operations.
+# Quickstart: Create a search index in PowerShell using REST
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+In this quickstart, you create, load, and query a search index using PowerShell and the [Azure AI Search REST APIs](/rest/api/searchservice/).
+
+This quickstart explains how to run PowerShell commands interactively. Alternatively, you can [download and run a PowerShell script](https://github.com/Azure-Samples/azure-search-powershell-samples/tree/main/Quickstart) that performs the same operations.
 
 ## Prerequisites
 
-The following services and tools are required for this quickstart:
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+
+- An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. For this quickstart, you can use a free service.
 
 - [PowerShell 7.3 or later](https://github.com/PowerShell/PowerShell), using [Invoke-RestMethod](/powershell/module/Microsoft.PowerShell.Utility/Invoke-RestMethod) for sequential and interactive steps.
-- [Create an Azure AI Search service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription. You can use a free service for this quickstart.
 
 ## Copy a search service key and URL
 
@@ -74,7 +76,7 @@ All requests require an API key on every request sent to your service. Having a 
 
 ## Create an index
 
-Unless you're using the portal, an index must exist on the service before you can load data. This step defines the index and pushes it to the service. The [Create Index REST API](/rest/api/searchservice/indexes/create) is used for this step.
+Unless you're using the Azure portal, an index must exist on the service before you can load data. This step defines the index and pushes it to the service. The [Create Index REST API](/rest/api/searchservice/indexes/create) is used for this step.
 
 Required elements of an index include a name and a fields collection. The fields collection defines the structure of a *document*. Each field has a name, type, and attributes that determine how it's used (for example, whether it's full-text searchable, filterable, or retrievable in search results). Within an index, one of the fields of type `Edm.String` must be designated as the *key* for document identity.
 
@@ -164,7 +166,7 @@ This index is named `hotels-quickstart` and has the field definitions you see in
     ```
 
 > [!Tip]
-> For verification, you could also check the **Indexes** list in the portal.
+> For verification, you could also check the **Indexes** list in the Azure portal.
 
 <a name="load-documents"></a>
 
@@ -389,11 +391,11 @@ $url = 'https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/hotels-quicksta
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal by using the **All resources** or **Resource groups** link in the leftmost pane.
+You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
-If you're using a free service, remember that you're limited to three indexes, indexers, and data sources. You can delete individual items in the portal to stay under the limit.
+If you're using a free service, remember that you're limited to three indexes, indexers, and data sources. You can delete individual items in the Azure portal to stay under the limit.
 
-## Next steps
+## Next step
 
 In this quickstart, you used PowerShell to step through the basic workflow for creating and accessing content in Azure AI Search. With the concepts in mind, we recommend that you move on to more advanced scenarios, such as indexing from Azure data sources:
 

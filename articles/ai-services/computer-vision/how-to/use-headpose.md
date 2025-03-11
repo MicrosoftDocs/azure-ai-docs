@@ -1,27 +1,29 @@
 ---
 title: Use the HeadPose attribute
 titleSuffix: Azure AI services
-description: Learn how to use the HeadPose attribute to automatically rotate the face rectangle or detect head gestures in a video feed.
+description: Learn how to use the HeadPose attribute to automatically rotate the face rectangle in a video feed.
 author: PatrickFarley
 manager: nitinme
+#customer intent: As a developer, I want to use the HeadPose attribute to rotate face rectangles in a video feed.
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.topic: how-to
-ms.date: 02/14/2024
+ms.date: 01/29/2025
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom:
   - devx-track-csharp
   - ignite-2023
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Use the HeadPose attribute
 
-In this guide, you'll see how you can use the HeadPose attribute of a detected face to enable some key scenarios.
+In this guide, you'll learn how you can use the HeadPose attribute of a detected face to enable some key scenarios.
 
 > [!IMPORTANT]
-> Face attributes are predicted through the use of statistical algorithms. They might not always be accurate. Use caution when you make decisions based on attribute data. Please refrain from using these attributes for anti-spoofing. Instead, we recommend using Face Liveness detection. For more information, please refer to [Tutorial: Detect liveness in faces](/azure/ai-services/computer-vision/tutorials/liveness). 
+> Face attributes are predicted using statistical algorithms. They might not always be accurate. Use caution when you make decisions based on attribute data. Refrain from using these attributes for anti-spoofing. Instead, we recommend using Face Liveness detection. For more information, please refer to [Tutorial: Detect liveness in faces](/azure/ai-services/computer-vision/tutorials/liveness). 
 
 ## Rotate the face rectangle
 
@@ -31,7 +33,7 @@ The [Azure AI Face WPF (Windows Presentation Foundation)](https://github.com/Azu
 
 ### Explore the sample code
 
-You can programmatically rotate the face rectangle by using the HeadPose attribute. If you specify this attribute when detecting faces (see [Call the detect API](identity-detect-faces.md)), you will be able to query it later. The following method from the [Azure AI Face WPF](https://github.com/Azure-Samples/azure-ai-vision/tree/main/face/DemoWPF) app takes a list of **FaceDetectionResult** objects and returns a list of **[Face](https://github.com/Azure-Samples/azure-ai-vision/blob/main/face/DemoWPF/Sample-WPF/Controls/Face.cs)** objects. **Face** here is a custom class that stores face data, including the updated rectangle coordinates. New values are calculated for **top**, **left**, **width**, and **height**, and a new field **FaceAngle** specifies the rotation.
+You can programmatically rotate the face rectangle by using the HeadPose attribute. If you specify this attribute when detecting faces (see [Call the Detect API](identity-detect-faces.md)), you'll be able to query it later. The following method from the [Azure AI Face WPF](https://github.com/Azure-Samples/azure-ai-vision/tree/main/face/DemoWPF) app takes a list of **FaceDetectionResult** objects and returns a list of **[Face](https://github.com/Azure-Samples/azure-ai-vision/blob/main/face/DemoWPF/Sample-WPF/Controls/Face.cs)** objects. Here, **Face** is a custom class that stores face data, including the updated rectangle coordinates. New values are calculated for **top**, **left**, **width**, and **height**, and a new field **FaceAngle** specifies the rotation.
 
 ```csharp
 /// <summary>
@@ -109,7 +111,7 @@ public static IEnumerable<Face> CalculateFaceRectangleForRendering(IList<FaceDet
 }
 ```
 
-### Display the updated rectangle
+## Display the updated rectangle
 
 From here, you can use the returned **Face** objects in your display. The following lines from [FaceDetectionPage.xaml](https://github.com/Azure-Samples/azure-ai-vision/blob/main/face/DemoWPF/Sample-WPF/Controls/FaceDetectionPage.xaml) show how the new rectangle is rendered from this data:
 
@@ -123,6 +125,9 @@ From here, you can use the returned **Face** objects in your display. The follow
 </DataTemplate>
 ```
 
-## Next steps
+## Next step
 
-* See the [Azure AI Face WPF](https://github.com/Azure-Samples/azure-ai-vision/tree/main/face/DemoWPF) app on GitHub for a working example of rotated face rectangles.
+See the Azure AI Face WPF app on GitHub for a working example of rotated face rectangles.
+
+> [!div class="nextstepaction"]
+> [Azure AI Face WPF sample app](https://github.com/Azure-Samples/azure-ai-vision/tree/main/face/DemoWPF)

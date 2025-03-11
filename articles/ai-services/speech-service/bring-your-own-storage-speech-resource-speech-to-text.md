@@ -5,7 +5,7 @@ description: Learn how to use Bring your own storage (BYOS) Speech resource with
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/12/2024
+ms.date: 3/10/2025
 author: eric-urban
 ms.author: eur
 ms.reviewer: alexeyo
@@ -19,7 +19,7 @@ Bring your own storage (BYOS) can be used in the following speech to text scenar
 - Real-time transcription with audio and transcription results logging enabled
 - Custom speech
 
-One pair of a Speech resource and storage account can be used for all scenarios simultaneously.
+One pair of an AI Services resource for Speech and storage account can be used for all scenarios simultaneously.
 
 This article explains in depth how to use a BYOS-enabled Speech resource in all speech to text scenarios. The article implies that you have [a fully configured BYOS-enabled Speech resource and associated Storage account](bring-your-own-storage-speech-resource.md).
 

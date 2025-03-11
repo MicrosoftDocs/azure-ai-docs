@@ -6,15 +6,15 @@ ms.topic: how-to
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 01/31/2024
+ms.date: 03/05/2025
 ---
 
 
 # Managed identities for Language resources
 
-Managed identities for Azure resources are service principals that create a Microsoft Entra identity and specific permissions for Azure managed resources. Managed identities are a safer way to grant access to storage data and replace the requirement for you to include shared access signature tokens (SAS) with your [source and target container URLs](use-native-documents.md#create-azure-blob-storage-containers).
+Managed identities for Azure resources are service principals that create a Microsoft Entra identity and specific permissions for Azure managed resources. Managed identities are a safer way to grant access to storage data and replace the requirement for you to include shared access signature tokens (SAS) with your source and target container URLs.
 
-   :::image type="content" source="media/managed-identity-flow.png" alt-text="Screenshot of managed identity flow (RBAC).":::
+   :::image type="content" source="media/managed-identity-flow.png" alt-text="Screenshot of managed identity flow (`RBAC`).":::
 
 * You can use managed identities to grant access to any resource that supports Microsoft Entra authentication, including your own applications.
 
@@ -24,7 +24,7 @@ Managed identities for Azure resources are service principals that create a Micr
 
 > [!IMPORTANT]
 >
-> * When using managed identities, don't include a SAS token URL with your HTTP requests—your requests will fail. Using managed identities replaces the requirement for you to include shared access signature tokens (SAS) with your [source and target container URLs](use-native-documents.md#create-azure-blob-storage-containers).
+> * When using managed identities, don't include a SAS token URL with your HTTP requests. Using managed identities replaces the requirement for you to include shared access signature tokens (SAS) with your source and target container URLs.
 >
 > * To use managed identities for Language operations, you must [create your Language resource](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) in a specific geographic Azure region such as **East US**. If your Language resource region is set to **Global**, then you can't use managed identity authentication. You can, however, still use [Shared Access Signature (SAS) tokens](shared-access-signatures.md).
 >
@@ -65,7 +65,7 @@ To get started, you need the following resources:
 
 ## Managed identity assignments
 
-There are two types of managed identities: **system-assigned** and **user-assigned**.  Currently, Document Translation supports **system-assigned managed identity**:
+There are two types of managed identities: **system-assigned** and **user-assigned**. Currently, Document Translation supports **system-assigned managed identity**:
 
 * A system-assigned managed identity is **enabled** directly on a service instance. It isn't enabled by default; you must go to your resource and update the identity setting.
 
@@ -135,4 +135,4 @@ You must grant the Language resource access to your storage account before it ca
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Get started with native document support](use-native-documents.md#include-native-documents-with-an-http-request)
+> [Native document support](overview.md#native-document-support-for-azure-ai-language-preview)

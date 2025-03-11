@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about the different model capabilities that are available with Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 10/25/2024
+ms.date: 2/27/2025
 ms.custom: references_regions, build-2023, build-2023-dataai, refefences_regions
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
@@ -18,9 +18,10 @@ Azure OpenAI Service is powered by a diverse set of models with different capabi
 
 | Models | Description |
 |--|--|
-| [o1-preview and o1-mini](#o1-preview-and-o1-mini-models-limited-access) | Limited access models, specifically designed to tackle reasoning and problem-solving tasks with increased focus and capability.  |
+| [GPT-4.5 Preview](#gpt-45-preview) |The latest GPT model that excels at diverse text and image tasks.  |
+| [o-series models](#o-series-models) |[Reasoning models](../how-to/reasoning.md) with advanced problem-solving and increased focus and capability.  |
 | [GPT-4o & GPT-4o mini & GPT-4 Turbo](#gpt-4o-and-gpt-4-turbo) | The latest most capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
-| [GPT-4o-Realtime-Preview](#gpt-4o-realtime-preview) | A GPT-4o model that supports low-latency, "speech in, speech out" conversational interactions. |
+| [GPT-4o audio](#gpt-4o-audio) | GPT-4o audio models that support either low-latency, "speech in, speech out" conversational interactions or audio generation. |
 | [GPT-4](#gpt-4) | A set of models that improve on GPT-3.5 and can understand and generate natural language and code. |
 | [GPT-3.5](#gpt-35) | A set of models that improve on GPT-3 and can understand and generate natural language and code. |
 | [Embeddings](#embeddings-models) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
@@ -28,214 +29,88 @@ Azure OpenAI Service is powered by a diverse set of models with different capabi
 | [Whisper](#whisper-models) | A series of models in preview that can transcribe and translate speech to text. |
 | [Text to speech](#text-to-speech-models-preview) (Preview) | A series of models in preview that can synthesize text to speech. |
 
-## o1-preview and o1-mini models limited access
-
-The Azure OpenAI `o1-preview` and `o1-mini` models are specifically designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math compared to previous iterations.
-
-|  Model ID  | Description | Max Request (tokens) | Training Data (up to)  |
-|  --- |  :--- |:--- |:---: |
-|`o1-preview` (2024-09-12) | The most capable model in the o1 series, offering enhanced reasoning abilities.| Input: 128,000  <br> Output: 32,768 | Oct 2023 |
-| `o1-mini` (2024-09-12) | A faster and more cost-efficient option in the o1 series, ideal for coding tasks requiring speed and lower resource consumption.| Input: 128,000  <br> Output: 65,536 | Oct 2023 |
+## GPT-4.5 Preview
 
 ### Availability
 
-The `o1-preview` and `o1-mini` models are now available for API access and model deployment. **Registration is required, and access will be granted based on Microsoft's eligibility criteria**.
+**For access to `gpt-4.5-preview` registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who have access to other limited access models will still need to request access for this model.
 
-Request access: [limited access model application](https://aka.ms/oai/modelaccess)
+Request access: [GPT-4.5-preview limited access model application](https://aka.ms/oai/gptaccess)
 
-Once access has been granted, you will need to create a deployment for each model.
+Once access has been granted, you will need to create a deployment for the model
 
-### API support
+### Region Availability
 
-Support for the **o1 series** models was added in API version `2024-09-01-preview`.
+| Model | Region |
+|---|---|
+| `gpt-4.5-preview` | East US 2 (Global Standard) <br> Sweden Central (Global Standard) |
 
-The `max_tokens` parameter has been deprecated and replaced with the new `max_completion_tokens` parameter. **o1 series** models will only work with the `max_completion_tokens` parameter.
+### Capabilities
 
-### Usage
+|  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
+|  --- |  :--- |:--- |:---|:---: |
+| `gpt-4.5-preview` (2025-02-27) <br> **GPT-4.5 Preview**  | The **latest GPT model** that excels at diverse text and image tasks. <br>-Structured outputs <br>-Prompt caching <br>-Tools <br>-Streaming<br>-Text(input/output)<br>- Image(input)   | 128,000 | 16,384 | Oct 2023 |
 
-These models do not currently support the same set of parameters as other models that use the chat completions API. Only a very limited subset is currently supported, so common parameters like `temperature`, `top_p`, are not available and including them will cause your request to fail. `o1-preview` and `o1-mini` models will also not accept the system message role as part of the messages array.
+> [!NOTE]
+> It is expected behavior that the model cannot answer questions about itself. If you want to know when the knowledge cutoff for the model's training data is, or other details about the model you should refer to the model documentation above.
 
-# [Python (Microsoft Entra ID)](#tab/python-secure)
+## o-series models
 
-You may need to upgrade your version of the OpenAI Python library to take advantage of the new `max_completion_tokens` parameter.
+The Azure OpenAI o<sup>&#42;</sup> series models are specifically designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math compared to previous iterations.
 
-```cmd
-pip install openai --upgrade
-```
+|  Model ID  | Description | Max Request (tokens) | Training Data (up to)  |
+|  --- |  :--- |:--- |:---: |
+| `o3-mini` (2025-01-31) | The latest reasoning model, offering [enhanced reasoning abilities](../how-to/reasoning.md). <br> - Structured outputs<br> - Text-only processing <br> - Functions/Tools  | Input: 200,000 <br> Output: 100,000 | Oct 2023 |  
+| `o1` (2024-12-17) | The most capable model in the o1 series, offering [enhanced reasoning abilities](../how-to/reasoning.md). <br> - Structured outputs<br> - Text, image processing <br> - Functions/Tools | Input: 200,000 <br> Output: 100,000 | Oct 2023 |  
+|`o1-preview` (2024-09-12) | Older preview version | Input: 128,000  <br> Output: 32,768 | Oct 2023 |
+| `o1-mini` (2024-09-12) | A faster and more cost-efficient option in the o1 series, ideal for coding tasks requiring speed and lower resource consumption. <br><br> Global standard deployment available by default. <br> <br> Standard (regional) deployments are currently only available for select customers who received access as part of the `o1-preview` limited access release.  | Input: 128,000  <br> Output: 65,536 | Oct 2023 |
 
-If you are new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](../how-to/managed-identity.md).
+### Availability
 
-```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  azure_ad_token_provider=token_provider,
-  api_version="2024-09-01-preview"
-)
-
-response = client.chat.completions.create(
-    model="o1-preview-new", # replace with the model deployment name of your o1-preview, or o1-mini model
-    messages=[
-        {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
-    ],
-    max_completion_tokens = 5000
-
-)
-
-print(response.model_dump_json(indent=2))
-```
-
-# [Python (key-based auth)](#tab/python)
-
-You may need to upgrade your version of the OpenAI Python library to take advantage of the new `max_completion_tokens` parameter.
-
-```cmd
-pip install openai --upgrade
-```
-
-```python
-
-from openai import AzureOpenAI
-
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-09-01-preview"
-)
-
-response = client.chat.completions.create(
-    model="o1-preview-new", # replace with the model deployment name of your o1-preview, or o1-mini model
-    messages=[
-        {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
-    ],
-    max_completion_tokens = 5000
-
-)
-
-print(response.model_dump_json(indent=2))
-```
-
-# [Output](#tab/python-output)
-
-```json
-{
-  "id": "chatcmpl-AEj7pKFoiTqDPHuxOcirA9KIvf3yz",
-  "choices": [
-    {
-      "finish_reason": "stop",
-      "index": 0,
-      "logprobs": null,
-      "message": {
-        "content": "Writing your first Python API is an exciting step in developing software that can communicate with other applications. An API (Application Programming Interface) allows different software systems to interact with each other, enabling data exchange and functionality sharing. Here are the steps you should consider when creating your first Python API:\n\n1. **Define the Purpose and Requirements**\n\n   - **Identify the Functionality**: Clearly outline what your API is supposed to do. What data or services will it provide to the users?\n   - **Determine the Endpoints**: Plan the different URLs (endpoints) through which users can access the API functionalities.\n   - **Specify Request and Response Formats**: Decide on the data formats (usually JSON) for incoming requests and outgoing responses.\n\n2. **Choose the Right Framework**\n\n   Python offers several frameworks for building APIs. Two of the most popular are:\n\n   - **Flask**: A lightweight and flexible web framework, great for small to medium-sized APIs.\n   - **FastAPI**: A modern, high-performance framework for building APIs with Python 3.6+ types, offering automatic interactive documentation.\n\n   **Example**:\n   ```bash\n   pip install flask\n   ```\n   or\n   ```bash\n   pip install fastapi uvicorn\n   ```\n\n3. **Set Up the Development Environment**\n\n   - **Create a Virtual Environment**: Isolate your project dependencies using `venv` or `conda`.\n   - **Install Required Packages**: Ensure all necessary libraries and packages are installed.\n\n   **Example**:\n   ```bash\n   python -m venv env\n   source env/bin/activate  # On Windows use `env\\Scripts\\activate`\n   ```\n\n4. **Implement the API Endpoints**\n\n   - **Write the Code for Each Endpoint**: Implement the logic that handles requests and returns responses.\n   - **Use Decorators to Define Routes**: In frameworks like Flask, you use decorators to specify the URL endpoints.\n\n   **Example with Flask**:\n   ```python\n   from flask import Flask, request, jsonify\n\n   app = Flask(__name__)\n\n   @app.route('/hello', methods=['GET'])\n   def hello_world():\n       return jsonify({'message': 'Hello, World!'})\n\n   if __name__ == '__main__':\n       app.run(debug=True)\n   ```\n\n5. **Handle Data Serialization and Deserialization**\n\n   - **Parsing Incoming Data**: Use libraries to parse JSON or other data formats from requests.\n   - **Formatting Output Data**: Ensure that responses are properly formatted in JSON or XML.\n\n6. **Implement Error Handling**\n\n   - **Handle Exceptions Gracefully**: Provide meaningful error messages and HTTP status codes.\n   - **Validate Input Data**: Check for required fields and appropriate data types to prevent errors.\n\n   **Example**:\n   ```python\n   @app.errorhandler(404)\n   def resource_not_found(e):\n       return jsonify(error=str(e)), 404\n   ```\n\n7. **Add Authentication and Authorization (If Necessary)**\n\n   - **Secure Endpoints**: If your API requires, implement security measures such as API keys, tokens (JWT), or OAuth.\n   - **Manage User Sessions**: Handle user login states and permissions appropriately.\n\n8. **Document Your API**\n\n   - **Use Tools Like Swagger/OpenAPI**: Automatically generate interactive API documentation.\n   - **Provide Usage Examples**: Help users understand how to interact with your API.\n\n   **Example with FastAPI**:\n   FastAPI automatically generates docs at `/docs` using Swagger UI.\n\n9. **Test Your API**\n\n   - **Write Unit and Integration Tests**: Ensure each endpoint works as expected.\n   - **Use Testing Tools**: Utilize tools like `unittest`, `pytest`, or API testing platforms like Postman.\n\n   **Example**:\n   ```python\n   import unittest\n   class TestAPI(unittest.TestCase):\n       def test_hello_world(self):\n           response = app.test_client().get('/hello')\n           self.assertEqual(response.status_code, 200)\n   ```\n\n10. **Optimize Performance**\n\n    - **Improve Response Times**: Optimize your code and consider using asynchronous programming if necessary.\n    - **Manage Resource Utilization**: Ensure your API can handle the expected load.\n\n11. **Deploy Your API**\n\n    - **Choose a Hosting Platform**: Options include AWS, Heroku, DigitalOcean, etc.\n    - **Configure the Server**: Set up the environment to run your API in a production setting.\n    - **Use a Production Server**: Instead of the development server, use WSGI servers like Gunicorn or Uvicorn.\n\n    **Example**:\n    ```bash\n    uvicorn main:app --host 0.0.0.0 --port 80\n    ```\n\n12. **Monitor and Maintain**\n\n    - **Logging**: Implement logging to track events and errors.\n    - **Monitoring**: Use monitoring tools to track performance and uptime.\n    - **Update and Patch**: Keep dependencies up to date and patch any security vulnerabilities.\n\n13. **Consider Versioning**\n\n    - **Plan for Updates**: Use versioning in your API endpoints to manage changes without breaking existing clients.\n    - **Example**:\n      ```python\n      @app.route('/v1/hello', methods=['GET'])\n      ```\n\n14. **Gather Feedback and Iterate**\n\n    - **User Feedback**: Encourage users to provide feedback on your API.\n    - **Continuous Improvement**: Use the feedback to make improvements and add features.\n\n**Additional Tips**:\n\n- **Keep It Simple**: Start with a minimal viable API and expand functionality over time.\n- **Follow RESTful Principles**: Design your API according to REST standards to make it intuitive and standard-compliant.\n- **Security Best Practices**: Always sanitize inputs and protect against common vulnerabilities like SQL injection and cross-site scripting (XSS).\nBy following these steps, you'll be well on your way to creating a functional and robust Python API. Good luck with your development!",
-        "refusal": null,
-        "role": "assistant",
-        "function_call": null,
-        "tool_calls": null
-      },
-      "content_filter_results": {
-        "hate": {
-          "filtered": false,
-          "severity": "safe"
-        },
-        "protected_material_code": {
-          "filtered": false,
-          "detected": false
-        },
-        "protected_material_text": {
-          "filtered": false,
-          "detected": false
-        },
-        "self_harm": {
-          "filtered": false,
-          "severity": "safe"
-        },
-        "sexual": {
-          "filtered": false,
-          "severity": "safe"
-        },
-        "violence": {
-          "filtered": false,
-          "severity": "safe"
-        }
-      }
-    }
-  ],
-  "created": 1728073417,
-  "model": "o1-preview-2024-09-12",
-  "object": "chat.completion",
-  "service_tier": null,
-  "system_fingerprint": "fp_503a95a7d8",
-  "usage": {
-    "completion_tokens": 1843,
-    "prompt_tokens": 20,
-    "total_tokens": 1863,
-    "completion_tokens_details": {
-      "audio_tokens": null,
-      "reasoning_tokens": 448
-    },
-    "prompt_tokens_details": {
-      "audio_tokens": null,
-      "cached_tokens": 0
-    }
-  },
-  "prompt_filter_results": [
-    {
-      "prompt_index": 0,
-      "content_filter_results": {
-        "custom_blocklists": {
-          "filtered": false
-        },
-        "hate": {
-          "filtered": false,
-          "severity": "safe"
-        },
-        "jailbreak": {
-          "filtered": false,
-          "detected": false
-        },
-        "self_harm": {
-          "filtered": false,
-          "severity": "safe"
-        },
-        "sexual": {
-          "filtered": false,
-          "severity": "safe"
-        },
-        "violence": {
-          "filtered": false,
-          "severity": "safe"
-        }
-      }
-    }
-  ]
-}
-```
-
----
+To learn more about the advanced `o-series` models see, [getting started with reasoning models](../how-to/reasoning.md).
 
 ### Region availability
 
-Available for standard and global standard deployment in East US, East US2, North Central US, South Central US, Sweden Central, West US, and West US3 for approved customers.
+| Model | Region |
+|---|---|
+|`o3-mini` | See the [models table](#model-summary-table-and-region-availability). |
+|`o1` | See the [models table](#model-summary-table-and-region-availability). |
+| `o1-preview` | See the [models table](#model-summary-table-and-region-availability). This model is only available for customers who were granted access as part of the original limited access |
+| `o1-mini` | See the [models table](#model-summary-table-and-region-availability). |
 
-## GPT-4o-Realtime-Preview
+## GPT-4o audio
 
-The `gpt-4o-realtime-preview` model is part of the GPT-4o model family and supports low-latency, "speech in, speech out" conversational interactions. GPT-4o audio is designed to handle real-time, low-latency conversational interactions, making it a great fit for support agents, assistants, translators, and other use cases that need highly responsive back-and-forth with a user.
+The GPT 4o audio models are part of the GPT-4o model family and support either low-latency, "speech in, speech out" conversational interactions or audio generation. 
+- GPT-4o real-time audio is designed to handle real-time, low-latency conversational interactions, making it a great fit for support agents, assistants, translators, and other use cases that need highly responsive back-and-forth with a user. For more information on how to use GPT-4o real-time audio, see the [GPT-4o real-time audio quickstart](../realtime-audio-quickstart.md) and [how to use GPT-4o audio](../how-to/realtime-audio.md).
+- GPT-4o audio completion is designed to generate audio from audio or text prompts, making it a great fit for generating audio books, audio content, and other use cases that require audio generation. The GPT-4o audio completions model introduces the audio modality into the existing `/chat/completions` API. For more information on how to use GPT-4o audio completions, see the [audio generation quickstart](../audio-completions-quickstart.md).
 
-GPT-4o audio is available in the East US 2 (`eastus2`) and Sweden Central (`swedencentral`) regions. To use GPT-4o audio, you need to [create](../how-to/create-resource.md) or use an existing resource in one of the supported regions.
+> [!CAUTION]
+> We don't recommend using preview models in production. We will upgrade all deployments of preview models to either future preview versions or to the latest stable GA version. Models that are designated preview don't follow the standard Azure OpenAI model lifecycle.
 
-When your resource is created, you can [deploy](../how-to/create-resource.md#deploy-a-model) the GPT-4o audio model. If you are performing a programmatic deployment, the **model** name is `gpt-4o-realtime-preview`. For more information on how to use GPT-4o audio, see the [GPT-4o audio documentation](../realtime-audio-quickstart.md).
+To use GPT-4o audio, you need [an Azure OpenAI resource](../how-to/create-resource.md) in one of the [supported regions](#global-standard-model-availability).
+
+When your resource is created, you can [deploy](../how-to/create-resource.md#deploy-a-model) the GPT-4o audio model. 
 
 Details about maximum request tokens and training data are available in the following table.
 
 |  Model ID  | Description | Max Request (tokens) | Training Data (up to)  |
-|  --- |  :--- |:--- |:---: |
-|`gpt-4o-realtime-preview` (2024-10-01-preview) <br> **GPT-4o audio** | **Audio model** for real-time audio processing |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
+|---|---|---|---|
+|`gpt-4o-mini-audio-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for audio and text generation. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
+|`gpt-4o-mini-realtime-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
+|`gpt-4o-audio-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for audio and text generation. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
+|`gpt-4o-realtime-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
+|`gpt-4o-realtime-preview` (2024-10-01) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
+
+### Region availability
+
+| Model | Region |
+|---|---|
+|`gpt-4o-mini-audio-preview` | East US2 (Global Standard) |
+|`gpt-4o-mini-realtime-preview` | East US2 (Global Standard) <br> Sweden Central (Global Standard) |
+|`gpt-4o-audio-preview` | East US2 (Global Standard) <br> Sweden Central (Global Standard) |
+|`gpt-4o-realtime-preview` | East US2 (Global Standard) <br> Sweden Central (Global Standard) |
+
+To compare the availability of GPT-4o audio models across all regions, see the [models table](#global-standard-model-availability).
 
 ## GPT-4o and GPT-4 Turbo
 
@@ -249,8 +124,9 @@ You need to [create](../how-to/create-resource.md) or use an existing resource i
 
 When your resource is created, you can [deploy](../how-to/create-resource.md#deploy-a-model) the GPT-4o models. If you are performing a programmatic deployment, the **model** names are:
 
+- `gpt-4o` **Version** `2024-11-20`
 - `gpt-4o` **Version** `2024-08-06`
-- `gpt-4o`, **Version**  `2024-05-13`
+- `gpt-4o` **Version** `2024-05-13`
 - `gpt-4o-mini` **Version** `2024-07-18`
 
 ### GPT-4 Turbo
@@ -277,7 +153,8 @@ See [model versions](../concepts/model-versions.md) to learn about how Azure Ope
 
 |  Model ID  | Description | Max Request (tokens) | Training Data (up to)  |
 |  --- |  :--- |:--- |:---: |
-|`gpt-4o` (2024-08-06) <br> **GPT-4o (Omni)** | **Latest large GA model** <br> - Structured outputs<br> - Text, image processing <br> - JSON Mode <br> - parallel function calling <br> - Enhanced accuracy and responsiveness <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision <br> - Superior performance in non-English languages and in vision tasks |Input: 128,000  <br> Output: 16,384 | Oct 2023 |
+| `gpt-4o` (2024-11-20) <br> **GPT-4o (Omni)**  | **Latest large GA model** <br> - Structured outputs<br> - Text, image processing <br> - JSON Mode <br> - parallel function calling <br> - Enhanced accuracy and responsiveness <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision <br> - Superior performance in non-English languages and in vision tasks. <br> - **Enhanced creative writing ability** | Input: 128,000  <br> Output: 16,384 | Oct 2023 |
+|`gpt-4o` (2024-08-06) <br> **GPT-4o (Omni)** | - Structured outputs<br> - Text, image processing <br> - JSON Mode <br> - parallel function calling <br> - Enhanced accuracy and responsiveness <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision <br> - Superior performance in non-English languages and in vision tasks |Input: 128,000  <br> Output: 16,384 | Oct 2023 |
 |`gpt-4o-mini` (2024-07-18) <br> **GPT-4o mini** | **Latest small GA model** <br> - Fast, inexpensive, capable model ideal for replacing GPT-3.5 Turbo series models. <br> - Text, image processing <br>- JSON Mode <br> - parallel function calling | Input: 128,000 <br> Output: 16,384  | Oct 2023 |
 |`gpt-4o` (2024-05-13) <br> **GPT-4o (Omni)** | Text, image processing <br> - JSON Mode <br> - parallel function calling <br> - Enhanced accuracy and responsiveness <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision <br> - Superior performance in non-English languages and in vision tasks |Input: 128,000  <br> Output: 4,096| Oct 2023 |
 | `gpt-4` (turbo-2024-04-09) <br>**GPT-4 Turbo with Vision** | **New GA model** <br> - Replacement for all previous GPT-4 preview models (`vision-preview`, `1106-Preview`, `0125-Preview`). <br> - [**Feature availability**](#gpt-4o-and-gpt-4-turbo) is currently different depending on method of input, and deployment type. | Input: 128,000  <br> Output: 4,096  | Dec 2023 |
@@ -290,17 +167,12 @@ See [model versions](../concepts/model-versions.md) to learn about how Azure Ope
 | `gpt-4` (0314) | **Older GA model** <br> - [Retirement information](./model-retirements.md#current-models)  | 8,192 | Sep 2021         |
 
 > [!CAUTION]
-> We don't recommend using preview models in production. We will upgrade all deployments of preview models to either future preview versions or to the latest stable GA version. Models designated preview do not follow the standard Azure OpenAI model lifecycle.
+> We don't recommend using preview models in production. We will upgrade all deployments of preview models to either future preview versions or to the latest stable GA version. Models that are designated preview don't follow the standard Azure OpenAI model lifecycle.
 
 - GPT-4 version 0125-preview is an updated version of the GPT-4 Turbo preview previously released as version 1106-preview.  
 - GPT-4 version 0125-preview completes tasks such as code generation more completely compared to gpt-4-1106-preview. Because of this, depending on the task, customers may find that GPT-4-0125-preview generates more output compared to the gpt-4-1106-preview.  We recommend customers compare the outputs of the new model.  GPT-4-0125-preview also addresses bugs in gpt-4-1106-preview with UTF-8 handling for non-English languages. 
 - GPT-4 version `turbo-2024-04-09` is the latest GA release and replaces `0125-Preview`, `1106-preview`, and `vision-preview`.
 
-> [!IMPORTANT]
-> The GPT-4 (`gpt-4`) versions `1106-Preview`, `0125-Preview`, and `vision-preview` will be upgraded with a stable version of `gpt-4` in the future. 
-> - Deployments of `gpt-4` versions `1106-Preview`, `0125-Preview`, and `vision-preview` set to "Auto-update to default" and "Upgrade when expired" will start to be upgraded after the stable version is released. For each deployment, a model version upgrade takes place with no interruption in service for API calls. Upgrades are staged by region and the full upgrade process is expected to take 2 weeks. 
-> - Deployments of `gpt-4` versions  `1106-Preview`, `0125-Preview`, and `vision-preview` set to "No autoupgrade" will not be upgraded and will stop operating when the preview version is upgraded in the region. 
-> See [Azure OpenAI model retirements and deprecations](./model-retirements.md) for more information on the timing of the upgrade.
 
 ## GPT-3.5
 
@@ -372,6 +244,11 @@ All deployments can perform the exact same inference operations, however the bil
 
 [!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
 
+> [!NOTE]
+> `o1-mini` is currently available to all customers for global standard deployment.
+>
+> Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time access to `o1-mini` standard (regional) deployments is not being expanded.
+
 # [Global Provisioned Managed](#tab/global-ptum)
 
 ### Global provisioned managed model availability
@@ -388,13 +265,36 @@ All deployments can perform the exact same inference operations, however the bil
 
 ### Data zone standard model availability
 
-[!INCLUDE [Global batch](../includes/model-matrix/datazone-standard.md)]
+[!INCLUDE [Data zone standard](../includes/model-matrix/datazone-standard.md)]
+
+> [!NOTE]
+> `o1-mini` is currently available to all customers for global standard deployment.
+>
+> Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time access to `o1-mini` standard (regional) deployments is not being expanded.
+
+# [Data Zone Provisioned Managed](#tab/datazone-provisioned-managed)
+
+### Data zone provisioned managed model availability
+
+[!INCLUDE [Global data zone provisioned managed](../includes/model-matrix/datazone-provisioned-managed.md)]
+
+# [Data Zone Batch](#tab/datazone-batch)
+
+### Data zone batch model availability
+
+[!INCLUDE [Data zone batch](../includes/model-matrix/global-batch-datazone.md)]
 
 # [Standard](#tab/standard)
 
 ### Standard deployment model availability
 
 [!INCLUDE [Standard Models](../includes/model-matrix/standard-models.md)]
+
+> [!NOTE]
+> `o1-mini` is currently available to all customers for global standard deployment.
+>
+> Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time access to `o1-mini` standard (regional) deployments is not being expanded.
+
 
 # [Provisioned Managed](#tab/provisioned)
 
@@ -419,11 +319,16 @@ This table doesn't include fine-tuning regional availability information.  Consu
 
 [!INCLUDE [Chat Completions](../includes/model-matrix/standard-chat-completions.md)]
 
+> [!NOTE]
+> `o1-mini` is currently available to all customers for global standard deployment.
+>
+> Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time access to `o1-mini` standard (regional) deployments is not being expanded.
+
 ### GPT-4 and GPT-4 Turbo model availability
 
 #### Select customer access
 
-In addition to the regions above which are available to all Azure OpenAI customers, some select pre-existing customers have been granted access to versions of GPT-4 in additional regions:
+In addition to the regions above which are available to all Azure OpenAI customers, some select preexisting customers have been granted access to versions of GPT-4 in additional regions:
 
 | Model | Region |  
 |---|:---|  
@@ -465,7 +370,6 @@ These models can only be used with Embedding API requests.
 
 |  Model ID  | Max Request (characters) |
 |  --- | :---: |
-| dalle2 (preview)  | 1,000 |
 | dall-e-3  | 4,000 |
 
 # [Audio](#tab/standard-audio)
@@ -492,8 +396,6 @@ These models can only be used with Embedding API requests.
 
 ### Completions models
 
-`babbage-002` and `davinci-002` are not trained to follow instructions. Querying these base models should only be done as a point of reference to a fine-tuned version to evaluate the progress of your training.
-
 [!INCLUDE [Completions](../includes/model-matrix/standard-completions.md)]
 
 ---
@@ -504,20 +406,22 @@ These models can only be used with Embedding API requests.
 
 ## Assistants (Preview)
 
-For Assistants you need a combination of a supported model, and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, and Azure AI Studio. The following table is for pay-as-you-go. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](./provisioned-throughput.md). The listed models and regions can be used with both Assistants v1 and v2. You can use [global standard models](#global-standard-model-availability) if they are supported in the regions listed below. 
+For Assistants you need a combination of a supported model, and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, and Azure AI Foundry. The following table is for pay-as-you-go. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](./provisioned-throughput.md). The listed models and regions can be used with both Assistants v1 and v2. You can use [global standard models](#global-standard-model-availability) if they are supported in the regions listed below. 
 
-| Region | `gpt-35-turbo (0613)` | `gpt-35-turbo (1106)`| `fine tuned gpt-3.5-turbo-0125` | `gpt-4 (0613)` | `gpt-4 (1106)` | `gpt-4 (0125)` | `gpt-4o (2024-05-13)` | `gpt-4o-mini (2024-07-18)` |
-|-----|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| Australia East | ✅ | ✅ | | ✅ |✅ | | | |
-| East US  | ✅ | | | | | ✅ | ✅ |✅|
-| East US 2 | ✅ |  | ✅ | ✅ |✅ | |✅| |
-| France Central  | ✅ | ✅ | | ✅ |✅ |  | | |
-| Japan East | ✅ |  | | | | | | |
-| Norway East | |  | | | ✅ |  | | |
-| Sweden Central | ✅ |✅ | ✅ |✅ |✅| |✅| |
-| UK South | ✅  | ✅ | | | ✅ | ✅ |  | |
-| West US |  | ✅ | | | ✅ | |✅| |
-| West US 3 |  |  | | |✅ | |✅| |
+
+| **Region**   |  **gpt-4o**, **2024-05-13**   | **gpt-4o**, **2024-08-06**   | **gpt-4o-mini**, **2024-07-18**   | **gpt-4**, **0613**   | **gpt-4**, **1106-Preview**   | **gpt-4**, **0125-Preview**    | **gpt-4**, **turbo-2024-04-09**   | **gpt-4-32k**, **0613**  | **gpt-35-turbo**, **0613**   | **gpt-35-turbo**, **1106**   | **gpt-35-turbo**, **0125**   | **gpt-35-turbo-16k**, **0613**   |
+|:-----------------|:--------------------------:|:--------------------------:|:-------------------------------:|:-------------------:|:---------------------------:|:---------------------------:|:-------------------------------:|:-----------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:------------------------------:|
+| australiaeast    | -                      | -                      | -                           | ✅                | ✅                        | -                       | -                           | ✅                    | ✅                       | ✅                       | ✅                       | ✅                           |
+| eastus           | ✅                       | ✅                       | ✅                            | -               | -                       | ✅                        |  ✅                            | -                   | ✅                       | -                      | ✅                       | ✅                           |
+| eastus2          | ✅                       | ✅                       | ✅                            | -               | ✅                        | -                       | ✅                            | -                   | ✅                       | -                      | ✅                       | ✅                           |
+| francecentral    | -                      | -                      | -                           | ✅                | ✅                        | -                       | -                           | ✅                    | ✅                       | ✅                       | -                      | ✅                           |
+| japaneast        | -                      | -                      | -                           | -               | -                       | -                       | -                           | -                   | ✅                       | -                      | ✅                       | ✅                           |
+| norwayeast       | -                      | -                      | -                           | -               | ✅                        | -                       |  -                           | -                   | -                      | -                      | -                      | -                          |
+| southindia       | -                      | -                      | -                           | -               | ✅                        | -                       | -                           | -                   | -                      | ✅                       | ✅                       | -                          |
+| swedencentral    | ✅                       | ✅                       | ✅                            | ✅                | ✅                        | -                       | ✅                            | ✅                    | ✅                       | ✅                       | -                      | ✅                           |
+| uksouth          | -                      | -                      | -                           | -               | ✅                        | ✅                        | -                           | -                   | ✅                       | ✅                       | ✅                       | ✅                           |
+| westus           | ✅                       | ✅                       | ✅                            | -               | ✅                        | -                       |✅                            | -                   | -                      | ✅                       | ✅                       | -                          |
+| westus3          | ✅                       | ✅                       | ✅                            | -               | ✅                        | -                       | ✅                            | -                   | -                      | -                      | ✅                       | -                          |
 
 ## Model retirement
 

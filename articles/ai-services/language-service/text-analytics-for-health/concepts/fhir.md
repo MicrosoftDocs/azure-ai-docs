@@ -8,7 +8,7 @@ ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 11/04/2024
 ms.author: jboback
-ms.custom: language-service-health
+ms.custom: language-service-health, ignite-2024
 ---
 
 # Utilizing Fast Healthcare Interoperability Resources (FHIR) structuring in Text Analytics for Health

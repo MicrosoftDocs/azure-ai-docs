@@ -8,7 +8,7 @@ ms.topic: how-to
 author: fbsolo-ms1 
 ms.author: franksolomon 
 ms.reviewer: ynpandey
-ms.date: 12/06/2023
+ms.date: 01/23/2025
 ms.custom: template-concept, update-code2
 ---
 
@@ -43,9 +43,9 @@ As materialization jobs run for the feature set, they create or merge data inter
 - When two data intervals are continuous on the timeline, and they have the same data materialization status, they become one data interval
 - In a data interval, when a portion of the feature data is materialized again, and that portion gets a different data materialization status, that data interval is split into multiple data intervals
 
-When users select a feature window, they might see multiple data intervals in that window with different data materialization statuses. They might see multiple data intervals that are disjoint on the timeline. For example, the earlier snapshot has 16 *data intervals* for the defined *feature window* in the offline materialization store.
+When a user selects a feature window, multiple data intervals, with different data materialization statuses, might appear in that window. Additionally, multiple data intervals, that are disjoint on the timeline, might also appear. For example, the earlier snapshot has 16 *data intervals* for the defined *feature window* in the offline materialization store.
 
-At any given time, a feature set can have at most 2,000 *data intervals*. Once a feature set reaches that limit, no more materialization jobs can run. Users must then create a new feature set version with materialization enabled. For the new feature set version, materialize the features in the offline and online stores from scratch.
+At any given time, a feature set can have at most 2,000 *data intervals*. Once a feature set reaches that limit, no more materialization jobs can run. Users must then create a new feature set version, with materialization enabled. For the new feature set version, materialize the features in the offline and online stores from scratch.
 
 To avoid the limit, users should run backfill jobs in advance to [fill the gaps](#filling-the-gaps) in the data intervals. This merges the data intervals, and reduces the total count.
 
@@ -55,10 +55,10 @@ Before you run a data materialization job, enable the offline and/or online data
 
 [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/4.Enable-online-store-run-inference.ipynb?name=enable-accounts-material)]
 
-You can submit the data materialization jobs as a:
+You can submit the data materialization jobs as:
 
-- backfill job - a manually submitted batch materialization job
-- recurrent materialization job - an automatic materialization job [triggered on a scheduled interval](./feature-set-materialization-concepts.md#set-proper-source_delay-and-recurrent-schedule).
+- a backfill job - a manually submitted batch materialization job
+- a recurrent materialization job - an automatic materialization job [triggered on a scheduled interval](./feature-set-materialization-concepts.md#set-proper-source_delay-and-recurrent-schedule).
 
 > [!WARNING]
 > Data already materialized in the offline and/or online materialization will no longer be usable if offline and/or online data materialization is disabled at the feature set level. The data materialization status in offline and/or online materialization store will be reset to `None`.
@@ -70,7 +70,7 @@ You can submit backfill jobs by:
 
 ### Data backfill by data materialization status
 
-User can submit a backfill request with:
+Users can submit a backfill request with:
 
 - A list of data materialization status values - Incomplete, Complete, or None
 - A feature window (optional)
@@ -184,7 +184,7 @@ This example defines a daily job that triggers at 4 AM, starting on 4/15/2023. D
 
 ### Update materialization store
 
-Before you update a feature store online or offline materialization store, all feature sets in that feature store should have the corresponding offline and/or online materialization disabled. The update operation fails as `UserError`, if some feature sets have materialization enabled.
+Before you update an online feature store or an offline materialization store, all feature sets in that feature store should have the corresponding offline and/or online materialization disabled. The update operation fails as `UserError` if some feature sets have materialization enabled.
 
 The materialization status of the data in the offline and/or online materialization store resets if offline and/or online materialization is disabled on a feature set. The reset renders materialized data unusable. If offline and/or online materialization on the feature set is enabled later, users must resubmit their materialization jobs.
 

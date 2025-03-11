@@ -2,14 +2,13 @@
 title: 'Use your own data with Azure OpenAI Service'
 titleSuffix: Azure OpenAI
 description: Use this article to import and use your data in Azure OpenAI.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-ts, devx-track-go, devx-track-python
 ms.topic: quickstart
 author: aahill
 ms.author: aahi
-ms.date: 10/22/2024
+ms.date: 01/09/2025
 recommendations: false
 zone_pivot_groups: openai-use-your-data
 ---
@@ -18,8 +17,7 @@ zone_pivot_groups: openai-use-your-data
 
 In this quickstart, you can use your own data with Azure OpenAI models. Using Azure OpenAI's models on your data can provide you with a powerful conversational AI platform that enables faster and more accurate communication.
 
-::: zone pivot="programming-language-studio"
-
+::: zone pivot="ai-foundry-portal"
 
 ## Prerequisites
 
@@ -30,9 +28,6 @@ The following resources:
 - An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
     - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
 - Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
-
-> [!div class="nextstepaction"]
-> [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=OVERVIEW&Pillar=AOAI&Product=ownData&Page=quickstart&Section=Prerequisites)
 
 
 [!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
@@ -82,8 +77,9 @@ The following resources:
 
 ::: zone pivot="programming-language-javascript"
 
-## Prerequisites
+[Reference documentation](https://platform.openai.com/docs/api-reference/chat) | [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
 
+## Prerequisites
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
@@ -94,9 +90,11 @@ The following resources:
 
 - Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
 
+### Microsoft Entra ID prerequisites
 
-[Reference documentation](https://platform.openai.com/docs/api-reference/chat) | [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
-
+For the recommended keyless authentication with Microsoft Entra ID, you need to:
+- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
 [!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
 
@@ -105,6 +103,8 @@ The following resources:
 ::: zone-end
 
 ::: zone pivot="programming-language-typescript"
+
+[Reference documentation](https://platform.openai.com/docs/api-reference/chat) | [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
 
 ## Prerequisites
 
@@ -119,9 +119,11 @@ The following resources:
 
 - Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
 
+### Microsoft Entra ID prerequisites
 
-[Reference documentation](https://platform.openai.com/docs/api-reference/chat) | [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
-
+For the recommended keyless authentication with Microsoft Entra ID, you need to:
+- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
 [!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
 

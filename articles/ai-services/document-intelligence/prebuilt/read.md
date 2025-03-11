@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/07/2024
+ms.date: 02/19/2025
 ms.author: lajanuar
 ---
 
@@ -20,15 +20,11 @@ ms.author: lajanuar
 
  ::: moniker range="doc-intel-4.0.0"
 
-[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
-
-**This content applies to:**![checkmark](../media/yes-icon.png) **v4.0 (preview)** | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru) ![blue-checkmark](../media/blue-yes-icon.png) [**v3.0 (GA)**](?view=doc-intel-3.0.0&preserve-view=tru)
-
-**This content applies to:**![checkmark](../media/yes-icon.png) **v4.0 (preview)** | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru) ![blue-checkmark](../media/blue-yes-icon.png) [**v3.0 (GA)**](?view=doc-intel-3.0.0&preserve-view=tru)
+**This content applies to:**![checkmark](../media/yes-icon.png) **v4.0 (GA)** | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru) ![blue-checkmark](../media/blue-yes-icon.png) [**v3.0 (GA)**](?view=doc-intel-3.0.0&preserve-view=tru)
 
 > [!NOTE]
 >
-> For extracting text from external images like labels, street signs, and posters, use the [Azure AI Image Analysis v4.0 Read](../../Computer-vision/concept-ocr.md) feature optimized for general, non-document images with a performance-enhanced synchronous API that makes it easier to embed OCR in your user experience scenarios.
+> To extract text from external images like labels, street signs, and posters, use the [Azure AI Image Analysis v4.0 Read](../../Computer-vision/concept-ocr.md) feature optimized for general (not document) images with a performance-enhanced synchronous API. This capability makes it easier to embed OCR in real-time user experience scenarios.
 >
 
 Document Intelligence Read Optical Character Recognition (OCR) model runs at a higher resolution than Azure AI Vision Read and extracts print and handwritten text from PDF documents and scanned images. It also includes support for extracting text from Microsoft Word, Excel, PowerPoint, and HTML documents. It detects paragraphs, text lines, words, locations, and languages. The Read model is the underlying OCR engine for other Document Intelligence prebuilt models like Layout, General Document, Invoice, Receipt, Identity (ID) document, Health insurance card, W2 in addition to custom models.
@@ -39,11 +35,12 @@ Optical Character Recognition (OCR) for documents is optimized for large text-he
 
 ## Development options (v4)
 
-Document Intelligence v4.0 (2024-07-31-preview) supports the following tools, applications, and libraries:
+
+Document Intelligence v4.0: **2024-11-30** (GA) supports the following tools, applications, and libraries:
 
 | Feature | Resources | Model ID |
 |----------|-------------|-----------|
-|**Read OCR model**|&bullet; [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com)</br>&bullet;  [**REST API**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)</br>&bullet;  [**C# SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Python SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Java SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**JavaScript SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|**prebuilt-read**|
+|**Read OCR model**|&bullet; [**Document Intelligence Studio**](https://documentintelligence.ai.azure.com)</br>&bullet;  [**REST API**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)</br>&bullet;  [**C# SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Python SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**Java SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet;  [**JavaScript SDK**](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|**prebuilt-read**|
 
 ## Input requirements (v4)
 
@@ -84,11 +81,11 @@ See our [Language Support—document analysis models](../language-support/ocr.md
 ## Data extraction (v4)
 
 > [!NOTE]
-> Microsoft Word and HTML file are supported in v4.0. Compared with PDF and images, below features are not supported:
+> Microsoft Word and HTML file are supported in v4.0. The following capabilities are currently not supported:
 >
-> * There are no angle, width/height and unit with each page object.
-> * For each object detected, there is no bounding polygon or bounding region.
-> * Page range (`pages`) is not supported as a parameter.
+> * No angle, width/height, and unit returned with each page object.
+> * No bounding polygon or bounding region for each object detected.
+> * No page range (`pages`) as a parameter returned.
 > * No `lines` object.
 
 ## Searchable PDFs
@@ -97,9 +94,8 @@ The searchable PDF capability enables you to convert an analog PDF, such as scan
 
   > [!IMPORTANT]
   >
-  > * Currently, the searchable PDF capability is only supported by Read OCR model `prebuilt-read`. When using this feature, please specify the `modelId` as `prebuilt-read`, as other model types will return error for this preview version.
-  > * Searchable PDF is included with the 2024-07-31-preview `prebuilt-read` model with no additional cost for generating a searchable PDF output.
->   * Searchable PDF currently only supports PDF files as input. Support for other file types, such as image files, will be available later.
+  > * Currently, only  the Read OCR model `prebuilt-read` supports the searchable PDF capability. When using this feature, specify the `modelId` as `prebuilt-read`. Other model types return an error for this preview version.
+  > * Searchable PDF is included with the `2024-11-30` GA `prebuilt-read` model with no added cost for generating a searchable PDF output.
 
 ### Use searchable PDFs
 
@@ -107,7 +103,7 @@ To use searchable PDF, make a `POST` request using the `Analyze` operation and s
 
 ```bash
 
-     POST /documentModels/prebuilt-read:analyze?output=pdf
+     POST {endpoint}/documentintelligence/documentModels/prebuilt-read:analyze?_overload=analyzeDocument&api-version=2024-11-30&output=pdf
      {...}
      202
 ```
@@ -124,7 +120,152 @@ Upon successful completion, the PDF can be retrieved and downloaded as `applicat
      {...}
 
      // Upon successful completion, retrieve the PDF as application/pdf.
-     GET /documentModels/prebuilt-read/analyzeResults/{resultId}/pdf
+     GET {endpoint}/documentintelligence/documentModels/prebuilt-read/analyzeResults/{resultId}/pdf?api-version=2024-11-30
+URI Parameters
+Name    In    Required    Type    Description
+endpoint    path    True    
+string
+
+uri    
+The Document Intelligence service endpoint.
+
+modelId    path    True    
+string
+
+Unique document model name.
+
+Regex pattern: ^[a-zA-Z0-9][a-zA-Z0-9._~-]{1,63}$
+
+resultId    path    True    
+string
+
+uuid    
+Analyze operation result ID.
+
+api-version    query    True    
+string
+
+The API version to use for this operation.
+
+Responses
+Name    Type    Description
+200 OK    
+file
+
+The request has succeeded.
+
+Media Types: "application/pdf", "application/json"
+
+Other Status Codes    
+DocumentIntelligenceErrorResponse
+
+An unexpected error response.
+
+Media Types: "application/pdf", "application/json"
+
+Security
+Ocp-Apim-Subscription-Key
+Type: apiKey
+In: header
+
+OAuth2Auth
+Type: oauth2
+Flow: accessCode
+Authorization URL: https://login.microsoftonline.com/common/oauth2/authorize
+Token URL: https://login.microsoftonline.com/common/oauth2/token
+
+Scopes
+Name    Description
+https://cognitiveservices.azure.com/.default    
+Examples
+Get Analyze Document Result PDF
+Sample request
+HTTP
+HTTP
+
+Copy
+GET https://myendpoint.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-invoice/analyzeResults/3b31320d-8bab-4f88-b19c-2322a7f11034/pdf?api-version=2024-11-30
+Sample response
+Status code:
+200
+JSON
+
+Copy
+"{pdfBinary}"
+Definitions
+Name    Description
+DocumentIntelligenceError    
+The error object.
+
+DocumentIntelligenceErrorResponse    
+Error response object.
+
+DocumentIntelligenceInnerError    
+An object containing more specific information about the error.
+
+DocumentIntelligenceError
+The error object.
+
+Name    Type    Description
+code    
+string
+
+One of a server-defined set of error codes.
+
+details    
+DocumentIntelligenceError[]
+
+An array of details about specific errors that led to this reported error.
+
+innererror    
+DocumentIntelligenceInnerError
+
+An object containing more specific information than the current object about the error.
+
+message    
+string
+
+A human-readable representation of the error.
+
+target    
+string
+
+The target of the error.
+
+DocumentIntelligenceErrorResponse
+Error response object.
+
+Name    Type    Description
+error    
+DocumentIntelligenceError
+
+Error info.
+
+DocumentIntelligenceInnerError
+An object containing more specific information about the error.
+
+Name    Type    Description
+code    
+string
+
+One of a server-defined set of error codes.
+
+innererror    
+DocumentIntelligenceInnerError
+
+Inner error.
+
+message    
+string
+
+A human-readable representation of the error.
+
+In this article
+URI Parameters
+Responses
+Security
+Examples
+
      200 OK
      Content-Type: application/pdf
 ```
@@ -274,7 +415,7 @@ Complete a Document Intelligence quickstart:
 Explore our REST API:
 
    > [!div class="nextstepaction"]
-   > [Document Intelligence API v4.0](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)
+   > [Document Intelligence API v4.0](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)
 
 Find more samples on GitHub:
    > [!div class="nextstepaction"]
@@ -285,18 +426,18 @@ Find more samples on GitHub:
 <!---------------------- v3.1 v3.0 v2.1 content ---------------------->
 
 ::: moniker range="doc-intel-3.1.0"
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** | **Latest version:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (preview)**](?view=doc-intel-4.0.0&preserve-view=true) | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.0**](?view=doc-intel-3.0.0&preserve-view=true)
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** | **Latest version:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true) | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.0**](?view=doc-intel-3.0.0&preserve-view=true)
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.0.0"
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** | **Latest versions:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (preview)**](?view=doc-intel-4.0.0&preserve-view=true) ![purple-checkmark](../media/purple-yes-icon.png) [**v3.1**](?view=doc-intel-3.1.0&preserve-view=true)
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** | **Latest versions:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true) ![purple-checkmark](../media/purple-yes-icon.png) [**v3.1**](?view=doc-intel-3.1.0&preserve-view=true)
 ::: moniker-end
 
 ::: moniker range="<=doc-intel-3.1.0"
 
 > [!NOTE]
 >
-> For extracting text from external images like labels, street signs, and posters, use the [Azure AI Image Analysis v4.0 Read](../..//Computer-vision/concept-ocr.md) feature optimized for general, non-document images with a performance-enhanced synchronous API that makes it easier to embed OCR in your user experience scenarios.
+> To extract text from external images like labels, street signs, and posters, use the [Azure AI Image Analysis v4.0 Read](../../Computer-vision/concept-ocr.md) feature optimized for general (not document) images with a performance-enhanced synchronous API. This capability makes it easier to embed OCR in real-time user experience scenarios.
 >
 
 Document Intelligence Read Optical Character Recognition (OCR) model runs at a higher resolution than Azure AI Vision Read and extracts print and handwritten text from PDF documents and scanned images. It also includes support for extracting text from Microsoft Word, Excel, PowerPoint, and HTML documents. It detects paragraphs, text lines, words, locations, and languages. The Read model is the underlying OCR engine for other Document Intelligence prebuilt models like Layout, General Document, Invoice, Receipt, Identity (ID) document, Health insurance card, W2 in addition to custom models.
@@ -370,11 +511,11 @@ See our [Language Support—document analysis models](../language-support/ocr.md
 ## Data extraction
 
 > [!NOTE]
-> Microsoft Word and HTML file are supported in v3.1 and later versions. Compared with PDF and images, below features are not supported:
+> Microsoft Word and HTML file are supported in v4.0. The following capabilities are currently not supported:
 >
-> * There are no angle, width/height and unit with each page object.
-> * For each object detected, there is no bounding polygon or bounding region.
-> * Page range (`pages`) is not supported as a parameter.
+> * No angle, width/height, and unit returned with each page object.
+> * No bounding polygon or bounding region for each object detected.
+> * No page range (`pages`) as a parameter returned.
 > * No `lines` object.
 
 ## Searchable PDF
@@ -383,9 +524,9 @@ The searchable PDF capability enables you to convert an analog PDF, such as scan
 
   > [!IMPORTANT]
   >
-  > * Currently, the searchable PDF capability is only supported by Read OCR model `prebuilt-read`. When using this feature, please specify the `modelId` as `prebuilt-read`, as other model types will return error for this preview version.
-  > * Searchable PDF is included with the 2024-07-31-preview `prebuilt-read` model with no additional cost for generating a searchable PDF output.
->   * Searchable PDF currently only supports PDF files as input. Support for other file types, such as image files, will be available later.
+  > * Currently, only Read OCR model `prebuilt-read` supports the searchable PDF capability. When using this feature, specify the `modelId` as `prebuilt-read`. Other model types return an error.
+  > * Searchable PDF is included with the `2024-11-30` `prebuilt-read` model with no added cost for generating a searchable PDF output.
+>   * Searchable PDF currently only supports PDF files as input. 
 
 ### Use searchable PDF
 
@@ -620,7 +761,7 @@ Complete a Document Intelligence quickstart:
 Explore our REST API:
 
    > [!div class="nextstepaction"]
-   > [Document Intelligence API v4.0](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true)
+   > [Document Intelligence API v4.0](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)
 
 ::: moniker-end
 

@@ -63,7 +63,7 @@ By default, when you link your Azure Databricks workspace, dual-tracking is conf
 
 Linking your Azure Databricks workspace to your Azure Machine Learning workspace enables you to track your experiment data in the Azure Machine Learning workspace and Azure Databricks workspace at the same time. This configuration is called *Dual-tracking*.
 
-Dual-tracking in a [private link enabled Azure Machine Learning workspace](how-to-configure-private-link.md) isn't currently supported. Configure [exclusive tracking with your Azure Machine Learning workspace](#track-exclusively-on-azure-machine-learning-workspace) instead.
+Dual-tracking in a [private link enabled Azure Machine Learning workspace](how-to-configure-private-link.md) isn't currently supported, regardless of outbound rules configuration or if Azure Databricks was deployed in your own network (VNet injection). Configure [exclusive tracking with your Azure Machine Learning workspace](#track-exclusively-on-azure-machine-learning-workspace) instead. Notice that this doesn't imply that VNet inject
 
 Dual-tracking isn't currently supported in Microsoft Azure operated by 21Vianet. Configure [exclusive tracking with your Azure Machine Learning workspace](#track-exclusively-on-azure-machine-learning-workspace) instead.
 

@@ -26,19 +26,8 @@ All customers can also configure content filters and create custom safety polici
 
 <sup>1</sup> For Azure OpenAI models, only customers who have been approved for modified content filtering have full content filtering control and can turn off content filters. Apply for modified content filters via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR). For Azure Government customers, apply for modified content filters via this form: [Azure Government - Request Modified Content Filtering for Azure OpenAI Service](https://aka.ms/AOAIGovModifyContentFilter).
 
-Configurable content filters for inputs (prompts) and outputs (completions) are available for the following Azure OpenAI models:
-* GPT model series
-* GPT-4 Turbo Vision GA<sup>*</sup> (`turbo-2024-04-09`)
-* GPT-4o
-* GPT-4o mini
-* DALL-E 2 and 3
+Configurable content filters for inputs (prompts) and outputs (completions) are available for all Azure OpenAI models.
 
-Configurable content filters are not available for 
-- o1-preview
-- o1-mini 
+Content filtering configurations are created within a Resource in Azure AI Foundry portal, and can be associated with Deployments. [Learn more about configurability here](../how-to/content-filters.md).  
 
-<sup>*</sup>Only available for GPT-4 Turbo Vision GA, does not apply to GPT-4 Turbo Vision preview 
-
-Content filtering configurations are created within a Resource in Azure AI Studio, and can be associated with Deployments. [Learn more about configurability here](../how-to/content-filters.md).  
-
-Customers are responsible for ensuring that applications integrating Azure OpenAI comply with the [Code of Conduct](/legal/cognitive-services/openai/code-of-conduct?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext). 
+Customers are responsible for ensuring that applications integrating Azure OpenAI comply with the [Code of Conduct](/legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context). 

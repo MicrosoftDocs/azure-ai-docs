@@ -100,7 +100,7 @@ The following table describes the settings supported.
 
 The following examples use the configuration settings to illustrate how to write and use `docker run` commands.  Once running, the container continues to run until you [stop](luis-container-howto.md#stop-the-container) it.
 
-* These examples use the directory off the `C:` drive to avoid any permission conflicts on Windows. If you need to use a specific directory as the input directory, you may need to grant the docker service permission. 
+* These examples use the directory off the `C:` drive to avoid any permission conflicts on Windows. If you need to use a specific directory as the input directory, you might need to grant the docker service permission. 
 * Do not change the order of the arguments unless you are very familiar with docker containers.
 * If you are using a different operating system, use the correct console/terminal, folder syntax for mounts, and line continuation character for your system. These examples assume a Windows console with a line continuation character `^`. Because the container is a Linux operating system, the target mount uses a Linux-style folder syntax.
 

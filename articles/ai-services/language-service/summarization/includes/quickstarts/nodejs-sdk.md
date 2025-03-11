@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.topic: include
 ms.date: 12/19/2023
 ms.author: jboback
-ms.custom: devx-track-js
+ms.custom: devx-track-js, ignite-2024
 ---
 
 [Reference documentation](/javascript/api/overview/azure/ai-language-text-readme?view=azure-node-latest&preserve-view=true) | [Additional samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/textanalytics/ai-text-analytics/samples) | [Package (npm)](https://www.npmjs.com/package/@azure/ai-text-analytics/v/5.2.0-beta.1) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/textanalytics/ai-text-analytics) 

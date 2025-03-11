@@ -8,7 +8,8 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 10/16/2024
+ms.date: 02/22/2025
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 
 #customer intent: As a developer, I want to use the image retrieval API to vectorize images and text so that I can perform text-based image searches.
@@ -18,7 +19,7 @@ ms.author: pafarley
 
 The Multimodal embeddings APIs enable the _vectorization_ of images and text queries. They convert images to coordinates in a multi-dimensional vector space. Then, incoming text queries can also be converted to vectors, and images can be matched to the text based on semantic closeness. This allows the user to search a set of images using text, without the need to use image tags or other metadata. Semantic closeness often produces better results in search.
 
-The `2024-02-01` API includes a multi-lingual model that supports text search in 102 languages. The original English-only model is still available, but it cannot be combined with the new model in the same search index. If you vectorized text and images using the English-only model, these vectors won’t be compatible with multi-lingual text and image vectors.
+The `2024-02-01` API includes a multi-lingual model (model version `2023-04-15`) that supports text search in 102 languages. The original English-only model (version `2022-04-11`) is still available, but it cannot be combined with the new model in the same search index. If you vectorized text and images using the English-only model, these vectors won’t be compatible with multi-lingual text and image vectors.
 
 > [!IMPORTANT]
 > These APIs are only available in certain geographic regions. See [Region availability](../overview-image-analysis.md#region-availability).
@@ -86,7 +87,7 @@ The API call returns a **vector** JSON object, which defines the text string's c
 
 ```json
 { 
-  "modelVersion": "2022-04-11", 
+  "modelVersion": "2023-04-15", 
   "vector": [ -0.09442752, -0.00067171326, -0.010985051, ... ] 
 }
 ```

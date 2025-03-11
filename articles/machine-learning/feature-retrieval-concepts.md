@@ -6,9 +6,9 @@ ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
 author: fbsolo-ms1 
-ms.author: franksolomon 
-ms.reviewer: yogipandey
-ms.date: 12/06/2023
+ms.author: franksolomon
+ms.reviewer: franksolomon
+ms.date: 01/22/2025
 ms.custom: template-concept
 ---
 
@@ -16,12 +16,12 @@ ms.custom: template-concept
 
 This article describes the feature retrieval specification, and how to use a feature retrieval specification in training and inference.
 
-A feature retrieval specification is an artifact that defines a list of features to use in model input. The features in a feature retrieval specification:
+A feature retrieval specification is an artifact that defines a list of features to use in model input. In a feature retrieval specification, the features:
 
 - must exist in a feature set registered in a feature store
 - can exist in multiple feature sets and multiple feature stores
 
-The feature retrieval specification is used at the time of model training and the time of model inference. These flow steps involve the specification:
+The feature retrieval specification is used at the time of model training and at the time of model inference. These flow steps involve the specification:
 
 1. Select features, and generate a feature retrieval specification
 1. Use that specification and observation data to generate training data resource with a [point-in-time join](./offline-retrieval-point-in-time-join-concepts.md)
@@ -69,7 +69,7 @@ featurestore1.generate_feature_retrieval_spec("./feature_retrieval_spec_folder",
 
 ```
 
-Find detailed examples in the **2.Experiment-train-models-using-features.ipynb** notebook, hosted at [this resource](https://github.com/Azure/azureml-examples/tree/main/sdk/python/featurestore_sample/notebooks/sdk_only).
+The **2.Experiment-train-models-using-features.ipynb** notebook, hosted at [this resource](https://github.com/Azure/azureml-examples/tree/main/sdk/python/featurestore_sample/notebooks/sdk_only), has detailed examples.
 
 The function generates a YAML file artifact, which has a structure similar to the structure in this example:
 ```yaml
@@ -122,7 +122,7 @@ training_df = get_offline_features(
 
 ```
 
-The second option sets the feature retrieval specification as an input to the built-in feature retrieval (pipeline) component. It combines that feature retrieval specification with other inputs - for example, the observation data set. It then submits an Azure Machine Learning pipeline (Spark) job, to generate the training data set as output. This option is recommended to make the training pipeline ready for production, for repeated runs. For more details about the built-in feature retrieval (pipeline) component, visit the [feature retrieval component](#built-in-feature-retrieval-component) resource.
+The second option sets the feature retrieval specification as an input to the built-in feature retrieval (pipeline) component. It combines that feature retrieval specification with other inputs - for example, the observation data set. It then submits an Azure Machine Learning pipeline (Spark) job, to generate the training data set as output. This option is recommended as a way to make the training pipeline ready for production, for repeated runs. Visit the [feature retrieval component](#built-in-feature-retrieval-component) resource for more information about the built-in feature retrieval (pipeline) components.
 
 ## Package a feature retrieval specification with model artifact
 

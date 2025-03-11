@@ -7,9 +7,10 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.custom:
+  - ignite-2024
 ms.topic: tutorial
 ms.date: 10/05/2024
-
 ---
 
 # Tutorial: Maximize relevance (RAG in Azure AI Search)
@@ -326,8 +327,7 @@ Semantic ranking and scoring profiles operate on nonvector content, but you can 
 - analyzers and normalizers
 - advanced query formats (regular expressions, fuzzy search) -->
 
-<!-- ## Next step
+## Next step
 
 > [!div class="nextstepaction"]
-> [Reduce vector storage and costs](tutorial-rag-build-solution-minimize-storage.md)
- -->
+> [Minimize vector storage and costs](tutorial-rag-build-solution-minimize-storage.md)

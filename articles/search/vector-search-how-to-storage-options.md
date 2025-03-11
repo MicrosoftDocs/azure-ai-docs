@@ -6,6 +6,8 @@ description: In vector search, configure storage to exclude optional copies of v
 author: heidisteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
 ms.date: 11/19/2024
 ---
@@ -20,21 +22,28 @@ Azure AI Search stores multiple copies of vector fields that are used in specifi
 
 ## How vector fields are stored
 
-For every vector field, there are three copies of the vectors:
+For every vector field, there could be three copies of the vectors, each serving a different purpose:
 
-| Instance | Usage |
-|----------|-------|
-| Source vectors (in JSON) as received from an embedding model or push request to the index | Used for incremental data refresh, and if you want "retrievable" vectors returned in the query response. |
-| Original full-precision vectors | Used for scoring if vectors are uncompressed, or optional rescoring if query results obtained over compressed vectors. Rescoring applies only if vector fields undergo [scalar or binary quantization](vector-search-how-to-quantization.md). |
-| Vectors in the [HNSW graph for Approximate Nearest Neighbors (ANN) search](vector-search-overview.md) | Used for query execution. |
+| Instance | Usage | Controlled using |
+|----------|-------|------------|
+| Source vectors which store the JSON that was received during document indexing (JSON data) | Used for incremental data refresh with `merge` or `mergeOrUpload` during document indexing. Also used if you want "retrievable" vectors returned in the query response. | `stored` property on vector fields |
+| Original full-precision vectors (binary data) | In existing indexes, these are used for internal index operations and for exhaustive KNN search. For vectors using compression, it's also used for rescoring (if enabled) on an oversampled candidate set of results from ANN search on vector fields using [scalar or binary quantization](vector-search-how-to-quantization.md) compression. | `rescoringOptions.rescoreStorageMethod` property in `vectorSearch.compressions`. For *uncompressed* vector fields on indexes created with `2024-11-01-Preview` API versions and later, this will be omitted by default with no impact on search activities nor quality. |
+| Vectors in the [HNSW graph for Approximate Nearest Neighbors (ANN) search](vector-search-overview.md) (HNSW graph) | Used for ANN query execution. Consists of either full-precision vectors (when no compression is applied) or quantized vectors (when compression is applied) | Only applies to HNSW. These data structures are required for efficient ANN search. |
 
-You can set properties that permanently discard the first two instances from vector storage.
+You can set properties that permanently discard the first two instances (JSON data and binary data) from vector storage.
 
-The last instance (vectors and graph) is required for ANN vector query execution. Lossy compression techniques like [scalar or binary quantization](vector-search-how-to-quantization.md) are applied to this vector instance. If you want to offset lossy compression, you should keep the second instance for rescoring purposes.
+The last instance (HNSW graph) is required for ANN vector query execution. If any compression techniques such as [scalar or binary quantization](vector-search-how-to-quantization.md) are used, they are applied to this set of data. If you want to offset lossy compression, you should keep the second instance (binary data) for rescoring purposes to improve ANN search quality.
+
+### Indexes created on or after 2024-11-01-preview API version
+For indexes created with the 2024-11-01-preview API version with uncompressed vector fields, the second and third instances (binary data and HNSW graph) are combined as part of our cost reduction investments, reducing overall storage. The same index created with the 2024-11-01-preview API is functionally equivalent but uses less storage compared to identical indexes created with earlier API versions. Physical data structures are established on a Create Index request, so you must delete and recreate the index to realize the storage reductions.
+
+If you choose to use [vector compression](vector-search-how-to-configure-compression-storage.md), we compress (quantize) the in-memory portion of the vector index. Since memory is often a primary constraint for vector indexes, this allows storing more vectors within the same search service. However, lossy compression results in some information loss, which can impact search quality.
+
+To mitigate this, enabling "rescoring" and "oversampling" helps maintain accuracy. This retrieves a larger set of candidate documents from the compressed index and then recomputes similarity scores using the original vectors, which must be retained in storage. As a result, while quantization reduces memory usage (vector index size usage), it slightly increases storage requirements since both compressed and original vectors are stored. The additional storage is approximately equal to the size of the compressed index.
 
 ## Set the `stored` property
 
-The `stored` property is a boolean on a vector field definition that determines whether storage is allocated for retrievable vector field content (the source instance). The `stored` property is true by default. If you don't need raw vector content in a query response, you can save up to 50 percent storage per field by changing `stored` to false.
+The `stored` property is a boolean property on a vector field definition that determines whether storage is allocated for retrievable vector field content (the source instance). The `stored` property is true by default. If you don't need raw vector content in a query response, you can save up to 50 percent storage per field by changing `stored` to false.
 
 Considerations for setting `stored` to false:
 
@@ -42,9 +51,10 @@ Considerations for setting `stored` to false:
 
 - However, if your indexing strategy includes [partial document updates](search-howto-reindex.md#update-content), such as "merge" or "mergeOrUpload" on an existing document, setting `stored=false` prevents content updates to those fields during the merge. On each "merge" or "mergeOrUpload" operation to a search document, you must provide the vector fields in its entirety, along with the nonvector fields that you're updating, or the vector is dropped.
 
-Setting the `stored=false` attribution is irreversible. It's set during index creation on vector fields when physical data structures are created. If you want retrievable vector content later, you must drop and rebuild the index, or create and load a new field that has the new attribution.
+> [!IMPORTANT]
+> Setting the `stored=false` attribution is irreversible. This property can only be set when you create the index and is only allowed on vector fields. Updating an existing index with new vector fields cannot set this property to `false`. If you want retrievable vector content later, you must drop and rebuild the index, or create and load a new field that has the new attribution.
 
-The following example shows the fields collection of a search index. Set `stored` to false to permanently remove retrievable storage for the vector field.
+For new vector fields in a search index, set `stored` to false to permanently remove retrievable storage for the vector field. The following example shows a vector field definition with the `stored` property.
 
 ```http
 PUT https://[service-name].search.windows.net/indexes/demo-index?api-version=2024-07-01 
@@ -80,9 +90,16 @@ PUT https://[service-name].search.windows.net/indexes/demo-index?api-version=202
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-The `rescoreStorageMethod` property on a vector field definition determines whether storage is allocated for original full-precision vectors. The `rescoreStorageMethod` property is set to `preserveOriginals` by default. If you aren't using the [oversampling and rescoring mitigations](vector-search-how-to-quantization.md#add-compressions-to-a-search-index) provided for querying compressed vectors, you can save on vector storage by changing `rescoreStorageMethod` to `discardOriginals`.
+The `rescoreStorageMethod` property controls the storage of full-precision vectors when compression is used.
 
-If you intend to use scalar or binary quantization, we recommend retaining `rescoreStorageMethod` set to `preserveOriginals`.
+For *uncompressed* vector fields on indexes created with `2024-11-01-Preview` API versions and later, this will be omitted by default with no impact on search activities nor quality. For existing vector fields created prior to this API version, there is no in-place ability to remove this copy of data.
+
+On a vector compression, the `rescoreStorageMethod` property is set to `preserveOriginals` by default, which retains full-precision vectors for[oversampling and rescoring capabilities](vector-search-how-to-quantization.md#add-compressions-to-a-search-index) to reduce the effect of lossy compression on the HNSW graph. If you don't use these capabilities, you can reduce vector storage by setting `rescoreStorageMethod` to `discardOriginals`.
+
+> [!IMPORTANT]
+> Setting the `rescoreStorageMethod` property is irreversible and will have different levels of search quality loss depending on the compression method. This can be set on indexes created with `2024-11-01-Preview` or later, either during index creation or adding new vector fields.
+
+If you intend to use scalar or binary quantization, we recommend retaining `rescoreStorageMethod` set to `preserveOriginals` to maximize search quality.
 
 To set this property:
 

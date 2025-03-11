@@ -8,8 +8,9 @@ manager: nitinme
 ms.service: azure-ai-search
 ms.custom:
   - build-2024
+  - ignite-2024
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 02/12/2025
 ---
 
 # Index data from OneLake files and shortcuts
@@ -155,7 +156,7 @@ The minimum role assignment for your search service identity is Contributor.
 
    :::image type="content" source="media/search-how-to-index-onelake-files/add-system-managed-identity.png" alt-text="Screenshot showing a Contributor role assignment for a search service system identity in the Azure portal." lightbox="media/search-how-to-index-onelake-files/add-system-managed-identity.png" :::
 
-   This screenshot shows a Contributor role assignment using a system managed identity:
+   This screenshot shows a Contributor role assignment using a user-assigned managed identity:
 
    :::image type="content" source="media/search-how-to-index-onelake-files/add-user-assigned-managed-identity.png" alt-text="Screenshot showing a Contributor role assignment for a search service user-assigned managed identity in the Azure portal." lightbox="media/search-how-to-index-onelake-files/add-user-assigned-managed-identity.png":::
 

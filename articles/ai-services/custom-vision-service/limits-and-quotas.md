@@ -8,13 +8,13 @@ manager: nitinme
 
 ms.service: azure-ai-custom-vision
 ms.topic: conceptual
-ms.date: 01/21/2024
+ms.date: 01/22/2025
 ms.author: pafarley
 ---
 
 # Limits and quotas
 
-There are two tiers of keys for the Custom Vision service. You can sign up for a F0 (free) or S0 (standard) subscription through the Azure portal. This page outlines the limitations of each tier. See the [Azure AI services pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/custom-vision-service/) for more details on pricing and transactions.
+There are two tiers of subscription to the Custom Vision service. You can sign up for an F0 (free) or S0 (standard) subscription through the Azure portal. This page outlines the limitations of each tier. See the [Custom Vision pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/custom-vision-service/) for more details on pricing and transactions.
 
 |Factor|**F0 (free)**|**S0 (standard)**|
 |-----|-----|-----|
@@ -42,4 +42,4 @@ There are two tiers of keys for the Custom Vision service. You can sign up for a
 > Images smaller than 256 pixels will be accepted but upscaled.
 
 > [!NOTE]
-> The image aspect ratio should not be larger than 25:1.
+> The image aspect ratio shouldn't be larger than 25:1.

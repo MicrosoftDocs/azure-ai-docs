@@ -2,10 +2,17 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 10/21/2024
+ms.date: 2/24/2025
 ms.author: eur
 ---
 
+### 2025-February release
+
+Add support for the latest model versions:
+- Speech language identification 1.18.0
+- Neural text to speech 3.7.0
+- Speech to text 4.12.0
+- Custom speech to text 4.12.0
 
 ### 2024-October release
 

@@ -6,14 +6,14 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: references_regions
 ms.topic: how-to
-ms.date: 10/18/2024
+ms.date: 01/14/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
 zone_pivot_groups: openai-fine-tuning-batch
 ---
 
-# Getting started with Azure OpenAI global batch deployments
+# Getting started with Azure OpenAI batch deployments
 
 The Azure OpenAI Batch API is designed to handle large-scale and high-volume processing tasks efficiently. Process asynchronous groups of requests with separate quota, with 24-hour target turnaround, at [50% less cost than global standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than send one request at a time you send a large number of requests in a single file. Global batch requests have a separate enqueued token quota avoiding any disruption of your online workloads.  
 
@@ -38,18 +38,29 @@ Key use cases include:
 >
 > Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure OpenAI location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).  
 
-## Global batch support
+## Batch support
 
-### Region and model support
+# [Global Batch](#tab/global-batch)
 
-Global batch is currently supported in the following regions:
+### Global batch model availability
 
 [!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
+
+Registration is required for access to `o3-mini`. For more information see, our [reasoning models guide](./reasoning.md).
+
+# [Data Zone Batch](#tab/datazone-batch)
+
+### Data zone batch model availability
+
+[!INCLUDE [Data zone batch](../includes/model-matrix/global-batch-datazone.md)]
+
+---
 
 The following models support global batch:
 
 | Model | Version | Input format |
 |---|---|---|
+| `o3-mini` | 2025-01-31 | text |
 |`gpt-4o` | 2024-08-06 |text + image |
 |`gpt-4o-mini`| 2024-07-18 | text + image |
 |`gpt-4o` | 2024-05-13 |text + image |
@@ -66,7 +77,7 @@ Refer to the [models page](../concepts/models.md) for the most up-to-date inform
 |   | API Version   |
 |---|---|
 |**Latest GA API release:**| `2024-10-21`|
-|**Latest Preview API release:**| `2024-10-01-preview`|
+|**Latest Preview API release:**| `2025-01-01-preview`|
 
 Support first added in: `2024-07-01-preview`
 
@@ -80,18 +91,19 @@ The following aren't currently supported:
 > [!NOTE]
 > Structured outputs is now supported with Global Batch.
 
-### Global batch deployment
+### Batch deployment
 
-In the Studio UI the deployment type will appear as `Global-Batch`.
+> [!NOTE]
+> In the [Azure AI Foundry portal](https://ai.azure.com/) the batch deployment types will appear as `Global-Batch` and `Data Zone Batch`. To learn more about Azure OpenAI deployment types, see our [deployment types guide](../how-to/deployment-types.md).
 
-:::image type="content" source="../media/how-to/global-batch/global-batch.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Studio with Global-Batch deployment type highlighted." lightbox="../media/how-to/global-batch/global-batch.png":::
+:::image type="content" source="../media/how-to/global-batch/global-batch.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Foundry portal with Global-Batch deployment type highlighted." lightbox="../media/how-to/global-batch/global-batch.png":::
 
 > [!TIP]
 > We recommend enabling **dynamic quota** for all global batch model deployments to help avoid job failures due to insufficient enqueued token quota. Dynamic quota allows your deployment to opportunistically take advantage of more quota when extra capacity is available. When dynamic quota is set to off, your deployment will only be able to process requests up to the enqueued token limit that was defined when you created the deployment.
 
-::: zone pivot="programming-language-ai-studio"
+::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Studio](../includes/batch/batch-studio.md)]
+[!INCLUDE [Azure AI Foundry portal](../includes/batch/batch-studio.md)]
 
 ::: zone-end
 
@@ -154,7 +166,7 @@ Yes. Similar to other deployment types, you can create content filters and assoc
 
 ### Can I request additional quota?
 
-Yes, from the quota page in the Studio UI. Default quota allocation can be found in the [quota and limits article](../quotas-limits.md#global-batch-quota).
+Yes, from the quota page in the [Azure AI Foundry portal](https://ai.azure.com/). Default quota allocation can be found in the [quota and limits article](../quotas-limits.md#batch-quota).
 
 ### What happens if the API doesn't complete my request within the 24 hour time frame?
 
@@ -221,12 +233,14 @@ When a job failure occurs, you'll find details about the failure in the `errors`
 |`model_not_found`|The Azure OpenAI model deployment name that was specified in the `model` property of the input file wasn't found.<br><br> Please ensure this name points to a valid Azure OpenAI model deployment.|
 | `duplicate_custom_id` | The custom ID for this request is a duplicate of the custom ID in another request. |
 |`empty_batch` | Please check your input file to ensure that the custom ID parameter is unique for each request in the batch.|
-|`model_mismatch`| The Azure OpenAI model deployment name that was specified in the `model` property of this request in the input file doesn't match the rest of the file.<br><br>Please ensure that all requests in the batch point to the same AOAI model deployment in the `model` property of the request.|
+|`model_mismatch`| The Azure OpenAI model deployment name that was specified in the `model` property of this request in the input file doesn't match the rest of the file.<br><br>Please ensure that all requests in the batch point to the same Azure OpenAI Service model deployment in the `model` property of the request.|
 |`invalid_request`| The schema of the input line is invalid or the deployment SKU is invalid. <br><br>Please ensure the properties of the request in your input file match the expected input properties, and that the Azure OpenAI deployment SKU is `globalbatch` for batch API requests.|
 
 ### Known issues
 
 - Resources deployed with Azure CLI won't work out-of-box with Azure OpenAI global batch. This is due to an issue where resources deployed using this method have endpoint subdomains that don't follow the `https://your-resource-name.openai.azure.com` pattern. A workaround for this issue is to deploy a new Azure OpenAI resource using one of the other common deployment methods which will properly handle the subdomain setup as part of the deployment process.
+
+- UTF-8-BOM encoded `jsonl` files are not supported. JSON lines files should be encoded using UTF-8. Use of Byte-Order-Mark (BOM) encoded files is not officially supported by the JSON RFC spec, and Azure OpenAI will currently treat BOM encoded files as invalid. A UTF-8-BOM encoded file will currently return the generic error message: "Validation failed: A valid model deployment name could not be extracted from the input file. Please ensure that each row in the input file has a valid deployment name specified in the 'model' field, and that the deployment name is consistent across all rows."
 
 ## See also
 

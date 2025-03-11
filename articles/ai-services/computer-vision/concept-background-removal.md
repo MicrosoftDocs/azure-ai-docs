@@ -8,7 +8,8 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 01/19/2024
+ms.date: 02/21/2025
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
@@ -55,6 +56,7 @@ It's important to note the limitations of background removal:
 
 The background removal feature is available through the [Segment](/rest/api/computervision/image-analysis/segment?view=rest-computervision-2023-02-01-preview&tabs=HTTP) API (`imageanalysis:segment`). See the [Background removal how-to guide](./how-to/background-removal.md) for more information.
 
-## Next steps
+## Next step
 
-* [Call the background removal API](./how-to/background-removal.md)
+> [!div class="nextstepaction"]
+> [Call the background removal API](./how-to/background-removal.md)

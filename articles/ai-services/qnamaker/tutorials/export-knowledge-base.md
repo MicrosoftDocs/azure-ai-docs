@@ -11,7 +11,7 @@ ms.date: 01/19/2024
 ---
 # Move a knowledge base using export-import
 
-You may want to create a copy of your knowledge base for several reasons:
+You might want to create a copy of your knowledge base for several reasons:
 
 * Copy a knowledge base from QnA Maker GA to Custom question answering 
 * To implement a backup and restore process 

@@ -20,8 +20,6 @@ ms.date: 07/03/2024
 - The [Gradle build tool](https://gradle.org/install/), or another dependency manager.
 - An Azure OpenAI Service resource with either the `gpt-35-turbo` or the `gpt-4` models deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=JAVA&Pillar=AOAI&Product=Chatgpt&Page=quickstart&Section=Prerequisites)
 
 ## Set up
 
@@ -47,9 +45,6 @@ gradle init --type basic
 
 When prompted to choose a **DSL**, select **Kotlin**.
 
-
-> [!div class="nextstepaction"]
-> [I ran into an issue with the setup.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=JAVA&Pillar=AOAI&Product=Chatgpt&Page=quickstart&Section=Set-up-the-environment)
 
 ## Install the Java SDK
 
@@ -175,8 +170,6 @@ Yes, most of the Azure AI services support customer managed keys. However, there
 Usage: number of prompt token is 59, number of completion token is 36, and number of total tokens in request and response is 95.
 ```
 
-> [!div class="nextstepaction"]
-> [I ran into an issue when running the code sample.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=JAVA&Pillar=AOAI&Product=Chatgpt&Page=quickstart&Section=Create-application)
 
 ## Clean up resources
 
@@ -187,4 +180,5 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 ## Next steps
 
-* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://aka.ms/AOAICodeSamples)
+* [Get started with the chat using your own data sample for Java](/azure/developer/java/ai/get-started-app-chat-template?toc=/azure/ai-services/openai/toc.json&bc=/azure/ai-services/openai/breadcrumb/toc.json&tabs=github-codespaces)
+* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai)

@@ -23,6 +23,8 @@ monikerRange: 'azureml-api-2 || azureml-api-1'
 :::moniker-end
 :::moniker range="azureml-api-1"
 [!INCLUDE [dev v1](includes/machine-learning-dev-v1.md)]
+
+[!INCLUDE [cli-version-info](./includes/machine-learning-cli-v1-deprecation.md)]
 :::moniker-end
 
 [!INCLUDE [managed-vnet-note](includes/managed-vnet-note.md)]
@@ -220,7 +222,7 @@ In this section, you learn how Azure Machine Learning securely communicates betw
 :::image type="content" source="./media/how-to-network-security-overview/secure-training-job-submission.svg" alt-text="Diagram showing the secure training job submission workflow.":::
 ### Limitations
 
-- Azure Compute Instance and Azure Compute Clusters must be in the same VNet, region, and subscription as the workspace and its associated resources. 
+- Azure Compute Instance and Azure Compute Clusters must be in the same VNet, region, and subscription as the workspace. If the associated resources are in a different region than the workspace, you may experience additional latency. 
 
 ## Secure the inferencing environment
 

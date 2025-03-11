@@ -7,9 +7,10 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.custom:
+  - ignite-2024
 ms.topic: tutorial
-ms.date: 11/19/2024
-
+ms.date: 01/09/2025
 ---
 
 # Tutorial: Build an indexing pipeline for RAG on Azure AI Search
@@ -50,7 +51,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 Open or create a Jupyter notebook (`.ipynb`) in Visual Studio Code to contain the scripts that comprise the pipeline. Initial steps install packages and collect variables for the connections. After you complete the setup steps, you're ready to begin with the components of the indexing pipeline. 
 
-Let's start with the index schema from the [previous tutorial](tutorial-rag-build-solution-index-schema.md). It's organized around vectorized and nonvectorized chunks. It includes a `locations` field that stores AI-generated content created by the skillset.  
+Let's start with the index schema from the [previous tutorial](tutorial-rag-build-solution-index-schema.md). It's organized around vectorized and nonvectorized chunks. It includes a `locations` field that stores AI-generated content created by the skillset.
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -195,7 +196,7 @@ embedding_skill = AzureOpenAIEmbeddingSkill(
     resource_url=AZURE_OPENAI_ACCOUNT,  
     deployment_name="text-embedding-3-large",  
     model_name="text-embedding-3-large",
-    dimensions=1536,
+    dimensions=1024,
     inputs=[  
         InputFieldMappingEntry(name="text", source="/document/pages/*"),  
     ],  

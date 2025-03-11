@@ -27,10 +27,6 @@ Use this guide to get started calling the Azure OpenAI Service image generation 
 
 [!INCLUDE [environment-variables](environment-variables.md)]
 
-<!--
-> [!div class="nextstepaction"]
-> [I ran into an issue with the setup.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=POWERSHELL&Pillar=AOAI&Product=Chatgpt&Page=quickstart&Section=Set-up)
--->
 
 ## Generate images with DALL-E 2
 

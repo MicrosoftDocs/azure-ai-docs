@@ -7,6 +7,7 @@ author: jboback
 manager: nitinme
 ms.custom:
   - ignite-2023
+  - ignite-2024
 ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 11/04/2024

@@ -7,9 +7,9 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ms.author: jboback
-ms.custom: language-service-language-detection
+ms.custom: language-service-language-detection, ignite-2024
 ---
 
 # Language support for Language Detection
@@ -187,7 +187,7 @@ If you have content expressed in a less frequently used language, you can try La
 | Kannada                               | `kn`        | `Latn`, `Knda` |
 | Malayalam                             | `ml`        | `Latn`, `Mlym` |
 | Marathi	                            | `mr`        | `Latn`, `Deva` |
-| Oriya                                 | `or`        | `Latn`, `Orya` |
+| Odia                                  | `or`        | `Latn`, `Orya` |
 | Punjabi                               | `pa`        | `Latn`, `Guru` |
 | Tamil                                 | `ta`        | `Latn`, `Taml` |
 | Telugu                                | `te`        | `Latn`, `Telu` |

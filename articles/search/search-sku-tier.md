@@ -8,13 +8,13 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 10/25/2024
+ms.date: 01/15/2025
 
 ---
 
 # Choose a service tier for Azure AI Search
 
-Part of [creating a search service](search-create-service-portal.md) is choosing a pricing tier (or SKU) that's fixed for the lifetime of the service. In the portal, tier is specified in the **Select Pricing Tier** page when you create the service. In PowerShell or Azure CLI, the tier is specified through the **`-Sku`** parameter.
+Part of [creating a search service](search-create-service-portal.md) is choosing a pricing tier (or SKU) that's fixed for the lifetime of the service. In the Azure portal, tier is specified in the **Select Pricing Tier** page when you create the service. In PowerShell or Azure CLI, the tier is specified through the **`-Sku`** parameter.
 
 The tier determines:
 
@@ -24,14 +24,14 @@ The tier determines:
 
 In a few instances, the tier you choose determines the availability of [premium features](#feature-availability-by-tier).
 
-Billing rates are shown in the portal's **Select Pricing Tier** page. You can check the [pricing page](https://azure.microsoft.com/pricing/details/search/) for regional rates and review [Plan and manage costs](search-sku-manage-costs.md) to learn more about the billing model.
+Billing rates are shown in the Azure portal's **Select Pricing Tier** page. You can check the [pricing page](https://azure.microsoft.com/pricing/details/search/) for regional rates and review [Plan and manage costs](search-sku-manage-costs.md) to learn more about the billing model.
 
 > [!NOTE]
 > Search services created after April 3, 2024 have larger partitions and higher vector quotas at almost every tier. For more information, see [service limits](search-limits-quotas-capacity.md#service-limits).
 
 ## Tier descriptions
 
-Tiers include **Free**, **Basic**, **Standard**, and **Storage Optimized**. Standard and Storage Optimized are available with several configurations and capacities. The following screenshot from Azure portal shows the available tiers, minus pricing (which you can find in the portal and on the [pricing page](https://azure.microsoft.com/pricing/details/search/)).
+Tiers include **Free**, **Basic**, **Standard**, and **Storage Optimized**. Standard and Storage Optimized are available with several configurations and capacities. The following screenshot from Azure portal shows the available tiers, minus pricing (which you can find in the Azure portal and on the [pricing page](https://azure.microsoft.com/pricing/details/search/)).
 
 :::image type="content" source="media/search-sku-tier/tiers.png" lightbox="media/search-sku-tier/tiers.png" alt-text="Pricing tier chart" border="true":::
 
@@ -49,21 +49,18 @@ Some tiers are designed for certain types of work:
 
 + **Storage Optimized (L1, L2)** tiers offer larger storage capacity at a lower price per TB than the Standard tiers. These tiers are designed for large indexes that don't change very often. The primary tradeoff is higher query latency, which you should validate for your specific application requirements.
 
-You can find out more about the various tiers on the [pricing page](https://azure.microsoft.com/pricing/details/search/), in the [Service limits in Azure AI Search](search-limits-quotas-capacity.md) article, and on the portal page when you're provisioning a service.
+You can find out more about the various tiers on the [pricing page](https://azure.microsoft.com/pricing/details/search/), in the [Service limits in Azure AI Search](search-limits-quotas-capacity.md) article, and on the Azure portal page when you're provisioning a service.
 
 ## Region availability by tier
 
 The supported [regions list](search-region-support.md) provides the locations where Azure AI Search is offered.
 
-Currently, several regions are at capacity for specific tiers and can't be used for new search services. If you use the Azure portal to create a search service, the portal excludes any region-tier combinations that aren't available.
+Currently, several regions are capacity-constrained for specific tiers and can't be used for new search services. If you use the Azure portal to create a search service, the Azure portal excludes any region-tier combinations that aren't available.
 
 | Region | Disabled tier (SKU) due to over-capacity | Suggested alternative |
 |--------|------------------------------------------|-----------------------|
-| East US 2| Basic, S1| Central US |
-| South Central US | All tiers | Central US |
-| US Gov Virginia | All tiers | US Gov Arizona |
-| West Europe | All tiers | Sweden Central/North Europe |
-| West US 3| Basic, S1 | Central US |
+| France Central | S2, S3, L1, L2| Sweden Central, West Europe|
+| North Europe | S2, S3, L1, L2 | Sweden Central, West Europe|
 
 ## Feature availability by tier
 
@@ -108,7 +105,7 @@ This billing model is based on the concept of applying the billing rate to the n
 
 ## Tier upgrade or downgrade
 
-There is no built-in support to upgrade or downgrade tiers. If you want to switch to a different tier, the approach is:
+There's no built-in support to upgrade or downgrade tiers. If you want to switch to a different tier, the approach is:
 
 + Create a new search service at the new tier.
 
@@ -116,7 +113,7 @@ There is no built-in support to upgrade or downgrade tiers. If you want to switc
 
 + Delete the old search service once you're sure it's no longer needed.
 
-For large indexes that you don't want to rebuild from scratch, consider using the [backup and restore sample](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/index-backup-restore/README.md) to move them.
+For large indexes that you don't want to rebuild from scratch, consider using one of the backup and restore samples to move them:[backup and restore sample (C#)](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/index-backup-restore/README.md), [backup and restore sample (Python)](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/utilities/index-backup-restore/azure-search-backup-and-restore.ipynb), [larget index backup and restore (Python)](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/utilities/resumable-index-backup-restore/backup-and-restore.ipynb).
 
 ## Next steps
 

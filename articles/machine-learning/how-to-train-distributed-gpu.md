@@ -68,9 +68,9 @@ Azure Machine Learning sets the `MASTER_ADDR`, `MASTER_PORT`, `WORLD_SIZE`, and 
 
 [!notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/pytorch/distributed-training/distributed-cifar10.ipynb?name=job)]
 
-### Pytorch example
+### PyTorch example
 
-* For the full notebook to run the Pytorch example, see [azureml-examples: Distributed training with PyTorch on CIFAR-10](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/single-step/pytorch/distributed-training/distributed-cifar10.ipynb).
+* For the full notebook to run the PyTorch example, see [azureml-examples: Distributed training with PyTorch on CIFAR-10](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/single-step/pytorch/distributed-training/distributed-cifar10.ipynb).
 
 ## DeepSpeed
 
@@ -79,9 +79,9 @@ Azure Machine Learning supports [DeepSpeed](https://www.deepspeed.ai/tutorials/a
 * Increase in model size
 * Increase in number of GPUs
 
-DeepSpeed can be enabled using either Pytorch distribution or MPI for running distributed training. Azure Machine Learning supports the DeepSpeed launcher to launch distributed training as well as autotuning to get optimal `ds` configuration.
+DeepSpeed can be enabled using either PyTorch distribution or MPI for running distributed training. Azure Machine Learning supports the DeepSpeed launcher to launch distributed training as well as autotuning to get optimal `ds` configuration.
 
-You can use a [curated environment](resource-curated-environments.md) for an out of the box environment with the latest state of art technologies including DeepSpeed, ORT, MSSCCL, and Pytorch for your DeepSpeed training jobs.
+You can use a [curated environment](resource-curated-environments.md) for an out of the box environment with the latest state of art technologies including DeepSpeed, ORT, MSSCCL, and PyTorch for your DeepSpeed training jobs.
 
 ### DeepSpeed example
 
@@ -115,7 +115,7 @@ TF_CONFIG='{
 
 ### TensorFlow example
 
-* For the full notebook to run the TensorFlow example, see [azureml-examples: Train a basic neural network with distributed MPI on the MNIST dataset using Tensorflow with Horovod](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/single-step/tensorflow/mnist-distributed-horovod/tensorflow-mnist-distributed-horovod.ipynb).
+* For the full notebook to run the TensorFlow example, see [azureml-examples: Train a basic neural network with distributed MPI on the MNIST dataset using TensorFlow with Horovod](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/single-step/tensorflow/mnist-distributed/tensorflow-mnist-distributed.ipynb).
 
 ## Accelerating distributed GPU training with InfiniBand
 

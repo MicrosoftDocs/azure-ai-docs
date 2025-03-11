@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 9/17/2024
+ms.date: 3/10/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-speech-sdk-cli
 keywords: on-premises, Docker, container
@@ -30,7 +30,7 @@ The fully qualified container image name is, `mcr.microsoft.com/azure-cognitive-
 | Version | Path |
 |-----------|------------|
 | Latest | `mcr.microsoft.com/azure-cognitive-services/speechservices/custom-speech-to-text:latest` |
-| 4.10.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/custom-speech-to-text:4.10.0-amd64` |
+| 4.12.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/custom-speech-to-text:4.12.0-amd64` |
 
 All tags, except for `latest`, are in the following format and are case sensitive:
 
@@ -55,6 +55,8 @@ The tags are also available [in JSON format](https://mcr.microsoft.com/v2/azure-
     "4.8.0-amd64",
     "4.9.0-amd64",
     "4.10.0-amd64",
+    "4.11.0-amd64",
+    "4.12.0-amd64",
     "latest"
   ]
 }

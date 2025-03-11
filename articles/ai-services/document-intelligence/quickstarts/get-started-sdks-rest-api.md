@@ -11,7 +11,7 @@ ms.custom:
   - devx-track-js
   - devx-track-python
 ms.topic: quickstart
-ms.date: 08/30/2024
+ms.date: 12/17/2024
 ms.author: lajanuar
 zone_pivot_groups: programming-languages-set-formre
 ---
@@ -27,9 +27,9 @@ zone_pivot_groups: programming-languages-set-formre
 
 :::moniker range="doc-intel-4.0.0"
 
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (preview)** **Earlier versions:** ![blue-checkmark](../media/blue-yes-icon.png) [v3.1 (GA)](?view=doc-intel-3.1.0&preserve-view=true) ![blue-checkmark](../media/blue-yes-icon.png) [v3.0 (GA)](?view=doc-intel-3.0.0&preserve-view=true)
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (GA)** **Earlier versions:** ![blue-checkmark](../media/blue-yes-icon.png) [v3.1 (GA)](?view=doc-intel-3.1.0&preserve-view=true) ![blue-checkmark](../media/blue-yes-icon.png) [v3.0 (GA)](?view=doc-intel-3.0.0&preserve-view=true)
 
-* Get started with Azure AI Document Intelligence latest preview version (2024-07-31-preview).
+* Get started with Azure AI Document Intelligence latest stable version v4.0 `2024-11-30` (GA).
 
 :::moniker-end
 
@@ -53,7 +53,7 @@ zone_pivot_groups: programming-languages-set-formre
 
 * You can easily integrate document processing models into your workflows and applications by using a programming language SDK or calling the REST API.
 
-* For this quickstart, we recommend that you use the free service while you're learning the technology. Remember that the number of free pages is limited to 500 per month.
+* We recommend that you use the free service while you're learning the technology for this quickstart. Remember that the number of free pages is limited to 500 per month.
 
 To learn more about the API features and development options, visit our [Overview](../overview.md) page.
 

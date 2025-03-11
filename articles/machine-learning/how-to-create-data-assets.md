@@ -427,7 +427,7 @@ environment: azureml://registries/azureml/environments/sklearn-1.1/versions/4
 inputs:
   input_data:
     mode: ro_mount
-    path: azureml:wasbs://data@azuremlexampledata.blob.core.windows.net/titanic.csv
+    path: wasbs://data@azuremlexampledata.blob.core.windows.net/titanic.csv
     type: uri_file
 outputs:
   output_data:

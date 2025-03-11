@@ -7,6 +7,7 @@ ms.subservice: azure-ai-face
 ms.topic: reference
 ms.author: shaoli
 ms.date: 05/24/2024
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Azure AI Face API error codes
@@ -51,7 +52,7 @@ These error codes can be returned by Face Detection operation.
 |Bad Request (400)|BadArgument|Invalid argument returnFaceAttributes.||
 |Bad Request (400)|BadArgument|'returnFaceAttributes' is not supported by detection_02.||
 |Bad Request (400)|BadArgument|'returnLandmarks' is not supported by detection_02.||
-|Forbidden (403)|UnsupportedFeature|Return Attributes (emotion, gender, age, smile, facial hair, hair and makeup) have been deprecated and are no longer supported.|Read more about this decision [here](https://azure.microsoft.com/blog/responsible-ai-investments-and-safeguards-for-facial-recognition/).|
+|Forbidden (403)|UnsupportedFeature|Return Attributes (emotion, gender, age, smile, facial hair, hair and makeup) have been deprecated and are no longer supported.|Email [Azure Face team](mailto:azureface@microsoft.com) if you have a responsible use case that would benefit from the use of any of the limited capabilities.|
 
 ## Face Liveness Session error codes
 

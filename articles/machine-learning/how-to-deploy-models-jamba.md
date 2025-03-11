@@ -5,7 +5,7 @@ description: How to deploy AI21's Jamba family models with Azure Machine Learnin
 manager: scottpolly
 ms.service: azure-machine-learning
 ms.topic: how-to
-ms.date: 09/06/2024
+ms.date: 03/04/2025
 ms.author: ssalgado
 ms.reviewer: tgokal
 author: ssalgadodev
@@ -118,7 +118,7 @@ You can consume Jamba family models as follows:
 1. In the **workspace**, select **Endpoints** > **Serverless endpoints**.
 1. Find and select the deployment you created.
 1. Copy the **Target** URL and the **Key** token values.
-1. Make an API request using either the [Azure AI Model Inference API](reference-model-inference-api.md) on the route `/chat/completions` or the [AI21's Azure Client](https://docs.ai21.com/reference/jamba-instruct-api) on `/v1/chat/completions`.
+1. Make an API request using either the [Azure AI Model Inference API](reference-model-inference-api.md) on the route `/chat/completions` or the [AI21's Azure Client](https://docs.ai21.com/reference/jamba-15-api-ref) on `/v1/chat/completions`.
 
 For more information on using the APIs, see the [reference](#reference-for-jamba-family-models-deployed-as-a-serverless-api) section.
 
@@ -129,7 +129,7 @@ For more information on using the APIs, see the [reference](#reference-for-jamba
 Jamba family models accept both of these APIs:
 
 - The [Azure AI model inference API](reference-model-inference-api.md) [Azure AI Model Inference API] on the route `/chat/completions` for multi-turn chat or single-turn question-answering. This API is supported because Jamba family models are fine-tuned for chat completion.
-- [AI21's Azure Client](https://docs.ai21.com/reference/jamba-instruct-api). For more information about the REST endpoint being called, visit [AI21's REST documentation](https://docs.ai21.com/reference/jamba-instruct-api).
+- [AI21's Azure Client](https://docs.ai21.com/reference/jamba-15-api-ref). For more information about the REST endpoint being called, visit [AI21's REST documentation](https://docs.ai21.com/reference/jamba-15-api-ref).
 
 ### Azure AI model inference API
 
@@ -183,7 +183,7 @@ Payload is a JSON formatted string containing the following parameters:
 | `temperature` | `float`        | N <br>`1`  |  0.0 – 2.0      | How much variation to provide in each answer. Setting this value to 0 guarantees the same response to the same question every time. Setting a higher value encourages more variation. Modifies the distribution from which tokens are sampled. We recommend altering this or `top_p`, but not both. |
 | `top_p`       | `float`        | N <br>`1`  | 0 < _value_ <=1.0 | Limit the pool of next tokens in each step to the top N percentile of possible tokens, where 1.0 means the pool of all possible tokens, and 0.01 means the pool of only the most likely next tokens.                                                                                                |
 | `stop`        | `string` OR `list[string]`      | N <br>  | ""  | String or list of strings containing the word(s) where the API should stop generating output. Newlines are allowed as "\n". The returned text won't contain the stop sequence. |
-| `n`           | `integer`      | N <br>`1`  | 1 – 16          | How many responses to generate for each prompt. With Azure AI Studio's Playground, `n=1` as we work on multi-response Playground.                                                                                                                                                                                              |
+| `n`           | `integer`      | N <br>`1`  | 1 – 16          | How many responses to generate for each prompt. With Azure AI Foundry's Playground, `n=1` as we work on multi-response Playground.                                                                                                                                                                                              |
 | `stream`   | `boolean`      | N <br>`False` | `True` OR `False` | Whether to enable streaming. If true, results are returned one token at a time. If set to true, `n` must be 1, which is automatically set.                                                                                                                                                                                     |
 
 The `messages` object has the following fields:
@@ -316,7 +316,7 @@ data: [DONE]
 
 ### Cost and quota considerations for Jamba family models deployed as a serverless API
 
-The Jamba family models are deployed as a serverless API and is offered by AI21 through Azure Marketplace and integrated with Azure AI studio for use. You can find Azure Marketplace pricing when deploying or fine-tuning models.
+The Jamba family models are deployed as a serverless API and is offered by AI21 through Azure Marketplace and integrated with Azure AI Foundry for use. You can find Azure Marketplace pricing when deploying or fine-tuning models.
 
 Each time a workspace subscribes to a given model offering from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently.
 
@@ -332,5 +332,5 @@ Models deployed as a serverless API are protected by Azure AI content safety. Wi
 
 - [Model Catalog and Collections](concept-model-catalog.md)
 - [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md)
-- [Plan and manage costs for Azure AI Studio](/azure/ai-studio/how-to/costs-plan-manage)
+- [Plan and manage costs for Azure AI Foundry](/azure/ai-studio/how-to/costs-plan-manage)
 - [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md)

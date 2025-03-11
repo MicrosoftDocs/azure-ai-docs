@@ -93,11 +93,11 @@ As an option, you can add a private endpoint for access to your resource. Select
 
 ## Deploy a model
 
-Before you can generate text or inference, you need to deploy a model. You can select from one of several available models in Azure AI Studio.
+Before you can generate text or inference, you need to deploy a model. You can select from one of several available models in Azure AI Foundry portal.
 
 To deploy a model, follow these steps:
 
-1. Sign in to [Azure AI Studio](https://oai.azure.com).
+1. Sign in to [Azure AI Foundry portal](https://ai.azure.com).
 
 2. Choose the subscription and the Azure OpenAI resource to work with, and select **Use resource**.
 

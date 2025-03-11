@@ -154,7 +154,7 @@ A compute instance won't be considered idle if any custom application is running
 Also, if a compute instance has already been idle for a certain amount of time, if idle shutdown settings are updated to  an amount of time shorter than the current idle duration, the idle time clock is reset to 0. For example, if the compute instance has already been idle for 20 minutes, and the shutdown settings are updated to 15 minutes, the idle time clock is reset to 0.
 
 > [!IMPORTANT]
-> If the compute instance is also configured with a [managed identity](#assign-managed-identity), the compute instance won't shut down due to inactivity unless the managed identity has *contributor* access to the Azure Machine Learning workspace. For more information on assigning permissions, see [Manage access to Azure Machine Learning workspaces](how-to-assign-roles.md).
+> If the Azure Machine Learning workspace resource is also configured with a [managed identity](#assign-managed-identity), the compute instance won't shut down due to inactivity unless the managed identity has *contributor* access to the Azure Machine Learning workspace. For more information on assigning permissions, see [Manage access to Azure Machine Learning workspaces](how-to-assign-roles.md).
 
 The setting can be configured during compute instance creation or for existing compute instances via the following interfaces:
 
@@ -438,7 +438,7 @@ Assigned to user does not need compute write (create) permission to enable SSO.
 
 Here are the steps assigned to user needs to take. Please note creator of compute instance is not allowed to enable SSO on that compute instance due to security reasons.
 
-1. Click on compute in left navigation pane in Azure Machine Learning Studio.
+1. Click on compute in left navigation pane in Azure Machine Learning studio.
 1. Click on the name of compute instance where you need to enable SSO.
 1. Edit the Single sign-on details section.
 

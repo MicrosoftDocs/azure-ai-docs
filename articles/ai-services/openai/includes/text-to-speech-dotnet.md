@@ -4,7 +4,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 09/23/2024
-ms.reviewer: v-baolianzou
+ms.reviewer: eur
 ms.author: alexwolf
 author: alexwolfmsft
 recommendations: false
@@ -43,12 +43,11 @@ To make requests to your Azure OpenAI service, you need the service endpoint as 
 - [Microsoft Entra ID](/entra/fundamentals/whatis) is the recommended approach for authenticating to Azure services and is more secure than key-based alternatives. 
 - Access keys allow you to provide a secret key to connect to your resource.
 
-    > [!IMPORTANT]
-    > Access keys should be used with caution. If your service access key is lost or accidentally exposed in an insecure location, your service may become vulnerable. Anyone who has the access key is able to authorize requests against the Azure OpenAI service.
+[!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ### Get the Azure OpenAI endpoint
 
-The service endpoint can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the endpoint via the **Deployments** page in Azure AI Studio. An example endpoint is: `https://docs-test-001.openai.azure.com/`.
+The service endpoint can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the endpoint via the **Deployments** page in Azure AI Foundry portal. An example endpoint is: `https://docs-test-001.openai.azure.com/`.
 
 :::image type="content" source="../media/quickstarts/endpoint.png" alt-text="Screenshot of the overview UI for an Azure OpenAI resource in the Azure portal with the endpoint & access keys location highlighted." lightbox="../media/quickstarts/endpoint.png":::
 
@@ -89,7 +88,7 @@ The access key value can be found in the **Keys & Endpoint** section when examin
     var deploymentName = "tts"; // Default deployment name, update with your own if necessary
     var speechFilePath = "YOUR_AUDIO_FILE_PATH";
     
-    var openAIClient = new AzureOpenAIClient(endpoint, credentials);
+    AzureOpenAIClient openAIClient = new AzureOpenAIClient(endpoint, credentials);
     var audioClient = openAIClient.GetAudioClient(deploymentName);
     
     var result = await audioClient.GenerateSpeechAsync(
@@ -99,9 +98,6 @@ The access key value can be found in the **Keys & Endpoint** section when examin
     await File.WriteAllBytesAsync(speechFilePath, result.Value.ToArray());
     Console.WriteLine("Finished streaming");
     ```
-
-    > [!IMPORTANT]
-    > For production, store and access your credentials using a secure method, such as [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see [Azure AI services security](../../security-features.md).
 
 1. Run the application using the `dotnet run` command or the run button at the top of Visual Studio:
 

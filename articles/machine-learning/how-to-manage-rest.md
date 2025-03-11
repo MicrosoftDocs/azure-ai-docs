@@ -263,7 +263,7 @@ curl -X PUT \
 ```
 
 > [!NOTE]
-> In Windows terminals you may have to escape the double-quote symbols when sending JSON data. That is, text such as `"location"` becomes `\"location\"`. 
+> In Windows terminals you might have to escape the double-quote symbols when sending JSON data. That is, text such as `"location"` becomes `\"location\"`. 
 
 A successful request will get a `201 Created` response, but note that this response simply means that the provisioning process has begun. You'll need to poll (or use the portal) to confirm its successful completion.
 

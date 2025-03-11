@@ -14,58 +14,58 @@ In this example, you'll write your credentials to environment variables on the l
 
 To set the environment variables, open a console window and follow the instructions for your operating system and development environment. 
 
-- To set the `VISION_TRAINING KEY` environment variable, replace `your-training-key` with one of the keys for your training resource.
-- To set the `VISION_TRAINING_ENDPOINT` environment variable, replace `your-training-endpoint` with the endpoint for your training resource.
-- To set the `VISION_PREDICTION_KEY` environment variable, replace `your-prediction-key` with one of the keys for your prediction resource.
-- To set the `VISION_PREDICTION_ENDPOINT` environment variable, replace `your-prediction-endpoint` with the endpoint for your prediction resource.
-- To set the `VISION_PREDICTION_RESOURCE_ID` environment variable, replace `your-resource-id` with the resource ID for your prediction resource.
+- To set the `VISION_TRAINING KEY` environment variable, replace `<your-training-key>` with one of the keys for your training resource.
+- To set the `VISION_TRAINING_ENDPOINT` environment variable, replace `<your-training-endpoint>` with the endpoint for your training resource.
+- To set the `VISION_PREDICTION_KEY` environment variable, replace `<your-prediction-key>` with one of the keys for your prediction resource.
+- To set the `VISION_PREDICTION_ENDPOINT` environment variable, replace `<your-prediction-endpoint>` with the endpoint for your prediction resource.
+- To set the `VISION_PREDICTION_RESOURCE_ID` environment variable, replace `<your-resource-id>` with the resource ID for your prediction resource.
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 #### [Windows](#tab/windows)
 
 ```console
-setx VISION_TRAINING_KEY your-training-key
+setx VISION_TRAINING_KEY <your-training-key>
 ```
 
 ```console
-setx VISION_TRAINING_ENDPOINT your-training-endpoint
+setx VISION_TRAINING_ENDPOINT <your-training-endpoint>
 ```
 
 ```console
-setx VISION_PREDICTION_KEY your-prediction-key
+setx VISION_PREDICTION_KEY <your-prediction-key>
 ```
 
 ```console
-setx VISION_PREDICTION_ENDPOINT your-prediction-endpoint
+setx VISION_PREDICTION_ENDPOINT <your-prediction-endpoint>
 ```
 
 ```console
-setx VISION_PREDICTION_RESOURCE_ID your-resource-id
+setx VISION_PREDICTION_RESOURCE_ID <your-resource-id>
 ```
 
-After you add the environment variables, you may need to restart any running programs that will read the environment variables, including the console window.
+After you add the environment variables, you might need to restart any running programs that read the environment variables, including the console window.
 
 #### [Linux](#tab/linux)
 
 ```bash
-export VISION_TRAINING_KEY=your-training-key
+export VISION_TRAINING_KEY=<your-training-key>
 ```
 
 ```bash
-export VISION_TRAINING_ENDPOINT=your-training-endpoint
+export VISION_TRAINING_ENDPOINT=<your-training-endpoint>
 ```
 
 ```bash
-export VISION_PREDICTION_KEY=your-prediction-key
+export VISION_PREDICTION_KEY=<your-prediction-key>
 ```
 
 ```bash
-export VISION_PREDICTION_ENDPOINT=your-prediction-endpoint
+export VISION_PREDICTION_ENDPOINT=<your-prediction-endpoint>
 ```
 
 ```bash
-export VISION_PREDICTION_RESOURCE_ID=your-resource-id
+export VISION_PREDICTION_RESOURCE_ID=<your-resource-id>
 ```
 
 After you add the environment variables, run `source ~/.bashrc` from your console window to make the changes effective.

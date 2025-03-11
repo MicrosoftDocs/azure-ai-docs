@@ -8,7 +8,7 @@ ms.author: eur
 
 Your application must be authenticated to access Azure AI services resources. This article shows you how to use environment variables to store your credentials. You can then access the environment variables from your code to authenticate your application. For production, use a more secure way to store and access your credentials. 
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv.md)] 
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)] 
 
 To set the environment variables, open a console window, and follow the instructions for your operating system and development environment. 
 - To set the `LANGUAGE_KEY` environment variable, replace `your-language-key` with one of the keys for your resource.
@@ -28,7 +28,7 @@ setx SPEECH_REGION your-speech-region
 > [!NOTE]
 > If you only need to access the environment variable in the current running console, you can set the environment variable with `set` instead of `setx`.
 
-After you add the environment variables, you may need to restart any running programs that will need to read the environment variable, including the console window. For example, if you are using Visual Studio as your editor, restart Visual Studio before running the example.
+After you add the environment variables, you might need to restart any running programs that will need to read the environment variable, including the console window. For example, if you are using Visual Studio as your editor, restart Visual Studio before running the example.
 
 #### [Linux](#tab/linux)
 

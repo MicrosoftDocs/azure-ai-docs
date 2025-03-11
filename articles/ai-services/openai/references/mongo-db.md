@@ -4,12 +4,12 @@ titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI on your Mongo DB Atlas data with Python & REST API.
 manager: nitinme
 ms.service: azure-ai-openai
-ms.topic: conceptual
-ms.date: 10/25/2024
+ms.topic: reference
+ms.date: 02/27/2025
 author: aahill
 ms.author: aahi
 recommendations: false
-ms.custom: devx-track-python
+ms.custom: devx-track-python, ignite-2024
 ---
 
 # Data source - Mongo DB Atlas

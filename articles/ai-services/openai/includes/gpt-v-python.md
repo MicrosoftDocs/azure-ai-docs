@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use GPT-4 Turbo with Vision on your images and videos with the Python SDK'
+title: 'Quickstart: Use GPT-4 Turbo with Vision on your images with the Python SDK'
 titleSuffix: Azure OpenAI
 description: Get started using the Azure OpenAI Python SDK to deploy and use the GPT-4 Turbo with Vision model.
 services: cognitive-services
@@ -95,7 +95,7 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
     ```console
     python quickstart.py
     ```
-
+[!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ## Clean up resources
 

@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 08/22/2024
+ms.date: 02/27/2025
 ms.custom: template-concept, devx-track-python
 manager: nitinme
 ---
@@ -23,6 +23,9 @@ The text content filtering models for the hate, sexual, violence, and self-harm 
 In addition to the content filtering system, Azure OpenAI Service performs monitoring to detect content and/or behaviors that suggest use of the service in a manner that might violate applicable product terms. For more information about understanding and mitigating risks associated with your application, see the [Transparency Note for Azure OpenAI](/legal/cognitive-services/openai/transparency-note?tabs=text). For more information about how data is processed for content filtering and abuse monitoring, see [Data, privacy, and security for Azure OpenAI Service](/legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context#preventing-abuse-and-harmful-content-generation).  
 
 The following sections provide information about the content filtering categories, the filtering severity levels and their configurability, and API scenarios to be considered in application design and implementation. 
+
+> [!NOTE]
+> No prompts or completions are stored for the purposes of content filtering. No prompts or completions are used to train, retrain, or improve the content filtering system without your consent. For more information, see [Data, privacy, and security](/legal/cognitive-services/openai/data-privacy?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=azure-portal).
 
 ## Content filter types
 
@@ -617,8 +620,8 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 // You will need to set these environment variables or edit the following values
-const endpoint = process.env["ENDPOINT"] || "<endpoint>";
-const azureApiKey = process.env["AZURE_API_KEY"] || "<api key>";
+const endpoint = process.env["ENDPOINT"] || "Your endpoint";
+const azureApiKey = process.env["AZURE_API_KEY"] || "Your API key";
 
 const messages = [
   { role: "system", content: "You are a helpful assistant. You will talk like a pirate." },
@@ -817,9 +820,7 @@ This is an example message array:
 In addition to detection on last user content, Azure OpenAI also supports the detection of specific risks inside context documents via Prompt Shields – Indirect Prompt Attack Detection. You should identify parts of the input that are a document (for example, retrieved website, email, etc.) with the following document delimiter.  
 
 ```
-<documents> 
-*insert your document content here* 
-</documents>
+\"\"\" <documents> *insert your document content here* </documents> \"\"\" 
 ```
 
 When you do so, the following options are available for detection on tagged documents: 
@@ -880,7 +881,7 @@ Customers must understand that while the feature improves latency, it's a trade-
 
 **Customer Copyright Commitment**: Content that is retroactively flagged as protected material may not be eligible for Customer Copyright Commitment coverage. 
 
-To enable Asynchronous Filter in Azure AI Studio, follow the [Content filter how-to guide](/azure/ai-services/openai/how-to/content-filters) to create a new content filtering configuration, and select **Asynchronous Filter** in the Streaming section.
+To enable Asynchronous Filter in [Azure AI Foundry portal](https://ai.azure.com/), follow the [Content filter how-to guide](/azure/ai-services/openai/how-to/content-filters) to create a new content filtering configuration, and select **Asynchronous Filter** in the Streaming section.
 
 ### Comparison of content filtering modes
 
@@ -888,7 +889,7 @@ To enable Asynchronous Filter in Azure AI Studio, follow the [Content filter how
 |---|---|---|
 |Status |GA |Public Preview |
 | Eligibility |All customers |Customers approved for modified content filtering |
-| How to enable | Enabled by default, no action needed |Customers approved for modified content filtering can configure it directly in Azure AI Studio (as part of a content filtering configuration, applied at the deployment level) |
+| How to enable | Enabled by default, no action needed |Customers approved for modified content filtering can configure it directly in [Azure AI Foundry portal](https://ai.azure.com/) (as part of a content filtering configuration, applied at the deployment level) |
 |Modality and availability |Text; all GPT models |Text; all GPT models |
 |Streaming experience |Content is buffered and returned in chunks |Zero latency (no buffering, filters run asynchronously) |
 |Content filtering signal |Immediate filtering signal |Delayed filtering signal (in up to ~1,000-character increments) |

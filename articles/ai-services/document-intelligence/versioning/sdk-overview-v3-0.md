@@ -8,7 +8,7 @@ ms.service: azure-ai-document-intelligence
 ms.custom:
   - devx-track-python
 ms.topic: conceptual
-ms.date: 05/23/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: 'doc-intel-3.0.0'
 ---
@@ -38,7 +38,6 @@ Document Intelligence SDK supports the following languages and platforms:
 
 For more information on other SDK versions, see:
 
-* [`2024-02-29` v4.0 (preview)](sdk-overview-v4-0.md)
 * [`2023-07-31` v3.1 (GA)](sdk-overview-v3-1.md)
 
 * [`v2.1` (GA)](../v21/sdk-overview-v2-1.md)

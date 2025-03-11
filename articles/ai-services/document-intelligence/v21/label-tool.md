@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 10/03/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: 'doc-intel-2.1.0'
 ---
@@ -288,7 +288,7 @@ To test your model, select the `Analyze` icon from the navigation bar. Select so
 
 ## Improve results
 
-Depending on the reported accuracy, you may want to do further training to improve the model. After you complete a prediction, examine the confidence values for each of the applied tags. If the average accuracy training value is high, but the confidence scores are low (or the results are inaccurate), add the prediction file to the training set, label it, and train again.
+Depending on the reported accuracy, you might want to do further training to improve the model. After you complete a prediction, examine the confidence values for each of the applied tags. If the average accuracy training value is high, but the confidence scores are low (or the results are inaccurate), add the prediction file to the training set, label it, and train again.
 
 The reported average accuracy, confidence scores, and actual accuracy can be inconsistent when the analyzed documents differ from documents used in training. Keep in mind that some documents look similar when viewed by people but can look distinct to the AI model. For example, you might train with a form type that has two variations, where the training set consists of 20% variation A and 80% variation B. During prediction, the confidence scores for documents of variation A are likely to be lower.
 

@@ -1,6 +1,6 @@
 ---
 title: Get default answer - QnA Maker
-description: The default answer is returned when there is no match to the question. You may want to change the default answer from the standard default answer.
+description: The default answer is returned when there is no match to the question. You might want to change the default answer from the standard default answer.
 ms.service: azure-ai-language
 manager: nitinme
 ms.author: jboback

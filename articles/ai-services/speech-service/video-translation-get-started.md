@@ -2,17 +2,23 @@
 title: How to use video translation - Speech service
 titleSuffix: Azure AI services
 description: Learn about how to use video translation. 
-author: sally-baolian
+author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 10/11/2024
-ms.author: v-baolianzou
-zone_pivot_groups: speech-studio-rest
+ms.date: 3/8/2025
+ms.author: eur
+zone_pivot_groups: foundry-speech-studio-rest
 #Customer intent: As a developer, I want to learn how to use video translation.
 ---
 
 # How to use video translation
+
+[!INCLUDE [Feature preview](../includes/preview-feature.md)]
+
+::: zone pivot="ai-foundry-portal"
+[!INCLUDE [Foundry portal include](./includes/how-to/video-translation/ai-foundry.md)]
+::: zone-end
 
 ::: zone pivot="speech-studio"
 [!INCLUDE [Speech Studio include](./includes/how-to/video-translation/speech-studio.md)]

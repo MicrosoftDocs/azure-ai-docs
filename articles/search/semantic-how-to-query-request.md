@@ -9,15 +9,16 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
+  - ignite-2024
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 02/18/2025
 ---
 
 # Add semantic ranking to queries in Azure AI Search
 
 You can apply semantic ranking to text queries, hybrid queries, and vector queries if your search documents contain string fields and the [vector query has a text representation](vector-search-how-to-query.md#query-with-integrated-vectorization) in the search document.
 
-This article explains how to invoke the semantic ranker on queries. 
+This article explains how to invoke the semantic ranker on queries. It assumes you're using the most recent stable or preview APIs. For help with older versions, see [Migrate semantic ranking code](semantic-code-migration.md).
 
 ## Prerequisites
 
@@ -28,7 +29,7 @@ This article explains how to invoke the semantic ranker on queries.
 + Review [semantic ranking](semantic-search-overview.md) if you need an introduction to the feature.
 
 > [!NOTE]
-> Captions and answers are extracted verbatim from text in the search document. The semantic subsystem uses machine reading comprehension to recognize content having the characteristics of a caption or answer, but doesn't compose new sentences or phrases. For this reason, content that includes explanations or definitions work best for semantic ranking. If you want chat-style interaction with generated responses, see [Retrieval Augmented Generation (RAG)](retrieval-augmented-generation-overview.md).
+> Captions and answers are extracted verbatim from text in the search document. The semantic subsystem uses machine reading comprehension to recognize content having the characteristics of a caption or answer, but doesn't compose new sentences or phrases except in the case of [query rewrite](semantic-how-to-query-rewrite.md). For this reason, content that includes explanations or definitions work best for semantic ranking. If you want chat-style interaction with generated responses, see [Retrieval Augmented Generation (RAG)](retrieval-augmented-generation-overview.md).
 
 ## Choose a client
 
@@ -73,7 +74,7 @@ Semantic queries, whether specified through `search` plus `queryType`, or throug
 
 <sup>1</sup> `queryType=semantic` can't support explicit `simple` or `full` values because the `queryType` parameter is being used for `semantic`. The effective query behaviors are the defaults of the simple parser.
 
-<sup>2</sup> The `semanticQuery` parameter can be used for all query types. However, it isn't supported in the portal [Search Explorer](search-explorer.md).
+<sup>2</sup> The `semanticQuery` parameter can be used for all query types. However, it isn't supported in the Azure portal [Search Explorer](search-explorer.md).
 
 Regardless of the parameter chosen, the index should contain text fields with rich semantic content and a [semantic configuration](semantic-how-to-configure.md).
 

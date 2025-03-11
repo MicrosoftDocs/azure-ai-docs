@@ -8,7 +8,7 @@ author: jboback
 ms.author: jboback
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ms.custom: language-service-question-answering
 ---
 

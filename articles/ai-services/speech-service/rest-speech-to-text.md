@@ -4,8 +4,8 @@ titleSuffix: Azure AI services
 description: Get reference documentation for Speech to text REST API.
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: reference
-ms.date: 11/12/2024
+ms.topic: concept-article
+ms.date: 3/10/2025
 ms.reviewer: eur
 author: eric-urban
 ms.author: eur

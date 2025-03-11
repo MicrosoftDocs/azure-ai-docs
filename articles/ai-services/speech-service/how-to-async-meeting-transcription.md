@@ -5,7 +5,7 @@ description: Learn how to use asynchronous conversation transcription using the 
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/9/2024
+ms.date: 2/7/2025
 ms.devlang: csharp
 ms.custom: cogserv-non-critical-speech, devx-track-csharp, devx-track-extended-java
 zone_pivot_groups: programming-languages-set-twenty-one

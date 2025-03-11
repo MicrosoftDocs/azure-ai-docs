@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.author: franksolomon
 author: fbsolo-ms1
 ms.reviewer: ambadal
-ms.date: 07/24/2024
+ms.date: 11/19/2024
 ms.custom: data4ml, devx-track-azurecli
 # Customer intent: As an experienced data scientist with Python skills, I have data located in external sources outside of Azure. I need to make that data available to the Azure Machine Learning platform, to train my machine learning models.
 ---
@@ -124,13 +124,18 @@ from azure.ai.ml import MLClient
 from azure.ai.ml.entities import WorkspaceConnection
 from azure.ai.ml.entities import UsernamePasswordConfiguration
 
+# If using username/password, the name/password values should be url-encoded
+import urllib.parse
+username = urllib.parse.quote(os.environ["SNOWFLAKEDB_USERNAME"], safe="")
+password = urllib.parse.quote(os.environ["SNOWFLAKEDB_PASSWORD"], safe="")
+
 target= "jdbc:snowflake://<myaccount>.snowflakecomputing.com/?db=<mydb>&warehouse=<mywarehouse>&role=<myrole>"
 # add the Snowflake account, database, warehouse name and role name here. If no role name provided it will default to PUBLIC
 name= <my_snowflake_connection> # name of the connection
 wps_connection = WorkspaceConnection(name= name,
 type="snowflake",
 target= target,
-credentials= UsernamePasswordConfiguration(username="<username>", password="<password>")
+credentials= UsernamePasswordConfiguration(username=username, password=password)
 )
 
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
@@ -301,6 +306,11 @@ from azure.ai.ml import MLClient
 from azure.ai.ml.entities import WorkspaceConnection
 from azure.ai.ml.entities import UsernamePasswordConfiguration
 
+# If using username/password, the name/password values should be url-encoded
+import urllib.parse
+username = urllib.parse.quote(os.environ["MYSQL_USERNAME"], safe="")
+password = urllib.parse.quote(os.environ["MYSQL_PASSWORD"], safe="")
+
 target= "Server=tcp:<myservername>,<port>;Database=<mydatabase>;Trusted_Connection=False;Encrypt=True;Connection Timeout=30"
 # add the sql servername, port address and database
 
@@ -308,7 +318,7 @@ name= <my_sql_connection> # name of the connection
 wps_connection = WorkspaceConnection(name= name,
 type="azure_sql_db",
 target= target,
-credentials= UsernamePasswordConfiguration(username="<username>", password="<password>")
+credentials= UsernamePasswordConfiguration(username=username, password=password)
 )
 
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
@@ -532,6 +542,11 @@ The following example creates a Python feed connection. A Personal Access Token 
 from azure.ai.ml.entities import WorkspaceConnection
 from azure.ai.ml.entities import UsernamePasswordConfiguration, PatTokenConfiguration
 
+# If using username/password, the name/password values should be url-encoded
+# import urllib.parse
+# username = urllib.parse.quote(os.environ["FEED_USERNAME"], safe="")
+# password = urllib.parse.quote(os.environ["FEED_PASSWORD"], safe="")
+
 
 name = "my_pfeed_conn"
 
@@ -541,7 +556,7 @@ wps_connection = WorkspaceConnection(
     name=name,
     type="python_feed",
     target=target,
-    #credentials=UsernamePasswordConfiguration(username="<username>", password="<password>"), 
+    #credentials=UsernamePasswordConfiguration(username=username, password=password), 
     credentials=PatTokenConfiguration(pat="<PatTokenConfiguration>"),    
 
     #credentials=None
@@ -581,12 +596,16 @@ az ml connection create --file connection.yaml
 
 # [Python SDK](#tab/python)
 
-The following example creates an Azure Container Registry connection. A managed identity authenticates this connection:
+The following example creates an Azure Container Registry connection:
 
 ```python
 from azure.ai.ml.entities import WorkspaceConnection
 from azure.ai.ml.entities import UsernamePasswordConfiguration
 
+# If using username/password, the name/password values should be url-encoded
+import urllib.parse
+username = os.environ["REGISTRY_USERNAME"]
+password = os.environ["REGISTRY_PASSWORD"]
 
 name = "my_acr_conn"
 
@@ -596,7 +615,7 @@ wps_connection = WorkspaceConnection(
     name=name,
     type="container_registry",
     target=target,
-    credentials=UsernamePasswordConfiguration(username="<username>", password="<password>"), 
+    credentials=UsernamePasswordConfiguration(username=username, password=password), 
 )
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
 ```
@@ -698,7 +717,7 @@ az ml environment show --name my-env --version 1 --resource-group my-resource-gr
 
 # [Python SDK](#tab/python)
 
-The following example creates an Azure Container Registry connection. A managed identity authenticates this connection:
+The following example creates a Generic Container Registry connection:
 
 ```python
 import os
@@ -710,16 +729,16 @@ from azure.ai.ml.entities import UsernamePasswordConfiguration
 from azureml.core.conda_dependencies import CondaDependencies
 from azure.ai.ml import command
 
+username = os.environ["REGISTRY_USERNAME"]
+password = os.environ["REGISTRY_PASSWORD"]
+
 # Enter details of AML workspace
 subscription_id = "<SUBSCRIPTION_ID>"
 resource_group = "<RESOURCE_GROUP>"
 workspace = "<AML_WORKSPACE_NAME>"
 
 ml_client = MLClient( DefaultAzureCredential(), subscription_id, resource_group, workspace)
-# Fetching secrets from env var to secure access, these secrets can be set outside or source code
-registry_username = os.environ["REGISTRY_USERNAME"]
-registry_password = os.environ["REGISTRY_PASSWORD"]
-credentials = UsernamePasswordConfiguration(username= registry_username, password= registry_password)
+credentials = UsernamePasswordConfiguration(username=username, password=password)
 
 # Create GenericContainerRegistry workspace connection for a generic registry
 ws_connection = WorkspaceConnection(name="<name>", target="<target>", type="GenericContainerRegistry", credentials=credentials)

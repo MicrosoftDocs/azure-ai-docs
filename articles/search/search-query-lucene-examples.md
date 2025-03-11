@@ -391,7 +391,7 @@ After you boost the term *beach*, the match on Campus Commander Hotel moves down
 
 ## Example 5: Regex
 
-A regular expression search finds a match based on the contents between forward slashes `/`, as documented in the [RegExp class](https://lucene.apache.org/core/6_6_1/core/org/apache/lucene/util/automaton/RegExp.html).
+A regular expression search finds a match based on the contents between forward slashes `/` and lower-case strings, as documented in the [RegExp class](https://lucene.apache.org/core/6_6_1/core/org/apache/lucene/util/automaton/RegExp.html).
 
 ```http
 POST /indexes/hotel-samples-index/docs/search?api-version=2024-07-01

@@ -9,14 +9,17 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 10/20/2024
+ms.date: 12/10/2024
 ---
 
 # Configure semantic ranker and return captions in search results
 
 Semantic ranking iterates over an initial result set, applying an L2 ranking methodology that promotes the most semantically relevant results to the top of the stack. You can also get semantic captions, with highlights over the most relevant terms and phrases, and [semantic answers](semantic-answers.md).
 
-This article explains how to configure a search index for semantic reranking. 
+This article explains how to configure a search index for semantic reranking.
+
+> [!NOTE]
+> If you have existing code that calls preview or previous API versions, see [Migrate semantic ranking code](semantic-code-migration.md) for help with modifying your code.
 
 ## Prerequisites
 
@@ -28,10 +31,10 @@ This article explains how to configure a search index for semantic reranking.
 
 ## Choose a client
 
-You can use any of the following tools and software development kits (SDKs) to add a semantic configuration:
+You can specify a semantic configuration on new or existing indexes, using any of the following tools and software development kits (SDKs) to add a semantic configuration:
 
 + [Azure portal](https://portal.azure.com), using the index designer to add a semantic configuration.
-+ [Visual Studio Code](https://code.visualstudio.com/download) with the [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) and a [Create or Update Index (REST) API](/rest/api/searchservice/indexes/create-or-update).
 + [Azure SDK for .NET](https://www.nuget.org/packages/Azure.Search.Documents)
 + [Azure SDK for Python](https://pypi.org/project/azure-search-documents)
 + [Azure SDK for Java](https://central.sonatype.com/artifact/com.azure/azure-search-documents)
@@ -154,31 +157,6 @@ SearchIndex searchIndex = new(indexName)
 ```
 
 ---
-
-## Migrate from preview versions
-
-If your semantic ranking code is using preview APIs, this section explains how to migrate to stable versions. You can check the change logs for verification of general availability:
-
-+ [2024-07-01 (REST)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-07-01&preserve-view=true)
-+ [Azure SDK for .NET (11.5) change log](https://github.com/Azure/azure-sdk-for-net/blob/Azure.Search.Documents_11.5.1/sdk/search/Azure.Search.Documents/CHANGELOG.md#1150-2023-11-10)
-+ [Azure SDK for Python (11.4) change log](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md#1140-2023-10-13)
-+ [Azure SDK for Java (11.6) change log](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.6.1/sdk/search/azure-search-documents/CHANGELOG.md#1160-2023-11-13)
-+ [Azure SDK for JavaScript (12.0) change log](https://github.com/Azure/azure-sdk-for-js/blob/%40azure/search-documents_12.0.0/sdk/search/search-documents/CHANGELOG.md#1200-2023-11-13)
-
-
-### queryLanguage for semantic ranker
-
-As of July 14, 2023, semantic ranker is language agnostic. It can rerank results composed of multilingual content, with no bias towards a specific language. In preview versions, semantic ranking would deprioritize results differing from the language specified by the field analyzer.
-
-Stop using `queryLanguage` in your code if you were using it for semantic ranking. The `queryLanguage` property is still applicable to features such as [spell correction](speller-how-to-add.md), but not to semantic ranking.
-
-### searchFields for semantic ranker
-
-For the REST API and all SDK packages targeting version `2021-04-30-Preview` and later, the `searchFields` property is no longer used for semantic ranking.
-
-Instead, use the `semanticConfiguration` property (in a search index) to determine which search fields are used in semantic ranking. To specify field prioritization, add a `semanticConfiguration` to in an index schema following the [instructions in this article](#add-a-semantic-configuration).
-
-You can keep `searchFields` in query requests if you're using it to limit full text search to the list of named fields. 
 
 ## Next steps
 

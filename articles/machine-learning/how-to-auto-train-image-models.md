@@ -10,7 +10,7 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.custom: devx-track-azurecli, update-code, devx-track-python
 ms.topic: how-to
-ms.date: 11/07/2023
+ms.date: 01/20/2025
 #Customer intent: I'm a data scientist with ML knowledge in the computer vision space, looking to build ML models using image data in Azure Machine Learning with full control of the model architecture, hyperparameters, and training and deployment environments.
 ---
 
@@ -367,7 +367,7 @@ Image classification<br> (multi-class and multi-label)| **MobileNet**: Light-wei
 Object detection | **YOLOv5**: One stage object detection model   <br>  **Faster RCNN ResNet FPN**: Two stage object detection models  <br> **RetinaNet ResNet FPN**: address class imbalance with Focal Loss <br> <br>*Note: Refer to [`model_size` hyperparameter](reference-automl-images-hyperparameters.md#model-specific-hyperparameters) for YOLOv5 model sizes.*| ***`yolov5`\**** <br> `fasterrcnn_resnet18_fpn` <br> `fasterrcnn_resnet34_fpn` <br> `fasterrcnn_resnet50_fpn` <br> `fasterrcnn_resnet101_fpn` <br> `fasterrcnn_resnet152_fpn` <br> `retinanet_resnet50_fpn` 
 Instance segmentation | **MaskRCNN ResNet FPN**| `maskrcnn_resnet18_fpn` <br> `maskrcnn_resnet34_fpn` <br> ***`maskrcnn_resnet50_fpn`\****  <br> `maskrcnn_resnet101_fpn` <br> `maskrcnn_resnet152_fpn`
 
-#### Supported model architectures - HuggingFace and MMDetection (preview)
+#### Supported model architectures - HuggingFace and MMDetection
 
 With the new backend that runs on [Azure Machine Learning pipelines](concept-ml-pipelines.md), you can additionally use any image classification model from the [HuggingFace Hub](https://huggingface.co/models?pipeline_tag=image-classification&library=transformers) which is part of the transformers library (such as microsoft/beit-base-patch16-224), as well as any object detection or instance segmentation model from the [MMDetection Version 3.1.0 Model Zoo](https://mmdetection.readthedocs.io/en/v3.1.0/model_zoo.html) (such as `atss_r50_fpn_1x_coco`). 
 
@@ -376,8 +376,8 @@ In addition to supporting any model from HuggingFace Transfomers and MMDetection
 Task |  model architectures | String literal syntax
 ---|----------|----------
 Image classification<br> (multi-class and multi-label)| **BEiT** <br> **ViT** <br> **DeiT** <br> **SwinV2** | [`microsoft/beit-base-patch16-224-pt22k-ft22k`](https://ml.azure.com/registries/azureml/models/microsoft-beit-base-patch16-224-pt22k-ft22k/version/5)<br> [`google/vit-base-patch16-224`](https://ml.azure.com/registries/azureml/models/google-vit-base-patch16-224/version/5)<br> [`facebook/deit-base-patch16-224`](https://ml.azure.com/registries/azureml/models/facebook-deit-base-patch16-224/version/5)<br> [`microsoft/swinv2-base-patch4-window12-192-22k`](https://ml.azure.com/registries/azureml/models/microsoft-swinv2-base-patch4-window12-192-22k/version/5)
-Object Detection | **Sparse R-CNN** <br> **Deformable DETR** <br> **VFNet** <br> **YOLOF** <br> **Swin** | [`mmd-3x-sparse-rcnn_r50_fpn_300-proposals_crop-ms-480-800-3x_coco`](https://ml.azure.com/registries/azureml/models/mmd-3x-sparse-rcnn_r50_fpn_300-proposals_crop-ms-480-800-3x_coco/version/8)<br> [`mmd-3x-sparse-rcnn_r101_fpn_300-proposals_crop-ms-480-800-3x_coco`](https://ml.azure.com/registries/azureml/models/mmd-3x-sparse-rcnn_r101_fpn_300-proposals_crop-ms-480-800-3x_coco/version/8) <br> [`mmd-3x-deformable-detr_refine_twostage_r50_16xb2-50e_coco`](https://ml.azure.com/registries/azureml/models/mmd-3x-deformable-detr_refine_twostage_r50_16xb2-50e_coco/version/8) <br> [`mmd-3x-vfnet_r50-mdconv-c3-c5_fpn_ms-2x_coco`](https://ml.azure.com/registries/azureml/models/mmd-3x-vfnet_r50-mdconv-c3-c5_fpn_ms-2x_coco/version/8) <br> [`mmd-3x-vfnet_x101-64x4d-mdconv-c3-c5_fpn_ms-2x_coco`](https://ml.azure.com/registries/azureml/models/mmd-3x-vfnet_x101-64x4d-mdconv-c3-c5_fpn_ms-2x_coco/version/8) <br> [`mmd-3x-yolof_r50_c5_8x8_1x_coco`](https://ml.azure.com/registries/azureml/models/mmd-3x-yolof_r50_c5_8x8_1x_coco/version/8)
-Instance Segmentation | **Swin** | [`mmd-3x-mask-rcnn_swin-t-p4-w7_fpn_1x_coco`](https://ml.azure.com/registries/azureml/models/mmd-3x-mask-rcnn_swin-t-p4-w7_fpn_1x_coco/version/8)
+Object Detection | **Sparse R-CNN** <br> **Deformable DETR** <br> **VFNet** <br> **YOLOF** | [`mmd-3x-sparse-rcnn_r50_fpn_300-proposals_crop-ms-480-800-3x_coco`](https://ml.azure.com/registries/azureml/models/mmd-3x-sparse-rcnn_r50_fpn_300-proposals_crop-ms-480-800-3x_coco/version/8)<br> [`mmd-3x-sparse-rcnn_r101_fpn_300-proposals_crop-ms-480-800-3x_coco`](https://ml.azure.com/registries/azureml/models/mmd-3x-sparse-rcnn_r101_fpn_300-proposals_crop-ms-480-800-3x_coco/version/8) <br> [`mmd-3x-deformable-detr_refine_twostage_r50_16xb2-50e_coco`](https://ml.azure.com/registries/azureml/models/mmd-3x-deformable-detr_refine_twostage_r50_16xb2-50e_coco/version/8) <br> [`mmd-3x-vfnet_r50-mdconv-c3-c5_fpn_ms-2x_coco`](https://ml.azure.com/registries/azureml/models/mmd-3x-vfnet_r50-mdconv-c3-c5_fpn_ms-2x_coco/version/8) <br> [`mmd-3x-vfnet_x101-64x4d-mdconv-c3-c5_fpn_ms-2x_coco`](https://ml.azure.com/registries/azureml/models/mmd-3x-vfnet_x101-64x4d-mdconv-c3-c5_fpn_ms-2x_coco/version/8) <br> [`mmd-3x-yolof_r50_c5_8x8_1x_coco`](https://ml.azure.com/registries/azureml/models/mmd-3x-yolof_r50_c5_8x8_1x_coco/version/8)
+Instance Segmentation | **Mask R-CNN** | [`mmd-3x-mask-rcnn_swin-t-p4-w7_fpn_1x_coco`](https://ml.azure.com/registries/azureml/models/mmd-3x-mask-rcnn_swin-t-p4-w7_fpn_1x_coco/version/8)
 
 We constantly update the list of curated models. You can get the most up-to-date list of the curated models for a given task using the Python SDK:
 ```

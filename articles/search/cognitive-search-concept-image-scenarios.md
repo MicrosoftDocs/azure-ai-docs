@@ -20,7 +20,7 @@ Through [AI enrichment](cognitive-search-concept-intro.md), Azure AI Search give
 + [Image Analysis](cognitive-search-skill-image-analysis.md) that describes images through visual features
 + [Custom skills](#passing-images-to-custom-skills) to invoke any external image processing that you want to provide
 
-By using OCR, you can extract text from photos or pictures containing alphanumeric text, such as the word *STOP* in a stop sign. Through image analysis, you can generate a text representation of an image, such as *dandelion* for a photo of a dandelion, or the color *yellow*. You can also extract metadata about the image, such as its size.
+By using OCR, you can extract text and from photos or pictures, such as the word *STOP* in a stop sign. Through image analysis, you can generate a text representation of an image, such as *dandelion* for a photo of a dandelion, or the color *yellow*. You can also extract metadata about the image, such as its size.
 
 This article covers the fundamentals of working with images, and also describes several common scenarios, such as working with embedded images, custom skills, and overlaying visualizations on original images.
 
@@ -149,7 +149,7 @@ This section supplements the [skill reference](cognitive-search-predefined-skill
 
 1. [Create or update a skillset](/rest/api/searchservice/skillsets/create) to add skills.
 
-1. Add templates for OCR and Image Analysis from the portal, or copy the definitions from the [skill reference](cognitive-search-predefined-skills.md) documentation. Insert them into the skills array of your skillset definition.
+1. Add templates for OCR and Image Analysis from the Azure portal, or copy the definitions from the [skill reference](cognitive-search-predefined-skills.md) documentation. Insert them into the skills array of your skillset definition.
 
 1. If necessary, [include a multi-service key](cognitive-search-attach-cognitive-services.md) in the Azure AI services property of the skillset. Azure AI Search makes calls to a billable Azure AI services resource for OCR and image analysis for transactions that exceed the free limit (20 per indexer per day). Azure AI services must be in the same region as your search service.
 

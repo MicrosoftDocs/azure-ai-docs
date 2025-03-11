@@ -6,16 +6,13 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 07/09/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ---
 <!-- markdownlint-disable MD033 -->
 
 # Document Intelligence custom models
-
-::: moniker range="doc-intel-4.0.0"
-[!INCLUDE [preview-version-notice](../includes/preview-notice.md)]
 
 [!INCLUDE [applies to v4.0](../includes/applies-to-v40.md)]
 ::: moniker-end
@@ -50,10 +47,10 @@ To create a custom extraction model, label a dataset of documents with the value
 
 > [!IMPORTANT]
 >
-> Starting with version 4.0 (2024-02-29-preview) API, custom neural models now support **overlapping fields** and **table, row and cell level confidence**.
+> Document Intelligence `v4.0 2024-11-30 (GA)` API supports custom neural model **overlapping fields**, **signature detection** and  **table, row and cell level confidence**.
 >
 
-The custom neural (custom document) model uses deep learning models and  base model trained on a large collection of documents. This model is then fine-tuned or adapted to your data when you train the model with a labeled dataset. Custom neural models support extracting key data fields from structured, semi-structured, and unstructured documents. When you're choosing between the two model types, start with a neural model to determine if it meets your functional needs. See [neural models](custom-neural.md) to learn more about custom document models.
+The custom neural (custom document) model uses deep learning models and  base model trained on a large collection of documents. This model is then fine-tuned or adapted to your data when you train the model with a labeled dataset. Custom neural models support extracting key data fields from structured, semi-structured, and unstructured documents. When you're choosing between the two model types, start with a neural model to determine if it meets your functional needs. With V4.0, custom neural model supports signature detection, table confidence and overlapping fields. See [neural models](custom-neural.md) to learn more about custom document models.
 
 ### Custom template model
 
@@ -78,7 +75,7 @@ If the language of your documents and extraction scenarios supports custom neura
     |Model | PDF |Image: </br>`jpeg/jpg`, `png`, `bmp`, `tiff`, `heif` | Microsoft Office: </br> Word (docx), Excel (xlsx), PowerPoint (pptx)|
     |--------|:----:|:-----:|:---------------:
     |Read            | ✔    | ✔    | ✔  |
-    |Layout          | ✔  | ✔ | ✔ (2024-02-29-preview, 2023-10-31-preview, and later)  |
+    |Layout          | ✔  | ✔ | ✔  |
     |General&nbsp;Document| ✔  | ✔ |   |
     |Prebuilt        |  ✔  | ✔ |   |
     |Custom extraction|  ✔  | ✔ |   |
@@ -88,19 +85,19 @@ If the language of your documents and extraction scenarios supports custom neura
 
 * For PDF and TIFF, up to 2,000 pages can be processed (with a free tier subscription, only the first two pages are processed).
 
-* The file size for analyzing documents is 500 MB for paid (S0) tier and 4 MB for free (F0) tier.
+* The file size for analyzing documents is `500 MB` for paid (S0) tier and `4 MB` for free (F0) tier.
 
-* Image dimensions must be between 50 x 50 pixels and 10,000 px x 10,000 pixels.
+* Image dimensions must be between 50 x 50 pixels and 10,000 pixels x 10,000 pixels.
 
 * If your PDFs are password-locked, you must remove the lock before submission.
 
-* The minimum height of the text to be extracted is 12 pixels for a 1024 x 768 pixel image. This dimension corresponds to about `8`-point text at 150 dots per inch.
+* The minimum height of the text to be extracted is 12 pixels for a 1024 x 768 pixel image. This dimension corresponds to about `8`-point text at `150` dots per inch.
 
 * For custom model training, the maximum number of pages for training data is 500 for the custom template model and 50,000 for the custom neural model.
 
-* For custom extraction model training, the total size of training data is 50 MB for template model and 1G-MB for the neural model.
+* For custom extraction model training, the total size of training data is `50 MB` for template model and `1 GB` for the neural model.
 
-* For custom classification model training, the total size of training data is `1GB`  with a maximum of 10,000 pages.
+* For custom classification model training, the total size of training data is `1 GB`  with a maximum of 10,000 pages.
 
 ### Optimal training data
 
@@ -136,10 +133,10 @@ This table provides links to the build mode programming language SDK references 
 
 |Programming language | SDK reference | Code sample |
 |---|---|---|
-| C#/.NET | [DocumentBuildMode Struct](/dotnet/api/azure.ai.formrecognizer.documentanalysis.documentbuildmode?view=azure-dotnet&preserve-view=true#properties) | [Sample_BuildCustomModelAsync.cs](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/formrecognizer/Azure.AI.FormRecognizer/tests/samples/Sample_BuildCustomModelAsync.cs)
-|Java| DocumentBuildMode Class | [BuildModel.java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/administration/BuildDocumentModel.java)|
-|JavaScript | [DocumentBuildMode type](/javascript/api/@azure/ai-form-recognizer/documentbuildmode?view=azure-node-latest&preserve-view=true)| [buildModel.js](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/formrecognizer/ai-form-recognizer/samples/v4-beta/javascript/buildModel.js)|
-|Python | DocumentBuildMode Enum| [sample_build_model.py](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-formrecognizer_3.2.0b3/sdk/formrecognizer/azure-ai-formrecognizer/samples/v3.2-beta/sample_build_model.py)|
+| C#/.NET | [DocumentBuildMode Struct](/dotnet/api/azure.ai.documentintelligence.documenttypedetails.buildmode??view=azure-dotnet&preserve-view=true) | [Sample_BuildCustomModelAsync](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/formrecognizer/Azure.AI.FormRecognizer/tests/samples/Sample_BuildCustomModelAsync.cs)|
+|Java| [DocumentBuildMode Class](/java/api/com.azure.ai.documentintelligence.models.documentbuildmode?view=azure-java-stable&preserve-view=true) | [BuildDocumentModel](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/administration/BuildDocumentModel.java)|
+|JavaScript | [DocumentBuildMode type](/javascript/api/@azure-rest/ai-document-intelligence/builddocumentmodelrequest?view=azure-node-latest#@azure-rest-ai-document-intelligence-builddocumentmodelrequest-buildmodel&preserve-view=true)| [buildModel.js](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/documentintelligence/ai-document-intelligence-rest/samples/v1/javascript/buildModel.js)|
+|Python | [DocumentBuildMode Enum](/python/api/azure-ai-documentintelligence/azure.ai.documentintelligence.models.builddocumentmodelrequest?view=azure-python&preserve-view=true)| |
 
 ## Compare model features
 
@@ -148,11 +145,14 @@ The following table compares custom template and custom neural features:
 |Feature|Custom template (form) | Custom neural (document) |
 |---|---|---|
 |Document structure|Template, form, and structured | Structured, semi-structured, and unstructured|
-|Training time | 1 to 5 minutes | 20 minutes to 1 hour |
+|Training time | 1 to 5 minutes | 30 minutes to 12 hour* |
 |Data extraction | Key-value pairs, tables, selection marks, coordinates, and signatures | Key-value pairs, selection marks, and tables|
 |Overlapping fields | Not supported | Supported |
 |Document variations | Requires a model per each variation | Uses a single model for all variations |
 |Language support | [**Language support custom template**](../language-support/custom.md#custom-template)  | [**Language support custom neural**](../language-support/custom.md#custom-neural) |
+
+
+*-Default training time is 30 mins, enable paid training to train a model longer than 30 mins. Check more details under [training support for custom neural](../train/custom-neural.md) 
 
 ### Custom classification model
 
@@ -160,7 +160,7 @@ The following table compares custom template and custom neural features:
 
  > [!NOTE]
 >
->Starting with the ```2024-02-29-preview``` API version document classification now supports Office document types for classification. This API version also introduces [incremental training](../concept/incremental-classifier.md) for the classification model.
+> The `v4.0 2024-11-30 (GA)` document classification model supports Office document types for classification. This API version also introduces [incremental training](../concept/incremental-classifier.md) for the classification model.
 
 ## Custom model tools
 
@@ -247,15 +247,15 @@ This table compares the supported data extraction areas:
 |Model| Form fields | Selection marks | Structured fields (Tables) | Signature | Region labeling | Overlapping fields |
 |--|:--:|:--:|:--:|:--:|:--:|:--:|
 |Custom template| ✔ | ✔ | ✔ | ✔ | ✔ | **n/a** |
-|Custom neural| ✔| ✔ | ✔ | **n/a** | * | ✔ (2024-02-29-preview) |
+|Custom neural| ✔| ✔ | ✔ | ✔ | * | ✔|
 
 **Table symbols**:<br>
 ✔—Supported<br>
 **n/a—Currently unavailable;<br>
-*-Behaves differently depending upon model. With template models, synthetic data is generated at training time. With neural models, exiting text recognized in the region is selected.
+*-Behaves differently depending upon model. With template models, synthetic data is generated at training time. With neural models, existing text recognized in the region is selected.
 
 > [!TIP]
-> When choosing between the two model types, start with a custom neural model if it meets your functional needs. See [custom neural](custom-neural.md) to learn more about custom neural models.
+> To choose between the two model types, start with a custom neural model if it meets your functional needs. See [custom neural](custom-neural.md) to learn more about custom neural models.
 
 :::moniker-end
 
@@ -269,22 +269,22 @@ The following table describes the features available with the associated tools a
 | Custom neural v4.0 v3.1 v3.0 | [Document Intelligence 3.1](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)| [Document Intelligence SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)| [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio)
 | Custom form v2.1 | [Document Intelligence 2.1 GA API](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true) | [Document Intelligence SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-2.1.0&preserve-view=true?pivots=programming-language-python)| [Sample labeling tool](https://fott-2-1.azurewebsites.net/)|
 > [!NOTE]
-> Custom template models trained with the 3.0 API will have a few improvements over the 2.1 API stemming from improvements to the OCR engine. Datasets used to train a custom template model using the 2.1 API can still be used to train a new model using the 3.0 API.
+> Custom template models trained with the 3.0 API have a few improvements over the 2.1 API stemming from improvements to the OCR engine. Datasets used to train a custom template model using the 2.1 API can still be used to train a new model using the 3.0 API.
 
-* For best results, provide one clear photo or high-quality scan per document.
-* Supported file formats are JPEG/JPG, PNG, BMP, TIFF, and PDF (text-embedded or scanned). Text-embedded PDFs are best to eliminate the possibility of error in character extraction and location.
-* For PDF and TIFF files, up to 2,000 pages can be processed. With a free tier subscription, only the first two pages are processed.
+* One clear photo or high-quality scan per document should be provided for best results.
+* File formats supported are JPEG/JPG, PNG, BMP, TIFF, and PDF (text-embedded or scanned). Text-embedded PDFs are best to eliminate the possibility of error in character extraction and location.
+* PDF and TIFF files, up to 2,000 pages, can be processed. With a free tier subscription, only the first two pages are processed.
 * The file size must be less than 500 MB for paid (S0) tier and 4 MB for free (F0) tier.
 * Image dimensions must be between 50 x 50 pixels and 10,000 x 10,000 pixels.
 * PDF dimensions are up to 17 x 17 inches, corresponding to Legal or A3 paper size, or smaller.
 * The total size of the training data is 500 pages or less.
-* If your PDFs are password-locked, you must remove the lock before submission.
+* PDFs that are password-locked must have the password lock removed before submission.
 
   > [!TIP]
   > Training data:
   >
   > * If possible, use text-based PDF documents instead of image-based documents. Scanned PDFs are handled as images.
-  > * Please supply only a single instance of the form per document.
+  > * Supply only a single instance of the form per document.
   > * For filled-in forms, use examples that have all their fields filled in.
   > * Use forms with different values in each field.
   > * If your form images are of lower quality, use a larger dataset. For example, use 10 to 15 images.

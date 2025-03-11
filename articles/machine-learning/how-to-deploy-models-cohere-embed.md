@@ -666,4 +666,4 @@ Quota is managed per deployment. Each deployment has a rate limit of 200,000 tok
 * [Azure AI Model Inference API](reference-model-inference-api.md)
 * [Deploy models as serverless APIs](how-to-deploy-models-serverless.md)
 * [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md)
-* [Plan and manage costs for Azure AI Studio](concept-plan-manage-cost.md)
+* [Plan and manage costs for Azure AI Foundry](/azure/ai-studio/how-to/costs-plan-manage)

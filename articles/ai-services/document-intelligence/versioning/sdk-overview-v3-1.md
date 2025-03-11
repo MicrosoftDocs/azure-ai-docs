@@ -1,14 +1,14 @@
 ---
-title: Document Intelligence SDK target REST API 2023-07-31 (GA) latest.
+title: Document Intelligence SDK target REST API v3.1 (GA) latest
 titleSuffix: Azure AI services
-description: The Document Intelligence 2023-07-31 (GA) software development kits (SDKs) expose Document Intelligence models, features, and capabilities that are in active development for C#, Java, JavaScript, or Python programming language.
+description: The Document Intelligence v3.1 (GA) software development kits (SDKs) expose Document Intelligence models, features, and capabilities that are in active development for C#, Java, JavaScript, or Python programming language.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.custom:
   - devx-track-python
 ms.topic: conceptual
-ms.date: 05/06/2024
+ms.date: 02/10/2025
 ms.author: lajanuar
 monikerRange: 'doc-intel-3.1.0'
 --- 
@@ -19,7 +19,7 @@ monikerRange: 'doc-intel-3.1.0'
 <!-- markdownlint-disable MD001 -->
 <!-- markdownlint-disable MD051 -->
 
-# SDK target: REST API 2023-07-31 (GA)
+# SDK target: REST API v3.1 (GA)
 
 ![Document Intelligence checkmark](../media/yes-icon.png) **REST API version 2023-07-31 (GA)**
 
@@ -225,7 +225,7 @@ async function main() {
 #### Use a Microsoft Entra token credential
 
 > [!NOTE]
-> Regional endpoints do not support Microsoft Entra authentication. Create a [custom subdomain](../../../ai-services/authentication.md?tabs=powershell#create-a-resource-with-a-custom-subdomain) for your resource in order to use this type of authentication.
+> Regional endpoints don't support Microsoft Entra authentication. Create a [custom subdomain](../../../ai-services/authentication.md?tabs=powershell#create-a-resource-with-a-custom-subdomain) for your resource in order to use this type of authentication.
 
 Authorization is easiest using the `DefaultAzureCredential`. It provides a default token credential, based upon the running environment, capable of handling most Azure authentication scenarios.
 
@@ -256,7 +256,7 @@ Here's how to acquire and use the [DefaultAzureCredential](/dotnet/api/azure.ide
     var client = new DocumentAnalysisClient(new Uri(endpoint), new DefaultAzureCredential());
     ```
 
-For more information, *see* [Authenticate the client](https://github.com/Azure/azure-sdk-for-net/tree/Azure.AI.FormRecognizer_4.0.0-beta.4/sdk/formrecognizer/Azure.AI.FormRecognizer#authenticate-the-client).
+For more information, *see* [Authenticate the client](https://github.com/Azure/azure-sdk-for-net/tree/Azure.AI.FormRecognizer_4.0.0/sdk/formrecognizer/Azure.AI.FormRecognizer#authenticate-the-client).
 
 ### [Java](#tab/java)
 

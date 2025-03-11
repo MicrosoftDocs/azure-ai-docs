@@ -474,7 +474,7 @@ To run the *score.py* file you provide as part of the deployment, Azure creates 
 
 - There's an error in the container environment setup, such as a missing dependency.
 
-  If you get the `TypeError: register() takes 3 positional arguments but 4 were given` error, check the dependency between flask v2 and `azureml-inference-server-http`. For more information, see [Troubleshoot HTTP server issues](how-to-inference-server-http.md#typeerror-during-server-startup).
+  If you get the `TypeError: register() takes 3 positional arguments but 4 were given` error, check the dependency between flask v2 and `azureml-inference-server-http`. For more information, see [Troubleshoot HTTP server issues](how-to-inference-server-http.md#typeerror-during-inference-server-startup).
 
 ### ERROR: ResourceNotFound
 

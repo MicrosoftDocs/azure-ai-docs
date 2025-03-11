@@ -8,31 +8,33 @@ metadata:
 
   ms.service: azure-ai-content-safety
   ms.topic: faq
-  ms.date: 09/04/2024
+  ms.date: 02/21/2025
   ms.author: pafarley
   ms.custom:
 title: Azure AI Content Safety Frequently Asked Questions
 summary: |
   > [!TIP]
-  > If you can't find answers to your questions in this FAQ, ask the Cognitive Services API community on [StackOverflow](https://stackoverflow.com/questions/tagged/project-oxford+or+microsoft-cognitive) or contact Help and Support on [UserVoice](https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858)
+  > If you can't find answers to your questions in this FAQ, ask the Cognitive Services API community on [Stack Overflow](https://stackoverflow.com/questions/tagged/project-oxford+or+microsoft-cognitive) or contact Help and Support on [UserVoice](https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858)
 
 
 sections:
   - name: General information
     questions:
       - question: |
-          How do we get started with Content Safety? First steps?
+          How do I get started with Content Safety? What are the first steps?
         answer: |
-          For references on how to start submitting text and images to Azure AI Content Safety, and view model responses and results, visit our [AI Studio-Content Safety Try it out](https://ai.azure.com/explore/contentsafety) page. You can use the sidebar to navigate through the Safety+ Security page. 
+          For references on how to start submitting text and images to Azure AI Content Safety, and view model responses and results, visit the [Azure AI Foundry portal](https://ai.azure.com/explore/contentsafety) page. You can use the sidebar to navigate to the Safety+Security page. 
+
       - question: |
           What types of media can Azure AI Content Safety classify/moderate? 
         answer: |
-          Our content harm classification models currently support the moderation of text, images, and multimodal (images with text + OCR). The protected material, prompt shields, and groundedness detection models work with text content. 
+          Our content harm classification models currently support the moderation of text, images, and multimodal content (images with text + OCR). The protected material, prompt shields, and groundedness detection models work with text content only. 
  
       - question: |
-          How are Azure AI Content Safety’s models priced?
+          How are Azure AI Content Safety's models priced?
         answer: |
           A: We generally charge by volume. For example, the Image API is priced based on the number of images submitted. The Text API is billed for the number of text records submitted to the service. However, each model has its own corresponding rate. See the Azure [pricing page](https://aka.ms/content-safety-pricing) for more information about pricing tiers. 
+        
       - question: |
           Why should I migrate from Azure Content Moderator to Azure AI Content Safety?
         answer: |
@@ -51,19 +53,19 @@ sections:
       - question: |
           Does Azure AI Content Safety remove content or ban users from the platform?
         answer: |
-          No. The Azure AI Content Safety API returns classification metadata based on model outputs. Our results tell users whether material across various classes (sexual, violence, hate, self-harm) is present in input content, via either a returned severity level (such as in the Text API) or binary results (such as in Prompt Shields API).  
+          No. The Azure AI Content Safety API returns classification metadata based on model outputs. Our results tell users whether material across various classes (sexual, violence, hate, self-harm) is present in input content, through either a returned severity level (such as in the Text API) or binary result (such as in Prompt Shields API).  
           
-          As a user, you use those results to inform appropriate enforcement actions - such as automatically tagging or removing certain content - based on your own policies and practices. 
+          As a user, you use those results to inform appropriate enforcement actions—such as automatically tagging or removing certain content—based on your own policies and practices.
       - question: |
           What happens if I exceed the transaction limit on my free tier for Azure AI Content Safety? 
         answer: |
           Service usage is throttled if you reach the transaction limit on the Free tier.
       - question: |
-          Should we submit our content to the Content Safety API synchronously or asynchronously?
+          Should I submit our content to the Content Safety API synchronously or asynchronously?
         answer: |
-          The Content Safety API is optimized for real-time moderation needs. Our model results are returned directly in the API response message.  
+          The Content Safety API is optimized for real-time (synchronous) moderation needs. Our model results are returned directly in the API response message.
       - question: |
-          What is the current RPS (Requests Per Second) limit for each API? If I want to increase the RPS, what steps should I take? 
+          What is the current RPS (Requests Per Second) limit for each API? If I want to increase the RPS, what steps should I take?
         answer: |
           Refer to the [overview](./overview.md) for the current RPS limits for each API. To request an increase in RPS, [email us](mailto:contentsafetysupport@microsoft.com) with justification and an estimated traffic forecast.
       - question: |
@@ -77,7 +79,7 @@ sections:
       - question: |
           How is data retained and what customer controls are available?
         answer: |
-          No input texts or images are stored by the model during detection (except for customer-supplied blocklists, and user inputs are not used to train, retrain, or improve the Azure AI Content Safety models. 
+          No input texts or images are stored by the model during detection (except for customer-supplied blocklists), and user inputs are not used to train, retrain, or improve the Azure AI Content Safety models. 
           
           To learn more about Microsoft's privacy and security commitments visit [Data, privacy, and security for Azure AI Content Safety](/legal/cognitive-services/content-safety/data-privacy?context=%2Fazure%2Fai-services%2Fcontent-safety%2Fcontext%2Fcontext).
       - question: |
@@ -89,9 +91,9 @@ sections:
         answer: |
           Content Safety APIs don't support batch processing. Currently, Content Safety APIs achieve high concurrency in processing with generous default rate limits of 1000 per minute, depending on the model. While this is sufficient for most users, we're happy to increase rate limits for users that process or are looking to process higher volumes. 
       - question: |
-          Can we access multiple models with a single API call? 
+          Can I access multiple models with a single API call? 
         answer: | 
-          Currently, we can  combine several classifications into a single API endpoint, enabling users to access both model outputs with a single task, but this API is in private preview, [email us](mailto:contentsafetysupport@microsoft.com) for allowlisting your subscription ID.
+          We have developed an API to combine several classifications into a single API endpoint, enabling users to access both model outputs with a single task, but this API is in preview. [Email us](mailto:contentsafetysupport@microsoft.com) to apply for access.
   - name: Dissatisfied cases
     questions:
       - question: |
@@ -113,7 +115,7 @@ sections:
   - name: Text moderation API
     questions:
       - question: |
-          Can we increase the character limit for text moderation? 
+          Can I increase the character limit for text moderation? 
         answer: |
           No. Currently, text moderation tasks are limited to 10k-character submissions. You can, however, split longer text content into segments (for example, based on punctuation or spacing) and submit each segment as related tasks to the Content Safety API. 
   - name: Custom categories
@@ -141,5 +143,5 @@ sections:
       - question: |
           I'm running into the limitation of three custom categories per service deployment. Are there any plans or options to increase that quota? 
         answer: |
-          Yes, users can request an increase in their custom categories quota for specific service deployments. Simply [email us](mailto:contentsafetysupport@microsoft.com) with the desired quota amount, and our team will review your request to accommodate your needs where possible.
+          Yes, users can request an increase in their custom categories quota for specific service deployments. [Email us](mailto:contentsafetysupport@microsoft.com) with the desired quota amount, and our team will review your request to accommodate your needs where possible.
       
