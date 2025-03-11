@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 01/07/2025
+ms.date: 03/11/2025
 ms.custom:
   - references_regions
   - build-2024
@@ -21,7 +21,7 @@ Maximum limits on storage, workloads, and quantities of indexes and other object
 
 + **Free** is a multitenant shared service that comes with your Azure subscription.
 
-+ **Basic** provides dedicated computing resources for production workloads at a smaller scale, but shares some networking infrastructure with other tenants.
++ **Basic** provides dedicated computing resources for production workloads at a smaller scale.
 
 + **Standard** runs on dedicated machines with more storage and processing capacity at every level. Standard comes in four levels: S1, S2, S3, and S3 HD. S3 High Density (S3 HD) is engineered for [multi-tenancy](search-modeling-multitenant-saas-applications.md) and large quantities of small indexes (3,000 indexes per service). S3 HD doesn't provide the [indexer feature](search-indexer-overview.md) and data ingestion must use APIs that push data from source to index.
 
