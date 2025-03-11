@@ -246,7 +246,6 @@ pronunciation_config = speechsdk.PronunciationAssessmentConfig(
     granularity=speechsdk.PronunciationAssessmentGranularity.Phoneme, 
     enable_miscue=False) 
 pronunciation_config.enable_prosody_assessment() 
-pronunciation_config.enable_content_assessment_with_topic("greeting")
 ```
 
 ::: zone-end
