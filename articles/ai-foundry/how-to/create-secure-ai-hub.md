@@ -41,7 +41,7 @@ You can secure your [Azure AI Foundry](https://ai.azure.com) hub, projects, and 
     1. Select **Private with Internet Outbound**, which allows compute resources to access the public internet for resources such as Python packages.
     
         > [!TIP]
-        > To provision the virtual network during hub creation, select **Provision managed virtual network**. By default, the network isn't provisioned until you create a compute resource. Provisioning the network during hub creation adds to the creation time. For more information, see [Managed virtual network](configure-managed-network.md#manually-provision-a-managed-vnet).
+        > To provision the virtual network during hub creation, select **Provision managed virtual network**. By default, the network isn't provisioned until you create a compute resource. Provisioning the network during hub creation might increase the time it takes to create the hub. For more information, see [Managed virtual network](configure-managed-network.md#manually-provision-a-managed-vnet).
 
         :::image type="content" source="../media/how-to/network/ai-hub-networking.png" alt-text="Screenshot of the Create a hub with the option to set network isolation information." lightbox="../media/how-to/network/ai-hub-networking.png":::
 
