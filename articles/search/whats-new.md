@@ -20,11 +20,18 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
 
+## March 2025
+
+| Item&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Type |  Description |
+|-----------------------------|------|--------------|
+| [Search Service REST 2025-03-01-preview](/rest/api/searchservice/search-service-api-versions?view=rest-searchservice-2025-03-01-preview&preserve-view=true) | REST | Public preview release of REST APIs for data plane operations. Adds support for multi-vector embeddings, hierarchical facets, and facet aggregation. |
+| [Search Management 2025-02-01-preview](/rest/api/searchmanagement/search-service-api-versions?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true) | REST | Public review release of REST APIs for control plane operations. Adds support for in-place upgrade to higher capacity partitions, in-place upgrade to higher tiers, and Azure Confidential Compute. |
+
 ## February 2025
 
 | Item&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Type |  Description |
 |-----------------------------|------|--------------|
-| [**Customer-managed keys support for Managed HSM**](search-security-manage-encryption-keys.md) | Security | Use either Azure Key Vault or Azure Key Vault Managed HSM (Hardware Security Module) to store customer-managed keys for extra encryption of sensitive content. |
+| [Customer-managed keys support for Managed HSM](search-security-manage-encryption-keys.md) | Security | Use either Azure Key Vault or Azure Key Vault Managed HSM (Hardware Security Module) to store customer-managed keys for extra encryption of sensitive content. |
 
 ## 2024 announcements
 
