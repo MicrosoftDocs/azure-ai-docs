@@ -7,7 +7,7 @@ ms.author: ssalgado
 ms.reviewer: bozhlin
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 01/18/2024
+ms.date: 03/08/2025
 ms.topic: how-to
 ms.custom: build-spring-2022, cliv2, sdkv2, code01
 ---
