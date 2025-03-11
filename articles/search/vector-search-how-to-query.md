@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 09/24/2024
+ms.date: 03/11/2025
 ---
 
 # Create a vector query in Azure AI Search
