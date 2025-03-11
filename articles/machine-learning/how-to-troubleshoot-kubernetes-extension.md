@@ -120,9 +120,12 @@ exit 0
 
 ```
 
+How to run the script: 
+```
 chmod +x delete_stuck_helm_secrets.sh
 
 ./delete_stuck_helm_secrets.sh my-release my-namespace
+```
 
 ### Error Code of HealthCheck 
 This table shows how to troubleshoot the error codes returned by the HealthCheck report. 
