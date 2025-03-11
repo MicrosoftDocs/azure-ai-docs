@@ -79,7 +79,7 @@ When you request support, we recommend that you run the following command and se
 kubectl logs healthcheck -n azureml
 ```
 ## Extension-operator pod in azure-arc/kube-system namespace is crashing due to OOMKill 
-This issue happens when if the extension's helm chart size is large and there are multiple Helm releases on the cluster. Here is a sample script to help clean up the helm history on the cluster: 
+This issue happens if the extension's helm chart size is large and there are multiple Helm releases on the cluster. Here is a sample script to help clean up the helm history on the cluster: 
 ```
 #!/bin/bash
 
