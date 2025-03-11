@@ -5,7 +5,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 3/4/2025
+ms.date: 3/8/2025
 ms.custom: references_regions
 ---
 
@@ -13,13 +13,16 @@ ms.custom: references_regions
 
 In this article, you learn how to use video translation with Azure AI Speech in the [Azure AI Foundry portal](https://ai.azure.com/).
 
+> [!TIP]
+> Try out video translation in the [Azure AI Foundry portal](https://ai.azure.com/) before using the API. Use the [video translation REST API](?pivots=rest-api) to integrate video translation into your applications. For more information about the API, see [Video translation REST API](/rest/api/aiservices/videotranslation/translation-operations/create-translation).
+
 ## Try out video translation
 
 To try out video translation, follow these steps:
 
 1. Go to the [model catalog in Azure AI Foundry portal](https://ai.azure.com/explore/models). 
    
-1. Enter "Azure-AI-Speech" in the catalog search box.
+1. Enter and search for "Azure-AI-Speech" in the catalog search box.
 
    :::image type="content" source="../../../media/video-translation/search-model-catalog.png" alt-text="Screenshot of the model catalog in Azure AI Foundry portal." lightbox="../../../media/video-translation/search-model-catalog.png":::
 

@@ -37,6 +37,7 @@ work together, generate client code, create tests, apply design standards, and m
 1. Ensure you've completed the prerequisites and setup steps in the [quickstart](../../quickstart.md).
 
 1. Check the OpenAPI spec for the following requirements:
+    1. Although not required by the OpenAPI spec, `operationId` is required for each function to be used with the OpenAPI tool.
     1. `operationId` should only contain letters, `-` and `_`. You can modify it to meet the requirement. We recommend using descriptive name to help models efficiently decide which function to use.
 
 ## Authenticating with API Key
@@ -320,7 +321,7 @@ Create a run and observe that the model uses the OpenAPI Spec tool to provide a 
     print(f"Created message, ID: {message.id}")
 
     # Create and process agent run in thread with tools
-    run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
+    run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
     print(f"Run finished with status: {run.status}")
 
     if run.status == "failed":

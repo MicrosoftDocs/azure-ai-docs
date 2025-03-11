@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.author: meerakurup 
 author: meerakurup 
 ms.reviewer: franksolomon
-ms.date: 02/22/2024
+ms.date: 03/07/2025
 ms.custom: UpdateFrequency5, devx-track-python, data4ml, synapse-azureml, sdkv1
 #Customer intent: As a workspace administrator, I want to link Azure Synapse workspaces and Azure Machine Learning workspaces and attach Apache Spark pools for a unified data wrangling experience.
 ---
@@ -44,7 +44,7 @@ You can link your ML workspace and Synapse workspace with the [Python SDK](#link
 > [!IMPORTANT]
 > To successfully link to the Synapse workspace, you must be granted the **Owner** role of the Synapse workspace. Check your access in the [Azure portal](https://portal.azure.com/).
 >
-> If you are only a **Contributor** to the Synapse workspace, and you don't have an **Owner** for that Synapse workspace, you can only use existing linked services. For more information, visit [Retrieve and use an existing linked service](#get-an-existing-linked-service).
+> If you're only a **Contributor** to the Synapse workspace, and you don't have an **Owner** for that Synapse workspace, you can only use existing linked services. For more information, visit [Retrieve and use an existing linked service](#get-an-existing-linked-service).
 
 This code employs the [`LinkedService`](/python/api/azureml-core/azureml.core.linked_service.linkedservice) and [`SynapseWorkspaceLinkedServiceConfiguration`](/python/api/azureml-core/azureml.core.linked_service.synapseworkspacelinkedserviceconfiguration) classes, to
 

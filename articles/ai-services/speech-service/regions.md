@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 1/6/2025
+ms.date: 3/10/2025
 ms.author: eur
 ms.custom: references_regions
 #Customer intent: As a developer, I want to learn about the available regions and endpoints for the Speech service.
@@ -249,7 +249,7 @@ The regions in these tables support most of the core features of the Speech serv
 
 # [Scenarios](#tab/scenarios)
 
-| **Region** | **Pronunciation Assessment** | **Speaker recognition** | **Voice assistants** |
+| **Region** | **Pronunciation assessment** | **Speaker recognition** | **Voice assistants** |
 |-----|-----|-----|-----|
 | australiaeast      | ✅ | ✅ |  |
 | brazilsouth        | ✅ |  |  |

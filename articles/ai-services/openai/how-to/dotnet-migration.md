@@ -48,10 +48,10 @@ OpenAIClient client = new(
 
 ```csharp
 // 2.0 - NEW: Get a chat completions client from a top-level Azure client
-AzureOpenAIClient azureClient = new(
+AzureOpenAIClient openAIClient = new(
     new Uri("https://your-resource.openai.azure.com/"),
     new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY"));
-ChatClient chatClient = azureClient.GetChatClient("my-gpt-4o-mini-deployment");
+ChatClient chatClient = openAIClient.GetChatClient("my-gpt-4o-mini-deployment");
 ```
 
 Just like in 1.0, the new `AzureOpenAIClient` supports the use of Microsoft Entra ID credentials when the [Azure.Identity](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true) package is installed.
