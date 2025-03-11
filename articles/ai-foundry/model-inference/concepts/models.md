@@ -19,14 +19,11 @@ Azure AI model inference in Azure AI Foundry gives you access to flagship models
 
 :::image type="content" source="../media/models/models-catalog.gif" alt-text="An animation showing Azure AI studio model catalog section and the models available." lightbox="../media/models/models-catalog.gif":::
 
-> [!TIP]
-> The Azure AI model catalog offers a larger selection of models, from a bigger range of providers. However, those models might require you to host them on your infrastructure, including the creation of an AI hub and project. Azure AI model service provides a way to consume the models as APIs without hosting them on your infrastructure, with a pay-as-you-go billing. Learn more about the [Azure AI model catalog](../../../ai-studio/how-to/model-catalog-overview.md).
-
 You can see all the models available to you in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
 
 ## Model families
 
-Explore the following model families:
+Explore the following model families available:
 
 - [AI21 Labs](#ai21-labs)
 - [Azure OpenAI](#azure-openai)
@@ -37,6 +34,9 @@ Explore the following model families:
 - [Microsoft](#microsoft)
 - [Mistral AI](#mistral-ai)
 - [NTT Data](#ntt-data)
+
+> [!TIP]
+> The Azure AI model catalog offers a larger selection of models, from a bigger range of providers. However, those models might require you to host them on your infrastructure, including the creation of an AI hub and project. Azure AI model service provides a way to consume the models as APIs without hosting them on your infrastructure, with a pay-as-you-go billing. Learn more about the [Azure AI model catalog](../../../ai-studio/how-to/model-catalog-overview.md).
 
 ### AI21 Labs
 
@@ -64,7 +64,7 @@ Azure OpenAI Service offers a diverse set of models with different capabilities 
 | [o1](https://ai.azure.com/explore/models/o1/version/2024-12-17/registry/azure-openai) | chat-completion | Global standard | - **Input:** text and image (200,000 tokens) <br /> - **Output:** text (100,000 tokens) <br /> - **Languages:** `en`, `it`, `af`, `es`, `de`, `fr`, `id`, `ru`, `pl`, `uk`, `el`, `lv`, `zh`, `ar`, `tr`, `ja`, `sw`, `cy`, `ko`, `is`, `bn`, `ur`, `ne`, `th`, `pa`, `mr`, and `te`. <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
 | [o1-preview](https://ai.azure.com/explore/models/o1-preview/version/1/registry/azure-openai) | chat-completion | Global standard <br />Standard<br /> | - **Input:** text (128,000 tokens) <br /> - **Output:**  (32,768 tokens) <br /> - **Languages:** `en`, `it`, `af`, `es`, `de`, `fr`, `id`, `ru`, `pl`, `uk`, `el`, `lv`, `zh`, `ar`, `tr`, `ja`, `sw`, `cy`, `ko`, `is`, `bn`, `ur`, `ne`, `th`, `pa`, `mr`, and `te`. <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
 | [o1-mini](https://ai.azure.com/explore/models/o1-mini/version/1/registry/azure-openai) | chat-completion | Global standard <br />Standard | - **Input:** text (128,000 tokens) <br /> - **Output:**  (65,536 tokens) <br /> - **Languages:** `en`, `it`, `af`, `es`, `de`, `fr`, `id`, `ru`, `pl`, `uk`, `el`, `lv`, `zh`, `ar`, `tr`, `ja`, `sw`, `cy`, `ko`, `is`, `bn`, `ur`, `ne`, `th`, `pa`, `mr`, and `te`. <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
-| [gpt-4o-realtime-preview](https://ai.azure.com/explore/models/gpt-4o-realtime-preview/version/2024-10-01/registry/azure-openai) | real-time | Global standard | - **Input:** control, text, and audio (131,072 tokens) <br /> - **Output:** text and audio (16,384 tokens) <br /> - **Languages:** en <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
+| [gpt-4o-realtime-preview](https://ai.azure.com/explore/models/gpt-4o-realtime-preview/version/2024-10-01/registry/azure-openai) | real-time | Global standard | - **Input:** control, text, and audio (131,072 tokens) <br /> - **Output:** text and audio (16,384 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [gpt-4o](https://ai.azure.com/explore/models/gpt-4o/version/2024-11-20/registry/azure-openai) | chat-completion | Global standard <br />Standard<br />Batch<br />Provisioned<br />Global provisioned<br />Data Zone | - **Input:** text and image (131,072 tokens) <br /> - **Output:** text (16,384 tokens) <br /> - **Languages:** `en`, `it`, `af`, `es`, `de`, `fr`, `id`, `ru`, `pl`, `uk`, `el`, `lv`, `zh`, `ar`, `tr`, `ja`, `sw`, `cy`, `ko`, `is`, `bn`, `ur`, `ne`, `th`, `pa`, `mr`, and `te`. <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
 | [gpt-4o-mini](https://ai.azure.com/explore/models/gpt-4o-mini/version/2024-07-18/registry/azure-openai) | chat-completion | Global standard <br />Standard<br />Batch<br />Provisioned<br />Global provisioned<br />Data Zone | - **Input:** text, image, and audio (131,072 tokens) <br /> - **Output:**  (16,384 tokens) <br /> - **Languages:** `en`, `it`, `af`, `es`, `de`, `fr`, `id`, `ru`, `pl`, `uk`, `el`, `lv`, `zh`, `ar`, `tr`, `ja`, `sw`, `cy`, `ko`, `is`, `bn`, `ur`, `ne`, `th`, `pa`, `mr`, and `te`. <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
 | [text-embedding-3-large](https://ai.azure.com/explore/models/text-embedding-3-large/version/1/registry/azure-openai) | embeddings | Global standard <br />Standard<br />Provisioned<br />Global provisioned | - **Input:** text (8,191 tokens) <br /> - **Output:** Vector (3,072 dim.) <br /> - **Languages:** `en` |
@@ -123,8 +123,8 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 | Model  | Type | Tier | Capabilities |
 | ------ | ---- | --- | ------------ |
 | [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta) | chat-completion | Global standard | - **Input:** text (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en`, `de`, `fr`, `it`, `pt`, `hi`, `es`, and `th` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text |
-| [Llama-3.2-11B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-11B-Vision-Instruct/version/1/registry/azureml-meta) | chat-completion | Global standard | - **Input:** text and image (128,000 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** en <br />  - **Tool calling:** No* <br /> - **Response formats:** Text |
-| [Llama-3.2-90B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-90B-Vision-Instruct/version/1/registry/azureml-meta) | chat-completion | Global standard | - **Input:** text and image (128,000 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** en <br />  - **Tool calling:** No* <br /> - **Response formats:** Text |
+| [Llama-3.2-11B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-11B-Vision-Instruct/version/1/registry/azureml-meta) | chat-completion | Global standard | - **Input:** text and image (128,000 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text |
+| [Llama-3.2-90B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-90B-Vision-Instruct/version/1/registry/azureml-meta) | chat-completion | Global standard | - **Input:** text and image (128,000 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text |
 | [Meta-Llama-3.1-405B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-405B-Instruct/version/1/registry/azureml-meta) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** `en`, `de`, `fr`, `it`, `pt`, `hi`, `es`, and `th` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text |
 | [Meta-Llama-3.1-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-70B-Instruct/version/4/registry/azureml-meta) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** `en`, `de`, `fr`, `it`, `pt`, `hi`, `es`, and `th` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text |
 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** `en`, `de`, `fr`, `it`, `pt`, `hi`, `es`, and `th` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text |
