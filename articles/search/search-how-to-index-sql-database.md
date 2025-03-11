@@ -178,6 +178,8 @@ The data source definition specifies the data to index, credentials, and policie
    + Alternatively, you can specify a managed identity connection string that doesn't include database secrets with the following format: `Initial Catalog|Database=<your database name>;ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.Sql/servers/<your SQL Server name>/;Connection Timeout=connection timeout length;`.
 
     For more information, see [Connect to Azure SQL Database indexer using a managed identity](search-howto-managed-identities-sql.md).
+> [!NOTE]
+> For the container name property, the value is restricted to only allow letters, numbers, underscores (_), dots (.), single dashes (-), and square brackets ([])
 
 ### Add search fields to an index
 
