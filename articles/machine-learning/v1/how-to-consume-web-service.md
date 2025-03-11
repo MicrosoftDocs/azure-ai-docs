@@ -508,14 +508,6 @@ For a utility that can create client libraries from the specification, see [swag
 > [!TIP]
 > You can retrieve the schema JSON document after you deploy the service. Use the [swagger_uri property](/python/api/azureml-core/azureml.core.webservice.local.localwebservice#swagger-uri) from the deployed web service (for example, `service.swagger_uri`) to get the URI to the local web service's Swagger file.
 
-## Consume the service from Power BI
-
-Power BI supports consumption of Azure Machine Learning web services to enrich the data in Power BI with predictions. 
-
-To generate a web service that's supported for consumption in Power BI, the schema must support the format that's required by Power BI. [Learn how to create a Power BI-supported schema](./how-to-deploy-advanced-entry-script.md#power-bi-compatible-endpoint).
-
-Once the web service is deployed, it's consumable from Power BI dataflows. [Learn how to consume an Azure Machine Learning web service from Power BI](/power-bi/service-machine-learning-integration).
-
 ## Next steps
 
 To view a reference architecture for real-time scoring of Python and deep learning models, go to the [Azure architecture center](/azure/architecture/reference-architectures/ai/realtime-scoring-python).
