@@ -273,7 +273,7 @@ items:
 - name: Translator solutions
   items:
   - name: What are Azure AI Translator solutions?
-    href: solutions-overview.md
+    href: solutions/overview.md
   - name: Language Studio
     items:
     - name: Translate using Language Studio (preview)
@@ -283,12 +283,12 @@ items:
     items:
     - name: What is Microsoft Translator Pro?
       displayName: app service, mobile app, ios, speech-to-speech
-      href: translator-pro/overview.md
+      href: solutions/translator-pro/overview.md
     - name: Language support
       displayName: iso,language code, locale
-      href: translator-pro/language-support.md
+      href: solutions/translator-pro/language-support.md
     - name: FAQ
-      href: translator-pro/faq.yml
+      href: solutions/translator-pro/faq.yml
     - name: Responsible AI and compliance
       items:
       - name: Transparency note
@@ -297,7 +297,7 @@ items:
     items:
     - name: "Automate document translation (preview)"
       displayName: connect, power, automate, flow
-      href: connector/document-translation-flow.md
+      href: solutions/connector/document-translation-flow.md
     - name: Automate text translation (preview)
       displayName: connect, power, automate, flow
       href: solutions/connector/text-translator-flow.md
