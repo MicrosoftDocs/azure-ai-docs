@@ -4,7 +4,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 09/23/2024
-ms.reviewer: v-baolianzou
+ms.reviewer: eur
 ms.author: alexwolf
 author: alexwolfmsft
 recommendations: false
@@ -88,7 +88,7 @@ The access key value can be found in the **Keys & Endpoint** section when examin
     var deploymentName = "tts"; // Default deployment name, update with your own if necessary
     var speechFilePath = "YOUR_AUDIO_FILE_PATH";
     
-    var openAIClient = new AzureOpenAIClient(endpoint, credentials);
+    AzureOpenAIClient openAIClient = new AzureOpenAIClient(endpoint, credentials);
     var audioClient = openAIClient.GetAudioClient(deploymentName);
     
     var result = await audioClient.GenerateSpeechAsync(

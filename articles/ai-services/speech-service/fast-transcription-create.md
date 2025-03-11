@@ -7,7 +7,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 11/12/2024
+ms.date: 2/28/2025
 # Customer intent: As a user who implements audio transcription, I want create transcriptions as quickly as possible.
 ---
 
@@ -24,12 +24,15 @@ Unlike the batch transcription API, fast transcription API only produces transcr
 
 - An Azure AI Speech resource in one of the regions where the fast transcription API is available. The supported regions are: **Australia East**, **Brazil South**, **Central India**, **East US**, **East US 2**, **French Central**, **Japan East**, **North Central US**, **North Europe**, **South Central US**, **Southeast Asia**, **Sweden Central**, **UK South**, **West Europe**, **West US**, **West US 2**, **West US 3**. For more information about regions supported for other Speech service features, see [Speech service regions](./regions.md).
   
-- An audio file (less than 2 hours long and less than 200 MB in size) in one of the formats and codecs supported by the batch transcription API. For more information about supported audio formats, see [supported audio formats](./batch-transcription-audio-data.md#supported-audio-formats-and-codecs).
+- An audio file (less than 2 hours long and less than 200 MB in size) in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, M4A, and SPEEX. For more information about supported audio formats, see [supported audio formats](./batch-transcription-audio-data.md#supported-audio-formats-and-codecs).
 
 ## Use the fast transcription API
 
 > [!TIP]
 > Try out fast transcription in the [Azure AI Foundry portal](https://aka.ms/fasttranscription/studio).
+
+> [!NOTE]
+> Speech service is an elastic service. If you receive 429 error code (too many requests), please follow the [best practices to mitigate throttling during autoscaling](speech-services-quotas-and-limits.md#general-best-practices-to-mitigate-throttling-during-autoscaling).
 
 We learn how to use the fast transcription API (via [Transcriptions - Transcribe](https://go.microsoft.com/fwlink/?linkid=2296107)) with the following scenarios:
 - [Known locale specified](?tabs=locale-specified): Transcribe an audio file with a specified locale. If you know the locale of the audio file, you can specify it to improve transcription accuracy and minimize the latency.
@@ -58,7 +61,7 @@ curl --location 'https://YourServiceRegion.api.cognitive.microsoft.com/speechtot
 
 Construct the form definition according to the following instructions:
 
-- Set the optional (but recommended) `locales` property that should match the expected locale of the audio data to transcribe. In this example, the locale is set to `en-US`. The supported locales that you can specify are: de-DE, en-IN, en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, and zh-CN.
+- Set the optional (but recommended) `locales` property that should match the expected locale of the audio data to transcribe. In this example, the locale is set to `en-US`. The supported locales that you can specify are: de-DE, en-GB, en-IN, en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, and zh-CN.
 
 For more information about `locales` and other properties for the fast transcription API, see the [request configuration options](#request-configuration-options) section later in this guide.
 
@@ -307,7 +310,7 @@ curl --location 'https://YourServiceRegion.api.cognitive.microsoft.com/speechtot
 
 Construct the form definition according to the following instructions:
 
-- Set the optional (but recommended) `locales` property that should match the expected locale of the audio data to transcribe. In this example, the locales are set to `en-US` and `ja-JP`. The supported locales that you can specify are: de-DE, en-IN, en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, and zh-CN.
+- Set the optional (but recommended) `locales` property that should match the expected locale of the audio data to transcribe. In this example, the locales are set to `en-US` and `ja-JP`. The supported locales that you can specify are: de-DE, en-GB, en-IN, en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, and zh-CN.
 
 For more information about `locales` and other properties for the fast transcription API, see the [request configuration options](#request-configuration-options) section later in this guide.
 
@@ -594,7 +597,7 @@ curl --location 'https://YourServiceRegion.api.cognitive.microsoft.com/speechtot
 
 Construct the form definition according to the following instructions:
 
-1. Set the optional (but recommended) `locales` property that should match the expected locale of the audio data to transcribe. In this example, the locale is set to `en-US`. The supported locales that you can specify are: de-DE, en-IN, en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, and zh-CN.
+1. Set the optional (but recommended) `locales` property that should match the expected locale of the audio data to transcribe. In this example, the locale is set to `en-US`. The supported locales that you can specify are: de-DE, en-GB, en-IN, en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, and zh-CN.
 
 1. Set the `diarization` property to recognize and separate multiple speakers in one audio channel. For example, specify `"diarization": {"maxSpeakers": 2, "enabled": true}`. Then the transcription file contains `speaker` entries for each transcribed phrase.
 
@@ -863,7 +866,7 @@ curl --location 'https://YourServiceRegion.api.cognitive.microsoft.com/speechtot
 
 Construct the form definition according to the following instructions:
 
-1. Set the optional (but recommended) `locales` property that should match the expected locale of the audio data to transcribe. In this example, the locale is set to `en-US`. The supported locales that you can specify are: de-DE, en-IN, en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, and zh-CN.
+1. Set the optional (but recommended) `locales` property that should match the expected locale of the audio data to transcribe. In this example, the locale is set to `en-US`. The supported locales that you can specify are: de-DE, en-GB, en-IN, en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, and zh-CN.
 
 1. Set the `channels` property to specify the zero-based indices of the channels to be transcribed separately. Up to two channels are supported unless diarization is enabled. In this example, channels 0 and 1 are specified.
 
@@ -1097,7 +1100,7 @@ Here are some property options to configure a transcription when you call the [T
 |----------|-------------|----------------------|
 | `channels` | The list of zero-based indices of the channels to be transcribed separately. Up to two channels are supported unless diarization is enabled. By default, the fast transcription API merges all input channels into a single channel and then performs the transcription. If this isn't desirable, channels can be transcribed independently without merging.<br/><br/>If you want to transcribe the channels from a stereo audio file separately, you need to specify `[0,1]`, `[0]`, or `[1]`. Otherwise, stereo audio is merged to mono and only a single channel is transcribed.<br/><br/>If the audio is stereo and diarization is enabled, then you can't set the `channels` property to `[0,1]`. The Speech service doesn't support diarization of multiple channels.<br/><br/>For mono audio, the `channels` property is ignored, and the audio is always transcribed as a single channel.| Optional |
 | `diarization` | The diarization configuration. Diarization is the process of recognizing and separating multiple speakers in one audio channel. For example, specify `"diarization": {"maxSpeakers": 2, "enabled": true}`. Then the transcription file contains `speaker` entries (such as `"speaker": 0` or `"speaker": 1`) for each transcribed phrase. | Optional |
-| `locales` | The list of locales that should match the expected locale of the audio data to transcribe.<br/><br/>If you know the locale of the audio file, you can specify it to improve transcription accuracy and minimize the latency. If a single locale is specified, that locale is used for transcription.<br/><br/>But if you're not sure about the locale, you can specify multiple locales. Language identification might be more accurate with a more precise list of candidate locales.<br/><br/>If you don't specify any locale, or if the locales that you specify aren't in the audio file, then the Speech service still tries to identify the language. If the language can't be identified, an error is returned.<br/><br/>The supported locales that you can specify are: de-DE, en-IN, en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, and zh-CN. You can get the latest supported languages via the [Transcriptions - List Supported Locales](/rest/api/speechtotext/transcriptions/list-supported-locales) REST API. For more information about locales, see the [Speech service language support](language-support.md?tabs=stt) documentation.| Optional but recommended if you know the expected locale. |
+| `locales` | The list of locales that should match the expected locale of the audio data to transcribe.<br/><br/>If you know the locale of the audio file, you can specify it to improve transcription accuracy and minimize the latency. If a single locale is specified, that locale is used for transcription.<br/><br/>But if you're not sure about the locale, you can specify multiple locales. Language identification might be more accurate with a more precise list of candidate locales.<br/><br/>If you don't specify any locale, or if the locales that you specify aren't in the audio file, then the Speech service still tries to identify the language. If the language can't be identified, an error is returned.<br/><br/>The supported locales that you can specify are: de-DE, en-GB, en-IN, en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, and zh-CN. You can get the latest supported languages via the [Transcriptions - List Supported Locales](/rest/api/speechtotext/transcriptions/list-supported-locales) REST API. For more information about locales, see the [Speech service language support](language-support.md?tabs=stt) documentation.| Optional but recommended if you know the expected locale. |
 | `profanityFilterMode` |Specifies how to handle profanity in recognition results. Accepted values are `None` to disable profanity filtering, `Masked` to replace profanity with asterisks, `Removed` to remove all profanity from the result, or `Tags` to add profanity tags. The default value is `Masked`. | Optional |
 
 ## Related content

@@ -7,7 +7,7 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/20/2024
+ms.date: 3/10/2025
 ms.custom: devx-track-csharp, devx-track-extended-java, devx-track-python
 #Customer intent: As a developer, I want to learn how to enable logging in the Speech SDK so that I can get additional information and diagnostics from the Speech SDK's core components.
 ---

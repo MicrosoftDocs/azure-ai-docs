@@ -17,7 +17,7 @@ ms.collection: ce-skilling-ai-copilot
 
 # Azure AI Model Inference API | Azure Machine Learning
 
-The Azure AI Model Inference is an API that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. Developers can talk with different models deployed in Azure AI Foundry portal without changing the underlying code they are using.
+The Azure AI Model Inference is an API that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. Developers can talk with different models deployed in [Azure AI Foundry portal](https://ai.azure.com/) without changing the underlying code they are using.
 
 [!INCLUDE [machine-learning-preview-items-disclaimer](includes/machine-learning-preview-items-disclaimer.md)]
 

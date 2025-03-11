@@ -6,8 +6,8 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: devx-track-python
 ms.topic: quickstart
-ms.date: 8/09/2024
-ms.reviewer: v-baolianzou
+ms.date: 3/10/2025
+ms.reviewer: eur
 ms.author: eur
 author: eric-urban
 recommendations: false

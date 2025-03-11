@@ -7,7 +7,7 @@ ms.date: 01/23/2025
 ms.topic: include
 ---
 
-[!INCLUDE [Feature preview](../../../../ai-studio/includes/feature-preview.md)]
+[!INCLUDE [Feature preview](../../../includes/feature-preview.md)]
 
 Models deployed to Azure AI model inference in Azure AI Services support key-less authorization using Microsoft Entra ID. Key-less authorization enhances security, simplifies the user experience, reduces operational complexity, and provides robust compliance support for modern development. It makes it a strong choice for organizations adopting secure and scalable identity management solutions.
 
@@ -47,3 +47,17 @@ To complete this article, you need:
   * Security principal: e.g. your user account.
   * Role definition: the *Cognitive Services User* role.
   * Scope: the Azure AI Services resource.
+
+* If you want to create a custom role definition instead of using *Cognitive Services User* role, ensure the role has the following permissions:
+
+  ```json
+  {
+    "permissions": [
+      {
+        "dataActions": [
+          "Microsoft.CognitiveServices/accounts/MaaS/*"
+        ]
+      }
+    ]
+  }
+  ```

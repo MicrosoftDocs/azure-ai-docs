@@ -79,7 +79,7 @@ Passwordless authentication is more secure than key-based alternatives and is th
     var deploymentName = "whisper"; // Default deployment name, update with your own if necessary
     var audioFilePath = "YOUR_AUDIO_FILE_PATH";
     
-    var openAIClient = new AzureOpenAIClient(endpoint, credentials);
+    AzureOpenAIClient openAIClient = new AzureOpenAIClient(endpoint, credentials);
     
     var audioClient = openAIClient.GetAudioClient(deploymentName);
     

@@ -5,7 +5,7 @@ description: Learn how to use the Realtime API to interact with the Azure OpenAI
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 2/7/2024
+ms.date: 2/7/2025
 author: eric-urban
 ms.author: eur
 recommendations: false

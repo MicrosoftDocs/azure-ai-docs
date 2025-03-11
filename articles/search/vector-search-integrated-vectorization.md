@@ -1,7 +1,7 @@
 ---
 title: Integrated vectorization
 titleSuffix: Azure AI Search
-description: Add a data chunking and embedding step in an Azure AI Search skillset to vectorize content during indexing.
+description: Add a vector embedding step in an Azure AI Search skillset to vectorize content during indexing or queries.
 
 author: heidisteen
 ms.author: heidist
@@ -9,30 +9,29 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 09/04/2024
+ms.date: 02/24/2025
 ---
 
-# Integrated data chunking and embedding in Azure AI Search
+# Integrated vector embedding in Azure AI Search
 
 Integrated vectorization is an extension of the indexing and query pipelines in Azure AI Search. It adds the following capabilities:
 
-+ Data chunking during indexing
-+ Text-to-vector conversion during indexing
-+ Text-to-vector conversion during queries
++ Vector encoding during indexing
++ Vector encoding during queries
 
-Data chunking isn't a hard requirement, but unless your raw documents are small, chunking is necessary for meeting the token input requirements of embedding models.
+[Data chunking](vector-search-how-to-chunk-documents.md) isn't a hard requirement, but unless your raw documents are small, chunking is necessary for meeting the token input requirements of embedding models.
 
-Vector conversions are one-way: text-to-vector. There's no vector-to-text conversion for queries or results (for example, you can't convert a vector result to a human-readable string).
+Vector conversions are one-way: nonvector-to-vector. For example, there's no vector-to-text conversion for queries or results, such as converting a vector result to a human-readable string, which is why indexes contain both vector and nonvector fields.
 
-Integrated data chunking and vectorization speeds up the development and minimizes maintenance tasks during data ingestion and query time because there are fewer external components to configure and manage. This capability is now generally available.
+Integrated vectorization speeds up the development and minimizes maintenance tasks during data ingestion and query time because there are fewer operations that you have to implement manually. This capability is now generally available.
 
 ## Using integrated vectorization during indexing
 
-For data chunking and text-to-vector conversions, you're taking a dependency on the following components:
+For integrated data chunking and vector conversions, you're taking a dependency on the following components:
 
-+ [An indexer](search-indexer-overview.md), which retrieves raw data from a [supported data source](search-indexer-overview.md#supported-data-sources) and serves as the pipeline engine.
++ [An indexer](search-indexer-overview.md), which retrieves raw data from a [supported data source](search-indexer-overview.md#supported-data-sources) and drives the pipeline engine.
 
-+ [A vector index](search-what-is-an-index.md) to receive the chunked and vectorized content.
++ [A search index](search-what-is-an-index.md) to receive the chunked and vectorized content.
 
 + [A skillset](cognitive-search-working-with-skillsets.md) configured for:
 
@@ -94,10 +93,6 @@ Data chunking (Text Split skill) is free and available on all Azure AI services 
 
 + Combine vector and text fields for hybrid search, with or without semantic ranking. Integrated vectorization simplifies all of the [scenarios supported by vector search](vector-search-overview.md#what-scenarios-can-vector-search-support).
 
-## When to use integrated vectorization
-
-We recommend using the built-in vectorization support of Azure AI Foundry. If this approach doesn't meet your needs, you can create indexers and skillsets that invoke integrated vectorization using the programmatic interfaces of Azure AI Search.
-
 ## How to use integrated vectorization
 
 For query-only vectorization:
@@ -146,7 +141,7 @@ Here are some of the key benefits of the integrated vectorization:
 
 + Automate indexing end-to-end. When data changes in the source (such as in Azure Storage, Azure SQL, or Cosmos DB), the indexer can move those updates through the entire pipeline, from retrieval, to document cracking, through optional AI-enrichment, data chunking, vectorization, and indexing.
 
-+ Batching and retry logic is built in (non-configurable). Azure AI Search has internal retry policies for throttling errors that surface due to the Azure OpenAI endpoint maxing out on token quotas for the embedding model. We recommend putting the indexer on a schedule (for example, every 5 minutes) so the indexer can process any calls that were throttled by the Azure OpenAI endpoint despite of the retry policies.
++ Batching and retry logic is built in (non-configurable). Azure AI Search has internal retry policies for throttling errors that surface due to the Azure OpenAI endpoint maxing out on token quotas for the embedding model. We recommend putting the indexer on a schedule (for example, every 5 minutes) so the indexer can process any calls that are throttled by the Azure OpenAI endpoint despite of the retry policies.
 
 + Projecting chunked content to secondary indexes. Secondary indexes are created as you would any search index (a schema with fields and other constructs), but they're populated in tandem with a primary index by an indexer. Content from each source document flows to fields in primary and secondary indexes during the same indexing run. 
 

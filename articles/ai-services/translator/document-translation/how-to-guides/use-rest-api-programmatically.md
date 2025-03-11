@@ -1283,7 +1283,7 @@ func main() {
 
 ## Learn more
 
-* [Translator v3 API reference](../../reference/v3-0-reference.md)
+* [Translator v3 API reference](../../text-translation/reference/v3/reference.md)
 * [Language support](../../language-support.md)
 
 ## Next steps

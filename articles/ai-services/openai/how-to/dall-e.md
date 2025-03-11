@@ -1,20 +1,20 @@
 ---
-title: How to work with DALL-E models 
+title: How to use DALL-E models 
 titleSuffix: Azure OpenAI Service
-description: Learn about the options for how to use the DALL-E image generation models.
+description: Learn how to generate images with the DALL-E models, and learn about the configuration options that are available.
 author: PatrickFarley
 ms.author: pafarley 
 ms.service: azure-ai-openai
 ms.custom: 
 ms.topic: how-to
-ms.date: 10/02/2024
+ms.date: 02/20/2025
 manager: nitinme
 keywords: 
 zone_pivot_groups: 
 # Customer intent: as an engineer or hobbyist, I want to know how to use DALL-E image generation models to their full capability.
 ---
 
-# How to work with the DALL-E models
+# How to use the DALL-E models
 
 OpenAI's DALL-E models generate images based on user-provided text prompts. This guide demonstrates how to use the DALL-E models and configure their options through REST API calls.
 
@@ -104,7 +104,7 @@ It's also possible that the generated image itself is filtered. In this case, th
 }
 ```
 
-## Writing image prompts
+## Write image prompts
 
 Your image prompts should describe the content you want to see in the image, and the visual style of image.
 
@@ -124,7 +124,7 @@ Specify the size of the generated images. Must be one of `1024x1024`, `1792x1024
 
 ### Style
 
-DALL-E 3 introduces two style options: `natural` and `vivid`. The natural style is more similar to the DALL-E 2 default style, while the vivid style generates more hyper-real and cinematic images.
+DALL-E 3 offers two style options: `natural` and `vivid`. The natural style is more similar to the default style of older models, while the vivid style generates more hyper-real and cinematic images.
 
 The natural style is useful in cases where DALL-E 3 over-exaggerates or confuses a subject that's meant to be more simple, subdued, or realistic.
 

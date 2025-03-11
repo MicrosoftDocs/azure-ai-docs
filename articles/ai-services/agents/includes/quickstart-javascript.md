@@ -31,11 +31,18 @@ ms.custom: devx-track-js
 | Run       | Activation of an agent to begin running based on the contents of Thread. The agent uses its configuration and Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread. |
 | Run Step  | A detailed list of steps the agent took as part of a Run. An agent can call tools or create Messages during its run. Examining Run Steps allows you to understand how the agent is getting to its results.                                |
 
-Run the following commands to install the npm packages.
+First, initialize a new project by running:
+
+```console
+npm init -y
+```
+
+Run the following commands to install the npm packages required.
 
 ```console
 npm install @azure/ai-projects
 npm install @azure/identity
+npm install dotenv
 ```
 
 Next, to authenticate your API requests and run the program, use the [az login](/cli/azure/authenticate-azure-cli-interactively) command to sign into your Azure subscription.
@@ -60,7 +67,14 @@ For example, your connection string may look something like:
 
 `eastus.api.azureml.ms;12345678-abcd-1234-9fc6-62780b3d3e05;my-resource-group;my-project-name`
 
-Set this connection string as an environment variable named `PROJECT_CONNECTION_STRING`.
+Set this connection string as an environment variable named `PROJECT_CONNECTION_STRING` in a `.env` file.
+
+> [!IMPORTANT] 
+> * This quickstart code uses environment variables for sensitive configuration. Never commit your `.env` file to version control by making sure `.env` is listed in your `.gitignore` file.
+> * _Remember: If you accidentally commit sensitive information, consider those credentials compromised and rotate them immediately._
+
+
+Next, create an `index.js` file and paste in the code below:
 
 ```javascript
 // index.js
@@ -75,12 +89,16 @@ import {
   ToolUtility,
 } from "@azure/ai-projects";
 import { DefaultAzureCredential } from "@azure/identity";
+import dotenv from 'dotenv';
 
-const connectionString =
-  process.env["AZURE_AI_PROJECTS_CONNECTION_STRING"] || "<project connection string>";
+dotenv.config();
 
+// Set the connection string from the environment variable
+const connectionString = process.env.PROJECT_CONNECTION_STRING;
+
+// Throw an error if the connection string is not set
 if (!connectionString) {
-  throw new Error("AZURE_AI_PROJECTS_CONNECTION_STRING must be set in the environment variables");
+  throw new Error("Please set the PROJECT_CONNECTION_STRING environment variable.");
 }
 
 export async function main() {
@@ -149,7 +167,7 @@ export async function main() {
   // messages[0] is the most recent
   for (let i = messages.data.length - 1; i >= 0; i--) {
     const m = messages.data[i];
-    if (isOutputOfType(m.content[0], "text")) {
+    if (m.content && m.content.length > 0 && isOutputOfType(m.content[0], "text")) {
       const textContent = m.content[0];
       console.log(`${textContent.text.value}`);
       console.log(`---------------------------------`);
@@ -164,3 +182,5 @@ main().catch((err) => {
   console.error("The sample encountered an error:", err);
 });
 ```
+
+Run the code using `node index.js` and observe.

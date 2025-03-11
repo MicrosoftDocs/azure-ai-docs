@@ -29,16 +29,8 @@ When you use Azure OpenAI On Your Data to ingest data from Azure blob storage, l
 
 * Steps 1 and 2 are only used for file upload.
 * Downloading URLs to your blob storage is not illustrated in this diagram. After web pages are downloaded from the internet and uploaded to blob storage, steps 3 onward are the same.
-* Two indexers, two indexes, two data sources and a [custom skill](/azure/search/cognitive-search-custom-skill-interface) are created in the Azure AI Search resource.
-* The chunks container is created in the blob storage.
-* If the schedule triggers the ingestion, the ingestion process starts from step 7.
-*  Azure OpenAI's `preprocessing-jobs` API implements the [Azure AI Search customer skill web API protocol](/azure/search/cognitive-search-custom-skill-web-api), and processes the documents in a queue. 
-* Azure OpenAI:
-    1. Internally uses the first indexer created earlier to crack the documents.
-    1. Uses a heuristic-based algorithm to perform chunking. It honors table layouts and other formatting elements in the chunk boundary to ensure the best chunking quality.
-    1. If you choose to enable vector search, Azure OpenAI uses the selected embedding setting to vectorize the chunks.
-* When all the data that the service is monitoring are processed, Azure OpenAI triggers the second indexer.
-* The indexer stores the processed data into an Azure AI Search service.
+* One indexer, one index, and one data source in the Azure AI Search resource is created using prebuilt skills and [integrated vectorization](/azure/search/vector-search-integrated-vectorization.md).
+* Azure AI Search handles the extraction, chunking, and vectorization of chunked documents through integrated vectorization. If a scheduling interval is specified, the indexer will run accordingly. 
 
 For the managed identities used in service calls, only system assigned managed identities are supported. User assigned managed identities aren't supported.
 
@@ -167,7 +159,7 @@ To set the managed identities via the management API, see [the management API re
 
 ### Enable trusted service
 
-To allow your Azure AI Search to call your Azure OpenAI `preprocessing-jobs` as custom skill web API, while Azure OpenAI has no public network access, you need to set up Azure OpenAI to bypass Azure AI Search as a trusted service based on managed identity. Azure OpenAI identifies the traffic from your Azure AI Search by verifying the claims in the JSON Web Token (JWT). Azure AI Search must use the system assigned managed identity authentication to call the custom skill web API. 
+To allow your Azure AI Search to call your Azure OpenAI `embedding model, while Azure OpenAI has no public network access, you need to set up Azure OpenAI to bypass Azure AI Search as a trusted service based on managed identity. Azure OpenAI identifies the traffic from your Azure AI Search by verifying the claims in the JSON Web Token (JWT). Azure AI Search must use the system assigned managed identity authentication to call the embedding endpoint. 
 
 Set `networkAcls.bypass` as `AzureServices` from the management API. For more information, see [Virtual networks article](/azure/ai-services/cognitive-services-virtual-networks?tabs=portal#grant-access-to-trusted-azure-services-for-azure-openai).
 
@@ -177,7 +169,7 @@ This step can be skipped only if you have a [shared private link](#create-shared
 
 You can disable public network access of your Azure OpenAI resource in the Azure portal. 
 
-To allow access to your Azure OpenAI Service from your client machines, like using Azure AI Foundry portal, you need to create [private endpoint connections](/azure/ai-services/cognitive-services-virtual-networks?tabs=portal#use-private-endpoints) that connect to your Azure OpenAI resource.
+To allow access to your Azure OpenAI Service from your client machines, like using [Azure AI Foundry portal](https://ai.azure.com/), you need to create [private endpoint connections](/azure/ai-services/cognitive-services-virtual-networks?tabs=portal#use-private-endpoints) that connect to your Azure OpenAI resource.
 
 
 ## Configure Azure AI Search
@@ -201,7 +193,7 @@ For more information, see the [Azure AI Search RBAC article](/azure/search/searc
 
 You can disable public network access of your Azure AI Search resource in the Azure portal. 
 
-To allow access to your Azure AI Search resource from your client machines, like using Azure AI Foundry portal, you need to create [private endpoint connections](/azure/search/service-create-private-endpoint) that connect to your Azure AI Search resource.
+To allow access to your Azure AI Search resource from your client machines, like using [Azure AI Foundry portal](https://ai.azure.com/), you need to create [private endpoint connections](/azure/search/service-create-private-endpoint) that connect to your Azure AI Search resource.
 
 
 ### Enable trusted service
@@ -255,7 +247,7 @@ In the Azure portal, navigate to your storage account networking tab, choose "Se
 
 You can disable public network access of your Storage Account in the Azure portal. 
 
-To allow access to your Storage Account from your client machines, like using Azure AI Foundry portal, you need to create [private endpoint connections](/azure/storage/common/storage-private-endpoints) that connect to your blob storage.
+To allow access to your Storage Account from your client machines, like using [Azure AI Foundry portal](https://ai.azure.com/), you need to create [private endpoint connections](/azure/storage/common/storage-private-endpoints) that connect to your blob storage.
 
 
 
@@ -268,7 +260,7 @@ So far you have already setup each resource work independently. Next you need to
 | `Search Index Data Reader` | Azure OpenAI | Azure AI Search | Inference service queries the data from the index. |
 | `Search Service Contributor` | Azure OpenAI | Azure AI Search | Inference service queries the index schema for auto fields mapping. Data ingestion service creates index, data sources, skill set, indexer, and queries the indexer status. |
 | `Storage Blob Data Contributor` | Azure OpenAI | Storage Account | Reads from the input container, and writes the preprocessed result to the output container. |
-| `Cognitive Services OpenAI Contributor` | Azure AI Search | Azure OpenAI | Custom skill. |
+| `Cognitive Services OpenAI Contributor` | Azure AI Search | Azure OpenAI | to allow the Azure AI Search resource access to the Azure OpenAI embedding endpoint. |
 | `Storage Blob Data Reader` | Azure AI Search | Storage Account | Reads document blobs and chunk blobs. |
 | `Reader` | Azure AI Foundry Project | Azure Storage Private Endpoints (Blob & File) | Read search indexes created in blob storage within an Azure AI Foundry Project. |
 | `Cognitive Services OpenAI User` | Web app | Azure OpenAI | Inference. |
@@ -284,9 +276,9 @@ To enable the developers to use these resources to build applications, the admin
 
 |Role| Resource | Description |
 |--|--|--|
-| `Cognitive Services OpenAI Contributor` | Azure OpenAI | Call public ingestion API from Azure AI Foundry portal. The `Contributor` role is not enough, because if you only have `Contributor` role, you cannot call data plane API via Microsoft Entra ID authentication, and Microsoft Entra ID authentication is required in the secure setup described in this article. |
-| `Contributor` | Azure AI Search | List API-Keys to list indexes from Azure AI Foundry portal.|
-| `Contributor` | Storage Account | List Account SAS to upload files from Azure AI Foundry portal.|
+| `Cognitive Services OpenAI Contributor` | Azure OpenAI | Call public ingestion API from [Azure AI Foundry portal](https://ai.azure.com/). The `Contributor` role is not enough, because if you only have `Contributor` role, you cannot call data plane API via Microsoft Entra ID authentication, and Microsoft Entra ID authentication is required in the secure setup described in this article. |
+| `Contributor` | Azure AI Search | List API-Keys to list indexes from [Azure AI Foundry portal](https://ai.azure.com/).|
+| `Contributor` | Storage Account | List Account SAS to upload files from [Azure AI Foundry portal](https://ai.azure.com/).|
 | `Contributor` | The resource group or Azure subscription where the developer need to deploy the web app to | Deploy web app to the developer's Azure subscription.|
 | `Role Based Access Control Administrator` | Azure OpenAI | Permission to configure the necessary role assignment on the Azure OpenAI resource. Enables the web app to call Azure OpenAI. |
 
@@ -310,7 +302,7 @@ Configure your local machine `hosts` file to point your resources host names to 
 
 ## Azure AI Foundry portal
 
-You should be able to use all Azure AI Foundry portal features, including both ingestion and inference, from your on-premises client machines.
+You should be able to use all [Azure AI Foundry portal](https://ai.azure.com/) features, including both ingestion and inference, from your on-premises client machines.
 
 ## Web app
 The web app communicates with your Azure OpenAI resource. Since your Azure OpenAI resource has public network disabled, the web app needs to be set up to use the private endpoint in your virtual network to access your Azure OpenAI resource.
@@ -321,7 +313,7 @@ The web app needs to resolve your Azure OpenAI host name to the private IP of th
 1. [Add a DNS record](/azure/dns/private-dns-getstarted-portal#create-an-additional-dns-record). The IP is the private IP of the private endpoint for your Azure OpenAI resource, and you can get the IP address from the network interface associated with the private endpoint for your Azure OpenAI.
 1. [Link the private DNS zone to your virtual network](/azure/dns/private-dns-getstarted-portal#link-the-virtual-network) so the web app integrated in this virtual network can use this private DNS zone.
 
-When deploying the web app from Azure AI Foundry portal, select the same location with the virtual network, and select a proper SKU, so it can support the [virtual network integration feature](/azure/app-service/overview-vnet-integration). 
+When deploying the web app from [Azure AI Foundry portal](https://ai.azure.com/), select the same location with the virtual network, and select a proper SKU, so it can support the [virtual network integration feature](/azure/app-service/overview-vnet-integration). 
 
 After the web app is deployed, from the Azure portal networking tab, configure the web app outbound traffic virtual network integration, choose the third subnet that you reserved for web app.
 

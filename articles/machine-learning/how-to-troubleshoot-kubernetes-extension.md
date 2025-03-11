@@ -7,14 +7,14 @@ ms.author: larryfr
 ms.reviewer: jinzhong
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 03/10/2024
+ms.date: 03/05/2025
 ms.topic: how-to
 ms.custom: build-spring-2022, cliv2, sdkv2
 ---
 
 # Troubleshoot Azure Machine Learning extension
 
-In this article, you learn how to troubleshoot common problems you may encounter with [Azure Machine Learning extension](./how-to-deploy-kubernetes-extension.md) deployment in your AKS or Arc-enabled Kubernetes.
+In this article, you learn how to troubleshoot common problems you might encounter with [Azure Machine Learning extension](./how-to-deploy-kubernetes-extension.md) deployment in your Azure Kubernetes Service (AKS) or Arc-enabled Kubernetes.
 
 ## How is Azure Machine Learning extension installed
 Azure Machine Learning extension is released as a helm chart and installed by Helm V3. All components of Azure Machine Learning extension are installed in `azureml` namespace. You can use the following commands to check the extension status. 
@@ -62,13 +62,13 @@ Use the following steps to mitigate the issue.
 * When the resource is also used by other components in your cluster and can't be modified. Refer to [deploy Azure Machine Learning extension](./how-to-deploy-kubernetes-extension.md#review-azure-machine-learning-extension-configuration-settings) to see if there's a configuration setting to disable the conflict resource. 
 
 ## HealthCheck of extension
-When the installation failed and didn't hit any of the above error messages, you can use the built-in health check job to make a comprehensive check on the extension. Azure machine learning extension contains a `HealthCheck` job to precheck your cluster readiness when you try to install, update or delete the extension. The HealthCheck job outputs a report, which is saved in a configmap named `arcml-healthcheck` in `azureml` namespace. The error codes and possible solutions for the report are listed in [Error Code of HealthCheck](#error-code-of-healthcheck). 
+When the installation failed and didn't hit any of the previous error messages, you can use the built-in health check job to make a comprehensive check on the extension. Azure Machine Learning extension contains a `HealthCheck` job to precheck your cluster readiness when you try to install, update, or delete the extension. The HealthCheck job outputs a report, which is saved in a configmap named `arcml-healthcheck` in `azureml` namespace. The error codes and possible solutions for the report are listed in [Error Code of HealthCheck](#error-code-of-healthcheck). 
 
 Run this command to get the HealthCheck report,
 ```bash
 kubectl describe configmap -n azureml arcml-healthcheck
 ```
-The health check is triggered whenever you install, update or delete the extension. The health check report is structured with several parts `pre-install`, `pre-rollback`, `pre-upgrade` and `pre-delete`.
+The health check is triggered whenever you install, update, or delete the extension. The health check report is structured with several parts `pre-install`, `pre-rollback`, `pre-upgrade`, and `pre-delete`.
 
 - If the extension is installed failed, you should look into `pre-install` and `pre-delete`.
 - If the extension is updated failed, you should look into `pre-upgrade` and `pre-rollback`.
@@ -91,7 +91,7 @@ This table shows how to troubleshoot the error codes returned by the HealthCheck
 |E45002 | PROMETHEUS_CONFLICT | The Prometheus Operator installed is conflict with your existing Prometheus Operator. For more information, see [Prometheus operator](#prometheus-operator) |
 |E45003 | BAD_NETWORK_CONNECTIVITY | You need to meet [network-requirements](./how-to-access-azureml-behind-firewall.md#scenario-use-kubernetes-compute).|
 |E45004 | AZUREML_FE_ROLE_CONFLICT |Azure Machine Learning extension isn't supported in the [legacy AKS](./how-to-attach-kubernetes-anywhere.md#comparison-of-kubernetescompute-and-legacy-akscompute-targets). To install Azure Machine Learning extension, you need to [delete the legacy azureml-fe components](v1/how-to-create-attach-kubernetes.md#delete-azureml-fe-related-resources).|
-|E45005 | AZUREML_FE_DEPLOYMENT_CONFLICT | Azure Machine Learning extension isn't supported in the [legacy AKS](./how-to-attach-kubernetes-anywhere.md#comparison-of-kubernetescompute-and-legacy-akscompute-targets). To install Azure Machine Learning extension, you need to run the command below this form to delete the legacy azureml-fe components, more detail you can referto [here](v1/how-to-create-attach-kubernetes.md#update-the-cluster).|
+|E45005 | AZUREML_FE_DEPLOYMENT_CONFLICT | Azure Machine Learning extension isn't supported in the [legacy AKS](./how-to-attach-kubernetes-anywhere.md#comparison-of-kubernetescompute-and-legacy-akscompute-targets). To install Azure Machine Learning extension, you need to run the command below this form to delete the legacy azureml-fe components, more detail you can refer to [here](v1/how-to-create-attach-kubernetes.md#update-the-cluster).|
 
 Commands to delete the legacy azureml-fe components in the AKS cluster:
 ```shell
@@ -152,7 +152,7 @@ In this case, the existing prometheus operator manages all Prometheus instances.
     ```
 
 ### DCGM exporter
-[Dcgm-exporter](https://github.com/NVIDIA/dcgm-exporter) is the official tool recommended by NVIDIA for collecting GPU metrics. We've integrated it into Azure Machine Learning extension. But, by default, dcgm-exporter isn't enabled, and no GPU metrics are collected. You can specify ```installDcgmExporter``` flag to ```true``` to enable it. As it's NVIDIA's official tool, you may already have it installed in your GPU cluster. If so, you can set ```installDcgmExporter```  to ```false``` and follow the steps to integrate your dcgm-exporter into Azure Machine Learning extension. Another thing to note is that dcgm-exporter allows user to config which metrics to expose. For Azure Machine Learning extension, make sure ```DCGM_FI_DEV_GPU_UTIL```, ```DCGM_FI_DEV_FB_FREE``` and ```DCGM_FI_DEV_FB_USED``` metrics are exposed. 
+[Dcgm-exporter](https://github.com/NVIDIA/dcgm-exporter) is the official tool recommended by NVIDIA for collecting GPU metrics. It's integrated into Azure Machine Learning extension. But, by default, dcgm-exporter isn't enabled, and no GPU metrics are collected. You can specify ```installDcgmExporter``` flag to ```true``` to enable it. As it's NVIDIA's official tool, you might already have it installed in your GPU cluster. If so, you can set ```installDcgmExporter```  to ```false``` and follow the steps to integrate your dcgm-exporter into Azure Machine Learning extension. Another thing to note is that dcgm-exporter allows user to config which metrics to expose. For Azure Machine Learning extension, make sure ```DCGM_FI_DEV_GPU_UTIL```, ```DCGM_FI_DEV_FB_FREE``` and ```DCGM_FI_DEV_FB_USED``` metrics are exposed. 
 
 1. Make sure you have Aureml extension and dcgm-exporter installed successfully. Dcgm-exporter can be installed by [Dcgm-exporter helm chart](https://github.com/NVIDIA/dcgm-exporter) or [Gpu-operator helm chart](https://github.com/NVIDIA/gpu-operator)
 
@@ -237,10 +237,10 @@ volcano-scheduler.conf: |
         - name: nodeorder
         - name: binpack
 ```
-You need to use this same config settings, and you need to disable `job/validate` webhook in the volcano admission if your **volcano version is lower than 1.6**, so that Azure Machine Learning training workloads can perform properly.
+You need to use this same config setting, and you need to disable `job/validate` webhook in the volcano admission if your **volcano version is lower than 1.6**, so that Azure Machine Learning training workloads can perform properly.
 
 #### Volcano scheduler integration supporting cluster autoscaler
-As discussed in this [thread](https://github.com/volcano-sh/volcano/issues/2558) , the **gang plugin** is not working well with the cluster autoscaler(CA) and also the node autoscaler in AKS. 
+As discussed in this [thread](https://github.com/volcano-sh/volcano/issues/2558) , the **gang plugin** isn't working well with the cluster autoscaler(CA) and also the node autoscaler in AKS. 
 
 If you use the volcano that comes with the Azure Machine Learning extension via setting `installVolcano=true`, the extension has a scheduler config by default, which configures the **gang** plugin to prevent job deadlock. Therefore, the cluster autoscaler(CA) in AKS cluster won't be supported with the volcano installed by extension.
 
@@ -265,7 +265,7 @@ volcano-scheduler.conf: |
 ```
 
 To use this config in your AKS cluster, you need to follow the following steps:  
-1. Create a configmap file with the above config in the `azureml` namespace. This namespace will generally be created when you install the Azure Machine Learning extension.
+1. Create a configmap file with the previous config in the `azureml` namespace. This namespace will generally be created when you install the Azure Machine Learning extension.
 1. Set `volcanoScheduler.schedulerConfigMap=<configmap name>` in the extension config to apply this configmap. And you need to skip the resource validation when installing the extension by configuring `amloperator.skipResourceValidation=true`. For example:
     ```azurecli
     az k8s-extension update --name <extension-name> --config volcanoScheduler.schedulerConfigMap=<configmap name> amloperator.skipResourceValidation=true --cluster-type managedClusters --cluster-name <your-AKS-cluster-name> --resource-group <your-RG-name>
@@ -276,9 +276,9 @@ To use this config in your AKS cluster, you need to follow the following steps:
 > 
 > * To avoid this situation, you can **use same instance type across the jobs**.
 > 
-> Using a scheduler configuration other than the default provided by the Azure Machine Learning extension may not be fully supported. Proceed with caution.
+> Using a scheduler configuration other than the default provided by the Azure Machine Learning extension might not be fully supported. Proceed with caution.
 >
-> Note that you need to disable `job/validate` webhook in the volcano admission if your **volcano version is lower than 1.6**.
+> You need to disable `job/validate` webhook in the volcano admission if your **volcano version is lower than 1.6**.
 
 ### Ingress Nginx controller
 
@@ -303,11 +303,11 @@ az ml extension update --config nginxIngress.controller="k8s.io/amlarc-ingress-n
 
 **Symptom**
 
- The nginx ingress controller installed with the Azure Machine Learning extension crashes due to out-of-memory (OOM) errors even when there is no workload. The controller logs do not show any useful information to diagnose the problem.
+ The nginx ingress controller installed with the Azure Machine Learning extension crashes due to out-of-memory (OOM) errors even when there's no workload. The controller logs don't show any useful information to diagnose the problem.
 
 **Possible Cause**
 
-This issue may occur if the nginx ingress controller runs on a node with many CPUs. By default, the nginx ingress controller spawns worker processes according to the number of CPUs, which may consume more resources and cause OOM errors on nodes with more CPUs. This is a known [issue](https://github.com/kubernetes/ingress-nginx/issues/8166) reported on GitHub
+This issue might occur if the nginx ingress controller runs on a node with many CPUs. By default, the nginx ingress controller spawns worker processes according to the number of CPUs, which might consume more resources and cause OOM errors on nodes with more CPUs. This is a known [issue](https://github.com/kubernetes/ingress-nginx/issues/8166) reported on GitHub
 
 **Resolution**
 

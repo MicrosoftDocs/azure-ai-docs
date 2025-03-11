@@ -14,7 +14,7 @@ ms.author: pafarley
 
 # Use Content Safety in Azure AI Foundry portal 
 
-Azure AI Foundry includes a Content Safety **try it out** page that lets you use the core detection models and other content safety features.
+[Azure AI Foundry](https://ai.azure.com) includes a Content Safety **try it out** page that lets you use the core detection models and other content safety features.
 
 ## Prerequisites 
 
