@@ -497,7 +497,7 @@ Because nearest neighbor search always returns the requested `k` neighbors, it's
 
 This parameter is still in preview. We recommend preview REST API version [2024-05-01-preview](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true).
 
-In this example, all matches that score below 0.8 are excluded from vector search results, even if the number of results fall below `k`.
+In this example, all matches that score below 0.8 are excluded from vector search results, even if the number of results falls below `k`.
 
 ```http
 POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2024-05-01-preview 
