@@ -8,7 +8,7 @@ ms.author: larryfr
 ms.reviewer: sehan
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.date: 11/16/2022
+ms.date: 03/11/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, sdkv1
 ---
@@ -31,7 +31,7 @@ The model deployments created by Azure Machine Learning can be configured to use
 
 Web-services deployed on Azure Kubernetes Service (AKS) have key-based auth *enabled* by default.
 
-Azure Container Instances (ACI) deployed services have key-based auth *disabled* by default, but you can enable it by setting `auth_enabled=True`when creating the ACI web-service. The following code is an example of creating an ACI deployment configuration with key-based auth enabled.
+Azure Container Instances (ACI) deployed services have key-based auth *disabled* by default, but you can enable it by setting `auth_enabled=True` when creating the ACI web-service. The following code is an example of creating an ACI deployment configuration with key-based auth enabled.
 
 ```python
 from azureml.core.webservice import AciWebservice

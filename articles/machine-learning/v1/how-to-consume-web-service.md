@@ -8,7 +8,7 @@ ms.subservice: inferencing
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: aashishb
-ms.date: 11/16/2022
+ms.date: 03/11/2025
 ms.topic: how-to
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, python
@@ -214,7 +214,7 @@ For information on enabling CORS support in your service, see [Cross-origin reso
 
 ## Call the service (C#)
 
-This example demonstrates how to use C# to call the web service created from the [Train within notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/intro-to-pipelines/notebook_runner/training_notebook.ipynb) example:
+This example demonstrates how to use C# to call a web service:
 
 ```csharp
 using System;
@@ -301,181 +301,9 @@ The results returned are similar to the following JSON document:
 [217.67978776218715, 224.78937091757172]
 ```
 
-## Call the service (Go)
-
-This example demonstrates how to use Go to call the web service created from the [Train within notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/intro-to-pipelines/notebook_runner/training_notebook.ipynb) example:
-
-```go
-package main
-
-import (
-    "bytes"
-    "encoding/json"
-    "fmt"
-    "io/ioutil"
-    "net/http"
-)
-
-// Features for this model are an array of decimal values
-type Features []float64
-
-// The web service input can accept multiple sets of values for scoring
-type InputData struct {
-    Data []Features `json:"data",omitempty`
-}
-
-// Define some example data
-var exampleData = []Features{
-    []float64{
-        0.0199132141783263, 
-        0.0506801187398187, 
-        0.104808689473925, 
-        0.0700725447072635, 
-        -0.0359677812752396, 
-        -0.0266789028311707, 
-        -0.0249926566315915, 
-        -0.00259226199818282, 
-        0.00371173823343597, 
-        0.0403433716478807,
-    },
-    []float64{
-        -0.0127796318808497, 
-        -0.044641636506989, 
-        0.0606183944448076, 
-        0.0528581912385822, 
-        0.0479653430750293, 
-        0.0293746718291555, 
-        -0.0176293810234174, 
-        0.0343088588777263, 
-        0.0702112981933102, 
-        0.00720651632920303,
-    },
-}
-
-// Set to the URI for your service
-var serviceUri string = "<your web service URI>"
-// Set to the authentication key or token (if any) for your service
-var authKey string = "<your key or token>"
-
-func main() {
-    // Create the input data from example data
-    jsonData := InputData{
-        Data: exampleData,
-    }
-    // Create JSON from it and create the body for the HTTP request
-    jsonValue, _ := json.Marshal(jsonData)
-    body := bytes.NewBuffer(jsonValue)
-
-    // Create the HTTP request
-    client := &http.Client{}
-    request, err := http.NewRequest("POST", serviceUri, body)
-    request.Header.Add("Content-Type", "application/json")
-
-    // These next two are only needed if using an authentication key
-    bearer := fmt.Sprintf("Bearer %v", authKey)
-    request.Header.Add("Authorization", bearer)
-
-    // Send the request to the web service
-    resp, err := client.Do(request)
-    if err != nil {
-        fmt.Println("Failure: ", err)
-    }
-
-    // Display the response received
-    respBody, _ := ioutil.ReadAll(resp.Body)
-    fmt.Println(string(respBody))
-}
-```
-
-The results returned are similar to the following JSON document:
-
-```json
-[217.67978776218715, 224.78937091757172]
-```
-
-## Call the service (Java)
-
-This example demonstrates how to use Java to call the web service created from the [Train within notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/intro-to-pipelines/notebook_runner/training_notebook.ipynb) example:
-
-```java
-import java.io.IOException;
-import org.apache.http.client.fluent.*;
-import org.apache.http.entity.ContentType;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
-public class App {
-    // Handle making the request
-    public static void sendRequest(String data) {
-        // Replace with the scoring_uri of your service
-        String uri = "<your web service URI>";
-        // If using authentication, replace with the auth key or token
-        String key = "<your key or token>";
-        try {
-            // Create the request
-            Content content = Request.Post(uri)
-            .addHeader("Content-Type", "application/json")
-            // Only needed if using authentication
-            .addHeader("Authorization", "Bearer " + key)
-            // Set the JSON data as the body
-            .bodyString(data, ContentType.APPLICATION_JSON)
-            // Make the request and display the response.
-            .execute().returnContent();
-            System.out.println(content);
-        }
-        catch (IOException e) {
-            System.out.println(e);
-        }
-    }
-    public static void main(String[] args) {
-        // Create the data to send to the service
-        JSONObject obj = new JSONObject();
-        // In this case, it's an array of arrays
-        JSONArray dataItems = new JSONArray();
-        // Inner array has 10 elements
-        JSONArray item1 = new JSONArray();
-        item1.add(0.0199132141783263);
-        item1.add(0.0506801187398187);
-        item1.add(0.104808689473925);
-        item1.add(0.0700725447072635);
-        item1.add(-0.0359677812752396);
-        item1.add(-0.0266789028311707);
-        item1.add(-0.0249926566315915);
-        item1.add(-0.00259226199818282);
-        item1.add(0.00371173823343597);
-        item1.add(0.0403433716478807);
-        // Add the first set of data to be scored
-        dataItems.add(item1);
-        // Create and add the second set
-        JSONArray item2 = new JSONArray();
-        item2.add(-0.0127796318808497);
-        item2.add(-0.044641636506989);
-        item2.add(0.0606183944448076);
-        item2.add(0.0528581912385822);
-        item2.add(0.0479653430750293);
-        item2.add(0.0293746718291555);
-        item2.add(-0.0176293810234174);
-        item2.add(0.0343088588777263);
-        item2.add(0.0702112981933102);
-        item2.add(0.00720651632920303);
-        dataItems.add(item2);
-        obj.put("data", dataItems);
-
-        // Make the request using the JSON document string
-        sendRequest(obj.toJSONString());
-    }
-}
-```
-
-The results returned are similar to the following JSON document:
-
-```json
-[217.67978776218715, 224.78937091757172]
-```
-
 ## Call the service (Python)
 
-This example demonstrates how to use Python to call the web service created from the [Train within notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/intro-to-pipelines/notebook_runner/training_notebook.ipynb) example:
+This example demonstrates how to use Python to call a web service:
 
 ```python
 import requests
