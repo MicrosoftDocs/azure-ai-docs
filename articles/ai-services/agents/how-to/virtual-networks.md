@@ -114,7 +114,7 @@ Azure AI Agent Service offers a standard agent configuration with private networ
 
 ### Option 2: manually deploy the bicep template
 
-1. To manually run the bicep templates, [download the template from GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.azure-ai-agent-service/network-secured-agent). Download the following from the `network-secured-agent` folder:
+1. To manually run the bicep templates, [download the template from GitHub](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/Agents/setup/network-secured-agent). Download the following from the `network-secured-agent` folder:
     1. `main.bicep`
     1. `azuredeploy.parameters.json`
     1. `modules-network-secured folder`
