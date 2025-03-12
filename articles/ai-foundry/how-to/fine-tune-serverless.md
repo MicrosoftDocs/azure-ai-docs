@@ -205,7 +205,7 @@ After you configure the advanced options, select **Next** to [review your choice
 The **Review** pane of the wizard displays information about your configuration choices.
 
 If you're ready to train your model, select **Start Training job** to start the fine-tuning job and return to the **Models** Tab.
-(Image)
+
 
 ### Check the status of your custom model
 
@@ -269,19 +269,15 @@ When the fine-tuning job succeeds, you can deploy the custom model from the **Fi
 > Only one deployment is permitted for a custom model. An error message is displayed if you select an already-deployed custom model.
 > To deploy your custom model, select the custom model to deploy, and then select Deploy model.
 
-(Image)
 
 The **Deploy model** dialog box opens. In the dialog box, enter your **Deployment name** and then select **Deploy** to start the deployment of your custom model.
 
-(Image)
 
 You can also deploy a finetuned model through the **Models + endpoints** tab by selecting the **Deploy model** button and then selecting **Deploy Fine-tuned model** from the dropdown
 
 :::image type="content" source="../media/how-to/fine-tune/fine-tune-serverless/manage-deployments.png" alt-text="Screenshot of the fine-tuning manage deployments dashboard." lightbox="../media/how-to/fine-tune/fine-tune-serverless/manage-deployments.png":::
 
 Next select the fine-tuned model you wish to deploy and select **Deploy**.
-
-(Image)
 
 ### Cross region deployment
 Fine-tuning supports deploying a fine-tuned model to a different region than where the model was originally fine-tuned. You can also deploy to a different subscription/region.
@@ -290,8 +286,6 @@ Cross subscription/region deployment can be accomplished via [Python](https://gi
 
 ### Use a deployed custom model
 After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in [Azure AI Foundry portal](https://portal.azure.com) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as temperature and max_tokens, as you can with other deployed models.
-
-(Image)
 
 ### Clean up your fine-tuned models 
 
