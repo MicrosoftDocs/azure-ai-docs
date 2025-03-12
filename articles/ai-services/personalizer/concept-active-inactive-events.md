@@ -6,7 +6,7 @@ ms.author: jacodel
 ms.manager: nitinme
 ms.service: azure-ai-personalizer
 ms.topic: conceptual
-ms.date: 01/19/2024
+ms.date: 03/12/2025
 ---
 
 # Defer event activation
