@@ -133,7 +133,7 @@ This AML skill payload works with the following image embedding models from Azur
 
 It assumes that your images come from the `/document/normalized_images/*` path that is created by enabling [built in image extraction](cognitive-search-concept-image-scenarios.md). If your images come from a different path or are stored as URLs, update all references to the `/document/normalized_images/*` path according.
 
-The URI and key are generated when you deploy the model from the catalog. For more information about these values, see [How to deploy large language models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-open).
+The URI and key are generated when you deploy the model from the catalog. For more information about these values, see [Add and configure models to Azure AI model inference](/azure/ai-foundry/model-inference/how-to/create-model-deployments).
 
 ```json
 {
