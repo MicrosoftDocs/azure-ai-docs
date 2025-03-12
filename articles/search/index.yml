@@ -71,8 +71,8 @@ landingContent:
             url: /azure/ai-foundry/how-to/index-add
           - text: Chat with your data using Azure OpenAI
             url: /azure/ai-services/openai/use-your-data-quickstart
-          - text: Build a question and answer copilot
-            url: /azure/ai-foundry/tutorials/deploy-copilot-ai-studio
+          - text: Build a custom RAG app using Azure AI Foundry SDK
+            url: /azure/ai-foundry/tutorials/copilot-sdk-build-rag
 
   # Card
   - title: Index data
