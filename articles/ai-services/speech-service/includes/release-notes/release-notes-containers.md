@@ -14,6 +14,16 @@ Add support for the latest model versions:
 - Speech to text 4.12.0
 - Custom speech to text 4.12.0
 
+Here are the highlights of the releases:
+
+| Feature update | Speech to text | Custom speech to text | Neural text to speech | Speech language identification |
+|------|------|------|--------|------|
+| Vulnerability fixes | ✅ | ✅ | ✅ | ✅ |
+| Migrated OS from Ubuntu 20.04 to Ubuntu 22.04 | ✅ | ✅ | ✅ | ✅ |
+| New Locales: ar-ly, fr-be, nl-be and uz-uz | ✅ | ✅ |  |  |
+| Updated nuget packages, Go version | ✅ | ✅ |  |  |
+| Added model download parallelization to decrease model download time | ✅ | ✅ | ✅ |  |
+
 ### 2024-October release
 
 Add support for the latest model versions:
