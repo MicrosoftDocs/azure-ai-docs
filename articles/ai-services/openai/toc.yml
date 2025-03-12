@@ -88,11 +88,6 @@ items:
         href: ./concepts/safety-system-message-templates.md
     - name: Model versions
       href: ./concepts/model-versions.md
-    - name: Provisioned throughput units (PTU)
-      href: ./concepts/provisioned-throughput.md
-      displayName: PTU, provisioned, provisioned throughput units
-    - name: Azure OpenAI PTU update
-      href: ./concepts/provisioned-migration.md
     - name: Legacy models
       href: ./concepts/legacy-models.md
 - name: How-to 
@@ -240,11 +235,18 @@ items:
       - name: Onboarding to Provisioned Throughput Units (PTU)
         href: ./how-to/provisioned-throughput-onboarding.md
         displayName: PTU, provisioned, provisioned throughput units
-      - name: Get started with Provisioned Deployments
-        href: ./how-to/provisioned-get-started.md
-        displayName: PTU, provisioned, provisioned throughput units
-      - name: Provisioned spillover
-        href: ./how-to/spillover-traffic-management.md
+      - name: Provisioned throughput units (PTU)
+        items:
+        - name: Provisioned throughput units (PTU)
+          href: ./concepts/provisioned-throughput.md
+          displayName: PTU, provisioned, provisioned throughput units
+        - name: Azure OpenAI PTU updates
+          href: ./concepts/provisioned-migration.md
+        - name: Get started with Provisioned Deployments
+          href: ./how-to/provisioned-get-started.md
+          displayName: PTU, provisioned, provisioned throughput units
+        - name: Provisioned spillover
+          href: ./how-to/spillover-traffic-management.md
       - name: Plan and manage costs
         href: ./how-to/manage-costs.md
       - name: Performance & latency
