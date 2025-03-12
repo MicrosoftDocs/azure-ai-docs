@@ -46,5 +46,5 @@ An AI system includes not only the technology, but also the people who use it, t
 ## Next steps
 
 There are two ways to get started using the Named Entity Recognition (NER) feature:
-* [Azure AI Foundry](../../../ai-studio/what-is-ai-studio.md) is a web-based platform that lets you use several Language service features without needing to write code.
+* [Azure AI Foundry](../../../ai-foundry/what-is-ai-studio.md) is a web-based platform that lets you use several Language service features without needing to write code.
 * The [quickstart article](quickstart.md) for instructions on making requests to the service using the REST API and client library SDK.  

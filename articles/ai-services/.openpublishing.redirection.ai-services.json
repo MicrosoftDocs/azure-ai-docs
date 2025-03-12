@@ -187,7 +187,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/plan-manage-costs.md",
-      "redirect_url": "/azure/ai-studio/how-to/costs-plan-manage",
+      "redirect_url": "/azure/ai-foundry/how-to/costs-plan-manage",
       "redirect_document_id": true
     },
     {

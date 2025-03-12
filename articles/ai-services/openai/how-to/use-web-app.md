@@ -23,9 +23,9 @@ Along with [Azure AI Foundry portal](https://ai.azure.com/), APIs, and SDKs, you
 * Authentication with role-based access control via Microsoft Entra ID.
 * Customization of the user interface, data sources, and features using environment variables (no-code via Azure portal).
 
-You can deploy the app via the [Azure AI Foundry portal](/azure/ai-studio/tutorials/deploy-chat-web-app), the [Azure portal](https://portal.azure.com), or the Azure Developer CLI via your local machine [(instructions available at the repository here)](https://github.com/microsoft/sample-app-aoai-chatGPT). Depending on your deployment channel, you can preload a data source to chat with via the web application, but this can be changed after deployment. 
+You can deploy the app via the [Azure AI Foundry portal](/azure/ai-foundry/tutorials/deploy-chat-web-app), the [Azure portal](https://portal.azure.com), or the Azure Developer CLI via your local machine [(instructions available at the repository here)](https://github.com/microsoft/sample-app-aoai-chatGPT). Depending on your deployment channel, you can preload a data source to chat with via the web application, but this can be changed after deployment. 
 
-For Azure OpenAI beginners aspiring to chat with their data through the web application, [Azure AI Foundry portal](/azure/ai-studio/tutorials/deploy-chat-web-app) is the recommended medium for initial deployment and data source configuration.
+For Azure OpenAI beginners aspiring to chat with their data through the web application, [Azure AI Foundry portal](/azure/ai-foundry/tutorials/deploy-chat-web-app) is the recommended medium for initial deployment and data source configuration.
 
 ![Screenshot that shows the web app interface.](../media/use-your-data/web-app.png)
 
@@ -166,7 +166,7 @@ This can be accomplished using the Advanced edit or simple Edit options as previ
 
 ### Using Azure AI Foundry portal
 
-Follow [this tutorial on integrating Azure AI Search with Azure AI Foundry](/azure/ai-studio/tutorials/deploy-chat-web-app#add-your-data-and-try-the-chat-model-again) or [quickstart](/azure/ai-services/openai/use-your-data-quickstart#add-your-data) and redeploy your application.
+Follow [this tutorial on integrating Azure AI Search with Azure AI Foundry](/azure/ai-foundry/tutorials/deploy-chat-web-app#add-your-data-and-try-the-chat-model-again) or [quickstart](/azure/ai-services/openai/use-your-data-quickstart#add-your-data) and redeploy your application.
 
 ### Using environment variables
 
@@ -290,11 +290,11 @@ The JSON to paste in the Advanced edit JSON editor is:
 
 ## Connecting to Prompt Flow as a data source
 
-[Prompt flows](/azure/ai-studio/how-to/flow-develop) allow you to define highly customizable RAG and processing logic on a user's queries. 
+[Prompt flows](/azure/ai-foundry/how-to/flow-develop) allow you to define highly customizable RAG and processing logic on a user's queries. 
 
 ### Creating and deploying your prompt flow in Azure AI Foundry portal
 
-Follow [this tutorial](/azure/ai-studio/tutorials/deploy-copilot-ai-studio) to create, test, and deploy an inferencing endpoint for your prompt flow in [Azure AI Foundry portal](https://ai.azure.com/).
+Follow [this tutorial](/azure/ai-foundry/tutorials/deploy-copilot-ai-studio) to create, test, and deploy an inferencing endpoint for your prompt flow in [Azure AI Foundry portal](https://ai.azure.com/).
 
 ### Enable underlying citations from your prompt flow
 
