@@ -240,7 +240,7 @@ Issues finetuning with unique network setups on the workspace and storage usuall
 
 ---
 
-### Deploy a fine-tuned model
+## Deploy a fine-tuned model
 When the fine-tuning job succeeds, you can deploy the custom model from the **Fine-tune** tab. You must deploy your custom model to make it available for use with completion calls.
 
 > [!IMPORTANT]
