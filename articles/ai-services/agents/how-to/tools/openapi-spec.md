@@ -31,7 +31,7 @@ work together, generate client code, create tests, apply design standards, and m
 
 |Azure AI foundry support  | Python SDK |	C# SDK | REST API | Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|
-|      | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+|   ✔️   | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 1. Ensure you've completed the prerequisites and setup steps in the [quickstart](../../quickstart.md).
@@ -127,10 +127,28 @@ To set up authenticating with Managed Identity:
 
     1. Click **Finish**.
 
-1. Once the setup is done, you can continue by using the tool through the SDK or REST API. Use the tabs at the top of this article to see code samples.
+1. Once the setup is done, you can continue by using the tool through the Foundry Portal, SDK or REST API. Use the tabs at the top of this article to see code samples.
+
+## Add OpenAPI Spec tool in Foundry Portal
+1. Click the agent in Agent Playground you want to edit
+   
+1. Click to add from Action tools
+   
+1. Click OpenAPI 3.0 specified tool
+      ![image](https://github.com/user-attachments/assets/24c7fa97-065d-4cce-8a21-2e04c8b47216)
+   
+1. Give your tool a name (required) and a description (optional). The description will be used by the model to decide when and how to use the tool.
+   ![image](https://github.com/user-attachments/assets/f081adce-7588-4152-8d38-10a1a9bfafb4)
+   
+1. Click Next and select the authentication method. Choose `connection` for `API key`.
+   1. If you choose `connection`, you need to select the custom keys connection you have created before.
+   1. If you choose `managed identity`, you need to input the audience to get your token. An example of audience would be "https://cognitiveservices.azure.com/" to connect to Azure AI Services. Please make sure you have already set up authentication and role assignment (in section above)
+      
+1. Copy and paste your OpenAPI specification in the text below.
+
+1. Review and add the tool to your agent.
 
 ::: zone-end
-
 
 ::: zone pivot="code-example"
 ## Step 1: Create a project client
