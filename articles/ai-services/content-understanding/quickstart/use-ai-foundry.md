@@ -40,7 +40,7 @@ In order to try out [the Content Understanding service in the AI Foundry](https:
 
 * The [AI Foundry home page](https://ai.azure.com/)
 
-   :::image type="content" source="../media/quickstarts/cu-landing-page.png" alt-text="Screenshot of the AI Services landing page in AI Foundry.":::
+   :::image type="content" source="../media/quickstarts/foundry-home-page.png" lightbox="../media/quickstarts/foundry-home-page.png" alt-text="Screenshot of the AI Services landing page in AI Foundry.":::
    
 
 * The [AI Services landing page](../../index.yml)
