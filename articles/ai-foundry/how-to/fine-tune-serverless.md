@@ -193,7 +193,7 @@ If you're ready to train your model, select **Start Training job** to start the 
 
 The **Fine-tuning tab** displays information about your custom model. The tab includes information about the status and job ID of the fine-tune job for your custom model. When the job completes, the tab displays the file ID of the result file. You might need to select **Refresh** in order to see an updated status for the model training job.
 
-:::image type="content" source="../media/how-to/fine-tune/fine-tune-serverless/project-running.png" alt-text="Screenshot of the fine-tuning manage deployments dashboard." lightbox="../media/how-to/fine-tune/fine-tune-serverless/project-running.png":::
+:::image type="content" source="../media/how-to/fine-tune/fine-tune-serverless/project-running.png" alt-text="Screenshot of the running projects dashboard." lightbox="../media/how-to/fine-tune/fine-tune-serverless/project-running.png":::
 
 
 After you start a fine-tuning job, it can take some time to complete. Your job might be queued behind other jobs on the system. Training your model can take minutes or hours depending on the model and dataset size.
@@ -205,7 +205,7 @@ Here are some of the tasks you can do on the **Models** tab:
 
 ---
 
-:::image type="content" source="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-details.png" alt-text="Screenshot of the fine-tuning manage deployments dashboard." lightbox="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-details.png":::
+:::image type="content" source="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-details.png" alt-text="Screenshot of the fine-tuning details dashboard." lightbox="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-details.png":::
 
 
 ### Supported enterprise scenarios for finetuning
@@ -217,7 +217,7 @@ Several enterprise scenarios are supported for MaaS finetuning. The table below 
 >- Storage auth can be changed in Azure Storage > **Settings** > **Configurations** page > **Allow storage account key access**.  
 >- Storage networking can be changed in Azure Storage > **Networking** page.
 
-| **Storage Networking**                                       |  **Storage Auth**               | **Data Connection Auth**               | **Support**           |
+| **Storage Networking**                                       |  **Storage Auth**               | **Data Connection Auth**         | **Support**             |
 | ------------------------------------------------------------ | ------------------------------ | --------------------------------- | ----------------------- |
 | Public Network Access = Enabled                               | Account key enabled            | SAS/Account Key                  | Yes, UX and SDK         |
 | Public Network Access = Enabled                               | Account key disabled           | Entra-Based Auth (Credentialless) | Yes, UX and SDK <br><br> *Note:* for UX, you may need to add Storage Blob Data Reader or Storage Blob Data Contributor for your user ID on the storage account, or change the connection's authentication to use Account key/SAS token |                               |                                   |                         |
