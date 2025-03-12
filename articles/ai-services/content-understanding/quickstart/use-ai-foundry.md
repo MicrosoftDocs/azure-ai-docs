@@ -25,7 +25,7 @@ To get started, make sure you have the following resources and permissions:
 
   * If your role is **Contributor** or **Owner**, you can proceed with creating your own hub.
 
-  * If your role is **Azure AI Developer**, the hub must already be created before you can complete this quickstart. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../../../ai-foundry/concepts/ai-resources.md) and [Azure AI roles](../../../ai-foundry/concepts/rbac-ai-studio.md).
+  * If your role is **Azure AI Developer**, the hub must already be created before you can complete this quickstart. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../../../ai-foundry/concepts/ai-resources.md) and [Azure AI roles](../../../ai-foundry/concepts/rbac-ai-foundry.md).
 
 > [!IMPORTANT]
 > If your organization requires you to customize the security of storage resources, the AI Foundry doesn't currently expose all the features that can be configured. Refer to [Azure AI services API access keys](../../../ai-foundry/concepts/encryption-keys-portal.md) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it. To learn how to utilize customer managed keys, refer to [(Preview) Service-side storage of encrypted data when using customer-managed keys](../../../ai-foundry/concepts/encryption-keys-portal.md#preview-service-side-storage-of-encrypted-data-when-using-customer-managed-keys). Return here when you have resources created.

@@ -16,10 +16,10 @@ ms.custom: devx-track-ts
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
 * [Node.js LTS](https://nodejs.org/)
 * [TypeScript 5.x](https://www.typescriptlang.org/)
-* Ensure that each team member who wants to use the Agent Playground or SDK to create or edit agents has been assigned the built-in **Azure AI Developer** [RBAC role](../../../ai-foundry/concepts/rbac-ai-studio.md) for the project.
+* Ensure that each team member who wants to use the Agent Playground or SDK to create or edit agents has been assigned the built-in **Azure AI Developer** [RBAC role](../../../ai-foundry/concepts/rbac-ai-foundry.md) for the project.
     * Note: assign these roles after the template has been deployed
     * The minimum set of permissions required is: **agents/*/read**, **agents/*/action**, **agents/*/delete** 
-* Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-foundry/concepts/rbac-ai-studio.md) assigned at the appropriate level.
+* Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-foundry/concepts/rbac-ai-foundry.md) assigned at the appropriate level.
 * Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
 
 [!INCLUDE [bicep-setup](bicep-setup.md)]
