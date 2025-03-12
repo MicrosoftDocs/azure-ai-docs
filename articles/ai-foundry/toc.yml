@@ -349,7 +349,7 @@ items:
     items:
     - name: Fine-tuning in Azure AI Foundry
       href: concepts/fine-tuning-overview.md
-    - name: Fine-tune Azure AI Foundry models (Non-AOAI models)
+    - name: Fine-tune Azure AI Foundry models
       items: 
       - name: Fine-tune models deployed via serverless API
         href: how-to/fine-tune-serverless.md
