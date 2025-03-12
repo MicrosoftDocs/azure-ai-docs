@@ -60,7 +60,7 @@ You can also go to the Azure AI Foundry portal to view all models that contain f
 1. Navigate to the model catalog.
 1. Select the **Fine-tuning tasks** filter. 
     
-    :::image type="content" source="../media/how-to/fine-tune/fine-tune-filters.png" alt-text="Screenshot of model catalog finetuning filter options." lightbox="../media/how-to/fine-tune/fine-tune-filters.png":::
+    :::image type="content" source="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-filters.png" alt-text="Screenshot of model catalog finetuning filter options." lightbox="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-filters.png":::
 
 1. Select **All** or select a specific task.
 
