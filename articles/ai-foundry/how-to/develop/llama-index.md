@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/04/2024
+ms.date: 03/11/2025
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
@@ -21,9 +21,9 @@ Models deployed to [Azure AI Foundry](https://ai.azure.com) can be used with Lla
 
 - **Using the Azure AI model inference API:** All models deployed to Azure AI Foundry support the [Azure AI model inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LlamaIndex, install the extensions `llama-index-llms-azure-inference` and `llama-index-embeddings-azure-inference`.
 
-- **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LlamaIndex. Those extensions may include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with `llama-index`, install the extension specific for the model you want to use, like `llama-index-llms-openai` or `llama-index-llms-cohere`.
+- **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LlamaIndex. Those extensions might include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with `llama-index`, install the extension specific for the model you want to use, like `llama-index-llms-openai` or `llama-index-llms-cohere`.
 
-In this example, we are working with the **Azure AI model inference API**.
+In this example, we're working with the **Azure AI model inference API**.
 
 ## Prerequisites
 
@@ -42,7 +42,7 @@ To run this tutorial, you need:
     pip install llama-index
     ```
 
-* In this example, we are working with the Azure AI model inference API, hence we install the following packages:
+* In this example, we're working with the Azure AI model inference API, hence we install the following packages:
 
     ```bash
     pip install -U llama-index-llms-azure-inference
@@ -117,7 +117,7 @@ llm = AzureAICompletionsModel(
 > [!NOTE]
 > When using Microsoft Entra ID, make sure that the endpoint was deployed with that authentication method and that you have the required permissions to invoke it.
 
-If you are planning to use asynchronous calling, it's a best practice to use the asynchronous version for the credentials:
+If you're planning to use asynchronous calling, it's a best practice to use the asynchronous version for the credentials:
 
 ```python
 from azure.identity.aio import (
@@ -133,7 +133,7 @@ llm = AzureAICompletionsModel(
 
 ### Azure OpenAI models and Azure AI model inference service
 
-If you are using Azure OpenAI service or [Azure AI model inference service](../../model-inference/overview.md), ensure you have at least version `0.2.4` of the LlamaIndex integration. Use `api_version` parameter in case you need to select a specific `api_version`. 
+If you're using Azure OpenAI service or [Azure AI model inference service](../../model-inference/overview.md), ensure you have at least version `0.2.4` of the LlamaIndex integration. Use `api_version` parameter in case you need to select a specific `api_version`. 
 
 For the [Azure AI model inference service](../../model-inference/overview.md), you need to pass `model_name` parameter:
 
@@ -216,7 +216,7 @@ The `complete` method is still available for model of type `chat-completions`. O
 
 ## Use embeddings models
 
-In the same way you create an LLM client, you can connect to an embeddings model. In the following example, we are setting the environment variable to now point to an embeddings model:
+In the same way you create an LLM client, you can connect to an embeddings model. In the following example, we're setting the environment variable to now point to an embeddings model:
 
 ```bash
 export AZURE_INFERENCE_ENDPOINT="<your-model-endpoint-goes-here>"
@@ -260,7 +260,7 @@ Settings.llm = llm
 Settings.embed_model = embed_model
 ```
 
-However, there are scenarios where you want to use a general model for most of the operations but a specific one for a given task. On those cases, it's useful to set the LLM or embedding model you are using for each LlamaIndex construct. In the following example, we set a specific model:
+However, there are scenarios where you want to use a general model for most of the operations but a specific one for a given task. On those cases, it's useful to set the LLM or embedding model you're using for each LlamaIndex construct. In the following example, we set a specific model:
 
 ```python
 from llama_index.core.evaluation import RelevancyEvaluator
