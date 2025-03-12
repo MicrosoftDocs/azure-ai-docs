@@ -184,7 +184,7 @@ The **Fine-tune model** wizard shows the parameters for training your fine-tuned
 |`n_epochs` | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
 
 Select **Default** to use the default values for the fine-tuning job, or select **Custom** to display and edit the hyperparameter values. When defaults are selected, we determine the correct value algorithmically based on your training data.
-After you configure the advanced options, select **Next** to [review your choices and train your fine-tuned model](#review-your-choices-and-train-your-model.
+After you configure the advanced options, select **Next** to [review your choices and train your fine-tuned model](#review-your-choices-and-train-your-model.md)
 
 ### Review your choices and train your model
 
