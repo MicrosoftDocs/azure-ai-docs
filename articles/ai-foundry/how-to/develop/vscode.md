@@ -26,7 +26,7 @@ author: sdgilley
 
 1. Go to [Azure AI Foundry](https://ai.azure.com).
 1. Open your project in Azure AI Foundry portal.
-1. On the left menu, select **Code**.
+1. On the left menu, select **Templates**.
 1. Select **VS Code container**.
 1. For **Compute**, select an existing compute instance or create a new one.
     * Select a compute instance to use. If it's stopped, select **Start compute** and wait for it to switch to **Running**. You'll see a **Ready** status when the compute is ready for use.
