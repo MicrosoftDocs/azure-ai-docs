@@ -93,8 +93,6 @@ items:
       displayName: PTU, provisioned, provisioned throughput units
     - name: Azure OpenAI PTU update
       href: ./concepts/provisioned-migration.md
-    - name: Azure OpenAI PTU reservation update
-      href: ./concepts/provisioned-reservation-update.md
     - name: Legacy models
       href: ./concepts/legacy-models.md
 - name: How-to 
