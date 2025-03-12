@@ -237,7 +237,7 @@ items:
         displayName: PTU, provisioned, provisioned throughput units
       - name: Provisioned throughput units (PTU)
         items:
-        - name: Provisioned throughput units (PTU)
+        - name: What is the Provisioned Managed offering (PTU)?
           href: ./concepts/provisioned-throughput.md
           displayName: PTU, provisioned, provisioned throughput units
         - name: Azure OpenAI PTU updates
