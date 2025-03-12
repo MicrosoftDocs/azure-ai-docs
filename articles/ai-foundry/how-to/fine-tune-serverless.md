@@ -67,9 +67,9 @@ You can also go to the Azure AI Foundry portal to view all models that contain f
 
 ## Prepare data for fine-tuning
 
-Prepare your training and validation data to fine-tune your model. Your training data and validation data sets consist of input and output examples for how you would like the model to perform.
+Prepare your training and validation data to fine-tune your model. Your training and validation data consist of input and output examples for how you would like the model to perform.
 
-Make sure all your training examples follow the expected format for inference. To fine-tune models effectively, ensure a balanced and diverse dataset by maintaining data balance, including various scenarios, and periodically refining training data to align with real-world expectations. These actions ultimately lead to more accurate and balanced model responses.
+Make sure all your training examples follow the expected format for inference. To fine-tune models effectively, ensure a diverse dataset by maintaining data balance, including various scenarios, and periodically refining training data to align with real-world expectations. These actions ultimately lead to more accurate and balanced model responses.
 
 > [!TIP]
 > Different model types require a different format of training data.
@@ -180,7 +180,7 @@ The **Fine-tune model** wizard shows the parameters for training your fine-tuned
 |`n_epochs` | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
 
 Select **Default** to use the default values for the fine-tuning job, or select **Custom** to display and edit the hyperparameter values. When defaults are selected, we determine the correct value algorithmically based on your training data.
-After you configure the advanced options, select **Next** to [review your choices and train your fine-tuned model](#review-your-choices-and-train-your-model)
+After you configure the advanced options, select **Next** to [review your choices and train your fine-tuned model](#review-your-choices-and-train-your-model).
 
 ### Review your choices and train your model
 
@@ -201,7 +201,7 @@ Here are some of the tasks you can do on the **Models** tab:
 
 -	Check the status of the fine-tuning job for your custom model in the Status column of the Customized models tab.
 -	In the Model name column, select the model’s name to view more information about the custom model. You can see the status of the fine-tuning job, training results, training events, and hyperparameters used in the job.
--	Select Refresh to update the information on the page.
+-	Select **Refresh** to update the information on the page.
 
 ---
 
@@ -334,7 +334,7 @@ outputs:
     type: mlflow_model 
 ```
 
-The training data used is the same as demonstrated in the SDK notebook. The CLI employs the available Azure AI models for the chat-completion task. If you prefer to use a different model than the one in the CLI sample, you can update the arguments, such as 'model path,' accordingly
+The training data used is the same as demonstrated in the SDK notebook. The CLI employs the available Azure AI models for the chat-completion task. If you prefer to use a different model than the one in the CLI sample, you can update the arguments, such as 'model path,' accordingly.
 
 ## Content filtering
 
