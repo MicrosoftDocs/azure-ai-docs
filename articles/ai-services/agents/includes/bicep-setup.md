@@ -11,7 +11,7 @@ ms.date: 11/13/2024
 
 The following section shows you how to set up the required resources for getting started with Azure AI Agent Service: 
 
-1. Creating an [Azure AI Hub](../../../ai-studio/quickstarts/get-started-playground.md) to set up your app environment and Azure resources.
+1. Creating an [Azure AI Hub](../../../ai-foundry/quickstarts/get-started-playground.md) to set up your app environment and Azure resources.
 
 1. Creating an Azure AI project under your Hub creates an endpoint for your app to call, and sets up app services to access to resources in your tenant.
 
