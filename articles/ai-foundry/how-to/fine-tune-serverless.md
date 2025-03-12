@@ -64,23 +64,9 @@ You can also go to the Azure AI Foundry portal to view all models that contain f
 
 1. Select **All** or select a specific task.
 
-## Models
-The following models support fine-tuning:
-- Mistral
-    -  Mistral Large-2411
-    - Mistral Nemo
-    - Ministral-3B
-- Llama
-  - Meta-Llama-3.1-8B-Instruct
-  - Meta-Llama-3.1-70B-Instruct
-- Phi
-    - Phi-3 model family
-    - Phi-3.5-mini-instruct
-    - Phi-3.5-MoE-instruct
-    - Phi-4-mini-instruct
-    - Phi-4-multimodal-instruct
-- NTT
-    - Tsuzumi-7B
+## Supported models
+
+Fine-tuning tasks are available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable. See [Region availability for models in serverless API endpoints | Azure AI Foundry](deploy-models-serverless-availability.md) for detailed information.
 
 
 ## Prepare data for fine-tuning
