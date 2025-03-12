@@ -35,7 +35,7 @@ Once you sign up, you can immediately use either of these links to access Azure 
 
 ## Step two: "Day One" tasks
 
-[**How to build and consume vector indexes in Azure AI Foundry portal**](/azure/ai-studio/how-to/index-add) is a great place to start.
+[**How to build and consume vector indexes in Azure AI Foundry portal**](/azure/ai-foundry/how-to/index-add) is a great place to start.
 
 1. [Sign in to Azure AI Foundry](https://ai.azure.com).
 
@@ -80,7 +80,7 @@ Start here if you want to use built-in vectorization or chat models:
 
 - [Azure OpenAI region list](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)
 - [Azure AI Vision region list](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability)
-- [Azure AI Foundry region list](/azure/ai-studio/reference/region-support)
+- [Azure AI Foundry region list](/azure/ai-foundry/reference/region-support)
 
 Continue with the following link to confirm region and tier availability for AI Search:
 
@@ -119,7 +119,7 @@ Try the Azure portal quickstarts for Azure AI Search or quickstarts that use Vis
 Azure AI Foundry supports connecting to content in Azure AI Search.
 
 - [Quickstart: Chat using your own data with Azure OpenAI](/azure/ai-services/openai/use-your-data-quickstart)
-- [Tutorial: Build a custom chat app with the prompt flow SDK](/azure/ai-studio/tutorials/copilot-sdk-create-resources)
+- [Tutorial: Build a custom chat app with the prompt flow SDK](/azure/ai-foundry/tutorials/copilot-sdk-create-resources)
 
 Developers should review [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repository or the solution accelerators. You can deploy and run any of these samples using the Azure trial subscription. 
 
