@@ -17,11 +17,15 @@ ms.custom: references_regions
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-Azure AI Foundry lets you tailor large language models to your personal datasets by using a process known as *fine-tuning*. 
+Azure AI Foundry enables you to customize large language models to your specific datasets through a process called fine-tuning. This process offers significant benefits by allowing for customization and optimization tailored to specific tasks and applications. The advantages include improved performance, cost efficiency, reduced latency, and tailored outputs.
 
-Fine-tuning provides significant value by enabling customization and optimization for specific tasks and applications. It leads to improved performance, cost efficiency, reduced latency, and tailored outputs.
+**Cost Efficiency**: Azure AI Foundry's fine-tuning can be more cost-effective, especially for large-scale deployments, thanks to pay-as-you-go pricing.
 
-In this article, you learn how to fine-tune models that are deployed via serverless APIs in [Azure AI Foundry](https://ai.azure.com).
+**Model Variety**: Azure AI Foundry's Serverless API finetuning  offers support for both proprietary and open-source models, providing users with the flexibility to select the models that best suit their needs without being restricted to a single type.
+
+**Customization and Control**: Azure AI Foundry provides greater customization and control over the fine-tuning process, enabling users to tailor models more precisely to their specific requirements.
+
+In this article, you will discover how to fine-tune models that are deployed using serverless API's in [Azure AI Foundry](https://ai.azure.com).
 
 
 ## Prerequisites
@@ -253,7 +257,7 @@ When the fine-tuning job succeeds, you can deploy the custom model from the **Fi
 > day period.
 > The deletion of an inactive deployment doesn't delete or affect the underlying customized model, and the customized model can be redeployed at any time. As described in
 > Azure AI Foundry pricing, each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether completions or chat completions calls are
-> being made to the model. To learn more about planning and managing costs with Azure AI Foundry, refer to the guidance in [Plan to manage costs for Azure AI Foundry Service](../how-to/manage-costs.md#fine-tuned-models).
+> being made to the model.
 
 > [!NOTE]
 > Only one deployment is permitted for a custom model. An error message is displayed if you select an already-deployed custom model.
