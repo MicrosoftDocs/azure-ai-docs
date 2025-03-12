@@ -22,7 +22,7 @@ This article is intended for existing users of the provisioned throughput offeri
 
 ## What's changing?
 
-The changes below apply to the global provisioned, data zone provisioned, and provisioned deployment types.
+The changes below apply to the [global provisioned](../how-to/deployment-types.md#global-provisioned), [data zone provisioned](../how-to/deployment-types.md#data-zone-provisioned), and [provisioned](../how-to/deployment-types.md#provisioned) deployment types.
 
 > [!IMPORTANT]
 > The changes in this article do not apply to the older *"Provisioned Classic (PTU-C)"* offering. They only affect the Provisioned (also known as the Provisioned Managed) offering.
@@ -31,6 +31,7 @@ The changes below apply to the global provisioned, data zone provisioned, and pr
 Data zone provisioned deployments are available in the same Azure OpenAI resource as all other Azure OpenAI deployment types but allow you to leverage Azure's global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. Data zone provisioned deployments provide reserved model processing capacity for high and predictable throughput using Azure global infrastructure within the Microsoft defined data zone. Data zone deployments are supported for gpt-4o and gpt-4o-mini model families. 
 
 For more information, see the [deployment types guide](https://aka.ms/aoai/docs/deployment-types).
+
 
 ### New hourly pricing for global and data zone provisioned deployments
 In August 2024, Microsoft announced that Provisioned deployments would move to a new [hourly payment model](./provisioned-migration.md) with the option to purchase Azure Reservations to support additional discounts. In December's provisioned update, we will be introducing differentiated hourly pricing across global provisioned, data zone provisioned, and provisioned deployment types. For more information on the hourly price for each provisioned deployment type, see the [Pricing details page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). 
