@@ -18,8 +18,8 @@ ms.author: aahi
 ## Prerequisites
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- An [Azure AI hub resource](../../../ai-studio/how-to/create-azure-ai-resource.md) with a model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
-- An [Azure AI project](../../../ai-studio/how-to/create-projects.md) in Azure AI Foundry portal.
+- An [Azure AI hub resource](../../../ai-foundry/how-to/create-azure-ai-resource.md) with a model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An [Azure AI project](../../../ai-foundry/how-to/create-projects.md) in Azure AI Foundry portal.
 
 ## Go to the Azure AI Foundry portal
 
