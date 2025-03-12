@@ -131,4 +131,4 @@ az group delete --name $resourceGroupName
 * For a list of Azure AI services, see [What are Azure AI services?](./what-are-ai-services.md).
 * For a list of natural languages that Azure AI services support, see [Natural language support in Azure AI services](language-support.md).
 * To understand how to use Azure AI services on-premises, see [What are Azure AI containers?](cognitive-services-container-support.md).
-* To estimate the cost of using Azure AI services, see [Plan and manage costs for Azure AI Foundry](../ai-studio/how-to/costs-plan-manage.md).
+* To estimate the cost of using Azure AI services, see [Plan and manage costs for Azure AI Foundry](../ai-foundry/how-to/costs-plan-manage.md).

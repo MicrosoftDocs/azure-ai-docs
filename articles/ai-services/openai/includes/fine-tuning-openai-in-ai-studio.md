@@ -16,9 +16,9 @@ ms.custom: include, build-2024
 - Read the [When to use Azure OpenAI fine-tuning guide](../concepts/fine-tuning-considerations.md).
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- An [Azure AI hub resource](../../../ai-studio/how-to/create-azure-ai-resource.md).
-- An [Azure AI project](../../../ai-studio/how-to/create-projects.md) in Azure AI Foundry portal.
-- An [Azure OpenAI connection](/azure/ai-studio/how-to/connections-add?tabs=azure-openai#connection-details) to a resource in a [region where fine-tuning is supported](/azure/ai-services/openai/concepts/models#fine-tuning-models).
+- An [Azure AI hub resource](../../../ai-foundry/how-to/create-azure-ai-resource.md).
+- An [Azure AI project](../../../ai-foundry/how-to/create-projects.md) in Azure AI Foundry portal.
+- An [Azure OpenAI connection](/azure/ai-foundry/how-to/connections-add?tabs=azure-openai#connection-details) to a resource in a [region where fine-tuning is supported](/azure/ai-services/openai/concepts/models#fine-tuning-models).
     > [!NOTE]
     > The supported regions might vary if you use Azure OpenAI models in an Azure AI Foundry project versus outside a project.
 - Fine-tuning access requires **Cognitive Services OpenAI Contributor** role on the Azure OpenAI resource.
@@ -109,11 +109,11 @@ In general, doubling the dataset size can lead to a linear increase in model qua
 
 To fine-tune an Azure OpenAI model in an existing Azure AI Foundry project, follow these steps:
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com) and select your project. If you don't have a project already, first [create a project](../../../ai-studio/how-to/create-projects.md).
+1. Sign in to [Azure AI Foundry](https://ai.azure.com) and select your project. If you don't have a project already, first [create a project](../../../ai-foundry/how-to/create-projects.md).
 
 1. From the collapsible left menu, select **Fine-tuning** > **+ Fine-tune model**.
 
-    :::image type="content" source="../media/fine-tuning/ai-studio/fine-tune-new.png" alt-text="Screenshot of the option to start creating a new fine-tuned model." lightbox="../media/fine-tuning/ai-studio/fine-tune-new.png":::
+    :::image type="content" source="../media/fine-tuning/ai-foundry/fine-tune-new.png" alt-text="Screenshot of the option to start creating a new fine-tuned model." lightbox="../media/fine-tuning/ai-foundry/fine-tune-new.png":::
 
 1. Select a base model to fine-tune. Your choice influences both the performance and the cost of your model. In this example, we are choosing the `gpt-35-turbo` model. Then select **Confirm**.
 
@@ -125,12 +125,12 @@ If you have more than one Azure OpenAI connection enabled for fine-tuning, then 
 
 1. Then select **Next**.
 
-    :::image type="content" source="../media/fine-tuning/ai-studio/fine-tune-basic-settings.png" alt-text="Screenshot of basic settings for fine-tuning a model." lightbox="../media/fine-tuning/ai-studio/fine-tune-basic-settings.png":::
+    :::image type="content" source="../media/fine-tuning/ai-foundry/fine-tune-basic-settings.png" alt-text="Screenshot of basic settings for fine-tuning a model." lightbox="../media/fine-tuning/ai-foundry/fine-tune-basic-settings.png":::
 
 ### Choose your training data
 The next step is to either choose existing prepared training data or upload new prepared training data to use when customizing your model. The **Training data** pane displays any existing, previously uploaded datasets and also provides options to upload new training data.
 
-:::image type="content" source="../media/fine-tuning/ai-studio/fine-tune-training-data-local.png" alt-text="Screenshot of the Training data pane for the Fine-tune model wizard in Azure AI Foundry portal." lightbox="../media/fine-tuning/ai-studio/fine-tune-training-data-local.png":::
+:::image type="content" source="../media/fine-tuning/ai-foundry/fine-tune-training-data-local.png" alt-text="Screenshot of the Training data pane for the Fine-tune model wizard in Azure AI Foundry portal." lightbox="../media/fine-tuning/ai-foundry/fine-tune-training-data-local.png":::
 
 - If your training data is already in your project, select **Data in Azure AI Foundry**.
 
@@ -147,7 +147,7 @@ The next step is to either choose existing prepared training data or upload new 
 
 After uploading files, you will see a preview of your training data. Select **Next** to continue.
 
-:::image type="content" source="../media/fine-tuning/ai-studio/fine-tune-training-data-preview.png" alt-text="Screenshot of the training data preview." lightbox="../media/fine-tuning/ai-studio/fine-tune-training-data-preview.png":::
+:::image type="content" source="../media/fine-tuning/ai-foundry/fine-tune-training-data-preview.png" alt-text="Screenshot of the training data preview." lightbox="../media/fine-tuning/ai-foundry/fine-tune-training-data-preview.png":::
 
 ### Choose your validation data
 
