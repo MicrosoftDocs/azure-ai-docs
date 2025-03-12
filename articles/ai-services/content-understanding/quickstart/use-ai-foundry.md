@@ -49,7 +49,7 @@ In order to try out [the Content Understanding service in the AI Foundry](https:
 
 Once on the Content Understanding page, select `Create a new Content Understanding Project`:
 
-   :::image type="content" source="../media/quickstarts/cu-landing-page.png" alt-text="Screenshot of Content Understanding page.":::
+   :::image type="content" source="../media/quickstarts/cu-landing-page.png" lightbox="../media/quickstarts/cu-landing-page.png" alt-text="Screenshot of Content Understanding page.":::
 
  Follow the steps in the project creation wizard, and start by selecting the hub that you already created. When the hub was created, it should provision an AI Services resource and a blob storage container which are selected by default. You can alternatively create one using the wizard, or the [Azure portal](../how-to/create-multi-service-resource.md). The following diagram illustrates the role of hubs, resources, and projects in the AI Foundry.
 
