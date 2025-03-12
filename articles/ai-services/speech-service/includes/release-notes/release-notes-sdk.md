@@ -1053,11 +1053,10 @@ Stay healthy!
 
 #### Bug fixes
 
- - Fixed bug where Conversation Transcriber didn't await  properly in JAVA APIs
- - Android x86 emulator fix for Xamarin [GitHub issue](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/363)
- - Add missing (Get|Set)Property methods to AudioConfig
- - Fix a TTS bug where the audioDataStream couldn't be stopped when connection fails
- - Using an endpoint without a region would cause USP failures for conversation translator
+ - Fixed bug where Conversation Transcriber didn't await properly in JAVA APIs.
+ - Add missing (Get|Set)Property methods to AudioConfig.
+ - Fix a TTS bug where the audioDataStream couldn't be stopped when connection fails.
+ - Using an endpoint without a region would cause USP failures for conversation translator.
  - ID generation in Universal Windows Applications now uses an appropriately unique GUID algorithm; it previously and unintentionally defaulted to a stubbed implementation that often produced collisions over large sets of interactions.
 
  #### Samples
