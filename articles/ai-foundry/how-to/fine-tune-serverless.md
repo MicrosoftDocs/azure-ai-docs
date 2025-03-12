@@ -208,9 +208,11 @@ If you're ready to train your model, select **Start Training job** to start the 
 (Image)
 
 ### Check the status of your custom model
+
 The **Fine-tuning tab** displays information about your custom model. The tab includes information about the status and job ID of the fine-tune job for your custom model. When the job completes, the tab displays the file ID of the result file. You might need to select **Refresh** in order to see an updated status for the model training job.
 
-(Image)
+:::image type="content" source="../media/how-to/fine-tune/fine-tune-serverless/project-running.png" alt-text="Screenshot of the fine-tuning manage deployments dashboard." lightbox="../media/how-to/fine-tune/fine-tune-serverless/project-running.png":::
+
 
 After you start a fine-tuning job, it can take some time to complete. Your job might be queued behind other jobs on the system. Training your model can take minutes or hours depending on the model and dataset size.
 Here are some of the tasks you can do on the **Models** tab:
@@ -220,6 +222,10 @@ Here are some of the tasks you can do on the **Models** tab:
 -	Select Refresh to update the information on the page.
 
 ---
+
+:::image type="content" source="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-details.png" alt-text="Screenshot of the fine-tuning manage deployments dashboard." lightbox="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-details.png":::
+
+
 ### Supported enterprise scenarios for finetuning
 
 Several enterprise scenarios are supported for MaaS finetuning. The table below outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
@@ -271,7 +277,7 @@ The **Deploy model** dialog box opens. In the dialog box, enter your **Deploymen
 
 You can also deploy a finetuned model through the **Models + endpoints** tab by selecting the **Deploy model** button and then selecting **Deploy Fine-tuned model** from the dropdown
 
-(Imgae)
+:::image type="content" source="../media/how-to/fine-tune/fine-tune-serverless/manage-deployments.png" alt-text="Screenshot of the fine-tuning manage deployments dashboard." lightbox="../media/how-to/fine-tune/fine-tune-serverless/manage-deployments.png":::
 
 Next select the fine-tuned model you wish to deploy and select **Deploy**.
 
