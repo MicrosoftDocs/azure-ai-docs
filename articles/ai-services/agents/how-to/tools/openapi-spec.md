@@ -25,7 +25,7 @@ OpenAPI Specified tool improves your function calling experience by providing st
 automated, and scalable API integrations that enhance the capabilities and efficiency of your agent. 
 [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) provide a formal standard for 
 describing HTTP APIs. This allows people to understand how an API works, how a sequence of APIs 
-work together, generate client code, create tests, apply design standards, and more. Currently, we support 3 authentication types with the OpenAPI 3.0 specified tools: `anonymous`, `API key`, `managed identity`.
+work together, generate client code, create tests, apply design standards, and more. Currently, we support three authentication types with the OpenAPI 3.0 specified tools: `anonymous`, `API key`, `managed identity`.
 
 ### Usage support
 
@@ -42,7 +42,7 @@ work together, generate client code, create tests, apply design standards, and m
 
 ## Authenticating with API Key
 
-With API key authentication, you can authenticate your OpenAPI spec using various methods such as an API key or Bearer token. Only one API key security schema is supported per OpenAPI spec. If you need multiple security schemas, please create multiple OpenAPI spec tools.
+With API key authentication, you can authenticate your OpenAPI spec using various methods such as an API key or Bearer token. Only one API key security schema is supported per OpenAPI spec. If you need multiple security schemas, create multiple OpenAPI spec tools.
 
 1. Update your OpenAPI spec security schemas. it has a `securitySchemes` section and one scheme of type `apiKey`. For example:
 
@@ -116,7 +116,7 @@ To set up authenticating with Managed Identity:
 1. Assign proper access to the resource.
     1. Click **Access Control** for your resource
        
-    1. Click **Add** and then **add role assignement** at the top of the screen.
+    1. Click **Add** and then **add role assignment** at the top of the screen.
 
         :::image type="content" source="../../media/tools/role-assignment-portal.png" alt-text="A screenshot showing the role assignment selector in the Azure portal." lightbox="../../media/tools/role-assignment-portal.png":::
         
@@ -128,7 +128,7 @@ To set up authenticating with Managed Identity:
 
     1. Click **Finish**.
 
-1. Once you have it set up, you can use continue by using the tool through the SDK or REST API. Use the tabs at the top of this article to see code samples.
+1. Once the setup is done, you can continue by using the tool through the SDK or REST API. Use the tabs at the top of this article to see code samples.
 
 ::: zone-end
 
