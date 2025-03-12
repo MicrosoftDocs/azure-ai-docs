@@ -40,11 +40,12 @@ In order to try out [the Content Understanding service in the AI Foundry](https:
 
 * The [AI Foundry home page](https://ai.azure.com/)
 
-   :::image type="content" source="../media/quickstarts/foundry-home-page.png" alt-text="Screenshot of the AI Foundry home page.":::
-
-* The [AI Services landing page](https://aka.ms/cu-landing)
-
    :::image type="content" source="../media/quickstarts/cu-landing-page.png" alt-text="Screenshot of the AI Services landing page in AI Foundry.":::
+   
+
+* The [AI Services landing page](../../index.yml)
+
+   :::image type="content" source="../media/quickstarts/ai-services-landing-page.png" lightbox="../media/quickstarts/ai-services-landing-page.png" alt-text="Screenshot of the AI Services landing page.":::
 
 Once on the Content Understanding page, select `Create a new Content Understanding Project`:
 
