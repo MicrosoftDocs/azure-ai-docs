@@ -36,15 +36,15 @@ __RSS feed__: Get notified when this page is updated by copying and pasting the 
 - `az ml workspace update --network-acls`
   - Added `--network-acls` property to allow user to specify IPs or IP ranges in CIDR notation for workspace access.
 - `az ml capability-host`
-  - Added create operation
-  - Added get operation
-  - Added delete operation
+  - Added create operation.
+  - Added get operation.
+  - Added delete operation.
 
 ## 2024-12-17
 
 ## Azure Machine Learning CLI (v2) v 2.33.0
 - `az ml workspace create --provision-network-now`
-  - Added `--provision-network-now` property to trigger the provisioning of the managed network when creating a workspace with the managed network enabled, or else it does nothing
+  - Added `--provision-network-now` property to trigger the provisioning of the managed network when creating a workspace with the managed network enabled, or else it does nothing.
 
 ## 2024-09-18
 
