@@ -43,7 +43,7 @@ In order to try out [the Content Understanding service in the AI Foundry](https:
    :::image type="content" source="../media/quickstarts/foundry-home-page.png" lightbox="../media/quickstarts/foundry-home-page.png" alt-text="Screenshot of the AI Services landing page in AI Foundry.":::
    
 
-* The [AI Services landing page](../../index.yml)
+* The [AI Foundry AI Services landing page](../../index.yml)
 
    :::image type="content" source="../media/quickstarts/ai-services-landing-page.png" lightbox="../media/quickstarts/ai-services-landing-page.png" alt-text="Screenshot of the AI Services landing page.":::
 
