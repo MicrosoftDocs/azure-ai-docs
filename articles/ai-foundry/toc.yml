@@ -28,6 +28,8 @@ items:
         - name: "Part 3: Evaluate the chat app"
           href: tutorials/copilot-sdk-evaluate.md
           displayName: code,sdk
+        - name: Get started with DeepSeek-R1 reasoning model
+          href: model-inference/tutorials/get-started-deepseek-r1.md?context=/azure/ai-foundry/context/context
     - name: Deploy an enterprise chat web app
       href: tutorials/deploy-chat-web-app.md
     - name: Build a RAG solution using Azure AI Search
@@ -68,6 +70,8 @@ items:
       items:
       - name: What is Azure AI model inference?
         href: ../ai-foundry/model-inference/overview.md?context=/azure/ai-foundry/context/context
+      - name: Deployment types for Azure AI model inference
+        href: ../ai-foundry/model-inference/concepts/deployment-types.md?context=/azure/ai-foundry/context/context
       - name: Add and configure models
         href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-foundry/context/context
       - name: Featured models supported in Azure AI model inference
