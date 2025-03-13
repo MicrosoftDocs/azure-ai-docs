@@ -241,3 +241,5 @@ The response is as follows, where you can see the model's usage statistics:
     }
 }
 ```
+
+Audio is broken into tokens and submitted to the model for processing. Some models may operate directly over audio tokens while other may use internal modules to perform speech-to-text, resulting in different strategies to compute tokens. Read the model card for details about how each model operates.
