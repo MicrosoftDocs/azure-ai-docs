@@ -28,8 +28,8 @@ items:
         - name: "Part 3: Evaluate the chat app"
           href: tutorials/copilot-sdk-evaluate.md
           displayName: code,sdk
-        - name: Get started with DeepSeek-R1 reasoning model
-          href: model-inference/tutorials/get-started-deepseek-r1.md?context=/azure/ai-foundry/context/context
+    - name: Get started with DeepSeek-R1 reasoning model
+      href: model-inference/tutorials/get-started-deepseek-r1.md?context=/azure/ai-foundry/context/context
     - name: Deploy an enterprise chat web app
       href: tutorials/deploy-chat-web-app.md
     - name: Build a RAG solution using Azure AI Search
