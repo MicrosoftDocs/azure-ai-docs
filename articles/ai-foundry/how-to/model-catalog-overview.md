@@ -85,7 +85,7 @@ To view a list of supported models for Managed compute:
 1. Select **Model catalog** from the left sidebar.
 1. In the **Deployment options** filter, select **Managed compute**.
 
-:::image type="content" source="../media/deploy-monitor/catalog-filter-managed-compute.png" alt-text="A screenshot showing how to filter by managed compute models in the catalog." lightbox="../media/deploy-monitor/catalog-filter-managed-compute.png"::: 
+:::image type="content" source="../media/how-to/model-catalog-overview/catalog-filter-managed-compute.png" alt-text="A screenshot showing how to filter by managed compute models in the catalog." lightbox="../media/how-to/model-catalog-overview/catalog-filter-managed-compute.png":::  
 
 
 For Azure OpenAI models, see [Azure OpenAI Service Models](../../ai-services/openai/concepts/models.md).
