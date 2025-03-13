@@ -73,22 +73,11 @@ Network isolation | [Configure managed networks for Azure AI Foundry hubs](confi
 
 ### Available models for supported deployment options
 
-To view a list of supported models for Serverless API:
+For Azure OpenAI models, see [Azure OpenAI Service Models](../../ai-services/openai/concepts/models.md).
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com) and go to the **Home** page.
-1. Select **Model catalog** from the left sidebar.
-1. In the **Deployment options** filter, select **Serverless API**.
-
-To view a list of supported models for Managed compute:
-
-1. Sign in to [Azure AI Foundry](https://ai.azure.com) and go to the **Home** page.
-1. Select **Model catalog** from the left sidebar.
-1. In the **Deployment options** filter, select **Managed compute**.
+To view a list of supported models for Serverless API or Managed Compute, go to the home page of the model catalog in [Azure AI Foundry](https://ai.azure.com). Use the **Deployment options** filter to select either **Serverless API** or **Managed Compute**. 
 
 :::image type="content" source="../media/how-to/model-catalog-overview/catalog-filter-managed-compute.png" alt-text="A screenshot showing how to filter by managed compute models in the catalog." lightbox="../media/how-to/model-catalog-overview/catalog-filter-managed-compute.png":::  
-
-
-For Azure OpenAI models, see [Azure OpenAI Service Models](../../ai-services/openai/concepts/models.md).
 
 
 <!-- docutune:enable -->
