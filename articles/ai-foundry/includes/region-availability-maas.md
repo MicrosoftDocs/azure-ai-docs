@@ -101,7 +101,7 @@ Mistral-Large (2411)  | [Microsoft Managed Countries](/partner-center/marketplac
 |---------|---------|---------|---------|
 TimeGEN-1  | [Microsoft Managed countries/regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)  <br> Mexico <br> Israel  | East US <br> East US 2 <br> North Central US <br> South Central US <br> Sweden Central <br> West US <br> West US 3        |  Not available       |
 
-### NTTDATA models
+### NTT DATA models
 
 | Model | Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
 |---------|---------|---------|---------|
