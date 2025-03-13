@@ -68,7 +68,7 @@ You can also configure managed identities for use with an Azure Machine Learning
 > [!TIP]
 > There are exceptions to the use of Microsoft Entra ID and Azure RBAC in Azure Machine Learning:
 > * You can optionally enable Secure Shell (SSH) access to compute resources such as an Azure Machine Learning compute instance and a compute cluster. SSH access is based on public/private key pairs, not Microsoft Entra ID. Azure RBAC doesn't govern SSH access.
-> * You can authenticate to models deployed as online endpoints by using key-based or token-based authentication. Keys are static strings, whereas tokens are retrieved thorugh a Microsoft Entra security object. For more information, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md).
+> * You can authenticate to models deployed as online endpoints by using key-based or token-based authentication. Keys are static strings, whereas tokens are retrieved through a Microsoft Entra security object. For more information, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md).
 
 For more information, see the following articles:
 

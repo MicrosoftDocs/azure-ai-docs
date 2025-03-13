@@ -148,7 +148,7 @@ The following example (from [azure-search-dotnet-samples/multiple-data-sources/]
 try
 {
     await indexerClient.GetIndexerAsync(blobIndexer.Name);
-    //Rest the indexer if it exsits.
+    //Rest the indexer if it exists.
     await indexerClient.ResetIndexerAsync(blobIndexer.Name);
 }
 catch (RequestFailedException ex) when (ex.Status == 404) { }

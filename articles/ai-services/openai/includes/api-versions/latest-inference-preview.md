@@ -5156,7 +5156,7 @@ Parameters to use when configuring Azure OpenAI On Your Data chat extensions whe
 | database_name | string | The name of the Mongo DB database. | Yes |  |
 | collection_name | string | The name of the Mongo DB Collection. | Yes |  |
 | app_name | string | The name of the Mongo DB Application. | Yes |  |
-| index_name | string | The The name of the Mongo DB index. | Yes |  |
+| index_name | string | The  name of the Mongo DB index. | Yes |  |
 | fields_mapping | [mongoDBFieldMappingOptions](#mongodbfieldmappingoptions) | Optional settings to control how fields are processed when using a configured Mongo DB resource. | Yes |  |
 | embedding_dependency | [onYourDataEndpointVectorizationSource](#onyourdataendpointvectorizationsource) or [onYourDataDeploymentNameVectorizationSource](#onyourdatadeploymentnamevectorizationsource) |  | Yes |  |
 | include_contexts | array | The included properties of the output context. If not specified, the default value is `citations` and `intent`. | No |  |

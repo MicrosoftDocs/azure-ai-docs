@@ -40,7 +40,7 @@ Assistants API is built on the same capabilities that power OpenAI’s GPT produ
 
 ## Available models
 
-To see a list of Azure OpenAI models that you can use with assitants, see the [Models](./models.md#assistants-preview) article.
+To see a list of Azure OpenAI models that you can use with assistants, see the [Models](./models.md#assistants-preview) article.
 
 ## Assistants playground
 

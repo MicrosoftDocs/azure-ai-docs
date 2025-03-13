@@ -138,7 +138,7 @@ The following code uses a Content Moderator client to analyze a body of text and
 Then at the root of your project, add a *TextFile.txt* file. Add your own text to this file, or use the following sample text:
 
 ```
-Is this a grabage email abcdef@abcd.com, phone: 4255550111, IP: 255.255.255.255, 1234 Main Boulevard, Panapolis WA 96555.
+Is this a garbage email abcdef@abcd.com, phone: 4255550111, IP: 255.255.255.255, 1234 Main Boulevard, Panapolis WA 96555.
 <offensive word> is the profanity here. Is this information PII? phone 4255550111
 ```
 

@@ -456,7 +456,7 @@ version = registered_model.version
     1. Choose the MLflow model that you registered previously, then select the **Select** button.
     
         > [!NOTE]
-        > The configuration page includes a note to inform you that the the scoring script and environment are auto generated for your selected MLflow model.
+        > The configuration page includes a note to inform you that the scoring script and environment are auto generated for your selected MLflow model.
 
     1. Select **New** to deploy to a new endpoint.
     1. Provide a name for the endpoint and deployment or keep the default names.

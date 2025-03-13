@@ -312,7 +312,7 @@ If you specified a test dataset or opted for a train/test split during your expe
 > 
 > This feature isn't available for the following Automated ML scenarios:
 > - [Computer vision tasks](how-to-auto-train-image-models.md)
-> - [Many models and hiearchical time-series forecasting training (preview)](how-to-auto-train-forecast.md)
+> - [Many models and hierarchical time-series forecasting training (preview)](how-to-auto-train-forecast.md)
 > - [Forecasting tasks where deep learning neural networks (DNN) are enabled](how-to-auto-train-forecast.md#enable-learning-for-deep-neural-networks)
 > - [Automated ML jobs from local computes or Azure Databricks clusters](how-to-configure-auto-train.md#compute-to-run-experiment)
 

@@ -25,7 +25,7 @@ This component also outputs a definition of the transformation used to convert t
 
 1.  Find the **Convert to Indicator Values** and drag it to your pipeline draft. You can find this component under **Data Transformation** category.
     > [!NOTE]
-    > You can use the [Edit Metadata](edit-metadata.md) component before the **Convert to Indiciator Values** component to mark the target column(s) as categorical.
+    > You can use the [Edit Metadata](edit-metadata.md) component before the **Convert to Indicator Values** component to mark the target column(s) as categorical.
 
 1. Connect the **Convert to Indicator Values** component to the dataset containing the columns you want to convert. 
 

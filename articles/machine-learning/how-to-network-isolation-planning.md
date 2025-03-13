@@ -142,7 +142,7 @@ If you have your own DNS server hosted in Azure or on-premises, you need to crea
 
 ### Data exfiltration protection 
 
-We have two types of outbound; read only and read/write. Malicious actor's can't expoilt read only outbound, but read/write outbound can be. Azure Storage and Azure Frontdoor (the frontdoor.frontend service tag) are read/write outbound in our case. 
+We have two types of outbound; read only and read/write. Malicious actor's can't exploit read only outbound, but read/write outbound can be. Azure Storage and Azure Frontdoor (the frontdoor.frontend service tag) are read/write outbound in our case. 
 
 You can mitigate this data exfiltration risk using our data exfiltration prevention solution. We use a service endpoint policy with an Azure Machine Learning alias to allow outbound to only Azure Machine Learning managed storage accounts. You don't need to open outbound to Storage on your firewall. 
 

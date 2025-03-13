@@ -1431,7 +1431,7 @@ foreach (ChatCompletionsToolCall tool in toolsCall)
         Dictionary<string, object> toolArguments = JsonSerializer.Deserialize<Dictionary<string, object>>(toolArgumentsString);
 
         // Here you have to call the function defined. In this particular example we use 
-        // reflection to find the method we definied before in an static class called 
+        // reflection to find the method we defined before in an static class called 
         // `ChatCompletionsExamples`. Using reflection allows us to call a function 
         // by string name. Notice that this is just done for demonstration purposes as a 
         // simple way to get the function callable from its string name. Then we can call 
@@ -1942,7 +1942,7 @@ Prompt the model to book flights with the help of this function:
     "messages": [
         {
             "role": "system",
-            "content": "You are a helpful assistant that help users to find information about traveling, how to get to places and the different transportations options. You care about the environment and you always have that in mind when answering inqueries"
+            "content": "You are a helpful assistant that help users to find information about traveling, how to get to places and the different transportations options. You care about the environment and you always have that in mind when answering inquiries"
         },
         {
             "role": "user",
