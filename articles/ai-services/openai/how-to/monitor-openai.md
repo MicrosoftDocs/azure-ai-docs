@@ -15,7 +15,7 @@ ms.service: azure-ai-openai
 
 ## Dashboards
 
-Azure OpenAI provides out-of-box dashboards for each of your Azure OpenAI resources. To access the monitoring dashboards sign-in to [https://portal.azure.com](https://portal.azure.com) and select the overview pane for one of your Azure OpenAI resources.
+Azure OpenAI provides out-of-box dashboards for each of your Azure OpenAI resources. There are two key dashboards to monitor your resource: 1) The metrics dashboard in the AI Foundry Azure OpenAI resource view 2) The dashboard in the overview pane within Azure Portal. To access the monitoring dashboards sign-in to [https://portal.azure.com](https://portal.azure.com) and select the overview pane for one of your Azure OpenAI resources. To see the AI Foundry metrics dashboard from Azure Portal, select the overview pane and click "Go to Azure AI Foundry portal". Under tools, select the metrics dashboard.   
 
 :::image type="content" source="../media/monitoring/dashboard.png" alt-text="Screenshot that shows out-of-box dashboards for an Azure OpenAI resource in the Azure portal." lightbox="../media/monitoring/dashboard.png" border="false":::
 
