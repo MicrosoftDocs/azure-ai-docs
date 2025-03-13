@@ -62,9 +62,6 @@ client = new ChatCompletionsClient(
 
 Some models can reason across text and images and generate text completions based on both kinds of input. In this section, you explore the capabilities of Some models for vision in a chat fashion:
 
-> [!IMPORTANT]
-> Some models support only one image for each turn in the chat conversation and only the last image is retained in context. If you add multiple images, it results in an error.
-
 To see this capability, download an image and encode the information as `base64` string. The resulting data should be inside of a [data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs):
 
 
@@ -126,6 +123,9 @@ Usage:
 
 Images are broken into tokens and submitted to the model for processing. When referring to images, each of those tokens is typically referred as *patches*. Each model may break down a given image on a different number of patches. Read the model card to learn the details.
 
+> [!IMPORTANT]
+> Some models support only one image for each turn in the chat conversation and only the last image is retained in context. If you add multiple images, it results in an error.
+
 ## Use chat completions with audio
 
 Some models can reason across text and audio inputs. The following example shows how you can send audio context to chat completions models that also supports audio. Use `InputAudio` to load the content of the audio file into the payload. The content is encoded in `base64` data and sent over the payload.
@@ -157,12 +157,12 @@ Console.WriteLine($"\tCompletion tokens: {response.Value.Usage.CompletionTokens}
 ```
 
 ```console
-ASSISTANT: The chart illustrates that larger models tend to perform better in quality, as indicated by their size in billions of parameters. However, there are exceptions to this trend, such as Phi-3-medium and Phi-3-small, which outperform smaller models in quality. This suggests that while larger models generally have an advantage, there might be other factors at play that influence a model's performance.
-Model: Phi-4-multimodal-instruct
-Usage: 
-  Prompt tokens: 2380
-  Completion tokens: 126
-  Total tokens: 2506
+ASSISTANT: Hola. ¿Cómo estás?
+Model: speech
+Usage:
+	Prompt tokens: 77
+	Completion tokens: 7
+	Total tokens: 84
 ```
 
 The model can read the content from an **accessible cloud location** by passing the URL as an input. The Python SDK doesn't provide a direct way to do it, but you can indicate the payload as follows:
@@ -194,12 +194,12 @@ Console.WriteLine($"\tCompletion tokens: {response.Value.Usage.CompletionTokens}
 ```
 
 ```console
-ASSISTANT: The chart illustrates that larger models tend to perform better in quality, as indicated by their size in billions of parameters. However, there are exceptions to this trend, such as Phi-3-medium and Phi-3-small, which outperform smaller models in quality. This suggests that while larger models generally have an advantage, there might be other factors at play that influence a model's performance.
-Model: Phi-4-multimodal-instruct
-Usage: 
-  Prompt tokens: 2380
-  Completion tokens: 126
-  Total tokens: 2506
+ASSISTANT: Hola. ¿Cómo estás?
+Model: speech
+Usage:
+	Prompt tokens: 77
+	Completion tokens: 7
+	Total tokens: 84
 ```
 
-
+Audio is broken into tokens and submitted to the model for processing. Some models may operate directly over audio tokens while other may use internal modules to perform speech-to-text, resulting in different strategies to compute tokens. Read the model card for details about how each model operates.

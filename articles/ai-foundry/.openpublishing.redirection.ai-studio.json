@@ -127,7 +127,7 @@
           },
           {
             "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-deepseek.md",
-            "redirect_url": "/azure/ai-foundry/concepts/models-featured#deepseek",
+            "redirect_url": "/azure/ai-foundry/model-inference/tutorials/get-started-deepseek-r1?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext",
             "redirect_document_id": false
           },
           {

@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.author: yogipandey
 author: ynpandey
 ms.reviewer: fsolomon
-ms.date: 02/09/2024
+ms.date: 03/13/2025
 ms.custom: UpdateFrequency5, data4ml
 #Customer intent: As low code experience data scientist, I need to make my data in storage on Azure available to my remote compute to train my ML models.
 ---
