@@ -57,9 +57,6 @@ const client = new ModelClient(
 
 Some models can reason across text and images and generate text completions based on both kinds of input. In this section, you explore the capabilities of some models for vision in a chat fashion. 
 
-> [!IMPORTANT]
-> Some models support only one image for each turn in the chat conversation and only the last image is retained in context. If you add multiple images, it results in an error.
-
 To see this capability, download an image and encode the information as `base64` string. The resulting data should be inside of a [data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs):
 
 ```javascript
@@ -130,6 +127,9 @@ Usage:
   Total tokens: 2506
 ```
 
+> [!IMPORTANT]
+> Some models support only one image for each turn in the chat conversation and only the last image is retained in context. If you add multiple images, it results in an error.
+
 ## Use chat completions with audio
 
 Some models can reason across text and audio inputs. The following example shows how you can send audio context to chat completions models that also supports audio.
@@ -137,6 +137,8 @@ Some models can reason across text and audio inputs. The following example shows
 In this example, we create a function `getAudioData` to load the content of the audio file encoded in `base64` data as the model expects it.
 
 ```javascript
+import fs from "node:fs";
+
 /**
  * Get the Base 64 data of an audio file.
  * @param {string} audioFile - The path to the image file.
