@@ -8,7 +8,7 @@ ms.service: azure-ai-document-intelligence
 ms.custom:
   - ignite-2024
 ms.topic: quickstart
-ms.date: 11/19/2024
+ms.date: 03/13/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.0.0'
 ---
@@ -16,7 +16,7 @@ monikerRange: '>=doc-intel-3.0.0'
 
 <!-- markdownlint-disable MD001 -->
 
-# Get started with custom projects in Document Intelligence Studio
+# Document Intelligence Studio: get started with custom or prebuilt projects
 
 [!INCLUDE [applies to v4.0 v3.1 v3.0](../includes/applies-to-v40-v31-v30.md)]
 
