@@ -127,6 +127,8 @@ Usage:
   Total tokens: 2506
 ```
 
+Images are broken into tokens and submitted to the model for processing. When referring to images, each of those tokens is typically referred as *patches*. Each model may break down a given image on a different number of patches. Read the model card to learn the details.
+
 > [!IMPORTANT]
 > Some models support only one image for each turn in the chat conversation and only the last image is retained in context. If you add multiple images, it results in an error.
 
@@ -238,3 +240,5 @@ const response = await client.path("/chat/completions").post({
     },
   });
 ```
+
+Audio is broken into tokens and submitted to the model for processing. Some models may operate directly over audio tokens while other may use internal modules to perform speech-to-text, resulting in different strategies to compute tokens. Read the model card for details about how each model operates.
