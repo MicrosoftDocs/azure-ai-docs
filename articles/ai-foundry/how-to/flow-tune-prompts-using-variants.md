@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
 ms.topic: how-to
 ms.date: 5/21/2024
-ms.reviewer: yijunzhang
+ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
