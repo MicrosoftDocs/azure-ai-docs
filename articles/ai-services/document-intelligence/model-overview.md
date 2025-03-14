@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 03/14/2025
 ms.author: lajanuar
 ---
 
@@ -82,8 +82,8 @@ The following table shows the available models for each stable API:
 |Custom extraction model|[Custom composed](train/composed-models.md)            | ✔️| ✔️| ✔️| ✔️|
 |All models|[Add-on capabilities](concept-add-on-capabilities.md)    | ✔️| ✔️| n/a| n/a|
 
-\* - Contains submodels. See the model specific information for supported variations and subtypes. </br>
-\**- All the capabilites of General Document model are available in layout model. General model is no longer supported. 
+\* - Contains submodels. See the model specific information for supported variations and subtypes.</br>
+\**- All the General Document model capabilities are available in layout model. General model is no longer supported. 
 
 ### Latency
 
@@ -252,7 +252,7 @@ The US mortgage document models analyze and extract key fields including borrowe
 
  The contract model analyzes and extracts key fields from check including check details, account details, amount, memo, is extracted from US bank checks.
  
-***Sample bank check processed using [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=check.us)***:
+***A bank check sample processed using [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=check.us)***:
 
 :::image type="content" source="media/studio/analyze-bank-check.png" alt-text="Screenshot of bank check model extraction using Document Intelligence Studio.":::
 
@@ -263,7 +263,7 @@ The US mortgage document models analyze and extract key fields including borrowe
 
 :::image type="icon" source="media/overview/icon-contract.png":::
 
- The bank statement model analyzes and extracts key fields and line items from US bank statements account number, bank details, statement details and transaction details.
+ The bank statement model analyzes and extracts key fields and line items from US bank statements account number, bank details, statement details, and transaction details.
 
 ***Sample bank statement processed using [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=bankStatement.us)***:
 
@@ -410,7 +410,7 @@ A composed model is created by taking a collection of custom models and assignin
 [!INCLUDE [input requirements](./includes/input-requirements.md)]
 
 > [!NOTE]
-> The [Sample Labeling tool](https://fott-2-1.azurewebsites.net/) does not support the BMP file format. This is a limitation of the tool not the Document Intelligence Service.
+> The [Sample Labeling tool](https://fott-2-1.azurewebsites.net/) doesn't support the BMP file format. The limitation is derived from tool not the Document Intelligence Service.
 
 ### Version migration
 
@@ -531,7 +531,7 @@ A composed model is created by taking a collection of custom models and assignin
 [!INCLUDE [input requirements](./includes/input-requirements.md)]
 
 > [!NOTE]
-> The [Sample Labeling tool](https://fott-2-1.azurewebsites.net/) does not support the BMP file format. This is a limitation of the tool not the Document Intelligence Service.
+> The [Sample Labeling tool](https://fott-2-1.azurewebsites.net/) doesn't support the BMP file format. The limitation is derived from tool not the Document Intelligence Service.
 
 ### Version migration
 
