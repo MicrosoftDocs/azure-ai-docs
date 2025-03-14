@@ -1,237 +1,162 @@
 ---
-title: "Quickstart: Document intelligence Studio | v3.0"
-titleSuffix: Azure Applied AI Services
-description: Form and document processing, data extraction, and analysis using Document intelligence Studio
+title: "Quickstart: Document intelligence Studio"
+titleSuffix: Azure AI Services
+description: How to get started processing forms and documents using Document intelligence Studio
 author: laujan
 manager: nitinme
-ms.service: applied-ai-services
-ms.subservice: forms-recognizer
+ms.service: azure-ai-document-intelligence
 ms.topic: quickstart
-ms.date: 03/03/2023
+ms.date: 03/13/2025
 ms.author: lajanuar
+monikerRange: '>=doc-intel-3.0.0'
 ---
 
 <!-- markdownlint-disable MD001 -->
 
 # Get started: Document intelligence Studio
 
-[Document intelligence Studio](https://formrecognizer.appliedai.azure.com/) is an online tool for visually exploring, understanding, and integrating features from the Document intelligence service in your applications. You can get started by exploring the pretrained models with sample or your own documents. You can also create projects to build custom template models and reference the models in your applications using the [Python SDK](get-started-sdks-rest-api.md?view=form-recog-3.0.0&preserve-view=true) and other quickstarts.
+[Document intelligence Studio](https://formrecognizer.appliedai.azure.com/) is an online tool for visually exploring, understanding, and integrating features from the Document intelligence service in your applications. You can get started by exploring the pretrained models with sample or your own documents. You can also create projects to build custom template models and reference the models in your applications.
 
 > [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE56n49]
 
 ## Prerequisites for new users
 
-* An active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/).  If you don't have one, you can [**create a free account**](https://azure.microsoft.com/free/).
-* A [**Document intelligence**](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [**Cognitive Services multi-service**](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne) resource.
+To use Document Intelligence Studio, you need to acquire the following assets from the Azure portal:
+
+* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
+
+* An Azure AI services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [Azure AI multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) resource, in the Azure portal, to get your key and endpoint.
+
+* You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
 > [!TIP]
-> Create a Cognitive Services resource if you plan to access multiple cognitive services under a single endpoint/key. For Document intelligence access only, create a Document intelligence resource. Please note that you'll  need a single-service resource if you intend to use [Azure Active Directory authentication](../../../active-directory/authentication/overview-authentication.md).
+> Create an Azure AI services resource if you plan to access multiple Azure AI services under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. You need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
+>
+> Document Intelligence now supports Azure Active Directory (Azure AD) token authentication in addition to local (key-based) authentication when accessing the Document Intelligence resources and storage accounts. Be sure to follow below instructions to set up correct access roles, especially if your resources are applied with `DisableLocalAuth` policy.
 
-## Models
+There are added prerequisites for using custom models in Document Intelligence Studio. Refer to the [documentation](quickstarts/studio-custom-project.md) for step by step guidance.
 
-Prebuilt models help you add Document intelligence features to your apps without having to build, train, and publish your own models. You can choose from several prebuilt models, each of which has its own set of supported data fields. The choice of model to use for the analyze operation depends on the type of document to be analyzed. Document intelligence currently supports the following prebuilt models:
+### Authorization policies
 
-#### Document analysis
+Your organization can opt to disable local authentication and enforce Microsoft Entra (formerly Azure Active Directory) authentication for Azure AI Document Intelligence resources and Azure blob storage.
 
-* [**General document**](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=document): extract text, tables, structure, key-value pairs.
-* [**Layout**](https://formrecognizer.appliedai.azure.com/studio/layout): extract text, tables, selection marks, and structure information from documents (PDF, TIFF) and images (JPG, PNG, BMP).
-* [**Read**](https://formrecognizer.appliedai.azure.com/studio/read): extract text lines, words, their locations, detected languages, and handwritten style if detected from documents (PDF, TIFF) and images (JPG, PNG, BMP).
+* Microsoft Entra authentication requires that key based authorization is disabled. After key access is disabled, Microsoft Entra ID is the only available authorization method.
 
-#### Prebuilt
+* Microsoft Entra allows granting minimum privileges and granular control for Azure resources.
 
-* [**Invoice**](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=invoice): extract text, selection marks, tables, key-value pairs, and key information from invoices.
-* [**Receipt**](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=receipt): extract text and key information from receipts.
-* [**Health insurance card**](https://formrecognizer.appliedai.azure.com/studio): extract insurer, member, prescription, group number and other key information from US health insurance cards.
-* [**W-2**](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=tax.us.w2): extract text and key information from W-2 tax forms.
-* [**ID document**](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=idDocument): extract text and key information from driver licenses and international passports.
-* [**Business card**](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=businessCard): extract text and key information from business cards.
+For more information, *see* the following guidance:
 
-#### Custom
+  * [Disable local authentication for Azure AI Services](../disable-local-auth.md).
+  * [Prevent Shared Key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent)
+ 
+ > [!NOTE]
+ > If local (key-based) authentication is disabled for your Document Intelligence service resource, be sure to obtain **Cognitive Services User** role and your Azure AD token to authenticate requests on Document Intelligence Studio. The **Contributor** role only allows you to list keys but doesn't give you permission to use the resource when key-access is disabled.
 
-* [**Custom extraction models**](https://formrecognizer.appliedai.azure.com/studio): extract information from forms and documents with custom extraction models. Quickly train a model by labeling as few as five sample documents.
-* [**Custom classification model**](https://formrecognizer.appliedai.azure.com/studio): train a custom classifier to distinguish between the different document types within your applications. Quickly train a model with as few as two classes and five samples per class.
+* **Designating role assignments**. Document Intelligence Studio basic access requires the [`Cognitive Services User`](/azure/role-based-access-control/built-in-roles/ai-machine-learning#cognitive-services-user) role. For more information, *see* [Document Intelligence role assignments](quickstarts/try-document-intelligence-studio.md#azure-role-assignments).
 
-#### Gated preview models
+> [!IMPORTANT]
+>
+> * Make sure you have the **Cognitive Services User role**, and not the Cognitive Services Contributor role when setting up Entra authentication.
+> * ✔️ **Cognitive Services User**: you need this role to Document Intelligence or Azure AI services resource to enter the analyze page.
+> * ✔️ **Contributor**: you need this role to create resource group, Document Intelligence service, or Azure AI services resource.
+> * In Azure context, Contributor role can only perform actions to control and manage the resource itself, including listing the access keys.
+> * User accounts with a Contributor are only able to access the Document Intelligence service by calling with access keys. However, when setting up access with Entra ID, key-access is disabled and **Cognitive Service User** role is required for an account to use the resources.
 
-> [!NOTE]
-> To request access for gated preview models in Document intelligence Studio, complete and submit the [**Document intelligence private preview request form**](https://aka.ms/form-recognizer/preview/survey).
+### Authentication in Studio
 
-* [**General document with query fields**](https://formrecognizer.appliedai.azure.com/studio): extract labels, values such as names, dates, and amounts from documents.
-* [**Contract**](https://formrecognizer.appliedai.azure.com/studio): extract the title and signatory party information (including names, references, and addresses) from contracts.
-* [**Vaccination card**](https://formrecognizer.appliedai.azure.com/studio): extract card holder name, health provider, and vaccination records from US COVID-19 vaccination cards.
-* [**US 1098 tax form**](https://formrecognizer.appliedai.azure.com/studio): extract mortgage interest information from US 1098 tax forms.
-* [**US 1098-E tax form**](https://formrecognizer.appliedai.azure.com/studio): extract student loan information from US 1098-E tax forms.
-* [**US 1098-T tax form**](https://formrecognizer.appliedai.azure.com/studio): extract tuition information from US 1098-T forms.
+Navigate to the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/). If it's your first time logging in, a popup window appears prompting you to configure your service resource. In accordance with your organization's policy, you have one or two options:
 
-> [!NOTE]
-> To request access for gated preview models in Document intelligence Studio, complete and submit the [**Document intelligence private preview request form**](https://aka.ms/form-recognizer/preview/survey).
+* **Microsoft Entra authentication: access by Resource (recommended)**.
 
-After you've completed the prerequisites, navigate to [Document intelligence Studio General Documents](https://formrecognizer.appliedai.azure.com/studio/document).
+  * Choose your existing subscription.
+  * Select an existing resource group within your subscription or create a new one.
+  * Select your existing Document Intelligence or Azure AI services resource.
 
-In the following example, we use the General Documents feature. The steps to use other pretrained features like [W2 tax form](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=tax.us.w2), [Read](https://formrecognizer.appliedai.azure.com/studio/read), [Layout](https://formrecognizer.appliedai.azure.com/studio/layout), [Invoice](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=invoice), [Receipt](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=receipt), [Business card](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=businessCard), and [ID documents](https://formrecognizer.appliedai.azure.com/studio/prebuilt?formType=idDocument) models are similar.
+    :::image type="content" source="media/studio/configure-service-resource.png" alt-text="Screenshot of configure service resource form from the Document Intelligence Studio.":::
 
-   :::image border="true" type="content" source="../media/quickstarts/form-recognizer-general-document-demo-preview3.gif" alt-text="Selecting the General Document API to analysis a document in the Document intelligence Studio.":::
+* **Local authentication: access by API endpoint and key**.
 
-1. Select a Document intelligence service feature from the Studio home page.
+  * Retrieve your endpoint and key from the Azure portal.
+  * Go to the overview page for your resource and select **Keys and Endpoint** from the left navigation bar.
+  * Enter the values in the appropriate fields.
 
-1. This step is a one-time process unless you've already selected the service resource from prior use. Select your Azure subscription, resource group, and resource. (You can change the resources anytime in "Settings" in the top menu.) Review and confirm your selections.
+      :::image type="content" source="media/studio/keys-and-endpoint.png" alt-text="Screenshot of the keys and endpoint page in the Azure portal.":::
 
-1. Select the Analyze button to run analysis on the sample document or try your document by using the Add command.
+* After validating the scenario in the Document Intelligence Studio, use the [**C#**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true), [**Java**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true), [**JavaScript**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true), or [**Python**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true) client libraries or the [**REST API**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true) to get started incorporating Document Intelligence models into your own applications.
 
-1. Use the controls at the bottom of the screen to zoom in and out and rotate the document view.
+### Document Intelligence model support
 
-1. Observe the highlighted extracted content in the document view. Hover your mouse over the keys and values to see details.
+Use the help wizard, labeling interface, training step, and interactive visualizations to understand how each feature works.
 
-1. In the output section's Result tab, browse the JSON output to understand the service response format.
+* **Read**: Try out Document Intelligence's [Studio Read feature](https://documentintelligence.ai.azure.com/studio/read) with sample documents or your own documents and extract text lines, words, detected languages, and handwritten style if detected. To learn more, *see* [Read overview](prebuilt/read.md).
 
-1. In the Code tab, browse the sample code for integration. Copy and download to get started.
+* **Layout**: Try out Document Intelligence's [Studio Layout feature](https://documentintelligence.ai.azure.com/studio/layout) with sample documents or your own documents and extract text, tables, selection marks, and structure information. To learn more, *see* [Layout overview](prebuilt/layout.md).
 
-## Added prerequisites for custom projects
+* **Prebuilt models**: Document Intelligence's prebuilt models enable you to add intelligent document processing to your apps and flows without having to train and build your own models. As an example, start with the [Studio Invoice feature](https://documentintelligence.ai.azure.com/studio/prebuilt?formType=invoice). To learn more, *see* [Models overview](model-overview.md).
 
-In addition to the Azure account and a Document intelligence or Cognitive Services resource, you need:
+* **Custom extraction models**: Document Intelligence's [Studio Custom models feature](https://documentintelligence.ai.azure.com/studio/custommodel/projects) enables you to extract fields and values from models trained with your data, tailored to your forms and documents. To extract data from multiple form types, create standalone custom models or combine two, or more, custom models and create a composed model. Test the custom model with your sample documents and iterate to improve the model. To learn more, *see* the [Custom models overview](train/custom-model.md).
 
-### Azure Blob Storage container
+* **Custom classification models**: Document classification is a new scenario supported by Document Intelligence. The document classifier API supports classification and splitting scenarios. Train a classification model to identify the different types of documents your application supports. The input file for the classification model can contain multiple documents and classifies each document within an associated page range. To learn more, *see* [custom classification models](train/custom-classifier.md).
 
-A **standard performance** [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). You create containers to store and organize your training documents within your storage account. If you don't know how to create an Azure storage account with a container, following these quickstarts:
+* **Add-on Capabilities**: Document Intelligence supports more sophisticated analysis capabilities. These optional capabilities can be enabled and disabled in the studio using the `Analyze Options` button in each model page. There are four add-on capabilities available: `highResolution`, `formula`, `font`, and `barcode extraction` capabilities. To learn more, *see* [Add-on capabilities](concept-add-on-capabilities.md).
 
-* [**Create a storage account**](../../../storage/common/storage-account-create.md). When creating your storage account, make sure to select **Standard** performance in the **Instance details → Performance** field.
-* [**Create a container**](../../../storage/blobs/storage-quickstart-blobs-portal.md#create-a-container). When creating your container, set the **Public access level** field to **Container** (anonymous read access for containers and blobs) in the **New Container** window.
+#### Try a Document Intelligence model
 
-### Configure CORS
+* Once your resource is configured, you can try the different models offered by Document Intelligence Studio. From the front page, select any Document Intelligence model to try using with a no-code approach.
 
-[CORS (Cross Origin Resource Sharing)](/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services) needs to be configured on your Azure storage account for it to be accessible from the Document intelligence Studio. To configure CORS in the Azure portal, you need access to the CORS tab of your storage account.
+* To test any of the document analysis or prebuilt models, select the model and use one of the sample documents or upload your own document to analyze. The analysis result is displayed at the right in the content-result-code window.
 
-1. Select the CORS tab for the storage account.
+* Custom models need to be trained on your documents. See [custom models overview](train/custom-model.md) for an overview of custom models.
 
-   :::image type="content" source="../media/quickstarts/cors-setting-menu.png" alt-text="Screenshot of the CORS setting menu in the Azure portal.":::
+* After validating the scenario in the Document Intelligence Studio, use the [**C#**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [**Java**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [**JavaScript**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), or [**Python**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) client libraries or the [**REST API**](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) to get started incorporating Document Intelligence models into your own applications.
 
-1. Start by creating a new CORS entry in the Blob service.
+#### View resource details
 
-1. Set the **Allowed origins** to `https://formrecognizer.appliedai.azure.com`.
+ To view resource details such as name and pricing tier, select the **Settings** icon in the top-right corner of the Document Intelligence Studio home page and select the **Resource** tab. If you have access to other resources, you can switch resources as well.
 
-   :::image type="content" source="../media/quickstarts/cors-updated-image.png" alt-text="Screenshot that shows CORS configuration for a storage account.":::
+:::image type="content" source="media/studio/form-recognizer-studio-resource-page.png" alt-text="Screenshot of the studio settings page resource tab.":::
 
-    > [!TIP]
-    > You can use the wildcard character '*' rather than a specified domain to allow all origin domains to make requests via CORS.
+With Document Intelligence, you can quickly automate your data processing in applications and workflows, easily enhance data-driven strategies, and skillfully enrich document search capabilities.
 
-1. Select all the available 8 options for **Allowed methods**.
+#### Manage third-party settings for Studio access
 
-1. Approve all **Allowed headers** and **Exposed headers** by entering an * in each field.
+**Edge**:
 
-1. Set the **Max Age** to 120 seconds or any acceptable value.
+* Go to **Settings** for Microsoft Edge
+* Search for "**third*party**"
+* Go to **Manage and delete cookies and site data**
+* Turn off the setting of **Block third*party cookies**
 
-1. Select the save button at the top of the page to save the changes.
+**Chrome**:
 
-CORS should now be configured to use the storage account from Document intelligence Studio.
+* Go to **Settings** for Chrome
+* Search for "**Third*party**"
+* Under **Default behavior**, select **Allow third*party cookies**
 
-### Sample documents set
+**Firefox**:
 
-1. Go to the [Azure portal](https://portal.azure.com/#home) and navigate as follows:  **Your storage account** → **Data storage** → **Containers**
+* Go to **Settings** for Firefox
+* Search for "**cookies**"
+* Under **Enhanced Tracking Protection**, select **Manage Exceptions**
+* Add exception for **`https://documentintelligence.ai.azure.com`** or the Document Intelligence Studio URL of your environment
 
-   :::image border="true" type="content" source="../media/sas-tokens/data-storage-menu.png" alt-text="Screenshot: Data storage menu in the Azure portal.":::
+**Safari**:
 
-1. Select a **container** from the list.
+* Choose **Safari** > **Preferences**
+* Select **Privacy**
+* Deselect **Block all cookies**
 
-1. Select **Upload** from the menu at the top of the page.
+### Troubleshooting
 
-    :::image border="true" type="content" source="../media/sas-tokens/container-upload-button.png" alt-text="Screenshot: container upload button in the Azure portal.":::
-
-1. The **Upload blob** window appears.
-
-1. Select your file(s) to upload.
-
-    :::image border="true" type="content" source="../media/sas-tokens/upload-blob-window.png" alt-text="Screenshot: upload blob window in the Azure portal.":::
-
-> [!NOTE]
-> By default, the Studio will use form documents that are located at the root of your container. However, you can use data organized in folders by specifying the folder path in the Custom form project creation steps. *See* [**Organize your data in subfolders**](../build-training-data-set.md#organize-your-data-in-subfolders-optional)
-
-## Custom models
-
-To create custom models, you start with configuring your project:
-
-1. From the Studio home, select the Custom model card to open the Custom models page.
-
-1. Use the "Create a project" command to start the new project configuration wizard.
-
-1. Enter project details, select the Azure subscription and resource, and the Azure Blob storage container that contains your data.
-
-1. Review and submit your settings to create the project.
-
-1. From the labeling view, define the labels and their types that you're interested in extracting.
-
-1. Select the text in the document and select the label from the drop-down list or the labels pane.
-
-1. Label four more documents to get at least five documents labeled.
-
-1. Select the Train command and enter model name, select whether you want the custom template (form) or custom neural (document) model to start training your custom model.
-
-1. Once the model is ready, use the Test command to validate it with your test documents and observe the results.
-
-:::image border="true" type="content" source="../media/quickstarts/form-recognizer-custom-model-demo-v3p2.gif" alt-text="Document intelligence Custom model demo":::
-
-### Labeling as tables
-
-> [!NOTE]
-> * With the release of API versions 2022-06-30-preview and later, custom template models will add support for [cross page tabular fields (tables)](../concept-custom-template.md#tabular-fields).
-> * With the release of API versions 2022-06-30-preview and later, custom neural models will support [tabular fields (tables)](../concept-custom-template.md#tabular-fields) and models trained with API version 2022-08-31, or later will accept tabular field labels.
-
-1. Use the Delete command to delete models that aren't required.
-
-1. Download model details for offline viewing.
-
-1. Select multiple models and compose them into a new model to be used in your applications.
-
-Using tables as the visual pattern:
-
-For custom form models, while creating your custom models, you may need to extract data collections from your documents. Data collections may appear in a couple of formats. Using tables as the visual pattern:
-
-* Dynamic or variable count of values (rows) for a given set of fields (columns)
-
-* Specific collection of values for a given set of fields (columns and/or rows)
-
-**Label as dynamic table**
-
-Use dynamic tables to extract variable count of values (rows) for a given set of fields (columns):
-
-1. Add a new "Table" type label, select "Dynamic table" type, and name your label.
-
-1. Add the number of columns (fields) and rows (for data) that you need.
-
-1. Select the text in your page and then choose the cell to assign to the text. Repeat for all rows and columns in all pages in all documents.
-
-:::image border="true" type="content" source="../media/quickstarts/custom-tables-dynamic.gif" alt-text="Document intelligence labeling as dynamic table example":::
-
-**Label as fixed table**
-
-Use fixed tables to extract specific collection of values for a given set of fields (columns and/or rows):
-
-1. Create a new "Table" type label, select "Fixed table" type, and name it.
-
-1. Add the number of columns and rows that you need corresponding to the two sets of fields.
-
-1. Select the text in your page and then choose the cell to assign it to the text. Repeat for other documents.
-
-:::image border="true" type="content" source="../media/quickstarts/custom-tables-fixed.gif" alt-text="Document intelligence Labeling as fixed table example":::
-
-### Signature detection
-
->[!NOTE]
-> Signature fields are currently only supported for custom template models. When training a custom neural model, labeled signature fields are ignored.
-
-To label for signature detection: (Custom form only)
-
-1. In the labeling view, create a new "Signature" type label and name it.
-
-1. Use the Region command to create a rectangular region at the expected location of the signature.
-
-1. Select the drawn region and choose the Signature type label to assign it to your drawn region. Repeat for other documents.
-
-:::image border="true" type="content" source="../media/quickstarts/custom-signature.gif" alt-text="Document intelligence labeling for signature detection example":::
+|Scenario     |Cause| Resolution|
+|-------------|------|----------|
+|You receive the error message</br> `Form Recognizer Not Found` when opening a custom project.|Your Document Intelligence resource, bound to the custom project was deleted or moved to another resource group.| There are two ways to resolve this problem: </br>&bullet; Re-create the Document Intelligence resource under the same subscription and resource group with the same name.</br>&bullet; Re-create a custom project with the migrated Document Intelligence resource and specify the same storage account.|
+|You receive the error message</br> `PermissionDenied` when using prebuilt apps or opening a custom project.|The principal doesn't have access to API/Operation" when analyzing against prebuilt models or opening a custom project. It's likely the local (key-based) authentication is disabled for your Document Intelligence resource don't have enough permission to access the resource.|Reference [Azure role assignments](quickstarts/try-document-intelligence-studio.md#azure-role-assignments) to configure your access roles.|
+|You receive the error message</br> `AuthorizationPermissionMismatch` when opening a custom project.|The request isn't authorized to perform the operation using the designated permission. It's likely the local (key-based) authentication is disabled for your storage account and you don't have the granted permission to access the blob data.|Reference [Azure role assignments](quickstarts/try-document-intelligence-studio.md#azure-role-assignments) to configure your access roles.|
+|You can't sign in to Document Intelligence Studio and receive the error message</br> `InteractionRequiredAuthError:login_required:AADSTS50058:A silent sign-request was sent but no user is signed in`|It's likely that your browser is blocking third-party cookies so you can't successfully sign in.|To resolve, see [Manage third-party settings](#manage-third-party-settings-for-studio-access) for your browser.|
 
 ## Next steps
 
-* Follow our [**Document intelligence v3.0 migration guide**](../v3-migration-guide.md) to learn the differences from the previous version of the REST API.
-* Explore our [**v3.0 SDK quickstarts**](get-started-sdks-rest-api.md?view=form-recog-3.0.0&preserve-view=true) to try the v3.0 features in your applications using the new SDKs.
-* Refer to our [**v3.0 REST API quickstarts**](get-started-sdks-rest-api.md?view=form-recog-3.0.0&preserve-view=true) to try the v3.0 features using the new REST API.
+* [Learn how to create custom projects in Document Intelligence Studio](studio-custom-project.md)
 
-[Get started with the Document intelligence Studio](https://formrecognizer.appliedai.azure.com).
+* [Get started with Document Intelligence client libraries](get-started-sdks-rest-api.md)
