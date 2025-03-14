@@ -1,5 +1,5 @@
 ---
-title: Deploy NVIDIA Inference Microservices
+title: How to deploy NVIDIA Inference Microservices
 titleSuffix: Azure AI Foundry
 description: Learn to deploy NVIDIA Inference Microservices, using Azure AI Foundry.
 manager: scottpolly
@@ -13,7 +13,7 @@ reviewer: tinaem
 ms.custom:  serverless, devx-track-azurecli
 ---
 
-# Deploy NVIDIA Inference Microservices
+# How to deploy NVIDIA Inference Microservices
 
 In this article, you learn how to deploy NVIDIA Inference Microservices (NIMs) on Managed Compute in Foundry Catalog​. NVIDIA inference microservices are containers built by NVIDIA for optimized pre-trained and customized AI models serving on NVIDIA GPUs​.
 
