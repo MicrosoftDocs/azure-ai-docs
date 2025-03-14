@@ -87,7 +87,7 @@ The Personalizer learning loop is a cycle of **Rank** and **Reward** calls. In t
 
 1. Paste your key and endpoint into the code where indicated.
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 :::code language="js" source="~/cognitive-services-quickstart-code/javascript/Personalizer/quickstart-sdk/personalizer-quickstart.js" id="snippet_2":::
 

@@ -83,7 +83,7 @@ Use the Image Analysis client library for C# to analyze an image for content tag
 
    [!code-csharp[](~/cognitive-services-quickstart-code/dotnet/ComputerVision/ImageAnalysisQuickstart-single.cs?name=snippet_single)]
 
-   [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
+   [!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 1. Run the application
 

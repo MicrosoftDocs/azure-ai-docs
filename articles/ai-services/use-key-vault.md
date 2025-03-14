@@ -64,7 +64,7 @@ Key Vault reduces the risk that secrets may be accidentally leaked, because you 
 
 ## Get your credentials from your Azure AI services resource
 
-Before you add your credential information to your Azure key vault, you need to retrieve them from your Azure AI services resource. For example, if your service needs a key and endpoint you would find them using the following steps:
+Before you add your credential information to your Azure Key Vault, you need to retrieve them from your Azure AI services resource. For example, if your service needs a key and endpoint you would find them using the following steps:
 
 1. Navigate to your Azure resource in the [Azure portal](https://portal.azure.com/).
 1. From the collapsible menu on the left, select **Keys and Endpoint**.
@@ -104,7 +104,7 @@ You should now have named secrets for your resource information.
 
 ## Create an environment variable for your key vault's name
 
-We recommend creating an environment variable for your Azure key vault's name. Your application will read this environment variable at runtime to retrieve your key and endpoint information.
+We recommend creating an environment variable for your Azure Key Vault's name. Your application will read this environment variable at runtime to retrieve your key and endpoint information.
 
 To set environment variables, use one the following commands. `KEY_VAULT_NAME` with the name of the environment variable, and replace `Your-Key-Vault-Name` with the name of your key vault, which will be stored in the environment variable.
 

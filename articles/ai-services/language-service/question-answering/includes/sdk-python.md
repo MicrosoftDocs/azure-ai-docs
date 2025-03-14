@@ -87,7 +87,7 @@ if __name__ == '__main__':
     main()
 ```
 
-While we're hard coding the variables for our example. For production, consider using a secure way of storing and accessing your credentials. For example, [Azure key vault](/azure/key-vault/general/overview) provides secure key storage.
+While we're hard coding the variables for our example. For production, consider using a secure way of storing and accessing your credentials. For example, [Azure Key Vault](/azure/key-vault/general/overview) provides secure key storage.
 
 When you run the code above, if you're using the data source from the prerequisites you get an answer that looks as follows:
 

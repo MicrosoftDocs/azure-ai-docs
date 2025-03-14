@@ -18,7 +18,7 @@ To disable `v1_legacy_mode`, see [Network isolation with v2](../how-to-configure
 
 ### Online endpoint creation with key-based authentication fails
 
-Use the following command to list the network rules of the Azure key vault for your workspace. Replace `<keyvault-name>` with the name of your key vault:
+Use the following command to list the network rules of the Azure Key Vault for your workspace. Replace `<keyvault-name>` with the name of your key vault:
 
 ```azurecli
 az keyvault network-rule list -n <keyvault-name>

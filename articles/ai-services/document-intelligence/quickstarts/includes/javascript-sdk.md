@@ -129,7 +129,7 @@ Recognizer `endpoint`.
 
     * [**Prebuilt Invoice**](#prebuilt-model)
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
+[!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 <!-- markdownlint-disable MD036 -->
 
