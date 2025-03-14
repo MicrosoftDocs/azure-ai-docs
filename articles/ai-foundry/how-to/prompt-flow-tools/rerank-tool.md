@@ -9,6 +9,7 @@ ms.date: 01/29/2025
 ms.reviewer: jingyizhu
 ms.author: lagayhar
 author: lgayhardt
+ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ---
 
 
