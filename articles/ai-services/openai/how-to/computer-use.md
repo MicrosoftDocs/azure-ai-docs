@@ -252,6 +252,79 @@ When working with the Computer Use tool, you typically would perform the followi
 
 ## Handling conversation history
 
-You can use the `previous_response_id` parameter to link the current request to the previous response. We recommend using this method if you don't want to manage the conversation history on your side.
+You can use the `previous_response_id` parameter to link the current request to the previous response. Using this parameter is recommended if you don't want to manage the conversation history.
 
-If you do not want to use this parameter, you should make sure to include in your inputs array all the items returned in the response output of the previous request, including reasoning items if present.
+If you don't use this parameter, you should make sure to include all the items returned in the response output of the previous request in your inputs array. This includes reasoning items if present.
+
+## Safety checks
+
+The API has safety checks to help protect against prompt injection and model mistakes. These checks include:
+
+* **Malicious instruction detection**: The system evaluates the screenshot image and checks if it contains adversarial content that might change the model's behavior.
+* **Irrelevant domain detection**: The system evaluates the `current_url` (if provided) and checks if the current domain is considered relevant given the conversation history.
+* **Sensitive domain detection**: The system checks the `current_url` (if provided) and raises a warning when it detects the user is on a sensitive domain.
+
+If one or more of the above checks is triggered, a safety check is raised when the model returns the next `computer_call`, with the `pending_safety_checks` parameter.
+
+```json
+"output": [
+    {
+        "type": "reasoning",
+        "id": "rs_67cb...",
+        "summary": [
+            {
+                "type": "summary_text",
+                "text": "Exploring 'File' menu option."
+            }
+        ]
+    },
+    {
+        "type": "computer_call",
+        "id": "cu_67cb...",
+        "call_id": "call_nEJ...",
+        "action": {
+            "type": "click",
+            "button": "left",
+            "x": 135,
+            "y": 193
+        },
+        "pending_safety_checks": [
+            {
+                "id": "cu_sc_67cb...",
+                "code": "malicious_instructions",
+                "message": "We've detected instructions that may cause your application to perform malicious or unauthorized actions. Please acknowledge this warning if you'd like to proceed."
+            }
+        ],
+        "status": "completed"
+    }
+]
+```
+
+You need to pass the safety checks back as `acknowledged_safety_checks` in the next request in order to proceed. 
+
+```json
+input=[
+        {
+            "type": "computer_call_output",
+            "call_id": "<call_id>",
+            "acknowledged_safety_checks": [
+                {
+                    "id": "<safety_check_id>",
+                    "code": "malicious_instructions",
+                    "message": "We've detected instructions that may cause your application to perform malicious or unauthorized actions. Please acknowledge this warning if you'd like to proceed."
+                }
+            ],
+            "output": {
+                "type": "computer_screenshot",
+                "image_url": "<image_url>"
+            }
+        }
+    ],
+```
+
+### Suggested safety check handling
+
+In all cases where `pending_safety_checks` are returned, actions should be handed over to the end user to confirm proper model behavior and accuracy.
+
+* `malicious_instructions` and `irrelevant_domain`: end users should review model actions and confirm that the model is behaving as intended.
+* `sensitive_domain`: ensure an end user is actively monitoring the model actions on these sites. Exact implementation of this "watch mode" can vary by application, but a potential example could be collecting user impression data on the site to make sure there is active end user engagement with the application.
