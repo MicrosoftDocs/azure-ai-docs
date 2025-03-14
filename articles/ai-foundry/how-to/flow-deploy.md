@@ -10,9 +10,10 @@ ms.custom:
   - ignite-2024
 ms.topic: how-to
 ms.date: 01/27/2025
-ms.reviewer: gmuthukumar
+ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
+ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ---
 
 # Deploy a flow for real-time inference

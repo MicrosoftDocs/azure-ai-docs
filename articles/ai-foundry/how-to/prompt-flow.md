@@ -10,9 +10,10 @@ ms.custom:
   - ignite-2024
 ms.topic: conceptual
 ms.date: 11/19/2024
-ms.reviewer: yozen
+ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
+ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ---
 
 # Prompt flow in Azure AI Foundry portal
