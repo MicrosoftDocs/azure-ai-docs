@@ -1009,7 +1009,7 @@ groups:
   - id: supported-filetypes
     title: Supported file types
 # owner: aahi
-- id: selection-fabric-ai-skill
+- id: selection-fabric-data-agent
   title: Selections
   prompt: What would you like to see?
   pivots:
