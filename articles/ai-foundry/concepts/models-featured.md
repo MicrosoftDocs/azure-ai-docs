@@ -330,6 +330,14 @@ See the [Nixtla model collection in Azure AI Foundry portal](https://ai.azure.co
 | ------ | ---- | ------------ |
 | [tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 
+## Stability AI 
+
+The Stability AI collection of image geneeration models include Stable Image Core, Stable Image Ultra and Stable Diffusion 3.5 Large. 
+
+| Model  | Type | Capabilities |
+| ------ | ---- | ------------ |
+| [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/versions/1) | [Image Generation](../model-inference/how-to/deploy-stability-models.md?context=/azure/ai-foundry/context/context) | - Input: text and image (1000 tokens and 1 image)  <br /> - Output: 1 Image  <br />  - **Tool calling:** No <br /> - Response formats: Image (PNG and JPG) |
+
 ## Related content
 
 - [Deploy models as serverless APIs](../how-to/deploy-models-serverless.md)
