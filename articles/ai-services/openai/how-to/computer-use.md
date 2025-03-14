@@ -322,7 +322,7 @@ input=[
     ],
 ```
 
-### Suggested safety check handling
+### Safety check handling
 
 In all cases where `pending_safety_checks` are returned, actions should be handed over to the end user to confirm proper model behavior and accuracy.
 
