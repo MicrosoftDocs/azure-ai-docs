@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
 ms.topic: reference
 ms.date: 01/31/2025
-ms.reviewer: keli19
+ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 ---

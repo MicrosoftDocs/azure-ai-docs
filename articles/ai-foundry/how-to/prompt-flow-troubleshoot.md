@@ -9,7 +9,7 @@ ms.custom:
 ms.topic: conceptual
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: chenjieting
+ms.reviewer: none
 ms.date: 07/31/2024
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ---
