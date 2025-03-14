@@ -332,11 +332,16 @@ See the [Nixtla model collection in Azure AI Foundry portal](https://ai.azure.co
 
 ## Stability AI 
 
-The Stability AI collection of image geneeration models include Stable Image Core, Stable Image Ultra and Stable Diffusion 3.5 Large. 
+The Stability AI collection of image generation models include Stable Image Core, Stable Image Ultra and Stable Diffusion 3.5 Large. Stable Diffusion 3.5 Large allows for an image and text input. 
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
-| [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/versions/1) | [Image Generation](../model-inference/how-to/deploy-stability-models.md?context=/azure/ai-foundry/context/context) | - Input: text and image (1000 tokens and 1 image)  <br /> - Output: 1 Image  <br />  - **Tool calling:** No <br /> - Response formats: Image (PNG and JPG) |
+| [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/versions/1) | [Image Generation](../model-inference/how-to/deploy-stability-models.md?context=/azure/ai-foundry/context/context) | - Input: text and image (1000 tokens and 1 image)  <br /> - Output: 1 Image  <br />  - **Tool calling:** No <br /> - Response formats: Image (PNG and JPG) |
+| [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/versions/1) | [Image Generation](../model-inference/how-to/deploy-stability-models.md?context=/azure/ai-foundry/context/context) | - Input: text (1000 tokens)  <br /> - Output: 1 Image  <br />  - **Tool calling:** No <br /> - Response formats: Image (PNG and JPG) |
+| [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/versions/1) | [Image Generation](../model-inference/how-to/deploy-stability-models.md?context=/azure/ai-foundry/context/context) | - Input: text (1000 tokens)  <br /> - Output: 1 Image  <br />  - **Tool calling:** No <br /> - Response formats: Image (PNG and JPG) |
+
+
+
 
 ## Related content
 
