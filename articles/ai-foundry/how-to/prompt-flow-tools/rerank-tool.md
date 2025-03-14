@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: This article introduces you to the Rerank tool for flows in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-foundry
-ms.topic: how-to
+ms.topic: reference
 ms.date: 01/29/2025
 ms.reviewer: jingyizhu
 ms.author: lagayhar
