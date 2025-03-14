@@ -25,7 +25,7 @@ You need to first build and publish a Fabric AI skill and then connect your Fabr
 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 1. You have created and published an AI skill endpoint
@@ -67,6 +67,26 @@ import os
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects.models import FabricTool
+```
+
+# [C#](#tab/csharp)
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Azure.Core;
+using Azure.Core.TestFramework;
+using NUnit.Framework;
+
+var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
+
+var clientOptions = new AIProjectClientOptions();
+
+// Adding the custom headers policy
+clientOptions.AddPolicy(new CustomHeadersPolicy(), HttpPipelinePosition.PerCall);
+var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential(), clientOptions);
+
 ```
 
 # [JavaScript](#tab/javascript)
@@ -115,6 +135,31 @@ with project_client:
     )
     print(f"Created agent, ID: {agent.id}")
 ```
+
+# [C#](#tab/csharp)
+
+```csharp
+ConnectionResponse fabricConnection = await projectClient.GetConnectionsClient().GetConnectionAsync("<FABRICCONNECTIONNAME>");
+var connectionId = fabricConnection.Id;
+
+AgentsClient agentClient = projectClient.GetAgentsClient();
+
+ToolConnectionList connectionList = new ToolConnectionList
+{
+    ConnectionList = { new ToolConnection(connectionId) }
+};
+MicrosoftFabricToolDefinition fabricGroundingTool = new MicrosoftFabricToolDefinition(connectionList);
+
+Response<Agent> agentResponse = await agentClient.CreateAgentAsync(
+    model: modelName,
+    name: "my-assistant-fabric01",
+    instructions: "You are a helpful assistant. Use the fabric tool to answer questions.",
+    tools: new List<ToolDefinition> { fabricGroundingTool });
+Agent agent = agentResponse.Value;
+Console.Write($"agent id: {agent.Id}");
+Console.WriteLine();
+```
+
 # [JavaScript](#tab/javascript)
 
 ```javascript
@@ -184,6 +229,21 @@ message = project_client.agents.create_message(
 print(f"Created message, ID: {message.id}")
 ```
 
+# [C#](#tab/csharp)
+
+```csharp
+// Create thread for communication
+Response<AgentThread> threadResponse = await agentClient.CreateThreadAsync();
+AgentThread thread = threadResponse.Value;
+
+// Create message to thread
+Response<ThreadMessage> messageResponse = await agentClient.CreateMessageAsync(
+    thread.Id,
+    MessageRole.User,
+    "<ask a question related to your Fabric data>");
+ThreadMessage message = messageResponse.Value;
+```
+
 # [JavaScript](#tab/javascript)
 
 ```javascript
@@ -245,6 +305,43 @@ print("Deleted agent")
 # Fetch and log all messages
 messages = project_client.agents.list_messages(thread_id=thread.id)
 print(f"Messages: {messages}")
+```
+
+# [C#](#tab/csharp)
+
+```csharp
+// Run the agent
+Response<ThreadRun> runResponse = await agentClient.CreateRunAsync(thread, agent);
+
+do
+{
+    await Task.Delay(TimeSpan.FromMilliseconds(500));
+    runResponse = await agentClient.GetRunAsync(thread.Id, runResponse.Value.Id);
+}
+while (runResponse.Value.Status == RunStatus.Queued
+    || runResponse.Value.Status == RunStatus.InProgress);
+
+Response<PageableList<ThreadMessage>> afterRunMessagesResponse
+    = await agentClient.GetMessagesAsync(thread.Id);
+IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
+
+// Note: messages iterate from newest to oldest, with the messages[0] being the most recent
+foreach (ThreadMessage threadMessage in messages)
+{
+    Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+    foreach (MessageContent contentItem in threadMessage.ContentItems)
+    {
+        if (contentItem is MessageTextContent textItem)
+        {
+            Console.Write(textItem.Text);
+        }
+        else if (contentItem is MessageImageFileContent imageFileItem)
+        {
+            Console.Write($"<image from ID: {imageFileItem.FileId}");
+        }
+        Console.WriteLine();
+    }
+}
 ```
 
 # [JavaScript](#tab/javascript)
