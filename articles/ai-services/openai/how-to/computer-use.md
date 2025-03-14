@@ -244,7 +244,7 @@ curl ${MY_ENDPOINT}/openai/responses?api-version=2025-03-01-preview \
 
 When working with the Computer Use tool, you typically would perform the following to integrate it into your application.
 
-1. Send a request to the model with that includes the computer use tool, and the display size and environment. You can also include a screenshot of the initial state of the environment in the first API request. 
+1. Send a request to the model that includes a call to the computer use tool, and the display size and environment. You can also include a screenshot of the initial state of the environment in the first API request. 
 1. Receive a response from the model. If the response has `action` items, those items contain suggested actions to make progress toward the specified goal. For example an action might be `screenshot` so the model can assess the current state with an updated screenshot, or `click` with X/Y coordinates indicating where the mouse should be moved.
 1. Execute the action using your application code on your computer or browser environment.
 1. After executing the action, capture the updated state of the environment as a screenshot.
