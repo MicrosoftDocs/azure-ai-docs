@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use chat completions API with multimodel models deployed to Azure AI model inference in Azure AI services. These multimodal models can accept combinations of text, images, and audio input.
+This article explains how to use chat completions API with _multimodal_ models deployed to Azure AI model inference in Azure AI services. In addition to text input, multimodal models can accept other input types, such as images and audio input.
 
 ## Prerequisites
 
@@ -179,9 +179,9 @@ print("\tTotal tokens:", response.usage.total_tokens)
 ASSISTANT: Hola. ¿Cómo estás?
 Model: speech
 Usage:
-	Prompt tokens: 77
-	Completion tokens: 7
-	Total tokens: 84
+    Prompt tokens: 77
+    Completion tokens: 7
+    Total tokens: 84
 ```
 
 The model can read the content from an **accessible cloud location** by passing the URL as an input. The Python SDK doesn't provide a direct way to do it, but you can indicate the payload as follows:

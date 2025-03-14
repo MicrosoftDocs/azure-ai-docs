@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use chat completions API with multimodel models deployed to Azure AI model inference in Azure AI services. These multimodal models can accept combinations of text, images, and audio input.
+This article explains how to use chat completions API with _multimodal_ models deployed to Azure AI model inference in Azure AI services. In addition to text input, multimodal models can accept other input types, such as images and audio input.
 
 ## Prerequisites
 
@@ -61,6 +61,9 @@ client = new ChatCompletionsClient(
 ## Use chat completions with images
 
 Some models can reason across text and images and generate text completions based on both kinds of input. In this section, you explore the capabilities of Some models for vision in a chat fashion:
+
+> [!IMPORTANT]
+> Some models support only one image for each turn in the chat conversation and only the last image is retained in context. If you add multiple images, it results in an error.
 
 To see this capability, download an image and encode the information as `base64` string. The resulting data should be inside of a [data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs):
 
@@ -160,9 +163,9 @@ Console.WriteLine($"\tCompletion tokens: {response.Value.Usage.CompletionTokens}
 ASSISTANT: Hola. ¿Cómo estás?
 Model: speech
 Usage:
-	Prompt tokens: 77
-	Completion tokens: 7
-	Total tokens: 84
+    Prompt tokens: 77
+    Completion tokens: 7
+    Total tokens: 84
 ```
 
 The model can read the content from an **accessible cloud location** by passing the URL as an input. The Python SDK doesn't provide a direct way to do it, but you can indicate the payload as follows:
@@ -197,9 +200,9 @@ Console.WriteLine($"\tCompletion tokens: {response.Value.Usage.CompletionTokens}
 ASSISTANT: Hola. ¿Cómo estás?
 Model: speech
 Usage:
-	Prompt tokens: 77
-	Completion tokens: 7
-	Total tokens: 84
+    Prompt tokens: 77
+    Completion tokens: 7
+    Total tokens: 84
 ```
 
 Audio is broken into tokens and submitted to the model for processing. Some models may operate directly over audio tokens while other may use internal modules to perform speech-to-text, resulting in different strategies to compute tokens. Read the model card for details about how each model operates.
