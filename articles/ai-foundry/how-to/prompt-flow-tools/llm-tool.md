@@ -7,11 +7,12 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
-ms.topic: how-to
+ms.topic: reference
 ms.date: 1/29/2025
-ms.reviewer: keli19
+ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
+ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ---
 
 # LLM tool for flows in Azure AI Foundry portal
@@ -25,7 +26,7 @@ To use large language models (LLMs) for natural language processing, you use the
 
 ## Prerequisites
 
-Prepare a prompt as described in the [Prompt tool](prompt-tool.md#prerequisites) documentation. The LLM tool and Prompt tool both support [Jinja](https://jinja.palletsprojects.com/en/3.1.x/) templates. For more information and best practices, see [Prompt engineering techniques](../../../ai-services/openai/concepts/advanced-prompt-engineering.md).
+Prepare a prompt as described in the [Prompt tool](prompt-tool.md#prerequisites) documentation. The LLM tool and Prompt tool both support [Jinja](https://jinja.palletsprojects.com/en/stable/) templates. For more information and best practices, see [Prompt engineering techniques](../../../ai-services/openai/concepts/advanced-prompt-engineering.md).
 
 ## Build with the LLM tool
 
