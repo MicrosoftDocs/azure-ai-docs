@@ -5,7 +5,7 @@ description: Learn to deploy NVIDIA Inference Microservices, using Azure AI Foun
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 12/20/2024
+ms.date: 03/14/2024
 ms.author: ssalgado
 author: ssalgadodev
 ms.reviewer: tinaem
