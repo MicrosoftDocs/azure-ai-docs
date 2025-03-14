@@ -12,6 +12,7 @@ ms.date: 01/31/2025
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
+ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ---
 
 # Serp API tool for flows in Azure AI Foundry portal
