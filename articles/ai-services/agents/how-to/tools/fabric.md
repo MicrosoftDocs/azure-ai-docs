@@ -17,7 +17,7 @@ ms.custom: azure-ai-agents
 
 ::: zone pivot="overview"
 
-Integrate your Azure AI Agent with the [**Microsoft Fabric data agent**](/fabric/data-science/concept-ai-skill) to unlock powerful data analysis capabilities. The Fabric data agent transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights. 
+Integrate your Azure AI Agent with the [**Microsoft Fabric data agent**](/fabric/data-science/concept-data-agent) to unlock powerful data analysis capabilities. The Fabric data agent transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights. 
 
 You need to first build and publish a Fabric data agent and then connect your Fabric data agent with the published endpoint. When a user sends a query, Azure AI Agent will first determine if the Fabric data agent should be leveraged or not. If so, it will use the end user’s identity to generate queries over data they have access to. Lastly, Azure AI Agent will generate responses based on queries returned from Fabric data agents. With Identity Passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in Fabric while maintaining robust security, ensuring proper access control and enterprise-grade protection. 
 
@@ -25,7 +25,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ |
 
 ## Prerequisites
 1. You have created and published a Fabric data agent endpoint
@@ -39,7 +39,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 > 1. The model you selected in Azure AI Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
 
-1. Create and publish a [Fabric data agent](/fabric/data-science/how-to-create-ai-skill)
+1. Create and publish a [Fabric data agent](/fabric/data-science/how-to-create-data-agent)
 
 1. You can add the Microsoft Fabric tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal, in the Create and debug screen for your agent, scroll down the Setup pane on the right to knowledge. Then select Add.
    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
@@ -47,7 +47,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 1. Select **Microsoft Fabric** and follow the prompts to add the tool. You can add only one per agent.
 
 1. Click to add new connections. Once you have added a connection, you can directly select from existing list.
-   1. To create a new connection, you need to find `workspace-id` and `artifact-id` in your published Fabric data agent endpoint. Your Fabric data agent endpoint would look like `https://app.fabric.microsoft.com/groups/<workspace_id>/aiskills/<artifact-id>`
+   1. To create a new connection, you need to find `workspace-id` and `artifact-id` in your published Fabric data agent endpoint. Your Fabric data agent endpoint would look like `https://fabric.microsoft.com/groups/<workspace_id>/dataagents/<artifact-id>`
 
    1. Then, you can add both to your connection. Make sure you have checked `is secret` for both of them
    
@@ -103,10 +103,6 @@ const client = AIProjectsClient.fromConnectionString(
     new DefaultAzureCredential(),
 );
 ```
-
-# [REST API](#tab/rest)
-
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`. The client creation is demonstrated in the next section.
 
 ---
 
@@ -182,32 +178,6 @@ console.log(`Created agent, agent ID : ${agent.id}`);
 
 ```
 
-# [REST API](#tab/rest)
-
-```console
-curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-        "instructions": "You are a helpful agent.",
-        "name": "my-agent",
-        "model": "gpt-4o",
-        "tools": [
-          {
-            "type": "fabric_aiskill",
-            "fabric_aiskill": {
-                "connections": [
-                    {
-                        "connection_id": "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<your-project-name>/connections/<your-fabric-connection-name>"
-                    }
-                ]
-            }
-          }
-        ]
-      }'
-```
-
-
 ---
 
 ## Step 3: Create a thread
@@ -257,30 +227,6 @@ await client.agents.createMessage(
     content: "<Ask a question related to your Fabric data>",
 });
 ```
-
-# [REST API](#tab/rest)
-
-### Create a thread
-
-```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d ''
-```
-
-### Add a user question to the thread
-
-```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-      "role": "user",
-      "content": "<a question related to your data>"
-    }'
-```
-
 
 ---
 
@@ -391,34 +337,7 @@ for (let i = messages.data.length - 1; i >= 0; i--) {
   }
 }
 ```
-
-# [REST API](#tab/rest)
-### Run the thread
-
-```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01-preview \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "assistant_id": "asst_abc123",
-  }'
-```
-
-### Retrieve the status of the run
-
-```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2024-12-01-preview \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
-```
-### Retrieve the agent response
-
-```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
-```
-
 ---
-
 ::: zone-end
 
 ## Next steps
