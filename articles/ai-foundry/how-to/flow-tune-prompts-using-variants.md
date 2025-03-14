@@ -12,6 +12,7 @@ ms.date: 5/21/2024
 ms.reviewer: yijunzhang
 ms.author: lagayhar
 author: lgayhardt
+ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ---
 
 # Tune prompts using variants in Azure AI Foundry portal

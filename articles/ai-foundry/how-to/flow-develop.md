@@ -13,6 +13,7 @@ ms.date: 01/10/2025
 ms.reviewer: gmuthukumar
 ms.author: lagayhar
 author: lgayhardt
+ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ---
 
 # Develop a prompt flow

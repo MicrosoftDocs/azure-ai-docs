@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
-ms.topic: how-to
+ms.topic: reference
 ms.date: 01/29/2025
 ms.reviewer: estraight
 ms.author: lagayhar
