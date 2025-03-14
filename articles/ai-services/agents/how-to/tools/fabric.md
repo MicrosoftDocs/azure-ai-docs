@@ -25,7 +25,7 @@ You need to first build and publish a Fabric AI skill and then connect your Fabr
 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | - | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 1. You have created and published an AI skill endpoint
@@ -69,6 +69,21 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects.models import FabricTool
 ```
 
+# [JavaScript](#tab/javascript)
+
+```javascript
+const connectionString =
+  process.env["AZURE_AI_PROJECTS_CONNECTION_STRING"] || "<project connection string>";
+
+if (!connectionString) {
+  throw new Error("AZURE_AI_PROJECTS_CONNECTION_STRING must be set.");
+}
+const client = AIProjectsClient.fromConnectionString(
+    connectionString || "",
+    new DefaultAzureCredential(),
+);
+```
+
 # [REST API](#tab/rest)
 
 Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`. The client creation is demonstrated in the next section.
@@ -99,6 +114,27 @@ with project_client:
         headers={"x-ms-enable-preview": "true"},
     )
     print(f"Created agent, ID: {agent.id}")
+```
+# [JavaScript](#tab/javascript)
+
+```javascript
+const fabricConnection = await client.connections.getConnection("FABRICCONNECTIONNAME"
+);
+
+const connectionId = fabricConnection.id;
+
+// Initialize agent Microsoft Fabric tool with the connection id
+const fabricTool = ToolUtility.createFabricTool(connectionId);
+
+// Create agent with the Microsoft Fabric tool and process assistant run
+const agent = await client.agents.createAgent("gpt-4o", {
+  name: "my-agent",
+  instructions: "You are a helpful agent",
+  tools: [fabricTool.definition],
+  toolResources: {}, // Add empty tool_resources which is required by the API
+});
+console.log(`Created agent, agent ID : ${agent.id}`);
+
 ```
 
 # [REST API](#tab/rest)
@@ -147,6 +183,21 @@ message = project_client.agents.create_message(
 )
 print(f"Created message, ID: {message.id}")
 ```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+// create a thread
+const thread = await client.agents.createThread();
+
+// add a message to thread
+await client.agents.createMessage(
+    thread.id, {
+    role: "user",
+    content: "<Ask a question related to your Fabric data>",
+});
+```
+
 # [REST API](#tab/rest)
 
 ### Create a thread
@@ -194,6 +245,54 @@ print("Deleted agent")
 # Fetch and log all messages
 messages = project_client.agents.list_messages(thread_id=thread.id)
 print(f"Messages: {messages}")
+```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+
+// create a run
+const streamEventMessages = await client.agents.createRun(thread.id, agent.id).stream();
+
+for await (const eventMessage of streamEventMessages) {
+  switch (eventMessage.event) {
+    case RunStreamEvent.ThreadRunCreated:
+      break;
+    case MessageStreamEvent.ThreadMessageDelta:
+      {
+        const messageDelta = eventMessage.data;
+        messageDelta.delta.content.forEach((contentPart) => {
+          if (contentPart.type === "text") {
+            const textContent = contentPart;
+            const textValue = textContent.text?.value || "No text";
+          }
+        });
+      }
+      break;
+
+    case RunStreamEvent.ThreadRunCompleted:
+      break;
+    case ErrorEvent.Error:
+      console.log(`An error occurred. Data ${eventMessage.data}`);
+      break;
+    case DoneEvent.Done:
+      break;
+  }
+}
+
+// Print the messages from the agent
+const messages = await client.agents.listMessages(thread.id);
+
+// Messages iterate from oldest to newest
+// messages[0] is the most recent
+for (let i = messages.data.length - 1; i >= 0; i--) {
+  const m = messages.data[i];
+  if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
+    const textContent = m.content[0];
+    console.log(`${textContent.text.value}`);
+    console.log(`---------------------------------`);
+  }
+}
 ```
 
 # [REST API](#tab/rest)
