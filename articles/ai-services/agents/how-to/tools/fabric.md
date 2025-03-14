@@ -1,7 +1,7 @@
 ---
-title: 'How to use the Microsoft Fabric AI skill with Azure AI Agent Service'
+title: 'How to use the data agents in Microsoft Fabric with Azure AI Agent Service'
 titleSuffix: Azure OpenAI
-description: Learn how to ground Azure AI Agents using Microsfot Fabric.
+description: Learn how to use  Azure AI Agents using Microsfot Fabric.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
@@ -9,15 +9,15 @@ ms.topic: how-to
 ms.date: 02/25/2025
 author: aahill
 ms.author: aahi
-zone_pivot_groups: selection-fabric-ai-skill
+zone_pivot_groups: selection-fabric-data-agent
 ms.custom: azure-ai-agents
 ---
 
-# Use the Microsoft Fabric AI skill
+# Use the Microsoft Fabric Data Agent
 
 ::: zone pivot="overview"
 
-Integrate your Azure AI Agent with the [**Microsoft Fabric AI skill**](/fabric/data-science/concept-ai-skill) to unlock powerful data analysis capabilities. The Fabric AI skill transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights. 
+Integrate your Azure AI Agent with the [**Microsoft Fabric data agent**](/fabric/data-science/concept-ai-skill) to unlock powerful data analysis capabilities. The Fabric AI skill transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights. 
 
 You need to first build and publish a Fabric AI skill and then connect your Fabric AI skill with the published endpoint. When a user sends a query, Azure AI Agent will first determine if the Fabric AI skill should be leveraged or not. If so, it will use the end user’s identity to generate queries over data they have access to. Lastly, Azure AI Agent will generate responses based on queries returned from Fabric AI skills. With Identity Passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in Fabric while maintaining robust security, ensuring proper access control and enterprise-grade protection. 
 
