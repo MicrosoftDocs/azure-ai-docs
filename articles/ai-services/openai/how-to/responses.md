@@ -508,7 +508,3 @@ second_response = client.responses.create(
 print(second_response.model_dump_json(indent=2)) 
 
 ```
-
-## Image input
-
-You can create responses using image prompts 
