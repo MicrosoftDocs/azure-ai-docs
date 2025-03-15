@@ -73,7 +73,7 @@ Azure AI Search skills don't support the multi-service resource as described pre
 
 The multi-service resource that you can use with Azure AI Search skills is listed under **Azure AI services** > **Azure AI services multi-service account** in the portal. Look for the logo as shown here:
 
-:::image type="content" source="../../media/cognitive-services-resource-portal.png" alt-text="Screenshot of the Azure AI services multi-service account in the Azure portal." lightbox="../../media/cognitive-services-resource-portal.png":::
+:::image type="content" source="./media/cognitive-services-resource-portal.png" alt-text="Screenshot of the Azure AI services multi-service account in the Azure portal." lightbox="./media/cognitive-services-resource-portal.png":::
 
 > [!IMPORTANT]
 > Azure provides more than one resource kinds named Azure AI services. Be sure to select the one that is listed under **Azure AI services** > **Azure AI services multi-service account** with the logo as shown previously.
