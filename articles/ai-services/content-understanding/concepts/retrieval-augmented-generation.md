@@ -30,7 +30,7 @@ Azure AI Content Understanding excels in supporting Retrieval-Augmented Generati
 
 The image below illustrates the page elements and content that Content Understanding extracts from documents with Layout analysis, showcasing Content Understanding’s capability to provide a structured representation of extracted regions of interest and their inter-relationships. 
 
-:::image type="content" source="../media/concepts/Layoutsampleimage.png" alt-text="Screenshot of Content Understanding Document Data Extraction with Layout Analysis for RAG design.":::
+:::image type="content" source="../media/concepts/layoutpageelements.png" alt-text="Screenshot of Content Understanding Document Data Extraction with Layout Analysis for RAG design.":::
 
 The image below exemplifies how structured data can be meticulously extracted from audio files using a customized schema uniquely designed to meet specific requirements. This structured format facilitates efficient organization, indexing, and searching of content.
 
