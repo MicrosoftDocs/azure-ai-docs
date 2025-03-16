@@ -57,6 +57,11 @@ items:
   - name: Best practices
     displayName: best practices, analyzers, optimization, fields
     href: concepts/best-practices.md   
+- name: Concepts
+  items:
+  - name: Retrieval Augmented Generation (RAG)
+    displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
+    href: concepts/retrieval-augmented-generation.md
 - name: Responsible AI
   items:
     - name: Transparency note
