@@ -108,13 +108,22 @@ In this article, you learn how to deploy NVIDIA Inference Microservices (NIMs) o
 1. Sign in to [Azure AI Foundry](https://ai.azure.com) and go to the **Home** page.
 1. Select **Model catalog** from the left sidebar.
 1. In the filters section, select **Collections** and select **NVIDIA**
+
+:::image type="content" source="../media/how-to/deploy-nim/nvidia-collections.png" alt-text="A screenshot showing how to filter by NVIDIA collections models in the catalog." lightbox="../media/how-to/deploy-nim/nvidia-collections.png":::  
+
 1. Select your desired model. In this case we will be using **Meta-Llama-3.1-70B-NIM**.
 1. Select **Deploy**.
 1. Select the NVIDIA GPU based VM SKU based on your intended workload. You will need to have quota in your Azure subscription.
 1. You can then customize your deployment configuration such as instance count and endpoint name. For this example you will need an instance count of **2** and create a new endpoint. 
 1. Select **Next**
-1. You will then need to review the user agreement. This will tell you what the aggregated surcharge would be for the deployment, which is a function of number of NVIDIA GPUs in the VM instance selected in the previous steps.
+1. You will then need to review the user payment agreement. This will tell you what the aggregated surcharge would be for the deployment, which is a function of number of NVIDIA GPUs in the VM instance selected in the previous steps.
+
+:::image type="content" source="../media/how-to/deploy-nim/payment-description.png" alt-text="A screenshot showing the necessary user payment agreement detailing how the user will be charged for deploying the models." lightbox="../media/how-to/deploy-nim/payment-description.png":::  
+
 1. Then, select **Deploy**.
+
+:::image type="content" source="../media/how-to/deploy-nim/deploy-nim.png" alt-text="A screenshot showing the deploy model button in the deployment wizard." lightbox="../media/how-to/deploy-nim/deploy-nim.png"::: 
+
 
 ## Delete endpoints and subscriptions
 
