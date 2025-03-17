@@ -115,3 +115,11 @@ items:
   - name: Machine Learning
     tocHref: /ai/
     topicHref: /azure/machine-learning/index
+
+- name: Azure
+  tocHref: /azure/
+  topicHref: /azure/index
+  items:
+  - name: Machine Learning
+    tocHref: /azure/ai-foundry/
+    topicHref: /azure/machine-learning/index

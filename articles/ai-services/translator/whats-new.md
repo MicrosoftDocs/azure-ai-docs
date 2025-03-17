@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 01/28/2025
+ms.date: 03/07/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD024 -->
@@ -50,5 +50,5 @@ The Document translation API now supports two translation operations:
 
 ## Related content
 
-[Azure AI Translator release history](reference/release-history.md)
+[Azure AI Translator release history](release-history.md)
 

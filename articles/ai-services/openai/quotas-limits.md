@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: conceptual
-ms.date: 2/27/2025
+ms.date: 3/04/2025
 ms.author: mbullwin
 ---
 
@@ -44,8 +44,8 @@ The following sections provide you with a quick guide to the default quotas and 
 | Max number of `/chat/completions` functions | 128 |
 | Max number of `/chat completions` tools | 128 |
 | Maximum number of Provisioned throughput units per deployment | 100,000 |
-| Max files per Assistant/thread | 10,000 when using the API or Azure AI Foundry portal. In Azure OpenAI Studio the limit was 20.|
-| Max file size for Assistants & fine-tuning | 512 MB<br/><br/>200 MB via Azure AI Foundry portal |
+| Max files per Assistant/thread | 10,000 when using the API or [Azure AI Foundry portal](https://ai.azure.com/). In Azure OpenAI Studio the limit was 20.|
+| Max file size for Assistants & fine-tuning | 512 MB<br/><br/>200 MB via [Azure AI Foundry portal](https://ai.azure.com/) |
 | Max size for all uploaded files for Assistants |100 GB |
 | Assistants token limit | 2,000,000 token limit |
 | GPT-4o max images per request (# of images in the messages array/conversation history) | 50 |
@@ -93,6 +93,14 @@ The following sections provide you with a quick guide to the default quotas and 
 | `o3-mini` | Default | 5 M | 500 |
 | `o1` & `o1-preview` | Default | 3 M | 500 |
 | `o1-mini`| Default | 5 M | 500 |
+
+### `o3-mini` data zone standard
+
+| Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
+|---|---|:---:|:---:|
+| `o3-mini` | Enterprise agreement | 20 M | 2 K  |
+| `o3-mini` | Default | 2 M | 200 |
+
 
 ### o1-preview & o1-mini standard
 
@@ -145,7 +153,7 @@ M = million | K = thousand
 
 ## gpt-4o audio
 
-The rate limits for each `gpt-4o` audio model deployment are 100K TPM and 1K RPM. During the preview, Azure AI Foundry portal and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit will be 100K TPM and 1K RPM.
+The rate limits for each `gpt-4o` audio model deployment are 100K TPM and 1K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit will be 100K TPM and 1K RPM.
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
@@ -187,7 +195,7 @@ If your Azure subscription is linked to certain [offer types](https://azure.micr
 |Tier| Quota Limit in tokens per minute (TPM) |
 |---|:---|
 |Azure for Students, Free Trials | 1 K (all models) <br>Exception o-series & GPT 4.5 Preview: 0|
-| MSDN subscriptions | GPT 3.5 Turbo Series: 30 K <br> GPT-4 series: 8 K <br> o-series: 0 <br> GPT 4.5 Preview: 0  |
+| MSDN & Cloud Solution Provider (CSP) subscriptions | GPT 3.5 Turbo Series: 30 K <br> GPT-4 series: 8 K <br> gpt-4o-realtime-preview: 1 K <br> o-series: 0 <br> GPT 4.5 Preview: 0  |
 | Monthly credit card based subscriptions <sup>1</sup> | GPT 3.5 Turbo Series: 30 K <br> GPT-4 series: 8 K <br> o-series: 0 <br> GPT 4.5 Preview: 0   |
 
 <sup>1</sup> This currently applies to [offer type 0003P](https://azure.microsoft.com/support/legal/offer-details/)

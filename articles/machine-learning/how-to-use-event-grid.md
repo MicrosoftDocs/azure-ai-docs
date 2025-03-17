@@ -10,7 +10,7 @@ ms.custom: devx-track-azurecli
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: truptiparkar
-ms.date: 03/26/2024
+ms.date: 03/06/2025
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ---
 

@@ -2,9 +2,9 @@
 title: Productivity tools
 titleSuffix: Azure AI Search
 description: Use existing code samples or build your own tools for working with a search index in Azure AI Search.
-author: HeidiSteen
-manager: nitinme
-ms.author: heidist
+
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 02/25/2025

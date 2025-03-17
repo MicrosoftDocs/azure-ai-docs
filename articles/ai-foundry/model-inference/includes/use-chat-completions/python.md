@@ -24,14 +24,9 @@ To use chat completion models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
-* A chat completions model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
-
-* Install the [Azure AI inference package for Python](https://aka.ms/azsdk/azure-ai-inference/python/reference) with the following command:
-
-  ```bash
-  pip install -U azure-ai-inference
-  ```
+[!INCLUDE [how-to-prerequisites-python](../how-to-prerequisites-python.md)]
   
+
 ## Use chat completions
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
@@ -179,15 +174,13 @@ Some models can create JSON outputs. Set `response_format` to `json_object` to e
 
 
 ```python
-from azure.ai.inference.models import ChatCompletionsResponseFormatJSON
-
 response = client.complete(
     messages=[
         SystemMessage(content="You are a helpful assistant that always generate responses in JSON format, using."
                       " the following format: { ""answer"": ""response"" }."),
         UserMessage(content="How many languages are in the world?"),
     ],
-    response_format={ "type": ChatCompletionsResponseFormatJSON() }
+    response_format="json_object"
 )
 ```
 
@@ -218,9 +211,9 @@ The following code example creates a tool definition that is able to look from f
 
 
 ```python
-from azure.ai.inference.models import FunctionDefinition, ChatCompletionsFunctionToolDefinition
+from azure.ai.inference.models import FunctionDefinition, ChatCompletionsToolDefinition
 
-flight_info = ChatCompletionsFunctionToolDefinition(
+flight_info = ChatCompletionsToolDefinition(
     function=FunctionDefinition(
         name="get_flight_info",
         description="Returns information about the next flight between two cities. This includes the name of the airline, flight number and the date and time of the next flight",
@@ -410,7 +403,7 @@ import IPython.display as Disp
 Disp.Image(requests.get(image_url).content)
 ```
 
-:::image type="content" source="../../../../ai-studio/media/how-to/sdks/small-language-models-chart-example.jpg" alt-text="A chart displaying the relative capabilities between large language models and small language models." lightbox="../../../../ai-studio/media/how-to/sdks/small-language-models-chart-example.jpg":::
+:::image type="content" source="../../../../ai-foundry/media/how-to/sdks/small-language-models-chart-example.jpg" alt-text="A chart displaying the relative capabilities between large language models and small language models." lightbox="../../../../ai-foundry/media/how-to/sdks/small-language-models-chart-example.jpg":::
 
 Now, create a chat completion request with the image:
 
