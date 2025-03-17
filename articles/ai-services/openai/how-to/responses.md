@@ -77,6 +77,7 @@ client = AzureOpenAI(
 response = client.responses.create(
     model="gpt-4o", # replace with your model deployment name 
     input="This is a test."
+    #truncation="auto" required when using computer-use-preview model.
 
 )
 ```
@@ -98,6 +99,7 @@ client = AzureOpenAI(
 response = client.responses.create(
     model="gpt-4o", # replace with your model deployment name 
     input="This is a test."
+    #truncation="auto" required when using computer-use-preview model.
 
 )
 ```
@@ -119,7 +121,7 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses?api-v
 ### API Key
 
 ```bash
-curl -X https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses?api-version=2025-03-01-preview \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses?api-version=2025-03-01-preview \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
@@ -315,9 +317,9 @@ client = AzureOpenAI(
   api_version="2025-03-01-preview"
 )
 
-response = client.responses.del("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
+response = client.responses.delete("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
 
-print(response.model_dump_json(indent=2))
+print(response)
 ```
 
 ## Chaining responses together
@@ -509,3 +511,134 @@ second_response = client.responses.create(
 print(second_response.model_dump_json(indent=2)) 
 
 ```
+
+## List input items
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(
+  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+  azure_ad_token_provider=token_provider,
+  api_version="2025-03-01-preview"
+)
+
+response = client.responses.input_items.list("resp_67d856fcfba0819081fd3cffee2aa1c0")
+
+print(response.model_dump_json(indent=2))
+```
+
+**Output:**
+
+```json
+{
+  "data": [
+    {
+      "id": "msg_67d856fcfc1c8190ad3102fc01994c5f",
+      "content": [
+        {
+          "text": "This is a test.",
+          "type": "input_text"
+        }
+      ],
+      "role": "user",
+      "status": "completed",
+      "type": "message"
+    }
+  ],
+  "has_more": false,
+  "object": "list",
+  "first_id": "msg_67d856fcfc1c8190ad3102fc01994c5f",
+  "last_id": "msg_67d856fcfc1c8190ad3102fc01994c5f"
+}
+```
+
+## Image input
+
+### Image url
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(
+  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+  azure_ad_token_provider=token_provider,
+  api_version="2025-03-01-preview"
+)
+
+response = client.responses.create(
+    model="gpt-4o",
+    input=[
+        {
+            "role": "user",
+            "content": [
+                { "type": "input_text", "text": "what is in this image?" },
+                {
+                    "type": "input_image",
+                    "image_url": "<image_URL>"
+                }
+            ]
+        }
+    ]
+)
+
+print(response)
+
+```
+
+### Base64 encoded image
+
+```python
+import base64
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(
+  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+  azure_ad_token_provider=token_provider,
+  api_version="2025-03-01-preview"
+)
+
+def encode_image(image_path):
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode("utf-8")
+
+# Path to your image
+image_path = "path_to_your_image.jpg"
+
+# Getting the Base64 string
+base64_image = encode_image(image_path)
+
+response = client.responses.create(
+    model="gpt-4o",
+    input=[
+        {
+            "role": "user",
+            "content": [
+                { "type": "input_text", "text": "what is in this image?" },
+                {
+                    "type": "input_image",
+                    "image_url": f"data:image/jpeg;base64,{base64_image}"
+                }
+            ]
+        }
+    ]
+)
+
+print(response)
+```
+
