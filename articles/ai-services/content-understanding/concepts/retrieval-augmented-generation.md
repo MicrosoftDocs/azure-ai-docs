@@ -24,7 +24,7 @@ Semantic chunking breaks down content into meaningful segments, crucial for Retr
 
 Azure AI Content Understanding is meticulously designed to support Retrieval-Augmented Generation use cases, offering robust capabilities for processing and understanding diverse content types. With Markdown output available for documents, audio, and video, users can seamlessly integrate structured and readable content into their workflows. 
 * For document content, Azure AI Content Understanding provides structured document segments to align with contextual breaks like sections, paragraphs, or tables. You can use the Markdown content from Layout model to split documents based on paragraph boundaries, create specific chunks for tables, and fine-tune your chunking strategy to improve the quality of the generated responses.
-* For audio content, Azure AI Content Understanding provides advanced transcription services, diarisation, and speaker role detection, enabling precise identification and segmentation of spoken content. This allows for the extraction of meaningful audio segments, facilitating effective semantic chunking. 
+* For audio content, Azure AI Content Understanding provides advanced transcription services, diarization, and speaker role detection, enabling precise identification and segmentation of spoken content. This allows for the extraction of meaningful audio segments, facilitating effective semantic chunking. 
 * For video content, Azure AI Content Understanding offers scene summaries, key frame extraction, and shot detection, which helps in breaking down video data into coherent and contextually relevant segments.
 Azure AI Content Understanding excels in supporting Retrieval-Augmented Generation applications, effectively structuring documents, audio, and video into relevant segments. This enhances data reliability and retrieval efficiency, making it a valuable tool for real-time data analysis.
 
@@ -38,7 +38,7 @@ The image below exemplifies how structured data can be meticulously extracted fr
 
 ## Building a RAG Solution and Chat with Content Understanding
 **Data Extraction with Azure Content Understanding:** Azure AI Content Understanding efficiently converts unstructured documents, images, videos, and audio into structured data formats. Documents are transformed into structured data, distinguishing between tables, paragraphs, sections, and figures. Audio is transcribed with precise timestamps and speaker labels, while video content is transcribed, summarized with key frames, descriptions, and relevant metadata. 
-* For more information follow our [**API**](../quickstart/use-rest-api.md) and [**Studio**](../quickstart/use-ai-foundry.md) Quickstart guide to learn how to extract structured output from input files and create a custom analyzer. Follow our [**code samples**](https://github.com/Azure-Samples/azure-ai-content-understanding-python) for simple demos on extracting data from multimodal files.
+* For more information, our comprehensive [analyzer templates](analyzer-templates.md) offer a streamlined approach for transforming unstructured data into structured data formats. These templates facilitate the creation of efficient analyzers without the need to design schemas from scratch. Explore our [**code samples**](https://github.com/Azure-Samples/azure-ai-content-understanding-python) for simple demos on extracting data from multimodal files.
 
 **Indexing with Azure AI Search and Querying with Azure OpenAI Service:** Once data is structured, [**Azure AI Search**](https://learn.microsoft.com/en-us/azure/search/search-get-started-portal) can create a comprehensive, searchable index and [**Azure OpenAI's**](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions) chat models can efficiently query and search through indexed content, providing accurate and contextually relevant answers. 
 * For more information, see our [**code samples**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples) demonstrating RAG pattern with Azure AI Content Understanding for structured data extraction, Azure Search for indexing and retrieval and querying data with OpenAI chat models.
@@ -49,7 +49,12 @@ Azure AI Content Understanding offers several capabilities that significantly en
 * **Simplified field extraction:** Content Understanding's field extraction simplifies the process of generating structured output from unstructured content. By allowing users to define a schema, it becomes easier to extract, classify, or generate field values without the need for complex prompt engineering. This capability ensures that the data collected is organized and meaningful, facilitating more efficient processing and analysis
 * **Confidence Scores and Grounding Sources:** By offering confidence scores for the extracted data, Content Understanding helps users estimate the reliability of the results. Grounding sources allow users to verify the correctness of the extracted information quickly. This feature is particularly beneficial for RAG use cases, as it ensures that the generated content is based on accurate and verifiable data. The combination of confidence scores and grounding sources enhances the trustworthiness of extracted output, leading to more reliable and actionable insights.
 
+## Get started
+Content Understanding supports the following development options:
+* [REST API](../quickstart/use-rest-api.md) Quickstart.
+* [Azure Foundry](../quickstart//use-ai-foundry.md) Portal Quickstart. 
+
 ## Next steps
-* Try processing your content using Content Understanding in [**Azure AI Foundry portal**](https://ai.azure.com/explore/aiservices/vision/contentunderstanding).
-* Review Content Understanding [**code samples**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main)
+* Learn more about [document](../document/overview.md), [image](../image/overview.md), [audio](../audio/overview.md), [video](../video/overview.md) capabilities.
 * Learn more about Content Understanding [**best practices**](../concepts/best-practices.md) and [**capabilities**](../concepts/capabilities.md).
+* Review Content Understanding [**code samples**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main)
