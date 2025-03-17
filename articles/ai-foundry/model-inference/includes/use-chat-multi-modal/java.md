@@ -78,7 +78,7 @@ chatMessages.add(ChatRequestUserMessage.fromContentItems(contentItems));
 ChatCompletionsOptions options = new ChatCompletionsOptions(chatMessages);
 options.setModel("phi-4-multimodal-instruct")
 
-ChatCompletions completions = client.complete(options);
+ChatCompletions response = client.complete(options);
 ```
 
 The response is as follows, where you can see the model's usage statistics:
@@ -111,7 +111,10 @@ List<ChatRequestMessage> chatMessages = new ArrayList<>();
 chatMessages.add(new ChatRequestSystemMessage("You are an AI assistant that helps people find information."));
 chatMessages.add(ChatRequestUserMessage.fromContentItems(contentItems));
 
-ChatCompletions completions = client.complete(new ChatCompletionsOptions(chatMessages));
+ChatCompletionsOptions options = new ChatCompletionsOptions(chatMessages);
+options.setModel("phi-4-multimodal-instruct")
+
+ChatCompletions response = client.complete(options);
 ```
 
 ## Use chat completions with audio

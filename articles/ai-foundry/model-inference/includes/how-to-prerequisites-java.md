@@ -36,6 +36,8 @@ author: santiagxf
   import com.azure.ai.inference.EmbeddingsClientBuilder;
   import com.azure.ai.inference.models.EmbeddingsResult;
   import com.azure.ai.inference.models.EmbeddingItem;
+  import com.azure.ai.inference.ChatCompletionsClient;
+  import com.azure.ai.inference.ChatCompletionsClientBuilder;
   import com.azure.core.credential.AzureKeyCredential;
   import com.azure.core.util.Configuration;
   
