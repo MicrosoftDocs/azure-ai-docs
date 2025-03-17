@@ -20,7 +20,7 @@ In this quickstart, you use the **Import and vectorize data** wizard in the Azur
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-+ An [Azure AI Search service](search-create-service-portal.md) in the same region as your Azure AI multi-service resource. We recommend the Basic tier or higher.
++ An [Azure AI Search service](search-create-service-portal.md) in the same region as your Azure AI services multi-service resource. We recommend the Basic tier or higher.
 
 + A [supported data source](#supported-data-sources) with the [Health Plan PDF](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) sample documents.
 
@@ -48,7 +48,7 @@ Use an embedding model on an Azure AI platform in the [same region as Azure AI S
 |---|---|
 | [Azure OpenAI Service](https://aka.ms/oai/access) | text-embedding-ada-002 <br>text-embedding-3-large <br>text-embedding-3-small |
 | [Azure AI Foundry model catalog](/azure/ai-foundry/what-is-ai-foundry) | For text: <br>Cohere-embed-v3-english <br>Cohere-embed-v3-multilingual <br>For images: <br>Facebook-DinoV2-Image-Embeddings-ViT-Base <br>Facebook-DinoV2-Image-Embeddings-ViT-Giant |
-| [Azure AI services multi-service account](/azure/ai-services/multi-service-resource) | [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) for image and text vectorization, [available in selected regions](/azure/ai-services/computer-vision/how-to/image-retrieval?tabs=csharp). Depending on how you [attach the multi-service resource](cognitive-search-attach-cognitive-services.md), the multi-service account might need to be in the same region as Azure AI Search. |
+| [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) | [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) for image and text vectorization, [available in selected regions](/azure/ai-services/computer-vision/how-to/image-retrieval?tabs=csharp). Depending on how you [attach the multi-service resource](cognitive-search-attach-cognitive-services.md), the multi-service account might need to be in the same region as Azure AI Search. |
 
 If you use the Azure OpenAI Service, the endpoint must have an associated [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains). A custom subdomain is an endpoint that includes a unique name (for example, `https://hereismyuniquename.cognitiveservices.azure.com`). If the service was created through the Azure portal, this subdomain is automatically generated as part of your service setup. Ensure that your service includes a custom subdomain before using it with the Azure AI Search integration.
 
@@ -315,7 +315,7 @@ Chunking is built in and nonconfigurable. The effective settings are:
 
    + Azure OpenAI
    + Azure AI Foundry model catalog
-   + An existing Azure AI Vision multimodal resource in the same region as Azure AI Search. If there's no [Azure AI Services multi-service account](/azure/ai-services/multi-service-resource) in the same region, this option isn't available.
+   + An existing Azure AI Vision multimodal resource in the same region as Azure AI Search. If there's no [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) in the same region, this option isn't available.
 
 1. Choose the Azure subscription.
 
@@ -331,7 +331,7 @@ Chunking is built in and nonconfigurable. The effective settings are:
 
 1. Specify whether you want your search service to authenticate using an API key or managed identity.
 
-   + The identity should have a **Cognitive Services User** role on the Azure AI multi-services account.
+   + The identity should have a **Cognitive Services User** role on the Azure AI services multi-services account.
 
 1. Select the checkbox that acknowledges the billing effects of using these resources.
 

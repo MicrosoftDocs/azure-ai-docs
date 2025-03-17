@@ -24,7 +24,7 @@ In this article, learn about Azure Machine Learning CLI (v2) releases.
 __RSS feed__: Get notified when this page is updated by copying and pasting the following URL into your feed reader:
 `https://learn.microsoft.com/api/search/rss?search=%22Azure+machine+learning+release+notes-v2%22&locale=en-us`
 
-## 2025-03-12
+## 2025-03-14
 
 ## Azure Machine Learning CLI (v2) v 2.36.0
 - `az ml compute update`
