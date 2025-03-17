@@ -354,3 +354,7 @@ In all cases where `pending_safety_checks` are returned, actions should be hande
 
 * `malicious_instructions` and `irrelevant_domain`: end users should review model actions and confirm that the model is behaving as intended.
 * `sensitive_domain`: ensure an end user is actively monitoring the model actions on these sites. Exact implementation of this "watch mode" can vary by application, but a potential example could be collecting user impression data on the site to make sure there is active end user engagement with the application.
+
+## See also
+
+* [Responses API](./responses.md)
