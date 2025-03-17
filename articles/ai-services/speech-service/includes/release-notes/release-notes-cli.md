@@ -6,6 +6,14 @@ ms.date: 08/01/2024
 ms.author: eur
 ---
 
+### Speech CLI 1.43: 2025-March release
+
+#### New features
+* Updated SPX to use .NET 8.
+    
+#### Bug fixes
+* Fixed SPX Docker container not working in on-prem batch scenarios.
+
 ### Speech CLI 1.40.0: August 2024 release
 Updated to use Speech SDK 1.40.0
 #### New features
