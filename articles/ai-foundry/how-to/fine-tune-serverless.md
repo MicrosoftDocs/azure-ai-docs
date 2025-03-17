@@ -240,12 +240,10 @@ Issues finetuning with unique network setups on the workspace and storage usuall
 When the fine-tuning job succeeds, you can deploy the custom model from the **Fine-tune** tab. You must deploy your custom model to make it available for use with completion calls.
 
 > [!IMPORTANT]
-> After you deploy a customized model, if at any time the deployment remains inactive for greater than fifteen (15) days, the deployment is deleted. The deployment of a
-> customized model is inactive if the model was deployed more than fifteen (15) days ago and no completions or chat completions calls were made to it during a continuous 15
-> day period.
-> The deletion of an inactive deployment doesn't delete or affect the underlying customized model, and the customized model can be redeployed at any time. As described in
-> Azure AI Foundry pricing, each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether completions or chat completions calls are
-> being made to the model. To learn more about planning and managing costs with Azure AI Foundry, refer to the guidance in [Plan to manage costs for Azure AI Foundry Service](./costs-plan-manage.md).  
+> After you deploy a customized model and finishing with the endpoint, please remember to clean up any inactive endpoints. The deletion of an inactive deployment doesn't
+> delete or affect the underlying customized model, and the customized model can be redeployed at any time. As described in Azure AI Foundry pricing, each customized (fine-
+> tuned) model that's deployed incurs an hourly hosting cost regardless of whether completions or chat completions calls are being made to the model. To learn more about
+> planning and managing costs with Azure AI Foundry, refer to the guidance in [Plan to manage costs for Azure AI Foundry Service](./costs-plan-manage.md).  
 
 > [!NOTE]
 > Only one deployment is permitted for a custom model. An error message is displayed if you select an already-deployed custom model.
