@@ -77,9 +77,10 @@ response = client.responses.create(
     input=[
         {
             "role": "user",
-            "content": "Check the latest OpenAI news on bing.com."
+            "content": "Check the latest AI news on bing.com."
         }
-    ]
+    ],
+    truncation="auto"
 )
 
 print(response.output)
@@ -90,11 +91,11 @@ print(response.output)
 ```console
 [
     ResponseComputerToolCall(
-        id='comp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx', 
+        id='cu_67d841873c1081908bfc88b90a8555e0', 
         action=ActionScreenshot(type='screenshot'), 
-        call_id=None, 
-        pending_safety_checks=None, 
-        status=None, 
+        call_id='call_wwEnfFDqQr1Z4Edk62Fyo7Nh', 
+        pending_safety_checks=[], 
+        status='completed', 
         type='computer_call'
     )
 ]
@@ -112,15 +113,16 @@ curl ${MY_ENDPOINT}/openai/responses?api-version=2025-03-01-preview \
       { 
         "type": "message", 
         "role": "user", 
-        "content": "Search Bing for the latest news in AI." 
-      },
-      "tools": [{
+        "content": "Check the latest AI news on bing.com." 
+      }
+    ],
+    "tools": [{
         "type": "computer-preview",
         "display_width": 1024,
         "display_height": 768,
-        "environment": "browser" # other possible values: "mac", "windows", "ubuntu"
-      }]
-    ] 
+        "environment": "browser" 
+    }],
+    "truncation":"auto"
   }' 
 ```
 
@@ -128,42 +130,64 @@ curl ${MY_ENDPOINT}/openai/responses?api-version=2025-03-01-preview \
 
 ```json
 {
-  "id": "resp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "id": "resp_xxxxxxxxxxxxxxxxxxxxxxxx",
   "object": "response",
-  "created_at": 1741716005,
+  "created_at": 1742227653,
   "status": "completed",
-  "model": "computer-use-preview-2025-02-11",
-  "previous_response_id": null,
+  "error": null,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": null,
+  "model": "computer-use-preview",
   "output": [
     {
       "type": "computer_call",
-      "id": "comp_xxxxxxxxxxxxxxxxxxxx",
+      "id": "cu_xxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "call_id": "call_xxxxxxxxxxxxxxxxxxxxxxx",
       "action": {
         "type": "screenshot"
-      }
+      },
+      "pending_safety_checks": [],
+      "status": "completed"
     }
   ],
-  "error": null,
+  "parallel_tool_calls": true,
+  "previous_response_id": null,
+  "reasoning": {
+    "effort": "medium",
+    "generate_summary": null
+  },
+  "store": true,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "text"
+    }
+  },
   "tools": [
     {
-      "type": "computer-preview",
-      "environment": "browser",
+      "type": "computer_use_preview",
+      "display_height": 768,
       "display_width": 1024,
-      "display_height": 768
+      "environment": "browser"
     }
   ],
   "top_p": 1.0,
-  "temperature": 1.0,
-  "reasoning_effort": null,
+  "truncation": "auto",
   "usage": {
-    "input_tokens": 510,
+    "input_tokens": 519,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
     "output_tokens": 7,
-    "total_tokens": 517,
     "output_tokens_details": {
       "reasoning_tokens": 0
-    }
+    },
+    "total_tokens": 526
   },
+  "user": null,
   "metadata": {}
+}
 ```
 
 ---
@@ -207,7 +231,8 @@ response_2 = client.responses.create(
                 "image_url": f"data:image/png;base64,{<base64_string>}"
             }
         }
-    ]
+    ],
+    truncation="auto"
 )
 ```
 
@@ -235,7 +260,8 @@ curl ${MY_ENDPOINT}/openai/responses?api-version=2025-03-01-preview \
             "image_url": "<base64_string>"
         }
       }
-    ]
+    ],
+    "truncation":"auto"
   }' 
 ```
 
