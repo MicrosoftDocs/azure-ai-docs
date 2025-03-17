@@ -1,4 +1,4 @@
-2---
+---
 manager: nitinme
 ms.service: azure-ai-model-inference
 ms.topic: include
