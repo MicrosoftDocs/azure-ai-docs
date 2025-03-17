@@ -3,15 +3,13 @@ author: eric-urban
 ms.service: azure-ai-speech
 ms.custom: linux-related-content
 ms.topic: include
-ms.date: 02/02/2024
+ms.date: 3/12/2025
 ms.author: eur
 ---
 
 [!INCLUDE [Header](../../common/csharp.md)]
 
 In this quickstart, you install the [Speech SDK](~/articles/ai-services/speech-service/speech-sdk.md) for C#.
-
-Code samples in the documentation are written in C# 8 and run on .NET standard 2.0.
 
 ## Platform requirements
 
@@ -36,29 +34,5 @@ The Speech SDK for C# can be installed by using the following `Install-Package` 
 ```powershell
 Install-Package Microsoft.CognitiveServices.Speech
 ```
-
----
-
-You can follow these guides for more options.
-
-# [.NET](#tab/dotnet)
-
-[!INCLUDE [dotnet](csharp-dotnet-windows.md)]
-
-# [.NET Core](#tab/dotnetcore)
-
-[!INCLUDE [dotnetcore](csharp-dotnetcore-windows.md)]
-
-# [Unity](#tab/unity)
-
-[!INCLUDE [unity](csharp-unity.md)]
-
-# [UWP](#tab/uwp)
-
-[!INCLUDE [uwp](csharp-uwp.md)]
-
-# [Xamarin](#tab/xamarin)
-
-[!INCLUDE [xamarin](csharp-xamarin.md)]
 
 ---

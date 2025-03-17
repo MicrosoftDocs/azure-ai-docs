@@ -21,6 +21,41 @@ Azure portal users can find the latest image available for provisioning the Data
 
 Visit the [list of known issues](reference-known-issues.md) to learn about known bugs and workarounds.
 
+## February 18, 2025
+
+[Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+
+Version `25.02.13`
+
+- SDK `1.59.0`
+- NVDIA `535.183.01`
+- Cuda `cuda_12.2.r12`
+- Python `3.10.8`
+  
+## February 7, 2025
+
+[Data Science Virtual Machine - Windows 2022](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2022?tab=Overview)
+
+Version  `25.02.03`
+
+- SDK `1.59.0`
+  
+## February 4, 2025
+
+[Data Science Virtual Machine - Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+
+Version  `25.01.31`
+
+- SDK `1.59.0`
+
+## January 22, 2025
+
+[Data Science VM – Ubuntu 22.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+
+Version  `25.01.20`
+
+- SDK `1.59.0`
+
 ## October 21, 2024
 
 [Data Science Virtual Machine – Ubuntu 22.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2204?tab=Overview)
