@@ -329,7 +329,7 @@ If one or more of the above checks is triggered, a safety check is raised when t
 You need to pass the safety checks back as `acknowledged_safety_checks` in the next request in order to proceed. 
 
 ```json
-input=[
+"input":[
         {
             "type": "computer_call_output",
             "call_id": "<call_id>",
