@@ -19,15 +19,11 @@ To complete this tutorial, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
+[!INCLUDE [how-to-prerequisites-javascript](../how-to-prerequisites-javascript.md)]
+
 * A model with reasoning capabilities model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a reasoning model. 
 
   * This examples use `DeepSeek-R1`.
-
-* Install the [Azure Inference library for JavaScript](https://aka.ms/azsdk/azure-ai-inference/javascript/reference) with the following command:
-
-  ```bash
-  npm install @azure-rest/ai-inference
-  ```
       
 ## Use reasoning capabilities with chat
 
