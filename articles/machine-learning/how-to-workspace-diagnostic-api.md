@@ -8,7 +8,7 @@ ms.subservice: enterprise-readiness
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: jhirono
-ms.date: 03/27/2024
+ms.date: 03/04/2025
 ms.topic: how-to
 ms.custom: sdkv2, devx-track-python
 monikerRange: 'azureml-api-2 || azureml-api-1'

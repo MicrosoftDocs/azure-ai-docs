@@ -12,7 +12,7 @@ ms.date: 1/21/2025
 
 # Plan to manage costs for model inference in Azure AI Services
 
-This article describes how you can plan for and manage costs for model inference in Azure AI Services. After you start using model inference in Azure AI Services resources, use **Cost Management features** to set budgets and monitor costs.
+This article describes how you can view, plan for, and manage costs for model inference in Azure AI Services.
 
 Although this article is about planning for and managing costs for model inference in Azure AI Services, you're billed for all Azure services and resources used in your Azure subscription.
 
@@ -24,11 +24,9 @@ Although this article is about planning for and managing costs for model inferen
 
 ## Understand model inference billing model
 
-Models deployed in Azure AI Services are charged per 1,000 tokens. Language models understand and process text by breaking it down into tokens. For reference, each token is roughly four characters for typical English text. Costs per token vary depending on which model series you choose. Models that can process images break down images in tokens too. The number of tokens per image depends on the model and the resolution of the input image.
+Language models understand and process inputs by breaking them down into tokens. For reference, each token is roughly four characters for typical English text. Models that can process images or audio break down them into tokens too for billing purposes. The number of tokens per image or audio content depends on the model and the resolution of the input.
 
-Token costs are for both input and output. For example, suppose you have a 1,000 token JavaScript code sample that you ask a model to convert to Python. You would be charged approximately 1,000 tokens for the initial input request sent, and 1,000 more tokens for the output that is received in response for a total of 2,000 tokens.
-
-In practice, for this type of completion call, the token input/output wouldn't be perfectly 1:1. A conversion from one programming language to another could result in a longer or shorter output depending on many factors. One such factor is the value assigned to the `max_tokens` parameter.
+Costs per token vary depending on which model series you choose but in all cases models deployed in Azure AI Services are charged per 1,000 tokens. Token costs are for both input and output. For example, suppose you have a 1,000 token JavaScript code sample that you ask a model to convert to Python. You would be charged approximately 1,000 tokens for the initial input request sent, and 1,000 more tokens for the output that is received in response for a total of 2,000 tokens.
 
 ### Cost breakdown
 
@@ -57,15 +55,18 @@ The following sections explain the entries in details.
 
 ### Azure OpenAI and Microsoft models
 
-Azure OpenAI and Microsoft's family of models (like Phi) are charged directly and they show up as billing meters under each Azure AI services resource. This billing happens directly through Microsoft. When you inspect your bill, you notice billing meters accounting for inputs and outputs for each consumed model.
+Azure OpenAI models and models offered as first-party consumption services from Microsoft (including DeepSeek family and Phi family of models) are charged directly and they show up as billing meters under each Azure AI services resource. This billing happens directly through Microsoft. When you inspect your bill, you notice billing meters accounting for inputs and outputs for each consumed model.
 
 :::image type="content" source="../media/manage-cost/cost-by-meter-1p.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Azure AI Services resource is deployed, highlighting the meters for Azure OpenAI and Microsoft's models. Cost is group by meter." lightbox="../media/manage-cost/cost-by-meter-1p.png":::
 
 ### Provider models
 
-Models provided by another provider, like Mistral AI, Cohere, Meta AI, or AI21 Labs, are billed using Azure Marketplace. As opposite to Microsoft billing meters, those entries are associated with the resource group where your Azure AI services is deployed instead of to the Azure AI Services resource itself. You see entries under the **Service Name** *SaaS* accounting for inputs and outputs for each consumed model.
+Models provided by another provider, like Mistral AI, Cohere, Meta AI, or AI21 Labs, are billed using Azure Marketplace. As opposite to Microsoft billing meters, those entries are associated with the resource group where your Azure AI services is deployed instead of to the Azure AI Services resource itself. Given model providers charge you directly, you see entries under the category **Marketplace** and **Service Name** *SaaS* accounting for inputs and outputs for each consumed model.
 
 :::image type="content" source="../media/manage-cost/cost-by-meter-saas.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Azure AI Services resource is deployed, highlighting the meters for models billed throughout Azure Marketplace. Cost is group by meter." lightbox="../media/manage-cost/cost-by-meter-saas.png":::
+
+> [!IMPORTANT]
+> This distinction between Azure OpenAI, Microsoft-offered models, and provider models only affects how the model is made available to you and how you are charged. In all cases, models are hosted within Azure cloud and there is no interaction with external services or providers.
 
 ### Using Azure Prepayment
 
@@ -77,10 +78,6 @@ If the service performs processing, you're charged even if the status code isn't
 For example, a 400 error due to a content filter or input limit, or a 408 error due to a time-out.
 
 If the service doesn't perform processing, you aren't charged. For example, a 401 error due to authentication or a 429 error due to exceeding the Rate Limit.
-
-## Other costs
-
-Enabling capabilities such as sending data to Azure Monitor Logs and alerting incurs extra costs for those services. These costs are visible under those other services and at the subscription level, but aren't visible when scoped just to your Azure AI services resource.
 
 ## Monitor costs
 
@@ -126,6 +123,10 @@ You can create budgets with filters for specific resources or services in Azure 
 ## Export cost data
 
 You can also [export your cost data](/azure/cost-management-billing/costs/tutorial-export-acm-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) to a storage account, which is helpful when you need others to do extra data analysis for costs. For example, a finance team can analyze the data using Excel or Power BI. You can export your costs on a daily, weekly, or monthly schedule and set a custom date range. We recommend exporting cost data as the way to retrieve cost datasets.
+
+## Other costs
+
+Enabling capabilities such as sending data to Azure Monitor Logs and alerting incurs extra costs for those services. These costs are visible under those other services and at the subscription level, but aren't visible when scoped just to your Azure AI services resource.
 
 ## Next steps
 

@@ -161,7 +161,7 @@ Recall that facets are calculated from results in a query response. You only get
 
 1. Facets are configured at query-time. Use the [Search POST](/rest/api/searchservice/documents/search-post) or [Search GET](/rest/api/searchservice/documents/search-get) request, or an equivalent Azure SDK API, to specify facets. 
 
-1. Set facet query parameters in the request. In Search POST, facets are an array of facet expressions to apply to the search query. Each facet expression contains a field name, optionally followed by a comma-separated list of name:value pairs. Valid facet parameters are `count`, `sort`, `values`, `interval`, and `timeoffset`.
+1. Set facet query parameters in the request. In Search POST, `facets` are an array of facet expressions to apply to the search query. Each facet expression contains a field name, optionally followed by a comma-separated list of name-value pairs. Valid facet parameters are `count`, `sort`, `values`, `interval`, and `timeoffset`.
 
     | Facet parameter | Description and usage |
     |-----------------|-----------------------|
@@ -200,9 +200,9 @@ Each range is built using 0 as a starting point, a value from the list as an end
 
 ### Distinct values example
 
-You can formulate a query that returns a distinct value count for each "facetable" field. This example formulates a query that sets `top` to zero, returning just the counts, with no results.
+You can formulate a query that returns a distinct value count for each "facetable" field. This example formulates an empty or unqualified query (`"search": "*"`) that matches on all documents, but by setting `top` to zero, you get just the counts, with no results.
 
-For brevity, it includes just two fields marked as "facetable" in the hotels sample index.
+For brevity, this query includes just two fields marked as "facetable" in the hotels sample index.
 
 ```http
 POST https://{{service_name}}.search.windows.net/indexes/hotels/docs/search?api-version={{api_version}}

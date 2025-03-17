@@ -5,7 +5,7 @@ description: An overview of the features, capabilities, and restrictions for aud
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/12/2024
+ms.date: 3/10/2025
 author: eric-urban
 ms.author: eur
 ms.reviewer: hasshah

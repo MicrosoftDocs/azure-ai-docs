@@ -356,7 +356,7 @@ To enable token authentication, set the `token_auth_enabled=True` parameter when
 deployment_config = AksWebservice.deploy_configuration(cpu_cores=1, memory_gb=1, token_auth_enabled=True)
 ```
 
-If token authentication is enabled, you can use the `get_token` method to retrieve a JWT token and that token's expiration time:
+If token authentication is enabled, you can use the `get_token` method to retrieve a JWT and that token's expiration time:
 
 ```python
 token, refresh_by = service.get_token()
