@@ -37,14 +37,14 @@ You need the `synapseml` library and several Azure resources. If possible, use t
 
 + [SynapseML package](https://microsoft.github.io/SynapseML/docs/Get%20Started/Install%20SynapseML/#python) <sup>1</sup>
 + [Azure AI Search](search-create-service-portal.md) (any tier), with an **API Kind** of `AIServices` <sup>2</sup> 
-+ [Azure AI multi-service account](/azure/ai-services/multi-service-resource?pivots=azportal) (any tier) <sup>3</sup>
++ [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills?pivots=azportal) (any tier) <sup>3</sup>
 + [Azure Databricks](/azure/databricks/scenarios/quickstart-create-databricks-workspace-portal?tabs=azure-portal) (any tier) with Apache Spark 3.3.0 runtime<sup>4</sup>
 
 <sup>1</sup> This link resolves to a tutorial for loading the package.
 
 <sup>2</sup> You can use the free search tier to index the sample data, but [choose a higher tier](search-sku-tier.md) if your data volumes are large. For billable tiers, provide the [search API key](search-security-api-keys.md#find-existing-keys) in the [Set up dependencies](#step-2-set-up-dependencies) step further on.
 
-<sup>3</sup> This tutorial uses Azure AI Document Intelligence and Azure AI Translator. In the instructions that follow, provide a [multi-service account](/azure/ai-services/multi-service-resource?pivots=azportal) key and the region. The same key works for both services. **It's important that you use an Azure AI multiservice account of API kind of `AIServices` for this tutorial**. You can check the API kind in the Azure portal on the Overview section of your Azure AI multiservice account page. For more information about API kind, see [Attach an Azure AI multi-service resource in Azure AI Search](cognitive-search-attach-cognitive-services.md).
+<sup>3</sup> This tutorial uses Azure AI Document Intelligence and Azure AI Translator. In the instructions that follow, provide a [multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills?pivots=azportal) key and the region. The same key works for both services. **It's important that you use an Azure AI services multi-service account of API kind of `AIServices` for this tutorial**. You can check the API kind in the Azure portal on the Overview section of your Azure AI services multi-service account page. For more information about API kind, see [Attach an Azure AI services multi-service resource in Azure AI Search](cognitive-search-attach-cognitive-services.md).
 
 <sup>4</sup> In this tutorial, Azure Databricks provides the Spark computing platform. We used the [portal instructions](/azure/databricks/scenarios/quickstart-create-databricks-workspace-portal?tabs=azure-portal) to set up the cluster and workspace.
 

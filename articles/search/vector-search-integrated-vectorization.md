@@ -76,7 +76,7 @@ The diagram focuses on integrated vectorization, but your solution isn't limited
 
 ## Availability and pricing
 
-Integrated vectorization is available in all regions and tiers. However, if you're using Azure OpenAI and Azure AI skills and vectorizers, make sure your Azure AI multi-service account is [available in the same regions as Azure AI Search](search-region-support.md).
+Integrated vectorization is available in all regions and tiers. However, if you're using Azure OpenAI and Azure AI skills and vectorizers, make sure your Azure AI services multi-service account is [available in the same regions as Azure AI Search](search-region-support.md).
 
 If you're using a custom skill and an Azure hosting mechanism (such as an Azure function app, Azure Web App, and Azure Kubernetes), check the [Azure product by region page](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=search) for feature availability. 
 
