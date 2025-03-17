@@ -91,7 +91,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | April | Feature | [Vector quantization, narrow vector data types, and a new `stored` property (preview)](vector-search-how-to-configure-compression-storage.md). Collectively, these three features minimize storage and costs.|
 | February | Feature | New dimension limits on vector fields. Maximum dimension limits are now `3072`, up from `2048`.|
 
-## Previous year's announcements
+## Previous year announcements
 
 + [2023 announcements](/previous-versions/azure/search/search-whats-new-2023)
 + [2022 announcements](/previous-versions/azure/search/search-whats-new-2022)
