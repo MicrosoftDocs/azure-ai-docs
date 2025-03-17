@@ -23,7 +23,11 @@ Computer Use provides:
 
 ## Request access
 
-Access to Computer Use is limited. You will need to fill out the [access request form](https://aka.ms/oai/cuaaccess) before you can start using the model.
+For access to the `computer-use-preview` model, registration is required and access will be granted based on Microsoft's eligibility criteria. Customers who have access to other limited access models will still need to request access for this model.
+
+Request access: [computer-use-preview limited access model application](https://aka.ms/oai/cuaaccess)
+
+Once access has been granted, you will need to create a deployment for the model.
 
 ## Regional support
 
