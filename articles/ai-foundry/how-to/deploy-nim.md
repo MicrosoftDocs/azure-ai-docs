@@ -28,7 +28,7 @@ Get improved TCO (total cost of ownership) and performance with NVIDIA NIMs offe
 
 - An [Azure AI Foundry project](create-projects.md).
 
-- Ensure Marketplace purcharses are enabled for your azure subscription. Learn more about it [here](/azure-docs/articles/cost-management-billing/manage/enable-marketplace-purchases.md).
+- Ensure Marketplace purcharses are enabled for your azure subscription. Learn more about it [here](/azure-docs/articles/cost-management-billing/manage/enable-marketplace-purchases).
 
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned a _custom role_ with the following permissions. User accounts assigned the _Owner_ or _Contributor_ role for the Azure subscription can also create NIM deployments. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
 
@@ -95,7 +95,9 @@ Redeploy to get the latest version of NIM from NVIDIA on Foundry.
 NVIDIA ensures the security and reliability of NVIDIA NIM container images through best-in-class vulnerability scanning, rigorous patch management, and transparent processes. Learn the details [here](https://docs.nvidia.com/ai-enterprise/planning-resource/security-for-azure-ai-foundry/latest/introduction.html). Microsoft works with NVIDIA to get the latest patches of the NIMs to deliver secure, stable, and reliable production-grade software within Azure AI Foundry.
 Users can refer to the last updated time for the NIM in the model overview page, and will have to redeploy to get the latest version of NIM from NVIDIA on Foundry.
 
+While NIMs are in preview on Foundry, workspaces with Public Network Access disabled will have a limitation of being able to create only one successful deployment in the private workspace or project. Note, there can only be a single active deployment in a private workspace, attempts to create more active deployments will end in failure.
+
 ## Related content
 
-* Learn more about the [Model Catalog](./concept-model-catalog.md)
+* Learn more about the [Model Catalog](./model-catalog-overview.md)
 * Learn more about [built-in policies for deployment](./built-in-policy-model-deployment.md)
