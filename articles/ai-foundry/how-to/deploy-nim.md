@@ -98,4 +98,4 @@ Users can refer to the last updated time for the NIM in the model overview page,
 ## Related content
 
 * Learn more about the [Model Catalog](./concept-model-catalog.md)
-* Learn more about [built-in policies for deployment](./how-to-built-in-policy-model-deployment.md)
+* Learn more about [built-in policies for deployment](./built-in-policy-model-deployment.md)
