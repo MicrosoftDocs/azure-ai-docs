@@ -301,7 +301,7 @@ curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses/{respon
 
 ## Delete response
 
-By default response data is retained for 30 days. To delete a response, you can use `response.delete("{response_id})`
+By default response data is retained for 30 days. To delete a response, you can use `response.delete"("{response_id})`
 
 ```python
 from openai import AzureOpenAI
@@ -711,7 +711,7 @@ def validate_coordinates(x, y):
 
 This simple utility attempts to prevent out-of-bounds errors by clamping coordinates to the window dimensions.
 
-### Action Handling
+### Action handling
 
 The core of our browser automation is the action handler that processes various types of user interactions and convert them into actions within the browser.
 
@@ -811,7 +811,7 @@ This function attempts to handle various types of actions such as:
 - Key presses (including combinations).
 - Typing text.
 
-### Screenshot Capture
+### Screenshot capture
 
 In order for the model to be able to see what it's interacting with the model needs a way to capture screenshots. For this code we're using Playwright to capture the screenshots and we're limiting the view to just the content in the browser window. The screenshot won't include the url bar or other aspects of the browser GUI. If you need the model to see outside the main browser window you could augment the model by creating your own screenshot function.
 
@@ -824,7 +824,7 @@ async def take_screenshot(page):
 
 This function captures the current browser state as an image and returns it as a base64-encoded string, ready to be sent to the model. We'll constantly do this in a loop after each step allowing the model to see if the command it tried to execute was successful or not, which then allows it to adjust based on the contents of the screenshot.
 
-### Model Response Processing
+### Model response processing
 
 This function processes the model's responses and executes the requested actions:
 
@@ -966,7 +966,7 @@ In this section we have added code that:
 - Sends the updated state back to the model.
 - Repeats this process for multiple iterations.
 
-## Main Function
+### Main function
 
 The main function coordinates the entire process:
 
@@ -1067,7 +1067,7 @@ The main function:
 - Repeats until the user exits.
 - Ensures the browser is properly closed.
 
-### Complete Script
+### Complete script
 
 > [!CAUTION]
 > This code is experimental and for demonstration purposes only. It's only intended to illustrate the basic flow of the responses API and the `computer-use-preview` model. While you can execute this code on your local computer, we strongly recommend running this code on a low privilege virtual machine with no access to sensitive data. This code is for basic testing purposes only.
