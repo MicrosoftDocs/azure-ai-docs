@@ -92,7 +92,8 @@ Redeploy to get the latest version of NIM from NVIDIA on Foundry.
 
 ## Network Isolation support for NIMs
 
-
+NVIDIA ensures the security and reliability of NVIDIA NIM container images through best-in-class vulnerability scanning, rigorous patch management, and transparent processes. Learn the details [here](https://docs.nvidia.com/ai-enterprise/planning-resource/security-for-azure-ai-foundry/latest/introduction.html). Microsoft works with NVIDIA to get the latest patches of the NIMs to deliver secure, stable, and reliable production-grade software within Azure AI Foundry.
+Users can refer to the last updated time for the NIM in the model overview page, and will have to redeploy to get the latest version of NIM from NVIDIA on Foundry.
 
 ## Related content
 
