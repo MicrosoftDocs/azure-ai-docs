@@ -66,6 +66,9 @@ Get improved TCO and performance with NVIDIA NIMs offered for one-click deployme
 1. Select **Deploy**.
 1. Select one of the NVIDIA GPU based VM SKUs supported for the NIM, based on your intended workload. You will need to have quota in your Azure subscription.
 1. You can then customize your deployment configuration for the instance count, select an existing endpoint or create a new one, etc. For the example in this article, we will consider an instance count of **2** and create a new endpoint. 
+
+:::image type="content" source="../media/how-to/deploy-nim/project-customization.png" alt-text="A screenshot showing the deploy model button in the deployment wizard." lightbox="../media/how-to/deploy-nim/project-customization.png"::: 
+
 1. Select **Next**
 1. You will then need to review the pricing breakdown for the NIM deployment, terms of use and license agreement associated with the NIM offer. The pricing breakdown will help inform what the aggregated pricing for the NIM software deployed would be, which is a function of number of NVIDIA GPUs in the VM instance selected in the previous steps. In addition to the applicable NIM software price, Azure Compute charges will also apply based on your deployment configuration.
 
