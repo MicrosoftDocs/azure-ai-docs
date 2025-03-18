@@ -59,9 +59,6 @@ Get improved TCO (total cost of ownership) and performance with NVIDIA NIMs offe
 1. Sign in to [Azure AI Foundry](https://ai.azure.com) and go to the **Home** page.
 2. Select **Model catalog** from the left sidebar.
 3. In the filters section, select **Collections** and select **NVIDIA**.
-
-:::image type="content" source="../media/how-to/deploy-nvidia-inference-microservice/nvidia-collections.png" alt-text="A screenshot showing how to filter by NVIDIA collections models in the catalog." lightbox="../media/how-to/deploy-nvidia-inference-microservice/nvidia-collections.png":::  
-
 4. Select the NVIDIA NIM of your choice. In this article, we are using **Llama-3.3-70B-Instruct-NIM-microservice** as an example.
 5. Select **Deploy**.
 6. Select one of the NVIDIA GPU based VM SKUs supported for the NIM, based on your intended workload. You need to have quota in your Azure subscription.
