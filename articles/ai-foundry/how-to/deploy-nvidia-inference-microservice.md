@@ -62,19 +62,19 @@ Get improved TCO (total cost of ownership) and performance with NVIDIA NIMs offe
 
 :::image type="content" source="../media/how-to/deploy-nvidia-inference-microservice/nvidia-collections.png" alt-text="A screenshot showing how to filter by NVIDIA collections models in the catalog." lightbox="../media/how-to/deploy-nvidia-inference-microservice/nvidia-collections.png":::  
 
-1. Select the NVIDIA NIM of your choice. In this article, we are using **Llama-3.3-70B-Instruct-NIM-microservice** as an example.
-1. Select **Deploy**.
-1. Select one of the NVIDIA GPU based VM SKUs supported for the NIM, based on your intended workload. You need to have quota in your Azure subscription.
-1. You can then customize your deployment configuration for the instance count, select an existing endpoint or create a new one, etc. For the example in this article, we consider an instance count of **2** and create a new endpoint. 
+4. Select the NVIDIA NIM of your choice. In this article, we are using **Llama-3.3-70B-Instruct-NIM-microservice** as an example.
+5. Select **Deploy**.
+6. Select one of the NVIDIA GPU based VM SKUs supported for the NIM, based on your intended workload. You need to have quota in your Azure subscription.
+7. You can then customize your deployment configuration for the instance count, select an existing endpoint or create a new one, etc. For the example in this article, we consider an instance count of **2** and create a new endpoint. 
 
 :::image type="content" source="../media/how-to/deploy-nvidia-inference-microservice/project-customization.png" alt-text="A screenshot showing project customization options in the deployment wizard." lightbox="../media/how-to/deploy-nvidia-inference-microservice/project-customization.png"::: 
 
-1. Select **Next**
-1. Then, review the pricing breakdown for the NIM deployment, terms of use and license agreement associated with the NIM offer. The pricing breakdown helps to inform what the aggregated pricing for the NIM software deployed would be, which is a function of the number of NVIDIA GPUs in the VM instance that was selected in the previous steps. In addition to the applicable NIM software price, Azure Compute charges also applies based on your deployment configuration.
+8. Select **Next**
+9. Then, review the pricing breakdown for the NIM deployment, terms of use and license agreement associated with the NIM offer. The pricing breakdown helps to inform what the aggregated pricing for the NIM software deployed would be, which is a function of the number of NVIDIA GPUs in the VM instance that was selected in the previous steps. In addition to the applicable NIM software price, Azure Compute charges also applies based on your deployment configuration.
 
 :::image type="content" source="../media/how-to/deploy-nvidia-inference-microservice/payment-description.png" alt-text="A screenshot showing the necessary user payment agreement detailing how the user is charged for deploying the models." lightbox="../media/how-to/deploy-nvidia-inference-microservice/payment-description.png":::  
 
-1. Select the checkbox to acknowledge understanding of pricing and terms of use, and then, select **Deploy**.
+10. Select the checkbox to acknowledge understanding of pricing and terms of use, and then, select **Deploy**.
 
 :::image type="content" source="../media/how-to/deploy-nvidia-inference-microservice/deploy-nvidia-inference-microservice.png" alt-text="A screenshot showing the deploy model button in the deployment wizard." lightbox="../media/how-to/deploy-nvidia-inference-microservice/deploy-nvidia-inference-microservice.png"::: 
 
