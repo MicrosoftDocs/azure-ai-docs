@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 11/20/2024
+ms.date: 03/18/2025
 ---
 
 # Index data from Azure SQL Database
@@ -32,9 +32,11 @@ This article also provides:
 
 + An [Azure SQL database](/azure/azure-sql/database/sql-database-paas-overview) with data in a single table or view, or a [SQL Managed Instance with a public endpoint](search-how-to-index-sql-managed-instance.md).
 
-  Use a table if your data is large or if you need [incremental indexing](#CaptureChangedRows) using SQL's native change detection capabilities.
++ A single table or view. To support incremental indexing, review [extra requirements](#indexing-new-changed-and-deleted-rows) that workload.
 
-  Use a view if you need to consolidate data from multiple tables. Large views aren't ideal for SQL indexer. A workaround is to create a new table just for ingestion into your Azure AI Search index. You can use SQL integrated change tracking to track new and changed rows, which is easier to implement than High Water Mark.
+  Use a table if your data is large or if you need incremental indexing using SQL's native change detection capabilities ([SQL integrated change tracking](#indexing-new-changed-and-deleted-rows)).
+
+  Use a view if you need to consolidate data from multiple tables. Large views aren't ideal for SQL indexer. A workaround is to create a new table just for ingestion into your Azure AI Search index. To support incremental indexing, you can use [High Water Mark](#indexing-new-changed-and-deleted-rows) for change detection.
 
 + Read permissions. Azure AI Search supports SQL Server authentication, where the user name and password are provided on the connection string. Alternatively, you can [set up a managed identity and use Azure roles](search-howto-managed-identities-sql.md).
 
@@ -93,9 +95,9 @@ Use these instructions to create and load a table in Azure SQL Database for test
    SELECT Description FROM tbl_hotels;
     ```
 
-You should see results similar to the following screenshot.
+   You should see results similar to the following screenshot.
 
-:::image type="content" source="media/search-how-to-index-sql-database/tsql-query-results.png" alt-text="Screenshot of query results showing the description field.":::
+   :::image type="content" source="media/search-how-to-index-sql-database/tsql-query-results.png" alt-text="Screenshot of query results showing the description field.":::
 
 The Description field provides the most verbose content. You should target this field for full text search and optional vectorization.
 
@@ -104,11 +106,15 @@ Now that you have a database table, you can use the Azure portal, REST client, o
 > [!TIP]
 > Another resource that provides sample content and code can be found on [Azure-Samples/SQL-AI-samples](https://github.com/Azure-Samples/SQL-AI-samples/tree/main/AzureSQLACSSamples/src).
 
-## Use the Azure portal
+## Set up the indexer pipeline
+
+In this step, specify the data source, index, and indexer.
+
+### [**Azure portal**](#tab/portal-sql)
 
 You can use either the **Import data** wizard or **Import and vectorize data** wizard to automate indexing from an SQL database table or view. The data source configuration is similar for both wizards.
 
-1. [Start the wizard](search-import-data-portal.md#starting-the-wizards).
+1. [Start the Import data wizard](search-import-data-portal.md#starting-the-wizards).
 
 1. On **Connect to your data**, select or verify that the data source type is either *Azure SQL Database* or *SQL database*.
 
@@ -116,7 +122,7 @@ You can use either the **Import data** wizard or **Import and vectorize data** w
 
 1. Specify the server name, database name, and table or view name.
 
-   the Azure portal validates the connection. If the database is paused due to inactivity, navigate to the database server page and make sure database status is *online*. You can run a query on any table to activate the database.
+   The Azure portal validates the connection. If the database is paused due to inactivity, navigate to the database server page and make sure database status is *online*. You can run a query on any table to activate the database.
 
    :::image type="content" source="media/search-how-to-index-sql-database/database-online.png" alt-text="Screenshot of the database status page in the Azure portal.":::
 
@@ -136,7 +142,7 @@ You can use either the **Import data** wizard or **Import and vectorize data** w
 
    + [Quickstart: Import and vectorize data wizard](search-get-started-portal-import-vectors.md)
 
-## Use the REST APIs
+### [**REST**](#tab/test-sql)
 
 This section demonstrates the REST API calls that create a data source, index, and indexer.
 
@@ -178,6 +184,7 @@ The data source definition specifies the data to index, credentials, and policie
    + Alternatively, you can specify a managed identity connection string that doesn't include database secrets with the following format: `Initial Catalog|Database=<your database name>;ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.Sql/servers/<your SQL Server name>/;Connection Timeout=connection timeout length;`.
 
     For more information, see [Connect to Azure SQL Database indexer using a managed identity](search-howto-managed-identities-sql.md).
+
 > [!NOTE]
 > For the container name property, the value is restricted to only allow letters, numbers, underscores (_), dots (.), single dashes (-), and square brackets ([])
 
@@ -280,6 +287,8 @@ Once the index and data source have been created, you're ready to create the ind
 
 An indexer runs automatically when it's created. You can prevent this by setting "disabled" to true. To control indexer execution, [run an indexer on demand](search-howto-run-reset-indexers.md) or [put it on a schedule](search-howto-schedule-indexers.md).
 
+---
+
 ## Check indexer status
 
 To monitor the indexer status and execution history, check the indexer execution history in the Azure portal, or send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) REST API request
@@ -350,7 +359,7 @@ For Azure SQL indexers, there are two change detection policies:
 
 + "SqlIntegratedChangeTrackingPolicy" (applies to tables only)
 
-+ "HighWaterMarkChangeDetectionPolicy" (works for tables and views)
++ "HighWaterMarkChangeDetectionPolicy" (works for views)
 
 ### SQL Integrated Change Tracking Policy
 
@@ -358,14 +367,15 @@ We recommend using "SqlIntegratedChangeTrackingPolicy" for its efficiency and it
 
 Database requirements:
 
-+ SQL Server 2012 SP3 and later, if you're using SQL Server on Azure VMs
-+ Azure SQL Database or SQL Managed Instance
-+ Tables only (no views)
-+ On the database, [enable change tracking](/sql/relational-databases/track-changes/enable-and-disable-change-tracking-sql-server) for the table
-+ No composite primary key (a primary key containing more than one column) on the table
-+ No clustered indexes on the table. As a workaround, any clustered index would have to be dropped and re-created as nonclustered index, however, performance might be affected in the source compared to having a clustered index
++ SQL Server 2016 and later, if you're using SQL Server on Azure VMs.
++ Azure SQL Database or SQL Managed Instance.
++ Tables only (no views).
++ On the database, [enable change tracking](/sql/relational-databases/track-changes/enable-and-disable-change-tracking-sql-server) for the table.
++ No composite primary key (a primary key containing more than one column) on the table.
++ No clustered indexes on the table. As a workaround, any clustered index would have to be dropped and re-created as nonclustered index, however, performance might be affected in the source compared to having a clustered index.
++ Tables can't be empty. If you use DELETE TABLE or TRUNCATE TABLE to clear rows, a reset and rerun of the indexer won't remove the corresponding search documents. To remove orphaned search documents, you must [index them with a delete action](search-howto-reindex.md#delete-orphan-documents).
 
-Change detection policies are added to data source definitions. To use this policy, create or update your data source like this:
+Change detection policies are added to data source definitions. To use this policy, edit the data source definition in the Azure portal, or use REST to update your data source like this:
 
 ```http
 POST https://myservice.search.windows.net/datasources?api-version=2024-07-01
@@ -384,8 +394,8 @@ api-key: admin-key
 
 When using SQL integrated change tracking policy, don't specify a separate data deletion detection policy. The SQL integrated change tracking policy has built-in support for identifying deleted rows. However, for the deleted rows to be detected automatically, the document key in your search index must be the same as the primary key in the SQL table. 
 
-> [!NOTE]  
-> When using [TRUNCATE TABLE](/sql/t-sql/statements/truncate-table-transact-sql) to remove a large number of rows from a SQL table, the indexer needs to be [reset](/rest/api/searchservice/indexers/reset) to reset the change tracking state to pick up row deletions.
+<!-- > [!NOTE]  
+> When using [TRUNCATE TABLE](/sql/t-sql/statements/truncate-table-transact-sql) to remove a large number of rows from a SQL table, the indexer needs to be [reset](/rest/api/searchservice/indexers/reset) to reset the change tracking state to pick up row deletions. -->
 
 <a name="HighWaterMarkPolicy"></a>
 
