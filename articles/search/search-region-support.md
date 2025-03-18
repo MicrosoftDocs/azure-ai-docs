@@ -106,7 +106,7 @@ AI service integration refers to internal connections to an Azure AI services mu
 | Japan West​ | ✅ | ✅ |  |
 | Korea Central | ✅ | ✅ | ✅ |
 | Korea South​ ​ |  | ✅ |  |
-| Taiwan North |  |  | ✅ |  |
+| Taiwan North |  |  |   |  |
 
 <sup>1</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
 
