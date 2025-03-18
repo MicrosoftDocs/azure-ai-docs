@@ -391,10 +391,6 @@ If you want to clean up and remove an Azure AI services subscription, you can de
 
 These issues might be helpful in troubleshooting.
 
-### General
-
-The Document Intelligence client library raises exceptions defined in [Azure Core](https://aka.ms/azsdk-python-azure-core).
-
 ### Logging
 
 This library uses the [standard logging library](https://docs.python.org/3/library/logging.html) for logging. Basic information about HTTP sessions, such as URLs and headers, is logged at the INFO level.
