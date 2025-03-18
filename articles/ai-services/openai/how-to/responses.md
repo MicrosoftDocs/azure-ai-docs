@@ -13,7 +13,7 @@ ms.custom: references_regions
 
 # Azure OpenAI Responses API (Preview)
 
-The Responses API is a new stateful API from Azure OpenAI. It brings together the best capabilities from the chat completions and assistants API in one unified experience. The Responses API also adds support for the new `computer-use-preview` model which powers the [OpenAI Operator](https://openai.com/index/introducing-operator/) capability.
+The Responses API is a new stateful API from Azure OpenAI. It brings together the best capabilities from the chat completions and assistants API in one unified experience. The Responses API also adds support for the new `computer-use-preview` model which powers the [Computer Use](./computer-use.md) tool.
 
 ## Responses API
 
