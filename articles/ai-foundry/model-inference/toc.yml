@@ -69,7 +69,7 @@ items:
       - name: Configure private endpoints
         href: ./how-to/configure-private-endpoints.md
       - name: Use virtual networks
-        href: ../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-foundry/model-inference/context/context
+        href: /articles/ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-foundry/model-inference/context/context
   - name: Manage cost
     href: ./how-to/manage-costs.md
   - name: Quotas and limits
