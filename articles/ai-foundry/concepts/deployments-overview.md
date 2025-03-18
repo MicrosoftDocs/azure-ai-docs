@@ -21,11 +21,11 @@ The model catalog in Azure AI Foundry portal is the hub to discover and use a wi
 
 ## Deploying models
 
-Deployment options vary depending on the model type:
+Deployment options vary depending on the model offering:
 
-* **Azure OpenAI models:** The latest OpenAI models that have enterprise features from Azure.
-* **Models as a Service models:** These models don't require compute quota from your subscription. This option allows you to deploy your Model as a Service (MaaS). You use a serverless API deployment and are billed per token in a pay-as-you-go fashion.
-* **Open and custom models:** The model catalog offers access to a large variety of models across modalities that are of open access. You can host open models in your own subscription with a managed infrastructure, virtual machines, and the number of instances for capacity management. There's a wide range of models from Azure OpenAI, Hugging Face, and NVIDIA.
+* **Azure OpenAI models:** The latest OpenAI models that have enterprise features from Azure with flexible billing options.
+* **Models-as-a-Service models:** These models don't require compute quota from your subscription and are billed per token in a pay-as-you-go fashion. 
+* **Open and custom models:** The model catalog offers access to a large variety of models across modalities, including models of open access. You can host open models in your own subscription with a managed infrastructure, virtual machines, and the number of instances for capacity management.
 
 Azure AI Foundry offers four different deployment options:
 
@@ -33,6 +33,8 @@ Azure AI Foundry offers four different deployment options:
 |-------------------------------|----------------------|-------------------|----------------|-----------------|
 | Which models can be deployed? | [Azure OpenAI models](../../ai-services/openai/concepts/models.md)        | [Azure OpenAI models and Models as a Service](../../ai-foundry/model-inference/concepts/models.md) | [Models as a Service](../how-to/model-catalog-overview.md#content-safety-for-models-deployed-via-serverless-apis) | [Open and custom models](../how-to/model-catalog-overview.md#availability-of-models-for-deployment-as-managed-compute) |
 | Deployment resource           | Azure OpenAI resource | Azure AI services resource | AI project resource | AI project resource |
+| Requires Hubs/Projects        | No | No | Yes | Yes |
+| Data processing options       | Regional, Data-zone, and Global | Global | Regional | Regional |
 | Best suited when              | You are planning to use only OpenAI models | You are planning to take advantage of the flagship models in Azure AI catalog, including OpenAI. | You are planning to use a single model from a specific provider (excluding OpenAI). | If you plan to use open models and you have enough compute quota available in your subscription. |
 | Billing bases                 | Token usage & PTU         | Token usage       | Token usage<sup>1</sup>      | Compute core hours<sup>2</sup> |
 | Deployment instructions       | [Deploy to Azure OpenAI Service](../how-to/deploy-models-openai.md) | [Deploy to Azure AI model inference](../model-inference/how-to/create-model-deployments.md) | [Deploy to Serverless API](../how-to/deploy-models-serverless.md) | [Deploy to Managed compute](../how-to/deploy-models-managed.md) |
