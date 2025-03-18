@@ -74,12 +74,13 @@ Use the help wizard, labeling interface, training step, and interactive visualiz
 * **Add-on Capabilities**: Document Intelligence supports more sophisticated analysis capabilities. These optional capabilities can be enabled and disabled in the studio using the `Analyze Options` button in each model page. There are four add-on capabilities available: `highResolution`, `formula`, `font`, and `barcode extraction` capabilities. To learn more, *see* [Add-on capabilities](concept-add-on-capabilities.md).
 
 
-
 ### [**Azure AI Foundry portal**](#tab/ai-foundry)
 
 Document Intelligence is part of the Azure AI services offerings in the [Azure AI Foundry portal](https://ai.azure.com/). Each of the Azure AI services helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models.
 
 Learn how to [connect your AI services hub](../../ai-foundry/ai-services/how-to/connect-ai-services.md) with AI services and get started using Document Intelligence.
+
+---
 
 ## Next steps
 
