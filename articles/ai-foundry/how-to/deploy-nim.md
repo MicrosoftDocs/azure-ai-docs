@@ -32,18 +32,18 @@ Get improved TCO and performance with NVIDIA NIMs offered for one-click deployme
 
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned a _custom role_ with the following permissions. User accounts assigned the _Owner_ or _Contributor_ role for the Azure subscription can also create NIM deployments. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
 
-    •	On the Azure subscription—*to subscribe the workspace to the Azure Marketplace offering*, once for each workspace/project:
+    •	On the Azure subscription—**to subscribe the workspace to the Azure Marketplace offering**, once for each workspace/project:
         o	Microsoft.MarketplaceOrdering/agreements/offers/plans/read
         o	Microsoft.MarketplaceOrdering/agreements/offers/plans/sign/action
         o	Microsoft.MarketplaceOrdering/offerTypes/publishers/offers/plans/agreements/read
         o	Microsoft.Marketplace/offerTypes/publishers/offers/plans/agreements/read
         o	Microsoft.SaaS/register/action
 
-    •	On the resource group—*to create and use the SaaS resource*:
+    •	On the resource group—**to create and use the SaaS resource**:
         o   Microsoft.SaaS/resources/read
         o	Microsoft.SaaS/resources/write
 
-    •	On the workspace—to deploy endpoints (the Azure Machine Learning data scientist role contains these permissions already):
+    •	On the workspace—**to deploy endpoints**:
         o	Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*
         o	Microsoft.MachineLearningServices/workspaces/onlineEndpoints/* 
 
@@ -82,7 +82,10 @@ After your deployment has been successfully created, you can go to "Models + End
 
 NVIDIA NIMs on Foundry expose Open AI compatible API, learn more about the payload supported [here](https://docs.nvidia.com/nim/large-language-models/latest/api-reference.html#). The 'model' parameter for NIMs on Foundry is set to a default value within the container, and is not required to pass through in the payload to your online endpoint. The 'Consume' tab of the NIM deployment on Foundry includes code samples for inference with the target URL of your deployment. You can also consume NIM deployments using the Azure AI Model Inference SDK. 
 
-## Security attestation for NIMs by NVIDIA
+## Security scanning for NIMs by NVIDIA
+
+
+redeploy to get the latest version of NIM from NVIDIA on Foundry. 
 
 ## Network Isolation support for NIMs
 
