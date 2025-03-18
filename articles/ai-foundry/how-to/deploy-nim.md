@@ -10,7 +10,7 @@ ms.author: ssalgado
 author: ssalgadodev
 ms.reviewer: tinaem
 reviewer: tinaem
-ms.custom:  serverless, devx-track-azurecli
+ms.custom:  devx-track-azurecli
 ---
 
 # How to deploy NVIDIA Inference Microservices
@@ -47,10 +47,13 @@ Get improved TCO and performance with NVIDIA NIMs offered for one-click deployme
         o	Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*
         o	Microsoft.MachineLearningServices/workspaces/onlineEndpoints/* 
 
-## Subscribe your project to the model offering
 
-(Explain how to subscribe and start using the NIMs
+## NVIDIA NIM PayGo offer on Azure Marketplace by NVIDIA
 
+ NVIDIA NIMs available on Azure AI Foundry model catalog can be deployed with a suscription to the [NVIDIA NIM SaaS offer](https://aka.ms/nvidia-nims-plan) on Azure Marketplace. This offer includes a 90-day trial that applies to all NIMs associated with a particular SaaS subscription scoped to a Azure AI Foundry project, and has a PayGo price of $1 per GPU hour post the trial period. 
+
+ Azure AI Foundry enables a seamless purchase flow of the NVIDIA NIM offering on Marketplace from NVIDIA collection in the model catalog, and further deployment on Managed Compute.
+ 
 ## Deploy NVIDIA Inference Microservices on Managed Compute
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com) and go to the **Home** page.
