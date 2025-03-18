@@ -76,7 +76,7 @@ Get improved TCO (total cost of ownership) and performance with NVIDIA NIMs offe
 
 1. Select the checkbox to acknowledge understanding of pricing and terms of use, and then, select **Deploy**.
 
-:::image type="content" source="../media/how-to/deploy-nvidia-inference-microservice/deploy-nvidia-inference-microservice.png" alt-text="A screenshot showing the deploy model button in the deployment wizard." lightbox="../media/how-to/deploy-nvidia-inference-microservice/deploy-nim.png"::: 
+:::image type="content" source="../media/how-to/deploy-nvidia-inference-microservice/deploy-nvidia-inference-microservice.png" alt-text="A screenshot showing the deploy model button in the deployment wizard." lightbox="../media/how-to/deploy-nvidia-inference-microservice/deploy-nvidia-inference-microservice.png"::: 
 
 
 ## Consume NVIDIA NIM deployments
