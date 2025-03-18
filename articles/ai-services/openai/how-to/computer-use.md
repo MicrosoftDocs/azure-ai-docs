@@ -38,7 +38,7 @@ Computer Use is available in the following regions:
 
 ## Sending an API call to the Computer Use model using the responses API
 
-The Computer Use tool is accessed through the responses API. The tool operates in a continuous loop that sends actions such as typing text or performing a click. Your code executes these actions on a computer, and sends screenshots of the outcome to the model. 
+The Computer Use tool is accessed through the [responses API](./responses.md). The tool operates in a continuous loop that sends actions such as typing text or performing a click. Your code executes these actions on a computer, and sends screenshots of the outcome to the model. 
 
 In this way, your code simulates the actions of a human using a computer interface, while the model uses the screenshots to understand the state of the environment and suggest next actions.
 
