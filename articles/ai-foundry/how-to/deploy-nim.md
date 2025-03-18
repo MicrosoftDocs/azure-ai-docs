@@ -15,13 +15,10 @@ ms.custom:  serverless, devx-track-azurecli
 
 # How to deploy NVIDIA Inference Microservices
 
-In this article, you learn how to deploy NVIDIA Inference Microservices (NIMs) on Managed Compute in Foundry Catalog​. NVIDIA inference microservices are containers built by NVIDIA for optimized pre-trained and customized AI models serving on NVIDIA GPUs​.
-
-(Summary on what benefits the customers get from NIMs)
+In this article, you learn how to deploy NVIDIA Inference Microservices (NIMs) on Managed Compute in the model catalog on Foundry​. NVIDIA inference microservices are containers built by NVIDIA for optimized pre-trained and customized AI models serving on NVIDIA GPUs​. 
+Get improved TCO and performance with NVIDIA NIMs offered for one-click deployment on Foundry, with enterprise production-grade software under NVIDIA AI Enterprise license. 
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
-
-
 
 ## Prerequisites
 
@@ -31,73 +28,24 @@ In this article, you learn how to deploy NVIDIA Inference Microservices (NIMs) o
 
 - An [Azure AI Foundry project](create-projects.md).
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
+- Ensure Marketplace purcharses are enabled for your azure subscription. Learn more about it [here](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/enable-marketplace-purchases).
 
-- You need to install the following software to work with Azure AI Foundry:
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned a _custom role_ with the following permissions. User accounts assigned the _Owner_ or _Contributor_ role for the Azure subscription can also create NIM deployments. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
 
-    # [Azure AI Foundry portal](#tab/azure-ai-studio)
+    •	On the Azure subscription—*to subscribe the workspace to the Azure Marketplace offering*, once for each workspace/project:
+        o	Microsoft.MarketplaceOrdering/agreements/offers/plans/read
+        o	Microsoft.MarketplaceOrdering/agreements/offers/plans/sign/action
+        o	Microsoft.MarketplaceOrdering/offerTypes/publishers/offers/plans/agreements/read
+        o	Microsoft.Marketplace/offerTypes/publishers/offers/plans/agreements/read
+        o	Microsoft.SaaS/register/action
 
-    You can use any compatible web browser to navigate [Azure AI Foundry](https://ai.azure.com).
+    •	On the resource group—*to create and use the SaaS resource*:
+        o   Microsoft.SaaS/resources/read
+        o	Microsoft.SaaS/resources/write
 
-    # [Azure CLI](#tab/cli)
-
-    The [Azure CLI](/cli/azure/) and the [ml extension for Azure Machine Learning](/azure/machine-learning/how-to-configure-cli).
-
-    ```azurecli
-    az extension add -n ml
-    ```
-
-    If you already have the extension installed, ensure the latest version is installed.
-
-    ```azurecli
-    az extension update -n ml
-    ```
-
-    Once the extension is installed, configure it:
-
-    ```azurecli
-    az account set --subscription <subscription>
-    az configure --defaults workspace=<project-name> group=<resource-group> location=<location>
-    ```
-
-    # [Python SDK](#tab/python)
-
-    Install the [Azure Machine Learning SDK for Python](https://aka.ms/sdk-v2-install).
-
-    ```python
-    pip install -U azure-ai-ml
-    ```
-
-    Once installed, import necessary namespaces and create a client connected to your project:
-
-    ```python
-    from azure.ai.ml import MLClient
-    from azure.identity import InteractiveBrowserCredential
-    from azure.ai.ml.entities import MarketplaceSubscription, ServerlessEndpoint
-
-    client = MLClient(
-        credential=InteractiveBrowserCredential(tenant_id="<tenant-id>"),
-        subscription_id="<subscription-id>",
-        resource_group_name="<resource-group>",
-        workspace_name="<project-name>",
-    )
-    ```
-
-    # [Bicep](#tab/bicep)
-
-    Install the Azure CLI as described at [Azure CLI](/cli/azure/).
-
-    Configure the following environment variables according to your settings:
-
-    ```azurecli
-    RESOURCE_GROUP="serverless-models-dev"
-    LOCATION="eastus2" 
-    ```  
-
-    # [ARM](#tab/arm)
-
-    You can use any compatible web browser to [deploy ARM templates](/azure/azure-resource-manager/templates/deploy-portal) in the Microsoft Azure portal or use any of the deployment tools. This tutorial uses the [Azure CLI](/cli/azure/).
-
+    •	On the workspace—to deploy endpoints (the Azure Machine Learning data scientist role contains these permissions already):
+        o	Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*
+        o	Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*
 
 ## Subscribe your project to the model offering
 
