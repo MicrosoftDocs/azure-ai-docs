@@ -158,7 +158,7 @@ To use the Content Safety APIs, you must create your Azure AI Content Safety res
 |--------------------|--------------------|--------------------|-------|-----------------------------|-------------------|---------------|---------------------------|---------------------------|------|
 | Australia East     | ✅                  |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | Canada East          |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| Central US             |                    |                  | ✅    |                            | ✅               |                | ✅                     | ✅                        | ✅    | 
+| Central US             |                    |                  | ✅    |                            | ✅               | ✅               | ✅                     | ✅                        | ✅    | 
 | East US            | ✅                 |  ✅                 | ✅    |  ✅                        | ✅               | ✅             | ✅                     | ✅                       | ✅    |
 | East US 2           |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | France Central        |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                       | ✅    | 
@@ -166,7 +166,7 @@ To use the Content Safety APIs, you must create your Azure AI Content Safety res
 | North Central US      |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    |            
 | Poland Central        |                    |                    | ✅    |                            |                 | ✅             | ✅                     | ✅                        | ✅    | 
 | South Central US     |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| South India           |                    |                    | ✅    |                            | ✅               |               | ✅                     | ✅                        | ✅    | 
+| South India           |                    |                    | ✅    |                            | ✅               | ✅              | ✅                     | ✅                        | ✅    | 
 | Sweden Central        |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                       | ✅    | 
 | Switzerland North     | ✅                 |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                       | ✅    | 
 | Switzerland West      |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    |             

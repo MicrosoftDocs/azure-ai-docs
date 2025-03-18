@@ -24,19 +24,11 @@ To use chat completion models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
+[!INCLUDE [how-to-prerequisites-csharp](../how-to-prerequisites-csharp.md)]
+
 * A chat completions model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
 
-* Install the [Azure AI inference package](https://aka.ms/azsdk/azure-ai-inference/python/reference) with the following command:
-
-    ```bash
-    dotnet add package Azure.AI.Inference --prerelease
-    ```
-    
-* If you are using Entra ID, you also need the following package:
-
-    ```bash
-    dotnet add package Azure.Identity
-    ```
+    * This example uses `mistral-large-2407`.
 
 ## Use chat completions
 

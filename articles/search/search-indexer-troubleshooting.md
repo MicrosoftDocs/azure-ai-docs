@@ -31,9 +31,9 @@ If you get an error code 403 with the following message, you might have a proble
 
 * `"A Virtual Network is configured for this resource. Please use the correct endpoint for making requests. Check https://aka.ms/cogsvc-vnet for more details."`
 
-This error occurs if you have [configured a shared private link](search-indexer-howto-access-private.md) for connections to Azure AI multi-service, and the endpoint is missing a custom subdomain. A custom subdomain is the first part of the endpoint (for example, `http://my-custom-subdomain.cognitiveservices.azure.com`). A custom domain might be missing if you created the resource in Azure AI Foundry.
+This error occurs if you have [configured a shared private link](search-indexer-howto-access-private.md) for connections to Azure AI services multi-service, and the endpoint is missing a custom subdomain. A custom subdomain is the first part of the endpoint (for example, `http://my-custom-subdomain.cognitiveservices.azure.com`). A custom domain might be missing if you created the resource in Azure AI Foundry.
 
-If the Azure AI multi-service account isn't in the same region as Azure AI Search, [use a keyless connection](cognitive-search-attach-cognitive-services.md) when attaching a billable Azure AI resource.
+If the Azure AI services multi-service account isn't in the same region as Azure AI Search, [use a keyless connection](cognitive-search-attach-cognitive-services.md) when attaching a billable Azure AI resource.
 
 ### Firewall rules
 

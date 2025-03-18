@@ -29,7 +29,7 @@ To prepare, you create a few resources and upload sample files before running th
 + An Azure Storage account with Azure Blob Storage.
 
 > [!NOTE]
-> This quickstart uses [Azure AI services](https://azure.microsoft.com/services/cognitive-services/) for AI transformations. Because the workload is so small, Azure AI services is tapped behind the scenes for free processing for up to 20 transactions. You can complete this exercise without having to create an Azure AI multi-service resource.
+> This quickstart uses [Azure AI services](https://azure.microsoft.com/services/cognitive-services/) for AI transformations. Because the workload is so small, Azure AI services is tapped behind the scenes for free processing for up to 20 transactions. You can complete this exercise without having to create an Azure AI services multi-service resource.
 
 ## Set up your data
 

@@ -116,13 +116,13 @@ In most cases, choose a region near you, unless any of the following apply:
 
 1. Do you have business continuity and disaster recovery (BCDR) requirements? Create two or more search services in [regional pairs](/azure/reliability/cross-region-replication-azure#azure-paired-regions) within [availability zones](search-reliability.md#availability-zones). For example, if you're operating in North America, you might choose East US and West US, or North Central US and South Central US, for each search service.
 
-1. Do you need [AI enrichment](cognitive-search-concept-intro.md), [integrated data chunking and vectorization](vector-search-integrated-vectorization.md), or [multimodal image search](search-get-started-portal-image-search.md)? Azure AI Search, Azure OpenAI, and Azure AI multiservice must coexist in the same region.
+1. Do you need [AI enrichment](cognitive-search-concept-intro.md), [integrated data chunking and vectorization](vector-search-integrated-vectorization.md), or [multimodal image search](search-get-started-portal-image-search.md)? Azure AI Search, Azure OpenAI, and Azure AI services multi-service must coexist in the same region.
 
    + Start with [Azure OpenAI regions](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) because they have the most variability. Azure OpenAI provides embedding models and chat models for RAG and integrated vectorization.
 
-   + Check [Azure AI Search regions](search-region-support.md#azure-public-regions) for a match to your Azure OpenAI region. If you're using OCR, entity recognition, or other skills backed by Azure AI, the **AI service integration** column indicates whether Azure AI multiservice and Azure AI Search are in the same region.
+   + Check [Azure AI Search regions](search-region-support.md#azure-public-regions) for a match to your Azure OpenAI region. If you're using OCR, entity recognition, or other skills backed by Azure AI, the **AI service integration** column indicates whether Azure AI services multi-service and Azure AI Search are in the same region.
 
-   + Check [multimodal embedding regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for multimodal APIs and image search. This API is accessed through an Azure AI multiservice account, but in general, it's available in fewer regions than Azure AI multiservice.
+   + Check [multimodal embedding regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for multimodal APIs and image search. This API is accessed through an Azure AI services multi-service account, but in general, it's available in fewer regions than Azure AI services multi-service.
 
 ### Regions with the most overlap
 
