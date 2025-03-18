@@ -117,7 +117,7 @@ With Document Intelligence, you can quickly automate your data processing in app
 **Chrome**:
 
 * Go to **Settings** for Chrome
-* Search for "**Third*party**"
+* Search for "**Third-party**"
 * Under **Default behavior**, select **Allow third-party cookies**
 
 **Firefox**:
