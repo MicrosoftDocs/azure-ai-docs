@@ -129,22 +129,28 @@ To set up authenticating with Managed Identity:
 
 1. Once the setup is done, you can continue by using the tool through the Foundry Portal, SDK or REST API. Use the tabs at the top of this article to see code samples.
 
-## Add OpenAPI Spec tool in Foundry Portal
-1. Click the agent in Agent Playground you want to edit
+## Add OpenAPI spec tool in the Azure AI Foundry portal
+
+You can add the Grounding with Bing Search tool to an agent programatically using the code examples listed at the top of this article, or the [Azure AI Foundry portal](https://ai.azure.com/). If you want to use the portal:
+
+1. in the **Create and debug** screen or **Agent playground**, select your agent.
+1. Scroll down the **Setup** pane on the right to **action**. Then select **Add**.
+
+    :::image type="content" source="../../media/tools/action-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/action-tools.png":::
    
-1. Click to add from Action tools
-   
-1. Click OpenAPI 3.0 specified tool
-      ![image](https://github.com/user-attachments/assets/24c7fa97-065d-4cce-8a21-2e04c8b47216)
+1. Select **OpenAPI 3.0 specified tool**.
+
+    :::image type="content" source="../../media/tools/action-tools-list.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/action-tools-list.png":::
    
 1. Give your tool a name (required) and a description (optional). The description will be used by the model to decide when and how to use the tool.
-   ![image](https://github.com/user-attachments/assets/f081adce-7588-4152-8d38-10a1a9bfafb4)
-   
-1. Click Next and select the authentication method. Choose `connection` for `API key`.
+
+   :::image type="content" source="../../media/tools/open-api-details.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/open-api-details.png":::
+
+1. Click Next and select your authentication method. Choose `connection` for `API key`.
    1. If you choose `connection`, you need to select the custom keys connection you have created before.
-   1. If you choose `managed identity`, you need to input the audience to get your token. An example of audience would be "https://cognitiveservices.azure.com/" to connect to Azure AI Services. Please make sure you have already set up authentication and role assignment (in section above)
+   1. If you choose `managed identity`, you need to input the audience to get your token. An example of an audience would be `https://cognitiveservices.azure.com/` to connect to Azure AI Services. Make sure you have already set up authentication and role assignment (as described in the [section](#authenticating-with-managed-identity-microsoft-entra-id) above).
       
-1. Copy and paste your OpenAPI specification in the text below.
+1. Copy and paste your OpenAPI specification in the text box.
 
 1. Review and add the tool to your agent.
 
