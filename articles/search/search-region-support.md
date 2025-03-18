@@ -44,9 +44,10 @@ AI service integration refers to internal connections to an Azure AI services mu
 | Brazil South​​ ​ | ✅ | ✅ | |  |
 | Canada Central​​ | ✅ | ✅ | ✅ |  |
 | Canada East​​ ​ |  | ✅ | |  |
+| ​Central US​​ | ✅ | ✅ | ✅ | |
 | East US​ | ✅ | ✅ | ✅ |  |
 | East US 2 ​ | ✅ | ✅ | ✅ | |
-| ​Central US​​ | ✅ | ✅ | ✅ | |
+| Mexico Central | |  | ✅ | |
 | North Central US​ ​ | ✅ | ✅ | |  | 
 | South Central US​  | ✅ | ✅ | ✅ | |
 | West US​ ​ | ✅ | ✅ | |  |
@@ -60,7 +61,7 @@ AI service integration refers to internal connections to an Azure AI services mu
 |--|--|--|--|--|
 | North Europe​​ | ✅ | ✅ | ✅ | S2, S3, L1, L2|
 | West Europe​​ | ✅ | ✅ | ✅ |  |
-| France Central​​ | ✅ | ✅ | ✅ | S2, S3, L1, L2|
+| France Central​​ | ✅ | ✅ | ✅ | |
 | Germany West Central​ ​| ✅ |  | ✅ | |
 | Italy North​​ |  |  | ✅ | |
 | Norway East​​ | ✅ |  | ✅ |  |
@@ -105,6 +106,7 @@ AI service integration refers to internal connections to an Azure AI services mu
 | Japan West​ | ✅ | ✅ |  |
 | Korea Central | ✅ | ✅ | ✅ |
 | Korea South​ ​ |  | ✅ |  |
+| Taiwan North |  |  | ✅ |  |
 
 <sup>1</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
 
