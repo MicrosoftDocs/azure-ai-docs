@@ -86,7 +86,7 @@ See how data, including text, tables, table headers, selection marks, and struct
 
     :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
 
-After you retrieve you key and endpoint, you can use the following development options to build and deploy your Document Intelligence applications:
+After you retrieve your key and endpoint, use the following development options to build and deploy your Document Intelligence applications:
 
 ### [REST API](#tab/rest)
 
@@ -220,7 +220,7 @@ The new machine-learning based page object detection extracts logical roles like
 
 ### Text, lines, and words
 
-The document layout model in Document Intelligence extracts print and handwritten style text as `lines` and `words`. The `styles` collection ../includes any handwritten style for lines if detected along with the spans pointing to the associated text. This feature applies to [supported handwritten languages](../language-support/prebuilt.md).
+The document layout model in Document Intelligence extracts print and handwritten style text as `lines` and `words`. The `styles` collection includes any handwritten style for lines if detected along with the spans pointing to the associated text. This feature applies to [supported handwritten languages](../language-support/prebuilt.md).
 
 For Microsoft Word, Excel, PowerPoint, and HTML, Document Intelligence v4.0 `2024-11-30` (GA) Layout model extract all embedded text as is. Texts are extracted as words and paragraphs. Embedded images aren't supported.
 
