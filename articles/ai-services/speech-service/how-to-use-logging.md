@@ -171,6 +171,29 @@ void DisableSpeechSdkLogging()
 }
 ```
 
+
+## Logging with file logger, Memory logger and event logger
+
+::: zone pivot="programming-language-csharp"
+[!INCLUDE [C# include](includes/how-to/diagnostics/csharp.md)]
+::: zone-end
+
+::: zone pivot="programming-language-cpp"
+[!INCLUDE [C++ include](includes/how-to/diagnostics/cpp.md)]
+::: zone-end
+
+::: zone pivot="programming-language-java"
+[!INCLUDE [Java include](includes/how-to/diagnostics/java.md)]
+::: zone-end
+
+::: zone pivot="programming-language-objectivec"
+[!INCLUDE [ObjectiveC include](includes/how-to/diagnostics/objectivec.md)]
+::: zone-end
+
+::: zone pivot="programming-language-python"
+[!INCLUDE [Python include](./includes/how-to/diagnostics/python.md)]
+::: zone-end
+
 ## Next steps
 
 > [!div class="nextstepaction"]
