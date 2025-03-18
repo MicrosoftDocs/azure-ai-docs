@@ -76,18 +76,18 @@ Get improved TCO and performance with NVIDIA NIMs offered for one-click deployme
 :::image type="content" source="../media/how-to/deploy-nim/deploy-nim.png" alt-text="A screenshot showing the deploy model button in the deployment wizard." lightbox="../media/how-to/deploy-nim/deploy-nim.png"::: 
 
 
-## Delete endpoints and subscriptions
+## Consume NVIDIA NIM deployments
 
+v1/chat/completions API (https://docs.nvidia.com/nim/large-language-models/latest/api-reference.html#)
+Azure AI Model Inference SDK except?
 
-## Cost and quota considerations for NVIDIA Inference Microservices
+## Security attestation for NIMs by NVIDIA
 
-
-#### Cost 
-
+## Network Isolation support for NIMs
 
 
 
 ## Related content
 
-* [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)
-* [Fine-tune models using serverless API](../how-to/fine-tune-serverless.md)
+* <link to this doc>(https://learn.microsoft.com/en-us/azure/machine-learning/concept-model-catalog?view=azureml-api-2)
+* <link to this doc>(https://learn.microsoft.com/en-us/azure/machine-learning/how-to-built-in-policy-model-deployment?view=azureml-api-2
