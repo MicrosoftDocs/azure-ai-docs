@@ -28,7 +28,7 @@ Get improved TCO and performance with NVIDIA NIMs offered for one-click deployme
 
 - An [Azure AI Foundry project](create-projects.md).
 
-- Ensure Marketplace purcharses are enabled for your azure subscription. Learn more about it [here](~/azure-docs/articles/cost-management-billing/manage/enable-marketplace-purchases.md).
+- Ensure Marketplace purcharses are enabled for your azure subscription. Learn more about it [here](/azure-docs/articles/cost-management-billing/manage/enable-marketplace-purchases.md).
 
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned a _custom role_ with the following permissions. User accounts assigned the _Owner_ or _Contributor_ role for the Azure subscription can also create NIM deployments. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
 
@@ -67,7 +67,7 @@ Get improved TCO and performance with NVIDIA NIMs offered for one-click deployme
 1. Select one of the NVIDIA GPU based VM SKUs supported for the NIM, based on your intended workload. You will need to have quota in your Azure subscription.
 1. You can then customize your deployment configuration for the instance count, select an existing endpoint or create a new one, etc. For the example in this article, we will consider an instance count of **2** and create a new endpoint. 
 
-:::image type="content" source="../media/how-to/deploy-nim/project-customization.png" alt-text="A screenshot showing the deploy model button in the deployment wizard." lightbox="../media/how-to/deploy-nim/project-customization.png"::: 
+:::image type="content" source="../media/how-to/deploy-nim/project-customization.png" alt-text="A screenshot showing project customization options in the deployment wizard." lightbox="../media/how-to/deploy-nim/project-customization.png"::: 
 
 1. Select **Next**
 1. You will then need to review the pricing breakdown for the NIM deployment, terms of use and license agreement associated with the NIM offer. The pricing breakdown will help inform what the aggregated pricing for the NIM software deployed would be, which is a function of number of NVIDIA GPUs in the VM instance selected in the previous steps. In addition to the applicable NIM software price, Azure Compute charges will also apply based on your deployment configuration.
@@ -97,5 +97,5 @@ Users can refer to the last updated time for the NIM in the model overview page,
 
 ## Related content
 
-* Learn more about the [Model Catalog](../concepts/concept-model-catalog.md)
+* Learn more about the [Model Catalog](./concept-model-catalog.md)
 * Learn more about [built-in policies for deployment](./how-to-built-in-policy-model-deployment.md)
