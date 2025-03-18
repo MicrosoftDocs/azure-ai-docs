@@ -102,4 +102,4 @@ For app templates and SDK samples in your preferred programming language, see [D
 ## Related content
 
 - [Get started building a chat app using the prompt flow SDK](../../quickstarts/get-started-code.md)
-- [Get started with Azure AI SDKs](sdk-overview.md)
+- [Get started with Azure AI Foundry SDKs](sdk-overview.md)
