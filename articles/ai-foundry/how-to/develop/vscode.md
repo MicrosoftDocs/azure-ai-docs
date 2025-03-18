@@ -76,7 +76,7 @@ For more information, see [prompt flow capabilities](https://microsoft.github.io
 
 ## Use AI app templates
  
-AI app templates are linked from the right side of the **Code** tab of your project. These samples walk you through how to use the Azure AI SDKs to:
+AI app templates are linked from the right side of the **Templates** tab of your project. These samples walk you through how to use the Azure AI SDKs to:
 
 * Set up your development environment and connect to existing resources
 * Bring in your custom application code
@@ -102,4 +102,4 @@ For app templates and SDK samples in your preferred programming language, see [D
 ## Related content
 
 - [Get started building a chat app using the prompt flow SDK](../../quickstarts/get-started-code.md)
-- [Get started with Azure AI SDKs](sdk-overview.md)
+- [Get started with Azure AI Foundry SDKs](sdk-overview.md)
