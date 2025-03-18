@@ -25,12 +25,14 @@ To use chat completion models in your application, you need:
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
 [!INCLUDE [how-to-prerequisites-python](../how-to-prerequisites-python.md)]
-  
+
+* A chat completions model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+
+    * This example uses `mistral-large-2407`.
 
 ## Use chat completions
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
-
 
 ```python
 import os
