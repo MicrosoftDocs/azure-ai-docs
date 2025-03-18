@@ -32,20 +32,20 @@ Get improved TCO (total cost of ownership) and performance with NVIDIA NIMs offe
 
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned a _custom role_ with the following permissions. User accounts assigned the _Owner_ or _Contributor_ role for the Azure subscription can also create NIM deployments. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
 
-    •	On the Azure subscription—**to subscribe the workspace to the Azure Marketplace offering**, once for each workspace/project:
-        o	Microsoft.MarketplaceOrdering/agreements/offers/plans/read
-        o	Microsoft.MarketplaceOrdering/agreements/offers/plans/sign/action
-        o	Microsoft.MarketplaceOrdering/offerTypes/publishers/offers/plans/agreements/read
-        o	Microsoft.Marketplace/offerTypes/publishers/offers/plans/agreements/read
-        o	Microsoft.SaaS/register/action
+    -	On the Azure subscription—**to subscribe the workspace to the Azure Marketplace offering**, once for each workspace/project:
+        -	Microsoft.MarketplaceOrdering/agreements/offers/plans/read
+        -	Microsoft.MarketplaceOrdering/agreements/offers/plans/sign/action
+        -	Microsoft.MarketplaceOrdering/offerTypes/publishers/offers/plans/agreements/read
+        -	Microsoft.Marketplace/offerTypes/publishers/offers/plans/agreements/read
+        -	Microsoft.SaaS/register/action
 
-    •	On the resource group—**to create and use the SaaS resource**:
-        o   Microsoft.SaaS/resources/read
-        o	Microsoft.SaaS/resources/write
+    -	On the resource group—**to create and use the SaaS resource**:
+        -   Microsoft.SaaS/resources/read
+        -	Microsoft.SaaS/resources/write
 
-    •	On the workspace—**to deploy endpoints**:
-        o	Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*
-        o	Microsoft.MachineLearningServices/workspaces/onlineEndpoints/* 
+    -	On the workspace—**to deploy endpoints**:
+        -	Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*
+        -	Microsoft.MachineLearningServices/workspaces/onlineEndpoints/* 
 
 
 ## NVIDIA NIM PayGo offer on Azure Marketplace by NVIDIA
