@@ -45,11 +45,11 @@ Get improved TCO and performance with NVIDIA NIMs offered for one-click deployme
 
     •	On the workspace—to deploy endpoints (the Azure Machine Learning data scientist role contains these permissions already):
         o	Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*
-        o	Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*
+        o	Microsoft.MachineLearningServices/workspaces/onlineEndpoints/* 
 
 ## Subscribe your project to the model offering
 
-(Explain how to subscribe and start using the NIMs)
+(Explain how to subscribe and start using the NIMs
 
 ## Deploy NVIDIA Inference Microservices on Managed Compute
 
