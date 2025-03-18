@@ -65,13 +65,13 @@ Get improved TCO and performance with NVIDIA NIMs offered for one-click deployme
 1. Select the NVIDIA NIM of your choice. In this article, we will be using **Llama-3.3-70B-Instruct-NIM-microservice** as an example.
 1. Select **Deploy**.
 1. Select one of the NVIDIA GPU based VM SKUs supported for the NIM, based on your intended workload. You will need to have quota in your Azure subscription.
-1. You can then customize your deployment configuration for the instance count, endpoint selection/creation, etc. For the example in this article, we will consider an instance count of **2** and create a new endpoint. 
+1. You can then customize your deployment configuration for the instance count, select an existing endpoint or create a new one, etc. For the example in this article, we will consider an instance count of **2** and create a new endpoint. 
 1. Select **Next**
-1. You will then need to review the user payment agreement. This will tell you what the aggregated surcharge would be for the deployment, which is a function of number of NVIDIA GPUs in the VM instance selected in the previous steps.
+1. You will then need to review the pricing breakdown for the NIM deployment, terms of use and license agreement associated with the NIM offer. The pricing breakdown will help inform what the aggregated pricing for the NIM software deployed would be, which is a function of number of NVIDIA GPUs in the VM instance selected in the previous steps. In addition to the applicable NIM software price, Azure Compute charges will also apply based on your deployment configuration.
 
 :::image type="content" source="../media/how-to/deploy-nim/payment-description.png" alt-text="A screenshot showing the necessary user payment agreement detailing how the user will be charged for deploying the models." lightbox="../media/how-to/deploy-nim/payment-description.png":::  
 
-1. Then, select **Deploy**.
+1. Click the checkbox to acknowledge understanding of pricing and terms of use, and then, click **Deploy**.
 
 :::image type="content" source="../media/how-to/deploy-nim/deploy-nim.png" alt-text="A screenshot showing the deploy model button in the deployment wizard." lightbox="../media/how-to/deploy-nim/deploy-nim.png"::: 
 
@@ -90,4 +90,4 @@ Azure AI Model Inference SDK except?
 ## Related content
 
 * <link to this doc>(https://learn.microsoft.com/en-us/azure/machine-learning/concept-model-catalog?view=azureml-api-2)
-* <link to this doc>(https://learn.microsoft.com/en-us/azure/machine-learning/how-to-built-in-policy-model-deployment?view=azureml-api-2
+* <link to this doc>(https://learn.microsoft.com/en-us/azure/machine-learning/how-to-built-in-policy-model-deployment?view=azureml-apith t
