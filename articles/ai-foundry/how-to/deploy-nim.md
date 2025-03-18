@@ -28,7 +28,7 @@ Get improved TCO (total cost of ownership) and performance with NVIDIA NIMs offe
 
 - An [Azure AI Foundry project](create-projects.md).
 
-- Ensure Marketplace purcharses are enabled for your azure subscription. Learn more about it [here](/azure-docs/articles/cost-management-billing/manage/enable-marketplace-purchases).
+- Ensure Marketplace purcharses are enabled for your azure subscription. Learn more about it [here](/azure/cost-management-billing/manage/enable-marketplace-purchases).
 
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned a _custom role_ with the following permissions. User accounts assigned the _Owner_ or _Contributor_ role for the Azure subscription can also create NIM deployments. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
 
