@@ -36,14 +36,14 @@ To get started, make sure you have the following resources and permissions:
 > [!NOTE]
 > The Content Understanding project type is separate from the Generative AI project type, also available in the AI Foundry.
 
-In order to try out [the Content Understanding service in the AI Foundry](https://aka.ms/ai-services-landing), you have to create a Content Understanding project. You can access Content Understanding from:
+In order to try out [the Content Understanding service in the AI Foundry](https://aka.ms/cu-landing), you have to create a Content Understanding project. You can access Content Understanding from:
 
 * The [AI Foundry home page](https://ai.azure.com/)
 
    :::image type="content" source="../media/quickstarts/foundry-home-page.png" lightbox="../media/quickstarts/foundry-home-page.png" alt-text="Screenshot of the AI Services landing page in AI Foundry.":::
    
 
-* The [AI Services landing page](../../index.yml)
+* The [AI Services landing page](https://aka.ms/ai-services-landing)
 
    :::image type="content" source="../media/quickstarts/ai-services-landing-page.png" lightbox="../media/quickstarts/ai-services-landing-page.png" alt-text="Screenshot of the AI Services landing page.":::
 
