@@ -24,8 +24,7 @@ added security, making it ideal for integrating with existing infrastructure or 
 OpenAPI Specified tool improves your function calling experience by providing standardized, 
 automated, and scalable API integrations that enhance the capabilities and efficiency of your agent. 
 [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) provide a formal standard for 
-describing HTTP APIs. This allows people to understand how an API works, how a sequence of APIs 
-work together, generate client code, create tests, apply design standards, and more. Currently, we support three authentication types with the OpenAPI 3.0 specified tools: `anonymous`, `API key`, `managed identity`.
+describing HTTP APIs. This allows people to understand how an API works, how a sequence of APIs works together, generate client code, create tests, apply design standards, and more. Currently, we support three authentication types with the OpenAPI 3.0 specified tools: `anonymous`, `API key`, `managed identity`.
 
 ### Usage support
 
@@ -127,7 +126,7 @@ To set up authenticating with Managed Identity:
 
     1. Click **Finish**.
 
-1. Once the setup is done, you can continue by using the tool through the Foundry Portal, SDK or REST API. Use the tabs at the top of this article to see code samples.
+1. Once the setup is done, you can continue by using the tool through the Foundry Portal, SDK, or REST API. Use the tabs at the top of this article to see code samples.
 
 ## Add OpenAPI spec tool in the Azure AI Foundry portal
 
