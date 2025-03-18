@@ -124,6 +124,8 @@ items:
           href: how-to/healthcare-ai/deploy-cxrreportgen.md
         - name: MedImageParse - prompted segmentation model
           href: how-to/healthcare-ai/deploy-medimageparse.md
+      - name: Nvidia Inference Microservices (NIM)
+        href: how-to/deploy-nim.md
       - name: Gretel Navigator model
         href: how-to/deploy-models-gretel-navigator.md
       - name: Mistral-7B and Mixtral models
