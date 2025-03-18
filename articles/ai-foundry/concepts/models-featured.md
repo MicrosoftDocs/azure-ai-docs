@@ -156,6 +156,7 @@ DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks 
 | [DeepSeek-V3](https://ai.azure.com/explore/models/deepseek-v3/version/1/registry/azureml-deepseek) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
 | [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | [chat-completion with reasoning content](../model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context) | - **Input:** text (16,384 tokens) <br /> - **Output:**  (163,840 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
 
+For a tutorial on DeepSeek-R1, see [Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI model inference](../model-inference/tutorials/get-started-deepseek-r1.md?context=/azure/ai-foundry/context/context).
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=deepseek).
 
@@ -321,13 +322,26 @@ There are four pricing meters that determine the price you pay. These meters are
 
 See the [Nixtla model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=nixtla).
 
-## NTT Data
+## NTT DATA
 
-**Tsuzumi** is an autoregressive language optimized transformer. The tuned versions use supervised fine-tuning (SFT). Tsuzumi is handles both Japanese and English language with high efficiency.
+**tsuzumi** is an autoregressive language optimized transformer. The tuned versions use supervised fine-tuning (SFT). tsuzumi handles both Japanese and English language with high efficiency.
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
-| [Tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
+| [tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
+
+## Stability AI 
+
+The Stability AI collection of image generation models include Stable Image Core, Stable Image Ultra and Stable Diffusion 3.5 Large. Stable Diffusion 3.5 Large allows for an image and text input. 
+
+| Model  | Type | Capabilities |
+| ------ | ---- | ------------ |
+| [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/versions/1) | [Image Generation](../how-to/deploy-stability-models.md?context=/azure/ai-foundry/context/context) | - Input: text and image (1000 tokens and 1 image)  <br /> - Output: 1 Image  <br />  - **Tool calling:** No <br /> - Response formats: Image (PNG and JPG) |
+| [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/versions/1) | [Image Generation](../how-to/deploy-stability-models.md?context=/azure/ai-foundry/context/context) | - Input: text (1000 tokens)  <br /> - Output: 1 Image  <br />  - **Tool calling:** No <br /> - Response formats: Image (PNG and JPG) |
+| [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/versions/1) | [Image Generation](../how-to/deploy-stability-models.md?context=/azure/ai-foundry/context/context) | - Input: text (1000 tokens)  <br /> - Output: 1 Image  <br />  - **Tool calling:** No <br /> - Response formats: Image (PNG and JPG) |
+
+
+
 
 ## Related content
 

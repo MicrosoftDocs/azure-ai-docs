@@ -39,13 +39,15 @@ Content-Type: application/json
 api-key: <key>
 ```
 
-If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header:
+If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://cognitiveservices.azure.com/.default`. 
 
 ```http
 POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
 Content-Type: application/json
 Authorization: Bearer <token>
 ```
+
+Using Microsoft Entra ID may require additional configuration in your resource to grant access. Learn how to [configure key-less authentication with Microsoft Entra ID](../../how-to/configure-entra-id.md).
 
 ## Use chat completions with images
 
@@ -241,3 +243,5 @@ The response is as follows, where you can see the model's usage statistics:
     }
 }
 ```
+
+Audio is broken into tokens and submitted to the model for processing. Some models may operate directly over audio tokens while other may use internal modules to perform speech-to-text, resulting in different strategies to compute tokens. Read the model card for details about how each model operates.

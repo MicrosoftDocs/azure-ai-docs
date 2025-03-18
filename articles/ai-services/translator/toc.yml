@@ -273,7 +273,7 @@ items:
 - name: Translator solutions
   items:
   - name: What are Azure AI Translator solutions?
-    href: solutions-overview.md
+    href: solutions/overview.md
   - name: Language Studio
     items:
     - name: Translate using Language Studio (preview)

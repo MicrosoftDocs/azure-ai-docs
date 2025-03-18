@@ -12,3 +12,13 @@ author: santiagxf
   ```bash
   npm install @azure-rest/ai-inference
   ```
+
+* Import the following modules:
+
+    ```javascript
+    import ModelClient, { isUnexpected } from "@azure-rest/ai-inference";
+    import { AzureKeyCredential } from "@azure/core-auth";
+    import { DefaultAzureCredential } from "@azure/identity";
+    import { createRestError } from "@azure-rest/core-client";
+    ```
+    
