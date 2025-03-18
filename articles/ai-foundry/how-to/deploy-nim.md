@@ -28,7 +28,7 @@ Get improved TCO and performance with NVIDIA NIMs offered for one-click deployme
 
 - An [Azure AI Foundry project](create-projects.md).
 
-- Ensure Marketplace purcharses are enabled for your azure subscription. Learn more about it [here](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/enable-marketplace-purchases).
+- Ensure Marketplace purcharses are enabled for your azure subscription. Learn more about it [here](~/azure-docs/articles/cost-management-billing/manage/enable-marketplace-purchases.md).
 
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned a _custom role_ with the following permissions. User accounts assigned the _Owner_ or _Contributor_ role for the Azure subscription can also create NIM deployments. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
 
@@ -52,7 +52,7 @@ Get improved TCO and performance with NVIDIA NIMs offered for one-click deployme
 
  NVIDIA NIMs available on Azure AI Foundry model catalog can be deployed with a suscription to the [NVIDIA NIM SaaS offer](https://aka.ms/nvidia-nims-plan) on Azure Marketplace. This offer includes a 90-day trial that applies to all NIMs associated with a particular SaaS subscription scoped to a Azure AI Foundry project, and has a PayGo price of $1 per GPU hour post the trial period. 
 
- Azure AI Foundry enables a seamless purchase flow of the NVIDIA NIM offering on Marketplace from NVIDIA collection in the model catalog, and further deployment on Managed Compute.
+ Azure AI Foundry enables a seamless purchase flow of the NVIDIA NIM offering on Marketplace from NVIDIA collection in the model catalog, and further deployment on managed compute.
 
 ## Deploy NVIDIA Inference Microservices on Managed Compute
 
@@ -78,14 +78,14 @@ Get improved TCO and performance with NVIDIA NIMs offered for one-click deployme
 
 ## Consume NVIDIA NIM deployments
 
-After your deployment has been successfully created, you can go to "Models + Endpoints" under My assets in your AI Foundry project, select your deployment under "Model deployments" and navigate to the Test tab for sample inference to the endpoint. You can also go to the Chat Playground by clicking "Open in Playground" in Deployment Details tab, to be able to modify parameters for the inference requests.   
+After your deployment has been successfully created, you can go to **Models + Endpoints** under My assets in your AI Foundry project, select your deployment under "Model deployments" and navigate to the Test tab for sample inference to the endpoint. You can also go to the Chat Playground by clicking **Open in Playground** in Deployment Details tab, to be able to modify parameters for the inference requests.   
 
-NVIDIA NIMs on Foundry expose Open AI compatible API, learn more about the payload supported [here](https://docs.nvidia.com/nim/large-language-models/latest/api-reference.html#). The 'model' parameter for NIMs on Foundry is set to a default value within the container, and is not required to pass through in the payload to your online endpoint. The 'Consume' tab of the NIM deployment on Foundry includes code samples for inference with the target URL of your deployment. You can also consume NIM deployments using the Azure AI Model Inference SDK. 
+NVIDIA NIMs on Foundry expose an OpenAI compatible API, learn more about the payload supported [here](https://docs.nvidia.com/nim/large-language-models/latest/api-reference.html#). The 'model' parameter for NIMs on Foundry is set to a default value within the container, and is not required to pass through in the payload to your online endpoint. The **Consume** tab of the NIM deployment on Foundry includes code samples for inference with the target URL of your deployment. You can also consume NIM deployments using the Azure AI Model Inference SDK. 
 
 ## Security scanning for NIMs by NVIDIA
 
 
-redeploy to get the latest version of NIM from NVIDIA on Foundry. 
+Redeploy to get the latest version of NIM from NVIDIA on Foundry. 
 
 ## Network Isolation support for NIMs
 
@@ -93,5 +93,5 @@ redeploy to get the latest version of NIM from NVIDIA on Foundry.
 
 ## Related content
 
-* <link to this doc>(https://learn.microsoft.com/en-us/azure/machine-learning/concept-model-catalog?view=azureml-api-2)
-* <link to this doc>(https://learn.microsoft.com/en-us/azure/machine-learning/how-to-built-in-policy-model-deployment?view=azureml-apith t
+* Learn more about the [Model Catalog](../concepts/concept-model-catalog.md)
+* Learn more about [built-in policies for deployment](./how-to-built-in-policy-model-deployment.md)
