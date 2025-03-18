@@ -178,7 +178,7 @@ The method of providing the token, and the method to construct the corresponding
 ::: zone pivot="programming-language-csharp"
 ### SpeechRecognizer, SourceLanguageRecognizer, ConversationTranscriber
 
-For ```SpeechRecognizer```, ```SourceLanguageRecognizer```, ```ConversationTranscriber``` objects, use an appropriate instance of [TokenCredential](https://learn.microsoft.com/dotnet/api/azure.core.tokencredential) for authentication, along with the endpoint that includes your [custom domain](https://learn.microsoft.com/azure/ai-services/speech-service/speech-services-private-link?tabs=portal#create-a-custom-domain-name), to create a ```SpeechConfig``` object.
+For ```SpeechRecognizer```, ```SourceLanguageRecognizer```, ```ConversationTranscriber``` objects, use an appropriate instance of [TokenCredential](/dotnet/api/azure.core.tokencredential) for authentication, along with the endpoint that includes your [custom domain](/azure/ai-services/speech-service/speech-services-private-link?tabs=portal#create-a-custom-domain-name), to create a ```SpeechConfig``` object.
 
 ```C#
 TokenCredential browserCredential = new InteractiveBrowserCredential();
@@ -192,7 +192,7 @@ var speechConfig = SpeechConfig.FromEndpoint(new Uri(endpoint), browserCredentia
 
 ### TranslationRecognizer
 
-For ```TranslationRecognizer``` object, use an appropriate instance of [TokenCredential](https://learn.microsoft.com/dotnet/api/azure.core.tokencredential) for authentication, along with the endpoint that includes your [custom domain](https://learn.microsoft.com/azure/ai-services/speech-service/speech-services-private-link?tabs=portal#create-a-custom-domain-name), to create a ```SpeechTranslationConfig``` object.
+For ```TranslationRecognizer``` object, use an appropriate instance of [TokenCredential](/dotnet/api/azure.core.tokencredential) for authentication, along with the endpoint that includes your [custom domain](/azure/ai-services/speech-service/speech-services-private-link?tabs=portal#create-a-custom-domain-name), to create a ```SpeechTranslationConfig``` object.
 
 ```C#
 TokenCredential browserCredential = new InteractiveBrowserCredential();
