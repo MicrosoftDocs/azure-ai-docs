@@ -37,10 +37,81 @@ The image below exemplifies how structured data can be meticulously extracted fr
 
 ## Building a RAG Solution and Chat with Content Understanding
 **Data Extraction with Azure Content Understanding:** Azure AI Content Understanding efficiently converts unstructured documents, images, videos, and audio into structured data formats. Documents are transformed into structured data, distinguishing between tables, paragraphs, sections, and figures. Audio is transcribed with precise timestamps and speaker labels, while video content is transcribed, summarized with key frames, descriptions, and relevant metadata. 
-* For more information, our comprehensive [analyzer templates](analyzer-templates.md) offer a streamlined approach for transforming unstructured data into structured data formats. These templates facilitate the creation of efficient analyzers without the need to design schemas from scratch. Explore our [**code samples**](https://github.com/Azure-Samples/azure-ai-content-understanding-python) for simple demos on extracting data from multimodal files.
+
+### Chunking document results
+If you're looking for a specific section in a document, you can use semantic chunking to divide the document into smaller chunks based on the section headers helping you to find the section you're looking for quickly and easily:
+
+``` python
+
+from langchain_text_splitters import MarkdownHeaderTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+# Configure langchain text splitting settings
+EMBEDDING_CHUNK_SIZE = 512
+EMBEDDING_CHUNK_OVERLAP = 20
+headers_to_split_on = [
+    ("#", "Header 1"),
+    ("##", "Header 2"),
+    ("###", "Header 3")
+]
+
+# First split text using Markdown headers
+text_splitter = MarkdownHeaderTextSplitter(headers_to_split_on=headers_to_split_on, strip_headers=False)
+chunks = text_splitter.split_text(document_content)
+
+# Then further split the text using recursive character text splitting
+char_text_splitter = RecursiveCharacterTextSplitter(separators=["<!--", "\n\n", "#"], chunk_size=EMBEDDING_CHUNK_SIZE, chunk_overlap=EMBEDDING_CHUNK_OVERLAP, is_separator_regex=True)
+chunks = char_text_splitter.split_documents(chunks)
+
+print("Number of chunks: " + str(len(chunks)))
+```
+> [!div class="nextstepaction"]
+> [View samples on GitHub.](https://github.com/Azure-Samples/azure-ai-content-understanding-python)
+
+For more information, our comprehensive [analyzer templates](analyzer-templates.md) offer a streamlined approach for transforming unstructured data into structured data formats. These templates facilitate the creation of efficient analyzers without the need to design schemas from scratch. Explore our [**code samples**](https://github.com/Azure-Samples/azure-ai-content-understanding-python) for simple demos on extracting data from multimodal files.
 
 **Indexing with Azure AI Search and Querying with Azure OpenAI Service:** Once data is structured, [**Azure AI Search**](https://learn.microsoft.com/en-us/azure/search/search-get-started-portal) can create a comprehensive, searchable index and [**Azure OpenAI's**](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions) chat models can efficiently query and search through indexed content, providing accurate and contextually relevant answers. 
-* For more information, see our [**code samples**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples) demonstrating RAG pattern with Azure AI Content Understanding for structured data extraction, Azure Search for indexing and retrieval and querying data with OpenAI chat models.
+
+### Retrieving Chunks based on a question
+If you're looking for a specific section in a document, you can use semantic chunking to divide the document into smaller chunks based on the section headers helping you to find the section you're looking for quickly and easily:
+
+``` python
+
+# Retrieve relevant chunks based on the question
+
+retriever = vector_store.as_retriever(search_type="similarity", search_kwargs={"k": 3})
+
+retrieved_docs = retriever.get_relevant_documents(
+    "<your question>"
+)
+
+print(retrieved_docs[0].page_content)
+
+# Use a prompt for RAG that is checked into the LangChain prompt hub (https://smith.langchain.com/hub/rlm/rag-prompt?organizationId=989ad331-949f-4bac-9694-660074a208a7)
+prompt = hub.pull("rlm/rag-prompt")
+llm = AzureChatOpenAI(
+    openai_api_version="<Azure OpenAI API version>",  # e.g., "2023-12-01-preview"
+    azure_deployment="<your chat model deployment name>",
+    temperature=0,
+)
+
+
+def format_docs(docs):
+    return "\n\n".join(doc.page_content for doc in docs)
+
+
+rag_chain = (
+    {"context": retriever | format_docs, "question": RunnablePassthrough()}
+    | prompt
+    | llm
+    | StrOutputParser()
+)
+```
+
+> [!div class="nextstepaction"]
+> [View samples on GitHub.](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
+
+For more information, see our [**code samples**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples) demonstrating RAG pattern with Azure AI Content Understanding for structured data extraction, Azure Search for indexing and retrieval and querying data with OpenAI chat models.
 
 ## Benefits of Content Understanding for RAG Scenarios
 Azure AI Content Understanding offers several capabilities that significantly enhance Retrieval-Augmented Generation (RAG) use cases:
