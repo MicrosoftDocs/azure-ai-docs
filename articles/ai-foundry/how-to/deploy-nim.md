@@ -78,8 +78,9 @@ Get improved TCO and performance with NVIDIA NIMs offered for one-click deployme
 
 ## Consume NVIDIA NIM deployments
 
-v1/chat/completions API (https://docs.nvidia.com/nim/large-language-models/latest/api-reference.html#)
-Azure AI Model Inference SDK except?
+After your deployment has been successfully created, you can go to "Models + Endpoints" under My assets in your AI Foundry project, select your deployment under "Model deployments" and navigate to the Test tab for sample inference to the endpoint. You can also go to the Chat Playground by clicking "Open in Playground" in Deployment Details tab, to be able to modify parameters for the inference requests.   
+
+NVIDIA NIMs on Foundry expose Open AI compatible API, learn more about the payload supported [here](https://docs.nvidia.com/nim/large-language-models/latest/api-reference.html#). The 'model' parameter for NIMs on Foundry is set to a default value within the container, and is not required to pass through in the payload to your online endpoint. The 'Consume' tab of the NIM deployment on Foundry includes code samples for inference with the target URL of your deployment. You can also consume NIM deployments using the Azure AI Model Inference SDK. 
 
 ## Security attestation for NIMs by NVIDIA
 
