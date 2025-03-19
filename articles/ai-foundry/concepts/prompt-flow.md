@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 03/18/2025
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
@@ -108,5 +108,5 @@ If the prompt flow tools in Azure AI Foundry portal don't meet your requirements
 
 ## Next steps
 
-- [Build with prompt flow in Azure AI Foundry portal](flow-develop.md)
+- [Build with prompt flow in Azure AI Foundry portal](../how-to/flow-develop.md)
 - [Get started with prompt flow in VS Code](https://microsoft.github.io/promptflow/how-to-guides/quick-start.html)

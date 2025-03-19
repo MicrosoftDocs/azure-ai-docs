@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 01/14/2025
+ms.date: 03/18/2025
 ms.custom: ignite-2024-understanding-release
 ---
 
@@ -82,7 +82,7 @@ Developers using Content Understanding should review Microsoft's policies on cus
 
 ## Next steps
 
-* Try processing your audio content using Content Understanding in [**Azure AI Foundry portal**](https://ai.azure.com/).
+* Try processing your audio content using Content Understanding in [**Azure AI Foundry portal**](https://aka.ms/cu-landing).
 * Learn how to analyze audio content [**analyzer templates**](../quickstart/use-ai-foundry.md).
 * Review code sample: [**audio content extraction**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/notebooks/content_extraction.ipynb).
 * Review code sample: [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
