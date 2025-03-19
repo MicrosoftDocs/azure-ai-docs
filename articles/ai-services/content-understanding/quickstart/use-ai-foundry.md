@@ -12,7 +12,7 @@ ms.custom: ignite-2024-understanding-release
 
 # Use Content Understanding in the Azure AI Foundry
 
-[The Azure AI Foundry](https://azure.microsoft.com/products/ai-foundry) is a comprehensive platform for developing and deploying generative AI applications and APIs responsibly. Azure AI Content Understanding is a new generative [Azure AI Service](../../what-are-ai-services.md) that analyzes files from varied modalities and extracts structured output in a user-defined field format. Input sources include document, video, image, and audio data. This guide shows you how to build and test a Content Understanding analyzer in the AI Foundry. You can then utilize the extracted data in any app or process you build using a simple REST API call. Content Understanding analyzers are fully customizable. You can create an analyzer by building your own schema from scratch or by using a suggested analyzer template offered to address common scenarios across each data type.
+[The Azure AI Foundry](https://aka.ms/cu-landing) is a comprehensive platform for developing and deploying generative AI applications and APIs responsibly. Azure AI Content Understanding is a new generative [Azure AI Service](../../what-are-ai-services.md) that analyzes files from varied modalities and extracts structured output in a user-defined field format. Input sources include document, video, image, and audio data. This guide shows you how to build and test a Content Understanding analyzer in the AI Foundry. You can then utilize the extracted data in any app or process you build using a simple REST API call. Content Understanding analyzers are fully customizable. You can create an analyzer by building your own schema from scratch or by using a suggested analyzer template offered to address common scenarios across each data type.
 
   :::image type="content" source="../media/quickstarts/ai-foundry-overview.png" alt-text="Screenshot of the Content Understanding workflow in the Azure AI Foundry.":::
 
@@ -36,7 +36,7 @@ To get started, make sure you have the following resources and permissions:
 > [!NOTE]
 > The Content Understanding project type is separate from the Generative AI project type, also available in the AI Foundry.
 
-In order to try out [the Content Understanding service in the AI Foundry](https://aka.ms/ai-services-landing), you have to create a Content Understanding project. You can access Content Understanding from:
+In order to try out [the Content Understanding service in the AI Foundry](https://aka.ms/cu-landing), you have to create a Content Understanding project. You can access Content Understanding from:
 
 * The [AI Foundry home page](https://ai.azure.com/)
 
