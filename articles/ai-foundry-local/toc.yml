@@ -4,14 +4,17 @@ items:
 - name: What is AI Foundry Local?
   href: what-is-ai-foundry-local.md
 - name: Quickstarts
+  expanded: true
   items:
-  - name: Install
+  - name: Install and run a model
     href: quickstarts/get-started.md
 - name: Concepts
+  expanded: true
   items:
   - name: Foundry Local Architecture
     href: concepts/foundry-local-architecture.md
 - name: How-to guides
+  expanded: true
   items:
   - name: Integrate with Inferencing SDKs
     href: how-to/integrate-with-inference-sdks.md
@@ -20,6 +23,7 @@ items:
   - name: Manage Foundry Local
     href: how-to/manage.md
 - name: Reference
+  expanded: true
   items:
   - name: Foundry Local CLI
     href: reference/reference-cli.md

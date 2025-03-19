@@ -11,24 +11,9 @@ ms.author: samkemp
 author: samuel100
 ---
 
-# Get started with Foundry local
+# Foundry Local Architecture
 
 TODO
-
-## Prerequisites
-
-* TODO
-
-## Install Foundry Local
-
-## Run an AI model on-device
-
-Run the following command:
-
-```bash
-foundry model run phi3-cpu
-```
-
 
 ## Next step
 
