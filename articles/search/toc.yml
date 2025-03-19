@@ -201,6 +201,8 @@ items:
       href: search-region-support.md
     - name: Choose a tier
       href: search-sku-tier.md
+    - name: Upgrade a service
+      href: search-upgrade-service.md
     - name: Service limits
       href: search-limits-quotas-capacity.md
     - name: Plan and manage capacity

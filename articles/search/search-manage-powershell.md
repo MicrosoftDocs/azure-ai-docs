@@ -16,11 +16,6 @@ ms.custom:
 ---
 
 # Manage your Azure AI Search service with PowerShell
-> [!div class="op_single_selector"]
-> * [Portal](search-manage.md)
-> * [PowerShell](search-manage-powershell.md)
-> * [Azure CLI](search-manage-azure-cli.md)
-> * [REST API](search-manage-rest.md)
 
 You can run PowerShell cmdlets and scripts on Windows, Linux, or in Azure Cloud Shell to create and configure Azure AI Search. 
 
