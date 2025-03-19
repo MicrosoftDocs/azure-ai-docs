@@ -58,7 +58,7 @@ sections:
       - question: |
           Can I upgrade or downgrade the service?
         answer: |
-          In the 2025-02-01-preview, you can [change the pricing tier of your service](search-capacity-planning.md#change-your-pricing-tier). This preview supports changes between Basic and Standard (S1, S2, and S3) tiers.
+          In the 2025-02-01-preview, you can [change the pricing tier of your service](search-capacity-planning.md#change-your-service-tier). This preview supports changes between Basic and Standard (S1, S2, and S3) tiers.
           
       - question: |
           Can I rename or move the service?
