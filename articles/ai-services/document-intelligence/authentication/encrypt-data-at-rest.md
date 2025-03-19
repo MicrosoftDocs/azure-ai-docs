@@ -17,8 +17,8 @@ monikerRange: '<=doc-intel-4.0.0'
 
 > [!IMPORTANT]
 >
-> * Earlier versions of customer managed keys only encrypted your models.
-> * Beginning with the  ```07/31/2023``` release, all new resources utilize customer-managed keys (`CMK`) to encrypt both models and document results.
+> * Earlier versions of customer managed keys (`CMK`) only encrypted your models.
+> * Beginning with the  ```07/31/2023``` release, all new resources utilize customer-managed keys to encrypt both models and document results.
 > * [Delete analyze response](/rest/api/aiservices/document-models/delete-analyze-result?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true&tabs=HTTP). the `analyze response` is stored for 24 hours from when the operation completes for retrieval. For scenarios where you want to delete the response sooner, use the delete analyze response API to delete the response.  
 > * To upgrade an existing service to encrypt both the models and the data, disable and reenable the customer managed key.
 
@@ -27,8 +27,8 @@ Azure AI Document Intelligence automatically encrypts your data when persisting 
 [!INCLUDE [cognitive-services-about-encryption](../../../ai-services/includes/cognitive-services-about-encryption.md)]
 
 > [!IMPORTANT]
-> * Customer-managed keys (`CMK`) are only available resources created after May 11, 2020. To use `CMK` with Document Intelligence, you need to create a new Document Intelligence resource. Once the resource is created, you can use Azure Key Vault to set up your managed identity.
-> * The scope for data encrypted with customer-managed keys (`CMK`) includes the `analysis response` stored for 24 hours, allowing the operation results to be retrieved during that 24-hour time period.
+> * Customer-managed keys are only available resources created after May 11, 2020. To use customer-managed keys with Document Intelligence, you need to create a new Document Intelligence resource. Once the resource is created, you can use Azure Key Vault to set up your managed identity.
+> * The scope for data encrypted with customer-managed keys includes the `analysis response` stored for 24 hours, allowing the operation results to be retrieved during that 24-hour time period.
 
 
 [!INCLUDE [cognitive-services-cmk](../../../ai-services/includes/configure-customer-managed-keys.md)]
