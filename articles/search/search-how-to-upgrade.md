@@ -14,7 +14,7 @@ ms.date: 03/19/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In April 2024, Azure AI Search increased the [storage capacity](search-limits-quotas-capacity#service-limits) of newly created search services. Services created before April 2024 saw no capacity changes, so if you wanted larger and faster partitions, you had to create a new service. However, most older services can now be upgraded to benefit from the higher capacity partitions.
+In April 2024, Azure AI Search increased the [storage capacity](search-limits-quotas-capacity.md#service-limits) of newly created search services. Services created before April 2024 saw no capacity changes, so if you wanted larger and faster partitions, you had to create a new service. However, most older services can now be upgraded to benefit from the higher capacity partitions.
 
 To qualify for an upgrade, your service:
 
@@ -38,10 +38,10 @@ For each service tier, the following table compares the storage limit (per parti
 
 | | Basic <sup>1</sup> | S1 | S2 | S3/HD | L1 | L2 |
 |-|-|-|-|-|-|-|
-| **Storage limit before upgrade** | 2 GB | 25 GB | 100 GB | 200 GB | 1 TB | 2 TB |
-| **Storage limit after upgrade** | 15 GB | 160 GB | 512 GB | 1 TB | 2 TB | 4 TB |
+| **Limit before upgrade** | 2 GB | 25 GB | 100 GB | 200 GB | 1 TB | 2 TB |
+| **Limit after upgrade** | 15 GB | 160 GB | 512 GB | 1 TB | 2 TB | 4 TB |
 
-<sup>1</sup> Basic services created before April 3, 2024 were originally limited to one partition, which increases to three partitions after an upgrade. [Partition counts for all other service tiers](search-limits-quotas-capacity#service-limits) stay the same.
+<sup>1</sup> Basic services created before April 3, 2024 were originally limited to one partition, which increases to three partitions after an upgrade. [Partition counts for all other service tiers](search-limits-quotas-capacity.md#service-limits) stay the same.
 
 ### Higher vector limits
 
@@ -49,8 +49,8 @@ For each service tier, the following table compares the vector index size limit 
 
 | | Basic | S1 | S2 | S3/HD | L1 | L2 |
 |-|-|-|-|-|-|-|
-| **Vector limit before upgrade** | 0.5 GB <sup>1</sup> or 1 GB <sup>2</sup> | 1 GB <sup>1</sup> or 3 GB <sup>2</sup> | 6 GB <sup>1</sup> or 12 GB <sup>2</sup> | 12 GB <sup>1</sup> or 36 GB <sup>2</sup> | 12 GB | 36 GB |
-| **Vector limit after upgrade** | 5 GB | 35 GB | 150 GB | 300 GB | 150 GB | 300 GB |
+| **Limit before upgrade** | 0.5 GB <sup>1</sup> or 1 GB <sup>2</sup> | 1 GB <sup>1</sup> or 3 GB <sup>2</sup> | 6 GB <sup>1</sup> or 12 GB <sup>2</sup> | 12 GB <sup>1</sup> or 36 GB <sup>2</sup> | 12 GB | 36 GB |
+| **Limit after upgrade** | 5 GB | 35 GB | 150 GB | 300 GB | 150 GB | 300 GB |
 
 <sup>1</sup> Applies to services created before July 1, 2023.
 

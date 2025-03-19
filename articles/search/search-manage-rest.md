@@ -157,7 +157,7 @@ POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroup
 
 ## Change service tiers
 
-If you need more or less capacity, you can [switch to a different service tier](search-capacity-planning#change-your-service-tier). Use the `sku` property to specify your new tier.
+If you need more or less capacity, you can [switch to a different service tier](search-capacity-planning.md#change-your-service-tier). Use the `sku` property to specify your new tier.
 
 ```http
 ### Change service tiers

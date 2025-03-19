@@ -58,7 +58,7 @@ sections:
       - question: |
           Can I upgrade or downgrade the service?
         answer: |
-          In the 2025-02-01-preview, you can [change the pricing tier of your service](search-capacity-planning#change-your-pricing-tier). This preview supports changes between Basic and Standard (S1, S2, and S3) tiers.
+          In the 2025-02-01-preview, you can [change the pricing tier of your service](search-capacity-planning.md#change-your-pricing-tier). This preview supports changes between Basic and Standard (S1, S2, and S3) tiers.
           
       - question: |
           Can I rename or move the service?
@@ -73,7 +73,7 @@ sections:
       - question: |
           Why do I see different storage limits for same-tier search services?
         answer: |
-          Storage limits can vary by service creation date. In most supported regions, [newer services have higher storage limits than older services](search-limits-quotas-capacity#partition-storage-gb), even if they're on the same tier. However, you might be able to [upgrade your old service](search-how-to-upgrade.md) to access the new limits.
+          Storage limits can vary by service creation date. In most supported regions, [newer services have higher storage limits than older services](search-limits-quotas-capacity.md#partition-storage-gb), even if they're on the same tier. However, you might be able to [upgrade your old service](search-how-to-upgrade.md) to access the new limits.
 
   - name: Indexing 
     questions:

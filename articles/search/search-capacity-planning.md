@@ -71,7 +71,7 @@ Finally, larger indexes take longer to query. As such, you might find that every
 
 ## How to upgrade capacity
 
-Some Azure AI Search capabilities are only available to new services. One such capability is higher storage capacity, which applies to [services created after April 2024](search-limits-quotas-capacity#service-limits). However, if you created your service before April 2024, you can get higher capacity without recreating your service by performing an in-place upgrade. For more information, see [Upgrade your search service](search-how-to-upgrade.md).
+Some Azure AI Search capabilities are only available to new services. One such capability is higher storage capacity, which applies to [services created after April 2024](search-limits-quotas-capacity.md#service-limits). However, if you created your service before April 2024, you can get higher capacity without recreating your service by performing an in-place upgrade. For more information, see [Upgrade your search service](search-how-to-upgrade.md).
 
 ## How to change capacity
 
@@ -101,7 +101,7 @@ In addition to capacity, changing your service tier affects the workload and obj
 + Index aliases
 + Semantic ranker throttling
 
-Generally, switching to a higher tier increases your [storage limit](search-limits-quotas-capacity#service-limits) and [vector limit](search-limits-quotas-capacity#vector-index-size-limits), increases request throughput, and decreases latency, while switching to a lower tier decreases your storage limit and vector limit, decreases request throughput, and increases latency.
+Generally, switching to a higher tier increases your [storage limit](search-limits-quotas-capacity.md#service-limits) and [vector limit](search-limits-quotas-capacity.md#vector-index-size-limits), increases request throughput, and decreases latency, while switching to a lower tier decreases your storage limit and vector limit, decreases request throughput, and increases latency.
 
 To change your service tier:
 
