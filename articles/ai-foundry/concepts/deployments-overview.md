@@ -13,7 +13,7 @@ author: msakande
 
 # Overview: Deploy AI models in Azure AI Foundry portal
 
-The model catalog in Azure AI Foundry portal is the hub to discover and use a wide range of models for building generative AI applications. Models need to be deployed to make them available for receiving inference requests. Azure AI Foundry offer a comprehensive suite of deployment options for those models depending on your needs and model requirements.
+The model catalog in Azure AI Foundry portal is the hub to discover and use a wide range of models for building generative AI applications. Models need to be deployed to make them available for receiving inference requests. Azure AI Foundry offers a comprehensive suite of deployment options for those models depending on your needs and model requirements.
 
 ## Deploying models
 
@@ -50,15 +50,15 @@ Azure AI Foundry offers four different deployment options:
 
 Azure AI Foundry encourages customers to explore the deployment options and pick the one that best suites their business and technical needs. In general you can use the following thinking process:
 
-1. Start with the deployment options that have the bigger scopes. This allows you to iterate and prototype faster in your application without having to rebuild your architecture each time you decide to change something. [Azure AI model inference](../../ai-foundry/model-inference/overview.md) is a deployment target that supports all the flagship models in the Azure AI catalog, including latest innovation from Azure OpenAI. To get started, follow [Configure your AI project to use Azure AI model inference](../../ai-foundry/model-inference/how-to/quickstart-ai-project.md).
+* Start with [Azure AI model inference](../../ai-foundry/model-inference/overview.md) which is the option with the bigger scope. This allows you to iterate and prototype faster in your application without having to rebuild your architecture each time you decide to change something. If you are using Azure AI Foundry Hubs or Projects, enable it by [turning on Azure AI model inference](../../ai-foundry/model-inference/how-to/quickstart-ai-project.md).
 
-2. When you are looking to use a specific model:
+* When you are looking to use a specific model:
 
-   1. When you are interested in Azure OpenAI models, use the Azure OpenAI Service which offers a wide range of capabilities for them and it's designed for them.
+   * When you are interested in Azure OpenAI models, use the Azure OpenAI Service which offers a wide range of capabilities for them and it's designed for them.
 
-   2. When you are interested in a particular model from Models-as-a-Service, and you don't expect to use any other type of model, use [Serverless API endpoints](../how-to/deploy-models-serverless.md). They allow deployment of a single model under a unique set of endpoint URL and keys.
+   * When you are interested in a particular model from Models-as-a-Service, and you don't expect to use any other type of model, use [Serverless API endpoints](../how-to/deploy-models-serverless.md). They allow deployment of a single model under a unique set of endpoint URL and keys.
 
-3. When your model is not available in Models-as-a-Service and you have compute quota available in your subscription, use [Managed Compute](../how-to/deploy-models-managed.md) which support deployment of open and custom models. It also allows high level of customization of the deployment inference server, protocols, and detailed configuration.
+* When your model is not available in Models-as-a-Service and you have compute quota available in your subscription, use [Managed Compute](../how-to/deploy-models-managed.md) which support deployment of open and custom models. It also allows high level of customization of the deployment inference server, protocols, and detailed configuration.
 
 
 ## Related content
