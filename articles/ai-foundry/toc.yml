@@ -48,22 +48,22 @@ items:
       href: concepts/model-benchmarks.md
     - name: How to use model benchmarking
       href: how-to/benchmark-model-in-catalog.md
-  - name: Azure OpenAI Service
-    items:
-    - name: Azure OpenAI in Azure AI Foundry
-      href: azure-openai-in-ai-foundry.md
-    - name: Use Azure OpenAI Service in Azure AI Foundry portal
-      href: ai-services/how-to/connect-azure-openai.md
-    - name: Deploy Azure OpenAI models
-      href: how-to/deploy-models-openai.md
-    - name: Azure OpenAI Service quotas and limits
-      href: ../ai-services/openai/quotas-limits.md?context=/azure/ai-foundry/context/context
-    - name: Troubleshoot deployments and monitoring
-      href: how-to/troubleshoot-deploy-and-monitor.md
   - name: Model deployment in Azure AI Foundry
     items:
     - name: Deploying models in Azure AI Foundry
       href: concepts/deployments-overview.md
+    - name: Azure OpenAI Service
+      items:
+      - name: Azure OpenAI in Azure AI Foundry
+        href: azure-openai-in-ai-foundry.md
+      - name: Use Azure OpenAI Service in Azure AI Foundry portal
+        href: ai-services/how-to/connect-azure-openai.md
+      - name: Deploy Azure OpenAI models
+        href: how-to/deploy-models-openai.md
+      - name: Azure OpenAI Service quotas and limits
+        href: ../ai-services/openai/quotas-limits.md?context=/azure/ai-foundry/context/context
+      - name: Troubleshoot deployments and monitoring
+        href: how-to/troubleshoot-deploy-and-monitor.md
     - name: Azure AI model inference
       items:
       - name: What is Azure AI model inference?
