@@ -32,7 +32,7 @@ This article also provides:
 
 + An [Azure SQL database](/azure/azure-sql/database/sql-database-paas-overview) with data in a single table or view, or a [SQL Managed Instance with a public endpoint](search-how-to-index-sql-managed-instance.md).
 
-+ A single table or view. To support incremental indexing, review [extra requirements](#indexing-new-changed-and-deleted-rows) that workload.
++ A single table or view. To support incremental indexing, review [extra requirements](#indexing-new-changed-and-deleted-rows) for that workload.
 
   Use a table if your data is large or if you need incremental indexing using SQL's native change detection capabilities ([SQL integrated change tracking](#indexing-new-changed-and-deleted-rows)).
 
@@ -373,7 +373,7 @@ Database requirements:
 + On the database, [enable change tracking](/sql/relational-databases/track-changes/enable-and-disable-change-tracking-sql-server) for the table.
 + No composite primary key (a primary key containing more than one column) on the table.
 + No clustered indexes on the table. As a workaround, any clustered index would have to be dropped and re-created as nonclustered index, however, performance might be affected in the source compared to having a clustered index.
-+ Tables can't be empty. If you use DELETE TABLE or TRUNCATE TABLE to clear rows, a reset and rerun of the indexer won't remove the corresponding search documents. To remove orphaned search documents, you must [index them with a delete action](search-howto-reindex.md#delete-orphan-documents).
++ Tables can't be empty. If you use TRUNCATE TABLE to clear rows, a reset and rerun of the indexer won't remove the corresponding search documents. To remove orphaned search documents, you must [index them with a delete action](search-howto-reindex.md#delete-orphan-documents). For more information about deletion detection, set up a [soft delete detection policy](#soft-delete-column-deletion-detection-policy).
 
 Change detection policies are added to data source definitions. To use this policy, edit the data source definition in the Azure portal, or use REST to update your data source like this:
 
