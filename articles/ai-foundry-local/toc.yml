@@ -18,8 +18,8 @@ items:
   items:
   - name: Integrate with Inferencing SDKs
     href: how-to/integrate-with-inference-sdks.md
-  - name: Optimize models for on-device inference
-    href: how-to/optimize-models-for-on-device.md
+  - name: Compile Hugging Face models for Foundry Local
+    href: how-to/compile-models-for-foundry-local.md
   - name: Manage Foundry Local
     href: how-to/manage.md
 - name: Reference

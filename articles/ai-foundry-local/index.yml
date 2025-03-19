@@ -43,8 +43,8 @@ landingContent:
         links:
           - text: Integrate with Inferencing SDKs
             url: how-to/integrate-with-inference-sdks.md
-          - text: Optimize models for on-device inference
-            url: how-to/optimize-models-for-on-device.md
+          - text: Compile Hugging Face models for Foundry Local
+            url: how-to/compile-models-for-foundry-local.md
           - text: Manage Foundry Local
             url: how-to/manage.md
   
