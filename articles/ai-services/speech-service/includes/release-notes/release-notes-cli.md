@@ -115,7 +115,7 @@ Uses Speech SDK 1.23.0.
 - Added `spx csr model copy` command (see `spx help csr model copy`)
 - Added `--check result` option using JMES queries (see `spx help check result`)
 - Improved error messages when specifying invalid command options
-- Moved from .NET Core 3.1 to .NET 6.0. In order to run Speech CLI, you'll need to install the [.NET 6.0 Runtime](https://dotnet.microsoft.com/download/dotnet/6.0/runtime) (or above).
+- Moved from .NET Core 3.1 to .NET 6.0. In order to run Speech CLI, you need to install the [.NET 6.0 Runtime](https://dotnet.microsoft.com/download/dotnet/6.0/runtime) (or above).
 
 #### Bug fixes
 
@@ -206,12 +206,12 @@ Uses Speech SDK 1.21.0.
 
 - Added support for Profile, Speaker ID, and Speaker verification - Try `spx profile` and `spx speaker` from the command-line.
 - We also added Dialog support - Try `spx dialog` from the command-line.
-- Improved `spx` help. Please give us feedback about how this works for you by opening a [GitHub issue](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues?q=is%3Aissue+is%3Aopen).
-- We've decreased the size of the .NET tool install.
+- Improved `spx` help. Give us feedback about how this works for you by opening a [GitHub issue](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues?q=is%3Aissue+is%3Aopen).
+- We decreased the size of the .NET tool install.
 
 #### COVID-19 abridged testing
 
-As the ongoing pandemic continues to require our engineers to work from home, pre-pandemic manual verification scripts have been significantly reduced. We test on fewer devices with fewer configurations, and the likelihood of environment-specific bugs slipping through may be increased. We still rigorously validate with a large set of automation. In the unlikely event that we missed something, please let us know on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues?q=is%3Aissue+is%3Aopen).<br>
+As the ongoing pandemic continues to require our engineers to work from home, pre-pandemic manual verification scripts are reduced to test on fewer devices with fewer configurations, and the likelihood of environment-specific bugs slipping through may be increased. We still rigorously validate with a large set of automation. In the unlikely event that we missed something let us know on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues?q=is%3Aissue+is%3Aopen).<br>
 Stay healthy!
 
 ### 2021-March release
@@ -226,7 +226,7 @@ Stay healthy!
 
 #### COVID-19 abridged testing
 
-As the ongoing pandemic continues to require our engineers to work from home, pre-pandemic manual verification scripts have been significantly reduced. We test on fewer devices with fewer configurations, and the likelihood of environment-specific bugs slipping through may be increased. We still rigorously validate with a large set of automation. In the unlikely event that we missed something, please let us know on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues?q=is%3Aissue+is%3Aopen).<br>
+As the ongoing pandemic continues to require our engineers to work from home, pre-pandemic manual verification scripts are reduced to test on fewer devices with fewer configurations, and the likelihood of environment-specific bugs slipping through may be increased. We still rigorously validate with a large set of automation. In the unlikely event that we missed something let us know on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues?q=is%3Aissue+is%3Aopen).<br>
 Stay healthy!
 
 ### 2021-January release
@@ -236,7 +236,7 @@ Stay healthy!
 - The [custom speech DevOps Template repo](https://github.com/Azure-Samples/Speech-Service-DevOps-Template) has been updated to use Speech CLI for its custom speech workflows.
 
 #### COVID-19 abridged testing
-As the ongoing pandemic continues to require our engineers to work from home, pre-pandemic manual verification scripts have been significantly reduced. We test on fewer devices with fewer configurations, and the likelihood of environment-specific bugs slipping through may be increased. We still rigorously validate with a large set of automation. In the unlikely event that we missed something, please let us know on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues?q=is%3Aissue+is%3Aopen).<br>
+As the ongoing pandemic continues to require our engineers to work from home, pre-pandemic manual verification scripts are reduced to test on fewer devices with fewer configurations, and the likelihood of environment-specific bugs slipping through may be increased. We still rigorously validate with a large set of automation. In the unlikely event that we missed something let us know on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues?q=is%3Aissue+is%3Aopen).<br>
 Stay healthy!
 
 ### 2020-October release
@@ -260,7 +260,7 @@ Download the latest version [here](../../spx-basics.md). <br>
     -   `spx help csr examples`
 
 #### COVID-19 abridged testing
-Due to working remotely over the last few weeks, we couldn't do as much manual verification testing as we normally do. We haven't made any changes we think could have broken anything, and our automated tests all passed. In the unlikely event that we missed something, please let us know on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues?q=is%3Aissue+is%3Aopen).<br>
+Due to working remotely over the last few weeks, we couldn't do as much manual verification testing as we normally do. We haven't made any changes we think could have broken anything, and our automated tests all passed. In the unlikely event that we missed something let us know on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues?q=is%3Aissue+is%3Aopen).<br>
 Stay healthy!
 
 
