@@ -84,11 +84,11 @@ To check the Helm history of the Azure ML extension, use the following commands:
 ```
 # Check if there is a release of the Azure ML extension Helm chart installed on the cluster
 # Note: The default namespace for the extension is usually 'azureml'. If you specified a different namespace during installation, replace 'azureml' with your namespace.
-helm list -n azureml
+helm list -n <extension-namespace>
 
 # Get helm history 
-# Note: <release-name> can be retrieved from the output of the previous command
-helm history -n azureml <release-name>
+# Note: <release-name> and <release-namespace> can be retrieved from the output of the previous command
+helm history -n <extension-namespace> <release-name>
 ```
 There is a Helm history limit of 10 revisions, but this limit applies only to revisions in a non-transient state.
 If you see multiple revisions in a pending-rollback or pending-upgrade state in the Helm history output, run the script below to clean up the Helm history on the cluster:
@@ -96,7 +96,7 @@ If you see multiple revisions in a pending-rollback or pending-upgrade state in 
 #!/bin/bash
 
 # Set release name and namespace
-RELEASE_NAME=$1 # release_name is the name of the azure ml extension helm release 
+RELEASE_NAME=$1 # release-name is the name of the azure ml extension helm release 
 NAMESPACE=$2 # namespace is the azure ml extension's namespace. Default value is azureml 
 
 # Validate input
@@ -136,7 +136,7 @@ How to run the script:
 ```
 chmod +x delete_stuck_helm_secrets.sh
 
-./delete_stuck_helm_secrets.sh <release_name> <extension_namespace>
+./delete_stuck_helm_secrets.sh <release-name> <extension-namespace>
 ```
 
 ### Error Code of HealthCheck 
