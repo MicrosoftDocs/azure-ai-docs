@@ -34,7 +34,11 @@ Azure AI Foundry offers four different deployment options:
 | Which models can be deployed? | [Azure OpenAI models](../../ai-services/openai/concepts/models.md)        | [Azure OpenAI models and Models as a Service](../../ai-foundry/model-inference/concepts/models.md) | [Models as a Service](../how-to/model-catalog-overview.md#content-safety-for-models-deployed-via-serverless-apis) | [Open and custom models](../how-to/model-catalog-overview.md#availability-of-models-for-deployment-as-managed-compute) |
 | Deployment resource           | Azure OpenAI resource | Azure AI services resource | AI project resource | AI project resource |
 | Requires Hubs/Projects        | No | No | Yes | Yes |
-| Data processing options       | Regional, Data-zone, and Global | Global | Regional | Regional |
+| Data processing options       | Regional <br /> Data-zone  <br /> and Global | Global | Regional | Regional |
+| Private networking            | Yes | Yes | Yes | Yes |
+| Content filtering             | Yes | Yes | Yes | No  |
+| Custom content filtering      | Yes | Yes | No  | No  |
+| Key-less authentication       | Yes | Yes | No  | No  |
 | Best suited when              | You are planning to use only OpenAI models | You are planning to take advantage of the flagship models in Azure AI catalog, including OpenAI. | You are planning to use a single model from a specific provider (excluding OpenAI). | If you plan to use open models and you have enough compute quota available in your subscription. |
 | Billing bases                 | Token usage & PTU         | Token usage       | Token usage<sup>1</sup>      | Compute core hours<sup>2</sup> |
 | Deployment instructions       | [Deploy to Azure OpenAI Service](../how-to/deploy-models-openai.md) | [Deploy to Azure AI model inference](../model-inference/how-to/create-model-deployments.md) | [Deploy to Serverless API](../how-to/deploy-models-serverless.md) | [Deploy to Managed compute](../how-to/deploy-models-managed.md) |
@@ -56,12 +60,10 @@ Azure AI Foundry encourages customers to explore the deployment options and pick
 
    1. When you are interested in Azure OpenAI models, use the Azure OpenAI Service which offers a wide range of capabilities for them and it's designed for them.
 
-   2. When you are interested in a particular model from Models as a Service, and you don't expect to use any other type of model, use [Serverless API endpoints](../how-to/deploy-models-serverless.md). They allow deployment of a single model under a unique set of endpoint URL and keys.
+   2. When you are interested in a particular model from Models-as-a-Service, and you don't expect to use any other type of model, use [Serverless API endpoints](../how-to/deploy-models-serverless.md). They allow deployment of a single model under a unique set of endpoint URL and keys.
 
-3. When your model is not available in Models as a Service and you have compute quota available in your subscription, use [Managed Compute](../how-to/deploy-models-managed.md) which support deployment of open and custom models. It also allows high level of customization of the deployment inference server, protocols, and detailed configuration.
+3. When your model is not available in Models-as-a-Service and you have compute quota available in your subscription, use [Managed Compute](../how-to/deploy-models-managed.md) which support deployment of open and custom models. It also allows high level of customization of the deployment inference server, protocols, and detailed configuration.
 
-> [!TIP]
-> Each deployment option may offer different capabilities in terms of networking, security, and additional features like content safety. Review the documentation for each of them to understand their limitations.
 
 ## Related content
 
