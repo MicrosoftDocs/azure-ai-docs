@@ -4,10 +4,6 @@ titleSuffix: Azure AI Foundry
 description: Learn about deploying models in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-foundry
-ms.custom:
-  - ignite-2023
-  - build-2024
-  - ignite-2024
 ms.topic: concept-article
 ms.date: 10/21/2024
 ms.reviewer: fasantia
@@ -17,7 +13,7 @@ author: msakande
 
 # Overview: Deploy AI models in Azure AI Foundry portal
 
-The model catalog in Azure AI Foundry portal is the hub to discover and use a wide range of models for building generative AI applications. Models need to be deployed to make them available for receiving inference requests. The process of interacting with a deployed model is called *inferencing*. Azure AI Foundry offer a comprehensive suite of deployment options for those models depending on your needs and model requirements.
+The model catalog in Azure AI Foundry portal is the hub to discover and use a wide range of models for building generative AI applications. Models need to be deployed to make them available for receiving inference requests. Azure AI Foundry offer a comprehensive suite of deployment options for those models depending on your needs and model requirements.
 
 ## Deploying models
 
@@ -31,10 +27,10 @@ Azure AI Foundry offers four different deployment options:
 
 |Name                           | Azure OpenAI service | Azure AI model inference | Serverless API | Managed compute |
 |-------------------------------|----------------------|-------------------|----------------|-----------------|
-| Which models can be deployed? | [Azure OpenAI models](../../ai-services/openai/concepts/models.md)        | [Azure OpenAI models and Models as a Service](../../ai-foundry/model-inference/concepts/models.md) | [Models as a Service](../how-to/model-catalog-overview.md#content-safety-for-models-deployed-via-serverless-apis) | [Open and custom models](../how-to/model-catalog-overview.md#availability-of-models-for-deployment-as-managed-compute) |
+| Which models can be deployed? | [Azure OpenAI models](../../ai-services/openai/concepts/models.md)        | [Azure OpenAI models and Models-as-a-Service](../../ai-foundry/model-inference/concepts/models.md) | [Models-as-a-Service](../how-to/model-catalog-overview.md#content-safety-for-models-deployed-via-serverless-apis) | [Open and custom models](../how-to/model-catalog-overview.md#availability-of-models-for-deployment-as-managed-compute) |
 | Deployment resource           | Azure OpenAI resource | Azure AI services resource | AI project resource | AI project resource |
 | Requires Hubs/Projects        | No | No | Yes | Yes |
-| Data processing options       | Regional <br /> Data-zone  <br /> and Global | Global | Regional | Regional |
+| Data processing options       | Regional <br /> Data-zone  <br /> Global | Global | Regional | Regional |
 | Private networking            | Yes | Yes | Yes | Yes |
 | Content filtering             | Yes | Yes | Yes | No  |
 | Custom content filtering      | Yes | Yes | No  | No  |
