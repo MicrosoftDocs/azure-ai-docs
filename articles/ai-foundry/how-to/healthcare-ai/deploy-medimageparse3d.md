@@ -14,11 +14,11 @@ author: msakande
 
 ---
 
-# How to use MedImageParse healthcare AI model for segmentation of medical images
+# How to use MedImageParse 3D healthcare AI model for segmentation of medical images
 
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 
-In this article, you learn how to deploy MedImageParse as an online endpoint for real-time inference and issue a basic call to the API. The steps you take are:
+In this article, you learn how to deploy MedImageParse 3D as an online endpoint for real-time inference and issue a basic call to the API. The steps you take are:
 
 * Deploy the model to a self-hosted managed compute.
 * Grant permissions to the endpoint.
@@ -30,18 +30,18 @@ Similar to our [MedImageParse model](deploy-medimageparse.md) model, MedImagePar
 
 ## Prerequisites
 
-To use the MedImageParse model, you need the following prerequisites:
+To use the MedImageParse 3D model, you need the following prerequisites:
 
 ### A model deployment
 
 **Deployment to a self-hosted managed compute**
 
-MedImageParse model can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served. You can deploy the model through the catalog UI (in [Azure AI Foundry](https://aka.ms/healthcaremodelstudio) or [Azure Machine Learning studio](https://ml.azure.com/model/catalog)) or deploy programmatically.
+MedImageParse 3D model can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served. You can deploy the model through the catalog UI (in [Azure AI Foundry](https://aka.ms/healthcaremodelstudio) or [Azure Machine Learning studio](https://ml.azure.com/model/catalog)) or deploy programmatically.
 
 To __deploy the model through the UI__:
 
 1. Go to the catalog.
-1. Search for _MedImageParse_ and select the model card.
+1. Search for _MedImageParse3D_ and select the model card.
 1. On the model's overview page, select __Deploy__.
 1. If given the option to choose between serverless API deployment and deployment using a managed compute, select **Managed Compute**.
 1. Fill out the details in the deployment window.
@@ -58,7 +58,7 @@ In this section, you consume the model and make basic calls to it.
 
 ### Use REST API to consume the model
 
-Consume the MedImageParse segmentation model as a REST API, using simple GET requests or by creating a client as follows:
+Consume the MedImageParse 3D segmentation model as a REST API, using simple GET requests or by creating a client as follows:
 
 ```python
 from azure.ai.ml import MLClient
@@ -75,26 +75,25 @@ In the deployment configuration, you get to choose authentication method. This e
 
 Once the model is deployed, use the following code to send data and retrieve segmentation masks.
 
+TODO: the example here follows MedImageParse (2D) where it uses `ml_client_workspace.online_endpoints.invoke` instead of `urllib.request.urlopen` as in this [notebook](https://dev.azure.com/msazuredev/HLS%20AI%20Platform/_git/3dMedImageParseDeployment?path=/notebooks/03.model.endpoint.api.call.ipynb&version=GBmain&line=192&lineEnd=193&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents). Verify the correct call pattern.
+
 ```python
 import base64
 import json
 import os
 
-sample_image_xray = os.path.join(image_path)
+sample_image = "example.nii.gz"
+with open(sample_image, "rb") as image_file:
+    base64_image = base64.b64encode(image_file.read()).decode('utf-8')
 
-def read_image(image_path):
-    with open(image_path, "rb") as f:
-        return f.read()
-
-sample_image =  "sample_image.png"
 data = {
     "input_data": {
         "columns": [ "image", "text" ],
         "index": [ 0 ],
         "data": [
             [
-                base64.encodebytes(read_image(sample_image)).decode("utf-8"),
-                "neoplastic cells in breast pathology & inflammatory cells"
+                base64_image,
+                "pancreas"
             ]
         ]
     }
@@ -113,8 +112,10 @@ response = ml_client_workspace.online_endpoints.invoke(
 )
 ```
 
-## Use MedImageParse REST API
-MedImageParse model assumes a simple single-turn interaction where one request produces one response. 
+## Use MedImageParse 3D REST API
+TODO: verify all contents in this section
+
+MedImageParse 3D model assumes a simple single-turn interaction where one request produces one response. 
 
 ### Request schema
 
@@ -130,11 +131,11 @@ The `input_data` object contains the following fields:
 | ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `columns`       | `list[string]`       | Y    |  `"image"`, `"text"` | An object containing the strings mapping data to inputs passed to the model.|
 | `index`   | `integer` | Y | 0 - 256 | Count of inputs passed to the model. You're limited by how much data can be passed in a single POST request, which depends on the size of your images. Therefore, it's reasonable to keep this number in the dozens. |
-| `data`   | `list[list[string]]` | Y | "" | The list contains the items passed to the model which is defined by the index parameter. Each item is a list of two strings. The order is defined by the `columns` parameter. The `text` string contains the prompt text. The `image` string is the image bytes encoded using base64 and decoded as utf-8 string. <br/>**NOTE**: The image should be resized to `1024x1024` pixels before submitting to the model, preserving the aspect ratio. Empty space should be padded with black pixels. See the [Generating Segmentation for a Variety of Imaging Modalities](https://aka.ms/healthcare-ai-examples-mip-examples) sample notebook for an example of resizing and padding code.<br/><br/> The input text is a string containing multiple sentences separated by the special character `&`. For example: `tumor core & enhancing tumor & non-enhancing tumor`. In this case, there are three sentences, so the output consists of three images with segmentation masks. |
+| `data`   | `list[list[string]]` | Y | "" | The list contains the items passed to the model which is defined by the index parameter. Each item is a list of two strings. The order is defined by the `columns` parameter. The `text` string contains the prompt text. The `image` string is the input volume in NIfTI format encoded using base64 and decoded as utf-8 string. The input text is a string containing the target (e.g., organ) to be segmented. |
 
 ### Request example
 
-**Requesting segmentation of all cells in a pathology image** 
+**Requesting segmentation of all cells in a pathology image**
 ```JSON
 {
   "input_data": {
@@ -144,8 +145,8 @@ The `input_data` object contains the following fields:
     ],
     "index":[0],
     "data": [
-      ["iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAAXNSR0IArs4c6QAAAARnQU1BAACx\njwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAbSURBVBhXY/gUoPS/fhfDfwaGJe///9/J8B8A\nVGwJ5VDvPeYAAAAASUVORK5CYII=\n",
-      "neoplastic & inflammatory cells "]
+      ["iVBORw0KGgoAAAAN...",
+      "pancreas"]
     ]
   }
 }
@@ -153,7 +154,7 @@ The `input_data` object contains the following fields:
 
 ### Response schema
 
-Response payload is a list of JSON-formatted strings, each corresponding to a submitted image. Each string contains a `segmentation_object` object.
+Response payload is a list of JSON-formatted strings, each corresponding to a submitted volume. Each string contains a `segmentation_object` object.
 
 `segmentation_object` contains the following fields:
 
@@ -171,35 +172,63 @@ Response payload is a list of JSON-formatted strings, each corresponding to a su
 | `dtype`       | `string` | An instance of the [NumPy dtype class](https://numpy.org/doc/stable/reference/arrays.dtypes.html) serialized to a string. Describes the data packing in the data array. |
 
 ### Response example
-**A simple inference requesting segmentation of two objects** 
+The requested segmentation mask is stored in NIfTI, represented by an encoded string.
+
+TODO: verify the value of nifti_file is a string or a json object (without the quote).
 ```JSON
 [
   {
-    "image_features": "{ 
-    'data': '4oCwUE5HDQoa...',
-    'shape': [2, 1024, 1024], 
-    'dtype': 'uint8'}",
-    "text_features": ['liver', 'pancreas']
+    "nifti_file": "{'data': 'H4sIAAAAAAAE...'}"
   }
 ]
 ```
 
-### Supported image formats
+TODO: In an [example notebook](https://dev.azure.com/msazuredev/HLS%20AI%20Platform/_git/3dMedImageParseDeployment?path=/notebooks/01.model.packaging.ipynb&version=GBmain&line=314&lineEnd=315&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents), `temp_file.flush()` and `os.unlink(temp_file.name)` are commented out. Are these lines needed?
 
-The deployed model API supports images encoded in PNG format. For optimal results, we recommend using uncompressed/lossless PNGs with RGB images.
+The NIfTI file can be obtained by decoding the returned string using a code like
+```python
+def decode_base64_to_nifti(base64_string: str) -> nib.Nifti1Image:
+    """
+    Decode a Base64 string back to a NIfTI image.
+    
+    Args:
+        base64_string (str): Base64 encoded string of NIfTI image
+    
+    Returns:
+        nib.Nifti1Image: Decoded NIfTI image object
+    """
+    base64_string = json.loads(base64_string)["data"]
+    # Decode Base64 string to bytes
+    byte_data = base64.b64decode(base64_string)
+    
+    # Create a temporary file to load the NIfTI image
+    with tempfile.NamedTemporaryFile(suffix='.nii.gz', delete=False) as temp_file:
+        temp_file.write(byte_data)
+        temp_file.flush()
+        # Load NIfTI image from the temporary file
+        nifti_image = nib.load(temp_file.name)
+    
+    # Remove temporary file
+    os.unlink(temp_file.name)
+    
+    return nifti_image.get_fdata()
+```
 
-As described in the API specification, the model only accepts images in the resolution of `1024x1024`pixels. Images need to be resized and padded (in the case of non-square aspect ratio).
+### Supported input formats
 
+The deployed model API supports volumes encoded in NIfTI format.
+
+<!-- 
 See the [Generating Segmentation for a Variety of Imaging Modalities](https://aka.ms/healthcare-ai-examples-mip-examples) notebook for techniques and sample code useful for submitting images of various sizes stored using various biomedical imaging formats.
 
 ## Learn more from samples
-MedImageParse is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more examples see the following interactive Python Notebooks: 
+For more MedImageParse 3D examples see the following interactive Python Notebooks: 
 
 #### Getting started
-* [Deploying and Using MedImageParse](https://aka.ms/healthcare-ai-examples-mip-deploy): Learn how to deploy the MedImageParse model and integrate it into your workflow.
+* [Deploying and Using MedImageParse 3D](https://aka.ms/healthcare-ai-examples-mip-deploy): Learn how to deploy the MedImageParse 3D model and integrate it into your workflow.
 
 #### Advanced inferencing techniques and samples
-* [Generating Segmentation for a Variety of Imaging Modalities](https://aka.ms/healthcare-ai-examples-mip-examples): Understand how to use MedImageParse to segment a wide variety of different medical images and learn some prompting techniques. 
+* [Segmentation examples](https://aka.ms/healthcare-ai-examples-mip-examples): Understand how to use MedImageParse 3D to segment images in DICOM and NIfTI formats.  -->
 
 ## Related content
 
