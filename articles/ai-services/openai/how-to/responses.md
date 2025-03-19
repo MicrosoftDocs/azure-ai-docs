@@ -40,10 +40,6 @@ The responses API is currently available in the following regions:
 
 ### Model support
 
-- `o1`
-- `o1-preview`
-- `o1-mini`
-- `o3-mini`
 - `gpt-4o`
 - `gpt-4o-mini`
 - `computer-use-preview`
