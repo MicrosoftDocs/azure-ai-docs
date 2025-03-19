@@ -1,25 +1,28 @@
 items:
 - name: AI Foundry Local documentation
   href: index.yml
-- name: What is Azure AI Foundry?
+- name: What is AI Foundry Local?
   href: what-is-ai-foundry-local.md
-- name: Get started
-  expanded: true
+- name: Quickstarts
   items:
-  - name: Quickstarts
-    items:
-    - name: Get Started with Foundry Local
-      href: quickstarts/get-started.md
-  - name: Concepts
-    items:
-    - name: Foundry Local Architecture
-      href: concepts/foundry-local-architecture.md
-  - name: How-to guides
-    items:
-    - name: Integrate with Inferencing SDKs
-      href: how-to/integrate-with-inference-sdks.md
-    - name: Optimize models for on-device inference
-      href: how-to/optimize-models-for-on-device.md
-    - name: Manage Foundry Local
-      href: how-to/manage.md
+  - name: Install
+    href: quickstarts/get-started.md
+- name: Concepts
+  items:
+  - name: Foundry Local Architecture
+    href: concepts/foundry-local-architecture.md
+- name: How-to guides
+  items:
+  - name: Integrate with Inferencing SDKs
+    href: how-to/integrate-with-inference-sdks.md
+  - name: Optimize models for on-device inference
+    href: how-to/optimize-models-for-on-device.md
+  - name: Manage Foundry Local
+    href: how-to/manage.md
+- name: Reference
+  items:
+  - name: Foundry Local CLI
+    href: reference/reference-cli.md
+  - name: REST API
+    href: reference/reference-rest.md
  
