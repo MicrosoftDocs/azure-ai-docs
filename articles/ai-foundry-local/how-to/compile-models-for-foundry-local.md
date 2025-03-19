@@ -20,7 +20,7 @@ With Foundry Local, you aren't limited to models available in the catalog - you 
 In this article you learn how to:
 
 > [!div class="checklist"]
-> - **Compile** a model from Hugging Face into the ONNX format using [Olive](#install-olive) so that it can run efficiently on your local device.
+> - **Compile** a model from Hugging Face into the ONNX format using Olive so that it can run efficiently on your local device.
 > - **Run** the optimized and quantized in the Foundry Local CLI and REST server.
 
 ## Prerequisites
@@ -33,9 +33,16 @@ Olive is a cutting-edge model optimization toolkit that enables you to ship ONNX
 
 To install Olive, use Python pip:
 
+### [Bash](#tab/Bash)
 ```bash
 pip install olive-ai[auto-opt]
 ```
+### [PowerShell](#tab/PowerShell)
+```powershell
+pip install olive-ai[auto-opt]
+```
+---
+
 > [!TIP]
 > We recommend installing Olive in a Python virtual environment using either [venv](https://docs.python.org/3/library/venv.html) or [conda](https://www.anaconda.com/docs/getting-started/miniconda/main).
 
@@ -43,9 +50,15 @@ pip install olive-ai[auto-opt]
 
 In this article, you're optimizing [Llama-3.2-1B-Instruct](https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct/tree/main) from Hugging Face. Llama 3.2 is a gated model and therefore you need to be signed into Hugging-Face to get access.
 
+### [Bash](#tab/Bash)
 ```bash
 huggingface-cli login
 ```
+### [PowerShell](#tab/PowerShell)
+```powershell
+huggingface-cli login
+```
+---
 
 > [!NOTE]
 > You're prompted for a user token to sign-in. Follow the [Hugging Face documentation for setting up User Access Tokens](https://huggingface.co/docs/hub/security-tokens)
@@ -60,7 +73,7 @@ Next you run the `auto-opt` Olive command that automatically downloads and optim
 olive auto-opt \
     --model_name_or_path meta-llama/Llama-3.2-1B-Instruct \
     --trust_remote_code \
-    --output_path models/llama/ao \
+    --output_path models/llama \
     --device cpu \
     --provider CPUExecutionProvider \
     --use_ort_genai \
@@ -115,15 +128,27 @@ Rename-Item -Path "model" -NewName "llama-3.2"
 ## Run the model in Foundry Local
 First, change the Foundry Local cache to the `models` output directory of the Olive compilation:
 
+### [Bash](#tab/Bash)
 ```bash
+# change directory of cache
 foundry cache cd models
-```
-
-Next, run the model using:
-
-```bash
+# list models in cache (you should see llama-3.2)
+foundry cache ls
+# run the model
 foundry model run llama-3.2 --verbose
 ```
+
+### [PowerShell](#tab/PowerShell)
+```powershell
+# change directory of cache
+foundry cache cd models
+# list models in cache (you should see llama-3.2)
+foundry cache ls
+# run the model
+foundry model run llama-3.2 --verbose
+```
+---
+
 
 ## Next step
 
