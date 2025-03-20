@@ -5,7 +5,7 @@ description: Learn about the lifecycle stages, deprecation, and retirement for m
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 02/28/2025
+ms.date: 03/20/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: kritifaujdar
