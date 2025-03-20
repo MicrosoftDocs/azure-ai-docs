@@ -14,18 +14,43 @@ ms.custom: build-2025
 #customer intent: As a developer, I want to understand what Azure AI Foundry is so that I can use it to build AI applications.
 ---
 
-# AI Foundry Local?
+# What is AI Foundry Local?
 
-TODO
+AI Foundry Local is a local version of Azure AI Foundry that enables local execution of large language models (LLMs) directly on your device. This on-device AI inference solution provides privacy, customization, and cost benefits compared to cloud-based alternatives. Best of all, it's built to fit into your existing workflows and applications with an easy-to-use CLI and REST API!
+
+By leveraging the optimization work of ONNX Runtime, Olive, and the ONNX ecosystem, Foundry Local delivers a highly optimized and performant user experience for running AI models locally.
+
+## Key features
+
+- **On-Device Inference**: Run LLMs locally on your own hardware, reducing dependency on cloud services while keeping your data on-device.
+
+- **Model Customization**: Choose from preset models or bring your own to match your specific requirements and use cases.
+
+- **Cost Efficiency**: Avoid recurring cloud service costs by using your existing hardware, making AI tasks more accessible.
+
+- **Seamless Integration**: Easily interface with your applications via an endpoint or test with the CLI, with the option to scale to Azure AI Foundry as your workload demands increase.
+
+## Use cases
+
+AI Foundry Local is ideal for scenarios where:
+
+- Data privacy and security are paramount
+- You need to operate in environments with limited or no internet connectivity
+- You want to reduce cloud inference costs
+- You need low-latency AI responses for real-time applications
+- You want to experiment with AI models before deploying to a cloud environment
 
 ## Pricing and billing
 
-Free!
+Entirely Free! You're using your own hardware, and there are no additional costs associated with running AI models locally.
 
 ## How to get access
 
-Download from the Microsoft Store.
+Download from the Microsoft Store. (WIP)
 
 ## Related content
 
-TODO
+- [Get started with AI Foundry Local](get-started.md)
+- [AI Foundry Local CLI reference](cli-reference.md)
+- [Azure AI Foundry documentation](/azure/ai-services/ai-foundry/)
+- [ONNX Runtime documentation](https://onnxruntime.ai/docs/)
