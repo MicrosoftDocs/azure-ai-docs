@@ -36,8 +36,8 @@ landingContent:
     linkLists:   
       - linkListType: quickstart
         links:
-          - text: Install Foundry Local and Run an AI model
-            url: quickstarts/get-started.md
+          - text: Get started with Foundry Local
+            url: get-started.md
 
       - linkListType: how-to-guide
         links:

@@ -3,11 +3,13 @@ items:
   href: index.yml
 - name: What is AI Foundry Local?
   href: what-is-ai-foundry-local.md
-- name: Quickstarts
+- name: Getting Started Guide
+  href: get-started.md
+- name: Tutorials
   expanded: true
   items:
-  - name: Install and run a model
-    href: quickstarts/get-started.md
+  - name: Chat application with Open Web UI
+    href: tutorials/chat-application-with-open-web-ui.md
 - name: Concepts
   expanded: true
   items:

@@ -37,6 +37,17 @@ This article shows you how to get started with AI Foundry Local to run AI models
 
 The AI Foundry Local CLI provides several commands to manage models and the local inference service.
 
+### Run your first model
+
+To start a chat completion interaction with a model:
+
+```bash
+foundry model run deepseek-r1-1.5b-cpu
+```
+
+This command downloads the model if not already cached, loads it into the service, and starts an interactive chat session.
+
+
 ### View available commands
 
 To see all available commands, use the help option:
@@ -60,16 +71,6 @@ To view details about a specific model:
 ```bash
 foundry model info <model-name>
 ```
-
-### Run your first model
-
-To start a chat completion interaction with a model:
-
-```bash
-foundry model run deepseek-r1-1.5b-cpu
-```
-
-This command downloads the model if not already cached, loads it into the service, and starts an interactive chat session.
 
 ## Managing models
 
@@ -159,7 +160,6 @@ foundry cache cd <path>
 
 ## Next steps
 
-- Explore the [AI Foundry Local documentation](index.yml) for more advanced scenarios
-- Learn how to [integrate AI Foundry Local with your applications](integration-guide.md)
-- See [sample projects and code examples](samples.md) that use AI Foundry Local
-```
+- [Learn how to integrate AI Foundry Local with your applications](how-to/integrate-with-inference-sdks.md)
+- [Explore the AI Foundry Local documentation](index.yml)
+
