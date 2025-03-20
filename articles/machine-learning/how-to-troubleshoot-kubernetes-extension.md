@@ -84,11 +84,11 @@ To check the Helm history of the Azure ML extension, use the following commands:
 ```
 # Check if there is a release of the Azure ML extension Helm chart installed on the cluster
 # Note: The default namespace for the extension is usually 'azureml'. If you specified a different namespace during installation, replace 'azureml' with your namespace.
-helm list -n <extension-namespace>
+helm list -n azureml
 
 # Get helm history 
-# Note: <release-name> and <release-namespace> can be retrieved from the output of the previous command
-helm history -n <extension-namespace> <release-name>
+# Note: <release-name> should be the name of your azure ml extension and can be retrieved from the output of the previous command
+helm history -n <extension-namespace> azureml
 ```
 There is a Helm history limit of 10 revisions, but this limit applies only to revisions in a non-transient state.
 If you see multiple revisions in a pending-rollback or pending-upgrade state in the Helm history output, run the script below to clean up the Helm history on the cluster:
