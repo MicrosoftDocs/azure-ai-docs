@@ -16,10 +16,13 @@ ms.date: 03/19/2025
 
 In April 2024, Azure AI Search increased the [storage capacity](search-limits-quotas-capacity.md#service-limits) of newly created search services. Services created before April 2024 saw no capacity changes, so if you wanted larger and faster partitions, you had to create a new service. However, most older services can now be upgraded to benefit from the higher capacity partitions.
 
+<a id="upgrade-eligibility"></a>
+
 To qualify for an upgrade, your service:
 
-+ Must have been created before April 2024. Services created after April 2024 should already have the higher limits. To see when you created your service, [check your service version](#check-your-service-version).
-+ Must be in a region that supports higher capacity. Check the footnotes in the [list of supported regions](search-region-support.md).
+> [!div class="checklist"]
+> + Must have been created before April 2024. Services created after April 2024 should already have higher capacity. To see when you created your service, [check your service version](#check-your-service-version).
+> + Must be in a region that supports higher capacity. Check the footnotes in the [list of supported regions](search-region-support.md).
 
 This article describes how to upgrade your service in the [Azure portal](https://portal.azure.com/). Alternatively, you can use the Search REST APIs to upgrade your service programmatically. For more information, see [Manage your search service with REST](search-manage-rest.md).
 
@@ -27,14 +30,14 @@ This article describes how to upgrade your service in the [Azure portal](https:/
 
 An upgrade brings your existing search service to the same configuration as new services in your region. Unlike [upgrading your API version](search-api-migration.md), upgrading your service doesn’t introduce new features. Rather, it brings feature enhancements that are only available to new services in your region. Your service is never out of date, and regardless of your service version, you receive code and security updates every month.
 
-Currently, an upgrade only increases the [storage limit](#higher-storage-limits) and [vector limit](#higher-vector-limits) of your service. Expect more upgrade capabilities in the future.
+In this preview, an upgrade only increases the [storage limit](#higher-storage-limits) and [vector limit](#higher-vector-limits) of your service. Expect more upgrade capabilities in the future.
 
 > [!IMPORTANT]
 > An upgrade is permanent and can’t be undone. Before you upgrade your service, carefully consider your current and future storage needs.
 
 ### Higher storage limits
 
-For each service tier, the following table compares the storage limit (per partition) before and after an upgrade.
+For [upgrade-eligible services](#upgrade-eligibility), the following table compares the storage limit (per partition) before and after an upgrade.
 
 | | Basic <sup>1</sup> | S1 | S2 | S3/HD | L1 | L2 |
 |-|-|-|-|-|-|-|
@@ -45,7 +48,7 @@ For each service tier, the following table compares the storage limit (per parti
 
 ### Higher vector limits
 
-For each service tier, the following table compares the vector index size limit (per partition) before and after an upgrade.
+For [upgrade-eligible services](#upgrade-eligibility), the following table compares the vector index size limit (per partition) before and after an upgrade.
 
 | | Basic | S1 | S2 | S3/HD | L1 | L2 |
 |-|-|-|-|-|-|-|
