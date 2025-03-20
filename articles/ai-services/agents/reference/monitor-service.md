@@ -6,7 +6,7 @@ ms.custom: horz-monitor, subject-monitoring
 ms.topic: reference
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-agents
+ms.service: azure-ai-agent-service
 ---
 
 # Azure AI Agent Service monitoring data reference

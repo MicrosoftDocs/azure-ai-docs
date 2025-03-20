@@ -6,7 +6,7 @@ ms.custom: horz-monitor, subject-monitoring
 ms.topic: conceptual
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-agents
+ms.service: azure-ai-agent-service
 ---
 
 # Monitor Azure AI Agent Service
@@ -40,13 +40,13 @@ The metrics and logs that you can collect are described in the following section
 
 [!INCLUDE [horz-monitor-resource-types](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-resource-types.md)]
 
-For more information about the resource types, see the [monitoring data reference](../monitor-openai-reference.md).
+For more information about the resource types, see the [monitoring data reference](../reference/monitor-service.md).
 
 [!INCLUDE [horz-monitor-data-storage](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-data-storage.md)]
 
 [!INCLUDE [horz-monitor-platform-metrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-platform-metrics.md)]
 
-Azure AI Agent Service has commonality with a subset of Azure AI services. For a list of available metrics for Azure AI Agent Service, see the [monitoring data reference](../monitor-openai-reference.md#metrics).
+Azure AI Agent Service has commonality with a subset of Azure AI services. For a list of available metrics for Azure AI Agent Service, see the [monitoring data reference](../reference/monitor-service.md#metrics).
 
 <!-- ## OPTIONAL [TODO-replace-with-service-name] metrics
 If your service uses any non-Azure Monitor based metrics, add the following include and more information.
@@ -54,7 +54,7 @@ If your service uses any non-Azure Monitor based metrics, add the following incl
 
 [!INCLUDE [horz-monitor-resource-logs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-resource-logs.md)]
 
-For the available resource log categories, their associated Log Analytics tables, and the log schemas for Azure AI Agent Service, see the [monitoring data reference](../monitor-openai-reference.md#resource-logs).
+For the available resource log categories, their associated Log Analytics tables, and the log schemas for Azure AI Agent Service, see the [monitoring data reference](../reference/monitor-service.md#resource-logs).
 
 <!-- OPTIONAL. If your service doesn't collect Azure Monitor resource logs, use the following include [!INCLUDE [horz-monitor-no-resource-logs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-no-resource-logs.md)] -->
 
@@ -136,12 +136,12 @@ Depending on what type of application you're developing with your use of Azure A
 
 ### Azure AI Agent service alert rules
 
-You can set alerts for any metric, log entry, or activity log entry listed in the [monitoring data reference](../monitor-openai-reference.md).
+You can set alerts for any metric, log entry, or activity log entry listed in the [monitoring data reference](../reference/monitor-service.md).
 
 [!INCLUDE [horz-monitor-advisor-recommendations](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-advisor-recommendations.md)]
 
 ## Related content
 
-- See [Monitoring data reference](../monitor-openai-reference.md) for a reference of the metrics, logs, and other important values created for Azure AI Agent Service.
+- See [Monitoring data reference](../reference/monitor-service.md) for a reference of the metrics, logs, and other important values created for Azure AI Agent Service.
 - See [Monitoring Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resource) for general details on monitoring Azure resources.
 - See [Understand log searches in Azure Monitor logs](/azure/azure-monitor/logs/log-query-overview) about logs.
