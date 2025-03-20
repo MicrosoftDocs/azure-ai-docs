@@ -42,9 +42,6 @@ The macOS CocoaPod package is available for download and use with the [Xcode 9.4
 
 Alternatively, download the [binary CocoaPod](https://aka.ms/csspeech/macosbinary) and extract its contents. In your Xcode project, add a reference to the extracted *MicrosoftCognitiveServicesSpeech.xcframework* folder and its contents.
 
-> [!NOTE]
-> .NET developers can build native macOS applications by using the Xamarin.Mac application framework. For more information, see [Xamarin.Mac](/xamarin/mac/).
-
 # [iOS](#tab/ios)
 
 The Speech SDK for Objective-C is available natively as a CocoaPod package.
@@ -72,8 +69,5 @@ The macOS CocoaPod package is available for download and use with the [Xcode 9.4
 1. Run `pod install` to install the Speech SDK.
 
 Alternatively, download the [binary CocoaPod](https://aka.ms/csspeech/iosbinary) and extract its contents. In your Xcode project, add a reference to the extracted *MicrosoftCognitiveServicesSpeech.xcframework* folder and its contents.
-
-> [!NOTE]
-> .NET developers can build native iOS applications by using the Xamarin.iOS application framework. For more information, see [Xamarin.iOS](/xamarin/ios/).
 
 ---

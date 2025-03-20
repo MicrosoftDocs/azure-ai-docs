@@ -5,10 +5,10 @@ description: Learn how to manage Azure Machine Learning workspaces in the Azure 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.author: deeikele
-author: deeikele
+ms.author: larryfr
+author: Blackmist
 ms.reviewer: fsolomon
-ms.date: 02/06/2024
+ms.date: 03/05/2025
 ms.topic: how-to
 ms.custom: fasttrack-edit, FY21Q4-aml-seo-hack, contperf-fy21q4, sdkv2, event-tier1-build-2022, ignite-2022, devx-track-python
 ---
@@ -78,7 +78,7 @@ You can create a workspace [directly in Azure Machine Learning studio](./quickst
 
    [!notebook-python[](~/azureml-examples-main/sdk/python/resources/workspace/workspace.ipynb?name=basic_ex_workspace_name)]
 
-* **(Preview) Use existing hub workspace**. Instead of creating a default workspace with its own security settings and [associated resources](concept-workspace.md#associated-resources), you can reuse a [hub workspace](concept-hub-workspace.md)'s shared environment. Your new 'project' workspace will obtain security settings and shared configurations from the hub including compute and connections. This example assumes that the hub workspace already exists.
+* **(Preview) Use existing hub workspace**. Instead of creating a default workspace with its own security settings and [associated resources](concept-workspace.md#associated-resources), you can reuse a [hub workspace](concept-hub-workspace.md)'s shared environment. Your new 'project' workspace obtains security settings and shared configurations from the hub including compute and connections. This example assumes that the hub workspace already exists.
 
    ```python
    from azure.ai.ml.entities import Project
@@ -238,7 +238,7 @@ ml_client.workspaces.begin_create(ws)
 
 # [Portal](#tab/azure-portal)
 
-1. Select **Customer-managed keys**, and then select **Click to select key**.
+1. Select **Encrypt data using a ustomer-managed key**, and then select **Click to select key**. This configuration creates Azure resources used to encrypt data in your Azure subscription. Alternatively, select **Use service-side encryption (preview)** to use service-side resources for encryption. For more information, see [Customer-managed keys](concept-customer-managed-keys.md).
 
     :::image type="content" source="media/how-to-manage-workspace/advanced-workspace.png" alt-text="Screenshot of the customer-managed keys.":::
 
@@ -394,7 +394,7 @@ When you no longer need a workspace, delete it.
 [!INCLUDE [machine-learning-delete-workspace](includes/machine-learning-delete-workspace.md)]
 
 > [!TIP]
-> The default behavior for Azure Machine Learning is to _soft delete_ the workspace. This means that the workspace is not immediately deleted, but instead is marked for deletion. For more information, see [Soft delete](./concept-soft-delete.md).
+> The default behavior for Azure Machine Learning is to _soft delete_ the workspace. This means that the workspace isn't immediately deleted, but instead is marked for deletion. For more information, see [Soft delete](./concept-soft-delete.md).
 
 # [Python SDK](#tab/python)
 

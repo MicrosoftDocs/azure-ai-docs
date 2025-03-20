@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 9/20/2024
+ms.date: 3/10/2025
 ms.reviewer: alexeyo 
 zone_pivot_groups: programming-languages-speech-services-nomore-variant
 #Customer intent: As a developer using speech to text, I want to learn how to log audio and transcriptions for speech recognition.

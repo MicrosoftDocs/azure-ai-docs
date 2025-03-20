@@ -7,7 +7,7 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/20/2024
+ms.date: 3/10/2025
 ms.reviewer: rhurey
 ms.custom: devx-track-csharp, devx-track-extended-java, devx-track-python
 zone_pivot_groups: programming-languages-set-two-objective-c

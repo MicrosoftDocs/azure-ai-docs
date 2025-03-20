@@ -9,7 +9,7 @@ ms.author: jboback
 
 ## Prerequisites
 
-* [Create a Project in Foundry in the Azure AI Foundry Portal](../../../../../ai-studio/how-to/create-projects.md)
+* [Create a Project in Foundry in the Azure AI Foundry Portal](../../../../../ai-foundry/how-to/create-projects.md)
 
 ## Navigate to the Azure AI Foundry Playground
 
@@ -46,4 +46,4 @@ After your operation is completed, each entity is underlined in the center pane 
 |------|----------------------------|
 |Extracted key phrases|A list of the extracted key phrases.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/key-phrase-extraction.png" alt-text="A screenshot of an example of Extract key phrases in azure AI studio." lightbox="../../media/quickstarts/azure-ai-foundry/key-phrase-extraction.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/key-phrase-extraction.png" alt-text="A screenshot of an example of Extract key phrases in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/key-phrase-extraction.png":::

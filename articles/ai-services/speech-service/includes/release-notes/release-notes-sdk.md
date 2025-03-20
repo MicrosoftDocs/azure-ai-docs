@@ -529,7 +529,7 @@ This table shows the previous and new object names for real-time diarization and
   - Fix recognized callback when LUIS response `connectionMessage` is empty ([Customer issue](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/1644)).
   - Properly set speech segmentation timeout.
 - **Intent Recognition using pattern matching**:
-  - Non-json characters inside models now loads properly.
+  - Non-json characters inside models now load properly.
   - Fix hanging issue when `recognizeOnceAsync(text)` was called during continuous recognition.
 
 ### Speech SDK 1.23.0: July 2022 release
@@ -723,8 +723,8 @@ This table shows the previous and new object names for real-time diarization and
 
 ### Speech SDK 1.17.0: 2021-May release
 
->[!NOTE]
->Get started with the Speech SDK [here](../../quickstarts/setup-platform.md).
+> [!NOTE]
+> Get started with the Speech SDK [here](../../quickstarts/setup-platform.md).
 
 #### Highlights summary
 
@@ -1052,11 +1052,10 @@ Stay healthy!
 
 #### Bug fixes
 
- - Fixed bug where Conversation Transcriber didn't await  properly in JAVA APIs
- - Android x86 emulator fix for Xamarin [GitHub issue](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/363)
- - Add missing (Get|Set)Property methods to AudioConfig
- - Fix a TTS bug where the audioDataStream couldn't be stopped when connection fails
- - Using an endpoint without a region would cause USP failures for conversation translator
+ - Fixed bug where Conversation Transcriber didn't await properly in JAVA APIs.
+ - Add missing (Get|Set)Property methods to AudioConfig.
+ - Fix a TTS bug where the audioDataStream couldn't be stopped when connection fails.
+ - Using an endpoint without a region would cause USP failures for conversation translator.
  - ID generation in Universal Windows Applications now uses an appropriately unique GUID algorithm; it previously and unintentionally defaulted to a stubbed implementation that often produced collisions over large sets of interactions.
 
  #### Samples

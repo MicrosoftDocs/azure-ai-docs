@@ -1,5 +1,5 @@
 ---
-title: 'How to use Azure Functions with the Azure AI Search tool'
+title: How to use Azure Functions with the Azure AI Agent Service
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure functions with Azure AI Agents.
 services: azure-ai-agent-service
@@ -26,7 +26,7 @@ Meanwhile, bindings facilitate streamlined connections to input or output data s
 ## Prerequisites
 
 * [Azure Functions Core Tools v4.x](/azure/azure-functions/functions-run-local)
-* [Azure AI Agent Service](../../../../ai-studio/how-to/develop/sdk-overview.md?tabs=sync&pivots=programming-language-python#azure-ai-agent-service)
+* [Azure AI Agent Service](../../../../ai-foundry/how-to/develop/sdk-overview.md?tabs=sync&pivots=programming-language-python#azure-ai-agent-service)
 * [Azurite](https://github.com/Azure/Azurite)
 
 ## Prepare your local environment
@@ -232,7 +232,7 @@ agent = project_client.agents.create_agent(
 ```
 
 # [REST API](#tab/rest)
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`. The create the agent using:
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`. Then create the agent using:
 ```console
 curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
@@ -309,7 +309,7 @@ message = project_client.agents.create_message(
 print(f"Created message, message ID: {message.id}")
 
 # Run the agent
-run = project_client.agents.create_run(thread_id=thread.id, assistant_id=agent.id)
+run = project_client.agents.create_run(thread_id=thread.id, agent_id=agent.id)
 # Monitor and process the run status. The function call should be placed on the input queue by the Agent Service for the Azure Function to pick up when requires_action is returned
 while run.status in ["queued", "in_progress", "requires_action"]:
     time.sleep(1)

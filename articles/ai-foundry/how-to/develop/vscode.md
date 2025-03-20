@@ -26,7 +26,7 @@ author: sdgilley
 
 1. Go to [Azure AI Foundry](https://ai.azure.com).
 1. Open your project in Azure AI Foundry portal.
-1. On the left menu, select **Code**.
+1. On the left menu, select **Templates**.
 1. Select **VS Code container**.
 1. For **Compute**, select an existing compute instance or create a new one.
     * Select a compute instance to use. If it's stopped, select **Start compute** and wait for it to switch to **Running**. You'll see a **Ready** status when the compute is ready for use.
@@ -76,7 +76,7 @@ For more information, see [prompt flow capabilities](https://microsoft.github.io
 
 ## Use AI app templates
  
-AI app templates are linked from the right side of the **Code** tab of your project. These samples walk you through how to use the Azure AI SDKs to:
+AI app templates are linked from the right side of the **Templates** tab of your project. These samples walk you through how to use the Azure AI SDKs to:
 
 * Set up your development environment and connect to existing resources
 * Bring in your custom application code
@@ -102,4 +102,4 @@ For app templates and SDK samples in your preferred programming language, see [D
 ## Related content
 
 - [Get started building a chat app using the prompt flow SDK](../../quickstarts/get-started-code.md)
-- [Get started with Azure AI SDKs](sdk-overview.md)
+- [Get started with Azure AI Foundry SDKs](sdk-overview.md)

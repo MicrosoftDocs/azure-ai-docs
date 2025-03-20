@@ -295,6 +295,8 @@ items:
       href: concept-face-recognition.md
     - name: Face recognition data structures
       href: concept-face-recognition-data-structures.md
+    - name: Face liveness detection
+      href: concept-face-liveness-detection.md
     - name: Face liveness abuse monitoring
       href: concept-liveness-abuse-monitoring.md
   
