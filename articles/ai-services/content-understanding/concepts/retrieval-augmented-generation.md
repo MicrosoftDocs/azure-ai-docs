@@ -24,7 +24,7 @@ Through advanced contextual analysis, Content Understanding ensures highly relev
 
 Semantic chunking is a crucial technique in RAG implementations that segments content into meaningful, context-aware units. While traditional chunking methods often rely on simple character counts or basic delimiters, semantic chunking preserves the logical structure and relationships within the content, leading to more accurate information retrieval and generation.
 
-### Common Challenges in Multimodal Chunking
+### Common Challenges with Multimodal Content Chunking
 
 Processing multimodal content presents several unique challenges:
 * **Content Structure Variance**: Different content types require different chunking strategies - paragraphs for documents, transcription for audio, scenes for video.
@@ -33,37 +33,12 @@ Processing multimodal content presents several unique challenges:
 * **Scale and Performance**: Processing large volumes of multimodal content efficiently while maintaining accuracy.
 
 ### Content Understanding's Approach
+Content Understanding employs an intelligent, modality-aware chunking system that addresses the unique challenges of multimodal content processing. 
+- For documents and text, the system preserves hierarchical structure including sections, paragraphs, and tables while maintaining layout relationships and metadata associations across multiple languages and formats. 
+- When processing audio content, it intelligently segments by speaker turns and topical boundaries, maintaining speaker attribution and timestamps while effectively handling multiple speakers and overlapping speech. 
+- For video content, the system performs sophisticated segmentation based on scenes and semantic boundaries, extracting key frames with associated descriptions while preserving both temporal relationships and multimodal context across visual and audio components.
 
-Azure AI Content Understanding addresses these challenges through an intelligent, modality-aware chunking system:
-
-**Documents and Text**
-* Preserves document hierarchy (sections, paragraphs, tables)
-* Maintains layout relationships
-* Extracts and associates metadata like headers and footnotes
-* Supports multiple languages and file formats
-
-**Audio Content**
-* Segments by speaker turns and topical boundaries
-* Preserves speaker attribution and timestamps
-* Identifies and maintains conversational context
-* Handles multiple speakers and overlapping speech
-
-**Video Content**
-* Segments by scenes and semantic boundaries
-* Extracts key frames with associated descriptions
-* Maintains temporal relationships between segments
-* Preserves multimodal context (visual and audio)
-
-This unified approach ensures that chunks maintain their semantic integrity while being optimized for downstream RAG operations. By addressing these fundamental challenges, Content Understanding enables enterprises to build more robust and accurate RAG solutions that can effectively leverage their entire content ecosystem.
-
-The image below illustrates the page elements and content that Content Understanding extracts from documents with Layout analysis, showcasing Content Understanding’s capability to provide a structured representation of extracted regions of interest and their inter-relationships. 
-
-:::image type="content" source="../media/concepts/layoutpageelements.png" alt-text="Screenshot of Content Understanding Document Data Extraction with Layout Analysis for RAG design.":::
-
-The image below exemplifies how structured data can be meticulously extracted from audio files using a customized schema uniquely designed to meet specific requirements. This structured format facilitates efficient organization, indexing, and searching of content.
-
-:::image type="content" source="../media/concepts/audiorag.png" alt-text="Screenshot of Content Understanding Audio Data Extraction for RAG design":::
-
+This unified approach ensures semantic integrity across all content types while optimizing for downstream RAG operations. The system's ability to maintain contextual relationships both within and across modalities enables more accurate and comprehensive information retrieval, making it particularly valuable for enterprise applications requiring deep content understanding and analysis.
 
 ## Building a Multimodal RAG Solution and Chat with Content Understanding
 
