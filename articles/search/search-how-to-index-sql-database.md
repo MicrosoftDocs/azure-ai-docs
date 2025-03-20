@@ -116,15 +116,14 @@ In this step, specify the data source, index, and indexer.
 
    :::image type="content" source="media/search-how-to-index-sql-database/database-online.png" alt-text="Screenshot of the database status page in the Azure portal.":::
 
-1. Make sure you have a table or view that meets the requirements for change detection. You can only pull from a single table or view. 
+1. Make sure you have a table or view that meets the requirements for indexers and change detection.
 
-   A table is recommended because it supports SQL integrated change tracking policy, which detects new, updated, and deleted rows. A high water mark policy doesn't support row deletion and only works for views.
+   First, you can only pull from a single table or view. We recommend tables because they support SQL integrated change tracking policy, which detects new, updated, and deleted rows. A high water mark policy doesn't support row deletion and is harder to implement.
 
-   The primary key must be a single value (compound keys aren't supported) and nonclustered.
+   Second, the primary key must be a single value (compound keys aren't supported) and nonclustered.
 
-1. Switch to your search service and create a data source:
+1. Switch to your search service and create a data source. Under **Search management** > **Data sources**, select **Add data source**:
 
-   1. Under **Search management** > **Data sources**, select **Add data source**.
    1. For data source type, choose *Azure SQL Database*.
    1. Provide a name for the data source object on Azure AI Search.
    1. Use the dropdowns to select the subscription, account type, server, database, table or view, schema, and table name.
