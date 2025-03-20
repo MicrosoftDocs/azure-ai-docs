@@ -78,23 +78,12 @@ Here's how Content Understanding processes each content type for an effective RA
 
 **Content Extraction with Azure Content Understanding**
 
-- In the training manual document, it extracts hierarchical structure, layout elements, and tabular relationships.
-- In product diagrams and product trends From images, it identifies components, spatial relationships, and textual annotations.
+- From the training manual document, it extracts hierarchical structure, layout elements, and tabular relationships.
+- From product images and images of product trend charts its verbalizes image description and generates structured output from charts and diagrams.
 - From demonstration videos, it generates scene descriptions and summaries, extracts key frame extraction, shot detection and audio transcriptions. 
 - From audio training sessions, it extracts speaker-diarized transcripts and can generate topics, summaries and sentiments. 
 
-This comprehensive extraction enables a unified knowledge base where content maintains contextual relationships across modalities - for example, linking a video demonstration to relevant manual sections, technical diagrams, and instructor explanations.
-This comprehensive extraction creates a rich knowledge base where each content type maintains its unique contextual elements while enabling cross-modal relationships. For example, a product demonstration video can be linked to relevant sections in the training manual, corresponding technical diagrams, and related instructor explanations from recorded sessions.
-
-**Data Extraction with Azure Content Understanding:** Azure AI Content Understanding efficiently converts unstructured documents, images, videos, and audio into structured data formats. Documents are transformed into structured data, distinguishing between tables, paragraphs, sections, and figures. Audio is transcribed with precise timestamps and speaker labels, while video content is transcribed, summarized with key frames, descriptions, and relevant metadata. 
-
-When a user asks: "What's the procedure for configuring the security settings?", the RAG system can:
-1. Query relevant sections from PDF manuals
-2. Find matching diagrams with visual instructions 
-3. Link to video segments showing the procedure
-4. Reference instructor explanations from recorded sessions
-
-This unified approach ensures comprehensive answers that leverage all available content types while maintaining context and relationships between different modalities.
+This comprehensive extraction creates a rich knowledge base where each content type maintains its unique contextual elements while enabling cross-modal relationships.
 
 
 
@@ -103,11 +92,14 @@ This unified approach ensures comprehensive answers that leverage all available 
 
 For more information, our comprehensive [analyzer templates](analyzer-templates.md) offer a streamlined approach for transforming unstructured data into structured data formats. These templates facilitate the creation of efficient analyzers without the need to design schemas from scratch. Explore our [**code samples**](https://github.com/Azure-Samples/azure-ai-content-understanding-python) for simple demos on extracting data from multimodal files.
 
+When a user asks: "What's the procedure for configuring the security settings?", the RAG system can:
+1. Query relevant sections from PDF manuals
+2. Find matching diagrams with visual instructions 
+3. Link to video segments showing the procedure
+4. Reference instructor explanations from recorded sessions
+
+
 **Indexing with Azure AI Search and Querying with Azure OpenAI Service:** Once data is structured, [**Azure AI Search**](https://learn.microsoft.com/en-us/azure/search/search-get-started-portal) can create a comprehensive, searchable index and [**Azure OpenAI's**](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions) chat models can efficiently query and search through indexed content, providing accurate and contextually relevant answers. 
-
-### Retrieving Chunks based on a question
-If you're looking for a specific section in a document, you can use semantic chunking to divide the document into smaller chunks based on the section headers helping you to find the section you're looking for quickly and easily:
-
 
 > [!div class="nextstepaction"]
 > [View samples on GitHub.](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
