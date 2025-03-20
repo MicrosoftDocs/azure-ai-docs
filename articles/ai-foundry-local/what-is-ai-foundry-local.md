@@ -16,9 +16,9 @@ ms.custom: build-2025
 
 # What is AI Foundry Local?
 
-AI Foundry Local is a local version of Azure AI Foundry that enables local execution of large language models (LLMs) directly on your device. This on-device AI inference solution provides privacy, customization, and cost benefits compared to cloud-based alternatives. Best of all, it's built to fit into your existing workflows and applications with an easy-to-use CLI and REST API!
+AI Foundry Local is a local version of Azure AI Foundry that enables local execution of large language models (LLMs) directly on your device. This on-device AI inference solution provides privacy, customization, and cost benefits compared to cloud-based alternatives. Best of all, it fits into your existing workflows and applications with an easy-to-use CLI and REST API!
 
-By leveraging the optimization work of ONNX Runtime, Olive, and the ONNX ecosystem, Foundry Local delivers a highly optimized and performant user experience for running AI models locally.
+Foundry Local applies the optimization work of ONNX Runtime, Olive, and the ONNX ecosystem, Foundry Local delivers a highly optimized and performant user experience for running AI models locally.
 
 ## Key features
 
@@ -42,15 +42,14 @@ AI Foundry Local is ideal for scenarios where:
 
 ## Pricing and billing
 
-Entirely Free! You're using your own hardware, and there are no additional costs associated with running AI models locally.
+Entirely Free! You're using your own hardware, and there are no extra costs associated with running AI models locally.
 
 ## How to get access
 
 Download from the Microsoft Store. (WIP)
 
-## Related content
+## Next steps
 
 - [Get started with AI Foundry Local](get-started.md)
-- [AI Foundry Local CLI reference](cli-reference.md)
-- [Azure AI Foundry documentation](/azure/ai-services/ai-foundry/)
-- [ONNX Runtime documentation](https://onnxruntime.ai/docs/)
+- [Compile Hugging Face models for Foundry Local](how-to/compile-models-for-foundry-local.md)
+- [Learn more about ONNX Runtime](https://onnxruntime.ai/docs/)
