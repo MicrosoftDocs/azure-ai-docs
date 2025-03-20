@@ -30,15 +30,17 @@ This article also provides:
 
 ## Prerequisites
 
-+ An [Azure SQL database](/azure/azure-sql/database/sql-database-paas-overview) with data in a single table or view, or a [SQL Managed Instance with a public endpoint](search-how-to-index-sql-managed-instance.md).
++ An [Azure SQL database](/azure/azure-sql/database/sql-database-paas-overview) or a [SQL Managed Instance with a public endpoint](search-how-to-index-sql-managed-instance.md).
 
-+ A single table or view. To support incremental indexing, review [extra requirements](#indexing-new-changed-and-deleted-rows) for that workload.
++ A single table or view.
 
-  Use a table if your data is large or if you need incremental indexing using SQL's native change detection capabilities ([SQL integrated change tracking](#indexing-new-changed-and-deleted-rows)).
+  Use a table if your data is large or if you need incremental indexing using SQL's native change detection capabilities ([SQL integrated change tracking](#indexing-new-changed-and-deleted-rows)) to reflect new, changed, and deleted rows in the search index.
 
-  Use a view if you need to consolidate data from multiple tables. Large views aren't ideal for SQL indexer. A workaround is to create a new table just for ingestion into your Azure AI Search index. To support incremental indexing, you can use [High Water Mark](#indexing-new-changed-and-deleted-rows) for change detection.
+  Use a view if you need to consolidate data from multiple tables. Large views aren't ideal for SQL indexer. A workaround is to create a new table just for ingestion into your Azure AI Search index. If you choose to go with a view, you can use [High Water Mark](#indexing-new-changed-and-deleted-rows) for change detection, but must use a workaround for deletion detection.
 
-+ Read permissions. Azure AI Search supports SQL Server authentication, where the user name and password are provided on the connection string. Alternatively, you can [set up a managed identity and use Azure roles](search-howto-managed-identities-sql.md).
++ Primary key must be single-valued. On a table, it must also be non-clustered for full SQL integrated change tracking.
+
++ Read permissions. Azure AI Search supports SQL Server authentication, where the user name and password are provided on the connection string. Alternatively, you can [set up a managed identity and use Azure roles](search-howto-managed-identities-sql.md) with membership in **SQL Server Contributor** or **SQL DB Contributor** roles.
 
 To work through the examples in this article, you need the Azure portal or a [REST client](search-get-started-rest.md). If you're using Azure portal, make sure that access to all public networks is enabled in the Azure SQL firewall and that the client has access via an inbound rule. For a REST client that runs locally, configure the SQL Server firewall to allow inbound access from your device IP address. Other approaches for creating an Azure SQL indexer include Azure SDKs.
 
@@ -120,7 +122,7 @@ In this step, specify the data source, index, and indexer.
 
    First, you can only pull from a single table or view. We recommend tables because they support SQL integrated change tracking policy, which detects new, updated, and deleted rows. A high water mark policy doesn't support row deletion and is harder to implement.
 
-   Second, the primary key must be a single value (compound keys aren't supported) and nonclustered.
+   Second, the primary key must be a single value (compound keys aren't supported) and non-clustered.
 
 1. Switch to your search service and create a data source. Under **Search management** > **Data sources**, select **Add data source**:
 
