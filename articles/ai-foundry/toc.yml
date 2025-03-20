@@ -96,20 +96,6 @@ items:
         href: how-to/troubleshoot-deploy-and-monitor.md
   - name: Work with models from the model catalog
     items:
-    - name: Work with embedding models
-      items:
-        - name: Work with text embedding models
-          href: ../ai-foundry/model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context
-        - name: Work with image embedding models
-          href: ../ai-foundry/model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context
-    - name: Work with chat models
-      items:
-        - name: Work with chat completion models
-          href: ../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context
-        - name: Work with reasoning models
-          href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context
-        - name: Work with image and audio content
-          href: ../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context
     - name: Featured models in the model catalog
       href: concepts/models-featured.md
     - name: Other featured models
@@ -124,12 +110,28 @@ items:
           href: how-to/healthcare-ai/deploy-cxrreportgen.md
         - name: MedImageParse - prompted segmentation model
           href: how-to/healthcare-ai/deploy-medimageparse.md
+      - name: Nvidia Inference Microservices (NIM)
+        href: how-to/deploy-nvidia-inference-microservice.md
       - name: Gretel Navigator model
         href: how-to/deploy-models-gretel-navigator.md
       - name: Mistral-7B and Mixtral models
         href: how-to/deploy-models-mistral-open.md
       - name: Stability AI models
         href: ./how-to/deploy-stability-models.md
+    - name: Work with embedding models
+      items:
+        - name: Work with text embedding models
+          href: ../ai-foundry/model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context
+        - name: Work with image embedding models
+          href: ../ai-foundry/model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context
+    - name: Work with chat models
+      items:
+        - name: Work with chat completion models
+          href: ../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context
+        - name: Work with reasoning models
+          href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context
+        - name: Work with image and audio content
+          href: ../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context
 - name: Azure OpenAI and AI services
   items:
   - name: Use Azure OpenAI Service in Azure AI Foundry portal
@@ -324,7 +326,7 @@ items:
       href: /azure/search/tutorial-rag-build-solution?context=/azure/ai-foundry/context/context
   - name: Develop with code
     items:
-    - name: Work with projects in VS Code
+    - name: Work with projects in VS Code containers
       href: how-to/develop/vscode.md
     - name: Start with an AI template
       href: how-to/develop/ai-template-get-started.md

@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use chat completions API with _multimodal_ models deployed to Azure AI model inference in Azure AI services. In addition to text input, multimodal models can accept other input types, such as images and audio input.
+This article explains how to use chat completions API with _multimodal_ models deployed to Azure AI model inference in Azure AI services. In addition to text input, multimodal models can accept other input types, such as images or audio input.
 
 ## Prerequisites
 
@@ -28,6 +28,7 @@ To use chat completion models in your application, you need:
 
 * A chat completions model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
 
+    * This example uses `phi-4-multimodal-instruct`.
 
 ## Use chat completions
 
