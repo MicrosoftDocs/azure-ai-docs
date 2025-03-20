@@ -5,7 +5,7 @@ description: Learn about deploying models in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 10/21/2024
+ms.date: 3/20/2024
 ms.reviewer: fasantia
 ms.author: mopeakande
 author: msakande
