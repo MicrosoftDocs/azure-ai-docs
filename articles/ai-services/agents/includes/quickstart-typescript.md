@@ -106,7 +106,11 @@ export async function main(): Promise<void> {
     name: "my-agent",
     instructions: "You are a helpful agent",
     tools: [codeInterpreterTool.definition],
-    toolResources: codeInterpreterTool.resources,
+    toolResources: {
+      codeInterpreter: {
+        fileIds: []
+      }
+    }
   });
 
   // Step 3: Create a thread
