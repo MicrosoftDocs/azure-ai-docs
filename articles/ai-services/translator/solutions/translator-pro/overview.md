@@ -29,7 +29,7 @@ Microsoft Translator Pro is a paid mobile application available on the Azure pub
 
 * This app operates as a paid offering, necessitating payment before use.
 
-* The app is available for download to enterprises that meet certain criteria in selected countries. For more information, *see* [Country/Region availability](#country/region-availability).
+* The app is available for download to enterprises that meet certain criteria in selected countries. For more information, *see* [Country/Region availability](#country-or-region-availability).
 
 * Offline translation is limited to a select number of languages. For more information, *see* [Language support](language-support.md).
 
@@ -43,7 +43,7 @@ Microsoft Translator Pro is a paid mobile application available on the Azure pub
 
 * **Customized phrasebook**. Administrators can upload a list of commonly used phrases specific to their organization. These phrases can then be quickly accessed and translated during conversations, ensuring communication remains efficient and accurate.
 
-* **International availability**. The app is now accessible in selected countries outside of the United States. For more information, *see* [Country/Region availability](#country/region-availability).
+* **International availability**. The app is now accessible in selected countries outside of the United States. For more information, *see* [Country/Region availability](#country-or-region-availability).
 
 * **US Government cloud availability**. US Government agencies can now operate the app within selected regions of the US Government cloud. For more information, *see* [Region availability](#region-availability).
 
@@ -53,7 +53,7 @@ Microsoft Translator Pro is a paid mobile application available on the Azure pub
 
 * **Enterprise-grade security**. Microsoft Translator Pro ensures exceptional translation quality paired with robust security features. Recognizing that privacy and security are paramount for your organization, administrators can sign in to the app using organizational credentials. Your organization's conversational data remains entirely protected within your Azure tenant. Not Microsoft or any third parties can access your data.
 
-## Country/Region availability
+## Country or Region availability
 
 Microsoft Translator Pro is available for download in the following countries from the `iOS` app store:
 
