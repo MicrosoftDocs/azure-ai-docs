@@ -671,9 +671,14 @@ token_provider = get_bearer_token_provider(
 )
 
 
-MODEL = "computer-use-preview" #Your model deployment name
+# Configuration
+
+AZURE_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")
+MODEL = "computer-use-preview" # Set to model deployment name
 DISPLAY_WIDTH = 1024
 DISPLAY_HEIGHT = 768
+API_VERSION = "2025-03-01-preview" #Use this API version or later
+ITERATIONS = 5 # Max number of iterations before returning control to human supervisor
 ```
 
 ### Key mapping for browser interaction
@@ -717,22 +722,15 @@ async def handle_action(page, action):
     action_type = action.type
     
     if action_type == "drag":
-        # Validate coordinates
-        start_x, start_y = validate_coordinates(action.start_x, action.start_y)
-        end_x, end_y = validate_coordinates(action.end_x, action.end_y)
-        
-        print(f"Action: drag from ({start_x}, {start_y}) to ({end_x}, {end_y})")
-        await page.mouse.move(start_x, start_y)
-        await page.mouse.down()
-        await page.mouse.move(end_x, end_y, steps=10)
-        await page.mouse.up()
+        print("Drag action is not supported in this implementation. Skipping.")
+        return
         
     elif action_type == "click":
         button = getattr(action, "button", "left")
         # Validate coordinates
         x, y = validate_coordinates(action.x, action.y)
         
-        print(f"Action: click at ({x}, {y}) with button '{button}'")
+        print(f"\tAction: click at ({x}, {y}) with button '{button}'")
         
         if button == "back":
             await page.go_back()
@@ -752,7 +750,7 @@ async def handle_action(page, action):
         # Validate coordinates
         x, y = validate_coordinates(action.x, action.y)
         
-        print(f"Action: double click at ({x}, {y})")
+        print(f"\tAction: double click at ({x}, {y})")
         await page.mouse.dblclick(x, y)
         
     elif action_type == "scroll":
@@ -761,13 +759,13 @@ async def handle_action(page, action):
         # Validate coordinates
         x, y = validate_coordinates(action.x, action.y)
         
-        print(f"Action: scroll at ({x}, {y}) with offsets ({scroll_x}, {scroll_y})")
+        print(f"\tAction: scroll at ({x}, {y}) with offsets ({scroll_x}, {scroll_y})")
         await page.mouse.move(x, y)
         await page.evaluate(f"window.scrollBy({{left: {scroll_x}, top: {scroll_y}, behavior: 'smooth'}});")
         
     elif action_type == "keypress":
         keys = getattr(action, "keys", [])
-        print(f"Action: keypress {keys}")
+        print(f"\tAction: keypress {keys}")
         mapped_keys = [KEY_MAPPING.get(key.lower(), key) for key in keys]
         
         if len(mapped_keys) > 1:
@@ -783,19 +781,19 @@ async def handle_action(page, action):
                 
     elif action_type == "type":
         text = getattr(action, "text", "")
-        print(f"Action: type text: {text}")
+        print(f"\tAction: type text: {text}")
         await page.keyboard.type(text, delay=20)
         
     elif action_type == "wait":
         ms = getattr(action, "ms", 1000)
-        print(f"Action: wait {ms}ms")
+        print(f"\tAction: wait {ms}ms")
         await asyncio.sleep(ms / 1000)
         
     elif action_type == "screenshot":
-        print("Action: screenshot")
+        print("\tAction: screenshot")
         
     else:
-        print(f"Unrecognized action: {action_type}")
+        print(f"\tUnrecognized action: {action_type}")
 ```
 
 This function attempts to handle various types of actions such as:
@@ -813,9 +811,18 @@ In order for the model to be able to see what it's interacting with the model ne
 
 ```python
 async def take_screenshot(page):
-    """Take a screenshot and return base64 encoding."""
-    screenshot_bytes = await page.screenshot(full_page=False)
-    return base64.b64encode(screenshot_bytes).decode("utf-8")
+    """Take a screenshot and return base64 encoding with caching for failures."""
+    global last_successful_screenshot
+    
+    try:
+        screenshot_bytes = await page.screenshot(full_page=False)
+        last_successful_screenshot = base64.b64encode(screenshot_bytes).decode("utf-8")
+        return last_successful_screenshot
+    except Exception as e:
+        print(f"Screenshot failed: {e}")
+        print(f"Using cached screenshot from previous successful capture")
+        if last_successful_screenshot:
+            return last_successful_screenshot
 ```
 
 This function captures the current browser state as an image and returns it as a base64-encoded string, ready to be sent to the model. We'll constantly do this in a loop after each step allowing the model to see if the command it tried to execute was successful or not, which then allows it to adjust based on the contents of the screenshot.
@@ -825,7 +832,7 @@ This function captures the current browser state as an image and returns it as a
 This function processes the model's responses and executes the requested actions:
 
 ```python
-async def process_model_response(client, response, page, max_iterations=20):
+async def process_model_response(client, response, page, max_iterations=ITERATIONS):
     """Process the model's response and execute actions."""
     for iteration in range(max_iterations):
         if not hasattr(response, 'output') or not response.output:
@@ -834,27 +841,40 @@ async def process_model_response(client, response, page, max_iterations=20):
         
         # Safely access response id
         response_id = getattr(response, 'id', 'unknown')
-        print(f"Iteration {iteration + 1} - Response ID: {response_id}")
+        print(f"\nIteration {iteration + 1} - Response ID: {response_id}\n")
         
-        # Print text responses
+        # Print text responses and reasoning
         for item in response.output:
+            # Handle text output
             if hasattr(item, 'type') and item.type == "text":
                 print(f"\nModel message: {item.text}\n")
                 
-            # Print reasoning if available
-            if hasattr(item, 'type') and item.type == "reasoning" and hasattr(item, 'summary'):
-                print("\n=== Model Reasoning ===")
-                for idx, summary in enumerate(item.summary, 1):
-                    if hasattr(summary, 'type') and summary.type == "summary_text":
-                        print(f"{idx}. {summary.text}")
-                print("=====================\n")
+            # Handle reasoning output
+            if hasattr(item, 'type') and item.type == "reasoning":
+                # Extract meaningful content from the reasoning
+                meaningful_content = []
+                
+                if hasattr(item, 'summary') and item.summary:
+                    for summary in item.summary:
+                        # Handle different potential formats of summary content
+                        if isinstance(summary, str) and summary.strip():
+                            meaningful_content.append(summary)
+                        elif hasattr(summary, 'text') and summary.text.strip():
+                            meaningful_content.append(summary.text)
+                
+                # Only print reasoning section if there's actual content
+                if meaningful_content:
+                    print("=== Model Reasoning ===")
+                    for idx, content in enumerate(meaningful_content, 1):
+                        print(f"{content}")
+                    print("=====================\n")
         
         # Extract computer calls
         computer_calls = [item for item in response.output 
                          if hasattr(item, 'type') and item.type == "computer_call"]
         
         if not computer_calls:
-            print("No computer call found in response.")
+            print("No computer call found in response. Reverting control to human operator")
             break
         
         computer_call = computer_calls[0]
@@ -881,22 +901,32 @@ async def process_model_response(client, response, page, max_iterations=20):
         
         # Execute the action
         try:
-            await page.bring_to_front()
-            await handle_action(page, action)
-            
-            # Add delay after actions to let the page respond
-            if action.type in ["click", "type", "drag"]:
-                await asyncio.sleep(1.5)
-            elif action.type != "wait":
-                await asyncio.sleep(0.5)
-        
+           await page.bring_to_front()
+           await handle_action(page, action)
+           
+           # Check if a new page was created after the action
+           if action.type in ["click"]:
+               await asyncio.sleep(1.5)
+               # Get all pages in the context
+               all_pages = page.context.pages
+               # If we have multiple pages, check if there's a newer one
+               if len(all_pages) > 1:
+                   newest_page = all_pages[-1]  # Last page is usually the newest
+                   if newest_page != page and newest_page.url not in ["about:blank", ""]:
+                       print(f"\tSwitching to new tab: {newest_page.url}")
+                       page = newest_page  # Update our page reference
+           elif action.type != "wait":
+               await asyncio.sleep(0.5)
+               
         except Exception as e:
-            print(f"Error handling action {action.type}: {e}")
-            import traceback
-            traceback.print_exc()
-        
+           print(f"Error handling action {action.type}: {e}")
+           import traceback
+           traceback.print_exc()    
+
         # Take a screenshot after the action
         screenshot_base64 = await take_screenshot(page)
+
+        print("\tNew screenshot taken")
         
         # Prepare input for the next request
         input_content = [{
@@ -924,7 +954,7 @@ async def process_model_response(client, response, page, max_iterations=20):
             current_url = page.url
             if current_url and current_url != "about:blank":
                 input_content[0]["current_url"] = current_url
-                print(f"Current URL: {current_url}")
+                print(f"\tCurrent URL: {current_url}")
         except Exception as e:
             print(f"Error getting URL: {e}")
         
@@ -942,6 +972,8 @@ async def process_model_response(client, response, page, max_iterations=20):
                 input=input_content,
                 truncation="auto"
             )
+
+            print("\tModel processing screenshot")
         except Exception as e:
             print(f"Error in API call: {e}")
             import traceback
@@ -967,12 +999,12 @@ In this section we have added code that:
 The main function coordinates the entire process:
 
 ```python
-async def main():    
     # Initialize OpenAI client
     client = AzureOpenAI(
-    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-    azure_ad_token_provider=token_provider,
-    api_version="2025-03-01-preview"
+        azure_endpoint=AZURE_ENDPOINT,
+        azure_ad_token_provider=token_provider,
+        api_version=API_VERSION
+    )
     
     # Initialize Playwright
     async with async_playwright() as playwright:
@@ -1006,6 +1038,7 @@ async def main():
                 
                 # Take initial screenshot
                 screenshot_base64 = await take_screenshot(page)
+                print("\nTake initial screenshot")
                 
                 # Initial request to the model
                 response = client.responses.create(
@@ -1016,6 +1049,7 @@ async def main():
                         "display_height": DISPLAY_HEIGHT,
                         "environment": "browser"
                     }],
+                    instructions = "You are an AI agent with the ability to control a browser. You can control the keyboard and mouse. You take a screenshot after each action to check if your action was successful. Once you have completed the requested task you should stop running and pass back control to your human operator.",
                     input=[{
                         "role": "user",
                         "content": [{
@@ -1029,15 +1063,10 @@ async def main():
                     reasoning={"generate_summary": "concise"},
                     truncation="auto"
                 )
-                
+                print("\nSending model initial screenshot and instructions")
+
                 # Process model actions
                 await process_model_response(client, response, page)
-                
-                # Print final URL
-                try:
-                    print(f"Final URL: {page.url}")
-                except:
-                    pass
                 
         except Exception as e:
             print(f"An error occurred: {e}")
@@ -1049,6 +1078,9 @@ async def main():
             await context.close()
             await browser.close()
             print("Browser closed.")
+
+if __name__ == "__main__":
+    asyncio.run(main())
 ```
 
 The main function:
@@ -1066,7 +1098,7 @@ The main function:
 ### Complete script
 
 > [!CAUTION]
-> This code is experimental and for demonstration purposes only. It's only intended to illustrate the basic flow of the responses API and the `computer-use-preview` model. While you can execute this code on your local computer, we strongly recommend running this code on a low privilege virtual machine with no access to sensitive data. This code is for basic testing purposes only.
+> This code is experimental and for demonstration purposes only. It's only intended to illustrate the basic flow of the responses API and the `computer-use-preview` model. While you can execute this code on your local computer, we strongly recommend running this code on a low privilege virtual machine with no access to sensitive data. This code is for basic testing purposes only. 
 
 ```python
 import os
@@ -1076,14 +1108,19 @@ from openai import AzureOpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from playwright.async_api import async_playwright, TimeoutError
 
+
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
 # Configuration
+
+AZURE_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")
 MODEL = "computer-use-preview"
 DISPLAY_WIDTH = 1024
 DISPLAY_HEIGHT = 768
+API_VERSION = "2025-03-01-preview"
+ITERATIONS = 5 # Max number of iterations before forcing the model to return control to the human supervisor
 
 # Key mapping for special keys in Playwright
 KEY_MAPPING = {
@@ -1103,22 +1140,15 @@ async def handle_action(page, action):
     action_type = action.type
     
     if action_type == "drag":
-        # Validate coordinates
-        start_x, start_y = validate_coordinates(action.start_x, action.start_y)
-        end_x, end_y = validate_coordinates(action.end_x, action.end_y)
-        
-        print(f"Action: drag from ({start_x}, {start_y}) to ({end_x}, {end_y})")
-        await page.mouse.move(start_x, start_y)
-        await page.mouse.down()
-        await page.mouse.move(end_x, end_y, steps=10)
-        await page.mouse.up()
+        print("Drag action is not supported in this implementation. Skipping.")
+        return
         
     elif action_type == "click":
         button = getattr(action, "button", "left")
         # Validate coordinates
         x, y = validate_coordinates(action.x, action.y)
         
-        print(f"Action: click at ({x}, {y}) with button '{button}'")
+        print(f"\tAction: click at ({x}, {y}) with button '{button}'")
         
         if button == "back":
             await page.go_back()
@@ -1138,7 +1168,7 @@ async def handle_action(page, action):
         # Validate coordinates
         x, y = validate_coordinates(action.x, action.y)
         
-        print(f"Action: double click at ({x}, {y})")
+        print(f"\tAction: double click at ({x}, {y})")
         await page.mouse.dblclick(x, y)
         
     elif action_type == "scroll":
@@ -1147,13 +1177,13 @@ async def handle_action(page, action):
         # Validate coordinates
         x, y = validate_coordinates(action.x, action.y)
         
-        print(f"Action: scroll at ({x}, {y}) with offsets ({scroll_x}, {scroll_y})")
+        print(f"\tAction: scroll at ({x}, {y}) with offsets ({scroll_x}, {scroll_y})")
         await page.mouse.move(x, y)
         await page.evaluate(f"window.scrollBy({{left: {scroll_x}, top: {scroll_y}, behavior: 'smooth'}});")
         
     elif action_type == "keypress":
         keys = getattr(action, "keys", [])
-        print(f"Action: keypress {keys}")
+        print(f"\tAction: keypress {keys}")
         mapped_keys = [KEY_MAPPING.get(key.lower(), key) for key in keys]
         
         if len(mapped_keys) > 1:
@@ -1169,26 +1199,36 @@ async def handle_action(page, action):
                 
     elif action_type == "type":
         text = getattr(action, "text", "")
-        print(f"Action: type text: {text}")
+        print(f"\tAction: type text: {text}")
         await page.keyboard.type(text, delay=20)
         
     elif action_type == "wait":
         ms = getattr(action, "ms", 1000)
-        print(f"Action: wait {ms}ms")
+        print(f"\tAction: wait {ms}ms")
         await asyncio.sleep(ms / 1000)
         
     elif action_type == "screenshot":
-        print("Action: screenshot")
+        print("\tAction: screenshot")
         
     else:
-        print(f"Unrecognized action: {action_type}")
+        print(f"\tUnrecognized action: {action_type}")
 
 async def take_screenshot(page):
-    """Take a screenshot and return base64 encoding."""
-    screenshot_bytes = await page.screenshot(full_page=False)
-    return base64.b64encode(screenshot_bytes).decode("utf-8")
+    """Take a screenshot and return base64 encoding with caching for failures."""
+    global last_successful_screenshot
+    
+    try:
+        screenshot_bytes = await page.screenshot(full_page=False)
+        last_successful_screenshot = base64.b64encode(screenshot_bytes).decode("utf-8")
+        return last_successful_screenshot
+    except Exception as e:
+        print(f"Screenshot failed: {e}")
+        print(f"Using cached screenshot from previous successful capture")
+        if last_successful_screenshot:
+            return last_successful_screenshot
 
-async def process_model_response(client, response, page, max_iterations=20):
+
+async def process_model_response(client, response, page, max_iterations=ITERATIONS):
     """Process the model's response and execute actions."""
     for iteration in range(max_iterations):
         if not hasattr(response, 'output') or not response.output:
@@ -1197,27 +1237,40 @@ async def process_model_response(client, response, page, max_iterations=20):
         
         # Safely access response id
         response_id = getattr(response, 'id', 'unknown')
-        print(f"Iteration {iteration + 1} - Response ID: {response_id}")
+        print(f"\nIteration {iteration + 1} - Response ID: {response_id}\n")
         
-        # Print text responses
+        # Print text responses and reasoning
         for item in response.output:
+            # Handle text output
             if hasattr(item, 'type') and item.type == "text":
                 print(f"\nModel message: {item.text}\n")
                 
-            # Print reasoning if available
-            if hasattr(item, 'type') and item.type == "reasoning" and hasattr(item, 'summary'):
-                print("\n=== Model Reasoning ===")
-                for idx, summary in enumerate(item.summary, 1):
-                    if hasattr(summary, 'type') and summary.type == "summary_text":
-                        print(f"{idx}. {summary.text}")
-                print("=====================\n")
+            # Handle reasoning output
+            if hasattr(item, 'type') and item.type == "reasoning":
+                # Extract meaningful content from the reasoning
+                meaningful_content = []
+                
+                if hasattr(item, 'summary') and item.summary:
+                    for summary in item.summary:
+                        # Handle different potential formats of summary content
+                        if isinstance(summary, str) and summary.strip():
+                            meaningful_content.append(summary)
+                        elif hasattr(summary, 'text') and summary.text.strip():
+                            meaningful_content.append(summary.text)
+                
+                # Only print reasoning section if there's actual content
+                if meaningful_content:
+                    print("=== Model Reasoning ===")
+                    for idx, content in enumerate(meaningful_content, 1):
+                        print(f"{content}")
+                    print("=====================\n")
         
         # Extract computer calls
         computer_calls = [item for item in response.output 
                          if hasattr(item, 'type') and item.type == "computer_call"]
         
         if not computer_calls:
-            print("No computer call found in response.")
+            print("No computer call found in response. Reverting control to human supervisor")
             break
         
         computer_call = computer_calls[0]
@@ -1244,22 +1297,32 @@ async def process_model_response(client, response, page, max_iterations=20):
         
         # Execute the action
         try:
-            await page.bring_to_front()
-            await handle_action(page, action)
-            
-            # Add delay after actions to let the page respond
-            if action.type in ["click", "type", "drag"]:
-                await asyncio.sleep(1.5)
-            elif action.type != "wait":
-                await asyncio.sleep(0.5)
-        
+           await page.bring_to_front()
+           await handle_action(page, action)
+           
+           # Check if a new page was created after the action
+           if action.type in ["click"]:
+               await asyncio.sleep(1.5)
+               # Get all pages in the context
+               all_pages = page.context.pages
+               # If we have multiple pages, check if there's a newer one
+               if len(all_pages) > 1:
+                   newest_page = all_pages[-1]  # Last page is usually the newest
+                   if newest_page != page and newest_page.url not in ["about:blank", ""]:
+                       print(f"\tSwitching to new tab: {newest_page.url}")
+                       page = newest_page  # Update our page reference
+           elif action.type != "wait":
+               await asyncio.sleep(0.5)
+               
         except Exception as e:
-            print(f"Error handling action {action.type}: {e}")
-            import traceback
-            traceback.print_exc()
-        
+           print(f"Error handling action {action.type}: {e}")
+           import traceback
+           traceback.print_exc()    
+
         # Take a screenshot after the action
         screenshot_base64 = await take_screenshot(page)
+
+        print("\tNew screenshot taken")
         
         # Prepare input for the next request
         input_content = [{
@@ -1287,7 +1350,7 @@ async def process_model_response(client, response, page, max_iterations=20):
             current_url = page.url
             if current_url and current_url != "about:blank":
                 input_content[0]["current_url"] = current_url
-                print(f"Current URL: {current_url}")
+                print(f"\tCurrent URL: {current_url}")
         except Exception as e:
             print(f"Error getting URL: {e}")
         
@@ -1305,6 +1368,8 @@ async def process_model_response(client, response, page, max_iterations=20):
                 input=input_content,
                 truncation="auto"
             )
+
+            print("\tModel processing screenshot")
         except Exception as e:
             print(f"Error in API call: {e}")
             import traceback
@@ -1313,14 +1378,15 @@ async def process_model_response(client, response, page, max_iterations=20):
     
     if iteration >= max_iterations - 1:
         print("Reached maximum number of iterations. Stopping.")
-
+        
 async def main():    
     # Initialize OpenAI client
     client = AzureOpenAI(
-    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-    azure_ad_token_provider=token_provider,
-    api_version="2025-03-01-preview"
-)
+        azure_endpoint=AZURE_ENDPOINT,
+        azure_ad_token_provider=token_provider,
+        api_version=API_VERSION
+    )
+    
     # Initialize Playwright
     async with async_playwright() as playwright:
         browser = await playwright.chromium.launch(
@@ -1353,6 +1419,7 @@ async def main():
                 
                 # Take initial screenshot
                 screenshot_base64 = await take_screenshot(page)
+                print("\nTake initial screenshot")
                 
                 # Initial request to the model
                 response = client.responses.create(
@@ -1363,6 +1430,7 @@ async def main():
                         "display_height": DISPLAY_HEIGHT,
                         "environment": "browser"
                     }],
+                    instructions = "You are an AI agent with the ability to control a browser. You can control the keyboard and mouse. You take a screenshot after each action to check if your action was successful. Once you have completed the requested task you should stop running and pass back control to your human supervisor.",
                     input=[{
                         "role": "user",
                         "content": [{
@@ -1376,15 +1444,10 @@ async def main():
                     reasoning={"generate_summary": "concise"},
                     truncation="auto"
                 )
-                
+                print("\nSending model initial screenshot and instructions")
+
                 # Process model actions
                 await process_model_response(client, response, page)
-                
-                # Print final URL
-                try:
-                    print(f"Final URL: {page.url}")
-                except:
-                    pass
                 
         except Exception as e:
             print(f"An error occurred: {e}")
@@ -1399,5 +1462,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-
 ```
