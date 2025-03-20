@@ -16,9 +16,8 @@ ms.custom: 2025-understanding-release
 Retrieval-Augmented Generation (RAG) enhances Large Language Models (LLMs) by supplementing their responses with external knowledge sources, ensuring accurate and up-to-date information. While this approach significantly improves output quality, implementing RAG for multimodal content presents unique challenges. Organizations must process and integrate diverse content types - documents, images, audio, and video - each requiring specialized handling to maintain contextual relevance and accuracy.
 
 Azure AI Content Understanding addresses these challenges by providing a unified solution for multimodal content processing. By consolidating advanced natural language processing, computer vision, and speech recognition capabilities into a single service, it eliminates the complexity of managing multiple models and resources while ensuring high-quality data extraction across all content types. 
-Through advanced contextual analysis, Content Understanding ensures highly relevant content retrieval and generation. And,enables enterprises to build robust, production-ready RAG solutions that capitalize on their entire content ecosystem.
+Through advanced contextual analysis, Content Understanding ensures highly relevant content retrieval and generation. And, enables enterprises to build robust, production-ready RAG solutions that capitalize on their entire content ecosystem.
 
-:::image type="content" source="../media/concepts/RAGarchitecture.png" alt-text="Diagram showing Content Understanding's RAG architecture with Azure AI Search and Azure OpenAI integration.":::
 :::image type="content" source="../media/concepts/RAGarchitecture.png" alt-text="Screenshot of Content Understanding RAG architecture overview, process, and workflow with Azure AI Search and Azure Open AI.":::
 
 ## Semantic Chunking for Multimodal Content
@@ -52,7 +51,7 @@ Consider an enterprise training platform that hosts diverse educational content 
 
 Here's how Content Understanding processes each content type for an effective RAG implementation:
 
-**Content Extraction with Azure Content Understanding**
+### Content Extraction with Azure Content Understanding
 
 - From the training manual document, it extracts hierarchical structure, layout elements, and tabular relationships.
 - From product images and images of product trend charts its verbalizes image description and generates structured output from charts and diagrams.
@@ -73,9 +72,7 @@ The image below exemplifies how structured data can be meticulously extracted fr
 Explore our [**code samples**](https://github.com/Azure-Samples/azure-ai-content-understanding-python) for simple demos on extracting data from multimodal files.
 
 
-**Indexing with Azure AI Search and Querying with Azure OpenAI Service:** 
-
-Once data is structured, [**Azure AI Search**](https://learn.microsoft.com/en-us/azure/search/search-get-started-portal) can create a comprehensive, searchable index and [**Azure OpenAI's**](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions) chat models can efficiently query and search through indexed content, providing accurate and contextually relevant answers. 
+### Indexing with Azure AI Search and Querying with Azure OpenAI Service
 
 In this scenario when a user asks: "What's the procedure for configuring the security settings?", the RAG system can:
 1. Query relevant sections from PDF manuals
@@ -83,7 +80,7 @@ In this scenario when a user asks: "What's the procedure for configuring the sec
 3. Link to video segments showing the procedure
 4. Reference instructor explanations from recorded sessions
 
-
+** Here's an example of a multimodal index looks like in **  
 
 For more information, see our [**code samples**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples) demonstrating RAG pattern with Azure AI Content Understanding for structured data extraction, Azure Search for indexing and retrieval and querying data with OpenAI chat models.
 
