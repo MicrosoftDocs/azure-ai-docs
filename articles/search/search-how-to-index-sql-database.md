@@ -372,7 +372,7 @@ Database requirements:
 + Tables only (no views).
 + On the database, [enable change tracking](/sql/relational-databases/track-changes/enable-and-disable-change-tracking-sql-server) for the table.
 + No composite primary key (a primary key containing more than one column) on the table.
-+ The primary key must be non-clustered if you want delete detection.
++ The primary key must be non-clustered if you want deletion detection.
 + No clustered indexes on the table. As a workaround, any clustered index would have to be dropped and re-created as non-clustered index, however, performance might be affected in the source compared to having a clustered index.
 + Tables can't be empty. If you use TRUNCATE TABLE to clear rows, a reset and rerun of the indexer won't remove the corresponding search documents. To remove orphaned search documents, you must [index them with a delete action](search-howto-reindex.md#delete-orphan-documents). For more information about deletion detection, set up a [soft delete detection policy](#soft-delete-column-deletion-detection-policy).
 
