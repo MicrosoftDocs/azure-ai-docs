@@ -15,4 +15,4 @@ zone_pivot_groups: azure-ai-inference-samples
 ---
 
 > [!NOTE]
-> Using audio inputs is only supported using Python, C#, or REST requests.
+> Using audio inputs is only supported using Python, JavaScript, C#, or REST requests.
