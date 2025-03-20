@@ -39,9 +39,9 @@ Azure AI assesses the quality of LLMs and SLMs across various metrics that are g
 
 For accuracy metric:
 
-| Metric | Description |
-|--------|-------------|
-| Accuracy | Accuracy scores are available at the dataset and the model levels. At the dataset level, the score is the average value of an accuracy metric computed over all examples in the dataset. The accuracy metric used is `exact-match` in all cases, except for the _HumanEval_ dataset that uses a `pass@1` metric. Exact match compares model generated text with the correct answer according to the dataset, reporting one if the generated text matches the answer exactly and zero otherwise. The `pass@1` metric measures the proportion of model solutions that pass a set of unit tests in a code generation task. At the model level, the accuracy score is the average of the dataset-level accuracies for each model. |
+| Metric | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Accuracy | Accuracy scores are available at the dataset and the model levels. At the dataset level, the score is the average value of an accuracy metric computed over all examples in the dataset. The accuracy metric used is `exact-match` in all cases, except for the _HumanEval_  and _MBPP_ datasets that uses a `pass@1` metric. Exact match compares model generated text with the correct answer according to the dataset, reporting one if the generated text matches the answer exactly and zero otherwise. The `pass@1` metric measures the proportion of model solutions that pass a set of unit tests in a code generation task. At the model level, the accuracy score is the average of the dataset-level accuracies for each model. |
 
 For prompt-assisted metrics:
 
@@ -55,16 +55,15 @@ For prompt-assisted metrics:
 
 Azure AI also displays the quality index as follows:
 
-| Index | Description |
-|-------|-------------|
-| Quality index | Quality index is calculated by scaling down GPTSimilarity between zero and one, followed by averaging with accuracy metrics. Higher values of quality index are better. |
+| Index | Description                                                                                                                                                                                                                  |
+|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Quality index | Quality index is calculated by average of applicable accuracy scores from comprehensive benchmark datasets measuring model capabilities such as reasoning, knowledge, and coding. Higher values of quality index are better. |
 
-The quality index represents the average score of the applicable primary metric (accuracy, rescaled GPTSimilarity) over 15 standard datasets and is provided on a scale of zero to one.
+The quality index represents the average score of the applicable primary metric (accuracy, pass@1, arena_hard) over 15+ standard datasets and is provided on a scale of zero to one.
 
-Quality index constitutes two categories of metrics: 
+Quality index: 
 
 - Accuracy (for example, exact match or `pass@k`). Ranges from zero to one.
-- Prompt-based metrics (for example, GPTSimilarity, groundedness, coherence, fluency, and relevance). Ranges from one to five.
 
 The stability of the quality index value provides an indicator of the overall quality of the model.
 
@@ -72,34 +71,34 @@ The stability of the quality index value provides an indicator of the overall qu
 
 Performance metrics are calculated as an aggregate over 14 days, based on 24 trails (two requests per trail) sent daily with a one-hour interval between every trail. The following default parameters are used for each request to the model endpoint:
 
-| Parameter | Value | Applicable For |
-|-----------|-------|----------------|
-| Region | East US/East US2 | [Serverless APIs](../how-to/model-catalog-overview.md#serverless-api-pay-per-token-billing) and [Azure OpenAI](/azure/ai-services/openai/overview) |
-| Tokens per minute (TPM) rate limit | 30k (180 RPM based on Azure OpenAI) <br> N/A (serverless APIs) | For Azure OpenAI models, selection is available for users with rate limit ranges based on deployment type (standard, global, global standard, and so on.) <br> For serverless APIs, this setting is abstracted. |
-| Number of requests | Two requests in a trail for every hour (24 trails per day) | Serverless APIs, Azure OpenAI |
-| Number of trails/runs | 14 days with 24 trails per day for 336 runs | Serverless APIs, Azure OpenAI |
-| Prompt/Context length | Moderate length | Serverless APIs, Azure OpenAI |
-| Number of tokens processed (moderate) | 80:20 ratio for input to output tokens, that is, 800 input tokens to 200 output tokens. | Serverless APIs, Azure OpenAI |
-| Number of concurrent requests | One (requests are sent sequentially one after other) | Serverless APIs, Azure OpenAI |
-| Data | Synthetic (input prompts prepared from static text) | Serverless APIs, Azure OpenAI |
-| Region | East US/East US2 | Serverless APIs and Azure OpenAI |
-| Deployment type | Standard | Applicable only for Azure OpenAI |
-| Streaming | True | Applies to serverless APIs and Azure OpenAI. For models deployed via [managed compute](../how-to/model-catalog-overview.md#managed-compute), set max_token = 1 to replicate streaming scenario, which allows for calculating metrics like total time to first token (TTFT) for managed compute. |
-| Tokenizer | Tiktoken package (Azure OpenAI) <br> Hugging Face model ID (Serverless APIs) | Hugging Face model ID (Azure serverless APIs) |
+| Parameter                             | Value                                                                                              | Applicable For                                                                                                                                                                                                                              |
+|---------------------------------------|----------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Region                                | East US/East US2                                                                                   | [Serverless APIs](../how-to/model-catalog-overview.md#serverless-api-pay-per-token-billing) and [Azure OpenAI](/azure/ai-services/openai/overview)                                                                                          |
+| Tokens per minute (TPM) rate limit    | 30k (180 RPM based on Azure OpenAI) for non-reasoning and 100k for reasoning models <br> N/A (serverless APIs) | For Azure OpenAI models, selection is available for users with rate limit ranges based on deployment type (standard, global, global standard, and so on.) <br> For serverless APIs, this setting is abstracted.                             |
+| Number of requests                    | Two requests in a trail for every hour (24 trails per day)                                         | Serverless APIs, Azure OpenAI                                                                                                                                                                                                               |
+| Number of trails/runs                 | 14 days with 24 trails per day for 336 runs                                                        | Serverless APIs, Azure OpenAI                                                                                                                                                                                                               |
+| Prompt/Context length                 | Moderate length                                                                                    | Serverless APIs, Azure OpenAI                                                                                                                                                                                                               |
+| Number of tokens processed (moderate) | 80:20 ratio for input to output tokens, that is, 800 input tokens to 200 output tokens.            | Serverless APIs, Azure OpenAI                                                                                                                                                                                                               |
+| Number of concurrent requests         | One (requests are sent sequentially one after other)                                               | Serverless APIs, Azure OpenAI                                                                                                                                                                                                               |
+| Data                                  | Synthetic (input prompts prepared from static text)                                                | Serverless APIs, Azure OpenAI                                                                                                                                                                                                               |
+| Region                                | East US/East US2                                                                                   | Serverless APIs and Azure OpenAI                                                                                                                                                                                                            |
+| Deployment type                       | Standard                                                                                           | Applicable only for Azure OpenAI                                                                                                                                                                                                            |
+| Streaming                             | True                                                                                               | Applies to serverless APIs and Azure OpenAI. For models deployed via [managed compute](../how-to/model-catalog-overview.md#managed-compute), or for endpoints when streaming is not supported TTFT is represented as P50 of latency metric. |
+| SKU                                   | Standard_NC24ads_A100_v4 (24 cores, 220GB RAM, 64GB storage)                                       | Applicable only for Managed Compute (to estimate the cost and perf metrics)                                                                                                                                                                 |
 
 The performance of LLMs and SLMs is assessed across the following metrics:
 
-| Metric | Description |
-|--------|-------------|
-| Latency mean | Average time in seconds taken for processing a request, computed over multiple requests. To compute this metric, we send a request to the endpoint every hour, for two weeks, and compute the average. |
-| Latency P50 | 50th percentile value (the median) of latency (the time taken between the request and when we receive the entire response with a successful code). For example, when we send a request to the endpoint, 50% of the requests are completed in 'x' seconds, with 'x' being the latency measurement. |
-| Latency P90 | 90th percentile value of latency (the time taken between the request and when we receive the entire response with a successful code). For example, when we send a request to the endpoint, 90% of the requests are completed in 'x' seconds, with 'x' being the latency measurement. |
-| Latency P95 | 95th percentile value of latency (the time taken between the request and when we receive the entire response with a successful code). For example, when we send a request to the endpoint, 95% of the requests are complete in 'x' seconds, with 'x' being the latency measurement. |
-| Latency P99 | 99th percentile value of latency (the time taken between the request and when we receive the entire response with a successful code). For example, when we send a request to the endpoint, 99% of the requests are complete in 'x' seconds, with 'x' being the latency measurement. |
-| Throughput GTPS | Generated tokens per second (GTPS) is the number of output tokens that are getting generated per second from the time the request is sent to the endpoint. |
-| Throughput TTPS | Total tokens per second (TTPS) is the number of total tokens processed per second including both from the input prompt and generated output tokens. |
-| Latency TTFT | Total time to first token (TTFT) is the time taken for the first token in the response to be returned from the endpoint when streaming is enabled. |
-| Time between tokens | This metric is the time between tokens received. |
+| Metric | Description                                                                                                                                                                                                                                                                                        |
+|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Latency mean | Average time in seconds taken for processing a request, computed over multiple requests. To compute this metric, we send a request to the endpoint every hour, for two weeks, and compute the average.                                                                                             |
+| Latency P50 | 50th percentile value (the median) of latency (the time taken between the request and when we receive the entire response with a successful code). For example, when we send a request to the endpoint, 50% of the requests are completed in 'x' seconds, with 'x' being the latency measurement.  |
+| Latency P90 | 90th percentile value of latency (the time taken between the request and when we receive the entire response with a successful code). For example, when we send a request to the endpoint, 90% of the requests are completed in 'x' seconds, with 'x' being the latency measurement.               |
+| Latency P95 | 95th percentile value of latency (the time taken between the request and when we receive the entire response with a successful code). For example, when we send a request to the endpoint, 95% of the requests are complete in 'x' seconds, with 'x' being the latency measurement.                |
+| Latency P99 | 99th percentile value of latency (the time taken between the request and when we receive the entire response with a successful code). For example, when we send a request to the endpoint, 99% of the requests are complete in 'x' seconds, with 'x' being the latency measurement.                |
+| Throughput GTPS | Generated tokens per second (GTPS) is the number of output tokens that are getting generated per second from the time the request is sent to the endpoint.                                                                                                                                         |
+| Throughput TTPS | Total tokens per second (TTPS) is the number of total tokens processed per second including both from the input prompt and generated output tokens. For models which do not support streaming, time to first token (ttft) represents the P50 value of latency (time taken to receive the response) |
+| Latency TTFT | Total time to first token (TTFT) is the time taken for the first token in the response to be returned from the endpoint when streaming is enabled.                                                                                                                                                 |
+| Time between tokens | This metric is the time between tokens received.                                                                                                                                                                                                                                                   |
 
 Azure AI also displays performance indexes for latency and throughput as follows:
 
