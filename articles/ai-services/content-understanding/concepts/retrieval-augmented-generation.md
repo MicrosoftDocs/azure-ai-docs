@@ -85,24 +85,29 @@ Here's how Content Understanding processes each content type for an effective RA
 
 This comprehensive extraction creates a rich knowledge base where each content type maintains its unique contextual elements while enabling cross-modal relationships.
 
+The image below illustrates the page elements and content that Content Understanding extracts from documents with Layout analysis, showcasing Content Understanding’s capability to provide a structured representation of extracted regions of interest and their inter-relationships. 
+
+:::image type="content" source="../media/concepts/layoutpageelements.png" alt-text="Screenshot of Content Understanding Document Data Extraction with Layout Analysis for RAG design.":::
+
+The image below exemplifies how structured data can be meticulously extracted from audio files using a customized schema uniquely designed to meet specific requirements. This structured format facilitates efficient organization, indexing, and searching of content.
+
+:::image type="content" source="../media/concepts/audiorag.png" alt-text="Screenshot of Content Understanding Audio Data Extraction for RAG design":::
 
 
-> [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure-Samples/azure-ai-content-understanding-python)
+Explore our [**code samples**](https://github.com/Azure-Samples/azure-ai-content-understanding-python) for simple demos on extracting data from multimodal files.
 
-For more information, our comprehensive [analyzer templates](analyzer-templates.md) offer a streamlined approach for transforming unstructured data into structured data formats. These templates facilitate the creation of efficient analyzers without the need to design schemas from scratch. Explore our [**code samples**](https://github.com/Azure-Samples/azure-ai-content-understanding-python) for simple demos on extracting data from multimodal files.
 
-When a user asks: "What's the procedure for configuring the security settings?", the RAG system can:
+**Indexing with Azure AI Search and Querying with Azure OpenAI Service:** 
+
+Once data is structured, [**Azure AI Search**](https://learn.microsoft.com/en-us/azure/search/search-get-started-portal) can create a comprehensive, searchable index and [**Azure OpenAI's**](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions) chat models can efficiently query and search through indexed content, providing accurate and contextually relevant answers. 
+
+In this scenario when a user asks: "What's the procedure for configuring the security settings?", the RAG system can:
 1. Query relevant sections from PDF manuals
 2. Find matching diagrams with visual instructions 
 3. Link to video segments showing the procedure
 4. Reference instructor explanations from recorded sessions
 
 
-**Indexing with Azure AI Search and Querying with Azure OpenAI Service:** Once data is structured, [**Azure AI Search**](https://learn.microsoft.com/en-us/azure/search/search-get-started-portal) can create a comprehensive, searchable index and [**Azure OpenAI's**](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions) chat models can efficiently query and search through indexed content, providing accurate and contextually relevant answers. 
-
-> [!div class="nextstepaction"]
-> [View samples on GitHub.](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
 
 For more information, see our [**code samples**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples) demonstrating RAG pattern with Azure AI Content Understanding for structured data extraction, Azure Search for indexing and retrieval and querying data with OpenAI chat models.
 
