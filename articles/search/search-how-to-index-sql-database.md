@@ -368,8 +368,7 @@ We recommend using "SqlIntegratedChangeTrackingPolicy" for its efficiency and it
 
 Database requirements:
 
-+ SQL Server 2016 and later, if you're using SQL Server on Azure VMs.
-+ Azure SQL Database or SQL Managed Instance.
++ Azure SQL Database or SQL Managed Instance. SQL Server 2016 or later if you're using an Azure VM.
 + Database must have [change tracking enabled](/sql/relational-databases/track-changes/enable-and-disable-change-tracking-sql-server)
 + Tables only (no views).
 + Tables can't be clustered. To meet this requirement, drop the clustered index and recreate it as non-clustered index. This workaround often degrades performance. Duplicating content in a second table that's dedicated to indexer processing can be a helpful mitigation. 
