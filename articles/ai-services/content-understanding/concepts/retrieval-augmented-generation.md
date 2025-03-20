@@ -33,10 +33,10 @@ Processing multimodal content presents several unique challenges:
 * **Scale and Performance**: Processing large volumes of multimodal content efficiently while maintaining accuracy.
 
 ### Content Understanding's Approach
-Content Understanding employs an intelligent, modality-aware chunking system that addresses the unique challenges of multimodal content processing. 
-- For documents and text, the system preserves hierarchical structure including sections, paragraphs, and tables while maintaining layout relationships and metadata associations across multiple languages and formats. 
-- When processing audio content, it intelligently segments by speaker turns and topical boundaries, maintaining speaker attribution and timestamps while effectively handling multiple speakers and overlapping speech. 
-- For video content, the system performs sophisticated segmentation based on scenes and semantic boundaries, extracting key frames with associated descriptions while preserving both temporal relationships and multimodal context across visual and audio components.
+Content Understanding employs an intelligent chunking aware output that addresses the unique challenges of multimodal content processing. 
+- For documents and text, it preserves hierarchical structure including sections, paragraphs, and tables while maintaining layout relationships and metadata associations across multiple languages and formats. 
+- When processing audio content, it intelligently maintains speaker attribution and timestamps while effectively handling multiple speakers and overlapping speech. 
+- For video content, it maintains maintains speaker attribution and timestamps, extracting key frames to represent each shot completely, ensuring each shot has enough key frames to enable Field Extraction to work effectively.
 
 This unified approach ensures semantic integrity across all content types while optimizing for downstream RAG operations. The system's ability to maintain contextual relationships both within and across modalities enables more accurate and comprehensive information retrieval, making it particularly valuable for enterprise applications requiring deep content understanding and analysis.
 
