@@ -74,7 +74,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
     ```typescript
     import { OpenAIRealtimeWS } from "openai/beta/realtime/ws";
-    import { AzureOpenAI } from "openai/index.mjs";
+    import { AzureOpenAI } from "openai";
     import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
     
     async function main(): Promise<void> {
@@ -187,7 +187,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
     ```typescript
     import { OpenAIRealtimeWS } from "openai/beta/realtime/ws";
-    import { AzureOpenAI } from "openai/index.mjs";
+    import { AzureOpenAI } from "openai";
     
     async function main(): Promise<void> {
     
