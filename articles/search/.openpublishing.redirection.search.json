@@ -380,6 +380,11 @@
             "source_path_from_root": "/articles/search/security-baseline.md",
             "redirect_url": "/security/benchmark/azure/baselines/cognitive-search-security-baseline",
             "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/vector-search-index-size.md#how-to-check-service-creation-date",
+            "redirect_url": "/azure/search/search-how-to-upgrade#check-your-service-version",
+            "redirect_document_id": false
         }
     ]
 }
