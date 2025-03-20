@@ -368,14 +368,13 @@ We recommend using "SqlIntegratedChangeTrackingPolicy" for its efficiency and it
 
 Database requirements:
 
-+ SQL Server 2016 and later, if you're using SQL Server on Azure VMs.
-+ Azure SQL Database or SQL Managed Instance.
++ Azure SQL Database or SQL Managed Instance. SQL Server 2016 or later if you're using an Azure VM.
++ Database must have [change tracking enabled](/sql/relational-databases/track-changes/enable-and-disable-change-tracking-sql-server)
 + Tables only (no views).
-+ On the database, [enable change tracking](/sql/relational-databases/track-changes/enable-and-disable-change-tracking-sql-server) for the table.
-+ No composite primary key (a primary key containing more than one column) on the table.
-+ The primary key must be non-clustered if you want deletion detection.
-+ No clustered indexes on the table. As a workaround, any clustered index would have to be dropped and re-created as non-clustered index, however, performance might be affected in the source compared to having a clustered index.
-+ Tables can't be empty. If you use TRUNCATE TABLE to clear rows, a reset and rerun of the indexer won't remove the corresponding search documents. To remove orphaned search documents, you must [index them with a delete action](search-howto-reindex.md#delete-orphan-documents). For more information about deletion detection, set up a [soft delete detection policy](#soft-delete-column-deletion-detection-policy).
++ Tables can't be clustered. To meet this requirement, drop the clustered index and recreate it as non-clustered index. This workaround often degrades performance. Duplicating content in a second table that's dedicated to indexer processing can be a helpful mitigation. 
++ Tables can't be empty. If you use TRUNCATE TABLE to clear rows, a reset and rerun of the indexer won't remove the corresponding search documents. To remove orphaned search documents, you must [index them with a delete action](search-howto-reindex.md#delete-orphan-documents).
++ Primary key can't be a compound key (containing more than one column).
++ Primary key must be non-clustered if you want deletion detection.
 
 Change detection policies are added to data source definitions. To use this policy, edit the data source definition in the Azure portal, or use REST to update your data source like this:
 

@@ -1,7 +1,7 @@
 ---
-title: Work with Azure AI Foundry projects in VS Code
+title: Work with Azure AI Foundry projects in VS Code containers
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to get started with Azure AI Foundry projects in VS Code.
+description: This article provides instructions on how to get started with Azure AI Foundry projects in VS Code containers.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
@@ -13,10 +13,10 @@ ms.date: 02/14/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
-# customer intent: As a Developer, I want to use Azure AI Foundry projects in VS Code.
+# customer intent: As a Developer, I want to use Azure AI Foundry projects in VS Code containers.
 ---
 
-# Get started with Azure AI Foundry projects in VS Code (Preview)
+# Get started with Azure AI Foundry projects in VS Code containers (Preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
