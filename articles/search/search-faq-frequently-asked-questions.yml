@@ -58,7 +58,9 @@ sections:
       - question: |
           Can I upgrade or downgrade the service?
         answer: |
-          In the 2025-02-01-preview, you can [change the pricing tier of your service](search-capacity-planning.md#change-your-service-tier). This preview supports changes between Basic and Standard (S1, S2, and S3) tiers.
+          Services created before April 2024 in select regions can be [upgraded to higher capacity clusters](search-how-to-upgrade.md). Downgrading your service isn't supported. 
+          
+          To get more capacity, you can also [switch to a higher service tier](search-capacity-planning.md#change-your-service-tier). Your region can't have [capacity constraints on the higher tier](search-region-support.md), and you can only make upward changes between Basic and Standard (S1, S2, and S3) tiers, such as going from Basic to S3. Currently, you can't switch to a lower service tier.
           
       - question: |
           Can I rename or move the service?
@@ -156,7 +158,7 @@ sections:
           
           * Add a "vectorSearch" section to the index schema specifying the configuration used by vector search fields, including the parameters of the Approximate Nearest Neighbor algorithm used, like HNSW.
           
-          * Use the latest stable version[**2024-07-01**](/rest/api/searchservice), or an Azure SDK to create or update the index, load documents, and issue queries. For more information, see [Create a vector index](vector-search-how-to-create-index.md).
+          * Use the latest stable version, [**2024-07-01**](/rest/api/searchservice), or an Azure SDK to create or update the index, load documents, and issue queries. For more information, see [Create a vector index](vector-search-how-to-create-index.md).
 
   - name: Queries
     questions:

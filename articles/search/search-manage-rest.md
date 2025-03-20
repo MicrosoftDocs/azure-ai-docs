@@ -146,7 +146,7 @@ PUT https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups
 
 ## Upgrade a service
 
-Some Azure AI Search capabilities are only available to new services. To avoid service recreation and bring these capabilities to an existing service, [upgrade your service version](search-how-to-upgrade.md).
+Some Azure AI Search capabilities are only available to new services. To avoid service recreation and bring these capabilities to an existing service, you can [upgrade your service](search-how-to-upgrade.md).
 
 ```http
 ### Upgrade a search service
@@ -157,7 +157,7 @@ POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroup
 
 ## Change service tiers
 
-If you need more or less capacity, you can [switch to a different service tier](search-capacity-planning.md#change-your-service-tier). Use the `sku` property to specify your new tier.
+If you need more <!-- or less-->capacity, you can [switch to a higher service tier](search-capacity-planning.md#change-your-service-tier). Currently, you can only make upward changes between Basic and Standard (S1, S2, and S3) tiers. Use the `sku` property to specify the higher <!-- your new -->tier.
 
 ```http
 ### Change service tiers

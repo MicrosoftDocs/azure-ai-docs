@@ -83,17 +83,15 @@ To increase or decrease the capacity of your service, you have two options:
 ### Change your service tier
 
 > [!NOTE]
-> The 2025-02-01 preview supports changes between Basic and Standard (S1, S2, and S3) tiers. However, you can’t switch from a higher tier to a lower tier, such as going from S3 to Basic. Expect this capability in a future release.
+> The 2025-02-01 preview supports changes between Basic and Standard (S1, S2, and S3) tiers. Currently, you can only switch from a lower tier to a higher tier, such as going from Basic to S3. Your region also can't have [capacity constraints on the higher tier](search-region-support.md).
 
-Your [pricing tier](search-sku-tier.md) determines the maximum storage of your search service. If you need more or less capacity, you can switch to a different service tier that accommodates your storage needs.
+Your [pricing tier](search-sku-tier.md) determines the maximum storage of your search service. If you need more <!-- or less capacity -->capacity, you can switch to a different service tier that accommodates your storage needs.
 
-In addition to capacity, changing your service tier affects the workload and object quantities of your service. Before you proceed, compare the [service limits](search-limits-quotas-capacity.md) of your current tier and your desired tier. These include limits on:
+In addition to capacity, changing your service tier affects the workload and maximum limits of your service. Before you proceed, compare the [service limits](search-limits-quotas-capacity.md) of your current tier and your desired tier. These include limits on:
 
-+ Subscriptions
 + Services
 + Partition storage
 + Indexes
-+ Documents
 + Vectors
 + Indexers
 + Shared private link resources
@@ -101,15 +99,15 @@ In addition to capacity, changing your service tier affects the workload and obj
 + Index aliases
 + Semantic ranker throttling
 
-Generally, switching to a higher tier increases your [storage limit](search-limits-quotas-capacity.md#service-limits) and [vector limit](search-limits-quotas-capacity.md#vector-index-size-limits), increases request throughput, and decreases latency, while switching to a lower tier decreases your storage limit and vector limit, decreases request throughput, and increases latency.
+Generally, switching to a higher tier increases your [storage limit](search-limits-quotas-capacity.md#service-limits) and [vector limit](search-limits-quotas-capacity.md#vector-index-size-limits), increases request throughput, and decreases latency<!-- , while switching to a lower tier decreases your storage limit and vector limit, decreases request throughput, and increases latency -->.
 
 To change your service tier:
 
-1. Go to your search service in the [Azure portal](https://portal.azure.com/).
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
 
 2. From the left pane, select **Settings** > **Scale**.
 
-3. Under Pricing tier, use the dropdown menu to select your new tier: **Basic**, **Standard1**, **Standard2**, or **Standard3**.
+3. Under **Pricing tier**, use the dropdown menu to select a higher tier<!-- your new tier -->: **Basic**, **Standard1**, **Standard2**, or **Standard3**.
 
 4. Check your notifications to confirm that the operation started.
 
@@ -117,7 +115,7 @@ To change your service tier:
 
 ### Add or remove partitions and replicas
 
-1. Go to your search service in the [Azure portal](https://portal.azure.com/).
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
 
 1. From the left pane, select **Settings** > **Scale**.
 

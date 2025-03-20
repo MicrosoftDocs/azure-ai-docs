@@ -1,7 +1,7 @@
 ---
 title: Service Upgrade in the Azure Portal
 titleSuffix: Azure AI Search
-description: Learn how to upgrade your existing Azure AI Search service to the version available to new services in your region.
+description: Learn how to upgrade your existing Azure AI Search service to high-capacity storage and processors in your region.
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
@@ -22,18 +22,24 @@ To qualify for an upgrade, your service:
 
 > [!div class="checklist"]
 > + Must have been created before April 2024. Services created after April 2024 should already have higher capacity. To see when you created your service, [check your service version](#check-your-service-version).
-> + Must be in a region that supports higher capacity. Check the footnotes in the [list of supported regions](search-region-support.md).
+> + Must be in a region where higher capacity is enabled. Currently, service upgrades are available in the following regions:
+>   + East US
+>   + North Central US
+>   + West Central US
+>   + UK South
 
-This article describes how to upgrade your service in the [Azure portal](https://portal.azure.com/). Alternatively, you can use the Search REST APIs to upgrade your service programmatically. For more information, see [Manage your search service with REST](search-manage-rest.md).
+<!-- Check the footnotes in the [list of supported regions](search-region-support.md). -->
+
+This article describes how to upgrade your service in the [Azure portal](https://portal.azure.com/). Alternatively, you can use the Management REST APIs to upgrade your service programmatically. For more information, see [Manage your search service with REST](search-manage-rest.md).
 
 ## About service upgrades
 
-An upgrade brings your existing search service to the same configuration as new services in your region. Unlike [upgrading your API version](search-api-migration.md), upgrading your service doesn’t introduce new features. Rather, it brings feature enhancements that are only available to new services in your region. Your service is never out of date, and regardless of your service version, you receive code and security updates every month.
+An upgrade brings your existing search service to the same configuration as new services in your region. A service upgrade doesn't introduce new features. Rather, it moves your service to higher performing clusters that are only available to new services in your region. You don't need to change your application code or API versions, but you do need to use the portal or preview APIs for a one-time upgrade to newer infrastructure.
 
-In this preview, an upgrade only increases the [storage limit](#higher-storage-limits) and [vector limit](#higher-vector-limits) of your service. Expect more upgrade capabilities in the future.
+In this preview, an upgrade only increases the [storage limit](#higher-storage-limits) and [vector limit](#higher-vector-limits) of your service.
 
 > [!IMPORTANT]
-> An upgrade is permanent and can’t be undone. Before you upgrade your service, carefully consider your current and future storage needs.
+> A service upgrade is permanent and can’t be undone. In the unlikely event that the upgrade fails, file a support ticket immediately.
 
 ### Higher storage limits
 
@@ -71,7 +77,7 @@ You can’t undo a service upgrade. Before you proceed, be sure that you want to
 
 To upgrade your service:
 
-1. Go to your search service in the [Azure portal](https://portal.azure.com/).
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
 
 1. On the **Overview** page, select **Upgrade** from the command bar.
 
