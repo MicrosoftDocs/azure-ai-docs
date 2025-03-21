@@ -130,7 +130,7 @@ items:
           href: ../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context
         - name: Work with reasoning models
           href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context
-        - name: Work with image and audio content
+        - name: Work with multimodal models
           href: ../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context
 - name: Azure OpenAI and AI services
   items:

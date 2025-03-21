@@ -14,7 +14,6 @@ ms.custom: references_regions, tool_generated
 zone_pivot_groups: azure-ai-inference-samples
 ---
 
-This article explains how to use chat completions API with models supporting images or audio deployed to Azure AI model inference in Azure AI services.
 This article explains how to use chat completions API with _multimodal_ models deployed to Azure AI model inference in Azure AI services. Apart from text input, multimodal models can accept other input types, such as images or audio input.
 
 ## Prerequisites
