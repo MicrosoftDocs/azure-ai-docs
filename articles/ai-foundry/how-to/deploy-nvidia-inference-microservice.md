@@ -81,7 +81,7 @@ After your deployment is successfully created, you can go to **Models + Endpoint
 
 NVIDIA NIMs on Foundry expose an OpenAI compatible API. Learn more about the payload supported [here](https://docs.nvidia.com/nim/large-language-models/latest/api-reference.html#). The 'model' parameter for NIMs on Foundry is set to a default value within the container, and is not required to be passed in the request payload to your online endpoint. The **Consume** tab of the NIM deployment on Foundry includes code samples for inference with the target URL of your deployment. 
 
-You can also consume NIM deployments using the [Azure AI Model Inference SDK](/python/api/overview/azure/ai-inference-readme), with limitations such as no support for [creating and authenticating clients using `load_client`](https://learn.microsoft.com/en-us/python/api/overview/azure/ai-inference-readme?view=azure-python-preview#create-and-authenticate-clients-using-load_client) and calling client method `get_model_info` to [retrieve model information](https://learn.microsoft.com/en-us/python/api/overview/azure/ai-inference-readme?view=azure-python-preview#get-ai-model-information).
+You can also consume NIM deployments using the [Azure AI Model Inference SDK](/python/api/overview/azure/ai-inference-readme), with limitations such as no support for [creating and authenticating clients using `load_client`](/python/api/overview/azure/ai-inference-readme) and calling client method `get_model_info` to [retrieve model information](/python/api/overview/azure/ai-inference-readme).
 
 ### Develop and run agents with NIM endpoints
 
