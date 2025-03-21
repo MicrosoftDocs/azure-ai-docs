@@ -60,7 +60,7 @@ sections:
         answer: |
           Services created before April 2024 in select regions can be [upgraded to higher capacity clusters](search-how-to-upgrade.md). Downgrading your service isn't supported. 
           
-          To get more capacity, you can also [switch to a higher service tier](search-capacity-planning.md#change-your-service-tier). Your region can't have [capacity constraints on the higher tier](search-region-support.md), and you can only move up between Basic and Standard (S1, S2, and S3) tiers, such as going from Basic to S3. Currently, you can't switch to a lower tier.
+          To get more capacity, you can also [switch to a higher service tier](search-capacity-planning.md#change-your-service-tier). Your region can't have [capacity constraints on the higher tier](search-region-support.md), and you can only move up between Basic and Standard (S1, S2, and S3) tiers, such as going from Basic to S1. Currently, you can't switch to a lower tier.
           
       - question: |
           Can I rename or move the service?

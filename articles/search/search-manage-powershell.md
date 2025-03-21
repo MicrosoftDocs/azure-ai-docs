@@ -36,7 +36,7 @@ Occasionally, questions are asked about tasks *not* on the above list.
 You can't change a service name, region, or tier programmatically or in the Azure portal. Dedicated resources are allocated when a service is created. As such, changing the underlying hardware (location or node type) requires a new service.
 
 > [!NOTE]
-> The 2025-02-01-preview supports changing your service tier using the [Management REST APIs](search-manage-rest.md#upgrade-a-service) and the [Azure portal](search-capacity-planning.md#change-your-service-tier). Currently, you can only move up between Basic and Standard (S1, S2, and S3) tiers, such as going from Basic to S3.
+> The 2025-02-01-preview supports changing your service tier using the [Management REST APIs](search-manage-rest.md#upgrade-a-service) and the [Azure portal](search-capacity-planning.md#change-your-service-tier). Currently, you can only move up between Basic and Standard (S1, S2, and S3) tiers, such as going from Basic to S1.
 
 You can't use tools or APIs to transfer content, such as an index, from one service to another. Within a service, programmatic creation of content is through [Search Service REST API](/rest/api/searchservice/) or an SDK such as [Azure SDK for .NET](/dotnet/api/overview/azure/search.documents-readme). While there are no dedicated commands for content migration, you can write script that calls REST API or a client library to create and load indexes on a new service.
 

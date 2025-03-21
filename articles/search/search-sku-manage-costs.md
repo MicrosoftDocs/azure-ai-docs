@@ -100,7 +100,7 @@ Search runs as a continuous service. Dedicated resources are always operational,
 
 **Can I change the billing rate (tier) of an existing search service?**
 
-Existing services can be switched between Basic and Standard (S1, S2, and S3) tiers. Currently, you can only switch from a lower tier to a higher tier, such as going from Basic to S3. For more information, see [Change your service tier](search-capacity-planning.md#change-your-service-tier).
+Existing services can be switched between Basic and Standard (S1, S2, and S3) tiers. Currently, you can only switch from a lower tier to a higher tier, such as going from Basic to S1. For more information, see [Change your service tier](search-capacity-planning.md#change-your-service-tier).
 
 ## Next steps
 
