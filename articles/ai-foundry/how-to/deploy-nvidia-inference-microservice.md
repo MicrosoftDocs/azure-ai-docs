@@ -25,8 +25,6 @@ NVIDIA inference microservices are containers built by NVIDIA for optimized pre-
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- An [Azure AI Foundry hub](create-azure-ai-resource.md).
-
 - An [Azure AI Foundry project](create-projects.md).
 
 - Marketplace purchases enabled for your Azure subscription. Learn more [here](/azure/cost-management-billing/manage/enable-marketplace-purchases).
