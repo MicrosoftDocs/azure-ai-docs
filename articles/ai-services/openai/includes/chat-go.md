@@ -62,7 +62,7 @@ client, err := azopenai.NewClientWithKeyCredential(azureOpenAIEndpoint, credenti
 
 To run the sample:
 
-1. Create a new file named *chat_completions-keyless.go*. Copy the following code into the *chat_completions-keyless.go* file.
+1. Create a new file named *chat_completions_keyless.go*. Copy the following code into the *chat_completions_keyless.go* file.
 
     ```go
     package main
@@ -178,7 +178,7 @@ To run the sample:
 1. Run the following command to create a new Go module:
 
 	```shell
-	go mod init chat_completions-keyless.go
+	go mod init chat_completions_keyless.go
 	```
 
 1. Run `go mod tidy` to install the required dependencies:
@@ -190,14 +190,14 @@ To run the sample:
 1. Run the following command to run the sample:
 
 	```shell
-	go run chat_completions-keyless.go
+	go run chat_completions_keyless.go
 	```
 
 #### [API key](#tab/api-key)
 
 To run the sample:
 
-1. Create a new file named *chat_completions-api-key.go*. Copy the following code into the *chat_completions-api-key.go* file.
+1. Create a new file named *chat_completions_api-key.go*. Copy the following code into the *chat_completions_api-key.go* file.
 
     ```go
     package main
@@ -310,7 +310,7 @@ To run the sample:
 1. Run the following command to create a new Go module:
 
 	```shell
-	go mod init chat_completions-api-key.go
+	go mod init chat_completions_api-key.go
 	```
 
 1. Run `go mod tidy` to install the required dependencies:
@@ -322,7 +322,7 @@ To run the sample:
 1. Run the following command to run the sample:
 
 	```shell
-	go run chat_completions-api-key.go
+	go run chat_completions_api-key.go
 	```
 
 ---
