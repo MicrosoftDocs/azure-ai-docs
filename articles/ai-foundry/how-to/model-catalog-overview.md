@@ -77,7 +77,7 @@ For Azure OpenAI models, see [Azure OpenAI Service Models](../../ai-services/ope
 
 To view a list of supported models for Serverless API or Managed Compute, go to the home page of the model catalog in [Azure AI Foundry](https://ai.azure.com). Use the **Deployment options** filter to select either **Serverless API** or **Managed Compute**. 
 
-:::image type="content" source="../media/how-to/model-catalog-overview/catalog-filter-managed-compute.png" alt-text="A screenshot showing how to filter by managed compute models in the catalog." lightbox="../media/how-to/model-catalog-overview/catalog-filter-managed-compute.png":::  
+:::image type="content" source="../media/how-to/model-catalog-overview/catalog-filter.png" alt-text="A screenshot showing how to filter by managed compute models in the catalog." lightbox="../media/how-to/model-catalog-overview/catalog-filter.png":::  
 
 
 <!-- docutune:enable -->
