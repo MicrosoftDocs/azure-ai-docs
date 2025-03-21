@@ -17,7 +17,7 @@ Retrieval Augmented Generation (RAG) enhances the capabilities of Large Language
 
 The decision about which service to use for extracting multimodal content is critical because it determines the inputs to the LLM. The service should provide:
 
-* **Advanced content extraction capabilities:** The service must excel at processing diverse content types including documents, images, audio, and video and utilizing modality-aware techniques to maintain crucial contextual relationships within different content formats, ensuring optimal performance in RAG applications. 
+* **Advanced content extraction capabilities:** Excel at processing diverse content types including documents, images, audio, and video and utilizing modality-aware techniques to maintain crucial contextual relationships within different content formats, ensuring optimal performance in RAG applications. 
 
 * **Enhanced accuracy:** Precision in content extraction directly impacts RAG performance. The ideal service employs advanced techniques like computer vision, speech recognition, natural language processing, and multimodal understanding to ensure the highest possible accuracy in information extraction across all supported modalities.
 * **Simplified and unified workflows for processing diverse content:** Enterprise content ecosystems are heterogeneous, requiring a service that normalizes processing across content types. A unified approach eliminates the complexity of maintaining separate pipelines for different modalities, reducing development overhead and operational complexity.
