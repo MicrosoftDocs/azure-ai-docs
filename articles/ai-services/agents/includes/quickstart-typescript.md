@@ -146,7 +146,6 @@ export async function main() {
             if (contentPart.type === "text") {
               const textContent = contentPart as MessageDeltaTextContent;
               const textValue = textContent.text?.value || "No text";
-              process.stdout.write(textValue);
             }
           });
         }
@@ -164,17 +163,18 @@ export async function main() {
 
   // 6. Print the messages from the agent
   const messages = await client.agents.listMessages(thread.id);
-  console.log("Messages:\n----------------------------------------------");
 
   // Messages iterate from oldest to newest
   // messages[0] is the most recent
-  await messages.data.forEach((m) => {
-    console.log(`Type: ${m.content[0].type}`);
-    if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
-      const textContent = m.content[0] as MessageTextContentOutput;
-      console.log(`Text: ${textContent.text.value}`);
-    }
-  });
+  const messagesArray = messages.data;
+  for (let i = messagesArray.length - 1; i >= 0; i--) {
+      const m = messagesArray[i];
+      console.log(`Type: ${m.content[0].type}`);
+      if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
+          const textContent = m.content[0] as MessageTextContentOutput;
+          console.log(`Text: ${textContent.text.value}`);
+      }
+  }
 
   // 7. Delete the agent once done
   await client.agents.deleteAgent(agent.id);

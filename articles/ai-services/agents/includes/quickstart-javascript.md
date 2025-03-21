@@ -177,13 +177,15 @@ export async function main() {
 
   // Messages iterate from oldest to newest
   // messages[0] is the most recent
-  await messages.data.forEach((m) => {
-    console.log(`Type: ${m.content[0].type}`);
-    if (isOutputOfType(m.content[0], "text")) {
-      const textContent = m.content[0];
-      console.log(`Text: ${textContent.text.value}`);
-    }
-  });
+  const messagesArray = messages.data;
+  for (let i = messagesArray.length - 1; i >= 0; i--) {
+      const m = messagesArray[i];
+      console.log(`Type: ${m.content[0].type}`);
+      if (isOutputOfType(m.content[0], "text")) {
+          const textContent = m.content[0];
+          console.log(`Text: ${textContent.text.value}`);
+      }
+  }
 
   // 7. Delete the agent once done
   await client.agents.deleteAgent(agent.id);
