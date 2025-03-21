@@ -66,7 +66,6 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Install the OpenAI Python client library with:
 
     ```console
-    pip install openai
     pip install openai[realtime]
     ```
     
