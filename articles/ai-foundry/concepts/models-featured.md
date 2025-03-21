@@ -19,15 +19,7 @@ The Azure AI model catalog offers a large selection of models from a wide range 
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
-To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others that belong to the following model types support inferencing using the [Azure AI model inference](../model-inference/overview.md):
-
-- [Chat completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context)
-- [Chat completion (with reasoning content)](../model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context)
-- [Chat completion (with image and audio content)](../model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context)
-- [Embeddings](../model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context)
-- [Image embeddings](../model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context)
-
-You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
+To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Azure AI model inference](../model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
 
 :::image type="content" source="../media/models-featured/models-catalog.gif" alt-text="An animation showing Azure AI studio model catalog section and the models available." lightbox="../media/models-featured/models-catalog.gif":::
 
