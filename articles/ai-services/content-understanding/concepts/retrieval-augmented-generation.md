@@ -16,7 +16,7 @@ ms.custom: 2025-understanding-release
 Retrieval-Augmented Generation (RAG) enhances Large Language Models (LLMs) by supplementing their responses with external knowledge sources, ensuring accurate and up-to-date information. While this approach significantly improves output quality, implementing RAG for multimodal content presents unique challenges. Organizations must process and integrate diverse content types - documents, images, audio, and video - each requiring specialized handling to maintain contextual relevance and accuracy.
 
 Azure AI Content Understanding addresses these challenges by providing a unified solution for multimodal content processing. By consolidating advanced natural language processing, computer vision, and speech recognition capabilities into a single service, it eliminates the complexity of managing multiple models and resources while ensuring high-quality data extraction across all content types. 
-Through advanced contextual analysis, Content Understanding ensures highly relevant content retrieval and generation. And, enables enterprises to build robust, production-ready RAG solutions that capitalize on their entire content ecosystem.
+Through advanced contextual analysis and multimodal processing and extraction capabilities, Content Understanding  enables enterprises to fully leverage their entire content ecosystem - from documents and images to audio and video assets, to build robust production-ready RAG solutions.  
 
 :::image type="content" source="../media/concepts/RAGarchitecture.png" alt-text="Screenshot of Content Understanding RAG architecture overview, process, and workflow with Azure AI Search and Azure Open AI.":::
 
