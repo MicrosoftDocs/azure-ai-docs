@@ -145,6 +145,20 @@ View and change details of your project on the **Details** tab. On this tab, you
 * Edit instructions you give to your labels.
 * Change settings for ML-assisted labeling and kick off a labeling task.
 
+## Projects created in Azure AI services
+
+If your labeling project was created from [Language Studio](/azure/ai-services/language-service/custom/azure-machine-learning-labeling), you see a **Language Studio** tab on the **Details** page. The tab allows you to switch between labeling in Azure Machine Learning and labeling in Language Studio.
+
+* If labeling is active in Language Studio, you can't label in Azure Machine Learning. In that case, Language Studio is the only tab available. Select **View in Language Studio** to go to the active labeling project in Language Studio. From there, you can switch to labeling in Azure Machine Learning if you wish.
+
+If labeling is active in Azure Machine Learning, you have two choices:
+
+* Select **Switch to Language Studio** to switch your labeling activity back to Language Studio. When you switch, all your currently labeled data is imported into Language Studio. Your ability to label data in Azure Machine Learning is disabled, and you can label data in Language Studio. You can switch back to labeling in Azure Machine Learning at any time through Language Studio.
+
+  > [!NOTE] 
+  > Only users with the [correct roles](how-to-add-users.md) in Azure Machine Learning have the ability to switch labeling. 
+* Select **Disconnect from Language Studio** to sever the relationship with Language Studio. Once you disconnect, the project loses its association with Language Studio, and no longer shows the Language Studio tab. Disconnecting your project from Language Studio is a permanent, irreversible process and can't be undone. You'll no longer be able to access your labels for this project in Language Studio. The labels are available only in Azure Machine Learning from this point onward.
+
 ## Add new labels to a project
 
 During the data labeling process, you might want to add more labels to classify your items. For example, you might want to add an *Unknown* or *Other* label to indicate confusion.
