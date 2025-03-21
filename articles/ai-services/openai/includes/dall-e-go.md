@@ -20,100 +20,225 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Go
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 
-## Setup
+### Microsoft Entra ID prerequisites
 
-[!INCLUDE [get-key-endpoint](get-key-endpoint.md)]
+For the recommended keyless authentication with Microsoft Entra ID, you need to:
+- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
-[!INCLUDE [environment-variables](environment-variables.md)]
+## Set up
+ 
+1. Create a new folder `dall-e-quickstart` and go to the quickstart folder with the following command:
 
+    ```shell
+    mkdir dall-e-quickstart && cd dall-e-quickstart
+    ```
 
-## Create a new Go application
+1. For the **recommended** keyless authentication with Microsoft Entra ID, sign in to Azure with the following command:
 
-Open the command prompt and navigate to your project folder. Create a new file *sample.go*.
+    ```console
+    az login
+    ```
 
-## Install the Go SDK
+## Retrieve resource information
 
-Install the OpenAI Go SDK using the following command: 
+[!INCLUDE [resource authentication](resource-authentication.md)]
 
-```console
-go get github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai@latest
-```
+## Run the quickstart
 
-Or, if you use `dep`, within your repo run:
+The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `NewDefaultAzureCredential` implementation with `NewKeyCredential`. 
 
-```console
-dep ensure -add github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai
-```
-
-## Generate images with DALL-E
-
-Open *sample.go* in your preferred code editor.
-
-Add the following code to your script:
+#### [Microsoft Entra ID](#tab/keyless)
 
 ```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"net/http"
-	"os"
-
-	"github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai"
-	"github.com/Azure/azure-sdk-for-go/sdk/azcore"
-	"github.com/Azure/azure-sdk-for-go/sdk/azcore/to"
-)
-
-func main() {
-	azureOpenAIKey := os.Getenv("AZURE_OPENAI_API_KEY")
-
-	// Ex: "https://<your-azure-openai-host>.openai.azure.com"
-	azureOpenAIEndpoint := os.Getenv("AZURE_OPENAI_ENDPOINT")
-
-	if azureOpenAIKey == "" || azureOpenAIEndpoint == "" {
-		fmt.Fprintf(os.Stderr, "Skipping example, environment variables missing\n")
-		return
-	}
-
-	keyCredential := azcore.NewKeyCredential(azureOpenAIKey)
-
-	client, err := azopenai.NewClientWithKeyCredential(azureOpenAIEndpoint, keyCredential, nil)
-
-	if err != nil {
-		// handle error
-	}
-
-	resp, err := client.GetImageGenerations(context.TODO(), azopenai.ImageGenerationOptions{
-		Prompt:         to.Ptr("a painting of a cat in the style of Dali"),
-		ResponseFormat: to.Ptr(azopenai.ImageGenerationResponseFormatURL),
-	}, nil)
-
-	if err != nil {
-		// handle error
-	}
-
-	for _, generatedImage := range resp.Data {
-		// the underlying type for the generatedImage is dictated by the value of
-		// ImageGenerationOptions.ResponseFormat. In this example we used `azopenai.ImageGenerationResponseFormatURL`,
-		// so the underlying type will be ImageLocation.
-
-		resp, err := http.Head(*generatedImage.URL)
-
-		if err != nil {
-			// handle error
-		}
-
-		fmt.Fprintf(os.Stderr, "Image generated, HEAD request on URL returned %d\nImage URL: %s\n", resp.StatusCode, *generatedImage.URL)
-	}
-}
+azureOpenAIEndpoint := os.Getenv("AZURE_OPENAI_ENDPOINT")
+credential, err := azidentity.NewDefaultAzureCredential(nil)
+client, err := azopenai.NewClient(azureOpenAIEndpoint, credential, nil)
 ```
 
-Run the script using the `go run` command:
+#### [API key](#tab/api-key)
 
-```console
-go run sample.go
+```go
+azureOpenAIEndpoint := os.Getenv("AZURE_OPENAI_ENDPOINT")
+azureOpenAIKey := os.Getenv("AZURE_OPENAI_API_KEY")
+credential := azcore.NewKeyCredential(azureOpenAIKey)
+client, err := azopenai.NewClientWithKeyCredential(azureOpenAIEndpoint, credential, nil)
 ```
+---
+
+#### [Microsoft Entra ID](#tab/keyless)
+
+To run the sample:
+
+1. Create a new file named *quickstart.go*. Copy the following code into the *quickstart.go* file.
+
+    ```go
+	package main
+
+    import (
+    	"context"
+    	"fmt"
+    	"net/http"
+    	"os"
+    	"log"
+    
+    	"github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai"
+    	"github.com/Azure/azure-sdk-for-go/sdk/azcore/to"
+    	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
+    )
+    
+    func main() {
+    	azureOpenAIEndpoint := os.Getenv("AZURE_OPENAI_ENDPOINT")
+    	modelDeploymentID := "dall-e-3"
+    
+    	credential, err := azidentity.NewDefaultAzureCredential(nil)
+    	if err != nil {
+    		log.Printf("ERROR: %s", err)
+    		return
+    	}
+    
+    	client, err := azopenai.NewClient(
+    		azureOpenAIEndpoint, credential, nil)
+    	if err != nil {
+    		log.Printf("ERROR: %s", err)
+    		return
+    	}
+    
+    	resp, err := client.GetImageGenerations(context.TODO(), azopenai.ImageGenerationOptions{
+    		Prompt:         to.Ptr("A painting of a cat in the style of Dali."),
+    		ResponseFormat: to.Ptr(azopenai.ImageGenerationResponseFormatURL),
+    		DeploymentName: to.Ptr(modelDeploymentID),
+    	}, nil)
+    
+    	if err != nil {
+    		// Implement application specific error handling logic.
+    		log.Printf("ERROR: %s", err)
+    		return
+    	}
+    
+    	for _, generatedImage := range resp.Data {
+    		// The underlying type for the generatedImage is determined by the value of
+    		// ImageGenerationOptions.ResponseFormat. 
+    		// In this example we use `azopenai.ImageGenerationResponseFormatURL`,
+    		// so the underlying type will be ImageLocation.
+    
+    		resp, err := http.Head(*generatedImage.URL)
+    
+    		if err != nil {
+    			// Implement application specific error handling logic.
+    			log.Printf("ERROR: %s", err)
+    			return
+    		}
+    
+    		fmt.Fprintf(os.Stderr, "Image generated, HEAD request on URL returned %d\nImage URL: %s\n", resp.StatusCode, *generatedImage.URL)
+    	}
+    }
+	```
+
+1. Run the following command to create a new Go module:
+
+	```shell
+	go mod init quickstart.go
+	```
+
+1. Run `go mod tidy` to install the required dependencies:
+
+    ```cmd
+    go mod tidy
+    ```
+
+1. Run the following command to run the sample:
+
+	```shell
+	go run quickstart.go
+	```
+
+
+#### [API key](#tab/api-key)
+
+To run the sample:
+
+1. Create a new file named *quickstart.go*. Copy the following code into the *quickstart.go* file.
+
+    ```go
+    package main
+
+    import (
+    	"context"
+    	"fmt"
+    	"net/http"
+    	"os"
+    	"log"
+    
+    	"github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai"
+    	"github.com/Azure/azure-sdk-for-go/sdk/azcore"
+    	"github.com/Azure/azure-sdk-for-go/sdk/azcore/to"
+    )
+    
+    func main() {
+    	azureOpenAIEndpoint := os.Getenv("AZURE_OPENAI_ENDPOINT")
+    	modelDeploymentID := "dall-e-3"
+    
+    	azureOpenAIKey := os.Getenv("AZURE_OPENAI_API_KEY")
+    	credential := azcore.NewKeyCredential(azureOpenAIKey)
+    
+    	client, err := azopenai.NewClientWithKeyCredential(
+    		azureOpenAIEndpoint, credential, nil)
+    	if err != nil {
+    		log.Printf("ERROR: %s", err)
+    		return
+    	}
+    
+    	resp, err := client.GetImageGenerations(context.TODO(), azopenai.ImageGenerationOptions{
+    		Prompt:         to.Ptr("A painting of a cat in the style of Dali."),
+    		ResponseFormat: to.Ptr(azopenai.ImageGenerationResponseFormatURL),
+    		DeploymentName: to.Ptr(modelDeploymentID),
+    	}, nil)
+    
+    	if err != nil {
+    		// Implement application specific error handling logic.
+    		log.Printf("ERROR: %s", err)
+    		return
+    	}
+    
+    	for _, generatedImage := range resp.Data {
+    		// The underlying type for the generatedImage is determined by the value of
+    		// ImageGenerationOptions.ResponseFormat. 
+    		// In this example we use `azopenai.ImageGenerationResponseFormatURL`,
+    		// so the underlying type will be ImageLocation.
+    
+    		resp, err := http.Head(*generatedImage.URL)
+    
+    		if err != nil {
+    			// Implement application specific error handling logic.
+    			log.Printf("ERROR: %s", err)
+    			return
+    		}
+    
+    		fmt.Fprintf(os.Stderr, "Image generated, HEAD request on URL returned %d\nImage URL: %s\n", resp.StatusCode, *generatedImage.URL)
+    	}
+    }
+    ```
+
+1. Run the following command to create a new Go module:
+
+	```shell
+	go mod init quickstart.go
+	```
+
+1. Run `go mod tidy` to install the required dependencies:
+
+    ```cmd
+    go mod tidy
+    ```
+
+1. Run the following command to run the sample:
+
+	```shell
+	go run quickstart.go
+	```
+
+---
 
 ## Output
 

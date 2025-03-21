@@ -26,11 +26,17 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Set up
  
-Create a new folder `chat-quickstart` and go to the quickstart folder with the following command:
+1. Create a new folder `chat-quickstart` and go to the quickstart folder with the following command:
 
-```shell
-mkdir chat-quickstart && cd chat-quickstart
-```
+    ```shell
+    mkdir chat-quickstart && cd chat-quickstart
+    ```
+
+1. For the **recommended** keyless authentication with Microsoft Entra ID, sign in to Azure with the following command:
+
+    ```console
+    az login
+    ```
 
 ## Retrieve resource information
 
