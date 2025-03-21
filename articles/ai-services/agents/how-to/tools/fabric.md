@@ -47,7 +47,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 1. Select **Microsoft Fabric** and follow the prompts to add the tool. You can add only one per agent.
 
 1. Click to add new connections. Once you have added a connection, you can directly select from existing list.
-   1. To create a new connection, you need to find `workspace-id` and `artifact-id` in your published Fabric data agent endpoint. Your Fabric data agent endpoint would look like `https://fabric.microsoft.com/groups/<workspace_id>/dataagents/<artifact-id>`
+   1. To create a new connection, you need to find `workspace-id` and `artifact-id` in your published Fabric data agent endpoint. Your Fabric data agent endpoint would look like `https://fabric.microsoft.com/groups/<workspace_id>/aiskills/<artifact-id>`
 
    1. Then, you can add both to your connection. Make sure you have checked `is secret` for both of them
    
