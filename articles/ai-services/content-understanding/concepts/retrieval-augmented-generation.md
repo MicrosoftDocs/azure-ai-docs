@@ -20,23 +20,15 @@ Through advanced contextual analysis and multimodal processing and extraction ca
 
 :::image type="content" source="../media/concepts/RAGarchitecture.png" alt-text="Screenshot of Content Understanding RAG architecture overview, process, and workflow with Azure AI Search and Azure Open AI.":::
 
-## Semantic Chunking for Multimodal Content
+## Semantic Chunking Multimodal Content
 
-Semantic chunking is a crucial technique in RAG implementations that segments content into meaningful, context-aware units. While traditional chunking methods often rely on simple character counts or basic delimiters, semantic chunking preserves the logical structure and relationships within the content, leading to more accurate information retrieval and generation.
+Effective chunking is critical for RAG, but multimodal data presents unique challenges. Documents require preserving hierarchical structure, audio needs speaker attribution and topical segmentation, and video demands scene boundary detection and key frame extraction. Traditional chunking methods often fall short, leading to fragmented context and reduced retrieval accuracy. Semantic chunking addresses these challenges by focusing on the meaning and relationships within the content, rather than simply splitting it into arbitrary segments. This approach is particularly important for RAG because it ensures that the retrieved chunks contain enough context to be relevant to the user's query, leading to more accurate and coherent generated responses. 
 
-### Common Challenges with Multimodal Content Chunking
-
-Processing multimodal content presents several unique challenges:
-* **Content Structure Variance**: Different content types require different chunking strategies - paragraphs for documents, transcription for audio, scenes for video.
-* **Context Preservation**: Maintaining relationships between related content segments across modalities.
-* **Metadata Integration**: Preserving crucial metadata like timestamps, speaker information, or spatial relationships.
-* **Scale and Performance**: Processing large volumes of multimodal content efficiently while maintaining accuracy.
-
-### Content Understanding's Approach
-Content Understanding employs an intelligent chunking aware output that addresses the unique challenges of multimodal content processing. 
-- For documents and text, it preserves hierarchical structure including sections, paragraphs, and tables while maintaining layout relationships and metadata associations across multiple languages and formats. 
-- When processing audio content, it intelligently maintains speaker attribution and timestamps while effectively handling multiple speakers and overlapping speech. 
-- For video content, it maintains maintains speaker attribution and timestamps, extracting key frames to represent each shot completely, ensuring each shot has enough key frames to enable Field Extraction to work effectively.
+Azure AI Content Understanding is meticulously designed to support multimodal RAG use cases, offering robust capabilities for processing and understanding diverse content types. With Markdown output available for document, image, audio, and video, users can seamlessly integrate structured and readable content into their workflows. 
+- For document content, Azure AI Content Understanding provides structured document segments to align with contextual breaks like sections, paragraphs, or tables. You can use the Markdown content from Layout model to split documents based on paragraph boundaries, create specific chunks for tables, and fine-tune your chunking strategy to improve the quality of the generated responses.
+- For audio content, Azure AI Content Understanding provides advanced transcription services, diarization, and speaker role detection, enabling precise identification and segmentation of spoken content. This allows for the extraction of meaningful audio segments, facilitating effective semantic chunking. 
+- For video content, Azure AI Content Understanding offers scene summaries, key frame extraction, and shot detection, which helps in breaking down video data into coherent and contextually relevant segments.
+Azure AI Content Understanding excels in supporting Retrieval-Augmented Generation applications, effectively structuring documents, audio, and video into relevant segments. This enhances data reliability and retrieval efficiency, making it a valuable tool for real-time data analysis.
 
 This unified approach ensures semantic integrity across all content types while optimizing for downstream RAG operations. The system's ability to maintain contextual relationships both within and across modalities enables more accurate and comprehensive information retrieval, making it particularly valuable for enterprise applications requiring deep content understanding and analysis.
 
