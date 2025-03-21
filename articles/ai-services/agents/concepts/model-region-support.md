@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: conceptual
-ms.date: 03/05/2025
+ms.date: 03/21/2025
 ms.custom: azure-ai-agents
 ---
 
@@ -24,7 +24,7 @@ Azure OpenAI provides customers with choices on the hosting structure that fits 
 
 All deployments can perform the exact same inference operations, however the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types see our [deployment types guide](../../openai/how-to/deployment-types.md).
 
-Azure AI Agent Service supports the same models as the chat completions API in Azure OpenAI, in the following regions.
+Azure AI Agent Service supports the following Azure OpenAI models in the listed regions.
 
 > [!NOTE]
 > The following table is for pay-as-you-go. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](../../openai/concepts/provisioned-throughput.md) in the Azure OpenAI documentation. `GlobalStandard` customers also have access to [global standard models](../../openai/concepts/models.md#global-standard-model-availability). 
