@@ -4,7 +4,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: include
-ms.date: 02/03/2025
+ms.date: 03/21/2025
 ms.custom: devx-track-js
 ---
 
@@ -36,6 +36,12 @@ ms.custom: devx-track-js
 | Message   | A message created by an agent or a user. Messages can include text, images, and other files. Messages are stored as a list on the Thread.                                                                                                 |
 | Run       | Activation of an agent to begin running based on the contents of Thread. The agent uses its configuration and Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread. |
 | Run Step  | A detailed list of steps the agent took as part of a Run. An agent can call tools or create Messages during its run. Examining Run Steps allows you to understand how the agent is getting to its results.                                |
+
+Key objects in this code include: 
+
+* [AIProjectsClient](/javascript/api/@azure/ai-projects/aiprojectsclient)
+* [ToolUtility](/javascript/api/@azure/ai-projects/toolutility)
+* [Agent operations](/javascript/api/@azure/ai-projects/agentsoperations)
 
 First, initialize a new project by running:
 
@@ -84,7 +90,6 @@ Next, create an `index.js` file and paste in the code below:
 
 ```javascript
 // index.js
-
 import {
   AIProjectsClient,
   DoneEvent,
@@ -101,6 +106,7 @@ dotenv.config();
 
 // Set the connection string from the environment variable
 const connectionString = process.env.PROJECT_CONNECTION_STRING;
+const model = "gpt-4o";
 
 // Throw an error if the connection string is not set
 if (!connectionString) {
@@ -114,14 +120,14 @@ export async function main() {
   );
 
   // Step 1 code interpreter tool
-  const codeInterpreterTool = ToolUtility.createCodeInterpreterTool();
+  const codeInterpreterTool = ToolUtility.createCodeInterpreterTool([]);
 
   // Step 2 an agent
-  const agent = await client.agents.createAgent("gpt-4o-mini", {
+  const agent = await client.agents.createAgent(model, {
     name: "my-agent",
     instructions: "You are a helpful agent",
     tools: [codeInterpreterTool.definition],
-    toolResources: codeInterpreterTool.file_ids,
+    toolResources: codeInterpreterTool.resources,
   });
 
   // Step 3 a thread
@@ -171,14 +177,13 @@ export async function main() {
 
   // Messages iterate from oldest to newest
   // messages[0] is the most recent
-  for (let i = messages.data.length - 1; i >= 0; i--) {
-    const m = messages.data[i];
-    if (m.content && m.content.length > 0 && isOutputOfType(m.content[0], "text")) {
+  await messages.data.forEach((m) => {
+    console.log(`Type: ${m.content[0].type}`);
+    if (isOutputOfType(m.content[0], "text")) {
       const textContent = m.content[0];
-      console.log(`${textContent.text.value}`);
-      console.log(`---------------------------------`);
+      console.log(`Text: ${textContent.text.value}`);
     }
-  }
+  });
 
   // 7. Delete the agent once done
   await client.agents.deleteAgent(agent.id);
