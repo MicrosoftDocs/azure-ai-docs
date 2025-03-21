@@ -313,7 +313,7 @@ volcano-scheduler.conf: |
     - plugins:
       - name: sla 
         arguments:
-        sla-waiting-time: 1m
+          sla-waiting-time: 1m
     - plugins:
       - name: conformance
     - plugins:
