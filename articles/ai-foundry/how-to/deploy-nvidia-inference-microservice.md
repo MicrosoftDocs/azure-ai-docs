@@ -90,12 +90,12 @@ The following NVIDIA NIMs of **chat completions** task type in the model catalog
 1. Create a _Serverless Connection_ to the project using the NIM endpoint and Key. Please note that the target URL for NIM endpoint in the connection should be `https://<endpoint-name>.region.inference.ml.azure.com/v1/`. 
 2. Set the _model parameter_ in the request body to be like, `https://<endpoint>.region.inference.ml.azure.com/v1/@<parameter value per table below>` while creating and running agents.
 
---------------------------------------
-| NVIDIA NIM | `model` parameter value |
---------------------------------------
-| Llama-3.3-70B-Instruct-NIM-microservice | meta/llama-3.3-70b-instruct |
-| Llama-3.1-8B-Instruct-NIM-microservice | meta/llama-3.1-8b-instruct |
-| Mistral-7B-Instruct-v0.3-NIM-microservice | mistralai/mistral-7b-instruct-v0.3 |
+
+NVIDIA NIM | `model` parameter value 
+--|--
+Llama-3.3-70B-Instruct-NIM-microservice | meta/llama-3.3-70b-instruct 
+Llama-3.1-8B-Instruct-NIM-microservice | meta/llama-3.1-8b-instruct 
+Mistral-7B-Instruct-v0.3-NIM-microservice | mistralai/mistral-7b-instruct-v0.3 
 
 
 ## Security scanning
