@@ -57,7 +57,7 @@ For more information about Azure OpenAI keyless authentication, see the "[Get st
 
 # [API Key](#tab/python-key)
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ```python
 import os

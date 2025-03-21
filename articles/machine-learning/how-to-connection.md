@@ -18,7 +18,7 @@ ms.custom: data4ml, devx-track-azurecli
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-In this article, learn how to connect to data sources located outside of Azure, to make that data available to Azure Machine Learning services. Azure connections serve as key vault proxies, and interactions with connections are direct interactions with an Azure key vault. An Azure Machine Learning connection securely stores username and password data resources, as secrets, in a key vault. The key vault RBAC controls access to these data resources. For this data availability, Azure supports connections to these external sources:
+In this article, learn how to connect to data sources located outside of Azure, to make that data available to Azure Machine Learning services. Azure connections serve as key vault proxies, and interactions with connections are direct interactions with an Azure Key Vault. An Azure Machine Learning connection securely stores username and password data resources, as secrets, in a key vault. The key vault RBAC controls access to these data resources. For this data availability, Azure supports connections to these external sources:
 
 - Snowflake DB
 - Amazon S3
