@@ -15,7 +15,7 @@ ms.date: 08/28/2023
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - <a href="https://aka.ms/installpowershell" target="_blank">You can use either the latest version, PowerShell 7, or Windows PowerShell 5.1.</a>
 - An Azure OpenAI Service resource with a model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
-- An Azure OpenAI Service resource with either the `gpt-35-turbo` or the `gpt-4` models deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI Service resource with the `gpt-4` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 ### Retrieve key and endpoint
 
@@ -64,7 +64,7 @@ echo export AZURE_OPENAI_ENDPOINT="REPLACE_WITH_YOUR_ENDPOINT_HERE" >> /etc/envi
 
 1. Create a new PowerShell file called quickstart.ps1. Then open it up in your preferred editor or IDE.
 
-1. Replace the contents of quickstart.ps1 with the following code. You need to set the `engine` variable to the deployment name you chose when you deployed the GPT-35-Turbo or GPT-4 models. Entering the model name will result in an error unless you chose a deployment name that is identical to the underlying model name.
+1. Replace the contents of quickstart.ps1 with the following code. You need to set the `engine` variable to the deployment name you chose when you deployed the or GPT-4 model. Entering the model name will result in an error unless you chose a deployment name that is identical to the underlying model name.
 
    ```powershell-interactive
    # Azure OpenAI metadata variables
@@ -127,7 +127,7 @@ echo export AZURE_OPENAI_ENDPOINT="REPLACE_WITH_YOUR_ENDPOINT_HERE" >> /etc/envi
 id      : chatcmpl-7sdJJRC6fDNGnfHMdfHXvPkYFbaVc
 object  : chat.completion
 created : 1693255177
-model   : gpt-35-turbo
+model   : gpt-4
 choices : {@{index=0; finish_reason=stop; message=}}
 usage   : @{completion_tokens=67; prompt_tokens=55; total_tokens=122}
 
@@ -142,9 +142,9 @@ $response.choices.message.content
 
 ### Understanding the message structure
 
-The GPT-35-Turbo and GPT-4 models are optimized to work with inputs formatted as a conversation. The `messages` variable passes an array of dictionaries with different roles in the conversation delineated by system, user, and assistant. The system message can be used to prime the model by including context or instructions on how the model should respond.
+The GPT-4 models are optimized to work with inputs formatted as a conversation. The `messages` variable passes an array of dictionaries with different roles in the conversation delineated by system, user, and assistant. The system message can be used to prime the model by including context or instructions on how the model should respond.
 
-The [GPT-35-Turbo & GPT-4 how-to guide](../how-to/chatgpt.md) provides an in-depth introduction into the options for communicating with these new models.
+The [GPT-4 how-to guide](../how-to/chatgpt.md) provides an in-depth introduction into the options for communicating with these models.
 
 ## Clean up resources
 
@@ -155,5 +155,5 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 ## Next steps
 
-- Learn more about how to work with GPT-35-Turbo and the GPT-4 models with [our how-to guide](../how-to/chatgpt.md).
+- Learn more about how to work with the GPT-4 models with [our how-to guide](../how-to/chatgpt.md).
 - For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai)
