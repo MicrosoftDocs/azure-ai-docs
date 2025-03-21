@@ -5,7 +5,7 @@ description: Learn to deploy NVIDIA Inference Microservices, using Azure AI Foun
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 03/14/2024
+ms.date: 03/19/2025
 ms.author: ssalgado
 author: ssalgadodev
 ms.reviewer: tinaem
@@ -16,7 +16,7 @@ ms.custom:  devx-track-azurecli
 # How to deploy NVIDIA Inference Microservices
 
 In this article, you learn how to deploy NVIDIA Inference Microservices (NIMs) on Managed Compute in the model catalog on Foundry​. NVIDIA inference microservices are containers built by NVIDIA for optimized pre-trained and customized AI models serving on NVIDIA GPUs​. 
-Get improved TCO (total cost of ownership) and performance with NVIDIA NIMs offered for one-click deployment on Foundry, with enterprise production-grade software under NVIDIA AI Enterprise license. 
+Get increased throughput and reduced total cost ownership with NVIDIA NIMs offered for one-click deployment on Foundry, with enterprise production-grade software under NVIDIA AI Enterprise license. 
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
@@ -65,12 +65,12 @@ Get improved TCO (total cost of ownership) and performance with NVIDIA NIMs offe
 4. Select the NVIDIA NIM of your choice. In this article, we are using **Llama-3.3-70B-Instruct-NIM-microservice** as an example.
 5. Select **Deploy**.
 6. Select one of the NVIDIA GPU based VM SKUs supported for the NIM, based on your intended workload. You need to have quota in your Azure subscription.
-7. You can then customize your deployment configuration for the instance count, select an existing endpoint or create a new one, etc. For the example in this article, we consider an instance count of **2** and create a new endpoint. 
+7. You can then customize your deployment configuration for the instance count, select an existing endpoint or create a new one, etc. For the example in this article, we consider an instance count of **1** and create a new endpoint. 
 
 :::image type="content" source="../media/how-to/deploy-nvidia-inference-microservice/project-customization.png" alt-text="A screenshot showing project customization options in the deployment wizard." lightbox="../media/how-to/deploy-nvidia-inference-microservice/project-customization.png"::: 
 
 8. Select **Next**
-9. Then, review the pricing breakdown for the NIM deployment, terms of use and license agreement associated with the NIM offer. The pricing breakdown helps to inform what the aggregated pricing for the NIM software deployed would be, which is a function of the number of NVIDIA GPUs in the VM instance that was selected in the previous steps. In addition to the applicable NIM software price, Azure Compute charges also applies based on your deployment configuration.
+9. Then, review the pricing breakdown for the NIM deployment, terms of use and license agreement associated with the NIM offer. The pricing breakdown helps inform what the aggregated pricing for the NIM software deployed would be, which is a function of the number of NVIDIA GPUs in the VM instance that was selected in the previous steps. In addition to the applicable NIM software price, Azure Compute charges also applies based on your deployment configuration.
 
 :::image type="content" source="../media/how-to/deploy-nvidia-inference-microservice/payment-description.png" alt-text="A screenshot showing the necessary user payment agreement detailing how the user is charged for deploying the models." lightbox="../media/how-to/deploy-nvidia-inference-microservice/payment-description.png":::  
 
@@ -84,13 +84,12 @@ NVIDIA NIMs on Foundry expose an OpenAI compatible API, learn more about the pay
 
 ## Security scanning for NIMs by NVIDIA
 
+NVIDIA ensures the security and reliability of NVIDIA NIM container images through best-in-class vulnerability scanning, rigorous patch management, and transparent processes. Learn the details [here](https://docs.nvidia.com/ai-enterprise/planning-resource/security-for-azure-ai-foundry/latest/introduction.html). Microsoft works with NVIDIA to get the latest patches of the NIMs to deliver secure, stable, and reliable production-grade software within AI Foundry.
+Users can refer to the last updated time for the NIM in the model overview page, and you can redeploy to get the latest version of NIM from NVIDIA on Foundry.
 
 Redeploy to get the latest version of NIM from NVIDIA on Foundry. 
 
 ## Network Isolation support for NIMs
-
-NVIDIA ensures the security and reliability of NVIDIA NIM container images through best-in-class vulnerability scanning, rigorous patch management, and transparent processes. Learn the details [here](https://docs.nvidia.com/ai-enterprise/planning-resource/security-for-azure-ai-foundry/latest/introduction.html). Microsoft works with NVIDIA to get the latest patches of the NIMs to deliver secure, stable, and reliable production-grade software within AI Foundry.
-Users can refer to the last updated time for the NIM in the model overview page, and you can redeploy to get the latest version of NIM from NVIDIA on Foundry.
 
 While NIMs are in preview on Foundry, workspaces with Public Network Access disabled will have a limitation of being able to create only one successful deployment in the private workspace or project. Note, there can only be a single active deployment in a private workspace, attempts to create more active deployments will end in failure.
 
