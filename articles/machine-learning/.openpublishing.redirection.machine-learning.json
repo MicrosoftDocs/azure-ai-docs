@@ -6,7 +6,7 @@
         "redirect_document_id": false
     },
     {
-        "source_path_from_root": "/articles/machine-learning/how-to-r-deploy-model.md",
+        "source_path_from_root": "/articles/machine-learning/how-to-r-deploy-r-model.md",
         "redirect_url": "/azure/machine-learning/how-to-r-interactive-development",
         "redirect_document_id": false
     },
