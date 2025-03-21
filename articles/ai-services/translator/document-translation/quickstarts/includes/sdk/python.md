@@ -21,7 +21,7 @@ Make sure that the latest version of [Python](https://www.python.org/downloads/)
 Install the latest version of the Document Translation client library:
 
 ```console
-  pip install azure-ai-translation-document==1.1.0b1
+  pip install azure-ai-translation-document==1.0.0
 ```
 
 ### Translate batch files
