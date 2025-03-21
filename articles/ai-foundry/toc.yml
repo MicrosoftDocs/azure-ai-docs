@@ -565,6 +565,8 @@ items:
   items:
   - name: Azure AI Projects SDK
     href: /python/api/overview/azure/ai-projects-readme
+  - name: Azure AI Evaluation SDK
+    href: /python/api/overview/azure/ai-evaluation-readme
   - name: Azure Machine Learning Python SDK
     href: /python/api/overview/azure/ai-ml-readme
   - name: Azure Machine Learning REST API
