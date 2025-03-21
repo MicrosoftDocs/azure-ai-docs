@@ -12,7 +12,7 @@ ms.date: 01/10/2025
 
 ## Set up
  
-1. Create a new folder `use-data-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
+1. Create a new folder `use-data-quickstart` and go to the quickstart folder with the following command:
 
     ```shell
     mkdir use-data-quickstart && cd use-data-quickstart
