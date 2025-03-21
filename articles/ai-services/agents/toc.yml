@@ -20,7 +20,7 @@ items:
     - name: Model and region support
       href: ./concepts/model-region-support.md
     - name: Pricing
-      href: https://azure.microsoft.com/pricing/details/ai-studio/
+      href: https://azure.microsoft.com/pricing/details/ai-foundry/
 - name: Concepts
   expanded: true
   items:
@@ -52,6 +52,8 @@ items:
           href: concepts/tracing.md
         - name: Content filtering
           href: ../openai/how-to/content-filters.md?context=/azure/ai-services/agents/context/context
+        - name: Use virtual networks
+          href: how-to/virtual-networks.md
 - name: Responsible AI
   items:
     - name: Transparency note
@@ -65,11 +67,11 @@ items:
       - name: Azure SDK
         items:
         - name: C#
-          href: /dotnet/api/overview/azure/ai.projects-readme?context=/azure/ai-services/agents/context/context
+          href: /dotnet/api/overview/azure/ai.projects-readme
         - name: Python
-          href: /python/api/overview/azure/ai-projects-readme?context=/azure/ai-services/agents/context/context
+          href: /python/api/overview/azure/ai-projects-readme
         - name: JavaScript
-          href: /javascript/api/@azure/ai-projects/?context=/azure/ai-services/agents/context/context
+          href: /javascript/api/overview/azure/ai-projects-readme
       - name: OpenAI SDK
         items:
         - name: C#

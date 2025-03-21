@@ -37,9 +37,9 @@ To see details for each model including, language, types, and capabilities, see 
 | [Azure OpenAI](concepts/models.md#azure-openai) | - o3-mini <br /> - o1 <br /> - gpt-4o <br /> - o1-preview <br /> - o1-mini <br /> - gpt-4o-mini <br /> - text-embedding-3-large <br /> - text-embedding-3-small <br /> |
 | [Cohere](concepts/models.md#cohere) | - Cohere-embed-v3-english <br /> - Cohere-embed-v3-multilingual <br /> - Cohere-command-r-plus-08-2024 <br /> - Cohere-command-r-08-2024 <br /> - Cohere-command-r-plus <br /> - Cohere-command-r <br /> |
 | [Core42](concepts/models.md#core42) | - jais-30b-chat <br /> |
-| [DeepSeek](concepts/models.md#deepseek) | - DeepSeek-R1 |
+| [DeepSeek](concepts/models.md#deepseek) | - DeepSeek-V3 <br /> - DeepSeek-R1 <br /> |
 | [Meta](concepts/models.md#meta) | - Llama-3.3-70B-Instruct <br /> - Llama-3.2-11B-Vision-Instruct <br /> - Llama-3.2-90B-Vision-Instruct <br /> - Meta-Llama-3.1-405B-Instruct <br /> - Meta-Llama-3-8B-Instruct <br /> - Meta-Llama-3.1-70B-Instruct <br /> - Meta-Llama-3.1-8B-Instruct <br /> - Meta-Llama-3-70B-Instruct <br /> |
-| [Microsoft](concepts/models.md#microsoft) | - Phi-3-mini-128k-instruct <br /> - Phi-3-mini-4k-instruct <br /> - Phi-3-small-8k-instruct <br /> - Phi-3-medium-128k-instruct <br /> - Phi-3-medium-4k-instruct <br /> - Phi-3.5-vision-instruct <br /> - Phi-3.5-MoE-instruct <br /> - Phi-3-small-128k-instruct <br /> - Phi-3.5-mini-instruct <br /> - Phi-4 <br /> |
+| [Microsoft](concepts/models.md#microsoft) | - Phi-4-multimodal-instruct <br /> - Phi-4-mini-instruct <br />  - Phi-4 <br /> - Phi-3-mini-128k-instruct <br /> - Phi-3-mini-4k-instruct <br /> - Phi-3-small-8k-instruct <br /> - Phi-3-medium-128k-instruct <br /> - Phi-3-medium-4k-instruct <br /> - Phi-3.5-vision-instruct <br /> - Phi-3.5-MoE-instruct <br /> - Phi-3-small-128k-instruct <br /> - Phi-3.5-mini-instruct <br /> |
 | [Mistral AI](concepts/models.md#mistral-ai) | - Ministral-3B <br /> - Mistral-large <br /> - Mistral-small <br /> - Mistral-Nemo <br /> - Mistral-large-2407 <br /> - Mistral-Large-2411 <br /> - Codestral-2501 <br /> |
 | [NTT Data](concepts/models.md#ntt-data) | - Tsuzumi-7b |
 
@@ -59,7 +59,7 @@ At Microsoft, we're committed to the advancement of AI driven by principles that
 Microsoft helps guard against abuse and unintended harm by taking the following actions:
 
 - Incorporating Microsoft's [principles for responsible AI use](https://www.microsoft.com/ai/responsible-ai)
-- Adopting a [code of conduct](/legal/cognitive-services/openai/code-of-conduct?context=/azure/ai-services/openai/context/context) for use of the service
+- Adopting a [code of conduct](/legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context) for use of the service
 - Building [content filters](/azure/ai-services/content-safety/overview) to support customers
 - Providing responsible AI [information and guidance](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=image) that customers should consider when using Azure OpenAI.
 

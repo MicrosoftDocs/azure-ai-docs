@@ -468,17 +468,28 @@ groups:
     title: Java
   - id: programming-language-python
     title: Python
-- id: speech-studio-cli-rest
+- id: foundry-speech-studio-cli-rest
 # Owner: eur
   title: Programming languages
   prompt: Choose a tool or API
   pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
   - id: speech-studio
     title: Speech Studio
   - id: rest-api
     title: REST
   - id: speech-cli
     title: Speech CLI
+- id: foundry-speech-studio
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
+  - id: speech-studio
+    title: Speech Studio
 - id: programming-languages-set-nineteen
   title: Programming languages
   prompt: Choose a programming language
@@ -567,6 +578,17 @@ groups:
     title: C#
   - id: programming-language-python
     title: Python
+- id: foundry-speech-studio-rest
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
+  - id: speech-studio
+    title: Speech Studio
+  - id: rest-api
+    title: REST
 - id: speech-studio-rest
 # Owner: eur
   title: Programming languages

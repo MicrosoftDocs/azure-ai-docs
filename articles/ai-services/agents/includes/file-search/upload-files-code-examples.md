@@ -310,7 +310,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
 Create a run and observe that the model uses the file search tool to provide a response to the user's question.
 # [Python](#tab/python)
 ```python
-run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
+run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
 print(f"Created run, run ID: {run.id}")
 
 project_client.agents.delete_vector_store(vector_store.id)

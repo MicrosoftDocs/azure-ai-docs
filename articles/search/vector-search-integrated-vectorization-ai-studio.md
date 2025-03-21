@@ -16,7 +16,7 @@ ms.date: 12/03/2024
 > [!IMPORTANT] 
 > This feature is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [2024-05-01-Preview REST API](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true) supports this feature.
 
-In this article, learn how to access the embedding models in the [Azure AI Foundry model catalog](/azure/ai-studio/how-to/model-catalog) for vector conversions during indexing and in queries in Azure AI Search.
+In this article, learn how to access the embedding models in the [Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) for vector conversions during indexing and in queries in Azure AI Search.
 
 The workflow includes model deployment steps. The model catalog includes embedding models from Microsoft and other companies. Deploying a model is billable per the billing structure of each provider. 
 
@@ -29,7 +29,7 @@ After the model is deployed, you can use it for [integrated vectorization](vecto
 
 + Azure AI Search, any region and tier.
 
-+ Azure AI Foundry and an [Azure AI Foundry project](/azure/ai-studio/how-to/create-projects).
++ Azure AI Foundry and an [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).
 
 ## Supported embedding models
 
@@ -88,7 +88,7 @@ This AML skill payload works with the following models from Azure AI Foundry:
 
 It assumes that you're chunking your content using the [Text Split skill](cognitive-search-skill-textsplit.md) and that the text to be vectorized is in the `/document/pages/*` path. If your text comes from a different path, update all references to the `/document/pages/*` path accordingly.
 
-The URI and key are generated when you deploy the model from the catalog. For more information about these values, see [How to deploy large language models with Azure AI Foundry](/azure/ai-studio/how-to/deploy-models-open).
+The URI and key are generated when you deploy the model from the catalog. For more information about these values, see [How to deploy large language models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-open).
 
 ```json
 {
@@ -133,7 +133,7 @@ This AML skill payload works with the following image embedding models from Azur
 
 It assumes that your images come from the `/document/normalized_images/*` path that is created by enabling [built in image extraction](cognitive-search-concept-image-scenarios.md). If your images come from a different path or are stored as URLs, update all references to the `/document/normalized_images/*` path according.
 
-The URI and key are generated when you deploy the model from the catalog. For more information about these values, see [How to deploy large language models with Azure AI Foundry](/azure/ai-studio/how-to/deploy-models-open).
+The URI and key are generated when you deploy the model from the catalog. For more information about these values, see [Add and configure models to Azure AI model inference](/azure/ai-foundry/model-inference/how-to/create-model-deployments).
 
 ```json
 {
@@ -179,9 +179,9 @@ This AML skill payload works with the following text embedding models from Azure
 
 It assumes that you're chunking your content using the Text Split skill and therefore your text to be vectorized is in the `/document/pages/*` path. If your text comes from a different path, update all references to the `/document/pages/*` path accordingly.
 
-You must add the `/v1/embed` path onto the end of the URL that you copied from your Azure AI Foundry deployment. You might also change the values for the `input_type`, `truncate` and `embedding_types` inputs to better fit your use case. For more information on the available options, review the [Cohere Embed API reference](/azure/ai-studio/how-to/deploy-models-cohere-embed).
+You must add the `/v1/embed` path onto the end of the URL that you copied from your Azure AI Foundry deployment. You might also change the values for the `input_type`, `truncate` and `embedding_types` inputs to better fit your use case. For more information on the available options, review the [Cohere Embed API reference](/azure/ai-foundry/how-to/deploy-models-cohere-embed).
 
-The URI and key are generated when you deploy the model from the catalog. For more information about these values, see [How to deploy Cohere Embed models with Azure AI Foundry](/azure/ai-studio/how-to/deploy-models-cohere-embed).
+The URI and key are generated when you deploy the model from the catalog. For more information about these values, see [How to deploy Cohere Embed models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-cohere-embed).
 
 Note that image URIs aren't supported by this integration at this time.
 
@@ -245,7 +245,7 @@ If you selected a different `embedding_types` in your skill definition that you 
 
 ## Sample Azure AI Foundry vectorizer payload
 
-The [Azure AI Foundry vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), unlike the AML skill, is tailored to work only with those embedding models that are deployable via the Azure AI Foundry model catalog. The main difference is that you don't have to worry about the request and response payload, but you do have to provide the `modelName`, which corresponds to the "Model ID" that you copied after deploying the model in Azure AI Foundry portal. 
+The [Azure AI Foundry vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), unlike the AML skill, is tailored to work only with those embedding models that are deployable via the Azure AI Foundry model catalog. The main difference is that you don't have to worry about the request and response payload, but you do have to provide the `modelName`, which corresponds to the "Model ID" that you copied after deploying the model in [Azure AI Foundry portal](https://ai.azure.com/). 
 
 Here's a sample payload of how you would configure the vectorizer on your index definition given the properties copied from Azure AI Foundry.
 

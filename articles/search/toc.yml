@@ -195,6 +195,8 @@ items:
     items:
     - name: Create a search service
       href: search-create-service-portal.md
+    - name: Configure a search service
+      href: search-manage.md
     - name: Choose a region
       href: search-region-support.md
     - name: Choose a tier
@@ -213,8 +215,6 @@ items:
       href: search-modeling-multitenant-saas-applications.md
     - name: Manage
       items:
-      - name: Manage in the Azure portal
-        href: search-manage.md
       - name: Manage with PowerShell
         href: search-manage-powershell.md
       - name: Manage with Azure CLI

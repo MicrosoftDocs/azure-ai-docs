@@ -1,13 +1,13 @@
 ---
-title: "Quickstart: Create a demo search app in Azure portal"
+title: "Quickstart: Create a Demo App in the Azure Portal"
 titleSuffix: Azure AI Search
 description: Run the Create demo app wizard to generate HTML pages and script for an operational web app. The page includes a search bar, results area, sidebar, and typeahead support.
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 12/04/2024
+ms.date: 03/04/2025
 ms.custom:
   - mode-ui
   - ignite-2023
@@ -15,23 +15,21 @@ ms.custom:
 
 # Quickstart: Create a demo search app in the Azure portal
 
-In this quickstart for Azure AI Search, learn how to use the Azure portal's **Create demo app** wizard to generate a downloadable, "localhost"-style web app that runs in a browser. Depending on how you configure it, the generated app is operational on first use, with a live read-only connection to an index on your search service. A default app can include a search bar, results area, sidebar filters, and typeahead support.
+In this quickstart, you use the **Create demo app** wizard in the Azure portal to generate a downloadable, "localhost"-style web app that runs in a browser. Depending on how you configure it, the generated app is operational on first use, with a live read-only connection to an index on your search service. A default app can include a search bar, results area, sidebar filters, and typeahead support.
 
-A demo app can help you visualize how an index will function in a client app, but it isn't intended for production scenarios. Production apps should include security, error handling, and hosting logic that the demo app doesn't provide. 
+A demo app can help you visualize how an index will function in a client app, but it isn't intended for production scenarios. Production apps should include security, error handling, and hosting logic that the demo app doesn't provide.
 
 ## Prerequisites
 
-Before you begin, have the following prerequisites in place:
-
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
 
-+ An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription. You can use a free service for this quickstart. 
++ An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. For this quickstart, you can use a free service.
 
 + [Microsoft Edge (latest version)](https://www.microsoft.com/edge) or Google Chrome.
 
-+ A [search index](search-what-is-an-index.md) to use as the basis of your generated application. 
++ A [search index](search-what-is-an-index.md) to use as the basis of your generated application.
 
-  This quickstart uses the built-in hotels sample dataset. To create the index used in this exercise, run the **Import data** wizard, choosing the *hotels-sample* source and accepting all defaults.
+  This quickstart uses the hotels-sample index. To create the index, run the [**Import data wizard**](search-import-data-portal.md), select the built-in sample data, and step through the wizard using all the default values.
 
   :::image type="content" source="media/search-create-app-portal/import-data-hotels.png" alt-text="Screenshot of the data source page for sample data.":::
 
@@ -104,11 +102,11 @@ When you're working in your own subscription, it's a good idea at the end of a p
 
 You can find and manage resources in the Azure portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
 
-Remember that a free service is limited to three indexes, indexers, and data sources. You can delete individual items in the Azure portal to stay under the limit. 
+Remember that a free service is limited to three indexes, indexers, and data sources. You can delete individual items in the Azure portal to stay under the limit.
 
-## Next steps
+## Next step
 
-The demo app is useful for prototyping because you can simulate an end-user experience without having to write JavaScript or front-end code, but as you get closer to proof-of-concept in your own project, review one of the end-to-end code samples that is closer facsimile of a real-word app:
+The demo app is useful for prototyping because you can simulate an end-user experience without writing any JavaScript or front-end code. As you get closer to proof-of-concept in your own project, review the end-to-end code samples that more closely mimic a real-word app:
 
 > [!div class="nextstepaction"]
 > [Add search to web apps](tutorial-csharp-overview.md)

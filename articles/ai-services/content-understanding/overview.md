@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 02/19/2025
+ms.date: 03/06/2025
 ms.custom: ignite-2024-understanding-release
 
 #customer intent: As a user, I want to learn more about Content Understanding solutions.
@@ -73,16 +73,19 @@ See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 
 
 ## Responsible AI
- Azure AI Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. For more information and a full list of prohibited content, *see* our [**Transparency note**](/legal/cognitive-services/content-understanding/transparency-note?toc=/azure/ai-services/content-understanding/toc.json&bc=/azure/ai-services/content-understanding/breadcrumb/toc.json) and our [**Code of Conduct**](/legal/ai-code-of-conduct).
+
+ Azure AI Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. For more information and a full list of prohibited content, *see* our [**Transparency note**](/legal/cognitive-services/content-understanding/transparency-note?toc=/azure/ai-services/content-understanding/toc.json&bc=/azure/ai-services/content-understanding/breadcrumb/toc.json) and our [**Code of Conduct**](https://aka.ms/AI-CoC).
 
 ### Modified Content Filtering
 
-Azure AI Content Understanding now supports turning off content filtering for approved customers. The subscription IDs with approved modified content filtering impacts the Azure AI Content Understanding output.
+Content Understanding now supports modified content filtering for approved customers. The subscription IDs with approved modified content filtering impacts Content Understanding output. By default, Content Understanding employs a content filtering system that identifies specific risk categories for potentially harmful content in both submitted prompts and generated outputs. Modified content filtering allows the system to annotate rather than block potentially harmful output, giving you the ability to determine how to handle potentially harmful content. For more information on content filter types, *see* [Content filtering: filter types](../openai/concepts/content-filter.md#content-filter-types).
 
 > [!IMPORTANT]
 >
 > * Apply for modified content filters via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
 > * For more information, *see* [**Content Filtering**](../openai/concepts/content-filter.md).
+
+To learn more about how to add modified content filtering to your requests, *see* our [REST API quickstart](quickstart/use-rest-api.md#modified-content-filtering).
 
 ## Data privacy and security
 Developers using the Content Understanding service should review Microsoft's policies on customer data. For more information, visit our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page.

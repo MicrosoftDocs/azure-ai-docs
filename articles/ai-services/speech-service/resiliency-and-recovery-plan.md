@@ -7,7 +7,7 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/23/2024
+ms.date: 3/10/2025
 #Customer intent: As a developer, I want to learn how to back up and recover speech customer resources.
 ---
 

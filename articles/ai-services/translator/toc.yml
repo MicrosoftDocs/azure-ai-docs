@@ -6,7 +6,7 @@ items:
   items:
   - name: What is Translator Service?
     displayName: features,develop,development,free
-    href: translator-overview.md
+    href: overview.md
   - name: Create a Translator resource
     displayName: endpoint,key,portal,azure,authentication,delete,resource
     href: create-translator-resource.md
@@ -29,12 +29,12 @@ items:
   items:
   - name: What is Text Translation?
     displayName: features,develop,development,free
-    href: text-translation-overview.md
+    href: text-translation/overview.md
   - name: 🆕 Text Translation SDK overview
     displayName: get started,sdk,keys,endpoint
     href: text-sdk-overview.md
   - name: Text Translation REST API guide
-    href:  reference/rest-api-guide.md
+    href:  text-translation/reference/rest-api-guide.md
   - name: Quickstarts
     items:
     - name: Translator Text SDK
@@ -65,7 +65,7 @@ items:
     items:
     - name: Use the Text Translation APIs
       displayName: detection,detect,translation,transliteration,identification,length,sentence length,alternate,usage,headers,set up,status,401
-      href: translator-text-apis.md
+      href: text-translation/how-to/use-rest-api.md
     - name: Migrate to V3 Text API
       displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
       href: migrate-to-v3.md
@@ -87,25 +87,25 @@ items:
     items:
     - name: v3 Translator reference
       displayName: 401000,405000,400000
-      href: reference/v3-0-reference.md
+      href: text-translation/reference/v3/reference.md
     - name: Text Translation REST APIs
-      href:  reference/rest-api-guide.md
+      href:  text-translation/reference/rest-api-guide.md
     - name: Languages
-      href: reference/v3-0-languages.md
+      href: text-translation/reference/v3/languages.md
     - name: Translate
       displayName: detection,detect
-      href: reference/v3-0-translate.md
+      href: text-translation/reference/v3/translate.md
     - name: Transliterate
-      href: reference/v3-0-transliterate.md
+      href: text-translation/reference/v3/transliterate.md
     - name: Detect
-      href: reference/v3-0-detect.md
+      href: text-translation/reference/v3/detect.md
     - name: BreakSentence
       displayName: detection,detect
-      href: reference/v3-0-break-sentence.md
+      href: text-translation/reference/v3/break-sentence.md
     - name: Dictionary Lookup
-      href: reference/v3-0-dictionary-lookup.md
+      href: text-translation/reference/v3/dictionary-lookup.md
     - name: Dictionary Examples
-      href: reference/v3-0-dictionary-examples.md
+      href: text-translation/reference/v3/dictionary-examples.md
 - name: Document translation
   items:
   - name: What is Document Translation?
@@ -259,8 +259,8 @@ items:
       href: custom-translator/concepts/model-training.md
     - name: Bilingual Evaluation Understudies (BLEU) score
       href: custom-translator/concepts/bleu-score.md
-    - name: Encrypt data at rest
-      displayName: encryption,key vault,revoke
+    - name: Use customer-managed keys
+      displayName: encryption,key vault,revoke, data at rest
       href: encrypt-data-at-rest.md
   - name: Reference
     items:
@@ -273,7 +273,7 @@ items:
 - name: Translator solutions
   items:
   - name: What are Azure AI Translator solutions?
-    href: solutions-overview.md
+    href: solutions/overview.md
   - name: Language Studio
     items:
     - name: Translate using Language Studio (preview)
@@ -300,7 +300,7 @@ items:
       href: connector/document-translation-flow.md
     - name: Automate text translation (preview)
       displayName: connect, power, automate, flow
-      href: connector/text-translator-flow.md
+      href: solutions/connector/text-translator-flow.md
 - name: Responsible AI
   items:
   - name: Transparency note
@@ -317,8 +317,10 @@ items:
     href: modifications-deprecations.md
   - name: Known issues
     displayName: error, bug, issue, problem, troubleshoot, troubleshooting
-    href: reference/known-issues.md  
+    href: text-translation/reference/known-issues.md  
   - name: Compliance and certification
     href: https://www.microsoft.com/translator/business/notrace/
   - name: Code samples on GitHub
     href: https://aka.ms/TranslatorGitHub
+  - name: Azure AI Translator release history
+    href: release-history.md
