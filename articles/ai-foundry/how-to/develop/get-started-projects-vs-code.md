@@ -145,7 +145,7 @@ Deploy a selected model in the model catalog using the following steps:
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/enter-deployment-name.png" alt-text="Screenshot of the Choose deployment type dropdown." lightbox="./../media/how-to/get-started-projects-vs-code/enter-deployment-name.png":::
 
-1. A confirmation dialog box will appear. Select the **Deploy** button to deploy the model to your project.
+1. A confirmation dialog box appears. Select the **Deploy** button to deploy the model to your project.
 
 
 After a successful deployment, your model will be listed with your other deployed models under the **Models** section in your project.  
@@ -169,13 +169,13 @@ I can make changes such as rate limit directly within VS Code.
 
 Create sample code by right-clicking on your deployed model and selecting the **Open code file** option. 
 
-By selecting your preferred SDK, coding language and authentication method, a code file will open, allowing you to jump straight into code.
+Create the code file after selecting your preferred SDK, coding language, and authentication method. 
 
 ### Interact with models using a model playground
 
 If you need to do some testing before diving into code, the Playground is the right place for you.
 
-We have integrated with the AI Toolkit extension to bring you a robust playground experience where you can chat interactively with the model and change settings and system instructions.
+Chat interactively with the model and change settings and system instructions using the model playground.
 
 ## Working with Azure AI Agent Service
 
