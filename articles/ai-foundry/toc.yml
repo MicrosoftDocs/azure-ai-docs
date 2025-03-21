@@ -326,6 +326,8 @@ items:
       href: /azure/search/tutorial-rag-build-solution?context=/azure/ai-foundry/context/context
   - name: Develop with code
     items:
+    - name: Work with projects using the VS Code extension
+      href: how-to/develop/get-started-projects-vs-code.md
     - name: Work with projects in VS Code containers
       href: how-to/develop/vscode.md
     - name: Start with an AI template
