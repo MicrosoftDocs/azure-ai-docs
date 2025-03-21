@@ -16,6 +16,8 @@ ms.author: pafarley
 
 # Do video retrieval using vectorization (version 4.0 preview)
 
+[!INCLUDE [video-retrieval-deprecation](../includes/video-retrieval-deprecation.md)]
+
 Azure AI Video Retrieval APIs are part of Azure AI Vision and enable developers to create a media index, add documents (videos and images) to it, and search it with natural language. Developers can define metadata schemas for each index and ingest metadata to the service to help with retrieval. Developers can also specify which features to extract from the index (vision, speech) and filter their search based on features.
 
 ## Prerequisites
