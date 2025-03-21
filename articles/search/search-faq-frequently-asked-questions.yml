@@ -9,7 +9,7 @@ metadata:
   ms.author: haileytapia
   ms.service: azure-ai-search
   ms.topic: faq
-  ms.date: 03/19/2025
+  ms.date: 03/21/2025
 title: Azure AI Search Frequently Asked Questions
 summary:  Find answers to commonly asked questions about Azure AI Search.
 
@@ -60,7 +60,7 @@ sections:
         answer: |
           Services created before April 2024 in select regions can be [upgraded to higher capacity clusters](search-how-to-upgrade.md). Downgrading your service isn't supported. 
           
-          To get more capacity, you can also [switch to a higher service tier](search-capacity-planning.md#change-your-service-tier). Your region can't have [capacity constraints on the higher tier](search-region-support.md), and you can only make upward changes between Basic and Standard (S1, S2, and S3) tiers, such as going from Basic to S3. Currently, you can't switch to a lower service tier.
+          To get more capacity, you can also [switch to a higher service tier](search-capacity-planning.md#change-your-service-tier). Your region can't have [capacity constraints on the higher tier](search-region-support.md), and you can only move up between Basic and Standard (S1, S2, and S3) tiers, such as going from Basic to S3. Currently, you can't switch to a lower tier.
           
       - question: |
           Can I rename or move the service?

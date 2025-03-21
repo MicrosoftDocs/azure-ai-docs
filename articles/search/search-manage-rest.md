@@ -8,10 +8,10 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 03/19/2025
+ms.date: 03/21/2025
 ---
 
-# Manage your Azure AI Search service with REST APIs
+# Manage your Azure AI Search service using REST APIs
 
 Learn how to create and configure an Azure AI Search service using the [Management REST APIs](/rest/api/searchmanagement/). Only the Management REST APIs are guaranteed to provide early access to [preview features](/rest/api/searchmanagement/management-api-versions).
 
@@ -157,7 +157,7 @@ POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroup
 
 ## Change service tiers
 
-If you need more <!-- or less-->capacity, you can [switch to a higher service tier](search-capacity-planning.md#change-your-service-tier). Currently, you can only make upward changes between Basic and Standard (S1, S2, and S3) tiers. Use the `sku` property to specify the higher <!-- your new -->tier.
+If you need more <!-- or less-->capacity, you can [switch to a higher service tier](search-capacity-planning.md#change-your-service-tier). Currently, you can only move up between Basic and Standard (S1, S2, and S3) tiers. Use the `sku` property to specify the higher <!-- your new -->tier.
 
 ```http
 ### Change service tiers
@@ -252,7 +252,7 @@ PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegrou
 [Semantic ranker is enabled](semantic-how-to-enable-disable.md) by default at the free plan that allows up to 1,000 requests per month at no charge. You can lock down the feature at the service level to prevent usage.
 
 ```http
-### disable semantic ranker
+### Disable semantic ranker
 PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01 HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
@@ -271,7 +271,7 @@ PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegrou
 Azure AI Search [writes to external data sources](search-indexer-securing-resources.md) when updating a knowledge store, saving debug session state, or caching enrichments. The following example disables these workloads at the service level.
 
 ```http
-### disable-external-access
+### Disable external access
 PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01 HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
@@ -286,7 +286,7 @@ PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegrou
 ## Delete a search service
 
 ```http
-### delete a search service
+### Delete a search service
 DELETE https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01 HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}

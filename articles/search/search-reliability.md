@@ -6,7 +6,7 @@ author: mattgotteiner
 ms.author: magottei
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 10/29/2024
+ms.date: 03/21/2025
 ms.custom:
   - subject-reliability
   - references_regions
@@ -27,7 +27,7 @@ For business continuity and recovery from disasters at a regional level, plan on
 
 ## High availability
 
-In Azure AI Search, replicas are copies of your index. A search service is commissioned with at least one replica, and can have up to 12 replicas. [Adding replicas](search-capacity-planning.md#adjust-capacity) allows Azure AI Search to do machine reboots and maintenance against one replica, while query execution continues on other replicas.
+In Azure AI Search, replicas are copies of your index. A search service is commissioned with at least one replica, and can have up to 12 replicas. [Adding replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas) allows Azure AI Search to do machine reboots and maintenance against one replica, while query execution continues on other replicas.
 
 For each individual search service, Microsoft guarantees at least 99.9% availability for configurations that meet these criteria:
 
@@ -45,7 +45,7 @@ No Service Level Agreement (SLA) is provided for the *Free* tier. For more infor
 
 [Availability zones](/azure/reliability/availability-zones-overview) are an Azure platform capability that divides a region's data centers into distinct physical location groups to provide high availability, within the same region. In Azure AI Search, individual replicas are the units for zone assignment. A search service runs within one region; its replicas run in different physical data centers (or zones) within that region.
 
-Availability zones are used when you add two or more replicas to your search service. Each replica is placed in a different availability zone within the region. If you have more replicas than available zones in the search service region, the replicas are distributed across zones as evenly as possible. There's no specific action on your part, except to [create a search service](search-create-service-portal.md) in a region that provides availability zones, and then to configure the service to [use multiple replicas](search-capacity-planning.md#adjust-capacity).
+Availability zones are used when you add two or more replicas to your search service. Each replica is placed in a different availability zone within the region. If you have more replicas than available zones in the search service region, the replicas are distributed across zones as evenly as possible. There's no specific action on your part, except to [create a search service](search-create-service-portal.md) in a region that provides availability zones, and then to configure the service to [use multiple replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas).
 
 ### Prerequisites
 

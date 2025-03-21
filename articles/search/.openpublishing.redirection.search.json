@@ -385,6 +385,11 @@
             "source_path_from_root": "/articles/search/vector-search-index-size.md#how-to-check-service-creation-date",
             "redirect_url": "/azure/search/search-how-to-upgrade#check-your-service-version",
             "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/search-capacity-planning.md#adjust-capacity",
+            "redirect_url": "/azure/search/search-capacity-planning#add-or-remove-partitions-and-replicas",
+            "redirect_document_id": false
         }
     ]
 }

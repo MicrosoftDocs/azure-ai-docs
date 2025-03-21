@@ -11,7 +11,7 @@ ms.custom:
   - ignite-2023
   - ignite-2024
 ms.topic: conceptual
-ms.date: 03/19/2025
+ms.date: 03/21/2025
 ---
 
 # Estimate and manage capacity of a search service
@@ -30,7 +30,7 @@ When scaling a search service, you can choose from the following tools and appro
 + [Management REST API](/rest/api/searchmanagement/services/create-or-update)
 
 > [!NOTE]
-> Higher capacity partitions are available at the same billing rate on newer services created after April and May 2024. For more information, see [Service limits](search-limits-quotas-capacity.md#service-limits) for partition size upgrades.
+> Higher capacity partitions are available at the same billing rate on newer services created after April and May 2024. For more information about partition size upgrades, see [Service limits](search-limits-quotas-capacity.md#service-limits).
 
 ## Concepts: search units, replicas, partitions
 
@@ -89,7 +89,6 @@ Your [pricing tier](search-sku-tier.md) determines the maximum storage of your s
 
 In addition to capacity, changing your service tier affects the workload and maximum limits of your service. Before you proceed, compare the [service limits](search-limits-quotas-capacity.md) of your current tier and your desired tier. These include limits on:
 
-+ Services
 + Partition storage
 + Indexes
 + Vectors
@@ -139,9 +138,6 @@ To change your service tier:
 
    :::image type="content" source="media/search-capacity-planning/4-updating.png" alt-text="Status message in the Azure portal" border="true":::
 
-> [!NOTE]
-> After a service is provisioned, it cannot be upgraded to a higher tier. You must create a search service at the new tier and reload your indexes. See [Create an Azure AI Search service in the Azure portal](search-create-service-portal.md) for help with service provisioning.
-
 ## How scale requests are handled
 
 Upon receipt of a scale request, the search service:
@@ -187,9 +183,9 @@ The following chart applies to Standard tier and higher. It shows all possible c
 
 Basic search services have lower search unit counts.
 
-+ On search services created before April 3, 2024, a basic search service can have exactly one partition and up to three replicas, for a maximum limit of three SUs. The only adjustable resource is replicas. 
++ On search services created before April 3, 2024, Basic services can have exactly one partition and up to three replicas for a maximum limit of three SUs. The only adjustable resource is replicas. However, you might be able to increase your partition count by [upgrading your service](search-how-to-upgrade.md).
 
-+ On search services created after April 3, 2024 in [supported regions](search-limits-quotas-capacity.md#service-limits), basic services can have up to three partitions and three replicas. The maximum SU limit is nine to support a full complement of partitions and replicas.
++ On search services created after April 3, 2024 in [supported regions](search-limits-quotas-capacity.md#service-limits), Basic services can have up to three partitions and three replicas. The maximum SU limit is nine to support a full complement of partitions and replicas.
 
 For search services on any billable tier, regardless of creation date, you need a minimum of two replicas for high availability on queries.
 
@@ -231,11 +227,11 @@ Storage requirements can be inflated if you include data that will never be sear
 
 ## Service-level agreement considerations
 
-The Free tier and preview features aren't covered by [service-level agreements (SLAs)](https://azure.microsoft.com/support/legal/sla/search/v1_0/). For all billable tiers, SLAs take effect when you provision sufficient redundancy for your service. 
+The Free tier and preview features aren't covered by [service-level agreements (SLAs)](https://azure.microsoft.com/support/legal/sla/search/v1_0/). For all billable tiers, SLAs take effect when you provision sufficient redundancy for your service.
 
-+ Two or more replicas satisfy query (read) SLAs. 
++ Two or more replicas satisfy query (read) SLAs.
 
-+ Three or more replicas satisfy query and indexing (read-write) SLAs. 
++ Three or more replicas satisfy query and indexing (read-write) SLAs.
 
 The number of partitions doesn't affect SLAs.
 
