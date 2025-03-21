@@ -1,6 +1,26 @@
 {
     "redirections": [
     {
+        "source_path_from_root": "/articles/machine-learning/how-to-r-train-model.md",
+        "redirect_url": "/azure/machine-learning/how-to-r-interactive-development",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-r-deploy-model.md",
+        "redirect_url": "/azure/machine-learning/how-to-r-interactive-development",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-r-modify-script-for-production.md",
+        "redirect_url": "/azure/machine-learning/how-to-r-interactive-development",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-r-overview-r-capabilities.md",
+        "redirect_url": "/azure/machine-learning/how-to-r-interactive-development",
+        "redirect_document_id": false
+    },
+    {
         "source_path_from_root": "/articles/machine-learning/how-to-regulate-registry-deployments.md",
         "redirect_url": "/azure/machine-learning/how-to-built-in-policy-model-deployment",
         "redirect_document_id": false
