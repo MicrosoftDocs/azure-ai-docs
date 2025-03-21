@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: overview
-ms.date: 10/04/2024
+ms.date: 03/11/2024
 
 ---
 
@@ -33,8 +33,6 @@ Sample code can be found in [this Python notebook](https://github.com/Azure-Samp
 - Maximize relevance
 
 - Minimize storage and costs
-
-<!-- - Deploy and secure an app -->
 
 We omitted a few aspects of a RAG pattern to reduce complexity:
 

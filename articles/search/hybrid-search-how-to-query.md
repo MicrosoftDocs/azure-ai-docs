@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 10/01/2024
+ms.date: 03/11/2025
 ---
 
 # Create a hybrid query in Azure AI Search
@@ -19,19 +19,13 @@ ms.date: 10/01/2024
 In this article, learn how to:
 
 + Set up a basic request
-+ Formulate hybrid queries with more parameters and filters
++ Add parameters and filters
 + Improve relevance using semantic ranking or vector weights
 + Optimize query behaviors by controlling text and vector inputs
 
 > [!NOTE]
 > New in [**2024-09-01-preview**](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-09-01-preview&preserve-view=true) is the ability to target filters to just the vector subqueries in a hybrid request. This gives you more precision over how filters are applied. For more information, see [targeting filters to vector subqueries](#hybrid-search-with-filters-targeting-vector-subqueries-preview) in this article.
 
-<!-- To improve relevance in a hybrid query, use these parameters:
-
-+ [vector.queries.weight](vector-search-how-to-query.md#vector-weighting) lets you set the relative weight of the vector query. This feature is particularly useful in complex queries where two or more distinct result sets need to be combined, as is the case for hybrid search. This feature is generally available.
-
-+ [hybridsearch.maxTextRecallSize and countAndFacetMode (preview)](#set-maxtextrecallsize-and-countandfacetmode) give you more control over text inputs into a hybrid query. This feature requires a preview API version.
- -->
 ## Prerequisites
 
 + A search index containing `searchable` vector and nonvector fields. We recommend the [Import and vectorize data wizard](search-import-data-portal.md) to create an index quickly. Otherwise, see [Create an index](search-how-to-create-search-index.md) and [Add vector fields to a search index](vector-search-how-to-create-index.md).

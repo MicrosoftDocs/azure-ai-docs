@@ -19,15 +19,7 @@ The Azure AI model catalog offers a large selection of models from a wide range 
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
-To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others that belong to the following model types support inferencing using the [Azure AI model inference](../model-inference/overview.md):
-
-- [Chat completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context)
-- [Chat completion (with reasoning content)](../model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context)
-- [Chat completion (with image and audio content)](../model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context)
-- [Embeddings](../model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context)
-- [Image embeddings](../model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context)
-
-You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
+To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Azure AI model inference](../model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
 
 :::image type="content" source="../media/models-featured/models-catalog.gif" alt-text="An animation showing Azure AI studio model catalog section and the models available." lightbox="../media/models-featured/models-catalog.gif":::
 
@@ -156,6 +148,7 @@ DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks 
 | [DeepSeek-V3](https://ai.azure.com/explore/models/deepseek-v3/version/1/registry/azureml-deepseek) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
 | [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | [chat-completion with reasoning content](../model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context) | - **Input:** text (16,384 tokens) <br /> - **Output:**  (163,840 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
 
+For a tutorial on DeepSeek-R1, see [Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI model inference](../model-inference/tutorials/get-started-deepseek-r1.md?context=/azure/ai-foundry/context/context).
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=deepseek).
 
@@ -245,7 +238,11 @@ For more examples of how to use Phi-3 family models, see the following examples:
 
 ## Mistral AI
 
-Mistral AI offers two categories of models: premium models including Mistral Large and Mistral Small and open models including Mistral Nemo.
+Mistral AI offers two categories of models, namely: 
+
+- _Premium models_: These include Mistral Large, Mistral Small, and Ministral 3B models, and are available as serverless APIs with pay-as-you-go token-based billing.  
+- _Open models_: These include Mistral-small-2503, Codestral, and Mistral Nemo (that are available as serverless APIs with pay-as-you-go token-based billing), and [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](../how-to/deploy-models-mistral-open.md)(that are available to download and run on self-hosted managed endpoints).
+
 
 | Model  | Type | Capabilities |
 | ------ | ---- | --- | 
@@ -253,8 +250,9 @@ Mistral AI offers two categories of models: premium models including Mistral Lar
 | [Ministral-3B](https://ai.azure.com/explore/models/Ministral-3B/version/1/registry/azureml-mistral) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Mistral-Nemo](https://ai.azure.com/explore/models/Mistral-Nemo/version/1/registry/azureml-mistral) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Mistral-Large-2411](https://ai.azure.com/explore/models/Mistral-Large-2411/version/2/registry/azureml-mistral) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text (128,000 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
-| [Mistral-large-2407](https://ai.azure.com/explore/models/Mistral-large-2407/version/1/registry/azureml-mistral) <br /> (legacy) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text (131,072 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON  |
+| [Mistral-large-2407](https://ai.azure.com/explore/models/Mistral-large-2407/version/1/registry/azureml-mistral) <br /> (deprecated) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text (131,072 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON  |
 | [Mistral-large](https://ai.azure.com/explore/models/Mistral-large/version/1/registry/azureml-mistral) <br /> (deprecated) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text (32,768 tokens) <br /> - **Output:**  (4,096 tokens) <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
+| [Mistral-small-2503](https://aka.ms/aistudio/landing/mistral-small-2503) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text and images (131,072 tokens), <br> image-based tokens are 16px x 16px <br> blocks of the original images <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Mistral-small](https://ai.azure.com/explore/models/Mistral-small/version/1/registry/azureml-mistral) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text (32,768 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=mistral).
@@ -321,13 +319,26 @@ There are four pricing meters that determine the price you pay. These meters are
 
 See the [Nixtla model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=nixtla).
 
-## NTT Data
+## NTT DATA
 
-**Tsuzumi** is an autoregressive language optimized transformer. The tuned versions use supervised fine-tuning (SFT). Tsuzumi is handles both Japanese and English language with high efficiency.
+**tsuzumi** is an autoregressive language optimized transformer. The tuned versions use supervised fine-tuning (SFT). tsuzumi handles both Japanese and English language with high efficiency.
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
-| [Tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
+| [tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
+
+## Stability AI 
+
+The Stability AI collection of image generation models include Stable Image Core, Stable Image Ultra and Stable Diffusion 3.5 Large. Stable Diffusion 3.5 Large allows for an image and text input. 
+
+| Model  | Type | Capabilities |
+| ------ | ---- | ------------ |
+| [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/versions/1) | [Image Generation](../how-to/deploy-stability-models.md?context=/azure/ai-foundry/context/context) | - Input: text and image (1000 tokens and 1 image)  <br /> - Output: 1 Image  <br />  - **Tool calling:** No <br /> - Response formats: Image (PNG and JPG) |
+| [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/versions/1) | [Image Generation](../how-to/deploy-stability-models.md?context=/azure/ai-foundry/context/context) | - Input: text (1000 tokens)  <br /> - Output: 1 Image  <br />  - **Tool calling:** No <br /> - Response formats: Image (PNG and JPG) |
+| [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/versions/1) | [Image Generation](../how-to/deploy-stability-models.md?context=/azure/ai-foundry/context/context) | - Input: text (1000 tokens)  <br /> - Output: 1 Image  <br />  - **Tool calling:** No <br /> - Response formats: Image (PNG and JPG) |
+
+
+
 
 ## Related content
 

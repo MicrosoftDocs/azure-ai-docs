@@ -78,6 +78,66 @@ When you request support, we recommend that you run the following command and se
 ```bash
 kubectl logs healthcheck -n azureml
 ```
+## Extension-operator pod in azure-arc/kube-system namespace is crashing due to OOMKill 
+This issue occurs when the extension's Helm chart size is large and there are multiple Helm releases on the cluster.
+To check the Helm history of the Azure ML extension, use the following commands:
+```
+# Check if there is a release of the Azure ML extension Helm chart installed on the cluster
+# Note: The default namespace for the extension is usually 'azureml'. If you specified a different namespace during installation, replace 'azureml' with your namespace.
+helm list -n azureml
+
+# Get helm history 
+# Note: <release-name> should be the name of your azure ml extension and can be retrieved from the output of the previous command
+helm history -n <extension-namespace> azureml
+```
+There is a Helm history limit of 10 revisions, but this limit applies only to revisions in a non-transient state.
+If you see multiple revisions in a pending-rollback or pending-upgrade state in the Helm history output, run the script below to clean up the Helm history on the cluster:
+```
+#!/bin/bash
+
+# Set release name and namespace
+RELEASE_NAME=$1 # release-name is the name of the azure ml extension helm release 
+NAMESPACE=$2 # namespace is the azure ml extension's namespace. Default value is azureml 
+
+# Validate input
+if [[ -z "$RELEASE_NAME" || -z "$NAMESPACE" ]]; then
+    echo "Usage: $0 <release-name> <namespace>"
+    exit 1
+fi
+
+echo "Fetching Helm history for release: $RELEASE_NAME in namespace: $NAMESPACE"
+
+# Get stuck revisions (PENDING_ROLLBACK or PENDING_UPGRADE) using grep + awk for accurate parsing
+STUCK_REVISIONS=$(helm history "$RELEASE_NAME" -n "$NAMESPACE" | grep 'pending-' | awk '{print $1}')
+
+if [[ -z "$STUCK_REVISIONS" ]]; then
+    echo "No stuck Helm revisions found. Nothing to delete."
+    exit 0
+fi
+
+echo "Found stuck Helm revisions: $STUCK_REVISIONS"
+
+# Loop through each stuck revision and delete the corresponding secret
+for REVISION in $STUCK_REVISIONS; do
+    SECRET_NAME="sh.helm.release.v1.${RELEASE_NAME}.v${REVISION}"
+   
+    echo "Deleting Helm history secret: $SECRET_NAME"
+   
+    kubectl delete secret -n "$NAMESPACE" "$SECRET_NAME" --ignore-not-found
+done
+
+echo "Cleanup complete. Verify with 'helm history $RELEASE_NAME -n $NAMESPACE'"
+
+exit 0
+
+```
+
+How to run the script: 
+```
+chmod +x delete_stuck_helm_secrets.sh
+
+./delete_stuck_helm_secrets.sh <release-name> <extension-namespace>
+```
 
 ### Error Code of HealthCheck 
 This table shows how to troubleshoot the error codes returned by the HealthCheck report. 

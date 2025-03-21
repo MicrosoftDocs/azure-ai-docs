@@ -794,14 +794,6 @@ items:
       - name: Fairness in Machine Learning
         displayName: fairness, bias, model performance, disparity metrics, unfairness
         href: concept-fairness-ml.md
-    # v1
-      - name: Interpret ML models
-        href: ./v1/how-to-machine-learning-interpretability-aml.md
-      - name: Explain automated ML models
-        href: ./v1/how-to-machine-learning-interpretability-automl.md
-      - name: Fairness in Machine Learning
-        href: ./v1/how-to-machine-learning-fairness-aml.md
-    # end v1
       - name: Causal analysis
         href: concept-causal-inference.md
       - name: Assess errors in ML models
@@ -1094,7 +1086,7 @@ items:
     - name: Consume web service
       displayName: create client consume request response synchronous
       href: ./v1/how-to-consume-web-service.md
-    - name: Advanced entry script authoring
+    - name: Author advanced entry scripts
       displayName: swagger inference schema binary cors
       href: ./v1/how-to-deploy-advanced-entry-script.md
     - name: Prebuilt Docker images
