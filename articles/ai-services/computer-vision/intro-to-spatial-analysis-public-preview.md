@@ -53,6 +53,8 @@ Spatial Analysis can also be configured to detect if a person is wearing a prote
 
 ## Video Retrieval
 
+[!INCLUDE [video-retrieval-deprecation](includes/video-retrieval-deprecation.md)]
+
 Video Retrieval is a service that lets you create a search index, add documents (videos and images) to it, and search with natural language. Developers can define metadata schemas for each index and ingest metadata to the service to help with retrieval. Developers can also specify what features to extract from the index (vision, speech) and filter their search based on features.
 
 > [!div class="nextstepaction"]

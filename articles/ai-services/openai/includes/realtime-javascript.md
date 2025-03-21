@@ -66,7 +66,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
     ```javascript 
     import { OpenAIRealtimeWS } from "openai/beta/realtime/ws";
-    import { AzureOpenAI } from "openai/index.mjs";
+    import { AzureOpenAI } from "openai";
     import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
     async function main() {
         // You will need to set these environment variables or edit the following values
@@ -149,7 +149,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
     ```javascript 
     import { OpenAIRealtimeWS } from "openai/beta/realtime/ws";
-    import { AzureOpenAI } from "openai/index.mjs";
+    import { AzureOpenAI } from "openai";
     async function main() {
         // You will need to set these environment variables or edit the following values
         const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
