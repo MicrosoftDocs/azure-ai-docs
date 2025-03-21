@@ -27,17 +27,13 @@ This article shows you how to get started with AI Foundry Local to run AI models
   - A modern CPU
 - Administrator access to install software
 
-## Install AI Foundry Local
+## Step 1: Install AI Foundry Local
 
 1. Download AI Foundry Local from the Microsoft Store.
 2. Follow the installation prompts to complete the setup.
 3. Once installed, you can access AI Foundry Local through the command line using the `foundry` command.
 
-## Using the CLI
-
-The AI Foundry Local CLI provides several commands to manage models and the local inference service.
-
-### Run your first model
+## Step 2: Run your first model
 
 To start a chat completion interaction with a model:
 
@@ -47,8 +43,7 @@ foundry model run deepseek-r1-1.5b-cpu
 
 This command downloads the model if not already cached, loads it into the service, and starts an interactive chat session.
 
-
-### View available commands
+## Other available commands
 
 To see all available commands, use the help option:
 
@@ -56,107 +51,56 @@ To see all available commands, use the help option:
 foundry --help
 ```
 
-### Discover available models
+The foundry CLI is structured into several categories:
 
-To list all available models that you can run locally:
+- **Model**: Commands related to managing and running models.
+- **Service**: Commands for managing the AI Foundry Local service.
+- **Cache**: Commands for managing the local cache where models are stored.
 
-```bash
-foundry model list
-```
 
-### Get information about a specific model
+### Managing models
 
-To view details about a specific model:
+The following table summarizes the commands related to managing and running models:
 
-```bash
-foundry model info <model-name>
-```
+| **Command**                          | **Description**                                                                 |
+|--------------------------------------|---------------------------------------------------------------------------------|
+| `foundry model --help`               | Displays all available model-related commands and their usage.                 |
+| `foundry model run <model>`     | Runs a specified model, downloading it if not cached, and starts an interaction.|
+| `foundry model list`                 | Lists all available models for local use.                                      |
+| `foundry model info <model>`    | Displays detailed information about a specific model.                          |
+| `foundry model download <model>`| Downloads a model to the local cache without running it.                       |
+| `foundry model load <model>`    | Loads a model into the service.                                                |
+| `foundry model unload <model>`  | Unloads a model from the service.                                              |
 
-## Managing models
-
-### Download a model
-
-To download a model to your local cache without running it:
-
-```bash
-foundry model download <model-name>
-```
-
-### Load and unload models
-
-Load a model into the service:
-
-```bash
-foundry model load <model-name>
-```
-
-Unload a model from the service:
-
-```bash
-foundry model unload <model-name>
-```
 
 ## Managing the service
 
-### Check service status
+The following table summarizes the commands related to managing and running the Foundry Local service:
 
-To check the status of the AI Foundry Local service:
+| **Command**                          | **Description**                                                                 |
+|--------------------------------------|---------------------------------------------------------------------------------|
+| `foundry service --help`              | Displays all available service-related commands and their usage.               |
+| `foundry service start`               | Starts the AI Foundry Local service.                                           |
+| `foundry service stop`                | Stops the AI Foundry Local service.                                            |
+| `foundry service restart`             | Restarts the AI Foundry Local service.                                         |
+| `foundry service status`              | Displays the current status of the AI Foundry Local service.                   |
+| `foundry service ps`                | Lists all models currently loaded in the AI Foundry Local service.             |
+| `foundry service logs`                | Displays the logs of the AI Foundry Local service.                             |
+| `foundry service set`              | Set configuration of the AI Foundry Local service.            |
 
-```bash
-foundry service status
-```
 
-### Start, stop, and restart the service
-
-Note that the service will start automatically when attempting to run a model. To manually start, stop, or restart the service:
-
-```bash
-foundry service start
-foundry service stop 
-foundry service restart
-```
-
-### List loaded models
-
-To see which models are currently loaded in the service:
-
-```bash
-foundry service list
-```
 
 ## Managing the cache
 
-### View cache location
+The following table summarizes the commands related to managing the local cache where models are stored:
 
-To see where models are stored locally:
-
-```bash
-foundry cache pwd
-```
-
-### List cached models
-
-To list all models stored in your local cache:
-
-```bash
-foundry cache list
-```
-
-### Remove a model from cache
-
-To delete a model from your local cache:
-
-```bash
-foundry cache remove <model-name>
-```
-
-### Change cache directory
-
-To change the directory where models are stored:
-
-```bash
-foundry cache cd <path>
-```
+| **Command**                          | **Description**                                                                 |
+|--------------------------------------|---------------------------------------------------------------------------------|
+| `foundry cache --help`                | Displays all available cache-related commands and their usage.                 |
+| `foundry cache pwd`                  | Displays the current cache directory.                                          |
+| `foundry cache list`                 | Lists all models stored in the local cache.                                   |
+| `foundry cache remove <model>`    | Deletes a model from the local cache.                                          |
+| `foundry cache cd <path>`         | Changes the cache directory.                                 |    
 
 ## Next steps
 
