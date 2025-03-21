@@ -81,11 +81,11 @@ After your deployment is successfully created, you can go to **Models + Endpoint
 
 NVIDIA NIMs on Foundry expose an OpenAI compatible API, learn more about the payload supported [here](https://docs.nvidia.com/nim/large-language-models/latest/api-reference.html#). The 'model' parameter for NIMs on Foundry is set to a default value within the container, and is not required to be passed in the request payload to your online endpoint. The **Consume** tab of the NIM deployment on Foundry includes code samples for inference with the target URL of your deployment. 
 
-You can also consume NIM deployments using the [Azure AI Model Inference SDK](https://learn.microsoft.com/en-us/python/api/overview/azure/ai-inference-readme?view=azure-python-preview), with limitations such as no support for [creating and authenticating clients using `load_client`](https://learn.microsoft.com/en-us/python/api/overview/azure/ai-inference-readme?view=azure-python-preview#create-and-authenticate-clients-using-load_client) and calling client method `get_model_info` to [retrieve model information](https://learn.microsoft.com/en-us/python/api/overview/azure/ai-inference-readme?view=azure-python-preview#get-ai-model-information).
+You can also consume NIM deployments using the [Azure AI Model Inference SDK](/python/api/overview/azure/ai-inference-readme), with limitations such as no support for [creating and authenticating clients using `load_client`](https://learn.microsoft.com/en-us/python/api/overview/azure/ai-inference-readme?view=azure-python-preview#create-and-authenticate-clients-using-load_client) and calling client method `get_model_info` to [retrieve model information](https://learn.microsoft.com/en-us/python/api/overview/azure/ai-inference-readme?view=azure-python-preview#get-ai-model-information).
 
 ### Develop and run agents with NIM endpoints
 
-The following NVIDIA NIMs of **chat completions** task type in the model catalog can be used to [create and run agents using Agent Service](https://learn.microsoft.com/en-us/python/api/overview/azure/ai-projects-readme?view=azure-python-preview#agents-preview) using various supported tools, with the following two additional requirements: 
+The following NVIDIA NIMs of **chat completions** task type in the model catalog can be used to [create and run agents using Agent Service](/python/api/overview/azure/ai-projects-readme) using various supported tools, with the following two additional requirements: 
 
 1. Create a _Serverless Connection_ to the project using the NIM endpoint and Key. Please note that the target URL for NIM endpoint in the connection should be `https://<endpoint-name>.region.inference.ml.azure.com/v1/`. 
 2. Set the _model parameter_ in the request body to be like, `https://<endpoint>.region.inference.ml.azure.com/v1/@<parameter value per table below>` while creating and running agents.
@@ -106,7 +106,7 @@ Users can refer to the last updated time for the NIM on the right pane in the mo
 
 ## Network Isolation 
 
-Collections in the model catalog can be deployed within your isolated networks using workspace managed virtual network. For more information on how to configure your workspace managed networks, see [here]. (https://learn.microsoft.com/en-us/azure/machine-learning/how-to-managed-network?view=azureml-api-2&tabs=azure-cli#configure-a-managed-virtual-network-to-allow-internet-outbound)
+Collections in the model catalog can be deployed within your isolated networks using workspace managed virtual network. For more information on how to configure your workspace managed networks, see [here]. (/azure/machine-learning/how-to-managed-network)
 
 ### Limitation
 
