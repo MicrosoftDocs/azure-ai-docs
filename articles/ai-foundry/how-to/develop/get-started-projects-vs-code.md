@@ -26,10 +26,10 @@ Before using the Azure AI Foundry for Visual Studio Code extension, you must:
 - Download, install, and configure Visual Studio Code. More information: [Download Visual Studio Code](https://code.visualstudio.com/Download)
 
 - You need permissions to create an Azure AI Foundry hub or have one created for you.
-    - If your role is **Contributor** or **Owner**, you can follow the steps in this tutorial.
-    - If your role is **Azure AI Developer**, the hub must already be created before you can complete this tutorial. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../../concepts/ai-resources.md) and [Azure AI roles](../../concepts/rbac-ai-foundry.md).
+    - If your role is **Contributor** or **Owner**, you can follow the steps in this quickstart.
+    - If your role is **Azure AI Developer**, the hub must already be created before you can complete this quickstart. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../../concepts/ai-resources.md) and [Azure AI roles](../../concepts/rbac-ai-foundry.md).
 
-- Your subscription needs to be below your [quota limit](../quota.md) to [deploy a new model in this tutorial](#deploy-a-chat-model). Otherwise you already need to have a [deployed chat model](../deploy-models-openai.md).
+- Your subscription needs to be below your [quota limit](../quota.md) to [deploy a new model in this quickstart](#deploy-a-model-from-the-model-catalog). Otherwise you already need to have a [deployed chat model](../deploy-models-openai.md).
 
 - Install [Azure Resources for Visual Studio Code (Preview) Extension](): View and manage Azure resources directly from VS Code.
 
@@ -48,8 +48,6 @@ To install the Azure AI Foundry for Visual Studio Code extension:
 1. Select the **Settings** icon from the top-right on the extensions pane.
 
 1. Search for and select **Azure AI Foundry**.
-
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/vs-code-extension.png" alt-text="Select Azure AI Foundry Visual Studio Code extension.":::
 
 1. Select **Install**.
 
@@ -72,7 +70,7 @@ The following steps help you get started with the Azure AI Foundry extension:
 
 1. Sign in by selecting the `Sign in to Azure...` item in the **Azure Resources** view.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/sign-in-to-azure-resources.png" alt-text="A screenshot of the Visual Studio Code command palette for AI Foundry." lightbox="../../media/how-to/get-started-projects-vs-code/sign-in-to-azure-resources.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/sign-in-to-azure-resources.png" alt-text="A screenshot of the Sign in to Azure option." lightbox="../../media/how-to/get-started-projects-vs-code/sign-in-to-azure-resources.png":::
 
 
 1. Under the "Resources" section, select your Azure Subscription and Resource Group. 
@@ -143,7 +141,7 @@ Deploy a selected model in the model catalog using the following steps:
 
 1. In the top center, enter the model deployment name to use in the **Enter deployment name** textbox and press enter.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/enter-deployment-name.png" alt-text="Screenshot of the Choose deployment type dropdown." lightbox="./../media/how-to/get-started-projects-vs-code/enter-deployment-name.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/enter-deployment-name.png" alt-text="Screenshot of the Enter deployment name textbox." lightbox="../../media/how-to/get-started-projects-vs-code/enter-deployment-name.png":::
 
 1. A confirmation dialog box appears. Select the **Deploy** button to deploy the model to your project.
 
