@@ -202,8 +202,8 @@ When a job failure occurs, you'll find details about the failure in the `errors`
                 "object": “list”,
                 "data": [
                 {
-               “code”: “empty_file”,
-               “message”: “The input file is empty. Please ensure that the batch contains at least one   request.”
+               "code": "empty_file",
+               "message": "The input file is empty. Please ensure that the batch contains at least one   request."
                     }
                 ]
           },

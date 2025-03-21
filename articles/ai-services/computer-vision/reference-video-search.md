@@ -16,6 +16,8 @@ ms.author: pafarley
 
 # Video Retrieval API reference
 
+[!INCLUDE [video-retrieval-deprecation](includes/video-retrieval-deprecation.md)]
+
 ## Authentication
 
 Include the following headers when making a call to any API in this document.
