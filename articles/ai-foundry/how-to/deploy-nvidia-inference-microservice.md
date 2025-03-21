@@ -47,9 +47,9 @@ NVIDIA inference microservices are containers built by NVIDIA for optimized pret
         -	Microsoft.MachineLearningServices/workspaces/onlineEndpoints/* 
 
 
-## NVIDIA NIM PayGo offer on Azure Marketplace by NVIDIA
+## NVIDIA NIM pay-as-you-go offer on Azure Marketplace by NVIDIA
 
- NVIDIA NIMs available on Azure AI Foundry model catalog can be deployed with a Pay Go subscription to the [NVIDIA NIM SaaS offer](https://aka.ms/nvidia-nims-plan) on Azure Marketplace. This offer includes a 90-day trial and a PayGo price of $1 per GPU hour post the trial period. The trial applies to all NIMs associated with a particular SaaS subscription, and starts from the time the SaaS subscription was created. SaaS subscriptions scope to an Azure AI Foundry project, so you have to subscribe to the NIM offer only once within a project, then you are able to deploy all NIMs offered by NVIDIA in the AI Foundry model catalog. If you want to deploy NIM in a different project with no existing SaaS subscription, you will have to resubscribe to the offer.  
+ NVIDIA NIMs available on Azure AI Foundry model catalog can be deployed with a Pay Go subscription to the [NVIDIA NIM SaaS offer](https://aka.ms/nvidia-nims-plan) on Azure Marketplace. This offer includes a 90-day trial and a pay-as-you-go price of $1 per GPU hour post the trial period. The trial applies to all NIMs associated with a particular SaaS subscription, and starts from the time the SaaS subscription was created. SaaS subscriptions scope to an Azure AI Foundry project, so you have to subscribe to the NIM offer only once within a project, then you are able to deploy all NIMs offered by NVIDIA in the AI Foundry model catalog. If you want to deploy NIM in a different project with no existing SaaS subscription, you will have to resubscribe to the offer.  
 
  Azure AI Foundry enables a seamless purchase experience of the NVIDIA NIM offering on Marketplace from the NVIDIA collection in the model catalog, and further deployment on managed compute.
 
@@ -81,11 +81,11 @@ After your deployment is successfully created, you can go to **Models + Endpoint
 
 NVIDIA NIMs on Foundry expose an OpenAI compatible API. Learn more about the payload supported [here](https://docs.nvidia.com/nim/large-language-models/latest/api-reference.html#). The 'model' parameter for NIMs on Foundry is set to a default value within the container, and is not required to be passed in the request payload to your online endpoint. The **Consume** tab of the NIM deployment on Foundry includes code samples for inference with the target URL of your deployment. 
 
-You can also consume NIM deployments using the [Azure AI Model Inference SDK](/python/api/overview/azure/ai-inference-readme), with limitations such as no support for [creating and authenticating clients using `load_client`](/python/api/overview/azure/ai-inference-readme) and calling client method `get_model_info` to [retrieve model information](/python/api/overview/azure/ai-inference-readme).
+You can also consume NIM deployments using the [Azure AI Model Inference SDK](/python/api/overview/azure/ai-inference-readme), with limitations such as no support for [creating and authenticating clients using `load_client`](/python/api/overview/azure/ai-inference-readme#create-and-authenticate-clients-using-load_client) and calling client method `get_model_info` to [retrieve model information](/python/api/overview/azure/ai-inference-readme#get-ai-model-information).
 
 ### Develop and run agents with NIM endpoints
 
-The following NVIDIA NIMs of **chat completions** task type in the model catalog can be used to [create and run agents using Agent Service](/python/api/overview/azure/ai-projects-readme) using various supported tools, with the following two additional requirements: 
+The following NVIDIA NIMs of **chat completions** task type in the model catalog can be used to [create and run agents using Agent Service](/python/api/overview/azure/ai-projects-readme#agents-preview) using various supported tools, with the following two additional requirements: 
 
 1. Create a _Serverless Connection_ to the project using the NIM endpoint and Key. Note that the target URL for NIM endpoint in the connection should be `https://<endpoint-name>.region.inference.ml.azure.com/v1/`. 
 2. Set the _model parameter_ in the request body to be like, `https://<endpoint>.region.inference.ml.azure.com/v1/@<parameter value per table below>` while creating and running agents.
@@ -106,7 +106,7 @@ Users can refer to the last updated time for the NIM on the right pane in the mo
 
 ## Network Isolation 
 
-Collections in the model catalog can be deployed within your isolated networks using workspace managed virtual network. For more information on how to configure your workspace managed networks, see [here]. (/azure/machine-learning/how-to-managed-network)
+Collections in the model catalog can be deployed within your isolated networks using workspace managed virtual network. For more information on how to configure your workspace managed networks, see [here.](/azure/machine-learning/how-to-managed-network#configure-a-managed-virtual-network-to-allow-internet-outbound)
 
 ### Limitation
 
