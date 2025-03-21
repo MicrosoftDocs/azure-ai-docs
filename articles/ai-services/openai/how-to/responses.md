@@ -46,9 +46,10 @@ The responses API is currently available in the following regions:
 
 > [!NOTE]
 > The responses API does not currently support:
->  - Structured outputs
->  - tool_choice
->  Once support is added this article will be updated.
+> - Structured outputs
+> - tool_choice
+> 
+> Once support is added this article will be updated.
 
 ## Getting started with the responses API
 
