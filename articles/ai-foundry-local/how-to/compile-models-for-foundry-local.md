@@ -125,7 +125,15 @@ Rename-Item -Path "model" -NewName "llama-3.2"
 ```
 ---
 
-## Run the model in Foundry Local
+## Run the model using Foundry Local
+
+You can run the compiled model using:
+
+- Foundry Local CLI
+- Foundry Local REST API
+- Inferencing SDKs (for example, OpenAI Python SDK)
+
+### Foundry Local CLI
 First, change the Foundry Local cache to the `models` output directory of the Olive compilation:
 
 ### [Bash](#tab/Bash)
@@ -149,6 +157,73 @@ foundry model run llama-3.2 --verbose
 ```
 ---
 
+### Foundry Local REST
+You can also run the model using the REST API.
+
+### [Bash](#tab/Bash)
+```bash
+curl -X POST http://localhost:5272/v1/chat/completions \
+-H "Content-Type: application/json" \
+-d '{
+    "model": "llama-3.2",
+    "messages": [
+        {
+          "role": "user",
+          "content": "What is the capital of France?"
+        }
+    ],
+    "temperature": 0.7,
+    "max_tokens": 50,
+    "stream": true
+}'
+```
+
+### [PowerShell](#tab/PowerShell)
+```powershell
+Invoke-RestMethod -Uri http://localhost:5272/v1/chat/completions `
+    -Method Post `
+    -ContentType "application/json" `
+    -Body '{
+        "model": "llama-3.2",
+        "messages": [
+        {
+              "role": "user",
+              "content": "What is the capital of France?"
+        }],
+      "temperature": 0.7,
+      "max_tokens": 50,
+      "stream": true
+}'
+```
+---
+
+### OpenAI Python SDK
+You can also run the model using the OpenAI Python SDK:
+
+```python
+from openai import OpenAI
+
+# Set the API base URL to the local Foundry server
+client = OpenAI(
+    base_url="http://localhost:5272/v1",
+    api_key="none", # required but not used
+)
+
+# Define the model and input parameters
+stream = client.chat.completions.create(
+    model="llama-3.2",
+    messages=[
+        {"role": "user", "content": "What is the capital of France?"}
+    ],
+    temperature=0.7,
+    max_tokens=50,
+    stream=True,
+)
+
+for event in stream:
+    print(event.choices[0].delta.content, end="", flush=True)
+print("\n\n")
+```
 
 ## Next step
 
