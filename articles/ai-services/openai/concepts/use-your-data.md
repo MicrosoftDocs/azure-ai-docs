@@ -563,7 +563,7 @@ You can send a streaming request using the `stream` parameter, allowing data to 
 ```json
 {
     "stream": true,
-    "dataSources": [
+    "data_sources": [
         {
             "type": "AzureCognitiveSearch",
             "parameters": {
