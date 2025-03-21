@@ -33,7 +33,7 @@ To qualify for an upgrade, your service:
 > [!TIP]
 > Looking for tier upgrade? You can now move up between Basic and Standard (S1, S2, and S3) tiers. For more information, see [Change your service tier](search-capacity-planning.md#change-your-service-tier).
 
-This article describes how to upgrade your service in the [Azure portal](https://portal.azure.com/). Alternatively, you can use the Management REST APIs to upgrade your service programmatically. For more information, see [Manage your search service with REST](search-manage-rest.md#upgrade-a-service).
+This article describes how to upgrade your service in the [Azure portal](https://portal.azure.com/). Alternatively, you can use the Management REST APIs to upgrade your service programmatically. For more information, see [Manage your search service using REST](search-manage-rest.md#upgrade-a-service).
 
 ## About service upgrades
 
