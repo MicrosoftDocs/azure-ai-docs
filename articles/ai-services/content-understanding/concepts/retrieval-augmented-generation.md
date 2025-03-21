@@ -40,7 +40,7 @@ Azure AI Content Understanding excels in supporting Retrieval-Augmented Generati
 
 This unified approach ensures semantic integrity across all content types while optimizing for downstream RAG operations. The system's ability to maintain contextual relationships both within and across modalities enables more accurate and comprehensive information retrieval, making it particularly valuable for enterprise applications requiring deep content understanding and analysis.
 
-## Building a Multimodal RAG Solution and Chat with Content Understanding
+## Multimodal RAG Pattern with Content Understanding
 
 ## Scenario
 Consider an enterprise training platform that hosts diverse educational content including:
@@ -51,7 +51,7 @@ Consider an enterprise training platform that hosts diverse educational content 
 
 Here's how Content Understanding processes each content type for an effective RAG implementation:
 
-### Content Extraction with Azure Content Understanding
+### Multimodal Content Extraction with Azure Content Understanding
 
 - From the training manual document, it extracts hierarchical structure, layout elements, and tabular relationships.
 - From product images and images of product trend charts its verbalizes image description and generates structured output from charts and diagrams.
@@ -68,6 +68,8 @@ The image below exemplifies how structured data can be meticulously extracted fr
 
 :::image type="content" source="../media/concepts/audiorag.png" alt-text="Screenshot of Content Understanding Audio Data Extraction for RAG design":::
 
+> [!div class="nextstepaction"]
+> [View code samples on GitHub.](https://github.com/Azure-Samples/azure-ai-content-understanding-python)
 
 Explore our [**code samples**](https://github.com/Azure-Samples/azure-ai-content-understanding-python) for simple demos on extracting data from multimodal files.
 
