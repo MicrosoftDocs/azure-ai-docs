@@ -10,15 +10,11 @@ ms.date: 3/21/2025
 
 Use this guide to get started calling the Azure OpenAI Service image generation APIs with PowerShell.
 
-> [!NOTE]
-> The image generation API creates an image from a text prompt. It doesn't edit or create variations of existing images.
-
 ## Prerequisites
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
 - For this task, <a href="https://aka.ms/installpowershell" target="_blank">the latest version of PowerShell 7</a> is recommended because the examples use new features not available in Windows PowerShell 5.1.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
-
 
 ### Microsoft Entra ID prerequisites
 
