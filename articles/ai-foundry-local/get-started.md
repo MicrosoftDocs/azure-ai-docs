@@ -22,28 +22,29 @@ This article shows you how to get started with AI Foundry Local to run AI models
 
 - A PC with sufficient specifications to run AI models locally
   - Windows 10 or later
-  - 8GB+ RAM
-  - Ample storage space (5GB+) for model caching
-  - A modern CPU
+  - Greater than 8GB RAM
+  - Greater than 3GB of free disk space for model caching
 - Administrator access to install software
 
-## Step 1: Install AI Foundry Local
+## Quickstart in 2-steps
 
-1. Download AI Foundry Local from the Microsoft Store.
-2. Follow the installation prompts to complete the setup.
-3. Once installed, you can access AI Foundry Local through the command line using the `foundry` command.
+Follow these steps to get started with AI Foundry Local:
 
-## Step 2: Run your first model
+1. **Install Foundry Local**
+    1. Download AI Foundry Local from the Microsoft Store.
+    2. Follow the installation prompts to complete the setup.
+    3. Once installed, you can access AI Foundry Local through the command line using the `foundry` command.
+1. **Run your first model**
+    1. Open a command prompt or terminal window.
+    2. Run the DeepSeek-R1 model using the following command:
+        ```bash
+        foundry model run deepseek-r1-1.5b-cpu
+        ```
 
-To start a chat completion interaction with a model:
+> [!TIP]
+> The `foundry model run <model>` command will automatically download the model if it is not already cached on your local machine, and then start an interactive chat session with the model.
 
-```bash
-foundry model run deepseek-r1-1.5b-cpu
-```
-
-This command downloads the model if not already cached, loads it into the service, and starts an interactive chat session.
-
-## Other available commands
+## Explore Foundry Local CLI commands
 
 To see all available commands, use the help option:
 
