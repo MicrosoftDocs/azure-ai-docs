@@ -85,6 +85,9 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     return $response
    ```
 
+   > [!IMPORTANT]
+   > For production, use a secure way of storing and accessing your credentials like [The PowerShell Secret Management with Azure Key Vault](/powershell/utility-modules/secretmanagement/how-to/using-azure-keyvault). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
+
 1. Run the script using PowerShell. In this example, we're using the `-Depth` parameter to ensure that the output isn't truncated. 
 
    ```powershell
