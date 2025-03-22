@@ -131,7 +131,7 @@ You can run the compiled model using:
 
 - Foundry Local CLI
 - Foundry Local REST API
-- Inferencing SDKs (for example, OpenAI Python SDK)
+- Inferencing SDKs (for example, OpenAI SDK)
 
 ### Foundry Local CLI
 First, change the Foundry Local cache to the `models` output directory of the Olive compilation:
@@ -198,7 +198,10 @@ Invoke-RestMethod -Uri http://localhost:5272/v1/chat/completions `
 ---
 
 ### OpenAI Python SDK
-You can also run the model using the OpenAI Python SDK:
+The following Python code shows how to use the OpenAI Python SDK to run the model. The code uses the `stream` parameter to stream the response from the model.
+
+> [!TIP]
+> Other programming languages can be used to run the model using the REST API and OpenAI SDK. For example, JavaScript, C#, Java, Go, etc. The only requirement is that you can make HTTP requests to the Foundry Local REST API. For more information, see the [Integrate Foundry Local with Inferencing SDKs](integrate-with-inference-sdks.md) article.
 
 ```python
 from openai import OpenAI
@@ -228,3 +231,4 @@ print("\n\n")
 ## Next step
 
 - [Learn more about Olive](https://microsoft.github.io/Olive/)
+- [Integrate Foundry Local with Inferencing SDKs](integrate-with-inference-sdks.md)
