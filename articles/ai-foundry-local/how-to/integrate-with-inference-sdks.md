@@ -8,6 +8,7 @@ ms.custom: build-2025
 ms.topic: how-to
 ms.date: 02/12/2025
 ms.author: samkemp
+zone_pivot_groups: inferencing-sdks
 author: samuel100
 ---
 
