@@ -8,7 +8,7 @@ ms.custom: build-2025
 ms.topic: how-to
 ms.date: 02/12/2025
 ms.author: samkemp
-zone_pivot_groups: inferencing-sdks
+zone_pivot_groups: azure-ai-model-catalog-samples-chat
 author: samuel100
 ---
 
@@ -36,8 +36,8 @@ When AI Foundry Local is running, it exposes an OpenAI-compatible REST API endpo
 [!INCLUDE [Python](../includes/integrate-examples/python.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-curl"
-[!INCLUDE [curl](../includes/integrate-examples/curl.md)]
+::: zone pivot="programming-language-rest"
+[!INCLUDE [Rest](../includes/integrate-examples/curl.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
