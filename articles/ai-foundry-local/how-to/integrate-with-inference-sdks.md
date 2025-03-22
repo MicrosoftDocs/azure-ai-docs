@@ -37,7 +37,7 @@ When AI Foundry Local is running, it exposes an OpenAI-compatible REST API endpo
 ::: zone-end
 
 ::: zone pivot="programming-language-rest"
-[!INCLUDE [Rest](../includes/integrate-examples/curl.md)]
+[!INCLUDE [Rest](../includes/integrate-examples/rest.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
@@ -61,5 +61,4 @@ When AI Foundry Local is running, it exposes an OpenAI-compatible REST API endpo
 ## Next steps
 
 - [Compile Hugging Face models for Foundry Local](compile-models-for-foundry-local.md)
-- [Learn about advanced configuration options](advanced-configuration.md)
-- [Explore the AI Foundry Local CLI reference](../reference/cli-reference.md)
+- [Explore the AI Foundry Local CLI reference](../reference/reference-cli.md)
