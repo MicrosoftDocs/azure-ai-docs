@@ -1,13 +1,12 @@
 ---
 title: 'Quickstart: Use Azure OpenAI Service with the JavaScript SDK and the completions API'
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the Go SDK.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
 author: mrbullwinkle
 ms.author: mbullwin
-ms.date: 06/30/2024
+ms.date: 3/21/2025
 ---
 
 [Source code](https://github.com/Azure/azure-sdk-for-go/tree/main/sdk/ai/azopenai) | [Package (Go)](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai)| [Samples](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai#pkg-examples)
