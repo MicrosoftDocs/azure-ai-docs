@@ -13,17 +13,52 @@ author: samuel100
 
 # Integrate Foundry Local with Inferencing SDKs
 
-TODO
-
+AI Foundry Local provides a REST API endpoint that makes it easy to integrate with various inferencing SDKs and programming languages. This guide shows you how to connect your applications to locally running AI models using popular SDKs.
 
 ## Prerequisites
 
-* TODO
+* AI Foundry Local installed and running on your system
+* A model loaded into the service (use `foundry model load <model-name>`)
+* Basic knowledge of the programming language you want to use for integration
+* Development environment for your chosen language
 
-## Section
+## Understanding the REST API
 
-TODO 
+When AI Foundry Local is running, it exposes an OpenAI-compatible REST API endpoint at `http://localhost:5272/v1`. This endpoint supports standard API operations like:
 
-## Next step
+* `/completions` - For text completion
+* `/chat/completions` - For chat-based interactions
+* `/models` - To list available models
 
-TODO
+
+::: zone pivot="programming-language-python"
+[!INCLUDE [Python](../includes/integrate-examples/python.md)]
+::: zone-end
+
+::: zone pivot="programming-language-curl"
+[!INCLUDE [curl](../includes/integrate-examples/curl.md)]
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+[!INCLUDE [JavaScript](../includes/integrate-examples/javascript.md)]
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+[!INCLUDE [C#](../includes/integrate-examples/csharp.md)]
+::: zone-end
+
+## Best Practices
+
+1. **Error Handling**: Implement robust error handling to manage cases when the local service is unavailable or a model isn't loaded.
+
+2. **Resource Management**: Be mindful of your local resources. Monitor CPU/RAM usage when making multiple concurrent requests.
+
+3. **Fallback Strategy**: Consider implementing a fallback to cloud services for when local inference is insufficient.
+
+4. **Model Preloading**: For production applications, ensure your model is preloaded before starting your application.
+
+## Next steps
+
+- [Compile Hugging Face models for Foundry Local](compile-models-for-foundry-local.md)
+- [Learn about advanced configuration options](advanced-configuration.md)
+- [Explore the AI Foundry Local CLI reference](../reference/cli-reference.md)
