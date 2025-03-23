@@ -2,7 +2,6 @@
 title: Identify and extract Personally Identifying Information (PII) from text
 titleSuffix: Azure AI services
 description: This article shows you how to identify, extract and redact Personally Identifying Information (PII) from text.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
