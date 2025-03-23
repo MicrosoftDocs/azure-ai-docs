@@ -40,23 +40,27 @@ Azure AI Content Understanding excels in supporting Retrieval-Augmented Generati
 
 This unified approach ensures semantic integrity across all content types while optimizing for downstream RAG operations. The system's ability to maintain contextual relationships both within and across modalities enables more accurate and comprehensive information retrieval, making it particularly valuable for enterprise applications requiring deep content understanding and analysis.
 
-## Multimodal RAG Pattern with Content Understanding
+## Building a Unified Knowledge Base from Multimodal Content using Content Understanding
 
-## Scenario
-Consider an enterprise training platform that hosts diverse educational content including:
-- Training manuals (PDF documents with complex layouts)
-- Product demonstration videos
-- Recorded audio training sessions
-- Product trends with charts, and product diagrams 
+### Scenario
 
-Here's how Content Understanding processes each content type for an effective RAG implementation:
+Let's consider a scenario where we have a collection of documents, images, videos, and audio files related to a specific topic (e.g., a corporate training program). We want to create a system that can retrieve relevant information from these multimodal sources based on user queries. 
 
-### Multimodal Content Extraction with Azure Content Understanding
+### Implementation
 
-- From the training manual document, it extracts hierarchical structure, layout elements, and tabular relationships.
-- From product images and images of product trend charts its verbalizes image description and generates structured output from charts and diagrams.
-- From demonstration videos, it generates scene descriptions and summaries, extracts key frame extraction, shot detection and audio transcriptions. 
-- From audio training sessions, it extracts speaker-diarized transcripts and can generate topics, summaries and sentiments. 
+To implement this scenario, you can use Azure AI Content Understanding to automate the extraction of content, Azure AI search for indexing, search and retrieval of content and Azure OpenAI Chat model for chat completion. Here's a high-level overview of the implementation steps:
+
+### 1. Content Extraction: Transforming Multimodal Content
+
+Content Understanding delivers sophisticated extraction capabilities across all content modalities. In this scenario, the training content data can be processed with modality-specific approaches while maintaining contextual relationships:
+
+- **Document Processing**: Extracts hierarchical structures, preserving the logical organization of training materials including headers, paragraphs, tables, page elements etc.
+
+- **Image Processing**: Transforms visual information into searchable text by verbalizing diagrams and charts, extracting embedded text elements, and converting graphical data into structured formats. Technical illustrations are analyzed to identify components and their relationships.
+
+- **Video Processing**: Segments video content into meaningful units through scene detection and key frame extraction, while generating descriptive summaries, transcribing spoken content, and identifying key topics and sentiment indicators throughout the footage.
+
+- **Audio Processing**: Creates rich textual representations of spoken content with speaker diarization technology, topic segmentation, and automated summaries that capture the essence of discussions, presentations, and Q&A sessions.
 
 This comprehensive extraction creates a rich knowledge base where each content type maintains its unique contextual elements while enabling cross-modal relationships.
 
@@ -68,23 +72,49 @@ The image below exemplifies how structured data can be meticulously extracted fr
 
 :::image type="content" source="../media/concepts/audiorag.png" alt-text="Screenshot of Content Understanding Audio Data Extraction for RAG design":::
 
+### 2. Create a Unified Search Index
+
+The diverse outputs from Content Understanding's extraction process can be integrated into a unified Azure AI Search index, creating a comprehensive knowledge repository that spans all modalities. This consolidated index enables cross-modal search capabilities, allowing users to discover relevant information regardless of the original content format:
+
+```python
+# Define a schema that accommodates the full spectrum of multimodal content
+index_name = "unified_training_knowledge_base"
+fields = [
+    # Document content fields
+    {"name": "document_content", "type": "Edm.String", "searchable": true, "retrievable": true},
+    {"name": "document_headers", "type": "Edm.String", "searchable": true, "retrievable": true},
+    
+    # Image-derived content
+    {"name": "visual_descriptions", "type": "Edm.String", "searchable": true, "retrievable": true},    
+    # Video content components
+    {"name": "video_transcript", "type": "Edm.String", "searchable": true, "retrievable": true},
+    {"name": "scene_descriptions", "type": "Edm.String", "searchable": true, "retrievable": true},
+    {"name": "video_topics", "type": "Edm.String", "searchable": true, "retrievable": true},
+    
+    # Audio processing results
+    {"name": "audio_transcript", "type": "Edm.String", "searchable": true, "retrievable": true},
+    {"name": "speaker_attribution", "type": "Edm.String", "searchable": true, "retrievable": true},
+    {"name": "conversation_topics", "type": "Edm.String", "searchable": true, "retrievable": true}
+]
+
+```
+
+This unified index becomes the foundation for intelligent retrieval operations, enabling semantically rich search experiences that leverage the full context and relationships within your enterprise content ecosystem
+
+### 3. Utilize Azure OpenAI Chat Models
+
+Once your content is extracted and indexed, integrate Azure OpenAI's chat models to create an interactive question-answering system:
+
+1. **Retrieve relevant content** from your unified index when a user submits a query
+2. **Create an effective prompt** that combines the user's question with the retrieved context
+3. **Generate responses** using Azure OpenAI that reference specific content from various modalities
+
+This approach grounds AI responses in your actual content, enabling the model to answer questions by referencing specific document sections, describing relevant images, quoting from video transcripts, or citing speaker statements from audio recordings.
+
+The combination of Content Understanding's extraction capabilities, Azure AI Search's retrieval functions, and Azure OpenAI's generation abilities creates a powerful end-to-end RAG solution that can seamlessly work with all your content types.
+
 > [!div class="nextstepaction"]
-> [View code samples on GitHub.](https://github.com/Azure-Samples/azure-ai-content-understanding-python)
-
-Explore our [**code samples**](https://github.com/Azure-Samples/azure-ai-content-understanding-python) for simple demos on extracting data from multimodal files.
-
-
-### Indexing with Azure AI Search and Querying with Azure OpenAI Service
-
-In this scenario when a user asks: "What's the procedure for configuring the security settings?", the RAG system can:
-1. Query relevant sections from PDF manuals
-2. Find matching diagrams with visual instructions 
-3. Link to video segments showing the procedure
-4. Reference instructor explanations from recorded sessions
-
-** Here's an example of a multimodal index looks like in **  
-
-For more information, see our [**code samples**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples) demonstrating RAG pattern with Azure AI Content Understanding for structured data extraction, Azure Search for indexing and retrieval and querying data with OpenAI chat models.
+> [View code samples on GitHub.](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
 
 ## Benefits of Content Understanding for RAG Scenarios
 Azure AI Content Understanding offers several capabilities that significantly enhance Retrieval-Augmented Generation (RAG) use cases:
