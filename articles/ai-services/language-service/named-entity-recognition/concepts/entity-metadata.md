@@ -2,7 +2,6 @@
 title: Entity Metadata provided by Named Entity Recognition
 titleSuffix: Azure AI services
 description: Learn about entity metadata in the NER feature.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
