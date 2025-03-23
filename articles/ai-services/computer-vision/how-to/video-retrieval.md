@@ -2,7 +2,6 @@
 title: Do video retrieval using vectorization - Image Analysis 4.0
 titleSuffix: Azure AI services
 description: Learn how to use the Video Retrieval APIs to vectorize video frames and search terms, and perform searches using metadata and features.
-#services: cognitive-services
 #customer intent: As a developer, I want to use Video Retrieval APIs to enhance video search capabilities with metadata and features.
 author: PatrickFarley
 manager: nitinme
