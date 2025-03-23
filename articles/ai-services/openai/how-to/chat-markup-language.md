@@ -19,7 +19,7 @@ keywords: ChatGPT
 The following code snippet shows the most basic way to use the GPT-3.5-Turbo models with ChatML. If this is your first time using these models programmatically we recommend starting with our [GPT-35-Turbo & GPT-4 Quickstart](../chatgpt-quickstart.md).
 
 > [!NOTE]  
-> In the Azure OpenAI documentation we refer to GPT-3.5-Turbo, and GPT-35-Turbo interchangeably. The official name of the model on OpenAI is `gpt-3.5-turbo`, but for Azure OpenAI due to Azure specific character constraints the underlying model name is `gpt-35-turbo`.
+> In the Azure OpenAI documentation we refer to GPT-3.5-Turbo and GPT-35-Turbo interchangeably. The official name of the model on OpenAI is `gpt-3.5-turbo`, but for Azure OpenAI due to Azure specific character constraints the underlying model name is `gpt-35-turbo`.
 
 ```python
 import os

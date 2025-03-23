@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 02/27/2025
+ms.date: 03/21/2025
 ms.custom: template-concept, devx-track-python
 manager: nitinme
 ---
@@ -830,9 +830,9 @@ When you do so, the following options are available for detection on tagged docu
 Here's an example chat completion messages array: 
 
 ```json
-{"role": "system", "content": "Provide some context and/or instructions to the model, including document context. \"\"\" <documents>\n*insert your document content here*\n</documents> \"\"\""}, 
+{"role": "system", "content": "Provide some context and/or instructions to the model.}, 
 
-{"role": "user", "content": "First question/message for the model to actually respond to."} 
+{"role": "user", "content": "First question/message for the model to actually respond to, including document context.  \"\"\" <documents>\n*insert your document content here*\n</documents> \"\"\"""}
 ```
 
 #### JSON escaping 
