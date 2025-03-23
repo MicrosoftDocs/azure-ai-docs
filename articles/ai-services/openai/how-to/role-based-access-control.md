@@ -2,7 +2,6 @@
 title: Role-based access control for Azure OpenAI
 titleSuffix: Azure AI services
 description: Learn how to use Azure RBAC for managing individual access to Azure OpenAI resources.
-#services: cognitive-services
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-language
