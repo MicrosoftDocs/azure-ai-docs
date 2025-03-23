@@ -2,7 +2,6 @@
 title: "Quickstart: Azure AI Translator client libraries"
 titleSuffix: Azure AI services
 description: "Learn to translate text with the Translator service SDks in a programming language of your choice: C#, Java, JavaScript, or Python."
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
