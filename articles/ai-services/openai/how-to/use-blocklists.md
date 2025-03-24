@@ -2,7 +2,6 @@
 title: 'How to use blocklists with Azure OpenAI Service'
 titleSuffix: Azure OpenAI
 description: Learn how to use blocklists with Azure OpenAI Service
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to

@@ -2,7 +2,6 @@
 title: Translator Translate Method
 titleSuffix: Azure AI services
 description: Understand the parameters, headers, and body messages for the Azure AI Translator to translate text method.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 

@@ -2,7 +2,6 @@
 title: 'Network and access configuration for Azure OpenAI On Your Data'
 titleSuffix: Azure OpenAI
 description: Use this article to learn about configuring Azure OpenAI when using your data for text generation.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to

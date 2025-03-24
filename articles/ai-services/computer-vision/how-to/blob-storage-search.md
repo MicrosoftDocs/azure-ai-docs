@@ -2,7 +2,6 @@
 title: Configure your blob storage container for image retrieval
 titleSuffix: Azure AI services
 description: Configure your Azure storage account to get started with the **Search photos image retrieval** experience in Vision Studio.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 

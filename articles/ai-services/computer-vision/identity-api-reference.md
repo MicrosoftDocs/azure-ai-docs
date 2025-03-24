@@ -2,7 +2,6 @@
 title: API Reference - Face
 titleSuffix: Azure AI services
 description: API reference provides information about the Person, LargePersonGroup/PersonGroup, LargeFaceList/FaceList, and Face Algorithms APIs.
-#services: cognitive-services
 author: nitinme
 manager: nitinme
 
