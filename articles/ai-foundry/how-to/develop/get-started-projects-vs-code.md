@@ -43,7 +43,7 @@ Before using the Azure AI Foundry for Visual Studio Code extension, you must:
     - If your role is **Contributor** or **Owner**, you can follow the steps in this quickstart.
     - If your role is **Azure AI Developer**, the hub must already be created before you can complete this quickstart. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../../concepts/ai-resources.md) and [Azure AI roles](../../concepts/rbac-ai-foundry.md).
 
-- [An existing Azure AI Foundry project](azure/ai-foundry/how-to/create-projects?tabs=ai-studio). The extension interacts with Azure AI Foundry at the project level.
+- [An existing Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects?tabs=ai-studio). The extension interacts with Azure AI Foundry at the project level.
 
 - Your subscription needs to be below your [quota limit](../quota.md) to [deploy a new model in this quickstart](#deploy-a-model-from-the-model-catalog). Otherwise you already need to have a [deployed chat model](../deploy-models-openai.md).
 
@@ -181,15 +181,15 @@ You can also deploy a model directly from your AI Foundry project.
 
 1. In the top center, select the AI service to use in the **Choose an AI service** dropdown and press enter.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png" alt-text="Screenshot of the Choose AI service dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png" alt-text="Screenshot of the Choose AI service dropdown for model deployment." lightbox="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png":::
 
 1. In the top center, select the model to deploy in the **Choose a model to deploy** dropdown and press enter.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-deployment-model.png" alt-text="Screenshot of the Choose AI service dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/select-deployment-model.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-deployment-model.png" alt-text="Screenshot of the Choose a model to deploy dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/select-deployment-model.png":::
 
 1. In the top center, select the model version to use in the **Choose model version** dropdown and press enter.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-version-2.png" alt-text="Screenshot of the Choose model version dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-version-2.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-version-2.png" alt-text="Screenshot of the Choose model version dropdown for model deployment." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-version-2.png":::
 
 1. In the top center, select the deployment type to use in the **Choose deployment type** dropdown and press enter.
 
@@ -212,11 +212,11 @@ You can also deploy a model directly from your AI Foundry project.
 In the Azure Resources Extension view, select the **caret** icon in front of the **Models** 
 section to view the list of deployed models.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-caret.png" alt-text="Screenshot of the highlighted caret icon next to the models subsection." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-caret":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-caret.png" alt-text="Screenshot of the highlighted caret icon next to the Models subsection." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-caret.png":::
 
 The expanded **Models** section displays the list of deployed models.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-caret-expanded.png" alt-text="Screenshot of the highlighted caret icon next to the models subsection." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-caret-expanded.png":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-caret-expanded.png" alt-text="Screenshot of the deployed models in the Models subsection." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-caret-expanded.png":::
 
 #### View model card information
 
@@ -265,7 +265,7 @@ Create a sample code file using the following steps.
 
 1. In the top center, select your preferred authentication method to use in the **Choose authentication method** dropdown and press enter.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-auth-method.png" alt-text="Screenshot of the Choose language dropdown for model code file selection." lightbox="../../media/how-to/get-started-projects-vs-code/choose-auth-method.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-auth-method.png" alt-text="Screenshot of the Choose authentication method dropdown for model code file selection." lightbox="../../media/how-to/get-started-projects-vs-code/choose-auth-method.png":::
 
 #### Sample code file
 
