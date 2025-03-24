@@ -11,7 +11,7 @@ ms.custom:
   - ignite-2023
   - ignite-2024
 ms.topic: conceptual
-ms.date: 03/11/2025
+ms.date: 03/21/2025
 ---
 
 # Estimate and manage capacity of a search service
@@ -30,7 +30,7 @@ When scaling a search service, you can choose from the following tools and appro
 + [Management REST API](/rest/api/searchmanagement/services/create-or-update)
 
 > [!NOTE]
-> Higher capacity partitions are available at the same billing rate on newer services created after April and May 2024. For more information, see [Service limits](search-limits-quotas-capacity.md#service-limits) for partition size upgrades.
+> Higher capacity partitions are available at the same billing rate on newer services created after April and May 2024. For more information about partition size upgrades, see [Service limits](search-limits-quotas-capacity.md#service-limits).
 
 ## Concepts: search units, replicas, partitions
 
@@ -50,11 +50,13 @@ Initially, a service is allocated a minimal level of resources consisting of one
 
 A single service must have sufficient resources to handle all workloads (indexing and queries). Neither workload runs in the background. You can schedule indexing for times when query requests are naturally less frequent, but the service won't otherwise prioritize one task over another. Additionally, a certain amount of redundancy smooths out query performance when services or nodes are updated internally.
 
-Some guidelines for determining whether to add capacity include:
+Guidelines for determining whether to add capacity include:
 
-+ Meeting the high availability criteria for service level agreement
-+ The frequency of HTTP 503 errors is increasing
-+ Large query volumes are expected
++ Meeting the high availability criteria for service level agreement.
++ The frequency of HTTP 503 errors is increasing.
++ Large query volumes are expected.
++ Upgrading to newer infrastructure and larger partition sizes isn’t sufficient.
++ The current number of partitions isn’t adequate for the index size.
 
 As a general rule, search applications tend to need more replicas than partitions, particularly when the service operations are biased toward query workloads. Each replica is a copy of your index, allowing the service to load balance requests against multiple copies. All load balancing and replication of an index is managed by Azure AI Search and you can alter the number of replicas allocated for your service at any time. You can allocate up to 12 replicas in a Standard search service and 3 replicas in a Basic search service. Replica allocation can be made either from the [Azure portal](search-create-service-portal.md) or one of the programmatic options.
 
@@ -63,17 +65,58 @@ Extra partitions are helpful for intensive indexing workloads. Extra partitions 
 Finally, larger indexes take longer to query. As such, you might find that every incremental increase in partitions requires a smaller but proportional increase in replicas. The complexity of your queries and query volume will factor into how quickly query execution is turned around.
 
 > [!NOTE]
-> Adding more replicas or partitions increases the cost of running the service, and can introduce slight variations in how results are ordered. Be sure to check the [pricing calculator](https://azure.microsoft.com/pricing/calculator/) to understand the billing implications of adding more nodes. The [chart below](#chart) can help you cross-reference the number of search units required for a specific configuration. For more information on how additional replicas impact query processing, see [Ordering results](search-pagination-page-layout.md#ordering-results).
+> Adding more replicas or partitions increases the cost of running the service, and can introduce slight variations in how results are ordered. Be sure to check the [pricing calculator](https://azure.microsoft.com/pricing/calculator/) to understand the billing implications of adding more nodes. The [chart below](#chart) can help you cross-reference the number of search units required for a specific configuration. For more information on how additional replicas affect query processing, see [Ordering results](search-pagination-page-layout.md#ordering-results).
 
 <a name="adjust-capacity"></a>
 
+## How to upgrade capacity
+
+Some Azure AI Search capabilities are only available to new services. One such capability is higher storage capacity, which applies to [services created after April 2024](search-limits-quotas-capacity.md#service-limits). However, if you created your service before April 2024, you can get higher capacity without recreating your service by performing an in-place upgrade. For more information, see [Upgrade your search service](search-how-to-upgrade.md).
+
 ## How to change capacity
 
-To increase or decrease the capacity of your search service, add or remove partitions and replicas.
+To increase or decrease the capacity of your service, you have two options:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select the search service.
++ [Change your service tier](#change-your-service-tier)
++ [Add or remove partitions and replicas](#add-or-remove-partitions-and-replicas)
 
-1. Under **Settings**, open the **Scale** page to modify replicas and partitions. 
+### Change your service tier
+
+> [!NOTE]
+> The 2025-02-01 preview supports changes between Basic and Standard (S1, S2, and S3) tiers. Currently, you can only switch from a lower tier to a higher tier, such as going from Basic to S1. Your region also can't have [capacity constraints on the higher tier](search-region-support.md).
+
+Your [pricing tier](search-sku-tier.md) determines the maximum storage of your search service. If you need more <!-- or less capacity -->capacity, you can switch to a different service tier that accommodates your storage needs.
+
+In addition to capacity, changing your service tier affects the workload and maximum limits of your service. Before you proceed, compare the [service limits](search-limits-quotas-capacity.md) of your current tier and your desired tier. These include limits on:
+
++ Partition storage
++ Indexes
++ Vectors
++ Indexers
++ Shared private link resources
++ Synonyms
++ Index aliases
++ Semantic ranker throttling
+
+Generally, switching to a higher tier increases your [storage limit](search-limits-quotas-capacity.md#service-limits) and [vector limit](search-limits-quotas-capacity.md#vector-index-size-limits), increases request throughput, and decreases latency<!-- , while switching to a lower tier decreases your storage limit and vector limit, decreases request throughput, and increases latency -->.
+
+To change your service tier:
+
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+
+2. From the left pane, select **Settings** > **Scale**.
+
+3. Under **Pricing tier**, use the dropdown menu to select a higher tier<!-- your new tier -->: **Basic**, **Standard1**, **Standard2**, or **Standard3**.
+
+4. Check your notifications to confirm that the operation started.
+
+   This operation can take several hours to complete. You can’t cancel the process after it starts, and there’s no real-time monitoring of tier changes. However, the following message displays while changes are underway:
+
+### Add or remove partitions and replicas
+
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+
+1. From the left pane, select **Settings** > **Scale**.
 
    The following screenshot shows a Standard service provisioned with one replica and partition. The formula at the bottom indicates how many search units are being used (1). If the unit price was $100 (not a real price), the monthly cost of running this service would be $100 on average.
 
@@ -87,16 +130,13 @@ To increase or decrease the capacity of your search service, add or remove parti
 
    :::image type="content" source="media/search-capacity-planning/2-add-2-each.png" alt-text="Add replicas and partitions" border="true":::
 
-1. After saving, you can check notifications to confirm the action succeeded.
+1. Check your notifications to confirm that the operation started.
 
    :::image type="content" source="media/search-capacity-planning/3-save-confirm.png" alt-text="Save changes" border="true":::
 
-   Changes in capacity can take anywhere from 15 minutes up to several hours to complete. You can't cancel once the process has started and there's no real-time monitoring for replica and partition adjustments. However, the following message remains visible while changes are underway.
+   This operation can take several hours to complete. You can’t cancel the process after it starts, and there’s no real-time monitoring of replica and partition adjustments. However, the following message displays while changes are underway:
 
    :::image type="content" source="media/search-capacity-planning/4-updating.png" alt-text="Status message in the Azure portal" border="true":::
-
-> [!NOTE]
-> After a service is provisioned, it cannot be upgraded to a higher tier. You must create a search service at the new tier and reload your indexes. See [Create an Azure AI Search service in the Azure portal](search-create-service-portal.md) for help with service provisioning.
 
 ## How scale requests are handled
 
@@ -143,9 +183,9 @@ The following chart applies to Standard tier and higher. It shows all possible c
 
 Basic search services have lower search unit counts.
 
-+ On search services created before April 3, 2024, a basic search service can have exactly one partition and up to three replicas, for a maximum limit of three SUs. The only adjustable resource is replicas. 
++ On search services created before April 3, 2024, Basic services can have exactly one partition and up to three replicas for a maximum limit of three SUs. The only adjustable resource is replicas. However, you might be able to increase your partition count by [upgrading your service](search-how-to-upgrade.md).
 
-+ On search services created after April 3, 2024 in [supported regions](search-limits-quotas-capacity.md#service-limits), basic services can have up to three partitions and three replicas. The maximum SU limit is nine to support a full complement of partitions and replicas.
++ On search services created after April 3, 2024 in [supported regions](search-limits-quotas-capacity.md#service-limits), Basic services can have up to three partitions and three replicas. The maximum SU limit is nine to support a full complement of partitions and replicas.
 
 For search services on any billable tier, regardless of creation date, you need a minimum of two replicas for high availability on queries.
 
@@ -187,11 +227,11 @@ Storage requirements can be inflated if you include data that will never be sear
 
 ## Service-level agreement considerations
 
-The Free tier and preview features aren't covered by [service-level agreements (SLAs)](https://azure.microsoft.com/support/legal/sla/search/v1_0/). For all billable tiers, SLAs take effect when you provision sufficient redundancy for your service. 
+The Free tier and preview features aren't covered by [service-level agreements (SLAs)](https://azure.microsoft.com/support/legal/sla/search/v1_0/). For all billable tiers, SLAs take effect when you provision sufficient redundancy for your service.
 
-+ Two or more replicas satisfy query (read) SLAs. 
++ Two or more replicas satisfy query (read) SLAs.
 
-+ Three or more replicas satisfy query and indexing (read-write) SLAs. 
++ Three or more replicas satisfy query and indexing (read-write) SLAs.
 
 The number of partitions doesn't affect SLAs.
 

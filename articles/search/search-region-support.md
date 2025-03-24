@@ -15,7 +15,7 @@ ms.date: 01/27/2025
 
 # Azure AI Search regions list
 
-This article identifies the cloud regions in which Azure AI Search is available. It also lists which premium features are available in each region. 
+This article identifies the cloud regions in which Azure AI Search is available. It also lists which premium features are available in each region.
 
 ## Features subject to regional availability
 
@@ -23,7 +23,7 @@ Some features take a dependency on other Azure services or infrastructure that a
 
 | Feature | Description | Availability |
 |---------|-------------|--------------|
-| [Extra capacity](search-limits-quotas-capacity.md#service-limits) | Higher capacity partitions became available in selected regions starting in April 2024 with a second wave following in May 2024. Currently, there are just a few regions that *don't* offer higher capacity partitions. If you're using an older search service, create a new search service to benefit from more capacity at the same billing rate. |  Regional support for extra capacity is noted in the footnotes of this article. <p>Check [service age](vector-search-index-size.md#how-to-check-service-creation-date) to see if your search service was created after high capacity partitions became available. <p>To check the capacity of an existing service, [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) and select the **Properties** tab in the middle of the Overview page.|
+| [Extra capacity](search-limits-quotas-capacity.md#service-limits) | Higher capacity partitions became available in selected regions starting in April 2024 with a second wave following in May 2024. Currently, there are just a few regions that *don't* offer higher capacity partitions. If you're using an older search service, create a new search service to benefit from more capacity at the same billing rate. |  Regional support for extra capacity is noted in the footnotes of this article. <p>Check [service age](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date) to see if your search service was created after high capacity partitions became available. <p>To check the capacity of an existing service, [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) and select the **Properties** tab in the middle of the Overview page.|
 | [Availability zones](search-reliability.md#availability-zone-support) | Divides a region's data centers into distinct physical location groups, providing high-availability within the same geo. | Regional support is noted in this article. |
 | [Semantic ranker](semantic-search-overview.md) | Takes a dependency on Microsoft-hosted models in specific regions. | Regional support is noted in this article. |
 | [AI service integration](cognitive-search-concept-intro.md) | Refers to [built-in skills](cognitive-search-predefined-skills.md) that make internal calls to Azure AI for enrichment and transformation during indexing. Integration requires that Azure AI Search coexists with an [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) in the same physical region. You can bypass region requirements if you use [identity-based connections](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection), currently in public review. | Regional support is noted in this article. |
@@ -73,7 +73,7 @@ AI service integration refers to internal connections to an Azure AI services mu
 | UK South​ | ✅ | ✅ | ✅ |  |
 | UK West​ ​|  | ✅ | |  |
 
-<sup>1</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
+<sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) are not available in this region. If you want higher limits, choose a different region.
 
 ### Middle East
 
@@ -83,7 +83,7 @@ AI service integration refers to internal connections to an Azure AI services mu
 | Qatar Central​ <sup>1</sup> |  |  | ✅ | |
 | UAE North​​ | ✅ |  | ✅ |  |
 
-<sup>1</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
+<sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) are not available in this region. If you want higher limits, choose a different region.
 
 ### Africa
 
@@ -108,7 +108,7 @@ AI service integration refers to internal connections to an Azure AI services mu
 | Korea South​ ​ |  | ✅ |  |
 | Taiwan North |  |  |   |  |
 
-<sup>1</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
+<sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) are not available in this region. If you want higher limits, choose a different region.
 
 ## Azure Government regions
 
@@ -129,7 +129,7 @@ AI service integration refers to internal connections to an Azure AI services mu
 | China North 2 <sup>1</sup> |  |  | | |
 | China North 3 | | ✅ | ✅ | |
 
-<sup>1</sup> This region runs on older infrastructure that has lower storage limits per partition at every tier. Choose a different region if you want [higher limits](search-limits-quotas-capacity.md#service-limits).
+<sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) are not available in this region. If you want higher limits, choose a different region.
 
 ## See also
 

@@ -201,6 +201,8 @@ items:
       href: search-region-support.md
     - name: Choose a tier
       href: search-sku-tier.md
+    - name: Upgrade a service
+      href: search-how-to-upgrade.md
     - name: Service limits
       href: search-limits-quotas-capacity.md
     - name: Plan and manage capacity
@@ -215,11 +217,11 @@ items:
       href: search-modeling-multitenant-saas-applications.md
     - name: Manage
       items:
-      - name: Manage with PowerShell
+      - name: Manage using PowerShell
         href: search-manage-powershell.md
-      - name: Manage with Azure CLI
+      - name: Manage using Azure CLI
         href: search-manage-azure-cli.md
-      - name: Manage with REST
+      - name: Manage using REST
         href: search-manage-rest.md
       - name: Move service across regions
         href: search-howto-move-across-regions.md
