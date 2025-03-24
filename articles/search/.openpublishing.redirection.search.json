@@ -381,4 +381,5 @@
             "redirect_url": "/security/benchmark/azure/baselines/cognitive-search-security-baseline",
             "redirect_document_id": false
         }
-}
+    ]
+  }
