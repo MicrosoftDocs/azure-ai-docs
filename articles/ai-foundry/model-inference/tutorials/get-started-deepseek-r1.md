@@ -35,14 +35,18 @@ Azure AI model inference is a capability in Azure AI Services resources in Azure
 
 :::image type="content" source="../media/quickstart-get-started-deepseek-r1/resources-architecture.png" alt-text="A diagram showing the high level architecture of the resources created in the tutorial." lightbox="../media/quickstart-get-started-deepseek-r1/resources-architecture.png":::
 
-To create an Azure AI project that supports model inference for DeepSeek-R1, follow these steps:
-
-> [!TIP]
-> You can also create the resources using [Azure CLI](../how-to/quickstart-create-resources.md?pivots=programming-language-cli) or [infrastructure as code with Bicep](../how-to/quickstart-create-resources.md?pivots=programming-language-bicep).
+To create an Azure AI project that supports model inference for DeepSeek-R1, follow these steps. You can also create the resources using [Azure CLI](../how-to/quickstart-create-resources.md?pivots=programming-language-cli) or [infrastructure as code with Bicep](../how-to/quickstart-create-resources.md?pivots=programming-language-bicep).
 
 1. Go to [Azure AI Foundry portal](https://ai.azure.com) and log in with your account.
 
 2. On the landing page, select **Create project**.
+
+    > [!TIP]
+    > **Are you using Azure OpenAI service?** When you are connected to Azure AI Foundry portal using an Azure OpenAI service resource, only Azure OpenAI models show up in the catalog. To view the full list of models, including DeepSeek-R1, use the top **Announcements** section and locate the card with the option **Explore more models**.
+    >
+    > :::image type="content" source="../media/quickstart-get-started-deepseek-r1/explore-more-models.png" alt-text="Screenshot showing the card with the option to explore all the models from the catalog." lightbox="../media/quickstart-get-started-deepseek-r1/explore-more-models.png":::
+    >
+    > A new window shows up with the full list of models. Select **DeepSeek-R1** from the list and select **Deploy**. The wizard asks to create a new project.
 
 3. Give the project a name, for example "my-project".
 
@@ -69,7 +73,7 @@ To create an Azure AI project that supports model inference for DeepSeek-R1, fol
 
 10. Azure AI model inference is a Preview feature that needs to be turned on in Azure AI Foundry. At the top navigation bar, over the right corner, select the **Preview features** icon. A contextual blade shows up at the right of the screen.
 
-11. Turn the feature **Deploy models to Azure AI model inference service** on.
+11. Turn on the **Deploy models to Azure AI model inference service** feature.
 
     :::image type="content" source="../media/quickstart-ai-project/ai-project-inference-endpoint.gif" alt-text="An animation showing how to turn on the Azure AI model inference service deploy models feature in Azure AI Foundry portal." lightbox="../media/quickstart-ai-project/ai-project-inference-endpoint.gif":::
 
@@ -135,7 +139,7 @@ You can use the Azure AI Inference package to consume the model in code:
 
 [!INCLUDE [code-chat-reasoning](../includes/code-create-chat-reasoning.md)]
 
-Reasoning may generate longer responses and consume a larger amount of tokens. You can see the [rate limits](../quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits being applied. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
+Reasoning may generate longer responses and consume a larger number of tokens. You can see the [rate limits](../quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits being applied. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
 
 ### Reasoning content
 

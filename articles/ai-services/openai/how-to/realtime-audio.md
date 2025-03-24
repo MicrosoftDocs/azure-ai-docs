@@ -5,7 +5,7 @@ description: Learn how to use the GPT-4o Realtime API for speech and audio with 
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 12/20/2024
+ms.date: 3/20/2025
 author: eric-urban
 ms.author: eur
 ms.custom: references_regions

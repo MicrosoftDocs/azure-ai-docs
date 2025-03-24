@@ -1,7 +1,6 @@
 ---
 title: Face identity data notice
 titleSuffix: Azure AI services
-#services: cognitive-services
 author: luhuo
 manager: wguyman
 ms.service: azure-ai-vision

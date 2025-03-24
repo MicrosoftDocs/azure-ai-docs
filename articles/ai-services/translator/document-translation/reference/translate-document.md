@@ -1,7 +1,6 @@
 ---
 title: Synchronous Azure AI Translator translation REST API guide
 description: "Synchronous translation HTTP REST API guide"
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
