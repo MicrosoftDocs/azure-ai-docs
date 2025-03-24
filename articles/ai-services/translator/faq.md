@@ -2,7 +2,6 @@
 title: Frequently asked questions - Azure AI Translator
 titleSuffix: Azure AI services
 description: Get answers to frequently asked questions about the Azure AI Translator API in Azure AI services.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 

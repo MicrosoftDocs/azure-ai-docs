@@ -2,7 +2,6 @@
 title: "Tag images faster with Smart Labeler"
 titleSuffix: Azure AI services
 description: Learn how to use Smart Labeler to generate suggested tags for images, allowing you to label a large number of images more quickly when training a Custom Vision model.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 #customer intent: As a developer, I want to use Smart Labeler to tag images faster so that I can train my Custom Vision model more efficiently.

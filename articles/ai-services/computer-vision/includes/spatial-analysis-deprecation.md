@@ -1,7 +1,6 @@
 ---
 title: Spatial Analysis deprecation notice
 titleSuffix: Azure AI services
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision

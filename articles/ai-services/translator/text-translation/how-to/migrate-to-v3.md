@@ -2,7 +2,6 @@
 title: Migrate to V3 - Azure AI Translator
 titleSuffix: Azure AI services
 description: This article provides the steps to help you migrate from V2 to V3 of the Azure AI Translator.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator

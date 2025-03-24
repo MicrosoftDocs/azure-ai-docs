@@ -110,6 +110,8 @@ items:
           href: how-to/healthcare-ai/deploy-cxrreportgen.md
         - name: MedImageParse - prompted segmentation model
           href: how-to/healthcare-ai/deploy-medimageparse.md
+      - name: Nvidia Inference Microservices (NIM)
+        href: how-to/deploy-nvidia-inference-microservice.md
       - name: Gretel Navigator model
         href: how-to/deploy-models-gretel-navigator.md
       - name: Mistral-7B and Mixtral models
@@ -128,7 +130,7 @@ items:
           href: ../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context
         - name: Work with reasoning models
           href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context
-        - name: Work with image and audio content
+        - name: Work with multimodal models
           href: ../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context
 - name: Azure OpenAI and AI services
   items:
@@ -324,7 +326,7 @@ items:
       href: /azure/search/tutorial-rag-build-solution?context=/azure/ai-foundry/context/context
   - name: Develop with code
     items:
-    - name: Work with projects in VS Code
+    - name: Work with projects in VS Code containers
       href: how-to/develop/vscode.md
     - name: Start with an AI template
       href: how-to/develop/ai-template-get-started.md
@@ -563,6 +565,8 @@ items:
   items:
   - name: Azure AI Projects SDK
     href: /python/api/overview/azure/ai-projects-readme
+  - name: Azure AI Evaluation SDK
+    href: /python/api/overview/azure/ai-evaluation-readme
   - name: Azure Machine Learning Python SDK
     href: /python/api/overview/azure/ai-ml-readme
   - name: Azure Machine Learning REST API

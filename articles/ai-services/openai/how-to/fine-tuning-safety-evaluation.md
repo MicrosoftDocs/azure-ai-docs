@@ -2,7 +2,6 @@
 title: 'Safety evaluation for fine-tuning (preview)'
 titleSuffix: Azure OpenAI
 description: Learn how the safety evaluation works for Azure OpenAI fine-tuning.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
