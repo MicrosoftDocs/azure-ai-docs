@@ -43,6 +43,8 @@ Before using the Azure AI Foundry for Visual Studio Code extension, you must:
     - If your role is **Contributor** or **Owner**, you can follow the steps in this quickstart.
     - If your role is **Azure AI Developer**, the hub must already be created before you can complete this quickstart. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../../concepts/ai-resources.md) and [Azure AI roles](../../concepts/rbac-ai-foundry.md).
 
+- [An existing Azure AI Foundry project](azure/ai-foundry/how-to/create-projects?tabs=ai-studio). The extension interacts with Azure AI Foundry at the project level.
+
 - Your subscription needs to be below your [quota limit](../quota.md) to [deploy a new model in this quickstart](#deploy-a-model-from-the-model-catalog). Otherwise you already need to have a [deployed chat model](../deploy-models-openai.md).
 
 - Install [Azure Resources for Visual Studio Code (Preview) Extension](): View and manage Azure resources directly from VS Code.
@@ -67,12 +69,12 @@ To install the Azure AI Foundry for Visual Studio Code extension:
 
 1. Verify the extension is installed successfully from the status messages.
 
-## Getting started
+## Get started
 
 Get started with the Azure AI Foundry extension by using the following steps. 
 
 > [!NOTE]
-> For a full list of features available in the extension, use the Command Palette and search **AI Foundry**. The following screenshot shows some of the actions for AI Foundry.
+> For a full list of features available in the extension, use the Command Palette. Select <kbd>F1</kbd> to open the command palette and search **AI Foundry**. The following screenshot shows some of the actions for AI Foundry.
 >     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png" alt-text="A screenshot of the Visual Studio Code command palette for AI Foundry." lightbox="../../media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png":::
 
 
@@ -159,7 +161,7 @@ Deploy a selected model in the model catalog using the following steps:
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/enter-deployment-name.png" alt-text="Screenshot of the Enter deployment name textbox." lightbox="../../media/how-to/get-started-projects-vs-code/enter-deployment-name.png":::
 
-1. A confirmation dialog box appears. Select the **Deploy** button to deploy the model to your projedeployed-model.pngct.
+1. A confirmation dialog box appears. Select the **Deploy** button to deploy the model to your project.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/deploy-model-popup.png" alt-text="Screenshot of the confirmation dialog box with the Deploy button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/deploy-model-popup.png":::
 
@@ -171,17 +173,54 @@ Deploy a selected model in the model catalog using the following steps:
 
 #### Deploy a model
 
+You can also deploy a model directly from your AI Foundry project. 
+
+1. In the Azure Resources Extension view, select the **plus** icon next to **Models** to start the deployment process.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-plus-expanded.png" alt-text="Screenshot of the plus sign next to models with the list of models expanded." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-plus-expanded.png":::
+
+1. In the top center, select the AI service to use in the **Choose an AI service** dropdown and press enter.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png" alt-text="Screenshot of the Choose AI service dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png":::
+
+1. In the top center, select the model to deploy in the **Choose a model to deploy** dropdown and press enter.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-deployment-model.png" alt-text="Screenshot of the Choose AI service dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/select-deployment-model.png":::
+
+1. In the top center, select the model version to use in the **Choose model version** dropdown and press enter.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-version-2.png" alt-text="Screenshot of the Choose model version dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-version-2.png":::
+
+1. In the top center, select the deployment type to use in the **Choose deployment type** dropdown and press enter.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-deployment-type.png" alt-text="Screenshot of the Choose deployment type dropdown for model deployment." lightbox="../../media/how-to/get-started-projects-vs-code/select-deployment-type.png":::
+
+1. In the top center, enter the model deployment name to use in the **Enter deployment name** textbox and press enter.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/enter-deployment-name-2.png" alt-text="Screenshot of the Enter deployment name textbox for model deployment." lightbox="../../media/how-to/get-started-projects-vs-code/enter-deployment-name-2.png":::
+
+1. A confirmation dialog box appears. Select the **Deploy** button to deploy the model to your project.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/deploy-model-popup-2.png" alt-text="Screenshot of the model deployment confirmation dialog box with the Deploy button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/deploy-model-popup-2.png":::
+
+1. After a successful deployment, your model will be listed with your other deployed models under the **Models** section in your project.  
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/deployed-model-2.png" alt-text="Screenshot of the deployed model under the Models section." lightbox="../../media/how-to/get-started-projects-vs-code/deployed-model-2.png":::
 
 #### View deployed models
 
-In the Azure Resources Extension view, select the **plus** icon next to **Models** to show the list of models deployed to your Azure AI Foundry project.
+In the Azure Resources Extension view, select the **caret** icon in front of the **Models** 
+section to view the list of deployed models.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-plus-expanded.png" alt-text="Screenshot of the plus sign next to models with the list of models expanded." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-plus-expanded.png":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-caret.png" alt-text="Screenshot of the highlighted caret icon next to the models subsection." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-caret":::
 
+The expanded **Models** section displays the list of deployed models.
+
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-caret-expanded.png" alt-text="Screenshot of the highlighted caret icon next to the models subsection." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-caret-expanded.png":::
 
 #### View model card information
 
-Selecting the new model opens up a panel that provides some basic information:
+Selecting a deployed model opens up a panel that provides some basic information:
 
 - Deployment Info: This section contains the information about the model:
     - Name
@@ -208,14 +247,31 @@ Update the desired editable fields such as rate limit directly within VS Code.
 
 To save the changes, select the **Save** button on the top-right of the model card. 
 
-
-
-
 ### Explore the model sample code
 
-Create sample code by right-clicking on your deployed model and selecting the **Open code file** option. 
+Create a sample code file using the following steps.
 
-Create the code file after selecting your preferred SDK, coding language, and authentication method. 
+1. Right-click on your deployed model and select the **Open code file** option. 
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/open-code-file.png" alt-text="Screenshot of the model context menu with the Open Code file option highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/open-code-file.png":::
+
+1. In the top center, select your preferred SDK to use in the **Choose preferred SDK** dropdown and press enter.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-preferred-sdk.png" alt-text="Screenshot of the Choose preferred SDK dropdown for model code file selection." lightbox="../../media/how-to/get-started-projects-vs-code/choose-preferred-sdk.png":::
+
+1. In the top center, select your preferred language to use in the **Choose language** dropdown and press enter.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-language.png" alt-text="Screenshot of the Choose language dropdown for model code file selection." lightbox="../../media/how-to/get-started-projects-vs-code/choose-language.png":::
+
+1. In the top center, select your preferred authentication method to use in the **Choose authentication method** dropdown and press enter.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-auth-method.png" alt-text="Screenshot of the Choose language dropdown for model code file selection." lightbox="../../media/how-to/get-started-projects-vs-code/choose-auth-method.png":::
+
+#### Sample code file
+
+The sample code file is displayed. 
+
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/sample-code-file.png" alt-text="Screenshot of generated sample code file." lightbox="../../media/how-to/get-started-projects-vs-code/sample-code-file.png":::
 
 ### Interact with models using a model playground
 
