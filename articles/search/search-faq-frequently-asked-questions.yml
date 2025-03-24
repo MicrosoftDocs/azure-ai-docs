@@ -36,7 +36,7 @@ sections:
         answer: |
           For vectors, the embedding models you use determines the linguistic experience. 
           
-          For nonvector strings and numbers, the default analyzer used for tokenization is standard Lucene and it's language agnostic. Otherwise, language support is expressed through [language analyzers](index-add-language-analyzers.md#supported-language-analyzers) that apply linguistic rules to inbound (indexing) and outbound (queries) content. Some features, such as [speller](speller-how-to-add.md#supported-languages) and [query rewrite](semantic-how-to-query-rewrite.md), are limited to a subset of languages.
+          For nonvector strings and numbers, the default analyzer used for tokenization is standard Lucene, which is language agnostic. Otherwise, language support is expressed through [language analyzers](index-add-language-analyzers.md#supported-language-analyzers) that apply linguistic rules to inbound (indexing) and outbound (queries) content. Some features, such as [speller](speller-how-to-add.md#supported-languages) and [query rewrite](semantic-how-to-query-rewrite.md), are limited to a subset of languages.
 
       - question: |
           How do I integrate search into my solution?
@@ -206,7 +206,7 @@ sections:
       - question: |
           Does Azure AI Search process customer data in other regions?
         answer: |
-          Processing (vectorization or applied AI transformations) is performed in the Geo that hosts the Azure AI services used by skills, or the Azure apps or functions hosting custom skills, or the Azure OpenAI or Azure AI Foundry region that hosts your deployed models. These resources are specified by you, so you can choose whether to provision them in the same Geo as your search service or not
+          Processing (vectorization or applied AI transformations) is performed in the Geo that hosts the Azure AI services used by skills, or the Azure apps or functions hosting custom skills, or the Azure OpenAI or Azure AI Foundry region that hosts your deployed models. These resources are specified by you, so you can choose whether to deploy them in the same Geo as your search service or not.
           
           If you send data to external (non-Azure) models or services, the processing location is determined by the external service. 
 

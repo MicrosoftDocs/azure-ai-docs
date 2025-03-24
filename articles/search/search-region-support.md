@@ -15,7 +15,7 @@ ms.date: 01/27/2025
 
 # Azure AI Search regions list
 
-This article identifies the cloud regions in which Azure AI Search is available. It also lists which premium features are available in each region. 
+This article identifies the cloud regions in which Azure AI Search is available. It also lists which premium features are available in each region.
 
 ## Features subject to regional availability
 
