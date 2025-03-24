@@ -39,10 +39,6 @@ Before using the Azure AI Foundry for Visual Studio Code extension, you must:
 
 - Download, install, and configure Visual Studio Code. More information: [Download Visual Studio Code](https://code.visualstudio.com/Download)
 
-- You need permissions to create an Azure AI Foundry hub or have one created for you.
-    - If your role is **Contributor** or **Owner**, you can follow the steps in this quickstart.
-    - If your role is **Azure AI Developer**, the hub must already be created before you can complete this quickstart. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../../concepts/ai-resources.md) and [Azure AI roles](../../concepts/rbac-ai-foundry.md).
-
 - [An existing Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects?tabs=ai-studio). The extension interacts with Azure AI Foundry at the project level.
 
 - Your subscription needs to be below your [quota limit](../quota.md) to [deploy a new model in this quickstart](#deploy-a-model-from-the-model-catalog). Otherwise you already need to have a [deployed chat model](../deploy-models-openai.md).
@@ -269,7 +265,7 @@ Create a sample code file using the following steps.
 
 #### Sample code file
 
-The sample code file is displayed. 
+The sample code file that demonstrates how to use Azure's AI Inference SDK to interact with a deployed language model:
 
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/sample-code-file.png" alt-text="Screenshot of generated sample code file." lightbox="../../media/how-to/get-started-projects-vs-code/sample-code-file.png":::
 
