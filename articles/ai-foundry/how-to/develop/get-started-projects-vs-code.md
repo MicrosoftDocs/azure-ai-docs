@@ -70,8 +70,8 @@ To install the Azure AI Foundry for Visual Studio Code extension:
 Get started with the Azure AI Foundry extension by using the following steps. 
 
 > [!NOTE]
-> For a full list of features available in the extension, use the Command Palette. Select <kbd>F1</kbd> to open the command palette and search **AI Foundry**. The following screenshot shows some of the actions for AI Foundry.
->     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png" alt-text="A screenshot of the Visual Studio Code command palette for AI Foundry." lightbox="../../media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png":::
+> For a full list of features available in the extension, use the Command Palette. Select <kbd>F1</kbd> to open the command palette and search **Azure AI Foundry**. The following screenshot shows some of the actions for Azure AI Foundry.
+>     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png" alt-text="A screenshot of the Visual Studio Code command palette for Azure AI Foundry." lightbox="../../media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png":::
 
 
 ### Sign-in to your resources
@@ -87,22 +87,22 @@ Sign-in to your Azure subscription to access your resources with the following s
 
 1. Under the "Resources" section, select your Azure Subscription and Resource Group. 
 
-1. Select "AI Foundry" and open your project.
+1. Select **Azure AI Foundry** and open your project.
 
 1. The **Agents** and **Models** sections are listed under your project. 
 
 
-### Set the default AI Foundry Project
+### Set the default Azure AI Foundry Project
 
- Set your default AI Foundry Project with the following steps:
+ Set your default Azure AI Foundry Project with the following steps:
 
 1. Open a new Visual Studio Code window.
 
 1. Select <kbd>F1</kbd> to open the command palette.
 
-1. Enter **AI Foundry: Select Default Project** and press enter.
+1. Enter **Azure AI Foundry: Select Default Project** and press enter.
 
-1. Select the AI Foundry Project you want to use from the list of available projects and press enter.
+1. Select the Azure AI Foundry Project you want to use from the list of available projects and press enter.
 
 Your selected project will now display **Default** after the project name.
 
@@ -121,7 +121,7 @@ The [model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in Azure AI
 
 1. Select <kbd>F1</kbd> to open the command palette.
 
-1. Enter **AI Foundry: Model Catalog** and press enter.
+1. Enter **Azure AI Foundry: Model Catalog** and press enter.
 
 1. The **Model Catalog** page is displayed.
 
@@ -169,7 +169,7 @@ Deploy a selected model in the model catalog using the following steps:
 
 #### Deploy a model
 
-You can also deploy a model directly from your AI Foundry project. 
+You can also deploy a model directly from your Azure AI Foundry project. 
 
 1. In the Azure Resources Extension view, select the **plus** icon next to **Models** to start the deployment process.
 
@@ -296,7 +296,7 @@ Open the model playground using the following steps:
 
 ###	Show the Azure AI Agent YAML definition
 
-###	Deploy Azure AI Agents to the AI Foundry Studio
+###	Deploy Azure AI Agents to the Azure AI Foundry Studio
 
 ### Add tools to the Azure AI Agent
 
