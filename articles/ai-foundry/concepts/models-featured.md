@@ -339,14 +339,13 @@ The Stability AI collection of image generation models include Stable Image Core
 
 #### Inference examples: Stability AI
 
+Stability AI models deployed to serverless APIs implement the Azure AI model inference API on the route `/image/generations`.
 For examples of how to use Stability AI models, see the following examples:
 
-- [Use OpenAI SDK with Stability AI models in Azure AI and Azure ML for Text to Image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Text_to_Image_openai_library.ipynb)
-- [Use Requests Library with Stability AI models in Azure AI and Azure ML for Text to Image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Text_to_Image_requests_library.ipynb)
-- [Use Requests Library with Stable Diffusion 3.5 Large in Azure AI and Azure ML for Image to Image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Image_to_Image.ipynb)
-- Example of a [fully encoded image generation response](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Sample_image_generation_response.txt)
-
-
+- [Use OpenAI SDK with Stability AI models for text to image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Text_to_Image_openai_library.ipynb)
+- [Use Requests library with Stability AI models for text to image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Text_to_Image_requests_library.ipynb)
+- [Use Requests library with Stable Diffusion 3.5 Large for image to image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Image_to_Image.ipynb)
+- [Example of a fully encoded image generation response](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Sample_image_generation_response.txt)
 
 
 ## Related content
