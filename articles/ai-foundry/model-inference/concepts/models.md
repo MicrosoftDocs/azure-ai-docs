@@ -184,16 +184,6 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 | ------ | ---- | --- | ------------ |
 | [Tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata) | chat-completion | Global standard | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` and `jp` <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 
-## Stability AI 
-
-The Stability AI collection of image generation models include Stable Image Core, Stable Image Ultra and Stable Diffusion 3.5 Large. Stable Diffusion 3.5 Large allows for an image and text input. 
-
-| Model  | Type | Capabilities |
-| ------ | ---- | ------------ |
-| [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/versions/1) | [Image Generation](../../how-to/deploy-stability-models.md?context=/azure/ai-foundry/context/context) | - Input: text and image (1000 tokens and 1 image)  <br /> - Output: 1 Image  <br />  - **Tool calling:** No <br /> - Response formats: Image (PNG and JPG) |
-| [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/versions/1) | [Image Generation](../../how-to/deploy-stability-models.md?context=/azure/ai-foundry/context/context) | - Input: text (1000 tokens)  <br /> - Output: 1 Image  <br />  - **Tool calling:** No <br /> - Response formats: Image (PNG and JPG) |
-| [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/versions/1) | [Image Generation](../../how-to/deploy-stability-models.md?context=/azure/ai-foundry/context/context) | - Input: text (1000 tokens)  <br /> - Output: 1 Image  <br />  - **Tool calling:** No <br /> - Response formats: Image (PNG and JPG) |
-
 
 ## Next steps
 
