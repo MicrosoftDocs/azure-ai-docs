@@ -1,7 +1,6 @@
 ---
 title: "About COCO files"
 titleSuffix: "Azure AI services"
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 

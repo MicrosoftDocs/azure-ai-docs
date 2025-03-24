@@ -1,7 +1,6 @@
 ---
 title: include file
 description: include file
-#services: cognitive-services
 author: aahill
 manager: nitinme
 ms.service: azure-ai-language

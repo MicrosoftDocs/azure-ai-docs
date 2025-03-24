@@ -97,5 +97,5 @@ See the [FAQ section](../faq.yml) to explore more help.
 
 ## Next steps
 
-* [Explore the model catalog](https://ai.azure.com/github/models) in Azure AI studio.
+* [Explore the model catalog](https://ai.azure.com/github/models) in Azure AI Foundry portal.
 * [Add more models](create-model-deployments.md) to your endpoint.

@@ -11,7 +11,7 @@ ms.date: 02/28/2025
 manager: nitinme
 ---
 
-# How to use function calling with Azure OpenAI Service (Preview)
+# How to use function calling with Azure OpenAI Service
 
 The latest versions of gpt-35-turbo and gpt-4 are fine-tuned to work with functions and are able to both determine when and how a function should be called. If one or more functions are included in your request, the model determines if any of the functions should be called based on the context of the prompt. When the model determines that a function should be called, it responds with a JSON object including the arguments for the function. 
 
@@ -71,7 +71,7 @@ from zoneinfo import ZoneInfo
 client = AzureOpenAI(
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview"
+    api_version="2025-02-01-preview"
 )
 
 # Define the deployment you want to use for your chat completions API calls
@@ -250,7 +250,7 @@ from zoneinfo import ZoneInfo
 client = AzureOpenAI(
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview"
+    api_version="2025-02-01-preview"
 )
 
 # Provide the model deployment name you want to use for this example

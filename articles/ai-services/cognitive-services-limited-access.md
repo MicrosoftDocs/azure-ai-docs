@@ -2,7 +2,6 @@
 title: Limited Access features for Azure AI services
 titleSuffix: Azure AI services
 description: Learn how Microsoft protects the rights and safety of individuals by using Limited Access features for Azure AI services.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services

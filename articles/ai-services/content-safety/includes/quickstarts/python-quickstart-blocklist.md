@@ -1,6 +1,5 @@
 ---
 title: "Quickstart: Use a blocklist with Python"
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety

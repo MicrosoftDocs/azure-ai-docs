@@ -32,7 +32,7 @@ The following sections describe how you can customize validation settings with t
 
 - An understanding of train/validation data splits and cross-validation as machine learning concepts. For a high-level explanation, see the following articles:
 
-   - [About training, validation, and testing datasets in machine learning](https://towardsdatascience.com/train-validation-and-test-sets-72cb40cba9e7)
+   - [About training, validation, and testing datasets in machine learning](https://medium.com/towards-data-science/train-validation-and-test-sets-72cb40cba9e7)
 
    - [Understanding cross validation in machine learning](https://towardsdatascience.com/understanding-cross-validation-419dbd47e9bd) 
 

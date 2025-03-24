@@ -1,11 +1,10 @@
 ---
-#services: cognitive-services
 manager: nitinme
 author: travisw
 ms.author: travisw
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 01/09/2025
+ms.date: 3/11/2025
 ---
 
 [!INCLUDE [Set up required variables](./use-your-data-common-variables.md)]
@@ -66,7 +65,7 @@ foreach (ChatCitation citation in onYourDataContext?.Citations ?? [])
 > For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
 
 ```cmd
-dotnet run program.cs
+dotnet run Program.cs
 ```
 
 ## Output

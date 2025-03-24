@@ -7,7 +7,7 @@ author: aapowell
 ms.author: aapowell
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 3/10/2025
+ms.date: 3/11/2025
 ---
 
 [Reference documentation](/dotnet/api/overview/azure/ai.openai.assistants-readme?context=/azure/ai-services/openai/context/context) |  [Source code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/openai/Azure.AI.OpenAI/src) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.OpenAI/)
@@ -28,7 +28,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Set up
 
-1. Create a new folder `assistants-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
+1. Create a new folder `assistants-quickstart` and go to the quickstart folder with the following command:
 
     ```shell
     mkdir assistants-quickstart && cd assistants-quickstart
@@ -62,9 +62,9 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 [!INCLUDE [resource authentication](resource-authentication.md)]
 
-## Create the assistant
+## Run the quickstart
 
-The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
+The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with an `AzureKeyCredential` object. 
 
 #### [Microsoft Entra ID](#tab/keyless)
 
@@ -79,9 +79,9 @@ AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new Az
 ```
 ---
 
-To create an assistant, you need to:
+To run the quickstart, follow these steps:
 
-1. Update the `Program.cs` file with the following code to create an assistant:
+1. Replace the contents of `Program.cs` with the following code and update the placeholder values with your own.
     
     ```csharp
     using Azure;
