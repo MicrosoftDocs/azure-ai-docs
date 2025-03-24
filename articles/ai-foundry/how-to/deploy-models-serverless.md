@@ -31,9 +31,9 @@ This article uses a Meta Llama model deployment for illustration. However, you c
 
 - An [Azure AI Foundry project](create-projects.md).
 
-- You have to disable the feature **Deploy models to Azure AI model inference service**. When this feature is on, serverless API endpoints are not available for deployment when using the Azure AI Foundry portal.
+- Ensure that the **Deploy models to Azure AI model inference service** feature is turned off in the Azure AI Foundry portal. When this feature is on, serverless API endpoints are not available for deployment when using the portal.
 
-    :::image type="content" source="../model-inference/media/quickstart-ai-project/ai-project-inference-endpoint.gif" alt-text="An animation showing how to turn on the Deploy models to Azure AI model inference service feature in Azure AI Foundry portal." lightbox="../model-inference/media/quickstart-ai-project/ai-project-inference-endpoint.gif":::
+    :::image type="content" source="../media/deploy-models-serverless/ai-project-inference-endpoint.gif" alt-text="An animation showing how to turn off the Deploy models to Azure AI model inference service feature in Azure AI Foundry portal." lightbox="../media/deploy-models-serverless/ai-project-inference-endpoint.gif":::
 
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
 

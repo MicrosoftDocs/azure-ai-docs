@@ -4,12 +4,13 @@ titleSuffix: Azure Machine Learning
 description: 'Learn how to work with R interactively on Azure Machine Learning'
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 06/01/2023
+ms.date: 03/21/2025
 ms.topic: how-to
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: mavaisma
 ms.devlang: r
+# customer intent: As a data scientist, I want to use R interactively in Azure Machine Learning so that I can develop and test my models.
 ---
 
 # Interactive R development
@@ -107,42 +108,6 @@ For data stored in a data asset [created in Azure Machine Learning](how-to-creat
 
     [!Notebook-r[](~/azureml-examples-mavaisma-r-azureml/tutorials/using-r-with-azureml/02-develop-in-interactive-r/work-with-data-assets.ipynb?name=read-uri)]
 
-You can also use a Datastore URI to access different files on a registered Datastore, and read these resources into an R `data.frame`.
-
- 1. In this format, create a Datastore URI, using your own values:
- 
-    ```r
-    subscription <- '<subscription_id>'
-    resource_group <- '<resource_group>'
-    workspace <- '<workspace>'
-    datastore_name <- '<datastore>'
-    path_on_datastore <- '<path>'
-    
-    uri <- paste0("azureml://subscriptions/", subscription, "/resourcegroups/", resource_group, "/workspaces/", workspace, "/datastores/", datastore_name, "/paths/", path_on_datastore)
-    ```
-
-    > [!TIP]
-    > Instead of remembering the datastore URI format, you can copy-and-paste the datastore URI from the Studio UI, if you know the datastore where your file is located:
-    > 1. Navigate to the file/folder you want to read into R
-    > 1. Select the elipsis (**...**) next to it.
-    > 1. Select from the menu **Copy URI**. 
-    > 1. Select the **Datastore URI** to copy into your notebook/script.
-    > Note that you must create a variable for `<path>` in the code.
-    > :::image type="content" source="media/how-to-r-interactive-development/datastore-uri-copy.png" alt-text="Screenshot highlighting the copy of the datastore URI.":::
-
- 2. Create a filestore object using the previously mentioned URI:
-   ```r
-   fs <- azureml.fsspec$AzureMachineLearningFileSystem(uri, sep = "")
-   ```
-         
- 3. Read into an R `data.frame`:
-   ```r
-   df <- with(fs$open("<path>)", "r") %as% f, {
-    x <- as.character(f$read(), encoding = "utf-8")
-    read.csv(textConnection(x), header = TRUE, sep = ",", stringsAsFactors = FALSE)
-   })
-   print(df)
-   ```
     
 ## Install R packages
 
@@ -188,7 +153,3 @@ Beyond the issues described earlier, use R as you would in any other environment
 > [!NOTE]
 > - From an interactive R session, you can only write to the workspace file system.
 > - From an interactive R session, you cannot interact with MLflow (such as log model or query registry).
-
-## Next steps
-
-* [Adapt your R script to run in production](how-to-r-modify-script-for-production.md)
