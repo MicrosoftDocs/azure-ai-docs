@@ -35,14 +35,18 @@ Azure AI model inference is a capability in Azure AI Services resources in Azure
 
 :::image type="content" source="../media/quickstart-get-started-deepseek-r1/resources-architecture.png" alt-text="A diagram showing the high level architecture of the resources created in the tutorial." lightbox="../media/quickstart-get-started-deepseek-r1/resources-architecture.png":::
 
-To create an Azure AI project that supports model inference for DeepSeek-R1, follow these steps:
-
-> [!TIP]
-> You can also create the resources using [Azure CLI](../how-to/quickstart-create-resources.md?pivots=programming-language-cli) or [infrastructure as code with Bicep](../how-to/quickstart-create-resources.md?pivots=programming-language-bicep).
+To create an Azure AI project that supports model inference for DeepSeek-R1, follow these steps. You can also create the resources using [Azure CLI](../how-to/quickstart-create-resources.md?pivots=programming-language-cli) or [infrastructure as code with Bicep](../how-to/quickstart-create-resources.md?pivots=programming-language-bicep)
 
 1. Go to [Azure AI Foundry portal](https://ai.azure.com) and log in with your account.
 
 2. On the landing page, select **Create project**.
+
+    > [!TIP]
+    > **Are you using Azure OpenAI service?** When you are connected to Azure AI Foundry portal using an Azure OpenAI service resource, only Azure OpenAI models show up in the catalog. To view the full list of models, including DeepSeek-R1, use the top **Annoucements** section and locate the card with the option **Explore more models**.
+    >
+    > :::image type="content" source="../media/quickstart-ai-project/explore-more-models.png" alt-text="Screenshot showing the card with the option to explore all the models from the catalog." lightbox="../media/quickstart-ai-project/explore-more-models.png":::
+    >
+    > A new windows shows up with the full list of models. Select **DeepSeek-R1** from the list and select **Deploy**. The wizard asks to create a new project.
 
 3. Give the project a name, for example "my-project".
 
