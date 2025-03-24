@@ -29,7 +29,7 @@ Azure AI Content Understanding offers a comprehensive solution for multimodal co
 
 ## Overcoming Multimodal Content Chunking Challenges with Content Understanding
 
-Chunking is a crucial step in the process of Retrieval-Augmented Generation (RAG) with multimodal content. It involves breaking down large pieces of content into smaller, manageable chunks that can be effectively processed, indexed, and retrieved.  However, multimodal data presents unique challenges:
+Chunking is a crucial step in the process of RAG with multimodal content. It involves breaking down large pieces of content into smaller, manageable chunks that can be effectively processed, indexed, and retrieved.  However, multimodal data presents unique challenges:
 
 *   **Documents:** Preserving layout and semantic coherence is essential to avoid disrupting context and meaning.
 *   **Images:** Visual elements must be interpreted and verbalized accurately, maintaining relationships between components.
@@ -65,21 +65,22 @@ Content Understanding delivers sophisticated extraction capabilities across all 
 
 This comprehensive extraction creates a rich knowledge base where each content type maintains its unique contextual elements while enabling cross-modal relationships.
 
-The image below illustrates the page elements and content that Content Understanding extracts from documents with Layout analysis, showcasing Content Understanding’s capability to provide a structured representation of extracted regions of interest and their inter-relationships. 
+
+The image below illustrates Content Understanding's ability to extract structural elements from a document using layout analysis, showcasing its capability to provide extracted data with regions of interest and their inter-relationships.
 
 :::image type="content" source="../media/concepts/layoutpageelements.png" alt-text="Screenshot of Content Understanding Document Data Extraction with Layout Analysis for RAG design.":::
 
-The image below exemplifies how structured data can be meticulously extracted from audio files using a customized schema uniquely designed to meet specific requirements. This structured format facilitates efficient organization, indexing, and searching of content.
+The image below exemplifies how data can be meticulously extracted from audio files. In this scenario, content extraction captures audio transcription with speaker role detection, while field extraction generates topics discussed. This output facilitates efficient organization, indexing, and searching of content.
 
 :::image type="content" source="../media/concepts/audiorag.png" alt-text="Screenshot of Content Understanding Audio Data Extraction for RAG design":::
 
 ### 2. Create a Unified Search Index
 
-The diverse outputs from Content Understanding's extraction process can be integrated into a unified Azure AI Search index, creating a comprehensive knowledge repository that spans all modalities. This consolidated index enables cross-modal search capabilities, allowing users to discover relevant information regardless of the original content format:
+The diverse outputs from Content Understanding's extraction process can be integrated into a unified [Azure AI Search index](https://docs.azure.cn/en-us/search/tutorial-rag-build-solution-index-schema), creating a comprehensive knowledge repository that spans all modalities. This consolidated index enables cross-modal search capabilities, allowing users to discover relevant information regardless of the original content format:
 
-```python
-# Define a schema that accommodates the full spectrum of multimodal content
-index_name = "unified_training_knowledge_base"
+```json
+
+index_name = "unified_training_index"
 fields = [
     # Document content fields
     {"name": "document_content", "type": "Edm.String", "searchable": true, "retrievable": true},
@@ -87,7 +88,7 @@ fields = [
     
     # Image-derived content
     {"name": "visual_descriptions", "type": "Edm.String", "searchable": true, "retrievable": true},    
-    
+
     # Video content components
     {"name": "video_transcript", "type": "Edm.String", "searchable": true, "retrievable": true},
     {"name": "scene_descriptions", "type": "Edm.String", "searchable": true, "retrievable": true},
@@ -103,15 +104,15 @@ fields = [
 
 This unified index becomes the foundation for intelligent retrieval operations, enabling semantically rich search experiences that leverage the full context and relationships within your enterprise content ecosystem
 
-### 3. Utilize Azure OpenAI Chat Models
+### 3. Utilize Azure OpenAI Models
 
-Once your content is extracted and indexed, integrate Azure OpenAI's chat models to create an interactive question-answering system:
+Once your content is extracted and indexed, integrate [Azure OpenAI's embedding and chat models](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions) to create an interactive question-answering system:
 
 1. **Retrieve relevant content** from your unified index when a user submits a query
 2. **Create an effective prompt** that combines the user's question with the retrieved context
-3. **Generate responses** using Azure OpenAI that reference specific content from various modalities
+3. **Generate responses** using Azure OpenAI models that reference specific content from various modalities
 
-This approach grounds AI responses in your actual content, enabling the model to answer questions by referencing specific document sections, describing relevant images, quoting from video transcripts, or citing speaker statements from audio recordings.
+This approach grounds responses with your actual content, enabling the model to answer questions by referencing specific document sections, describing relevant images, quoting from video transcripts, or citing speaker statements from audio recordings.
 
 The combination of Content Understanding's extraction capabilities, Azure AI Search's retrieval functions, and Azure OpenAI's generation abilities creates a powerful end-to-end RAG solution that can seamlessly work with all your content types.
 
@@ -119,10 +120,14 @@ The combination of Content Understanding's extraction capabilities, Azure AI Sea
 > [View code samples on GitHub.](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
 
 ## Benefits of Content Understanding for RAG Scenarios
-Azure AI Content Understanding offers several capabilities that significantly enhance Retrieval-Augmented Generation (RAG) use cases:
-* **Enhanced Content Processing:** With Markdown output for documents, images, audio, and video, Content Understanding ensures that content is structured and easily readable. This structured format aids in the efficient parsing and interpretation of content by AI models, leading to more accurate and relevant retrieval and generation of information.
-* **Simplified field extraction:** Content Understanding's field extraction simplifies the process of generating structured output from unstructured content. By allowing users to define a schema, it becomes easier to extract, classify, or generate field values without the need for complex prompt engineering. This capability ensures that the data collected is organized and meaningful, facilitating more efficient processing and analysis
-* **Confidence Scores and Grounding Sources:** By offering confidence scores for the extracted data, Content Understanding helps users estimate the reliability of the results. Grounding sources allow users to verify the correctness of the extracted information quickly. This feature is particularly beneficial for RAG use cases, as it ensures that the generated content is based on accurate and verifiable data. The combination of confidence scores and grounding sources enhances the trustworthiness of extracted output, leading to more reliable and actionable insights.
+
+Azure AI Content Understanding significantly enhances RAG use cases by providing:
+
+*   **Simplified Multimodal Processing:** Content Understanding standardizes the extraction of content, structure, and insights from various content types into a unified process. This eliminates the need for separate, specialized pipelines for documents, images, audio, and video, reducing complexity and development time. By consolidating these capabilities into a single service, organizations can ensure consistent and efficient processing for all content, regardless of format.
+
+*   **Optional Field Extraction for Enhanced Output:** While not always necessary, Content Understanding's field extraction simplifies the process of generating structured output from unstructured content. By allowing users to define a schema, it becomes easier to extract, classify, or generate field values without the need for complex prompt engineering. This capability ensures that the data collected is organized and meaningful, facilitating more efficient processing and analysis. For example, in scenarios involving images, field extraction is often essential to verbalize images or extract specific features like spaces, people, charts, or graphs. Similarly, for multimodal RAG scenarios, field extraction can help achieve more accurate and meaningful results.
+
+*   **Confidence Scores and Grounding Sources for Enhanced Accuracy:** By offering confidence scores for the extracted data, Content Understanding helps users estimate the reliability of the results. Grounding sources allow users to verify the correctness of the extracted information quickly. This feature is particularly beneficial for RAG use cases, as it ensures that the generated content is based on accurate and verifiable data. The combination of confidence scores and grounding sources enhances the trustworthiness of extracted output, leading to more reliable and actionable insights.
 
 ## Get started
 Content Understanding supports the following development options:
