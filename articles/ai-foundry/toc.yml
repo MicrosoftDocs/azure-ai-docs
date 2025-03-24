@@ -116,8 +116,6 @@ items:
         href: how-to/deploy-models-gretel-navigator.md
       - name: Mistral-7B and Mixtral models
         href: how-to/deploy-models-mistral-open.md
-      - name: Stability AI models
-        href: ./how-to/deploy-stability-models.md
     - name: Work with embedding models
       items:
         - name: Work with text embedding models
