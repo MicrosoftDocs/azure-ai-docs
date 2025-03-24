@@ -6,7 +6,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 09/27/2024
+ms.date: 03/24/2025
 ms.author: jboback
 ms.custom: language-service-ner, cogserv-non-critical-language
 ---
