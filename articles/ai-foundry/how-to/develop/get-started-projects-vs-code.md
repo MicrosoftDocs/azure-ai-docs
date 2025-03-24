@@ -5,7 +5,7 @@ description: Use this article to learn how to deploy Large Language Models and d
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: quickstart
-ms.date: 03/22/2025
+ms.date: 03/24/2025
 ms.reviewer: 
 ms.author: sgilley
 author: sdgilley
@@ -64,7 +64,7 @@ Get started with the Azure AI Foundry extension by using the following steps.
 
 ### Sign-in to your resources
 
-The following steps help you get started with the Azure AI Foundry extension: 
+Sign-in to your Azure subscription to access your resources with the following steps:
 
 1. Select the Azure Icon on the VS Code Navbar. 
 
@@ -80,9 +80,9 @@ The following steps help you get started with the Azure AI Foundry extension:
 1. The **Agents** and **Models** sections are listed under your project. 
 
 
-### Set the default project
+### Set the default AI Foundry Project
 
- Set your default AI Project with the following steps:
+ Set your default AI Foundry Project with the following steps:
 
 1. Open a new Visual Studio Code window.
 
@@ -103,7 +103,9 @@ The Azure AI Foundry for Visual Studio Code extension enables you to create, int
 
 ### Explore all models with the model catalog
 
-Use the model catalog to explore and deploy a curated selection of models available in Azure AI Foundry.
+The [model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in Azure AI Foundry portal is the hub to discover and use a wide range of models for building generative AI applications.
+
+ Access the model catalog from the command palette to explore and deploy a curated selection of models available in Azure AI Foundry, right from inside VS Code.
 
 1. Select <kbd>F1</kbd> to open the command palette.
 
@@ -143,24 +145,56 @@ Deploy a selected model in the model catalog using the following steps:
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/enter-deployment-name.png" alt-text="Screenshot of the Enter deployment name textbox." lightbox="../../media/how-to/get-started-projects-vs-code/enter-deployment-name.png":::
 
-1. A confirmation dialog box appears. Select the **Deploy** button to deploy the model to your project.
+1. A confirmation dialog box appears. Select the **Deploy** button to deploy the model to your projedeployed-model.pngct.
 
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/deploy-model-popup.png" alt-text="Screenshot of the confirmation dialog box with the Deploy button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/deploy-model-popup.png":::
 
-After a successful deployment, your model will be listed with your other deployed models under the **Models** section in your project.  
+1. After a successful deployment, your model will be listed with your other deployed models under the **Models** section in your project.  
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/deployed-model.png" alt-text="Screenshot of the newly deployed model under the Models section." lightbox="../../media/how-to/get-started-projects-vs-code/deployed-model.png":::
 
 ### Deploy, view, and update models
+
+#### Deploy a model
+
 
 #### View deployed models
 
 In the Azure Resources Extension view, select the **plus** icon next to **Models** to show the list of models deployed to your Azure AI Foundry project.
 
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-plus-expanded.png" alt-text="Screenshot of the plus sign next to models with the list of models expanded." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-plus-expanded.png":::
+
+
 #### View model card information
 
-Selecting the new model opens up a panel that provides some basic information
+Selecting the new model opens up a panel that provides some basic information:
+
+- Deployment Info: This section contains the information about the model:
+    - Name
+    - Provisioning state
+    - Deployment type
+    - Rate limit information
+    - Version info
+    - Model name
+    - Model version
+- Endpoint info: This section contains the Target URI link, authentication type, and key.
+- Useful links: This section contains the code sample repository and tutorial links to get started with AI application development.
+
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/display-model-card.png" alt-text="Screenshot of the model card for the selected model." lightbox="../../media/how-to/get-started-projects-vs-code/display-model-card.png":::
 
 #### Update a model
 
-I can make changes such as rate limit directly within VS Code.
+To update the model card information, select the **Edit** button on the top-right of the model card. 
+
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/edit-model-card.png" alt-text="Screenshot of the model card for the selected model with the Edit button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/edit-model-card.png":::
+
+Update the desired editable fields such as rate limit directly within VS Code.
+
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/save-model-changes.png" alt-text="Screenshot of the model card with editable fields and the Save button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/save-model-changes.png":::
+
+To save the changes, select the **Save** button on the top-right of the model card. 
+
+
 
 
 ### Explore the model sample code
