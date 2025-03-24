@@ -2,7 +2,6 @@
 title: Configure vehicle analysis containers
 titleSuffix: Azure AI services
 description: Vehicle analysis is a set of capabilities that, when used with the Spatial Analysis container, enable you to analyze real-time streaming video to understand vehicle characteristics and placement.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision

@@ -2,7 +2,6 @@
 title: Image retrieval using multimodal embeddings
 titleSuffix: Azure AI services
 description: Learn how to use the image retrieval API to vectorize images and search terms, enabling text-based image searches without metadata.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 

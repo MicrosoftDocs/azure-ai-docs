@@ -96,7 +96,7 @@ While using the Assistants playground, keep the following concepts in mind.
 
 ### Tools
 
-An individual assistant can access up to 128 tools including `code interpreter`, as well as any custom tools you create via [functions](../how-to/assistant-functions.md).
+An individual assistant can access up to 128 tools, including `code interpreter`, as well as any custom tools you create via [functions](../how-to/assistant-functions.md).
 
 ### Chat session
 
@@ -113,7 +113,7 @@ Underneath the text input box there are two buttons:
 
 ### Logs
 
-Logs provide a detailed snapshot of what the assistant API activity.
+Logs provide a detailed snapshot of the assistant's API activity.
 
 ### Show panels
 

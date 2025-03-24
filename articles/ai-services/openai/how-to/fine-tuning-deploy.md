@@ -2,7 +2,6 @@
 title: 'Deploy a fine-tuned model'
 titleSuffix: Azure OpenAI
 description: Learn how to deploy your fine-tuned model with Azure OpenAI Service by using Python, the REST APIs, or Azure AI Foundry portal.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions

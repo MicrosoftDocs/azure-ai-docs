@@ -2,7 +2,6 @@
 title: 'Direct preference optimization'
 titleSuffix: Azure OpenAI
 description: Learn how to use direct preference optimization technique to fine-tune Azure OpenAI models.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions

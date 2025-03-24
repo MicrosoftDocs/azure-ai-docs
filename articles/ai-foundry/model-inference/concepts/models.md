@@ -184,6 +184,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 | ------ | ---- | --- | ------------ |
 | [Tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata) | chat-completion | Global standard | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` and `jp` <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 
+
 ## Next steps
 
 - Get started today and [deploy your fist model in Azure AI services](../how-to/create-model-deployments.md)
