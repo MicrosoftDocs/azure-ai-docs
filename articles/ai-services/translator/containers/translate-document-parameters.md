@@ -2,7 +2,6 @@
 title: "Container: Translate document"
 titleSuffix: Azure AI services
 description: Understand the parameters, headers, and body request/response messages for the Azure AI Translator container translate document operation.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 

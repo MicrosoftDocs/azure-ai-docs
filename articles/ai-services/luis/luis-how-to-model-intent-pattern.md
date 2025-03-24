@@ -2,7 +2,6 @@
 title: Patterns add accuracy - LUIS
 titleSuffix: Azure AI services
 description: Add pattern templates to improve prediction accuracy in Language Understanding (LUIS) applications.
-#services: cognitive-services
 author: aahill
 ms.author: aahi
 manager: nitinme

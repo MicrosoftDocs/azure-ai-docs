@@ -2,7 +2,6 @@
 title: What is summarization?
 titleSuffix: Azure AI services
 description: Learn about summarizing text.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language

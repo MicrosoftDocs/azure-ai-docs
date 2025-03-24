@@ -2,7 +2,6 @@
 title: Cancel translation method
 titleSuffix: Azure AI services
 description: The cancel translation method cancels a current processing or queued operation.
-#services: cognitive-services
 manager: nitinme
 ms.author: lajanuar
 author: laujan

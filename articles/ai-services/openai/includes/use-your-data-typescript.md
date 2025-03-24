@@ -1,5 +1,4 @@
 ---
-#services: cognitive-services
 manager: nitinme
 author: glharper
 ms.author: glharper

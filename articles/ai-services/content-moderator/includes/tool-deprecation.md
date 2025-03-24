@@ -1,7 +1,6 @@
 ---
 title: "Content Moderator Review tool deprecation"
 titleSuffix: Azure AI services
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-moderator

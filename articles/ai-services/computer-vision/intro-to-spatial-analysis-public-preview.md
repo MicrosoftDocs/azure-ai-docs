@@ -2,7 +2,6 @@
 title: What is Video Analysis?
 titleSuffix: Azure AI services
 description: Learn about the basic concepts and features of Azure AI Vision Spatial Analysis and Video Retrieval.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
