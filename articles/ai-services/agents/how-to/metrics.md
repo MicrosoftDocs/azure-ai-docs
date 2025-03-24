@@ -15,7 +15,7 @@ ms.service: azure-ai-agent-service
 
 ## Dashboards
 
-Azure AI Agent Service provides out-of-box dashboards for each of your agents. There are two key dashboards to monitor your resource: 
+Azure AI Agent Service provides out-of-box dashboards for each of your agents in a [standard agent setup](../quickstart.md?pivots=programming-language-csharp#choose-basic-or-standard-agent-setup). There are two key dashboards to monitor your resource: 
 
 - The metrics dashboard in the AI Foundry resource view 
 - The dashboard in the overview pane within the Azure portal 
