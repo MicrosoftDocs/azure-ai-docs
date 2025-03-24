@@ -383,7 +383,7 @@
         },
         {
             "source_path_from_root": "/articles/search/vector-search-index-size.md#how-to-check-service-creation-date",
-            "redirect_url": "/azure/search/search-how-to-upgrade#check-your-service-version",
+            "redirect_url": "/azure/search/search-how-to-upgrade#check-your-service-creation-or-upgrade-date",
             "redirect_document_id": false
         },
         {
