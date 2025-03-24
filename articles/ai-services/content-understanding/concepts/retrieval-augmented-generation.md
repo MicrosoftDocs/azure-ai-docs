@@ -29,8 +29,6 @@ Azure AI Content Understanding offers a comprehensive solution for multimodal co
 
 ## Overcoming Multimodal Content Chunking Challenges with Content Understanding
 
-## Overcoming Multimodal Content Chunking Challenges with Content Understanding
-
 Chunking is a crucial step in the process of RAG with multimodal content. It involves breaking down large pieces of content into smaller, manageable chunks that can be effectively processed, indexed, and retrieved.  However, multimodal data presents unique challenges:
 
 *   **Documents:** Preserving layout and semantic coherence is essential to avoid disrupting context and meaning.
