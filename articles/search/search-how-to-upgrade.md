@@ -7,21 +7,34 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/19/2025
+ms.date: 03/24/2025
 ---
 
 # Upgrade your Azure AI Search service in the Azure portal
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In April 2024, Azure AI Search increased the [storage capacity](search-limits-quotas-capacity.md#service-limits) of newly created search services. Services created before April 2024 saw no capacity changes, so if you wanted larger and faster partitions, you had to create a new service. However, most older services can now be upgraded to benefit from the higher capacity partitions.
+An upgrade brings older search services to the capabilities of new services created in the same region. Specifically, it upgrades the computing power of the underlying service. This one-time operation doesn't introduce breaking changes to your application, and you shouldn't need to change any code.
 
-<a id="upgrade-eligibility"></a>
+For [eligible services](#upgrade-eligibility), an upgrade increases the [partition storage](#higher-storage-limits) and [vector index size](#higher-vector-limits) on the same tier at no extra cost.
+
+> [!TIP]
+> Looking for tier upgrade? You can now move up between Basic and Standard (S1, S2, and S3) tiers. For more information, see [Change your service tier](search-capacity-planning.md#change-your-service-tier).
+
+This article describes how to upgrade your service in the [Azure portal](https://portal.azure.com/). Alternatively, you can use the [Search Management REST APIs](/rest/api/searchmanagement/) to upgrade your service programmatically. For more information, see [Manage your search service using REST](search-manage-rest.md#upgrade-a-service).
+
+## About service upgrades
+
+In April 2024, Azure AI Search increased the [storage capacity](search-limits-quotas-capacity.md#service-limits) of newly created search services. Services created before April 2024 saw no capacity changes, so if you wanted larger and faster partitions, you had to create a new service. However, some older services can now be upgraded to benefit from the higher capacity partitions.
+
+In this preview, an upgrade only increases the [storage limit](#higher-storage-limits) and [vector index size](#higher-vector-limits) of [eligible services](#upgrade-eligibility).
+
+### Upgrade eligibility
 
 To qualify for an upgrade, your service:
 
 > [!div class="checklist"]
-> + Must have been created before April 2024. Services created after April 2024 should already have higher capacity. To see when you created your service, [check your service version](#check-your-service-version).
+> + Must have been created before April 2024. Services created after April 2024 should already have higher capacity. To see when you created your service, [check your service creation date](#check-your-service-creation-or-upgrade-date).
 > + Must be in a region where higher capacity is enabled. Currently, service upgrades are available in the following regions:
 >   + East US
 >   + North Central US
@@ -30,20 +43,9 @@ To qualify for an upgrade, your service:
 
 <!-- Check the footnotes in the [list of supported regions](search-region-support.md). -->
 
-> [!TIP]
-> Looking for tier upgrade? You can now move up between Basic and Standard (S1, S2, and S3) tiers. For more information, see [Change your service tier](search-capacity-planning.md#change-your-service-tier).
-
-This article describes how to upgrade your service in the [Azure portal](https://portal.azure.com/). Alternatively, you can use the Management REST APIs to upgrade your service programmatically. For more information, see [Manage your search service using REST](search-manage-rest.md#upgrade-a-service).
-
-## About service upgrades
-
-An upgrade brings your existing search service to the same configuration as new services in your region. A service upgrade doesn't introduce new features. Rather, it moves your service to higher performing clusters that are only available to new services in your region. You don't need to change your application code or API versions, but you do need to use the portal or preview APIs for a one-time upgrade to newer infrastructure.
-
-In this preview, an upgrade only increases the [storage limit](#higher-storage-limits) and [vector limit](#higher-vector-limits) of your service.
-
 ### Higher storage limits
 
-For [upgrade-eligible services](#upgrade-eligibility), the following table compares the storage limit (per partition) before and after an upgrade.
+For [eligible services](#upgrade-eligibility), the following table compares the storage limit (per partition) before and after an upgrade.
 
 | | Basic <sup>1</sup> | S1 | S2 | S3/HD | L1 | L2 |
 |-|-|-|-|-|-|-|
@@ -54,7 +56,7 @@ For [upgrade-eligible services](#upgrade-eligibility), the following table compa
 
 ### Higher vector limits
 
-For [upgrade-eligible services](#upgrade-eligibility), the following table compares the vector index size limit (per partition) before and after an upgrade.
+For [eligible services](#upgrade-eligibility), the following table compares the vector index size (per partition) before and after an upgrade.
 
 | | Basic | S1 | S2 | S3/HD | L1 | L2 |
 |-|-|-|-|-|-|-|
@@ -65,15 +67,17 @@ For [upgrade-eligible services](#upgrade-eligibility), the following table compa
 
 <sup>2</sup> Applies to services created between July 1, 2023 and April 3, 2024 in all regions except Germany West Central, Qatar Central, and West India, to which the <sup>1</sup> limits apply.
 
-## Check your service version
+## Check your service creation or upgrade date
 
-On the **Overview** page, you can view various metadata about your search service, including the **Service Version**. This is the date you created or last upgraded your service, whichever is most recent.
+On the **Overview** page, you can view various metadata about your search service, including the **Created on** and **Upgraded on** dates.
+
+<!-- We removed Service version from the final version of the portal. There will only be "Created on" or "Upgraded on" as 2 separate dates. Should also describe that they can use this date to find which upgrades will be applied before they perform the operation. -->
 
 If a new version is available for services in your region, the **Upgrade** button becomes available. Otherwise, the button appears dimmed.
 
 ## Upgrade your service
 
-You can’t undo a service upgrade. Before you proceed, make sure that you want to permanently increase the [storage limit](#higher-storage-limits) and [vector limit](#higher-vector-limits) of your search service. We recommend that you test this operation in a nonproduction environment.
+You can’t undo a service upgrade. Before you proceed, make sure that you want to permanently increase the [storage limit](#higher-storage-limits) and [vector index size](#higher-vector-limits) of your search service. We recommend that you test this operation in a nonproduction environment.
 
 To upgrade your service:
 
@@ -81,7 +85,7 @@ To upgrade your service:
 
 1. On the **Overview** page, select **Upgrade** from the command bar.
 
-   If this button appears dimmed, an upgrade isn’t available for your service. Your service is either [on the current version](#check-your-service-version) or [in an unsupported region](#upgrade-eligibility).
+   If this button appears dimmed, an upgrade isn’t available for your service. Your service either has the [latest upgrade](#check-your-service-creation-or-upgrade-date) or is in an [unsupported region](#upgrade-eligibility).
 
 1. Review the upgrade details for your service, including your service name and service version.
 
@@ -91,12 +95,11 @@ To upgrade your service:
 
    The upgrade is an asynchronous operation, so you can continue using your service. Depending on the size of your service, the upgrade can take several hours to complete.
 
-   > [!IMPORTANT]
-   > In the unlikely event that the upgrade fails, file a support ticket immediately.
+   If the upgrade fails, your service returns to its original state.
 
 ## Next step
 
-After you upgrade your search service, you might have more partitions or be on a higher service tier than you need. To reduce costs, consider scaling your service down:
+After you upgrade your search service, you might want to reconsider your scale configuration:
 
 > [!div class="nextstepaction"]
 > [Estimate and manage capacity of your Azure AI Search service](search-capacity-planning.md)
