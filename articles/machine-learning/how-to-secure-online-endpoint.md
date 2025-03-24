@@ -162,8 +162,6 @@ Because the workspace is configured to have a managed virtual network, any endpo
 
 [!INCLUDE [network isolation issues](includes/machine-learning-online-endpoint-troubleshooting.md)]
 
-[!INCLUDE [Managed online endpoint can't be resolved](includes/troubleshooting-resolve-endpoint-managed.md)]
-
 ## Related content
 
 - [Network isolation with managed online endpoints](concept-secure-online-endpoint.md)

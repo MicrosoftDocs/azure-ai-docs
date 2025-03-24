@@ -789,8 +789,6 @@ This section provides information about common network isolation issues.
 
 [!INCLUDE [network isolation issues](includes/machine-learning-online-endpoint-troubleshooting.md)]
 
-[!INCLUDE [Scoring endpoint can't be resolved](includes/troubleshooting-resolve-endpoint-kubernetes-managed.md)]
-
 ## Inference server issues
 
 This section provides basic troubleshooting tips for the [Azure Machine Learning inference HTTP server](how-to-inference-server-http.md).
