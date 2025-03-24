@@ -42,11 +42,11 @@ To create an Azure AI project that supports model inference for DeepSeek-R1, fol
 2. On the landing page, select **Create project**.
 
     > [!TIP]
-    > **Are you using Azure OpenAI service?** When you are connected to Azure AI Foundry portal using an Azure OpenAI service resource, only Azure OpenAI models show up in the catalog. To view the full list of models, including DeepSeek-R1, use the top **Annoucements** section and locate the card with the option **Explore more models**.
+    > **Are you using Azure OpenAI service?** When you are connected to Azure AI Foundry portal using an Azure OpenAI service resource, only Azure OpenAI models show up in the catalog. To view the full list of models, including DeepSeek-R1, use the top **Announcements** section and locate the card with the option **Explore more models**.
     >
     > :::image type="content" source="../media/quickstart-get-started-deepseek-r1/explore-more-models.png" alt-text="Screenshot showing the card with the option to explore all the models from the catalog." lightbox="../media/quickstart-get-started-deepseek-r1/explore-more-models.png":::
     >
-    > A new windows shows up with the full list of models. Select **DeepSeek-R1** from the list and select **Deploy**. The wizard asks to create a new project.
+    > A new window shows up with the full list of models. Select **DeepSeek-R1** from the list and select **Deploy**. The wizard asks to create a new project.
 
 3. Give the project a name, for example "my-project".
 
@@ -139,7 +139,7 @@ You can use the Azure AI Inference package to consume the model in code:
 
 [!INCLUDE [code-chat-reasoning](../includes/code-create-chat-reasoning.md)]
 
-Reasoning may generate longer responses and consume a larger amount of tokens. You can see the [rate limits](../quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits being applied. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
+Reasoning may generate longer responses and consume a larger number of tokens. You can see the [rate limits](../quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits being applied. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
 
 ### Reasoning content
 
