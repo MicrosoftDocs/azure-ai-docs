@@ -265,15 +265,30 @@ Create a sample code file using the following steps.
 
 #### Sample code file
 
-The sample code file that demonstrates how to use Azure's AI Inference SDK to interact with a deployed language model:
+The sample code file that demonstrates a basic call to the chat completion API. The call is synchronous:
 
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/sample-code-file.png" alt-text="Screenshot of generated sample code file." lightbox="../../media/how-to/get-started-projects-vs-code/sample-code-file.png":::
 
 ### Interact with models using a model playground
 
-If you need to do some testing before diving into code, the Playground is the right place for you.
-
 Chat interactively with the model and change settings and system instructions using the model playground.
+
+Open the model playground using the following steps:
+
+1. Right-click on your deployed model and select the **Open in playground** option. 
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/open-playground.png" alt-text="Screenshot of the model context menu with the Open in playground option highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/open-playground.png":::
+
+1. The **Playground** page is displayed.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/display-playground.png" alt-text="Screenshot of the **Playground** page in VS Code." lightbox="../../media/how-to/get-started-projects-vs-code/display-playground.png":::
+
+1. Type your prompt and see the outputs.
+
+1. Additionally, you can use **View code** in the top-right corner to see details about how to access the model deployment programmatically.
+
+1. Select the **History** link at the top-left of the playground to view the chat history. 
+
 
 ## Working with Azure AI Agent Service
 
