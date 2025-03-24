@@ -21,9 +21,9 @@ The sample data consists of image files in the [azure-search-sample-data](https:
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-+ An [Azure AI services multiservice account](/azure/ai-services/multi-service-resource) for image vectorization and optical character recognition (OCR). Image vectorization requires Azure AI Vision multimodal embeddings. For an updated list of regions, see the [Azure AI Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
++ An [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) for image vectorization and optical character recognition (OCR). Image vectorization requires Azure AI Vision multimodal embeddings. For an updated list of regions, see the [Azure AI Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
-+ An Azure AI Search service for indexing and queries. Your service can be on any tier, but it must be in the [same region as Azure AI multiservice](search-create-service-portal.md#regions-with-the-most-overlap).
++ An Azure AI Search service for indexing and queries. Your service can be on any tier, but it must be in the [same region as Azure AI services multi-service](search-create-service-portal.md#regions-with-the-most-overlap).
 
   The service tier determines how many blobs you can index. We used the Free tier to create this quickstart and limited the content to 10 JPG files.
 
@@ -84,7 +84,7 @@ If raw content includes text, or if the skillset produces text, the wizard calls
 
 Azure AI Vision provides text embeddings, so use that resource for text vectorization.
 
-1. On the **Vectorize your text** page, select **AI Vision vectorization**. If it's not available, make sure Azure AI Search and your Azure AI multiservice account are together in a region that [supports AI Vision multimodal APIs](/azure/ai-services/computer-vision/how-to/image-retrieval).
+1. On the **Vectorize your text** page, select **AI Vision vectorization**. If it's not available, make sure Azure AI Search and your Azure AI services multi-service account are together in a region that [supports AI Vision multimodal APIs](/azure/ai-services/computer-vision/how-to/image-retrieval).
 
    :::image type="content" source="media/search-get-started-portal-images/vectorize-your-text.png" alt-text="Screenshot of the wizard page for vectorizing text.":::
 

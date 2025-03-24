@@ -50,5 +50,5 @@ The Document translation API now supports two translation operations:
 
 ## Related content
 
-[Azure AI Translator release history](text-translation/reference/release-history.md)
+[Azure AI Translator release history](release-history.md)
 

@@ -2,7 +2,6 @@
 title: How to install and run the Spatial Analysis container - Azure AI Vision
 titleSuffix: Azure AI services
 description: The Spatial Analysis container lets you detect people and distances in a video feed.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision

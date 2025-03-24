@@ -11,6 +11,7 @@ ms.date: 02/14/2025
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
+ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ---
 
 # Process images in prompt flow

@@ -8,7 +8,7 @@ ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 01/27/2025
+ms.date: 03/24/2025
 ms.reviewer: deeikele
 # Customer intent: As an admin, I want to understand how I can use my own encryption keys with Azure AI Foundry.
 ---
@@ -90,9 +90,8 @@ Customer-managed key encryption is configured via Azure portal in a similar way 
 :::image type="content" source="../../machine-learning/media/concept-customer-managed-keys/cmk-service-side-encryption.png" alt-text="Screenshot of the encryption tab with the option for service side encryption selected." lightbox="../../machine-learning/media/concept-customer-managed-keys/cmk-service-side-encryption.png":::
 
 Alternatively, use infrastructure-as-code options for automation. Example Bicep templates for Azure AI Foundry are available on the Azure Quickstart repo:
-
-1. [Service-side CMK encryption for hub](https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-cmk-service-side-encryption).
-1. [CMK encryption for hub](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-cmk).
+1. [CMK encryption for hub](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aifoundry-cmk).
+1. [Service-side CMK encryption preview for hub](https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-cmk-service-side-encryption).
 
 ## Limitations
 

@@ -40,15 +40,6 @@ You should use v2 if you're starting a new machine learning project or workflow.
 
 A new v2 project can reuse existing v1 resources like workspaces and compute and existing assets like models and environments created using v1. 
 
-Some feature gaps in v2 include:
-
-- Spark support in jobs -  currently in preview in v2.
-- Publishing jobs (pipelines in v1) as endpoints. You can however, schedule pipelines without publishing.
-- Support for SQL/database datastores.
-- Ability to use classic prebuilt components in the designer with v2.
-
-You should then ensure the features you need in v2 meet your organization's requirements, such as being generally available. 
-
 > [!IMPORTANT]
 > New features in Azure Machine Learning will only be launched in v2.
 

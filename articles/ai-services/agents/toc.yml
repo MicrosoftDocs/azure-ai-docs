@@ -20,7 +20,7 @@ items:
     - name: Model and region support
       href: ./concepts/model-region-support.md
     - name: Pricing
-      href: https://azure.microsoft.com/pricing/details/ai-studio/
+      href: https://azure.microsoft.com/pricing/details/ai-foundry/
 - name: Concepts
   expanded: true
   items:

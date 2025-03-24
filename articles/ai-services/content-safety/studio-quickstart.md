@@ -2,7 +2,6 @@
 title: "Quickstart: Content Safety Studio"
 titleSuffix: "Azure AI services"
 description: Learn how to get started with the Content Safety service using Content Safety Studio in your browser.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety

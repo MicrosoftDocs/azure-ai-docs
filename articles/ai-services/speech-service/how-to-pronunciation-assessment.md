@@ -30,7 +30,7 @@ In this article, you learn how to evaluate pronunciation with speech to text thr
 
 Pronunciation assessment supports uninterrupted streaming mode. The recording time can be unlimited through the Speech SDK. As long as you don't stop recording, the evaluation process doesn't finish and you can pause and resume evaluation conveniently.
 
-For information about availability of pronunciation assessment, see [supported languages](language-support.md?tabs=pronunciation-assessment) and [available regions](regions.md#regions).
+For information about availability of pronunciation assessment, see [supported languages](language-support.md?tabs=pronunciation-assessment) and [available regions](regions.md?tabs=scenarios#regions).
 
 As a baseline, usage of pronunciation assessment costs the same as speech to text for pay-as-you-go or commitment tier [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services). If you [purchase a commitment tier](../commitment-tier.md) for speech to text, the spend for pronunciation assessment goes towards meeting the commitment. For more information, see [Pricing](./pronunciation-assessment-tool.md#pricing).
 
@@ -146,7 +146,7 @@ In the `SpeechRecognizer`, you can specify the language to learn or practice imp
 var recognizer = new SpeechRecognizer(speechConfig, "en-US", audioConfig);
 ```
 
-::: zone-end  
+::: zone-end
 
 ::: zone pivot="programming-language-cpp"
 
@@ -208,21 +208,21 @@ You must create a `PronunciationAssessmentConfig` object. You can set `EnablePro
 ::: zone pivot="programming-language-csharp"
 
 ```csharp
-var pronunciationAssessmentConfig = new PronunciationAssessmentConfig( 
-    referenceText: "", 
-    gradingSystem: GradingSystem.HundredMark,  
-    granularity: Granularity.Phoneme,  
-    enableMiscue: false); 
-pronunciationAssessmentConfig.EnableProsodyAssessment(); 
+var pronunciationAssessmentConfig = new PronunciationAssessmentConfig(
+    referenceText: "",
+    gradingSystem: GradingSystem.HundredMark,
+    granularity: Granularity.Phoneme,
+    enableMiscue: false);
+pronunciationAssessmentConfig.EnableProsodyAssessment();
 ```
 
-::: zone-end  
+::: zone-end
 
 ::: zone pivot="programming-language-cpp"
 
 ```cpp
-auto pronunciationConfig = PronunciationAssessmentConfig::Create("", PronunciationAssessmentGradingSystem::HundredMark, PronunciationAssessmentGranularity::Phoneme, false); 
-pronunciationConfig->EnableProsodyAssessment(); 
+auto pronunciationConfig = PronunciationAssessmentConfig::Create("", PronunciationAssessmentGradingSystem::HundredMark, PronunciationAssessmentGranularity::Phoneme, false);
+pronunciationConfig->EnableProsodyAssessment();
 ```
 
 ::: zone-end
@@ -230,9 +230,9 @@ pronunciationConfig->EnableProsodyAssessment();
 ::: zone pivot="programming-language-java"
 
 ```Java
-PronunciationAssessmentConfig pronunciationConfig = new PronunciationAssessmentConfig("", 
-    PronunciationAssessmentGradingSystem.HundredMark, PronunciationAssessmentGranularity.Phoneme, false); 
-pronunciationConfig.enableProsodyAssessment(); 
+PronunciationAssessmentConfig pronunciationConfig = new PronunciationAssessmentConfig("",
+    PronunciationAssessmentGradingSystem.HundredMark, PronunciationAssessmentGranularity.Phoneme, false);
+pronunciationConfig.enableProsodyAssessment();
 ```
 
 ::: zone-end
@@ -240,13 +240,12 @@ pronunciationConfig.enableProsodyAssessment();
 ::: zone pivot="programming-language-python"
 
 ```Python
-pronunciation_config = speechsdk.PronunciationAssessmentConfig( 
-    reference_text="", 
-    grading_system=speechsdk.PronunciationAssessmentGradingSystem.HundredMark, 
-    granularity=speechsdk.PronunciationAssessmentGranularity.Phoneme, 
-    enable_miscue=False) 
-pronunciation_config.enable_prosody_assessment() 
-pronunciation_config.enable_content_assessment_with_topic("greeting")
+pronunciation_config = speechsdk.PronunciationAssessmentConfig(
+    reference_text="",
+    grading_system=speechsdk.PronunciationAssessmentGradingSystem.HundredMark,
+    granularity=speechsdk.PronunciationAssessmentGranularity.Phoneme,
+    enable_miscue=False)
+pronunciation_config.enable_prosody_assessment()
 ```
 
 ::: zone-end
@@ -254,12 +253,12 @@ pronunciation_config.enable_content_assessment_with_topic("greeting")
 ::: zone pivot="programming-language-javascript"
 
 ```JavaScript
-var pronunciationAssessmentConfig = new sdk.PronunciationAssessmentConfig( 
-    referenceText: "", 
-    gradingSystem: sdk.PronunciationAssessmentGradingSystem.HundredMark,  
-    granularity: sdk.PronunciationAssessmentGranularity.Phoneme,  
-    enableMiscue: false); 
-pronunciationAssessmentConfig.enableProsodyAssessment(); 
+var pronunciationAssessmentConfig = new sdk.PronunciationAssessmentConfig(
+    referenceText: "",
+    gradingSystem: sdk.PronunciationAssessmentGradingSystem.HundredMark,
+    granularity: sdk.PronunciationAssessmentGranularity.Phoneme,
+    enableMiscue: false);
+pronunciationAssessmentConfig.enableProsodyAssessment();
 ```
 
 ::: zone-end
@@ -267,9 +266,9 @@ pronunciationAssessmentConfig.enableProsodyAssessment();
 ::: zone pivot="programming-language-objectivec"
 
 ```ObjectiveC
-SPXPronunciationAssessmentConfiguration *pronunicationConfig = 
-[[SPXPronunciationAssessmentConfiguration alloc] init:@"" gradingSystem:SPXPronunciationAssessmentGradingSystem_HundredMark granularity:SPXPronunciationAssessmentGranularity_Phoneme enableMiscue:false]; 
-[pronunicationConfig enableProsodyAssessment]; 
+SPXPronunciationAssessmentConfiguration *pronunicationConfig =
+[[SPXPronunciationAssessmentConfiguration alloc] init:@"" gradingSystem:SPXPronunciationAssessmentGradingSystem_HundredMark granularity:SPXPronunciationAssessmentGranularity_Phoneme enableMiscue:false];
+[pronunicationConfig enableProsodyAssessment];
 ```
 
 ::: zone-end
@@ -277,11 +276,11 @@ SPXPronunciationAssessmentConfiguration *pronunicationConfig =
 ::: zone pivot="programming-language-swift"
 
 ```swift
-let pronAssessmentConfig = try! SPXPronunciationAssessmentConfiguration("", 
-    gradingSystem: .hundredMark, 
-    granularity: .phoneme, 
-    enableMiscue: false) 
-pronAssessmentConfig.enableProsodyAssessment() 
+let pronAssessmentConfig = try! SPXPronunciationAssessmentConfiguration("",
+    gradingSystem: .hundredMark,
+    granularity: .phoneme,
+    enableMiscue: false)
+pronAssessmentConfig.enableProsodyAssessment()
 ```
 
 ::: zone-end
@@ -306,7 +305,7 @@ This table lists some of the optional methods you can set for the `Pronunciation
 
 > [!NOTE]
 > Prosody assessment is only available in the [en-US](./language-support.md?tabs=pronunciation-assessment) locale.
-> 
+>
 > To explore the prosody assessment, upgrade to the SDK version 1.35.0 or later.
 
 | Method | Description |
@@ -423,7 +422,7 @@ speechRecognizer.recognizeOnceAsync((speechRecognitionResult: SpeechSDK.SpeechRe
 
 To learn how to specify the learning language for pronunciation assessment in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/node/pronunciationAssessmentContinue.js#LL37C4-L37C52).
 
-::: zone-end  
+::: zone-end
 
 ::: zone pivot="programming-language-python"
 
@@ -444,7 +443,7 @@ pronunciation_assessment_result_json = speech_recognition_result.properties.get(
 
 To learn how to specify the learning language for pronunciation assessment in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/python/console/speech_sample.py#LL937C1-L937C1).
 
-::: zone-end  
+::: zone-end
 
 ::: zone pivot="programming-language-objectivec"
 
@@ -788,7 +787,7 @@ To request IPA phonemes, set the phoneme alphabet to `IPA`. If you don't specify
 pronunciationAssessmentConfig.PhonemeAlphabet = "IPA";
 ```
 
-::: zone-end  
+::: zone-end
 
 ::: zone pivot="programming-language-cpp"
 
@@ -1091,7 +1090,7 @@ pronunciationAssessmentConfig?.nbestPhonemeCount = 5
 ## Pronunciation score calculation
 
 Pronunciation scores are calculated by weighting accuracy, prosody, fluency, and completeness scores based on specific formulas for reading and speaking scenarios.
-  
+
 When sorting the scores of accuracy, prosody, fluency, and completeness from low to high (if each score is available) and representing the lowest score to the highest score as s0 to s3, the pronunciation score is calculated as follows:
 
 For reading scenario:

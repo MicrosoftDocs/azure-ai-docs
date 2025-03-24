@@ -187,8 +187,8 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/plan-manage-costs.md",
-      "redirect_url": "/azure/ai-studio/how-to/costs-plan-manage",
-      "redirect_document_id": true
+      "redirect_url": "/azure/ai-foundry/how-to/costs-plan-manage",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/cognitive-services-and-machine-learning.md",
@@ -980,7 +980,7 @@
     {
       "source_path_from_root": "/articles/ai-services/translator/reference/release-history.md",
       "redirect_url": "/azure/ai-services/translator/text-translation/reference/release-history",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/reference/rest-api-guide.md",
@@ -1050,6 +1050,11 @@
     {
       "source_path_from_root": "/articles/ai-services/language-service/native-document-support/use-native-documents.md",
       "redirect_url": "/azure/ai-services/language-service/native-document-support/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/text-translation/reference/release-history.md",
+      "redirect_url": "/azure/ai-services/translator/release-history",
       "redirect_document_id": true
     }
   ]
