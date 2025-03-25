@@ -139,11 +139,11 @@ You can add the Grounding with Bing Search tool to an agent programatically usin
    
 1. Select **OpenAPI 3.0 specified tool**.
 
-    :::image type="content" source="../../media/tools/action-tools-list.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/action-tools-list.png":::
+    :::image type="content" source="../../media/tools/action-tools-list.png" alt-text="A screenshot showing the available action tools in the Azure AI Foundry portal." lightbox="../../media/tools/action-tools-list.png":::
    
 1. Give your tool a name (required) and a description (optional). The description will be used by the model to decide when and how to use the tool.
 
-   :::image type="content" source="../../media/tools/open-api-details.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/open-api-details.png":::
+   :::image type="content" source="../../media/tools/open-api-details.png" alt-text="A screenshot showing the openAPI tool details in the Azure AI Foundry portal." lightbox="../../media/tools/open-api-details.png":::
 
 1. Click Next and select your authentication method. Choose `connection` for `API key`.
    1. If you choose `connection`, you need to select the custom keys connection you have created before.
