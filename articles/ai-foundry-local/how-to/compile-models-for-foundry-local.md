@@ -1,5 +1,5 @@
 ---
-title: Compile Hugging Face models for Foundry Local
+title: Run Hugging Face models on Foundry Local
 titleSuffix: AI Foundry Local
 description: This article provides instructions on how to compile Hugging Face models for Foundry Local.
 manager: scottpolly
@@ -11,27 +11,23 @@ ms.author: samkemp
 author: samuel100
 ---
 
-# Compile Hugging Face models for Foundry Local
+# Run Hugging Face models on Foundry Local
 
-The Foundry Local model catalog contains [ONNX](https://onnx.ai/) models that are capable of running on-device with quality and performance. The models are published in accordance with Microsoft Responsible AI Guidelines.
+Foundry Local lets you run ONNX models on your local device with high performance. While the model catalog includes pre-compiled models, you can also use any ONNX-formatted model.
 
-With Foundry Local, you aren't limited to models available in the catalog - you can run any model that is in the ONNX format.
-
-In this article you learn how to:
+In this guide, you'll learn to:
 
 > [!div class="checklist"]
-> - **Compile** a model from Hugging Face into the ONNX format using Olive so that it can run efficiently on your local device.
-> - **Run** the optimized and quantized in the Foundry Local CLI and REST server.
+> - **Compile** a Hugging Face model to the ONNX format using Olive
+> - **Run** the optimized model using Foundry Local
 
 ## Prerequisites
 
-* Python version 3.10 or greater.
+* Python 3.10 or later
 
 ## Install Olive
 
-Olive is a cutting-edge model optimization toolkit that enables you to ship ONNX models with quality and performance.
-
-To install Olive, use Python pip:
+[Olive](https://github.com/microsoft/olive) is a toolkit for optimizing models to ONNX format.
 
 ### [Bash](#tab/Bash)
 ```bash
@@ -44,11 +40,11 @@ pip install olive-ai[auto-opt]
 ---
 
 > [!TIP]
-> We recommend installing Olive in a Python virtual environment using either [venv](https://docs.python.org/3/library/venv.html) or [conda](https://www.anaconda.com/docs/getting-started/miniconda/main).
+> Install Olive in a virtual environment using [venv](https://docs.python.org/3/library/venv.html) or [conda](https://www.anaconda.com/docs/getting-started/miniconda/main).
 
 ## Sign in to Hugging Face
 
-In this article, you're optimizing [Llama-3.2-1B-Instruct](https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct/tree/main) from Hugging Face. Llama 3.2 is a gated model and therefore you need to be signed into Hugging-Face to get access.
+We'll optimize Llama-3.2-1B-Instruct, which requires Hugging Face authentication:
 
 ### [Bash](#tab/Bash)
 ```bash
@@ -61,12 +57,11 @@ huggingface-cli login
 ---
 
 > [!NOTE]
-> You're prompted for a user token to sign-in. Follow the [Hugging Face documentation for setting up User Access Tokens](https://huggingface.co/docs/hub/security-tokens)
+> You'll need to [create a Hugging Face token](https://huggingface.co/docs/hub/security-tokens) and [directly request access](https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct) to the model.
 
+## Compile the model
 
-## Compile model using Olive
-Next you run the `auto-opt` Olive command that automatically downloads and optimizes Llama-3.2-1B-Instruct. After the model is downloaded, Olive will convert it into ONNX format, quantize (int4), and optimizing the graph.
-
+Run the Olive `auto-opt` command to download, convert to ONNX, quantize, and optimize the model:
 
 ### [Bash](#tab/Bash)
 ```bash
@@ -96,21 +91,24 @@ olive auto-opt `
 ---
 
 > [!NOTE]
-> It takes around 60 seconds **plus model download time** (which depends on your network bandwidth) to complete model compilation.
+> Compilation takes ~60 seconds plus download time.
 
-### More details on `auto-opt`
+### Key parameters
 
-- The `model_name_or_path` can be either (a) the Hugging Face Repo ID for the model {username}/{repo-name} or (b) a path on local disk to the model or (c) an Azure AI Model registry ID.
-- `output_path` is the path on local disk to store the optimized model.
-- `device` is the device the model executes on - CPU/NPU/GPU.
-- `provider` is the hardware provider of the device to inference the model on. For example, Nvidia CUDA (`CUDAExecutionProvider`), DirectML (`DmlExecutionProvider`), AMD (`MIGraphXExecutionProvider`, `ROCMExecutionProvider`), OpenVINO (`OpenVINOExecutionProvider`), Qualcomm (`QNNExecutionProvider`), TensorRT (`TensorrtExecutionProvider`).
-- `precision` is the precision for the optimized model (`fp16`, `fp32`, `int4`, `int8`).
-- `use_ort_genai` creates extra configuration files for inference
+| Parameter | Description |
+|-----------|-------------|
+| `model_name_or_path` | Model source: Hugging Face ID, local path, or Azure AI Model registry ID |
+| `output_path` | Where to save the optimized model |
+| `device` | Target hardware: `cpu`, `gpu`, or `npu` |
+| `provider` | Execution provider (e.g., `CPUExecutionProvider`, `CUDAExecutionProvider`) |
+| `precision` | Model precision: `fp16`, `fp32`, `int4`, or `int8` |
+| `use_ort_genai` | Creates inference configuration files |
 
-With the `auto-opt` command, you can change the input model to one that is available on Hugging Face - for example, to `HuggingFaceTB/SmolLM-360M-Instruct` - or a model that resides on local disk. Olive, goes through the same process of automatically converting (to ONNX), optimizing the graph and quantizing the weights. The model can be optimized for different providers and devices.
+You can substitute any model from Hugging Face or a local path - Olive handles the conversion, optimization, and quantization automatically.
 
-### Change model directory name
-Olive outputs the compiled ONNX model and configuration files into a `model` directory in the `models/llama` output path. Foundry Local uses the directory name of the compiled model as the ID to run the model (`foundry model run model`). By renaming the directory to `llama-3.2`, you can run the model with a more specific name (`foundry model run llama-3.2`). To rename use:
+## Rename the output model
+
+Olive places files in a generic `model` directory. Rename it to make it easier to use:
 
 ### [Bash](#tab/Bash)
 ```bash
@@ -125,40 +123,30 @@ Rename-Item -Path "model" -NewName "llama-3.2"
 ```
 ---
 
-## Run the model using Foundry Local
+## Run the model
 
-You can run the compiled model using:
+You can run your compiled model through:
 
-- Foundry Local CLI
-- Foundry Local REST API
-- Inferencing SDKs (for example, OpenAI SDK)
+### Using the Foundry Local CLI
 
-### Foundry Local CLI
-First, change the Foundry Local cache to the `models` output directory of the Olive compilation:
+First, point Foundry Local to your models directory:
 
 ### [Bash](#tab/Bash)
 ```bash
-# change directory of cache
 foundry cache cd models
-# list models in cache (you should see llama-3.2)
-foundry cache ls
-# run the model
+foundry cache ls  # should show llama-3.2
 foundry model run llama-3.2 --verbose
 ```
 
 ### [PowerShell](#tab/PowerShell)
 ```powershell
-# change directory of cache
 foundry cache cd models
-# list models in cache (you should see llama-3.2)
-foundry cache ls
-# run the model
+foundry cache ls  # should show llama-3.2
 foundry model run llama-3.2 --verbose
 ```
 ---
 
-### Foundry Local REST
-You can also run the model using the REST API.
+### Using the REST API
 
 ### [Bash](#tab/Bash)
 ```bash
@@ -166,12 +154,7 @@ curl -X POST http://localhost:5272/v1/chat/completions \
 -H "Content-Type: application/json" \
 -d '{
     "model": "llama-3.2",
-    "messages": [
-        {
-          "role": "user",
-          "content": "What is the capital of France?"
-        }
-    ],
+    "messages": [{"role": "user", "content": "What is the capital of France?"}],
     "temperature": 0.7,
     "max_tokens": 50,
     "stream": true
@@ -185,39 +168,27 @@ Invoke-RestMethod -Uri http://localhost:5272/v1/chat/completions `
     -ContentType "application/json" `
     -Body '{
         "model": "llama-3.2",
-        "messages": [
-        {
-              "role": "user",
-              "content": "What is the capital of France?"
-        }],
-      "temperature": 0.7,
-      "max_tokens": 50,
-      "stream": true
-}'
+        "messages": [{"role": "user", "content": "What is the capital of France?"}],
+        "temperature": 0.7,
+        "max_tokens": 50,
+        "stream": true
+    }'
 ```
 ---
 
-### OpenAI Python SDK
-The following Python code shows how to use the OpenAI Python SDK to run the model. The code uses the `stream` parameter to stream the response from the model.
-
-> [!TIP]
-> Other programming languages can be used to run the model using the REST API and OpenAI SDK. For example, JavaScript, C#, Java, Go, etc. The only requirement is that you can make HTTP requests to the Foundry Local REST API. For more information, see the [Integrate Foundry Local with Inferencing SDKs](integrate-with-inference-sdks.md) article.
+### Using the OpenAI Python SDK
 
 ```python
 from openai import OpenAI
 
-# Set the API base URL to the local Foundry server
 client = OpenAI(
     base_url="http://localhost:5272/v1",
-    api_key="none", # required but not used
+    api_key="none",  # required but not used
 )
 
-# Define the model and input parameters
 stream = client.chat.completions.create(
     model="llama-3.2",
-    messages=[
-        {"role": "user", "content": "What is the capital of France?"}
-    ],
+    messages=[{"role": "user", "content": "What is the capital of France?"}],
     temperature=0.7,
     max_tokens=50,
     stream=True,
@@ -228,7 +199,10 @@ for event in stream:
 print("\n\n")
 ```
 
-## Next step
+> [!TIP]
+> You can use any language that supports HTTP requests. See [Integrate with Inferencing SDKs](integrate-with-inference-sdks.md) for more options.
+
+## Next steps
 
 - [Learn more about Olive](https://microsoft.github.io/Olive/)
 - [Integrate Foundry Local with Inferencing SDKs](integrate-with-inference-sdks.md)
