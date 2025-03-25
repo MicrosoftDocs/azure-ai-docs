@@ -60,14 +60,14 @@ AI service integration refers to internal connections to an Azure AI services mu
 
 | Region | AI service integration | Availability zones | Semantic ranker | Query rewrite |
 |--|--|--|--|--|
-| North Europe​ <sup>2</sup>​ | ✅ | ✅ | ✅ | ✅ |
+| North Europe​ <sup>1</sup>​ | ✅ | ✅ | ✅ | ✅ |
 | West Europe​​ | ✅ | ✅ | ✅ | ✅ |
 | France Central​​ | ✅ | ✅ | ✅ | ✅ |
 | Germany West Central​ ​| ✅ | ✅ | ✅ |   |
 | Italy North​​ |  | ✅ | ✅ |   |
 | Norway East​​ | ✅ | ✅ |  |  |
 | Poland Central​​ |  |  | ✅ |  |
-| Spain Central <sup>1</sup> |  | ✅ |  |  |
+| Spain Central <sup>2</sup> |  | ✅ |  |  |
 | Sweden Central​​ | ✅ | ✅ | ✅ |  |
 | Switzerland North​ | ✅ | ✅ | ✅ | ✅ |
 | Switzerland West​ | ✅ | ✅ | ✅ |  |
