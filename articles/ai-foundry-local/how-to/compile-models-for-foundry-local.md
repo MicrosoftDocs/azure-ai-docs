@@ -1,7 +1,7 @@
 ---
 title: Run Hugging Face models on Foundry Local
 titleSuffix: AI Foundry Local
-description: This article provides instructions on how to compile Hugging Face models for Foundry Local.
+description: This article provides instructions on how to compile and run Hugging Face models for Foundry Local.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: build-2025
@@ -18,7 +18,7 @@ Foundry Local lets you run ONNX models on your local device with high performanc
 In this guide, you'll learn to:
 
 > [!div class="checklist"]
-> - **Compile** a Hugging Face model to the ONNX format using Olive
+> - **Convert and optimize** a Hugging Face model into the ONNX format using Olive
 > - **Run** the optimized model using Foundry Local
 
 ## Prerequisites
@@ -61,6 +61,7 @@ huggingface-cli login
 
 ## Compile the model
 
+### Step 1: Run the Olive `auto-opt` command
 Run the Olive `auto-opt` command to download, convert to ONNX, quantize, and optimize the model:
 
 ### [Bash](#tab/Bash)
@@ -91,9 +92,9 @@ olive auto-opt `
 ---
 
 > [!NOTE]
-> Compilation takes ~60 seconds plus download time.
+> Compilation takes ~60 seconds plus model download time.
 
-### Key parameters
+The command uses the following parameters:
 
 | Parameter | Description |
 |-----------|-------------|
@@ -106,7 +107,7 @@ olive auto-opt `
 
 You can substitute any model from Hugging Face or a local path - Olive handles the conversion, optimization, and quantization automatically.
 
-## Rename the output model
+### Step 2: Rename the output model
 
 Olive places files in a generic `model` directory. Rename it to make it easier to use:
 
@@ -123,25 +124,89 @@ Rename-Item -Path "model" -NewName "llama-3.2"
 ```
 ---
 
+### Step 3: Create chat template file
+A chat template is a structured format that defines how input and output messages are processed for a conversational AI model. It specifies the roles (e.g., system, user, assistant) and the structure of the conversation, ensuring that the model understands the context and generates appropriate responses.
+
+Foundry Local requires a chat template JSON file called `inference_model.json` in order to generate the appropriate responses. The template file contains the model name and a `PromptTemplate` object - this contains a `{Content}` placeholder, which Foundry Local will inject at runtime with the user prompt.
+
+```json
+{
+  "Name": "llama-3.2",
+  "PromptTemplate": {
+    "assistant": "{Content}",
+    "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 26 Jul 2024\n\nYou are a helpful assistant.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{Content}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
+  }
+}
+```
+
+To create the chat template file, you can use the `apply_chat_template` method from the Hugging Face library:
+> [!NOTE]
+> The following example uses the Python Hugging Face library to create a chat template. The Hugging Face library is a dependency for Olive, so if you're using the same Python virtual environment you do not need to install. If you're using a different environment, install the library with `pip install transformers`.
+
+```python
+# generate_inference_model.py
+# This script generates the inference_model.json file for the Llama-3.2 model.
+import json
+import os
+from transformers import AutoTokenizer
+
+model_path = "models/llama/llama-3.2"
+
+tokenizer = AutoTokenizer.from_pretrained(model_path)
+chat = [
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "{Content}"},
+]
+
+
+template = tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=True)
+
+json_template = {
+  "Name": "llama-3.2",
+  "PromptTemplate": {
+    "assistant": "{Content}",
+    "prompt": template
+  }
+}
+
+json_file = os.path.join(model_path, "inference_model.json")
+
+with open(json_file, "w") as f:
+    json.dump(json_template, f, indent=2)
+```
+
+Run the script using:
+
+```bash
+python generate_inference_model.py
+```
+
 ## Run the model
 
-You can run your compiled model through:
-
-### Using the Foundry Local CLI
-
-First, point Foundry Local to your models directory:
+You can run your compiled model using the Foundry Local CLI, REST API, or OpenAI Python SDK. First, change the model cache directory to the models directory you created in the previous step:
 
 ### [Bash](#tab/Bash)
 ```bash
 foundry cache cd models
 foundry cache ls  # should show llama-3.2
-foundry model run llama-3.2 --verbose
 ```
 
 ### [PowerShell](#tab/PowerShell)
 ```powershell
 foundry cache cd models
 foundry cache ls  # should show llama-3.2
+```
+---
+
+### Using the Foundry Local CLI
+
+### [Bash](#tab/Bash)
+```bash
+foundry model run llama-3.2 --verbose
+```
+
+### [PowerShell](#tab/PowerShell)
+```powershell
 foundry model run llama-3.2 --verbose
 ```
 ---
