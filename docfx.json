@@ -402,6 +402,8 @@
         "articles/ai-services/luis/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
         "articles/ai-services/qnamaker/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
         "articles/ai-services/qnamaker/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/immersive-reader/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/immersive-reader/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
         "articles/ai-studio/**/*.md": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
         "articles/ai-studio/**/*.yml": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
         "articles/ai-foundry/**/*.md": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
