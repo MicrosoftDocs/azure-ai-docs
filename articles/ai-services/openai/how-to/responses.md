@@ -48,7 +48,8 @@ The responses API is currently available in the following regions:
 > The responses API does not currently support:
 > - Structured outputs
 > - tool_choice
-> 
+> - image_url pointing to an internet address  
+>
 > Once support is added this article will be updated.
 
 ## Getting started with the responses API
