@@ -50,18 +50,6 @@ For more information about the resource types, see the [monitoring data referenc
 
 Azure AI Agent Service has commonality with a subset of Azure AI services. For a list of available metrics for Azure AI Agent Service, see the [monitoring data reference](../reference/monitor-service.md#metrics).
 
-<!-- ## OPTIONAL [TODO-replace-with-service-name] metrics
-If your service uses any non-Azure Monitor based metrics, add the following include and more information.
-[!INCLUDE [horz-monitor-custom-metrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-non-monitor-metrics.md)] -->
-
-[!INCLUDE [horz-monitor-resource-logs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-resource-logs.md)]
-
-For the available resource log categories, their associated Log Analytics tables, and the log schemas for Azure AI Agent Service, see the [monitoring data reference](../reference/monitor-service.md#resource-logs).
-
-<!-- OPTIONAL. If your service doesn't collect Azure Monitor resource logs, use the following include [!INCLUDE [horz-monitor-no-resource-logs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-no-resource-logs.md)] -->
-
-[!INCLUDE [horz-monitor-activity-log](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-activity-log.md)]
-
 [!INCLUDE [horz-monitor-analyze-data](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-analyze-data.md)]
 
 ### Configure diagnostic settings
@@ -74,76 +62,27 @@ After you configure the diagnostic settings, you can work with metrics and log d
 
 [!INCLUDE [horz-monitor-external-tools](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-external-tools.md)]
 
-[!INCLUDE [horz-monitor-kusto-queries](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-kusto-queries.md)]
+## Alerts
 
-After you deploy an AI model, you can send some completions calls by using the **playground** environment in [Azure AI Foundry](https://ai.azure.com/).
+Azure Monitor alerts proactively notify you when specific conditions are found in your monitoring data. Alerts allow you to identify and address issues in your system before your customers notice them. For more information, see Azure Monitor alerts.
 
-Any text that you enter in the **Agents playground** generates metrics and log data for your resource. In the Log Analytics workspace for your resource, you can query the monitoring data by using the [Kusto](/azure/data-explorer/kusto/query/) query language.
+There are many sources of common alerts for Azure resources. [The Azure Monitor Baseline Alerts (AMBA)](https://aka.ms/amba) site provides a semi-automated method of implementing important platform metric alerts, dashboards, and guidelines. The site applies to a continually expanding subset of Azure services, including all services that are part of the Azure Landing Zone (ALZ).
 
-> [!IMPORTANT]
-> The **Open query** option on the resource page browses to Azure Resource Graph, which isn't described in this article.
-> The following queries use the query environment for Log Analytics. Be sure to follow the steps in [Configure diagnostic settings](#configure-diagnostic-settings) to prepare your Log Analytics workspace.
+The common alert schema standardizes the consumption of Azure Monitor alert notifications. For more information, see [Common alert schema](/azure/azure-monitor/alerts/alerts-common-schema).
 
-1. From your resource page, under **Monitoring** on the left pane, select **Logs**.
-1. Select the Log Analytics workspace that you configured with diagnostics for your resource.
-1. From the **Log Analytics workspace** page, under **Overview** on the left pane, select **Logs**.
-
-   The Azure portal displays a **Queries** window with sample queries and suggestions by default. You can close this window.
-
-For the following examples, enter the Kusto query into the edit region at the top of the **Query** window, and then select **Run**. The query results display below the query text.
-
-The following Kusto query is useful for an initial analysis of Azure Diagnostics (`AzureDiagnostics`) data about your resource:
-
-```kusto
-AzureDiagnostics
-| take 100
-| project TimeGenerated, _ResourceId, Category, OperationName, DurationMs, ResultSignature, properties_s
-```
-
-This query returns a sample of 100 entries and displays a subset of the available columns of data in the logs. In the query results, you can select the arrow next to the table name to view all available columns and associated data types.
-
-:::image type="content" source="../media/monitoring/log-analytics-diagnostics-query.png" alt-text="Screenshot that shows the Log Analytics query results for Azure Diagnostics data about the resource." lightbox="../media/monitoring/log-analytics-diagnostics-query.png":::
-
-To see all available columns of data, you can remove the scoping parameters line `| project ...` from the query:
-
-```kusto
-AzureDiagnostics
-| take 100
-```
-
-To examine the Azure Metrics (`AzureMetrics`) data for your resource, run the following query:
-
-```kusto
-AzureMetrics
-| take 100
-| project TimeGenerated, MetricName, Total, Count, Maximum, Minimum, Average, TimeGrain, UnitName
-```
-
-The query returns a sample of 100 entries and displays a subset of the available columns of Azure Metrics data:
-
-:::image type="content" source="../media/monitoring/log-analytics-metrics-query.png" alt-text="Screenshot that shows the Log Analytics query results for Azure Metrics data about the resource." lightbox="../media/monitoring/log-analytics-metrics-query.png":::
-
-> [!NOTE]
-> When you select **Monitoring** > **Logs** in the menu for your resource, Log Analytics opens with the query scope set to the current resource. The visible log queries include data from that specific resource only. To run a query that includes data from other resources or data from other Azure services, select **Logs** from the **Azure Monitor** menu in the Azure portal. For more information, see [Log query scope and time range in Azure Monitor Log Analytics](/azure/azure-monitor/logs/scope) for details.
-
-[!INCLUDE [horz-monitor-alerts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-alerts.md)]
-
-### Set up alerts
+[Metric alerts](/azure/azure-monitor/alerts/alerts-types#metric-alerts) evaluate resource metrics at regular intervals. Metrics can be platform metrics, custom metrics, logs from Azure Monitor converted to metrics, or Application Insights metrics. Metric alerts can also apply multiple conditions and dynamic thresholds.
 
 Every organization's alerting needs vary and can change over time. Generally, all alerts should be actionable and have a specific intended response if the alert occurs. If an alert doesn't require an immediate response, the condition can be captured in a report rather than an alert. Some use cases might require alerting anytime certain error conditions exist. In other cases, you might need alerts for errors that exceed a certain threshold for a designated time period.
-
-Errors below certain thresholds can often be evaluated through regular analysis of data in Azure Monitor Logs. As you analyze your log data over time, you might discover that a certain condition doesn't occur for an expected period of time. You can track for this condition by using alerts. Sometimes the absence of an event in a log is just as important a signal as an error.
 
 Depending on what type of application you're developing with your use of Azure AI Agent Service, [Azure Monitor Application Insights](/azure/azure-monitor/overview) might offer more monitoring benefits at the application layer.
 
 ### Azure AI Agent service alert rules
 
-You can set alerts for any metric, log entry, or activity log entry listed in the [monitoring data reference](../reference/monitor-service.md).
+You can set alerts for any metric listed in the [monitoring data reference](../reference/monitor-service.md).
 
 [!INCLUDE [horz-monitor-advisor-recommendations](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-advisor-recommendations.md)]
 
 ## Related content
 
-- See [Monitoring data reference](../reference/monitor-service.md) for a reference of the metrics, logs, and other important values created for Azure AI Agent Service.
+- See [Monitoring data reference](../reference/monitor-service.md) for a reference of the metrics and other important values created for Azure AI Agent Service.
 - See [Monitoring Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resource) for general details on monitoring Azure resources.
-- See [Understand log searches in Azure Monitor logs](/azure/azure-monitor/logs/log-query-overview) about logs.
