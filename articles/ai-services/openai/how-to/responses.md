@@ -50,7 +50,7 @@ The responses API is currently available in the following regions:
 > - tool_choice
 > - image_url pointing to an internet address  
 >
-> Once support is added this article will be updated.
+> There is also a known issue with vision performance when using the Responses API, particularly with OCR tasks. Once this issue is fixed and support is added, this article will be updated.
 
 ### Reference documentation
 
