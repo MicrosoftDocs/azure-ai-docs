@@ -288,7 +288,47 @@ Open the model playground using the following steps:
 
 ## Working with Azure AI Agent Service
 
+After you deploy a model using the VS Code extension, AI Foundry, API, or SDK, you can work with [Azure AI Agent Service](/azure/ai-services/agents/overview). Agents are "smart" microservices that:
+
+- Answer questions using their training data or search other sources with Retrieval Augmented Generation (RAG)
+- Perform specific actions
+- Automate complete workflows
+
+Agents combine AI models with tools to access and interact with your data.
+
 ###	Create and edit Azure AI Agents within the designer view
+
+Follow these steps to create an Azure AI agent:
+
+1. First, finish the [Get Started](#get-started) section to sign in to your Azure resources and set your default project.
+ 
+1. [Deploy a model](#deploy-a-model) to use with your agent.
+
+1. Select your AI Foundry project in the Azure Resources sidebar. 
+
+1. Under your project, find the **Agents** section.
+
+1. Click the **+** (plus) icon next to **Agents** to create a new agent.
+
+ :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-agent-plus.png" alt-text="Screenshot of the plus sign next to the Agents subsection." lightbox="../../media/how-to/get-started-projects-vs-code/select-agent-plus.png":::
+
+1. Select a directory and enter a name for your new agent yaml file in the **Save As** dialog box.
+
+ :::image type="content" source="../../media/how-to/get-started-projects-vs-code/enter-agent-name.png" alt-text="Screenshot of the VS Code Save As dialog to save the agent yaml file." lightbox="../../media/how-to/get-started-projects-vs-code/enter-agent-name.png":::
+
+1. The agent designer will open, where you can:
+
+    1. Enter a name for your agent in the prompt.
+
+    1. Select a model to power your agent from the dropdown menu.
+
+    1. Configure and test.
+   - Add a description for your agent
+   - Set system instructions 
+   - Configure tools the agent can use
+   - Test your agent's responses
+
+9. Click **Save** to store your agent configuration.
 
 ###	Show the Azure AI Agent YAML definition
 
