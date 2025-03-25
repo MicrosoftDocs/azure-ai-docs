@@ -52,6 +52,10 @@ The responses API is currently available in the following regions:
 >
 > Once support is added this article will be updated.
 
+### Reference documentation
+
+- [Responses API reference documentation](/azure/ai-services/openai/reference-preview?#responses-api---create)
+
 ## Getting started with the responses API
 
 To access the responses API commands, you need to upgrade your version of the OpenAI library.

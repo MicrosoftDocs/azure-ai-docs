@@ -26,7 +26,7 @@ Creates a completion for the provided prompt, parameters and chosen model.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -137,7 +137,7 @@ Get a vector representation of a given input that can be easily consumed by mach
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -266,7 +266,7 @@ Creates a completion for the chat message
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -955,7 +955,7 @@ Transcribes audio into the input language.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -1043,7 +1043,7 @@ Transcribes and translates input audio into English text.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -1132,7 +1132,7 @@ Generates audio from the input text.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -1204,7 +1204,7 @@ Generates a batch of images from a text caption on a given DALLE model deploymen
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -1343,7 +1343,7 @@ Returns a list of assistants.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -1453,7 +1453,7 @@ Create an assistant with a model and instructions.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -1558,7 +1558,7 @@ Retrieves an assistant.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -1630,7 +1630,7 @@ Modifies an assistant.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -1738,7 +1738,7 @@ Delete an assistant.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -1795,7 +1795,7 @@ Create a thread.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -1870,7 +1870,7 @@ Retrieves a thread.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -1935,7 +1935,7 @@ Modifies a thread.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -2019,7 +2019,7 @@ Delete a thread.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -2083,7 +2083,7 @@ Returns a list of messages for a given thread.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -2184,7 +2184,7 @@ Create a message.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -2274,7 +2274,7 @@ Retrieve a message.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -2348,7 +2348,7 @@ Modifies a message.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -2437,7 +2437,7 @@ Create a thread and run it in one request.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -2567,7 +2567,7 @@ Returns a list of runs belonging to a thread.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -2722,7 +2722,7 @@ Create a run.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -2837,7 +2837,7 @@ Retrieves a run.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -2910,7 +2910,7 @@ Modifies a run.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -3026,7 +3026,7 @@ When a run has the `status: "requires_action"` and `required_action.type` is `su
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -3155,7 +3155,7 @@ Cancels a run that is `in_progress`.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -3247,7 +3247,7 @@ Returns a list of run steps belonging to a run.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -3338,7 +3338,7 @@ Retrieves a run step.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -3421,7 +3421,7 @@ Returns a list of vector stores.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -3509,7 +3509,7 @@ Create a vector store.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -3586,7 +3586,7 @@ Retrieves a vector store.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -3644,7 +3644,7 @@ Modifies a vector store.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -3726,7 +3726,7 @@ Delete a vector store.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -3790,7 +3790,7 @@ Returns a list of vector store files.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -3864,7 +3864,7 @@ Create a vector store file by attaching a file to a vector store.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -3941,7 +3941,7 @@ Retrieves a vector store file.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -4004,7 +4004,7 @@ Delete a vector store file. This will remove the file from the vector store but 
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -4063,7 +4063,7 @@ Update attributes on a vector store file.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -4088,7 +4088,7 @@ Update attributes on a vector store file.
 |:---|:---|:---|
 |application/json | [vectorStoreFileObject](#vectorstorefileobject) | |
 
-## Retrievevectorstorefilecontent
+## Retrieve vector store file content
 
 ```HTTP
 GET https://{endpoint}/openai/vector_stores/{vector_store_id}/files/{file_id}/content?api-version=2025-03-01-preview
@@ -4106,7 +4106,7 @@ Retrieve the parsed contents of a vector store file.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -4123,7 +4123,7 @@ Retrieve the parsed contents of a vector store file.
 |:---|:---|:---|
 |application/json | [VectorStoreFileContentResponse](#vectorstorefilecontentresponse) | |
 
-## Searchvectorstore
+## Search vector store
 
 ```HTTP
 POST https://{endpoint}/openai/vector_stores/{vector_store_id}/search?api-version=2025-03-01-preview
@@ -4140,7 +4140,7 @@ Search a vector store for relevant chunks based on a query and file attributes f
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -4189,7 +4189,7 @@ Create a vector store file batch.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -4271,7 +4271,7 @@ Retrieves a vector store file batch.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -4340,7 +4340,7 @@ Cancel a vector store file batch. This attempts to cancel the processing of file
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -4414,7 +4414,7 @@ Returns a list of vector store files in a batch.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -4470,7 +4470,7 @@ Status Code: 200
 }
 ```
 
-## Create response
+## Responses API - Create
 
 ```HTTP
 POST https://{endpoint}/openai/responses?api-version=2025-03-01-preview
@@ -4486,7 +4486,7 @@ or JSON outputs. Have the model call your own custom code or use built-in tools 
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| include | array | {"$ref": "#/components/schemas/includable/description"} | No |  |
+| include | array | | No |  |
 | input | string or array | Text, image, or file inputs to the model, used to generate a response.<br><br>Learn more:<br>- Text inputs and outputs<br>- Image inputs<br>- File inputs<br>- Conversation state<br>- function calling<br> | Yes |  |
 | instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous<br>response will be not be carried over to the next response. This makes it simple<br>to swap out system (or developer) messages in new responses.<br> | No |  |
 | max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens.<br> | No |  |
@@ -4520,7 +4520,7 @@ or JSON outputs. Have the model call your own custom code or use built-in tools 
 |:---|:---|:---|
 |application/json | [errorResponse](#errorresponse) | |
 
-## Get response
+## Responses API - Get
 
 ```HTTP
 GET https://{endpoint}/openai/responses/{response_id}?api-version=2025-03-01-preview
@@ -4539,7 +4539,7 @@ Retrieves a model response with the given ID.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -4564,7 +4564,7 @@ Retrieves a model response with the given ID.
 |:---|:---|:---|
 |application/json | [errorResponse](#errorresponse) | |
 
-## Delete response
+## Responses API - Delete
 
 ```HTTP
 DELETE https://{endpoint}/openai/responses/{response_id}?api-version=2025-03-01-preview
@@ -4582,7 +4582,7 @@ Deletes a model response with the given ID.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -4610,7 +4610,7 @@ Deletes a model response with the given ID.
 |:---|:---|:---|
 |application/json | [errorResponse](#errorresponse) | |
 
-## Response input items
+## Responses API - input items
 
 ```HTTP
 GET https://{endpoint}/openai/responses/{response_id}/input_items?api-version=2025-03-01-preview
@@ -4631,7 +4631,7 @@ Returns a list of input items for a given response.
 
 ### Request Header
 
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**.**
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
