@@ -49,8 +49,8 @@ The responses API is currently available in the following regions:
 > - Structured outputs
 > - tool_choice
 > - image_url pointing to an internet address  
->
-> There is also a known issue with vision performance when using the Responses API, particularly with OCR tasks. Once this issue is fixed and support is added, this article will be updated.
+>   
+> There is also a known issue with vision performance when using the Responses API, particularly with OCR tasks. As a temporary workaround set image detail to `high`. Once this issue is fixed and support is added for the previously listed features, this article will be updated.
 
 ### Reference documentation
 
