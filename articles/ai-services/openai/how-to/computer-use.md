@@ -362,3 +362,5 @@ In all cases where `pending_safety_checks` are returned, actions should be hande
 ## See also
 
 * [Responses API](./responses.md)
+    * [Computer Use with playwright](./responses.md#computer-use)
+* [Computer Use Assistant sample on Github](https://github.com/Azure-Samples/computer-use-model)
