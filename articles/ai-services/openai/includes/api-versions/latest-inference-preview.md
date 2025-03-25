@@ -6898,7 +6898,7 @@ Represents a step in execution of a run.
 | └─ code | string | One of `server_error` or `rate_limit_exceeded`. | No |  |
 | └─ message | string | A human-readable description of the error. | No |  |
 | metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.<br> | Yes |  |
-| object | string | The object type, which is always `assistant.run.step``. | Yes |  |
+| object | string | The object type, which is always `assistant.run.step`. | Yes |  |
 | run_id | string | The ID of the run that this run step is a part of. | Yes |  |
 | status | string | The status of the run, which can be either `in_progress`, `cancelled`, `failed`, `completed`, or `expired`. | Yes |  |
 | step_details | [runStepDetailsMessageCreationObject](#runstepdetailsmessagecreationobject) or [runStepDetailsToolCallsObject](#runstepdetailstoolcallsobject) | The details of the run step. | Yes |  |
@@ -6972,7 +6972,7 @@ Details of the message creation by the run step.
 |------|------|-------------|----------|---------|
 | message_creation | object |  | Yes |  |
 | └─ message_id | string | The ID of the message that was created by this run step. | No |  |
-| type | string | Always `message_creation``. | Yes |  |
+| type | string | Always `message_creation`. | Yes |  |
 
 
 **type Enum**: RunStepDetailsMessageCreationObjectType
