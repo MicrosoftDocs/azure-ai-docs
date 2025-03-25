@@ -401,19 +401,21 @@ items:
         href: index-add-language-analyzers.md
       - name: Add a custom analyzer
         href: index-add-custom-analyzers.md
-    - name: Filters
+    - name: Filters and facets
       items:
       - name: Filters in text queries
         displayName: query
         href: search-filters.md
-      - name: Add faceted navigation
-        href: search-faceted-navigation.md
       - name: Understand collection filters
         href: search-query-understand-collection-filters.md
       - name: Troubleshoot collection filters
         href: search-query-troubleshoot-collection-filters.md
       - name: Normalize text for filters
         href: search-normalizers.md
+      - name: Add faceted navigation
+        href: search-faceted-navigation.md
+      - name: Faceted navigation examples
+        href: search-faceted-navigation-examples.md
     - name: Search results
       items:
       - name: Page, sort, and shape results

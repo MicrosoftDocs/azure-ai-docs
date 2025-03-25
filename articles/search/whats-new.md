@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: overview
-ms.date: 03/19/2025
+ms.date: 03/24/2025
 ms.custom:
   - references_regions
   - ignite-2024
@@ -26,7 +26,8 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 |-----------------------------|------|--------------|
 | [Service upgrade](search-how-to-upgrade.md) | Feature | Upgrade your search service to higher storage limits in your region. With an in-place upgrade, you no longer need to recreate your service. Available in [Upgrade Service (2025-02-01-preview)](/rest/api/searchmanagement/services/upgrade?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true) and the Azure portal. |
 | [Service tier change](search-capacity-planning.md#change-your-service-tier) | Feature | Change the [pricing tier](search-sku-tier.md) of your search service. This provides flexibility to scale storage, increase request throughput, and decrease latency based on your needs. In this preview, you can only change between Basic and Standard (S1, S2, and S3) tiers. Available in [Update Service (2025-02-01-preview)](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true#searchupdateservicewithsku) and the Azure portal. |
-| [Search Service REST 2025-03-01-preview](/rest/api/searchservice/search-service-api-versions?view=rest-searchservice-2025-03-01-preview&preserve-view=true) | REST | Public preview release of REST APIs for data plane operations. Adds support for multi-vector embeddings, hierarchical facets, and facet aggregation. |
+| [Facet hierarchies, aggregations, and facet filters](search-faceted-navigation-examples.md) | Feature | New facet query parameters support nested facets. For numeric facetable fields, you can sum the values of each field. You can also specify filters on a facet to add inclusion or exclusion criteria. |
+| [Search Service REST 2025-03-01-preview](/rest/api/searchservice/search-service-api-versions?view=rest-searchservice-2025-03-01-preview&preserve-view=true) | REST | Public preview release of REST APIs for data plane operations. Adds support for multi-vector embeddings, hierarchical facets, facet aggregation, and facet filters. |
 | [Search Management 2025-02-01-preview](/rest/api/searchmanagement/management-api-versions?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true) | REST | Public review release of REST APIs for control plane operations. Adds support for in-place upgrade to higher capacity partitions, in-place upgrade to higher tiers, and Azure Confidential Compute. |
 
 ## February 2025
