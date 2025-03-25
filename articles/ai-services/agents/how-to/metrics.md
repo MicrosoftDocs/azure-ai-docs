@@ -13,6 +13,8 @@ ms.service: azure-ai-agent-service
 
 [!INCLUDE [horz-monitor-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-intro.md)]
 
+Monitoring is available for agents in a [standard agent setup](../quickstart.md?pivots=programming-language-csharp#choose-basic-or-standard-agent-setup).
+
 ## Dashboards
 
 Azure AI Agent Service provides out-of-box dashboards for each of your agents in a [standard agent setup](../quickstart.md?pivots=programming-language-csharp#choose-basic-or-standard-agent-setup). There are two key dashboards to monitor your resource: 

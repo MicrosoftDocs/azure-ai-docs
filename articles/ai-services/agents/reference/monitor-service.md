@@ -1,7 +1,7 @@
 ---
 title: Monitoring data reference for Azure AI Agent Service
 description: This article contains important reference material you need when you monitor Azure AI Agent Service by using Azure Monitor.
-ms.date: 02/20/2025
+ms.date: 03/24/2025
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: reference
 author: aahill
@@ -91,5 +91,5 @@ The following table lists the metrics available for the `Microsoft.CognitiveServ
 
 ## Related content
 
-- See [Monitor Azure OpenAI](../how-to/metrics.md) for a description of monitoring Azure OpenAI.
+- See [Monitor Azure AI Agent Service](../how-to/metrics.md) for a description of monitoring Azure AI Agent Service.
 - See [Monitor Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resource) for details on monitoring Azure resources.
