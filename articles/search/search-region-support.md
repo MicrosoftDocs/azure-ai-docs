@@ -74,9 +74,9 @@ AI service integration refers to internal connections to an Azure AI services mu
 | UK South​ | ✅ | ✅ | ✅ | ✅ |
 | UK West​ ​|  |  | ✅ |  |
 
-<sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
+<sup>1</sup> This region has capacity constraints on the following tiers: S2, S3, L1, and L2.
 
-<sup>2</sup> This region has capacity constraints on the following tiers: S2, S3, L1, and L2.
+<sup>2</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
 
 ### Middle East
 
