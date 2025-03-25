@@ -5126,7 +5126,7 @@ This component can be one of the following:
   The use of this configuration is compatible only with Azure OpenAI.
 
 
-###Discriminator for azureChatExtensionConfiguration
+### Discriminator for azureChatExtensionConfiguration
 
 This component uses the property `type` to discriminate between different types:
 
@@ -5393,7 +5393,7 @@ Optional settings to control how fields are processed when using a configured Pi
 The authentication options for Azure OpenAI On Your Data.
 
 
-###Discriminator for onYourDataAuthenticationOptions
+### Discriminator for onYourDataAuthenticationOptions
 
 This component uses the property `type` to discriminate between different types:
 
@@ -5510,7 +5510,7 @@ The authentication options for Azure OpenAI On Your Data when using a username a
 An abstract representation of a vectorization source for Azure OpenAI On Your Data with vector search.
 
 
-###Discriminator for onYourDataVectorizationSource
+### Discriminator for onYourDataVectorizationSource
 
 This component uses the property `type` to discriminate between different types:
 
@@ -6179,7 +6179,7 @@ Represents an `assistant` that can call the model and use tools.
 | temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br> | No | 1 |
 | tool_resources | object | A set of resources that are used by the assistant's tools. The resources are specific to the type of tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires a list of vector store IDs.<br> | No |  |
 | └─ code_interpreter | object |  | No |  |
-|   └─ file_ids | array | A list of file IDs made available to the `code_interpreter`` tool. There can be a maximum of 20 files associated with the tool.<br> | No | [] |
+|   └─ file_ids | array | A list of file IDs made available to the `code_interpreter` tool. There can be a maximum of 20 files associated with the tool.<br> | No | [] |
 | └─ file_search | object |  | No |  |
 |   └─ vector_store_ids | array | The ID of the vector store attached to this assistant. There can be a maximum of 1 vector store attached to the assistant.<br> | No |  |
 | tools | array | A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`.<br> | Yes | [] |
@@ -8419,12 +8419,9 @@ An image input to the model.
 ### InputItem
 
 
-###Discriminator for InputItem
+### Discriminator for InputItem
 
 This component uses the property `type` to discriminate between different types:
-
-| Type Value | Schema |
-|------------|--------|
 
 This component can be one of the following:
 
@@ -8479,15 +8476,6 @@ A text input to the model.
 
 Content item used to generate a response.
 
-
-
-###Discriminator for Item
-
-This component uses the property `type` to discriminate between different types:
-
-| Type Value | Schema |
-|------------|--------|
-
 This component can be one of the following:
 
 - [InputMessage](#inputmessage)
@@ -8512,15 +8500,6 @@ An internal identifier for an item to reference.
 ### ItemResource
 
 Content item used to generate a response.
-
-
-
-###Discriminator for ItemResource
-
-This component uses the property `type` to discriminate between different types:
-
-| Type Value | Schema |
-|------------|--------|
 
 This component can be one of the following:
 
@@ -8595,14 +8574,6 @@ This component can be one of the following:
 - [Refusal](#refusal)
 
 ### OutputItem
-
-
-###Discriminator for OutputItem
-
-This component uses the property `type` to discriminate between different types:
-
-| Type Value | Schema |
-|------------|--------|
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -9050,14 +9021,6 @@ Emitted when refusal text is finalized.
 | type | enum | The type of the event. Always `response.refusal.done`.<br><br>Possible values: `response.refusal.done` | Yes |  |
 
 ### responseStreamEvent
-
-
-###Discriminator for responseStreamEvent
-
-This component uses the property `type` to discriminate between different types:
-
-| Type Value | Schema |
-|------------|--------|
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
