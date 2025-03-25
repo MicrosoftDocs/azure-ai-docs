@@ -8110,7 +8110,7 @@ A tool that controls a virtual computer.
 | display_height | number | The height of the computer display.<br> | Yes |  |
 | display_width | number | The width of the computer display.<br> | Yes |  |
 | environment | enum | The type of computer environment to control.<br><br>Possible values: `mac`, `windows`, `ubuntu`, `browser` | Yes |  |
-| type | enum | The type of the computer use tool. Always `computer_use_preview`.<br><br>Possible values: `computer-preview` | Yes |  |
+| type | enum | The type of the computer use tool. Always `computer_use_preview`.<br><br>Possible values: `computer_use_preview` | Yes |  |
 
 ### ComputerToolCall
 
