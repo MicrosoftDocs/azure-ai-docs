@@ -560,7 +560,7 @@ Facet aggregations allow you to compute metrics from facet values. The aggregati
 
 You can sum any facetable field of a numeric data type (except vectors and geographic coordinates). 
 
-Here's an example using the hotels-sample-index. The Rooms/SleepsCount field is facetable and numeric. You can sum it to get the sleep count for the entire hotel. Recall that facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response determines the number of *hotels* that have any rooms in each facet bucket. HotelName isn't facetable or filterable, but HotelId qualifies, and we can return both fields in the results.
+Here's an example using the hotels-sample-index. The Rooms/SleepsCount field is facetable and numeric, so we choose this field to demonstrate sum. If we sum that field, we get the sleep count for the entire hotel. Recall that facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response sums the SleepsCount of all rooms for the entire hotel. In this query, we add a filter to sum the SleepsCount for just one hotel.
 
 ```rest
 POST /indexes/hotels-sample-index/docs/search?api-version=2025-03-01-Preview
