@@ -54,7 +54,7 @@ The responses API is currently available in the following regions:
 
 ### Reference documentation
 
-- [Responses API reference documentation](../includes/api-versions/latest-inference-preview.md#responses-api---create)
+- [Responses API reference documentation](/azure/ai-services/openai/reference-preview?#responses-api---create)
 
 ## Getting started with the responses API
 
