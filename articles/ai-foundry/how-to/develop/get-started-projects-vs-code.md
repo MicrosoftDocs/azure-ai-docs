@@ -298,7 +298,9 @@ Agents combine AI models with tools to access and interact with your data.
 
 ###	Create and edit Azure AI Agents within the designer view
 
-Follow these steps to create an Azure AI agent:
+#### Create an Azure AI Agent
+
+Follow these steps to create an Azure AI Agent:
 
 1. First, finish the [Get Started](#get-started) section to sign in to your Azure resources and set your default project.
  
@@ -312,29 +314,72 @@ Follow these steps to create an Azure AI agent:
 
  :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-agent-plus.png" alt-text="Screenshot of the plus sign next to the Agents subsection." lightbox="../../media/how-to/get-started-projects-vs-code/select-agent-plus.png":::
 
-1. Select a directory and enter a name for your new agent yaml file in the **Save As** dialog box.
+1. In the **Save As** dialog box select a directory and enter a name for your new AI Agent .yaml file. 
+
+1. Select the **Save Agent File** button to save your AI Agent file.
 
  :::image type="content" source="../../media/how-to/get-started-projects-vs-code/enter-agent-name.png" alt-text="Screenshot of the VS Code Save As dialog to save the agent yaml file." lightbox="../../media/how-to/get-started-projects-vs-code/enter-agent-name.png":::
+
+### Interact with your agent in the designer
 
 1. The agent designer will open, where you can:
 
     1. Enter a name for your agent in the prompt.
 
-    1. Select a model to power your agent from the dropdown menu.
+    1. Enter your deployed model name to power your agent from the dropdown menu.
+
+    > [!TIP]
+    > The deployed model name must be the exact name of the model you deployed in your Azure AI Foundry project.
 
     1. Configure and test.
+    
    - Add a description for your agent
    - Set system instructions 
    - Configure tools the agent can use
    - Test your agent's responses
 
-9. Click **Save** to store your agent configuration.
+     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-designer.png" alt-text="Screenshot of the Agent designer that enables you to edit and interact with your AI Agent." lightbox="../../media/how-to/get-started-projects-vs-code/agent-designer.png":::
+ 
+1. Select the **Save locally** button in the bottom-center of the **Agent Preferences** screen to store your agent configuration.
 
 ###	Show the Azure AI Agent YAML definition
+
+Select the **Open Yaml File** on the top-right of the designer to open your AI Agent .yaml file. This file contains the details and setup information for your agent, similar to the following .yaml file example: 
+
+```yml
+version: 1.0.0 
+
+type: foundry_agent 
+
+name: extension-agent 
+
+description: Description of the agent 
+
+id: '' 
+
+model: 
+
+  id: '' 
+
+  options: 
+
+    temperature: 1 
+
+  configuration: 
+
+    type: aifoundry 
+
+instructions: Instructions for the agent 
+
+tools: [] 
+```
+
 
 ###	Deploy Azure AI Agents to the Azure AI Foundry Studio
 
 ### Add tools to the Azure AI Agent
+
+
 
 ### Interact with Agents using agents playground
 
