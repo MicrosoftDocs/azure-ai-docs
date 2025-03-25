@@ -202,7 +202,7 @@ Use JSON view in Search Explorer to set facet parameters in the [Azure portal](h
 1. Provide a query in JSON. You can type it out, copy the JSON from a REST example, or use intellisense to help with syntax. Refer to the REST example in the next tab for reference on facet expressions.
 1. Select **Search** to return faceted results, articulated in JSON.
 
-Here's a screenshot of the [basic facet query example](#basic-facet-example) on the [hotels sample index](search-get-started-portal.md). You can paste in other examples in this article to return the results in Search Explorer.
+Here's a screenshot of the [basic facet query example](search-faceted-navigation-examples.md#basic-facet-example) on the [hotels sample index](search-get-started-portal.md). You can paste in other examples in this article to return the results in Search Explorer.
 
 :::image type="content" source="media/search-faceted-navigation/portal-facet-query.png" alt-text="Screenshot of the Search Explorer page in the Azure portal." border="true" lightbox="media/search-faceted-navigation/portal-facet-query.png":::
 
