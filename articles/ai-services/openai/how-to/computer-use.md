@@ -5,7 +5,7 @@ description: Learn about Computer Use in Azure OpenAI which allows AI to interac
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 03/14/2025
+ms.date: 03/25/2025
 author: aahill
 ms.author: aahi
 ---
@@ -73,7 +73,7 @@ client = AzureOpenAI(
 response = client.responses.create(
     model="computer-use-preview",
     tools=[{
-        "type": "computer-preview",
+        "type": "computer_use_preview",
         "display_width": 1024,
         "display_height": 768,
         "environment": "browser" # other possible values: "mac", "windows", "ubuntu"
