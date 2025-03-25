@@ -25,7 +25,7 @@ Azure AI Content Understanding offers a comprehensive solution for multimodal co
 
 :::image type="content" source="../media/concepts/RAGarchitecture.png" alt-text="Screenshot of Content Understanding RAG architecture overview, process, and workflow with Azure AI Search and Azure Open AI.":::
 
-## Overcoming Multimodal Content Chunking Challenges with Content Understanding
+## Capabilities of Content Understanding for Multimodal RAG
 
 Chunking is a crucial step in the process of RAG with multimodal content. It involves breaking down large pieces of content into smaller, manageable chunks that can be effectively processed, indexed, and retrieved.  However, multimodal data presents unique challenges:
 
@@ -34,7 +34,7 @@ Chunking is a crucial step in the process of RAG with multimodal content. It inv
 *   **Audio:** Speaker diarization and temporal coherence are necessary to avoid mixing contributions and disrupting narrative flow.
 *   **Video:** Scene boundaries and multimodal synchronization must be preserved to maintain context.
 
-Semantic chunking addresses these challenges by focusing on the meaning and relationships within the content, rather than simply splitting it into arbitrary segments. This approach is particularly important for RAG because it ensures that the retrieved chunks contain enough context to be relevant to the user's query, leading to more accurate and coherent generated responses.
+Semantic chunking focuses on the meaning and relationships within the content, rather than simply splitting it into arbitrary segments. This approach is particularly important for RAG because it ensures that the retrieved chunks contain enough context to be relevant to the user's query, leading to more accurate and coherent generated responses.
 
 Azure AI Content Understanding is meticulously designed to support multimodal RAG use cases, offering robust capabilities for processing and understanding diverse content types. Content Understanding extracts content from documents, images, audio, and video in a manner that preserves contextual and semantic relationships. This approach enables users to deduce meaningful chunks that are highly relevant to the user's query, leading to more accurate and coherent generated responses. By supporting Markdown output for diverse content types, Content Understanding streamlines integration and optimizes downstream RAG operations, making it particularly valuable for enterprise applications requiring deep content understanding and analysis.
 
