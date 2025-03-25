@@ -43,10 +43,6 @@ Before using the Azure AI Foundry for Visual Studio Code extension, you must:
 
 - Your subscription needs to be below your [quota limit](../quota.md) to [deploy a new model in this quickstart](#deploy-a-model-from-the-model-catalog). Otherwise you already need to have a [deployed chat model](../deploy-models-openai.md).
 
-- Install [Azure Resources for Visual Studio Code (Preview) Extension](): View and manage Azure resources directly from VS Code.
-
-- Install the [AI Toolkit for Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-windows-ai-studio.windows-ai-studio): A VS Code extension that enables you to download, test, fine-tune, and deploy AI models with your apps or in the cloud. For more information, see the AI Toolkit overview.
-
 ## Installation
 
 After you install Visual Studio Code, you need to install the Azure AI Foundry for Visual Studio Code extension.
@@ -121,7 +117,7 @@ The [model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in Azure AI
 
 1. Select <kbd>F1</kbd> to open the command palette.
 
-1. Enter **Azure AI Foundry: Model Catalog** and press enter.
+1. Enter **Azure AI Foundry: Open Model Catalog** and press enter.
 
 1. The **Model Catalog** page is displayed.
 
