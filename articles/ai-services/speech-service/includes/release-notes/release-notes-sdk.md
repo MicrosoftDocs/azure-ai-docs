@@ -8,6 +8,11 @@ ms.author: eur
 
 ### Speech SDK 1.43: 2025-March release
 
+> [!NOTE]
+> [Ubuntu 20.04 "standard security maintenance" expires in April](https://ubuntu.com/about/release-cycle), so will not longer be available as ADO Build agents.
+> The SDKs minimum supported version will be moved from Ubuntu 20.04 to 22.04 LTS in an upcoming SDK release.
+> Please prepare for this transition in advance.
+
 #### New features:
   * Updated FromEndpoint API to be the recommended method for constructing a SpeechConfig for most scenarios.
     * Applies to using:
