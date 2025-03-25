@@ -111,7 +111,7 @@ dig endpointname.westcentralus.inference.ml.azure.com
    "Swagger not found"
    ```
 
-1. If curl HTTPs fails or times out but HTTP works, check whether the certificate is valid.
+1. If curl HTTPS fails or times out but HTTP works, check whether the certificate is valid.
 
 1. If the preceding process fails to resolve to the A record, verify if the resolution works from Azure DNS (168.63.129.16).
 

@@ -1,7 +1,6 @@
 ---
 title: Anomaly Detector multivariate Java client library quickstart 
 titleSuffix: Azure AI services
-#services: cognitive-services
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-anomaly-detector

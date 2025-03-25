@@ -2,7 +2,6 @@
 title: 'How to generate text with the legacy completions API'
 titleSuffix: Azure OpenAI
 description: Learn how to generate or manipulate text, including code by using the legacy completion endpoint in Azure OpenAI Service.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to

@@ -2,7 +2,6 @@
 title: Configure Virtual Networks for Azure AI services
 titleSuffix: Azure AI services
 description: Configure layered network security for your Azure AI services resources.
-#services: cognitive-services
 author: aahill
 manager: nitinme
 ms.service: azure-ai-services
@@ -61,7 +60,7 @@ Virtual networks are supported in [regions where Azure AI services are available
 > - `CognitiveServicesFrontEnd`
 > - `Storage` (Speech Studio only)
 > 
-> For information on [Azure AI Foundry portal](https://ai.azure.com/) configurations, see the [Azure AI Foundry documentation](../ai-studio/how-to/configure-private-link.md).
+> For information on [Azure AI Foundry portal](https://ai.azure.com/) configurations, see the [Azure AI Foundry documentation](../ai-foundry/how-to/configure-private-link.md).
 
 ## Change the default network access rule
 

@@ -145,32 +145,32 @@ The regions in these tables support most of the core features of the Speech serv
 | brazilsouth        |  |
 | canadacentral      |  |
 | centralindia       |  |
-| centralus          |  |
+| centralus          | ✅ |
 | eastasia           |  |
 | eastus             | ✅ |
-| eastus2            |  |
+| eastus2            | ✅ |
 | francecentral      |  |
 | germanywestcentral |  |
 | japaneast          |  |
 | japanwest          |  |
 | koreacentral       |  |
-| northcentralus     |  |
+| northcentralus     | ✅ |
 | northeurope        |  |
 | norwayeast         |  |
 | qatarcentral       |  |
 | southafricanorth   |  |
-| southcentralus     |  |
+| southcentralus     | ✅ |
 | southeastasia      |  |
 | swedencentral      |  |
 | switzerlandnorth   |  |
 | switzerlandwest    |  |
 | uaenorth           |  |
 | uksouth            |  |
-| westcentralus      |  |
-| westeurope         |  |
-| westus             |  |
-| westus2            |  |
-| westus3            |  |
+| westcentralus      | ✅ |
+| westeurope         | ✅ |
+| westus             | ✅ |
+| westus2            | ✅ |
+| westus3            | ✅ |
 
 # [Intent recognition](#tab/intent-recognition)
 
@@ -249,7 +249,7 @@ The regions in these tables support most of the core features of the Speech serv
 
 # [Scenarios](#tab/scenarios)
 
-| **Region** | **Pronunciation Assessment** | **Speaker recognition** | **Voice assistants** |
+| **Region** | **Pronunciation assessment** | **Speaker recognition** | **Voice assistants** |
 |-----|-----|-----|-----|
 | australiaeast      | ✅ | ✅ |  |
 | brazilsouth        | ✅ |  |  |

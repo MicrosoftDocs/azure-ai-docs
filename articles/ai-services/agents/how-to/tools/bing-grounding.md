@@ -33,7 +33,7 @@ Developers and end users don't have access to raw content returned from Groundin
 The user query is the message that an end user sends to an agent, such as *"should I take an umbrella with me today? I'm in Seattle."* Instructions are the system message a developer can provide to share context and provide instructions to the AI model on how to use various tools or behave. 
 
 When a user sends a query, the customer's AI model deployment first processes it (using the provided instructions) to later perform a Bing search query (which is [visible to developers](#how-to-display-grounding-with-bing-search-results)). 
-Grounding with Bing returns relevant search results to the customer's model deployment, which then generates the final output. When using Grounding with Bing Search, only the Bing search query and your resource key are sent to Bing, and no end user-specific information is included. Your resource key is sent to Bing solely for billing and rate limiting purposes. Any Bing search query that is generated and sent to Bing for the purposes of grounding is transferred, along with the resource key, outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is subject to Bing's terms and do not have the same compliance standards and certifications as the Azure AI Agent Service, as described in the [Grounding with Bing Search Terms of Use](https://www.microsoft.com/bing/apis/grounding-legal). It is your responsibility to assess whether the use of Grounding with Bing Search in your agent meets your needs and requirements.
+Grounding with Bing returns relevant search results to the customer's model deployment, which then generates the final output. When using Grounding with Bing Search, only the Bing search query and your resource key are sent to Bing, and no end user-specific information is included. Your resource key is sent to Bing solely for billing and rate limiting purposes. The authorization will happen between Grounding with Bing Search service and Azure AI Agent service. Any Bing search query that is generated and sent to Bing for the purposes of grounding is transferred, along with the resource key, outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is subject to Bing's terms and do not have the same compliance standards and certifications as the Azure AI Agent Service, as described in the [Grounding with Bing Search Terms of Use](https://www.microsoft.com/bing/apis/grounding-legal). It is your responsibility to assess whether the use of Grounding with Bing Search in your agent meets your needs and requirements.
 
 ## Usage support
 
@@ -344,7 +344,7 @@ Create a run and observe that the model uses the Grounding with Bing Search tool
 
 ```python
 # Create and process agent run in thread with tools
-run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
+run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
 print(f"Run finished with status: {run.status}")
 
 # Retrieve run step details to get Bing Search query link

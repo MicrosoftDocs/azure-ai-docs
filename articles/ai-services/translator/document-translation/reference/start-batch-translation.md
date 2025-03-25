@@ -2,7 +2,6 @@
 title: Start translation
 titleSuffix: Azure AI services
 description: Start a document translation request with the Document Translation service.
-#services: cognitive-services
 manager: nitinme
 ms.author: lajanuar
 author: laujan

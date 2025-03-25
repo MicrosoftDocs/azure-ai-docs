@@ -2,7 +2,6 @@
 title: "Edit the Immersive Reader launch button"
 titleSuffix: Azure AI services
 description: Learn how to customize the button that launches the Immersive Reader app.
-#services: cognitive-services
 author: sharmas
 manager: nitinme
 

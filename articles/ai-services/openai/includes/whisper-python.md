@@ -2,7 +2,7 @@
 services: ai-services
 author: mrbullwinkle
 ms.author: mbullwin
-ms.service: openai
+ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 3/19/2024
 ---

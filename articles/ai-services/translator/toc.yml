@@ -6,7 +6,7 @@ items:
   items:
   - name: What is Translator Service?
     displayName: features,develop,development,free
-    href: translator-overview.md
+    href: overview.md
   - name: Create a Translator resource
     displayName: endpoint,key,portal,azure,authentication,delete,resource
     href: create-translator-resource.md
@@ -273,7 +273,7 @@ items:
 - name: Translator solutions
   items:
   - name: What are Azure AI Translator solutions?
-    href: solutions-overview.md
+    href: solutions/overview.md
   - name: Language Studio
     items:
     - name: Translate using Language Studio (preview)
@@ -323,4 +323,4 @@ items:
   - name: Code samples on GitHub
     href: https://aka.ms/TranslatorGitHub
   - name: Azure AI Translator release history
-    href: text-translation/reference/release-history.md
+    href: release-history.md

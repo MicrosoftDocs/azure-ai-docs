@@ -2,7 +2,6 @@
 title: "Select a domain for a Custom Vision project - Azure AI Vision"
 titleSuffix: Azure AI services
 description: Learn how to select a model domain for your project in the Custom Vision Service.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-custom-vision

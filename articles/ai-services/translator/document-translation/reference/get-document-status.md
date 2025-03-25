@@ -2,7 +2,6 @@
 title: Get document status method
 titleSuffix: Azure AI services
 description: The get document status method returns the status for a specific document.
-#services: cognitive-services
 manager: nitinme
 ms.author: lajanuar
 author: laujan
