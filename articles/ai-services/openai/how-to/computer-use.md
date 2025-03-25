@@ -71,7 +71,7 @@ client = AzureOpenAI(
 )
 
 response = client.responses.create(
-    model="computer-use-preview",
+    model="computer-use-preview", # set this to your model deployment name
     tools=[{
         "type": "computer_use_preview",
         "display_width": 1024,
@@ -121,7 +121,7 @@ curl ${MY_ENDPOINT}/openai/responses?api-version=2025-03-01-preview \
       }
     ],
     "tools": [{
-        "type": "computer-preview",
+        "type": "computer_use_preview",
         "display_width": 1024,
         "display_height": 768,
         "environment": "browser" 
