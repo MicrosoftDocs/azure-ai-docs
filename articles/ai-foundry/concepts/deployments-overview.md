@@ -5,7 +5,7 @@ description: Learn about deploying models in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 3/20/2024
+ms.date: 03/24/2025
 ms.reviewer: fasantia
 ms.author: mopeakande
 author: msakande
@@ -13,7 +13,7 @@ author: msakande
 
 # Overview: Deploy AI models in Azure AI Foundry portal
 
-The model catalog in Azure AI Foundry portal is the hub to discover and use a wide range of models for building generative AI applications. Models need to be deployed to make them available for receiving inference requests. Azure AI Foundry offers a comprehensive suite of deployment options for those models depending on your needs and model requirements.
+The model catalog in Azure AI Foundry portal is the hub to discover and use a wide range of models for building generative AI applications. Models need to be deployed to make them available for receiving inference requests. Azure AI Foundry offers a comprehensive suite of deployment options for models, depending on your needs and model requirements.
 
 ## Deploying models
 
@@ -35,8 +35,8 @@ Azure AI Foundry offers four different deployment options:
 | Content filtering             | Yes | Yes | Yes | No  |
 | Custom content filtering      | Yes | Yes | No  | No  |
 | Key-less authentication       | Yes | Yes | No  | No  |
-| Best suited when              | You are planning to use only OpenAI models | You are planning to take advantage of the flagship models in Azure AI catalog, including OpenAI. | You are planning to use a single model from a specific provider (excluding OpenAI). | If you plan to use open models and you have enough compute quota available in your subscription. |
-| Billing bases                 | Token usage & PTU         | Token usage       | Token usage<sup>1</sup>      | Compute core hours<sup>2</sup> |
+| Best suited when              | You're planning to use only OpenAI models | You're planning to take advantage of the flagship models in Azure AI catalog, including OpenAI. | You're planning to use a single model from a specific provider (excluding OpenAI). | If you plan to use open models and you have enough compute quota available in your subscription. |
+| Billing bases                 | Token usage & [provisioned throughput units](../../ai-services/openai/concepts/provisioned-throughput.md)        | Token usage       | Token usage<sup>1</sup>      | Compute core hours<sup>2</sup> |
 | Deployment instructions       | [Deploy to Azure OpenAI Service](../how-to/deploy-models-openai.md) | [Deploy to Azure AI model inference](../model-inference/how-to/create-model-deployments.md) | [Deploy to Serverless API](../how-to/deploy-models-serverless.md) | [Deploy to Managed compute](../how-to/deploy-models-managed.md) |
 
 <sup>1</sup> A minimal endpoint infrastructure is billed per minute. You aren't billed for the infrastructure that hosts the model in pay-as-you-go. After you delete the endpoint, no further charges accrue.
@@ -48,17 +48,17 @@ Azure AI Foundry offers four different deployment options:
 
 ### How should I think about deployment options?
 
-Azure AI Foundry encourages customers to explore the deployment options and pick the one that best suites their business and technical needs. In general you can use the following thinking process:
+Azure AI Foundry encourages you to explore various deployment options and choose the one that best suites your business and technical needs. In general, Consider using the following approach to select a deployment option:
 
-* Start with [Azure AI model inference](../../ai-foundry/model-inference/overview.md) which is the option with the bigger scope. This allows you to iterate and prototype faster in your application without having to rebuild your architecture each time you decide to change something. If you are using Azure AI Foundry Hubs or Projects, enable it by [turning on Azure AI model inference](../../ai-foundry/model-inference/how-to/quickstart-ai-project.md).
+* Start with [Azure AI model inference](../../ai-foundry/model-inference/overview.md), which is the option with the largest scope. This option allows you to iterate and prototype faster in your application without having to rebuild your architecture each time you decide to change something. If you're using Azure AI Foundry hubs or projects, enable this option by [turning on the Azure AI model inference feature](../model-inference/how-to/quickstart-ai-project.md#configure-the-project-to-use-azure-ai-model-inference).
 
-* When you are looking to use a specific model:
+* When you're looking to use a specific model:
 
-   * When you are interested in Azure OpenAI models, use the Azure OpenAI Service which offers a wide range of capabilities for them and it's designed for them.
+   * If you're interested in Azure OpenAI models, use the Azure OpenAI Service. This option is designed for Azure OpenAI models and offers a wide range of capabilities for them.
 
-   * When you are interested in a particular model from Models-as-a-Service, and you don't expect to use any other type of model, use [Serverless API endpoints](../how-to/deploy-models-serverless.md). They allow deployment of a single model under a unique set of endpoint URL and keys.
+   * If you're interested in a particular model from Models-as-a-Service, and you don't expect to use any other type of model, use [Serverless API endpoints](../how-to/deploy-models-serverless.md). Serverless endpoints allow deployment of a single model under a unique set of endpoint URL and keys.
 
-* When your model is not available in Models-as-a-Service and you have compute quota available in your subscription, use [Managed Compute](../how-to/deploy-models-managed.md) which support deployment of open and custom models. It also allows high level of customization of the deployment inference server, protocols, and detailed configuration.
+* When your model isn't available in Models-as-a-Service and you have compute quota available in your subscription, use [Managed Compute](../how-to/deploy-models-managed.md), which supports deployment of open and custom models. It also allows a high level of customization of the deployment inference server, protocols, and detailed configuration.
 
 
 ## Related content
