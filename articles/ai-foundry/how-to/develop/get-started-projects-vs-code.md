@@ -14,7 +14,7 @@ author: ms-johnalex
 # customer intent: As an AI app developer, I want to learn how to use the Azure AI Foundry for Visual Studio Code extension so that I can deploy Large Language Models and develop AI agents using Azure AI Foundry capabilities directly in VS Code.
 ---
 
-# Get started with the Azure AI Foundry for Visual Studio Code extension
+# Get started with the Azure AI Foundry for Visual Studio Code extension (Preview)
 
 [Azure AI Foundry](/azure/ai-foundry/what-is-ai-foundry) provides a unified platform for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, ensuring organizations can build and operate AI applications with confidence.
 

@@ -326,7 +326,7 @@ items:
       href: /azure/search/tutorial-rag-build-solution?context=/azure/ai-foundry/context/context
   - name: Develop with code
     items:
-    - name: Work in VS Code
+    - name: Work in VS Code (Preview)
       href: how-to/develop/get-started-projects-vs-code.md
     - name: Use a container
       href: how-to/develop/vscode.md
