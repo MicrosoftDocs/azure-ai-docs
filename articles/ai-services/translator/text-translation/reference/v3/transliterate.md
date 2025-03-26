@@ -36,14 +36,16 @@ Request parameters passed on the query string are:
 | fromScript | *Required parameter*.<br/>Specifies the script used by the input text. Look up [supported languages](languages.md) using the `transliteration` scope, to find input scripts available for the selected language. |
 | toScript | *Required parameter*.<br/>Specifies the output script. Look up [supported languages](languages.md) using the `transliteration` scope, to find output scripts available for the selected combination of input language and input script. |
 
+## Request headers
+
 Request headers include:
 
 | Headers | Description |
 | --- | --- |
-| Authentication headers | _Required request header_.<br/>See [available options for authentication](reference.md#authentication). |
-| Content-Type | _Required request header_.<br/>Specifies the content type of the payload. Possible values are: `application/json` |
+| Authentication headers | _Required request header_.<br/>*See* [available options for authentication](../authentication.md). |
+| Content-Type | _Required request header_.<br/>Specifies the content type of the payload. Accepted values are: `application/json` |
 | Content-Length | _Optional_.<br/>The length of the request body. |
-| X-ClientTraceId | _Optional_.<br/>A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
+| X-ClientTraceId | _Optional_.<br/>A client-generated GUID to uniquely identify the request. You can omit this optional header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
 
 ## Request body
 
