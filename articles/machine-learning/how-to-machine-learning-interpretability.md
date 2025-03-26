@@ -79,25 +79,6 @@ Interpret-Community serves as the host for the following supported explainers, a
 | XRAI | [XRAI](https://arxiv.org/pdf/1906.02825.pdf) is a novel region-based saliency method based on Integrated Gradients (IG). It over-segments the image and iteratively tests the importance of each region, coalescing smaller regions into larger segments based on attribution scores. This strategy yields high quality, tightly bounded saliency regions that outperform existing saliency techniques. XRAI can be used with any DNN-based model as long as there's a way to cluster the input features into segments through some similarity metric. | AutoML | Image Multi-class Classification, Image Multi-label Classification |
 | D-RISE  | D-RISE is a model agnostic method for creating visual explanations for the predictions of object detection models. By accounting for both the localization and categorization aspects of object detection, D-RISE can produce saliency maps that highlight parts of an image that most contribute to the prediction of the detector. Unlike gradient-based methods, D-RISE is more general and doesn't need access to the inner workings of the object detector; it only requires access to the inputs and outputs of the model. The method can be applied to one-stage detectors (for example, YOLOv3), two-stage detectors (for example, Faster-RCNN), and Vision Transformers (for example, DETR, OWL-ViT). <br> D-Rise provides the saliency map by creating random masks of the input image and will send it to the object detector with the random masks of the input image. By assessing the change of the object detector's score, it aggregates all the detections with each mask and produce a final saliency map. | Model Agnostic | Object Detection |
 
-## Supported machine learning models
-
-The `azureml.interpret` package of the SDK supports models that are trained with the following dataset formats:
-
-* `numpy.array`
-* `pandas.DataFrame`
-* `iml.datatypes.DenseData`
-* `scipy.sparse.csr_matrix`
-
-The explanation functions accept both models and pipelines as input. If a model is provided, it must implement the prediction function `predict` or `predict_proba` that conforms to the Scikit convention. If your model doesn't support this, you can wrap it in a function that generates the same outcome as `predict` or `predict_proba` in Scikit and use that wrapper function with the selected explainer.
-
-If you provide a pipeline, the explanation function assumes that the running pipeline script returns a prediction. When you use this wrapping technique, `azureml.interpret` can support models that are trained via PyTorch, TensorFlow, Keras deep learning frameworks, and classic machine learning models.
-
-## Local and remote compute target
-
-The `azureml.interpret` package is designed to work with both local and remote compute targets. If you run the package locally, the SDK functions won't contact any Azure services.
-
-You can run the explanation remotely on Azure Machine Learning Compute and log the explanation info into the Azure Machine Learning Run History Service. After this information is logged, reports and visualizations from the explanation are readily available on Azure Machine Learning studio for analysis.
-
 ## Next steps
 
 * Learn how to generate the Responsible AI dashboard via [CLI v2 and SDK v2](how-to-responsible-ai-dashboard-sdk-cli.md) or the [Azure Machine Learning studio UI](how-to-responsible-ai-dashboard-ui.md).
