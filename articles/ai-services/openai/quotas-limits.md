@@ -57,6 +57,9 @@ The following sections provide you with a quick guide to the default quotas and 
 
 ## Regional quota limits
 
+> [!NOTE]
+> Quota limits are subject to change. 
+
 [!INCLUDE [Quota](./includes/global-batch-limits.md)]
 
 ## computer-use-preview global standard
