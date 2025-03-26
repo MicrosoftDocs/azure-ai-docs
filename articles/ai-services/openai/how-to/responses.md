@@ -810,18 +810,21 @@ async def handle_action(page, action):
         print(f"\tUnrecognized action: {action_type}")
 ```
 
-This function attempts to handle various types of actions such as:
+This function attempts to handle various types of actions. We need to translate between the commands that the `computer-use-preview` will generate and the Playwright library which will execute the actions. For more information refer to the reference documentation for `ComputerAction`.
 
-- Clicking and dragging the mouse.
-- Clicking (left, right, middle buttons).
-- Double-clicking.
-- Scrolling.
-- Key presses (including combinations).
-- Typing text.
+- [Click](/azure/ai-services/openai/reference-preview#click)
+- [DoubleClick](/azure/ai-services/openai/reference-preview#doubleclick)
+- [Drag](/azure/ai-services/openai/reference-preview#drag)
+- [KeyPress](/azure/ai-services/openai/reference-preview#keypress)
+- [Move](/azure/ai-services/openai/reference-preview#move)
+- [Screenshot](/azure/ai-services/openai/reference-preview#screenshot)
+- [Scroll](/azure/ai-services/openai/reference-preview#scroll)
+- [Type](/azure/ai-services/openai/reference-preview#type)
+- [Wait](azure/ai-services/openai/reference-preview#wait)
 
 ### Screenshot capture
 
-In order for the model to be able to see what it's interacting with the model needs a way to capture screenshots. For this code we're using Playwright to capture the screenshots and we're limiting the view to just the content in the browser window. The screenshot won't include the url bar or other aspects of the browser GUI. If you need the model to see outside the main browser window you could augment the model by creating your own screenshot function.
+In order for the model to be able to see what it's interacting with the model needs a way to capture screenshots. For this code we're using Playwright to capture the screenshots and we're limiting the view to just the content in the browser window. The screenshot won't include the url bar or other aspects of the browser GUI. If you need the model to see outside the main browser window you could augment the model by creating your own screenshot function. 
 
 ```python
 async def take_screenshot(page):
@@ -839,7 +842,7 @@ async def take_screenshot(page):
             return last_successful_screenshot
 ```
 
-This function captures the current browser state as an image and returns it as a base64-encoded string, ready to be sent to the model. We'll constantly do this in a loop after each step allowing the model to see if the command it tried to execute was successful or not, which then allows it to adjust based on the contents of the screenshot.
+This function captures the current browser state as an image and returns it as a base64-encoded string, ready to be sent to the model. We'll constantly do this in a loop after each step allowing the model to see if the command it tried to execute was successful or not, which then allows it to adjust based on the contents of the screenshot. We could let the model decide if it needs to take a screenshot, but for simplicity we will force a screenshot to be taken for each iteration.
 
 ### Model response processing
 
@@ -1005,7 +1008,7 @@ In this section we have added code that:
 - Handles potential safety checks requiring user confirmation.
 - Executes the requested action.
 - Captures a new screenshot.
-- Sends the updated state back to the model.
+- Sends the updated state back to the model and defines the [`ComputerTool`](azure/ai-services/openai/reference-preview#computertool).
 - Repeats this process for multiple iterations.
 
 ### Main function
