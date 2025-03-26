@@ -15,11 +15,7 @@ ms.service: azure-ai-agent-service
 
 See [Monitor Azure AI Agent Service](../how-to/metrics.md) for details on the data you can collect on your agents.
 
-[!INCLUDE [horz-monitor-ref-metrics-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-intro.md)]
-
-### Supported metrics for Microsoft.CognitiveServices/accounts
-
-Here are the most important metrics we think you should monitor for Azure AI Agent Service. Later in this article is a longer list of all available Azure AI services metrics which contains more details on metrics in this shorter list. _Please see below list for most up to date information. We're working on refreshing the tables in the following sections._
+Here are the most important metrics we think you should monitor for Azure AI Agent Service. Later in this article is a longer list of all available metrics which contains more details on metrics in this shorter list. _Please see below list for most up to date information. We're working on refreshing the tables in the following sections._
 
 - Model deploy failed
 - Model deploy Started
