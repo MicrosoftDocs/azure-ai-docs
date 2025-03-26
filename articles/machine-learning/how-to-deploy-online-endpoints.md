@@ -760,6 +760,9 @@ For more information on creating an environment in the studio, see [Create an en
 
 ---
 
+> [!IMPORTANT]
+> When defining a custom environment for your deployment, ensure the `azureml-inference-server-http` package is included in the conda file. This package is essential for the inference server to function properly. If you are unfamiliar with creating your own custom environment, it is advisable to instead use one of our curated environments such as `minimal-py-inference` (for custom models that don't use mlflow) or `mlflow-py-inference` (for models that use mlflow). These curated environments can be found in the "Environments" tab of your Machine Learning Studio.
+
 ### Configure a deployment that uses registered assets
 
 Your deployment configuration uses the registered model that you wish to deploy and your registered environment.
