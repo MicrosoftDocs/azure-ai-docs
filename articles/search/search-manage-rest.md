@@ -1,5 +1,5 @@
 ---
-title: Manage with REST
+title: Manage using REST
 titleSuffix: Azure AI Search
 description: Create and configure an Azure AI Search service with the Management REST API. The Management REST API is comprehensive in scope, with access to generally available and preview features.
 author: haileytap
@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 03/21/2025
+ms.date: 03/26/2025
 ---
 
 # Manage your Azure AI Search service using REST APIs
@@ -150,6 +150,8 @@ Some Azure AI Search capabilities are only available to new services. To avoid s
 
 ```http
 ### Upgrade a search service
+@resource-group = my-rg
+@search-service-name = my-search
 POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}/upgrade?api-version=2025-02-01-preview  HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
@@ -161,6 +163,8 @@ If you need more <!-- or less-->capacity, you can [switch to a higher service ti
 
 ```http
 ### Change service tiers
+@resource-group = my-rg
+@search-service-name = my-search
 PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2025-02-01-preview HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
@@ -168,7 +172,7 @@ PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGrou
     {
         "sku": {
             "name": "standard2"
-      }
+        }
     }
 ```
 

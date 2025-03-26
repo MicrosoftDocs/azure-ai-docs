@@ -11,7 +11,7 @@ ms.custom:
   - ignite-2023
   - ignite-2024
 ms.topic: conceptual
-ms.date: 03/21/2025
+ms.date: 03/26/2025
 ---
 
 # Estimate and manage capacity of a search service
@@ -71,7 +71,7 @@ Finally, larger indexes take longer to query. As such, you might find that every
 
 ## How to upgrade capacity
 
-Some Azure AI Search capabilities are only available to new services. One such capability is higher storage capacity, which applies to [services created after April 2024](search-limits-quotas-capacity.md#service-limits). However, if you created your service before April 2024, you can get higher capacity without recreating your service by performing an in-place upgrade. For more information, see [Upgrade your search service](search-how-to-upgrade.md).
+Some Azure AI Search capabilities are only available to new services. One such capability is higher storage capacity, which applies to [services created after April 2024](search-limits-quotas-capacity.md#service-limits). However, if you created your service before April 2024, you can get higher capacity without recreating your service by performing an in-place upgrade. For more information, see [Upgrade your Azure AI Search service](search-how-to-upgrade.md).
 
 ## How to change capacity
 
@@ -126,7 +126,7 @@ To change your service tier:
 
    This example adds a second replica and partition. Notice the search unit count; it's now four because the billing formula is replicas multiplied by partitions (2 x 2). Doubling capacity more than doubles the cost of running the service. If the search unit cost was $100, the new monthly bill would now be $400.
 
-   For the current per unit costs of each tier, visit the [Pricing page](https://azure.microsoft.com/pricing/details/search/).
+   For the current per unit costs of each tier, visit the [pricing page](https://azure.microsoft.com/pricing/details/search/).
 
    :::image type="content" source="media/search-capacity-planning/2-add-2-each.png" alt-text="Add replicas and partitions" border="true":::
 
