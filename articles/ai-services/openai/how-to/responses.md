@@ -820,7 +820,7 @@ This function attempts to handle various types of actions. We need to translate 
 - [Screenshot](/azure/ai-services/openai/reference-preview#screenshot)
 - [Scroll](/azure/ai-services/openai/reference-preview#scroll)
 - [Type](/azure/ai-services/openai/reference-preview#type)
-- [Wait](azure/ai-services/openai/reference-preview#wait)
+- [Wait](/azure/ai-services/openai/reference-preview#wait)
 
 ### Screenshot capture
 
@@ -1008,7 +1008,7 @@ In this section we have added code that:
 - Handles potential safety checks requiring user confirmation.
 - Executes the requested action.
 - Captures a new screenshot.
-- Sends the updated state back to the model and defines the [`ComputerTool`](azure/ai-services/openai/reference-preview#computertool).
+- Sends the updated state back to the model and defines the [`ComputerTool`](/azure/ai-services/openai/reference-preview#computertool).
 - Repeats this process for multiple iterations.
 
 ### Main function
