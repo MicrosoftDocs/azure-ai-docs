@@ -291,6 +291,11 @@
             "redirect_document_id": true
           },
           {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-stability-models.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-featured#stability-ai",
+            "redirect_document_id": false
+          },          
+          {
             "source_path_from_root": "/articles/ai-studio/how-to/disable-local-auth.md",
             "redirect_url": "/azure/ai-foundry/how-to/disable-local-auth",
             "redirect_document_id": true
