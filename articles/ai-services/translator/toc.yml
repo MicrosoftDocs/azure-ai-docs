@@ -85,27 +85,33 @@ items:
       href: firewalls.md
   - name: Reference
     items:
-    - name: v3 Translator reference
-      displayName: 401000,405000,400000
-      href: text-translation/reference/v3/reference.md
-    - name: Text Translation REST APIs
-      href:  text-translation/reference/rest-api-guide.md
-    - name: Languages
-      href: text-translation/reference/v3/languages.md
-    - name: Translate
-      displayName: detection,detect
-      href: text-translation/reference/v3/translate.md
-    - name: Transliterate
-      href: text-translation/reference/v3/transliterate.md
-    - name: Detect
-      href: text-translation/reference/v3/detect.md
-    - name: BreakSentence
-      displayName: detection,detect
-      href: text-translation/reference/v3/break-sentence.md
-    - name: Dictionary Lookup
-      href: text-translation/reference/v3/dictionary-lookup.md
-    - name: Dictionary Examples
-      href: text-translation/reference/v3/dictionary-examples.md
+    - name: Azure AI Translator v4
+      items:
+      - name: v4 Translator reference
+        href: text-translation/reference/v4/reference.md
+    - name: Azure AI Translator v3
+      items:
+      - name: v3 Translator reference
+        displayName: 401000,405000,400000
+        href: text-translation/reference/v3/reference.md
+      - name: Text Translation v3 REST APIs
+        href:  text-translation/reference/rest-api-guide.md
+      - name: Languages
+        href: text-translation/reference/v3/languages.md
+      - name: Translate
+        displayName: detection,detect
+        href: text-translation/reference/v3/translate.md
+      - name: Transliterate
+        href: text-translation/reference/v3/transliterate.md
+      - name: Detect
+        href: text-translation/reference/v3/detect.md
+      - name: BreakSentence
+        displayName: detection,detect
+        href: text-translation/reference/v3/break-sentence.md
+      - name: Dictionary Lookup
+        href: text-translation/reference/v3/dictionary-lookup.md
+      - name: Dictionary Examples
+        href: text-translation/reference/v3/dictionary-examples.md
 - name: Document translation
   items:
   - name: What is Document Translation?
