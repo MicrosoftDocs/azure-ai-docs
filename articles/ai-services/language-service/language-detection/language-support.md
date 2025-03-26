@@ -2,7 +2,6 @@
 title: Language Detection language support
 titleSuffix: Azure AI services
 description: This article explains which natural languages are supported by the Language Detection API.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
@@ -187,7 +186,7 @@ If you have content expressed in a less frequently used language, you can try La
 | Kannada                               | `kn`        | `Latn`, `Knda` |
 | Malayalam                             | `ml`        | `Latn`, `Mlym` |
 | Marathi	                            | `mr`        | `Latn`, `Deva` |
-| Oriya                                 | `or`        | `Latn`, `Orya` |
+| Odia                                  | `or`        | `Latn`, `Orya` |
 | Punjabi                               | `pa`        | `Latn`, `Guru` |
 | Tamil                                 | `ta`        | `Latn`, `Taml` |
 | Telugu                                | `te`        | `Latn`, `Telu` |

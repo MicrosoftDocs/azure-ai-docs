@@ -2,13 +2,13 @@
 title: Multimodal embeddings concepts - Image Analysis 4.0
 titleSuffix: Azure AI services
 description: Learn about concepts related to image vectorization and search/retrieval using the Image Analysis 4.0 API.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
 ms.date: 09/25/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 

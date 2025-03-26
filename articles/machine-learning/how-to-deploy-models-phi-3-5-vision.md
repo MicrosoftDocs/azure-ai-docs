@@ -7,8 +7,8 @@ ms.subservice: inferencing
 manager: scottpolly
 ms.topic: how-to
 ms.date: 08/29/2024
-ms.reviewer: kritifaujdar
-reviewer: fkriti
+ms.reviewer: v-vkonjarla
+reviewer: VindyaKonjarla
 ms.author: mopeakande
 author: msakande
 ms.custom: references_regions, generated

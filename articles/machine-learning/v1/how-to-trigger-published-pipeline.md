@@ -187,7 +187,7 @@ Now create an [Azure Logic App](/azure/logic-apps/logic-apps-overview) instance.
   | URI |the endpoint to the published pipeline that you found as a [Prerequisite](#prerequisites) |
   | Authentication mode | Managed Identity |
 
-1. Set up your schedule to set the value of any [DataPath PipelineParameters](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/intro-to-pipelines/aml-pipelines-showcasing-datapath-and-pipelineparameter.ipynb) you may have:
+1. Set up your schedule to set the value of any [DataPath PipelineParameters](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/intro-to-pipelines/aml-pipelines-showcasing-datapath-and-pipelineparameter.ipynb) you might have:
 
     ```json
     {

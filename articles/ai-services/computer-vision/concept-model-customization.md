@@ -2,13 +2,13 @@
 title: Model customization concepts - Image Analysis 4.0
 titleSuffix: Azure AI services
 description: Concepts related to the custom model feature of the Image Analysis 4.0 API.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 01/19/2024
+ms.date: 02/21/2025
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 

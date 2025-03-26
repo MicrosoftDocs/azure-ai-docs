@@ -2,19 +2,18 @@
 title: "Quickstart: Content Safety Studio"
 titleSuffix: "Azure AI services"
 description: Learn how to get started with the Content Safety service using Content Safety Studio in your browser.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2023, build-2023-dataai
 ms.topic: quickstart
-ms.date: 10/01/2024
+ms.date: 01/27/2025
 ms.author: pafarley
 ---
 
-# QuickStart: Azure AI Content Safety Studio
+# Quickstart: Azure AI Content Safety Studio
 
-This article explains how you can get started with the Azure AI Content Safety service using Content Safety Studio in your browser.
+This article explains how to get started with the Azure AI Content Safety service using Content Safety Studio in your browser.
 
 > [!CAUTION]
 > Some of the sample content provided by Content Safety Studio might be offensive. Sample images are blurred by default. User discretion is advised.
@@ -38,9 +37,7 @@ The [Moderate text content](https://contentsafety.cognitive.azure.com/text) page
 1. Select the **Moderate text content** panel.
 1. Add text to the input field, or select sample text from the panels on the page.
     > [!TIP]
-    > Text size and granularity
-    >
-    > See [Input requirements](./overview.md#input-requirements) for maximum text length limitations.
+    > **Text size and granularity**: See [Input requirements](./overview.md#input-requirements) for maximum text length limitations.
 1. Select **Run test**.
 
 The service returns all the categories that were detected, with the severity level for each: 0-Safe, 2-Low, 4-Medium, 6-High. It also returns a binary **Accepted**/**Rejected** result, based on the filters you configure. Use the matrix in the **Configure filters** tab to set your allowed/prohibited severity levels for each category. Then you can run the text again to see how the filter works.

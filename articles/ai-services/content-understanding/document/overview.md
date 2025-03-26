@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 11/19/2024
+ms.date: 02/19/2025
 ms.custom: ignite-2024-understanding-release
 ---
 
@@ -16,7 +16,7 @@ ms.custom: ignite-2024-understanding-release
 > [!IMPORTANT]
 >
 > * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes may change or have constrained capabilities, prior to General Availability (GA).
+> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 Content Understanding is a cloud-based [Azure AI Service](../../what-are-ai-services.md) designed to efficiently extract content and structured fields from documents and forms. It provides a comprehensive suite of APIs and an intuitive UX experience for optimal efficiency.
@@ -70,5 +70,7 @@ For a detailed list of supported languages and regions, visit our [Language and 
 Developers using Content Understanding should review Microsoft's policies on customer data. For more information, visit our [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) page.
 
 ## Next step
-* Try processing your document content using Content Understanding in [Azure AI Foundry](https://ai.azure.com/).
-* Learn more about document [**analyzer templates**](../quickstart/use-ai-foundry.md).
+* Try processing your document content using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).
+* Learn to analyze document content [**analyzer templates**](../quickstart/use-ai-foundry.md).
+* Review code samples: [**visual document search**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/notebooks/search_with_visual_document.ipynb).
+* Review code sample: [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).

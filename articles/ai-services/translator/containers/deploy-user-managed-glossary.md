@@ -1,13 +1,12 @@
 ---
-title: Deploy a user-managed glossary in Translator container
+title: Deploy a user-managed glossary in Azure AI Translator container
 titleSuffix: Azure AI services
-description: How to deploy a user-managed glossary in the Translator container environment.
-#services: cognitive-services
+description: How to deploy a user-managed glossary in the Azure AI Translator container environment.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 07/10/2024
+ms.date: 01/28/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -17,9 +16,9 @@ recommendations: false
 
 # Deploy a user-managed glossary
 
-Microsoft Translator containers enable you to run several features of the Translator service in your own environment and are great for specific security and data governance requirements.
+Azure AI Translator containers enable you to run several features of the Translator service in your own environment and are great for specific security and data governance requirements.
 
-There may be times when you're running a container with a multi-layered ingestion process when you discover that you need to implement an update to sentence and/or phrase files. Since the standard phrase and sentence files are encrypted and read directly into memory at runtime, you need to implement a quick-fix engineering solution to implement a dynamic update. This update can be implemented using our user-managed glossary feature:
+There can be times when you're running a container with a multi-layered ingestion process when you discover that you need to implement an update to sentence and/or phrase files. Since the standard phrase and sentence files are encrypted and read directly into memory at runtime, you need to implement a quick-fix engineering solution to implement a dynamic update. This update can be implemented using our user-managed glossary feature:
 
 * To deploy the **phrase&#8203;fix** solution, you need to create a **phrase&#8203;fix** glossary file to specify that a listed phrase is translated in a specified way.
 
@@ -44,7 +43,7 @@ There may be times when you're running a container with a multi-layered ingestio
    > [!NOTE]
    >
    > * The **phrase&#8203;fix** solution is an exact find-and-replace operation. Any word or phrase listed is translated in the way specified.
-   > * The **sent&#8203;fix** solution is more precise and allows you to specify an exact target translation for a source sentence. For a sentence match to occur, the entire submitted sentence must match the **sent&#8203;fix** entry. If only a portion of the sentence matches, the entry won't match.
+   > * The **sent&#8203;fix** solution is more precise and allows you to specify an exact target translation for a source sentence. For a sentence match to occur, the entire submitted sentence must match the **sent&#8203;fix** entry. If only a portion of the sentence matches, the entry doesn't match.
    > * If you're hesitant about making sweeping find-and-replace changes, we recommend, at the outset, solely using the **sent&#8203;fix** solution.
 
 1. Next, to dynamically reload glossary entry updates, create a `version.json` file within the `customhotfix` folder. The `version.json` file should contain the following parameters: **VersionId**. An integer value.

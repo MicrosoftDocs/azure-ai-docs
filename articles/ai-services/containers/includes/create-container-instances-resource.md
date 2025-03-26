@@ -2,7 +2,6 @@
 title: Container support
 titleSuffix: Azure AI services
 description: Learn how to create an Azure container instance resource.
-#services: cognitive-services
 author: aahill
 manager: nitinme
 ms.service: azure-ai-services
@@ -38,7 +37,7 @@ ms.author: aahi
 
     | Key | Value |
     |--|--|
-    |`ApiKey`|Copied from the **Keys and endpoint** page of the resource. It is a 32 alphanumeric-character string with no spaces or dashes, `xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`.|
+    |`ApiKey`|Copied from the **Keys and endpoint** page of the resource. It is a 84 alphanumeric-character string with no spaces or dashes, `xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`.|
     |`Billing`| Your endpoint URL copied from the **Keys and endpoint** page of the resource.|
     |`Eula`|`accept`|
 

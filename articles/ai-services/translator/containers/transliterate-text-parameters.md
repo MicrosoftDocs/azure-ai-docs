@@ -2,13 +2,12 @@
 title: "Container: Transliterate text"
 titleSuffix: Azure AI services
 description: Understand the parameters, headers, and body messages for the Azure AI Translator container transliterate text operation.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/29/2024
+ms.date: 03/07/2025
 ms.author: lajanuar
 ---
 
@@ -25,7 +24,7 @@ Convert characters or letters of a source language to the corresponding characte
 
 ```
 
-*See* [**Virtual Network Support**](../reference/v3-0-reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+*See* [**Virtual Network Support**](../text-translation/reference/v3/reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -38,14 +37,14 @@ Request parameters passed on the query string are:
 | fromScript | Specifies the script used by the input text. |*Required parameter*|
 | toScript |Specifies the output script.|*Required parameter*|
 
-* You can query the service for `transliteration` scope [supported languages](../reference/v3-0-languages.md).
+* You can query the service for `transliteration` scope [supported languages](../text-translation/reference/v3/languages.md).
 * *See also* [Language support for transliteration](../language-support.md#transliteration).
 
 ## Request headers
 
 | Headers | Description |Condition|
 | --- | --- | ---|
-| Authentication headers | *See* [available options for authentication](../reference/v3-0-reference.md#authentication)|*Required request header*|
+| Authentication headers | *See* [available options for authentication](../text-translation/reference/v3/reference.md#authentication)|*Required request header*|
 | Content-Type | Specifies the content type of the payload. Possible value: `application/json` |*Required request header*|
 | Content-Length |The length of the request body. |*Optional*|
 | X-ClientTraceId |A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |*Optional*|
@@ -106,7 +105,7 @@ The following limitations apply:
 >
 > * Each sample runs on the `localhost` that you specified with the `docker run` command.
 > * While your container is running, `localhost` points to the container itself.
-> * You don't have to use `localhost:5000`. You can use any port that is not already in use in your host environment.
+> * You don't have to use `localhost:5000`. You can use any port that isn't already in use in your host environment.
 
 ### Transliterate with REST API
 
@@ -119,4 +118,4 @@ The following limitations apply:
 ## Next Steps
 
 > [!div class="nextstepaction"]
-> [Learn more about text transliteration](../translator-text-apis.md#transliterate-text)
+> [Learn more about text transliteration](../text-translation/reference/v3/transliterate.md)

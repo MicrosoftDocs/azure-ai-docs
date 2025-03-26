@@ -4,12 +4,12 @@ titleSuffix: Azure AI Search
 description: Create and configure an Azure AI Search service with PowerShell. You can scale a service up or down, manage admin and query api-keys, and query for system information.
 
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.devlang: powershell
 ms.topic: how-to
-ms.date: 04/05/2024
+ms.date: 12/10/2024
 ms.custom:
   - devx-track-azurepowershell
   - ignite-2023

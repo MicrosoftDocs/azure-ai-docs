@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 03/07/2024
+ms.date: 01/17/2025
 ---
 
 # Tutorial: Create a custom analyzer for phone numbers

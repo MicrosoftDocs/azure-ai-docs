@@ -1,23 +1,22 @@
 ---
-title: Translation Customization - Translator
+title: Translation Customization - Azure AI Translator
 titleSuffix: Azure AI services
 description: Use the Microsoft Translator Hub to build your own machine translation system using your preferred terminology and style.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 07/09/2024
+ms.date: 01/28/2025
 ms.author: lajanuar
 ---
 
 # Customize your text translations
 
-The Custom Translator is a feature of the Translator service, which allows users to customize Microsoft Translator's advanced neural machine translation when translating text using Translator (version 3 only).
+Azure AI Custom Translator is a feature of the Azure AI Translator service. Azure AI Custom Translator allows users to customize Azure AI Translator's advanced neural machine translation when translating text using Translator (version 3 only).
 
 The feature can also be used to customize speech translation when used with [Azure AI Speech](../../../speech-service/index.yml).
 
-## Custom Translator
+## Azure AI Custom Translator
 
 With Custom Translator, you can build neural translation systems that understand the terminology used in your own business and industry. The customized translation system integrates into existing applications, workflows, and websites.
 
@@ -36,4 +35,4 @@ More details about the various levels of customization based on available data c
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Set up a customized language system using Custom Translator](../overview.md)
+> [Set up a customized language system using Azure AI Custom Translator](../overview.md)

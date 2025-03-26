@@ -2,13 +2,13 @@
 title: Manage with REST
 titleSuffix: Azure AI Search
 description: Create and configure an Azure AI Search service with the Management REST API. The Management REST API is comprehensive in scope, with access to generally available and preview features.
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 03/13/2024
+ms.date: 12/10/2024
 ---
 
 # Manage your Azure AI Search service with REST APIs
@@ -229,7 +229,7 @@ PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegrou
 
 ## Disable semantic ranker
 
-Although [semantic ranker isn't enabled](semantic-how-to-enable-disable.md) by default, you could lock down the feature at the service level for greater certainty it can't be used.
+[Semantic ranker is enabled](semantic-how-to-enable-disable.md) by default at the free plan that allows up to 1,000 requests per month at no charge. You can lock down the feature at the service level to prevent usage.
 
 ```http
 ### disable semantic ranker

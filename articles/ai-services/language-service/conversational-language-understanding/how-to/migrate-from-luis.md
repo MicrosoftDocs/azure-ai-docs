@@ -2,7 +2,6 @@
 title: Conversational Language Understanding backwards compatibility
 titleSuffix: Azure AI services
 description: Learn about backwards compatibility between LUIS and Conversational Language Understanding
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language

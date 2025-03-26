@@ -9,6 +9,7 @@ metadata:
   ms.service: azure-ai-vision
   ms.topic: hub-page
   author: PatrickFarley
+  ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
   ms.author: pafarley
   ms.date: 08/21/2024
 
@@ -135,9 +136,6 @@ conceptualContent:
         - itemType: concept
           text: Camera placement
           url: spatial-analysis-camera-placement.md
-        - itemType: concept
-          text: Logging and troubleshooting
-          url: spatial-analysis-logging.md
       footerLink:
         text: More
         url: intro-to-spatial-analysis-public-preview.md

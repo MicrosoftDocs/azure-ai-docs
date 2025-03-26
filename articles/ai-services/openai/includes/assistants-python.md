@@ -24,7 +24,7 @@ ms.date: 05/22/2024
 
 ## Passwordless authentication is recommended
 
-For passwordless authentication, you need to 
+For passwordless authentication, you need to:
 
 1. Use the [azure-identity](https://pypi.org/project/azure-identity/) package.
 2. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal under **Access control (IAM)** > **Add role assignment**.

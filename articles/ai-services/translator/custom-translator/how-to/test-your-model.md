@@ -1,17 +1,17 @@
 ---
-title: View custom model details and test translation
+title: View Azure AI Custom Translator model details and test translation
 titleSuffix: Azure AI services
-description: How to test your custom model BLEU score and evaluate translations
+description: How to test your Azure AI Custom Translator model BLEU score and evaluate translations
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 07/09/2024
+ms.date: 01/27/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
-# Test your model
+# Test your Azure AI Custom Translator
 
-Once your model is successfully trained, you can use translations to evaluate the quality of your model. In order to make an informed decision about whether to use our standard model or your custom model, you should evaluate the delta between your custom model [**BLEU score**](#bleu-score) and our standard model **Baseline BLEU**. If your model is trained within a narrow domain, and your training data is consistent with the test data, you can expect a high BLEU score.
+Once your Azure AI Custom Translator model is successfully trained, you can use translations to evaluate the quality of your model. In order to make an informed decision about whether to use our standard Azure AI Translator model or your custom model, you should evaluate the delta between your custom model [**BLEU score**](#bleu-score) and our standard Azure AI Translator model **Baseline BLEU**. If your model is trained within a narrow domain, and your training data is consistent with the test data, you can expect a high BLEU score.
 
 ## BLEU score
 
@@ -21,7 +21,7 @@ A BLEU score is a number between zero and 100. A score of zero indicates a low-q
 
 [Read more](../concepts/bleu-score.md?WT.mc_id=aiml-43548-heboelma)
 
-## Model details
+## Azure AI Custom Translator Model details
 
 1. Select the **Model details** blade.
 
@@ -43,5 +43,5 @@ A BLEU score is a number between zero and 100. A score of zero indicates a low-q
 
 ## Next steps
 
-- Learn [how to publish/deploy a custom model](publish-model.md).
-- Learn [how to translate documents with a custom model](translate-with-custom-model.md).
+- Learn [how to publish/deploy an Azure AI Custom Translator model](publish-model.md).
+- Learn [how to translate documents with an Azure AI Custom Translator model](translate-with-custom-model.md).

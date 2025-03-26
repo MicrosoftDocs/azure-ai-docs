@@ -153,7 +153,7 @@ You can also set a new default pipeline in the **Published pipelines** tab of yo
 
 ## Update pipeline endpoint
 
-If you make some modifications in your training pipeline, you may want to update the newly trained model to the pipeline endpoint.
+If you make some modifications in your training pipeline, you might want to update the newly trained model to the pipeline endpoint.
 
 1. After your modified training pipeline completes successfully, go to the job detail page.
 

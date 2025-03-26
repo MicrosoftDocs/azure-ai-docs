@@ -2,7 +2,6 @@
 title: Container support
 titleSuffix: Azure AI services
 description: Learn how to create an Azure container instance resource from the Azure CLI.
-#services: cognitive-services
 author: aahill
 manager: nitinme
 ms.service: azure-ai-services
@@ -14,6 +13,8 @@ ms.tool: azure-cli
 ---
 
 ## Create an Azure Container Instance resource from the Azure CLI
+
+You must first [install the Azure CLI](/cli/azure/install-azure-cli) before running the commands in this article. 
 
 The YAML below defines the Azure Container Instance resource. Copy and paste the contents into a new file, named `my-aci.yaml` and replace the commented values with your own. Refer to the [template format][template-format] for valid YAML. Refer to the [container repositories and images][repositories-and-images] for the available image names and their corresponding repository. For more information of the YAML reference for Container instances, see [YAML reference: Azure Container Instances][aci-yaml-ref].
 

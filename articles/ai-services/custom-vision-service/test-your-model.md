@@ -1,14 +1,14 @@
 ---
 title: Test and retrain a model - Custom Vision Service
 titleSuffix: Azure AI services
-description: Learn how to test an image and then use it to retrain your model in the Custom Vision service.
-#services: cognitive-services
+description: Learn how to test an image and then use it to retrain your model in the Custom Vision service, ensuring your model improves over time with new data.
+#customer intent: As a developer, I want to test and retrain my Custom Vision model so that it improves its accuracy.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-custom-vision
 ms.topic: how-to
-ms.date: 01/21/2024
+ms.date: 01/22/2025
 ms.author: pafarley
 ---
 
@@ -50,6 +50,7 @@ You can now take the image submitted previously for testing and use it to retrai
 
 1. Use the **Train** button to retrain the classifier.
 
-## Next steps
+## Next step
 
-[Improve your model](getting-started-improving-your-classifier.md)
+> [!div class="nextstepaction"]
+> [Improve your model](getting-started-improving-your-classifier.md)

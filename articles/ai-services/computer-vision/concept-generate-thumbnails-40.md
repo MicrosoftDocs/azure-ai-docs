@@ -2,13 +2,13 @@
 title: Smart-cropped thumbnails - Image Analysis 4.0
 titleSuffix: Azure AI services
 description: Concepts related to generating thumbnails for images using the Image Analysis 4.0 API.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 01/19/2024
+ms.date: 02/21/2025
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
@@ -37,6 +37,7 @@ The generated bounding box can vary widely depending on what you specify for asp
 
 The smart cropping feature is available through the [Analyze Image 4.0 API](https://aka.ms/vision-4-0-ref). Include `SmartCrops` in the **features** query parameter. Also include a **smartcrops-aspect-ratios** query parameter, and set it to a decimal value for the aspect ratio you want (defined as width / height) in the range [0.75, 1.80]. Multiple aspect ratio values should be comma-separated. If no aspect ratio value is provided the API will return a crop with an aspect ratio that best preserves the image’s most important region.  
 
-## Next steps
+## Next step
 
-* [Call the Analyze Image API](./how-to/call-analyze-image-40.md)
+> [!div class="nextstepaction"]
+> [Call the Analyze Image API](./how-to/call-analyze-image-40.md)

@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 10/03/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: 'doc-intel-2.1.0'
 ---
@@ -106,7 +106,7 @@ After you create your web app, you can enable the continuous deployment option:
 > When creating your web app, you can also configure authorization/authentication. This is not necessary to get started.
 
 > [!IMPORTANT]
-> You may need to enable TLS for your web app in order to view it at its `https` address. Follow the instructions in [Enable a TLS endpoint](/azure/container-instances/container-instances-container-group-ssl) to set up a sidecar container than enables TLS/SSL for your web app.
+> You might need to enable TLS for your web app in order to view it at its `https` address. Follow the instructions in [Enable a TLS endpoint](/azure/container-instances/container-instances-container-group-ssl) to set up a sidecar container than enables TLS/SSL for your web app.
 <!-- markdownlint-disable MD001 -->
 ### Azure CLI
 

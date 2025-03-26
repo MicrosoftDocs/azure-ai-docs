@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 10/18/2023
+ms.date: 12/10/2024
 ---
 
 # Set up an indexer connection to Azure SQL Managed Instance using a managed identity

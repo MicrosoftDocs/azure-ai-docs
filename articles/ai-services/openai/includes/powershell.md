@@ -2,7 +2,6 @@
 title: "Quickstart: Use the OpenAI Service via PowerShell"
 titleSuffix: Azure OpenAI Service
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with PowerShell.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
@@ -143,4 +142,4 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 ## Next steps
 
 - Learn more about how to generate the best completion in our [How-to guide on completions](../how-to/completions.md).
-- For more examples check out the [Azure OpenAI Samples GitHub repository](https://aka.ms/AOAICodeSamples).
+- For more examples check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai).

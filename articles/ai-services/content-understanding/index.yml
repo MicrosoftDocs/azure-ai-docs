@@ -43,8 +43,8 @@ landingContent:
         links:
         - text: Try Content Understanding REST API
           url: quickstart/use-rest-api.md
-        - text: Try Azure AI Foundry
-          url: image/overview.md
+        - text: Try Azure AI Foundry portal
+          url: quickstart/use-ai-foundry.md
 
   - title: How-to guides
     linkLists:

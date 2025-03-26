@@ -64,7 +64,7 @@ Use this checklist to assist the design decisions for your search index.
 
 1. Identify which source fields can be used as filters. Numeric content and short text fields, particularly those with repeating values, are good choices. When working with filters, remember:
 
-   + Filters can be used in vector and nonvector queries, but the filter itself is applied to alphanumeric (nonvector) fields in your index.
+   + Filters can be used in vector and nonvector queries, but the filter itself is applied to human-readable (nonvector) fields in your index.
 
    + Filterable fields can optionally be used in faceted navigation.
 

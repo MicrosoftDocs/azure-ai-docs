@@ -1,5 +1,4 @@
 ---
-#services: cognitive-services
 manager: nitinme
 author: aahill
 ms.author: aahi
@@ -10,10 +9,9 @@ ms.date: 02/09/2024
 
 ## Deploy your model
 
-Once you're satisfied with the experience in Azure OpenAI studio, you can deploy a web app directly from the 
-Studio by selecting the **Deploy to** button. 
+Once you're satisfied with the experience, you can deploy a web app directly from the portal by selecting the **Deploy to** button. 
 
-:::image type="content" source="../media/use-your-data/deploy-model.png" alt-text="A screenshot showing the model deployment button in Azure OpenAI Studio." lightbox="../media/use-your-data/deploy-model.png":::
+:::image type="content" source="../media/use-your-data/deploy-model.png" alt-text="A screenshot showing the model deployment button in the portal." lightbox="../media/use-your-data/deploy-model.png":::
 
 This gives you the option to either deploy to a standalone web application, or a copilot in Copilot Studio (preview) if you're [using your own data](../concepts/use-your-data.md#deploy-to-a-copilot-preview-teams-app-preview-or-web-app) on the model. 
 

@@ -1,14 +1,14 @@
 ---
 title: What are OpenAI text to speech voices?
 titleSuffix: Azure AI services
-description: Learn about OpenAI text to speech voices that you can use with speech synthesis.
+description: Learn about OpenAI voices that you can use for text to speech in Azure AI services.
 author: eric-urban
 ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 9/20/2024
-ms.reviewer: v-baolianzou
+ms.date: 2/22/2025
+ms.reviewer: eur
 ms.custom: references_regions
 #customer intent: As a user who implements text to speech, I want to understand the options and differences between available OpenAI text to speech voices in Azure AI services.
 ---
@@ -32,7 +32,7 @@ You can choose from the following text to speech voices in Azure AI services:
 
 - OpenAI text to speech voices in [Azure OpenAI Service](../openai/reference.md#text-to-speech). Available in the following regions: North Central US and Sweden Central.
 - OpenAI text to speech voices in [Azure AI Speech](./language-support.md?tabs=tts#multilingual-voices). Available in the following regions: North Central US and Sweden Central.
-- Azure AI Speech service [text to speech voices](./language-support.md?tabs=tts#prebuilt-neural-voices). Available in dozens of regions. See the [region list](regions.md#speech-service).
+- Azure AI Speech service [text to speech voices](./language-support.md?tabs=tts#prebuilt-neural-voices). Available in dozens of regions. See the [region list](regions.md#regions).
 
 ## OpenAI text to speech voices via Azure OpenAI Service or via Azure AI Speech?
 
@@ -42,7 +42,7 @@ Here's a comparison of features between OpenAI text to speech voices in Azure Op
 
 | Feature | Azure OpenAI Service (OpenAI voices) | Azure AI Speech (OpenAI voices) | Azure AI Speech voices |
 |---------|---------------|------------------------|------------------------|
-| **Region** | North Central US, Sweden Central | North Central US, Sweden Central | Available in dozens of regions. See the [region list](regions.md#speech-service).|
+| **Region** | North Central US, Sweden Central | North Central US, Sweden Central | Available in dozens of regions. See the [region list](regions.md#regions).|
 | **Voice variety** | 6 | 12 | More than 500 |
 | **Multilingual voice number** | 6 | 12 | 49 |
 | **Max multilingual language coverage** | 57 | 57 | 77 |
@@ -58,6 +58,31 @@ There are additional features and capabilities available in Azure AI Speech that
 - OpenAI text to speech voices in Azure AI Speech [only support a subset of SSML elements](#ssml-elements-supported-by-openai-text-to-speech-voices-in-azure-ai-speech). Azure AI Speech voices support the full set of SSML elements.
 - Azure AI Speech supports [word boundary events](./how-to-speech-synthesis.md#subscribe-to-synthesizer-events). OpenAI voices don't support word boundary events. 
 
+### Available OpenAI text to speech voices
+
+The available OpenAI voices in Azure OpenAI Service are: 
+
+- `alloy`
+- `echo`
+- `fable`
+- `onyx`
+- `nova`
+- `shimmer` 
+
+The available OpenAI voices in Azure AI Speech are:
+
+- `en-US-AlloyMultilingualNeural`
+- `en-US-EchoMultilingualNeural`
+- `en-US-FableMultilingualNeural`
+- `en-US-OnyxMultilingualNeural`
+- `en-US-NovaMultilingualNeural`
+- `en-US-ShimmerMultilingualNeural`
+- `en-US-AlloyMultilingualNeuralHD`
+- `en-US-EchoMultilingualNeuralHD`
+- `en-US-FableMultilingualNeuralHD`
+- `en-US-OnyxMultilingualNeuralHD`
+- `en-US-NovaMultilingualNeuralHD`
+- `en-US-ShimmerMultilingualNeuralHD`
 
 ## SSML elements supported by OpenAI text to speech voices in Azure AI Speech
 

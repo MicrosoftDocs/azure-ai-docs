@@ -40,7 +40,7 @@ landingContent:
         links:
            - text: Chat completions
              url: chatgpt-quickstart.md
-           - text: GPT-4 Turbo with Vision
+           - text: Vision-enabled models
              url: gpt-v-quickstart.md  
            - text: DALL-E
              url: dall-e-quickstart.md
@@ -98,7 +98,7 @@ landingContent:
                url: ./how-to/role-based-access-control.md 
              - text: GPT-3.5 Turbo & GPT-4
                url:  ./how-to/chatgpt.md
-             - text: GPT-4 Turbo with Vision
+             - text: Vision-enabled models
                url:  ./how-to/gpt-with-vision.md
              - text: Provisioned Throughput Units (PTU) 
                url: ./how-to/provisioned-throughput-onboarding.md
@@ -133,7 +133,7 @@ landingContent:
         - text: Limited access
           url: /legal/cognitive-services/openai/limited-access?context=/azure/ai-services/openai/context/context
         - text: Code of conduct
-          url: /legal/cognitive-services/openai/code-of-conduct?context=/azure/ai-services/openai/context/context
+          url: /legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context
         - text: Data, privacy, and security
           url: /legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context
         - text: Customer Copyright Commitment

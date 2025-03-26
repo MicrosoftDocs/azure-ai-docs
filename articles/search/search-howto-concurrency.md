@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/23/2024
+ms.date: 01/16/2025
 ms.custom:
   - devx-track-csharp
   - ignite-2023

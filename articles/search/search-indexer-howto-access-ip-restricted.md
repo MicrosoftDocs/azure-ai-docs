@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 05/01/2024
+ms.date: 12/10/2024
 ---
 
 # Configure IP firewall rules to allow indexer connections from Azure AI Search
@@ -80,7 +80,7 @@ For ping, the request times out, but the IP address is visible in the response. 
 
 ## Get IP addresses for "AzureCognitiveSearch" service tag
 
-You'll also need to create an inbound rule that allows requests from the [multitenant execution environment](search-indexer-securing-resources.md#indexer-execution-environment). This environment is managed by Microsoft and it's used to offload processing intensive jobs that could otherwise overwhelm your search service. This section explains how to get the range of IP addresses needed to create this inbound rule.
+You'll also need to create an inbound rule that allows requests from the [multitenant execution environment](search-indexer-securing-resources.md#network-access-and-indexer-execution-environments). This environment is managed by Microsoft and it's used to offload processing intensive jobs that could otherwise overwhelm your search service. This section explains how to get the range of IP addresses needed to create this inbound rule.
 
 An IP address range is defined for each region that supports Azure AI Search. Specify the full range to ensure the success of requests originating from the multitenant execution environment. 
 

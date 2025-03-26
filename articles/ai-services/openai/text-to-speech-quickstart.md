@@ -5,8 +5,8 @@ description: Use the Azure OpenAI Service for text to speech with OpenAI voices.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: quickstart
-ms.date: 9/12/2024
-ms.reviewer: v-baolianzou
+ms.date: 3/10/2025
+ms.reviewer: eur
 ms.author: eur
 author: eric-urban
 recommendations: false
@@ -53,4 +53,4 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 ## Next steps
 
 * Learn more about how to work with text to speech with Azure OpenAI Service in the [Azure OpenAI Service reference documentation](./reference.md#text-to-speech).
-* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://aka.ms/AOAICodeSamples)
+* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai)

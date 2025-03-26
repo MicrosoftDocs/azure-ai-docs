@@ -2,7 +2,6 @@
 title: 'Create and manage Azure OpenAI Service deployments in the Azure portal'
 titleSuffix: Azure OpenAI
 description: Learn how to use the Azure portal to create an Azure OpenAI resource and manage deployments with the Azure OpenAI Service.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
@@ -97,7 +96,7 @@ Before you can generate text or inference, you need to deploy a model. You can s
 
 To deploy a model, follow these steps:
 
-1. Sign in to [Azure AI Foundry](https://oai.azure.com).
+1. Sign in to [Azure AI Foundry portal](https://ai.azure.com).
 
 2. Choose the subscription and the Azure OpenAI resource to work with, and select **Use resource**.
 

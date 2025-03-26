@@ -15,7 +15,12 @@ ms.service: azure-ai-openai
 
 ## Dashboards
 
-Azure OpenAI provides out-of-box dashboards for each of your Azure OpenAI resources. To access the monitoring dashboards sign-in to [https://portal.azure.com](https://portal.azure.com) and select the overview pane for one of your Azure OpenAI resources.
+Azure OpenAI provides out-of-box dashboards for each of your Azure OpenAI resources. There are two key dashboards to monitor your resource: 
+
+- The metrics dashboard in the AI Foundry Azure OpenAI resource view 
+- The dashboard in the overview pane within the Azure portal 
+
+To access the monitoring dashboards, sign in to the [Azure portal](https://portal.azure.com) and then select the overview pane for one of your Azure OpenAI resources. To see the AI Foundry metrics dashboard from the Azure portal, select the overview pane and **Go to Azure AI Foundry portal**. Under tools, select the metrics dashboard.   
 
 :::image type="content" source="../media/monitoring/dashboard.png" alt-text="Screenshot that shows out-of-box dashboards for an Azure OpenAI resource in the Azure portal." lightbox="../media/monitoring/dashboard.png" border="false":::
 
@@ -69,7 +74,7 @@ After you configure the diagnostic settings, you can work with metrics and log d
 
 [!INCLUDE [horz-monitor-kusto-queries](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-kusto-queries.md)]
 
-After you deploy an Azure OpenAI model, you can send some completions calls by using the **playground** environment in [Azure AI Foundry](https://oai.azure.com/).
+After you deploy an Azure OpenAI model, you can send some completions calls by using the **playground** environment in [Azure AI Foundry](https://ai.azure.com/).
 
 Any text that you enter in the **Completions playground** or the **Chat completions playground** generates metrics and log data for your Azure OpenAI resource. In the Log Analytics workspace for your resource, you can query the monitoring data by using the [Kusto](/azure/data-explorer/kusto/query/) query language.
 

@@ -1,11 +1,11 @@
 ---
-title: "Quickstart: Build, deploy, and use a custom model - Custom Translator"
+title: "Quickstart: Build, deploy, and use a custom model - Azure AI Custom Translator"
 titleSuffix: Azure AI services
-description: A step-by-step guide to building a translation system using the Custom Translator portal v2.
+description: A step-by-step guide to building a translation system using the Azure AI Custom Translator portal v2.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 07/08/2024
+ms.date: 01/27/2025
 ms.author: lajanuar
 ms.topic: quickstart
 ---
@@ -15,7 +15,7 @@ Translator is a cloud-based neural machine translation service that is part of t
 
 ## Prerequisites
 
- To use the [Custom Translator](https://portal.customtranslator.azure.ai/) portal, you need the following resources:
+ To use the [Azure AI Custom Translator](https://portal.customtranslator.azure.ai/) portal, you need the following resources:
 
 * A [Microsoft account](https://signup.live.com).
 
@@ -25,33 +25,33 @@ Translator is a cloud-based neural machine translation service that is part of t
 
     :::image type="content" source="../media/keys-and-endpoint-portal.png" alt-text="Screenshot: Azure portal keys and endpoint page.":::
 
-For more information, *see* [how to create a Translator resource](../create-translator-resource.yml).
+For more information, *see* [how to create a Translator resource](../create-translator-resource.md).
 
-## Custom Translator portal
+## Azure AI Custom Translator portal
 
-Once you complete the prerequisites, sign in to the [Custom Translator](https://portal.customtranslator.azure.ai/) portal to create workspaces, build projects, upload files, train models, and publish your custom solution.
+Once you complete the prerequisites, sign in to the [Azure AI Custom Translator](https://portal.customtranslator.azure.ai/) portal to create workspaces, build projects, upload files, train models, and publish your custom solution.
 
 You can read an overview of translation and custom translation, learn some tips, and watch a getting started video in the [Azure AI technical blog](https://techcommunity.microsoft.com/t5/azure-ai/customize-a-translation-to-make-sense-in-a-specific-context/ba-p/2811956).
 
 ## Process summary
 
-1. [**Create a workspace**](#create-a-workspace). A workspace is a work area for composing and building your custom translation system. A workspace can contain multiple projects, models, and documents. All the work you do in Custom Translator is done inside a specific workspace.
+1. [**Create a workspace**](#create-a-workspace). A workspace is a work area for composing and building your custom translation system. A workspace can contain multiple projects, models, and documents. All the work you do in Azure AI Custom Translator is done inside a specific workspace.
 
 1. [**Create a project**](#create-a-project). A project is a wrapper for models, documents, and tests. Each project includes all documents that are uploaded into that workspace with the correct language pair. For example, if you have both an English-to-Spanish project and a Spanish-to-English project, the same documents are included in both projects.
 
 1. [**Upload parallel documents**](#upload-documents). Parallel documents are pairs of documents where one (target) is the translation of the other (source). One document in the pair contains sentences in the source language and the other document contains sentences translated into the target language. It doesn't matter which language is marked as "source" and which language is marked as "target"—a parallel document can be used to train a translation system in either direction.
 
-1. [**Train your model**](#train-your-model). A model is the system that provides translation for a specific language pair. The outcome of a successful training is a model. When you train a model, three mutually exclusive document types are required: training, tuning, and testing. If only training data is provided when queuing a training, Custom Translator automatically assembles tuning and testing data. It uses a random subset of sentences from your training documents, and excludes these sentences from the training data itself. A 10,000 parallel sentence is the minimum requirement to train a model.
+1. [**Train your model**](#train-your-model). A model is the system that provides translation for a specific language pair. The outcome of a successful training is a model. When you train a model, three mutually exclusive document types are required: training, tuning, and testing. If only training data is provided when queuing a training, Azure AI Custom Translator automatically assembles tuning and testing data. It uses a random subset of sentences from your training documents, and excludes these sentences from the training data itself. A 10,000 parallel sentence is the minimum requirement to train a model.
 
 1. [**Test (human evaluate) your model**](#test-your-model). The testing set is used to compute the [`BLEU`](beginners-guide.md#what-is-a-bleu-score) score. This score indicates the quality of your translation system.
 
 1. [**Publish (deploy) your trained model**](#publish-your-model). Your custom model is made available for runtime translation requests.
 
-1. [**Translate text**](#translate-text). Use the cloud-based, secure, high performance, highly scalable Microsoft Translator [Text API V3](../reference/v3-0-translate.md?tabs=curl) to make translation requests.
+1. [**Translate text**](#translate-text). Use the cloud-based, secure, high performance, highly scalable Microsoft Translator [Text API V3](../text-translation/reference/v3/translate.md?tabs=curl) to make translation requests.
 
 ## Create a workspace
 
-1. After your sign-in to Custom Translator, you'll be asked for permission to read your profile from the Microsoft identity platform to request your user access token and refresh token. Both tokens are needed for authentication and to ensure that you aren't signed out during your live session or while training your models. </br>Select **Yes**.
+1. After your sign-in to Azure AI Custom Translator, you'll be asked for permission to read your profile from the Microsoft identity platform to request your user access token and refresh token. Both tokens are needed for authentication and to ensure that you aren't signed out during your live session or while training your models. </br>Select **Yes**.
 
    :::image type="content" source="media/quickstart/first-time-user.png" alt-text="Screenshot illustrating how to create a workspace.":::
 
@@ -80,7 +80,7 @@ You can read an overview of translation and custom translation, learn some tips,
 
 Once the workspace is created successfully, you see the **Projects** page.
 
-You create English-to-German project to train a custom model with only a [training](concepts/model-training.md#training-document-type-for-custom-translator) document type.
+You create English-to-German project to train a custom model with only a [training](concepts/model-training.md#training-document-type-for-azure-ai-custom-translator) document type.
 
 1. Select **Create project**.
 
@@ -98,9 +98,9 @@ You create English-to-German project to train a custom model with only a [traini
 
 ## Upload documents
 
-In order to create a custom model, you need to upload all or a combination of [training](concepts/model-training.md#training-document-type-for-custom-translator), [tuning](concepts/model-training.md#tuning-document-type-for-custom-translator), [testing](concepts/model-training.md#testing-dataset-for-custom-translator), and [dictionary](concepts/dictionaries.md) document types.
+In order to create a custom model, you need to upload all or a combination of [training](concepts/model-training.md#training-document-type-for-azure-ai-custom-translator), [tuning](concepts/model-training.md#tuning-document-type-for-custom-translator), [testing](concepts/model-training.md#testing-dataset-for-azure-ai-custom-translator), and [dictionary](concepts/dictionaries.md) document types.
 
-In this quickstart, we show you how to upload [training](concepts/model-training.md#training-document-type-for-custom-translator) documents for customization.
+In this quickstart, we show you how to upload [training](concepts/model-training.md#training-document-type-for-azure-ai-custom-translator) documents for customization.
 
 >[!Note]
 > You can use our sample training, phrase and sentence dictionaries dataset, [Customer sample English-to-German datasets](https://github.com/MicrosoftTranslator/CustomTranslatorSampleDatasets), for this quickstart. However, for production, it's better to upload your own training dataset.
@@ -182,9 +182,9 @@ Publishing your model makes it available for use with the Translator API. A proj
 
 ## Translate text
 
-1. Developers should use the `Category ID` when making translation requests with Microsoft Translator [Text API V3](../reference/v3-0-translate.md?tabs=curl). More information about the Translator Text API can be found on the [API Reference](../reference/v3-0-reference.md) webpage.
+1. Developers should use the `Category ID` when making translation requests with Microsoft Translator [Text API V3](../text-translation/reference/v3/translate.md?tabs=curl). More information about the Translator Text API can be found on the [API Reference](../text-translation/reference/v3/reference.md) webpage.
 
-1. Business users may want to download and install our free [DocumentTranslator app for Windows](https://github.com/MicrosoftTranslator/DocumentTranslation/releases).
+1. Business users can download and install our free [DocumentTranslator app for Windows](https://github.com/MicrosoftTranslator/DocumentTranslation/releases).
 
 ## Next steps
 

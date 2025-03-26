@@ -5,7 +5,7 @@ author: gclarkmt
 ms.author: gregc
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 03/25/2024
+ms.date: 01/25/2025
 ms.custom: template-concept
 ---
 
@@ -24,7 +24,7 @@ There are two parts to enable data loss prevention. First, the resource property
 >[!NOTE]
 >
 > * The `allowedFqdnList`  property value supports a maximum of 1000 URLs.
-> * The property supports both IP addresses and fully qualified domain names i.e., `www.microsoft.com`, values.
+> * The property supports both IP addresses (IPv4 only) and fully qualified domain names (i.e., `www.microsoft.com`) as values.
 > * It can take up to 15 minutes for the updated list to take effect. 
 
 # [Azure CLI](#tab/azure-cli)
@@ -42,14 +42,14 @@ There are two parts to enable data loss prevention. First, the resource property
 
     ```azurecli-interactive
     az rest -m get \
-        -u /subscriptions/{subscription ID}/resourceGroups/{resource group}/providers/Microsoft.CognitiveServices/accounts/{account name}?api-version=2021-04-30 \
+        -u /subscriptions/{subscription ID}/resourceGroups/{resource group}/providers/Microsoft.CognitiveServices/accounts/{account name}?api-version=2024-10-01 \
     ```
 
 1. Configure the restrictOutboundNetworkAccess property and update the allowed FqdnList with the approved URLs
 
     ```azurecli-interactive
     az rest -m patch \
-        -u /subscriptions/{subscription ID}/resourceGroups/{resource group}/providers/Microsoft.CognitiveServices/accounts/{account name}?api-version=2021-04-30 \
+        -u /subscriptions/{subscription ID}/resourceGroups/{resource group}/providers/Microsoft.CognitiveServices/accounts/{account name}?api-version=2024-10-01 \
         -b '{"properties": { "restrictOutboundNetworkAccess": true, "allowedFqdnList": [ "microsoft.com" ] }}'
     ```
 
@@ -65,7 +65,7 @@ There are two parts to enable data loss prevention. First, the resource property
         ResourceProviderName = 'Microsoft.CognitiveServices'
         ResourceType = 'accounts'
         Name = 'myaccount'
-        ApiVersion = '2021-04-30'
+        ApiVersion = '2024-10-01'
         Method = 'GET'
     }
     Invoke-AzRestMethod @getParams
@@ -79,7 +79,7 @@ There are two parts to enable data loss prevention. First, the resource property
         ResourceProviderName = 'Microsoft.CognitiveServices'
         ResourceType = 'accounts'
         Name = 'myaccount'
-        ApiVersion = '2021-04-30'
+        ApiVersion = '2024-10-01'
         Payload = '{"properties": { "restrictOutboundNetworkAccess": true, "allowedFqdnList": [ "microsoft.com" ] }}'
         Method = 'PATCH'
     }

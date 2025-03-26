@@ -2,7 +2,6 @@
 title: Entity categories recognized by Conversational Personally Identifiable Information (detection) in Azure AI Language
 titleSuffix: Azure AI services
 description: Learn about the entities the Conversational PII feature can recognize from conversation inputs.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
@@ -49,7 +48,7 @@ This category contains the following entity:
    :::column-end:::
 :::row-end:::
 
-## Category: PhoneNumber
+## Category: Phone
 
 This category contains the following entity:
 
@@ -57,7 +56,7 @@ This category contains the following entity:
     :::column span="":::
         **Entity**
 
-        PhoneNumber
+        Phone
 
     :::column-end:::
     :::column span="2":::
@@ -65,7 +64,7 @@ This category contains the following entity:
 
         All telephone numbers (including toll-free numbers or numbers that may be easily found or considered public knowledge) are considered PII
 
-        To get this entity category, add `PhoneNumber` to the `pii-categories` parameter. `PhoneNumber` will be returned in the API response if detected.
+        To get this entity category, add `Phone` to the `pii-categories` parameter. `Phone` will be returned in the API response if detected.
       
     :::column-end:::
 

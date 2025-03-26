@@ -2,7 +2,6 @@
 title: "Tutorial: Create an iOS app that takes a photo and launches it in the Immersive Reader (Swift)"
 titleSuffix: Azure AI services
 description: Learn how to build an iOS app from scratch and add the Picture to Immersive Reader functionality.
-#services: cognitive-services
 author: sharmas
 
 ms.service: azure-ai-immersive-reader
@@ -39,9 +38,9 @@ Choose **Single View App**.
 
 ## Get the SDK CocoaPod
 
-The easiest way to use the Immersive Reader SDK is via CocoaPods. To install via Cocoapods:
+The easiest way to use the Immersive Reader SDK is via CocoaPods. To install via CocoaPods:
 
-1. Follow the [guide to install Cocoapods](http://guides.cocoapods.org/using/getting-started.html).
+1. Follow the [guide to install CocoaPods](http://guides.cocoapods.org/using/getting-started.html).
 
 2. Create a Podfile by running `pod init` in your Xcode project's root directory.
 

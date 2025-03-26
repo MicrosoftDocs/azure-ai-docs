@@ -2,27 +2,28 @@
 title: "Tutorial: Use custom logo detector to recognize Azure services - Custom Vision"
 titleSuffix: Azure AI services
 description: In this tutorial, you will step through a sample app that uses Custom Vision as part of a logo detection scenario. Learn how Custom Vision is used with other components to deliver an end-to-end application.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-custom-vision
 ms.topic: tutorial
-ms.date: 06/01/2024
+ms.date: 01/29/2025
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp
+#customer intent: As a developer, I want to use Custom Vision to recognize Azure service logos so that I can automate service deployment.
+
 ---
 
 # Tutorial: Recognize Azure service logos in camera pictures
 
-In this tutorial, explore a sample app that uses Custom Vision as part of a larger scenario. The AI Visual Provision app, a Xamarin.Forms application for mobile platforms, analyzes photos of Azure service logos and then deploys those services to the user's Azure account. Here you'll learn how it uses Custom Vision in coordination with other components to deliver a useful end-to-end application. You can run the whole app scenario for yourself, or you can complete only the Custom Vision part of the setup and explore how the app uses it.
+In this tutorial, you'll explore a sample app that uses Custom Vision as part of a larger scenario. The AI Visual Provision app, a Xamarin.Forms application for mobile platforms, analyzes photos of Azure service logos and then deploys those services to the user's Azure account. Here you'll learn how it uses Custom Vision in coordination with other components to deliver a useful end-to-end application. You can run the whole app scenario for yourself, or you can complete only the Custom Vision part of the setup and explore how the app uses it.
 
 This tutorial shows you how to:
 
 > [!div class="checklist"]
-> - Create a custom object detector to recognize Azure service logos.
-> - Connect your app to Azure AI Vision and Custom Vision.
-> - Create an Azure service principal account to deploy Azure services from the app.
+> * Create a custom object detector to recognize Azure service logos.
+> * Connect your app to Azure AI Vision and Custom Vision.
+> * Create an Azure service principal account to deploy Azure services from the app.
 
 If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin. 
 
@@ -170,7 +171,7 @@ If you've followed all of the steps of this scenario and used the app to deploy 
 
 If you plan to create your own object detection project with Custom Vision, you might want to delete the logo detection project you created in this tutorial. A free subscription for Custom Vision allows for only two projects. To delete the logo detection project, on the [Custom Vision website](https://customvision.ai), open **Projects** and then select the trash icon under **My New Project**.
 
-## Next steps
+## Next step
 
 In this tutorial, you set up and explored a full-featured Xamarin.Forms app that uses the Custom Vision service to detect logos in mobile camera images. Next, learn the best practices for building a Custom Vision model so that when you create one for your own app, you can make it powerful and accurate.
 

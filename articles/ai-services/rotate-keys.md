@@ -2,20 +2,19 @@
 title: Rotate keys in Azure AI services
 titleSuffix: Azure AI services
 description: "Learn how to rotate API keys for better security, without interrupting service"
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 01/20/2024
+ms.date: 01/10/2025
 ms.author: pafarley
 ---
 
 # Rotate keys in Azure AI services
 
-Each Azure AI services resource has two API keys to enable secret rotation. This is a security precaution that lets you regularly change the keys that can access your service, protecting the privacy of your resource if a key gets leaked.
+Each Azure AI services resource has two API keys to enable secret rotation. This is a security precaution that lets you regularly change the keys that can be used to access your service, protecting the privacy of your resource if a key gets leaked.
 
 ## How to rotate keys
 

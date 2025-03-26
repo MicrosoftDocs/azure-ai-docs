@@ -1,7 +1,6 @@
 ---
 title: include file
 description: include file
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-personalizer
 ms.topic: include
@@ -87,10 +86,9 @@ The Personalizer learning loop is a cycle of **Rank** and **Reward** calls. In t
 
 1. Paste your key and endpoint into the code where indicated.
 
-    > [!IMPORTANT]
-    > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about security, see the Azure AI services [security](../../security-features.md) article.
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
-    :::code language="js" source="~/cognitive-services-quickstart-code/javascript/Personalizer/quickstart-sdk/personalizer-quickstart.js" id="snippet_2":::
+:::code language="js" source="~/cognitive-services-quickstart-code/javascript/Personalizer/quickstart-sdk/personalizer-quickstart.js" id="snippet_2":::
 
 ## Run the program
 

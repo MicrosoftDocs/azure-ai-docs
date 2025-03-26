@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 10/08/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ---
 
@@ -40,7 +40,7 @@ Let's get started:
     * **Subscription**. Select your current subscription.
     * **Resource group**. The [Azure resource group](/azure/cloud-adoption-framework/govern/resource-consistency/resource-access-management#what-is-an-azure-resource-group) that contains your resource. You can create a new group or add it to an existing group.
     * **Region**. Select your local region.
-    * **Name**. Enter a name for your resource. We recommend using a descriptive name, for example *YourNameFormRecognizer*.
+    * **Name**. Enter a name for your resource. We recommend using a descriptive name, for example *YourNameDocumentIntelligence*.
     * **Pricing tier**. The cost of your resource depends on the pricing tier you choose and your usage. For more information, see [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/). You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production.
 
 1. Select **Review + Create**.

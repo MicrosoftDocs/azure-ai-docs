@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 02/16/2024
+ms.date: 12/10/2024
 ---
 
 # Tips for AI enrichment in Azure AI Search 

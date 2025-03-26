@@ -1,20 +1,23 @@
 ---
 title: Do video retrieval using vectorization - Image Analysis 4.0
 titleSuffix: Azure AI services
-description: Learn how to call the Video Retrieval APIs to vectorize video frames and search terms.
-#services: cognitive-services
+description: Learn how to use the Video Retrieval APIs to vectorize video frames and search terms, and perform searches using metadata and features.
+#customer intent: As a developer, I want to use Video Retrieval APIs to enhance video search capabilities with metadata and features.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 10/16/2023
+ms.date: 01/22/2025
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
 # Do video retrieval using vectorization (version 4.0 preview)
 
-Azure AI Video Retrieval APIs are part of Azure AI Vision and enable developers to create an index, add documents (videos and images) to it, and search with natural language. Developers can define metadata schemas for each index and ingest metadata to the service to help with retrieval. Developers can also specify what features to extract from the index (vision, speech) and filter their search based on features.
+[!INCLUDE [video-retrieval-deprecation](../includes/video-retrieval-deprecation.md)]
+
+Azure AI Video Retrieval APIs are part of Azure AI Vision and enable developers to create a media index, add documents (videos and images) to it, and search it with natural language. Developers can define metadata schemas for each index and ingest metadata to the service to help with retrieval. Developers can also specify which features to extract from the index (vision, speech) and filter their search based on features.
 
 ## Prerequisites
 
@@ -22,13 +25,15 @@ Azure AI Video Retrieval APIs are part of Azure AI Vision and enable developers 
 - Once you have your Azure subscription, [create a Vision resource using the portal](/azure/cognitive-services/cognitive-services-apis-create-account). For this preview, you must create your resource in the one of the following regions - Australia East, Switzerland North, Sweden Central, or East US.
 - An Azure Storage resource - [Create one](/azure/storage/common/storage-account-create?tabs=azure-portal)
 
-## Input requirements
+## Select a video
+
+Refer to the video input requirements:
 
 [!INCLUDE [video-retrieval-input](../includes/video-retrieval-input.md)]
 
 ## Call the Video Retrieval APIs
 
-To use the Video Retrieval APIs in a typical pattern, you would do the following steps:
+To use the Video Retrieval APIs in a typical pattern, you'll follow these steps:
 
 1. Create an index using **PUT - Create an index**.
 2. Add video documents to the index using **PUT - CreateIngestion**.
@@ -36,9 +41,9 @@ To use the Video Retrieval APIs in a typical pattern, you would do the following
 4. Search for a keyword or phrase using **POST - SearchByText**.
 
 
-### Use Video Retrieval APIs for metadata-based search
+### Example: Use Video Retrieval APIs for metadata-based search
 
-The Video Retrieval APIs allows a user to add metadata to video files. Metadata is additional information associated with video files such as "Camera ID," "Timestamp," or "Location" that can be used to organize, filter, and search for specific videos. This example demonstrates how to create an index, add video files with associated metadata, and perform searches using different features.
+The Video Retrieval APIs allow a user to add metadata to video files. Metadata is additional information associated with video files such as "Camera ID," "Timestamp," or "Location" that can be used to organize, filter, and search for specific videos. This example demonstrates how to create an index, add video files with associated metadata, and perform searches using different features.
 
 ### Step 1: Create an Index
 
@@ -76,7 +81,7 @@ curl.exe -v -X PUT "https://<YOUR_ENDPOINT_URL>/computervision/retrieval/indexes
 ```
 
 **Response:**
-```
+```console
 HTTP/1.1 201 Created
 Content-Length: 530
 Content-Type: application/json; charset=utf-8
@@ -155,7 +160,7 @@ curl.exe -v -X PUT "https://<YOUR_ENDPOINT_URL>/computervision/retrieval/indexes
 ```
 
 **Response:**
-```
+```console
 HTTP/1.1 202 Accepted
 Content-Length: 152
 Content-Type: application/json; charset=utf-8
@@ -183,7 +188,7 @@ curl.exe -v -X GET "https://<YOUR_ENDPOINT_URL>/computervision/retrieval/indexes
 ```
 
 **Response:**
-```
+```console
 HTTP/1.1 200 OK
 Content-Length: 164
 Content-Type: application/json; charset=utf-8
@@ -232,7 +237,7 @@ curl.exe -v -X POST "https://<YOUR_ENDPOINT_URL>/computervision/retrieval/indexe
 ```
 
 **Response:**
-```
+```console
 HTTP/1.1 200 OK
 Content-Length: 3289
 Content-Type: application/json; charset=utf-8
@@ -296,7 +301,7 @@ curl.exe -v -X POST "https://<YOUR_ENDPOINT_URL>com/computervision/retrieval/ind
 ```
 
 **Response:**
-```
+```console
 HTTP/1.1 200 OK
 Content-Length: 49001
 Content-Type: application/json; charset=utf-8
@@ -336,6 +341,7 @@ Connection: close
 }
 ```
 
-## Next steps
+## Next step
 
-[Multimodal embeddings concepts](../concept-image-retrieval.md)
+> [!div class="nextstepaction"]
+> [Multimodal embeddings concepts](../concept-image-retrieval.md)

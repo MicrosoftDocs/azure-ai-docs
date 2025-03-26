@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 02/20/2024
+ms.date: 12/10/2024
 ---
 
 # Troubleshoot issues with Shared Private Links in Azure AI Search

@@ -1,20 +1,20 @@
 ---
-title: What is Azure AI Translator container?
+title: What are Azure AI Translator containers?
 titlesuffix: Azure AI services
-description: Translate text and documents using the Azure AI Translator container.
+description: Translate text and documents using Azure AI Translator containers.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 05/02/2024
+ms.date: 01/29/2025
 ms.author: lajanuar
 ---
 
-# What is Azure AI Translator container?
+# What are Azure AI Translator containers?
 
-Azure AI Translator container enables you to build translator application architecture that is optimized for both robust cloud capabilities and edge locality. A container is a running instance of an executable software image. The Translator container image includes all libraries, tools, and dependencies needed to run an application consistently in any private, public, or personal computing environment. Containers are isolated, lightweight, portable, and are great for implementing specific security or data governance requirements. Translator container is available in [connected](#connected-containers) and [disconnected (offline)](#disconnected-containers) modalities.
+Azure AI Translator containers enable you to build translator application architecture that is optimized for both robust cloud capabilities and edge locality. A container is a running instance of an executable software image. A Translator container image includes all libraries, tools, and dependencies needed to run an application consistently in any private, public, or personal computing environment. Containers are isolated, lightweight, portable, and are great for implementing specific security or data governance requirements. Azure AI Translator containers are available in [connected](#connected-azure-ai-translator-containers) and [disconnected (offline)](#disconnected-azure-ai-translator-containers) modalities.
 
-## Connected containers
+## Connected Azure AI Translator containers
 
 **Translator connected container** is deployed on premises and processes content in your environment. It requires internet connectivity to transmit usage metadata for billing; however, your content isn't transmitted outside of your premises. The `EULA`, `Billing`, and `APIKey` options must be specified to run a container.
 
@@ -34,7 +34,7 @@ You're billed for connected containers monthly, based on the usage and consumpti
    }
    ```
 
-## Disconnected containers
+## Disconnected Azure AI Translator containers
 
 **Translator disconnected container** is deployed on premises and processes content in your environment. It doesn't require internet connectivity at runtime. Customer must license the container for projected usage over a year and is charged affront.
 
@@ -70,7 +70,7 @@ The aggregated value of `billedUnit` for the following meters is counted  toward
 
 * `CognitiveServices.TextTranslation.Container.TranslatedCharacters`
 
-## Request container access
+## Request Azure AI Translator container access
 
 **Translator containers are a gated offering. To use the Translator container, you must submit an online request for approval.**
 
@@ -83,7 +83,7 @@ The aggregated value of `billedUnit` for the following meters is counted  toward
   > [!IMPORTANT]
   > ✔️ On the form, you must use an email address associated with an Azure subscription ID.
   >
-  > ✔️ The Azure resource you use to run the container must have been created with the approved Azure subscription ID.
+  > ✔️ The Azure resource you use to run the container must be created with the approved Azure subscription ID.
   >
   > ✔️ Check your email (both inbox and junk folders) for updates on the status of your application from Microsoft.
 

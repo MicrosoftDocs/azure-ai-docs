@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: Learn about neural text to speech HD voices that you can use with speech synthesis.
 author: eric-urban
 ms.author: eur
-ms.reviewer: v-baolianzou
+ms.reviewer: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
@@ -39,7 +39,7 @@ Here's a comparison of features between Azure AI Speech HD voices, Azure OpenAI 
 
 | Feature | Azure AI Speech HD voices  | Azure OpenAI HD voices | Azure AI Speech voices (not HD) |
 |---------|---------------|------------------------|------------------------|
-| **Region** | East US, Southeast Asia, West Europe | North Central US, Sweden Central | Available in dozens of regions. See the [region list](regions.md#speech-service).|
+| **Region** | East US, Southeast Asia, West Europe | North Central US, Sweden Central | Available in dozens of regions. See the [region list](regions.md#regions).|
 | **Number of voices** | 12 | 6 | More than 500 |
 | **Multilingual**  | No (perform on primary language only) | Yes  | Yes (applicable only to multilingual voices)  |
 | **SSML support** | Support for [a subset of SSML elements](#supported-and-unsupported-ssml-elements-for-azure-ai-speech-hd-voices).|  Support for [a subset of SSML elements](openai-voices.md#ssml-elements-supported-by-openai-text-to-speech-voices-in-azure-ai-speech).  | Support for the [full set of SSML](speech-synthesis-markup-structure.md) in Azure AI Speech.  |

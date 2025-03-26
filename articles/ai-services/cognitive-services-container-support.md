@@ -2,7 +2,6 @@
 title: Use Azure AI containers on-premises
 titleSuffix: Azure AI services
 description: Learn how to use Docker containers to use Azure AI services on-premises.
-#services: cognitive-services
 author: aahill
 manager: nitinme
 ms.service: azure-ai-services
@@ -56,6 +55,7 @@ Azure AI containers provide the following set of Docker containers, each of whic
 | [Language service][ta-containers-pii] | **Personally Identifiable Information (PII) detection** ([image](https://mcr.microsoft.com/en-us/product/azure-cognitive-services/textanalytics/pii/tags))| Detect and redact personally identifiable information entities from text. | Generally available. <br>This container can also [run in disconnected environments](containers/disconnected-containers.md). |
 | [Language service][ta-containers-cner] |  **Custom Named Entity Recognition** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/customner/about))| Extract named entities from text, using a custom model you create using your data. | Generally available |
 | [Language service][ta-containers-summarization] | **Summarization** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/summarization/about))| Summarize text from various sources. | Public preview. <br>This container can also [run in disconnected environments](containers/disconnected-containers.md). |
+| [Language service][ta-containers-clu] | **Conversational Language Understanding** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/language/clu/about)| Interpret conversational language. | Generally Available. <br>This container can also [run in disconnected environments](containers/disconnected-containers.md). |
 | [Translator][tr-containers] | **Translator** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about))| Translate text in several languages and dialects. | Generally available. Gated - [request access](https://aka.ms/csgate-translator). <br>This container can also [run in disconnected environments](containers/disconnected-containers.md). |
 
 ### Speech containers
@@ -132,6 +132,7 @@ Install and explore the functionality provided by containers in Azure AI service
 [ta-containers-cner]: language-service/custom-named-entity-recognition/how-to/use-containers.md
 [ta-containers-summarization]: language-service/summarization/how-to/use-containers.md
 [ta-containers-ner]: language-service/named-entity-recognition/how-to/use-containers.md
-[ta-containers-pii]: language-service/personally-identifiable-information//how-to/use-containers.md
+[ta-containers-pii]: language-service/personally-identifiable-information/how-to/use-containers.md
+[ta-contatiners-clu]: language-service/conversational-language-understanding/how-to/use-containers.md
 [tr-containers]: translator/containers/translator-how-to-install-container.md
 [request-access]: https://aka.ms/csgate

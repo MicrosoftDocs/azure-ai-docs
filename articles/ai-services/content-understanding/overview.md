@@ -1,29 +1,31 @@
 ---
 title: What is Azure AI Content Understanding?
 titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding solutions
+description: Learn about Azure AI Content Understanding solutions, processes, workflows, use-cases, and field extractions.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 11/19/2024
+ms.date: 03/06/2025
 ms.custom: ignite-2024-understanding-release
+
+#customer intent: As a user, I want to learn more about Content Understanding solutions.
 ---
 
-# What is Azure AI Content Understanding?
+# What is Azure AI Content Understanding (preview)?
 
 > [!IMPORTANT]
 >
 > * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes may change or have constrained capabilities, prior to General Availability (GA).
+> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 Azure AI Content Understanding is a new Generative AI based [**Azure AI Service**](../what-are-ai-services.md), designed to process/ingest content of any types (documents, images, videos, and audio) into a user-defined output format.
 
 Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into automation and analytical workflows.
 
-:::image type="content" source="media/overview/content-understanding-overview.png" alt-text="Screenshot of Content Understanding overview.":::
+:::image type="content" source="media/overview/component-overview.png" alt-text="Screenshot of Content Understanding overview, process, and workflow.":::
 
 ## Why process with Content Understanding?
 
@@ -32,6 +34,8 @@ Content Understanding offers a streamlined process to reason over large amounts 
 * **Simplify field extraction**. Content Understanding's field extraction makes it easier to generate structured output from unstructured content. Define a schema to extract, classify, or generate field values with no complex prompt engineering
 
 * **Enhance accuracy**. Content Understanding employs multiple AI models to analyze and cross-validate information simultaneously, resulting in more accurate and reliable results.
+
+* **Confidence scores & grounding**. Content Understanding ensures the accuracy of extracted values while minimizing the cost of human review.
 
 ## Content Understanding use cases
 
@@ -42,20 +46,21 @@ Content Understanding offers a streamlined process to reason over large amounts 
 * **Analytics and reporting**: Content Understanding's extracted field outputs enhance analytics and reporting, allowing businesses to gain valuable insights, conduct deeper analysis, and make informed decisions based on accurate reports.
 
 ## Applications
+
 Common applications for Content Understanding include:
 
 |Application|Description|Quickstart|
 |:---------|:----------|:----------|
-|Post-call analytics| Businesses and call centers can generate insights from call recordings to track key KPIs, improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.| [**Post-call analytics quickstart**](quickstart/use-ai-foundry.md?tabs=audio#analyzer-templates) |
-|Media asset management| Software and media vendors can use Content Understanding to extract richer, targeted information from videos for media asset management solutions.| [**Media asset management quickstart**](quickstart/use-ai-foundry.md?tabs=video#analyzer-templates) |
-|Tax automation| Tax preparation companies can use Content Understanding to generate a unified view of information from various documents and create comprehensive tax returns.| [**Tax automation quickstart**](quickstart/use-ai-foundry.md?tabs=document#analyzer-templates) | 
-|Chart understanding| Businesses can enhance chart understanding by automating the analysis and interpretation of various types of charts and diagrams using Content Understanding.| [**Chart understanding quickstart**](quickstart/use-ai-foundry.md?tabs=image#analyzer-templates) |
+|Post-call analytics| Businesses and call centers can generate insights from call recordings to track key KPIs, improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.| [**Post-call analytics quickstart**](concepts/analyzer-templates.md#modality-templates) |
+|Media asset management| Software and media vendors can use Content Understanding to extract richer, targeted information from videos for media asset management solutions.| [**Media asset management quickstart**](concepts/analyzer-templates.md#modality-templates) |
+|Tax automation| Tax preparation companies can use Content Understanding to generate a unified view of information from various documents and create comprehensive tax returns.| [**Tax automation quickstart**](concepts/analyzer-templates.md#modality-templates) | 
+|Chart understanding| Businesses can enhance chart understanding by automating the analysis and interpretation of various types of charts and diagrams using Content Understanding.| [**Chart understanding quickstart**](concepts/analyzer-templates.md#modality-templates) |
 
 See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 
 ## Components
 
-:::image type="content" source="media/overview/component-overview.png" alt-text="Screenshot of Content Understanding components.":::
+:::image type="content" source="media/overview/cu-components.png" alt-text="Screenshot of Content Understanding components.":::
 
 |Component|Description|
 |:---------|:----------|
@@ -68,21 +73,29 @@ See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 
 
 ## Responsible AI
- Azure AI Content Understanding is designed to guard against processing harmful content. For more information, *see* our **Transparency Note** and our [**Code of Conduct**](/legal/cognitive-services/openai/code-of-conduct).
+
+ Azure AI Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. For more information and a full list of prohibited content, *see* our [**Transparency note**](/legal/cognitive-services/content-understanding/transparency-note?toc=/azure/ai-services/content-understanding/toc.json&bc=/azure/ai-services/content-understanding/breadcrumb/toc.json) and our [**Code of Conduct**](https://aka.ms/AI-CoC).
+
+### Modified Content Filtering
+
+Content Understanding now supports modified content filtering for approved customers. The subscription IDs with approved modified content filtering impacts Content Understanding output. By default, Content Understanding employs a content filtering system that identifies specific risk categories for potentially harmful content in both submitted prompts and generated outputs. Modified content filtering allows the system to annotate rather than block potentially harmful output, giving you the ability to determine how to handle potentially harmful content. For more information on content filter types, *see* [Content filtering: filter types](../openai/concepts/content-filter.md#content-filter-types).
+
+> [!IMPORTANT]
+>
+> * Apply for modified content filters via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
+> * For more information, *see* [**Content Filtering**](../openai/concepts/content-filter.md).
+
+To learn more about how to add modified content filtering to your requests, *see* our [REST API quickstart](quickstart/use-rest-api.md#modified-content-filtering).
 
 ## Data privacy and security
 Developers using the Content Understanding service should review Microsoft's policies on customer data. For more information, visit our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page.
 
 > [!IMPORTANT]
-> If you are using Microsoft products or services to process Biometric Data, you are responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate and required under applicable Data Protection Requirements. "Biometric Data" will have the meaning set forth in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
+> If you're using Microsoft products or services to process Biometric Data, you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate, and required under applicable Data Protection Requirements. "Biometric Data" has the meaning articulated in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
 
 ## Getting started
 Our quickstart guides help you quickly start using the Content Understanding service:
 
-* [**Azure AI Foundry Quickstart**](quickstart/use-ai-foundry.md)
+* [**Azure AI Foundry portal Quickstart**](quickstart/use-ai-foundry.md)
 * [**Rest API Quickstart**](quickstart/use-rest-api.md)
-
-
-
-
 

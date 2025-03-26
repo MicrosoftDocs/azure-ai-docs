@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 8/20/2024
+ms.date: 3/12/2025
 ms.author: eur
 ms.custom: devx-track-python, devx-track-js, devx-track-csharp, mode-other, devx-track-dotnet, devx-track-extended-java, devx-track-go, ignite-2023, linux-related-content
 zone_pivot_groups: programming-languages-ai-services
@@ -46,6 +46,10 @@ zone_pivot_groups: programming-languages-ai-services
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python include](./../includes/quickstarts/platform/python.md)]
 ::: zone-end
+
+## Code samples
+
+In depth samples are available in the [Azure-Samples/cognitive-services-speech-sdk](https://aka.ms/csspeech/samples) repository on GitHub. There are samples for C# (including UWP and Unity), C++, Java, JavaScript (including Browser and Node.js), Objective-C, Python, and Swift. Code samples for Go are available in the [Microsoft/cognitive-services-speech-sdk-go](https://github.com/Microsoft/cognitive-services-speech-sdk-go) repository on GitHub.
 
 ## Related content
 

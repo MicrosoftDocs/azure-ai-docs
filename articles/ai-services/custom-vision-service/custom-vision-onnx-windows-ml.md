@@ -2,20 +2,19 @@
 title: "Use an ONNX model with Windows ML - Custom Vision Service"
 titleSuffix: Azure AI services
 description: Learn how to create a Windows UWP app that uses an ONNX model exported from Azure AI services.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-custom-vision
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 02/21/2025
 ms.author: pafarley
 #Customer intent: As a developer, I want to use a custom vision model with Windows ML.
 ---
 
 # Use an ONNX model from Custom Vision with Windows ML (preview)
 
-Learn how to use an ONNX model exported from the Custom Vision service with Windows ML (preview). You'll use an example UWP application with your own trained image classifier.
+Learn how to use an ONNX model exported from the Custom Vision service with Windows ML (preview). You'll use an example application with your own trained image classifier.
 
 ## Prerequisites
 
@@ -24,9 +23,9 @@ Learn how to use an ONNX model exported from the Custom Vision service with Wind
 * Visual Studio 2017 version 15.7 or later with the __Universal Windows Platform development__ workload enabled.
 * Developer mode enabled on your PC. For more information, see [Enable your device for development](/windows/uwp/get-started/enable-your-device-for-development).
 
-## About the example app
+## About the example application
 
-The included application is a generic Windows UWP app. It allows you to select an image from your computer and process it using a locally stored classification model. The tags and scores returned by the model are displayed next to the image.
+The included application is a generic Universal Windows Platform (UWP) app. It allows you to select an image from your computer and process it using a locally stored classification model. The tags and scores returned by the model are displayed next to the image.
 
 ## Get the application
 
@@ -53,12 +52,12 @@ To use your own image classifier model, follow these steps:
 1. Use the `F5` to build and run the project.
 1. Select button to select image to evaluate.
 
-## Next steps
+## Related content
 
 To discover other ways to export and use a Custom Vision model, see the following documents:
 
 * [Export your model](./export-your-model.md)
-* [Use exported Tensorflow model in an Android application](https://github.com/Azure-Samples/cognitive-services-android-customvision-sample)
+* [Use exported TensorFlow model in an Android application](https://github.com/Azure-Samples/cognitive-services-android-customvision-sample)
 * [Use exported CoreML model in a Swift iOS application](https://go.microsoft.com/fwlink/?linkid=857726)
 * [Use exported CoreML model in an iOS application with Xamarin](https://github.com/xamarin/ios-samples/tree/master/ios11/CoreMLAzureModel)
 

@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 11/19/2024
+ms.date: 01/14/2025
 ms.custom: ignite-2024-understanding-release
 ---
 
@@ -16,7 +16,7 @@ ms.custom: ignite-2024-understanding-release
 > [!IMPORTANT]
 >
 > * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes may change or have constrained capabilities, prior to General Availability (GA).
+> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 Azure AI Content Understanding allows you to extract and customize video metadata. Content Understanding helps efficiently manage, categorize, retrieve, and build workflows for video assets. It enhances your media asset library, supports workflows such as highlight generation, categorizes content, and facilitates applications like retrieval-augmented generation (RAG). 
@@ -86,9 +86,12 @@ For a detailed list of supported languages and regions, visit our [Language and 
 As with all the Azure AI services, developers using the Content Understanding service should be aware of Microsoft's policies on customer data. See our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page to learn more.
 
 > [!IMPORTANT]
-> Users of Content Understanding can enable features like Face Grouping for videos, which involved processing Biometric Data. If you are using Microsoft products or services to process Biometric Data, you are responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate and required under applicable Data Protection Requirements. "Biometric Data" will have the meaning set forth in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
+> Users of Content Understanding can enable features like Face Grouping for videos, which involved processing Biometric Data. If you're using Microsoft products or services to process Biometric Data, you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate, and required under applicable Data Protection Requirements. "Biometric Data" has the meaning articulated in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
 
 ## Next steps
 
-* Try processing your video content using Content Understanding in [Azure AI Foundry](https://ai.azure.com/).
-* Learn more about video [**analyzer templates**](../quickstart/use-ai-foundry.md).
+* Try processing your video content using Content Understanding in [Azure AI Foundry portal](https://aka.ms/cu-landing).
+* Learn to analyze video content [**analyzer templates**](../quickstart/use-ai-foundry.md).
+* Review code sample: [**video content extraction**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/notebooks/content_extraction.ipynb).
+* Review code sample: [**video search with natural language queries**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/tree/main#samples).
+* Review code sample: [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates)

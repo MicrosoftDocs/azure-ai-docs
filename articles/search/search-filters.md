@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 09/19/2024
+ms.date: 03/11/2025
 ms.custom:
   - devx-track-csharp
   - ignite-2023
@@ -46,7 +46,7 @@ Filtering occurs in tandem with search, qualifying which documents to include in
 
 ## How filters are defined
 
-Filters apply to alphanumeric content on fields that are attributed as `filterable`.
+Filters apply to text and numeric (nonvector) content on fields that are attributed as `filterable`.
 
 Filters are OData expressions, articulated in the [filter syntax](search-query-odata-filter.md) supported by Azure AI Search.
 

@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Optical character recognition client library for Node.js"
 description: Get started with the Optical character recognition client library for Node.js with this quickstart.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 08/07/2023
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ms.custom: devx-track-js
 ---

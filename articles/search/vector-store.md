@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 09/19/2024
+ms.date: 03/11/2025
 ---
 
 # Vector storage in Azure AI Search
@@ -29,9 +29,9 @@ Considerations for vector storage include the following points:
 
 In Azure AI Search, there are two patterns for working with search results. 
 
-+ Generative search. Language models formulate a response to the user's query using data from Azure AI Search. This pattern includes an orchestration layer to coordinate prompts and maintain context. In this pattern, search results are fed into prompt flows, received by chat models like GPT and Text-Davinci. This approach is based on [**Retrieval augmented generation (RAG)**](retrieval-augmented-generation-overview.md) architecture, where the search index provides the grounding data.
++ Generative search. Language models formulate a response to the user's query using grounding data from Azure AI Search. This pattern typically includes an orchestration layer to coordinate prompts and maintain context. In this pattern, search results are fed into prompt flows, received by chat models like GPT. This approach is based on [**Retrieval augmented generation (RAG)**](retrieval-augmented-generation-overview.md) architecture, where the search index provides the grounding data.
 
-+ Classic search using a search bar, query input string, and rendered results. The search engine accepts and executes the vector query, formulates a response, and you render those results in a client app. In Azure AI Search, results are returned in a flattened row set, and you can choose which fields to include search results. Since there's no chat model, it's expected that you would populate the vector store (search index) with nonvector content that's human readable in your response. Although the search engine matches on vectors, you should use nonvector values to populate the search results. [**Vector queries**](vector-search-how-to-query.md) and [**hybrid queries**](hybrid-search-how-to-query.md) cover the types of query requests you can formulate for classic search scenarios.
++ Classic search using a search bar, query input, and rendered results. The search engine formulates the response using verbatim content in the search index, with no extra reasoning or logic. At query time, your application code or the search engine vectorizes the user input into a vector. The search engine performs a vector search over vector fields and formulates a response. You render those results in a client app. In Azure AI Search, results are returned in a flattened row set, and you can choose which fields to include search results. Since there's no chat model, it's expected that you would populate the vector store (search index) with nonvector content that's human readable in your response. Although the search engine matches on vectors, you should use nonvector values to populate the search results. [**Vector queries**](vector-search-how-to-query.md) and [**hybrid queries**](hybrid-search-how-to-query.md) cover the types of query requests you can formulate for classic search scenarios.
 
 Your index schema should reflect your primary use case. The following section highlights the differences in field composition for solutions built for generative AI or classic search.
 
@@ -171,7 +171,7 @@ Vector index limits and estimations are covered in [another article](vector-sear
 This section introduces vector run time operations, including connecting to and securing a single index.
 
 > [!NOTE]
-> When managing an index, be aware that there is no portal or API support for moving or copying an index. Instead, customers typically point their application deployment solution at a different search service (if using the same index name), or revise the name to create a copy on the current search service, and then build it.
+> When managing an index, be aware that there's no portal or API support for moving or copying an index. Instead, customers typically point their application deployment solution at a different search service (if using the same index name), or revise the name to create a copy on the current search service, and then build it.
 
 ### Continuously available
 
@@ -211,7 +211,7 @@ Azure AI Search implements data encryption, private connections for no-internet 
 
 Azure provides a [monitoring platform](monitor-azure-cognitive-search.md) that includes diagnostic logging and alerting. We recommend the following best practices:
 
-+ [Enable diagnostic logging](/azure/azure-monitor/essentials/create-diagnostic-settings)
++ [Enable diagnostic logging](search-monitor-enable-logging.md)
 + [Set up alerts](/azure/azure-monitor/alerts/tutorial-metric-alert)
 + [Analyze query and index performance](search-performance-analysis.md)
 

@@ -10,7 +10,7 @@ ms.author: mopeakande
 ms.reviewer: sehan
 ms.date: 04/30/2024
 ms.topic: how-to
-ms.custom: how-to, devplatv2, cliv2, sdkv2, update-code, devx-track-azurecli
+ms.custom: how-to, devplatv2, cliv2, sdkv2, update-code2, devx-track-azurecli
 ---
 
 # Deploy and score a machine learning model by using an online endpoint
@@ -760,6 +760,9 @@ For more information on creating an environment in the studio, see [Create an en
 
 ---
 
+> [!IMPORTANT]
+> When defining a custom environment for your deployment, ensure the `azureml-inference-server-http` package is included in the conda file. This package is essential for the inference server to function properly. If you are unfamiliar with creating your own custom environment, it is advisable to instead use one of our curated environments such as `minimal-py-inference` (for custom models that don't use mlflow) or `mlflow-py-inference` (for models that use mlflow). These curated environments can be found in the "Environments" tab of your Machine Learning Studio.
+
 ### Configure a deployment that uses registered assets
 
 Your deployment configuration uses the registered model that you wish to deploy and your registered environment.
@@ -1230,7 +1233,7 @@ To view metrics and set alerts based on your SLA, complete the steps that are de
 
 ### (Optional) Integrate with Log Analytics
 
-The `get-logs` command for CLI or the `get_logs` method for SDK provides only the last few hundred lines of logs from an automatically selected instance. However, Log Analytics provides a way to durably store and analyze logs. For more information on using logging, see [Monitor online endpoints](how-to-monitor-online-endpoints.md#logs).
+The `get-logs` command for CLI or the `get_logs` method for SDK provides only the last few hundred lines of logs from an automatically selected instance. However, Log Analytics provides a way to durably store and analyze logs. For more information on using logging, see [Monitor online endpoints](how-to-monitor-online-endpoints.md#use-logs).
 
 <!-- [!INCLUDE [Email Notification Include](includes/machine-learning-email-notifications.md)] -->
 

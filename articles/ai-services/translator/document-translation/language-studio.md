@@ -1,12 +1,11 @@
 ---
 title: Try Document Translation in Language Studio
 description: "Document Translation in Azure AI Language Studio."
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 06/07/2024
+ms.date: 01/28/2025
 ms.author: lajanuar
 ms.custom: references_regions, build-2023
 recommendations: false
@@ -16,7 +15,7 @@ recommendations: false
 
 > [!IMPORTANT]
 >
-> * Document Translation in Language Studio is currently in Public Preview. Features, approaches and processes may change, prior to General Availability (GA), based on user feedback.
+> * Document Translation in Language Studio is currently in Public Preview. Features, approaches, and processes can change, before General Availability (GA) release, based on user feedback.
 >
 > * Currently, virtual network connectivity isn't supported for the Document Translation feature in the Language Studio.
 
@@ -59,7 +58,7 @@ Document Translation in Language Studio requires the following resources:
 
   * **Resource Region**. For this project, choose a geographic region such as **East US**. For Document Translation, [system-assigned managed identity](how-to-guides/create-use-managed-identities.md) isn't supported for the **Global** region.
 
-  * **Pricing tier**. Select Standard S1 or D3 to try the service. Document Translation isn't supported in the free tier.
+  * **Pricing tier**. Select Standard S1 or D3. Document Translation isn't supported in the free tier.
 
 * An [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). An active Azure Blob Storage account is required to use Document Translation in the Language Studio.
 
@@ -147,7 +146,7 @@ While still in the **files and destination** section, select **Download translat
 1. The **Job history** page contains the **Translation job id** and job status.
 
     > [!NOTE]
-    > The list of translation jobs on the job history page includes all the jobs that were submitted through the chosen translator resource. If your colleague used the same translator resource to submit a job, you will see the status of that job on the job history page.
+    > The list of translation jobs on the job history page includes all the jobs that were submitted through the chosen translator resource. If your colleague used the same translator resource to submit a job, the status of that job appears on the job history page.
 
    :::image type="content" source="media/language-studio/job-history.png" alt-text="Screenshot of the job history page.":::
 

@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 03/13/2024
+ms.date: 12/10/2024
 
 ---
 
@@ -147,7 +147,7 @@ POST {{baseUrl}}/datasources?api-version=2024-07-01  HTTP/1.1
         "type": "azureblob",
         "subtype": null,
         "credentials": {
-            "connectionString": "{{storageConnectionString}}"
+            "connectionString": "{{storageConnection}}"
         },
         "container": {
             "name": "{{blobContainer}}",

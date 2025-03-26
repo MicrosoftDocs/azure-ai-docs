@@ -2,12 +2,11 @@
 title: Model Lifecycle of Language service models
 titleSuffix: Azure AI services
 description: This article describes the timelines for models and model versions used by Language service features.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 01/16/2024
+ms.date: 01/31/2025
 ms.author: jboback
 ---
 
@@ -41,9 +40,9 @@ Use the table below to find which model versions are supported by each feature:
 | Sentiment Analysis and opinion mining               | `latest*`                                      |                                             |
 | Language Detection                                  | `latest*`                                      |                                             |
 | Entity Linking                                      | `latest*`                                      |                                             |
-| Named Entity Recognition (NER)                      | `latest*`                                      | `2023-04-15-preview**`                      |
-| Personally Identifiable Information (PII) detection | `latest*`                                      | `2023-04-15-preview**`                      | 
-| PII detection for conversations                     | `latest*`                                      | `2023-04-15-preview**`                      |
+| Named Entity Recognition (NER)                      | `latest*`                                      | `2024-04-15-preview**`                      |
+| Personally Identifiable Information (PII) detection | `latest*`                                      | `2024-04-15-preview**`                      | 
+| PII detection for conversations                     | `latest*`                                      | `2024-11-01-preview**`                      |
 | Question answering                                  | `latest*`                                      |                                             |
 | Text Analytics for health                           | `latest*`                                      | `2022-08-15-preview`, `2023-01-01-preview**`|
 | Key phrase extraction                               | `latest*`                                      |                                             | 

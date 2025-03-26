@@ -53,9 +53,7 @@ Install the [Azure Identity client library for Java](https://mvnrepository.com/a
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-identity</artifactId>
-            <version>1.10.0</version>
-            <type>pom</type>
-            <scope>import</scope>
+            <version>1.15.1</version>
         </dependency>
     </dependencies>
 </dependencyManagement>
@@ -198,7 +196,7 @@ credential = DefaultAzureCredential(authority=authority)
 
 search_client = SearchClient(
     endpoint=service_endpoint, 
-    index=index_name, 
+    index_name=index_name, 
     credential=credential, 
     audience=audience)
 
@@ -223,8 +221,7 @@ Local development using roles includes these steps:
 As a local developer, your Azure identity needs full control over data plane operations. These are the suggested roles:
 
 - Search Service Contributor, create and manage objects
-- Search Index Data Contributor, load an index
-- Search Index Data Reader, query an index
+- Search Index Data Contributor, load and query an index
 
 Find your personal identity with one of the following tools. Use that identity as the `<identity-id>` value.
 

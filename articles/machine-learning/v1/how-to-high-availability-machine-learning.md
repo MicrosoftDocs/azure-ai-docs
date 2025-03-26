@@ -81,7 +81,7 @@ A multi-regional deployment relies on creation of Azure Machine Learning and oth
     * __Hot/cold__: Primary region active, secondary region has Azure Machine Learning and other resources deployed, along with needed data. Resources such as models, model deployments, or pipelines would need to be manually deployed.
 
 > [!TIP]
-> Depending on your business requirements, you may decide to treat different Azure Machine Learning resources differently. For example, you may want to use hot/hot for deployed models (inference), and hot/cold for experiments (training).
+> Depending on your business requirements, you may decide to treat different Azure Machine Learning resources differently. For example, you might want to use hot/hot for deployed models (inference), and hot/cold for experiments (training).
 
 Azure Machine Learning builds on top of other services. Some services can be configured to replicate to other regions. Others you must manually create in multiple regions. The following table provides a list of services, who is responsible for replication, and an overview of the configuration:
 
@@ -104,7 +104,7 @@ To enable fast recovery and restart in the secondary region, we recommend the fo
 
 ### Compute and data services
 
-Depending on your needs, you may have more compute or data services that are used by Azure Machine Learning. For example, you may use Azure Kubernetes Services or Azure SQL Database. Use the following information to learn how to configure these services for high availability.
+Depending on your needs, you might have more compute or data services that are used by Azure Machine Learning. For example, you may use Azure Kubernetes Services or Azure SQL Database. Use the following information to learn how to configure these services for high availability.
 
 __Compute resources__
 
@@ -129,7 +129,7 @@ __Data services__
 
 ### Deploy critical components to multiple regions
 
-Determine the level of business continuity that you are aiming for. The level may differ between the components of your solution. For example, you may want to have a hot/hot configuration for production pipelines or model deployments, and hot/cold for experimentation.
+Determine the level of business continuity that you are aiming for. The level may differ between the components of your solution. For example, you might want to have a hot/hot configuration for production pipelines or model deployments, and hot/cold for experimentation.
 
 ### Manage training data on isolated storage
 
@@ -176,7 +176,7 @@ Azure Machine Learning cannot sync or recover artifacts or metadata between work
 
 ### Moving artifacts between workspaces
 
-Depending on your recovery approach, you may need to copy artifacts such as dataset and model objects between the workspaces to continue your work. Currently, the portability of artifacts between workspaces is limited. We recommend managing artifacts as code where possible so that they can be recreated in the failover instance.
+Depending on your recovery approach, you might need to copy artifacts such as dataset and model objects between the workspaces to continue your work. Currently, the portability of artifacts between workspaces is limited. We recommend managing artifacts as code where possible so that they can be recreated in the failover instance.
 
 The following artifacts can be exported and imported between workspaces by using the [Azure CLI extension for machine learning](reference-azure-machine-learning-cli.md):
 

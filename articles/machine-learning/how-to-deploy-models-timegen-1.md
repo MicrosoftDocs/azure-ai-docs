@@ -9,7 +9,8 @@ ms.topic: how-to
 ms.date: 5/21/2024
 ms.author: mopeakande
 author: msakande
-ms.reviewer: kritifaujdar
+ms.reviewer: haelhamm
+reviewer: hazemelh
 ms.custom: [references_regions]
 ms.collection: ce-skilling-ai-copilot
 ---

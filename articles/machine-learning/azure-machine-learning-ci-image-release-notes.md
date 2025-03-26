@@ -20,6 +20,56 @@ Azure Machine Learning checks and validates any machine learning packages that m
 
 Main updates provided with each image version are described in the below sections.
 
+##  February 11, 2025
+
+Image Version: `25.01.31`
+
+Release Notes:
+
+SDK Version: `1.59.0`
+
+##  January 15, 2025
+
+Image Version: `24.12.31`
+
+Release Notes:
+
+SDK Version: `1.57.0`
+
+Jupyter-core: `5.7.2`
+
+nvdia_docker2: installed
+
+gnomeshell: removed
+
+ml: '2.32.4'
+
+Nvidia Driver:  `535.216.03`
+
+`CUDA`: `12.2`
+
+'nginx': Server status was Failed. nginx issue fixed and the status is Running.
+
+## December 18, 2024
+
+Image Version: `24.12.09`
+
+Release Notes:
+
+SDK Version: `1.57.0`
+
+Jupyter-core: `5.7.2`
+
+nvdia_docker2: installed
+
+gnomeshell: removed
+
+ml: '2.32.4'
+
+NVIDIA Driver:  `535.216.03`
+
+`CUDA`: `12.2`
+
 ## October 30, 2024
 
 Image Version: `24.10.18`
@@ -30,7 +80,7 @@ SDK Version: `1.57.0`
 
 Python: `3.10.11`
 
-Nvidia Driver:  `535.183.06`
+NVIDIA Driver:  `535.183.06`
 
 `CUDA`: `12.2`
 
@@ -68,7 +118,7 @@ python3-jupyter-core: `4.6.3-3`
 
 libzmq5: `4.3.2-2ubuntu1` 
 
-Tensorflow: `2.17.0`
+TensorFlow: `2.17.0`
 
 python3.8, python3.8-minimal: `3.8.10-0`
 
@@ -116,7 +166,7 @@ Ray: `2.31.0`
 
 Nvidia-docker2
 
-Tensorflow: `2.15.0`
+TensorFlow: `2.15.0`
 
 Pandas: `1.3.5`
 
@@ -203,7 +253,7 @@ Python: `3.9`
 
 CUDnn==`9.1.1`
 
-Nvidia Driver: `535.171.04`
+NVIDIA Driver: `535.171.04`
 
 PyTorch: `1.13.1`
 
@@ -222,7 +272,7 @@ Version: `24.01.30`
 
 Main changes:
 
-- Enable Tensorflow in GPU compute to detect GPU device.
+- Enable TensorFlow in GPU compute to detect GPU device.
 
 Main environment specific updates:
 

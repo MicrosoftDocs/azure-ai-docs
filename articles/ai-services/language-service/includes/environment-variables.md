@@ -1,5 +1,4 @@
 ---
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
@@ -17,7 +16,7 @@ To set the environment variable for your Language resource key, open a console w
 - To set the `LANGUAGE_KEY` environment variable, replace `your-key` with one of the keys for your resource.
 - To set the `LANGUAGE_ENDPOINT` environment variable, replace `your-endpoint` with the endpoint for your resource.
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 #### [Windows](#tab/windows)
 
@@ -32,7 +31,7 @@ setx LANGUAGE_ENDPOINT your-endpoint
 > [!NOTE]
 > If you only need to access the environment variables in the current running console, you can set the environment variable with `set` instead of `setx`.
 
-After you add the environment variables, you may need to restart any running programs that will need to read the environment variables, including the console window. For example, if you are using Visual Studio as your editor, restart Visual Studio before running the example.
+After you add the environment variables, you might need to restart any running programs that will need to read the environment variables, including the console window. For example, if you are using Visual Studio as your editor, restart Visual Studio before running the example.
 
 #### [Linux](#tab/linux)
 

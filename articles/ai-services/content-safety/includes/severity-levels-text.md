@@ -1,7 +1,6 @@
 ---
 title: "Severity level tables"
 description: Content safety severity level definition tables
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety

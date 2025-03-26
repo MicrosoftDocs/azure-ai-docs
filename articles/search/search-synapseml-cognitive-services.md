@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 04/22/2024
+ms.date: 01/30/2025
 ---
 
 # Tutorial: Index large data from Apache Spark using SynapseML and Azure AI Search
@@ -24,7 +24,7 @@ In this Azure AI Search tutorial, learn how to index and query large data loaded
 > + Write the output to a search index hosted in Azure AI Search
 > + Explore and query over the content you created
 
-This tutorial takes a dependency on [SynapseML](https://www.microsoft.com/research/blog/synapseml-a-simple-multilingual-and-massively-parallel-machine-learning-library/), an open source library that supports massively parallel machine learning over big data. In SynapseML, search indexing and machine learning are exposed through *transformers* that perform specialized tasks. Transformers tap into a wide range of AI capabilities. In this exercise, use the **AzureSearchWriter** APIs for analysis and AI enrichment.
+This tutorial takes a dependency on [SynapseML](https://microsoft.github.io/SynapseML/), an open source library that supports massively parallel machine learning over big data. In SynapseML, search indexing and machine learning are exposed through *transformers* that perform specialized tasks. Transformers tap into a wide range of AI capabilities. In this exercise, use the **AzureSearchWriter** APIs for analysis and AI enrichment.
 
 Although Azure AI Search has native [AI enrichment](cognitive-search-concept-intro.md), this tutorial shows you how to access AI capabilities outside of Azure AI Search. By using SynapseML instead of indexers or skills, you're not subject to data limits or other constraints associated with those objects.
 
@@ -35,18 +35,18 @@ Although Azure AI Search has native [AI enrichment](cognitive-search-concept-int
 
 You need the `synapseml` library and several Azure resources. If possible, use the same subscription and region for your Azure resources and put everything into one resource group for simple cleanup later. The following links are for portal installs. The sample data is imported from a public site.
 
-+ [SynapseML package](https://microsoft.github.io/SynapseML/docs/Get%20Started/Install%20SynapseML/#python) <sup>1</sup> 
-+ [Azure AI Search](search-create-service-portal.md) (any tier) <sup>2</sup> 
-+ [Azure AI services](/azure/ai-services/multi-service-resource?pivots=azportal) (any tier) <sup>3</sup> 
-+ [Azure Databricks](/azure/databricks/scenarios/quickstart-create-databricks-workspace-portal?tabs=azure-portal) (any tier) <sup>4</sup>
++ [SynapseML package](https://microsoft.github.io/SynapseML/docs/Get%20Started/Install%20SynapseML/#python) <sup>1</sup>
++ [Azure AI Search](search-create-service-portal.md) (any tier), with an **API Kind** of `AIServices` <sup>2</sup> 
++ [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills?pivots=azportal) (any tier) <sup>3</sup>
++ [Azure Databricks](/azure/databricks/scenarios/quickstart-create-databricks-workspace-portal?tabs=azure-portal) (any tier) with Apache Spark 3.3.0 runtime<sup>4</sup>
 
 <sup>1</sup> This link resolves to a tutorial for loading the package.
 
 <sup>2</sup> You can use the free search tier to index the sample data, but [choose a higher tier](search-sku-tier.md) if your data volumes are large. For billable tiers, provide the [search API key](search-security-api-keys.md#find-existing-keys) in the [Set up dependencies](#step-2-set-up-dependencies) step further on.
 
-<sup>3</sup> This tutorial uses Azure AI Document Intelligence and Azure AI Translator. In the instructions that follow, provide a [multi-service](/azure/ai-services/multi-service-resource?pivots=azportal) key and the region. The same key works for both services.
+<sup>3</sup> This tutorial uses Azure AI Document Intelligence and Azure AI Translator. In the instructions that follow, provide a [multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills?pivots=azportal) key and the region. The same key works for both services. **It's important that you use an Azure AI services multi-service account of API kind of `AIServices` for this tutorial**. You can check the API kind in the Azure portal on the Overview section of your Azure AI services multi-service account page. For more information about API kind, see [Attach an Azure AI services multi-service resource in Azure AI Search](cognitive-search-attach-cognitive-services.md).
 
-<sup>4</sup> In this tutorial, Azure Databricks provides the Spark computing platform. We used the [portal instructions](/azure/databricks/scenarios/quickstart-create-databricks-workspace-portal?tabs=azure-portal) to set up the workspace.
+<sup>4</sup> In this tutorial, Azure Databricks provides the Spark computing platform. We used the [portal instructions](/azure/databricks/scenarios/quickstart-create-databricks-workspace-portal?tabs=azure-portal) to set up the cluster and workspace.
 
 > [!NOTE]
 > All of the above Azure resources support security features in the Microsoft Identity platform. For simplicity, this tutorial assumes key-based authentication, using endpoints and keys copied from the Azure portal pages of each service. If you implement this workflow in a production environment, or share the solution with others, remember to replace hard-coded keys with integrated security or encrypted keys.
@@ -63,6 +63,10 @@ In this section, create a cluster, install the `synapseml` library, and create a
 
 1. Accept the default configuration. It takes several minutes to create the cluster.
 
+1. Verify the cluster is operational and running. A green dot by the cluster name confirms its status.
+
+   :::image type="content" source="media/search-synapseml-cognitive-services/cluster-green-dot.png" alt-text="Screenshot of a Data Bricks compute page with a green dot by the cluster name.":::
+
 1. Install the `synapseml` library after the cluster is created:
 
    1. Select **Libraries** from the tabs at the top of the cluster's page.
@@ -73,7 +77,7 @@ In this section, create a cluster, install the `synapseml` library, and create a
 
    1. Select **Maven**.
 
-   1. In Coordinates, enter `com.microsoft.azure:synapseml_2.12:1.0.4`
+   1. In Coordinates, search for or type `com.microsoft.azure:synapseml_2.12:1.0.9`
 
    1. Select **Install**.
 
@@ -85,7 +89,7 @@ In this section, create a cluster, install the `synapseml` library, and create a
 
 1. Give the notebook a name, select **Python** as the default language, and select the cluster that has the `synapseml` library.
 
-1. Create seven consecutive cells. Paste code into each one.
+1. Create seven consecutive cells. You use these to paste in code in the following sections.
 
    :::image type="content" source="media/search-synapseml-cognitive-services/create-seven-cells.png" alt-text="Screenshot of the notebook with placeholder cells." border="true":::
 
@@ -93,7 +97,7 @@ In this section, create a cluster, install the `synapseml` library, and create a
 
 Paste the following code into the first cell of your notebook. 
 
-Replace the placeholders with endpoints and access keys for each resource. Provide a name for a new search index. No other modifications are required, so run the code when you're ready.
+Replace the placeholders with endpoints and access keys for each resource. Provide a name for a new search index that's created for you. No other modifications are required, so run the code when you're ready.
 
 This code imports multiple packages and sets up access to the Azure resources used in this workflow.
 
@@ -103,12 +107,12 @@ from pyspark.sql.functions import udf, trim, split, explode, col, monotonically_
 from pyspark.sql.types import StringType
 from synapse.ml.core.spark import FluentAPI
 
-cognitive_services_key = "placeholder-cognitive-services-multi-service-key"
-cognitive_services_region = "placeholder-cognitive-services-region"
+cognitive_services_key = "placeholder-azure-ai-services-multi-service-key"
+cognitive_services_region = "placeholder-azure-ai-services-region"
 
 search_service = "placeholder-search-service-name"
-search_key = "placeholder-search-service-api-key"
-search_index = "placeholder-search-index-name"
+search_key = "placeholder-search-service-admin-api-key"
+search_index = "placeholder-for-new-search-index-name"
 ```
 
 ## Step 3: Load data into Spark
@@ -128,7 +132,7 @@ def blob_to_url(blob):
 
 
 df2 = (spark.read.format("binaryFile")
-    .load("wasbs://ignite2021@mmlsparkdemo.blob.core.windows.net/form_subset/*")
+    .load("wasbs://publicwasb@mmlspark.blob.core.windows.net/form_subset/*")
     .select("path")
     .limit(10)
     .select(udf(blob_to_url, StringType())("path").alias("url"))
@@ -141,10 +145,10 @@ display(df2)
 
 Paste the following code into the third cell. No modifications are required, so run the code when you're ready.
 
-This code loads the [AnalyzeInvoices transformer](https://mmlspark.blob.core.windows.net/docs/0.11.2/pyspark/synapse.ml.cognitive.form.html#module-synapse.ml.cognitive.form.AnalyzeInvoices) and passes a reference to the data frame containing the invoices. It calls the prebuilt [invoice model](/azure/ai-services/document-intelligence/concept-invoice) of Azure AI Document Intelligence to extract information from the invoices.
+This code loads the [AnalyzeInvoices transformer](https://mmlspark.blob.core.windows.net/docs/1.0.9/pyspark/synapse.ml.services.form.html#module-synapse.ml.services.form.AnalyzeInvoices) and passes a reference to the data frame containing the invoices. It calls the prebuilt [invoice model](/azure/ai-services/document-intelligence/concept-invoice) of Azure AI Document Intelligence to extract information from the invoices.
 
 ```python
-from synapse.ml.cognitive import AnalyzeInvoices
+from synapse.ml.services import AnalyzeInvoices
 
 analyzed_df = (AnalyzeInvoices()
     .setSubscriptionKey(cognitive_services_key)
