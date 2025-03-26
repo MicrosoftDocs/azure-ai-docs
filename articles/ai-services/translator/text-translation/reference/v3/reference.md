@@ -1,26 +1,34 @@
 ---
-title: Translator V3.0 Reference
+title: Translator v3.0 Reference
 titleSuffix: Azure AI services
-description: Reference documentation for the Translator V3.0. Version 3.0 of the Translator provides a modern JSON-based Web API.
+description: Reference documentation for Translator v3.0 operations and capabilities. 
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/29/2024
+ms.date: 03/24/2025
 ms.author: lajanuar
 ---
 
 # Translator v3.0
 
+Azure AI Translator v3.0 is a cloud-based, multilingual, neural machine translation service that offers robust and scalable translation capabilities for various applications. Supporting over 100 languages and dialects, it's designed for businesses, developers, and organizations to seamlessly integrate multilingual communication into applications and workflows. The service provides both text and document translation, preserving the original structure and format, making it ideal for handling large volumes of multilingual content. With easy integration via a single REST API call and support for multiple programming languages, developers can incorporate translation effortlessly. Azure AI Translator ensures data security and privacy, complying with regulatory standards like GDPR, HIPAA, and ISO/SOC, making it reliable for sensitive information.
+
+The service integrates easily with various applications through a single REST API call, supporting multiple programming languages including Python, C#, Java, JavaScript, and Go. This flexibility ensures that developers can incorporate translation capabilities into their applications seamlessly.
+
+Azure AI Translator ensures data security and privacy and complies with regulatory standards such as GDPR, HIPAA, and ISO/SOC. Thus making it a trustworthy choice for handling sensitive information.
+
 ## What's new?
 
-Version 3.0 of the Translator provides a modern JSON-based Web API. It improves usability and performance by consolidating existing features into fewer operations and it provides new features.
+* **Transliteration**. Convert text in one language from one script to another script.
 
-* Transliteration to convert text in one language from one script to another script.
-* Translation to multiple languages in one request.
-* Language detection, translation, and transliteration in one request.
-* Dictionary to look up alternative translations of a term, to find back-translations and examples showing terms used in context.
-* More informative language detection results.
+* **Complex translation**. Translate multiple languages in a single request.
+
+* **Multiple operations**. Utilize language detection, translation, and transliteration in one request.
+
+* **Dictionary lookup**. Add a dictionary to provide alternative translations for a term, find back-translations, and view examples showing terms used in context.
+
+* **Enhanced language detection**.  Obtain detailed and comprehensive results for language detection.
 
 ## Base URLs
 
@@ -55,124 +63,7 @@ curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/v3.
 
 Custom Translator isn't currently available in Switzerland.
 
-## Authentication
 
-Subscribe to Translator or [multi-service](https://azure.microsoft.com/pricing/details/cognitive-services/) in Azure AI services, and use your key (available in the Azure portal) to authenticate.
-
-There are three headers that you can use to authenticate your subscription. This table describes how each is used:
-
-|Headers|Description|
-|:----|:----|
-|Ocp-Apim-Subscription-Key|*Use with Azure AI services subscription if you're passing your secret key*.<br/>The value is the Azure secret key for your subscription to Translator.|
-|Authorization|*Use with Azure AI services subscription if you're passing an authentication token.*<br/>The value is the Bearer token: `Bearer <token>`.|
-|Ocp-Apim-Subscription-Region|*Use with multi-service and regional translator resource.*<br/>The value is the region of the multi-service or regional translator resource. This value is optional when using a global translator resource.|
-
-### Secret key
-
-The first option is to authenticate using the `Ocp-Apim-Subscription-Key` header. Add the `Ocp-Apim-Subscription-Key: <YOUR_SECRET_KEY>` header to your request.
-
-#### Authenticating with a global resource
-
-When you use a [global translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation), you need to include one header to call the Translator.
-
-|Headers|Description|
-|:-----|:----|
-|Ocp-Apim-Subscription-Key| The value is the Azure secret key for your subscription to Translator.|
-
-Here's an example request to call the Translator using the global translator resource
-
-```curl
-// Pass secret key using headers
-curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=es" \
-     -H "Ocp-Apim-Subscription-Key:<your-key>" \
-     -H "Content-Type: application/json" \
-     -d "[{'Text':'Hello, what is your name?'}]"
-```
-
-#### Authenticating with a regional resource
-
-When you use a [regional translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation),
-there are two headers that you need to call the Translator.
-
-|Headers|Description|
-|:-----|:----|
-|Ocp-Apim-Subscription-Key| The value is the Azure secret key for your subscription to Translator.|
-|Ocp-Apim-Subscription-Region| The value is the region of the translator resource. |
-
-Here's an example request to call the Translator using the regional translator resource
-
-```curl
-// Pass secret key and region using headers
-curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=es" \
-     -H "Ocp-Apim-Subscription-Key:<your-key>" \
-     -H "Ocp-Apim-Subscription-Region:<your-region>" \
-     -H "Content-Type: application/json" \
-     -d "[{'Text':'Hello, what is your name?'}]"
-```
-
-#### Authenticating with a Multi-service resource
-
-A multi-service resource allows you to use a single API key to authenticate requests for multiple services.
-
-When you use a multi-service secret key, you must include two authentication headers with your request. There are two headers that you need to call the Translator.
-
-|Headers|Description|
-|:-----|:----|
-|Ocp-Apim-Subscription-Key| The value is the Azure secret key for your multi-service resource.|
-|Ocp-Apim-Subscription-Region| The value is the region of the multi-service resource. |
-
-Region is required for the multi-service Text API subscription. The region you select is the only region that you can use for text translation when using the multi-service key. It must be the same region you selected when you signed up for your multi-service subscription through the Azure portal.
-
-If you pass the secret key in the query string with the parameter `Subscription-Key`, then you must specify the region with query parameter `Subscription-Region`.
-
-### Authenticating with an access token
-
-Alternatively, you can exchange your secret key for an access token. This token is included with each request as the `Authorization` header. To obtain an authorization token, make a `POST` request to the following URL:
-
-| Resource type     | Authentication service URL                                |
-|-----------------|-----------------------------------------------------------|
-| Global          | `https://api.cognitive.microsoft.com/sts/v1.0/issueToken` |
-| Regional or Multi-Service | `https://<your-region>.api.cognitive.microsoft.com/sts/v1.0/issueToken` |
-
-Here are example requests to obtain a token given a secret key for a global resource:
-
-```curl
-// Pass secret key using header
-curl --header 'Ocp-Apim-Subscription-Key: <your-key>' --data "" 'https://api.cognitive.microsoft.com/sts/v1.0/issueToken'
-
-// Pass secret key using query string parameter
-curl --data "" 'https://api.cognitive.microsoft.com/sts/v1.0/issueToken?Subscription-Key=<your-key>'
-```
-
-And here are example requests to obtain a token given a secret key for a regional resource located in Central US:
-
-```curl
-// Pass secret key using header
-curl --header "Ocp-Apim-Subscription-Key: <your-key>" --data "" "https://centralus.api.cognitive.microsoft.com/sts/v1.0/issueToken"
-
-// Pass secret key using query string parameter
-curl --data "" "https://centralus.api.cognitive.microsoft.com/sts/v1.0/issueToken?Subscription-Key=<your-key>"
-```
-
-A successful request returns the encoded access token as plain text in the response body. The valid token is passed to the Translator service as a bearer token in the Authorization.
-
-```http
-Authorization: Bearer <Base64-access_token>
-```
-
-An authentication token is valid for 10 minutes. The token should be reused when making multiple calls to the Translator. However, if your program makes requests to the Translator over an extended period of time, then your program must request a new access token at regular intervals (for example, every 8 minutes).
-
-<a name='authentication-with-azure-active-directory-azure-ad'></a>
-
-## Authentication with Microsoft Entra ID
-
- Translator v3.0 supports Microsoft Entra authentication, Microsoft's cloud-based identity and access management solution.  Authorization headers enable the Translator service to validate that the requesting client is authorized to use the resource and to complete the request.
-
-### **Prerequisites**
-
-* A brief understanding of how to [**authenticate with Microsoft Entra ID**](../../../../authentication.md?tabs=powershell#authenticate-with-azure-active-directory).
-
-* A brief understanding of how to [**authorize access to managed identities**](../../../../authentication.md?tabs=powershell#authorize-access-to-managed-identities).
 
 ### **Headers**
 

@@ -54,7 +54,7 @@ There are no limits on concurrent requests.
 | S3 / C3 | 120 million characters per hour |
 | S4 / C4 | 200 million characters per hour |
 
-Limits for [multi-service subscriptions](./text-translation/reference/v3/reference.md#authentication) are the same as the S1 tier.
+Limits for [multi-service subscriptions](./text-translation/reference/authentication.md) are the same as the S1 tier.
 
 These limits are restricted to Microsoft's standard translation models. Custom translation models that use Custom Translator are limited to 3,600 characters per second, per model.
 

@@ -42,9 +42,9 @@ Request headers include:
 | Headers  | Description |
 | ------ | ----------- |
 | Authentication headers | **Required request header**.<br/>See [Authentication](reference.md#authentication).|
-| Content-Type | **Required request header**.<br>Specifies the content type of the payload. Possible values are: `application/json`. |
+| Content-Type | **Required request header**.<br>Specifies the content type of the payload. Accepted values are: `application/json`. |
 | Content-Length   | **Optional**.<br>The length of the request body. |
-| X-ClientTraceId   | **Optional**.<br/>A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
+| X-ClientTraceId   | **Optional**.<br/>A client-generated GUID to uniquely identify the request. You can omit this optional header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
 
 ## Request body
 
