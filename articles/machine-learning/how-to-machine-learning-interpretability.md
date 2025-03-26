@@ -52,7 +52,7 @@ By using the classes and methods in the Responsible AI dashboard and by using SD
 
 ## Supported model interpretability techniques
 
-The Responsible AI dashboard and `azureml-interpret` use the interpretability techniques that were developed in [Interpret-Community](https://github.com/interpretml/interpret-community/), an open-source Python package for training interpretable models and helping to explain opaque-box AI systems. Opaque-box models are those for which we have no information about their internal workings. 
+The Responsible AI dashboard uses the interpretability techniques that were developed in [Interpret-Community](https://github.com/interpretml/interpret-community/), an open-source Python package for training interpretable models and helping to explain opaque-box AI systems. Opaque-box models are those for which we have no information about their internal workings. 
 
 Interpret-Community serves as the host for the following supported explainers, and currently supports the interpretability techniques presented in the next sections.
 
