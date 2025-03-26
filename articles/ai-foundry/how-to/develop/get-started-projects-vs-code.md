@@ -267,7 +267,7 @@ This Python sample code file that demonstrates a basic call to the chat completi
 
 ### Interact with models using a model playground
 
-Chat interactively with the model and change settings and system instructions using the model playground.
+Chat interactively with the model, change settings and system instructions using the **Model Playground**.
 
 Open the model playground using the following steps:
 
@@ -466,7 +466,7 @@ Open the **Agents Playground** using the following steps:
 
 1. The **Playground** page is displayed.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png" alt-text="Screenshot of the **Playground** page in VS Code." lightbox="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png" alt-text="Screenshot of the **Agents Playground** page in VS Code." lightbox="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png":::
 
 1. Type your prompt and see the outputs. 
 
@@ -476,7 +476,7 @@ Open the **Agents Playground** using the following steps:
 
 Delete the deployed agent in the [online AI Foundry portal](https://ai-azure.com). Select **Agents** from the navigation menu on the left, select your agent, then select the **Delete** button.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png" alt-text="Screenshot of the **Playground** page in VS Code." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png" alt-text="Screenshot of the AI Foundry portal with 'Agents' from the navigation menu on the left and the **Delete** button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
 
 ### Delete your models
 
