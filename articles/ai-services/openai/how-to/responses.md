@@ -47,7 +47,7 @@ The responses API is currently available in the following regions:
 Not every model is available in the regions supported by the responses API. Check the [models page](../concepts/models.md) for model region availability.
 
 > [!NOTE]
-> Not currently supported but part of the `2025-03-01-preview` API release:
+> Not currently supported:
 > - Structured outputs
 > - tool_choice
 > - image_url pointing to an internet address
