@@ -136,9 +136,6 @@ conceptualContent:
         - itemType: concept
           text: Camera placement
           url: spatial-analysis-camera-placement.md
-        - itemType: concept
-          text: Logging and troubleshooting
-          url: spatial-analysis-logging.md
       footerLink:
         text: More
         url: intro-to-spatial-analysis-public-preview.md

@@ -7,7 +7,7 @@ manager: nitinme
 
 ms.service: azure-ai-custom-vision
 ms.topic: overview
-ms.date: 09/25/2024
+ms.date: 03/26/2025
 ms.author: pafarley
 keywords: image recognition, image identifier, image recognition app, custom vision
 ms.custom: FY25Q1-Linter
@@ -53,7 +53,7 @@ Additionally, you can choose from several variations of the Custom Vision algori
 
 The Custom Vision Service is available as a set of native SDKs and through a web-based interface on the [Custom Vision portal](https://customvision.ai/). You can create, test, and train a model through either interface or use both together.
 
-### Supported browsers for Custom Vision web portal
+### Supported browsers
 
 The Custom Vision portal can be used by the following web browsers:
 -	Microsoft Edge (latest version)
@@ -79,5 +79,5 @@ Custom Vision doesn't replicate data outside of the specified region, except for
 
 ## Next steps
 
-* Follow the [Build a classifier](getting-started-build-a-classifier.md) quickstart to get started using Custom Vision in the web portal.
+Follow the [Build a classifier](getting-started-build-a-classifier.md) quickstart to get started using Custom Vision in the web portal.
 * Or, complete an [SDK quickstart](quickstarts/image-classification.md) to implement the basic scenarios with code.
