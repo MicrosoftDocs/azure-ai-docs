@@ -85,9 +85,13 @@ items:
       href: firewalls.md
   - name: Reference
     items:
+    - name: 🆕 Authentication
+      displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
+      href: text-translation/reference/authentication.md
     - name: Azure AI Translator v4
       items:
-      - name: v4 Translator reference
+      - name: 🆕 v4 Translator reference
+        displayName: gpt, adaptive, tone, gender
         href: text-translation/reference/v4/reference.md
     - name: Azure AI Translator v3
       items:
