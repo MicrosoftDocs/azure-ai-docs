@@ -222,7 +222,7 @@ response_2 = client.responses.create(
     tools=[{
         "type": "computer-preview",
         "display_width": 1024,
-        "display_height": 768
+        "display_height": 768,
         "environment": "browser" # other possible values: "mac", "windows", "ubuntu"
     }],
     input=[
