@@ -8,7 +8,7 @@ ms.subservice: mldata
 ms.author: yogipandey
 author: ynpandey
 ms.reviewer: ssalgado
-ms.date: 10/21/2021
+ms.date: 03/26/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, data4ml, sdkv1
 #Customer intent: As an experienced Python developer, I need to make my data available to my local or remote compute target to train my machine learning models.
