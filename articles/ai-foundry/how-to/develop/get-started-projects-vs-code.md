@@ -4,6 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Use this article to learn how to deploy Large Language Models and develop AI agents using Azure AI Foundry capabilities directly in VS Code.
 manager: scottpolly
 ms.service: azure-ai-foundry
+content_well_notification: 
+  - AI-contribution
 ms.topic: quickstart
 ms.date: 03/26/2025
 ms.reviewer: 
@@ -267,7 +269,7 @@ This Python sample code file that demonstrates a basic call to the chat completi
 
 ### Interact with models using a model playground
 
-Chat interactively with the model, change settings and system instructions using the **Model Playground**.
+Chat interactively with the model, change settings, and system instructions using the **Model Playground**.
 
 Open the model playground using the following steps:
 
@@ -472,9 +474,11 @@ Open the **Agents Playground** using the following steps:
 
 ## Clean up resources
 
+The Azure resources that you created in this article are billed to your Azure subscription. If you don't expect to need these resources in the future, delete them to avoid incurring more charges.
+
 ### Delete your agents
 
-Delete the deployed agent in the [online AI Foundry portal](https://ai-azure.com). Select **Agents** from the navigation menu on the left, select your agent, then select the **Delete** button.
+Delete the deployed agent in the [online AI Foundry portal](https://ai.azure.com). Select **Agents** from the navigation menu on the left, select your agent, then select the **Delete** button.
 
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the AI Foundry portal with 'Agents' from the navigation menu on the left and the **Delete** button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
 
