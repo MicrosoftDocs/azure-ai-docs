@@ -8,7 +8,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 03/24/2025
+ms.date: 03/26/2025
 ---
 
 # Upgrade your Azure AI Search service in the Azure portal
@@ -72,9 +72,9 @@ For [eligible services](#upgrade-eligibility), the following table compares the 
 
 On the **Overview** page, you can view various metadata about your search service, including the **Created on** and **Upgraded on** dates.
 
-<!-- We removed Service version from the final version of the portal. There will only be "Created on" or "Upgraded on" as 2 separate dates. Should also describe that they can use this date to find which upgrades will be applied before they perform the operation. -->
+<!-- Should also describe that they can use this date to find which upgrades will be applied before they perform the operation. -->
 
-If a new version is available for services in your region, the **Upgrade** button becomes available. Otherwise, the button appears dimmed.
+If an upgrade is available for services in your region, the **Upgrade** button becomes available. Otherwise, the button appears dimmed.
 
 ## Upgrade your service
 
@@ -88,7 +88,7 @@ To upgrade your service:
 
    If this button appears dimmed, an upgrade isn’t available for your service. Your service either has the [latest upgrade](#check-your-service-creation-or-upgrade-date) or is in an [unsupported region](#upgrade-eligibility).
 
-1. Review the upgrade details for your service, including your service name and service version.
+1. Review the upgrade details for your service.
 
 1. To permanently upgrade your service, select **Upgrade**.
 
