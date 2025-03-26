@@ -103,4 +103,4 @@ To upgrade your service:
 After you upgrade your search service, you might want to reconsider your scale configuration:
 
 > [!div class="nextstepaction"]
-> [Estimate and manage capacity of your Azure AI Search service](search-capacity-planning.md)
+> [Estimate and manage capacity of an Azure AI Search service](search-capacity-planning.md)

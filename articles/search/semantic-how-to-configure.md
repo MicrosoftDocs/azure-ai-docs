@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 12/10/2024
+ms.date: 03/31/2025
 ---
 
 # Configure semantic ranker and return captions in search results
@@ -157,6 +157,60 @@ SearchIndex searchIndex = new(indexName)
 ```
 
 ---
+
+## Opt in for prerelease semantic ranking models
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+Starting in [2025-03-01-preview REST APIs](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-03-01-preview&preserve-view=true) and in Azure SDKs that provide the property, you can optionally configure an index to use prerelease semantic ranking models if one is deployed in your region. There's no mechanism for knowing if a prerelease is available, or if it was used on specific query. For this reason, we recommend that you use this property in test environments, and only if you're interested in trying out the very latest semantic ranking models.
+
+The configuration property is `"flightingOptIn": true`, and it's set in the semantic configuration section of an index. The property is null or false by default. You can set it true on a create or update request at any time, and it affects semantic queries moving forward, assuming the query stipulates a semantic configuration that includes the property.
+
+```rest
+PUT https://myservice.search.windows.net/indexes('hotels')?allowIndexDowntime=False&api-version=2025-03-01-preview
+
+{
+  "name": "hotels",
+  "fields": [ ],
+  "scoringProfiles": [ ],
+  "defaultScoringProfile": "geo",
+  "suggesters": [ ],
+  "analyzers": [ ],
+  "corsOptions": { },
+  "encryptionKey": { },
+  "similarity": { },
+  "semantic": {
+    "configurations": [
+      {
+        "name": "semanticHotels",
+        "prioritizedFields": {
+          "titleField": {
+            "fieldName": "hotelName"
+          },
+        "prioritizedContentFields": [
+            {
+              "fieldName": "description"
+            },
+            {
+              "fieldName": "description_fr"
+            }
+          ],
+        "prioritizedKeywordsFields": [
+            {
+              "fieldName": "tags"
+            },
+            {
+              "fieldName": "category"
+            }
+          ],
+        "flightingOptIn": true
+        }
+      }
+    ]
+  },
+  "vectorSearch": {  }
+}
+```
 
 ## Next steps
 
