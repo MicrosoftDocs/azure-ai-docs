@@ -12,11 +12,9 @@ ms.author: lajanuar
 
 # Translator v4.0
 
- Azure AI Translator v4.0 represents our newest cloud-based, multilingual neural machine translation service, offering powerful and scalable translation capabilities suitable for diverse applications. With support for over 100 languages and dialects, it`s designed for businesses, developers, and organizations to seamlessly incorporate multilingual communication into applications and workflows. The Translator service delivers text and document translation while preserving the original structure and format, making it ideal for managing extensive multilingual content. The service integrates easily with various applications via a single REST API call and supports multiple programming languages, enabling you to seamlessly integrate multilingual communication into your solutions.
+Azure AI Translator v4.0 is our latest cloud-based, multilingual neural machine translation service and provides robust and scalable translation capabilities suitable for diverse applications. Translator service supports over 100 languages and dialects, making it ideal for businesses, developers, and organizations seeking to seamlessly integrate multilingual communication. Translator is an optimal solution for managing extensive multilingual content and easily integrates with your applications and workflows through a single REST API call and supports multiple programming languages. Azure AI Translator prioritizes data security and privacy, complying with regulations like GDPR, HIPAA, and ISO/SOC, thus ensuring that it's a reliable solution for handling sensitive and confidential information.
 
-The service integrates effortlessly with various applications via a single REST API call and supports numerous programming languages including Python, C#, Java, JavaScript, and Go. This versatility ensures developers can seamlessly add translation functionalities to their apps. Azure AI Translator prioritizes data security and privacy, complying with regulations like GDPR, HIPAA, and ISO/SOC, making it a dependable choice for handling sensitive and confidential information.
-
-## What`s new?
+## What's new?
 
 Azure AI Translator v4.0 is designed toe be **backwards compatible** with Translator v3.0, requiring minimal updates for existing customers. In addition, Translator v4.0 offers several new feature updates and expanded capabilities:
 
@@ -28,9 +26,9 @@ Azure AI Translator v4.0 is designed toe be **backwards compatible** with Transl
 
 ## Base URLs
 
-Typically, requests to Translator are managed by the nearest datacenter to the origin of the request. However, in the event of a datacenter failure when utilizing the global endpoint, requests may be redirected beyond the initial geography.
+Typically, The nearest datacenter to the point of origin manages requests to Translator. However, if there's a datacenter failure when utilizing the global endpoint, requests may be redirected beyond the initial geography.
 
-To ensure that requests are handled within a specific region, utilize the designated geographical endpoint. Consequently, all requests will be processed within the datacenters of the chosen geography.
+To ensure that requests are handled within a specific region, utilize the designated geographical endpoint so all requests are processed within the datacenters of the chosen geography.
 
 ✔️ Feature: **Translator Text** </br>
 
@@ -57,7 +55,7 @@ curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/v3.
 -d "[{`Text`:`Hello`}]" -v
 ```
 
-Custom Translator isn`t currently available in Switzerland.
+Custom Translator isn't currently available in Switzerland.
 
 ## Request Headers
 
@@ -81,7 +79,7 @@ Request parameters passed on the query string are as follows:
 |**api-version**|string|True|Version of the API requested by the client.|
 | **text** | string | True | Source text for translation. |
 | **textType** | string | False | Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Possible values are: plain (default) or html. |
-| **language** | string | False | The language code for the source text. If not specified, the system will autodetect the language of the source text.  Possible values are list of language code supported by the specified model. |
+| **language** | string | False | The language code for the source text. If not specified, the system autodetects the language of the source text. Possible values are list of language code supported by the specified model. |
 | **script** | string | False | Specify the script of the source text. |
 
 #### Targets array parameters
@@ -91,30 +89,30 @@ Request parameters passed on the query string are as follows:
 | **targets** | array | True | Targets for text translation. |
 | **targets.language** | string | True | The language code for the translated text. Possible values are list of language code supported by the specified model. |
 | **targets.script** | string | False | Specify the script of the translated text. |
-|**targets.deploymentName** | string | False | Default is `general`, which uses NMT system. `gpt-4o-mini` uses GPT-4o-mini model.  `gpt-4o` uses GPT-4o model.  `<custom model id>` uses the custom NMT model tuned by customer. |
-| **targets.allowFallback** | string | False | Specifies that the service is allowed to fall back to a general system when a model specified isn`t supported for specified source and target language pair.  Default is `true`. If `false` system returns an error if language pair isn`t supported.  This functionality exists for CT and the same logic gets extended to LLMs. |
-| **targets.grade** | string | False | Default is `basic`. For example, translation produced by simple prompt like `translate <source text> from <source language> to <target language>` Later we could introduce grades like `intermediate`, `advanced`, `proficient`, and `expert`. We would also need to define each of them as understandable by the business decision maker. Need to demonstrate the impact on quality, latency, and cost. |
+|**targets.deploymentName** | string | False | Default is `general`, which uses `NMT` system. `gpt-4o-mini` uses GPT-4o-mini model. `gpt-4o` uses GPT-4o model. `<custom model id>` uses the custom `NMT` model tuned by customer. |
+| **targets.allowFallback** | string | False | If the specified model isn't supported for a given source and target language pair, the service is permitted to revert to a general system. This action ensures that translations can still be provided even when the preferred model is unavailable. Default is `true`. If `false` system returns an error if language pair isn't supported. |
+| **targets.grade** | string | False | Default is `basic`. For example, translation produced by simple prompt like `translate <source text> from <source language> to <target language>`|
 | **targets.tone** | string | False | Desired tone of target translation. Enum: Formal, informal, neutral. |
-| **targets.gender** **\*** | string | False | Desired gender of target translation.  Enum: |
+| **targets.gender** **\*** | string | False | Desired gender of target translation.|
 | **targets.adaptiveDatasetId** | string | False | Reference dataset ID having sentence pair to generate adaptive customized translation |
 | **targets.referenceTextPairs** | string | False | Reference text pairs to generate adaptive customized translation |
 | **targets.referenceTextPairs.source** | string | False | Source text in reference text pair. |
 | **targets.referenceTextPairs.target** | string | False | Target text in reference text pair. |
-| **targets.profanityAction** | string | False | Specifies how profanities should be treated in translations. Possible values are: NoAction (default), Marked, or Deleted. |
-| **targets.profanityMarker** | string | False | Specifies how profanities should be marked in translations. Possible values are Asterisk (default) or Tag. |
-| **targets.instruct** | string | False | Free flow textual instruction for LLM translation. This negates all other key parameters within "targets". We will not implement this in the first release as there are several unknowns including security implications due to XPIA & UPIA, increased scope of work, benefits, customer use case to make such instruction through Translator API, natural languages supported for instructions and ability to parse them, etc. |
+| **targets.profanityAction** | string | False | Specifies how profanities should be treated in translations. Possible values are: `NoAction` (default), `Marked`, or `Deleted`. |
+| **targets.profanityMarker** | string | False | Specifies how profanities should be marked in translations. Possible values are `Asterisk` (default) or Tag. |
+| **targets.instruct** | string | False | Free flow textual instruction for `LLM` translation. This parameter negates all other key parameters within `targets`.|
 
 **\*** Gender-specific translations with optional targets.gender parameter
 
 | Source text | Target gender | Expected gender in translation |
 | --- | --- | --- |
-| Neutral |  | Neutral /  Random: if target language doesn`t have a gender-neutral term. |
-| Female |  | Female / Neutral: if target language is gender neutral. |
-| Male |  | Male / Neutral: if target language is gender neutral. |
-| Neutral | Female | Female / Neutral: if target language is gender neutral. |
+| Neutral |  | Neutral /  **Random**: if target language doesn't have a gender-neutral term. |
+| Female |  | Female / **Neutral**: if target language is gender neutral. |
+| Male |  | Male / **Neutral**: if target language is gender neutral. |
+| Neutral | Female | Female / **Neutral**: if target language is gender neutral. |
 | Female | Female |
 | Male | Female |
-| Neutral | Male | Male / Neutral: if target language is gender neutral. |
+| Neutral | Male | Male / **Neutral**: if target language is gender neutral. |
 | Female | Male |
 | Male | Male |
 
@@ -163,7 +161,7 @@ Request parameters passed on the query string are as follows:
 
 #### Translate Text using `GPT-4o mini` and `NMT` deployments
 
-Users request specific GPT models for deployment.
+Here, users request specific `GPT` models for deployment.
 
 ***Request***
 
