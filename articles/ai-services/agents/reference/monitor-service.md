@@ -15,13 +15,10 @@ ms.service: azure-ai-agent-service
 
 See [Monitor Azure AI Agent Service](../how-to/metrics.md) for details on the data you can collect on your agents.
 
+## Metrics
+
 Here are the most important metrics we think you should monitor for Azure AI Agent Service. Later in this article is a longer list of all available metrics which contains more details on metrics in this shorter list. _Please see below list for most up to date information. We're working on refreshing the tables in the following sections._
 
-- Model deploy failed
-- Model deploy Started
-- Model deploy Succeeded
-- Model Register Failed
-- Model Register Succeeded
 - Cancel Requested Runs
 - Cancelled Runs
 - Completed Runs
@@ -38,6 +35,9 @@ Here are the most important metrics we think you should monitor for Azure AI Age
 - Warnings
 <!-- - Indexed files -->
 
+## Supported metrics
+
+This section lists all the automatically collected platform metrics for this service. These metrics are also part of the global list of [all platform metrics supported in Azure Monitor](/azure/azure-monitor/reference/supported-metrics/metrics-index#supported-metrics-per-resource-type).
 
 [!INCLUDE [horz-monitor-ref-metrics-tableheader](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-tableheader.md)]
 [!INCLUDE [Microsoft.MachineLearningServices/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-machinelearningservices-workspaces-metrics-include.md)]
