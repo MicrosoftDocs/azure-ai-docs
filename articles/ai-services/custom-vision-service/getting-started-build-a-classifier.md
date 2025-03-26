@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-custom-vision
 ms.topic: quickstart
-ms.date: 10/01/2024
+ms.date: 03/26/2025
 ms.author: pafarley
 ms.custom: mode-other
 keywords: image recognition, image recognition app, custom vision
@@ -20,7 +20,7 @@ This quickstart explains how to use the Custom Vision web portal to create an im
 
 - An Azure subscription. You can [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
 - A set of images to train your classification model. You can use the set of [sample images](https://github.com/Azure-Samples/cognitive-services-sample-data-files/tree/master/CustomVision/ImageClassification/Images) on GitHub. Or, you can choose your own images using the [following tips](#upload-and-tag-images).
-- A [supported web browser](overview.md#supported-browsers-for-custom-vision-web-portal).
+- A [supported web browser](overview.md#supported-browsers).
 
 ## Create Custom Vision resources
 
@@ -30,7 +30,7 @@ This quickstart explains how to use the Custom Vision web portal to create an im
 
 Navigate to the [Custom Vision web page](https://customvision.ai), and then sign in with the same account that you used to sign in to the Azure portal.
 
-:::image type="content" source="media/browser-home.png" alt-text="Screenshot showing the sign-in page.":::
+:::image type="content" source="media/browser-home.png" alt-text="Screenshot showing the Custom Vision sign-in page.":::
 
 1. To create your first project, select **New Project**. The **Create new project** dialog box appears.
 
@@ -39,7 +39,7 @@ Navigate to the [Custom Vision web page](https://customvision.ai), and then sign
 1. Enter a name and a description for the project. Then select your Custom Vision Training Resource. If your signed-in account is associated with an Azure account, the Resource dropdown displays all of your compatible Azure resources.
 
    > [!NOTE]
-   > If no resource is available, please confirm that you have signed into [customvision.ai](https://customvision.ai) with the same account that you used to sign in to the [Azure portal](https://portal.azure.com). Also, please confirm you have selected the same *Directory* in the Custom Vision website as the directory in the Azure portal where your Custom Vision resources are located. In both sites, you can select your directory from the dropdown account menu at the top right corner of the screen.
+   > If no resource is available, confirm that you've signed into [customvision.ai](https://customvision.ai) with the same account that you used to sign in to the [Azure portal](https://portal.azure.com). Also confirm you've selected the same *Directory* in the Custom Vision website as the directory in the Azure portal where your Custom Vision resources are located. In both sites, you can select your directory from the dropdown account menu at the top right corner of the screen.
 
 1. Select **Classification** under **Project Types**. Then, under **Classification Types**, choose either **Multilabel** or **Multiclass**, depending on your use case. Multilabel classification applies any number of your tags to an image (zero or more), while multiclass classification sorts images into single categories (every image you submit is sorted into the most likely tag). You can change the classification type later, if you want to.
 
@@ -65,7 +65,7 @@ You can upload and manually tag images to help train the classifier.
 
 1. To add images, select __Add images__ and then select __Browse local files__. Select __Open__ to move to tagging. Your tag selection is applied to the entire group of images you upload, so it's easier to upload images in separate groups according to their applied tags. You can also change the tags for individual images after they're uploaded.
 
-    :::image type="content" source="media/getting-started-build-a-classifier/add-images-1.png" alt-text="Screenshot of the add images control is shown in the upper left, and as a button at bottom center.":::
+    :::image type="content" source="media/getting-started-build-a-classifier/add-images-1.png" alt-text="Screenshot of the Add Images control is shown in the upper left, and as a button at bottom center.":::
 
 1. To create a tag, enter text in the __My Tags__ field and press Enter. If the tag already exists, it appears in a dropdown menu. In a multilabel project, you can add more than one tag to your images, but in a multiclass project you can add only one. To finish uploading the images, use the __Upload [number] files__ button. 
 
