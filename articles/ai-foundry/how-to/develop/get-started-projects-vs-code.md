@@ -423,7 +423,7 @@ Add a tool to the AI Agent with the following steps:
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-tool-plus.png" alt-text="Screenshot of the Agent designer TOOL section with the plus icon highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-tool-plus.png":::
 
-1. In the file explorer that appears, select the .yaml tool file to use.
+1. In the file explorer that appears, select the .yaml tool file to use. Select the **Select a tool file** button to add the tool to the agent.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-select-tool-file.png" alt-text="Screenshot of the file explorer with the selected file and the 'Select a tool file' button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-select-tool-file.png":::
 
@@ -443,7 +443,7 @@ Deploy your agent directly to Azure AI Foundry with the following steps:
 
 1. In the VS Code navbar, refresh the **Azure Resources** view. The deployed agent is displayed under the **Agents** subsection.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-deploy.png" alt-text="Screenshot of the Agent designer with the 'Deploy to Azure AI Foundry' button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-deploy.png":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-deployed.png" alt-text="Screenshot of the 'Azure Resources' view. The deployed agent is highlighted under the 'Agents' subsection." lightbox="../../media/how-to/get-started-projects-vs-code/agent-deployed.png":::
 
 #### View the deployed AI Agent details
 
@@ -476,7 +476,7 @@ Open the **Agents Playground** using the following steps:
 
 Delete the deployed agent in the [online AI Foundry portal](https://ai-azure.com). Select **Agents** from the navigation menu on the left, select your agent, then select the **Delete** button.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png" alt-text="Screenshot of the AI Foundry portal with 'Agents' from the navigation menu on the left and the **Delete** button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the AI Foundry portal with 'Agents' from the navigation menu on the left and the **Delete** button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
 
 ### Delete your models
 
