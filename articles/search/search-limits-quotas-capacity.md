@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 03/21/2025
+ms.date: 03/26/2025
 ms.custom:
   - references_regions
   - build-2024
@@ -84,9 +84,9 @@ Vector limits vary by:
 + [Service creation date](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date)
 + [Region](search-region-support.md)
 
-Higher vector limits from April 2024 onwards exist on *new search services* in regions providing the extra capacity, which is most of them.
+Higher vector limits from April 2024 onwards exist on *new search services* in regions providing the extra capacity, which is most of them. If you have an older service in a supported region, check if you can [upgrade your service](search-how-to-upgrade.md) to the higher vector limits.
 
-This table shows the progression of vector quota increases in GB over time. The quota is per partition, so if you scale a new Standard (S1) service to 6 partitions, total vector quota is 35 multiplied by 6.
+This table shows the progression of vector quota increases in GB over time. The quota is per partition, so if you scale a new Standard (S1) service to 6 partitions, the total vector quota is 35 multiplied by 6.
 
 | Service creation date |Basic | S1| S2 | S3/HD | L1 | L2 |
 |-----------------------|------|---|----|----|----|----|
