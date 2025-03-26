@@ -107,7 +107,7 @@ Your selected project will now display **Default** after the project name.
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/default-project.png" alt-text="A screenshot of the designated default project." lightbox="../../media/how-to/get-started-projects-vs-code/default-project.png"::: 
 
 
-## Working with models
+## Work with models
 
 The Azure AI Foundry for Visual Studio Code extension enables you to create, interact with, and deploy Large Language Models from within Visual Studio Code.
 
@@ -227,8 +227,6 @@ Selecting a deployed model opens up a panel that provides some basic information
 - Endpoint info: This section contains the Target URI link, authentication type, and key.
 - Useful links: This section contains the code sample repository and tutorial links to get started with AI application development.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/display-model-card.png" alt-text="Screenshot of the model card for the selected model." lightbox="../../media/how-to/get-started-projects-vs-code/display-model-card.png":::
-
 #### Update a model
 
 To update the model card information, select the **Edit** button on the top-right of the model card. 
@@ -288,7 +286,7 @@ Open the model playground using the following steps:
 1. Select the **History** link at the top-left of the playground to view the chat history. 
 
 
-## Working with Azure AI Agent Service
+## Work with Azure AI Agent Service
 
 After you deploy a model using the VS Code extension, AI Foundry, API, or SDK, you can work with [Azure AI Agent Service](/azure/ai-services/agents/overview). Agents are "smart" microservices that:
 
@@ -316,7 +314,7 @@ Follow these steps to create an Azure AI Agent:
 
 1. Select the **+** (plus) icon next to the **Agents** subsection to create a new AI Agent.
 
- :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-agent-plus.png" alt-text="Screenshot of the plus sign next to the Agents subsection." lightbox="../../media/how-to/get-started-projects-vs-code/select-agent-plus.png":::
+ :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-agent-plus.png" alt-text="Screenshot of the plus sign next to the Agents subsection.":::
 
 1. In the **Save As** dialog box, select a directory and enter a name for your new AI Agent .yaml file. 
 
@@ -355,31 +353,20 @@ After you choose your save location, the Designer view will open to edit your AI
 Select the **Open Yaml File** on the top-right of the designer to open your AI Agent .yaml file. This file contains the details and setup information for your agent, similar to the following .yaml file example: 
 
 ```yml
-version: 1.0.0 
-
-type: foundry_agent 
-
-name: extension-agent 
-
-description: Description of the agent 
-
-id: '' 
-
-model: 
-
-  id: '' 
-
-  options: 
-
-    temperature: 1 
-
-  configuration: 
-
-    type: aifoundry 
-
-instructions: Instructions for the agent 
-
-tools: [] 
+version: 1.0.0
+name: BingAgent
+description: Description of the agent
+metadata:
+  author: Author Name
+  tag: basic
+id: ''
+model:
+  id: ''
+  options:
+    temperature: 1
+    top_p: 1
+instructions: Instructions for the agent
+tools: []
 ```
 
 ### Add tools to the Azure AI Agent
