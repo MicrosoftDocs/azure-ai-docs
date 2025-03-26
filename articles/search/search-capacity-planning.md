@@ -83,7 +83,7 @@ To increase or decrease the capacity of your service, you have two options:
 ### Change your service tier
 
 > [!NOTE]
-> The 2025-02-01 preview supports changes between Basic and Standard (S1, S2, and S3) tiers. Currently, you can only switch from a lower tier to a higher tier, such as going from Basic to S1. Your region also can't have [capacity constraints on the higher tier](search-region-support.md).
+> The 2025-02-01-preview supports changes between Basic and Standard (S1, S2, and S3) tiers. Currently, you can only switch from a lower tier to a higher tier, such as going from Basic to S1. Your region also can't have [capacity constraints on the higher tier](search-region-support.md).
 
 Your [pricing tier](search-sku-tier.md) determines the maximum storage of your search service. If you need more <!-- or less capacity -->capacity, you can switch to a different service tier that accommodates your storage needs.
 
