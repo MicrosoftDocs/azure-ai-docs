@@ -85,12 +85,15 @@ items:
       href: firewalls.md
   - name: Reference
     items:
-    - name: v4 Translator reference
-      href: text-translation/reference/v4/reference.md
-    - name: v3 Translator reference
-      displayName: 401000,405000,400000
-      href: text-translation/reference/v3/reference.md
+    - name: Azure AI Translator v4
       items:
+      - name: v4 Translator reference
+        href: text-translation/reference/v4/reference.md
+    - name: Azure AI Translator v3
+      items:
+      - name: v3 Translator reference
+        displayName: 401000,405000,400000
+        href: text-translation/reference/v3/reference.md
       - name: Text Translation v3 REST APIs
         href:  text-translation/reference/rest-api-guide.md
       - name: Languages
