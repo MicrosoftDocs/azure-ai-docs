@@ -1,6 +1,6 @@
 ---
 title: Monitor Azure AI Agent Service
-description: Start here to learn how to use Azure Monitor tools like Log Analytics to capture and analyze metrics and data logs for your Azure AI Agent Service.
+description: Start here to learn how to use Azure Monitor to capture and analyze metrics for your Azure AI Agent Service.
 ms.date: 03/20/2025
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: conceptual
@@ -27,40 +27,33 @@ To access the monitoring dashboards, sign in to the [Azure portal](https://porta
 
 :::image type="content" source="../media/monitoring/dashboard.png" alt-text="Screenshot that shows out-of-box dashboards for a resource in the Azure portal." lightbox="../media/monitoring/dashboard.png" border="false":::
 
+## Azure monitor platform metrics
 
-## Data collection and routing in Azure Monitor
+Azure Monitor provides platform metrics for most services. These metrics are:
 
-Azure AI Agent Service collects the same kinds of monitoring data as other Azure resources. You can configure Azure Monitor to generate data in activity logs, resource logs, virtual machine logs, and platform metrics. For more information, see [Monitoring data from Azure resources](/azure/azure-monitor/essentials/monitor-azure-resource#monitoring-data-from-azure-resources).
+* Individually defined for each namespace.
+* Stored in the Azure Monitor time-series metrics database.
+* Lightweight and capable of supporting near real-time alerting.
+* Used to track the performance of a resource over time.
+* Collection: Azure Monitor collects platform metrics automatically. No configuration is required.
 
-Platform metrics and the Azure Monitor activity log are collected and stored automatically. This data can be routed to other locations by using a diagnostic setting. Azure Monitor resource logs aren't collected and stored until you create a diagnostic setting and then route the logs to one or more locations.
-
-When you create a diagnostic setting, you specify which categories of logs to collect. For more information about creating a diagnostic setting by using the Azure portal, the Azure CLI, or PowerShell, see [Create diagnostic setting to collect platform logs and metrics in Azure](/azure/azure-monitor/platform/diagnostic-settings).
-
-Keep in mind that using diagnostic settings and sending data to Azure Monitor Logs has other costs associated with it. For more information, see [Azure Monitor Logs cost calculations and options](/azure/azure-monitor/logs/cost-logs).
-
-The metrics and logs that you can collect are described in the following sections.
-
-[!INCLUDE [horz-monitor-resource-types](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-resource-types.md)]
-
-For more information about the resource types, see the [monitoring data reference](../reference/monitor-service.md).
-
-[!INCLUDE [horz-monitor-data-storage](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-data-storage.md)]
-
-[!INCLUDE [horz-monitor-platform-metrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-platform-metrics.md)]
+For a list of all metrics it's possible to gather for all resources in Azure Monitor, see [Supported metrics in Azure Monitor](/azure/azure-monitor/platform/metrics-supported).
 
 Azure AI Agent Service has commonality with a subset of Azure AI services. For a list of available metrics for Azure AI Agent Service, see the [monitoring data reference](../reference/monitor-service.md#metrics).
 
-[!INCLUDE [horz-monitor-analyze-data](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-analyze-data.md)]
+## Analyze monitoring data
 
-### Configure diagnostic settings
+There are many tools for analyzing monitoring data.
 
-All of the metrics are exportable with [diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/diagnostic-settings). To analyze logs and metrics data with Azure Monitor Log Analytics queries, you need to configure diagnostic settings for your Azure resource and your Log Analytics workspace.
+### Azure Monitor tools
 
-:::image type="content" source="../media/monitoring/diagnostic-settings.png" alt-text="Screenshot that shows how to open the Diagnostic setting page for a resource in the Azure portal." lightbox="../media/monitoring/diagnostic-settings.png":::
+Azure Monitor supports the [metrics explorer](/azure/azure-monitor/essentials/metrics-getting-started), a tool in the Azure portal that allows you to view and analyze metrics for Azure resources. For more information, see Analyze metrics with Azure Monitor metrics explorer.
 
-After you configure the diagnostic settings, you can work with metrics and log data for your resource in your Log Analytics workspace.
+## Azure Monitor export tools
 
-[!INCLUDE [horz-monitor-external-tools](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-external-tools.md)]
+You can get data out of Azure Monitor into other tools by using the [REST API for metrics](/rest/api/monitor/operation-groups) to extract metric data from the Azure Monitor metrics database. The API supports filter expressions to refine the data retrieved. For more information, see [Azure Monitor REST API reference](/rest/api/monitor/filter-syntax).
+
+To get started with the REST API for Azure Monitor, see [Azure monitoring REST API walkthrough](/azure/azure-monitor/essentials/rest-api-walkthrough).
 
 ## Alerts
 
@@ -70,7 +63,7 @@ There are many sources of common alerts for Azure resources. [The Azure Monitor 
 
 The common alert schema standardizes the consumption of Azure Monitor alert notifications. For more information, see [Common alert schema](/azure/azure-monitor/alerts/alerts-common-schema).
 
-[Metric alerts](/azure/azure-monitor/alerts/alerts-types#metric-alerts) evaluate resource metrics at regular intervals. Metrics can be platform metrics, custom metrics, logs from Azure Monitor converted to metrics, or Application Insights metrics. Metric alerts can also apply multiple conditions and dynamic thresholds.
+[Metric alerts](/azure/azure-monitor/alerts/alerts-types#metric-alerts) evaluate resource metrics at regular intervals. Metric alerts can also apply multiple conditions and dynamic thresholds.
 
 Every organization's alerting needs vary and can change over time. Generally, all alerts should be actionable and have a specific intended response if the alert occurs. If an alert doesn't require an immediate response, the condition can be captured in a report rather than an alert. Some use cases might require alerting anytime certain error conditions exist. In other cases, you might need alerts for errors that exceed a certain threshold for a designated time period.
 
