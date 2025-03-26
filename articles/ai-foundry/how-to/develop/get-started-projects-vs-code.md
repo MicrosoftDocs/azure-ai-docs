@@ -1,20 +1,20 @@
 ---
-title: Get started with the Azure AI Foundry for Visual Studio Code extension
+title: Work with the Azure AI Foundry for Visual Studio Code extension
 titleSuffix: Azure AI Foundry
 description: Use this article to learn how to deploy Large Language Models and develop AI agents using Azure AI Foundry capabilities directly in VS Code.
-manager: scottpolly
+manager: mcleans
 ms.service: azure-ai-foundry
 content_well_notification: 
   - AI-contribution
-ms.topic: quickstart
-ms.date: 03/26/2025
+ms.topic: how-to
+ms.date: 03/28/2025
 ms.reviewer: 
 ms.author: johalexander
 author: ms-johnalex
 # customer intent: As an AI app developer, I want to learn how to use the Azure AI Foundry for Visual Studio Code extension so that I can deploy Large Language Models and develop AI agents using Azure AI Foundry capabilities directly in VS Code.
 ---
 
-# Get started with the Azure AI Foundry for Visual Studio Code extension (Preview)
+# Work with the Azure AI Foundry for Visual Studio Code extension (Preview)
 
 [Azure AI Foundry](/azure/ai-foundry/what-is-ai-foundry) provides a unified platform for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, ensuring organizations can build and operate AI applications with confidence.
 
@@ -159,7 +159,7 @@ Deploy a selected model in the model catalog using the following steps:
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/deploy-model-popup.png" alt-text="Screenshot of the confirmation dialog box with the Deploy button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/deploy-model-popup.png":::
 
-1. After a successful deployment, your model will be listed with your other deployed models under the **Models** section in your project.  
+1. After a successful deployment, your model will be listed by deployment name with your other deployed models under the **Models** section in your project.  
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/deployed-model.png" alt-text="Screenshot of the newly deployed model under the Models section." lightbox="../../media/how-to/get-started-projects-vs-code/deployed-model.png":::
 
@@ -332,10 +332,11 @@ After you choose your save location, the Designer view will open to edit your AI
 
     1. Enter a name for your agent in the prompt.
 
-    1. Enter your deployed model name.
+    1. Enter your model deployment name. The deployment name you chose when you deployed an existing model.
 
     > [!TIP]
-    > The deployed model name must be the exact name of the model you deployed in your Azure AI Foundry project.
+    > The model deployment name must be the exact name you chose for the model you deployed in your Azure AI Foundry project. In the following image, `gpt-4o-1` is the model deployment name you chose at deployment. `gpt-4o` is the model name. 
+    >  :::image type="content" source="../../media/how-to/get-started-projects-vs-code/deployment-model-name.png" alt-text="Screenshot of the highlighted deployment model names, an arrow between them, and the model name highlighted in a different color." lightbox="../../media/how-to/get-started-projects-vs-code/deployment-model-name.png":::
 
     1. Configure the following fields:
     
@@ -439,7 +440,7 @@ Add a tool to the AI Agent with the following steps:
 
 Deploy your agent directly to Azure AI Foundry with the following steps:
 
-1.  Select the **Deploy to Azure AI Foundry** button in the bottom-right of the designer.
+1.  Select the **Deploy to Azure AI Foundry** button in the bottom-left of the designer.
 
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-deploy.png" alt-text="Screenshot of the Agent designer with the 'Deploy to Azure AI Foundry' button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-deploy.png":::
 
