@@ -31,6 +31,10 @@ Request access: [`computer-use-preview` limited access model application](https:
 
 For more information on model capabilities, and region availability see the [models documentation](./concepts/models.md#computer-use-preview).
 
+![Computer-use-preview demo](../media/computer-use-preview.gif)
+
+[Playwright integration demo code](./how-to/responses.md#computer-use).
+
 ### Provisioned spillover (preview)
 
 Spillover manages traffic fluctuations on provisioned deployments by routing overages to a designated standard deployment. To learn more about how to maximize utilization for your provisioned deployments with spillover, see [Manage traffic with spillover for provisioned deployments (preview)](./how-to/spillover-traffic-management.md).
