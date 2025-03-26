@@ -178,7 +178,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ### NTT Data
 
-**Tsuzumi** is an autoregressive language optimized transformer. The tuned versions use supervised fine-tuning (SFT). Tsuzumi is handles both Japanese and English language with high efficiency.
+**Tsuzumi** is an autoregressive language optimized transformer. The tuned versions use supervised fine-tuning (SFT). Tsuzumi handles both Japanese and English language with high efficiency.
 
 | Model  | Type | Tier | Capabilities |
 | ------ | ---- | --- | ------------ |
