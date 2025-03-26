@@ -210,8 +210,7 @@ PUT https://myservice.search.windows.net/indexes('hotels')?allowIndexDowntime=Fa
   },
   "vectorSearch": {  }
 }
-``
-
+```
 
 ## Next steps
 
