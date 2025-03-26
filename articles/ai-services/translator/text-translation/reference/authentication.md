@@ -1,13 +1,13 @@
 ---
 title: Authentication in Azure AI Translator service
 titleSuffix: Azure AI services
-description: "There are three ways to authenticate a request to an Azure AI services resource: a resource key, a bearer token, or a multi-service subscription. In this article, you'll learn about each method, and how to make a request."
-author: eric-urban
+description: "There are several ways to authenticate a request to Azure AI Translator resource In this article, you'll learn about each method, and how to make a request."
+author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 2/7/2025
-ms.author: eur
+ms.date: 03/26/2025
+ms.author: lajanuar
 ---
 
 # Authentication
@@ -132,6 +132,6 @@ An authentication token is valid for 10 minutes. The token should be reused when
 
 ### **Prerequisites**
 
-* A brief understanding of how to [**authenticate with Microsoft Entra ID**](../../../../authentication.md?tabs=powershell#authenticate-with-azure-active-directory).
+* A brief understanding of how to [**authenticate with Microsoft Entra ID**](../../../authentication.md?tabs=powershell#authenticate-with-azure-active-directory).
 
-* A brief understanding of how to [**authorize access to managed identities**](../../../../authentication.md?tabs=powershell#authorize-access-to-managed-identities).
+* A brief understanding of how to [**authorize access to managed identities**](../../../authentication.md?tabs=powershell#authorize-access-to-managed-identities).

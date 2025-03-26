@@ -12,11 +12,11 @@ ms.author: lajanuar
 
 # Translator v4.0
 
- Azure AI Translator v4.0 represents our newest cloud-based, multilingual neural machine translation service, offering powerful and scalable translation capabilities suitable for diverse applications. With support for over 100 languages and dialects, it's designed for businesses, developers, and organizations to seamlessly incorporate multilingual communication into applications and workflows. The Translator service delivers text and document translation while preserving the original structure and format, making it ideal for managing extensive multilingual content. The service integrates easily with various applications via a single REST API call and supports multiple programming languages, enabling you to seamlessly integrate multilingual communication into your solutions.
+ Azure AI Translator v4.0 represents our newest cloud-based, multilingual neural machine translation service, offering powerful and scalable translation capabilities suitable for diverse applications. With support for over 100 languages and dialects, it`s designed for businesses, developers, and organizations to seamlessly incorporate multilingual communication into applications and workflows. The Translator service delivers text and document translation while preserving the original structure and format, making it ideal for managing extensive multilingual content. The service integrates easily with various applications via a single REST API call and supports multiple programming languages, enabling you to seamlessly integrate multilingual communication into your solutions.
 
 The service integrates effortlessly with various applications via a single REST API call and supports numerous programming languages including Python, C#, Java, JavaScript, and Go. This versatility ensures developers can seamlessly add translation functionalities to their apps. Azure AI Translator prioritizes data security and privacy, complying with regulations like GDPR, HIPAA, and ISO/SOC, making it a dependable choice for handling sensitive and confidential information.
 
-## What's new?
+## What`s new?
 
 Azure AI Translator v4.0 is designed toe be **backwards compatible** with Translator v3.0, requiring minimal updates for existing customers. In addition, Translator v4.0 offers several new feature updates and expanded capabilities:
 
@@ -44,7 +44,7 @@ To ensure that requests are handled within a specific region, utilize the design
 
 #### Switzerland service endpoints
 
-Customers with a resource located in Switzerland North or Switzerland West can ensure that their Text API requests are served within Switzerland. To ensure that requests are handled in Switzerland, create the Translator resource in the `Resource region` `Switzerland North` or `Switzerland West`, then use the resource's custom endpoint in your API requests.
+Customers with a resource located in Switzerland North or Switzerland West can ensure that their Text API requests are served within Switzerland. To ensure that requests are handled in Switzerland, create the Translator resource in the `Resource region` `Switzerland North` or `Switzerland West`, then use the resource`s custom endpoint in your API requests.
 
 For example: If you create a Translator resource in Azure portal with `Resource region` as `Switzerland North` and your resource name is `my-swiss-n`, then your custom endpoint is `https&#8203;://my-swiss-n.cognitiveservices.azure.com`. And a sample request to translate is:
 
@@ -54,10 +54,10 @@ curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/v3.
 -H "Ocp-Apim-Subscription-Key: xxx" \
 -H "Ocp-Apim-Subscription-Region: switzerlandnorth" \
 -H "Content-Type: application/json" \
--d "[{'Text':'Hello'}]" -v
+-d "[{`Text`:`Hello`}]" -v
 ```
 
-Custom Translator isn't currently available in Switzerland.
+Custom Translator isn`t currently available in Switzerland.
 
 ## Request Headers
 
@@ -91,9 +91,9 @@ Request parameters passed on the query string are as follows:
 | **targets** | array | True | Targets for text translation. |
 | **targets.language** | string | True | The language code for the translated text. Possible values are list of language code supported by the specified model. |
 | **targets.script** | string | False | Specify the script of the translated text. |
-|**targets.deploymentName** | string | False | Default is 'general', which uses NMT system. 'gpt-4o-mini' uses GPT-4o-mini model.  'gpt-4o' uses GPT-4o model.  '<custom model id>' uses the custom NMT model tuned by customer. |
-| **targets.allowFallback** | string | False | Specifies that the service is allowed to fall back to a general system when a model specified isn't supported for specified source and target language pair.  Default is 'true'. If 'false' system returns an error if language pair isn't supported.  This functionality exists for CT and the same logic gets extended to LLMs. |
-| **targets.grade** | string | False | Default is 'basic'. For example, translation produced by simple prompt like "translate <source text> from <source language> to <target language>" Later we could introduce grades like 'intermediate', 'advanced', 'proficient', and 'expert'. We would also need to define each of them as understandable by the business decision maker. Need to demonstrate the impact on quality, latency, and cost. |
+|**targets.deploymentName** | string | False | Default is `general`, which uses NMT system. `gpt-4o-mini` uses GPT-4o-mini model.  `gpt-4o` uses GPT-4o model.  `<custom model id>` uses the custom NMT model tuned by customer. |
+| **targets.allowFallback** | string | False | Specifies that the service is allowed to fall back to a general system when a model specified isn`t supported for specified source and target language pair.  Default is `true`. If `false` system returns an error if language pair isn`t supported.  This functionality exists for CT and the same logic gets extended to LLMs. |
+| **targets.grade** | string | False | Default is `basic`. For example, translation produced by simple prompt like `translate <source text> from <source language> to <target language>` Later we could introduce grades like `intermediate`, `advanced`, `proficient`, and `expert`. We would also need to define each of them as understandable by the business decision maker. Need to demonstrate the impact on quality, latency, and cost. |
 | **targets.tone** | string | False | Desired tone of target translation. Enum: Formal, informal, neutral. |
 | **targets.gender** **\*** | string | False | Desired gender of target translation.  Enum: |
 | **targets.adaptiveDatasetId** | string | False | Reference dataset ID having sentence pair to generate adaptive customized translation |
@@ -108,7 +108,7 @@ Request parameters passed on the query string are as follows:
 
 | Source text | Target gender | Expected gender in translation |
 | --- | --- | --- |
-| Neutral |  | Neutral /  Random: if target language doesn't have a gender-neutral term. |
+| Neutral |  | Neutral /  Random: if target language doesn`t have a gender-neutral term. |
 | Female |  | Female / Neutral: if target language is gender neutral. |
 | Male |  | Male / Neutral: if target language is gender neutral. |
 | Neutral | Female | Female / Neutral: if target language is gender neutral. |
@@ -123,53 +123,152 @@ Request parameters passed on the query string are as follows:
 
 #### Translate text
 
-| Request | Response |
-| --- | --- |
-| [ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es"} ] } ] | [ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "sourceCharacters": 72} ]   } ] |
-|  | Header: "sourceCharactersCharged": 72 |
+***Request***
+
+```bash
+ [ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es"} ] } ] |
+```
+
+***Response***
+
+```bash
+[ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "sourceCharacters": 72} ]   } ]
+```
+
+***Response Header***
+
+```bash
+"sourceCharactersCharged": 72
+```
 
 #### Translate source text into multiple languages
-| Request | Response |
-| --- | --- |
-| [ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es"} , {     "language": "de"} ] } ] | [ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "sourceCharacters": 72} , { "text": "Der Arzt ist nächsten Montag verfügbar. Möchten Sie einen Termin vereinbaren?", "language": "de", "sourceCharacters": 72} ]   } ] |
-|  | Header: "sourceCharactersCharged": 144 |
+
+***Request***
+
+```bash
+[ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es"} , {     "language": "de"} ] } ]
+```
+
+***Response***
+
+```bash
+[ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "sourceCharacters": 72} , { "text": "Der Arzt ist nächsten Montag verfügbar. Möchten Sie einen Termin vereinbaren?", "language": "de", "sourceCharacters": 72} ]   } ]
+```
+
+***Response Header***
+
+```bash
+"sourceCharactersCharged": 144
+```
 
 #### Translate Text using `GPT-4o mini` and `NMT` deployments
 
-| Request | Response |
-| --- | --- |
-| [ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es", " deploymentName": "gpt-4o-mini"} , {     "language": "de"} ] } ] | [ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "instructionTokens": 12,  "sourceTokens": 14,  "targetTokens": 16} , { "text": "Der Arzt ist nächsten Montag verfügbar. Möchten Sie einen Termin vereinbaren?", "language": "de", "sourceCharacters": 72} ]   } ] |
-|  | Header: "sourceCharactersCharged": 72 "sourceTokensCharged": 26 "targetTokensCharged": 16 |
+Users request specific GPT models for deployment.
+
+***Request***
+
+```bash
+ [ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es", " deploymentName": "gpt-4o-mini"} , {     "language": "de"} ] } ]
+```
+
+***Response***
+
+```bash
+| [ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "instructionTokens": 12,  "sourceTokens": 14,  "targetTokens": 16} , { "text": "Der Arzt ist nächsten Montag verfügbar. Möchten Sie einen Termin vereinbaren?", "language": "de", "sourceCharacters": 72} ]   } ]
+```
+
+***Response Header***
+
+```bash
+"sourceCharactersCharged": 72 
+"sourceTokensCharged": 26
+"targetTokensCharged": 16
+```
 
 #### Translate specifying gender and tone using `GPT-4o mini` deployment
 
-| Request | Response |
-| --- | --- |
-| [ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es", "model": "gpt-4o-mini", "tone": "formal", "gender": "female"},  {  "language": "es", "model": "gpt-4o-mini", "tone": "formal", "gender": "male"} ] } ] | [ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "promptTokens": 12,  "sourceTokens": 14,  "targetTokens": 16}, { "text": "El médico estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "instructionTokens": 12,  "sourceTokens": 14,  "targetTokens": 16} ]   } ] |
-|  | Header: "sourceTokensCharged": 52 "targetTokensCharged": 32 |
+***Request***
 
-#### Text translation request applying Adaptive Custom translation with dataset  
+```bash
+[ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es", "model": "gpt-4o-mini", "tone": "formal", "gender": "female"},  {  "language": "es", "model": "gpt-4o-mini", "tone": "formal", "gender": "male"} ] } ]
+```
 
-The adaptive customized translation executes on Translator team infrastructure and charged based on source characters. We decide on which LLM model and version to use as we bring the capacity.  
+***Response***
 
-| Request | Response |
-| --- | --- |
-| [ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es", "adaptiveDatasetId": "TMS-en-es-hr-020"} ] } ] | [ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "sourceCharacters": 72, "targetChaaracters": 72} ]   } ] |
-|  | Header: "sourceCharactersCharged": 72 "targetChaaractersCharged": 72 |
+```bash
+[ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "promptTokens": 12,  "sourceTokens": 14,  "targetTokens": 16}, { "text": "El médico estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "instructionTokens": 12,  "sourceTokens": 14,  "targetTokens": 16} ]   } ]
+```
 
-#### Text translation request applying Adaptive custom translation with reference pairs 
+***Response Header***
 
-| Request | Response |
-| --- | --- |
-| [ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es", "referenceTextPairs": [ {  "source": "text_in_en",  "target": " text_in_es"}, { "source": " text_in_en",  "target": " text_in_es" } } ] } ] | [ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "sourceCharacters": 72, "targetChaaracters": 72} ]   } ] |
-|  | Header: "sourceCharactersCharged": 72 "targetChaaractersCharged": 72 |
+```bash
+"sourceTokensCharged": 52
+"targetTokensCharged": 32
+```
+
+#### Text translation request applying adaptive custom translation with dataset
+
+Adaptive custom translation deploys on Translator service infrastructure. Charges are based on source characters.
+
+***Request***
+
+```bash
+[ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es", "adaptiveDatasetId": "TMS-en-es-hr-020"} ] } ]
+```
+
+***Response***
+
+```bash
+[ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "sourceCharacters": 72, "targetChaaracters": 72} ]   } ]
+```
+
+***Response Header***
+
+```bash
+"sourceCharactersCharged": 72 "targetChaaractersCharged": 72
+```
+
+#### Text translation request applying Adaptive custom translation with reference pairs
+
+***Request***
+
+```bash
+[ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es", "referenceTextPairs": [ {  "source": "text_in_en",  "target": " text_in_es"}, { "source": " text_in_en",  "target": " text_in_es" }] } ] } ]
+```
+
+***Response***
+
+```bash
+[ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "sourceCharacters": 72, "targetChaaracters": 72} ] } ]
+```
+
+***Response Header***
+
+```bash
+"sourceCharactersCharged": 72 
+"targetCharactersCharged": 72
+```
 
 #### Text translation request using custom translation
 
-| Request | Response |
-| --- | --- |
-| [ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es", "model": "CT-model-en-es-hr-020"} ] } ] | [ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "sourceCharacters": 72} ]   } ] |
-|  | Header: "sourceCharactersCharged": 72 |
+***Request***
+
+```bash
+[ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es", "model": "CT-model-en-es-hr-020"} ] } ]
+```
+
+***Response***
+
+```bash
+[ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "sourceCharacters": 72} ]   } ]
+```
+
+***Response Header***
+
+```bash
+"sourceCharactersCharged": 72
+```
+
 
 
 
