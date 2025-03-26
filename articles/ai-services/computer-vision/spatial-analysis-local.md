@@ -60,6 +60,5 @@ The Spatial Analysis module will start consuming video file and will continuousl
 
 <!--* [Deploy a People Counting web application](spatial-analysis-web-app.md)-->
 * [Configure Spatial Analysis operations](spatial-analysis-operations.md)
-* [Logging and troubleshooting](spatial-analysis-logging.md)
 * [Camera placement guide](spatial-analysis-camera-placement.md)
 * [Zone and line placement guide](spatial-analysis-zone-line-placement.md)

@@ -418,8 +418,6 @@ items:
         href: spatial-analysis-local.md
       #- name: Deploy a people counting web app
       #  href: Spatial-analysis-web-app.md
-      - name: Logging and troubleshooting
-        href: spatial-analysis-logging.md
       - name: Zone and line placement
         href: spatial-analysis-zone-line-placement.md
       - name: Camera placement
