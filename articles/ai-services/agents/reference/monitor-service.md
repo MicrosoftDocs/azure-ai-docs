@@ -17,10 +17,10 @@ See [Monitor Azure AI Agent Service](../how-to/metrics.md) for details on the da
 
 ## Metrics
 
-Here are the most important metrics we think you should monitor for Azure AI Agent Service. Later in this article is a longer list of all available metrics which contains more details on metrics in this shorter list. _Please see below list for most up to date information. We're working on refreshing the tables in the following sections._
+Here are the most important metrics we think you should monitor for Azure AI Agent Service. Later in this article is a longer list of all available metrics which contains more details on metrics in this shorter list. _See the below list for most up to date information. We're working on refreshing the tables in the following sections._
 
 - Cancel Requested Runs
-- Cancelled Runs
+- Canceled Runs
 - Completed Runs
 - Errors
 - Failed Runs
