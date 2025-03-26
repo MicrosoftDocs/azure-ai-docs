@@ -5,10 +5,10 @@ description: Use this article to learn how to deploy Large Language Models and d
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: quickstart
-ms.date: 03/24/2025
+ms.date: 03/26/2025
 ms.reviewer: 
-ms.author: sgilley
-author: sdgilley
+ms.author: johalexander
+author: ms-johnalex
 # customer intent: As an AI app developer, I want to learn how to use the Azure AI Foundry for Visual Studio Code extension so that I can deploy Large Language Models and develop AI agents using Azure AI Foundry capabilities directly in VS Code.
 ---
 
