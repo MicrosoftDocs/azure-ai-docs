@@ -115,7 +115,7 @@ AI service integration refers to internal connections to an Azure AI services mu
 | Region | AI service integration | Semantic ranker | Availability zones | Capacity constrained |
 |--|--|--|--|--|
 | Arizona | ✅ | ✅  | | |
-| Texas |  | ✅ |  | |
+| Texas |  |  |  | |
 | Virginia | ✅ | ✅  | ✅ | |
 
 ## Azure operated by 21Vianet
