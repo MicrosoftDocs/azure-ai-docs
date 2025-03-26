@@ -2,14 +2,13 @@
 title: 'Quickstart: Generate images with Azure OpenAI Service'
 titleSuffix: Azure OpenAI
 description: Learn how to get started generating images with Azure OpenAI Service by using the Python SDK, the REST APIs, or Azure AI Foundry portal.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-track-go, devx-track-js, devx-track-ts
 ms.topic: quickstart
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 09/06/2024
+ms.date: 02/20/2025
 zone_pivot_groups: openai-quickstart-dall-e
 ---
 

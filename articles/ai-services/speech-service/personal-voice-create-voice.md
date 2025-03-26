@@ -8,7 +8,7 @@ ms.service: azure-ai-speech
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 9/20/2024
+ms.date: 3/10/2025
 ms.author: eur
 #Customer intent: As a developer, I want to learn how to get a speaker profile ID for the personal voice.
 ---

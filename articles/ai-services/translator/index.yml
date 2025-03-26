@@ -42,7 +42,7 @@ landingContent:
       - linkListType: concept
         links:
           - text: Text Translation
-            url: text-translation-overview.md
+            url: text-translation/overview.md
           - text: Document Translation
             url:  document-translation/overview.md
           - text: Custom Translator
@@ -81,9 +81,9 @@ landingContent:
       - linkListType: reference
         links:
           - text: Text Translation REST API
-            url: reference/v3-0-reference.md
+            url: text-translation/reference/v3/reference.md
           - text: Text Translation reference (v3)
-            url: reference/v3-0-reference.md
+            url: text-translation/reference/v3/reference.md
           - text: Request limits
             url: service-limits.md
       - linkListType: how-to-guide
@@ -145,9 +145,9 @@ landingContent:
           - text: Microsoft Translator Pro
             url: translator-pro/overview.md
           - text: V3 connector (document translation)
-            url: connector/document-translation-flow.md
+            url: solutions/connector/document-translation-flow.md
           - text: V3 connector (text translation)
-            url: connector/text-translator-flow.md
+            url: solutions/connector/text-translator-flow.md
   #          
   - title: Resources
     linkLists:

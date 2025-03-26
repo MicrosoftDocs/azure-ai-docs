@@ -1,6 +1,5 @@
 ---
 title: Create a Decision resource
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services

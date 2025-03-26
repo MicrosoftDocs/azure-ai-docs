@@ -2,7 +2,6 @@
 title: "Quickstart: Detect Personally Identifying Information (PII) in text"
 titleSuffix: Azure AI services
 description: Use this quickstart to start using the PII detection API.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
@@ -47,6 +46,12 @@ zone_pivot_groups: programming-languages-text-analytics
 ::: zone pivot="rest-api"
 
 [!INCLUDE [REST API quickstart](includes/quickstarts/rest-api.md)]
+
+::: zone-end
+
+::: zone pivot="ai-foundry-portal"
+
+[!INCLUDE [Azure AI Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
 
 ::: zone-end
 

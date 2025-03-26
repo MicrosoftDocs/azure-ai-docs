@@ -1,7 +1,6 @@
 ---
 title: Container requirements and recommendations
 titleSuffix: Azure AI services
-#services: cognitive-services
 author: aahill
 manager: nitinme
 ms.service: azure-ai-vision

@@ -1,5 +1,5 @@
 ---
-title: 'How to use Azure Functions with the Azure AI Search tool'
+title: How to use Azure Functions with the Azure AI Agent Service
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure functions with Azure AI Agents.
 services: azure-ai-agent-service
@@ -26,7 +26,7 @@ Meanwhile, bindings facilitate streamlined connections to input or output data s
 ## Prerequisites
 
 * [Azure Functions Core Tools v4.x](/azure/azure-functions/functions-run-local)
-* [Azure AI Agent Service](../../../../ai-studio/how-to/develop/sdk-overview.md?tabs=sync&pivots=programming-language-python#azure-ai-agent-service)
+* [Azure AI Agent Service](../../../../ai-foundry/how-to/develop/sdk-overview.md?tabs=sync&pivots=programming-language-python#azure-ai-agent-service)
 * [Azurite](https://github.com/Azure/Azurite)
 
 ## Prepare your local environment
@@ -37,9 +37,9 @@ You can find the template and code used here on [GitHub](https://github.com/Azur
 
 ## Usage support
 
-|Azure AI foundry support  | Python SDK |	C# SDK | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|
-|  | ✔️ |  | | ✔️ |
+|Azure AI foundry support  | Python SDK |	C# SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|
+|  | ✔️ |  | ✔️ | | ✔️ |
 
 ### Create Azure resources for local and cloud dev-test
 
@@ -177,6 +177,7 @@ def process_queue_message(msg: func.QueueMessage) -> None:
 
 In the sample below we create a client and an agent that has the tools definition for the Azure Function
 
+# [Python](#tab/python)
 ```python
 # Initialize the client and create agent for the tools Azure Functions that the agent can use
 
@@ -230,16 +231,74 @@ agent = project_client.agents.create_agent(
 )
 ```
 
+# [REST API](#tab/rest)
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`. Then create the agent using:
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "instructions": "You are a helpful support agent. Answer the user's questions to the best of your ability.",
+    "name": "azure-function-agent-get-weather",
+    "model": "gpt-4o-mini",
+    "tools": [
+      { 
+        "type": "azure_function",
+        "azure_function": {
+            "function": {
+                "name": "GetWeather",
+                "description": "Get the weather in a location.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "location": {"type": "string", "description": "The location to look up."}
+                    },
+                    "required": ["location"]
+                }
+            },
+            "input_binding": {
+                "type": "storage_queue",
+                "storage_queue": {
+                    "queue_service_endpoint": "https://storageaccount.queue.core.windows.net",
+                    "queue_name": "input"
+                }
+            },
+            "output_binding": {
+                "type": "storage_queue",
+                "storage_queue": {
+                    "queue_service_endpoint": "https://storageaccount.queue.core.windows.net",
+                    "queue_name": "output"
+                }
+            }
+        }
+      }
+    ]
+  }'
+```
+
+---
+
 ## Create a thread for the agent
 
+# [Python](#tab/python)
 ```python
 # Create a thread
 thread = project_client.agents.create_thread()
 print(f"Created thread, thread ID: {thread.id}")
 ```
 
+# [REST API](#tab/rest)
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d ''
+```
+---
+
 ## Create a run and check the output
 
+# [Python](#tab/python)
 ```python
 # Send the prompt to the agent
 message = project_client.agents.create_message(
@@ -250,7 +309,7 @@ message = project_client.agents.create_message(
 print(f"Created message, message ID: {message.id}")
 
 # Run the agent
-run = project_client.agents.create_run(thread_id=thread.id, assistant_id=agent.id)
+run = project_client.agents.create_run(thread_id=thread.id, agent_id=agent.id)
 # Monitor and process the run status. The function call should be placed on the input queue by the Agent Service for the Azure Function to pick up when requires_action is returned
 while run.status in ["queued", "in_progress", "requires_action"]:
     time.sleep(1)
@@ -261,9 +320,35 @@ while run.status in ["queued", "in_progress", "requires_action"]:
 
 print(f"Run finished with status: {run.status}")
 ```
+# [REST API](#tab/rest)
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+      "role": "user",
+      "content": "What is the weather in Seattle, WA?"
+    }'
+```
 
-### Get the result of the run
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistant_id": "asst_abc123",
+  }'
+```
 
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+```
+
+---
+## Get the result of the run
+
+# [Python](#tab/python)
 ```python
 # Get messages from the assistant thread
 messages = project_client.agents.get_messages(thread_id=thread.id)
@@ -277,6 +362,12 @@ if last_msg:
 # Delete the agent once done
 project_client.agents.delete_agent(agent.id)
 print("Deleted agent")
+```
+
+# [REST API](#tab/rest)
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
 ::: zone-end

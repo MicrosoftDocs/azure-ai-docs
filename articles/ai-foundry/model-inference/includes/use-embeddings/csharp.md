@@ -24,22 +24,10 @@ To use embedding models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
+[!INCLUDE [how-to-prerequisites-csharp](../how-to-prerequisites-csharp.md)]
+
 * An embeddings model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add an embeddings model to your resource.
 
-* Install the Azure AI inference package with the following command:
-
-    ```bash
-    dotnet add package Azure.AI.Inference --prerelease
-    ```
-    
-    > [!TIP]
-    > Read more about the [Azure AI inference package and reference](https://aka.ms/azsdk/azure-ai-inference/python/reference).
-
-* If you are using Entra ID, you also need the following package:
-
-    ```bash
-    dotnet add package Azure.Identity
-    ```
 
 ## Use embeddings
 
@@ -49,19 +37,23 @@ First, create the client to consume the model. The following code uses an endpoi
 ```csharp
 EmbeddingsClient client = new EmbeddingsClient(
     new Uri(Environment.GetEnvironmentVariable("AZURE_INFERENCE_ENDPOINT")),
-    new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL")),
-    "text-embedding-3-small"
+    new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL"))
 );
 ```
 
-If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
-
+If you configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client. Note that here `includeInteractiveCredentials` is set to `true` only for demonstration purposes so authentication can happen using the web browser. On production workloads, you should remove such parameter.
 
 ```csharp
+TokenCredential credential = new DefaultAzureCredential(includeInteractiveCredentials: true);
+AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions();
+BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(credential, new string[] { "https://cognitiveservices.azure.com/.default" });
+
+clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
+
 client = new EmbeddingsClient(
-    new Uri(Environment.GetEnvironmentVariable("AZURE_INFERENCE_ENDPOINT")),
-    new DefaultAzureCredential(includeInteractiveCredentials: true),
-    "text-embedding-3-small"
+    new Uri("https://<resource>.services.ai.azure.com/models"),
+    credential,
+    clientOptions,
 );
 ```
 
@@ -75,6 +67,7 @@ EmbeddingsOptions requestOptions = new EmbeddingsOptions()
     Input = {
         "The ultimate answer to the question of life"
     },
+    Model = "text-embedding-3-small"
 };
 
 Response<EmbeddingsResult> response = client.Embed(requestOptions);
@@ -104,6 +97,7 @@ EmbeddingsOptions requestOptions = new EmbeddingsOptions()
         "The ultimate answer to the question of life", 
         "The largest planet in our solar system is Jupiter"
     },
+    Model = "text-embedding-3-small"
 };
 
 Response<EmbeddingsResult> response = client.Embed(requestOptions);
@@ -129,7 +123,12 @@ The following example shows how to create embeddings that are used to create an 
 var input = new List<string> { 
     "The answer to the ultimate question of life, the universe, and everything is 42"
 };
-var requestOptions = new EmbeddingsOptions(input, EmbeddingInputType.DOCUMENT);
+var requestOptions = new EmbeddingsOptions()
+{
+    Input = input,
+    InputType = EmbeddingInputType.DOCUMENT, 
+    Model = "text-embedding-3-small"
+};
 
 Response<EmbeddingsResult> response = client.Embed(requestOptions);
 ```
@@ -141,7 +140,12 @@ When you work on a query to retrieve such a document, you can use the following 
 var input = new List<string> { 
     "What's the ultimate meaning of life?"
 };
-var requestOptions = new EmbeddingsOptions(input, EmbeddingInputType.QUERY);
+var requestOptions = new EmbeddingsOptions()
+{
+    Input = input,
+    InputType = EmbeddingInputType.QUERY,
+    Model = "text-embedding-3-small"
+};
 
 Response<EmbeddingsResult> response = client.Embed(requestOptions);
 ```

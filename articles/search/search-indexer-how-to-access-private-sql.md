@@ -126,9 +126,8 @@ You can now configure an indexer and its data source to use an outbound private 
 
 This article assumes a [REST client](search-get-started-rest.md) and uses the REST APIs.
 
-1. Get an ADO connection string for your SQL managed instance in the **VNet-local endpoint** syntax. By default, a managed instance listens on port 3342, but on a virtual network it listens on 1433.
 
-1. [Create the data source definition](search-how-to-index-sql-database.md) as you would normally for Azure SQL.
+1. [Create the data source definition](search-how-to-index-sql-database.md) as you would normally for Azure SQL. By default, a managed instance listens on port 3342, but on a virtual network it listens on 1433.
 
     Provide the connection string that you copied earlier with an Initial Catalog set to your database name.
 

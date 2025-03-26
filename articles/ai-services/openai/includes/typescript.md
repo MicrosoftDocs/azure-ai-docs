@@ -2,7 +2,6 @@
 title: 'Quickstart: Use Azure OpenAI Service with the JavaScript SDK and the completions API'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the JavaScript SDK. 
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
@@ -60,11 +59,11 @@ import { AzureOpenAI } from "openai";
 import { type Completion } from "openai/resources/index";
 
 // You will need to set these environment variables or edit the following values
-const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
+const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
 
 // Required Azure OpenAI deployment name and API version
-const apiVersion = "2024-08-01-preview";
-const deploymentName = "gpt-35-turbo-instruct";
+const apiVersion = process.env.OPENAI_API_VERSION || "2024-08-01-preview";
+const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-35-turbo-instruct";
 
 // keyless authentication    
 const credential = new DefaultAzureCredential();
@@ -131,12 +130,12 @@ import { AzureOpenAI } from "openai";
 import { type Completion } from "openai/resources/index";
 
 // You will need to set these environment variables or edit the following values
-const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] || "<endpoint>";
-const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
+const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+const apiKey = process.env.AZURE_OPENAI_API_KEY || "Your API key";
 
 // Required Azure OpenAI deployment name and API version
-const apiVersion = "2024-08-01-preview";
-const deploymentName = "gpt-35-turbo-instruct";
+const apiVersion = process.env.OPENAI_API_VERSION || "2024-08-01-preview";
+const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-35-turbo-instruct";
 
 // Chat prompt and max tokens
 const prompt = ["When was Microsoft founded?"];

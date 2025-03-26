@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 01/16/2025
+ms.date: 03/17/2025
 ms.author: lajanuar
 ---
 
@@ -86,7 +86,7 @@ See how data, including text, tables, table headers, selection marks, and struct
 
     :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
 
-After you retrieve you key and endpoint, you can use the following development options to build and deploy your Document Intelligence applications:
+After you retrieve your key and endpoint, use the following development options to build and deploy your Document Intelligence applications:
 
 ### [REST API](#tab/rest)
 
@@ -103,7 +103,7 @@ After you retrieve you key and endpoint, you can use the following development o
 ### [Document Intelligence Studio](#tab/studio)
 
 * [Studio](https://documentintelligence.ai.azure.com/studio)
-* [How-to guide](../studio-overview.md#authentication-in-studio)
+* [How-to guide](../quickstarts/get-started-studio.md#authentication-in-studio)
 
 ---
 
@@ -220,9 +220,9 @@ The new machine-learning based page object detection extracts logical roles like
 
 ### Text, lines, and words
 
-The document layout model in Document Intelligence extracts print and handwritten style text as `lines` and `words`. The `styles` collection ../includes any handwritten style for lines if detected along with the spans pointing to the associated text. This feature applies to [supported handwritten languages](../language-support/prebuilt.md).
+The document layout model in Document Intelligence extracts print and handwritten style text as `lines` and `words`. The `styles` collection includes any handwritten style for lines if detected along with the spans pointing to the associated text. This feature applies to [supported handwritten languages](../language-support/prebuilt.md).
 
-For Microsoft Word, Excel, PowerPoint, and HTML, Document Intelligence v4.0 2024-11-30 (GA) Layout model extract all embedded text as is. Texts are extracted as words and paragraphs. Embedded images aren't supported.
+For Microsoft Word, Excel, PowerPoint, and HTML, Document Intelligence v4.0 `2024-11-30` (GA) Layout model extract all embedded text as is. Texts are extracted as words and paragraphs. Embedded images aren't supported.
 
 #### [Sample code](#tab/sample-code)
 
@@ -343,8 +343,8 @@ Here are a few factors to consider when using the Document Intelligence bale ext
 
 > [!NOTE]
 >
-> * Table analysis is not supported if the input file is XLSX.
-> * For *2024-11-30 (GA)*, the bounding regions for figures and tables cover only the core content and exclude associated caption and footnotes.
+> * Table analysis isn't supported if the input file is XLSX.
+> * For `2024-11-30` (GA), the bounding regions for figures and tables cover only the core content and exclude associated caption and footnotes.
 
 #### [Sample code](#tab/sample-code)
 
@@ -399,7 +399,8 @@ if result.tables:
 The Layout API can output the extracted text in markdown format. Use the `outputContentFormat=markdown` to specify the output format in markdown. The markdown content is output as part of the `content` section.
 
 > [!NOTE]
-> For v4.0 *2024-11-30 (GA)*, the representation of tables is changed to HTML tables to enable rendering of merged cells, multi-row headers, etc. Another related change is to use Unicode checkbox characters ☒ and ☐ for selection marks instead of :selected: and :unselected:.  Note that this means that the content of selection mark fields will contain :selected: even though their spans refer to Unicode characters in the top-level span.
+>
+> For v4.0 `2024-11-30` (GA), the representation of tables is changed to HTML tables to enable rendering of merged cells, multi-row headers, etc. Another related change is to use Unicode checkbox characters ☒ and ☐ for selection marks instead of `:selected:` and `:unselected:`. This update means that the content of selection mark fields contains `:selected:` even though their spans refer to Unicode characters in the top-level span.
 
 #### [Sample code](#tab/sample-code)
 
@@ -472,7 +473,7 @@ When *output=figures* is specified during the initial analyze operation, the ser
 `FigureId` is included in each figure object, following an undocumented convention of `{pageNumber}.{figureIndex}` where `figureIndex` resets to one per page.
 
 > [!NOTE]
-> For v4.0 *2024-11-30 (GA)*, the bounding regions for figures and tables cover only the core content and exclude associated caption and footnotes.
+> For v4.0 `2024-11-30` (GA), the bounding regions for figures and tables cover only the core content and exclude associated caption and footnotes.
 
 #### [Sample code](#tab/sample-code)
 
@@ -610,7 +611,34 @@ Document Intelligence v2.1 supports the following tools, applications, and libra
 
 ## Input guidance
 
-[!INCLUDE [input requirements](./../includes/input-requirements.md)]
+Supported file formats:
+
+|Model | PDF |Image: </br>`JPEG/JPG`, `PNG`, `BMP`, `TIFF`, `HEIF` | Microsoft Office: </br> Word (`DOCX`), Excel (`XLSX`), PowerPoint (`PPTX`), HTML|
+|--------|:----:|:-----:|:---------------:|
+|Read            | ✔    | ✔    | ✔  |
+|Layout          | ✔  | ✔ |   |
+|General&nbsp;Document| ✔  | ✔ |   |
+|Prebuilt        |  ✔  | ✔ |   |
+|Custom extraction |  ✔  | ✔ |   |
+|Custom classification  |  ✔  | ✔ | ✔  |
+
+* For best results, provide one clear photo or high-quality scan per document.
+
+* For PDF and TIFF, up to 2,000 pages can be processed (with a free tier subscription, only the first two pages are processed).
+
+* The file size for analyzing documents is 500 MB for paid (S0) tier and `4` MB for free (F0) tier.
+
+* Image dimensions must be between 50 pixels x 50 pixels and 10,000 pixels x 10,000 pixels.
+
+* If your PDFs are password-locked, you must remove the lock before submission.
+
+* The minimum height of the text to be extracted is 12 pixels for a 1024 x 768 pixel image. This dimension corresponds to about `8` point text at 150 dots per inch (DPI).
+
+* For custom model training, the maximum number of pages for training data is 500 for the custom template model and 50,000 for the custom neural model.
+
+  * For custom extraction model training, the total size of training data is 50 MB for template model and `1` GB for the neural model.
+
+  * For custom classification model training, the total size of training data is `1` GB  with a maximum of 10,000 pages. For `2024-11-30` (GA), the total size of training data is `2` GB with a maximum of 10,000 pages.
 
 :::moniker-end
 
@@ -661,7 +689,7 @@ After you retrieve you key and endpoint, you can use the following development o
 ### [Document Intelligence Studio](#tab/studio)
 
 * [Studio](https://documentintelligence.ai.azure.com/studio)
-* [How-to guide](../studio-overview.md#authentication-in-studio)
+* [How-to guide](../quickstarts/get-started-studio.md#authentication-in-studio)
 
 ---
 
@@ -874,7 +902,7 @@ The new machine-learning based page object detection extracts logical roles like
 
 The document layout model in Document Intelligence extracts print and handwritten style text as `lines` and `words`. The `styles` collection ../includes any handwritten style for lines if detected along with the spans pointing to the associated text. This feature applies to [supported handwritten languages](../language-support/prebuilt.md).
 
-For Microsoft Word, Excel, PowerPoint, and HTML, Document Intelligence v4.0 2024-11-30 (GA) Layout model extract all embedded text as is. Texts are extracted as words and paragraphs. Embedded images aren't supported.
+For Microsoft Word, Excel, PowerPoint, and HTML, Document Intelligence v4.0 `2024-11-30` (GA) Layout model extract all embedded text as is. Texts are extracted as words and paragraphs. Embedded images aren't supported.
 
 :::moniker-end
 
@@ -1051,8 +1079,8 @@ Here are a few factors to consider when using the Document Intelligence bale ext
 
 > [!NOTE]
 >
-> * Table analysis is not supported if the input file is XLSX.
- > * Document Intelligence v4.0 2024-11-30 (GA) supports bounding regions for figures and tables that cover only the core content and exclude associated caption and footnotes.
+> * Table analysis isn't supported if the input file is XLSX.
+ > * Document Intelligence v4.0 `2024-11-30` (GA) supports bounding regions for figures and tables that cover only the core content and exclude associated caption and footnotes.
 
 :::moniker-end
 

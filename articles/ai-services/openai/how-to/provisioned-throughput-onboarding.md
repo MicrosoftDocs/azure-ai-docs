@@ -95,7 +95,7 @@ Customers that require long-term usage of provisioned, data zoned provisioned, a
 
 Discounts on top of the hourly usage price can be obtained by purchasing an Azure Reservation for Azure OpenAI Provisioned, Data Zone Provisioned, and Global Provisioned. An Azure Reservation is a term-discounting mechanism shared by many Azure products. For example, Compute and Cosmos DB. For Azure OpenAI Provisioned, Data Zone Provisioned, and Global Provisioned, the reservation provides a discount in exchange for committing to payment for fixed number of PTUs for a one-month or one-year period.  
 
-* Azure Reservations are purchased via the Azure portal, not the Azure AI Foundry portal Link to Azure reservation portal.
+* Azure Reservations are purchased via the Azure portal, not the [Azure AI Foundry portal](https://ai.azure.com/) Link to Azure reservation portal.
 
 * Reservations are purchased regionally and can be flexibly scoped to cover usage from a group of deployments. Reservation scopes include: 
 

@@ -2,12 +2,11 @@
 title: Spatial Analysis camera placement
 titleSuffix: Azure AI services
 description: Learn how to set up a camera for use with Spatial Analysis
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 01/20/2024
+ms.date: 02/21/2025
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
@@ -17,10 +16,10 @@ ms.author: pafarley
 
 [!INCLUDE [spatial-analysis-deprecation](includes/spatial-analysis-deprecation.md)]
 
-This article provides camera placement recommendations for Spatial Analysis (public preview) scenarios. It includes general guidelines as well as specific recommendations for height, angle, and camera-to-focal-point-distance for all the included operations. 
+This article provides camera placement recommendations for Spatial Analysis (public preview) scenarios. It includes general guidelines and specific recommendations for height, angle, and camera-to-focal-point-distance for all the included operations. 
 
 > [!NOTE]
-> This guide is designed for the Axis M3045-V camera. This camera has a 1920x1080 resolution, 106 degree horizontal field of view, 59 degree vertical field of view, and a fixed 2.8mm focal length. The principles below will apply to all cameras, but specific guidelines around camera height and camera-to-focal-point distance need to be adjusted for use with other cameras. 
+> This guide is designed for the Axis M3045-V camera. This camera has a 1920x1080 resolution, 106-degree horizontal field of view, 59-degree vertical field of view, and a fixed 2.8mm focal length. The principles below will apply to all cameras, but specific guidelines around camera height and camera-to-focal-point distance need to be adjusted for use with other cameras. 
 
 ## General guidelines
 
@@ -40,7 +39,7 @@ You need to consider three things when deciding how to install a camera for Spat
 - Camera-to-focal-point distance
 - The angle of the camera relative to the floor plane
 
-It's also important to know the direction that the majority of people walk (person walking direction) in relation to the camera field of view if possible. This direction is important for system performance.
+It's also important to know the direction that most people walk (person walking direction) in relation to the camera field of view if possible. This direction is important for system performance.
 
 ![Image of a person walking in a direction](./media/spatial-analysis/person-walking-direction.png)
 
@@ -66,14 +65,14 @@ From above, it looks like this:
 
 ![How camera-to-focal-point-distance is measured from above](./media/spatial-analysis/camera-focal-point-above.png)
 
-Use the table below to determine the camera's distance from the focal point based on specific mounting heights. These distances are for optimal placement. Note that the table provides guidance below the 12'-14' recommendation since some ceilings can limit height. For Face mask detection, recommended camera-to-focal-point distance (min/max) is 4’-10’ for camera height between 8’ to 12’.
+Use the table below to determine the camera's distance from the focal point based on specific mounting heights. These distances are for optimal placement. The table provides guidance below the 12'-14' recommendation since some ceilings can limit height. For Face mask detection, recommended camera-to-focal-point distance (min/max) is 4’-10’ for camera height between 8’ to 12’.
 
 | Camera height | Camera-to-focal-point distance (min/max) |  
 | ------------- | ---------------------------------------- |  
 | 8'            | 4.6'-8'                                  |  
 | 10'           | 5.8'-10'                                 |  
 | 12'           | 7'-12'                                   |  
-| 14'           | 8'-14''                                  |  
+| 14'           | 8'-14'                                  |  
 | 16'           | 9.2'-16'                                 |  
 | 20'           | 11.5'-20'                                |  
 
@@ -105,7 +104,7 @@ The following illustration shows camera placement and mounting angles from a bir
 
 ### Zone configuration
 
-We recommend that you place cameras at 10 feet or more above ground to guarantee the covered area is big enough. 
+We recommend that you place cameras at 10 feet or more above ground to guarantee the covered area is large enough. 
 
 When the zone is next to an obstacle like a wall or shelf, mount cameras in the specified distance from the target within the acceptable 120-degree angle range as shown in the following illustration.
 
@@ -131,13 +130,13 @@ The following illustration shows recommendations for linear queues:
 
 ![Linear queue recommendation](./media/spatial-analysis/camera-angle-linear-queue.png)
 
-The following illustration provides simulations for the left and right camera views of linear queues. Note that you can mount the camera on the opposite side of the queue.
+The following illustration provides simulations for the left and right camera views of linear queues. You can mount the camera on the opposite side of the queue.
 
 | Left view                          | Right view                          |  
 | ---------------------------------- | ----------------------------------- |  
 | ![Left angle for linear queue](./media/spatial-analysis/camera-angle-linear-left.png) | ![Right angle for linear queue](./media/spatial-analysis/camera-angle-linear-right.png) |  
 
-For zig-zag queues, it's best to avoid placing the camera directly facing the queue line direction, as shown in the following illustration. Note that each of the four example camera positions in the illustration provides the ideal view with an acceptable deviation of +/- 15 degrees in each direction.
+For zig-zag queues, it's best to avoid placing the camera directly facing the queue line direction, as shown in the following illustration. Each of the four example camera positions in the illustration provides the ideal view with an acceptable deviation of +/- 15 degrees in each direction.
 
 The following illustrations simulate the view from a camera placed in the ideal locations for a zig-zag queue.
 
@@ -153,7 +152,7 @@ The following illustrations simulate the view from a camera placed in the ideal 
 
 Organic queues are lines that form organically. This style of queue is acceptable if queues don't form beyond 2-3 people and the line forms within the zone definition. If the queue length is typically more than 2-3 people, we recommend using a retractable belt barrier to help guide the queue direction and ensure the line forms within the zone definition.
 
-## Next steps
+## Related content
 
 <!--* [Deploy a People Counting web application](spatial-analysis-web-app.md)-->
 * [Configure Spatial Analysis operations](./spatial-analysis-operations.md)

@@ -6,13 +6,13 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 07/16/2024
+ms.date: 02/20/2025
 manager: nitinme
 ---
 
 # What is prompt transformation?
 
-Prompt transformation is a process in DALL-E 3 image generation that applies a safety and quality system message to your original prompt using a large language model (LLM) call before being sent to the model for image generation. This system message enriches your original prompt with the goal of generating more diverse and higher-quality images, while maintaining intent. 
+Prompt transformation is a process included in DALL-E 3 image generation that applies a safety and quality system message to your original prompt. It uses a large language model (LLM) call to add the message before sending your prompt to the model for image generation. This system message enriches your original prompt with the goal of generating more diverse and higher-quality images while maintaining intent. 
 
 After prompt transformation is applied to the original prompt, content filtering is applied as a secondary step before image generation; for more information, see [Content filtering](./content-filter.md).
 
@@ -20,7 +20,6 @@ After prompt transformation is applied to the original prompt, content filtering
 > Learn more about image generation prompting in OpenAI's [DALL·E documentation](https://platform.openai.com/docs/guides/images/language-specific-tips).
 
 ## Prompt transformation example
-
 
 | **Example text prompt** | **Example generated image without prompt transformation** | **Example generated image with prompt transformation** |
 |---|---|---|
@@ -39,11 +38,9 @@ Prompt transformation is applied by default to all Azure OpenAI DALL-E 3 request
 
 Like image generation, prompt transformation is non-deterministic due to the nature of large language models. A single original prompt may lead to many image variants.
 
-
 ## View prompt transformations
 
 Your revised or transformed prompt is visible in the API response object as shown here, in the `revised_prompt` field. 
-
 
 ```json
 Input Content:
@@ -69,7 +66,7 @@ Output Content:
 }
 ```
 
+## Next step
 
-## Next steps
-
-* [DALL-E quickstart](/azure/ai-services/openai/dall-e-quickstart)
+> [!div class="nextstepaction"]
+> [DALL-E quickstart](/azure/ai-services/openai/dall-e-quickstart)

@@ -7,7 +7,7 @@ ms.date: 1/21/2025
 ms.topic: include
 ---
 
-[!INCLUDE [Feature preview](../../../../ai-studio/includes/feature-preview.md)]
+[!INCLUDE [Feature preview](../../../includes/feature-preview.md)]
 
 The content filtering system integrated into Azure AI Services runs alongside the core models. It uses an ensemble of multi-class classification models to detect four categories of harmful content (violence, hate, sexual, and self-harm) at four severity levels respectively (safe, low, medium, and high). It offers optional binary classifiers for detecting jailbreak risk, existing text, and code in public repositories. Learn more about content categories, severity levels, and the behavior of the content filtering system [in the following article](../../concepts/content-filter.md)
 

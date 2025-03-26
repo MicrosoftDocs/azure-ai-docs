@@ -13,15 +13,15 @@ ms.author: lajanuar
 <!-- markdownlint-disable MD036 -->
 
 :::moniker range="doc-intel-4.0.0"
-[Client library](/java/api/com.azure.ai.documentintelligence?view=azure-java-stable&preserve-view=true) | [SDK reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-ai-documentintelligence/1.0.0/index.html) | [REST API reference](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-documentintelligence/1.0.0) | [Samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-documentintelligence_1.0.0/sdk/documentintelligence/azure-ai-documentintelligence/src/samples#examples) |[Supported REST API version](../../sdk-overview-v4-0.md)
+[Client library](/java/api/com.azure.ai.documentintelligence?view=azure-java-stable&preserve-view=true) | [REST API reference](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-documentintelligence/1.0.0) | [Samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-documentintelligence_1.0.0/sdk/documentintelligence/azure-ai-documentintelligence/src/samples#examples) |[Supported REST API version](../../sdk-overview-v4-0.md)
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0"
-[Client library](/java/api/overview/azure/ai-formrecognizer-readme?view=azure-java-stable&preserve-view=true) | [SDK reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-ai-formrecognizer/4.1.0/index.html) | [REST API reference](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-formrecognizer/4.1.0) | [Samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/formrecognizer/azure-ai-formrecognizer/src/samples#readme)| [Supported REST API version](../../sdk-overview-v3-1.md)
+[Client library](/java/api/overview/azure/ai-formrecognizer-readme?view=azure-java-stable&preserve-view=true) |[REST API reference](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-formrecognizer/4.1.0) | [Samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/formrecognizer/azure-ai-formrecognizer/src/samples#readme)| [Supported REST API version](../../sdk-overview-v3-1.md)
 :::moniker-end
 
 :::moniker range="doc-intel-3.0.0"
-[Client library](/java/api/overview/azure/ai-formrecognizer-readme?view=azure-java-stable&preserve-view=true) | [SDK reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-ai-formrecognizer/4.0.0/index.html) | [REST API reference](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-formrecognizer/4.0.0) | [Samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/formrecognizer/azure-ai-formrecognizer/src/samples)|[Supported REST API version](../../sdk-overview-v3-0.md)
+[Client library](/java/api/overview/azure/ai-formrecognizer-readme?view=azure-java-stable&preserve-view=true) || [REST API reference](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-formrecognizer/4.0.0) | [Samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/formrecognizer/azure-ai-formrecognizer/src/samples)|[Supported REST API version](../../sdk-overview-v3-0.md)
 :::moniker-end
 
 In this quickstart, use the following features to analyze and extract data and values from forms and documents:
@@ -246,8 +246,7 @@ To interact with the Document Intelligence service, you need to create an instan
 
 :::moniker-end
 
-> [!IMPORTANT]
-> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* Azure AI services [security](../../../../ai-services/security-features.md).
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 ## Layout model
 
@@ -424,7 +423,7 @@ public class FormRecognizer {
       documentPage.getLines().forEach(documentLine ->
         System.out.printf("Line %s is within a bounding polygon %s.%n",
           documentLine.getContent(),
-          documentLine.getBoundingPolygon().toString()));
+          documentLine.getPolygon().toString()));
 
       // words
       documentPage.getWords().forEach(documentWord ->
@@ -436,7 +435,7 @@ public class FormRecognizer {
       documentPage.getSelectionMarks().forEach(documentSelectionMark ->
         System.out.printf("Selection mark is %s and is within a bounding polygon %s with confidence %.2f.%n",
           documentSelectionMark.getState().toString(),
-          documentSelectionMark.getBoundingPolygon().toString(),
+          documentSelectionMark.getPolygon().toString(),
           documentSelectionMark.getConfidence()));
     });
 
@@ -454,8 +453,8 @@ public class FormRecognizer {
     }
   }
   // Utility function to get the bounding polygon coordinates
-  private static String getBoundingCoordinates(List < Point > boundingPolygon) {
-    return boundingPolygon.stream().map(point -> String.format("[%.2f, %.2f]", point.getX(),
+  private static String getBoundingCoordinates(List < Point > Polygon) {
+    return Polygon.stream().map(point -> String.format("[%.2f, %.2f]", point.getX(),
       point.getY())).collect(Collectors.joining(", "));
   }
 }
@@ -556,7 +555,7 @@ public class FormRecognizer {
       documentPage.getLines().forEach(documentLine ->
         System.out.printf("Line '%s' is within a bounding polygon %s.%n",
           documentLine.getContent(),
-          getBoundingCoordinates(documentLine.getBoundingPolygon())));
+          getBoundingCoordinates(documentLine.getPolygon())));
 
       // words
       documentPage.getWords().forEach(documentWord ->
@@ -568,7 +567,7 @@ public class FormRecognizer {
       documentPage.getSelectionMarks().forEach(documentSelectionMark ->
         System.out.printf("Selection mark is '%s' and is within a bounding polygon %s with confidence %.2f.%n",
           documentSelectionMark.getSelectionMarkState().toString(),
-          getBoundingCoordinates(documentSelectionMark.getBoundingPolygon()),
+          getBoundingCoordinates(documentSelectionMark.getPolygon()),
           documentSelectionMark.getConfidence()));
     });
 
@@ -593,8 +592,8 @@ public class FormRecognizer {
   /**
    * Utility function to get the bounding polygon coordinates.
    */
-  private static String getBoundingCoordinates(List < Point > boundingPolygon) {
-    return boundingPolygon.stream().map(point -> String.format("[%.2f, %.2f]", point.getX(),
+  private static String getBoundingCoordinates(List < Point > Polygon) {
+    return Polygon.stream().map(point -> String.format("[%.2f, %.2f]", point.getX(),
       point.getY())).collect(Collectors.joining(", "));
   }
 }

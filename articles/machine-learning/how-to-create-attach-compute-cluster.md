@@ -78,7 +78,7 @@ Compute clusters can run jobs securely in either a [managed virtual network](how
 * Azure allows you to place *locks* on resources, so that they can't be deleted or are read only. **Do not apply resource locks to the resource group that contains your workspace**. Applying a lock to the resource group that contains your workspace prevents scaling operations for Azure Machine Learning compute clusters. For more information on locking resources, see [Lock resources to prevent unexpected changes](/azure/azure-resource-manager/management/lock-resources).
 
 > [!Caution]
-> Applying resource locks, such as "Delete" or "Read-only", to the resource group containing your compute clusters can prevent operations like creation, scaling, or deletion of these clusters. Ensure that resource locks are configured appropriately to avoid unintended disruptions. 
+> Applying resource locks, such as "Delete" or "Read-only", to the resource group that contains your Machine Learning workspace or to a separate resource group where you've configured a virtual network can prevent operations like creation, scaling, or deletion of these clusters. Ensure that resource locks are configured appropriately to avoid unintended disruptions. 
 
 ## Create
 

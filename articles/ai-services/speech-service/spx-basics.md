@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 9/24/2024
+ms.date: 3/10/2025
 ms.author: eur
 ms.custom: mode-api
 # Customer intent: As a developer, I want to learn how to use the Azure AI Speech CLI to interact with speech to text, text to speech, and speech translation without writing code.
@@ -29,7 +29,7 @@ This article assumes that you have working knowledge of the Command Prompt windo
 
 # [Terminal](#tab/terminal)
 
-To get started, you need a Speech resource key and region identifier (for example, `eastus`, `westus`). Create a Speech resource on the [Azure portal](https://portal.azure.com). For more information, see [Create an Azure AI services resource](../../ai-services/multi-service-resource.md?pivots=azportal).
+To get started, you need an API key and region identifier (for example, `eastus`, `westus`). Create an AI Services resource for Speech on the [Azure portal](https://portal.azure.com). For more information, see [Create an Azure AI services resource](../../ai-services/multi-service-resource.md?pivots=azportal).
 
 To configure your resource key and region identifier, run the following commands:  
 
@@ -54,7 +54,7 @@ spx config @region --clear
 
 # [PowerShell](#tab/powershell)
 
-To get started, you need a Speech resource key and region identifier (for example, `eastus`, `westus`). Create a Speech resource on the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices). 
+To get started, you need an API key and region identifier (for example, `eastus`, `westus`). Create an AI Services resource for Speech on the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices). 
 
 To configure your Speech resource key and region identifier, run the following commands in PowerShell: 
 

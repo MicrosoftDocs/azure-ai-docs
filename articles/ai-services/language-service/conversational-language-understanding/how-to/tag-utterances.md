@@ -2,7 +2,6 @@
 title: How to tag utterances in Conversational Language Understanding
 titleSuffix: Azure AI services
 description: Use this article to tag your utterances in Conversational Language Understanding projects
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language

@@ -24,20 +24,13 @@ To use embedding models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
+[!INCLUDE [how-to-prerequisites-javascript](../how-to-prerequisites-javascript.md)]
+
 * An image embeddings model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add an embeddings model to your resource.
 
   * This example uses `Cohere-embed-v3-english` from Cohere.
 
-* Install the Azure Inference library for JavaScript with the following command:
-
-  ```bash
-  npm install @azure-rest/ai-inference
-  ```
-      
-  > [!TIP]
-  > Read more about the [Azure AI inference package and reference](https://aka.ms/azsdk/azure-ai-inference/javascript/reference).
-
-## Use embeddings
+## Use image embeddings
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
 
@@ -49,8 +42,7 @@ import { AzureKeyCredential } from "@azure/core-auth";
 
 const client = new ModelClient(
     process.env.AZURE_INFERENCE_ENDPOINT,
-    new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL),
-    "Cohere-embed-v3-english"
+    new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL)
 );
 ```
 
@@ -63,8 +55,7 @@ import { DefaultAzureCredential } from "@azure/identity";
 
 const client = new ModelClient(
     process.env.AZURE_INFERENCE_ENDPOINT,
-    new DefaultAzureCredential(),
-    "Cohere-embed-v3-english"
+    new DefaultAzureCredential()
 );
 ```
 
@@ -80,6 +71,7 @@ var image_data_base64 = Buffer.from(image_data).toString("base64");
 var response = await client.path("/images/embeddings").post({
     body: {
         input: [ { image: image_data_base64 } ],
+        model: "Cohere-embed-v3-english",
     }
 });
 ```
@@ -101,7 +93,7 @@ console.log(response.body.usage);
 ```
 
 > [!IMPORTANT]
-> Computing embeddings in batches may not be supported for all the models. For example, for `cohere-embed-v3` model, you need to send one image at a time.
+> Computing embeddings in batches may not be supported for all the models. For example, for `Cohere-embed-v3-english` model, you need to send one image at a time.
 
 #### Embedding images and text pairs
 
@@ -120,7 +112,8 @@ var response = await client.path("images/embeddings").post({
                 text: "A cute baby sea otter",
                 image: image_data_base64
             }
-        ]
+        ],
+        model: "Cohere-embed-v3-english",
     }
 });
 ```
@@ -137,6 +130,7 @@ var response = await client.path("/embeddings").post({
     body: {
         input: [ { image: image_data_base64 } ],
         input_type: "document",
+        model: "Cohere-embed-v3-english",
     }
 });
 ```
@@ -149,6 +143,7 @@ var response = await client.path("/embeddings").post({
     body: {
         input: [ { image: image_data_base64 } ],
         input_type: "query",
+        model: "Cohere-embed-v3-english",
     }
 });
 ```

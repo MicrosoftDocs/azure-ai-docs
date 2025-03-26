@@ -1,6 +1,5 @@
 ---
 title: Chinese support notes
-#services: cognitive-services
 author: aahill
 manager: nitinme
 ms.service: azure-ai-language

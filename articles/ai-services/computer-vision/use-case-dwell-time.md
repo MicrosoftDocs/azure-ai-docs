@@ -2,13 +2,12 @@
 title: "Overview: Monitor dwell time in front of displays"
 titleSuffix: Azure AI services
 description: Spatial Analysis can provide real-time information about how long customers spend in front of a display in a retail store. 
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 01/19/2024
+ms.date: 02/21/2025
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
@@ -40,7 +39,7 @@ In-store dwell time is an important metric to help store managers track customer
 * **Make data-driven decisions**: with data about your customers, you're empowered to make decisions that improve customer experience and satisfy customer needs. 
 
 
-## Next steps
+## Next step
 
 Get started using Spatial Analysis in a container.
 

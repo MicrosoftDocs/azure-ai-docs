@@ -1,5 +1,4 @@
 ---
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
@@ -17,7 +16,7 @@ To set the environment variable for your Language resource key, open a console w
 - To set the `LANGUAGE_KEY` environment variable, replace `your-key` with one of the keys for your resource.
 - To set the `LANGUAGE_ENDPOINT` environment variable, replace `your-endpoint` with the endpoint for your resource.
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 #### [Windows](#tab/windows)
 

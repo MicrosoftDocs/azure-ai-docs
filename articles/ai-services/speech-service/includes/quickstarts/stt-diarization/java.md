@@ -2,7 +2,7 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 9/18/2024
+ms.date: 3/10/2025
 ms.author: eur
 ---
 
@@ -45,7 +45,7 @@ To set up your environment, [install the Speech SDK](~/articles/ai-services/spee
             <dependency>
             <groupId>com.microsoft.cognitiveservices.speech</groupId>
             <artifactId>client-sdk</artifactId>
-            <version>1.42.0</version>
+            <version>1.43.0</version>
             </dependency>
         </dependencies>
     </project>

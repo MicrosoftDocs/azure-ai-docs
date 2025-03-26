@@ -7,7 +7,7 @@ author: mopeakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 1/21/2025
+ms.date: 03/20/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
@@ -24,11 +24,13 @@ To use chat completion models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
-* A chat completions model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+* A chat completions model deployment. If you don't have one, read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+
+    * This example uses `mistral-large-2407`.
 
 ## Use chat completions
 
-To use the text embeddings, use the route `/chat/completions` appended to the base URL along with your credential indicated in `api-key`. `Authorization` header is also supported with the format `Bearer <key>`.
+To use chat completions API, use the route `/chat/completions` appended to the base URL along with your credential indicated in `api-key`. 
 
 ```http
 POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
@@ -36,13 +38,15 @@ Content-Type: application/json
 api-key: <key>
 ```
 
-If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header:
+If you've configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://cognitiveservices.azure.com/.default`. 
 
 ```http
 POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
 Content-Type: application/json
 Authorization: Bearer <token>
 ```
+
+Using Microsoft Entra ID might require extra configuration in your resource to grant access. Learn how to [configure key-less authentication with Microsoft Entra ID](../../how-to/configure-entra-id.md).
 
 ### Create a chat completion request
 
@@ -229,7 +233,7 @@ Explore other parameters that you can specify in the inference client. For a ful
 }
 ```
 
-Some models don't support JSON output formatting. You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+Some models don't support JSON output formatting. You can always prompt the model to generate JSON outputs. However, such outputs aren't guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -542,77 +546,3 @@ The following example shows how to handle events when the model detects harmful 
 
 > [!TIP]
 > To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
-
-## Use chat completions with images
-
-Some models can reason across text and images and generate text completions based on both kinds of input. In this section, you explore the capabilities of Some models for vision in a chat fashion:
-
-> [!IMPORTANT]
-> Some models support only one image for each turn in the chat conversation and only the last image is retained in context. If you add multiple images, it results in an error.
-
-To see this capability, download an image and encode the information as `base64` string. The resulting data should be inside of a [data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs):
-
-> [!TIP]
-> You will need to construct the data URL using a scripting or programming language. This tutorial use [this sample image](../../../../ai-studio/media/how-to/sdks/small-language-models-chart-example.jpg) in JPEG format. A data URL has a format as follows: `data:image/jpg;base64,0xABCDFGHIJKLMNOPQRSTUVWXYZ...`.
-
-Visualize the image:
-
-:::image type="content" source="../../../../ai-studio/media/how-to/sdks/small-language-models-chart-example.jpg" alt-text="A chart displaying the relative capabilities between large language models and small language models." lightbox="../../../../ai-studio/media/how-to/sdks/small-language-models-chart-example.jpg":::
-
-Now, create a chat completion request with the image:
-
-
-```json
-{
-    "model": "phi-3.5-vision-instruct",
-    "messages": [
-        {
-            "role": "user",
-            "content": [
-                {
-                    "type": "text",
-                    "text": "Which peculiar conclusion about LLMs and SLMs can be extracted from the following chart?"
-                },
-                {
-                    "type": "image_url",
-                    "image_url": {
-                        "url": "data:image/jpg;base64,0xABCDFGHIJKLMNOPQRSTUVWXYZ..."
-                    }
-                }
-            ]
-        }
-    ],
-    "temperature": 0,
-    "top_p": 1,
-    "max_tokens": 2048
-}
-```
-
-The response is as follows, where you can see the model's usage statistics:
-
-
-```json
-{
-    "id": "0a1234b5de6789f01gh2i345j6789klm",
-    "object": "chat.completion",
-    "created": 1718726686,
-    "model": "phi-3.5-vision-instruct",
-    "choices": [
-        {
-            "index": 0,
-            "message": {
-                "role": "assistant",
-                "content": "The chart illustrates that larger models tend to perform better in quality, as indicated by their size in billions of parameters. However, there are exceptions to this trend, such as Phi-3-medium and Phi-3-small, which outperform smaller models in quality. This suggests that while larger models generally have an advantage, there might be other factors at play that influence a model's performance.",
-                "tool_calls": null
-            },
-            "finish_reason": "stop",
-            "logprobs": null
-        }
-    ],
-    "usage": {
-        "prompt_tokens": 2380,
-        "completion_tokens": 126,
-        "total_tokens": 2506
-    }
-}
-```

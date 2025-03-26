@@ -2,12 +2,11 @@
 title: How to install and run the Spatial Analysis container - Azure AI Vision
 titleSuffix: Azure AI services
 description: The Spatial Analysis container lets you detect people and distances in a video feed.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 01/19/2024
+ms.date: 02/21/2025
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ms.custom: devx-track-azurecli
@@ -566,7 +565,7 @@ In this article, you learned concepts and workflow for downloading, installing, 
 * Container images run as IoT Modules in Azure IoT Edge.
 * Configure the container and deploy it on a host machine.
 
-## Next steps
+## Related content
 
 <!--* [Deploy a People Counting web application](spatial-analysis-web-app.md)-->
 * [Configure Spatial Analysis operations](spatial-analysis-operations.md)

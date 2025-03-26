@@ -2,7 +2,6 @@
 title: Custom subdomains
 titleSuffix: Azure AI services
 description: Learn how to add custom subdomain names for Azure AI services resource by using the Azure portal, Azure Cloud Shell, or Azure CLI.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services

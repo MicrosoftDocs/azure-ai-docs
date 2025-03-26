@@ -4,7 +4,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: include
-ms.date: 02/03/2025
+ms.date: 03/21/2025
 ms.custom: devx-track-js
 ---
 
@@ -15,7 +15,13 @@ ms.custom: devx-track-js
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
 * [Node.js LTS](https://nodejs.org/)
-* Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio.md) assigned at the appropriate level.
+* Ensure that the individual deploying the template has the **Azure AI Developer** role assigned at the resource group level where the template is being deployed.
+* Additionally, to deploy the template, you need to have the preset **Role Based Access Administrator** role at the subscription level.
+   * The **Owner** role at the subscription level satisfies this requirement.
+   * The specific admin role that is needed is `Microsoft.Authorization/roleAssignments/write`
+* Ensure that each team member who wants to use the Agent Playground or Agent SDK to create or edit agents has been assigned the built-in **Azure AI Developer** [RBAC role](../../../ai-foundry/concepts/rbac-ai-foundry.md) for the project.
+    * Note: assign these roles after the template has been deployed
+    * The minimum set of permissions required is: **agents/*/read**, **agents/*/action**, **agents/*/delete**  
 * Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
 
 [!INCLUDE [bicep-setup](bicep-setup.md)]
@@ -31,11 +37,24 @@ ms.custom: devx-track-js
 | Run       | Activation of an agent to begin running based on the contents of Thread. The agent uses its configuration and Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread. |
 | Run Step  | A detailed list of steps the agent took as part of a Run. An agent can call tools or create Messages during its run. Examining Run Steps allows you to understand how the agent is getting to its results.                                |
 
-Run the following commands to install the npm packages.
+Key objects in this code include: 
+
+* [AIProjectsClient](/javascript/api/@azure/ai-projects/aiprojectsclient)
+* [ToolUtility](/javascript/api/@azure/ai-projects/toolutility)
+* [Agent operations](/javascript/api/@azure/ai-projects/agentsoperations)
+
+First, initialize a new project by running:
+
+```console
+npm init -y
+```
+
+Run the following commands to install the npm packages required.
 
 ```console
 npm install @azure/ai-projects
 npm install @azure/identity
+npm install dotenv
 ```
 
 Next, to authenticate your API requests and run the program, use the [az login](/cli/azure/authenticate-azure-cli-interactively) command to sign into your Azure subscription.
@@ -60,11 +79,17 @@ For example, your connection string may look something like:
 
 `eastus.api.azureml.ms;12345678-abcd-1234-9fc6-62780b3d3e05;my-resource-group;my-project-name`
 
-Set this connection string as an environment variable named `PROJECT_CONNECTION_STRING`.
+Set this connection string as an environment variable named `PROJECT_CONNECTION_STRING` in a `.env` file.
+
+> [!IMPORTANT] 
+> * This quickstart code uses environment variables for sensitive configuration. Never commit your `.env` file to version control by making sure `.env` is listed in your `.gitignore` file.
+> * _Remember: If you accidentally commit sensitive information, consider those credentials compromised and rotate them immediately._
+
+
+Next, create an `index.js` file and paste in the code below:
 
 ```javascript
 // index.js
-
 import {
   AIProjectsClient,
   DoneEvent,
@@ -75,12 +100,17 @@ import {
   ToolUtility,
 } from "@azure/ai-projects";
 import { DefaultAzureCredential } from "@azure/identity";
+import dotenv from 'dotenv';
 
-const connectionString =
-  process.env["AZURE_AI_PROJECTS_CONNECTION_STRING"] || "<project connection string>";
+dotenv.config();
 
+// Set the connection string from the environment variable
+const connectionString = process.env.PROJECT_CONNECTION_STRING;
+const model = "gpt-4o";
+
+// Throw an error if the connection string is not set
 if (!connectionString) {
-  throw new Error("AZURE_AI_PROJECTS_CONNECTION_STRING must be set in the environment variables");
+  throw new Error("Please set the PROJECT_CONNECTION_STRING environment variable.");
 }
 
 export async function main() {
@@ -90,10 +120,10 @@ export async function main() {
   );
 
   // Step 1 code interpreter tool
-  const codeInterpreterTool = ToolUtility.createCodeInterpreterTool();
+  const codeInterpreterTool = ToolUtility.createCodeInterpreterTool([]);
 
   // Step 2 an agent
-  const agent = await client.agents.createAgent("gpt-4o-mini", {
+  const agent = await client.agents.createAgent(model, {
     name: "my-agent",
     instructions: "You are a helpful agent",
     tools: [codeInterpreterTool.definition],
@@ -147,13 +177,14 @@ export async function main() {
 
   // Messages iterate from oldest to newest
   // messages[0] is the most recent
-  for (let i = messages.data.length - 1; i >= 0; i--) {
-    const m = messages.data[i];
-    if (isOutputOfType(m.content[0], "text")) {
-      const textContent = m.content[0];
-      console.log(`${textContent.text.value}`);
-      console.log(`---------------------------------`);
-    }
+  const messagesArray = messages.data;
+  for (let i = messagesArray.length - 1; i >= 0; i--) {
+      const m = messagesArray[i];
+      console.log(`Type: ${m.content[0].type}`);
+      if (isOutputOfType(m.content[0], "text")) {
+          const textContent = m.content[0];
+          console.log(`Text: ${textContent.text.value}`);
+      }
   }
 
   // 7. Delete the agent once done
@@ -164,3 +195,5 @@ main().catch((err) => {
   console.error("The sample encountered an error:", err);
 });
 ```
+
+Run the code using `node index.js` and observe.

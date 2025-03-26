@@ -23,7 +23,7 @@ Each request to an Azure AI service must include an authentication header. This 
 
 Before you make a request, you need an Azure account and an Azure AI services subscription. If you already have an account, go ahead and skip to the next section. If you don't have an account, we have a guide to get you set up in minutes: [Create an Azure AI services resource](multi-service-resource.md?pivots=azportal).
 
-Go to your resource in the Azure portal. The **Keys & Endpoint** section can be found in the **Resource Management** section. Copy your endpoint and access key as you'll need both for authenticating your API calls. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
+Go to your resource in the Azure portal. The **Keys & Endpoint** section can be found in the **Resource Management** section. Copy your endpoint and access key as you'll need both for authenticating your API calls. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption. The length of the key can vary depending on the API version used to create or regenerate the key.
 
 ## Authentication headers
 
@@ -32,7 +32,7 @@ Let's quickly review the authentication headers available for use with Azure AI 
 | Header | Description |
 |--------|-------------|
 | Ocp-Apim-Subscription-Key | Use this header to authenticate with a resource key for a specific service or a multi-service resource key. |
-| Ocp-Apim-Subscription-Region | This header is only required when using a multi-service resource key with the [Azure AI Translator service](./Translator/reference/v3-0-reference.md). Use this header to specify the resource region. |
+| Ocp-Apim-Subscription-Region | This header is only required when using a multi-service resource key with the [Azure AI Translator service](translator/text-translation/reference/v3/reference.md). Use this header to specify the resource region. |
 | Authorization | Use this header if you are using an access token. The steps to perform a token exchange are detailed in the following sections. The value provided follows this format: `Bearer <TOKEN>`. |
 
 ## Authenticate with a single-service resource key
