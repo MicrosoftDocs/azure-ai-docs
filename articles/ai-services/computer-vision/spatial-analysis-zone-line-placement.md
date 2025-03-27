@@ -2,7 +2,6 @@
 title: Spatial Analysis zone and line placement
 titleSuffix: Azure AI services
 description: Learn how to set up zones and lines with Spatial Analysis.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
@@ -82,5 +81,4 @@ The following examples show poorly defined lines.
 
 <!--* [Deploy a People Counting web application](spatial-analysis-web-app.md)-->
 * [Configure Spatial Analysis operations](./spatial-analysis-operations.md)
-* [Logging and troubleshooting](spatial-analysis-logging.md)
 * [Camera placement guide](spatial-analysis-camera-placement.md)

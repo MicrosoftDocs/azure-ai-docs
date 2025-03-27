@@ -3,7 +3,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 11/06/2023
+ms.date: 03/26/2025
 author: mrbullwinkle #noabenefraim
 ms.author: mbullwin
 ---
@@ -135,9 +135,9 @@ RESOURCE_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")
 openai.api_type = "azure"
 openai.api_key = API_KEY
 openai.api_base = RESOURCE_ENDPOINT
-openai.api_version = "2022-12-01"
+openai.api_version = "2024-10-21"
 
-url = openai.api_base + "/openai/deployments?api-version=2022-12-01" 
+url = openai.api_base + "/openai/deployments?api-version=2024-10-21" 
 
 r = requests.get(url, headers={"api-key": API_KEY})
 

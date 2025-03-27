@@ -2,7 +2,6 @@
 title: Spatial Analysis operations
 titleSuffix: Azure AI services
 description: The Spatial Analysis operations.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
@@ -1241,6 +1240,5 @@ In order to get the best performance and utilization of the GPUs, you can deploy
 ## Next steps
 
 <!--* [Deploy a People Counting web application](spatial-analysis-web-app.md)-->
-* [Logging and troubleshooting](spatial-analysis-logging.md)
 * [Camera placement guide](spatial-analysis-camera-placement.md)
 * [Zone and line placement guide](spatial-analysis-zone-line-placement.md)

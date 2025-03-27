@@ -15,19 +15,11 @@ ms.custom: references_regions, tool_generated
 
 # Featured models of Azure AI Foundry
 
-The Azure AI model catalog offers a large selection of models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists featured models in the model catalog that can be deployed and hosted on Microsoft's servers via serverless APIs. For some of these models, you can also host them on your infrastructure for deployment via managed compute. See [Available models for supported deployment options](../how-to/model-catalog-overview.md#available-models-for-supported-deployment-options) for a list of models in the catalog that are available for deployment via managed compute or serverless API.
+The Azure AI model catalog offers a large selection of models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists featured models in the model catalog that can be deployed and hosted on Microsoft's servers via serverless APIs. For some of these models, you can also host them on your infrastructure for deployment via managed compute. See [Available models for supported deployment options](../how-to/model-catalog-overview.md#available-models-for-supported-deployment-options) to find models in the catalog that are available for deployment via managed compute or serverless API.
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
-To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others that belong to the following model types support inferencing using the [Azure AI model inference](../model-inference/overview.md):
-
-- [Chat completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context)
-- [Chat completion (with reasoning content)](../model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context)
-- [Chat completion (with image and audio content)](../model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context)
-- [Embeddings](../model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context)
-- [Image embeddings](../model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context)
-
-You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
+To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Azure AI model inference](../model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
 
 :::image type="content" source="../media/models-featured/models-catalog.gif" alt-text="An animation showing Azure AI studio model catalog section and the models available." lightbox="../media/models-featured/models-catalog.gif":::
 
@@ -246,7 +238,11 @@ For more examples of how to use Phi-3 family models, see the following examples:
 
 ## Mistral AI
 
-Mistral AI offers two categories of models: premium models including Mistral Large and Mistral Small and open models including Mistral Nemo.
+Mistral AI offers two categories of models, namely: 
+
+- _Premium models_: These include Mistral Large, Mistral Small, and Ministral 3B models, and are available as serverless APIs with pay-as-you-go token-based billing.  
+- _Open models_: These include Mistral-small-2503, Codestral, and Mistral Nemo (that are available as serverless APIs with pay-as-you-go token-based billing), and [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](../how-to/deploy-models-mistral-open.md)(that are available to download and run on self-hosted managed endpoints).
+
 
 | Model  | Type | Capabilities |
 | ------ | ---- | --- | 
@@ -254,8 +250,9 @@ Mistral AI offers two categories of models: premium models including Mistral Lar
 | [Ministral-3B](https://ai.azure.com/explore/models/Ministral-3B/version/1/registry/azureml-mistral) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Mistral-Nemo](https://ai.azure.com/explore/models/Mistral-Nemo/version/1/registry/azureml-mistral) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Mistral-Large-2411](https://ai.azure.com/explore/models/Mistral-Large-2411/version/2/registry/azureml-mistral) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text (128,000 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
-| [Mistral-large-2407](https://ai.azure.com/explore/models/Mistral-large-2407/version/1/registry/azureml-mistral) <br /> (legacy) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text (131,072 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON  |
+| [Mistral-large-2407](https://ai.azure.com/explore/models/Mistral-large-2407/version/1/registry/azureml-mistral) <br /> (deprecated) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text (131,072 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON  |
 | [Mistral-large](https://ai.azure.com/explore/models/Mistral-large/version/1/registry/azureml-mistral) <br /> (deprecated) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text (32,768 tokens) <br /> - **Output:**  (4,096 tokens) <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
+| [Mistral-small-2503](https://aka.ms/aistudio/landing/mistral-small-2503) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text and images (131,072 tokens), <br> image-based tokens are 16px x 16px <br> blocks of the original images <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Mistral-small](https://ai.azure.com/explore/models/Mistral-small/version/1/registry/azureml-mistral) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text (32,768 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=mistral).
@@ -329,6 +326,25 @@ See the [Nixtla model collection in Azure AI Foundry portal](https://ai.azure.co
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
 | [tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
+
+
+The Stability AI collection of image generation models include Stable Image Core, Stable Image Ultra and Stable Diffusion 3.5 Large. Stable Diffusion 3.5 Large allows for an image and text input. 
+
+| Model  | Type | Capabilities |
+| ------ | ---- | ------------ |
+| [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai) | Image generation | - **Input:** text and image (1000 tokens and 1 image)  <br /> - **Output:** 1 Image  <br />  - **Tool calling:** No <br /> - **Response formats**: Image (PNG and JPG) |
+| [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai) | Image generation | - **Input:** text (1000 tokens)  <br /> - **Output:** 1 Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) |
+| [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai) | Image generation | - **Input:** text (1000 tokens)  <br /> - **Output:** 1 Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) |
+
+#### Inference examples: Stability AI
+
+Stability AI models deployed to serverless APIs implement the Azure AI model inference API on the route `/image/generations`.
+For examples of how to use Stability AI models, see the following examples:
+
+- [Use OpenAI SDK with Stability AI models for text to image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Text_to_Image_openai_library.ipynb)
+- [Use Requests library with Stability AI models for text to image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Text_to_Image_requests_library.ipynb)
+- [Use Requests library with Stable Diffusion 3.5 Large for image to image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Image_to_Image.ipynb)
+- [Example of a fully encoded image generation response](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Sample_image_generation_response.txt)
 
 
 ## Related content

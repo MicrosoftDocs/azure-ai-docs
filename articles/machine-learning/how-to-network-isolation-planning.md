@@ -127,8 +127,8 @@ To make the right decision on which networking set-up works best for your scenar
 
 | | Managed network (recommended) | Custom network |
 | --- | --- | --- |
-| __Benefits__ | - Minimize set-up and maintenance overhead. </br>- Supports managed online endpoints. </br>- Supports serverless spark. </br>- Access to HTTPs endpoint resources located on-premises or in your custom virtual network. </br>- Focus for new feature development. | - Customize network to your requirements. </br>- Bring your own non-Azure resources. </br>- Connect to on-premises resources. |
-| __Limitations__ | - Extra costs for Azure Firewall and FQDN rules. </br>- Logging of the virtual network firewall and NSG rules isn't supported. </br>- Access to non-HTTPs endpoint resources isn't supported. | - New feature support might be delayed. </br>-Managed online endpoints aren't supported. </br>- Serverless spark isn't supported. </br>- Foundational models aren't supported. </br>- No code MLFlow isn't supported. </br>- Implementation complexity. </br>- Maintenance overhead. |
+| __Benefits__ | - Minimize set-up and maintenance overhead. </br>- Supports managed online endpoints. </br>- Supports serverless spark. </br>- Access to HTTPS endpoint resources located on-premises or in your custom virtual network. </br>- Focus for new feature development. | - Customize network to your requirements. </br>- Bring your own non-Azure resources. </br>- Connect to on-premises resources. |
+| __Limitations__ | - Extra costs for Azure Firewall and FQDN rules. </br>- Logging of the virtual network firewall and NSG rules isn't supported. </br>- Access to non-HTTPS endpoint resources isn't supported. | - New feature support might be delayed. </br>-Managed online endpoints aren't supported. </br>- Serverless spark isn't supported. </br>- Foundational models aren't supported. </br>- No code MLFlow isn't supported. </br>- Implementation complexity. </br>- Maintenance overhead. |
 
 ### Use a public workspace
 

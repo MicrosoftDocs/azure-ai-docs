@@ -2,12 +2,11 @@
 title: 'How to generate embeddings with Azure OpenAI Service'
 titleSuffix: Azure OpenAI
 description: Learn how to generate embeddings with Azure OpenAI
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 08/29/2024
+ms.date: 03/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -22,7 +21,7 @@ To obtain an embedding vector for a piece of text, we make a request to the embe
 
 # [console](#tab/console)
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT_NAME/embeddings?api-version=2024-02-01\
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT_NAME/embeddings?api-version=2024-10-21\
   -H 'Content-Type: application/json' \
   -H 'api-key: YOUR_API_KEY' \
   -d '{"input": "Sample Document goes here"}'
@@ -36,7 +35,7 @@ from openai import AzureOpenAI
 
 client = AzureOpenAI(
   api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version = "2024-06-01",
+  api_version = "2024-10-21",
   azure_endpoint =os.getenv("AZURE_OPENAI_ENDPOINT") 
 )
 
@@ -46,26 +45,6 @@ response = client.embeddings.create(
 )
 
 print(response.model_dump_json(indent=2))
-```
-
-# [OpenAI Python 0.28.1](#tab/python)
-
-[!INCLUDE [Deprecation](../includes/deprecation.md)]
-
-```python
-import openai
-
-openai.api_type = "azure"
-openai.api_key = "YOUR_API_KEY"
-openai.api_base = "https://YOUR_RESOURCE_NAME.openai.azure.com"
-openai.api_version = "2024-06-01"
-
-response = openai.Embedding.create(
-    input="Your text string goes here",
-    engine="YOUR_DEPLOYMENT_NAME"
-)
-embeddings = response['data'][0]['embedding']
-print(embeddings)
 ```
 
 # [C#](#tab/csharp)

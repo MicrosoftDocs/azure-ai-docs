@@ -7,7 +7,7 @@ author: mopeakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 1/21/2025
+ms.date: 03/20/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use chat completions API with models deployed to Azure AI model inference in Azure AI services.
+This article explains how to use chat completions API with _multimodal_ models deployed to Azure AI model inference in Azure AI services. Apart from text input, multimodal models can accept other input types, such as images or audio input.
 
 ## Prerequisites
 
@@ -26,9 +26,9 @@ To use chat completion models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites-python](../how-to-prerequisites-python.md)]
 
-* A chat completions model deployment with support for **audio and images**. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+* A chat completions model deployment with support for **audio and images**. If you don't have one, see [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
 
-  * This tutorial uses `Phi-4-multimodal-instruct`.
+  * This article uses `Phi-4-multimodal-instruct`.
 
 ## Use chat completions
 
@@ -47,7 +47,7 @@ client = ChatCompletionsClient(
 )
 ```
 
-If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+If you've configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
 
 ```python
@@ -105,7 +105,7 @@ response = client.complete(
         SystemMessage("You are a helpful assistant that can generate responses based on images."),
         UserMessage(content=[
             TextContentItem(text="Which conclusion can be extracted from the following chart?"),
-            ImageContentItem(image=ImageUrl(url=data_url))
+            ImageContentItem(image_url=ImageUrl(url=data_url))
         ]),
     ],
     temperature=1,
@@ -133,7 +133,7 @@ Usage:
   Total tokens: 2506
 ```
 
-Images are broken into tokens and submitted to the model for processing. When referring to images, each of those tokens is typically referred as *patches*. Each model may break down a given image on a different number of patches. Read the model card to learn the details.
+Images are broken into tokens and submitted to the model for processing. When referring to images, each of those tokens is typically referred as *patches*. Each model might break down a given image on a different number of patches. Read the model card to learn the details.
 
 ## Use chat completions with audio
 
@@ -179,9 +179,9 @@ print("\tTotal tokens:", response.usage.total_tokens)
 ASSISTANT: Hola. ¿Cómo estás?
 Model: speech
 Usage:
-	Prompt tokens: 77
-	Completion tokens: 7
-	Total tokens: 84
+    Prompt tokens: 77
+    Completion tokens: 7
+    Total tokens: 84
 ```
 
 The model can read the content from an **accessible cloud location** by passing the URL as an input. The Python SDK doesn't provide a direct way to do it, but you can indicate the payload as follows:
@@ -214,4 +214,4 @@ response = client.complete(
 )
 ```
 
-Audio is broken into tokens and submitted to the model for processing. Some models may operate directly over audio tokens while other may use internal modules to perform speech-to-text, resulting in different strategies to compute tokens. Read the model card for details about how each model operates.
+Audio is broken into tokens and submitted to the model for processing. Some models might operate directly over audio tokens while other might use internal modules to perform speech-to-text, resulting in different strategies to compute tokens. Read the model card for details about how each model operates.
