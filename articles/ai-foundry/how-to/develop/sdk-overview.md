@@ -7,8 +7,8 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - ignite-2024
-ms.topic: overview
-ms.date: 02/27/2025
+ms.topic: how-to
+ms.date: 03/27/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -31,17 +31,60 @@ If you want to jump right in and start building an app, check out:
 - [Create a chat app](../../quickstarts/get-started-code.md)
 - [Create a custom RAG app](../../tutorials/copilot-sdk-create-resources.md)
 
+## Prerequisites
+
+* [Create an AI Project](../create-projects.md) if you don't have one already.
+* Sign in with the Azure CLI using the same account that you use to access your AI Project:
+
+    ```bash
+    az login
+    ```
+
+## Install all packages
+
+Install all the packages you need to get started with the Azure AI Foundry SDK. 
+
+::: zone pivot="programming-language-python"
+
+```bash
+pip install azure-ai-projects azure-identity openai azure-ai-inference azure-search-documents azure-ai-evaluation azure-monitor-opentelemetry
+```
+
+---
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+```dotnet
+dotnet add package Azure.AI.Projects
+dotnet add package Azure.Identity
+dotnet add package Azure.AI.OpenAI
+dotnet add package Azure.AI.Inference
+dotnet add package Azure.Search.Documents
+```
+
+Add using statements:
+
+```csharp
+using Azure.Identity;
+using Azure.AI.Projects;
+using OpenAI.Chat;
+using Azure.AI.OpenAI;
+using Azure.AI.Inference;
+using Azure.Search.Documents;
+using Azure.Search.Documents.Models;
+```
+
+---
+
+::: zone-end
+
+Or, use the following sections to install only the packages you need.
+
 ## Get started with Projects
 
 The best way to get started using the Azure AI Foundry SDK is by using a project. AI projects connect together different data, assets, and services you need to build AI applications. The AI project client allows you to easily access these project components from your code by using a single connection string.
-
-First follow steps to [create an AI Project](../create-projects.md) if you don't have one already.
-
-Sign in with the Azure CLI using the same account that you use to access your AI Project:
-
-```bash
-az login
-```
 
 Install the Azure AI projects client library:
 
