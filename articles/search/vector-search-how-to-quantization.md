@@ -65,8 +65,8 @@ Rescoring occurs when you set a rescoring option in the index vector configurati
 The generalized process for rescoring is:
 
 1. The vector query executes over compressed vector fields.
-1. The vector query returns the top oversampling k-matches.
-1. Oversampling k-matches are rescored using either the uncompressed original vectors, or the dot product of binary quantization. After rescoring, results are adjusted so that more relevant matches appear first.
+1. The vector query returns the top k oversampled candidates.
+1. Oversampled k candidates are rescored using either the uncompressed original vectors, or the dot product of binary quantization. 1. After rescoring, results are adjusted so that more relevant matches appear first.
 
 ## Add "compressions" to a search index
 
@@ -218,7 +218,9 @@ POST https://[servicename].search.windows.net/indexes?api-version=2024-11-01-pre
 
 Use the [Create Index (preview)](/rest/api/searchservice/indexes/create?view=rest-searchservice-2025-031-01-preview&preserve-view=true) or [Create or Update Index (preview)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-03-01-preview&preserve-view=true) REST API to configure compression settings.
 
-Changes in this version include new guidance for *binary quantization*. If you set `enableRescoring` to true, you can set `rescoreStorageMethod` to `discardOriginals` to further reduce storage, without reducing quality. This is because new rescoring strategies for binary embeddings include using the dot product, eliminating the dependency on full-precision vectors in the index.
+Changes in this version include new guidance for *binary quantization*. If you set `enableRescoring` to true, you can set `rescoreStorageMethod` to `discardOriginals` to further reduce storage, without reducing quality. 
+
+Azure AI Search supports a lossy rescoring option on the binary quantized document vectors, which helps close the quality gap between no rescoring and full-precision rescoring when using `binaryQuantization`.
 
 For scalar quantization, there are no rescoring changes in this preview.
 

@@ -98,7 +98,7 @@ If you use newer preview APIs *and* binary quantization, you can safely discard 
 The `rescoreStorageMethod` property controls whether full-precision vectors are stored. The guidance for whether to retain full-precision vectors is:
 
 - For scalar quantization, preserve original full-precision vectors in the index if you want to rescore.
-- For binary quantization, discard full-precision vectors if you're using 2025-03-01-preview for rescoring. For the 2024-11-01-preview, preserve full-precision vectors.
+- For binary quantization, preserve original full-precision vectors for the highest quality of rescoring, or discard full-precision vectors (requires 2025-03-01-preview) if you want rescoring based on the dot product of the binary embeddings.
 
 Vector storage strategies have been evolving over the last several releases. Index creation date and API version determine your storage options for uncompressed vectors. If you want to rescore scalar embeddings, you must retain original full-precision vectors.
 
