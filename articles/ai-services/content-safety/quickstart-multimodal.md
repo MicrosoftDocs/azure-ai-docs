@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
-ms.date: 09/19/2024
+ms.date: 03/26/2025
 ms.author: pafarley
 # zone_pivot_groups: programming-languages-content-safety
 ---
@@ -15,7 +15,7 @@ ms.author: pafarley
 
 The Multimodal API analyzes materials containing both image content and text content to help make applications and services safer from harmful user-generated or AI-generated content. Analyzing an image and its associated text content together can preserve context and provide a more comprehensive understanding of the content.
 
-For more information on the way content is filtered, see the [Harm categories concept page](./concepts/harm-categories.md#multimodal-image-with-text-content). For API input limits, see the [Input requirements](./overview.md#input-requirements) section of the Overview. 
+For more information on how content is filtered, see the [Harm categories concept page](./concepts/harm-categories.md#multimodal-image-with-text-content). For API input limits, see the [Input requirements](./overview.md#input-requirements) section of the Overview. 
 
 > [!IMPORTANT]
 > This feature is only available in certain Azure regions. See [Region availability](./overview.md#region-availability).
@@ -45,7 +45,7 @@ You can input your image by one of two methods: **local filestream** or **blob s
 - **Local filestream** (recommended): Encode your image to base64. You can use a website like [codebeautify](https://codebeautify.org/image-to-base64-converter) to do the encoding. Then save the encoded string to a temporary location. 
 - **Blob storage URL**: Upload your image to an Azure Blob Storage account. Follow the [blob storage quickstart](/azure/storage/blobs/storage-quickstart-blobs-portal) to learn how to do this. Then open Azure Storage Explorer and get the URL to your image. Save it to a temporary location. 
 
-### Analyze image with text 
+### Analyze content 
 
 Paste the command below into a text editor, and make the following changes.
 
@@ -98,7 +98,8 @@ The parameters in the request body are defined in this table:
 Open a command prompt window and run the cURL command.
 
 
-### Output
+### Interpret the API response
+
 
 You should see the image and text moderation results displayed as JSON data in the console. For example:
 

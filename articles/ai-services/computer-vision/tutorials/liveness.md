@@ -8,7 +8,7 @@ ms.subservice: azure-ai-face
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 09/25/2024
+ms.date: 03/26/2025
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 

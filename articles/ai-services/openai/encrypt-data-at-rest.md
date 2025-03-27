@@ -6,7 +6,7 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 12/02/2024
+ms.date: 03/27/2025
 ms.author: mbullwin
 ---
 
