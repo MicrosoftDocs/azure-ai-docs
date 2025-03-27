@@ -161,7 +161,7 @@ The JSON objects in the output are defined here:
 | Name  | Description    | Type    |
 | :------------------ | :----------- | ------- |
 | **ungroundedDetected** | Indicates whether the text exhibits ungroundedness.  | Boolean    |
-| **ungroundedPercentage** | Specifies the proportion of the text identified as ungrounded, expressed as a number between 0 and 1, where 0 indicates no ungrounded content and 1 indicates entirely ungrounded content.| Float	 |
+| **ungroundedPercentage** | Specifies the proportion of the text identified as ungrounded, expressed as a number between 0 and 1, where 0 indicates no ungrounded content and 1 indicates entirely ungrounded content. This is not a confidence level.| Float	 |
 | **ungroundedDetails** | Provides insights into ungrounded content with specific examples and percentages.| Array |
 | -**`text`**   |  The specific text that is ungrounded.  | String   |
 
@@ -333,7 +333,7 @@ The JSON objects in the output are defined here:
 | Name  | Description    | Type    |
 | :------------------ | :----------- | ------- |
 | **ungroundedDetected** | Indicates whether the text exhibits ungroundedness.  | Boolean    |
-| **ungroundedPercentage** | Specifies the proportion of the text identified as ungrounded, expressed as a number between 0 and 1, where 0 indicates no ungrounded content and 1 indicates entirely ungrounded content.| Float	 |
+| **ungroundedPercentage** | Specifies the proportion of the text identified as ungrounded, expressed as a number between 0 and 1, where 0 indicates no ungrounded content and 1 indicates entirely ungrounded content. This is not a confidence level.| Float	 |
 | **ungroundedDetails** | Provides insights into ungrounded content with specific examples and percentages.| Array |
 | -**`text`**   |  The specific text that is ungrounded.  | String   |
 | -**`offset`**   |  An object describing the position of the ungrounded text in various encoding.  | String   |
@@ -480,7 +480,7 @@ The JSON objects in the output are defined here:
 | Name  | Description    | Type    |
 | :------------------ | :----------- | ------- |
 | **ungroundedDetected** |	Indicates if ungrounded content was detected.|	Boolean|
-| **ungroundedPercentage** |	The proportion of ungrounded content in the text.|	Float|
+| **ungroundedPercentage** |	The proportion of ungrounded content in the text. This is not a confidence level. |	Float|
 | **ungroundedDetails** |	Details of ungrounded content, including specific text segments.|	Array|
 | -**`text`**   |  The specific text that is ungrounded.  | String   |
 | -**`offset`**   |  An object describing the position of the ungrounded text in various encoding.  | String   |

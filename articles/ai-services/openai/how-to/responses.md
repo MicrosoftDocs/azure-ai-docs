@@ -40,17 +40,21 @@ The responses API is currently available in the following regions:
 
 ### Model support
 
-- `gpt-4o`
-- `gpt-4o-mini`
+- `gpt-4o` (Versions: `2024-11-20`, `2024-08-06`, `2024-05-13`)
+- `gpt-4o-mini` (Versions: `2024-07-18`)
 - `computer-use-preview`
 
+Not every model is available in the regions supported by the responses API. Check the [models page](../concepts/models.md) for model region availability.
+
 > [!NOTE]
-> The responses API does not currently support:
+> Not currently supported:
 > - Structured outputs
 > - tool_choice
-> - image_url pointing to an internet address  
->   
-> There is also a known issue with vision performance when using the Responses API, particularly with OCR tasks. As a temporary workaround set image detail to `high`. Once this issue is fixed and support is added for the previously listed features, this article will be updated.
+> - image_url pointing to an internet address
+> - The web search tool is also not supported, and is not part of the `2025-03-01-preview` API.  
+> 
+> There is also a known issue with vision performance when using the Responses API, particularly with OCR tasks. As a temporary workaround set image detail to `high`. This article will be updated once this issue is resolved and as any additional feature support is added.
+
 
 ### Reference documentation
 
@@ -567,6 +571,8 @@ print(response.model_dump_json(indent=2))
 ```
 
 ## Image input
+
+There is a known issue with image url based image input. Currently only base64 encoded images are supported.
 
 ### Image url
 

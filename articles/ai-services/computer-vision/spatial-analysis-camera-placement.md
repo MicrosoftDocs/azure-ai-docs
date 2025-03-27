@@ -156,5 +156,4 @@ Organic queues are lines that form organically. This style of queue is acceptabl
 
 <!--* [Deploy a People Counting web application](spatial-analysis-web-app.md)-->
 * [Configure Spatial Analysis operations](./spatial-analysis-operations.md)
-* [Logging and troubleshooting](spatial-analysis-logging.md)
 * [Zone and line placement guide](spatial-analysis-zone-line-placement.md)
