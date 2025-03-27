@@ -1,12 +1,12 @@
 ---
 title: 'How to use the data agents in Microsoft Fabric with Azure AI Agent Service'
 titleSuffix: Azure OpenAI
-description: Learn how to perform data analytics in Azure AI Agents using Microsfot Fabric data agent.
+description: Learn how to perform data analytics in Azure AI Agents using Microsoft Fabric data agent.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 02/25/2025
+ms.date: 03/27/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-fabric-data-agent
@@ -113,8 +113,6 @@ Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the
 
 ---
 
----
-
 ## Step 2: Create an Agent with the Microsoft Fabric tool enabled
 
 To make the Microsoft Fabric tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Azure AI Foundry portal.
@@ -210,8 +208,6 @@ curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
         ]
       }'
 ```
-
----
 
 ---
 
@@ -394,7 +390,6 @@ for (let i = messages.data.length - 1; i >= 0; i--) {
   }
 }
 ```
----
 
 # [REST API](#tab/rest)
 ### Run the thread
