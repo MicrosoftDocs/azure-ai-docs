@@ -41,25 +41,25 @@ Request parameters passed on the query string are:
 | Query parameter | Description |
 | --- | --- |
 | from | _Optional parameter_.  <br>Specifies the language of the input text. Find which languages are available to translate from by looking up [supported languages](languages.md) using the `translation` scope. If the `from` parameter isn't specified, automatic language detection is applied to determine the source language.  <br>  <br>You must use the `from` parameter rather than autodetection when using the [dynamic dictionary](../../how-to/use-dynamic-dictionary.md) feature. **Note**: the dynamic dictionary feature is case-sensitive. |
-| textType | _Optional parameter_.  <br>Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Possible values are: `plain` (default) or `html`. |
+| textType | _Optional parameter_.  <br>Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Accepted values are: `plain` (default) or `html`. |
 | category | _Optional parameter_.  <br>A string specifying the category (domain) of the translation. This parameter is used to get translations from a customized system built with [Custom Translator](../../../custom-translator/concepts/customization.md). To use your deployed customized system, add the Category ID from your Custom Translator [project details](../../../custom-translator/how-to/create-manage-project.md) to the category parameter. Default value is: `general`. |
-| profanityAction | _Optional parameter_.  <br>Specifies how profanities should be treated in translations. Possible values are: `NoAction` (default), `Marked`, or `Deleted`. To understand ways to treat profanity, see [Profanity handling](#handle-profanity). |
-| profanityMarker | _Optional parameter_.  <br>Specifies how profanities should be marked in translations. Possible values are: `Asterisk` (default) or `Tag`. To understand ways to treat profanity, see [Profanity handling](#handle-profanity). |
-| includeAlignment | _Optional parameter_.  <br>Specifies whether to include alignment projection from source text to translated text. Possible values are: `true` or `false` (default). |
-| includeSentenceLength | _Optional parameter_.  <br>Specifies whether to include sentence boundaries for the input text and the translated text. Possible values are: `true` or `false` (default). |
+| profanityAction | _Optional parameter_.  <br>Specifies how profanities should be treated in translations. Accepted values are: `NoAction` (default), `Marked`, or `Deleted`. To understand ways to treat profanity, see [Profanity handling](#handle-profanity). |
+| profanityMarker | _Optional parameter_.  <br>Specifies how profanities should be marked in translations. Accepted values are: `Asterisk` (default) or `Tag`. To understand ways to treat profanity, see [Profanity handling](#handle-profanity). |
+| includeAlignment | _Optional parameter_.  <br>Specifies whether to include alignment projection from source text to translated text. Accepted values are: `true` or `false` (default). |
+| includeSentenceLength | _Optional parameter_.  <br>Specifies whether to include sentence boundaries for the input text and the translated text. Accepted values are: `true` or `false` (default). |
 | suggestedFrom | _Optional parameter_.  <br>Specifies a fallback language if the language of the input text can't be identified. Language autodetection is applied when the `from` parameter is omitted. If detection fails, the `suggestedFrom` language is assumed. |
 | fromScript | _Optional parameter_.  <br>Specifies the script of the input text. |
 | toScript | _Optional parameter_.  <br>Specifies the script of the translated text. |
-| allowFallback | _Optional parameter_.  <br>Specifies that the service is allowed to fall back to a general system when a custom system doesn't exist. Possible values are: `true` (default) or `false`.  <br>  <br>`allowFallback=false` specifies that the translation should only use systems trained for the `category` specified by the request. If a translation from language X to language Y requires chaining through a pivot language E, then all the systems in the chain (X → E and E → Y) need to be custom and have the same category. If no system is found with the specific category, the request returns a 400 status code. `allowFallback=true` specifies that the service is allowed to fall back to a general system when a custom system doesn't exist. |
+| allowFallback | _Optional parameter_.  <br>Specifies that the service is allowed to fall back to a general system when a custom system doesn't exist. Accepted values are: `true` (default) or `false`.  <br>  <br>`allowFallback=false` specifies that the translation should only use systems trained for the `category` specified by the request. If a translation from language X to language Y requires chaining through a pivot language E, then all the systems in the chain (X → E and E → Y) need to be custom and have the same category. If no system is found with the specific category, the request returns a 400 status code. `allowFallback=true` specifies that the service is allowed to fall back to a general system when a custom system doesn't exist. |
 
 Request headers include:
 
 | Headers | Description |
 | --- | --- |
-| Authentication headers | _Required request header_.  <br>See [available options for authentication](./reference.md#authentication). |
+| Authentication headers | _Required request header_.  <br>*See* [available options for authentication](../authentication.md). |
 | Content-Type | _Required request header_.  <br>Specifies the content type of the payload.  <br>Accepted value is `application/json; charset=UTF-8`. |
 | Content-Length | _Optional_.  <br>The length of the request body. |
-| X-ClientTraceId | _Optional_.  <br>A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
+| X-ClientTraceId | _Optional_.  <br>A client-generated GUID to uniquely identify the request. You can omit this optional header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
 
 ## Request body
 
