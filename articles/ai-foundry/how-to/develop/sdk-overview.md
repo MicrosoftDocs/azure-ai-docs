@@ -51,7 +51,8 @@ Install all the Azure AI Foundry SDK packages as shown here, or install only the
 
     ```txt
     azure-ai-projects 
-    azure-identity openai 
+    azure-identity 
+    openai 
     azure-ai-inference 
     azure-search-documents 
     azure-ai-evaluation 
