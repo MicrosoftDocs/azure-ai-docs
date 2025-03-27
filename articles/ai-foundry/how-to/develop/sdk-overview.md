@@ -33,6 +33,7 @@ If you want to jump right in and start building an app, check out:
 
 ## Prerequisites
 
+* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
 * [Create an AI Project](../create-projects.md) if you don't have one already.
 * Sign in with the Azure CLI using the same account that you use to access your AI Project:
 
@@ -40,15 +41,27 @@ If you want to jump right in and start building an app, check out:
     az login
     ```
 
-## Install all packages
+## All packages
 
-Install all the packages you need to get started with the Azure AI Foundry SDK. 
+Install all the Azure AI Foundry SDK packages as shown here, or install only the packages you need in the following sections.
 
 ::: zone pivot="programming-language-python"
 
-```bash
-pip install azure-ai-projects azure-identity openai azure-ai-inference azure-search-documents azure-ai-evaluation azure-monitor-opentelemetry
-```
+1. Create a file named **requirements.txt**. Add the following packages to the file:
+
+    ```txt
+    azure-ai-projects 
+    azure-identity openai 
+    azure-ai-inference 
+    azure-search-documents 
+    azure-ai-evaluation 
+    azure-monitor-opentelemetry
+
+1. Install the packages:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
 
 ---
 
@@ -80,7 +93,6 @@ using Azure.Search.Documents.Models;
 
 ::: zone-end
 
-Or, use the following sections to install only the packages you need.
 
 ## Get started with Projects
 
