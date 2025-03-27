@@ -96,7 +96,7 @@ using Azure.Search.Documents.Models;
 ::: zone-end
 
 
-## Get started with Projects
+## Get started with projects
 
 The best way to get started using the Azure AI Foundry SDK is by using a project. AI projects connect together different data, assets, and services you need to build AI applications. The AI project client allows you to easily access these project components from your code by using a single connection string.
 
