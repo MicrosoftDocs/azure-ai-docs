@@ -47,7 +47,7 @@ Two types of quantization are supported:
 
 ## Recommended rescoring techniques
 
-Rescoring is technique used to offset information loss due to vector compression. It uses oversampling to pick up extra vectors, and supplemental information to rescore initial results found by the query. Supplemental information is either uncompressed original full-precision vectors, or for binary quantization only, you have an alternative option of using the dot product of the embeddings.
+Rescoring is technique used to offset information loss due to vector compression. It uses oversampling to pick up extra vectors, and supplemental information to rescore initial results found by the query. Supplemental information is either uncompressed original full-precision vectors, or for binary quantization only, you have an alternative option of rescoring using the binary quantized document candidates against the query vector.
 
 Rescoring applies to:
 
@@ -60,7 +60,7 @@ Rescoring occurs when you set a rescoring option in the index vector configurati
 
 - In version 2024-07-01, set `rerankWithOriginalVectors`
 - In version 2024-11-01-preview, set `rescoringOptions.enableRescoring` and `rescoreStorageMethod.preserveOriginals`
-- In version 2025-03-01-preview, set `rescoringOptions.enableRescoring` and `rescoreStorageMethod.preserveOriginals` for scalar quantization or `rescoreStorageMethod.discardOriginals` for binary quantization
+- In version 2025-03-01-preview, set `rescoringOptions.enableRescoring` and `rescoringOptions.rescoreStorageMethod=preserveOriginals` for scalar quantization, or `rescoringOptions.enableRescoring` for binary quantization.
 
 The generalized process for rescoring is:
 
