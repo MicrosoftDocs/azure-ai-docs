@@ -13,7 +13,7 @@ ms.author: johalexander
 author: ms-johnalex
 ---
 
-# Work with Azure AI Agent Service using the Azure AI Foundry for Visual Studio Code extension
+# Work with Azure AI Agent Service in Visual Studio Code
 
 After you [get started with the AI Foundry the VS Code extension](./get-started-projects-vs-code.md), you can work with [Azure AI Agent Service](/azure/ai-services/agents/overview). Agents are "smart" microservices that:
 
