@@ -34,7 +34,7 @@ If you want to jump right in and start building an app, check out:
 ## Prerequisites
 
 * An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
-* [Create an AI Project](../create-projects.md) if you don't have one already.
+* [Create a project](../create-projects.md) if you don't have one already.
 * Sign in with the Azure CLI using the same account that you use to access your AI Project:
 
     ```bash
