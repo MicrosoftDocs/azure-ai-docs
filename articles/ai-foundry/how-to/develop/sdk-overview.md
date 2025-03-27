@@ -41,7 +41,7 @@ If you want to jump right in and start building an app, check out:
     az login
     ```
 
-## All packages
+## Install everything
 
 Install all the Azure AI Foundry SDK packages as shown here, or install only the packages you need in the following sections.
 
