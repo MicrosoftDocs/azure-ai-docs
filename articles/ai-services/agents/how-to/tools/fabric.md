@@ -25,7 +25,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 1. You have created and published a Fabric data agent endpoint
@@ -131,8 +131,8 @@ fabric = FabricTool(connection_id=conn_id)
 with project_client:
     agent = project_client.agents.create_agent(
         model="gpt-4o",
-        name="my-assistant",
-        instructions="You are a helpful assistant",
+        name="my-agent",
+        instructions="You are a helpful agent",
         tools=fabric.definitions,
         headers={"x-ms-enable-preview": "true"},
     )
@@ -155,8 +155,8 @@ MicrosoftFabricToolDefinition fabricGroundingTool = new MicrosoftFabricToolDefin
 
 Response<Agent> agentResponse = await agentClient.CreateAgentAsync(
     model: modelName,
-    name: "my-assistant-fabric01",
-    instructions: "You are a helpful assistant. Use the fabric tool to answer questions.",
+    name: "my-agent-fabric01",
+    instructions: "You are a helpful agent. Use the fabric tool to answer questions.",
     tools: new List<ToolDefinition> { fabricGroundingTool });
 Agent agent = agentResponse.Value;
 Console.Write($"agent id: {agent.Id}");
@@ -174,7 +174,7 @@ const connectionId = fabricConnection.id;
 // Initialize agent Microsoft Fabric tool with the connection id
 const fabricTool = ToolUtility.createFabricTool(connectionId);
 
-// Create agent with the Microsoft Fabric tool and process assistant run
+// Create agent with the Microsoft Fabric tool and process the agent run
 const agent = await client.agents.createAgent("gpt-4o", {
   name: "my-agent",
   instructions: "You are a helpful agent",
@@ -297,7 +297,7 @@ print(f"Run finished with status: {run.status}")
 if run.status == "failed":
     print(f"Run failed: {run.last_error}")
 
-# Delete the assistant when done
+# Delete the agent when done
 project_client.agents.delete_agent(agent.id)
 print("Deleted agent")
 
