@@ -5,7 +5,7 @@ description: Learn about performance and latency with Azure OpenAI
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 09/20/2024
+ms.date: 03/26/2025
 author: mrbullwinkle 
 ms.author: mbullwin
 recommendations: false
