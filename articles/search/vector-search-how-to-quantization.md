@@ -47,19 +47,26 @@ Two types of quantization are supported:
 
 ## Recommended rescoring techniques
 
-If you quantize vectors, a query that targets those fields executes over compressed data and scores the results accordingly. Because compressed data can be lossy, we recommend rescoring initial results using either uncompressed vectors or the dot product of a binary embedding (applies to binary quantization only). 
+Rescoring is technique used to offset information loss due to vector compression. It uses oversampling to pick up extra vectors, and supplemental information to rescore initial results found by the query. Supplemental information is either uncompressed original full-precision vectors, or for binary quantization only, you have an alternative option of using the dot product of the embeddings.
+
+Rescoring applies to:
+
+- scalar quantization using Hierarchical Navigable Small World (HNSW) graphs for similarity search
+- binary quantization using HNSW graphs
+
+Exhaustive K Nearest Neighbors (eKNN) doesn't support rescoring.
 
 Rescoring occurs when you set a rescoring option in the index vector configuration:
 
-- In version 2024-07-01, set `rerankWithOriginalVectors`.
+- In version 2024-07-01, set `rerankWithOriginalVectors`
 - In version 2024-11-01-preview, set `rescoringOptions.enableRescoring` and `rescoreStorageMethod.preserveOriginals`
-- In version 20250-03-01-preview, set `rescoringOptions.enableRescoring` and `rescoreStorageMethod.preserveOriginals` for scalar quantization or `rescoreStorageMethod.discardOriginals` for binary quantization.
+- In version 2025-03-01-preview, set `rescoringOptions.enableRescoring` and `rescoreStorageMethod.preserveOriginals` for scalar quantization or `rescoreStorageMethod.discardOriginals` for binary quantization
 
 The generalized process for rescoring is:
 
 1. The vector query executes over compressed vector fields.
 1. The vector query returns the top oversampling k-matches.
-1. Oversampling k-matches are rescored using the uncompressed original vectors, adjusting the ranking so that more relevant matches appear first.
+1. Oversampling k-matches are rescored using either the uncompressed original vectors, or the dot product of binary quantization. After rescoring, results are adjusted so that more relevant matches appear first.
 
 ## Add "compressions" to a search index
 
@@ -276,7 +283,7 @@ POST https://[servicename].search.windows.net/indexes?api-version=2025-03-01-pre
 
 - `rescoringOptions` are a collection of properties used to offset lossy compression by rescoring query results using the original full-precision vectors that exist prior to quantization.
 
-- `enableRescoring` rescores the initial results obtained by query execution over compressed data. For scalar quantization, rescoring uses uncompressed vectors to produce more relevant results and takes a dependency on `preserveOriginals`. For binary quantization, rescoring uses the dot product of the binary embeddings int eh index. It doesn't need full-precision vectors.
+- `enableRescoring` rescores the initial results obtained by query execution over compressed data. For scalar quantization, rescoring uses uncompressed vectors to produce more relevant results and takes a dependency on `preserveOriginals`. For binary quantization, rescoring is the same as scalar quantization if you preserve originals, but you can also discard originals and still get rescoring. In this scenario, rescoring is calculated by the dot product of the full precision query and binary quantized data in the index.  
 
 - `"rescoreStorageMethod": "discardOriginals"` removes original vectors. These aren't needed for binary quantization.
 
@@ -288,7 +295,7 @@ POST https://[servicename].search.windows.net/indexes?api-version=2025-03-01-pre
 
 ## Add the vector search algorithm
 
-You can use HNSW algorithm or exhaustive KNN in the 2024-11-01-preview REST API or later. For the stable version, use HNSW only.
+You can use HNSW algorithm or exhaustive KNN in the 2024-11-01-preview REST API or later. For the stable version, use HNSW only. If you want rescoring, you must choose HNSW.
 
    ```json
    "vectorSearch": {
