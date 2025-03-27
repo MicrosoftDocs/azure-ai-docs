@@ -124,7 +124,7 @@ namespace question_answering
 }
 ```
 
-While we are hard coding the variables for our example. For production, consider using a secure way of storing and accessing your credentials. For example, [Azure key vault](/azure/key-vault/general/overview) provides secure key storage.
+While we are hard coding the variables for our example. For production, consider using a secure way of storing and accessing your credentials. For example, [Azure Key Vault](/azure/key-vault/general/overview) provides secure key storage.
 
 After updating `Program.cs` with the code above and substituting in the correct variable values. Run the application with the `dotnet run` command from your application directory.
 

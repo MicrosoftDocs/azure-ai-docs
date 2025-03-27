@@ -278,7 +278,7 @@ Before you can use managed identities for Azure resources to authorize access to
 
 For more information about managed identities, see [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview).
 
-## Use Azure key vault to securely access credentials
+## Use Azure Key Vault to securely access credentials
 
 You can [use Azure Key Vault](./use-key-vault.md) to securely develop Azure AI services applications. Key Vault enables you to store your authentication credentials in the cloud, and reduces the chances that secrets may be accidentally leaked, because you won't store security information in your application.
 

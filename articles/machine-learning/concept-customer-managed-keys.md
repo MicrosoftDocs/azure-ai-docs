@@ -140,7 +140,7 @@ When handling highly sensitive data workloads, you may opt-out from the above be
 * It reduces the amount of data that Microsoft collects for diagnostic purposes from your compute clusters and enables [extra encryption in Microsoft-managed environments](/azure/security/fundamentals/encryption-atrest). 
 * Starts encrypting the local scratch disk in your Azure Machine Learning compute cluster. This behavior is only enforced if you didn't create any previous clusters in that subscription. Otherwise, you are required to raise a support ticket to enable encryption of the scratch disk for your compute clusters.
 * Cleans up your local scratch disk between jobs. For example, this cleans up cached docker images and may affect job startup speed.
-* Passes credentials for your storage account, container registry, and Secure Shell (SSH) account from the execution layer to your compute clusters by using your Azure key vault.
+* Passes credentials for your storage account, container registry, and Secure Shell (SSH) account from the execution layer to your compute clusters by using your Azure Key Vault.
 
 Note that `hbi_workspace` flag doesn't affect encryption in transit. It affects only encryption at rest.
 
