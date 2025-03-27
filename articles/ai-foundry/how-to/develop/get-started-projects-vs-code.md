@@ -173,6 +173,8 @@ You can also deploy a model directly from your Azure AI Foundry project.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-plus-expanded.png" alt-text="Screenshot of the plus sign next to models with the list of models expanded." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-plus-expanded.png":::
 
+    > [!TIP] You can also right-click on **Models** and select the **Deploy new AI model** option to start the deployment process. 
+
 1. In the top center, select the AI service to use in the **Choose an AI service** dropdown and press enter.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png" alt-text="Screenshot of the Choose AI service dropdown for model deployment." lightbox="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png":::
