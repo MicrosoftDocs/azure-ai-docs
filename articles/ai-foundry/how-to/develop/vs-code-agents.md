@@ -1,7 +1,7 @@
 ---
 title: Work with Azure AI Agent Service using the Azure AI Foundry for Visual Studio Code extension
 titleSuffix: Azure AI Foundry
-description: Use this article to learn how to deploy Large Language Models and develop AI agents using Azure AI Foundry capabilities directly in VS Code.
+description: Use this article to learn how to use Azure AI Agent Service directly in VS Code.
 manager: mcleans
 ms.service: azure-ai-foundry
 content_well_notification: 
@@ -13,7 +13,7 @@ ms.author: johalexander
 author: ms-johnalex
 ---
 
-## Work with Azure AI Agent Service using the Azure AI Foundry for Visual Studio Code extension
+# Work with Azure AI Agent Service using the Azure AI Foundry for Visual Studio Code extension
 
 After you [get started with the AI Foundry the VS Code extension](./get-started-projects-vs-code.md), you can work with [Azure AI Agent Service](/azure/ai-services/agents/overview). Agents are "smart" microservices that:
 
@@ -29,9 +29,9 @@ Azure AI Foundry developers can stay productive by developing, testing, and depl
 
 Follow these steps to create an Azure AI Agent:
 
-1. First, finish the [Get Started](#get-started) section to sign in to your Azure resources and set your default project.
+1. First, finish the [Get Started](./get-started-projects-vs-code.md#get-started) section to sign in to your Azure resources and set your default project.
  
-1. [Deploy a model](#deploy-a-model) to use with your agent.
+1. [Deploy a model](./get-started-projects-vs-code.md#deploy-a-model) to use with your agent.
 
 1. Select your AI Foundry project in the Azure Resources sidebar. 
 
