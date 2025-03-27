@@ -120,7 +120,7 @@ conn_id = "your-connection-id"
 # Initialize agent fabric tool and add the connection id
 fabric = FabricTool(connection_id=conn_id)
 
-# Create agent with the fabric tool and process assistant run
+# Create agent with the fabric tool and process agent run
 with project_client:
     agent = project_client.agents.create_agent(
         model="gpt-4o",
@@ -238,7 +238,7 @@ Create a run and observe that the model uses the Fabric data agent tool to provi
 
 ```python
 # Create and process agent run in thread with tools
-run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
+run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
 print(f"Run finished with status: {run.status}")
 
 if run.status == "failed":
