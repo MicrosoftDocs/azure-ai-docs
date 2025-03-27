@@ -9,7 +9,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: how-to
-ms.date: 02/21/2025
+ms.date: 03/31/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -78,6 +78,8 @@ Built-in evaluators can accept *either* query and response pairs or a list of co
 | `HateUnfairnessEvaluator`        | Required: String | Required: String | N/A           | N/A           |Supported for text and image |
 | `IndirectAttackEvaluator`      | Required: String | Required: String | Required: String | N/A           |Supported for text |
 | `ProtectedMaterialEvaluator`  | Required: String | Required: String | N/A           | N/A           |Supported for text and image |
+| `CodeVulnerabilityEvaluator`  | Required: String | Required: String | N/A           | N/A           |Supported for text|
+| `UngroundedAttributesEvaluator`  | Required: String | Required: String | Required: String          | N/A           |Supported for text |
 | `QAEvaluator`      | Required: String | Required: String | Required: String | Required: String           | Not supported |
 | `ContentSafetyEvaluator`     | Required: String | Required: String |  N/A  | N/A           | Supported for text and image |
 
@@ -694,6 +696,8 @@ When passing in your built-in evaluators, it's important to specify the right ke
 | `HateUnfairnessEvaluator` | "hate_unfairness" |
 | `IndirectAttackEvaluator` | "indirect_attack" |
 | `ProtectedMaterialEvaluator`| "protected_material" |
+| `CodeVulnerabilityEvaluator`| "code_vulnerability" |
+| `UngroundedAttributesEvaluator`| "ungrounded_attributes" |
 | `QAEvaluator`             | "qa"              |
 | `ContentSafetyEvaluator`  | "content_safety"  |
 
