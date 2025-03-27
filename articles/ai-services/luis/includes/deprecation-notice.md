@@ -1,6 +1,5 @@
 ---
 titleSuffix: Azure AI services
-#services: cognitive-services
 author: aahill
 ms.author: aahi
 manager: nitinme

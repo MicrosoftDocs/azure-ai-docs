@@ -1,7 +1,6 @@
 ---
 title: What is Document Translation?
 description: An overview of the cloud-based asynchronous batch translation services and processes.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator

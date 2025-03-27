@@ -2,7 +2,6 @@
 title: Conversational Language Understanding None Intent
 titleSuffix: Azure AI services
 description: Learn about the default None intent in conversational language understanding.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language

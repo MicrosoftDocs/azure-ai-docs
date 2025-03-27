@@ -1,7 +1,6 @@
 ---
 title: Try Document Translation in Language Studio
 description: "Document Translation in Azure AI Language Studio."
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator

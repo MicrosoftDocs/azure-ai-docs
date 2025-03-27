@@ -2,7 +2,6 @@
 title: Detect Adult, racy, or gory content - Azure AI Vision
 titleSuffix: Azure AI services
 description: Concepts related to detecting adult content in images using the Azure AI Vision API.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 

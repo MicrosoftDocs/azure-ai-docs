@@ -145,7 +145,7 @@ After you select and upload the training dataset, select **Next** to continue.
 The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, you can choose **Next** to continue to the advanced options for the model. Otherwise, if you have a validation dataset, you can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
 The **Validation data** pane displays any existing, previously uploaded training and validation datasets and provides options by which you can upload new validation data.
 
-### Automatic Split of Training Data
+### Split training data
 You can automatically divide your training data to generate a validation dataset.
 After you select Automatic split of training data, select **Next** to continue.
 
@@ -213,7 +213,7 @@ Here are some of the tasks you can do on the **Models** tab:
 Several enterprise scenarios are supported for MaaS finetuning. The table below outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
 
 >[!Note]  
->- Data connections auth can be changed via AI Studio by clicking on the datastore connection which your dataset is stored in, and navigating to the **Access details** > **Authentication Method** setting.  
+>- Data connections auth can be changed via AI Foundry by clicking on the datastore connection which your dataset is stored in, and navigating to the **Access details** > **Authentication Method** setting.  
 >- Storage auth can be changed in Azure Storage > **Settings** > **Configurations** page > **Allow storage account key access**.  
 >- Storage networking can be changed in Azure Storage > **Networking** page.
 
@@ -228,7 +228,7 @@ Several enterprise scenarios are supported for MaaS finetuning. The table below 
 | Public Network Access = Disabled                              | Account key disabled           | Entra-Based Auth (Credentialless) | Yes, UX and SDK. <br><br> *Note:* for UX data upload and submission to work, the workspace _needs to be accessed from within the Vnet_ that has appropriate access to the storage                |
 
 
-The scenarios above should work in a Managed Vnet workspace as well. See setup of Managed Vnet AI Studio hub here: [How to configure a managed network for Azure AI Foundry hubs](./configure-managed-network.md)
+The scenarios above should work in a Managed Vnet workspace as well. See setup of Managed Vnet AI Foundry hub here: [How to configure a managed network for Azure AI Foundry hubs](./configure-managed-network.md)
 
 Customer-Managed Keys (CMKs) is **not** a supported enterprise scenario with MaaS finetuning.
 
@@ -240,12 +240,10 @@ Issues finetuning with unique network setups on the workspace and storage usuall
 When the fine-tuning job succeeds, you can deploy the custom model from the **Fine-tune** tab. You must deploy your custom model to make it available for use with completion calls.
 
 > [!IMPORTANT]
-> After you deploy a customized model, if at any time the deployment remains inactive for greater than fifteen (15) days, the deployment is deleted. The deployment of a
-> customized model is inactive if the model was deployed more than fifteen (15) days ago and no completions or chat completions calls were made to it during a continuous 15
-> day period.
-> The deletion of an inactive deployment doesn't delete or affect the underlying customized model, and the customized model can be redeployed at any time. As described in
-> Azure AI Foundry pricing, each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether completions or chat completions calls are
-> being made to the model. To learn more about planning and managing costs with Azure AI Foundry, refer to the guidance in [Plan to manage costs for Azure AI Foundry Service](./costs-plan-manage.md).  
+> After you deploy a customized model and finishing with the endpoint, please remember to clean up any inactive endpoints. The deletion of an inactive deployment doesn't
+> delete or affect the underlying customized model, and the customized model can be redeployed at any time. As described in Azure AI Foundry pricing, each customized (fine-
+> tuned) model that's deployed incurs an hourly hosting cost regardless of whether completions or chat completions calls are being made to the model. To learn more about
+> planning and managing costs with Azure AI Foundry, refer to the guidance in [Plan to manage costs for Azure AI Foundry Service](./costs-plan-manage.md).  
 
 > [!NOTE]
 > Only one deployment is permitted for a custom model. An error message is displayed if you select an already-deployed custom model.
@@ -297,7 +295,7 @@ For more information on how to track costs, see [Monitor costs for models offere
 
 :::image type="content" source="../media/deploy-monitor/serverless/costs-model-as-service-cost-details.png" alt-text="A screenshot showing different resources corresponding to different model offers and their associated meters." lightbox="../media/deploy-monitor/serverless/costs-model-as-service-cost-details.png":::
 
-## Sample Notebook
+## Sample notebook
 
 You can use this [sample notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/finetuning/standalone/model-as-a-service/chat-completion/chat_completion_with_model_as_service.ipynb) to create a standalone fine-tuning job to enhance a model's ability to summarize dialogues between two people using the Samsum dataset. The training data utilized is the ultrachat_200k dataset, which is divided into four splits suitable for supervised fine-tuning (sft) and generation ranking (gen). The notebook employs the available Azure AI models for the chat-completion task (If you would like to use a different model than what's used in the notebook, you can replace the model name). The notebook includes setting up prerequisites, selecting a model to fine-tune, creating training and validation datasets, configuring and submitting the fine-tuning job, and finally, creating a serverless deployment using the fine-tuned model for sample inference.
 

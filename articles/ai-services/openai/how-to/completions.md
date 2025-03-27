@@ -2,11 +2,10 @@
 title: 'How to generate text with the legacy completions API'
 titleSuffix: Azure OpenAI
 description: Learn how to generate or manipulate text, including code by using the legacy completion endpoint in Azure OpenAI Service.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 08/29/2024
+ms.date: 03/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -18,7 +17,7 @@ recommendations: false
 Azure OpenAI Service provides a **completion endpoint** that can be used for a wide variety of tasks. The endpoint supplies a simple yet powerful text-in, text-out interface to any [Azure OpenAI model](../concepts/models.md). To trigger the completion, you input some text as a prompt. The model generates the completion and attempts to match your context or pattern. Suppose you provide the prompt "As Descartes said, I think, therefore" to the API. For this prompt, Azure OpenAI returns the completion endpoint " I am" with high probability.
 
 > [!IMPORTANT]
-> Unless you have a specific use case that requires the completions endpoint, we recommend instead using the [chat completions endpoint](./chatgpt.md) which allows you to take advantage of the latest models like GPT-4o, GPT-4o mini, and GPT-4 Turbo. 
+> Unless you have a specific use case that requires the completions endpoint, we recommend instead using the [responses API](./responses.md) of [chat completions endpoint](./chatgpt.md) which allows you to take advantage of the latest models like GPT-4o, GPT-4o mini, and GPT-4 Turbo. 
 
 The best way to start exploring completions is through the playground in [Azure AI Foundry](https://ai.azure.com). It's a simple text box where you enter a prompt to generate a completion. You can start with a simple prompt like this one:
 
@@ -37,7 +36,7 @@ The completion results that you see can differ because the Azure OpenAI API prod
 The simple text-in, text-out interface means you can "program" the Azure OpenAI model by providing instructions or just a few examples of what you'd like it to do. The output success generally depends on the complexity of the task and quality of your prompt. A general rule is to think about how you would write a word problem for a pre-teenage student to solve. A well-written prompt provides enough information for the model to know what you want and how it should respond.
 
 > [!NOTE]
-> The model training data can be different for each model type. The [latest model's training data currently extends through September 2021 only](/azure/ai-services/openai/concepts/models). Depending on your prompt, the model might not have knowledge of related current events.
+> The model training data can be different for each model type. Depending on your prompt, the model might not have knowledge of related current events.
 
 ## Design prompts
 
