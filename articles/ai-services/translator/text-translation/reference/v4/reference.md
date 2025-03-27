@@ -57,7 +57,7 @@ curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/v3.
 
 Custom Translator isn't currently available in Switzerland.
 
-## Request Headers
+## Request headers
 
 Request headers include:
 
@@ -159,7 +159,7 @@ Request parameters passed on the query string are as follows:
 "sourceCharactersCharged": 144
 ```
 
-#### Translate Text using `GPT-4o mini` and `NMT` deployments
+#### Translate text using `GPT-4o mini` and `NMT` deployments
 
 Here, users request specific `GPT` models for deployment.
 

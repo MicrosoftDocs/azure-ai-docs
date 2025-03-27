@@ -72,7 +72,7 @@ curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-versio
      -d "[{'Text':'Hello, what is your name?'}]"
 ```
 
-#### Authenticating with a Multi-service resource
+#### Authenticating with a multi-service resource
 
 A multi-service resource allows you to use a single API key to authenticate requests for multiple services.
 
