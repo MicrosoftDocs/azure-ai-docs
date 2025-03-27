@@ -7,7 +7,7 @@ manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 01/27/2025
+ms.date: 03/27/2025
 ms.author: lajanuar
 ---
 
@@ -50,3 +50,10 @@ No. Don't include SAS token-appended URLs. Managed identities eliminate the need
 #### Which PDF format renders the best results?
 
 PDF documents generated from digital file formats (also known as "native" PDFs) provide optimal output. Scanned PDFs are images of printed documents scanned into an electronic format. Translating scanned PDF files can result in loss of the original formatting, layout, and style, and affect the quality of the translation.
+
+#### Can I learn more about single document synchronous translation?
+
+Yes.
+
+* For more information, *see* [Synchronous document translation](overview.md#synchronous-translation)
+* To view `synchronous document translation` sample code in our GitHub repository, *see* [.NET/C#](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/translation/Azure.AI.Translation.Document/samples/Sample5_SynchronousTranslation.md); [Python](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-translation-document_1.0.0/sdk/translation/azure-ai-translation-document/samples/sample_single_document_translation.py); [REST API](/quickstarts/rest-api.md#synchronously-translate-a-single-document-post)
