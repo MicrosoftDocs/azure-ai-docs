@@ -11,6 +11,7 @@ ms.author: lajanuar
 ---
 
 
+
 # Install and run containers
 
 <!-- markdownlint-disable MD024 -->
@@ -18,11 +19,13 @@ ms.author: lajanuar
 
 :::moniker range=">=doc-intel-2.1.0"
 
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** ![checkmark](../media/yes-icon.png) **v3.1 (GA)**
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** ![checkmark](../media/yes-icon.png) **v4.0 (GA)**
 
 Azure AI Document Intelligence is an Azure AI service that lets you build automated data processing software using machine-learning technology. Document Intelligence enables you to identify and extract text, key/value pairs, selection marks, table data, and more from your documents. The results are delivered as structured data that ../includes the relationships in the original file. Containers process only the data provided to them and solely utilize the resources they're permitted to access. Containers can't process data from other regions.
 
 In this article you can learn how to download, install, and run Document Intelligence containers. Containers enable you to run the Document Intelligence service in your own environment. Containers are great for specific security and data governance requirements.
+
+* **Layout** model is supported by Document Intelligence v3.1 containers.
 
 * **Read**, **Layout**,  **ID Document**,  **Receipt**, and **Invoice**  models are supported by Document Intelligence v3.1 containers.
 
@@ -30,12 +33,14 @@ In this article you can learn how to download, install, and run Document Intelli
 
 ## Version support
 
-Support for containers is currently available with Document Intelligence version `v3.0: 2022-08-31 (GA)` for all models and `v3.1 2023-07-31 (GA)` for Read, Layout, ID Document, Receipt, and Invoice models:
+Support for containers is currently available with Document Intelligence version `v3.0: 2022-08-31 (GA)` for all models, `v3.1 2023-07-31 (GA)` for Read, Layout, ID Document, Receipt, and Invoice models, and `v4.0 2024-11-30 (GA)` for Layout:
 
 * [REST API `v3.0: 2022-08-31 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)
 * [REST API `v3.1: 2023-07-31 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.1%20(2023-07-31)&tabs=HTTP&preserve-view=true)
+* [REST API `v4.0: 2024-11-30 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v4.0%20(2024-11-30)&tabs=HTTP&preserve-view=true)
 * [Client libraries targeting `REST API v3.0: 2022-08-31 (GA)`](../sdk-overview-v3-0.md)
 * [Client libraries targeting `REST API v3.1: 2023-07-31 (GA)`](../sdk-overview-v3-1.md)
+* [Client libraries targeting `REST API v4.0: 2024-11-30 (GA)`](../sdk-overview-v4-0.md)
 
 ## Prerequisites
 
@@ -113,6 +118,54 @@ Feature container | Supporting containers |
 >  IMAGE ID         REPOSITORY                TAG
 >  <image-id>       <repository-path/name>    <tag-name>
 >  ```
+::: moniker-end
+
+:::moniker range="doc-intel-4.0.0"
+## Run the container with the **docker-compose up** command
+
+* Replace the {ENDPOINT_URI} and {API_KEY} values with your resource Endpoint URI and the key from the Azure resource page.
+
+   :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of Azure portal keys and endpoint page.":::
+
+* Ensure that the `EULA` value is set to *accept*.
+
+* The `EULA`, `Billing`, and `ApiKey`  values must be specified; otherwise the container can't start.
+
+> [!IMPORTANT]
+> The keys are used to access your Document Intelligence resource. Do not share your keys. Store them securely, for example, using Azure Key Vault. We also recommend regenerating these keys regularly. Only one key is necessary to make an API call. When regenerating the first key, you can use the second key for continued access to the service.
+
+### [Layout](#tab/layout)
+
+The following code sample is a self-contained `docker compose`  example to run the Document Intelligence Layout container. With `docker compose`, you use a YAML file to configure your application's services. Then, with `docker-compose up` command, you create and start all the services from your configuration. Enter {FORM_RECOGNIZER_ENDPOINT_URI} and {FORM_RECOGNIZER_KEY} values for your Layout container instance.
+
+```yml
+version: "3.9"
+services:
+  azure-form-recognizer-layout:
+    container_name: azure-form-recognizer-layout
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-4.0
+    environment:
+      - EULA=accept
+      - billing={FORM_RECOGNIZER_ENDPOINT_URI}
+      - apiKey={FORM_RECOGNIZER_KEY}
+    ports:
+      - "5000:5000"
+    networks:
+      - ocrvnet
+networks:
+  ocrvnet:
+    driver: bridge
+```
+
+Now, you can start the service with the [**docker compose**](https://docs.docker.com/compose/) command:
+
+```bash
+docker-compose up
+```
+::: moniker-end
+
+
+:::moniker range="doc-intel-3.0.0 || doc-intel-3.1.0"
 
 ## Run the container with the **docker-compose up** command
 
