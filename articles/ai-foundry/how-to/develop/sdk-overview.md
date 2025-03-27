@@ -56,6 +56,7 @@ Install all the Azure AI Foundry SDK packages as shown here, or install only the
     azure-search-documents 
     azure-ai-evaluation 
     azure-monitor-opentelemetry
+    ```
 
 1. Install the packages:
 
