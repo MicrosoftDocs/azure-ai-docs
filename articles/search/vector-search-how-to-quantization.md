@@ -52,7 +52,7 @@ Rescoring is technique used to offset information loss due to vector compression
 Rescoring applies to:
 
 - scalar quantization using Hierarchical Navigable Small World (HNSW) graphs for similarity search
-- binary quantization using HNSW graphs
+- binary quantization, also using HNSW graphs
 
 Exhaustive K Nearest Neighbors (eKNN) doesn't support rescoring.
 
@@ -60,7 +60,7 @@ Rescoring occurs when you set a rescoring option in the index vector configurati
 
 - In version 2024-07-01, set `rerankWithOriginalVectors`
 - In version 2024-11-01-preview, set `rescoringOptions.enableRescoring` and `rescoreStorageMethod.preserveOriginals`
-- In version 2025-03-01-preview, set `rescoringOptions.enableRescoring` and `rescoringOptions.rescoreStorageMethod=preserveOriginals` for scalar quantization, or `rescoringOptions.enableRescoring` for binary quantization.
+- In version 2025-03-01-preview, set `rescoringOptions.enableRescoring` and `rescoringOptions.rescoreStorageMethod=preserveOriginals` for scalar or binary quantization, or `rescoringOptions.enableRescoring` and `rescoringOptions.rescoreStorageMethod=discardOriginals` for binary quantization only
 
 The generalized process for rescoring is:
 
@@ -372,11 +372,11 @@ Each component of the vector is mapped to the closest representative value withi
 
 Binary quantization compresses high-dimensional vectors by representing each component as a single bit, either 0 or 1. This method drastically reduces the memory footprint and accelerates vector comparison operations, which are crucial for search and retrieval tasks. Benchmark tests show up to 96% reduction in vector index size.
 
-It's particularly effective for embeddings with dimensions greater than 1024. For smaller dimensions, we recommend testing the quality of binary quantization, or trying scalar instead. Additionally, we’ve found BQ performs very well when embeddings are centered around zero. Most popular embedding models such as OpenAI, Cohere, and Mistral are centered around zero.
+It's particularly effective for embeddings with dimensions greater than 1024. For smaller dimensions, we recommend testing the quality of binary quantization, or trying scalar instead. Additionally, we’ve found binary quantization performs very well when embeddings are centered around zero. Most popular embedding models such as OpenAI, Cohere, and Mistral are centered around zero.
 
 ## Query a quantized vector field using oversampling
 
-Query syntax for a compressed or quantized vector field is the same as for noncompressed vector fields, unless you want to override parameters associated with oversampling or rescoring with original vectors.
+Query syntax for a compressed or quantized vector field is the same as for noncompressed vector fields, unless you want to override parameters associated with oversampling and rescoring. You can add an o`versampling` parameter to invoke oversampling and rescoring at query time.
 
 ### [**2024-07-01**](#tab/query-2024-07-01)
 
@@ -430,9 +430,9 @@ POST https://[service-name].search.windows.net/indexes/demo-index/docs/search?ap
 
 **Key points**:
 
-- Applies to vector fields that undergo vector compression, per the vector profile assignment.
+- Oversampling applies to vector fields that undergo vector compression, per the vector profile assignment.
 
-- Overrides the `defaultOversampling` value or introduces oversampling at query time, even if the index's compression configuration didn't specify oversampling or reranking options.
+- Oversampling in the query overrides the `defaultOversampling` value in the index, or invokes oversampling and rescoring at query time, even if the index's compression configuration didn't specify oversampling or reranking options.
 
 ### [**2025-03-01-preview**](#tab/query-2025-03-01-preview)
 
@@ -453,5 +453,11 @@ POST https://[service-name].search.windows.net/indexes/demo-index/docs/search?ap
   ]    
 }
 ```
+
+**Key points**:
+
+- Oversampling applies to vector fields that undergo vector compression, per the vector profile assignment.
+
+- Oversampling in the query overrides the `defaultOversampling` value in the index, or invokes oversampling and rescoring at query time, even if the index's compression configuration didn't specify oversampling or reranking options.
 
 ---

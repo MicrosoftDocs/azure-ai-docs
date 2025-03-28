@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/21/2025
+ms.date: 03/31/2025
 ---
 
 # Add faceted navigation to search results
@@ -220,7 +220,7 @@ Here's a screenshot of the [basic facet query example](search-faceted-navigation
     | `interval` | An integer interval greater than zero for numbers, or minute, hour, day, week, month, quarter, year for date time values. For example, `"facet=baseRate,interval:100"` produces buckets based on base rate ranges of size 100. If base rates are all between $60 and $600, there are buckets for 0-100, 100-200, 200-300, 300-400, 400-500, and 500-600. The string `"facet=lastRenovationDate,interval:year"` produces one bucket for each year when hotels were renovated. |
     | `timeoffset` | Can be set to (`[+-]hh:mm, [+-]hhmm, or [+-]hh`). If used, the `timeoffset` parameter must be combined with the interval option, and only when applied to a field of type `Edm.DateTimeOffset`. The value specifies the UTC time offset to account for in setting time boundaries. For example: `"facet=lastRenovationDate,interval:day,timeoffset:-01:00"` uses the day boundary that starts at 01:00:00 UTC (midnight in the target time zone). |
 
-`count` and `sort` can be combined in the same facet specification, but they can't be combined with interval or values, and interval and values can't be combined together.
+`count` and `sort` can be combined in the same facet specification, but they can't be combined with `interval` or `values`, and `interval` and `values` can't be combined together.
 
 Interval facets on date time are computed based on the UTC time if `timeoffset` isn't specified. For example, for `"facet=lastRenovationDate,interval:day"`, the day boundary starts at 00:00:00 UTC.
 
