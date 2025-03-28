@@ -10,19 +10,19 @@ ms.topic: how-to
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: meerakurup
-ms.date: 02/05/2025
+ms.date: 03/28/2025
 ---
 
 # Network Isolation Change with Our New API Platform on Azure Resource Manager
 
 In this article, you'll learn about network isolation changes with our new v2 API platform on Azure Resource Manager (ARM) and its effect on network isolation.
-
-> [!IMPORTANT]
-> The legacy v1 API is deprecated as of March 31, 2025. Support for using the CLI v1 to access this API will end on September 30, 2025. Support for using the SDK v1 to access this API will end on June 30, 2026.
  
 ## What is the new API platform on Azure Resource Manager (ARM)
 
 There are two types of operations used by the v1 and v2 APIs, __Azure Resource Manager (ARM)__ and __Azure Machine Learning workspace__.
+
+> [!IMPORTANT]
+> The v1 API is deprecated as of March 31, 2025. Support for using the CLI v1 to access this API will end on September 30, 2025. Support for using the SDK v1 to access this API will end on June 30, 2026.
 
 With the v1 API, most operations used the workspace. For v2, we've moved most operations to use public ARM.
 
