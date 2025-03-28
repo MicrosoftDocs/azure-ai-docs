@@ -206,7 +206,7 @@ To create a virtual network, use the following steps:
 
 1. Select __Review + create__. Verify that the information is correct, and then select __Create__.
 
-1. Once the Key Vault is created, select Go to resource.
+1. Once the key vault is created, select **Go to resource**.
 
 1. From the left navigation, select __Networking__ the __Firewalls and virtual networks__ tab and then enable the checkbox for __Allow trusted Microsoft services to bypass this firewall__ and __Apply__.
 
