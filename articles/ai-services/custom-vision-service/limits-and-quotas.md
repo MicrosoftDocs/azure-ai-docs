@@ -34,7 +34,8 @@ There are two tiers of subscription to the Custom Vision service. You can sign u
 |Max image height/width in pixels|10,240|10,240|
 |Max image size (training image upload) |6 MB|6 MB|
 |Max image size (prediction)|4 MB|4 MB|
-|Max number of regions per image (object detection)|300|300|
+|Max number of regions per image (training) (object detection)|300|300|
+|Max number of regions per image (prediction) (object detection)|200|200|
 |Max number of tags per image (classification)|100|100|
 
 > [!NOTE]
