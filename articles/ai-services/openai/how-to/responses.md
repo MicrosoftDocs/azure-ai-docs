@@ -245,7 +245,7 @@ response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
 ### Microsoft Entra ID
 
 ```bash
-curl -X GET "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/{response_id}?api-version=2025-03-01-preview" \
+curl -X GET "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses/{response_id}?api-version=2025-03-01-preview" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" 
 ```
@@ -441,7 +441,7 @@ inputs = [{"type": "message", "role": "user", "content": "Define and explain the
   
 response = client.responses.create(  
     model="gpt-4o",  # replace with your model deployment name  
-    input="inputs"  
+    input=inputs  
 )  
   
 inputs += response.output
@@ -451,7 +451,6 @@ inputs.append({"role": "user", "type": "message", "content": "Explain this at a 
 
 second_response = client.responses.create(  
     model="gpt-4o",  
-    previous_response_id=response.id,  
     input=inputs
 )  
       
@@ -507,7 +506,7 @@ for output in response.output:
                 input.append(  
                     {  
                         "type": "function_call_output",  
-                        "call_id": output.id,  
+                        "call_id": output.call_id,  
                         "output": '{"temperature": "70 degrees"}',  
                     }  
                 )  
