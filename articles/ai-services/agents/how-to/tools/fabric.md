@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 03/27/2025
+ms.date: 02/25/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-fabric-data-agent
@@ -25,7 +25,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 1. You have created and published a Fabric data agent endpoint
@@ -37,6 +37,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 ## Setup  
 > [!NOTE]
 > 1. The model you selected in Azure AI Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
+> 1. Supported regions: `westus`, `japaneast` more regions are coming soon.
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
 
 1. Create and publish a [Fabric data agent](/fabric/data-science/how-to-create-data-agent)
@@ -68,27 +69,6 @@ from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects.models import FabricTool
 ```
-
-# [C#](#tab/csharp)
-
-```csharp
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Azure.Core;
-using Azure.Core.TestFramework;
-using NUnit.Framework;
-
-var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
-
-var clientOptions = new AIProjectClientOptions();
-
-// Adding the custom headers policy
-clientOptions.AddPolicy(new CustomHeadersPolicy(), HttpPipelinePosition.PerCall);
-var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential(), clientOptions);
-
-```
-
 # [JavaScript](#tab/javascript)
 
 ```javascript
@@ -131,38 +111,13 @@ fabric = FabricTool(connection_id=conn_id)
 with project_client:
     agent = project_client.agents.create_agent(
         model="gpt-4o",
-        name="my-agent",
-        instructions="You are a helpful agent",
+        name="my-assistant",
+        instructions="You are a helpful assistant",
         tools=fabric.definitions,
         headers={"x-ms-enable-preview": "true"},
     )
     print(f"Created agent, ID: {agent.id}")
 ```
-
-# [C#](#tab/csharp)
-
-```csharp
-ConnectionResponse fabricConnection = await projectClient.GetConnectionsClient().GetConnectionAsync("<FABRICCONNECTIONNAME>");
-var connectionId = fabricConnection.Id;
-
-AgentsClient agentClient = projectClient.GetAgentsClient();
-
-ToolConnectionList connectionList = new ToolConnectionList
-{
-    ConnectionList = { new ToolConnection(connectionId) }
-};
-MicrosoftFabricToolDefinition fabricGroundingTool = new MicrosoftFabricToolDefinition(connectionList);
-
-Response<Agent> agentResponse = await agentClient.CreateAgentAsync(
-    model: modelName,
-    name: "my-agent-fabric01",
-    instructions: "You are a helpful agent. Use the fabric tool to answer questions.",
-    tools: new List<ToolDefinition> { fabricGroundingTool });
-Agent agent = agentResponse.Value;
-Console.Write($"agent id: {agent.Id}");
-Console.WriteLine();
-```
-
 # [JavaScript](#tab/javascript)
 
 ```javascript
@@ -174,7 +129,7 @@ const connectionId = fabricConnection.id;
 // Initialize agent Microsoft Fabric tool with the connection id
 const fabricTool = ToolUtility.createFabricTool(connectionId);
 
-// Create agent with the Microsoft Fabric tool and process the agent run
+// Create agent with the Microsoft Fabric tool and process assistant run
 const agent = await client.agents.createAgent("gpt-4o", {
   name: "my-agent",
   instructions: "You are a helpful agent",
@@ -208,7 +163,6 @@ curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
         ]
       }'
 ```
-
 ---
 
 ## Step 3: Create a thread
@@ -229,22 +183,6 @@ message = project_client.agents.create_message(
 )
 print(f"Created message, ID: {message.id}")
 ```
-
-# [C#](#tab/csharp)
-
-```csharp
-// Create thread for communication
-Response<AgentThread> threadResponse = await agentClient.CreateThreadAsync();
-AgentThread thread = threadResponse.Value;
-
-// Create message to thread
-Response<ThreadMessage> messageResponse = await agentClient.CreateMessageAsync(
-    thread.Id,
-    MessageRole.User,
-    "<ask a question related to your Fabric data>");
-ThreadMessage message = messageResponse.Value;
-```
-
 # [JavaScript](#tab/javascript)
 
 ```javascript
@@ -297,50 +235,13 @@ print(f"Run finished with status: {run.status}")
 if run.status == "failed":
     print(f"Run failed: {run.last_error}")
 
-# Delete the agent when done
+# Delete the assistant when done
 project_client.agents.delete_agent(agent.id)
 print("Deleted agent")
 
 # Fetch and log all messages
 messages = project_client.agents.list_messages(thread_id=thread.id)
 print(f"Messages: {messages}")
-```
-
-# [C#](#tab/csharp)
-
-```csharp
-// Run the agent
-Response<ThreadRun> runResponse = await agentClient.CreateRunAsync(thread, agent);
-
-do
-{
-    await Task.Delay(TimeSpan.FromMilliseconds(500));
-    runResponse = await agentClient.GetRunAsync(thread.Id, runResponse.Value.Id);
-}
-while (runResponse.Value.Status == RunStatus.Queued
-    || runResponse.Value.Status == RunStatus.InProgress);
-
-Response<PageableList<ThreadMessage>> afterRunMessagesResponse
-    = await agentClient.GetMessagesAsync(thread.Id);
-IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
-
-// Note: messages iterate from newest to oldest, with the messages[0] being the most recent
-foreach (ThreadMessage threadMessage in messages)
-{
-    Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
-    foreach (MessageContent contentItem in threadMessage.ContentItems)
-    {
-        if (contentItem is MessageTextContent textItem)
-        {
-            Console.Write(textItem.Text);
-        }
-        else if (contentItem is MessageImageFileContent imageFileItem)
-        {
-            Console.Write($"<image from ID: {imageFileItem.FileId}");
-        }
-        Console.WriteLine();
-    }
-}
 ```
 
 # [JavaScript](#tab/javascript)
@@ -390,6 +291,7 @@ for (let i = messages.data.length - 1; i >= 0; i--) {
   }
 }
 ```
+---
 
 # [REST API](#tab/rest)
 ### Run the thread
