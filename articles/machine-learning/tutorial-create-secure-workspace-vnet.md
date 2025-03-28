@@ -206,6 +206,10 @@ To create a virtual network, use the following steps:
 
 1. Select __Review + create__. Verify that the information is correct, and then select __Create__.
 
+1. Once the Key Vault is created, select Go to resource.
+
+1. From the left navigation, select __Networking__ the __Firewalls and virtual networks__ tab and then enable the checkbox for __Allow trusted Microsoft services to bypass this firewall__ and __Apply__.
+
 ## Create a container registry
 
 1. In the [Azure portal](https://portal.azure.com), select the portal menu in the upper left corner. From the menu, select __+ Create a resource__ and then enter __Container Registry__. Select the __Container Registry__ entry, and then select __Create__.
