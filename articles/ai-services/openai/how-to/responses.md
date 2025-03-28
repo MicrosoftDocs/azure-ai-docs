@@ -506,7 +506,7 @@ for output in response.output:
                 input.append(  
                     {  
                         "type": "function_call_output",  
-                        "call_id": output.id,  
+                        "call_id": output.call_id,  
                         "output": '{"temperature": "70 degrees"}',  
                     }  
                 )  
