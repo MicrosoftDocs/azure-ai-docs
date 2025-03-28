@@ -20,7 +20,7 @@ A [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] is hosted by an
 
 For more information about the projects and hubs model, see [Azure AI Foundry hubs](../concepts/ai-resources.md).
 
-A [!INCLUDE [service-project-name](../includes/service-project-name.md)] is build on an Azure AI Foundry resource. This project type does not use a hub. Something here about the advantages of this new project type.
+A [!INCLUDE [service-project-name](../includes/service-project-name.md)] is built on an Azure AI Foundry resource. This project type does not use a hub. Something here about the advantages of this new project type.
 
 
 ## Which project type do I need?
