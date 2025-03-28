@@ -1,5 +1,5 @@
 ---
-title: Translator Dictionary Lookup Method
+title: Translator v4.0 dictionary lookup method
 titleSuffix: Azure AI services
 description: The Dictionary Lookup method provides alternative translations for a word and a few idiomatic phrases.
 author: laujan
@@ -12,7 +12,7 @@ ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD033 -->
 
-# Translator 4.0: Dictionary Lookup
+# Translator v4.0: Dictionary Lookup (preview)
 
 Provides alternative translations for a word and a few idiomatic phrases. Each translation has a part-of-speech and a list of back-translations. The back-translations enable a user to understand the translation in context. The [Dictionary Example](./dictionary-examples-api.md) operation includes example uses of each translation pair.
 

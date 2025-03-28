@@ -1,5 +1,5 @@
 ---
-title: Translator Transliterate Method
+title: Translator v4.0 Transliterate Method
 titleSuffix: Azure AI services
 description: Convert text in one language from one script to another script with the Translator Transliterate method.
 author: laujan
@@ -11,7 +11,7 @@ ms.date: 03/28/2025
 ms.author: lajanuar
 ---
 
-# Translator 4.0: Transliterate
+# Translator v 4.0: Transliterate (preview)
 
 Converts text in one language from one script to another script.
 

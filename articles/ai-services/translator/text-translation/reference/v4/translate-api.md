@@ -1,5 +1,5 @@
 ---
-title: Translator Translate Method
+title: Translator v4.0 Translate Method
 titleSuffix: Azure AI services
 description: Understand the parameters, headers, and body messages for the Azure AI Translator to translate text method.
 author: laujan
@@ -11,7 +11,7 @@ ms.date: 03/28/2025
 ms.author: lajanuar
 ---
 
-# Translator 4.0: Translate
+# Translator v 4.0: Translate (preview)
 
 Translates text.
 
