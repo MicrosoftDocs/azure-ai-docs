@@ -9,12 +9,14 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/21/2025
+ms.date: 03/31/2025
 ---
 
 # Faceted navigation examples
 
 This section extends [faceted navigation configuration](search-faceted-navigation.md) with examples that demonstrate basic usage and other scenarios.
+
+Facetable fields are defined in an index, but facet parameters and expressions are defined in query requests. If you have an index with facetable fields, you can try new features like [facet hierarchs](#facet-hierarchy-example) and [aggregations](#facet-aggregation-example) on existing indexes.
 
 ## Facet parameters and syntax
 
@@ -202,22 +204,22 @@ Results from this query are as follows:
 
 Starting in [2025-03-01-preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-03-01-preview&preserve-view=true) and available in the Azure portal, you can configure a facet hierarchy using the `>` and `;` operators.
 
-The nesting (hierarchical) operator `>` denotes a parent–child relationship, and the semicolon operator `;` denotes children of a shared parent. The parent must contain only one field. Both the parent and child fields must be facetable. 
+The nesting (hierarchical) operator `>` denotes a parent–child relationship, and the semicolon operator `;` denotes multiple fields at the same nesting level, which are all children of the same parent. The parent must contain only one field. Both the parent and child fields must be `facetable`. 
 
 The order of operations in a facet expression that includes facet hierarchies are:
 
 * options operator (comma `,`) that separates facet parameters for the facet field, such as the comma in `Rooms/BaseRate,values`
-* parentheses, such as the ones enclosing `Rooms/BaseRate`.
+* parentheses, such as the ones enclosing `(Rooms/BaseRate,values:50 ; Rooms/Type)`.
 * nesting operator (angled bracket `>`)
-* append operator (semicolon `;`), demonstrated in a second example `"Tags>(Rooms/BaseRate,values:50;Rooms/Type)"` in this section, where two child facets are peers under the Tags parent.
+* append operator (semicolon `;`), demonstrated in a second example `"Tags>(Rooms/BaseRate,values:50 ; Rooms/Type)"` in this section, where two child facets are peers under the Tags parent.
 
-Here's a query that returns just a few documents, which is helpful for viewing a full response. Facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response determines the number of *hotels* that have any rooms in each facet bucket.
+There are several examples for facet hierarchies. The first example is a query that returns just a few documents, which is helpful for viewing a full response. Facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response determines the number of *hotels* that have any rooms in each facet bucket.
 
 ```rest
 POST /indexes/hotels-sample-index/docs/search?api-version=2025-03-01-Preview
 {
-  "search": "+ocean",  
-  "facets": ["Address/StateProvince>Address/City", "Tags>(Rooms/BaseRate,values:50)"],
+  "search": "ocean",  
+  "facets": ["Address/StateProvince>Address/City", "Tags>Rooms/BaseRate,values:50"],
   "select": "HotelName, Description, Tags, Address/StateProvince, Address/City",
   "count": true 
 }
@@ -371,13 +373,13 @@ Results from this query are as follows. Both hotels have pools. For other tags, 
 }
 ```
 
-This example extends the previous one, demonstrating multiple top-level facets with multiple children. Notice the semicolon (`;`) operator separates each child.
+This second example extends the previous one, demonstrating multiple top-level facets with multiple children. Notice the semicolon (`;`) operator separates each child.
 
 ```rest
 POST /indexes/hotels-sample-index/docs/search?api-version=2025-03-01-Preview
 {  
   "search": "+ocean",  
-  "facets": ["Address/StateProvince>Address/City", "Tags>(Rooms/BaseRate,values:50;Rooms/Type)"],
+  "facets": ["Address/StateProvince > Address/City", "Tags > (Rooms/BaseRate,values:50 ; Rooms/Type)"],
   "select": "HotelName, Description, Tags, Address/StateProvince, Address/City",
   "count": true 
 }  
@@ -427,6 +429,50 @@ A partial response, trimmed for brevity, shows Tags with child facets for the ro
 }
 ```
 
+This last example shows precedence rules for parentheses that affects nesting levels. Suppose you want to return a facet hierarchy in this order.
+
+```
+Address/StateProvince
+  Address/City
+    Category
+    Rating
+```
+
+To return this hierarchy, create a query where Category and Rating are siblings under Address/City.
+
+```json
+  { 
+    "search": "beach",  
+    "facets": [
+        "Address/StateProvince > (Address/City > (Category ; Rating))"
+        ],
+    "select": "HotelName, Description, Tags, Address/StateProvince, Address/City",
+    "count": true 
+  }
+```
+
+If you remove the innermost parentheses, Category and Rating are no longer siblings because the precedence rules mean that the `>` operator is evaluated before `;`.
+
+```json
+  { 
+    "search": "beach",  
+    "facets": [
+        "Address/StateProvince > (Address/City > Category ; Rating)"
+        ],
+    "select": "HotelName, Description, Tags, Address/StateProvince, Address/City",
+    "count": true 
+  }
+```
+
+The top-level parent is still Address/StateProvince, but now Address/City and Rating are on same level.
+
+```
+Address/StateProvince
+  Rating
+  Address/City
+    Category
+```
+
 ## Facet filtering example
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
@@ -438,7 +484,7 @@ Facet filtering enables you to constrain the facet values returned to those matc
 * `includeTermFilter` filters the facet values to those that match the regular expression
 * `excludeTermFilter` filters the facet values to those that don't match the regular expression 
 
-If a facet string satisfies both conditions, the `excludeTermFilter` takes precedence. Otherwise, the set of bucket strings are first evaluated with `includeTermFilter` and then excluded with `excludeTermFilter`.
+If a facet string satisfies both conditions, the `excludeTermFilter` takes precedence because the set of bucket strings is first evaluated with `includeTermFilter` and then excluded with `excludeTermFilter`.
 
 Only those facet values that match the regular expression are returned. You can combine these parameters with other facet options (for example, `count`, `sort`, and [hierarchical faceting](#facet-hierarchy-example)) on string fields.
 
@@ -449,7 +495,7 @@ The following example shows how to escape special characters in your regular exp
 ```json
 {
     "search": "*", 
-    "facets": ["name,includeTermFilter:/EscapeBackslash\\OrDoubleQuote\\"OrRegexCharacter\\(/"] 
+    "facets": ["name,includeTermFilter:/EscapeBackslash\\\OrDoubleQuote\\"OrRegexCharacter\\(/"] 
 }
 ```
 
@@ -556,7 +602,9 @@ The following example is an abbreviated response (hotel documents are omitted fo
 
 Starting in [2025-03-01-preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-03-01-preview&preserve-view=true) and available in the Azure portal, you can aggregate facets.
 
-Facet aggregations allow you to compute metrics from facet values. The aggregation capability works alongside the existing faceting options. The only supported metric is `sum`. Adding `metric: sum` to a numeric facet aggregates all the values of each bucket.
+Facet aggregations allow you to compute metrics from facet values. The aggregation capability works alongside the existing faceting options. The only supported metric is `sum`. Adding `metric: sum` to a numeric facet aggregates all the values of each bucket. 
+
+You can add a default value to use if a document contains a null for that field: `"facets": [ "Rooms/SleepsCount, metric: sum, default:2"]`. If a room has a null value for the Rooms/SleepsCount field, the default substitutes for the missing value.
 
 You can sum any facetable field of a numeric data type (except vectors and geographic coordinates). 
 

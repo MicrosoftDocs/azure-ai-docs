@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/21/2025
+ms.date: 03/31/2025
 ---
 
 # Add faceted navigation to search results
@@ -121,7 +121,7 @@ Facets can be calculated over single-value fields and collections. Fields that w
 * Low cardinality (a few distinct values that repeat throughout documents in your search corpus).
 * Short descriptive values (one or two words) that render nicely in a navigation tree.
 
-The values within a field, and not the field name itself, produce the facets in a faceted navigation structure. If the facet is a string field named *Color*, facets are blue, green, and any other value for that field. As a best practice, review field values to ensure there are no typos, nulls, or casing differences. Consider [assigning a normalizer](search-normalizers.md) to a "filterable" and "facetable" field to smooth out minor variations in the text.
+The values within a field, and not the field name itself, produce the facets in a faceted navigation structure. If the facet is a string field named *Color*, facets are blue, green, and any other value for that field. As a best practice, review field values to ensure there are no typos, nulls, or casing differences. Consider [assigning a normalizer](search-normalizers.md) to a filterable and facetable field to smooth out minor variations in the text. For example, "Canada", "CANADA", and "canada" would all be normalized to one bucket.
 
 You can't set facets on existing fields, on vector fields, or fields of type `Edm.GeographyPoint` or `Collection(Edm.GeographyPoint)`.
 
@@ -220,7 +220,7 @@ Here's a screenshot of the [basic facet query example](search-faceted-navigation
     | `interval` | An integer interval greater than zero for numbers, or minute, hour, day, week, month, quarter, year for date time values. For example, `"facet=baseRate,interval:100"` produces buckets based on base rate ranges of size 100. If base rates are all between $60 and $600, there are buckets for 0-100, 100-200, 200-300, 300-400, 400-500, and 500-600. The string `"facet=lastRenovationDate,interval:year"` produces one bucket for each year when hotels were renovated. |
     | `timeoffset` | Can be set to (`[+-]hh:mm, [+-]hhmm, or [+-]hh`). If used, the `timeoffset` parameter must be combined with the interval option, and only when applied to a field of type `Edm.DateTimeOffset`. The value specifies the UTC time offset to account for in setting time boundaries. For example: `"facet=lastRenovationDate,interval:day,timeoffset:-01:00"` uses the day boundary that starts at 01:00:00 UTC (midnight in the target time zone). |
 
-`count` and `sort` can be combined in the same facet specification, but they can't be combined with interval or values, and interval and values can't be combined together.
+`count` and `sort` can be combined in the same facet specification, but they can't be combined with `interval` or `values`, and `interval` and `values` can't be combined together.
 
 Interval facets on date time are computed based on the UTC time if `timeoffset` isn't specified. For example, for `"facet=lastRenovationDate,interval:day"`, the day boundary starts at 00:00:00 UTC.
 
@@ -249,6 +249,10 @@ Remember that you can't use `Edm.GeographyPoint` or `Collection(Edm.GeographyPoi
 ### Check for bad data
 
 As you prepare data for indexing, check fields for null values, misspellings or case discrepancies, and single and plural versions of the same word. By default, filters and facets don't undergo lexical analysis or [spell check](speller-how-to-add.md), which means that all values of a "facetable" field are potential facets, even if the words differ by one character. Optionally, you can [assign a normalizer](search-normalizers.md) to a "filterable" and "facetable" field to smooth out variations in casing and characters.
+
+### Ordering facet buckets
+
+Although you can sort within a bucket, there's no parameters for controlling the order of facet buckets in the navigation structure as a whole. If you want facet buckets in a specific order, you must provide it in application code.
 
 ### Discrepancies in facet counts
 
