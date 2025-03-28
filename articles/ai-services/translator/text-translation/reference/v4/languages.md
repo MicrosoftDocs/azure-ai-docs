@@ -7,13 +7,13 @@ manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 07/19/2024
+ms.date: 03/28/2025
 ms.author: lajanuar
 ---
 
 <!-- markdownlint-disable MD033 -->
 
-# Translator 3.0: Languages
+# Translator 4.0: Languages
 
 Gets the set of languages currently supported by other operations of the Translator.
 
@@ -22,14 +22,14 @@ Gets the set of languages currently supported by other operations of the Transla
 Send a `GET` request to:
 
 ```HTTP
-https://api.cognitive.microsofttranslator.com/languages?api-version=3.0
+https://api.cognitive.microsofttranslator.com/languages?api-version=TODO
 
 ```
 
 For virtual networks, use your custom domain endpoint:
 
 ```HTTP
-https://<your-custom-domain>.cognitiveservices.azure.com/languages?api-version=3.0
+https://<your-custom-domain>.cognitiveservices.azure.com/languages?api-version=TODO
 ```
 
 For more information, _see_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
@@ -40,7 +40,7 @@ Request parameters passed on the query string are:
 
 |Query parameters|Description|
 |---|---|
-|api-version|**Required parameter**<br><br>The version of the API requested by the client. Value must be `3.0`.|
+|api-version|**Required parameter**<br><br>The version of the API requested by the client. Value must be `TODO`.|
 |scope|**Optional parameter**.<br><br>A comma-separated list of names defining the group of languages to return. Allowed group names are: `translation`, `transliteration`, and `dictionary`. If no scope is given, then all groups are returned, which is equivalent to passing `scope=translation,transliteration,dictionary`.|
 
 *See* [response body](#response-body).
@@ -233,7 +233,7 @@ If an error occurs, the request also returns a JSON error response. The error co
 The following example shows how to retrieve languages supported for text translation.
 
  ```bash
-curl "https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation"
+curl "https://api.cognitive.microsofttranslator.com/languages?api-version=TODO&scope=translation"
 ```
 
 ## Related content

@@ -43,7 +43,7 @@ When you use a [global translator resource](https://portal.azure.com/#create/Mic
 
 Here's an example request to call the Translator using the global translator resource
 
-```curl
+ ```bash
 // Pass secret key using headers
 curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=es" \
      -H "Ocp-Apim-Subscription-Key:<your-key>" \
@@ -63,7 +63,7 @@ there are two headers that you need to call the Translator.
 
 Here's an example request to call the Translator using the regional translator resource
 
-```curl
+ ```bash
 // Pass secret key and region using headers
 curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=es" \
      -H "Ocp-Apim-Subscription-Key:<your-key>" \
@@ -98,7 +98,7 @@ Alternatively, you can exchange your secret key for an access token. This token 
 
 Here are example requests to obtain a token given a secret key for a global resource:
 
-```curl
+ ```bash
 // Pass secret key using header
 curl --header 'Ocp-Apim-Subscription-Key: <your-key>' --data "" 'https://api.cognitive.microsoft.com/sts/v1.0/issueToken'
 
@@ -108,7 +108,7 @@ curl --data "" 'https://api.cognitive.microsoft.com/sts/v1.0/issueToken?Subscrip
 
 And here are example requests to obtain a token given a secret key for a regional resource located in Central US:
 
-```curl
+ ```bash
 // Pass secret key using header
 curl --header "Ocp-Apim-Subscription-Key: <your-key>" --data "" "https://centralus.api.cognitive.microsoft.com/sts/v1.0/issueToken"
 

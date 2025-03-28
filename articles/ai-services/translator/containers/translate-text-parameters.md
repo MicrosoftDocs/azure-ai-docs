@@ -121,7 +121,7 @@ A successful response is a JSON array with one result for each string in the inp
 
 ## Response status codes
 
-If an error occurs, the request returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [v3 Translator reference page](../text-translation/reference/v3/reference.md#errors).
+If an error occurs, the request returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [Translator status and error code page](../text-translation/reference/response-status-codes.md).
 
 ## Code samples: translate text
 

@@ -85,14 +85,30 @@ items:
       href: firewalls.md
   - name: Reference
     items:
-    - name: 🆕 Authentication
+    - name: Authentication and authorization
       displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
       href: text-translation/reference/authentication.md
-    - name: Azure AI Translator v4
+    - name: 🆕 Azure AI Translator v4
       items:
-      - name: 🆕 v4 Translator reference
+      - name: v4 Translator reference
         displayName: gpt, adaptive, tone, gender
         href: text-translation/reference/v4/reference.md
+      - name: Translate
+        displayName: detection,detect
+        href: text-translation/reference/v4/translate.md
+      - name: Transliterate
+        href: text-translation/reference/v4/transliterate.md
+      - name: Detect
+        href: text-translation/reference/v4/detect.md
+      - name: BreakSentence
+        displayName: detection,detect
+        href: text-translation/reference/v4/break-sentence.md
+      - name: Dictionary Lookup
+        href: text-translation/reference/v4/dictionary-lookup.md
+      - name: Dictionary Examples
+        href: text-translation/reference/v4/dictionary-examples.md
+      - name: Languages
+        href: text-translation/reference/v4/languages.md
     - name: Azure AI Translator v3
       items:
       - name: v3 Translator reference
@@ -100,8 +116,6 @@ items:
         href: text-translation/reference/v3/reference.md
       - name: Text Translation v3 REST APIs
         href:  text-translation/reference/rest-api-guide.md
-      - name: Languages
-        href: text-translation/reference/v3/languages.md
       - name: Translate
         displayName: detection,detect
         href: text-translation/reference/v3/translate.md
@@ -116,6 +130,8 @@ items:
         href: text-translation/reference/v3/dictionary-lookup.md
       - name: Dictionary Examples
         href: text-translation/reference/v3/dictionary-examples.md
+      - name: Languages
+        href: text-translation/reference/v3/languages.md
 - name: Document translation
   items:
   - name: What is Document Translation?
@@ -327,7 +343,7 @@ items:
     href: modifications-deprecations.md
   - name: Known issues
     displayName: error, bug, issue, problem, troubleshoot, troubleshooting
-    href: text-translation/reference/known-issues.md  
+    href: text-translation/reference/known-issues.md
   - name: Compliance and certification
     href: https://www.microsoft.com/translator/business/notrace/
   - name: Code samples on GitHub

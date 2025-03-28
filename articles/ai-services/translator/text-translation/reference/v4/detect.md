@@ -7,12 +7,12 @@ manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/06/2024
+ms.date: 03/28/2025
 ms.author: lajanuar
 ---
 
 <!-- markdownlint-disable MD033 -->
-# Translator 3.0: Detect
+# Translator 4.0: Detect
 
 Identifies the language of a piece of text.
 
@@ -21,7 +21,7 @@ Identifies the language of a piece of text.
 Send a `POST` request to:
 
 ```HTTP
-https://api.cognitive.microsofttranslator.com/detect?api-version=3.0
+https://api.cognitive.microsofttranslator.com/detect?api-version=TODO
 
 ```
 
@@ -33,7 +33,7 @@ Request parameters passed on the query string are:
 
 | Query parameter | Description |
 | --- | --- |
-| api-version | *Required parameter*.<br>Version of the API requested by the client. Value must be `3.0`. |
+| api-version | *Required parameter*.<br>Version of the API requested by the client. Value must be `TODO`. |
 
 Request headers include:
 
@@ -108,5 +108,5 @@ If an error occurs, the request returns a JSON error response. The error code is
 The following example shows how to retrieve languages supported for text translation.
 
  ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/detect?api-version=3.0" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'What language is this text written in?'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/detect?api-version=TODO" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'What language is this text written in?'}]"
 ```

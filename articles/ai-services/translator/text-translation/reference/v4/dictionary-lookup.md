@@ -7,12 +7,12 @@ manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/06/2024
+ms.date: 03/28/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD033 -->
 
-# Translator 3.0: Dictionary Lookup
+# Translator 4.0: Dictionary Lookup
 
 Provides alternative translations for a word and a few idiomatic phrases. Each translation has a part-of-speech and a list of back-translations. The back-translations enable a user to understand the translation in context. The [Dictionary Example](./dictionary-examples.md) operation includes example uses of each translation pair.
 
@@ -21,7 +21,7 @@ Provides alternative translations for a word and a few idiomatic phrases. Each t
 Send a `POST` request to:
 
 ```HTTP
-https://api.cognitive.microsofttranslator.com/dictionary/lookup?api-version=3.0
+https://api.cognitive.microsofttranslator.com/dictionary/lookup?api-version=TODO
 ```
 
 _See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
@@ -32,7 +32,7 @@ Request parameters passed on the query string are:
 
 | Query Parameter  | Description |
 | ------ | ----------- |
-| api-version| **Required parameter**.<br/>Version of the API requested by the client. Value must be `3.0` |
+| api-version| **Required parameter**.<br/>Version of the API requested by the client. Value must be `TODO` |
 | from | **Required parameter**.<br/>Specifies the language of the input text. The source language must be one of the [supported languages](./languages.md) included in the `dictionary` scope. |
 | to   | **Required parameter**.<br/>Specifies the language of the output text. The target language must be one of the [supported languages](languages.md) included in the `dictionary` scope. |
 
@@ -114,7 +114,7 @@ A successful response is a JSON array with one result for each string in the inp
 This example shows how to look up alternative translations in Spanish of the English term `fly` .
 
  ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/dictionary/lookup?api-version=3.0&from=en&to=es" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'fly'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/dictionary/lookup?api-version=TODO&from=en&to=es" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'fly'}]"
 ```
 
 The response body (abbreviated for clarity) is:
@@ -161,7 +161,7 @@ The response body (abbreviated for clarity) is:
 This example shows what happens when the term being looked up doesn't exist for the valid dictionary pair.
 
  ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/dictionary/lookup?api-version=3.0&from=en&to=es" -H "X-ClientTraceId: 875030C7-5380-40B8-8A03-63DACCF69C11" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'fly123456'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/dictionary/lookup?api-version=TODO&from=en&to=es" -H "X-ClientTraceId: 875030C7-5380-40B8-8A03-63DACCF69C11" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'fly123456'}]"
 ```
 
 Since the term isn't found in the dictionary, the response body includes an empty `translations` list.

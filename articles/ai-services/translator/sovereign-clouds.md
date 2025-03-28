@@ -93,7 +93,7 @@ Translate a single sentence from English to Simplified Chinese.
 
 **Request**
 
-```curl
+ ```bash
 curl -X POST "https://api.cognitive.microsofttranslator.us/translate?api-version=3.0?&from=en&to=zh-Hans" -H "Ocp-Apim-Subscription-Key: <key>" -H "Ocp-Apim-Subscription-Region: chinanorth" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'你好, 你叫什么名字？'}]"
 ```
 
@@ -156,7 +156,7 @@ Translate a single sentence from English to Simplified Chinese.
 
 **Request**
 
-```curl
+ ```bash
 curl -X POST "https://api.translator.azure.cn/translate?api-version=3.0&from=en&to=zh-Hans" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text': 'Hello, what is your name?'}]"
 ```
 
