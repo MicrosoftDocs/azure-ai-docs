@@ -211,7 +211,7 @@ The order of operations in a facet expression that includes facet hierarchies ar
 * nesting operator (angled bracket `>`)
 * append operator (semicolon `;`), demonstrated in a second example `"Tags>(Rooms/BaseRate,values:50 ; Rooms/Type)"` in this section, where two child facets are peers under the Tags parent.
 
-Here's a query that returns just a few documents, which is helpful for viewing a full response. Facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response determines the number of *hotels* that have any rooms in each facet bucket.
+There are several examples for facet hierarchies. The first example is a query that returns just a few documents, which is helpful for viewing a full response. Facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response determines the number of *hotels* that have any rooms in each facet bucket.
 
 ```rest
 POST /indexes/hotels-sample-index/docs/search?api-version=2025-03-01-Preview
@@ -371,13 +371,13 @@ Results from this query are as follows. Both hotels have pools. For other tags, 
 }
 ```
 
-This example extends the previous one, demonstrating multiple top-level facets with multiple children. Notice the semicolon (`;`) operator separates each child.
+This second example extends the previous one, demonstrating multiple top-level facets with multiple children. Notice the semicolon (`;`) operator separates each child.
 
 ```rest
 POST /indexes/hotels-sample-index/docs/search?api-version=2025-03-01-Preview
 {  
   "search": "+ocean",  
-  "facets": ["Address/StateProvince>Address/City", "Tags>(Rooms/BaseRate,values:50;Rooms/Type)"],
+  "facets": ["Address/StateProvince > Address/City", "Tags > (Rooms/BaseRate,values:50 ; Rooms/Type)"],
   "select": "HotelName, Description, Tags, Address/StateProvince, Address/City",
   "count": true 
 }  
@@ -425,6 +425,50 @@ A partial response, trimmed for brevity, shows Tags with child facets for the ro
         }}]},
   ...
 }
+```
+
+This last example shows precedence rules for parentheses, returning a facet hierarchy in this order:
+
+```
+Address/StateProvince
+  Address/City
+    Category
+    Rating
+```
+
+Here's the query:
+
+```json
+  { 
+    "search": "beach",  
+    "facets": [
+        "Address/StateProvince > (Address/City > (Category ; Rating))"
+        ],
+    "select": "HotelName, Description, Tags, Address/StateProvince, Address/City",
+    "count": true 
+  }
+```
+
+Rerun the query after removing the innermost parentheses:
+
+```json
+  { 
+    "search": "beach",  
+    "facets": [
+        "Address/StateProvince > (Address/City > Category ; Rating)"
+        ],
+    "select": "HotelName, Description, Tags, Address/StateProvince, Address/City",
+    "count": true 
+  }
+```
+
+The top-level parent is still Address/StateProvince, but now Address/City and Rating are on same level:
+
+```
+Address/StateProvince
+  Rating
+  Address/City
+    Category
 ```
 
 ## Facet filtering example
