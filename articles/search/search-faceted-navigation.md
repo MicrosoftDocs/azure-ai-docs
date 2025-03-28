@@ -121,7 +121,7 @@ Facets can be calculated over single-value fields and collections. Fields that w
 * Low cardinality (a few distinct values that repeat throughout documents in your search corpus).
 * Short descriptive values (one or two words) that render nicely in a navigation tree.
 
-The values within a field, and not the field name itself, produce the facets in a faceted navigation structure. If the facet is a string field named *Color*, facets are blue, green, and any other value for that field. As a best practice, review field values to ensure there are no typos, nulls, or casing differences. Consider [assigning a normalizer](search-normalizers.md) to a "filterable" and "facetable" field to smooth out minor variations in the text.
+The values within a field, and not the field name itself, produce the facets in a faceted navigation structure. If the facet is a string field named *Color*, facets are blue, green, and any other value for that field. As a best practice, review field values to ensure there are no typos, nulls, or casing differences. Consider [assigning a normalizer](search-normalizers.md) to a filterable and facetable field to smooth out minor variations in the text. For example, "Canada", "CANADA", and "canada" would all be normalized to one bucket.
 
 You can't set facets on existing fields, on vector fields, or fields of type `Edm.GeographyPoint` or `Collection(Edm.GeographyPoint)`.
 

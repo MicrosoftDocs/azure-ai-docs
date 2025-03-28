@@ -16,6 +16,8 @@ ms.date: 03/31/2025
 
 This section extends [faceted navigation configuration](search-faceted-navigation.md) with examples that demonstrate basic usage and other scenarios.
 
+Facetable fields are defined in an index, but facet parameters and expressions are defined in query requests. If you have an index with facetable fields, you can try new features like [facet hierarchs](#facet-hierarchy-example) and [aggregations](#facet-aggregation-example) on existing indexes.
+
 ## Facet parameters and syntax
 
 Depending on the API, a facet query is usually an array of facet expressions that are applied to search results. Each facet expression contains a facetable field name, optionally followed by a comma-separated list of name-value pairs.
