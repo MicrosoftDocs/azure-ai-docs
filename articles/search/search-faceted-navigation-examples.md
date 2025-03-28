@@ -427,7 +427,7 @@ A partial response, trimmed for brevity, shows Tags with child facets for the ro
 }
 ```
 
-This last example shows precedence rules for parentheses that affects nesting levels. Suppose you want to return a facet hierarchy in this order:
+This last example shows precedence rules for parentheses that affects nesting levels. Suppose you want to return a facet hierarchy in this order.
 
 ```
 Address/StateProvince
@@ -436,7 +436,7 @@ Address/StateProvince
     Rating
 ```
 
-To return this hierarchy, create a query where Category and Rating are siblings under Address/City:
+To return this hierarchy, create a query where Category and Rating are siblings under Address/City.
 
 ```json
   { 
@@ -462,7 +462,7 @@ If you remove the innermost parentheses, Category and Rating are no longer sibli
   }
 ```
 
-The top-level parent is still Address/StateProvince, but now Address/City and Rating are on same level:
+The top-level parent is still Address/StateProvince, but now Address/City and Rating are on same level.
 
 ```
 Address/StateProvince
