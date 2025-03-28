@@ -25,13 +25,14 @@ A [!INCLUDE [service-project-name](../includes/service-project-name.md)] is buil
 
 ## Which project type do I need?
 
-In general, you should use a [!INCLUDE [service-project-name].  You only need to use a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] for features that are not available in a [!INCLUDE [service-project-name](../includes/service-project-name.md)]. 
+In general, you should use a [!INCLUDE [service-project-name](../includes/service-project-name.md)].  You only need to use a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] for features that are not available in a [!INCLUDE [service-project-name](../includes/service-project-name.md)]. 
 
 Most features are available in both project types, but there are a few exceptions.  The table below summarizes the differences between the two project types. Other than these differences, you can use either project type for your work. 
 
 The following table summarizes the differences between the two project types.
+
 | Feature | [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] | [!INCLUDE [service-project-name](../includes/service-project-name.md)] |
 | --- | --- | --- |
 | Prompt flow | Yes | No |
-... more goes here...
+
 
