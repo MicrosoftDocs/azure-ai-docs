@@ -42,7 +42,7 @@ You need the `synapseml` library and several Azure resources. If possible, use t
 
 <sup>1</sup> This link resolves to a tutorial for loading the package.
 
-<sup>2</sup> You can use the Free tier to index the sample data, but [choose a higher tier](search-sku-tier.md) if your data volumes are large. For billable tiers, provide the [search API key](search-security-api-keys.md#find-existing-keys) in the [Set up dependencies](#step-2-set-up-dependencies) step further on.
+<sup>2</sup> You can use the Free tier to index the sample data, but [choose a higher tier](search-sku-tier.md) if your data volumes are large. For billable tiers, provide the [search API key](search-security-api-keys.md#find-existing-keys) in the [Set up dependencies](#set-up-dependencies) step further on.
 
 <sup>3</sup> This tutorial uses Azure AI Document Intelligence and Azure AI Translator. In the instructions that follow, provide a [multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills?pivots=azportal) key and the region. The same key works for both services. **For this tutorial, it's important that you use an Azure AI services multi-service account with an API kind of `AIServices`**. You can check the API kind in the Azure portal on the Overview section of your Azure AI services multi-service account page. For more information about API kind, see [Attach an Azure AI services multi-service resource in Azure AI Search](cognitive-search-attach-cognitive-services.md).
 
