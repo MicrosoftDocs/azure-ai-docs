@@ -220,7 +220,7 @@ response_2 = client.responses.create(
     model="computer-use-preview",
     previous_response_id=response.id,
     tools=[{
-        "type": "computer-preview",
+        "type": "computer_use_preview",
         "display_width": 1024,
         "display_height": 768,
         "environment": "browser" # other possible values: "mac", "windows", "ubuntu"
