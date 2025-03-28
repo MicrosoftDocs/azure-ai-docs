@@ -14,7 +14,7 @@ ms.author: lajanuar
 
 # Translator 4.0: Dictionary Lookup
 
-Provides alternative translations for a word and a few idiomatic phrases. Each translation has a part-of-speech and a list of back-translations. The back-translations enable a user to understand the translation in context. The [Dictionary Example](./dictionary-examples.md) operation includes example uses of each translation pair.
+Provides alternative translations for a word and a few idiomatic phrases. Each translation has a part-of-speech and a list of back-translations. The back-translations enable a user to understand the translation in context. The [Dictionary Example](./dictionary-examples-api.md) operation includes example uses of each translation pair.
 
 ## Request URL
 
@@ -24,7 +24,7 @@ Send a `POST` request to:
 https://api.cognitive.microsofttranslator.com/dictionary/lookup?api-version=TODO
 ```
 
-_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](../v3/reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
 
 ## Request parameters
 

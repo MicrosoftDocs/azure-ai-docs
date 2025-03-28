@@ -1,5 +1,5 @@
 ---
-title: Translator Dictionary Examples Method
+title: Translator Dictionary examples
 titleSuffix: Azure AI services
 description: The Translator Dictionary Examples method provides examples that show how terms in the dictionary are used in context.
 author: laujan
@@ -12,7 +12,7 @@ ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD033 -->
 
-# Translator 4.0: Dictionary Examples
+# Translator 4.0: Dictionary examples
 
 Provides examples that show how terms in the dictionary are used in context. This operation is used in tandem with [Dictionary lookup](dictionary-lookup-api.md).
 
