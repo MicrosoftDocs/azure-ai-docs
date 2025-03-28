@@ -423,7 +423,7 @@ To work with a storage account with disabled shared key access, you might need t
 | Data: datastores and datasets | User's identity | Storage Blob Data Contributor |  |
 
 ## Limitations
-- Creating a compute instance with System-Assigned Managed Identity is NOT support for identity based workspace. If the workspace's storage account access type is identity-based access, CI currently doesn't support system assigned identity to mount data store, please use user assigned identity to create the compute instance, and make sure the user-assigned identity has **Storage File Data Priviliiged Contributor** on the storage account.
+- Creating a compute instance with System-Assigned Managed Identity is NOT support for identity based workspace. If the workspace's storage account access type is identity-based access, compute instances currently doesn't support system assigned identity to mount data store, please use user assigned identity to create the compute instance, and make sure the user-assigned identity has **Storage File Data Priviliiged Contributor** on the storage account.
 
 ## Related content
 
