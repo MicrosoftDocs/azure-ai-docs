@@ -291,7 +291,7 @@ for (let i = messages.data.length - 1; i >= 0; i--) {
   }
 }
 ```
----
+
 
 # [REST API](#tab/rest)
 ### Run the thread
