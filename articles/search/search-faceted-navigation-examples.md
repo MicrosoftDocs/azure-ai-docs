@@ -451,7 +451,7 @@ To return this hierarchy, create a query where Category and Rating are siblings 
   }
 ```
 
-If you remove the innermost parentheses, Category and Rating are no longer siblings.
+If you remove the innermost parentheses, Category and Rating are no longer siblings because the precedence rules mean that the `>` operator is evaluated before `;`.
 
 ```json
   { 
@@ -484,7 +484,7 @@ Facet filtering enables you to constrain the facet values returned to those matc
 * `includeTermFilter` filters the facet values to those that match the regular expression
 * `excludeTermFilter` filters the facet values to those that don't match the regular expression 
 
-If a facet string satisfies both conditions, the `excludeTermFilter` takes precedence because the set of bucket strings are first evaluated with `includeTermFilter` and then excluded with `excludeTermFilter`.
+If a facet string satisfies both conditions, the `excludeTermFilter` takes precedence because the set of bucket strings is first evaluated with `includeTermFilter` and then excluded with `excludeTermFilter`.
 
 Only those facet values that match the regular expression are returned. You can combine these parameters with other facet options (for example, `count`, `sort`, and [hierarchical faceting](#facet-hierarchy-example)) on string fields.
 
@@ -604,7 +604,7 @@ Starting in [2025-03-01-preview REST API](/rest/api/searchservice/operation-grou
 
 Facet aggregations allow you to compute metrics from facet values. The aggregation capability works alongside the existing faceting options. The only supported metric is `sum`. Adding `metric: sum` to a numeric facet aggregates all the values of each bucket. 
 
-You can add a default value if an aggregation is null: `"facets": [ "Rooms/SleepsCount, metric: sum, default:2"]`. If a room has a null value for the Rooms/SleepsCount field, the default substitutes for the missing value.
+You can add a default value to use if a document contains a null for that field: `"facets": [ "Rooms/SleepsCount, metric: sum, default:2"]`. If a room has a null value for the Rooms/SleepsCount field, the default substitutes for the missing value.
 
 You can sum any facetable field of a numeric data type (except vectors and geographic coordinates). 
 
