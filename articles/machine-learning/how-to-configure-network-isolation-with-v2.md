@@ -16,6 +16,9 @@ ms.date: 02/05/2025
 # Network Isolation Change with Our New API Platform on Azure Resource Manager
 
 In this article, you'll learn about network isolation changes with our new v2 API platform on Azure Resource Manager (ARM) and its effect on network isolation.
+
+> [!IMPORTANT]
+> The legacy v1 API is deprecated as of March 31, 2025. Support for using the CLI v1 to access this API will end on September 30, 2025. Support for using the SDK v1 to access this API will end on June 30, 2026.
  
 ## What is the new API platform on Azure Resource Manager (ARM)
 
