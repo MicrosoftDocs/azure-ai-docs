@@ -42,6 +42,8 @@ items:
             href: how-to/tools/code-interpreter.md
           - name: Use OpenAPI defined tools
             href: how-to/tools/openapi-spec.md
+          - name: Use licensed data
+            href: how-to/tools/licensed-data.md
           - name: Azure Functions
             href: how-to/tools/azure-functions.md
     - name: Enterprise features
