@@ -47,20 +47,20 @@ Two types of quantization are supported:
 
 ## Recommended rescoring techniques
 
-Rescoring is technique used to offset information loss due to vector compression. It uses oversampling to pick up extra vectors, and supplemental information to rescore initial results found by the query. Supplemental information is either uncompressed original full-precision vectors, or for binary quantization only, you have an alternative option of rescoring using the binary quantized document candidates against the query vector.
+Rescoring is a technique used to offset information loss due to vector compression. It uses oversampling to pick up extra vectors, and supplemental information to rescore initial results found by the query. Supplemental information is either uncompressed original full-precision vectors - or for binary quantization only - you have the option of rescoring using the binary quantized document candidates against the query vector. Rescoring options are specified in the index, but you can invoke rescoring at query time if the index supports it.
 
-Rescoring applies to:
+API versions determine which rescoring behavior is operational for your code. The most recent preview API supports a new rescoring approach for binary quantization. Indexes created with `2025-03-01-preview` can use the new rescoring behaviors.
 
-- scalar quantization using Hierarchical Navigable Small World (HNSW) graphs for similarity search
-- binary quantization, also using HNSW graphs
+| API version | Quantization type | Rescoring properties |
+|-------------|-------------------|------------------|
+| [2024-07-01](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-07-01&preserve-view=true) | Scalar and binary quantization, on vector indexes built using Hierarchical Navigable Small World (HNSW) graphs for similarity search | `rerankWithOriginalVectors` |
+| [2024-11-01-preview](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-11-01-preview&preserve-view=true) | Scalar and binary quantization on HNSW graphs | `rescoringOptions.enableRescoring` and `rescoreStorageMethod.preserveOriginals` |
+| [2025-03-01-preview](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-03-01-preview&preserve-view=true) | Binary quantization on HNSW graphs | Previous parameter combinations are still supported but binary quantization can now be rescored if original embeddings are deleted: `rescoringOptions.enableRescoring` and `rescoringOptions.rescoreStorageMethod=discardOriginals` |
 
-Exhaustive K Nearest Neighbors (eKNN) doesn't support rescoring.
+Only HNSW graphs allow rescoring. Exhaustive K Nearest Neighbors (eKNN) doesn't support rescoring.
 
-Rescoring occurs when you set a rescoring option in the index vector configuration:
-
-- In version 2024-07-01, set `rerankWithOriginalVectors`
-- In version 2024-11-01-preview, set `rescoringOptions.enableRescoring` and `rescoreStorageMethod.preserveOriginals`
-- In version 2025-03-01-preview, set `rescoringOptions.enableRescoring` and `rescoringOptions.rescoreStorageMethod=preserveOriginals` for scalar or binary quantization, or `rescoringOptions.enableRescoring` and `rescoringOptions.rescoreStorageMethod=discardOriginals` for binary quantization only
+<!-- - In version 2024-11-01-preview, set `rescoringOptions.enableRescoring` and `rescoreStorageMethod.preserveOriginals`
+- In version 2025-03-01-preview, set `rescoringOptions.enableRescoring` and `rescoringOptions.rescoreStorageMethod=preserveOriginals` for scalar or binary quantization, or `rescoringOptions.enableRescoring` and `rescoringOptions.rescoreStorageMethod=discardOriginals` for binary quantization only -->
 
 The generalized process for rescoring is:
 
