@@ -12,6 +12,15 @@ ms.author: lajanuar
 
 # Azure AI Translator response codes and messages
 
+When you use `HTTP` protocol to access content on a server running `IIS`, the server returns a numeric code indicating the outcome of the request and the nature of the response, including its success or failure.
+The status code's first digit categorizes the response class, while the last two digits serve no classification purpose. The first digit can be one of five values:
+
+* **1xx** (Informational): An interim response indicating that the request was received and processing continues.
+* **2xx** (Successful): The server successfully received and accepted the client request.
+* **3xx** (Redirection): Additional action is required to complete the request.
+* **4xx** (Client Error): An error occurred originating with the client browser and cannot be fulfilled.
+* **5xx** (Server Error): The server encountered an error and the request failed.
+
 ## Status codes
 
 The following are the possible HTTP status codes that a request returns.

@@ -132,6 +132,9 @@ items:
         href: text-translation/reference/v3/dictionary-examples.md
       - name: Languages
         href: text-translation/reference/v3/languages.md
+    - name: Status codes
+      displayName: 401000,405000,400000
+      href: text-translation/reference/status-response-codes.md    
 - name: Document translation
   items:
   - name: What is Document Translation?

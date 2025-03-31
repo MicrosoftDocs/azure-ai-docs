@@ -19,7 +19,7 @@ Converts text in one language from one script to another script.
 Send a `POST` request to:
 
 ```HTTP
-https://api.cognitive.microsofttranslator.com/transliterate?api-version=TODO
+https://api.cognitive.microsofttranslator.com/transliterate?api-version=v4
 ```
 
 _See_ [**Virtual Network Support**](../v3/reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
@@ -30,7 +30,7 @@ Request parameters passed on the query string are:
 
 | Query parameter | Description |
 | --- | --- |
-| api-version | *Required parameter*.<br/>Version of the API requested by the client. Value must be `TODO`. |
+| api-version | *Required parameter*.<br/>Version of the API requested by the client. Value must be `v4`. |
 | language | *Required parameter*.<br/>Specifies the language of the text to convert from one script to another. Possible languages are listed in the `transliteration` scope obtained by querying the service for its [supported languages](get-languages.md). |
 | fromScript | *Required parameter*.<br/>Specifies the script used by the input text. Look up [supported languages](get-languages.md) using the `transliteration` scope, to find input scripts available for the selected language. |
 | toScript | *Required parameter*.<br/>Specifies the output script. Look up [supported languages](get-languages.md) using the `transliteration` scope, to find output scripts available for the selected combination of input language and input script. |
@@ -103,5 +103,5 @@ The JSON payload for the request in this example:
 If you're using cURL in a command-line window that doesn't support Unicode characters, take the following JSON payload and save it into a file named `request.txt`. Be sure to save the file with `UTF-8` encoding.
 
 ```
-curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-version=TODO&language=ja&fromScript=Jpan&toScript=Latn" -H "X-ClientTraceId: 875030C7-5380-40B8-8A03-63DACCF69C11" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d @request.txt
+curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-version=v4&language=ja&fromScript=Jpan&toScript=Latn" -H "X-ClientTraceId: 875030C7-5380-40B8-8A03-63DACCF69C11" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d @request.txt
 ```

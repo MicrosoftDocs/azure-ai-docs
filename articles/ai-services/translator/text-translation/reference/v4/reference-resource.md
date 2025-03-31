@@ -48,7 +48,7 @@ For example: If you create a Translator resource in Azure portal with `Resource 
 
  ```bash
 // Pass secret key and region using headers to a custom endpoint
-curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/TODO/translate?to=fr" \
+curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/v4/translate?to=fr" \
 -H "Ocp-Apim-Subscription-Key: xxx" \
 -H "Ocp-Apim-Subscription-Region: switzerlandnorth" \
 -H "Content-Type: application/json" \
