@@ -1,7 +1,7 @@
 ---
 title: Azure AI Translator v4.0 transliterate method
 titleSuffix: Azure AI services
-description: Convert text from one script to another script with the v4.0 Translator transliterate method.
+description: Convert text from one script to another script with the Azure AI Translator v4.0 transliterate method.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -22,7 +22,7 @@ Send a `POST` request to:
 https://api.cognitive.microsofttranslator.com/transliterate?api-version=TODO
 ```
 
-_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](../v3/reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -31,9 +31,9 @@ Request parameters passed on the query string are:
 | Query parameter | Description |
 | --- | --- |
 | api-version | *Required parameter*.<br/>Version of the API requested by the client. Value must be `TODO`. |
-| language | *Required parameter*.<br/>Specifies the language of the text to convert from one script to another. Possible languages are listed in the `transliteration` scope obtained by querying the service for its [supported languages](languages.md). |
-| fromScript | *Required parameter*.<br/>Specifies the script used by the input text. Look up [supported languages](languages.md) using the `transliteration` scope, to find input scripts available for the selected language. |
-| toScript | *Required parameter*.<br/>Specifies the output script. Look up [supported languages](languages.md) using the `transliteration` scope, to find output scripts available for the selected combination of input language and input script. |
+| language | *Required parameter*.<br/>Specifies the language of the text to convert from one script to another. Possible languages are listed in the `transliteration` scope obtained by querying the service for its [supported languages](get-languages.md). |
+| fromScript | *Required parameter*.<br/>Specifies the script used by the input text. Look up [supported languages](get-languages.md) using the `transliteration` scope, to find input scripts available for the selected language. |
+| toScript | *Required parameter*.<br/>Specifies the output script. Look up [supported languages](get-languages.md) using the `transliteration` scope, to find output scripts available for the selected combination of input language and input script. |
 
 ## Request headers
 

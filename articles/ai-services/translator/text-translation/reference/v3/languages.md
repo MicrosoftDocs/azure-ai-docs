@@ -1,10 +1,9 @@
 ---
-title: Translator Languages Method
+title: Azure AI Translator languages method
 titleSuffix: Azure AI services
-description: The v3.0 Translator languages method gets the set of currently supported languages.
+description: The Azure AI Translator v3.0 languages method returns currently supported languages.
 author: laujan
 manager: nitinme
-author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 03/31/2025
@@ -13,9 +12,9 @@ ms.author: lajanuar
 
 <!-- markdownlint-disable MD033 -->
 
-# Translator 3.0: Languages
+# Azure AI Translator v3.0:  get languages
 
-Gets the set of languages currently supported by other operations of the Translator.
+Gets the set of languages currently supported Azure AI Translator v3.0.
 
 ## Request URL
 

@@ -1,7 +1,7 @@
 ---
-title: Translator Translate Method
+title: Azure AI Translator v3.0 translate method
 titleSuffix: Azure AI services
-description: Understand v3.0 Azure AI Translator translate text method parameters, headers, and request body options and requirements.
+description: Understand Azure AI Translator v3.0 translate text method parameters, headers, and request body options and requirements.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -10,9 +10,9 @@ ms.date: 03/31/2025
 ms.author: lajanuar
 ---
 
-# Translator 3.0: Translate
+# Azure AI Translator v3.0: translate
 
-Translates text.
+Translate text.
 
 ## Request URL
 

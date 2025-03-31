@@ -4,7 +4,6 @@ titleSuffix: Azure AI services
 description: The Azure AI Translator v4.0 dictionary examples method provides examples that show how terms in the dictionary are used in context.
 author: laujan
 manager: nitinme
-author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 03/28/2025
@@ -12,7 +11,7 @@ ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD033 -->
 
-# Azure AI Translator 4.0: dictionary examples
+# Azure AI Translator v4.0: dictionary examples
 
 Provides examples that show how terms in the dictionary are used in context. This operation is used in tandem with [Dictionary lookup](dictionary-lookup-api.md).
 
@@ -24,7 +23,7 @@ Send a `POST` request to:
 https://api.cognitive.microsofttranslator.com/dictionary/examples?api-version=TODO
 ```
 
-_See_ [**Virtual Network Support**](../v3/reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](../v3/../v3/reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -33,8 +32,8 @@ Request parameters passed on the query string are:
 | Query Parameter | Description |
 | --------- | ----------- |
 | api-version <img width=200/> | **Required parameter**.<br>Version of the API requested by the client. Value must be `TODO`. |
-| from | **Required parameter**.<br>Specifies the language of the input text. The source language must be one of the [supported languages](languages.md) included in the `dictionary` scope. |
-| to | **Required parameter**.<br>Specifies the language of the output text. The target language must be one of the [supported languages](languages.md) included in the `dictionary` scope.  |
+| from | **Required parameter**.<br>Specifies the language of the input text. The source language must be one of the [supported languages](get-languages.md) included in the `dictionary` scope. |
+| to | **Required parameter**.<br>Specifies the language of the output text. The target language must be one of the [supported languages](get-languages.md) included in the `dictionary` scope.  |
 
 Request headers include:
 

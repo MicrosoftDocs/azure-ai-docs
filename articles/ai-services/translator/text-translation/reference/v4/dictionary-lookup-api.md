@@ -23,7 +23,7 @@ Send a `POST` request to:
 https://api.cognitive.microsofttranslator.com/dictionary/lookup?api-version=TODO
 ```
 
-_See_ [**Virtual Network Support**](../v3/reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](../v3/../v3/reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -32,8 +32,8 @@ Request parameters passed on the query string are:
 | Query Parameter  | Description |
 | ------ | ----------- |
 | api-version| **Required parameter**.<br/>Version of the API requested by the client. Value must be `TODO` |
-| from | **Required parameter**.<br/>Specifies the language of the input text. The source language must be one of the [supported languages](./languages.md) included in the `dictionary` scope. |
-| to   | **Required parameter**.<br/>Specifies the language of the output text. The target language must be one of the [supported languages](languages.md) included in the `dictionary` scope. |
+| from | **Required parameter**.<br/>Specifies the language of the input text. The source language must be one of the [supported languages](get-languages.md) included in the `dictionary` scope. |
+| to   | **Required parameter**.<br/>Specifies the language of the output text. The target language must be one of the [supported languages](get-languages.md) included in the `dictionary` scope. |
 
 
 Request headers include:
@@ -64,13 +64,13 @@ The following limitations apply:
 
 A successful response is a JSON array with one result for each string in the input array. A result object includes the following properties:
 
-* `normalizedSource`: A string giving the normalized form of the source term. For example, if the request is `JOHN`, the normalized form is `john`. The content of this field becomes the input to [lookup examples](./dictionary-examples.md).
+* `normalizedSource`: A string giving the normalized form of the source term. For example, if the request is `JOHN`, the normalized form is `john`. The content of this field becomes the input to [lookup examples](dictionary-examples-api.md).
 
 * `displaySource`: A string giving the source term in a form best suited for end-user display. For example, if the input is `JOHN`, the display form reflects the usual spelling of the name: `John`.
 
 * `translations`: A list of translations for the source term. Each element of the list is an object with the following properties:
 
-* `normalizedTarget`: A string giving the normalized form of this term in the target language. This value should be used as input to [lookup examples](./dictionary-examples.md).
+* `normalizedTarget`: A string giving the normalized form of this term in the target language. This value should be used as input to [lookup examples](dictionary-examples-api.md).
 
 * `displayTarget`: A string giving the term in the target language and in a form best suited for end-user display. Generally, this property only differs from the `normalizedTarget` in terms of capitalization. For example, a proper noun like `Juan` has `normalizedTarget = "juan"` and `displayTarget = "Juan"`.
 
@@ -97,11 +97,11 @@ A successful response is a JSON array with one result for each string in the inp
 
 * `backTranslations`: A list of "back translations" of the target. For example, source words that the target can translate to. The list is guaranteed to contain the source word that was requested (for example, if the source word being looked up is `fly`, then  `fly` is included in the `backTranslations` list). However, it isn't guaranteed to be in the first position, and often isn't. Each element of the `backTranslations` list is an object described by the following properties:
 
-  * `normalizedText`: A string giving the normalized form of the source term that is a back-translation of the target. This value should be used as input to [lookup examples](./dictionary-examples.md).
+  * `normalizedText`: A string giving the normalized form of the source term that is a back-translation of the target. This value should be used as input to [lookup examples](dictionary-examples-api.md).
 
   * `displayText`: A string giving the source term that is a back-translation of the target in a form best suited for end-user display.
 
-  * `numExamples`: An integer representing the number of examples that are available for this translation pair. Actual examples must be retrieved with a separate call to [lookup examples](./dictionary-examples.md). The number is mostly intended to facilitate display in a UX. For example, a user interface can add a hyperlink to the back-translation if the number of examples is greater than zero. Then the back-translation is shown as plain text if there are no examples. The actual number of examples returned by a call to [lookup examples](./dictionary-examples.md) can be less than `numExamples`, because more filtering can be applied on the fly to remove "bad" examples.
+  * `numExamples`: An integer representing the number of examples that are available for this translation pair. Actual examples must be retrieved with a separate call to [lookup examples](dictionary-examples-api.md). The number is mostly intended to facilitate display in a UX. For example, a user interface can add a hyperlink to the back-translation if the number of examples is greater than zero. Then the back-translation is shown as plain text if there are no examples. The actual number of examples returned by a call to [lookup examples](dictionary-examples-api.md) can be less than `numExamples`, because more filtering can be applied on the fly to remove "bad" examples.
 
   * `frequencyCount`: An integer representing the frequency of this translation pair in the data. The main purpose of this field is to provide a user interface with a means to sort back-translations so the most frequent terms are first.
 

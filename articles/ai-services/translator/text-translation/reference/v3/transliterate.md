@@ -1,19 +1,18 @@
 ---
-title: Translator Transliterate Method
+title: Azure AI Translator transliterate method
 titleSuffix: Azure AI services
-description: Convert text from one language script to another script with the v3.0 Translator transliterate method.
+description: Convert text from one language from source script to target script with the Azure AI Translator v3.0 transliterate method.
 author: laujan
 manager: nitinme
-author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 03/31/2025
 ms.author: lajanuar
 ---
 
-# Translator 3.0: Transliterate
+# Azure AI Translator v3.0: transliterate
 
-Converts text in one language from one script to another script.
+Converts text in one language from source script to target script.
 
 ## Request URL
 
