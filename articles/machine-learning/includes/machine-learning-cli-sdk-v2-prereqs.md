@@ -30,6 +30,6 @@ ms.author: larryfr
     pip install --upgrade azure-ai-ml azure-identity
     ```
 
-    For more information, see [Azure ML Package client library for Python](https://aka.ms/sdk-v2-install).
+    For more information, see [Azure Machine Learning Package client library for Python](https://aka.ms/sdk-v2-install).
 
     ---
