@@ -15,6 +15,12 @@ ms.custom: azure-ai-agents
 
 This article provides a summary of the latest releases and major documentation updates for Azure AI Agent Service.
 
+## March 2025
+
+### Microsoft Fabric tool
+
+The Microsoft Fabric tool is now available for the Azure AI Agent Service, allowing users to interact with data you have in Microsoft Fabric through chat and uncover data-driven and actionable insights. See the [how-to article](./how-to/tools/fabric.md) for more information.
+
 ## February 2025
 
 ### Use Azure AI Agent Service in the Azure AI Foundry portal
