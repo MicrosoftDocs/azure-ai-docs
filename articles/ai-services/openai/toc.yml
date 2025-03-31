@@ -237,13 +237,13 @@ items:
         href: ./how-to/dynamic-quota.md
       - name: Monitor Azure OpenAI
         href: ./how-to/monitor-openai.md
-      - name: Onboarding to Provisioned Throughput Units (PTU)
-        href: ./how-to/provisioned-throughput-onboarding.md
-        displayName: PTU, provisioned, provisioned throughput units
       - name: Provisioned throughput units (PTU)
         items:
         - name: What is the Provisioned Managed offering (PTU)?
           href: ./concepts/provisioned-throughput.md
+          displayName: PTU, provisioned, provisioned throughput units
+        - name: Understanding and calculating PTU costs 
+          href: ./how-to/provisioned-throughput-onboarding.md
           displayName: PTU, provisioned, provisioned throughput units
         - name: Get started with Provisioned Deployments
           href: ./how-to/provisioned-get-started.md
