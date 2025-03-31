@@ -10,10 +10,10 @@ ms.date: 02/25/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-fabric-data-agent
-ms.custom: azure-ai-agents
+ms.custom: azure-ai-agents, references_regions
 ---
 
-# Use the Microsoft Fabric Data Agent
+# Use the Microsoft Fabric data agent
 
 ::: zone pivot="overview"
 
@@ -28,16 +28,16 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
-1. You have created and published a Fabric data agent endpoint
+* You have created and published a Fabric data agent endpoint
 
-1. Developers and end users have at least `AI Developer` RBAC role. 
+* Developers and end users have at least `AI Developer` RBAC role. 
 
-1. Developers and end users have at least `READ` access to the Fabric data agent and the underlying data sources it connects with.
+* Developers and end users have at least `READ` access to the Fabric data agent and the underlying data sources it connects with.
 
 ## Setup  
 > [!NOTE]
-> 1. The model you selected in Azure AI Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
-> 1. Supported regions: `westus`, `japaneast` more regions are coming soon.
+> * The model you selected in Azure AI Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
+> *  Supported regions: `westus`, `japaneast`.
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
 
 1. Create and publish a [Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910)
@@ -87,13 +87,13 @@ const client = AIProjectsClient.fromConnectionString(
 # [REST API](#tab/rest)
 
 >[!IMPORTANT]
-> 1. This REST API allows developers to invoke the Grounding with Bing Search tool through the Azure AI Agent service. It does not send calls to the Grounding with Bing Search API directly. 
+> This REST API allows developers to invoke the Grounding with Bing Search tool through the Azure AI Agent service. It does not send calls to the Grounding with Bing Search API directly. 
 
 Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`. The client creation is demonstrated in the next section.
 
 ---
 
-## Step 2: Create an Agent with the Microsoft Fabric tool enabled
+## Step 2: Create an agent with the Microsoft Fabric tool enabled
 
 To make the Microsoft Fabric tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Azure AI Foundry portal.
 
