@@ -39,7 +39,7 @@ Some properties are fixed for the lifetime of the search service. Before you cre
 |--|--|
 | [Name](#name-your-service) | Becomes part of the URL endpoint. The name must be unique and follow naming rules. |
 | [Region](search-region-support.md) | Determines data residency and availability of certain features. For example, semantic ranker and Azure AI integration have region requirements. Choose a region that supports the features you need. |
-| [Tier](search-sku-tier.md) | Determines infrastructure, service limits, and billing. Some features aren't available on lower or specialized tiers. In the 2025-02-01-preview, you can also [switch from a lower tier to a higher tier](search-capacity-planning.md#change-your-service-tier). |
+| [Tier](search-sku-tier.md) | Determines infrastructure, service limits, and billing. Some features aren't available on lower or specialized tiers. In the 2025-02-01-preview, you can also [switch from a lower tier to a higher tier](search-capacity-planning.md#change-your-pricing-tier). |
 
 ## Subscribe to Azure
 
@@ -149,7 +149,7 @@ The Basic and Standard tiers are the most common for production workloads, but m
 :::image type="content" source="media/search-create-service-portal/select-pricing-tier.png" lightbox="media/search-create-service-portal/select-pricing-tier.png" alt-text="Screenshot of the Select Pricing Tier page in the Azure portal." border="true":::
 
 > [!NOTE]
-> + After you create your service, you can move up between Basic and Standard (S1, S2, and S3) tiers. Switching to a lower tier isn't currently supported. For more information, see [Change your service tier](search-capacity-planning.md#change-your-service-tier).
+> + After you create your service, you can move up between Basic and Standard (S1, S2, and S3) tiers. Switching to a lower tier isn't currently supported. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
 > + Services created after April 3, 2024 have larger partitions and higher vector quotas at every billable tier.
 
 ## Create your service
