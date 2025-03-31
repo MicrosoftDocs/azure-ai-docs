@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5, deploy, docker, prebuilt, sdkv1, devx-track-python
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 The [prebuilt Docker images for model inference](../concept-prebuilt-docker-images-inference.md) contain packages for popular machine learning frameworks. There are two methods that can be used to add Python packages __without rebuilding the Docker image__:
 
 * [Dynamic installation](#dynamic): This approach uses a [requirements](https://pip.pypa.io/en/stable/cli/pip_install/#requirements-file-format) file to automatically restore Python packages when the Docker container boots.
