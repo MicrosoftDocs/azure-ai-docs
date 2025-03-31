@@ -8,7 +8,7 @@ ms.subservice: inferencing
 author: msakande
 ms.author: mopeakande
 ms.reviewer: fasantia
-ms.date: 01/24/2025
+ms.date: 03/31/2025
 ms.topic: how-to
 ms.custom: deploy, mlflow, devplatv2, no-code-deployment, devx-track-azurecli, cliv2, update-code
 # customer intent: As a developer, I want to see how to deploy an MLflow model to an online endpoint so that I can use the model to make predictions in real time.
