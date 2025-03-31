@@ -1,13 +1,13 @@
 ---
 title: Translator Languages Method
 titleSuffix: Azure AI services
-description: The Languages method gets the set of languages currently supported by other operations of the Translator.
+description: The v3.0 Translator languages method gets the set of currently supported languages.
 author: laujan
 manager: nitinme
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 07/19/2024
+ms.date: 03/31/2025
 ms.author: lajanuar
 ---
 

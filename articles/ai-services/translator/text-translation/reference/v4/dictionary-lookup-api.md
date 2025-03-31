@@ -1,7 +1,7 @@
 ---
-title: Translator v4.0 dictionary lookup method
+title: Azure AI Translator v4.0 dictionary lookup method
 titleSuffix: Azure AI services
-description: The v4.0 Translator dictionary lookup method provides alternative translations for a word and a few idiomatic phrases.
+description: The Azure AI Translator v4.0 dictionary lookup method provides alternative translations for a word and a few idiomatic phrases.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -11,7 +11,7 @@ ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD033 -->
 
-# Translator v4.0: Dictionary Lookup (preview)
+# Azure AI Translator v4.0: dictionary lookup (preview)
 
 Provides alternative translations for a word and a few idiomatic phrases. Each translation has a part-of-speech and a list of back-translations. The back-translations enable a user to understand the translation in context. The [Dictionary Example](./dictionary-examples-api.md) operation includes example uses of each translation pair.
 

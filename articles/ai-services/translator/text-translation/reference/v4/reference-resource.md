@@ -1,7 +1,7 @@
 ---
-title: Translator v4.0 Reference
+title: Azure AI Translator v4.0 reference
 titleSuffix: Azure AI services
-description: Reference documentation for the Azure AI Translator v4.0 operations and capabilities.
+description: Reference documentation for Azure AI Translator v4.0 operations and capabilities.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -10,7 +10,7 @@ ms.date: 03/28/2025
 ms.author: lajanuar
 ---
 
-# Translator v4.0 (preview)
+# Azure AI Translator v4.0 (preview)
 
 Azure AI Translator v4.0 is our latest cloud-based, multilingual neural machine translation service and provides robust and scalable translation capabilities suitable for diverse applications. Translator service supports over 100 languages and dialects, making it ideal for businesses, developers, and organizations seeking to seamlessly integrate multilingual communication. Translator is an optimal solution for managing extensive multilingual content and easily integrates with your applications and workflows through a single REST API call and supports multiple programming languages. Azure AI Translator prioritizes data security and privacy, complying with regulations like GDPR, HIPAA, and ISO/SOC, thus ensuring that it's a reliable solution for handling sensitive and confidential information.
 

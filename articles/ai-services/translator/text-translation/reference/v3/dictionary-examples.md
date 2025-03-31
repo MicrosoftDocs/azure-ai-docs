@@ -1,10 +1,9 @@
 ---
 title: Translator Dictionary Examples Method
 titleSuffix: Azure AI services
-description: The Translator Dictionary Examples method provides examples that show how terms in the dictionary are used in context.
+description: The v3.0 Translator dictionary examples method provides examples that show how terms in the dictionary are used in context.
 author: laujan
 manager: nitinme
-author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 06/06/2024

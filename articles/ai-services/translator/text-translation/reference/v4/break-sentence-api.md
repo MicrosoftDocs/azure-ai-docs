@@ -1,16 +1,16 @@
 ---
-title: Translator v4.0 break sentence method
+title: Azure AI Translator v4.0 break sentence method
 titleSuffix: Azure AI services
-description: The v4.0 Translator break sentence method identifies the positioning of sentence boundaries in a piece of text.
+description: The Translator v4.0 break sentence method identifies the positioning of sentence boundaries in a piece of text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 03/28/2025
+ms.date: 03/31/2025
 ms.author: lajanuar
 ---
 
-# Translator v4.0: BreakSentence (preview)
+# Azure AI Translator v4.0: break sentence (preview)
 
 Identifies the positioning of sentence boundaries in a piece of text.
 
