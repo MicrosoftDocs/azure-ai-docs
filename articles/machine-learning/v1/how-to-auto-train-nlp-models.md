@@ -17,6 +17,8 @@ ms.date: 03/15/2022
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 [!INCLUDE [preview disclaimer](../includes/machine-learning-preview-generic-disclaimer.md)]
 
 In this article, you learn how to train natural language processing (NLP) models with [automated ML](../concept-automated-ml.md) in the [Azure Machine Learning Python SDK](/python/api/overview/azure/ml/).
