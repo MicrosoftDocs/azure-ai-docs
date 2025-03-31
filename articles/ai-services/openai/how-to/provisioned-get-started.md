@@ -8,7 +8,7 @@ ms.custom: openai
 ms.topic: how-to
 author: mrbullwinkle
 ms.author: mbullwin
-ms.date: 09/20/2024
+ms.date: 03/26/2025
 recommendations: false
 ---
 
@@ -136,14 +136,13 @@ The inferencing code for provisioned deployments is the same a standard deployme
 
 
 ```python
-    #Note: The openai-python library support for Azure OpenAI is in preview. 
     import os
     from openai import AzureOpenAI
 
     client = AzureOpenAI(
         azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
         api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-        api_version="2024-02-01"
+        api_version="2024-10-21"
     )
 
     response = client.chat.completions.create(
@@ -203,7 +202,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    api_version="2024-02-01",
+    api_version="2024-10-21",
     max_retries=5,# default is 2
 )
 

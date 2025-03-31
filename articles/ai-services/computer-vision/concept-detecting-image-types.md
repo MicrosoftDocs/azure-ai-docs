@@ -2,7 +2,6 @@
 title: Image type detection - Azure AI Vision
 titleSuffix: Azure AI services
 description: Concepts related to the image type detection feature of the Azure AI Vision API.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 

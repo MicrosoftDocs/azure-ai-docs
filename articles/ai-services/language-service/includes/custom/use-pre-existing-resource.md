@@ -1,7 +1,6 @@
 ---
 title: How to create custom projects
 titleSuffix: Azure AI services
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language

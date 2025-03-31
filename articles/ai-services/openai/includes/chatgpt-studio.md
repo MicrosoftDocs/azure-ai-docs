@@ -2,7 +2,6 @@
 title: 'Quickstart: Use GPT-4o and GPT-4o mini via Azure AI Foundry'
 titleSuffix: Azure OpenAI Service
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with Azure AI Foundry. 
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include

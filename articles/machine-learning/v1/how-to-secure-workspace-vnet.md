@@ -17,6 +17,7 @@ ms.custom: UpdateFrequency5, tracking-python, security, cliv1, sdkv1, build-2023
 
 [!INCLUDE [sdk/cli v1](../includes/machine-learning-dev-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In this article, you learn how to secure an Azure Machine Learning workspace and its associated resources in an Azure Virtual Network.
 

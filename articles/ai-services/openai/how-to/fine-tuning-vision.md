@@ -2,7 +2,6 @@
 title: 'Vision customization'
 titleSuffix: Azure OpenAI
 description: Learn how to fine-tune a model with image inputs.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions

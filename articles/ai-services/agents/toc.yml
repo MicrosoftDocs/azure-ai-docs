@@ -34,6 +34,10 @@ items:
             href: how-to/tools/file-search.md
           - name: Azure AI Search
             href: how-to/tools/azure-ai-search.md 
+          - name: Microsoft Fabric
+            href: how-to/tools/fabric.md
+          - name: Use licensed data
+            href: how-to/tools/licensed-data.md
         - name: Action tools
           items:
           - name: Function calling

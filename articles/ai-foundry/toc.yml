@@ -52,20 +52,18 @@ items:
     items:
     - name: Deploying models in Azure AI Foundry
       href: concepts/deployments-overview.md
-    - name: Serverless API
+    - name: Azure OpenAI Service
       items:
-      - name: Deploy models as serverless API
-        href: how-to/deploy-models-serverless.md
-      - name: Consume serverless API models from a different project or hub
-        href: how-to/deploy-models-serverless-connect.md
-      - name: Model and region availability for Serverless API deployments
-        href: how-to/deploy-models-serverless-availability.md
-      - name: Content safety for models deployed with serverless APIs
-        href: concepts/model-catalog-content-safety.md
-    - name: Managed compute
-      items:
-      - name: Deploy models via managed compute
-        href: how-to/deploy-models-managed.md
+      - name: Azure OpenAI in Azure AI Foundry
+        href: azure-openai-in-ai-foundry.md
+      - name: Use Azure OpenAI Service in Azure AI Foundry portal
+        href: ai-services/how-to/connect-azure-openai.md
+      - name: Deploy Azure OpenAI models
+        href: how-to/deploy-models-openai.md
+      - name: Azure OpenAI Service quotas and limits
+        href: ../ai-services/openai/quotas-limits.md?context=/azure/ai-foundry/context/context
+      - name: Troubleshoot deployments and monitoring
+        href: how-to/troubleshoot-deploy-and-monitor.md
     - name: Azure AI model inference
       items:
       - name: What is Azure AI model inference?
@@ -82,18 +80,20 @@ items:
         href: ../ai-foundry/model-inference/how-to/inference.md?context=/azure/ai-foundry/context/context
       - name: Azure AI model inference quotas and limits
         href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-foundry/context/context
-    - name: Azure OpenAI Service
+    - name: Serverless API
       items:
-      - name: Azure OpenAI in Azure AI Foundry
-        href: azure-openai-in-ai-foundry.md
-      - name: Use Azure OpenAI Service in Azure AI Foundry portal
-        href: ai-services/how-to/connect-azure-openai.md
-      - name: Deploy Azure OpenAI models
-        href: how-to/deploy-models-openai.md
-      - name: Azure OpenAI Service quotas and limits
-        href: ../ai-services/openai/quotas-limits.md?context=/azure/ai-foundry/context/context
-      - name: Troubleshoot deployments and monitoring
-        href: how-to/troubleshoot-deploy-and-monitor.md
+      - name: Deploy models as serverless API
+        href: how-to/deploy-models-serverless.md
+      - name: Consume serverless API models from a different project or hub
+        href: how-to/deploy-models-serverless-connect.md
+      - name: Model and region availability for Serverless API deployments
+        href: how-to/deploy-models-serverless-availability.md
+      - name: Content safety for models deployed with serverless APIs
+        href: concepts/model-catalog-content-safety.md
+    - name: Managed compute
+      items:
+      - name: Deploy models via managed compute
+        href: how-to/deploy-models-managed.md
   - name: Work with models from the model catalog
     items:
     - name: Featured models in the model catalog
@@ -116,8 +116,6 @@ items:
         href: how-to/deploy-models-gretel-navigator.md
       - name: Mistral-7B and Mixtral models
         href: how-to/deploy-models-mistral-open.md
-      - name: Stability AI models
-        href: ./how-to/deploy-stability-models.md
     - name: Work with embedding models
       items:
         - name: Work with text embedding models
