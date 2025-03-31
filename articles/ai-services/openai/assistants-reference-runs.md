@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's Python & REST API runs with Assista
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: reference
-ms.date: 09/17/2024
+ms.date: 03/31/2025
 author: aahill
 ms.author: aahi
 recommendations: false
