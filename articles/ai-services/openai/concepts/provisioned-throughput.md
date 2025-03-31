@@ -3,18 +3,17 @@ title: Azure OpenAI Service provisioned throughput
 description: Learn about provisioned throughput and Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 08/07/2024
+ms.date: 03/31/2025
 manager: nitinme
-author: mrbullwinkle #ChrisHMSFT
-ms.author: mbullwin #chrhoder
+author: aahill #ChrisHMSFT
+ms.author: aahi #chrhoder
 recommendations: false
 ---
 
 # What is provisioned throughput?
 
 > [!NOTE]
-> The Azure OpenAI Provisioned offering received significant updates on August 12, 2024, including aligning the purchase model with Azure standards and moving to model-independent quota. It is highly recommended that customers onboarded before this date read the Azure [OpenAI provisioned August update](./provisioned-migration.md) to learn more about these changes.
-
+> If you're looking for what's recently changed with the provisioned throughput offering, see the [update article](./provisioned-migration.md) for more information.
 
 The provisioned throughput offering is a model deployment type that allows you to specify the amount of throughput you require in a model deployment. The Azure OpenAI service then allocates the necessary model processing capacity and ensures it's ready for you. Provisioned throughput provides:
 
@@ -35,21 +34,6 @@ An Azure OpenAI deployment is a unit of management for a specific OpenAI Model. 
 ## When to use provisioned throughput
 
 You should consider switching from standard deployments to provisioned managed deployments when you have well-defined, predictable throughput and latency requirements. Typically, this occurs when the application is ready for production or has already been deployed in production and there's an understanding of the expected traffic. This allows users to accurately forecast the required capacity and avoid unexpected billing. Provisioned managed deployments are also useful for applications that have real-time/latency sensitive requirements.
-
-<!--
-## What do you get?
-
-
-| Topic | Description |
-|---|---|
-| What is it? |Provides guaranteed throughput at smaller increments than the existing provisioned offer. Deployments have a consistent max latency for a given model-version. |
-| Who is it for? | Customers who want guaranteed throughput with minimal latency variance. |
-| Quota |Provisioned Managed Throughput Unit, Global Provisioned Managed Throughput Unit, or Data Zone Provisioned Managed Throughput Unit assigned per region. Quota can be used across any available Azure OpenAI model.|
-| Latency | Max latency constrained from the model. Overall latency is a factor of call shape.  |
-| Utilization | Provisioned-managed Utilization V2 measure provided in Azure Monitor. |
-|Estimating size |Provided sizing calculator in Azure AI Foundry.|
-|Prompt caching | For supported models, we discount up to 100% of cached input tokens. |
--->
 
 ## Key concepts
 
