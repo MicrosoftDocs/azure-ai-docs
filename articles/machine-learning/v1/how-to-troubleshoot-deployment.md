@@ -16,6 +16,10 @@ ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1
 
 # Troubleshooting remote model deployment 
 
+[!INCLUDE [cli v1 deprecation](../includes/machine-learning-cli-v1-deprecation.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 Learn how to troubleshoot and solve, or work around, common errors you might encounter when deploying a model to Azure Container Instances (ACI) and Azure Kubernetes Service (AKS) using Azure Machine Learning.
 
 > [!NOTE]
@@ -32,8 +36,6 @@ Learn how to troubleshoot and solve, or work around, common errors you might enc
 * The [Azure Machine Learning SDK](/python/api/overview/azure/ml/install).
 * The [Azure CLI](/cli/azure/install-azure-cli).
 * The [CLI extension v1 for Azure Machine Learning](reference-azure-machine-learning-cli.md).
-
-    [!INCLUDE [cli v1 deprecation](../includes/machine-learning-cli-v1-deprecation.md)]
 
 ## Steps for Docker deployment of machine learning models
 
