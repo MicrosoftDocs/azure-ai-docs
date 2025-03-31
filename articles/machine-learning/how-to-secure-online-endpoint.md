@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.reviewer: None
 author: msakande
 ms.author: mopeakande
-ms.date: 12/02/2024
+ms.date: 03/31/2025
 ms.custom: devx-track-azurecli, moe-wsvnet, update-code6
 # customer intent: As a developer, I want to see how to use private endpoints to provide network isolation so that I can improve the security of my Azure Machine Learning managed online endpoints.
 ---
