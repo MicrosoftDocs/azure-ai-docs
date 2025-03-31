@@ -20,7 +20,7 @@ An upgrade brings older search services to the capabilities of new services crea
 For [eligible services](#upgrade-eligibility), an upgrade increases the [partition storage](#higher-storage-limits) and [vector index size](#higher-vector-limits) on the same tier at no extra cost.
 
 > [!TIP]
-> Looking for tier upgrade? You can now move up between Basic and Standard (S1, S2, and S3) tiers. For more information, see [change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
+> Looking for tier upgrade? You can now move up between Basic and Standard (S1, S2, and S3) tiers. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
 
 This article describes how to upgrade your service in the [Azure portal](https://portal.azure.com/). Alternatively, you can use the [Search Management REST APIs](/rest/api/searchmanagement/) to upgrade your service programmatically. For more information, see [Manage your search service using REST](search-manage-rest.md#upgrade-a-service).
 

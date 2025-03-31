@@ -104,7 +104,7 @@ This billing model is based on the concept of applying the billing rate to the n
 
 ## Tier changes
 
-Services can be switched between Basic and Standard (S1, S2, and S3) tiers. Currently, you can only switch from a lower tier to a higher tier, such as going from Basic to S1. Your region also can't have capacity constraints on the higher tier. For more information, see [change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
+Services can be switched between Basic and Standard (S1, S2, and S3) tiers. Currently, you can only switch from a lower tier to a higher tier, such as going from Basic to S1. Your region also can't have capacity constraints on the higher tier. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
 
 If you want to switch to a lower tier or to a different tier than those previously listed, the approach is:
 
