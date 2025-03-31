@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: The Translator BreakSentence method identifies the positioning of sentence boundaries in a piece of text.
 author: laujan
 manager: nitinme
-
+author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 06/06/2024

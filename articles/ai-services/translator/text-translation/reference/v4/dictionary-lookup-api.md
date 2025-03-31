@@ -1,10 +1,9 @@
 ---
 title: Translator v4.0 dictionary lookup method
 titleSuffix: Azure AI services
-description: The Dictionary Lookup method provides alternative translations for a word and a few idiomatic phrases.
+description: The v4.0 Translator dictionary lookup method provides alternative translations for a word and a few idiomatic phrases.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 03/28/2025

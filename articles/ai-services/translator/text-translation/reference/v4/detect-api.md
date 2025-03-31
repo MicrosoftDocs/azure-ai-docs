@@ -1,10 +1,9 @@
 ---
 title: Translator v4.0 detect method
 titleSuffix: Azure AI services
-description: Identify the language of a piece of text with the Azure AI Translator Detect method.
+description: Identify the language of a piece of text with the Azure AI Translator v4.0 detect method.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 03/28/2025

@@ -4,7 +4,7 @@ titleSuffix: Azure AI services
 description: The Languages method gets the set of languages currently supported by other operations of the Translator.
 author: laujan
 manager: nitinme
-
+author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 07/19/2024
