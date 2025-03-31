@@ -1,7 +1,7 @@
 ---
 title: Azure AI Translator transliterate method
 titleSuffix: Azure AI services
-description: Convert text from one language from source script to target script with the Azure AI Translator v3.0 transliterate method.
+description: Convert text from one language from a source script to a target script with the Azure AI Translator v3.0 transliterate method.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -16,10 +16,10 @@ Converts text in one language from source script to target script.
 
 ## Request URL
 
-Send a `POST` request to:
+Send a `POST` request:
 
-```HTTP
-https://api.cognitive.microsofttranslator.com/transliterate?api-version=3.0
+```http
+  https://api.cognitive.microsofttranslator.com/transliterate?api-version=3.0
 ```
 
 _See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.

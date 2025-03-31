@@ -17,8 +17,8 @@ The status code's first digit categorizes the response class, while the last two
 
 * **1xx** (Informational): An interim response indicating that the request was received and processing continues.
 * **2xx** (Successful): The server successfully received and accepted the client request.
-* **3xx** (Redirection): Additional action is required to complete the request.
-* **4xx** (Client Error): An error occurred originating with the client browser and cannot be fulfilled.
+* **3xx** (Redirection): More action is required to complete the request.
+* **4xx** (Client Error): An error occurred originating with the client browser and can't be fulfilled.
 * **5xx** (Server Error): The server encountered an error and the request failed.
 
 ## Status codes

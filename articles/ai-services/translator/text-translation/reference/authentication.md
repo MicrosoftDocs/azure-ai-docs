@@ -1,7 +1,7 @@
 ---
 title: Authentication in Azure AI Translator service
 titleSuffix: Azure AI services
-description: "There are several ways to authenticate a request to Azure AI Translator resource In this article, you'll learn about each method, and how to make a request."
+description: "There are several ways to authenticate a request to Azure AI Translator resource In this article, learn about each method, and how to make a request."
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 # Authentication
 
-Each request to an Azure AI service must include an authentication header. This header passes along a resource key or authentication token, which is used to validate your subscription for a service or group of services. In this article, you'll learn ways to authenticate a request and the requirements for each.
+Each request to an Azure AI service must include an authentication header. This header passes along a resource key or authentication token, which is used to validate your subscription for a service or group of services. In this article, you can explore ways to authenticate a request and the requirements for each.
 
 * Authenticate with a [single-service]() or [multi-service]() resource key.
 * Authenticate with a [bearer token]().
@@ -128,7 +128,7 @@ An authentication token is valid for 10 minutes. The token should be reused when
 
 ## Authentication with Microsoft Entra ID
 
- Translator v3.0 supports Microsoft Entra authentication, Microsoft's cloud-based identity and access management solution.  Authorization headers enable the Translator service to validate that the requesting client is authorized to use the resource and to complete the request.
+ Translator v3.0 supports Microsoft Entra authentication, Microsoft's cloud-based identity and access management solution. Authorization headers enable the Translator service to validate that the requesting client is authorized to use the resource and to complete the request.
 
 ### **Prerequisites**
 
