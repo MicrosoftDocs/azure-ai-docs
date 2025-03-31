@@ -8,7 +8,7 @@ ms.subservice: inferencing
 author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
-ms.date: 01/13/2025
+ms.date: 03/31/2025
 ms.topic: how-to
 ms.custom: deploy, devplatv2, devx-track-azurecli, cliv2, sdkv2
 ms.devlang: azurecli
