@@ -6,13 +6,13 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: openai
 ms.topic: how-to
-author: mrbullwinkle
-ms.author: mbullwin
-ms.date: 03/26/2025
+author: aahill
+ms.author: aahi
+ms.date: 03/31/2025
 recommendations: false
 ---
 
-# Get started using Provisioned Deployments on the Azure OpenAI Service
+# Get started using provisioned deployments on the Azure OpenAI Service
 
 The following guide walks you through key steps in creating a provisioned deployment with your Azure OpenAI Service resource. For more details on the concepts discussed here, see:
 * [Azure OpenAI Provisioned Onboarding Guide](./provisioned-throughput-onboarding.md)
@@ -80,7 +80,7 @@ Once you have entered the deployment settings, click **Confirm Pricing** to cont
 If you are unsure of the costs, cancel the deployment and proceed once you understand the payment model and underlying costs for provisioned deployment. This step may prevent unexpected, high charges on your payment invoice. Resources to educate yourself include: 
 
 * [Azure Pricing Portal](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) 
-* [Understanding the provisioned throughput purchase model](provisioned-throughput-onboarding.md#understanding-the-provisioned-throughput-purchase-model) 
+* [Understanding the provisioned throughput costs](provisioned-throughput-onboarding.md) 
 
 The image below shows the pricing confirmation you will see. The price shown is an example only. 
 
