@@ -74,25 +74,33 @@ Once your input file is prepared, you first need to upload the file to then be a
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ```http
-curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files?api-version=2024-10-21 \
+curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files?api-version=2025-03-01-preview \
   -H "Content-Type: multipart/form-data" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -F "purpose=batch" \
-  -F "file=@C:\\batch\\test.jsonl;type=application/json"
+  -F "file=@C:\\batch\\test.jsonl;type=application/json" \
+  -F "expires_after.seconds=1209600" \
+  -F "expires_after.anchor=created_at"
+
 ```
 
-The above code assumes a particular file path for your test.jsonl file. Adjust this file path as necessary for your local system.
+The above code assumes a particular file path for your test.jsonl file. Adjust this file path as necessary for your local system. 
+
+By adding `"expires_after.seconds=1209600"` and `"expires_after.anchor=created_at"`  you are setting your upload file to expire in 14 days. There is a max limit of 500 batch files per resource when no expiration is set. By setting a value for expiration the number of batch files per resource is increased to 10,000 files per resource. You can set to a number between 1209600-2592000. This is equivalent to 14-30 days.
+
+
 
 **Output:**
 
 ```json
 {
-  "status": "pending",
-  "bytes": 686,
+  "status": "processed",
+  "bytes": 817,
   "purpose": "batch",
   "filename": "test.jsonl",
-  "id": "file-21006e70789246658b86a1fc205899a4",
-  "created_at": 1721408291,
+  "expires_at": 1744607747,
+  "id": "file-7733bc35e32841e297a62a9ee50b3461",
+  "created_at": 1743398147,
   "object": "file"
 }
 
@@ -104,7 +112,7 @@ The above code assumes a particular file path for your test.jsonl file. Adjust t
 Depending on the size of your upload file it might take some time before it's fully uploaded and processed. To check on your file upload status run:
 
 ```http
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/{file-id}?api-version=2024-10-21 \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/{file-id}?api-version=2025-03-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY"
 ```
 
@@ -116,7 +124,8 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/{file-id}?api-vers
   "bytes": 686,
   "purpose": "batch",
   "filename": "test.jsonl",
-  "id": "file-21006e70789246658b86a1fc205899a4",
+  "expires_at": 1744607747,
+  "id": "file-7733bc35e32841e297a62a9ee50b3461",
   "created_at": 1721408291,
   "object": "file"
 }
@@ -128,15 +137,21 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/{file-id}?api-vers
 Once your file has uploaded successfully you can submit the file for batch processing.
 
 ```http
-curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-version=2024-10-21 \
+curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-version=2025-03-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "input_file_id": "file-abc123",
     "endpoint": "/chat/completions",
-    "completion_window": "24h"
+    "completion_window": "24h",
+    "output_expires_after": {
+        "seconds": 1209600
+    },
+    "anchor": "created_at"
   }'
 ```
+
+The default 500 max file limit per resource also applies to output files. Here you add  `"output_expires_after":{"seconds": 1209600},` and `"anchor": "created_at"` so that your output files expire in 14 days. By setting a value for expiration the number of batch files per resource is increased to 10,000 files per resource.
 
 > [!NOTE]
 > Currently the completion window must be set to 24h. If you set any other value than 24h your job will fail. Jobs taking longer than 24 hours will continue to execute until canceled.
