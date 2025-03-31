@@ -36,8 +36,8 @@ Although Azure AI Search has native [AI enrichment](cognitive-search-concept-int
 You need the `synapseml` library and several Azure resources. If possible, use the same subscription and region for your Azure resources and put everything into one resource group for simple cleanup later. The following links are for portal installs. The sample data is imported from a public site.
 
 + [SynapseML package](https://microsoft.github.io/SynapseML/docs/Get%20Started/Install%20SynapseML/#python) <sup>1</sup>
-+ [Azure AI Search](search-create-service-portal.md) (any tier) with an **API Kind** of `AIServices` <sup>2</sup> 
-+ [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills?pivots=azportal) (any tier) <sup>3</sup>
++ [Azure AI Search](search-create-service-portal.md) (any tier) <sup>2</sup> 
++ [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills?pivots=azportal) (any tier) with an **API Kind** of `AIServices` <sup>3</sup>
 + [Azure Databricks](/azure/databricks/scenarios/quickstart-create-databricks-workspace-portal?tabs=azure-portal) (any tier) with Apache Spark 3.3.0 runtime <sup>4</sup>
 
 <sup>1</sup> This link resolves to a tutorial for loading the package.
