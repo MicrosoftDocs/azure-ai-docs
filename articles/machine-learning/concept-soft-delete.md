@@ -69,6 +69,10 @@ When deleting a workspace from the Azure portal, check __Delete the workspace pe
 > [!TIP]
 > The v1 SDK and CLI don't provide functionality to override the default soft-delete behavior. To override the default behavior from SDK or CLI, use the v2 versions. For more information, see the [CLI & SDK v2](concept-v2.md) article or the [v2 version of this article](concept-soft-delete.md?view=azureml-api-2&preserve-view=true#deleting-a-workspace).
 
+[!INCLUDE [v1 deprecation](includes/sdk-v1-deprecation.md)]
+
+[!INCLUDE [v1 cli deprecation](includes/machine-learning-cli-v1-deprecation.md)]
+
 :::moniker-end  
 :::moniker range="azureml-api-2"
 If you're using the [Azure Machine Learning SDK or CLI](/python/api/azure-ai-ml/azure.ai.ml.operations.workspaceoperations#azure-ai-ml-operations-workspaceoperations-begin-delete), you can set the `permanently_delete` flag.
