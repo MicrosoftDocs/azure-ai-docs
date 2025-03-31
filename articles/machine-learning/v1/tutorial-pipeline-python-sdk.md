@@ -16,6 +16,8 @@ ms.custom: UpdateFrequency5, devx-track-python, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 > [!NOTE]
 > For a tutorial that uses SDK v2 to build a pipeline, see [Tutorial: Use ML pipelines for production ML workflows with Python SDK v2 in a Jupyter Notebook](../tutorial-pipeline-python-sdk.md).
 
