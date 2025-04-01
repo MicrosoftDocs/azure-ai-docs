@@ -23,7 +23,12 @@ This article shows you how to get started with AI Foundry Local to run AI models
 - A PC with sufficient specifications to run AI models locally
   - Windows 10 or later
   - Greater than 8GB RAM
-  - Greater than 3GB of free disk space for model caching
+  - Greater than 3GB of free disk space for model caching (quantized Phi 3.2 models are ~3GB)
+- Suggested hardware for optimal performance:
+  - Windows 11
+  - NVIDIA GPU (2000 series or newer) OR AMD GPU (6000 series or newer) OR Qualcomm Snapdragon X Elite, with 8GB or more of VRAM
+  - Greater than 16GB RAM
+  - Greater than 15GB of free disk space for model caching (the largest models are ~15GB)
 - Administrator access to install software
 
 ## Quickstart in 2-steps
@@ -31,20 +36,34 @@ This article shows you how to get started with AI Foundry Local to run AI models
 Follow these steps to get started with AI Foundry Local:
 
 1. **Install Foundry Local**
-    1. Download AI Foundry Local from the Microsoft Store.
-    2. Follow the installation prompts to complete the setup.
-    3. Once installed, you can access AI Foundry Local through the command line using the `foundry` command.
-1. **Run your first model**
-    1. Open a command prompt or terminal window.
-    2. Run the DeepSeek-R1 model using the following command:
-        ```bash
-        foundry model run deepseek-r1-1.5b-cpu
-        ```
+
+   1. Download AI Foundry Local for your platform (Windows, MacOS, Linux - x64/ARM) from the repository's releases page.
+   2. Install the package by following the on-screen prompts.
+
+      > [!IMPORTANT] > **For MacOS/Linux users:** Run both components in separate terminals:
+      >
+      > - Neutron Server (`Inference.Service.Agent`) - Use `chmod +x Inference.Service.Agent` to make executable
+      > - Foundry Client (`foundry`) - Use `chmod +x foundry` to make executable, and add to your PATH
+
+   3. After installation, access the tool via command line with `foundry`.
+
+2. **Run your first model**
+   1. Open a command prompt or terminal window.
+   2. Run the DeepSeek-R1 model on the CPU using the following command:
+      ```bash
+      foundry model run deepseek-r1-1.5b-cpu
+      ```
 
 > [!TIP]
-> The `foundry model run <model>` command will automatically download the model if it is not already cached on your local machine, and then start an interactive chat session with the model.
+> The `foundry model run <model>` command will automatically download the model if it is not already cached on your local machine, and then start an interactive chat session with the model. You're encouraged to try out different models by replacing `deepseek-r1-1.5b-cpu` with the name of any other model available in the catalog, located with the `foundry model list` command.
 
 ## Explore Foundry Local CLI commands
+
+The foundry CLI is structured into several categories:
+
+- **Model**: Commands related to managing and running models
+- **Service**: Commands for managing the AI Foundry Local service
+- **Cache**: Commands for managing the local cache where models are stored
 
 To see all available commands, use the help option:
 
@@ -52,59 +71,62 @@ To see all available commands, use the help option:
 foundry --help
 ```
 
-The foundry CLI is structured into several categories:
+> [!TIP]
+> For a complete reference of all available CLI commands and their usage, see the [Foundry Local CLI Reference](reference/reference-cli.md).
 
-- **Model**: Commands related to managing and running models.
-- **Service**: Commands for managing the AI Foundry Local service.
-- **Cache**: Commands for managing the local cache where models are stored.
+## Security and privacy considerations
 
+AI Foundry Local is designed with privacy and security as core principles:
 
-### Managing models
+- **Local processing**: All data processed by AI Foundry Local remains on your device and is never sent to Microsoft or any external services.
+- **No telemetry**: AI Foundry Local does not collect usage data or model inputs.
+- **Air-gapped environments**: AI Foundry Local can be used in disconnected environments after initial model download.
 
-The following table summarizes the commands related to managing and running models:
+### Security best practices
 
-| **Command**                          | **Description**                                                                 |
-|--------------------------------------|---------------------------------------------------------------------------------|
-| `foundry model --help`               | Displays all available model-related commands and their usage.                 |
-| `foundry model run <model>`     | Runs a specified model, downloading it if not cached, and starts an interaction.|
-| `foundry model list`                 | Lists all available models for local use.                                      |
-| `foundry model info <model>`    | Displays detailed information about a specific model.                          |
-| `foundry model download <model>`| Downloads a model to the local cache without running it.                       |
-| `foundry model load <model>`    | Loads a model into the service.                                                |
-| `foundry model unload <model>`  | Unloads a model from the service.                                              |
+- Use AI Foundry Local in environments that align with your organization's security policies.
+- For handling sensitive data, ensure your device meets your organization's security requirements.
+- Consider disk encryption for devices where cached models might contain sensitive fine-tuning data.
 
+### Licensing considerations
 
-## Managing the service
+Models available through AI Foundry Local are subject to their original licenses:
 
-The following table summarizes the commands related to managing and running the Foundry Local service:
+- Open-source models maintain their original licenses (e.g., Apache 2.0, MIT).
+- Commercial models may have specific usage restrictions or require separate licensing.
+- Always review the licensing information for each model before deploying in production.
 
-| **Command**                          | **Description**                                                                 |
-|--------------------------------------|---------------------------------------------------------------------------------|
-| `foundry service --help`              | Displays all available service-related commands and their usage.               |
-| `foundry service start`               | Starts the AI Foundry Local service.                                           |
-| `foundry service stop`                | Stops the AI Foundry Local service.                                            |
-| `foundry service restart`             | Restarts the AI Foundry Local service.                                         |
-| `foundry service status`              | Displays the current status of the AI Foundry Local service.                   |
-| `foundry service ps`                | Lists all models currently loaded in the AI Foundry Local service.             |
-| `foundry service logs`                | Displays the logs of the AI Foundry Local service.                             |
-| `foundry service set`              | Set configuration of the AI Foundry Local service.            |
+## Production deployment scope
 
+AI Foundry Local is designed primarily for:
 
+- Individual developer workstations
+- Single-node deployment
+- Local application development and testing
 
-## Managing the cache
+> [!IMPORTANT]
+> AI Foundry Local is not currently intended for distributed, containerized, or multi-machine production deployment. For production-scale deployment needs, consider Azure AI Foundry for enterprise-grade availability and scale.
 
-The following table summarizes the commands related to managing the local cache where models are stored:
+## Troubleshooting
 
-| **Command**                          | **Description**                                                                 |
-|--------------------------------------|---------------------------------------------------------------------------------|
-| `foundry cache --help`                | Displays all available cache-related commands and their usage.                 |
-| `foundry cache pwd`                  | Displays the current cache directory.                                          |
-| `foundry cache list`                 | Lists all models stored in the local cache.                                   |
-| `foundry cache remove <model>`    | Deletes a model from the local cache.                                          |
-| `foundry cache cd <path>`         | Changes the cache directory.                                 |    
+### Common issues and solutions
+
+| Issue                   | Possible Cause                          | Solution                                                                                  |
+| ----------------------- | --------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Slow inference          | CPU-only model on large parameter count | Use GPU-optimized model variants when available                                           |
+| Model download failures | Network connectivity issues             | Check your internet connection, try `foundry cache list` to verify cache state            |
+| Service won't start     | Port conflicts or permission issues     | Try `foundry service restart` or post an issue providing logs with `foundry zip-logsrock` |
+
+### Diagnosing performance issues
+
+If you're experiencing slow inference:
+
+1. Check that you're using GPU acceleration if available
+2. Monitor memory usage during inference to detect bottlenecks
+3. Consider a more quantized model variant (e.g., INT8 instead of FP16)
+4. Experiment with batch sizes for non-interactive workloads
 
 ## Next steps
 
 - [Learn how to integrate AI Foundry Local with your applications](how-to/integrate-with-inference-sdks.md)
 - [Explore the AI Foundry Local documentation](index.yml)
-
