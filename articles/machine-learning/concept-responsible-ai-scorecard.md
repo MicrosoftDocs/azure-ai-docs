@@ -1,7 +1,7 @@
 ---
 title: Share Responsible AI insights and make data-driven decisions with Azure Machine Learning Responsible AI scorecard
 titleSuffix: Azure Machine Learning
-description: Learn about how to use the Responsible AI scorecard to share responsible AI insights from your machine learning models and make data-driven decisions with non-technical and technical stakeholders.
+description: Learn about how to use the Responsible AI scorecard to share responsible AI insights from your machine learning models and make data-driven decisions with nontechnical and technical stakeholders.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: responsible-ai
@@ -27,9 +27,8 @@ One of the biggest benefits of using the Azure Machine Learning ecosystem is the
 
 ## Who should use a Responsible AI scorecard?
 
-- If you're a data scientist or a machine learning professional, after training your model and generating its corresponding Responsible AI dashboard for assessment and decision-making purposes, you can extract those learnings via our PDF scorecard and share the report easily with your technical and non-technical stakeholders to build trust and gain their approval for deployment.  
-
-- If you're a product manager, business leader, or an accountable stakeholder on an AI product, you can pass your desired model performance and fairness target values such as your target accuracy, target error rate, etc., to your data science team, asking them to generate this scorecard with respect to your identified target values and whether your model meets them. That can provide guidance into whether the model should be deployed or further improved.
+- **Data scientists and machine learning professionals**: After training your model and generating its corresponding Responsible AI dashboard for assessment and decision-making purposes, you can extract those learnings via our PDF scorecard. This allows you to easily share the report with your technical and nontechnical stakeholders, building trust and gaining their approval for deployment.
+- **Product managers, business leaders, and accountable stakeholders on an AI product**: You can provide your desired model performance and fairness target values, such as target accuracy and target error rate, to your data science team. They can then generate the scorecard based on these target values to determine whether the model meets them. This helps guide decisions on whether the model should be deployed or further improved.
 
 ## Next steps
 
