@@ -16,6 +16,8 @@ monikerRange: 'azureml-api-1'
 
 #  View training code for an Automated ML model
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you learn how to view the generated training code from any automated machine learning trained model. 
 
 Code generation for automated ML trained models allows you to see the following details that automated ML uses to train and build the model for a specific run.

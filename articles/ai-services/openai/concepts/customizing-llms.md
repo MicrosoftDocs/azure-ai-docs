@@ -3,7 +3,7 @@ title: Azure OpenAI Service getting started with customizing a large language mo
 titleSuffix: Azure OpenAI Service
 description: Learn more about the concepts behind customizing an LLM with Azure OpenAI.
 ms.topic: conceptual
-ms.date: 09/20/2024
+ms.date: 03/27/2025
 ms.service: azure-ai-openai
 manager: nitinme
 author: mrbullwinkle

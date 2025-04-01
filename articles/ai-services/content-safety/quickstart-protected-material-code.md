@@ -7,13 +7,13 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
-ms.date: 09/22/2024
+ms.date: 03/26/2025
 ms.author: pafarley
 ---
 
 # Quickstart: Protected material detection for code (preview)
 
-The Protected Material for Code feature provides a comprehensive solution for identifying AI outputs that match code from existing GitHub repositories. This feature allows code generation models to be used confidently, in a way that enhances transparency to end users and promotes compliance with organizational policies.
+The Protected Material for Code feature provides a comprehensive solution for identifying AI outputs that match code from existing GitHub repositories. This feature allows you to use code generation models confidently, in a way that enhances transparency to end users and promotes compliance with organizational policies.
 
 [!INCLUDE [content-safety-code-indexer](./includes/code-indexer.md)]
 

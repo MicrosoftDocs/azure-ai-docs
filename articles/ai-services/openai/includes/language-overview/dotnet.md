@@ -5,7 +5,7 @@ description: Azure OpenAI C# support
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 11/18/2024
+ms.date: 03/27/2025
 ---
 
 
@@ -34,10 +34,12 @@ The [stable release](/dotnet/api/azure.ai.openai.azureopenaiclientoptions.servic
 
 The [preview release](/dotnet/api/azure.ai.openai.azureopenaiclientoptions.serviceversion?view=azure-dotnet-preview&preserve-view=true) can currently target:
 
-- `2024-06-01`
 - `2024-08-01-preview`
 - `2024-09-01-preview`
 - `2024-10-01-preview`
+- `2024-12-01-preview`
+- `2025-01-01-preview`
+- `2025-03-01-preview`
 
 ## Installation
 
