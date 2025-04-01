@@ -6,14 +6,16 @@ ms.topic: install-set-up-deploy
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 11/22/2024
+ms.date: 04/01/2025
 ---
 
 # Enable Microsoft Entra ID authentication
 
-Microsoft Entra ID is a cloud-based identity solution that manages user access and permissions for Microsoft services, resources, and applications. Any organization that has a subscription to Microsoft's online business services, like Microsoft Azure, has access to Microsoft Entra ID. Microsoft Entra ID can be used through application programming interfaces (APIs) to seamlessly integrate your applications with a user's Microsoft Entra ID credentials. 
+Microsoft Entra ID is a cloud-based identity solution designed to manage user access and permissions for Microsoft services, resources, and applications. Organizations that subscribe to Microsoft's online business services, such as Microsoft Azure, have access to Microsoft Entra ID. 
 
-This article shows you how to use Microsoft Entra ID to authenticate a request to your Azure AI resource. You don't use a password or key to send your request. Instead, we add an extra layer of security by registering an identity application on the Microsoft Entra ID platform and enabling that application to make requests to your Azure AI resource API. Registering your identity app establishes a trust relationship with the Microsoft identity platform. Here are the steps:
+Microsoft Entra ID, enables you to authenticate requests to your Azure AI resources without the need for passwords or keys. Instead, an robust layer of security is created by registering an identity application with the Microsoft Entra ID platform. This registration enables your identity application to make secure requests to your Azure AI resource API, thus establishing a trust relationship with the Microsoft identity platform.
+
+This article guides you on how to create and utilize a Microsoft Entra ID identity application to authenticate requests to your Azure AI resources. Here are the steps:
 
 * [Set up prerequisites](#prerequisites).
 * [Disable key-based (local) authentication](#disable-key-authentication)
