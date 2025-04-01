@@ -42,12 +42,12 @@ Alternatively, you can create a resource by using the command palette:
 1. Open the command palette by selecting **View > Command Palette**.
 1. Enter `> Azure ML: Create <RESOURCE-TYPE>` into the text box. Replace `RESOURCE-TYPE` with the type of resource you want to create.
 1. Configure the specification file.
-1. Open the command palette **View > Command Palette**.
+1. Open the command palette by selecting **View > Command Palette**.
 1. Enter `> Azure ML: Create Resource` into the text box.
 
 ## Version resources
 
-Some resources like environments, and models allow you to make changes to a resource and store the different versions.
+Some resources, like environments and models, allow you to make changes to a resource and store the different versions.
 
 To version a resource:
 
@@ -61,7 +61,7 @@ As long as the name of the updated resource is the same as the previous version,
 
 For more information, see [What is an Azure Machine Learning workspace?](concept-workspace.md)
 
-### Create workspace
+### Create a workspace
 
 1. In the Azure Machine Learning view, right-click your subscription node and select **Create workspace**.
 1. A specification file appears. Configure the specification file.
@@ -430,8 +430,7 @@ In addition to creating and deleting deployments, you can view and edit settings
 
 1. Expand the subscription node that contains your workspace.
 1. Expand the **Endpoints** node inside your workspace.
-1. Right-click the deployment you want to manage:
-    - To view deployment configuration settings, select **View endpoint properties**.
+1. Right-click the deployment you want to manage, then select **View endpoint properties**.
 
 Alternatively, use the `> Azure ML: View online endpoint properties` command in the command palette.
 
