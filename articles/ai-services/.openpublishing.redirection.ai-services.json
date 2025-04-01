@@ -978,6 +978,11 @@
       "redirect_document_id": true
     },
     {
+      "source_path_from_root": "/articles/ai-services/translator/known-issues.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/known-issues",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/translator/reference/rest-api-guide.md",
       "redirect_url": "/azure/ai-services/translator/text-translation/reference/rest-api-guide",
       "redirect_document_id": true
@@ -1049,7 +1054,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/text-translation/reference/known-issues.md",
-      "redirect_url": "/azure/ai-services/translator/faq",
+      "redirect_url": "/azure/ai-services/translator/reference/known-issues",
       "redirect_document_id": true
     },
     {
