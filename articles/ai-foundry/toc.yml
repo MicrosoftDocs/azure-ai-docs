@@ -52,20 +52,18 @@ items:
     items:
     - name: Deploying models in Azure AI Foundry
       href: concepts/deployments-overview.md
-    - name: Serverless API
+    - name: Azure OpenAI Service
       items:
-      - name: Deploy models as serverless API
-        href: how-to/deploy-models-serverless.md
-      - name: Consume serverless API models from a different project or hub
-        href: how-to/deploy-models-serverless-connect.md
-      - name: Model and region availability for Serverless API deployments
-        href: how-to/deploy-models-serverless-availability.md
-      - name: Content safety for models deployed with serverless APIs
-        href: concepts/model-catalog-content-safety.md
-    - name: Managed compute
-      items:
-      - name: Deploy models via managed compute
-        href: how-to/deploy-models-managed.md
+      - name: Azure OpenAI in Azure AI Foundry
+        href: azure-openai-in-ai-foundry.md
+      - name: Use Azure OpenAI Service in Azure AI Foundry portal
+        href: ai-services/how-to/connect-azure-openai.md
+      - name: Deploy Azure OpenAI models
+        href: how-to/deploy-models-openai.md
+      - name: Azure OpenAI Service quotas and limits
+        href: ../ai-services/openai/quotas-limits.md?context=/azure/ai-foundry/context/context
+      - name: Troubleshoot deployments and monitoring
+        href: how-to/troubleshoot-deploy-and-monitor.md
     - name: Azure AI model inference
       items:
       - name: What is Azure AI model inference?
@@ -82,18 +80,20 @@ items:
         href: ../ai-foundry/model-inference/how-to/inference.md?context=/azure/ai-foundry/context/context
       - name: Azure AI model inference quotas and limits
         href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-foundry/context/context
-    - name: Azure OpenAI Service
+    - name: Serverless API
       items:
-      - name: Azure OpenAI in Azure AI Foundry
-        href: azure-openai-in-ai-foundry.md
-      - name: Use Azure OpenAI Service in Azure AI Foundry portal
-        href: ai-services/how-to/connect-azure-openai.md
-      - name: Deploy Azure OpenAI models
-        href: how-to/deploy-models-openai.md
-      - name: Azure OpenAI Service quotas and limits
-        href: ../ai-services/openai/quotas-limits.md?context=/azure/ai-foundry/context/context
-      - name: Troubleshoot deployments and monitoring
-        href: how-to/troubleshoot-deploy-and-monitor.md
+      - name: Deploy models as serverless API
+        href: how-to/deploy-models-serverless.md
+      - name: Consume serverless API models from a different project or hub
+        href: how-to/deploy-models-serverless-connect.md
+      - name: Model and region availability for Serverless API deployments
+        href: how-to/deploy-models-serverless-availability.md
+      - name: Content safety for models deployed with serverless APIs
+        href: concepts/model-catalog-content-safety.md
+    - name: Managed compute
+      items:
+      - name: Deploy models via managed compute
+        href: how-to/deploy-models-managed.md
   - name: Work with models from the model catalog
     items:
     - name: Featured models in the model catalog
@@ -110,12 +110,12 @@ items:
           href: how-to/healthcare-ai/deploy-cxrreportgen.md
         - name: MedImageParse - prompted segmentation model
           href: how-to/healthcare-ai/deploy-medimageparse.md
+      - name: Nvidia Inference Microservices (NIM)
+        href: how-to/deploy-nvidia-inference-microservice.md
       - name: Gretel Navigator model
         href: how-to/deploy-models-gretel-navigator.md
       - name: Mistral-7B and Mixtral models
         href: how-to/deploy-models-mistral-open.md
-      - name: Stability AI models
-        href: ./how-to/deploy-stability-models.md
     - name: Work with embedding models
       items:
         - name: Work with text embedding models
@@ -128,7 +128,7 @@ items:
           href: ../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context
         - name: Work with reasoning models
           href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context
-        - name: Work with image and audio content
+        - name: Work with multimodal models
           href: ../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context
 - name: Azure OpenAI and AI services
   items:
@@ -324,7 +324,7 @@ items:
       href: /azure/search/tutorial-rag-build-solution?context=/azure/ai-foundry/context/context
   - name: Develop with code
     items:
-    - name: Work with projects in VS Code
+    - name: Work with projects in VS Code containers
       href: how-to/develop/vscode.md
     - name: Start with an AI template
       href: how-to/develop/ai-template-get-started.md
@@ -563,6 +563,8 @@ items:
   items:
   - name: Azure AI Projects SDK
     href: /python/api/overview/azure/ai-projects-readme
+  - name: Azure AI Evaluation SDK
+    href: /python/api/overview/azure/ai-evaluation-readme
   - name: Azure Machine Learning Python SDK
     href: /python/api/overview/azure/ai-ml-readme
   - name: Azure Machine Learning REST API

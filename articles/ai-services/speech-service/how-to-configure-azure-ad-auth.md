@@ -175,11 +175,39 @@ With a Microsoft Entra access token, you can now create a Speech SDK configurati
 
 The method of providing the token, and the method to construct the corresponding Speech SDK ```Config``` object varies by the object you're using.
 
-### SpeechRecognizer, SpeechSynthesizer, IntentRecognizer, ConversationTranscriber
-
-For ```SpeechRecognizer```, ```SpeechSynthesizer```, ```IntentRecognizer```, ```ConversationTranscriber``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
-
 ::: zone pivot="programming-language-csharp"
+### SpeechRecognizer, SourceLanguageRecognizer, ConversationTranscriber
+
+For ```SpeechRecognizer```, ```SourceLanguageRecognizer```, ```ConversationTranscriber``` objects, use an appropriate instance of [TokenCredential](/dotnet/api/azure.core.tokencredential) for authentication, along with the endpoint that includes your [custom domain](/azure/ai-services/speech-service/speech-services-private-link?tabs=portal#create-a-custom-domain-name), to create a ```SpeechConfig``` object.
+
+```C#
+TokenCredential browserCredential = new InteractiveBrowserCredential();
+
+// Define the custom domain endpoint for your Speech resource.
+var endpoint = "wss://{your custom name}.cognitiveservices.azure.com/stt/speech/universal/v2";
+
+// Create the SpeechConfig object using the custom domain endpoint and TokenCredential.
+var speechConfig = SpeechConfig.FromEndpoint(new Uri(endpoint), browserCredential);
+```
+
+### TranslationRecognizer
+
+For ```TranslationRecognizer``` object, use an appropriate instance of [TokenCredential](/dotnet/api/azure.core.tokencredential) for authentication, along with the endpoint that includes your [custom domain](/azure/ai-services/speech-service/speech-services-private-link?tabs=portal#create-a-custom-domain-name), to create a ```SpeechTranslationConfig``` object.
+
+```C#
+TokenCredential browserCredential = new InteractiveBrowserCredential();
+
+// Define the custom domain endpoint for your Speech resource
+var endpoint = "wss://{your custom name}.cognitiveservices.azure.com/stt/speech/universal/v2";
+
+// Create the SpeechTranslationConfig object using the custom domain endpoint and TokenCredential.
+var speechConfig = SpeechTranslationConfig.FromEndpoint(new Uri(endpoint), browserCredential);
+```
+
+### SpeechSynthesizer, IntentRecognizer
+
+For ```SpeechSynthesizer```, ```IntentRecognizer``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
+
 ```C#
 string resourceId = "Your Resource ID";
 string aadToken = "Your Microsoft Entra access token";
@@ -192,6 +220,10 @@ var speechConfig = SpeechConfig.FromAuthorizationToken(authorizationToken, regio
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"
+### SpeechRecognizer, SpeechSynthesizer, IntentRecognizer, ConversationTranscriber
+
+For ```SpeechRecognizer```, ```SpeechSynthesizer```, ```IntentRecognizer```, ```ConversationTranscriber``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
+
 ```C++
 std::string resourceId = "Your Resource ID";
 std::string aadToken = "Your Microsoft Entra access token";
@@ -204,6 +236,10 @@ auto speechConfig = SpeechConfig::FromAuthorizationToken(authorizationToken, reg
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
+### SpeechRecognizer, SpeechSynthesizer, IntentRecognizer, ConversationTranscriber
+
+For ```SpeechRecognizer```, ```SpeechSynthesizer```, ```IntentRecognizer```, ```ConversationTranscriber``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
+
 ```Java
 String resourceId = "Your Resource ID";
 String region = "Your Region";
@@ -215,6 +251,10 @@ SpeechConfig speechConfig = SpeechConfig.fromAuthorizationToken(authorizationTok
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
+### SpeechRecognizer, SpeechSynthesizer, IntentRecognizer, ConversationTranscriber
+
+For ```SpeechRecognizer```, ```SpeechSynthesizer```, ```IntentRecognizer```, ```ConversationTranscriber``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
+
 ```Python
 resourceId = "Your Resource ID"
 region = "Your Region"
@@ -224,23 +264,11 @@ speechConfig = SpeechConfig(auth_token=authorizationToken, region=region)
 ```
 ::: zone-end
 
+::: zone pivot="programming-language-cpp"
 ### TranslationRecognizer
 
 For the ```TranslationRecognizer```, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechTranslationConfig``` object.
 
-::: zone pivot="programming-language-csharp"
-```C#
-string resourceId = "Your Resource ID";
-string aadToken = "Your Microsoft Entra access token";
-string region =  "Your Speech Region";
-
-// You need to include the "aad#" prefix and the "#" (hash) separator between resource ID and Microsoft Entra access token.
-var authorizationToken = $"aad#{resourceId}#{aadToken}";
-var speechConfig = SpeechTranslationConfig.FromAuthorizationToken(authorizationToken, region);
-```
-::: zone-end
-
-::: zone pivot="programming-language-cpp"
 ```cpp
 std::string resourceId = "Your Resource ID";
 std::string aadToken = "Your Microsoft Entra access token";
@@ -253,6 +281,10 @@ auto speechConfig = SpeechTranslationConfig::FromAuthorizationToken(authorizatio
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
+### TranslationRecognizer
+
+For the ```TranslationRecognizer```, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechTranslationConfig``` object.
+
 ```Java
 String resourceId = "Your Resource ID";
 String region = "Your Region";
@@ -264,6 +296,10 @@ SpeechTranslationConfig translationConfig = SpeechTranslationConfig.fromAuthoriz
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
+### TranslationRecognizer
+
+For the ```TranslationRecognizer```, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechTranslationConfig``` object.
+
 ```Python
 resourceId = "Your Resource ID"
 region = "Your Region"

@@ -24,14 +24,13 @@ added security, making it ideal for integrating with existing infrastructure or 
 OpenAPI Specified tool improves your function calling experience by providing standardized, 
 automated, and scalable API integrations that enhance the capabilities and efficiency of your agent. 
 [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) provide a formal standard for 
-describing HTTP APIs. This allows people to understand how an API works, how a sequence of APIs 
-work together, generate client code, create tests, apply design standards, and more. Currently, we support three authentication types with the OpenAPI 3.0 specified tools: `anonymous`, `API key`, `managed identity`.
+describing HTTP APIs. This allows people to understand how an API works, how a sequence of APIs works together, generate client code, create tests, apply design standards, and more. Currently, we support three authentication types with the OpenAPI 3.0 specified tools: `anonymous`, `API key`, `managed identity`.
 
 ### Usage support
 
 |Azure AI foundry support  | Python SDK |	C# SDK | REST API | Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|
-|      | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+|   ✔️   | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 1. Ensure you've completed the prerequisites and setup steps in the [quickstart](../../quickstart.md).
@@ -128,10 +127,34 @@ To set up authenticating with Managed Identity:
 
     1. Click **Finish**.
 
-1. Once the setup is done, you can continue by using the tool through the SDK or REST API. Use the tabs at the top of this article to see code samples.
+1. Once the setup is done, you can continue by using the tool through the Foundry Portal, SDK, or REST API. Use the tabs at the top of this article to see code samples.
+
+## Add OpenAPI spec tool in the Azure AI Foundry portal
+
+You can add the Grounding with Bing Search tool to an agent programatically using the code examples listed at the top of this article, or the [Azure AI Foundry portal](https://ai.azure.com/). If you want to use the portal:
+
+1. in the **Create and debug** screen or **Agent playground**, select your agent.
+1. Scroll down the **Setup** pane on the right to **action**. Then select **Add**.
+
+    :::image type="content" source="../../media/tools/action-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/action-tools.png":::
+   
+1. Select **OpenAPI 3.0 specified tool**.
+
+    :::image type="content" source="../../media/tools/action-tools-list.png" alt-text="A screenshot showing the available action tools in the Azure AI Foundry portal." lightbox="../../media/tools/action-tools-list.png":::
+   
+1. Give your tool a name (required) and a description (optional). The description will be used by the model to decide when and how to use the tool.
+
+   :::image type="content" source="../../media/tools/open-api-details.png" alt-text="A screenshot showing the openAPI tool details in the Azure AI Foundry portal." lightbox="../../media/tools/open-api-details.png":::
+
+1. Click Next and select your authentication method. Choose `connection` for `API key`.
+   1. If you choose `connection`, you need to select the custom keys connection you have created before.
+   1. If you choose `managed identity`, you need to input the audience to get your token. An example of an audience would be `https://cognitiveservices.azure.com/` to connect to Azure AI Services. Make sure you have already set up authentication and role assignment (as described in the [section](#authenticating-with-managed-identity-microsoft-entra-id) above).
+      
+1. Copy and paste your OpenAPI specification in the text box.
+
+1. Review and add the tool to your agent.
 
 ::: zone-end
-
 
 ::: zone pivot="code-example"
 ## Step 1: Create a project client

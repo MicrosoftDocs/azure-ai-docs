@@ -2,7 +2,6 @@
 title: Smart-cropped thumbnails - Image Analysis 4.0
 titleSuffix: Azure AI services
 description: Concepts related to generating thumbnails for images using the Image Analysis 4.0 API.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 

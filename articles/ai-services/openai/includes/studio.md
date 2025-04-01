@@ -5,7 +5,7 @@ description: Walkthrough on how to get started with Azure OpenAI and make your f
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 09/19/2023
+ms.date: 03/26/2025
 ---
 
 ## Prerequisites
@@ -15,7 +15,7 @@ ms.date: 09/19/2023
 
 ## Go to the Azure AI Foundry
 
-Navigate to <a href="https://oai.azure.com/" target="_blank">Azure AI Foundry</a> and sign-in with credentials that have access to your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
+Navigate to the <a href="https://ai.azure.com/" target="_blank">Azure AI Foundry portal</a> and sign-in with credentials that have access to your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
 
 ## Playground
 
@@ -39,7 +39,7 @@ In the Completions playground you can also view Python and curl code samples pre
 
 To use the Azure OpenAI for text summarization in the Completions playground, follow these steps:
 
-1. Sign in to [Azure AI Foundry](https://oai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
 1. Select the subscription and OpenAI resource to work with. 
 1. Select **Completions playground** on the landing page.
 1. Select your deployment from the **Deployments** dropdown. If your resource doesn't have a deployment, select **Create a deployment** and then revisit this step.

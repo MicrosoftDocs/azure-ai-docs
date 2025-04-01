@@ -1,7 +1,6 @@
 ---
 title: Fine-tuning function calls with Azure OpenAI Service
 description: Learn how to improve tool calling performance with Azure OpenAI fine-tuning
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to

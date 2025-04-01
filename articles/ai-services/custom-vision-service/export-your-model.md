@@ -2,7 +2,6 @@
 title: Export your model to mobile - Custom Vision Service
 titleSuffix: Azure AI services
 description: Learn how to export your model for use in creating mobile applications or to run locally for real-time classification.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
@@ -47,7 +46,7 @@ To convert the domain of an existing model, follow these steps:
 
     :::image type="content" source="media/export-your-model/gear-icon.png" alt-text="Screenshot that shows the gear icon.":::
 
-1. In the **Domains** section, select one of the **compact** domains. Select **Save Changes** to save the changes. 
+1. In the **Domains** section, select one of the **compact** domains. Select **Save Changes** to save the changes.
 
     > [!NOTE]
     > For Vision AI Dev Kit, the project must be created with the **General (Compact)** domain, and you must specify the **Vision AI Dev Kit** option under the **Export Capabilities** section.
@@ -77,4 +76,3 @@ To integrate your exported model into an application, explore one of the followi
 * [Use your ONNX model with Windows Machine Learning](custom-vision-onnx-windows-ml.md)
 * See the Swift sample for [CoreML model in an iOS application](https://go.microsoft.com/fwlink/?linkid=857726)
 * See the Android sample for [TensorFlow model in an Android app](https://github.com/Azure-Samples/cognitive-services-android-customvision-sample)
-* See the Xamarin iOS sample for [CoreML model with Xamarin](https://github.com/xamarin/ios-samples/tree/master/ios11/CoreMLAzureModel)
