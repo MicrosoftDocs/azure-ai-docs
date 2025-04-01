@@ -17,9 +17,9 @@ ms.custom: responsible-ml, build-2023, build-2023-dataai
 
 Our Responsible AI dashboard is designed for machine learning professionals and data scientists to explore and evaluate model insights and inform their data-driven decisions. While it can help you implement Responsible AI practically in your machine learning lifecycle, there are some needs left unaddressed:
 
-- Bridging the gap between the technical Responsible AI tools (designed for machine learning professionals) and the ethical, regulatory, and business requirements that define the production environment.
-- Facilitating effective multi-stakeholder alignment in an end-to-end machine learning lifecycle, ensuring technical experts receive timely feedback and direction from nontechnical stakeholders.
-- Ensuring the ability to share model and data insights with auditors and risk officers for auditability purposes, as required by AI regulations.
+- The gap between the technical Responsible AI tools (designed for machine learning professionals) and the ethical, regulatory, and business requirements that define the production environment.
+- The need for effective multi-stakeholder alignment in an end-to-end machine learning lifecycle, ensuring technical experts receive timely feedback and direction from nontechnical stakeholders.
+- The ability to share model and data insights with auditors and risk officers for auditability purposes, as required by AI regulations.
 
 One of the biggest benefits of using the Azure Machine Learning ecosystem is the ability to archive model and data insights in the Azure Machine Learning Run History for quick reference in the future. As part of this infrastructure, and to complement machine learning models and their corresponding Responsible AI dashboards, we introduce the Responsible AI scorecard. This scorecard empowers machine learning professionals to easily generate and share their data and model health records.
 
