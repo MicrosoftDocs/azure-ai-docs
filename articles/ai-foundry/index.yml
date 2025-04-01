@@ -84,7 +84,7 @@ landingContent:
           - text: Azure OpenAI Service Reference
             url: ../ai-services/openai/reference.md
   # Card
-  - title: Create a full app using a template
+  - title: Build apps with a template
     linkLists:
       - linkListType: quickstart
         links:
