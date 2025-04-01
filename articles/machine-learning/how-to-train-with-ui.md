@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.custom: devplatv2
 author: ssalgadodev
 ms.author: ssalgado
-ms.date: 03/28/2025
+ms.date: 03/31/2025
 ms.reviewer: amipatel
 ---
 
@@ -33,17 +33,19 @@ In this article, you learn how to use your own data and code to train a machine 
 
 1. Sign in to the [Azure Machine Learning studio](https://ml.azure.com), then select your subscription and workspace.
 
-1. Enter the job creation UI from the homepage. Select **New +** and choose **Training job**.
+1. Enter the job creation UI from the homepage. Select **+ New** and choose **Training job**.
 
     :::image type="content" source="media/how-to-train-with-ui/unified-job-submission-home.png" alt-text="Screenshot that shows the Azure Machine Learning studio homepage.":::
 
-1. Select your method of training, complete the rest of the submission form based on your selection, and then submit the training job. In the next section, we walk through the form with the steps for running a custom script (command job).
+1. Select your method of training, then choose **Start configuring job** to open the submission form.
 
     :::image type="content" source="media/how-to-train-with-ui/training-method.png" alt-text="Screenshot that shows the training method options on the Azure Machine Learning studio training form.":::
 
+    In the next section, we walk through the form with the steps for running a custom training script (command job).
+
 ## Configure basic settings
 
-Configure the basic information about your training job. You can proceed next if you're satisfied with the defaults we chose for you, or make changes to your desired preference.
+Configure the basic information about your training job. You can proceed to the next page if you're satisfied with the defaults we chose for you, or make changes based on your desired preference.
 
 :::image type="content" source="media/how-to-train-with-ui/basic-settings.png" alt-text="Screenshot that shows the basic settings form for training jobs.":::
 
@@ -51,15 +53,15 @@ The following fields are available:
 
 |Field| Description|
 |------| ------|
-|Job name| The job name field is used to uniquely identify your job. It's also used as the display name for your job.|
+|Job name| The job name is used to uniquely identify your job. It's also used as the display name for your job.|
 |Experiment name| This helps organize the job in Azure Machine Learning studio. Each job's run record is organized under the corresponding experiment in the studio's **Experiment** tab. By default, Azure puts the job in the **Default** experiment.|
 |Description| Add some text describing your job, if desired.|
-|Timeout| Specify number of hours the entire training job is allowed to run. After this limit is reached, the system cancels the job including any child jobs.|
-|Tags| Add tags to your job to help with organization.|
+|Timeout| Specify the number of hours the entire training job is allowed to run. After this limit is reached, the system cancels the job including any child jobs.|
+|Tags| Add tags to help organize your jobs.|
 
-## Training script
+## Upload training script
 
-Upload your source code, configure any inputs or outputs required to execute the training job, and specify the command to execute your training script.  
+On the next page, upload your source code. Configure any inputs or outputs required to execute the training job, and specify the command to execute your training script.  
 
 You can use a code file or a folder from your local machine or workspace's default blob storage. Azure shows the files to be uploaded after you make the selection.
 
@@ -97,7 +99,7 @@ When you use an input in the command, you need to specify the input name. To ind
 
 ## Select compute resources
 
-Select the compute target on which you'd like your job to run. The job creation UI supports several compute types:
+On the next page, select the compute target on which you'd like your job to run. The job creation UI supports several compute types:
 
 | Compute type | Introduction |
 | --- | --- |
