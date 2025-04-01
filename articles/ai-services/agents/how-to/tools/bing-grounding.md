@@ -44,7 +44,7 @@ Grounding with Bing returns relevant search results to the customer's model depl
 ## Setup  
 
 > [!NOTE]
-> 1. Grounding with Bing Search works with [all AOAI models](../../concepts/model-region-support.md) Azure AI Agent Service supports, except `gpt-4o-mini, 2024-07-18`. 
+> 1. Grounding with Bing Search works with [all Azure OpenAI models](../../concepts/model-region-support.md) that Azure AI Agent Service supports, except `gpt-4o-mini, 2024-07-18`. 
 
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
 
