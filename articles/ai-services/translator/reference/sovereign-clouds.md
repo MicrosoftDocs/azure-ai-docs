@@ -41,8 +41,8 @@ The following table lists the base URLs for Azure sovereign cloud endpoints:
 |Azure portal | <ul><li>[Azure Government Portal](https://portal.azure.us/)</li></ul>|
 | Available regions</br></br>The region-identifier is a required header when using Translator for the government cloud. | <ul><li>`usgovarizona` </li><li> `usgovvirginia`</li></ul>|
 |Available pricing tiers|<ul><li>Free (F0) and Standard (S1). See [Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/)</li></ul>|
-|Supported Features | <ul><li>[Text Translation](text-translation/reference/v3/reference.md)</li><li>[Document Translation](document-translation/overview.md)</li><li>[Custom Translator](custom-translator/overview.md)</li></ul>|
-|Supported Languages| <ul><li>[Translator language support](language-support.md)</li></ul>|
+|Supported Features | <ul><li>[Text Translation](../text-translation/reference/v3/reference.md)</li><li>[Document Translation](../document-translation/overview.md)</li><li>[Custom Translator](../custom-translator/overview.md)</li></ul>|
+|Supported Languages| <ul><li>[Translator language support](../language-support.md)</li></ul>|
 
 <!-- markdownlint-disable MD036 -->
 
@@ -120,7 +120,7 @@ The Azure operated by 21Vianet cloud is a physical and logical network-isolated 
 |---|---|
 |Azure portal |<ul><li>[Azure operated by 21Vianet Portal](https://portal.azure.cn/)</li></ul>|
 |Regions <br></br>The region-identifier is a required header when using a multi-service resource. | <ul><li>`chinanorth` </li><li> `chinaeast2`</li></ul>|
-|Supported Feature|<ul><li>[Text Translation](https://docs.azure.cn/cognitive-services/translator/reference/v3-0-reference)</li><li>[Document Translation](document-translation/overview.md)</li></ul>|
+|Supported Feature|<ul><li>[Text Translation](https://docs.azure.cn/cognitive-services/translator/reference/v3-0-reference)</li><li>[Document Translation](../document-translation/overview.md)</li></ul>|
 |Supported Languages|<ul><li>[Translator language support.](https://docs.azure.cn/cognitive-services/translator/language-support)</li></ul>|
 
 <!-- markdownlint-disable MD036 -->
@@ -203,4 +203,4 @@ https://<NAME-OF-YOUR-RESOURCE>.cognitiveservices.azure.cn/translator/text/batch
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn more about Translator](index.yml)
+> [Learn more about Translator](../index.yml)
