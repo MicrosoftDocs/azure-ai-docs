@@ -72,6 +72,8 @@ landingContent:
         links:
           - text: Get started with the Azure AI Foundry SDKs
             url: how-to/develop/sdk-overview.md
+          - text: Start with an AI template
+            url: how-to/develop/ai-template-get-started.md
       - linkListType: tutorial
         links:
           - text: Build a custom app
@@ -88,8 +90,6 @@ landingContent:
     linkLists:
       - linkListType: quickstart
         links:
-          - text: Start with an AI template
-            url: how-to/develop/ai-template-get-started.md
           - text: Get started with AI chat
             url: https://github.com/Azure-Samples/get-started-with-ai-chat
           - text: Get started with AI agents
