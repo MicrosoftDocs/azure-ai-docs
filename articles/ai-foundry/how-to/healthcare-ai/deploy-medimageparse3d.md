@@ -62,7 +62,7 @@ Consume the MedImageParse 3D segmentation model as a REST API, using simple GET 
 
 ```python
 from azure.ai.ml import MLClient
-from azure.identity import DeviceCodeCredential
+from azure.identity import DefaultAzureCredential
 
 credential = DefaultAzureCredential()
 
@@ -75,17 +75,21 @@ In the deployment configuration, you get to choose authentication method. This e
 
 Once the model is deployed, use the following code to send data and retrieve segmentation masks.
 
-TODO: the example here follows MedImageParse (2D) where it uses `ml_client_workspace.online_endpoints.invoke` instead of `urllib.request.urlopen` as in this [notebook](https://dev.azure.com/msazuredev/HLS%20AI%20Platform/_git/3dMedImageParseDeployment?path=/notebooks/03.model.endpoint.api.call.ipynb&version=GBmain&line=192&lineEnd=193&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents). Verify the correct call pattern.
-
 ```python
 import base64
 import json
+import urllib.request
+import matplotlib.pyplot as plt
+import nibabel as nib
+import tempfile
 import os
 
-sample_image = "example.nii.gz"
+# Replace with the path to your NIfTI input file
+sample_image = "./examples/amos_0308.nii.gz"
 with open(sample_image, "rb") as image_file:
     base64_image = base64.b64encode(image_file.read()).decode('utf-8')
 
+# Prepare data payload
 data = {
     "input_data": {
         "columns": [ "image", "text" ],
@@ -99,21 +103,39 @@ data = {
     }
 }
 data_json = json.dumps(data)
+body = str.encode(data_json)
 
-# Create request json
-request_file_name = "sample_request_data.json"
-with open(request_file_name, "w") as request_file:
-    json.dump(data, request_file)
+# Add your endpoint URL and API key
+url = "<your-endpoint-url>"
+api_key = "<your-api-key>"
 
-response = ml_client_workspace.online_endpoints.invoke(
-    endpoint_name=endpoint_name,
-    deployment_name=deployment_name,
-    request_file=request_file_name,
-)
+headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + api_key
+}
+
+req = urllib.request.Request(url, body, headers)
+
+# Make sure decode_base64_to_nifti() and plot_segmentation_masks() are defined above
+try:
+    response = urllib.request.urlopen(req)
+    result = response.read()
+    result_list = json.loads(result)
+
+    # Extract and decode NIfTI segmentation output
+    nifti_file_str = result_list[0]["nifti_file"]
+    nifti_file_data = decode_base64_to_nifti(nifti_file_str)
+
+    print(nifti_file_data.shape)
+    plot_segmentation_masks(nifti_file_data)
+
+except urllib.error.HTTPError as error:
+    print("The request failed with status code: " + str(error.code))
+    print(error.info())
+    print(error.read().decode("utf8", 'ignore'))
 ```
 
 ## Use MedImageParse 3D REST API
-TODO: verify all contents in this section
 
 MedImageParse 3D model assumes a simple single-turn interaction where one request produces one response. 
 
@@ -123,19 +145,19 @@ Request payload is a JSON formatted string containing the following parameters:
 
 | Key           | Type           | Required/Default | Description |
 | ------------- | -------------- | :-----------------:| ----------------- |
-| `input_data`       | `[object]`       | Y    | An object containing the input data payload |
+| `input_data`       | `[object]`       | Yes    | An object containing the input data |
 
 The `input_data` object contains the following fields:
 
 | Key           | Type           | Required/Default | Allowed values    | Description |
 | ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `columns`       | `list[string]`       | Y    |  `"image"`, `"text"` | An object containing the strings mapping data to inputs passed to the model.|
-| `index`   | `integer` | Y | 0 - 256 | Count of inputs passed to the model. You're limited by how much data can be passed in a single POST request, which depends on the size of your images. Therefore, it's reasonable to keep this number in the dozens. |
-| `data`   | `list[list[string]]` | Y | "" | The list contains the items passed to the model which is defined by the index parameter. Each item is a list of two strings. The order is defined by the `columns` parameter. The `text` string contains the prompt text. The `image` string is the input volume in NIfTI format encoded using base64 and decoded as utf-8 string. The input text is a string containing the target (e.g., organ) to be segmented. |
+| `columns`       | `list[string]`       | Yes    |  `"image"`, `"text"` | An object containing the strings mapping data to inputs passed to the model.|
+| `index`   | `integer` | Yes | 0 - 256 | Count of inputs passed to the model. You're limited by how much data can be passed in a single POST request, which depends on the size of your images. Therefore, it's reasonable to keep this number in the dozens. |
+| `data`   | `list[list[string]]` | Yes | Base64 image + text prompt | The list contains the items passed to the model which is defined by the index parameter. Each item is a list of two strings. The order is defined by the `columns` parameter. The `text` string contains the prompt text. The `image` string is the input volume in NIfTI format encoded using base64 and decoded as utf-8 string. The input text is a string containing the target (e.g., organ) to be segmented. |
 
 ### Request example
 
-**Requesting segmentation of all cells in a pathology image**
+**Requesting segmentation of pancreas**
 ```JSON
 {
   "input_data": {
@@ -154,66 +176,87 @@ The `input_data` object contains the following fields:
 
 ### Response schema
 
-Response payload is a list of JSON-formatted strings, each corresponding to a submitted volume. Each string contains a `segmentation_object` object.
+The response is a list of objects. Each object contains the segmentation result for one input. The segmentation mask is encoded as a Base64 string inside a serialized JSON object under the key `nifti_file`.
 
-`segmentation_object` contains the following fields:
-
-| Key           | Type           |  Description |
-| ------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `image_features`       | `segmentation_mask` | An object representing the segmentation masks for a given image |
-| `text_features`       | `list[string]` |  List of strings, one per each submitted text string, classifying the segmentation masks into one of 16 biomedical segmentation categories each: `liver`, `lung`, `kidney`, `pancreas`, `heart anatomies`, `brain anatomies`, `eye anatomies`, `vessel`, `other organ`, `tumor`, `infection`, `other lesion`, `fluid disturbance`, `other abnormality`, `histology structure`, `other` |
-
-`segmentation_mask` contains the following fields:
-
-| Key           | Type           |  Description |
-| ------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `data`       | `string` | A base64-encoded NumPy array containing the one-hot encoded segmentation mask. There could be multiple instances of objects in the returned array. Decode and use `np.frombuffer` to deserialize. The array contains a three-dimensional matrix. The array's size is `1024x1024` (matching the input image dimensions), with the third dimension representing the number of input sentences provided. See the provided [sample notebooks](#learn-more-from-samples) for decoding and usage examples. |
-| `shape`       | `list[int]` | A list representing the shape of the array (typically `[NUM_PROMPTS, 1024, 1024]`) |
-| `dtype`       | `string` | An instance of the [NumPy dtype class](https://numpy.org/doc/stable/reference/arrays.dtypes.html) serialized to a string. Describes the data packing in the data array. |
+| Key            | Type   | Description                                                                 |
+| -------------- | ------ | --------------------------------------------------------------------------- |
+| `nifti_file` | string | JSON-formatted string containing the base64-encoded NIfTI segmentation mask |
 
 ### Response example
-The requested segmentation mask is stored in NIfTI, represented by an encoded string.
 
-TODO: verify the value of nifti_file is a string or a json object (without the quote).
-```JSON
+```json
 [
   {
-    "nifti_file": "{'data': 'H4sIAAAAAAAE...'}"
+    "nifti_file": "{\"data\": \"H4sIAAAAAAAE...\"}"
   }
 ]
 ```
 
-TODO: In an [example notebook](https://dev.azure.com/msazuredev/HLS%20AI%20Platform/_git/3dMedImageParseDeployment?path=/notebooks/01.model.packaging.ipynb&version=GBmain&line=314&lineEnd=315&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents), `temp_file.flush()` and `os.unlink(temp_file.name)` are commented out. Are these lines needed?
+The `nifti_file` field is a **stringified JSON object**. To decode:
 
-The NIfTI file can be obtained by decoding the returned string using a code like
 ```python
-def decode_base64_to_nifti(base64_string: str) -> nib.Nifti1Image:
+import json
+import base64
+import tempfile
+import nibabel as nib
+import os
+
+def decode_base64_to_nifti(base64_string: str):
     """
     Decode a Base64 string back to a NIfTI image.
-    
+
     Args:
-        base64_string (str): Base64 encoded string of NIfTI image
-    
+        base64_string (str): Base64 encoded string of NIfTI image, wrapped in a JSON string
+
     Returns:
-        nib.Nifti1Image: Decoded NIfTI image object
+        np.ndarray: Decoded NIfTI image data as a NumPy array
     """
+    # Parse the inner JSON object to extract the 'data' field
     base64_string = json.loads(base64_string)["data"]
-    # Decode Base64 string to bytes
+
+    # Decode the Base64 string to raw bytes
     byte_data = base64.b64decode(base64_string)
-    
-    # Create a temporary file to load the NIfTI image
+
+    # Write the decoded bytes to a temporary .nii.gz file
     with tempfile.NamedTemporaryFile(suffix='.nii.gz', delete=False) as temp_file:
-        temp_file.write(byte_data)
-        temp_file.flush()
-        # Load NIfTI image from the temporary file
-        nifti_image = nib.load(temp_file.name)
-    
-    # Remove temporary file
+        temp_file.write(byte_data)     # Write bytes to file
+        temp_file.flush()              # Ensure it's fully written to disk
+        nifti_image = nib.load(temp_file.name)  # Load the image with nibabel
+
+    # Clean up the temporary file to avoid clutter
     os.unlink(temp_file.name)
-    
+
+    # Return the image as a NumPy array
     return nifti_image.get_fdata()
 ```
+To plot segmentation mask
+```python
+import matplotlib.pyplot as plt
 
+def plot_segmentation_masks(segmentation_masks):
+    """
+    Plot a series of 2D slices from a 3D segmentation mask volume.
+    Only slices with non-zero masks are displayed.
+
+    Args:
+        segmentation_masks (np.ndarray): A 3D NumPy array of shape (H, W, D),
+                                         where D is the number of slices.
+    """
+    index = 1
+    plt.figure(figsize=(15, 15))
+
+    # Loop through each slice (along the depth axis)
+    for i in range(segmentation_masks.shape[2]):
+        # Only show slices that contain non-zero segmentation
+        if segmentation_masks[:, :, i].sum() > 0:
+            plt.subplot(4, 4, index)  # Adjust grid size if needed
+            plt.imshow(segmentation_masks[:, :, i], cmap='gray')
+            plt.axis('off')
+            index += 1
+
+    plt.tight_layout()
+    plt.show()
+```
 ### Supported input formats
 
 The deployed model API supports volumes encoded in NIfTI format.
