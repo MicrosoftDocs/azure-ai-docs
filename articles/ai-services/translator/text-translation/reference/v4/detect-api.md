@@ -1,17 +1,17 @@
 ---
-title: Azure AI Translator v3.0 detect method
+title: Azure AI Translator v4.0 detect method
 titleSuffix: Azure AI services
-description: Identify the language of a piece of text with the Azure AI Translator v3.0 detect method.
+description: Identify the language of a source text using Azure AI Translator v4.0 detect method.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 03/31/2025
+ms.date: 03/28/2025
 ms.author: lajanuar
 ---
 
 <!-- markdownlint-disable MD033 -->
-# Azure AI Translator v3.0: detect
+# Azure AI Translator v4.0: detect (preview)
 
 Identifies the language of a piece of text.
 
@@ -20,11 +20,11 @@ Identifies the language of a piece of text.
 Send a `POST` request to:
 
 ```HTTP
-https://api.cognitive.microsofttranslator.com/detect?api-version=3.0
+https://api.cognitive.microsofttranslator.com/detect?api-version=v4
 
 ```
 
-_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](../v3/reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -32,7 +32,7 @@ Request parameters passed on the query string are:
 
 | Query parameter | Description |
 | --- | --- |
-| api-version | *Required parameter*.<br>Version of the API requested by the client. Value must be `3.0`. |
+| api-version | *Required parameter*.<br>Version of the API requested by the client. Value must be `v4`. |
 
 Request headers include:
 
@@ -107,5 +107,5 @@ If an error occurs, the request returns a JSON error response. The error code is
 The following example shows how to retrieve languages supported for text translation.
 
  ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/detect?api-version=3.0" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'What language is this text written in?'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/detect?api-version=v4" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'What language is this text written in?'}]"
 ```

@@ -1,19 +1,18 @@
 ---
-title: Translator Translate Method
+title: Azure AI Translator v3.0 translate method
 titleSuffix: Azure AI services
-description: Understand the parameters, headers, and body messages for the Azure AI Translator to translate text method.
+description: Understand Azure AI Translator v3.0 translate text method parameters, headers, and request body options and requirements.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 09/26/2024
+ms.date: 03/31/2025
 ms.author: lajanuar
 ---
 
-# Translator 3.0: Translate
+# Azure AI Translator v3.0: translate
 
-Translates text.
+Translate text.
 
 ## Request URL
 
@@ -121,22 +120,7 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 | X-mt-system | Specifies the system type that was used for translation for each 'to' language requested for translation. The value is a comma-separated list of strings. Each string indicates a type:  </br></br>*Custom - Request includes a custom system and at least one custom system was used during translation.*</br> Team - All other requests |
 | X-metered-usage |Specifies consumption (the number of characters for which the user is charged) for the translation job request. For example, if the word "Hello" is translated from English (en) to French (fr), this field returns the value `5`.|
 
-## Response status codes
 
-The following are the possible HTTP status codes that a request returns.
-
-|Status code | Description |
-| --- | --- |
-|200 | Success. |
-|400 |One of the query parameters is missing or not valid. Correct request parameters before retrying. |
-|401 | The request couldn't be authenticated. Check that credentials are specified and valid. |
-|403 | The request isn't authorized. Check the details error message. This status code often indicates that you used all the free translations provided with a trial subscription. |
-|408 | The request couldn't be fulfilled because a resource is missing. Check the details error message. When the request includes a custom category, this status code often indicates that the custom translation system isn't yet available to serve requests. The request should be retried after a waiting period (for example, 1 minute). |
-|429 | The server rejected the request because the client exceeded request limits. |
-|500 |  An unexpected error occurred. If the error persists, report it with: date and time of the failure, request identifier from response header X-RequestId, and client identifier from request header X-ClientTraceId. |
-|503 |Server temporarily unavailable. Retry the request. If the error persists, report it with: date and time of the failure, request identifier from response header X-RequestId, and client identifier from request header X-ClientTraceId. |
-
-If an error occurs, the request returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [v3 Translator reference page](reference.md#errors).
 
 ## Examples
 
@@ -144,7 +128,7 @@ If an error occurs, the request returns a JSON error response. The error code is
 
 This example shows how to translate a single sentence from English to Simplified Chinese.
 
-```curl
+ ```bash
 curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=zh-Hans" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'Hello, what is your name?'}]"
 ```
 
@@ -166,7 +150,7 @@ The `translations` array includes one element, which provides the translation of
 
 This example shows how to translate a single sentence from English to Simplified Chinese. The request doesn't specify the input language. Autodetection of the source language is used instead.
 
-```curl
+ ```bash
 curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=zh-Hans" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'Hello, what is your name?'}]"
 ```
 
@@ -188,7 +172,7 @@ The response is similar to the response from the previous example. Since languag
 
 Let's extend the previous example by adding transliteration. The following request asks for a Chinese translation written in Latin script.
 
-```curl
+ ```bash
 curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=zh-Hans&toScript=Latn" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'Hello, what is your name?'}]"
 ```
 
@@ -215,7 +199,7 @@ The translation result now includes a `transliteration` property, which gives th
 
 Translating multiple strings at once is simply a matter of specifying an array of strings in the request body.
 
-```curl
+ ```bash
 curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=zh-Hans" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'Hello, what is your name?'}, {'Text':'I am fine, thank you.'}]"
 ```
 
@@ -241,7 +225,7 @@ The response body is:
 
 This example shows how to translate the same input to several languages in one request.
 
-```curl
+ ```bash
 curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=zh-Hans&to=de" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'Hello, what is your name?'}]"
 ```
 
@@ -276,7 +260,7 @@ In the above examples, **\<insert-profane-word>** is a placeholder for profane w
 
 For example:
 
-```curl
+ ```bash
 curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=de&profanityAction=Marked" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'This is an <expletive> good idea.'}]"
 ```
 
@@ -294,7 +278,7 @@ This request returns:
 
 Compare with:
 
-```curl
+ ```bash
 curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=de&profanityAction=Marked&profanityMarker=Tag" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'This is an <expletive> good idea.'}]"
 ```
 
@@ -321,7 +305,7 @@ It's common to translate content that includes markup such as content from an HT
 
 Here's a sample request to illustrate.
 
-```curl
+ ```bash
 curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=zh-Hans&textType=html" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'<div class=\"notranslate\">This will not be translated.</div><div>This will be translated.</div>'}]"
 ```
 
@@ -349,7 +333,7 @@ In other words, the colon separates start and end index, the dash separates the 
 
 To receive alignment information, specify `includeAlignment=true` on the query string.
 
-```curl
+ ```bash
 curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=fr&includeAlignment=true" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'The answer lies in machine translation.'}]"
 ```
 
@@ -388,7 +372,7 @@ Obtaining alignment information is an experimental feature that we enabled for p
 
 To receive information about sentence length in the source text and translated text, specify `includeSentenceLength=true` on the query string.
 
-```curl
+ ```bash
 curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=fr&includeSentenceLength=true" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'The answer lies in machine translation. The best machine translation technology cannot always provide translations tailored to a site or users like a human. Simply copy and paste a code snippet anywhere.'}]"
 ```
 

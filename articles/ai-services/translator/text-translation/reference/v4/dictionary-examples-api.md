@@ -1,29 +1,29 @@
 ---
-title: Azure AI Translator dictionary examples method
+title: Azure AI Translator v4.0 dictionary examples
 titleSuffix: Azure AI services
-description: The Azure AI Translator v3.0 dictionary examples method provides examples that show how terms in the dictionary are used in context.
+description: The Azure AI Translator v4.0 dictionary examples method provides examples that show how terms in the dictionary are used in context.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/06/2024
+ms.date: 03/28/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD033 -->
 
-# Azure AI Translator v3.0: dictionary examples
+# Azure AI Translator v4.0: dictionary examples
 
-Provides examples that show how terms in the dictionary are used in context. This operation is used in tandem with [Dictionary lookup](dictionary-lookup.md).
+Provides examples that show how terms in the dictionary are used in context. This operation is used in tandem with [Dictionary lookup](dictionary-lookup-api.md).
 
 ## Request URL
 
 Send a `POST` request to:
 
 ```HTTP
-https://api.cognitive.microsofttranslator.com/dictionary/examples?api-version=3.0
+https://api.cognitive.microsofttranslator.com/dictionary/examples?api-version=v4
 ```
 
-_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](../v3/../v3/reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -31,9 +31,9 @@ Request parameters passed on the query string are:
 
 | Query Parameter | Description |
 | --------- | ----------- |
-| api-version <img width=200/> | **Required parameter**.<br>Version of the API requested by the client. Value must be `3.0`. |
-| from | **Required parameter**.<br>Specifies the language of the input text. The source language must be one of the [supported languages](languages.md) included in the `dictionary` scope. |
-| to | **Required parameter**.<br>Specifies the language of the output text. The target language must be one of the [supported languages](languages.md) included in the `dictionary` scope.  |
+| api-version <img width=200/> | **Required parameter**.<br>Version of the API requested by the client. Value must be `v4`. |
+| from | **Required parameter**.<br>Specifies the language of the input text. The source language must be one of the [supported languages](get-languages.md) included in the `dictionary` scope. |
+| to | **Required parameter**.<br>Specifies the language of the output text. The target language must be one of the [supported languages](get-languages.md) included in the `dictionary` scope.  |
 
 Request headers include:
 
@@ -48,9 +48,9 @@ Request headers include:
 
 The body of the request is a JSON array. Each array element is a JSON object with the following properties:
 
-* `Text`: A string specifying the term to look up. This property should be the value of a `normalizedText` field from the back-translations of a previous [Dictionary lookup](dictionary-lookup.md) request. It can also be the value of the `normalizedSource` field.
+* `Text`: A string specifying the term to look up. This property should be the value of a `normalizedText` field from the back-translations of a previous [Dictionary lookup](dictionary-lookup-api.md) request. It can also be the value of the `normalizedSource` field.
 
-* `Translation`: A string specifying the translated text previously returned by the [Dictionary lookup](dictionary-lookup.md) operation. This property should be the value from the `normalizedTarget` field in the `translations` list of the [Dictionary lookup](dictionary-lookup.md) response. The service returns examples for the specific source-target word-pair.
+* `Translation`: A string specifying the translated text previously returned by the [Dictionary lookup](dictionary-lookup-api.md) operation. This property should be the value from the `normalizedTarget` field in the `translations` list of the [Dictionary lookup](dictionary-lookup-api.md) response. The service returns examples for the specific source-target word-pair.
 
 An example is:
 
@@ -95,7 +95,7 @@ A successful response is a JSON array with one result for each string in the inp
 This example shows how to look up examples for the pair made up of the English term `fly` and its Spanish translation `volar`.
 
  ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/dictionary/examples?api-version=3.0&from=en&to=es" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'fly', 'Translation':'volar'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/dictionary/examples?api-version=v4&from=en&to=es" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'fly', 'Translation':'volar'}]"
 ```
 
 The response body (abbreviated for clarity) is:
