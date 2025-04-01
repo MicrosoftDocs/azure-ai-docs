@@ -115,7 +115,7 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/gpt-4o/chat/completions?api-versi
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
     "model": "gpt-4o",
-    "store": True,
+    "store": true,
     "messages": [
       {
         "role": "system",
@@ -137,7 +137,7 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/gpt-4o/chat/completions?api-versi
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
     "model": "gpt-4o",
-    "store": True,
+    "store": true,
     "messages": [
       {
         "role": "system",
