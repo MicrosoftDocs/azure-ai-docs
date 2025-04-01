@@ -31,18 +31,18 @@ This article explains how to manage Azure Machine Learning resources by using th
 
 The quickest way to create resources is by using the extension's toolbar.
 
-1. Open the Azure Machine Learning view.
-1. Select **+** in the activity bar.
-1. Choose your resource from the dropdown list.
+1. Open the Azure Machine Learning view from the activity bar.
+1. Select your Azure subscription under **Machine Learning**.
+1. Select **+** to choose your resource from the dropdown list.
 1. Configure the specification file. The information required depends on the type of resource you want to create.
 1. Select **AzureML: Execute YAML** from the menu bar, or by right-clicking the specification file.
 
 Alternatively, you can create a resource by using the command palette:
 
-1. Open the command palette **View > Command Palette**
+1. Open the command palette by selecting **View > Command Palette**.
 1. Enter `> Azure ML: Create <RESOURCE-TYPE>` into the text box. Replace `RESOURCE-TYPE` with the type of resource you want to create.
 1. Configure the specification file.
-1. Open the command palette **View > Command Palette**
+1. Open the command palette **View > Command Palette**.
 1. Enter `> Azure ML: Create Resource` into the text box.
 
 ## Version resources
@@ -61,7 +61,7 @@ As long as the name of the updated resource is the same as the previous version,
 
 For more information, see [What is an Azure Machine Learning workspace?](concept-workspace.md)
 
-### Create a workspace
+### Create workspace
 
 1. In the Azure Machine Learning view, right-click your subscription node and select **Create workspace**.
 1. A specification file appears. Configure the specification file.
@@ -69,7 +69,7 @@ For more information, see [What is an Azure Machine Learning workspace?](concept
 
 Alternatively, use the `> Azure ML: Create workspace` command in the command palette.
 
-### Remove a workspace
+### Remove workspace
 
 1. Expand the subscription node that contains your workspace.
 1. Right-click the workspace you want to remove.
@@ -89,13 +89,13 @@ The extension currently supports datastores of the following types:
 - Azure File
 
 :::moniker range="azureml-api-2"
-For more information, see [datastore](concept-data.md#datastore).
+For more information, see [Datastore](concept-data.md#datastore).
 :::moniker-end
 :::moniker range="azureml-api-1"
 For more information, see [Data concepts](concept-data.md).
 :::moniker-end
 
-### Create a datastore
+### Create datastore
 
 1. Expand the subscription node that contains your workspace.
 1. Expand the workspace node you want to create the datastore under.
@@ -106,7 +106,7 @@ For more information, see [Data concepts](concept-data.md).
 
 Alternatively, use the `> Azure ML: Create datastore` command in the command palette.
 
-### Manage a datastore
+### Manage datastore
 
 1. Expand the subscription node that contains your workspace.
 1. Expand your workspace node.
@@ -127,7 +127,7 @@ The extension currently supports the following dataset types:
 
 For more information, see [Data in Azure Machine Learning v1](./concept-data.md)
 
-### Create a dataset
+### Create dataset
 
 1. Expand the subscription node that contains your workspace.
 1. Expand the workspace node you want to create the dataset under.
@@ -137,7 +137,7 @@ For more information, see [Data in Azure Machine Learning v1](./concept-data.md)
 
 Alternatively, use the `> Azure ML: Create dataset` command in the command palette.
 
-### Manage a dataset
+### Manage dataset
 
 1. Expand the subscription node that contains your workspace.
 1. Expand your workspace node.
@@ -184,7 +184,7 @@ For more information, see [experiments](concept-azure-machine-learning-architect
 ## Jobs
 :::moniker-end
 
-### Create a job
+### Create job
 
 The quickest way to create a job is by clicking the **Create job** icon in the extension's activity bar.
 
@@ -199,7 +199,7 @@ Using the resource nodes in the Azure Machine Learning view:
 
 Alternatively, use the `> Azure ML: Create job` command in the command palette.
 
-### View a job
+### View job
 
 To view your job in Azure Machine Learning studio:
 
