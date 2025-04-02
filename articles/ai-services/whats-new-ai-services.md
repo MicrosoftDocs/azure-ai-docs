@@ -1,43 +1,43 @@
 ---
-title: "Azure AI Services docs: What's new for February 2025"
-description: "What's new in the Azure AI Services docs for February 2025."
+title: "Azure AI Services docs: What's new for March 2025"
+description: "What's new in the Azure AI Services docs for March 2025."
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
 ms.subject: ai-services
-ms.custom: February-2025
-ms.date: 03/04/2025
+ms.custom: March-2025
+ms.date: 04/02/2025
 ---
 
-# Azure AI Services docs: What's new for February 2025
+# Azure AI Services docs: What's new for March 2025
 
-Welcome to what's new in the Azure AI Services docs for February 2025. This article lists some of the major changes to docs during this period.
+Welcome to what's new in the Azure AI Services docs for March 2025. This article lists some of the major changes to docs during this period.
 
 ## Azure AI Services
 
 ### New articles
 
-- [Analyzer templates offered with Content Understanding](../ai-services/content-understanding/concepts/analyzer-templates.md)
-- [Azure AI Translator known issues](../ai-services/translator/reference/known-issues.md)
-- [Azure AI Translator release history](../ai-services/translator/reference/release-history.md)
-- [Best practices for Content Understanding](../ai-services/content-understanding/concepts/best-practices.md)
-- [Content Understanding Capabilities (preview)](../ai-services/content-understanding/concepts/capabilities.md)
-- [Create a new network-secured agent with user-managed identity](../ai-services/agents/how-to/virtual-networks.md)
-- [Face liveness detection](../ai-services/computer-vision/concept-face-liveness-detection.md)
-- [QuickStart: Use a text blocklist](../ai-services/content-safety/quickstart-blocklist.md)
-- [Troubleshooting latency issues in Azure AI Document Intelligence](../ai-services/document-intelligence/concept/troubleshoot-latency.md)
+- [Azure AI Document Intelligence release history](../ai-services/document-intelligence/reference/release-history.md)
+- [Azure OpenAI Responses API (Preview)](../ai-services/openai/how-to/responses.md)
+- [Bring your licensed data](../ai-services/agents/how-to/tools/licensed-data.md)
+- [Computer Use (preview) in Azure OpenAI](../ai-services/openai/how-to/computer-use.md)
+- [Deploy a fine-tuned model for inferencing](../ai-services/openai/how-to/fine-tuning-deploy.md)
+- [Direct preference optimization (preview)](../ai-services/openai/how-to/fine-tuning-direct-preference-optimization.md)
+- [Get started: Document Intelligence Studio](../ai-services/document-intelligence/quickstarts/get-started-studio.md)
+- [How to use text summarization](../ai-services/language-service/summarization/how-to/text-summarization.md)
+- [Manage traffic with spillover for provisioned deployments (Preview)](../ai-services/openai/how-to/spillover-traffic-management.md)
+- [Native document support for Azure AI Language (preview)](../ai-services/language-service/native-document-support/overview.md)
+- [Safety evaluation for fine-tuning (preview)](../ai-services/openai/how-to/fine-tuning-safety-evaluation.md)
+- [Text Translation REST API](../ai-services/translator/text-translation/reference/rest-api-guide.md)
+- [Troubleshooting for Azure OpenAI fine-tuning](../ai-services/openai/how-to/fine-tuning-troubleshoot.md)
+- [Use the Microsoft Fabric data agent](../ai-services/agents/how-to/tools/fabric.md)
+- [Vision fine-tuning](../ai-services/openai/how-to/fine-tuning-vision.md)
+- [What are Azure AI Translator prebuilt solutions?](../ai-services/translator/solutions/overview.md)
 
 ### Updated articles
 
-- [Azure AI Agent Service Code Interpreter](../ai-services/agents/how-to/tools/code-interpreter.md)
-- [Azure AI Agents function calling](../ai-services/agents/how-to/tools/function-calling.md)
-- [Azure OpenAI stored completions & distillation (preview)](../ai-services/openai/how-to/stored-completions.md) 
-- [Custom Translator release notes](../ai-services/translator/custom-translator/release-notes.md)
-- [Customize a model with fine-tuning](../ai-services/openai/how-to/fine-tuning.md) 
-- [Document Intelligence batch analysis](../ai-services/document-intelligence/prebuilt/batch-analysis.md) 
-- [Document Intelligence read model](../ai-services/document-intelligence/prebuilt/read.md) 
-- [Fine-tuning and tool calling](../ai-services/openai/how-to/fine-tuning-functions.md) 
-- [Grounding with Bing Search](../ai-services/agents/how-to/tools/bing-grounding.md)
-- [How to use Azure AI Agent Service with OpenAPI Specified Tools](../ai-services/agents/how-to/tools/openapi-spec.md) 
-- [Structured outputs](../ai-services/openai/how-to/structured-outputs.md) 
-- [Use Azure Functions with Azure AI Agent Service](../ai-services/agents/how-to/tools/azure-functions.md) 
+- [Detect and redact Personally Identifying Information in conversations](../ai-services/language-service/personally-identifiable-information/how-to/redact-conversation-pii.md)
+- [How to use native document summarization (preview)](../ai-services/language-service/summarization/how-to/document-summarization.md) 
+- [Quickstart: Azure AI Content Understanding REST APIs](../ai-services/content-understanding/quickstart/use-rest-api.md) 
+- [Understanding costs associated with provisioned throughput units (PTU)](../ai-services/openai/how-to/provisioned-throughput-onboarding.md) 
+- [What is Azure AI Language Personally Identifiable Information (PII) detection?](../ai-services/language-service/personally-identifiable-information/overview.md) 
