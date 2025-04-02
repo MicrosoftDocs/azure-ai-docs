@@ -29,7 +29,7 @@ The agentic workflow is triggered by a user query "weather tomorrow". It starts 
 -	[Tool call accuracy](https://aka.ms/toolcallaccuracy-sample): Evaluates the agent’s ability to select the appropriate tools, and process correct parameters from previous steps.
 -	[Task adherence](https://aka.ms/taskadherence-sample): Measures how well the agent’s final response adheres to its assigned tasks, according to its system message and prior steps.
 
-For other quality and risk and safety evaluation aspects, you can use other [built-in evaluators](./evaluate-sdk.md#data-requirements-for-built-in-evaluators) to assess the content in the process where appropriate.   
+To see more quality and risk and safety evaluators, refer to [built-in evaluators](./evaluate-sdk.md#data-requirements-for-built-in-evaluators) to assess the content in the process where appropriate.   
 
 
 
@@ -62,7 +62,7 @@ For `ToolCallAccuracyEvaluator`, either `response` or  `tool_calls` must be prov
 
 We will demonstrate some examples of the two data formats: simple agent data, and agent messages. However, due to the unique requirements of these evaluators, we recommend referring to the [sample notebooks](#sample-notebooks) which illustrate the possible input paths for each evaluator.  
 
-As with other [built-in AI-assisted quality evaluators](#performance-and-quality-evaluators), `IntentResolutionEvaluator` and `TaskAdherenceEvaluator` output a likert score (integer 1-5) where the higher score is better the result. `ToolCallAccuracyEvaluator` output the passing rate of all tool calls made (a float between 0-1) based on user query. To further improve intelligibility, all evaluators accept a binary threshold and output two new keys. For the binarization threshold, a default is set and user can override it. The two new keys are:
+As with other [built-in AI-assisted quality evaluators](./evaluate-sdk.md#performance-and-quality-evaluators), `IntentResolutionEvaluator` and `TaskAdherenceEvaluator` output a likert score (integer 1-5) where the higher score is better the result. `ToolCallAccuracyEvaluator` output the passing rate of all tool calls made (a float between 0-1) based on user query. To further improve intelligibility, all evaluators accept a binary threshold and output two new keys. For the binarization threshold, a default is set and user can override it. The two new keys are:
 
 - `{metric_name}_result` a "pass" or "fail" string based on a binarization threshold.
 - `{metric_name}_threshold` a numerical binarization threshold set by default or by the user
