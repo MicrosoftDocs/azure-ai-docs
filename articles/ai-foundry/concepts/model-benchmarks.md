@@ -1,5 +1,5 @@
 ---
-title: Explore model benchmarks in Azure AI Foundry portal
+title: Explore model leaderboards in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article introduces benchmarking capabilities and the model benchmarks experience in Azure AI Foundry portal.
 manager: scottpolly
@@ -9,90 +9,113 @@ ms.custom:
   - ignite-2024
 ms.topic: concept-article
 ms.date: 11/11/2024
-ms.reviewer: jcioffi
+ms.reviewer: changliu2
 ms.author: mopeakande
 author: msakande
 ---
 
-# Model benchmarks in Azure AI Foundry portal
+# Model leaderboards in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In Azure AI Foundry portal, you can compare benchmarks across models and datasets available in the industry to decide which one meets your business scenario. You can directly access detailed benchmarking results within the model catalog. Whether you already have models in mind or you're exploring models, the benchmarking data in Azure AI empowers you to make informed decisions quickly and efficiently.
+In Azure AI Foundry portal, we offer a wide range of models in [model catalog](../how-to
+/model-catalog-overview.md) for your generative AI applications. To streamline your model selection experience, now you can leverage our model leaderboards backed by industry-standard benchmarks to find the best model for your custom AI solution. Within [model leaderboards](https://aka.ms/model-leaderboards) page, you can compare models available on Foundry using:
+- [Quality, cost, and performance leaderboards](#quality-cost-and-performance-leaderboards) to quickly identify the model leaders in a single criterion;
+- [Trade-off charts](#trade-off-charts) to see how models perform in quality versus cost;
+- [Leaderboards by scenario](#leaderboards-by-scenario) to find the best leaderboards that suites your scenario.
 
-Azure AI supports model benchmarking for select models that are popular and most frequently used. Supported models have a _benchmarks_ icon that looks like a histogram. You can find these models in the model catalog by using the **Collections** filter and selecting **Benchmark results**. You can then use the search functionality to find specific models.
+Whenever you find a model to your liking, you can simply select a model and zoom into [detailed benchmarking results](../how-to
+/benchmark-model-in-catalog.md) of individual models within the model catalog. Once you find a model to your liking, you can go and deploy your model, try it in playgorund, or evaluate it on your own data. Whether you already have models in mind or you're exploring models, model leaderboards in Azure AI Foundry empowers you to make data-driven decisions with a streamlined, intuitive experience for model selection.
 
-:::image type="content" source="../media/how-to/model-benchmarks/access-model-catalog-benchmark.png" alt-text="Screenshot showing how to filter for benchmark models in the model catalog homepage." lightbox="../media/how-to/model-benchmarks/access-model-catalog-benchmark.png":::
+## Quality, cost, and performance leaderboards
 
-Model benchmarks help you make informed decisions about the sustainability of models and datasets before you initiate any job. The benchmarks are a curated list of the best-performing models for a task, based on a comprehensive comparison of benchmarking metrics. Azure AI Foundry provides the following benchmarks for models, based on model catalog collections:
+From model catalog landing page, you will see the top 3 model leaders in [quality](#quality), [cost](#cost), and [performance](#cost) criteria.    
+:::image type="content" source="../media/how-to/model-benchmarks/leaderboard-entry.png" alt-text="Screenshot showing the entry point from model catalog into model leaderboards." lightbox="../media/how-to/model-benchmarks/leaderboard-entry.png":::
+
+Wherever you are in your selection journey, you can select a model to you liking to check out more details:
+
+:::image type="content" source="../media/how-to/model-benchmarks/leaderboard-entry-select-model.png" alt-text="Screenshot showing the selected model from entry point of leaderboards on model catalog." lightbox="../media/how-to/model-benchmarks/leaderboard-entry-select-model.png":::
+
+You can select "Browse leaderboards" to see the full suite of leaderboards we offer. [Quality](#quality) is the most common criterion for model selection:  
+
+:::image type="content" source="../media/how-to/model-benchmarks/leaderboard-quality.png" alt-text="Screenshot showing the quality leaderboards." lightbox="../media/how-to/model-benchmarks/leaderboard-quality.png":::
+
+Then comes [cost](#cost) and [performance](#cost) leaderboards: 
+:::image type="content" source="../media/how-to/model-benchmarks/leaderboard-highlights.png" alt-text="Screenshot showing the highlighted bar charts for quality, cost, and performance leaders." lightbox="../media/how-to/model-benchmarks/leaderboard-highlights.png":::
+
+
+## Quality, cost, and performance trade-off charts
+
+You may find that the most high-quality model may not be the cheapest model, and you need to make trade-offs in among quality, cost, and performance criteria, for example, you may care more about cost than quality. In the trade-off charts, you can see how models perform in these criteria among others. You can also select or deselect models, toggle between charts, and even more metrics in "Compare between metrics"    
+
+:::image type="content" source="../media/how-to/model-benchmarks/leaderboard-trade-off.png" alt-text="Screenshot showing the trade-off charts in quality, cost, and performance." lightbox="../media/how-to/model-benchmarks/leaderboard-trade-off.png":::
+
+
+## Quality leaderboards by scenario
+
+You may have a specific scenario that require certain model capabilities. For example, you are building a question-and-answering chatbot that require good question-and-answering and reasoning capabilities. You can find it useful to compare models in these leaderboards backed by capability-specific benchmarks.
+:::image type="content" source="../media/how-to/model-benchmarks/leaderboard-by-scenario.png" alt-text="Screenshot showing the quality leaderboards by scenarios." lightbox="../media/how-to/model-benchmarks/leaderboard-by-scenario.png":::
+
+We support both text language models and embedding models.  
 
 - Benchmarks across large language models (LLMs) and small language models (SLMs)  
 - Benchmarks across embedding models
 
 ## Benchmarking of LLMs and SLMs
 
-Model benchmarks assess LLMs and SLMs across the following categories: quality, performance, and cost. The benchmarks are updated regularly as new metrics and datasets are added to existing models, and as new models are added to the model catalog.
+Model benchmarks assess LLMs and SLMs across the following categories: quality, performance, and cost. The benchmarks are updated regularly as new datasets and associated metrics are added to existing models, and as new models are added to the model catalog.
 
 ### Quality
 
-Azure AI assesses the quality of LLMs and SLMs across various metrics that are grouped into two main categories: accuracy, and prompt-assisted metrics:
+Azure AI assesses the quality of LLMs and SLMs using accuracy scores from standard, comprehensive benchmark datasets measuring model capabilities such as reasoning, knowledge, question answering, math, and coding. 
 
+| Index | Description                                                                                                                                                                                                                  |
+|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Quality index | Quality index is calculated by averaging applicable accuracy scores (exact_match, pass@1, arena_hard) over 15 standard datasets of applicable accuracy scores. Datasets include BoolQ, HellaSwag, BoolQ, HellaSwag, OpenBookQA, PIQA, Social IQA, Winogrande, SQuAD v2, TruthfulQA (Gen), TruthfulQA (MC), HumanEval, GSM8K, MMLU (Humanities), MMLU (Other), MMLU (Social Sciences), MMLU (STEM). | 
 
-For accuracy metric:
+Quality index is provided on a scale of zero to one. Higher values of quality index are better.
 
-| Metric | Description |
-|--------|-------------|
-| Accuracy | Accuracy scores are available at the dataset and the model levels. At the dataset level, the score is the average value of an accuracy metric computed over all examples in the dataset. The accuracy metric used is `exact-match` in all cases, except for the _HumanEval_ dataset that uses a `pass@1` metric. Exact match compares model generated text with the correct answer according to the dataset, reporting one if the generated text matches the answer exactly and zero otherwise. The `pass@1` metric measures the proportion of model solutions that pass a set of unit tests in a code generation task. At the model level, the accuracy score is the average of the dataset-level accuracies for each model. |
+For accuracy scores:
 
-For prompt-assisted metrics:
+| Metric | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Accuracy | Accuracy scores are available at the dataset and the model levels. At the dataset level, the score is the average value of an accuracy metric computed over all examples in the dataset. The accuracy metric used is `exact-match` in all cases, except for the _HumanEval_  and _MBPP_ datasets that uses a `pass@1` metric. Exact match compares model generated text with the correct answer according to the dataset, reporting one if the generated text matches the answer exactly and zero otherwise. The `pass@1` metric measures the proportion of model solutions that pass a set of unit tests in a code generation task. At the model level, the accuracy score is the average of the dataset-level accuracies for each model. |
 
-| Metric | Description |
-|--------|-------------|
-| Coherence | Coherence evaluates how well the language model can produce output that flows smoothly, reads naturally, and resembles human-like language. |
-| Fluency | Fluency evaluates the language proficiency of a generative AI's predicted answer. It assesses how well the generated text adheres to grammatical rules, syntactic structures, and appropriate usage of vocabulary, resulting in linguistically correct and natural-sounding responses. |
-| GPTSimilarity | GPTSimilarity is a measure that quantifies the similarity between a ground truth sentence (or document) and the prediction sentence generated by an AI model. The metric is calculated by first computing sentence-level embeddings, using the embeddings API for both the ground truth and the model's prediction. These embeddings represent high-dimensional vector representations of the sentences, capturing their semantic meaning and context. |
-| Groundedness | Groundedness measures how well the language model's generated answers align with information from the input source. |
-| Relevance | Relevance measures the extent to which the language model's generated responses are pertinent and directly related to the given questions. |
+Accuracy scores are provided on a scale of zero to one. Higher values are better.
 
-Quality includes two categories of metrics: 
-
-- Accuracy (for example, exact match or `pass@k`). Ranges from zero to one.
-- Prompt-based metrics (for example, GPTSimilarity, groundedness, coherence, fluency, and relevance). Ranges from one to five.
-
-The stability of the quality index value provides an indicator of the overall quality of the model.
 
 ### Performance
 
 Performance metrics are calculated as an aggregate over 14 days, based on 24 trails (two requests per trail) sent daily with a one-hour interval between every trail. The following default parameters are used for each request to the model endpoint:
 
-| Parameter | Value | Applicable For |
-|-----------|-------|----------------|
-| Region | East US/East US2 | [Serverless APIs](../how-to/model-catalog-overview.md#serverless-api-pay-per-token-billing) and [Azure OpenAI](/azure/ai-services/openai/overview) |
-| Tokens per minute (TPM) rate limit | 30k (180 RPM based on Azure OpenAI) <br> N/A (serverless APIs) | For Azure OpenAI models, selection is available for users with rate limit ranges based on deployment type (standard, global, global standard, and so on.) <br> For serverless APIs, this setting is abstracted. |
-| Number of requests | Two requests in a trail for every hour (24 trails per day) | Serverless APIs, Azure OpenAI |
-| Number of trails/runs | 14 days with 24 trails per day for 336 runs | Serverless APIs, Azure OpenAI |
-| Prompt/Context length | Moderate length | Serverless APIs, Azure OpenAI |
-| Number of tokens processed (moderate) | 80:20 ratio for input to output tokens, that is, 800 input tokens to 200 output tokens. | Serverless APIs, Azure OpenAI |
-| Number of concurrent requests | One (requests are sent sequentially one after other) | Serverless APIs, Azure OpenAI |
-| Data | Synthetic (input prompts prepared from static text) | Serverless APIs, Azure OpenAI |
-| Region | East US/East US2 | Serverless APIs and Azure OpenAI |
-| Deployment type | Standard | Applicable only for Azure OpenAI |
-| Streaming | True | Applies to serverless APIs and Azure OpenAI. For models deployed via [managed compute](../how-to/model-catalog-overview.md#managed-compute), set max_token = 1 to replicate streaming scenario, which allows for calculating metrics like total time to first token (TTFT) for managed compute. |
-| Tokenizer | Tiktoken package (Azure OpenAI) <br> Hugging Face model ID (Serverless APIs) | Hugging Face model ID (Azure serverless APIs) |
+| Parameter                             | Value                                                                                              | Applicable For                                                                                                                                                                                                                              |
+|---------------------------------------|----------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Region                                | East US/East US2                                                                                   | [Serverless APIs](../how-to/model-catalog-overview.md#serverless-api-pay-per-token-billing) and [Azure OpenAI](/azure/ai-services/openai/overview)                                                                                          |
+| Tokens per minute (TPM) rate limit    | 30k (180 RPM based on Azure OpenAI) for non-reasoning and 100k for reasoning models <br> N/A (serverless APIs) | For Azure OpenAI models, selection is available for users with rate limit ranges based on deployment type (standard, global, global standard, and so on.) <br> For serverless APIs, this setting is abstracted.                             |
+| Number of requests                    | Two requests in a trail for every hour (24 trails per day)                                         | Serverless APIs, Azure OpenAI                                                                                                                                                                                                               |
+| Number of trails/runs                 | 14 days with 24 trails per day for 336 runs                                                        | Serverless APIs, Azure OpenAI                                                                                                                                                                                                               |
+| Prompt/Context length                 | Moderate length                                                                                    | Serverless APIs, Azure OpenAI                                                                                                                                                                                                               |
+| Number of tokens processed (moderate) | 80:20 ratio for input to output tokens, that is, 800 input tokens to 200 output tokens.            | Serverless APIs, Azure OpenAI                                                                                                                                                                                                               |
+| Number of concurrent requests         | One (requests are sent sequentially one after other)                                               | Serverless APIs, Azure OpenAI                                                                                                                                                                                                               |
+| Data                                  | Synthetic (input prompts prepared from static text)                                                | Serverless APIs, Azure OpenAI                                                                                                                                                                                                               |
+| Region                                | East US/East US2                                                                                   | Serverless APIs and Azure OpenAI                                                                                                                                                                                                            |
+| Deployment type                       | Standard                                                                                           | Applicable only for Azure OpenAI                                                                                                                                                                                                            |
+| Streaming                             | True                                                                                               | Applies to serverless APIs and Azure OpenAI. For models deployed via [managed compute](../how-to/model-catalog-overview.md#managed-compute), or for endpoints when streaming is not supported TTFT is represented as P50 of latency metric. |
+| SKU                                   | Standard_NC24ads_A100_v4 (24 cores, 220GB RAM, 64GB storage)                                       | Applicable only for Managed Compute (to estimate the cost and perf metrics)                                                                                                                                                                 |
 
 The performance of LLMs and SLMs is assessed across the following metrics:
 
-| Metric | Description |
-|--------|-------------|
-| Latency mean | Average time in seconds taken for processing a request, computed over multiple requests. To compute this metric, we send a request to the endpoint every hour, for two weeks, and compute the average. |
-| Latency P50 | 50th percentile value (the median) of latency (the time taken between the request and when we receive the entire response with a successful code). For example, when we send a request to the endpoint, 50% of the requests are completed in 'x' seconds, with 'x' being the latency measurement. |
-| Latency P90 | 90th percentile value of latency (the time taken between the request and when we receive the entire response with a successful code). For example, when we send a request to the endpoint, 90% of the requests are completed in 'x' seconds, with 'x' being the latency measurement. |
-| Latency P95 | 95th percentile value of latency (the time taken between the request and when we receive the entire response with a successful code). For example, when we send a request to the endpoint, 95% of the requests are complete in 'x' seconds, with 'x' being the latency measurement. |
-| Latency P99 | 99th percentile value of latency (the time taken between the request and when we receive the entire response with a successful code). For example, when we send a request to the endpoint, 99% of the requests are complete in 'x' seconds, with 'x' being the latency measurement. |
-| Throughput GTPS | Generated tokens per second (GTPS) is the number of output tokens that are getting generated per second from the time the request is sent to the endpoint. |
-| Throughput TTPS | Total tokens per second (TTPS) is the number of total tokens processed per second including both from the input prompt and generated output tokens. |
-| Latency TTFT | Total time to first token (TTFT) is the time taken for the first token in the response to be returned from the endpoint when streaming is enabled. |
-| Time between tokens | This metric is the time between tokens received. |
+| Metric | Description                                                                                                                                                                                                                                                                                        |
+|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Latency mean | Average time in seconds taken for processing a request, computed over multiple requests. To compute this metric, we send a request to the endpoint every hour, for two weeks, and compute the average.                                                                                             |
+| Latency P50 | 50th percentile value (the median) of latency (the time taken between the request and when we receive the entire response with a successful code). For example, when we send a request to the endpoint, 50% of the requests are completed in 'x' seconds, with 'x' being the latency measurement.  |
+| Latency P90 | 90th percentile value of latency (the time taken between the request and when we receive the entire response with a successful code). For example, when we send a request to the endpoint, 90% of the requests are completed in 'x' seconds, with 'x' being the latency measurement.               |
+| Latency P95 | 95th percentile value of latency (the time taken between the request and when we receive the entire response with a successful code). For example, when we send a request to the endpoint, 95% of the requests are complete in 'x' seconds, with 'x' being the latency measurement.                |
+| Latency P99 | 99th percentile value of latency (the time taken between the request and when we receive the entire response with a successful code). For example, when we send a request to the endpoint, 99% of the requests are complete in 'x' seconds, with 'x' being the latency measurement.                |
+| Throughput GTPS | Generated tokens per second (GTPS) is the number of output tokens that are getting generated per second from the time the request is sent to the endpoint.                                                                                                                                         |
+| Throughput TTPS | Total tokens per second (TTPS) is the number of total tokens processed per second including both from the input prompt and generated output tokens. For models which do not support streaming, time to first token (ttft) represents the P50 value of latency (time taken to receive the response) |
+| Latency TTFT | Total time to first token (TTFT) is the time taken for the first token in the response to be returned from the endpoint when streaming is enabled.                                                                                                                                                 |
+| Time between tokens | This metric is the time between tokens received.                                                                                                                                                                                                                                                   |
 
 Azure AI also displays performance indexes for latency and throughput as follows:
 
