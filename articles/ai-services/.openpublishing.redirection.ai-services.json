@@ -1070,17 +1070,17 @@
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference-messages.md",
       "redirect_url": "/azure/ai-services/openai/reference-preview#list---messages",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference-runs.md",
       "redirect_url": "/azure/ai-services/openai/reference-preview#create---thread-and-run",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference-threads.md",
       "redirect_url": "/azure/ai-services/openai/reference-preview#create---thread",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference.md",
