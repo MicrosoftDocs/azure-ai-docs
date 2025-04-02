@@ -31,7 +31,7 @@ Azure AI Translator service supports language translation for more than 100 lang
 
   * An audio noise cancellation feature that ensures seamless conversations by suppressing background noise. This feature can be enabled/disabled in settings.
 
-  * On-device translation now supports non-English source languages.
+  * On-device translation that now supports non-English source languages.
 
 
 ## February 2025
