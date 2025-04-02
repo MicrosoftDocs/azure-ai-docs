@@ -143,13 +143,13 @@ Supported customizations include:
 |--|--|
 |**Column purpose update**|Override the autodetected feature type for the specified column.|
 |**Transformer parameter update** |Update the parameters for the specified transformer. Currently supports *Imputer* (mean, most frequent, and median) and *HashOneHotEncoder*.|
-|**Drop columns** |Specifies columns to drop from being featurized.|
+|**Drop columns*** |Specifies columns to drop from being featurized.|
 |**Block transformers**| Specifies block transformers to be used in the featurization process.|
 
 >[!NOTE]
-> The **drop columns** functionality is deprecated as of SDK version 1.19. Drop columns from your dataset as part of data cleansing, before consuming it in your AutoML experiment.
+> *The **drop columns** functionality is deprecated as of SDK version 1.19. Drop columns from your dataset as part of data cleansing, before consuming it in your AutoML experiment.
 
-Create the `FeaturizationConfig` object by using API calls:
+You can create the `FeaturizationConfig` object by using API calls:
 
 ```python
 featurization_config = FeaturizationConfig()
@@ -241,7 +241,7 @@ Output
 
 ### Scaling and normalization
 
-To understand scaling and normalization, and the selected algorithm with its hyperparameter values, use `fitted_model.steps`.
+To understand scaling/normalization and the selected algorithm with its hyperparameter values, use `fitted_model.steps`.
 
 The following sample output is from running `fitted_model.steps` for a chosen run:
 
@@ -334,9 +334,9 @@ If the underlying model doesn't support the `predict_proba()` function or the fo
 
 ## BERT integration in AutoML
 
-[BERT](https://techcommunity.microsoft.com/t5/azure-ai/how-bert-is-integrated-into-azure-automated-machine-learning/ba-p/1194657) is used in the featurization layer of AutoML. In this layer, if a column contains free text or other types of data like timestamps or simple numbers, then featurization is applied accordingly.
+[Bidirectional Encoder Representations from Transformers (BERT)](https://techcommunity.microsoft.com/t5/azure-ai/how-bert-is-integrated-into-azure-automated-machine-learning/ba-p/1194657) is used in the featurization layer of AutoML. In this layer, if a column contains free text or other types of data like timestamps or simple numbers, then featurization is applied accordingly.
 
-For BERT, the model is fine-tuned and trained utilizing the user-provided labels. From here, document embeddings are output as features alongside others, like timestamp-based features, day of week.
+For BERT, the model is fine-tuned and trained by utilizing the user-provided labels. From here, document embeddings are output as features alongside others, like timestamp-based features, day of week.
 
 Learn how to [Set up AutoML to train a natural language processing model with Python](how-to-auto-train-nlp-models.md).
 
@@ -346,7 +346,7 @@ In order to invoke BERT, set `enable_dnn: True` in your `automl_settings` and us
 
 AutoML takes the following steps for BERT.
 
-1. **Preprocesses and tokenizes all text columns**. For example, the `StringCast` transformer can be found in the final model's featurization summary. An example of how to produce the model's featurization summary can be found in [this Jupyter notebook](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/classification-text-dnn/auto-ml-classification-text-dnn.ipynb).
+1. **Preprocesses and tokenizes all text columns**. For example, the `StringCast` transformer can be found in the final model's featurization summary. An example of how to produce the model's featurization summary can be found in this [Jupyter notebook](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/classification-text-dnn/auto-ml-classification-text-dnn.ipynb).
 
 1. **Concatenates all text columns into a single text column**, hence the `StringConcatTransformer` in the final model.
 
