@@ -22,6 +22,13 @@ author: sdgilley
 
 [Azure AI Foundry](https://ai.azure.com) supports developing in VS Code - Desktop and Web. In each scenario, your VS Code instance is remotely connected to a prebuilt custom container running on a virtual machine, also known as a compute instance.
 
+## Prerequisites
+
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
+
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](create-projects.md#).
+
 ## Launch VS Code from Azure AI Foundry
 
 1. Go to [Azure AI Foundry](https://ai.azure.com).

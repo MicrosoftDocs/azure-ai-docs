@@ -26,7 +26,10 @@ A prompt flow compute session has computing resources that are required for the 
 
 ## Prerequisites
 
-Sign in to [Azure AI Foundry](https://ai.azure.com) and select your project.
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
+
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](create-projects.md#).
 
 ## Create a compute session
 
