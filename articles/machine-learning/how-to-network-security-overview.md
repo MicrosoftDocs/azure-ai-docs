@@ -24,7 +24,9 @@ monikerRange: 'azureml-api-2 || azureml-api-1'
 :::moniker range="azureml-api-1"
 [!INCLUDE [dev v1](includes/machine-learning-dev-v1.md)]
 
-[!INCLUDE [cli-version-info](./includes/machine-learning-cli-v1-deprecation.md)]
+[!INCLUDE [v1 deprecation](includes/sdk-v1-deprecation.md)]
+
+[!INCLUDE [cli v1 deprecation](./includes/machine-learning-cli-v1-deprecation.md)]
 :::moniker-end
 
 [!INCLUDE [managed-vnet-note](includes/managed-vnet-note.md)]

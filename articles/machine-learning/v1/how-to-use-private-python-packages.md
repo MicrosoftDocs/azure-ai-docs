@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5, sdkv1, devx-track-python
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, learn how to use private Python packages securely within Azure Machine Learning. Use cases for private Python packages include:
 
  * You've developed a private package that you don't want to share publicly.

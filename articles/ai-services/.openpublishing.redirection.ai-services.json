@@ -925,7 +925,7 @@
     {
       "source_path_from_root": "/articles/ai-services/translator/modifications-deprecations.md",
       "redirect_url": "/azure/ai-services/translator/reference/release-history",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/neural-dictionary.md",
@@ -965,7 +965,7 @@
     {
       "source_path_from_root": "/articles/ai-services/translator/translator-faq.md",
       "redirect_url": "/azure/ai-services/translator/faq",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/word-alignment.md",
@@ -978,13 +978,8 @@
       "redirect_document_id": true
     },
     {
-      "source_path_from_root": "/articles/ai-services/translator/reference/known-issues.md",
+      "source_path_from_root": "/articles/ai-services/translator/known-issues.md",
       "redirect_url": "/azure/ai-services/translator/text-translation/reference/known-issues",
-      "redirect_document_id": true
-    },
-    {
-      "source_path_from_root": "/articles/ai-services/translator/reference/release-history.md",
-      "redirect_url": "/azure/ai-services/translator/text-translation/reference/release-history",
       "redirect_document_id": false
     },
     {
@@ -1058,8 +1053,18 @@
       "redirect_document_id": true
     },
     {
-      "source_path_from_root": "/articles/ai-services/translator/text-translation/reference/release-history.md",
-      "redirect_url": "/azure/ai-services/translator/release-history",
+      "source_path_from_root": "/articles/ai-services/translator/text-translation/reference/known-issues.md",
+      "redirect_url": "/azure/ai-services/translator/reference/known-issues",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/release-history.md",
+      "redirect_url": "/azure/ai-services/translator/reference/release-history",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/sovereign-clouds.md",
+      "redirect_url": "/azure/ai-services/translator/reference/sovereign-clouds",
       "redirect_document_id": true
     }
   ]

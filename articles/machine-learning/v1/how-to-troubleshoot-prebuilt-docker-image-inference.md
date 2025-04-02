@@ -14,6 +14,8 @@ ms.custom: UpdateFrequency5, deploy, docker, prebuilt, troubleshoot, devx-track-
 ---
 # Troubleshooting prebuilt docker images for inference
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 Learn how to troubleshoot problems you might see when using prebuilt docker images for inference with Azure Machine Learning.
 
 > [!IMPORTANT]

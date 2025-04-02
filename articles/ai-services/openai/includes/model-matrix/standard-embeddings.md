@@ -5,7 +5,7 @@ description: embedding model regional availability
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 03/25/2024
+ms.date: 04/01/2025
 ---
 
 | **Region**   | **text-embedding-3-small**, **1**   | **text-embedding-3-large**, **1**   | **text-embedding-ada-002**, **1**   | **text-embedding-ada-002**, **2**   |
@@ -20,12 +20,14 @@ ms.date: 03/25/2024
 | northcentralus   | -                             | -                             | -                             | ✅                              |
 | norwayeast       | -                             | ✅                              | -                             | ✅                              |
 | polandcentral    | -                             | ✅                              | -                             | -                             |
-| southafricanorth | -                             | -                             | -                             | ✅                              |
+| southafricanorth | -                             | ✅                              | -                             | ✅                              |
 | southcentralus   | -                             | -                             | ✅                              | ✅                              |
+| southeastasia    | -                             | ✅                              | -                             | -                             |
 | southindia       | -                             | ✅                              | -                             | ✅                              |
+| spaincentral     | -                             | ✅                              | -                             | -                             |
 | swedencentral    | -                             | ✅                              | -                             | ✅                              |
 | switzerlandnorth | ✅                              | ✅                              | -                             | ✅                              |
-| uaenorth         | -                             | -                             | -                             | ✅                              |
+| uaenorth         | ✅                              | ✅                              | -                             | ✅                              |
 | uksouth          | -                             | ✅                              | -                             | ✅                              |
 | westeurope       | -                             | -                             | -                             | ✅                              |
 | westus           | ✅                              | -                             | -                             | ✅                              |
