@@ -66,6 +66,7 @@ Built-in evaluators can accept *either* query and response pairs or a list of co
 | `RelevanceEvaluator`      | Required: String | Required: String | N/A | N/A           | Supported for text |
 | `CoherenceEvaluator`      | Required: String | Required: String | N/A           | N/A           |Supported for text |
 | `FluencyEvaluator`        | N/A  | Required: String | N/A          | N/A           |Supported for text |
+|`ResponseCompletenessEvaluator`  | N/A  | Required: String | N/A           | Required: String |Not supported |
 | `SimilarityEvaluator` | Required: String | Required: String | N/A           | Required: String |Not supported |
 |`F1ScoreEvaluator` | N/A  | Required: String | N/A           | Required: String |Not supported |
 | `RougeScoreEvaluator` | N/A | Required: String | N/A           | Required: String           | Not supported |
