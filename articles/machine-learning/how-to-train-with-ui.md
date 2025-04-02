@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.custom: devplatv2
 author: ssalgadodev
 ms.author: ssalgado
-ms.date: 03/31/2025
+ms.date: 04/02/2025
 ms.reviewer: amipatel
 ---
 
@@ -35,11 +35,11 @@ In this article, you learn how to use your own data and code to train a machine 
 
 1. Enter the job creation UI from the homepage. Select **+ New** and choose **Training job**.
 
-    :::image type="content" source="media/how-to-train-with-ui/unified-job-submission-home.png" alt-text="Screenshot that shows the Azure Machine Learning studio homepage.":::
+    :::image type="content" source="media/how-to-train-with-ui/unified-job-submission-home.png" alt-text="Screenshot that shows the Azure Machine Learning studio homepage." lightbox="media/how-to-train-with-ui/unified-job-submission-home.png":::
 
 1. Select your method of training, then choose **Start configuring job** to open the submission form.
 
-    :::image type="content" source="media/how-to-train-with-ui/training-method.png" alt-text="Screenshot that shows the training method options on the Azure Machine Learning studio training form.":::
+    :::image type="content" source="media/how-to-train-with-ui/training-method.png" alt-text="Screenshot that shows the training method options on the Azure Machine Learning studio training form." lightbox="media/how-to-train-with-ui/training-method.png":::
 
     In the next section, we walk through the form with the steps for running a custom training script (command job).
 
@@ -47,7 +47,7 @@ In this article, you learn how to use your own data and code to train a machine 
 
 Configure the basic information about your training job. You can proceed to the next page if you're satisfied with the defaults we chose for you, or make changes based on your desired preference.
 
-:::image type="content" source="media/how-to-train-with-ui/basic-settings.png" alt-text="Screenshot that shows the basic settings form for training jobs.":::
+:::image type="content" source="media/how-to-train-with-ui/basic-settings.png" alt-text="Screenshot that shows the basic settings form for training jobs." lightbox="media/how-to-train-with-ui/basic-settings.png":::
 
 The following fields are available:
 
@@ -89,13 +89,13 @@ If the code isn't in the root directory, you should use the relative path. For e
 
 Here, the source code is in the `src` subdirectory. The command would be `python ./src/main.py` (plus other command-line arguments).
 
-:::image type="content" source="media/how-to-train-with-ui/training-script-code.png" alt-text="Screenshot of the files to be uploaded in the training job submission form.":::
+:::image type="content" source="media/how-to-train-with-ui/training-script-code.png" alt-text="Screenshot of the files to be uploaded in the training job submission form." lightbox="media/how-to-train-with-ui/training-script-code.png":::
 
 ### Inputs
 
 When you use an input in the command, you need to specify the input name. To indicate an input variable, use the form `${{inputs.input_name}}`. For instance, `${{inputs.wiki}}`. You can then refer to it in the command, for instance, `--data ${{inputs.wiki}}`.
 
-:::image type="content" source="media/how-to-train-with-ui/training-script-inputs.png" alt-text="Screenshot that shows the input variables in the training job submission form.":::
+:::image type="content" source="media/how-to-train-with-ui/training-script-inputs.png" alt-text="Screenshot that shows the input variables in the training job submission form." lightbox="media/how-to-train-with-ui/training-script-inputs.png":::
 
 ## Select compute resources
 
@@ -135,7 +135,7 @@ After selecting a compute target, you need to specify the runtime environment fo
 
 Curated environments are Azure-defined collections of Python packages used in common ML workloads. Curated environments are available in your workspace by default. These environments are backed by cached Docker images, which reduce the job preparation overhead. The cards displayed in the **Curated environments** page show details of each environment. To learn more, see [Azure Machine Learning Curated Environments](resource-curated-environments.md).
 
-:::image type="content" source="media/how-to-train-with-ui/curated-environments.png" alt-text="Screenshot of the curated environments selector page showing various environment cards.":::
+:::image type="content" source="media/how-to-train-with-ui/curated-environments.png" alt-text="Screenshot of the curated environments selector page showing various environment cards." lightbox="media/how-to-train-with-ui/curated-environments.png":::
 
 ### Custom environments
 
@@ -149,7 +149,7 @@ If you don't want to use the Azure Machine Learning curated environments or spec
 
 After you configure the job, choose **Next** to go to the **Review** page. To modify a setting, choose the pencil icon and make the change.
 
-:::image type="content" source="media/how-to-train-with-ui/review.png" alt-text="Screenshot that shows the review pane to validate your selections before submission.":::
+:::image type="content" source="media/how-to-train-with-ui/review.png" alt-text="Screenshot that shows the review pane to validate your selections before submission." lightbox="media/how-to-train-with-ui/review.png":::
 
 To launch the job, choose **Submit training job**. After the job is created, Azure shows you the job details page, where you can monitor and manage your training job.
 
