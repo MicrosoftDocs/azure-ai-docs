@@ -8,7 +8,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 03/26/2025
+ms.date: 04/02/2025
 ---
 
 # Upgrade your Azure AI Search service in the Azure portal
@@ -70,11 +70,11 @@ For [eligible services](#upgrade-eligibility), the following table compares the 
 
 ## Check your service creation or upgrade date
 
-On the **Overview** page, you can view various metadata about your search service, including the **Created on** and **Upgraded on** dates.
+On the **Overview** page, you can view various metadata about your search service, including the **Create date (UTC)** and **Upgrade date (UTC)**. The date you created your service partially determines its [upgrade eligibility](#upgrade-eligibility).
 
-<!-- Should also describe that they can use this date to find which upgrades will be applied before they perform the operation. -->
+:::image type="content" source="media/search-how-to-upgrade/service-creation-upgrade-metadata.png" alt-text="Screenshot of the service creation and service upgrade dates in the Azure portal." border="true":::
 
-If an upgrade is available for services in your region, the **Upgrade** button becomes available. Otherwise, the button appears dimmed.
+If an upgrade is available for your service, the **Upgrade** button becomes available. Otherwise, the button appears dimmed.
 
 ## Upgrade your service
 
@@ -86,11 +86,19 @@ To upgrade your service:
 
 1. On the **Overview** page, select **Upgrade** from the command bar.
 
+   :::image type="content" source="media/search-how-to-upgrade/upgrade-button.png" alt-text="Screenshot of the Upgrade button on the command bar in the Azure portal." border="true":::
+
    If this button appears dimmed, an upgrade isn’t available for your service. Your service either has the [latest upgrade](#check-your-service-creation-or-upgrade-date) or is in an [unsupported region](#upgrade-eligibility).
 
-1. Review the upgrade details for your service.
+1. Review the upgrade details for your service, and then select **Upgrade**.
+
+   :::image type="content" source="media/search-how-to-upgrade/upgrade-panel.png" alt-text="Screenshot of your service upgrade details in the Azure portal." border="true":::
+
+   A confirmation appears reminding you that the upgrade can't be undone.
 
 1. To permanently upgrade your service, select **Upgrade**.
+
+   :::image type="content" source="media/search-how-to-upgrade/upgrade-confirmation.png" alt-text="Screenshot of the upgrade confirmation in the Azure portal." border="true":::
 
 1. Check your notifications to confirm that the operation started.
 
