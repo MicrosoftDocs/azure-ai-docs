@@ -21,13 +21,13 @@ zone_pivot_groups: project-type
 
 This article describes how to create an [Azure AI Foundry](https://ai.azure.com) project. A project is used to organize your work and save state while building customized AI apps.
 
-Azure AI Foundry supports two types of projects: [!INCLUDE [hub](includes/hub-project-name.md)] and [!INCLUDE [fdp](includes/fdp-project-name.md)]. When you create a project in Azure AI Foundry portal, you’ll be guided to the correct project type for your needs.
+Azure AI Foundry supports two types of projects: [!INCLUDE [hub](../includes/hub-project-name.md)] and [!INCLUDE [fdp](../includes/fdp-project-name.md)]. When you create a project in Azure AI Foundry portal, you’ll be guided to the correct project type for your needs.
 
 Select the type you want to create from the options above.
 
 ::: zone pivot="fdp-project"
 
-An [!INCLUDE [fdp](includes/fdp-project-name.md)] is built on an Azure AI Foundry resource. This project type does not use a hub. Essential connections to storage and Azure AI Search are built into the resource for more seamless development. 
+An [!INCLUDE [fdp](../includes/fdp-project-name.md)] is built on an Azure AI Foundry resource. This project type does not use a hub. Essential connections to storage and Azure AI Search are built into the resource for more seamless development. 
 
 ::: zone-end
 
@@ -41,7 +41,7 @@ For more information about the projects and hubs model, see [Azure AI Foundry hu
 
 ## Prerequisites
 
-Use the following tabs to select the method you plan to use to create a [hub](../includes/hub-project-name.md)]:
+Use the following tabs to select the method you plan to use to create a [!INCLUDE [hub](../includes/hub-project-name.md)]:
 
 # [Azure AI Foundry portal](#tab/ai-studio)
 
