@@ -45,13 +45,13 @@ All of the Management REST APIs have examples. If a task isn't covered in this a
 
    1. Open a command shell for Azure CLI.
 
-   1. Sign in to your Azure subscription.
+   1. Sign in to your Azure subscription. If you have multiple tenants or subscriptions, make sure you select the correct one.
 
        ```azurecli
        az login
        ```
 
-   1. Get the tenant ID and subscription ID. If you have multiple tenants or subscriptions, make sure you use the correct one.
+   1. Get the tenant ID and subscription ID.
 
       ```azurecli
       az account show
