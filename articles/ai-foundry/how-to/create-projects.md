@@ -13,20 +13,38 @@ ms.date: 01/03/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
+zone_pivot_groups: project-type
 # customer intent: As a developer, I want to create an Azure AI Foundry project so I can work with generative AI.
 ---
 
 # Create a project in Azure AI Foundry portal
 
-This article describes how to create an [Azure AI Foundry](https://ai.azure.com) project. A project is used to organize your work and save state while building customized AI apps. 
+This article describes how to create an [Azure AI Foundry](https://ai.azure.com) project. A project is used to organize your work and save state while building customized AI apps.
 
-Projects are hosted by an Azure AI Foundry hub. If your company has an administrative team that has created a hub for you, you can create a project from that hub. If you are working on your own, you can create a project and a default hub will automatically be created for you.
+Azure AI Foundry supports two types of projects: [!INCLUDE [hub](../includes/hub-project-name.md)] and [!INCLUDE [fdp](../includes/fdp-project-name.md)]. When you create a project in Azure AI Foundry portal, you’ll be guided to the correct project type for your needs.
+
+::: zone pivot="fdp-project"
+
+The rest of this article describes an **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**.  Select [!INCLUDE [hub](../includes/hub-project-name.md)] at the top of this article if you want to create a [!INCLUDE [hub](../includes/hub-project-name.md)] instead.
+
+An [!INCLUDE [fdp](../includes/fdp-project-name.md)] is built on an Azure AI Foundry resource. This project type does not use a hub. Essential connections to storage and Azure AI Search are built into the resource for more seamless development. 
+
+::: zone-end
+
+
+::: zone pivot="hub-project"
+
+
+The rest of this article describes a **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select [!INCLUDE [fdp](../includes/fdp-project-name.md)] at the top of this article if you want to create an [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
+
+A [!INCLUDE [hub](../includes/hub-project-name.md)] is hosted by an Azure AI Foundry hub. If your company has an administrative team that has created a hub for you, you can create a project from that hub. If you are working on your own, you can create a project and a default hub will automatically be created for you.
 
 For more information about the projects and hubs model, see [Azure AI Foundry hubs](../concepts/ai-resources.md).
 
+
 ## Prerequisites
 
-Use the following tabs to select the method you plan to use to create a project:
+Use the following tabs to select the method you plan to use to create a [!INCLUDE [hub](../includes/hub-project-name.md)]:
 
 # [Azure AI Foundry portal](#tab/ai-studio)
 
@@ -152,6 +170,8 @@ In addition, a number of resources are only accessible by users in your project 
 
 > [!NOTE]
 > Storage connections are not created directly with the project when your storage account has public network access set to disabled. These are created instead when a first user accesses Azure AI Foundry over a private network connection. [Troubleshoot storage connections](troubleshoot-secure-connection-project.md#troubleshoot-configurations-on-connecting-to-storage)
+
+::: zone-end
 
 ## Related content
 

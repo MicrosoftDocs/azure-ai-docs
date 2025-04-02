@@ -11,4 +11,4 @@ ms.custom: include
 ---
 
 > [!NOTE]
-> This article applies only to projects that are created on an Azure AI Foundry hub. Projects created on an Azure AI Foundry resource aren't supported. For more information, see [Project types](../what-is-ai-foundry.md#project-types).
+> You must use a [!INCLUDE [hub](hub-project-name.md)] for this feature. An [!INCLUDE [fdp](fdp-project-name.md)] is not supported. For more information, see [Project types](../what-is-ai-foundry.md#project-types).

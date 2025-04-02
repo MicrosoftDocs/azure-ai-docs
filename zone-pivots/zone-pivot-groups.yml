@@ -1129,3 +1129,12 @@ groups:
     title: Python
   - id: programming-language-typescript
     title: TypeScript
+# Owner: sgilley
+- id: project-type
+  title: Project types
+  prompt: Choose a project type
+  pivots:
+  - id: fdp-project
+    title: AIServices based project
+  - id: hub-project
+    title: Hub based project 
