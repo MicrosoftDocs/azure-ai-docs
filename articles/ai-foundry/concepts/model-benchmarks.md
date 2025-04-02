@@ -37,6 +37,7 @@ Model benchmarks assess LLMs and SLMs across the following categories: quality, 
 
 Azure AI assesses the quality of LLMs and SLMs across various metrics that are grouped into two main categories: accuracy, and prompt-assisted metrics:
 
+
 For accuracy metric:
 
 | Metric | Description |
@@ -53,15 +54,7 @@ For prompt-assisted metrics:
 | Groundedness | Groundedness measures how well the language model's generated answers align with information from the input source. |
 | Relevance | Relevance measures the extent to which the language model's generated responses are pertinent and directly related to the given questions. |
 
-Azure AI also displays the quality index as follows:
-
-| Index | Description |
-|-------|-------------|
-| Quality index | Quality index is calculated by scaling down GPTSimilarity between zero and one, followed by averaging with accuracy metrics. Higher values of quality index are better. |
-
-The quality index represents the average score of the applicable primary metric (accuracy, rescaled GPTSimilarity) over 15 standard datasets and is provided on a scale of zero to one.
-
-Quality index constitutes two categories of metrics: 
+Quality includes two categories of metrics: 
 
 - Accuracy (for example, exact match or `pass@k`). Ranges from zero to one.
 - Prompt-based metrics (for example, GPTSimilarity, groundedness, coherence, fluency, and relevance). Ranges from one to five.
