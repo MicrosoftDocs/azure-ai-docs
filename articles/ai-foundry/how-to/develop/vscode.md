@@ -24,10 +24,10 @@ author: sdgilley
 
 ## Prerequisites
 
-[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
+[!INCLUDE [uses-hub-only](../../includes/uses-hub-only.md)]
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](create-projects.md#).
+- If you don't have one, [create a [!INCLUDE [hub](../../includes/hub-project-name.md)]](create-projects.md#).
 
 ## Launch VS Code from Azure AI Foundry
 
