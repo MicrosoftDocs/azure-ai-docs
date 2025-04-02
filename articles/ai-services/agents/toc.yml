@@ -59,7 +59,7 @@ items:
         - name: Use virtual networks
           href: how-to/virtual-networks.md
     - name: Use the Visual Studio Code extension
-      href: ../../ai-foundry/how-to/develop/vs-code-agents.md
+      href: ../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context
 - name: Responsible AI
   items:
     - name: Transparency note
