@@ -66,13 +66,18 @@ Azure AI Foundry supports two types of projects: [!INCLUDE [hub](includes/hub-pr
 
 In general, you should use a [!INCLUDE [fdp](includes/fdp-project-name.md)].  You only need to use a [!INCLUDE[hub](includes/hub-project-name.md)] for features that are not available in a [!INCLUDE [fdp](includes/fdp-project-name.md)]. 
 
-Most features are available in both project types, but there are a few exceptions.  The table below summarizes the difference between the two project types. Other than these differences, you can use either project type for your work. 
+Most features are available in both project types, but there are a few exceptions:  
 
-The following table summarizes the differences between the two project types.
+* A [!INCLUDE[hub](includes/hub-project-name.md)] is the only project type that allows you to:
+  * Use Prompt flow
+  * Access your models and prompt flow also in Azure Machine Learning Studio
+  * Use Models-as-a-Platform (open source models)
+* A [!INCLUDE [fdp](includes/fdp-project-name.md)] is a better choice if you want to::
+  * Use industry models from AOAI/Mistral/Meta/etc. in a serverless deployment model
+  * Use Agents
+* For all other scenarios, you can use either project type. We recommend using a [!INCLUDE[fdp](includes/fdp-project-name.md)] in that case.
 
-| Feature | [!INCLUDE[hub](includes/hub-project-name.md)] | [!INCLUDE [fdp](includes/fdp-project-name.md)] |
-| --- | --- | --- |
-| Prompt flow | Yes | No |
+When you create a project in Azure AI Foundry portal, you’ll be guided to the correct project type for your needs.
 
 ## Management center
 
