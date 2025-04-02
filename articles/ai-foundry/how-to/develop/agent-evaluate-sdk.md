@@ -13,23 +13,23 @@ ms.reviewer: changliu2
 ms.author: lagayhar
 author: lgayhardt
 ---
-# Evaluate your AI agents locally with the Azure AI Evaluation SDK (preview)
+# Evaluate your AI agents locally with Azure AI Evaluation SDK (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-AI Agents are powerful productivity assistants to create workflows for business needs. However, they come with challenges for observability due to their complex interaction patterns. In this article, you learn how to run built-in evaluators locally on simple agent data or agent messages with built-in evaluators to thoroughly assess the performance of your AI agents. 
+AI Agents are powerful productivity assistants to create workflows for business needs. However, they come with challenges for observability due to their complex interaction patterns. In this article, you learn how to run built-in evaluators locally on simple agent data or agent messages with built-in evaluators to thoroughly assess the performance of your AI agents.
 
 To build production-ready agentic applications and enable observability and transparency, developers need tools to assess not just the final output from an agent's workflows, but the quality and efficiency of the workflows themselves. For example, consider a typical agentic workflow:
 
 :::image type="content" source="../../media/evaluations/agent-workflow-eval.gif" alt-text="Animation of the agent's workflow from user query to intent resolution to tool calls to final response." lightbox="../../media/evaluations/agent-workflow-eval.gif":::
 
-The agentic workflow is triggered by a user query "weather tomorrow". It starts to execute multiple steps, such as reasoning through user intents, tool calling, and utilizing retrieval-augmented generation to produce a final response. In this process, evaluating each steps of the workflow—along with the quality and safety of the final output—is crucial. Specifically, we formulate these evaluation aspects into the following evaluators for agents:
+The agentic workflow is triggered by a user query "weather tomorrow". It starts to execute multiple steps, such as reasoning through user intents, tool calling, and utilizing retrieval-augmented generation to produce a final response. In this process, evaluating each step of the workflow—along with the quality and safety of the final output—is crucial. Specifically, we formulate these evaluation aspects into the following evaluators for agents:
 
 -   [Intent resolution](https://aka.ms/intentresolution-sample): Measures how well the agent identifies the user’s request, including how well it scopes the user’s intent, asks clarifying questions, and reminds end users of its scope of capabilities.
 -	[Tool call accuracy](https://aka.ms/toolcallaccuracy-sample): Evaluates the agent’s ability to select the appropriate tools, and process correct parameters from previous steps.
 -	[Task adherence](https://aka.ms/taskadherence-sample): Measures how well the agent’s final response adheres to its assigned tasks, according to its system message and prior steps.
 
-To see more quality and risk and safety evaluators, refer to [built-in evaluators](./evaluate-sdk.md#data-requirements-for-built-in-evaluators) to assess the content in the process where appropriate.   
+To see more quality and risk and safety evaluators, refer to [built-in evaluators](./evaluate-sdk.md#data-requirements-for-built-in-evaluators) to assess the content in the process where appropriate.
 
 ## Getting started
 
@@ -39,17 +39,17 @@ First install the evaluators package from Azure AI evaluation SDK:
 pip install azure-ai-evaluation
 ```
 
-### Evaluators with agent message support
+## Evaluators with agent message support
 
-Agents typically emit messages to interact with a user or other agents. Our built-in evaluators can accept simple data types such as strings in `query`, `response`, `ground_truth` according to the [single-turn data input requirements](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). However, to extract these simple data from agent messages can be a challenge, due to the complex interaction patterns of agents and framework differences. For example, as mentioned, a single user query can trigger a long list of agent messages, typically with multiple tool calls invoked.
+Agents typically emit messages to interact with a user or other agents. Our built-in evaluators can accept simple data types such as strings in `query`, `response`, `ground_truth` according to the [single-turn data input requirements](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). However, to extract these simple data types from agent messages can be a challenge, due to the complex interaction patterns of agents and framework differences. For example, as mentioned, a single user query can trigger a long list of agent messages, typically with multiple tool calls invoked.
 
 As illustrated in the example, we enabled agent message support specifically for these built-in evaluators to evaluate these aspects of agentic workflow. These evaluators take `tool_calls` or `tool_definitions` as parameters unique to agents.
 
 | Evaluator       | `query`      | `response`      | `tool_calls`       | `tool_definitions`  | 
 |----------------|---------------|---------------|---------------|---------------|
-| `IntentResolutionEvaluator`   | Required: Union[String, list[Message]] | Required: Union[String, list[Message]]  | N/A | Optional: list[dict]  |
-| `ToolCallAccuracyEvaluator`   | Required: Union[String, list[Message]] | Optional: Union[String, list[Message]]| Optional: Union[dict, list[ToolCall]] | Required: list[ToolDefinition]  |
-| `TaskAdherenceEvaluator`         | Required: Union[String, list[Message]] | Required: Union[String, list[Message]]  | N/A | Optional: list[dict]  |
+| `IntentResolutionEvaluator`   | Required: `Union[str, list[Message]]` | Required: `Union[str, list[Message]]`  | N/A | Optional: `list[ToolCall]`  |
+| `ToolCallAccuracyEvaluator`   | Required: `Union[str, list[Message]]` | Optional: `Union[str, list[Message]]`  | Optional: `Union[dict, list[ToolCall]]` | Required: `list[ToolDefinition]`  |
+| `TaskAdherenceEvaluator`         | Required: `Union[str, list[Message]]` | Required: `Union[str, list[Message]]`  | N/A | Optional: `list[ToolCall]`  |
 
 - `Message`: `dict` openai-style message describing agent interactions with a user, where `query` must include a system message as the first message.
 - `ToolCall`: `dict` specifying tool calls invoked during agent interactions with a user.
@@ -57,14 +57,14 @@ As illustrated in the example, we enabled agent message support specifically for
 
 For `ToolCallAccuracyEvaluator`, either `response` or  `tool_calls` must be provided. 
 
-We will demonstrate some examples of the two data formats: simple agent data, and agent messages. However, due to the unique requirements of these evaluators, we recommend referring to the [sample notebooks](#sample-notebooks) which illustrate the possible input paths for each evaluator.  
+We'll demonstrate some examples of the two data formats: simple agent data, and agent messages. However, due to the unique requirements of these evaluators, we recommend referring to the [sample notebooks](#sample-notebooks) which illustrate the possible input paths for each evaluator.  
 
 As with other [built-in AI-assisted quality evaluators](./evaluate-sdk.md#performance-and-quality-evaluators), `IntentResolutionEvaluator` and `TaskAdherenceEvaluator` output a likert score (integer 1-5; higher score is better). `ToolCallAccuracyEvaluator` outputs the passing rate of all tool calls made (a float between 0-1) based on user query. To further improve intelligibility, all evaluators accept a binary threshold and output two new keys. For the binarization threshold, a default is set and user can override it. The two new keys are:
 
 - `{metric_name}_result` a "pass" or "fail" string based on a binarization threshold.
 - `{metric_name}_threshold` a numerical binarization threshold set by default or by the user
 
-#### Simple agent data
+### Simple agent data
 
 In simple agent data format, `query` and `response` are simple python strings. For example:  
 
@@ -140,7 +140,7 @@ response = tool_call_accuracy(query=query, tool_calls=tool_calls, tool_definitio
 print(response)
 ```
 
-#### Agent messages
+### Agent messages
 
 In agent message format, `query` and `response` are list of openai-style messages. Specifically, `query` carry the past agent-user interactions leading up to the last user query and requires the system message (of the agent) on top of the list; and `response` will carry the last message of the agent in response to the last user query. Example:
 
@@ -237,11 +237,11 @@ print(result)
 
 ```
 
-#### Converter support
+## Converter support
 
 Transforming agent messages into the right evaluation data to use our evaluators can be a nontrivial task. If you use [Azure AI Agent Service](../../../ai-services/agents/overview.md), however, you can seamlessly evaluate your agents via our converter support for Azure AI agent threads and runs. Here's an example to create an Azure AI agent and some data for evaluation. Separately from evaluation, Azure AI Agent Service requires `pip install azure-ai-projects azure-identity` and an Azure AI project connection string and the supported models.
 
-#### Create agent threads and runs
+### Create agent threads and runs
 
 ```python
 import os, json
@@ -327,7 +327,7 @@ for message in project_client.agents.list_messages(thread.id, order="asc").data:
     print("-" * 40)
 ```
 
-##### Convert agent runs (single-run)
+#### Convert agent runs (single-run)
 
 Now you use our converter to transform the Azure AI agent thread or run data into required evaluation data that the evaluators can understand. 
 ```python
@@ -345,7 +345,8 @@ converted_data = converter.convert(thread_id, run_id)
 print(json.dumps(converted_data, indent=4))
 ```
 
-##### Convert agent threads (multi-run) 
+#### Convert agent threads (multi-run)
+
 ```python
 import json
 from azure.ai.evaluation import AIAgentConverter
@@ -363,7 +364,7 @@ print(f"Evaluation data saved to {filename}")
 
 #### Batch evaluation on agent thread data
 
-With the evaluation data prepared in one line of code, you can simply select the evaluators to assess the agent quality (for example, intent resolution, tool call accuracy, and task adherence), and submit a batch evaluation run:
+With the evaluation data prepared in one line of code, you can select the evaluators to assess the agent quality (for example, intent resolution, tool call accuracy, and task adherence), and submit a batch evaluation run:
 ```python
 from azure.ai.evaluation import IntentResolutionEvaluator, TaskAdherenceEvaluator, ToolCallAccuracyEvaluator
 from azure.ai.projects.models import ConnectionType
@@ -414,16 +415,17 @@ print(response["metrics"])
 # use the URL to inspect the results on the UI
 print(f'AI Foundary URL: {response.get("studio_url")}')
 ```
-With Azure AI Evaluation SDK, you can seamlessly evaluate your Azure AI agents via our converter support, which enables observability and transparency into agentic workflows. You can evaluate other agents by preparing the right data for the evaluators of your choice.    
 
-### Sample notebooks
+With Azure AI Evaluation SDK, you can seamlessly evaluate your Azure AI agents via our converter support, which enables observability and transparency into agentic workflows. You can evaluate other agents by preparing the right data for the evaluators of your choice.
+
+## Sample notebooks
+
 Now you're ready to try a sample for each of these evaluators:
 - [Intent resolution](https://aka.ms/intentresolution-sample)
 - [Tool call accuracy](https://aka.ms/toolcallaccuracy-sample)
 - [Task adherence](https://aka.ms/taskadherence-sample)
 - [Response Completeness](https://aka.ms/rescompleteness-sample)
 - [End-to-end Azure AI agent evaluation](https://aka.ms/e2e-agent-eval-sample)
-
 
 ## Related content
 
