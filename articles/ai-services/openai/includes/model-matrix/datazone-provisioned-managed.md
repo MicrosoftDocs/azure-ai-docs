@@ -5,6 +5,7 @@ description: Regional availability for data zone provisioned managed models
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
+ms.custom: references_regions
 ms.date: 03/31/2025
 ---
 
