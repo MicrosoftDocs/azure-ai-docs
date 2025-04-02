@@ -41,7 +41,7 @@ Compute instances can run jobs securely in a virtual network environment, withou
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 - If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](create-projects.md#).
-- 
+
 ## Create a compute instance
 
 To create a compute instance in Azure AI Foundry portal:
