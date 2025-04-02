@@ -40,7 +40,7 @@ Compute instances can run jobs securely in a virtual network environment, withou
 [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](create-projects?pivots=hub-project).
+- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](create-projects.md?pivots=hub-project).
 
 ## Create a compute instance
 
