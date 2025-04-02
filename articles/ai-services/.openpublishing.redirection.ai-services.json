@@ -1066,6 +1066,26 @@
       "source_path_from_root": "/articles/ai-services/translator/sovereign-clouds.md",
       "redirect_url": "/azure/ai-services/translator/reference/sovereign-clouds",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/assistants-reference-messages.md",
+      "redirect_url": "/azure/ai-services/openai/reference-preview.md#list---messages",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/assistants-reference-runs.md",
+      "redirect_url": "/azure/ai-services/openai/reference-preview.md#create---thread-and-run",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/assistants-reference-threads.md",
+      "redirect_url": "/azure/ai-services/openai/reference-preview.md#create---thread",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/assistants-reference.md",
+      "redirect_url": "/azure/ai-services/openai/reference-preview.md#list---assistants",
+      "redirect_document_id": true
     }
   ]
 }
