@@ -109,3 +109,4 @@ You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options
 - [Quickstart: Use the chat playground in Azure AI Foundry portal](quickstarts/get-started-playground.md)
 - [Build a custom chat app in Python using the Azure AI SDK](quickstarts/get-started-code.md)
 - [Create a project](./how-to/create-projects.md)
+- [Get started with an AI template](how-to/develop/ai-template-get-started.md)
