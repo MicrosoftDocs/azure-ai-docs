@@ -292,9 +292,16 @@ For
 
 The result of the AI-assisted quality evaluators for a query and response pair is a dictionary containing:
 
-- `{metric_name}` provides a numerical score.
-- `{metric_name}_label` provides a binary label.
+- `{metric_name}` provides a numerical score, on a likert scale (integer 1 to 5) or a float between 0-1.
+- `{metric_name}_label` provides a binary label (if the metric outputs a binary score naturally).
 - `{metric_name}_reason` explains why a certain score or label was given for each data point.
+
+To further improve intelligibility, all evaluators accept a binary threshold and output two new keys. For the binarization threshold, a default is set and user can override it. The two new keys are:
+
+- `{metric_name}_result` a "pass" or "fail" string based on a binarization threshold.
+- `{metric_name}_threshold` a numerical binarization threshold set by default or by the user
+
+
 
 #### Comparing quality and custom evaluators
 

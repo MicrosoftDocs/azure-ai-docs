@@ -24,7 +24,10 @@ AI Agents are powerful productivity assistants to create workflows for business 
 ![alt text](agent-eval-10-sec-gif.gif)
 
 
-Triggered by a user query about “weather tomorrow”, the agentic workflow may include multiple steps, such as reasoning through user intents, tool calling, and utilizing retrieval-augmented generation to produce a final response. In this process, assessing the quality and safety of each step — along with the final output of an agentic workflow — is crucial.
+Triggered by a user query about “weather tomorrow”, the agentic workflow may include multiple steps, such as reasoning through user intents, tool calling, and utilizing retrieval-augmented generation to produce a final response. In this process, evaluating each steps of the workflow — along with the quality and safety of the final output — is crucial. Specifically, we formulate these steps into the following evaluators for agents: 
+-   [Intent resolution](https://aka.ms/intentresolution-sample): Measures how well the agent identifies the user’s request, including how well it scopes the user’s intent, asks clarifying questions, and reminds end users of its scope of capabilities.
+-	[Tool call accuracy](https://aka.ms/toolcallaccuracy-sample): Evaluates the agent’s ability to select the appropriate tools, and process correct parameters from previous steps.
+-	[Task adherence](https://aka.ms/taskadherence-sample): Measures how well the agent’s response adheres to its assigned tasks, according to its system message and prior steps.
 
 In this article, you learn how to run built-in evaluators locally on simple agent data as well as agent messages with built-in evaluators to thoroughly assess the performance of your AI agents. 
 
@@ -40,22 +43,27 @@ pip install azure-ai-evaluation
 
 ### Evaluators with agent message support
 
-Our built-in evaluators can accept simple data types such as strings in `query`, `response`, `ground_truth` as with the [single-turn data input requirements](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). However, to extract simple data from agent messages can be a formidable challenge, due to its complex interaction patterns. For example, as mentioned, a single user query can trigger a long list of agent messages, typically with tool calls invoked. 
+Agents typically emit messages to interact with a user or other agents. Our built-in evaluators can accept simple data types such as strings in `query`, `response`, `ground_truth` according to the [single-turn data input requirements](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). However, to extract simple data from agent messages can be a challenge, due to its complex interaction patterns. For example, as mentioned, a single user query can trigger a long list of agent messages, typically with multiple tool calls invoked. 
 
-Therefore, we have specifically enabled agent message suport for these built-in evaluators:
+As illustrated in the example, we have enabled agent message suport specifically for these built-in evaluators to evaluate these aspects of agentic workflow. These evaluators take `tool_calls` or `tool_definitions` as parameters as they are unique to agents.
 
 | Evaluator       | `query`      | `response`      | `tool_calls`       | `tool_definitions`  | 
-|----------------|---------------|---------------|---------------|---------------|-----------|
+|----------------|---------------|---------------|---------------|---------------|
 | `IntentResolutionEvaluator`   | Required: Union[String, list[Message]] | Required: Union[String, list[Message]]  | N/A | Optional: list[dict]  |
 | `ToolCallAccuracyEvaluator`   | Required: Union[String, list[Message]] | Optional: Union[String, list[Message]]| Optional: Union[dict, list[ToolCall]] | Required: list[ToolDefinition]  |
 | `TaskAdherenceEvaluator`         | Required: Union[String, list[Message]] | Required: Union[String, list[Message]]  | N/A | Optional: list[dict]  |
 
-- `Messages`: `dict` of openai-style messages describing agent interactions with a user
-- `ToolCall`: `dict` specifying tool calls invoked during agent interactions with a user
-- `ToolDefinition`: `dict` describing the tools available to an agent 
+- `Message`: `dict` openai-style message describing agent interactions with a user, where `query` must include a system message as the first message.
+- `ToolCall`: `dict` specifying tool calls invoked during agent interactions with a user.
+- `ToolDefinition`: `dict` describing the tools available to an agent.
 
-For `ToolCallAccuracyEvaluator`, either `response` or  `tool_calls` must be provided. See examples below to showcase the two data formats: simple agent data, and agent messages. 
-  
+For `ToolCallAccuracyEvaluator`, either `response` or  `tool_calls` must be provided. See examples below to showcase the two data formats: simple agent data, and agent messages. However, due to the unique requirements of these evaluators, we recommend referring to the [sample notebooks](#sample-notebooks) which illustrate the possible input paths for each one.  
+
+As with other [built-in AI-assisted quality evaluators](#performance-and-quality-evaluators), `IntentResolutionEvaluator` and `TaskAdherenceEvaluator` output a likert score (integer 1-5) where the higher score is better the result. `ToolCallAccuracyEvaluator` output the passing rate of all tool calls made (a float between 0-1) based on user query. To further improve intelligibility, all evaluators accept a binary threshold and output two new keys. For the binarization threshold, a default is set and user can override it. The two new keys are:
+
+- `{metric_name}_result` a "pass" or "fail" string based on a binarization threshold.
+- `{metric_name}_threshold` a numerical binarization threshold set by default or by the user
+
 
 
 #### Simple agent data
@@ -66,7 +74,7 @@ In simple agent data format, `query` and `response` are simple python strings. F
 import os
 from azure.ai.evaluation import AzureOpenAIModelConfiguration
 from azure.identity import DefaultAzureCredential
-from azure.ai.evaluation import IntentResolutionEvaluator
+from azure.ai.evaluation import IntentResolutionEvaluator, ResponseCompletenessEvaluator
 
 
 model_config = AzureOpenAIModelConfiguration(
@@ -77,20 +85,29 @@ model_config = AzureOpenAIModelConfiguration(
 )
 
 intent_resolution_evaluator = IntentResolutionEvaluator(model_config)
+completeness_evaluator = CompletenessEvaluator(model_config=model_config)
 
 # Evaluating query and response as strings
-# A successful example. Intent is identified and understood and the response correctly resolves user intent
+# A positive example. Intent is identified and understood and the response correctly resolves user intent
 result = intent_resolution_evaluator(
     query="What are the opening hours of the Eiffel Tower?",
     response="Opening hours of the Eiffel Tower are 9:00 AM to 11:00 PM.",
 )
 print(result)
+
+# A negative example. Only half of the statements in the response were complete according to the ground truth  
+result = completeness_evaluator(
+    response="Itinery: Day 1 take a train to visit Disneyland outside of the city; Day 2 rests in hotel.",
+    ground_truth="Itinery: Day 1 take a train to visit the downtown area for city sightseeing; Day 2 rests in hotel."
+)
+print(result)
+
 ```
 
-Tool calls are typically made within the agent response messages, you can also extract them in this format: 
+Examples of `tool_calls` and `tool_definitions` for `ToolCallAccuracyEvaluator`: 
 
 ```python
-query = "How is the weather in Seattle ?"
+query = "How is the weather in Seattle?"
 tool_calls = [{
                     "type": "tool_call",
                     "tool_call_id": "call_CUdbkBfvVBla2YP3p24uhElJ",
@@ -127,7 +144,8 @@ print(response)
 
 #### Agent messages
 
-In agent message format, `query` and `response` are list of openai-style messages. Specifically, `query` requires the system message (of the agent) on top of the list:   
+In agent message format, `query` and `response` are list of openai-style messages. Specifically, `query` carry the past agent-user interactions leading up to the last user query and requires the system message (of the agent) on top of the list; and `response` will carry the last message of the agent in response to the last user query. Example:
+
 ```python
 # user asked a question
 query = [
@@ -135,6 +153,8 @@ query = [
         "role": "system",
         "content": "You are a friendly and helpful customer service agent."
     },
+    # past interactions omitted 
+    # ...
     {
         "createdAt": "2025-03-14T06:14:20Z",
         "role": "user",
@@ -174,7 +194,8 @@ response = [
             }
         ]
     },
-    ...
+    # many more messages omitted 
+    # ...
     # here is the agent's final response 
     {
         "createdAt": "2025-03-14T06:15:05Z",
@@ -204,7 +225,8 @@ tool_definitions = [
             }
         }
     },
-    ...
+    # other tool definitions omitted 
+    # ...
 ]
 
 result = intent_resolution_evaluator(
@@ -215,14 +237,12 @@ result = intent_resolution_evaluator(
 )
 print(result)
 
-
 ```
 
 
 #### Converter support
 
-
-If you use [Azure AI Agent Service](https://learn.microsoft.com/azure/ai-services/agents/overview), you can seamlessly evaluate your agents via our converter support for Azure AI agent threads and runs. To create an Azure AI agent and some data, you need:
+Transforming agent messages into the right evaluation data to use our evaluators can be a non-trivial task. If you use [Azure AI Agent Service](https://learn.microsoft.com/azure/ai-services/agents/overview), however, you can seamlessly evaluate your agents via our converter support for Azure AI agent threads and runs. Here is an example to create an Azure AI agent and some data for evaluation:
 
 ```bash
 pip install azure-ai-projects azure-identity
@@ -237,7 +257,6 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects.models import FunctionTool, ToolSet
 
 from dotenv import load_dotenv
-
 
 load_dotenv()
 
@@ -316,7 +335,7 @@ for message in project_client.agents.list_messages(thread.id, order="asc").data:
 
 ##### Convert agent runs (single-run)
 
-Now you use our converter to transform the agent thread or run data, into required evaluation data that the evaluators can understand. 
+Now you use our converter to transform the Azure AI agent thread or run data into required evaluation data that the evaluators can understand. 
 ```python
 import json
 from azure.ai.evaluation import AIAgentConverter
@@ -350,11 +369,14 @@ print(f"Evaluation data saved to {filename}")
 
 #### Batch evaluation on agent thread data
 
-Select the evaluators to assess the agent quality (for example, intent resolution, tool call accuracy, and task adherence), and submit a batch 
+With the evaluation data prepared in one line of code, you can simply select the evaluators to assess the agent quality (for example, intent resolution, tool call accuracy, and task adherence), and submit a batch evaluation run:
 ```python
 from azure.ai.evaluation import IntentResolutionEvaluator, TaskAdherenceEvaluator, ToolCallAccuracyEvaluator
 from azure.ai.projects.models import ConnectionType
 import os
+
+from dotenv import load_dotenv
+load_dotenv()
 
 
 project_client = AIProjectClient.from_connection_string(
@@ -370,7 +392,7 @@ model_config = project_client.connections.get_default(
                                             include_credentials=True
                                           )
 
-
+# select evaluators
 intent_resolution = IntentResolutionEvaluator(model_config=model_config)
 task_adherence = TaskAdherenceEvaluator(model_config=model_config)
 tool_call_accuracy = ToolCallAccuracyEvaluator(model_config=model_config)
@@ -400,11 +422,11 @@ print(f'AI Foundary URL: {response.get("studio_url")}')
 ```
 
 
-### Samples
+### Sample notebooks
 Now, you are ready to try a sample for each of these evaluators:
 - [Intent resolution](https://aka.ms/intentresolution-sample)
-- [Task adherence](https://aka.ms/taskadherence-sample)
 - [Tool call accuracy](https://aka.ms/toolcallaccuracy-sample)
+- [Task adherence](https://aka.ms/taskadherence-sample)
 - [End-to-end Azure AI agent evaluation](https://aka.ms/e2e-agent-eval-sample)
 
 
