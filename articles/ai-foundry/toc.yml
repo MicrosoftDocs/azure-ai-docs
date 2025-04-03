@@ -46,7 +46,7 @@ items:
     items:
     - name: Model leaderboards
       href: concepts/model-benchmarks.md
-    - name: How to use model leaderboards
+    - name: How to use model benchmarking
       href: how-to/benchmark-model-in-catalog.md
   - name: Model deployment in Azure AI Foundry
     items:

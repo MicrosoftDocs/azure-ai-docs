@@ -24,8 +24,7 @@ Model leaderboards in Azure AI Foundry portal allow you to streamline the model 
 - **Trade-off charts** to see how models perform on one metric versus another, such as quality versus cost;
 - **Leaderboards by scenario** to find the best leaderboards that suite your scenario.
 
-Whenever you find a model to your liking, you can select it and zoom into the [detailed benchmarking results](../how-to
-/benchmark-model-in-catalog.md) of the model within the model catalog. If satisfied with the model, you can deploy it, try it in the playgorund, or evaluate it on your data. The leaderboards support benchmarking across text language models (large language models (LLMs) and small language models (SLMs)) and embedding models.
+Whenever you find a model to your liking, you can select it and zoom into the **Detailed benchmarking results** of the model within the model catalog. If satisfied with the model, you can deploy it, try it in the playgorund, or evaluate it on your data. The leaderboards support benchmarking across text language models (large language models (LLMs) and small language models (SLMs)) and embedding models.
 
 
 ## Benchmarking of large and small language models
@@ -156,5 +155,5 @@ Prompt construction follows best practices for each dataset, as specified by the
 
 ## Related content
 
-- [Select models using the model leaderboard in Azure AI Foundry portal](../how-to/benchmark-model-in-catalog.md)
+- [How to benchmark models in Azure AI Foundry portal](../how-to/benchmark-model-in-catalog.md)
 - [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md)
