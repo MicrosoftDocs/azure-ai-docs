@@ -132,8 +132,6 @@ Feature container | Supporting containers |
 > [!IMPORTANT]
 > The keys are used to access your Document Intelligence resource. Don't share your keys. Store them securely, for example, using Azure Key Vault. We also recommend regenerating these keys regularly. Only one key is necessary to make an API call. When regenerating the first key, you can use the second key for continued access to the service.
 
-:::moniker range="doc-intel-4.0.0"
-
 ### [Layout](#tab/layout)
 
 The following code sample is a self-contained `docker compose`  example to run the Document Intelligence Layout container. With `docker compose`, you use a YAML file to configure your application's services. Then, with `docker-compose up` command, you create and start all the services from your configuration. Enter {FORM_RECOGNIZER_ENDPOINT_URI} and {FORM_RECOGNIZER_KEY} values for your Layout container instance.
