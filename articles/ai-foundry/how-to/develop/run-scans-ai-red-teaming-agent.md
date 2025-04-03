@@ -43,7 +43,7 @@ You can instantiate the AI Red Teaming agent with your Azure AI Project and Azur
 ```python
 # Azure imports
 from azure.identity import DefaultAzureCredential
-from azure.ai.evaluation import RedTeam, RiskCategory
+from azure.ai.evaluation.red_team import RedTeam, RiskCategory
 
 # Azure AI Project Information
 azure_ai_project = {
@@ -77,7 +77,7 @@ Currently, AI Red Teaming Agent is only available in a few regions. Ensure your 
 
 ## Running an automated scan for safety risks
 
-Once your `RedTeam` is instantiated, you can run an automated scan with minimal configuration, only a target is required. The following would generate five direct adversarial queries for each of the four risk categories for a total of 20 attack and response pairs.
+Once your `RedTeam` is instantiated, you can run an automated scan with minimal configuration, only a target is required. The following would, by default, generate five baseline adversarial queries for each of the four risk categories for a total of 20 attack and response pairs.
 
 ```python
 red_team_result = await red_team_agent.scan(target=your_target)
@@ -93,7 +93,7 @@ The `RedTeam` can run automated scans on various targets.
 # Configuration for Azure OpenAI model
 azure_openai_config = {
     "azure_endpoint": os.environ.get("AZURE_OPENAI_ENDPOINT"),
-    "api_key": os.environ.get("AZURE_OPENAI_KEY"),
+    "api_key": os.environ.get("AZURE_OPENAI_KEY"), #  not needed for entra ID based auth, use az login before running,
     "azure_deployment": os.environ.get("AZURE_OPENAI_DEPLOYMENT"),
 }
 
@@ -154,7 +154,7 @@ red_team_result = await red_team_agent.scan(target=chat_target)
 
 ### Supported attack strategies
 
-If only the target is passed in when you run a scan and no attack strategies are specified, the `red_team_agent` will only send direct adversarial queries to your target. This is the most naive method of attempting to elicit undesired behavior or generated content. It's recommended to try the baseline direct querying first before applying any attack strategies.
+If only the target is passed in when you run a scan and no attack strategies are specified, the `red_team_agent` will only send baseline direct adversarial queries to your target. This is the most naive method of attempting to elicit undesired behavior or generated content. It's recommended to try the baseline direct adversarial querying first before applying any attack strategies.
 
 Attack strategies are methods to take the baseline direct adversarial queries and convert them into another form to try bypassing your target's safeguards. Attack strategies are classified into three buckets of complexities. Attack complexity reflects the effort an attacker needs to put in conducting the attack.
 
@@ -175,7 +175,7 @@ We offer a group of default attacks for easy complexity and moderate complexity 
 The following scan would first run all the baseline direct adversarial queries. Then, it would apply the following attack techniques: `Base64`, `Flip`, `Morse`, `Tense`, and a composition of `Tense` and `Base64` which would first translate the baseline query into past tense then encode it into `Base64`.
 
 ```python
-from azure.ai.evaluation import AttackStrategy
+from azure.ai.evaluation.red_team import AttackStrategy
 
 # Run the red team scan with multiple attack strategies
 red_team_agent_result = await red_team_agent.scan(
@@ -217,16 +217,16 @@ More advanced users can specify the desired attack strategies instead of using d
 | `Jailbreak` | User Injected Prompt Attacks (UPIA) injects specially crafted prompts to bypass AI safeguards | Easy |
 | `Tense` | Changes tense of text into past tense. | Moderate |
 
-Each new attack strategy specified will be applied to the set of baseline adversarial queries used.
+Each new attack strategy specified will be applied to the set of baseline adversarial queries used. If no attack strategies are specified then only baseline adversarial queries will be sent to your target. 
 
-This following example would generate one attack objective per each of the four risk categories specified. That would generate four baseline adversarial prompts which would then get converted into each of the three attack strategies to result in a total of 12 attack-response pairs from your AI system.
+This following example would generate one attack objective per each of the four risk categories specified. That would generate four baseline adversarial prompts which would then get converted into each of the four attack strategies to result in a total of 16 attack-response pairs from your AI system. The last attack stratgy is an example of a composition of two attack strategies to create a more complex attack query: the `AttackStrategy.Compose()` function takes in a list of two supported attack strategies and chains them together. The example's composition would first encode the baseline adversarial query into Base64 then apply the ROT13 cipher on the Base64-encoded query. Compositions only support chaining two attack strategies together.
 
 ```python
 red_team_agent = RedTeam(
-    azure_ai_project=azure_ai_project, # required
-    credential=DefaultAzureCredential(), # required
-    risk_categories=[RiskCategory.Violence, RiskCategory.HateUnfairness, RiskCategory.Sexual, RiskCategory.SelfHarm], # optional, defaults to all four
-    num_objectives=1, # optional, defaults to 10
+    azure_ai_project=azure_ai_project,
+    credential=DefaultAzureCredential(),
+    risk_categories=[RiskCategory.Violence, RiskCategory.HateUnfairness, RiskCategory.Sexual, RiskCategory.SelfHarm],
+    num_objectives=1,
 )
 
 # Run the red team scan with multiple attack strategies
@@ -237,6 +237,7 @@ red_team_agent_result = await red_team_agent.scan(
         AttackStrategy.CharacterSpace,  # Add character spaces
         AttackStrategy.ROT13,  # Use ROT13 encoding
         AttackStrategy.UnicodeConfusable,  # Use confusable Unicode characters
+        AttackStrategy.Compose([AttackStrategy.Base64, AttackStrategy.ROT13]), # composition of strategies
     ],
 )
 ```
