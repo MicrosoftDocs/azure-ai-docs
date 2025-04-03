@@ -556,7 +556,7 @@ The test set format follows this data format:
 
 Currently certain AI-assisted evaluators are available only in the following regions:
 
-| Region | Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack | Groundedness Pro | Protected material |
+| Region | Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, Ungrounded attributes | Groundedness Pro | Protected material |
 |--|--|--|--|
 | East US 2 | Supported | Supported | Supported |
 | Sweden Central | Supported | Supported | N/A |
