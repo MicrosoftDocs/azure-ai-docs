@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 01/22/2025
+ms.date: 04/03/2025
 ms.author: lajanuar
 ---
 
@@ -134,36 +134,7 @@ Feature container | Supporting containers |
 > [!IMPORTANT]
 > The keys are used to access your Document Intelligence resource. Do not share your keys. Store them securely, for example, using Azure Key Vault. We also recommend regenerating these keys regularly. Only one key is necessary to make an API call. When regenerating the first key, you can use the second key for continued access to the service.
 
-### [Layout](#tab/layout)
-
-The following code sample is a self-contained `docker compose`  example to run the Document Intelligence Layout container. With `docker compose`, you use a YAML file to configure your application's services. Then, with `docker-compose up` command, you create and start all the services from your configuration. Enter {FORM_RECOGNIZER_ENDPOINT_URI} and {FORM_RECOGNIZER_KEY} values for your Layout container instance.
-
-```yml
-version: "3.9"
-services:
-  azure-form-recognizer-layout:
-    container_name: azure-form-recognizer-layout
-    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-4.0
-    environment:
-      - EULA=accept
-      - billing={FORM_RECOGNIZER_ENDPOINT_URI}
-      - apiKey={FORM_RECOGNIZER_KEY}
-    ports:
-      - "5000:5000"
-    networks:
-      - ocrvnet
-networks:
-  ocrvnet:
-    driver: bridge
-```
-
-Now, you can start the service with the [**docker compose**](https://docs.docker.com/compose/) command:
-
-```bash
-docker-compose up
-```
 ::: moniker-end
-
 
 :::moniker range="doc-intel-3.0.0 || doc-intel-3.1.0"
 
@@ -243,6 +214,41 @@ docker-compose up
 
 Given the resources on the machine, the General Document container might take some time to start up.
 
+::: moniker-end
+
+:::moniker range="doc-intel-4.0.0"
+### [Layout](#tab/layout)
+
+The following code sample is a self-contained `docker compose`  example to run the Document Intelligence Layout container. With `docker compose`, you use a YAML file to configure your application's services. Then, with `docker-compose up` command, you create and start all the services from your configuration. Enter {FORM_RECOGNIZER_ENDPOINT_URI} and {FORM_RECOGNIZER_KEY} values for your Layout container instance.
+
+```yml
+version: "3.9"
+services:
+  azure-form-recognizer-layout:
+    container_name: azure-form-recognizer-layout
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-4.0
+    environment:
+      - EULA=accept
+      - billing={FORM_RECOGNIZER_ENDPOINT_URI}
+      - apiKey={FORM_RECOGNIZER_KEY}
+    ports:
+      - "5000:5000"
+    networks:
+      - ocrvnet
+networks:
+  ocrvnet:
+    driver: bridge
+```
+
+Now, you can start the service with the [**docker compose**](https://docs.docker.com/compose/) command:
+
+```bash
+docker-compose up
+```
+::: moniker-end
+
+:::moniker range="doc-intel-3.0.0 || doc-intel-3.1.0"
+
 ### [Layout](#tab/layout)
 
 The following code sample is a self-contained `docker compose`  example to run the Document Intelligence Layout container. With `docker compose`, you use a YAML file to configure your application's services. Then, with `docker-compose up` command, you create and start all the services from your configuration. Enter {FORM_RECOGNIZER_ENDPOINT_URI} and {FORM_RECOGNIZER_KEY} values for your Layout container instance.
@@ -271,6 +277,9 @@ Now, you can start the service with the [**docker compose**](https://docs.docker
 ```bash
 docker-compose up
 ```
+::: moniker-end
+
+:::moniker range="doc-intel-3.0.0 || doc-intel-3.1.0"
 
 ### [Invoice](#tab/invoice)
 
