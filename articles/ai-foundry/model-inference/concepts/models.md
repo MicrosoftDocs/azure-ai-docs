@@ -105,7 +105,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ### DeepSeek
 
-DeepSeek family of models include DeepSeek-R1, which excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks.
+DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks.
 
 | Model  | Type | Tier | Capabilities |
 | ------ | ---- | --- | ------------ |
