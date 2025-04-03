@@ -367,7 +367,7 @@ items:
       href: how-to/develop/trace-local-sdk.md
     - name: Visualize your traces
       href: how-to/develop/visualize-traces.md
-  - name: Evaluate generative AI apps
+  - name: Evaluating generative AI apps
     items:
     - name: Evaluations concepts
       items:
@@ -381,11 +381,17 @@ items:
       href: how-to/develop/simulator-interaction-data.md
     - name: Evaluate agents locally with Azure AI Evaluation SDK
       href: how-to/develop/agent-evaluate-sdk.md
-    - name: Local evaluation with Azure AI Evaluation SDK
+    - name: Evaluate apps locally with Azure AI Evaluation SDK
       href: how-to/develop/evaluate-sdk.md
       displayName: code,accuracy,metrics
-    - name: Cloud evaluation with Azure AI Projects SDK
+    - name: Evaluate apps in the cloud with Azure AI Projects SDK
       href: how-to/develop/cloud-evaluation.md
+    - name: AI red teaming
+      items:
+      - name: AI red teaming overview
+        href: concepts/ai-red-teaming-agent.md
+      - name: Run automated scans with AI Red Teaming Agent
+        href: how-to/develop/run-scans-ai-red-teaming-agent.md
     - name: Run evaluations from the portal
       href: how-to/evaluate-generative-ai-app.md
     - name: View evaluation results in the portal
