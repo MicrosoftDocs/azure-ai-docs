@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 content_well_notification: 
   - AI-contribution
 ms.topic: how-to
-ms.date: 03/28/2025
+ms.date: 04/03/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
@@ -72,9 +72,9 @@ Get started with the Azure AI Foundry extension by using the following steps.
 >     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png" alt-text="A screenshot of the Visual Studio Code command palette for Azure AI Foundry." lightbox="../../media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png":::
 
 
-### Sign-in to your resources
+### Sign in to your resources
 
-Sign-in to your Azure subscription to access your resources with the following steps:
+Sign in to your Azure subscription to access your resources with the following steps:
 
 1. Select the Azure Icon on the VS Code Navbar. 
 
@@ -98,9 +98,9 @@ Sign-in to your Azure subscription to access your resources with the following s
 
 1. Select <kbd>F1</kbd> to open the command palette.
 
-1. Enter **Azure AI Foundry: Select Default Project** and press enter.
+1. Enter **Azure AI Foundry: Select Default Project** and press Enter.
 
-1. Select the Azure AI Foundry Project you want to use from the list of available projects and press enter.
+1. Select the Azure AI Foundry Project you want to use from the list of available projects and press Enter.
 
 Your selected project will now display **Default** after the project name.
 
@@ -119,7 +119,7 @@ The [model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in Azure AI
 
 1. Select <kbd>F1</kbd> to open the command palette.
 
-1. Enter **Azure AI Foundry: Open Model Catalog** and press enter.
+1. Enter **Azure AI Foundry: Open Model Catalog** and press Enter.
 
 1. The **Model Catalog** page is displayed.
 
@@ -139,19 +139,19 @@ Deploy a selected model in the model catalog using the following steps:
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/deploy-from-model-catalog.png" alt-text="Screenshot of the highlighted Deploy in Azure link of the selected model." lightbox="../../media/how-to/get-started-projects-vs-code/deploy-from-model-catalog.png":::
 
-1. In the top center, select the AI service to use in the **Choose an AI service** dropdown and press enter.
+1. In the top center, select the AI service to use in the **Choose an AI service** dropdown and press Enter.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png" alt-text="Screenshot of the Chosen AI service dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png":::
 
-1. In the top center, select the model version to use in the **Choose model version** dropdown and press enter.
+1. In the top center, select the model version to use in the **Choose model version** dropdown and press Enter.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-version.png" alt-text="Screenshot of the Choose model version dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-version.png":::
 
-1. In the top center, select the deployment type to use in the **Choose deployment type** dropdown and press enter.
+1. In the top center, select the deployment type to use in the **Choose deployment type** dropdown and press Enter.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-deployment-type.png" alt-text="Screenshot of the Choose deployment type dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/select-deployment-type.png":::
 
-1. In the top center, enter the model deployment name to use in the **Enter deployment name** textbox and press enter.
+1. In the top center, enter the model deployment name to use in the **Enter deployment name** textbox and press Enter.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/enter-deployment-name.png" alt-text="Screenshot of the Enter deployment name textbox." lightbox="../../media/how-to/get-started-projects-vs-code/enter-deployment-name.png":::
 
@@ -176,23 +176,23 @@ You can also deploy a model directly from your Azure AI Foundry project.
     > [!TIP] 
     > You can also right-click on **Models** and select the **Deploy new AI model** option to start the deployment process. 
 
-1. In the top center, select the AI service to use in the **Choose an AI service** dropdown and press enter.
+1. In the top center, select the AI service to use in the **Choose an AI service** dropdown and press Enter.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png" alt-text="Screenshot of the Choose AI service dropdown for model deployment." lightbox="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png":::
 
-1. In the top center, select the model to deploy in the **Choose a model to deploy** dropdown and press enter.
+1. In the top center, select the model to deploy in the **Choose a model to deploy** dropdown and press Enter.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-deployment-model.png" alt-text="Screenshot of the Choose a model to deploy dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/select-deployment-model.png":::
 
-1. In the top center, select the model version to use in the **Choose model version** dropdown and press enter.
+1. In the top center, select the model version to use in the **Choose model version** dropdown and press Enter.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-version-2.png" alt-text="Screenshot of the Choose model version dropdown for model deployment." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-version-2.png":::
 
-1. In the top center, select the deployment type to use in the **Choose deployment type** dropdown and press enter.
+1. In the top center, select the deployment type to use in the **Choose deployment type** dropdown and press Enter.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-deployment-type.png" alt-text="Screenshot of the Choose deployment type dropdown for model deployment." lightbox="../../media/how-to/get-started-projects-vs-code/select-deployment-type.png":::
 
-1. In the top center, enter the model deployment name to use in the **Enter deployment name** textbox and press enter.
+1. In the top center, enter the model deployment name to use in the **Enter deployment name** textbox and press Enter.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/enter-deployment-name-2.png" alt-text="Screenshot of the Enter deployment name textbox for model deployment." lightbox="../../media/how-to/get-started-projects-vs-code/enter-deployment-name-2.png":::
 
@@ -249,15 +249,15 @@ Create a sample code file using the following steps.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/open-code-file.png" alt-text="Screenshot of the model context menu with the Open Code file option highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/open-code-file.png":::
 
-1. In the top center, select your preferred SDK to use in the **Choose preferred SDK** dropdown and press enter.
+1. In the top center, select your preferred SDK to use in the **Choose preferred SDK** dropdown and press Enter.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-preferred-sdk.png" alt-text="Screenshot of the Choose preferred SDK dropdown for model code file selection." lightbox="../../media/how-to/get-started-projects-vs-code/choose-preferred-sdk.png":::
 
-1. In the top center, select your preferred language to use in the **Choose language** dropdown and press enter.
+1. In the top center, select your preferred language to use in the **Choose language** dropdown and press Enter.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-language.png" alt-text="Screenshot of the Choose language dropdown for model code file selection." lightbox="../../media/how-to/get-started-projects-vs-code/choose-language.png":::
 
-1. In the top center, select your preferred authentication method to use in the **Choose authentication method** dropdown and press enter.
+1. In the top center, select your preferred authentication method to use in the **Choose authentication method** dropdown and press Enter.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-auth-method.png" alt-text="Screenshot of the Choose authentication method dropdown for model code file selection." lightbox="../../media/how-to/get-started-projects-vs-code/choose-auth-method.png":::
 

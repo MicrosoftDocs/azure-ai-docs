@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 content_well_notification: 
   - AI-contribution
 ms.topic: how-to
-ms.date: 03/28/2025
+ms.date: 04/03/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
@@ -185,7 +185,7 @@ Open the **Agents Playground** using the following steps:
 
 1. Type your prompt and see the outputs. 
 
-## Clean up resources
+## Cleanup resources
 
 The Azure resources that you created in this article are billed to your Azure subscription. If you don't expect to need these resources in the future, delete them to avoid incurring more charges.
 
