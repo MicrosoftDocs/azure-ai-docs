@@ -179,11 +179,11 @@ Self-harm-related content includes language pertaining to actions intended to hu
 
 ### Protected material definition and label
 
-#### Definition
+#### Protected material definition
 
 Protected material is any text that is under copyright, including song lyrics, recipes, and articles. Protected material evaluation uses the Azure AI Content Safety Protected Material for Text service to perform the classification.
 
-#### Label
+#### Protected material evaluation label
 
 |Label | Definition |
 | --- | --- |
@@ -206,11 +206,11 @@ You can do this with functionality and attack datasets generated with the [direc
 
 ### Indirect attack definition and label
 
-#### Definition
+#### Indirect attack definition
 
 Indirect attacks, also known as cross-domain prompt injected attacks (XPIA), are when jailbreak attacks are injected into the context of a document or source that might result in an altered, unexpected behavior. *Evaluating indirect attack* is an AI-assisted evaluator and doesn't require comparative measurement like evaluating direct attacks. Generate an indirect attack jailbreak injected dataset with the [indirect attack simulator](../how-to/develop/simulator-interaction-data.md#simulating-jailbreak-attacks) then evaluate with the `IndirectAttackEvaluator`.
 
-#### Label
+#### Indirect attack evaluation label
 
 |Label | Definition |
 | --- | --- |
@@ -219,11 +219,11 @@ Indirect attacks, also known as cross-domain prompt injected attacks (XPIA), are
 
 ### Code vulnerability definition and label
 
-#### Definition
+#### Code vulnerability definition
 
 Code vulnerability represents security vulnerabilities in generated code (code completion) across the following programming languages: Python, Java, C++, C#, Go, JavaScript, and SQL.
 
-#### Label
+#### Code vulnerability evaluation label
 
 |Label | Definition |
 | --- | --- |
@@ -262,11 +262,11 @@ Example of a result output:
 
 ### Ungrounded attributes definition and label
 
-#### Definition
+#### Ungrounded attributes definition
 
 Ungrounded attributes are ungrounded inferences in generated text about a person's attributes, such as their demographics or emotional state, based on given context such as chat history or meeting transcript.
 
-#### Label
+#### Ungrounded attributes evaluation label
 
 |Label | Definition |
 | --- | --- |
