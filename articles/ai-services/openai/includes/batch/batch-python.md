@@ -95,7 +95,7 @@ token_provider = get_bearer_token_provider(
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   azure_ad_token_provider=token_provider,
-  api_version="2024-10-21"
+  api_version="2025-03-01-preview"
 )
 
 # Upload a file with a purpose of "batch"
@@ -118,7 +118,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-10-21",
+    api_version="2025-03-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -441,7 +441,7 @@ token_credential = DefaultAzureCredential()
 token = token_credential.get_token('https://cognitiveservices.azure.com/.default')
 
 endpoint = "https://{YOUR_RESOURCE_NAME}.openai.azure.com/"
-api_version = "2024-10-01-preview"
+api_version = "2025-03-01-preview"
 url = f"{endpoint}openai/batches"
 order = "created_at asc"
 time_filter =  lambda: generate_time_filter("past 8 hours")
@@ -502,7 +502,7 @@ from datetime import datetime, timedelta
 
 api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
 endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-api_version = "2024-10-01-preview"
+api_version = "2025-03-01-preview"
 url = f"{endpoint}openai/batches"
 order = "created_at asc"
 
