@@ -13,12 +13,12 @@ ms.author: mopeakande
 author: msakande
 ---
 
-# Model leaderboards in Azure AI Foundry portal
+# Model leaderboards in Azure AI Foundry portal (preview)
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 
-Model leaderboards in Azure AI Foundry portal allow you to streamline the model selection process in the Azure AI Foundry [model catalog](../how-to/model-catalog-overview.md). The model leaderboards, backed by industry-standard benchmarks can help you to find the best model for your custom AI solution. From the model leaderboards section of the model catalog, you can [browse leaderboards](https://aka.ms/model-leaderboards) to compare available models as follows:
+Model leaderboards (preview) in Azure AI Foundry portal allow you to streamline the model selection process in the Azure AI Foundry [model catalog](../how-to/model-catalog-overview.md). The model leaderboards, backed by industry-standard benchmarks can help you to find the best model for your custom AI solution. From the model leaderboards section of the model catalog, you can [browse leaderboards](https://aka.ms/model-leaderboards) to compare available models as follows:
 
 - **Quality, cost, and performance leaderboards** to quickly identify the model leaders along a single metric (quality, cost, or throughput);
 - **Trade-off charts** to see how models perform on one metric versus another, such as quality versus cost;
