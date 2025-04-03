@@ -74,7 +74,7 @@ In the advanced settings, you can select the compute type. You can choose betwee
 
 ## Manage a compute session
 
-To manage a compute session, select the **Compute session running** on the top toolbar of the flow page.:
+To manage a compute session, select the **Compute session running** on the top toolbar of the flow page:
 
 - **Change compute session settings** opens the compute session configuration page, where you can define the VM side and the idle time for the compute session.
 - **Install packages from requirements.txt** Opens `requirements.txt` in prompt flow UI so you can add packages.
