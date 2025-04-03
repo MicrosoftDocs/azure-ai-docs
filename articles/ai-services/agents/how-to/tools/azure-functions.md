@@ -6,7 +6,7 @@ services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 01/30/2025
+ms.date: 04/15/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -140,6 +140,7 @@ To use all features of function calling including parallel functions, you need t
 
 Start by defining an Azure Function queue trigger function that will process function calls from the queue. 
 
+# [Python](#tab/python)
 ```python
 # Function to get the weather from an Azure Storage queue where the AI Agent will send function call information
 # It returns the mock weather to an output queue with the correlation id for the AI Agent Service to pick up the result of the function call
@@ -172,10 +173,58 @@ def process_queue_message(msg: func.QueueMessage) -> None:
     logging.info(f"Sent message to output queue with message {result_message}")
 ```
 
+# [TypeScript](#tab/typescript)
+
+```typescript
+import type { InvocationContext } from "@azure/functions";
+import { app, output } from '@azure/functions';
+
+const inputQueueName = "input";
+const outputQueueName = "output";
+
+interface QueueItem {
+    location: string;
+    coorelationId: string;
+}
+
+interface ProcessedQueueItem {
+    Value: string;
+    CorrelationId: string;
+}
+
+const temperatures = [60, 65, 70, 75, 80, 85];
+const descriptions = ["sunny", "cloudy", "rainy", "stormy", "windy"];
+
+const queueOutput = output.storageQueue({
+    queueName: outputQueueName,
+    connection: 'STORAGE_CONNECTION',
+});
+
+export async function processQueueTrigger(queueItem: QueueItem, context: InvocationContext): Promise<ProcessedQueueItem> {
+    context.log('QUEUE:', queueItem);
+
+    const randomTemp = temperatures[Math.floor(Math.random() * temperatures.length)];
+    const randomDescription = descriptions[Math.floor(Math.random() * descriptions.length)];
+
+    return {
+        Value: `${queueItem.location} weather is ${randomTemp} degrees and ${randomDescription}`,
+        CorrelationId: queueItem.coorelationId,
+    };
+}
+
+app.storageQueue('storageQueueTrigger1', {
+    queueName: inputQueueName,
+    connection: 'STORAGE_CONNECTION',
+    extraOutputs: [queueOutput],
+    handler: processQueueTrigger,
+});
+```
+
+---
 
 ## Create an AI project client and agent
 
-In the sample below we create a client and an agent that has the tools definition for the Azure Function
+In the sample below we create a client and an agent that has the tools definition for the Azure Function.
 
 # [Python](#tab/python)
 ```python
@@ -229,6 +278,68 @@ agent = project_client.agents.create_agent(
         }
     ],
 )
+```
+
+
+# [TypeScript](#tab/typescript)
+
+```typescript
+import {
+    AIProjectsClient
+} from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+const model = "gpt-4o-mini"
+const inputQueueName = "input";
+const outputQueueName = "output";
+const projectConnectionString = process.env.PROJECT_CONNECTION_STRING as string;
+const storageConnectionString = process.env.STORAGE_CONNECTION__queueServiceUri as string;
+
+const projectClient = AIProjectsClient.fromConnectionString(
+    projectConnectionString || "",
+    new DefaultAzureCredential(),
+);
+
+const agent = await projectClient.agents.createAgent(
+    model, {
+    name: "azure-function-agent-get-weather",
+    instructions: "You are a helpful support agent. Answer the user's questions to the best of your ability.",
+    requestOptions: {
+        headers: { "x-ms-enable-preview": "true" }
+    },
+    tools: [
+        {
+            type: "azure_function",
+            azureFunction: {
+                function: {
+                    name: "GetWeather",
+                    description: "Get the weather in a location.",
+                    parameters: {
+                        type: "object",
+                        properties: {
+                            location: { type: "string", description: "The location to look up." },
+                        },
+                        required: ["location"],
+                    },
+                },
+                inputBinding: {
+                    type: "storage_queue",
+                    storageQueue: {
+                        queueServiceEndpoint: storageConnectionString,
+                        queueName: inputQueueName,
+                    },
+                },
+                outputBinding: {
+                    type: "storage_queue",
+                    storageQueue: {
+                        queueServiceEndpoint: storageConnectionString,
+                        queueName: outputQueueName,
+                    },
+                },
+            },
+        },
+    ],
+});
 ```
 
 # [REST API](#tab/rest)
@@ -287,6 +398,13 @@ thread = project_client.agents.create_thread()
 print(f"Created thread, thread ID: {thread.id}")
 ```
 
+# [TypeScript](#tab/typescript)
+
+```typescript
+const thread = await projectClient.agents.createThread();
+console.log(`Created thread, thread ID: ${thread.id}`);
+```
+
 # [REST API](#tab/rest)
 ```console
 curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
@@ -320,6 +438,31 @@ while run.status in ["queued", "in_progress", "requires_action"]:
 
 print(f"Run finished with status: {run.status}")
 ```
+
+# [TypeScript](#tab/typescript)
+
+```typescript
+const message = await projectClient.agents.createMessage(
+    thread.id,
+    {
+        role: "user",
+        content: body?.prompt
+    });
+context.log(`Created message, message ID: ${message.id}`);
+
+let run = await projectClient.agents.createRun(
+    thread.id,
+    agent.id
+);
+
+while (["queued", "in_progress", "requires_action"].includes(run.status)) {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    run = await projectClient.agents.getRun(thread.id, run.id);
+}
+
+context.log(`Run finished with status: ${run.status}`);
+```
+
 # [REST API](#tab/rest)
 ```console
 curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
@@ -362,6 +505,23 @@ if last_msg:
 # Delete the agent once done
 project_client.agents.delete_agent(agent.id)
 print("Deleted agent")
+```
+
+# [TypeScript](#tab/typescript)
+
+```typescript
+const { data: messages } = await projectClient.agents.listMessages(thread.id);
+
+const lastMessage = messages.find((msg: any) => msg.sender === "assistant");
+
+let lastMessageContent: string = "";
+if (lastMessage) {
+    lastMessageContent = lastMessage.content.join(", ");
+    context.log(`Last Message: ${lastMessageContent}`);
+}
+
+await projectClient.agents.deleteAgent(agent.id);
+context.log("Deleted agent");
 ```
 
 # [REST API](#tab/rest)
