@@ -141,6 +141,7 @@ To use all features of function calling including parallel functions, you need t
 Start by defining an Azure Function queue trigger function that will process function calls from the queue. 
 
 # [Python](#tab/python)
+
 ```python
 # Function to get the weather from an Azure Storage queue where the AI Agent will send function call information
 # It returns the mock weather to an output queue with the correlation id for the AI Agent Service to pick up the result of the function call
@@ -220,6 +221,10 @@ app.storageQueue('storageQueueTrigger1', {
 });
 ```
 
+# [REST API](#tab/rest)
+
+No REST equivalent provided.
+
 ---
 
 ## Create an AI project client and agent
@@ -227,6 +232,7 @@ app.storageQueue('storageQueueTrigger1', {
 In the sample below we create a client and an agent that has the tools definition for the Azure Function.
 
 # [Python](#tab/python)
+
 ```python
 # Initialize the client and create agent for the tools Azure Functions that the agent can use
 
