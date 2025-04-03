@@ -73,8 +73,7 @@ import os
 from azure.ai.evaluation import AzureOpenAIModelConfiguration
 from azure.identity import DefaultAzureCredential
 from azure.ai.evaluation import IntentResolutionEvaluator, ResponseCompletenessEvaluator
- 
- 
+  
 model_config = AzureOpenAIModelConfiguration(
     azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
     api_key=os.environ["AZURE_OPENAI_API_KEY"],
@@ -99,8 +98,6 @@ result = response_completeness_evaluator(
     ground_truth="Itinery: Day 1 take a train to visit the downtown area for city sightseeing; Day 2 rests in hotel."
 )
 print(result)
-```
-
 ```
 
 Examples of `tool_calls` and `tool_definitions` for `ToolCallAccuracyEvaluator`: 
