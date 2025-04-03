@@ -26,7 +26,7 @@ In the development and deployment of generative AI models and applications, the 
 
 - **Risk and Safety Evaluators**: Evaluate potential content risks to safeguard against harmful or inappropriate AI-generated content.
 
-    :::image type="content" source="../media/evaluations/risk-safety evaluators.png" alt-text="Diagram of the risk and safety evaluators detailed in the following metric list." lightbox="../media/evaluations/risk-safety evaluators.png":::
+    :::image type="content" source="../media/evaluations/risk-safety-evaluators.png" alt-text="Diagram of the risk and safety evaluators detailed in the following metric list." lightbox="../media/evaluations/risk-safety-evaluators.png":::
 
     Metrics:
 
