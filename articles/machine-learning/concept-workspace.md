@@ -10,7 +10,7 @@ ms.topic: conceptual
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: deeikele
-ms.date: 04/18/2024
+ms.date: 04/03/2025
 monikerRange: 'azureml-api-2 || azureml-api-1'
 #Customer intent: As a data scientist, I want to understand the purpose of a workspace for Azure Machine Learning.
 ---
@@ -60,7 +60,7 @@ Your workspace keeps a history of all training runs, with logs, metrics, output,
 
 ## Associated resources
 
-When you create a new workspace, you're required to bring other Azure resources to store your data. If not provided by you, these resources are automatically be created by Azure Machine Learning.
+When you create a new workspace, you're required to bring other Azure resources to store your data. If not provided by you, Azure Machine Learning automatically creates these resources.
 
 + [Azure Storage account](https://azure.microsoft.com/services/storage/). Stores machine learning artifacts such as job logs. By default, this storage account is used when you upload data to the workspace. Jupyter notebooks that are used with your Azure Machine Learning compute instances are stored here as well. 
   
@@ -70,20 +70,20 @@ When you create a new workspace, you're required to bring other Azure resources 
   > * A premium account (Premium_LRS and Premium_GRS) 
   > * An account with hierarchical namespace (used with Azure Data Lake Storage Gen2).
   >
-  > You can use premium storage or hierarchical namespace as additional storage by [creating a datastore](how-to-datastore.md).
+  > You can use premium storage or hierarchical namespace as extra storage by [creating a datastore](how-to-datastore.md).
   >
-  > Do not enable hierarchical namespace on the storage account after upgrading to general-purpose v2.
+  > Don't enable hierarchical namespace on the storage account after upgrading to general-purpose v2.
   >
-  > If you bring an existing general-purpose v1 storage account, you may [upgrade this to general-purpose v2](/azure/storage/common/storage-account-upgrade) after the workspace has been created.
+  > If you bring an existing general-purpose v1 storage account, you can [upgrade to general-purpose v2](/azure/storage/common/storage-account-upgrade) after the workspace is created.
   
-+ [Azure Container Registry (ACR)](https://azure.microsoft.com/services/container-registry/). Stores created docker containers, when you build custom environments via Azure Machine Learning. Deploying AutoML models and data profile will also trigger creation of custom environments.
++ [Azure Container Registry (ACR)](https://azure.microsoft.com/services/container-registry/). Stores created docker containers, when you build custom environments via Azure Machine Learning. Deploying AutoML models and data profile triggers creation of custom environments.
 
-    Workspaces *can* be created without ACR as a dependency if you do not have a need to build custom docker containers. Azure Machine Learning can read from external container registries.
+    Workspaces *can* be created without ACR as a dependency if you don't have a need to build custom docker containers. Azure Machine Learning can read from external container registries.
 
-    ACR will automatically be provisioned when you build custom docker images. Use [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) to prevent customer docker containers from being built.
+    ACR is automatically provisioned when you build custom docker images. Use [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) to prevent customer docker containers from being built.
 
     > [!IMPORTANT]
-    > If your subscription setting requires adding tags to resources under it, ACR created by Azure Machine Learning will fail, since we cannot set tags to ACR.
+    > If your subscription setting requires adding tags to resources under it, ACR created by Azure Machine Learning fails, since we can't set tags to ACR.
 
 + [Azure Application Insights](https://azure.microsoft.com/services/application-insights/). Helps you monitor and collect diagnostic information from your inference endpoints.
     :::moniker range="azureml-api-2"
@@ -124,6 +124,7 @@ Once your workspace is set up, you can interact with it in the following ways:
 
 :::moniker range="azureml-api-2"
 + On the web:
+    + [Azure portal](https://portal.azure.com)
     + [Azure Machine Learning studio ](https://ml.azure.com) 
     + [Azure Machine Learning designer](concept-designer.md) 
 + In any Python environment with the [Azure Machine Learning SDK](https://aka.ms/sdk-v2-install).
@@ -151,7 +152,7 @@ The following workspace management tasks are available in each interface.
 | Create a compute instance           |             | **&check;** | **&check;** | **&check;** | **&check;** |
 
 > [!WARNING]
-> Moving your Azure Machine Learning workspace to a different subscription, or moving the owning subscription to a new tenant, is not supported. Doing so may cause errors.
+> Moving your Azure Machine Learning workspace to a different subscription, or moving the owning subscription to a new tenant, isn't supported. Doing so might cause errors.
 
 ## Sub resources
 
