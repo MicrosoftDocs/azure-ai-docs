@@ -28,8 +28,6 @@ In the development and deployment of generative AI models and applications, the 
 
     :::image type="content" source="../media/evaluations/risk-safety-evaluators.png" alt-text="Diagram of the risk and safety evaluators detailed in the following metric list." lightbox="../media/evaluations/risk-safety-evaluators.png":::
 
-    Metrics:
-
   - [**Hateful and Unfair Content**](#hateful-and-unfair-content-definition-and-severity-scale): It measures the presence of any language that reflects hate towards or unfair representations of individuals and social groups based on factors including, but not limited to, race, ethnicity, nationality, gender, sexual orientation, religion, immigration status, ability, personal appearance, and body size. Unfairness occurs when AI systems treat or represent social groups inequitably, creating or contributing to societal inequities.
   - [**Sexual Content**](#sexual-content-definition-and-severity-scale): It measures the presence of any language pertaining to anatomical organs and genitals, romantic relationships, acts portrayed in erotic terms, pregnancy, physical sexual acts (including assault or sexual violence), prostitution, pornography, and sexual abuse.
   - [**Violent Content**](#violent-content-definition-and-severity-scale): It includes language pertaining to physical actions intended to hurt, injure, damage, or kill someone or something. It also includes descriptions of weapons (and related entities such as manufacturers and associations).
@@ -37,14 +35,12 @@ In the development and deployment of generative AI models and applications, the 
   - [**Protected Material Content**](#protected-material-definition-and-label): It measures the presence of any text that is under copyright, including song lyrics, recipes, and articles. The evaluation uses the Azure AI Content Safety Protected Material for Text service to perform the classification.
   - [**Direct Attack Jailbreak (UPIA)**](#jailbreak-vulnerability-definition-and-label): It measures to what extent the response fell for the jailbreak attempt. Direct attack jailbreak attempts (user prompt injected attack [UPIA]) inject prompts in the user role turn of conversations or queries to generative AI applications. Jailbreaks occur when a model response bypasses the restrictions placed on it or when an LLM deviates from the intended task or topic.
   - [**Indirect Attack Jailbreak (XPIA)**](#indirect-attack-definition-and-label): It measures to what extent the response fell for the indirect jailbreak attempt. Indirect attacks, also known as cross-domain prompt injected attacks (XPIA), occur when jailbreak attacks are injected into the context of a document or source that might result in altered, unexpected behavior on the part of the LLM.
-  - **Code vulnerability**: It measures whether AI generates code with security vulnerabilities, such as code injection, tar-slip, SQL injections, stack trace exposure and other risks across Python, Java, C++, C#, Go, JavaScript, and SQL.
-  - **Ungrounded attributes**: It measures the frequency and severity of an application generating text responses that contain ungrounded inferences about personal attributes, such as their demographics or emotional state.
+  - [**Code Vulnerability**](#code-vulnerability-definition-and-label): It measures whether AI generates code with security vulnerabilities, such as code injection, tar-slip, SQL injections, stack trace exposure and other risks across Python, Java, C++, C#, Go, JavaScript, and SQL.
+  - [**Ungrounded Attributes**](#ungrounded-attributes-definition-and-label): It measures the frequency and severity of an application generating text responses that contain ungrounded inferences about personal attributes, such as their demographics or emotional state.
 
 - **Performance and Quality Evaluators**: Assess the accuracy, groundedness, relevance, and overall quality of generated content.
 
     :::image type="content" source="../media/evaluations/quality-evaluators.png" alt-text="Diagram of the performance and quality evaluators detailed in the following metric list." lightbox="../media/evaluations/quality-evaluators.png":::
-
-  Metrics:
 
   - **Agent Evaluators**:
     - **Intent Resolution**: It measures how well the agent identifies and clarifies user intent, including asking for clarifications and staying within scope.
@@ -183,11 +179,11 @@ Self-harm-related content includes language pertaining to actions intended to hu
 
 ### Protected material definition and label
 
-**Definition**:
+#### Definition
 
 Protected material is any text that is under copyright, including song lyrics, recipes, and articles. Protected material evaluation uses the Azure AI Content Safety Protected Material for Text service to perform the classification.
 
-**Label:**
+#### Label
 
 |Label | Definition |
 | --- | --- |
@@ -210,11 +206,11 @@ You can do this with functionality and attack datasets generated with the [direc
 
 ### Indirect attack definition and label
 
-**Definition**:
+#### Definition
 
 Indirect attacks, also known as cross-domain prompt injected attacks (XPIA), are when jailbreak attacks are injected into the context of a document or source that might result in an altered, unexpected behavior. *Evaluating indirect attack* is an AI-assisted evaluator and doesn't require comparative measurement like evaluating direct attacks. Generate an indirect attack jailbreak injected dataset with the [indirect attack simulator](../how-to/develop/simulator-interaction-data.md#simulating-jailbreak-attacks) then evaluate with the `IndirectAttackEvaluator`.
 
-**Label:**
+#### Label
 
 |Label | Definition |
 | --- | --- |
@@ -223,11 +219,11 @@ Indirect attacks, also known as cross-domain prompt injected attacks (XPIA), are
 
 ### Code vulnerability definition and label
 
-**Definition**:
+#### Definition
 
 Code vulnerability represents security vulnerabilities in generated code (code completion) across the following programming languages: Python, Java, C++, C#, Go, JavaScript, and SQL.
 
-**Label:**
+#### Label
 
 |Label | Definition |
 | --- | --- |
@@ -266,11 +262,11 @@ Example of a result output:
 
 ### Ungrounded attributes definition and label
 
-**Definition**:
+#### Definition
 
 Ungrounded attributes are ungrounded inferences in generated text about a person's attributes, such as their demographics or emotional state, based on given context such as chat history or meeting transcript.
 
-**Label:**
+#### Label
 
 |Label | Definition |
 | --- | --- |
@@ -562,7 +558,6 @@ Currently certain AI-assisted evaluators are available only in the following reg
 
 | Region | Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack | Groundedness Pro | Protected material |
 |--|--|--|--|
-| UK South |  deprecated as of 12/1/2024 | N/A  | N/A |
 | East US 2 | Supported | Supported | Supported |
 | Sweden Central | Supported | Supported | N/A |
 | US North Central | Supported | N/A | N/A |
