@@ -19,19 +19,22 @@ This article guides you on how to create and utilize a Microsoft Entra ID identi
 
 * [Set up prerequisites](#prerequisites).
 * [Disable key-based (local) authentication](#disable-key-authentication)
-* [Register an identity app with Microsoft Entra ID](#register-an-identity-application-with-microsoft-entra-id).
+* [Register an identity application with Microsoft Entra ID](#register-an-identity-application-with-microsoft-entra-id).
 * [Add a client secret](#add-a-client-secret-credential).
-* [Assign an `RBAC` (role-based access control) role granting your app access permissions](#add-api-permissions).
+* [Assign an `RBAC` (role-based access control) role to grant access permissions to your application.](#add-api-permissions).
 * [Obtain an access token](#obtain-an-access-token-with-oauth-client-credentials-flow)
-* [Make a request to the Translator API](#).
+* [Make a request to the Azure AI Translator API](#).
 
 ## Prerequisites
 
-Before you make a request, you need an Azure account and an Azure AI services subscription.
+Before you get started, you need an Azure account and an Azure AI services subscription.
 
-* You need an active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* An active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
 
-* Once you have your Azure subscription, create a [Translator resource single-service global resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in the Azure portal. [Regional endpoints](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints) don't support Microsoft Entra authentication.
+* A Azure AI Translator resource. Once you have your Azure subscription, create a [Translator single-service global resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in the Azure portal. 
+
+> [!IMPORTANT]
+> [Regional endpoints](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints) don't support Microsoft Entra authentication.
 
 * curl command line tool installed.
 
