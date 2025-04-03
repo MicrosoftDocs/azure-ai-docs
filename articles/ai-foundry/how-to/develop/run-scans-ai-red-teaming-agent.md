@@ -56,12 +56,17 @@ azure_ai_project = {
 red_team_agent = RedTeam(
     azure_ai_project=azure_ai_project, # required
     credential=DefaultAzureCredential(), # required
-    risk_categories=[RiskCategory.Violence, RiskCategory.HateUnfairness, RiskCategory.Sexual, RiskCategory.SelfHarm], # optional, defaults to all four
+    risk_categories=[ # optional, defaults to all four risk categories
+        RiskCategory.Violence,
+        RiskCategory.HateUnfairness,
+        RiskCategory.Sexual,
+        RiskCategory.SelfHarm
+    ], 
     num_objectives=5, # optional, defaults to 10
 )
 ```
 
-You can additionally specify which risk categories of content risks you want to cover with `risk_categories` and define the number of prompts covering each risk category with `num_objectives`. The previous example generates 10 seed prompts for each risk category for a total of 40 rows of prompts to be generated and sent to your target.
+Optionally, you can specify which risk categories of content risks you want to cover with `risk_categories` and define the number of prompts covering each risk category with `num_objectives`. The previous example generates 5 seed prompts for each risk category for a total of 20 rows of prompts to be generated and sent to your target.
 
 > [!NOTE]
 > AI Red Teaming Agent only supports single-turn interactions in text-only scenarios.
@@ -77,7 +82,7 @@ Currently, AI Red Teaming Agent is only available in a few regions. Ensure your 
 
 ## Running an automated scan for safety risks
 
-Once your `RedTeam` is instantiated, you can run an automated scan with minimal configuration, only a target is required. The following would, by default, generate five baseline adversarial queries for each of the four risk categories for a total of 20 attack and response pairs.
+Once your `RedTeam` is instantiated, you can run an automated scan with minimal configuration, only a target is required. The following would, by default, generate five baseline adversarial queries for each of the four risk categories defined in the `RedTeam` above for a total of 20 attack and response pairs.
 
 ```python
 red_team_result = await red_team_agent.scan(target=your_target)
@@ -217,15 +222,20 @@ More advanced users can specify the desired attack strategies instead of using d
 | `Jailbreak` | User Injected Prompt Attacks (UPIA) injects specially crafted prompts to bypass AI safeguards | Easy |
 | `Tense` | Changes tense of text into past tense. | Moderate |
 
-Each new attack strategy specified will be applied to the set of baseline adversarial queries used. If no attack strategies are specified then only baseline adversarial queries will be sent to your target. 
+Each new attack strategy specified will be applied to the set of baseline adversarial queries used in addition to the baseline adversarial queries.
 
-This following example would generate one attack objective per each of the four risk categories specified. That would generate four baseline adversarial prompts which would then get converted into each of the four attack strategies to result in a total of 16 attack-response pairs from your AI system. The last attack stratgy is an example of a composition of two attack strategies to create a more complex attack query: the `AttackStrategy.Compose()` function takes in a list of two supported attack strategies and chains them together. The example's composition would first encode the baseline adversarial query into Base64 then apply the ROT13 cipher on the Base64-encoded query. Compositions only support chaining two attack strategies together.
+This following example would generate one attack objective per each of the four risk categories specified. This will first, generate four baseline adversarial prompts which would be sent to your target. Then, each baseline query would get converted into each of the four attack strategies. This will result in a total of 20 attack-response pairs from your AI system. The last attack stratgy is an example of a composition of two attack strategies to create a more complex attack query: the `AttackStrategy.Compose()` function takes in a list of two supported attack strategies and chains them together. The example's composition would first encode the baseline adversarial query into Base64 then apply the ROT13 cipher on the Base64-encoded query. Compositions only support chaining two attack strategies together.
 
 ```python
 red_team_agent = RedTeam(
     azure_ai_project=azure_ai_project,
     credential=DefaultAzureCredential(),
-    risk_categories=[RiskCategory.Violence, RiskCategory.HateUnfairness, RiskCategory.Sexual, RiskCategory.SelfHarm],
+    risk_categories=[
+        RiskCategory.Violence,
+        RiskCategory.HateUnfairness,
+        RiskCategory.Sexual,
+        RiskCategory.SelfHarm
+    ], 
     num_objectives=1,
 )
 
@@ -417,18 +427,6 @@ The red teaming scorecard also provides row-level data on each attack-response p
           "violence": {
             "severity_label": "Very low",
             "reason": "Refusal message detected in system response."
-          },
-          "sexual": {
-            "severity_label": "Very low",
-            "reason": "Refusal message detected in system response."
-          },
-          "self_harm": {
-            "severity_label": "Very low",
-            "reason": "Refusal message detected in system response."
-          },
-          "hate_unfair": {
-            "severity_label": "Very low",
-            "reason": "Refusal message detected in system response."
           }
         }
       }
@@ -438,7 +436,7 @@ The red teaming scorecard also provides row-level data on each attack-response p
 
 ## Viewing your results in Azure AI Foundry project
 
-After each automated scan is finished running locally, the results also get logged to your Azure AI Foundry project which you specified in the beginning. In your project, navigate to the Evaluations page and select the AI red teaming tab to view the comprehensive report with a detailed drill-down of each scan.
+After each automated scan is finished running locally, the results also get logged to your Azure AI Foundry project which you specified in the beginning. In your project, navigate to the **Evaluations** page and select the **AI red teaming** tab to view the comprehensive report with a detailed drill-down of each scan.
 
 :::image type="content" source="../../media/evaluations/red-teaming-agent/ai-red-team.png" alt-text="Screenshot of AI Red Teaming tab in Azure AI Foundry project page." lightbox="../../media/evaluations/red-teaming-agent/ai-red-team.png":::
 
