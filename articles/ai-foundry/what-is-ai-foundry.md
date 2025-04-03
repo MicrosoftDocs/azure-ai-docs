@@ -56,7 +56,7 @@ Using a project also enables connectivity to other services such as Azure AI ser
 
 ## Project types
 
-Azure AI Foundry supports two types of projects: [!INCLUDE [hub](includes/hub-project-name.md)] and [!INCLUDE [fdp](includes/fdp-project-name.md)]. When you create a project in Azure AI Foundry portal, you’ll be guided to the correct project type for your needs.
+Azure AI Foundry supports two types of projects: a [!INCLUDE [hub](includes/hub-project-name.md)] and an [!INCLUDE [fdp](includes/fdp-project-name.md)]. When you create a project in Azure AI Foundry portal, you’ll be guided to the correct project type for your needs.
 
 * A [!INCLUDE [hub](includes/hub-project-name.md)] is hosted by an Azure AI Foundry hub. If your company has an administrative team that has created a hub for you, you can create a project from that hub. If you are working on your own, you can create a project and a default hub will automatically be created for you. See [Azure AI Foundry hubs](concepts/ai-resources.md).
 
