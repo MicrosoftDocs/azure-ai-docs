@@ -37,7 +37,6 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 ## Setup  
 > [!NOTE]
 > * The model you selected in Azure AI Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
-> *  Supported regions: `westus`, `japaneast`.
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
 
 1. Create and publish a [Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910)
