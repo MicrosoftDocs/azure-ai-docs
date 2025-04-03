@@ -15,4 +15,3 @@ ms.custom: include
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 - If you don't have one, [create a [!INCLUDE [hub](hub-project-name.md)]](../how-to/create-projects.md?pivots=hub-project).
-- 
