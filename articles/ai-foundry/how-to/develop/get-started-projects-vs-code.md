@@ -288,6 +288,32 @@ Open the model playground using the following steps:
 1. Select the **History** link at the top-left of the playground to view the chat history. 
 
 
+## Cleanup resources
+
+The Azure resources that you created in this article are billed to your Azure subscription. If you don't expect to need these resources in the future, delete them to avoid incurring more charges.
+
+### Delete your agents
+
+Delete the deployed agent in the [online AI Foundry portal](https://ai.azure.com). Select **Agents** from the navigation menu on the left, select your agent, then select the **Delete** button.
+
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the AI Foundry portal with 'Agents' from the navigation menu on the left and the **Delete** button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
+
+### Delete your models
+
+1. In the VS Code navbar, refresh the **Azure Resources** view. Expand the **Models** subsection to display the list of deployed models.
+
+1. Right-click on your deployed model to delete and select the **Delete** option.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-model.png" alt-text="Screenshot of the model context menu with the 'Delete' option highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-model.png":::
+
+### Delete your tools
+
+Delete the connected tool with the following steps:
+
+1. Open the Azure portal
+1. Select the Azure Resource Group containing the tool.
+1. Select the **Delete** button.  
+
 ##	Next steps
 
 - Learn about [working with the Azure AI Agent Service](./vs-code-agents.md) using this Visual Studio Code extension.
