@@ -74,7 +74,7 @@ The following containers support DocumentIntelligence v3.1 models and features:
 
 ::: moniker-end
 
-::: moniker range="doc-intel-3.1.0"
+::: moniker range="doc-intel-4.0.0"
 **This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (GA)**
 
 ## Microsoft container registry (MCR)
@@ -93,7 +93,7 @@ The following containers support DocumentIntelligence v3.1 models and features:
 
 > [!IMPORTANT]
 >
-> Document Intelligence v3.0 containers are now generally available. If you are getting started with containers, consider using the v3 containers.
+> Document Intelligence v3.0 containers are now generally available. If you're getting started with containers, consider using the v3 containers.
 The following containers:
 
 ## Feature containers
