@@ -7,7 +7,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 11/21/2024
+ms.date: 02/16/2025
 ms.author: jboback
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
@@ -48,6 +48,12 @@ This article contains Text Analytics for health quickstarts that help with using
 ::: zone pivot="rest-api"
 
 [!INCLUDE [REST API quickstart](includes/quickstarts/rest-api.md)] 
+
+::: zone-end
+
+::: zone pivot="ai-foundry-portal"
+
+[!INCLUDE [Azure AI Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
 
 ::: zone-end
 

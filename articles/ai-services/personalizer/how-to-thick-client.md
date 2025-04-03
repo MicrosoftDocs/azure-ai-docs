@@ -1,7 +1,6 @@
 ---
 title: How to use local inference with the Personalizer SDK
 description: Learn how to use local inference to improve latency.
-#services: cognitive-services
 author: jcodella
 ms.author: jacodel
 manager: nitinme

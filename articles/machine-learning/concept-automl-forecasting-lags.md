@@ -10,7 +10,7 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: concept-article
 ms.custom: automl, sdkv1
-ms.date: 09/25/2024
+ms.date: 02/26/2025
 show_latex: true
 
 #customer intent: As a developer, I want to use AutoML methods in Azure Machine Learning for creating lag and rolling window aggregation, so I can forecast time-series regression models.

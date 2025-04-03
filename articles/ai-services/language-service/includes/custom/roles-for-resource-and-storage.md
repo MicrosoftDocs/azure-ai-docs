@@ -2,7 +2,6 @@
 title: How to create custom text classification projects
 titleSuffix: Azure AI services
 description: Learn about the steps for using Azure resources with custom text classification.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language

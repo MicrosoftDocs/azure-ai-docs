@@ -11,7 +11,7 @@ ms.date: 01/10/2025
 ms.custom: azure-ai-agents
 ---
 
-# What is Azure AI Agent Service?
+# What is Azure AI Agent Service (Preview)?
 
 [Azure AI Agent Service](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/introducing-azure-ai-agent-service/4298357) is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents without needing to manage the underlying compute and storage resources. What originally took hundreds of lines of code to support [client side function calling](/azure/ai-services/openai/how-to/function-calling) can now be done in just a few lines of code with Azure AI Agent Service.
 
@@ -56,7 +56,7 @@ Once you've gotten the basics, you can start using multiple agents together to a
 
 ## Why use Azure AI Agent Service?
 
-When compared to developing with the [Inference API](/azure/ai-studio/reference/reference-model-inference-api) directly, Azure AI Agent Service provides a more streamlined and secure way to build and deploy AI agents. This includes:
+When compared to developing with the [Model Inference API](/rest/api/aifoundry/modelinference) directly, Azure AI Agent Service provides a more streamlined and secure way to build and deploy AI agents. This includes:
 - **Automatic tool calling** – no need to parse a tool call, invoke the tool, and handle the response; all of this is now done server-side
 - **Securely managed data** – instead of managing your own conversation state, you can rely on threads to store all the information you need
 - **Out-of-the-box tools** – In addition to the file retrieval and code interpreter tools provided by Azure OpenAI Assistants, Azure AI Agent Service also comes with a set of tools that you can use to interact with your data sources, such as Bing, Azure AI Search, and Azure Functions.
@@ -77,7 +77,7 @@ Both services enable you to build agents using the same API and SDKs, but if you
 
 ## Responsible AI
 
-At Microsoft, we're committed to the advancement of AI driven by principles that put people first. Generative models such as the ones available in Azure OpenAI have significant potential benefits, but without careful design and thoughtful mitigations, such models have the potential to generate incorrect or even harmful content. Microsoft has made significant investments to help guard against abuse and unintended harm, which includes incorporating Microsoft’s <a href="https://www.microsoft.com/ai/responsible-ai?activetab=pivot1:primaryr6" target="_blank">principles for responsible AI use</a>, adopting a [Code of Conduct](/legal/cognitive-services/openai/code-of-conduct?context=/azure/ai-services/openai/context/context) for use of the service, building [content filters](/azure/ai-services/content-safety/overview) to support customers, and providing responsible AI [information and guidance](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=image) that customers should consider when using Azure AI Agent Service.
+At Microsoft, we're committed to the advancement of AI driven by principles that put people first. Generative models such as the ones available in Azure OpenAI have significant potential benefits, but without careful design and thoughtful mitigations, such models have the potential to generate incorrect or even harmful content. Microsoft has made significant investments to help guard against abuse and unintended harm, which includes incorporating Microsoft’s <a href="https://www.microsoft.com/ai/responsible-ai?activetab=pivot1:primaryr6" target="_blank">principles for responsible AI use</a>, adopting a [Code of Conduct](/legal/ai-code-of-conduct?context=/azure/ai-services/agents/context/context) for use of the service, building [content filters](/azure/ai-services/content-safety/overview) to support customers, and providing responsible AI [information and guidance](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=image) that customers should consider when using Azure AI Agent Service.
 
 ## Get started with Azure AI Agent Service
 

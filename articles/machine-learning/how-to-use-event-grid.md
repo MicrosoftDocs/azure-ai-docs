@@ -10,7 +10,7 @@ ms.custom: devx-track-azurecli
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: truptiparkar
-ms.date: 03/26/2024
+ms.date: 03/06/2025
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ---
 
@@ -184,6 +184,10 @@ Use [Azure Logic Apps](/azure/logic-apps/) to configure emails for all your even
 
 > [!IMPORTANT]
 > This example relies on a feature (data drift) that is only available when using Azure Machine Learning SDK v1 or Azure CLI extension v1 for Azure Machine Learning. For more information, see [What is Azure Machine Learning CLI & SDK v2](concept-v2.md).
+
+[!INCLUDE [v1 deprecation](includes/sdk-v1-deprecation.md)]
+
+[!INCLUDE [v1 cli deprecation](includes/machine-learning-cli-v1-deprecation.md)]
 
 Models go stale over time, and not remain useful in the context it's running in. One way to tell if it's time to retrain the model is detecting data drift. 
 

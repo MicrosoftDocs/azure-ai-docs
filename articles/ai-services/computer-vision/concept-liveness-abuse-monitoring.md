@@ -2,14 +2,13 @@
 title: Abuse monitoring in Face liveness detection - Face
 titleSuffix: Azure AI services
 description: Learn about abuse-monitoring methods in Azure Face service.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.topic: conceptual
-ms.date: 01/29/2025
+ms.date: 02/22/2025
 ms.author: pafarley
 ms.custom:
   - ignite-2023
@@ -18,9 +17,9 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 
 # Abuse monitoring in Face liveness detection
 
-Azure AI Face liveness detection lets you detect and mitigate instances of recurring content and/or behaviors that indicate a violation of the [Code of Conduct](/legal/cognitive-services/face/code-of-conduct?context=/azure/ai-services/computer-vision/context/context) or other applicable product terms. This guide shows you how to work with these features to ensure your application is compliant with Azure policy.
+Azure AI Face liveness detection lets you detect and mitigate instances of recurring content and/or behaviors that indicate a violation of the [Code of Conduct](/legal/ai-code-of-conduct?context=/azure/ai-services/computer-vision/context/context) or other applicable product terms. This guide shows you how to work with these features to ensure your application is compliant with Azure policy.
 
-Details on how data is handled can be found on the [Data, Privacy, and Security](/legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context) page.
+Details on how data is handled can be found on the [Data, Privacy, and Security](/legal/cognitive-services/face/data-privacy-security?context=/azure/ai-services/computer-vision/context/context) page.
 
 [!INCLUDE [liveness-sdk-gate](./includes/liveness-sdk-gate.md)]
 

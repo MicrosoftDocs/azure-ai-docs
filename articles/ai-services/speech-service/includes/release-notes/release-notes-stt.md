@@ -1,8 +1,10 @@
+---
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 1/21/2025
+ms.date: 2/18/2025
 ms.author: eur
+ms.custom: references_regions
 ---
 
 ### January 2025 release
@@ -10,36 +12,34 @@ ms.author: eur
 #### New Feature - Semantic Segmentation
 Announcing the release of a new feature: Semantic Segmentation. This feature integrates a punctuation module inside decoder that segments audio based on semantic information, resulting in more logical and precise segmentation boundaries.
 Key Benefits:
-- Improved Segmentation Accuracy: By leveraging semantic information, this feature significantly reduces instances of long segments caused by the absence of pauses in the input audio.
-- Reduce latency caused by under-segmentation: The overall latency for the Speech-to-Text service is reduced, with a 40%-60% reduction in the length of the longest 5% of segments.
+- Improved Segmentation Accuracy: By using semantic information, this feature significantly reduces instances of long segments caused by the absence of pauses in the input audio.
+- Reduce latency caused by under-segmentation: The overall latency for speech recognition is reduced, with a 40%-60% reduction in the length of the longest 5% of segments.
 - Over-Segmentation Mitigation: This feature also helps prevent over-segmentation by delaying segmentation when a better sentence can be formed.
 
 Supported Locales:
+- English (en-US, en-GB)
+- Chinese (zh-CN, zh-HK)
+- Japanese (ja-JP)
+- Korean (ko-KR)
+- German (de-DE)
+- French (fr-FR)
+- Italian (it-IT)
+- Spanish (es-ES, es-MX)
+- Hindi (hi-IN)
+- Portuguese (pt-BR, pt-PT)
+- Turkish (tr-TR)
+- Russian (ru-RU)
+- Thai (th-TH)
+- Indonesian (id-ID)
 
-<li>English (en-US, en-GB)</li>
-<li>Chinese (zh-CN, zh-HK)</li>
-<li>Japanese (ja-JP)</li>
-<li>Korean (ko-KR)</li>
-<li>German (de-DE)</li>
-<li>French (fr-FR)</li>
-<li>Italian (it-IT)</li>
-<li>Spanish (es-ES, es-MX)</li>
-<li>Hindi (hi-IN)</li>
-<li>Portuguese (pt-BR, pt-PT)</li>
-<li>Turkish (tr-TR)</li>
-<li>Russian (ru-RU)</li>
-<li>Thai (th-TH)</li>
-<li>Indonesian (id-ID)</li>
-
-For implementation details, please refer to the documentation: [How to Recognize Speech](https://learn.microsoft.com/azure/ai-services/speech-service/how-to-recognize-speech?pivots=programming-language-csharp) in section "Semantic Segmentation".
+For implementation details, please refer to the documentation: [How to Recognize Speech](/azure/ai-services/speech-service/how-to-recognize-speech?pivots=programming-language-csharp) in the "Semantic Segmentation" section.
 
 #### Real-time speech to text - New English model release
 
 Announcing the release of the latest English speech model (en-US, en-CA), which brings substantial improvements across various performance metrics. Below are the key highlights of this release:
 - Accessibility Enhancements: Achieved a 36% reduction in Word Error Rate (WER) on Microsoft internal accessibility test sets, making speech recognition more accurate and reliable for recognizing speech from individuals with speech disabilities.
-- 
 - Ghost Word Reduction: A remarkable 90% reduction in ghost words on the ghost word development set and reductions range from 63% to 100% across other ghost word datasets, significantly enhancing the clarity and accuracy of transcriptions.
-- 
+
 The new model also improved the overall performance, including entity recognition and better recognition of spelled-out letters.
 
 These advancements are expected to provide a more accurate, efficient, and satisfying experience for all users. The new model is available through the API and Azure AI Foundry playground. Feedback is encouraged to further refine its capabilities.
@@ -55,7 +55,7 @@ The speech to text REST API version 2024-11-15 is released for general availabil
 
 #### Fast transcription (GA)
 
-Fast transcription is now generally available via [speech to text REST API version 2024-11-15](https://go.microsoft.com/fwlink/?linkid=2296107). Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio much faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
+Fast transcription is now generally available via [speech to text REST API version 2024-11-15](https://go.microsoft.com/fwlink/?linkid=2296107). Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
 
 ### October 2024 release
 
@@ -130,7 +130,7 @@ Speech [pronunciation assessment](../../how-to-pronunciation-assessment.md) now
 
 #### Fast Transcription API (Preview)
 
-Fast transcription is now available in public preview. Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio much faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
+Fast transcription is now available in public preview. Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
 
 > [!TIP]
 > Try out fast transcription in the [Azure AI Foundry portal](https://aka.ms/fasttranscription/studio).
@@ -233,7 +233,7 @@ Highlights:
 - Advanced entity recognition: Entity recognition receives a substantial upgrade, resulting in more accurate and nuanced results.
 
 Potential impacts: Despite these advancements, it's crucial to be mindful of potential impacts:
-- Custom Silence Timeout Feature: Users employing custom silence timeout, especially with low settings, might encounter over-segmentation and potential omissions of single-word phrases.
+- Custom Silences Time-out Feature: Users employing custom silence time-out, especially with low settings, might encounter over-segmentation and potential omissions of single-word phrases.
 - The new model might exhibit compatibility issues with the Keyword prefix feature, and users are advised to assess its performance in their specific applications.
 - Reduced disfluency words or phrases: Users might notice a reduction in disfluency words or phrases like "um" or "uh" in the speech output.
 - Inaccuracies in word timestamp duration: Some disfluency words might display inaccuracies in timestamp duration, requiring attention in applications dependent on precise timing.

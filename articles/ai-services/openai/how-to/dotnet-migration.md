@@ -7,7 +7,7 @@ ms.author: mbullwin
 ms.service: azure-ai-openai
 ms.custom: devx-track-dotnet
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 03/27/2025
 manager: nitinme
 ---
 
@@ -25,7 +25,7 @@ Stable releases of `Azure.AI.OpenAI` are associated with a corresponding stable 
 dotnet add package Azure.AI.OpenAI
 ```
 
-Beta releases of `Azure.AI.OpenAI` are associated with a corresponding preview Azure OpenAI Service API version label, for example, `2024-10-01-preview`.
+Beta releases of `Azure.AI.OpenAI` are associated with a corresponding preview Azure OpenAI Service API version label, for example, `2024-03-01-preview`.
 
 ```dotnetcli
 dotnet add package Azure.AI.OpenAI --prerelease
@@ -48,10 +48,10 @@ OpenAIClient client = new(
 
 ```csharp
 // 2.0 - NEW: Get a chat completions client from a top-level Azure client
-AzureOpenAIClient azureClient = new(
+AzureOpenAIClient openAIClient = new(
     new Uri("https://your-resource.openai.azure.com/"),
     new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY"));
-ChatClient chatClient = azureClient.GetChatClient("my-gpt-4o-mini-deployment");
+ChatClient chatClient = openAIClient.GetChatClient("my-gpt-4o-mini-deployment");
 ```
 
 Just like in 1.0, the new `AzureOpenAIClient` supports the use of Microsoft Entra ID credentials when the [Azure.Identity](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true) package is installed.

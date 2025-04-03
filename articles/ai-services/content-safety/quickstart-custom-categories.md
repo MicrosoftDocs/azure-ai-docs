@@ -2,7 +2,6 @@
 title: "Quickstart: Custom categories (preview)"
 titleSuffix: Azure AI services
 description: Use the custom categories API to create your own content categories and train the Content Safety model for your use case.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
@@ -50,7 +49,7 @@ To train a custom category, you need example text data that represents the categ
 
 > [!IMPORTANT]
 > **The user's storage account is set up as a hierarchical namespace account, which cannot be supported by Custom Categories. Please try using a regular storage account instead.**
-For example, your blob URL cannot be split into two layers, such as example/example1/, and should only have one layer. For more details, refer to the documentation: [Azure Data Lake Storage hierarchical namespace - Azure Storage](https://learn.microsoft.com/azure/storage/blobs/data-lake-storage-namespace).
+For example, your blob URL cannot be split into two layers, such as example/example1/, and should only have one layer. For more details, refer to the documentation: [Azure Data Lake Storage hierarchical namespace - Azure Storage](/azure/storage/blobs/data-lake-storage-namespace).
 >
 ### Grant storage access 
 
@@ -275,6 +274,8 @@ print(result)
 ## Other custom categories operations
 
 Remember to replace the placeholders below with your actual values for the API key, endpoint, and specific content (category name, definition, and so on). These examples help you to manage the customized categories in your account.
+
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 #### [cURL](#tab/curl)
 

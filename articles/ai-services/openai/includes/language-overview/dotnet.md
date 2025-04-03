@@ -5,7 +5,7 @@ description: Azure OpenAI C# support
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 11/18/2024
+ms.date: 03/27/2025
 ---
 
 
@@ -34,10 +34,12 @@ The [stable release](/dotnet/api/azure.ai.openai.azureopenaiclientoptions.servic
 
 The [preview release](/dotnet/api/azure.ai.openai.azureopenaiclientoptions.serviceversion?view=azure-dotnet-preview&preserve-view=true) can currently target:
 
-- `2024-06-01`
 - `2024-08-01-preview`
 - `2024-09-01-preview`
 - `2024-10-01-preview`
+- `2024-12-01-preview`
+- `2025-01-01-preview`
+- `2025-03-01-preview`
 
 ## Installation
 
@@ -62,21 +64,23 @@ dotnet add package Azure.Identity
 Use the desired credential type from the library. For example, [`DefaultAzureCredential`](/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet&preserve-view=true):
 
 ```csharp
-AzureOpenAIClient azureClient = new(
+AzureOpenAIClient openAIClient = new(
     new Uri("https://your-azure-openai-resource.com"),
     new DefaultAzureCredential());
-ChatClient chatClient = azureClient.GetChatClient("my-gpt-4o-mini-deployment");
+ChatClient chatClient = openAIClient.GetChatClient("my-gpt-4o-mini-deployment");
 ```
+
+For more information about Azure OpenAI keyless authentication, see the "[Get started with the Azure OpenAI security building block](/azure/developer/ai/get-started-securing-your-ai-app?tabs=github-codespaces&pivots=dotnet)" QuickStart article. 
 
 # [API Key](#tab/dotnet-key)
 
 ```csharp
 string keyFromEnvironment = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
 
-AzureOpenAIClient azureClient = new(
+AzureOpenAIClient openAIClient = new(
     new Uri("https://your-azure-openai-resource.com"),
     new ApiKeyCredential(keyFromEnvironment));
-ChatClient chatClient = azureClient.GetChatClient("my-gpt-35-turbo-deployment");
+ChatClient chatClient = openAIClient.GetChatClient("my-gpt-35-turbo-deployment");
 ```
 
 ---
@@ -88,11 +92,11 @@ ChatClient chatClient = azureClient.GetChatClient("my-gpt-35-turbo-deployment");
 ### Transcription
 
 ```csharp
-AzureOpenAIClient azureClient = new(
+AzureOpenAIClient openAIClient = new(
     new Uri("https://your-azure-openai-resource.com"),
     new DefaultAzureCredential());
 
-AudioClient client = azureClient.GetAudioClient("whisper");
+AudioClient client = openAIClient.GetAudioClient("whisper");
 
 string audioFilePath = Path.Combine("Assets", "speech.mp3");
 
@@ -129,11 +133,11 @@ using Azure.AI.OpenAI;
 using Azure.Identity;
 using OpenAI.Audio;
 
-AzureOpenAIClient azureClient = new(
+AzureOpenAIClient openAIClient = new(
     new Uri("https://your-azure-openai-resource.com"),
     new DefaultAzureCredential());
 
-AudioClient client = azureClient.GetAudioClient("tts-hd"); //Replace with your Azure OpenAI model deployment
+AudioClient client = openAIClient.GetAudioClient("tts-hd"); //Replace with your Azure OpenAI model deployment
 
 string input = "Testing, testing, 1, 2, 3";
 
@@ -148,10 +152,10 @@ speech.ToStream().CopyTo(stream);
 [`AzureOpenAIClient.GetChatClient`](/dotnet/api/azure.ai.openai.azureopenaiclient.getchatclient?view=azure-dotnet-preview&preserve-view=true)
 
 ```csharp
-AzureOpenAIClient azureClient = new(
+AzureOpenAIClient openAIClient = new(
     new Uri("https://your-azure-openai-resource.com"),
     new DefaultAzureCredential());
-ChatClient chatClient = azureClient.GetChatClient("my-gpt-4o-deployment");
+ChatClient chatClient = openAIClient.GetChatClient("my-gpt-4o-deployment");
 
 ChatCompletion completion = chatClient.CompleteChat(
     [
@@ -174,10 +178,10 @@ Streaming chat completions use the `CompleteChatStreaming` and `CompleteChatStre
 These result collections can be iterated over using foreach or await foreach, with each update arriving as new data is available from the streamed response.
 
 ```csharp
-AzureOpenAIClient azureClient = new(
+AzureOpenAIClient openAIClient = new(
     new Uri("https://your-azure-openai-resource.com"),
     new DefaultAzureCredential());
-ChatClient chatClient = azureClient.GetChatClient("my-gpt-4o-deployment");
+ChatClient chatClient = openAIClient.GetChatClient("my-gpt-4o-deployment");
 
 CollectionResult<StreamingChatCompletionUpdate> completionUpdates = chatClient.CompleteChatStreaming(
     [
@@ -205,11 +209,11 @@ using Azure.AI.OpenAI;
 using Azure.Identity;
 using OpenAI.Embeddings;
 
-AzureOpenAIClient azureClient = new(
+AzureOpenAIClient openAIClient = new(
     new Uri("https://your-azure-openai-resource.com"),
     new DefaultAzureCredential());
 
-EmbeddingClient client = azureClient.GetEmbeddingClient("text-embedding-3-large"); //Replace with your model deployment name
+EmbeddingClient client = openAIClient.GetEmbeddingClient("text-embedding-3-large"); //Replace with your model deployment name
 
 string description = "This is a test embedding";
 
@@ -236,11 +240,11 @@ using Azure.AI.OpenAI;
 using Azure.Identity;
 using OpenAI.Images;
 
-AzureOpenAIClient azureClient = new(
+AzureOpenAIClient openAIClient = new(
     new Uri("https://your-azure-openai-resource.com"),
     new DefaultAzureCredential());
 
-ImageClient client = azureClient.GetImageClient("dall-e-3"); // replace with your model deployment name.
+ImageClient client = openAIClient.GetImageClient("dall-e-3"); // replace with your model deployment name.
 
 string prompt = "A rabbit eating pancakes.";
 

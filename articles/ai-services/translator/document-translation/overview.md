@@ -1,7 +1,6 @@
 ---
 title: What is Document Translation?
 description: An overview of the cloud-based asynchronous batch translation services and processes.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -62,7 +61,7 @@ The [Get supported document formats method](reference/get-supported-document-for
 |HTML|`html`, `htm`|Hyper Text Markup Language.|
 |`XML` Localization Interchange File Format|`xlff`| A parallel document format, export of Translation Memory systems. The languages used are defined inside the file.|
 |Markdown| `markdown`, `mdown`, `mkdn`, `md`, `mkd`, `mdwn`, `mdtxt`, `mdtext`, `rmd`| A lightweight markup language for creating formatted text.|
-|M&#8203;HTML|`mthml`, `mht`| A web page archive format used to combine HTML code and its companion resources.|
+|M&#8203;HTML|`mhtml`, `mht`| A web page archive format used to combine HTML code and its companion resources.|
 |Microsoft Excel|`xls`, `xlsx`|A spreadsheet file for data analysis and documentation.|
 |Microsoft Outlook|`msg`|An email message created or saved within Microsoft Outlook.|
 |Microsoft PowerPoint|`ppt`, `pptx`| A presentation file used to display content in a slideshow format.|
@@ -118,7 +117,7 @@ Document Translation supports the following glossary file types:
 |**Tab Separated Values**|`.txv`<br> `.tab`|`text/tab-separated-values`|A text file format that uses tabs to separate values and newlines to separate records.|
 |**Comma Separated Values**|`.csv`|`text/csv`|A text file format that uses commas as a delimiter between values.|
 |**HyperText Markup Language**|`.html`<br> `.htm`|`text/html`|HTML is a standard markup language used to structure web pages and content.|
-|**M&#8203;HTML**|`.mthml`<br> `.mht`| `message/rfc822`<br> @`application/x-mimearchive`<br> @`multipart/related` |A web page archive file format.|
+|**M&#8203;HTML**|`.mhtml`<br> `.mht`| `message/rfc822`<br> @`application/x-mimearchive`<br> @`multipart/related` |A web page archive file format.|
 |**Microsoft PowerPoint**|`.pptx`|`application/vnd.openxmlformats-officedocument.presentationml.presentation` |An XML-based file format used for PowerPoint slideshow presentations.|
 |**Microsoft Excel**|`.xlsx`| `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`| An XML-based file format used for Excel spreadsheets.|
 |**Microsoft Word**|`.docx`| `application/vnd.openxmlformats-officedocument.wordprocessingml.document`|An XML-based file format used for Word documents.|

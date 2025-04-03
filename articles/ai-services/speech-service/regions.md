@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 1/6/2025
+ms.date: 3/10/2025
 ms.author: eur
 ms.custom: references_regions
 #Customer intent: As a developer, I want to learn about the available regions and endpoints for the Speech service.
@@ -23,7 +23,7 @@ Keep in mind the following points:
 - Keys created for a region are valid only in that region. If you attempt to use them with other regions, you get authentication errors.
 
 > [!NOTE]
-> Speech service doesn't store or process your data outside the region of your Speech resource. The data is only stored or processed in the region where the resource is created. For example, if you create a Speech resource in the `westus` region, the data is only in the `westus` region.
+> Speech service doesn't store or process your data outside the region of your Speech resource. The data is only stored or processed in the region where the resource is created. For example, if you create an AI Services resource for Speech in the `westus` region, the data is only in the `westus` region.
 
 ## Regions
 
@@ -111,7 +111,7 @@ The regions in these tables support most of the core features of the Speech serv
 | canadacentral      | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |  |
 | centralindia       | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
 | centralus          | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| eastasia           | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
+| eastasia           | ✅ | ✅ |  |  | ✅ |  |  | ✅ |  |  |  |
 | eastus             | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ |  |  |  |
 | eastus2            | ✅ | ✅ |  |  | ✅ | ✅ |  |  | ✅ | ✅ |  |
 | francecentral      | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
@@ -134,7 +134,7 @@ The regions in these tables support most of the core features of the Speech serv
 | westcentralus      | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
 | westeurope         | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | westus             | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| westus2            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ |
+| westus2            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | westus3            | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
 
 # [Speech translation](#tab/speech-translation)
@@ -145,32 +145,32 @@ The regions in these tables support most of the core features of the Speech serv
 | brazilsouth        |  |
 | canadacentral      |  |
 | centralindia       |  |
-| centralus          |  |
+| centralus          | ✅ |
 | eastasia           |  |
 | eastus             | ✅ |
-| eastus2            |  |
+| eastus2            | ✅ |
 | francecentral      |  |
 | germanywestcentral |  |
 | japaneast          |  |
 | japanwest          |  |
 | koreacentral       |  |
-| northcentralus     |  |
+| northcentralus     | ✅ |
 | northeurope        |  |
 | norwayeast         |  |
 | qatarcentral       |  |
 | southafricanorth   |  |
-| southcentralus     |  |
+| southcentralus     | ✅ |
 | southeastasia      |  |
 | swedencentral      |  |
 | switzerlandnorth   |  |
 | switzerlandwest    |  |
 | uaenorth           |  |
 | uksouth            |  |
-| westcentralus      |  |
-| westeurope         |  |
-| westus             |  |
-| westus2            |  |
-| westus3            |  |
+| westcentralus      | ✅ |
+| westeurope         | ✅ |
+| westus             | ✅ |
+| westus2            | ✅ |
+| westus3            | ✅ |
 
 # [Intent recognition](#tab/intent-recognition)
 
@@ -208,7 +208,7 @@ The regions in these tables support most of the core features of the Speech serv
 | westus3            |  |
 
 > [!NOTE]
-> The [Speech SDK](speech-sdk.md) supports intent recognition through [Direct Line Speech](./direct-line-speech.md).
+> The [Speech SDK](speech-sdk.md) supports intent recognition through Direct Line Speech.
 
 
 # [Keyword recognition](#tab/keyword-recognition)
@@ -249,7 +249,7 @@ The regions in these tables support most of the core features of the Speech serv
 
 # [Scenarios](#tab/scenarios)
 
-| **Region** | **Pronunciation Assessment** | **Speaker recognition** | **Voice assistants** |
+| **Region** | **Pronunciation assessment** | **Speaker recognition** | **Voice assistants** |
 |-----|-----|-----|-----|
 | australiaeast      | ✅ | ✅ |  |
 | brazilsouth        | ✅ |  |  |
@@ -283,7 +283,7 @@ The regions in these tables support most of the core features of the Speech serv
 | westus3            | ✅ | ✅ |  |
 
 > [!NOTE]
-> The [Speech SDK](speech-sdk.md) supports voice assistant capabilities through [Direct Line Speech](./direct-line-speech.md).
+> The [Speech SDK](speech-sdk.md) supports voice assistant capabilities through Direct Line Speech.
 
 ---
 

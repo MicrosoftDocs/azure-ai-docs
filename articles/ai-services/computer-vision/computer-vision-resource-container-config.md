@@ -2,12 +2,11 @@
 title: Configure Read containers - Azure AI Vision
 titleSuffix: Azure AI services
 description: This article shows you how to configure both required and optional settings for Read optical character recognition (OCR) containers in Azure AI Vision.
-#services: cognitive-services
 author: aahill
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 02/21/2025
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: aahi
 ---
@@ -58,7 +57,7 @@ The `Billing` setting specifies the endpoint URI of the _Azure AI services_ reso
 
 This setting can be found in the following place:
 
-* Azure portal: **Azure AI services** Overview, labeled `Endpoint`
+* Azure portal: **Azure AI services** Overview; labeled `Endpoint`
 
 Remember to add the `vision/<version>` routing to the endpoint URI as shown in the following table. 
 
@@ -97,7 +96,7 @@ The exact syntax of the host mount location varies depending on the host operati
 
 ## Example docker commands
 
-The following examples use the configuration settings to illustrate how to write and use `docker run` commands.  Once running, the container continues to run until you [stop](computer-vision-how-to-install-containers.md#stop-the-container) it.
+The following examples use the configuration settings to illustrate how to write and use `docker run` commands. Once running, the container continues to run until you [stop](computer-vision-how-to-install-containers.md#stop-the-container) it.
 
 * **Line-continuation character**: The Docker commands in the following sections use the back slash, `\`, as a line continuation character. Replace or remove this based on your host operating system's requirements. 
 * **Argument order**: Do not change the order of the arguments unless you're familiar with Docker containers.
@@ -112,7 +111,8 @@ Replace {_argument_name_} with your own values:
 [!INCLUDE [subdomains-note](../includes/cognitive-services-custom-subdomains-note.md)]
 
 > [!IMPORTANT]
-> The `Eula`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container won't start.  For more information, see [Billing](computer-vision-how-to-install-containers.md#billing).
+> The `Eula`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container won't start. For more information, see [Billing](computer-vision-how-to-install-containers.md#billing).
+>
 > The ApiKey value is the **Key** from the Vision resource keys page.
 
 ## Container Docker examples
@@ -170,6 +170,7 @@ Logging:Console:LogLevel:Default=Information
 
 ---
 
-## Next steps
+## Next step
 
-* Review [How to install and run containers](computer-vision-how-to-install-containers.md).
+> [div class="nextstepaction"]
+> Review [How to install and run containers](computer-vision-how-to-install-containers.md).

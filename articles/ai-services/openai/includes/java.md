@@ -2,7 +2,6 @@
 title: 'Quickstart: Use Azure OpenAI Service with the Java SDK'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the Java SDK. 
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
@@ -103,8 +102,8 @@ dependencies {
     public class GetCompletionsSample {
     
         public static void main(String[] args) {
-            String azureOpenaiKey = System.getenv("AZURE_OPENAI_API_KEY");;
-            String endpoint = System.getenv("AZURE_OPENAI_ENDPOINT");;
+            String azureOpenaiKey = System.getenv("AZURE_OPENAI_API_KEY");
+            String endpoint = System.getenv("AZURE_OPENAI_ENDPOINT");
             String deploymentOrModelId = "gpt-35-turbo-instruct";
     
             OpenAIClient client = new OpenAIClientBuilder()

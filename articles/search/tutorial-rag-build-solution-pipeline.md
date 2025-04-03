@@ -41,7 +41,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 - [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), with a deployment of text-embedding-3-large, in the same region as Azure AI Search. For more information about embedding models used in RAG solutions, see [Choose embedding models for RAG in Azure AI Search](tutorial-rag-build-solution-models.md).
 
-- [Azure AI Service multiservice account](/azure/ai-services/multi-service-resource), in the same region as Azure AI Search. This resource is used for the Entity Recognition skill that detects locations in your content.
+- [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills), in the same region as Azure AI Search. This resource is used for the Entity Recognition skill that detects locations in your content.
 
 ## Download the sample
 
@@ -156,7 +156,7 @@ Skills are the basis for integrated data chunking and vectorization. At a minimu
 
 In this skillset, an extra skill is used to create structured data in the index. The [Entity Recognition skill](cognitive-search-skill-entity-recognition-v3.md) is used to identify locations, which can range from proper names to generic references, such as "ocean" or "mountain". Having structured data gives you more options for creating interesting queries and boosting relevance.
 
-The AZURE_AI_MULTISERVICE_KEY is needed even if you're using role-based access control. Azure AI Search uses the key for billing purposes and it's required unless your workloads stay under the free limit. You can also a keyless connection if you're using the most recent preview API or beta packages. For more information, see [Attach an Azure AI multi-service resource to a skillset](cognitive-search-attach-cognitive-services.md).
+The AZURE_AI_MULTISERVICE_KEY is needed even if you're using role-based access control. Azure AI Search uses the key for billing purposes and it's required unless your workloads stay under the free limit. You can also a keyless connection if you're using the most recent preview API or beta packages. For more information, see [Attach an Azure AI services multi-service resource to a skillset](cognitive-search-attach-cognitive-services.md).
 
 ```python
 from azure.search.documents.indexes.models import (

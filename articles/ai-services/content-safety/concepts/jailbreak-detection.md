@@ -2,7 +2,6 @@
 title: "Prompt Shields in Azure AI Content Safety"
 titleSuffix: Azure AI services
 description: Learn about User Prompt injection attacks and document attacks and how to prevent them with the Prompt Shields feature.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety

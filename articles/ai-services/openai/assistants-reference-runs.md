@@ -4,8 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's Python & REST API runs with Assistants.
 manager: nitinme
 ms.service: azure-ai-openai
-ms.topic: conceptual
-ms.date: 09/17/2024
+ms.topic: reference
+ms.date: 03/31/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -13,8 +13,6 @@ ms.custom: devx-track-python
 ---
 
 # Assistants API (Preview) runs reference
-
-[!INCLUDE [Assistants v2 note](includes/assistants-v2-note.md)]
 
 This article provides reference documentation for Python and REST for the new Assistants API (Preview). More in-depth step-by-step guidance is provided in the [getting started guide](./how-to/assistant.md).
 

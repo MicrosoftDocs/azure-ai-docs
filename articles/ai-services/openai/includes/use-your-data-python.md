@@ -1,5 +1,4 @@
 ---
-#services: cognitive-services
 manager: nitinme
 author: mrbullwinkle #travisw
 ms.author: mbullwin #travisw
@@ -54,7 +53,7 @@ dotenv.load_dotenv()
 
 endpoint = os.environ.get("AZURE_OPENAI_ENDPOINT")
 api_key = os.environ.get("AZURE_OPENAI_API_KEY")
-deployment = os.environ.get("AZURE_OPENAI_DEPLOYMENT_ID")
+deployment = os.environ.get("AZURE_OPENAI_DEPLOYMENT_NAME")
 
 client = openai.AzureOpenAI(
     azure_endpoint=endpoint,
@@ -132,12 +131,12 @@ print(f"{completion.choices[0].message.role}: {completion.choices[0].message.con
 
        openai.requestssession = session
 
-   aoai_deployment_id = os.environ.get("AZURE_OPENAI_DEPLOYMENT_ID")
+   aoai_deployment_id = os.environ.get("AZURE_OPENAI_DEPLOYMENT_NAME")
    setup_byod(aoai_deployment_id)
 
    completion = openai.ChatCompletion.create(
        messages=[{"role": "user", "content": "What are my available health plans?"}],
-       deployment_id=os.environ.get("AZURE_OPENAI_DEPLOYMENT_ID"),
+       deployment_id=os.environ.get("AZURE_OPENAI_DEPLOYMENT_NAME"),
        dataSources=[  # camelCase is intentional, as this is the format the API expects
            {
                "type": "AzureCognitiveSearch",

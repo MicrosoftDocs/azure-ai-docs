@@ -1,7 +1,6 @@
 ---
 titleSuffix: Azure AI services
 description: Learn about the steps for using Azure resources with custom NER.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language

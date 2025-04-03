@@ -1,7 +1,6 @@
 ---
 title: Use Document Translation APIs programmatically
 description: "How to create a Document Translation service using C#, Go, Java, Node.js, or Python and the REST API"
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -209,6 +208,29 @@ The following headers are included with each Document Translation API request:
     ]
 }
 ```
+
+### 🆕 Translate text embedded in images within documents
+
+> [!Note]
+>
+> * This feature is optional and must be enabled for each translation request.
+> * Enabling this feature will incur additional costs based on usage. For more information, *see* [Azure AI Vision pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/)
+> * This feature is currently available only with the Batch Document Translation API.
+> * The Supported file format is `.docx` only.
+> * An Azure AI Services resource (not the standalone Translator resource) is required to use this feature.
+
+### Request configuration
+
+* Use the optional `translateTextWithinImage` parameter in the `options` field
+
+   * Data type: Boolean (`true` or `false`) 
+   * Default Boolean setting is `false`. Set the option to `true` to enable image text translation.
+
+* **Response Details**. When the feature is enabled, added image processing information is included with the response: 
+
+   * **`totalImageScansSucceeded`**. The number of successfully translated image scans.
+
+   * **`totalImageScansFailed`**. The number of image scans that failed processing.
 
 ## Use code to submit Document Translation requests
 
@@ -1283,7 +1305,7 @@ func main() {
 
 ## Learn more
 
-* [Translator v3 API reference](../../reference/v3-0-reference.md)
+* [Translator v3 API reference](../../text-translation/reference/v3/reference.md)
 * [Language support](../../language-support.md)
 
 ## Next steps

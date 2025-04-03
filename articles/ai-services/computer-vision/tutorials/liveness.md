@@ -8,37 +8,24 @@ ms.subservice: azure-ai-face
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 09/25/2024
+ms.date: 03/26/2025
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Tutorial: Detect liveness in faces
 
-Face Liveness detection is used to determine if a face in an input video stream is real (live) or fake (spoofed). It's an important building block in a biometric authentication system to prevent imposters from gaining access to the system using a photograph, video, mask, or other means to impersonate another person.
+In this tutorial, you learn how to detect liveness in faces, using a combination of server-side code and a client-side mobile application. 
 
-The goal of liveness detection is to ensure that the system is interacting with a physically present, live person at the time of authentication. These systems are increasingly important with the rise of digital finance, remote access control, and online identity verification processes.
+> [!TIP]
+> For general information about face liveness detection, see the [conceptual guide](../concept-face-liveness-detection.md).
 
-The Azure AI Face liveness detection solution successfully defends against various spoof types ranging from paper printouts, 2D/3D masks, and spoof presentations on phones and laptops. Liveness detection is an active area of research, with continuous improvements being made to counteract increasingly sophisticated spoofing attacks. Continuous improvements are rolled out to the client and the service components over time as the overall solution gets more robust to new types of attacks.
+This tutorial demonstrates how to operate a frontend application and an app server to perform liveness detection, including the optional step of [face verification](#perform-liveness-detection-with-face-verification), across various platforms and languages.
+
 
 [!INCLUDE [liveness-sdk-gate](../includes/liveness-sdk-gate.md)]
 
-## Introduction
-
-The liveness solution integration involves two distinct components: a frontend mobile/web application and an app server/orchestrator.
-
-:::image type="content" source="../media/liveness/liveness-diagram.jpg" alt-text="Diagram of the liveness workflow in Azure AI Face." lightbox="../media/liveness/liveness-diagram.jpg":::
-
-- **Frontend application**: The frontend application receives authorization from the app server to initiate liveness detection. Its primary objective is to activate the camera and guide end-users accurately through the liveness detection process.
-- **App server**: The app server serves as a backend server to create liveness detection sessions and obtain an authorization token from the Face service for a particular session. This token authorizes the frontend application to perform liveness detection. The app server's objectives are to manage the sessions, to grant authorization for frontend application, and to view the results of the liveness detection process.
-
-Additionally, we combine face verification with liveness detection to verify whether the person is the specific person you designated. The following table describes details of the liveness detection features:
-
-| Feature | Description |
-| -- |--|
-| Liveness detection | Determine an input is real or fake, and only the app server has the authority to start the liveness check and query the result. |
-| Liveness detection with face verification | Determine an input is real or fake and verify the identity of the person based on a reference image you provided. Either the app server or the frontend application can provide a reference image. Only the app server has the authority to initial the liveness check and query the result. |
-
-This tutorial demonstrates how to operate a frontend application and an app server to perform [liveness detection](#perform-liveness-detection) and [liveness detection with face verification](#perform-liveness-detection-with-face-verification) across various language SDKs.
+> [!TIP]
+> After you complete the prerequisites, you can get started faster by building and running a complete frontend sample (either on iOS, Android, or Web) from the [SDK samples folder](https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/samples).  
 
 ## Prerequisites
 
@@ -47,20 +34,23 @@ This tutorial demonstrates how to operate a frontend application and an app serv
 - Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFace"  title="Create a Face resource"  target="_blank">create a Face resource</a> in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**. 
     - You need the key and endpoint from the resource you create to connect your application to the Face service.
     - You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
-- Access to the Azure AI Vision Face Client SDK for mobile (IOS and Android) and web. To get started, you need to apply for the [Face Recognition Limited Access features](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQjA5SkYzNDM4TkcwQzNEOE1NVEdKUUlRRCQlQCN0PWcu) to get access to the SDK. For more information, see the [Face Limited Access](/legal/cognitive-services/computer-vision/limited-access-identity?context=%2Fazure%2Fcognitive-services%2Fcomputer-vision%2Fcontext%2Fcontext) page.
+- Access to the Azure AI Vision Face Client SDK for Mobile (IOS and Android) and Web. To get started, you need to apply for the [Face Recognition Limited Access features](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQjA5SkYzNDM4TkcwQzNEOE1NVEdKUUlRRCQlQCN0PWcu) to get access to the SDK. For more information, see the [Face Limited Access](/legal/cognitive-services/computer-vision/limited-access-identity?context=%2Fazure%2Fcognitive-services%2Fcomputer-vision%2Fcontext%2Fcontext) page.
+- Familiarity with the Face liveness detection feature. See the [conceptual guide](../concept-face-liveness-detection.md).
 
-## Set up frontend applications and app servers to perform liveness detection
+## Prepare SDKs
 
-We provide SDKs in different languages for frontend applications and app servers. See the following instructions to set up your frontend applications and app servers.
+We provide SDKs in different languages to simplify development on frontend applications and app servers:
 
 ### Download SDK for frontend application
 
-Once you have access to the SDK, follow instructions in the [azure-ai-vision-sdk](https://github.com/Azure-Samples/azure-ai-vision-sdk) GitHub repository to integrate the UI and the code into your native mobile application. The liveness SDK supports Java/Kotlin for Android mobile applications, Swift for iOS mobile applications and JavaScript for web applications:
+Follow instructions in the [azure-ai-vision-sdk](https://github.com/Azure-Samples/azure-ai-vision-sdk) GitHub repository to integrate the UI and the code into your native mobile application. The liveness SDK supports Java/Kotlin for Android mobile applications, Swift for iOS mobile applications and JavaScript for web applications:
 - For Swift iOS, follow the instructions in the [iOS sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-ios-readme) 
 - For Kotlin/Java Android, follow the instructions in the [Android sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-android-readme) 
 - For JavaScript Web, follow the instructions in the [Web sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-readme) 
 
 Once you've added the code into your application, the SDK handles starting the camera, guiding the end-user in adjusting their position, composing the liveness payload, and calling the Azure AI Face cloud service to process the liveness payload.
+
+You can monitor the [Releases section](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases) of the SDK repo for new SDK version updates.
 
 ### Download Azure AI Face client library for app server
 
@@ -70,9 +60,9 @@ The app server/orchestrator is responsible for controlling the lifecycle of a li
 - For Python, follow the instructions in the [Python readme](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/face/azure-ai-vision-face/README.md)
 - For JavaScript, follow the instructions in the [JavaScript readme](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/face/ai-vision-face-rest/README.md)
 
-### Create environment variables
+> [!IMPORTANT]
+> To create environment variables for your Azure Face service key and endpoint, see the [quickstart](../quickstarts-sdk/identity-client-library.md)
 
-[!INCLUDE [create environment variables](../includes/face-environment-variables.md)]
 
 ## Perform liveness detection
 
@@ -407,33 +397,17 @@ The high-level steps involved in liveness orchestration are illustrated below:
 ## Perform liveness detection with face verification
 
 Combining face verification with liveness detection enables biometric verification of a particular person of interest with an added guarantee that the person is physically present in the system. 
-There are two parts to integrating liveness with verification:
-1. Select a good reference image.
-2. Set up the orchestration of liveness with verification.
 
 :::image type="content" source="../media/liveness/liveness-verify-diagram.jpg" alt-text="Diagram of the liveness-with-face-verification workflow of Azure AI Face." lightbox="../media/liveness/liveness-verify-diagram.jpg":::
 
-### Select a reference image
+There are two parts to integrating liveness with verification:
 
-Use the following tips to ensure that your input images give the most accurate recognition results.
+### Step 1 - Select a reference image
 
-#### Technical requirements
-[!INCLUDE [identity-input-technical](../includes/identity-input-technical.md)]
-* You can utilize the `qualityForRecognition` attribute in the [face detection](../how-to/identity-detect-faces.md) operation when using applicable detection models as a general guideline of whether the image is likely of sufficient quality to attempt face recognition on. Only `"high"` quality images are recommended for person enrollment and quality at or above `"medium"` is recommended for identification scenarios.
+Follow the tips listed in the [composition requirements for ID verification scenarios](../overview-identity.md#input-requirements) to ensure that your input images give the most accurate recognition results.
 
-#### Composition requirements
-- Photo is clear and sharp, not blurry, pixelated, distorted, or damaged.
-- Photo is not altered to remove face blemishes or face appearance.
-- Photo must be in an RGB color supported format (JPEG, PNG, WEBP, BMP). Recommended Face size is 200 pixels x 200 pixels. Face sizes larger than 200 pixels x 200 pixels will not result in better AI quality, and no larger than 6 MB in size.
-- User is not wearing glasses, masks, hats, headphones, head coverings, or face coverings. Face should be free of any obstructions.
-- Facial jewelry is allowed provided they do not hide your face.
-- Only one face should be visible in the photo.
-- Face should be in neutral front-facing pose with both eyes open, mouth closed, with no extreme facial expressions or head tilt.
-- Face should be free of any shadows or red eyes. Retake photo if either of these occur.
-- Background should be uniform and plain, free of any shadows.
-- Face should be centered within the image and fill at least 50% of the image.
 
-### Set up the orchestration of liveness with verification.
+### Step 2 - Set up the orchestration of liveness with verification.
 
 The high-level steps involved in liveness with verification orchestration are illustrated below:
 1. Providing the verification reference image by either of the following two methods:
@@ -799,19 +773,26 @@ The high-level steps involved in liveness with verification orchestration are il
     curl --request DELETE --location "${FACE_ENDPOINT}/face/v1.2/detectLivenesswithVerify-sessions/<session-id>" \
     --header "Ocp-Apim-Subscription-Key: ${FACE_APIKEY}"
     ```
-
     ---
 
-## Clean up resources
 
-If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
+## Perform other face operations after liveness detection
 
-* [Azure portal](../../multi-service-resource.md?pivots=azportal#clean-up-resources)
-* [Azure CLI](../../multi-service-resource.md?pivots=azcli#clean-up-resources)
+Optionally, you can do further face operations after the liveness check, such as face analysis (to get face attributes, for example) and/or face identity operations.
+1. To enable this, you'll need to set the "enableSessionImage" parameter to "true" during the [Session-Creation step](#perform-liveness-detection).  
+1. After the session completes, you can extract the "sessionImageId" from the [Session-Get-Result step](#perform-liveness-detection).
+1. You can now either download the session-image (referenced in [Liveness Get Session Image Operation API](/rest/api/face/liveness-session-operations/get-session-image)), or provide the "sessionImageId" in the [Detect from Session Image ID API](/rest/api/face/face-detection-operations/detect-from-session-image-id) operation to continue to perform other face analysis or face identity operations. 
+For more information on these operations, see [Face detection concepts](../concept-face-detection.md) and [Face Recognition concepts](../concept-face-recognition.md). 
+
+
+## Support options
+
+In addition to using the main [Azure AI services support options](../../cognitive-services-support-options.md), you can also post your questions in the [issues](https://github.com/Azure-Samples/azure-ai-vision-sdk/issues) section of the SDK repo. 
+
 
 ## Related content
 
-To learn about other options in the liveness APIs, see the Azure AI Vision SDK reference.
+To learn how to integrate the liveness solution into your existing application, see the Azure AI Vision SDK reference.
 
 - [Kotlin (Android)](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-android-readme)
 - [Swift (iOS)](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-ios-readme)
@@ -820,3 +801,4 @@ To learn about other options in the liveness APIs, see the Azure AI Vision SDK r
 To learn more about the features available to orchestrate the liveness solution, see the Session REST API reference.
 
 - [Liveness Session Operations](/rest/api/face/liveness-session-operations)
+

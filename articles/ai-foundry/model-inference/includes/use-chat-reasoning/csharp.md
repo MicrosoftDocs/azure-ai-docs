@@ -19,21 +19,11 @@ To complete this tutorial, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
+[!INCLUDE [how-to-prerequisites-csharp](../how-to-prerequisites-csharp.md)]
+
 * A model with reasoning capabilities model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a reasoning model. 
 
   * This example uses `DeepSeek-R1`.
-
-* Install the Azure AI inference package with the following command:
-
-    ```bash
-    dotnet add package Azure.AI.Inference --prerelease
-    ```
-
-* If you are using Entra ID, you also need the following package:
-
-    ```bash
-    dotnet add package Azure.Identity
-    ```
 
 ## Use reasoning capabilities with chat
 
@@ -42,8 +32,7 @@ First, create the client to consume the model. The following code uses an endpoi
 ```csharp
 ChatCompletionsClient client = new ChatCompletionsClient(
     new Uri("https://<resource>.services.ai.azure.com/models"),
-    new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL")),
-    "DeepSeek-R1"
+    new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL"))
 );
 ```
 
@@ -53,10 +42,16 @@ ChatCompletionsClient client = new ChatCompletionsClient(
 If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
 ```csharp
+TokenCredential credential = new DefaultAzureCredential(includeInteractiveCredentials: true);
+AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions();
+BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(credential, new string[] { "https://cognitiveservices.azure.com/.default" });
+
+clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
+
 client = new ChatCompletionsClient(
     new Uri("https://<resource>.services.ai.azure.com/models"),
-    new DefaultAzureCredential(includeInteractiveCredentials: true),
-    "DeepSeek-R1"
+    credential,
+    clientOptions,
 );
 ```
 
@@ -70,6 +65,7 @@ ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
     Messages = {
         new ChatRequestUserMessage("How many languages are in the world?")
     },
+    Model = "deepseek-r1",
 };
 
 Response<ChatCompletions> response = client.Complete(requestOptions);
@@ -148,7 +144,8 @@ static async Task StreamMessageAsync(ChatCompletionsClient client)
         Messages = {
             new ChatRequestUserMessage("How many languages are in the world?")
         },
-        MaxTokens=4096
+        MaxTokens=4096,
+        Model = "deepseek-r1",
     };
 
     StreamingResponse<StreamingChatCompletionsUpdate> streamResponse = await client.CompleteStreamingAsync(requestOptions);
@@ -225,6 +222,7 @@ try
                 "Chopping tomatoes and cutting them into cubes or wedges are great ways to practice your knife skills."
             ),
         },
+        Model = "deepseek-r1",
     };
 
     response = client.Complete(requestOptions);

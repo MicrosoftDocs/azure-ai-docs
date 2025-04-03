@@ -7,7 +7,7 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/23/2024
+ms.date: 3/10/2025
 #Customer intent: As a developer, I want to learn how to back up and recover speech customer resources.
 ---
 
@@ -38,7 +38,7 @@ These assets are backed up regularly and automatically by the repositories thems
 
 ## How to monitor service availability
 
-If you use the default endpoints, you should configure your client code to monitor for errors. If errors persist, be prepared to redirect to another region where you have a Speech resource.
+If you use the default endpoints, you should configure your client code to monitor for errors. If errors persist, be prepared to redirect to another region where you have an AI Services resource for Speech.
 
 Follow these steps to configure your client to monitor for errors:
 

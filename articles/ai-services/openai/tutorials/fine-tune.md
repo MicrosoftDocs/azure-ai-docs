@@ -2,11 +2,10 @@
 title: Azure OpenAI Service fine-tuning gpt-4o-mini
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's latest fine-tuning capabilities with gpt-4o-mini-2024-07-18
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: tutorial
-ms.date: 09/09/2024
+ms.date: 03/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -35,7 +34,7 @@ In this tutorial you learn how to:
 - [Jupyter Notebooks](https://jupyter.org/)
 - An Azure OpenAI resource in a [region where `gpt-4o-mini-2024-07-18` fine-tuning is available](../concepts/models.md). If you don't have a resource the process of creating one is documented in our resource [deployment guide](../how-to/create-resource.md).
 - Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
-- If you don't already have access to view quota and deploy models in Azure AI Foundry portal, then you need [more permissions](../how-to/role-based-access-control.md).
+- If you don't already have access to view quota and deploy models in [Azure AI Foundry portal](https://ai.azure.com/), then you need [more permissions](../how-to/role-based-access-control.md).
 
 > [!IMPORTANT]
 > We recommend reviewing the [pricing information](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing) for fine-tuning to familiarize yourself with the associated costs. Testing of this tutorial resulted in 48,000 tokens being billed (4,800 training tokens * 10 epochs of training). Training costs are in addition to the costs that are associated with fine-tuning inference, and the hourly hosting costs of having a fine-tuned model deployed. Once you have completed the tutorial, you should delete your fine-tuned model deployment otherwise you continue to incur the hourly hosting cost.
@@ -44,25 +43,11 @@ In this tutorial you learn how to:
 
 ### Python libraries
 
-# [OpenAI Python 1.x](#tab/python-new)
-
 This tutorial provides examples of some of the latest OpenAI features include seed/events/checkpoints. In order to take advantage of these features, you might need to run `pip install openai --upgrade` to upgrade to the latest release.
 
 ```cmd
 pip install openai requests tiktoken numpy
 ```
-
-# [OpenAI Python 0.28.1](#tab/python)
-
-[!INCLUDE [Deprecation](../includes/deprecation.md)]
-
-If you haven't already, you need to install the following libraries:
-
-```cmd
-pip install "openai==0.28.1" requests tiktoken numpy
-```
-
----
 
 [!INCLUDE [get-key-endpoint](../includes/get-key-endpoint.md)]
 
@@ -295,8 +280,6 @@ p5 / p95: 10.7, 19.999999999999996
 
 ## Upload fine-tuning files
 
-# [OpenAI Python 1.x](#tab/python-new)
-
 ```python
 # Upload fine-tuning files
 
@@ -306,7 +289,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
   api_key = os.getenv("AZURE_OPENAI_API_KEY"),
-  api_version = "2024-08-01-preview"  # This API version or later is required to access seed/events/checkpoint features
+  api_version = "2025-02-01-preview"  
 )
 
 training_file_name = 'training_set.jsonl'
@@ -328,40 +311,6 @@ print("Training file ID:", training_file_id)
 print("Validation file ID:", validation_file_id)
 ```
 
-# [OpenAI Python 0.28.1](#tab/python)
-
-```Python
-# Upload fine-tuning files
-
-import openai
-import os
-
-openai.api_key = os.getenv("AZURE_OPENAI_API_KEY")
-openai.api_base =  os.getenv("AZURE_OPENAI_ENDPOINT")
-openai.api_type = 'azure'
-openai.api_version = '2023-05-01' 
-
-training_file_name = 'training_set.jsonl'
-validation_file_name = 'validation_set.jsonl'
-
-# Upload the training and validation dataset files to Azure OpenAI with the SDK.
-
-training_response = openai.File.create(
-    file = open(training_file_name, "rb"), purpose="fine-tune", user_provided_filename="training_set.jsonl"
-)
-training_file_id = training_response["id"]
-
-validation_response = openai.File.create(
-    file = open(validation_file_name, "rb"), purpose="fine-tune", user_provided_filename="validation_set.jsonl"
-)
-validation_file_id = validation_response["id"]
-
-print("Training file ID:", training_file_id)
-print("Validation file ID:", validation_file_id)
-```
-
----
-
 **Output:**
 
 ```output
@@ -372,8 +321,6 @@ Validation file ID: file-8556c3bb41b7416bb7519b47fcd1dd6b
 ## Begin fine-tuning
 
 Now that the fine-tuning files are successfully uploaded you can submit your fine-tuning training job:
-
-# [OpenAI Python 1.x](#tab/python-new)
 
 In this example, we're also passing the seed parameter. The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but can differ in rare cases. If a seed isn't specified, one is generated for you.
 
@@ -397,31 +344,7 @@ print("Status:", response.status)
 print(response.model_dump_json(indent=2))
 ```
 
-
-# [OpenAI Python 0.28.1](#tab/python)
-
-```python
-# Submit fine-tuning training job
-
-response = openai.FineTuningJob.create(
-    training_file = training_file_id,
-    validation_file = validation_file_id,
-    model = "gpt-4o-mini-2024-07-18",
-)
-
-job_id = response["id"]
-
-# You can use the job ID to monitor the status of the fine-tuning job.
-# The fine-tuning job will take some time to start and complete.
-
-print("Job ID:", response["id"])
-print("Status:", response["status"])
-print(response)
-```
-
----
-
-**Python 1.x Output:**
+**Output:**
 
 ```json
 Job ID: ftjob-900fcfc7ea1d4360a9f0cb1697b4eaa6
@@ -455,9 +378,6 @@ Status: pending
 
 If you would like to poll the training job status until it's complete, you can run:
 
-
-# [OpenAI Python 1.x](#tab/python-new)
-
 ```python
 # Track training status
 
@@ -490,43 +410,7 @@ response = client.fine_tuning.jobs.list()
 print(f'Found {len(response.data)} fine-tune jobs.')
 ```
 
-# [OpenAI Python 0.28.1](#tab/python)
-
-```python
-# Track training status
-
-from IPython.display import clear_output
-import time
-
-start_time = time.time()
-
-# Get the status of our fine-tuning job.
-response = openai.FineTuningJob.retrieve(job_id)
-
-status = response["status"]
-
-# If the job isn't done yet, poll it every 10 seconds.
-while status not in ["succeeded", "failed"]:
-    time.sleep(10)
-
-    response = openai.FineTuningJob.retrieve(job_id)
-    print(response)
-    print("Elapsed time: {} minutes {} seconds".format(int((time.time() - start_time) // 60), int((time.time() - start_time) % 60)))
-    status = response["status"]
-    print(f'Status: {status}')
-    clear_output(wait=True)
-
-print(f'Fine-tuning job {job_id} finished with status: {status}')
-
-# List all fine-tuning jobs for this resource.
-print('Checking other fine-tune jobs for this resource.')
-response = openai.FineTuningJob.list()
-print(f'Found {len(response["data"])} fine-tune jobs.')
-```
-
----
-
-**Python 1.x Output:**
+**Output:**
 
 ```json
 Job ID: ftjob-900fcfc7ea1d4360a9f0cb1697b4eaa6
@@ -570,20 +454,12 @@ API version: `2024-08-01-preview` or later is required for this command.
 
 While not necessary to complete fine-tuning, it can be helpful to examine the individual fine-tuning events that were generated during training. The full training results can also be examined after training is complete in the [training results file](../how-to/fine-tuning.md#analyze-your-customized-model).
 
-# [OpenAI Python 1.x](#tab/python-new)
-
 ```python
 response = client.fine_tuning.jobs.list_events(fine_tuning_job_id=job_id, limit=10)
 print(response.model_dump_json(indent=2))
 ```
 
-# [OpenAI Python 0.28.1](#tab/python)
-
-This command isn't available in the 0.28.1 OpenAI Python library. Upgrade to the latest release.
-
----
-
-**Python 1.x Output:**
+**Output:**
 
 ```json
 {
@@ -734,20 +610,12 @@ API version: `2024-08-01-preview` or later is required for this command.
 
 When each training epoch completes a checkpoint is generated. A checkpoint is a fully functional version of a model which can both be deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be useful, as they can provide a snapshot of your model prior to overfitting having occurred. When a fine-tuning job completes, you have the three most recent versions of the model available to deploy. The final epoch will be represented by your fine-tuned model, the previous two epochs are available as checkpoints.
 
-# [OpenAI Python 1.x](#tab/python-new)
-
 ```python
 response = client.fine_tuning.jobs.checkpoints.list(job_id)
 print(response.model_dump_json(indent=2))
 ```
 
-# [OpenAI Python 0.28.1](#tab/python)
-
-This command isn't available in the 0.28.1 OpenAI Python library. Upgrade to the latest release.
-
----
-
-**Python 1.x Output:**
+**Output:**
 
 ```json
 {
@@ -813,8 +681,6 @@ This command isn't available in the 0.28.1 OpenAI Python library. Upgrade to the
 
 To get the final results, run the following:
 
-# [OpenAI Python 1.x](#tab/python-new)
-
 ```python
 # Retrieve fine_tuned_model name
 
@@ -823,19 +689,6 @@ response = client.fine_tuning.jobs.retrieve(job_id)
 print(response.model_dump_json(indent=2))
 fine_tuned_model = response.fine_tuned_model
 ```
-
-# [OpenAI Python 0.28.1](#tab/python)
-
-```python
-# Retrieve fine_tuned_model name
-
-response = openai.FineTuningJob.retrieve(job_id)
-
-print(response)
-fine_tuned_model = response["fine_tuned_model"]
-```
-
----
 
 ## Deploy fine-tuned model
 
@@ -866,7 +719,7 @@ resource_group = "<YOUR_RESOURCE_GROUP_NAME>"
 resource_name = "<YOUR_AZURE_OPENAI_RESOURCE_NAME>"
 model_deployment_name = "gpt-4o-mini-2024-07-18-ft" # Custom deployment name you chose for your fine-tuning model
 
-deploy_params = {'api-version': "2023-05-01"}
+deploy_params = {'api-version': "2024-10-01"} # Control plane API version
 deploy_headers = {'Authorization': 'Bearer {}'.format(token), 'Content-Type': 'application/json'}
 
 deploy_data = {
@@ -892,15 +745,13 @@ print(r.reason)
 print(r.json())
 ```
 
-You can check on your deployment progress in the Azure AI Foundry portal.
+You can check on your deployment progress in the [Azure AI Foundry portal](https://ai.azure.com/).
 
 It isn't uncommon for this process to take some time to complete when dealing with deploying fine-tuned models.
 
 ## Use a deployed customized model
 
 After your fine-tuned model is deployed, you can use it like any other deployed model in either the [Chat Playground of Azure AI Foundry portal](https://ai.azure.com), or via the chat completion API. For example, you can send a chat completion call to your deployed model, as shown in the following Python example. You can continue to use the same parameters with your customized model, such as temperature and max_tokens, as you can with other deployed models.
-
-# [OpenAI Python 1.x](#tab/python-new)
 
 ```python
 # Use the deployed customized model
@@ -911,7 +762,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
   api_key = os.getenv("AZURE_OPENAI_API_KEY"),
-  api_version = "2024-06-01"
+  api_version = "2024-10-21"
 )
 
 response = client.chat.completions.create(
@@ -926,35 +777,6 @@ response = client.chat.completions.create(
 
 print(response.choices[0].message.content)
 ```
-
-# [OpenAI Python 0.28.1](#tab/python)
-
-```python
-# Use the deployed customized model
-
-import os
-import openai
-
-openai.api_type = "azure"
-openai.api_base = os.getenv("AZURE_OPENAI_ENDPOINT")
-openai.api_version = "2024-06-01"
-openai.api_key = os.getenv("AZURE_OPENAI_API_KEY")
-
-response = openai.ChatCompletion.create(
-    engine = "gpt-4o-mini-2024-07-18-ft", # engine = "Custom deployment name you chose for your fine-tuning model"
-    messages = [
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
-        {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-        {"role": "user", "content": "Do other Azure AI services support this too?"}
-    ]
-)
-
-print(response)
-print(response['choices'][0]['message']['content'])
-```
-
----
 
 ## Delete deployment
 

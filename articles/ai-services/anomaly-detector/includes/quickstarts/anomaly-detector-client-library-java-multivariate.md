@@ -1,7 +1,6 @@
 ---
 title: Anomaly Detector multivariate Java client library quickstart 
 titleSuffix: Azure AI services
-#services: cognitive-services
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
@@ -108,8 +107,7 @@ String key = "YOUR_API_KEY";
 String endpoint = "YOUR_ENDPOINT";
 ```
 
-> [!IMPORTANT]
-> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). See the Azure AI services [security](../../../security-features.md) article for more information.
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 To use the Anomaly Detector multivariate APIs, you need to first train your own models. Training data is a set of multiple time series that meet the following requirements:
 
@@ -242,7 +240,7 @@ UUID resultId = UUID.fromString(substring[substring.length - 1]);
 DetectionResult detectionResult;
 while (true) {
     detectionResult = anomalyDetectorClient.getDetectionResult(resultId);
-    DetectionStatus detectionStatus = detectionResult.getSummary().getStatus();;
+    DetectionStatus detectionStatus = detectionResult.getSummary().getStatus();
     if (detectionStatus == DetectionStatus.READY || detectionStatus == DetectionStatus.FAILED) {
         break;
     }

@@ -96,8 +96,7 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
     print(data.decode("utf-8"))
     ```
 
-    > [!IMPORTANT]
-    > Remember to remove the key from your code when you're done, and never post your key publicly. For production, use a secure way of storing and accessing your credentials. For more information, see [Azure Key Vault](/azure/key-vault/general/overview).
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 1. Run the application with the `python` command:
 
@@ -162,7 +161,7 @@ The JSON objects in the output are defined here:
 | Name  | Description    | Type    |
 | :------------------ | :----------- | ------- |
 | **ungroundedDetected** | Indicates whether the text exhibits ungroundedness.  | Boolean    |
-| **ungroundedPercentage** | Specifies the proportion of the text identified as ungrounded, expressed as a number between 0 and 1, where 0 indicates no ungrounded content and 1 indicates entirely ungrounded content.| Float	 |
+| **ungroundedPercentage** | Specifies the proportion of the text identified as ungrounded, expressed as a number between 0 and 1, where 0 indicates no ungrounded content and 1 indicates entirely ungrounded content. This is not a confidence level.| Float	 |
 | **ungroundedDetails** | Provides insights into ungrounded content with specific examples and percentages.| Array |
 | -**`text`**   |  The specific text that is ungrounded.  | String   |
 
@@ -334,7 +333,7 @@ The JSON objects in the output are defined here:
 | Name  | Description    | Type    |
 | :------------------ | :----------- | ------- |
 | **ungroundedDetected** | Indicates whether the text exhibits ungroundedness.  | Boolean    |
-| **ungroundedPercentage** | Specifies the proportion of the text identified as ungrounded, expressed as a number between 0 and 1, where 0 indicates no ungrounded content and 1 indicates entirely ungrounded content.| Float	 |
+| **ungroundedPercentage** | Specifies the proportion of the text identified as ungrounded, expressed as a number between 0 and 1, where 0 indicates no ungrounded content and 1 indicates entirely ungrounded content. This is not a confidence level.| Float	 |
 | **ungroundedDetails** | Provides insights into ungrounded content with specific examples and percentages.| Array |
 | -**`text`**   |  The specific text that is ungrounded.  | String   |
 | -**`offset`**   |  An object describing the position of the ungrounded text in various encoding.  | String   |
@@ -355,7 +354,7 @@ The groundedness detection API includes a correction feature that automatically 
 ### Connect your own GPT deployment
 
 > [!TIP]
-> Currently, the correction feature supports only **Azure OpenAI GPT4o (0513, 0806 version) ** resources. To minimize latency and adhere to data privacy guidelines, it's recommended to deploy your Azure OpenAI GPT4o (0513, 0806 version) in the same region as your content safety resources. For more details on data privacy, please refer to the [Data, privacy and security guidelines for Azure OpenAI Service](/legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context)
+> Currently, the correction feature supports only **Azure OpenAI GPT4o (0513, 0806 version)** resources. To minimize latency and adhere to data privacy guidelines, it's recommended to deploy your Azure OpenAI GPT4o (0513, 0806 version) in the same region as your content safety resources. For more details on data privacy, please refer to the [Data, privacy and security guidelines for Azure OpenAI Service](/legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context)
  and [Data, privacy, and security for Azure AI Content Safety](/legal/cognitive-services/content-safety/data-privacy?context=/azure/ai-services/content-safety/context/context).
 
 To use your Azure OpenAI GPT4o (0513, 0806 version) resource for enabling the correction feature, use Managed Identity to allow your Content Safety resource to access the Azure OpenAI resource. Follow the steps in the [earlier section](#connect-your-own-gpt-deployment) to set up the Managed Identity.
@@ -481,7 +480,7 @@ The JSON objects in the output are defined here:
 | Name  | Description    | Type    |
 | :------------------ | :----------- | ------- |
 | **ungroundedDetected** |	Indicates if ungrounded content was detected.|	Boolean|
-| **ungroundedPercentage** |	The proportion of ungrounded content in the text.|	Float|
+| **ungroundedPercentage** |	The proportion of ungrounded content in the text. This is not a confidence level. |	Float|
 | **ungroundedDetails** |	Details of ungrounded content, including specific text segments.|	Array|
 | -**`text`**   |  The specific text that is ungrounded.  | String   |
 | -**`offset`**   |  An object describing the position of the ungrounded text in various encoding.  | String   |

@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5, sdkv1, devx-track-python
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 This article will show you how to share a machine learning pipeline with your colleagues or customers.
 
 Machine learning pipelines are reusable workflows for machine learning tasks. One benefit of pipelines is increased collaboration. You can also version pipelines, allowing customers to use the current model while you're working on a new version. 
@@ -177,7 +179,7 @@ Gson gson = new Gson();
 
 HttpRequest tokenAuthenticationRequest = tokenAuthenticationRequest(tenantId, clientId, clientSecret, resourceManagerUrl);
 Optional<String> authBody = getRequestBody(client, tokenAuthenticationRequest);
-Optional<String> authKey = authBody.flatMap(body -> Optional.of(gson.fromJson(body, AuthenticationBody.class).access_token);;
+Optional<String> authKey = authBody.flatMap(body -> Optional.of(gson.fromJson(body, AuthenticationBody.class).access_token));
 Optional<HttpRequest> scoringRequest = authKey.flatMap(key -> Optional.of(scoringRequest(key, scoringUri, dataToBeScored)));
 Optional<String> scoringResult = scoringRequest.flatMap(req -> getRequestBody(client, req));
 // ... etc (`scoringResult.orElse()`) ... 

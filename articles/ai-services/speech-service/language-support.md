@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 9/20/2024
+ms.date: 3/3/2025
 ms.author: eur
 ms.custom: references_regions, build-2024
 #Customer intent: As a developer, I want to learn about the languages supported by the Speech service.
@@ -148,15 +148,16 @@ To set the translation target language, with few exceptions you only specify the
 
 ### Video translation
 
-The following table illustrates the fixed mapping relationship between source and target locales, along with the full locales associated with each language.
+The table in this section summarizes the locales supported for the [video translation API](./video-translation-overview.md). Video translation supports different languages for prebuilt (platform) voice and personal voice. The available source and target languages depend on whether the translation source is prebuilt or personal voice.
 
 [!INCLUDE [Language support include](includes/language-support/video-translation.md)]
 
 # [Language identification](#tab/language-identification)
 
 The table in this section summarizes the locales supported for [Language identification](language-identification.md).
-> [!NOTE]
-> Language Identification compares speech at the language level, such as English and German. Do not include multiple locales of the same language in your candidate list.
+
+> [!IMPORTANT]
+> Language Identification compares speech at the language level, such as English and German. Don't include multiple locales of the same language in your candidate list.
 
 [!INCLUDE [Language support include](includes/language-support/language-identification.md)]
 

@@ -7,11 +7,11 @@ ms.author: mbullwin #delegenz
 ms.service: azure-ai-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 01/30/2025
+ms.date: 02/28/2025
 manager: nitinme
 ---
 
-# How to use function calling with Azure OpenAI Service (Preview)
+# How to use function calling with Azure OpenAI Service
 
 The latest versions of gpt-35-turbo and gpt-4 are fine-tuned to work with functions and are able to both determine when and how a function should be called. If one or more functions are included in your request, the model determines if any of the functions should be called based on the context of the prompt. When the model determines that a function should be called, it responds with a JSON object including the arguments for the function. 
 
@@ -39,6 +39,7 @@ At a high level you can break down working with functions into three steps:
 * `gpt-4o` (`2024-08-06`)
 * `gpt-4o` (`2024-11-20`)
 * `gpt-4o-mini` (`2024-07-18`)
+* `gpt-4.5-preview` (`2025-02-27`)
 
 Support for parallel function was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 
@@ -70,7 +71,7 @@ from zoneinfo import ZoneInfo
 client = AzureOpenAI(
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview"
+    api_version="2025-02-01-preview"
 )
 
 # Define the deployment you want to use for your chat completions API calls
@@ -249,7 +250,7 @@ from zoneinfo import ZoneInfo
 client = AzureOpenAI(
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview"
+    api_version="2025-02-01-preview"
 )
 
 # Provide the model deployment name you want to use for this example
@@ -272,6 +273,7 @@ TIMEZONE_DATA = {
 
 def get_current_weather(location, unit=None):
     """Get the current weather for a given location"""
+    location_lower = location.lower()
     print(f"get_current_weather called with location: {location}, unit: {unit}")  
     
     for key in WEATHER_DATA:
