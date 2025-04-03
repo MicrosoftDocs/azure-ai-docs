@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: conceptual
-ms.date: 3/04/2025
+ms.date: 4/02/2025
 ms.author: mbullwin
 ---
 
@@ -73,8 +73,8 @@ The following sections provide you with a quick guide to the default quotas and 
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
-| `gpt-4.5` | Enterprise Tier | 50 K | 50 |
-| `gpt-4.5` | Default | 50 K | 50 |
+| `gpt-4.5` | Enterprise Tier | 200 K | 200 |
+| `gpt-4.5` | Default | 150 K | 150 |
 
 ## `o-series` rate limits
 
