@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ai-learning-hub
 ms.topic: concept-article
-ms.date: 04/03/2025
+ms.date: 04/04/2025
 ms.reviewer: changliu2
 ms.author: mopeakande
 author: msakande
@@ -38,11 +38,28 @@ Azure AI assesses the quality of LLMs and SLMs using accuracy scores from standa
 
 | Index | Description                                                                                                                                                                                                                  |
 |-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Quality index | Quality index is calculated by averaging applicable accuracy scores (exact_match, pass@1, arena_hard) over 15 standard datasets of applicable accuracy scores. Datasets include BoolQ, HellaSwag, BoolQ, HellaSwag, OpenBookQA, PIQA, Social IQA, Winogrande, SQuAD v2, TruthfulQA (Gen), TruthfulQA (MC), HumanEval, GSM8K, MMLU (Humanities), MMLU (Other), MMLU (Social Sciences), MMLU (STEM). | 
+| Quality index | Quality index is calculated by averaging applicable accuracy scores (exact_match, pass@1, arena_hard) over comprehensive, standard benchmark datasets. | 
 
-Quality index is provided on a scale of zero to one. Higher values of quality index are better.
+Quality index is provided on a scale of zero to one. Higher values of quality index are better. The datasets included in quality index are: 
 
-For accuracy scores:
+| Dataset name            | Leaderboard category        |
+|-------------------------|---------------------|
+| BoolQ                   | QA                  |
+| HellaSwag               | Reasoning           |
+| OpenBookQA              | Reasoning           |
+| PIQA                    | Reasoning           |
+| Social IQA              | Reasoning           |
+| Winogrande              | Reasoning           |
+| TruthfulQA (MC)         | Groundedness        |
+| HumanEval               | Coding              |
+| GSM8K                   | Math                |
+| MMLU (Humanities)       | General Knowledge   |
+| MMLU (Other)            | General Knowledge   |
+| MMLU (Social Sciences)  | General Knowledge   |
+| MMLU (STEM)             | General Knowledge   |
+
+
+See more details in accuracy scores:
 
 | Metric | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 |--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
