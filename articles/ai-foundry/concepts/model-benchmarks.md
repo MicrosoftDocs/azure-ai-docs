@@ -6,9 +6,8 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ai-learning-hub
-  - ignite-2024
 ms.topic: concept-article
-ms.date: 11/11/2024
+ms.date: 04/03/2025
 ms.reviewer: changliu2
 ms.author: mopeakande
 author: msakande
@@ -18,50 +17,17 @@ author: msakande
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In Azure AI Foundry portal, we offer a wide range of models in [model catalog](../how-to
-/model-catalog-overview.md) for your generative AI applications. To streamline your model selection experience, now you can leverage our model leaderboards backed by industry-standard benchmarks to find the best model for your custom AI solution. Within [model leaderboards](https://aka.ms/model-leaderboards) page, you can compare models available on Foundry using:
-- [Quality, cost, and performance leaderboards](#quality-cost-and-performance-leaderboards) to quickly identify the model leaders in a single criterion;
-- [Trade-off charts](#trade-off-charts) to see how models perform in quality versus cost;
-- [Leaderboards by scenario](#leaderboards-by-scenario) to find the best leaderboards that suites your scenario.
 
-Whenever you find a model to your liking, you can simply select a model and zoom into [detailed benchmarking results](../how-to
-/benchmark-model-in-catalog.md) of individual models within the model catalog. Once you find a model to your liking, you can go and deploy your model, try it in playgorund, or evaluate it on your own data. Whether you already have models in mind or you're exploring models, model leaderboards in Azure AI Foundry empowers you to make data-driven decisions with a streamlined, intuitive experience for model selection.
+Model leaderboards in Azure AI Foundry portal allow you to streamline the model selection process in the Azure AI Foundry [model catalog](../how-to/model-catalog-overview.md). The model leaderboards, backed by industry-standard benchmarks can help you to find the best model for your custom AI solution. From the model leaderboards section of the model catalog, you can [browse leaderboards](https://aka.ms/model-leaderboards) to compare available models as follows:
+- [Quality, cost, and performance leaderboards](#quality-cost-and-performance-leaderboards) to quickly identify the model leaders along a single metric (quality, cost, or throughput);
+- [Trade-off charts](#trade-off-charts) to see how models perform on one metric versus another, such as quality versus cost;
+- [Leaderboards by scenario](#leaderboards-by-scenario) to find the best leaderboards that suite your scenario.
 
-## Quality, cost, and performance leaderboards
-
-From model catalog landing page, you will see the top 3 model leaders in [quality](#quality), [cost](#cost), and [performance](#cost) criteria.    
-:::image type="content" source="../media/how-to/model-benchmarks/leaderboard-entry.png" alt-text="Screenshot showing the entry point from model catalog into model leaderboards." lightbox="../media/how-to/model-benchmarks/leaderboard-entry.png":::
-
-Wherever you are in your selection journey, you can select a model to you liking to check out more details:
-
-:::image type="content" source="../media/how-to/model-benchmarks/leaderboard-entry-select-model.png" alt-text="Screenshot showing the selected model from entry point of leaderboards on model catalog." lightbox="../media/how-to/model-benchmarks/leaderboard-entry-select-model.png":::
-
-You can select "Browse leaderboards" to see the full suite of leaderboards we offer. [Quality](#quality) is the most common criterion for model selection:  
-
-:::image type="content" source="../media/how-to/model-benchmarks/leaderboard-quality.png" alt-text="Screenshot showing the quality leaderboards." lightbox="../media/how-to/model-benchmarks/leaderboard-quality.png":::
-
-Then comes [cost](#cost) and [performance](#cost) leaderboards: 
-:::image type="content" source="../media/how-to/model-benchmarks/leaderboard-highlights.png" alt-text="Screenshot showing the highlighted bar charts for quality, cost, and performance leaders." lightbox="../media/how-to/model-benchmarks/leaderboard-highlights.png":::
+Whenever you find a model to your liking, you can select it and zoom into the [detailed benchmarking results](../how-to
+/benchmark-model-in-catalog.md) of the model within the model catalog. If satisfied with the model, you can deploy it, try it in the playgorund, or evaluate it on your data. The leaderboards support benchmarking across text language models (large language models (LLMs) and small language models (SLMs)) and embedding models.
 
 
-## Quality, cost, and performance trade-off charts
-
-You may find that the most high-quality model may not be the cheapest model, and you need to make trade-offs in among quality, cost, and performance criteria, for example, you may care more about cost than quality. In the trade-off charts, you can see how models perform in these criteria among others. You can also select or deselect models, toggle between charts, and even more metrics in "Compare between metrics"    
-
-:::image type="content" source="../media/how-to/model-benchmarks/leaderboard-trade-off.png" alt-text="Screenshot showing the trade-off charts in quality, cost, and performance." lightbox="../media/how-to/model-benchmarks/leaderboard-trade-off.png":::
-
-
-## Quality leaderboards by scenario
-
-You may have a specific scenario that require certain model capabilities. For example, you are building a question-and-answering chatbot that require good question-and-answering and reasoning capabilities. You can find it useful to compare models in these leaderboards backed by capability-specific benchmarks.
-:::image type="content" source="../media/how-to/model-benchmarks/leaderboard-by-scenario.png" alt-text="Screenshot showing the quality leaderboards by scenarios." lightbox="../media/how-to/model-benchmarks/leaderboard-by-scenario.png":::
-
-We support both text language models and embedding models.  
-
-- Benchmarks across large language models (LLMs) and small language models (SLMs)  
-- Benchmarks across embedding models
-
-## Benchmarking of LLMs and SLMs
+## Benchmarking of large and small language models
 
 Model benchmarks assess LLMs and SLMs across the following categories: quality, performance, and cost. The benchmarks are updated regularly as new datasets and associated metrics are added to existing models, and as new models are added to the model catalog.
 
