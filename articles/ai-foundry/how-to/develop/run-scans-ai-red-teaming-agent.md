@@ -13,7 +13,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Run automated safety scans with AI Red Teaming Agent
+# Run automated safety scans with AI Red Teaming Agent (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
