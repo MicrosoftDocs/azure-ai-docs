@@ -19,7 +19,7 @@ author: lgayhardt
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 > [!NOTE]
-> Evaluation with the prompt flow SDK has been retired and replaced with Azure AI Evaluation SDK client library for Python. For more information about input data requirements, see the [API Reference Documentation](https://aka.ms/azureaieval-python-ref).
+> For more information about input data requirements, see the [API Reference Documentation](https://aka.ms/azureaieval-python-ref).
 
 To thoroughly assess the performance of your generative AI application when applied to a substantial dataset, you can evaluate a Generative AI application in your development environment with the Azure AI evaluation SDK. Given either a test dataset or a target, your generative AI application generations are quantitatively measured with both mathematical based metrics and AI-assisted quality and safety evaluators. Built-in or custom evaluators can provide you with comprehensive insights into the application's capabilities and limitations.
 
@@ -38,6 +38,7 @@ pip install azure-ai-evaluation
 Built-in evaluators support the following application scenarios:
 
 - **Query and response**: This scenario is designed for applications that involve sending in queries and generating responses, usually single-turn.
+- **Conversation**: This scenario is designed for applications that involve sending in queries and generating responses in a multi-turn exchange.
 - **Retrieval augmented generation**: This scenario is suitable for applications where the model engages in generation using a retrieval-augmented approach to extract information from your provided documents and generate detailed responses, usually multi-turn.
 
 For more in-depth information on each evaluator definition and how it's calculated, see [Evaluation and monitoring metrics for generative AI](../../concepts/evaluation-metrics-built-in.md).
@@ -46,7 +47,7 @@ For more in-depth information on each evaluator definition and how it's calculat
 |-----------|------------------------------------------------------------------------------------------------------------------------------------|
 | [Performance and quality](#performance-and-quality-evaluators) (AI-assisted)  | `GroundednessEvaluator`, `GroundednessProEvaluator`, `RetrievalEvaluator`, `RelevanceEvaluator`, `CoherenceEvaluator`, `FluencyEvaluator`, `SimilarityEvaluator` |
 | [Performance and quality](#performance-and-quality-evaluators) (NLP)  | `F1ScoreEvaluator`, `RougeScoreEvaluator`, `GleuScoreEvaluator`, `BleuScoreEvaluator`, `MeteorScoreEvaluator`|
-| [Risk and safety](#risk-and-safety-evaluators-preview) (AI-assisted)    | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator`, `IndirectAttackEvaluator`, `ProtectedMaterialEvaluator`                                             |
+| [Risk and safety](#risk-and-safety-evaluators-preview) (AI-assisted)    | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator`, `IndirectAttackEvaluator`, `ProtectedMaterialEvaluator`, `UngroundedAttributesEvaluator`, `CodeVulnerabilityEvaluator`|
 | [Composite](#composite-evaluators) | `QAEvaluator`, `ContentSafetyEvaluator`                                             |
 
 Built-in quality and safety metrics take in query and response pairs, along with additional information for specific evaluators.
