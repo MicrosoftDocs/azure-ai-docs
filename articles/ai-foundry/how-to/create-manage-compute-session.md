@@ -26,10 +26,7 @@ A prompt flow compute session has computing resources that are required for the 
 
 ## Prerequisites
 
-[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
-
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](create-projects.md?pivots=hub-project).
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
 ## Create a compute session
 
@@ -77,7 +74,7 @@ In the advanced settings, you can select the compute type. You can choose betwee
 
 ## Manage a compute session
 
-To manage a compute session, select the **Compute session running** on the top toolbar of the flow page.:
+To manage a compute session, select the **Compute session running** on the top toolbar of the flow page:
 
 - **Change compute session settings** opens the compute session configuration page, where you can define the VM side and the idle time for the compute session.
 - **Install packages from requirements.txt** Opens `requirements.txt` in prompt flow UI so you can add packages.
