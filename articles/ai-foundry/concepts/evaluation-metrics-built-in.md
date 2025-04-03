@@ -10,7 +10,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: conceptual
-ms.date: 03/31/2025
+ms.date: 04/04/2025
 ms.reviewer: mithigpe
 ms.author: lagayhar
 author: lgayhardt
@@ -20,51 +20,53 @@ author: lgayhardt
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In the development and deployment of generative AI models and applications, the evaluation phase plays a pivotal role in advancing generative AI models across multiple dimensions, including quality, safety, reliability, and alignment with project goals. Within Azure AI Foundry, a comprehensive approach to evaluation includes three key dimensions:
+In the development and deployment of generative AI models and applications, the evaluation phase plays a pivotal role in advancing generative AI models across multiple dimensions, including quality, safety, reliability, and alignment with project goals.
 
-- **Risk and safety evaluators**: Evaluating potential risks associated with AI-generated content is essential for safeguarding against content risks with varying degrees of severity. This includes evaluating an AI system's predisposition towards generating harmful or inappropriate content.
-- **Performance and quality evaluators**: This involves assessing the accuracy, groundedness, and relevance of generated content using robust AI-assisted and Natural Language Processing (NLP) metrics.
-- **Custom evaluators**: Tailored evaluation metrics can be designed to meet specific needs and goals, providing flexibility and precision in assessing unique aspects of AI-generated content. These custom evaluators allow for more detailed and specific analyses, addressing particular concerns or requirements that standard metrics might not cover.
+## Key Dimensions of Evaluation
 
-:::image type="content" source="../media/evaluations/automated-evaluation-azure-ai-foundry.png" alt-text="Diagram of the three key dimensions, quality, risk and safety, and custom." lightbox="../media/evaluations/automated-evaluation-azure-ai-foundry.png":::
+- **Risk and Safety Evaluators**: Evaluate potential content risks to safeguard against harmful or inappropriate AI-generated content.
 
-Another consideration for evaluators is whether they're AI-assisted (using models as judge like GPT-4 to assess AI-generated output, especially when no defined ground truth is available) or NLP metrics, like F1 score, which measures similarity between AI-generated responses and ground truths.
+    :::image type="content" source="../media/evaluations/risk-safety evaluators.png" alt-text="Diagram of the risk and safety evaluators detailed in the following metric list." lightbox="../media/evaluations/risk-safety evaluators.png":::
 
-- Risk and safety evaluators
+    Metrics:
 
-    These evaluators focus on identifying potential content and security risks and on ensuring the safety of the generated content.
+  - [**Hateful and Unfair Content**](#hateful-and-unfair-content-definition-and-severity-scale): It measures the presence of any language that reflects hate towards or unfair representations of individuals and social groups based on factors including, but not limited to, race, ethnicity, nationality, gender, sexual orientation, religion, immigration status, ability, personal appearance, and body size. Unfairness occurs when AI systems treat or represent social groups inequitably, creating or contributing to societal inequities.
+  - [**Sexual Content**](#sexual-content-definition-and-severity-scale): It measures the presence of any language pertaining to anatomical organs and genitals, romantic relationships, acts portrayed in erotic terms, pregnancy, physical sexual acts (including assault or sexual violence), prostitution, pornography, and sexual abuse.
+  - [**Violent Content**](#violent-content-definition-and-severity-scale): It includes language pertaining to physical actions intended to hurt, injure, damage, or kill someone or something. It also includes descriptions of weapons (and related entities such as manufacturers and associations).
+  - [**Self-harm-related Content**](#self-harm-related-content-definition-and-severity-scale): It measures the presence of any language pertaining to physical actions intended to hurt, injure, or damage one's body or kill oneself.
+  - [**Protected Material Content**](#protected-material-definition-and-label): It measures the presence of any text that is under copyright, including song lyrics, recipes, and articles. The evaluation uses the Azure AI Content Safety Protected Material for Text service to perform the classification.
+  - [**Direct Attack Jailbreak (UPIA)**](#jailbreak-vulnerability-definition-and-label): It measures to what extent the response fell for the jailbreak attempt. Direct attack jailbreak attempts (user prompt injected attack [UPIA]) inject prompts in the user role turn of conversations or queries to generative AI applications. Jailbreaks occur when a model response bypasses the restrictions placed on it or when an LLM deviates from the intended task or topic.
+  - [**Indirect Attack Jailbreak (XPIA)**](#indirect-attack-definition-and-label): It measures to what extent the response fell for the indirect jailbreak attempt. Indirect attacks, also known as cross-domain prompt injected attacks (XPIA), occur when jailbreak attacks are injected into the context of a document or source that may result in altered, unexpected behavior on the part of the LLM.
+  - **Code vulnerability**: It measures whether AI generates code with security vulnerabilities, such as code injection, tar-slip, SQL injections, stack trace exposure and other risks across Python, Java, C++, C#, Go, Javascript, and SQL.
+  - **Ungrounded attributes**: It measures the frequency and severity of an application generating text responses that contain ungrounded inferences about personal attributes, such as their demographics or emotional state.
 
-    > [!WARNING]
-    > The content risk definitions contain descriptions that may be disturbing to some users.
+- **Performance and Quality Evaluators**: Assess the accuracy, groundedness, relevance, and overall quality of generated content.
 
-    | Evaluator | Definition |
-    | ---|---|
-    | Hateful and unfair content | Hateful and unfair content refers to any language reflecting hate toward or unfair representations of individuals and social groups along factors including but not limited to race, ethnicity, nationality, gender, sexual orientation, religion, immigration status, ability, personal appearance, and body size. Unfairness occurs when AI systems treat or represent social groups inequitably, creating or contributing to societal inequities. |
-    | Sexual content | Sexual content includes language pertaining to anatomical organs and genitals, romantic relationships, acts portrayed in erotic terms, pregnancy, physical sexual acts (including assault or sexual violence), prostitution, pornography, and sexual abuse. |
-    | Violent content | Violent content includes language pertaining to physical actions intended to hurt, injure, damage, or kill someone or something. It also includes descriptions of weapons (and related entities such as manufacturers and associations). |
-    | Self-harm-related content | Self-harm-related content includes language pertaining to actions intended to hurt, injure, or damage one's body or kill oneself. |
-    | Protected material content  | Protected material is any text that is under copyright, including song lyrics, recipes, and articles. Protected material evaluation uses the Azure AI Content Safety Protected Material for Text service to perform the classification. |
-    | Direct attack jailbreak (UPIA: user prompt injected attack) | Direct attack jailbreak attempts (user prompt injected attack [UPIA]) injects prompts in the user role turn of conversations or queries to generative AI applications. Jailbreaks occur when a model response bypasses the restrictions placed on it or when an LLM deviates from the intended task or topic. |
-    | Indirect attack jailbreak (XPIA, Cross-domain Prompt Injected Attack) | Indirect attacks, also known as cross-domain prompt injected attacks (XPIA), occur when jailbreak attacks are injected into the context of a document or source that may result in altered, unexpected behavior on the part of the LLM. |
+    :::image type="content" source="../media/evaluations/quality-evaluators.png" alt-text="Diagram of the performance and quality evaluators detailed in the following metric list." lightbox="../media/evaluations/quality-evaluators.png":::
 
-- Generation quality evaluators
+  Metrics:
 
-    These evaluators focus on various scenarios for quality measurement.
+  - **Agent Evaluators**:
+    - **Intent Resolution**: It measures how well the agent identifies and clarifies user intent, including asking for clarifications and staying within scope.
+    - **Tool Call Accuracy**: It measures the agent’s proficiency in selecting appropriate tools, and accurately extracting and processing inputs.
+    - **Task Adherence**: It measures how well the agent’s final response meets the predefined goal or request specified in the task.
+    - **Response Completeness**: Measures how comprehensive an agent’s response is when compared with the ground truth provided in a user’s input.
+  - **Retrieval Augmented Generation Evaluators**: 
+    - **Groundedness**: It measures how well the generated response aligns with the given context, focusing on its relevance and accuracy with respect to the context.
+    - **Groundedness Pro**: It detects whether the generated text response is consistent or accurate with respect to the given context.
+    - **Retrieval**: It measures the quality of search without ground truth. It focuses on how relevant the context chunks (encoded as a string) are to address a query and how the most relevant context chunks are surfaced at the top of the list.
+    - **Relevance**: It measures how effectively a response addresses a query. It assesses the accuracy, completeness, and direct relevance of the response based solely on the given query.
+  - **General Evaluators**:
+    - **Coherence**: It measures the logical flow and organization of ideas in a response, allowing the reader to easily follow and understand the writer's train of thought.
+    - **Fluency**: It measures the effectiveness and clarity of written communication, focusing on grammatical accuracy, vocabulary range, sentence complexity, coherence, and overall readability.
+  - **Natural Language Comparison**:
+    - **Similarity**: It measures the semantic alignment between generated text and ground truth.
+    - **Traditional NLP Metrics**: Includes F1 Score, BLEU, GLEU, METEOR, ROUGE for text similarity and accuracy.
+  - **Custom Evaluators**: While we're providing you with a comprehensive set of built-in evaluators that facilitate the easy and efficient evaluation of the quality and safety of your generative AI application, your evaluation scenario might need customizations beyond our built-in evaluators. For example, your definitions and grading rubrics for an evaluator might be different from our built-in evaluators, or you might have a new evaluator in mind altogether. These differences might range from minor changes in grading rubrics such as ignoring data artifacts (for example, html formats and structured headers), to large changes in definitions such as considering factual correctness in groundedness evaluation. In this case, before diving into advanced techniques such as finetuning, we strongly recommend that you view our open-source prompts and adapt them to your scenario needs by building custom evaluators with your definitions and grading rubrics. This human-in-the-loop approach makes evaluation transparent, requires far less resource than finetuning, and aligns your evaluation with your unique objectives.
 
-    | Recommended scenario | Evaluator Type | Why use this evaluator? | Evaluators |
-    |---|---|---|---|
-    | Retrieval-augmented generation question and answering (RAG QA), summarization, or information retrieval | AI-assisted (using language model as a judge) | Groundedness, retrieval, and relevance metrics form a "RAG triad" that examines the quality of responses and retrieved context chunks | *Groundedness* </br> Measures how well the generated response aligns with the given context, focusing on its relevance and accuracy with respect to the context. <br></br> *Groundedness Pro* </br> Detects whether the generated text response is consistent or accurate with respect to the given context. <br></br> *Retrieval* </br> Measures the quality of search without ground truth. It focuses on how relevant the context chunks (encoded as a string) are to address a query and how the most relevant context chunks are surfaced at the top of the list. <br></br> *Relevance* </br> Measures how effectively a response addresses a query. It assesses the accuracy, completeness, and direct relevance of the response based solely on the given query. <br></br>  |
-    | Generative business writing such as summarizing meeting notes, creating marketing materials, and drafting emails | AI-assisted (using language model as a judge) | Examines the logical and linguistic quality of responses | *Coherence* </br> Measures the logical and orderly presentation of ideas in a response, allowing the reader to easily follow and understand the writer's train of thought. <br></br> *Fluency* </br>  Measures the effectiveness and clarity of written communication, focusing on grammatical accuracy, vocabulary range, sentence complexity, coherence, and overall readability. |
-    | Natural language processing (NLP) tasks: text classification, natural-language understanding, and natural-language generation | AI-assisted (using language model as a judge) | Examines a response against a ground truth, with respect to a query. | *Similarity* </br> Measures the similarity by a language model between the generated text and its ground truth with respect to a query. |
-    | NLP tasks: text classification, natural-language understanding, and natural-language generation | Natural language processing (NLP) metrics | Examines a response against a ground truth. | *F1 Score*, *BLEU*, *GLEU*, *METEOR*, *ROUGE* </br> Measures the similarity by shared n-grams or tokens between the generated text and the ground truth, considering precision and recall in various ways. |
+With Azure AI Evaluation SDK, we empower you to build your own custom evaluators based on code, or using a language model judge in a similar way as our open-source prompt-based evaluators. Refer to the Evaluate your GenAI application with the Azure AI Evaluation SDK documentation. 
 
-- Custom evaluators
-
-    While we're providing you with a comprehensive set of built-in evaluators that facilitate the easy and efficient evaluation of the quality and safety of your generative AI application, your evaluation scenario might need customizations beyond our built-in evaluators. For example, your definitions and grading rubrics for an evaluator might be different from our built-in evaluators, or you might have a new evaluator in mind altogether. These differences might range from minor changes in grading rubrics such as ignoring data artifacts (for example, html formats and structured headers), to large changes in definitions such as considering factual correctness in groundedness evaluation. In this case, before diving into advanced techniques such as finetuning, we strongly recommend that you view our open-source prompts and adapt them to your scenario needs by building custom evaluators with your definitions and grading rubrics. This human-in-the-loop approach makes evaluation transparent, requires far less resource than finetuning, and aligns your evaluation with your unique objectives.
-
-    With Azure AI Evaluation SDK, we empower you to build your own custom evaluators based on code, or using a language model judge in a similar way as our open-source prompt-based evaluators. Refer to the [Evaluate your GenAI application with the Azure AI Evaluation SDK](../how-to/develop/evaluate-sdk.md#custom-evaluators) documentation.
-
-By systematically applying these evaluations, we gain crucial insights that inform targeted mitigation strategies, such as [prompt engineering](../../ai-services/openai/concepts/prompt-engineering.md?tabs=chat) and the application of [Azure AI content filters](content-filtering.md). Once mitigations are applied, re-evaluations can be conducted to test the effectiveness of applied mitigations.
+By systematically applying these evaluations, we gain crucial insights that inform targeted mitigation strategies, such as prompt engineering and the application of Azure AI content filters. Once mitigations are applied, re-evaluations can be conducted to test the effectiveness of applied mitigations. 
 
 ## Risk and safety evaluators
 
@@ -556,33 +558,6 @@ The test set format follows this data format:
 ```jsonl
 "conversation": {"messages": [ { "content": "Which tent is the most waterproof?", "role": "user" }, { "content": "The Alpine Explorer Tent is the most waterproof", "role": "assistant", "context": "From the our product list the alpine explorer tent is the most waterproof. The Adventure Dining Table has higher weight." }, { "content": "How much does it cost?", "role": "user" }, { "content": "The Alpine Explorer Tent is $120.", "role": "assistant", "context": null } ] }
 ```
-
-### Data requirements for evaluators
-
-Built-in evaluators can accept either query and response pairs or a list of conversations.  
-
-| Evaluator         | `query`      | `response`      | `context`       | `ground_truth`  | `conversation` |
-|----------------|---------------|---------------|---------------|---------------|-----------|
-| `GroundednessEvaluator`   | Optional: String | Required: String | Required: String | N/A  | Supported |
-| `GroundednessProEvaluator`   | Required: String | Required: String | Required: String | N/A  | Supported |
-| `RetrievalEvaluator`        | Required: String | N/A | Required: String         | N/A           | Supported |
-| `RelevanceEvaluator`      | Required: String | Required: String | N/A | N/A           | Supported |
-| `CoherenceEvaluator`      | Required: String | Required: String | N/A           | N/A           |Supported |
-| `FluencyEvaluator`        | N/A  | Required: String | N/A          | N/A           |Supported |
-| `SimilarityEvaluator` | Required: String | Required: String | N/A           | Required: String |Not supported |
-| `F1ScoreEvaluator` | N/A  | Required: String | N/A           | Required: String |Not supported |
-| `RougeScoreEvaluator` | N/A | Required: String | N/A           | Required: String           | Not supported |
-| `GleuScoreEvaluator` | N/A | Required: String | N/A           | Required: String           |Not supported |
-| `BleuScoreEvaluator` | N/A | Required: String | N/A           | Required: String           |Not supported |
-| `MeteorScoreEvaluator` | N/A | Required: String | N/A           | Required: String           |Not supported |
-| `ViolenceEvaluator`      | Required: String | Required: String | N/A           | N/A           |Supported |
-| `SexualEvaluator`        | Required: String | Required: String | N/A           | N/A           |Supported |
-| `SelfHarmEvaluator`      | Required: String | Required: String | N/A           | N/A           |Supported |
-| `HateUnfairnessEvaluator`        | Required: String | Required: String | N/A           | N/A           |Supported |
-| `IndirectAttackEvaluator`      | Required: String | Required: String | Required: String | N/A           |Supported |
-| `ProtectedMaterialEvaluator`  | Required: String | Required: String | N/A           | N/A           |Supported |
-| `QAEvaluator`      | Required: String | Required: String | Required: String | N/A           | Not supported |
-| `ContentSafetyEvaluator`      | Required: String | Required: String |  N/A  | N/A           | Supported |
 
 ## Region support
 

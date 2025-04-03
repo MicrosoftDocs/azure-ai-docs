@@ -11,7 +11,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# AI Red Teaming Agent
+# AI Red Teaming Agent (preview)
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
