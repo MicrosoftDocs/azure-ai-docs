@@ -10,8 +10,6 @@ ms.date: 04/03/2025
 ms.author: lajanuar
 ---
 
-
-
 # Install and run containers
 
 <!-- markdownlint-disable MD024 -->
@@ -68,7 +66,7 @@ The host is a x64-based computer that runs the Docker container. It can be a com
 
 > [!NOTE]
 >
-> Note that Studio container cannot be deployed and run in Azure Kubernetes Service. Studio container is only supported to be run on local machine.
+> The Studio container can't be deployed and run in Azure Kubernetes Service. The Studio container is only supported to run on local machines.
 
 ### Container requirements and recommendations
 
@@ -132,24 +130,39 @@ Feature container | Supporting containers |
 * The `EULA`, `Billing`, and `ApiKey`  values must be specified; otherwise the container can't start.
 
 > [!IMPORTANT]
-> The keys are used to access your Document Intelligence resource. Do not share your keys. Store them securely, for example, using Azure Key Vault. We also recommend regenerating these keys regularly. Only one key is necessary to make an API call. When regenerating the first key, you can use the second key for continued access to the service.
+> The keys are used to access your Document Intelligence resource. Don't share your keys. Store them securely, for example, using Azure Key Vault. We also recommend regenerating these keys regularly. Only one key is necessary to make an API call. When regenerating the first key, you can use the second key for continued access to the service.
 
-::: moniker-end
+:::moniker range="doc-intel-4.0.0"
 
-:::moniker range="doc-intel-3.0.0 || doc-intel-3.1.0"
+### [Layout](#tab/layout)
 
-## Run the container with the **docker-compose up** command
+The following code sample is a self-contained `docker compose`  example to run the Document Intelligence Layout container. With `docker compose`, you use a YAML file to configure your application's services. Then, with `docker-compose up` command, you create and start all the services from your configuration. Enter {FORM_RECOGNIZER_ENDPOINT_URI} and {FORM_RECOGNIZER_KEY} values for your Layout container instance.
 
-* Replace the {ENDPOINT_URI} and {API_KEY} values with your resource Endpoint URI and the key from the Azure resource page.
+```yml
+version: "3.9"
+services:
+  azure-form-recognizer-layout:
+    container_name: azure-form-recognizer-layout
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-4.0
+    environment:
+      - EULA=accept
+      - billing={FORM_RECOGNIZER_ENDPOINT_URI}
+      - apiKey={FORM_RECOGNIZER_KEY}
+    ports:
+      - "5000:5000"
+    networks:
+      - ocrvnet
+networks:
+  ocrvnet:
+    driver: bridge
+```
 
-   :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of Azure portal keys and endpoint page.":::
+Now, you can start the service with the [**docker compose**](https://docs.docker.com/compose/) command:
 
-* Ensure that the `EULA` value is set to *accept*.
+```bash
+docker-compose up
 
-* The `EULA`, `Billing`, and `ApiKey`  values must be specified; otherwise the container can't start.
-
-> [!IMPORTANT]
-> The keys are used to access your Document Intelligence resource. Do not share your keys. Store them securely, for example, using Azure Key Vault. We also recommend regenerating these keys regularly. Only one key is necessary to make an API call. When regenerating the first key, you can use the second key for continued access to the service.
+```
 
 ### [Read](#tab/read)
 
@@ -213,73 +226,6 @@ docker-compose up
 ```
 
 Given the resources on the machine, the General Document container might take some time to start up.
-
-::: moniker-end
-
-:::moniker range="doc-intel-4.0.0"
-### [Layout](#tab/layout)
-
-The following code sample is a self-contained `docker compose`  example to run the Document Intelligence Layout container. With `docker compose`, you use a YAML file to configure your application's services. Then, with `docker-compose up` command, you create and start all the services from your configuration. Enter {FORM_RECOGNIZER_ENDPOINT_URI} and {FORM_RECOGNIZER_KEY} values for your Layout container instance.
-
-```yml
-version: "3.9"
-services:
-  azure-form-recognizer-layout:
-    container_name: azure-form-recognizer-layout
-    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-4.0
-    environment:
-      - EULA=accept
-      - billing={FORM_RECOGNIZER_ENDPOINT_URI}
-      - apiKey={FORM_RECOGNIZER_KEY}
-    ports:
-      - "5000:5000"
-    networks:
-      - ocrvnet
-networks:
-  ocrvnet:
-    driver: bridge
-```
-
-Now, you can start the service with the [**docker compose**](https://docs.docker.com/compose/) command:
-
-```bash
-docker-compose up
-```
-::: moniker-end
-
-:::moniker range="doc-intel-3.0.0 || doc-intel-3.1.0"
-
-### [Layout](#tab/layout)
-
-The following code sample is a self-contained `docker compose`  example to run the Document Intelligence Layout container. With `docker compose`, you use a YAML file to configure your application's services. Then, with `docker-compose up` command, you create and start all the services from your configuration. Enter {FORM_RECOGNIZER_ENDPOINT_URI} and {FORM_RECOGNIZER_KEY} values for your Layout container instance.
-
-```yml
-version: "3.9"
-services:
-  azure-form-recognizer-layout:
-    container_name: azure-form-recognizer-layout
-    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-3.1
-    environment:
-      - EULA=accept
-      - billing={FORM_RECOGNIZER_ENDPOINT_URI}
-      - apiKey={FORM_RECOGNIZER_KEY}
-    ports:
-      - "5000:5000"
-    networks:
-      - ocrvnet
-networks:
-  ocrvnet:
-    driver: bridge
-```
-
-Now, you can start the service with the [**docker compose**](https://docs.docker.com/compose/) command:
-
-```bash
-docker-compose up
-```
-::: moniker-end
-
-:::moniker range="doc-intel-3.0.0 || doc-intel-3.1.0"
 
 ### [Invoice](#tab/invoice)
 
@@ -562,6 +508,394 @@ http {
 ```
 ::: moniker-end
 
+:::moniker range="doc-intel-3.0.0 || doc-intel-3.1.0"
+
+## Run the container with the **docker-compose up** command
+
+* Replace the {ENDPOINT_URI} and {API_KEY} values with your resource Endpoint URI and the key from the Azure resource page.
+
+   :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of Azure portal keys and endpoint page.":::
+
+* Ensure that the `EULA` value is set to *accept*.
+
+* The `EULA`, `Billing`, and `ApiKey`  values must be specified; otherwise the container can't start.
+
+> [!IMPORTANT]
+> The keys are used to access your Document Intelligence resource. Don't share your keys. Store them securely, for example, using Azure Key Vault. We also recommend regenerating these keys regularly. Only one key is necessary to make an API call. When regenerating the first key, you can use the second key for continued access to the service.
+
+### [Layout](#tab/layout)
+
+The following code sample is a self-contained `docker compose`  example to run the Document Intelligence Layout container. With `docker compose`, you use a YAML file to configure your application's services. Then, with `docker-compose up` command, you create and start all the services from your configuration. Enter {FORM_RECOGNIZER_ENDPOINT_URI} and {FORM_RECOGNIZER_KEY} values for your Layout container instance.
+
+```yml
+version: "3.9"
+services:
+  azure-form-recognizer-layout:
+    container_name: azure-form-recognizer-layout
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-3.1
+    environment:
+      - EULA=accept
+      - billing={FORM_RECOGNIZER_ENDPOINT_URI}
+      - apiKey={FORM_RECOGNIZER_KEY}
+    ports:
+      - "5000:5000"
+    networks:
+      - ocrvnet
+networks:
+  ocrvnet:
+    driver: bridge
+```
+
+Now, you can start the service with the [**docker compose**](https://docs.docker.com/compose/) command:
+
+```bash
+docker-compose up
+```
+
+### [Read](#tab/read)
+
+The following code sample is a self-contained `docker compose`  example to run the Document Intelligence Layout container. With `docker compose`, you use a YAML file to configure your application's services. Then, with the `docker-compose up` command, you create and start all the services from your configuration. Enter {FORM_RECOGNIZER_ENDPOINT_URI} and {FORM_RECOGNIZER_KEY} values for your Layout container instance.
+
+```yml
+version: "3.9"
+services:
+  azure-form-recognizer-read:
+    container_name: azure-form-recognizer-read
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/read-3.1
+    environment:
+      - EULA=accept
+      - billing={FORM_RECOGNIZER_ENDPOINT_URI}
+      - apiKey={FORM_RECOGNIZER_KEY}
+    ports:
+      - "5000:5000"
+    networks:
+      - ocrvnet
+networks:
+  ocrvnet:
+    driver: bridge
+```
+
+Now, you can start the service with the [**docker compose**](https://docs.docker.com/compose/) command:
+
+```bash
+docker-compose up
+```
+
+### [General Document](#tab/general-document)
+
+The following code sample is a self-contained `docker compose`  example to run the Document Intelligence General Document container. With `docker compose`, you use a YAML file to configure your application's services. Then, with `docker-compose up` command, you create and start all the services from your configuration. Enter {FORM_RECOGNIZER_ENDPOINT_URI} and {FORM_RECOGNIZER_KEY} values for your General Document and Layout container instances.
+
+```yml
+version: "3.9"
+services:
+  azure-cognitive-service-document:
+    container_name: azure-cognitive-service-document
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/document-3.0
+    environment:
+        - EULA=accept
+        - billing={FORM_RECOGNIZER_ENDPOINT_URI}
+        - apiKey={FORM_RECOGNIZER_KEY}
+        - AzureCognitiveServiceLayoutHost=http://azure-cognitive-service-layout:5000
+    ports:
+      - "5000:5050"
+  azure-cognitive-service-layout:
+     container_name: azure-cognitive-service-layout
+     image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-3.0
+     environment:
+         - EULA=accept
+         - billing={FORM_RECOGNIZER_ENDPOINT_URI}
+         - apiKey={FORM_RECOGNIZER_KEY}
+```
+
+Now, you can start the service with the [**docker compose**](https://docs.docker.com/compose/) command:
+
+```bash
+docker-compose up
+```
+
+Given the resources on the machine, the General Document container might take some time to start up.
+
+### [Invoice](#tab/invoice)
+
+The following code sample is a self-contained `docker compose`  example to run the Document Intelligence Invoice container. With `docker compose`, you use a YAML file to configure your application's services. Then, with `docker-compose up` command, you create and start all the services from your configuration. Enter {FORM_RECOGNIZER_ENDPOINT_URI} and {FORM_RECOGNIZER_KEY} values for your Invoice and Layout container instances.
+
+You must use 3.1 GA Layout image as an upstream for both 3.0 GA and 3.1 GA Invoice models.
+
+```yml
+version: "3.9"
+services:
+  azure-cognitive-service-invoice:
+    container_name: azure-cognitive-service-invoice
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/invoice-3.1
+    environment:
+        - EULA=accept
+        - billing={FORM_RECOGNIZER_ENDPOINT_URI}
+        - apiKey={FORM_RECOGNIZER_KEY}
+        - AzureCognitiveServiceLayoutHost=http://azure-cognitive-service-layout:5000
+    ports:
+      - "5000:5050"
+  azure-cognitive-service-layout:
+    container_name: azure-cognitive-service-layout
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-3.1
+    environment:
+        - EULA=accept
+        - billing={FORM_RECOGNIZER_ENDPOINT_URI}
+        - apiKey={FORM_RECOGNIZER_KEY}
+```
+
+Now, you can start the service with the [**docker compose**](https://docs.docker.com/compose/) command:
+
+```bash
+docker-compose up
+```
+
+### [Receipt](#tab/receipt)
+
+The following code sample is a self-contained `docker compose`  example to run the Document Intelligence General Document container. With `docker compose`, you use a YAML file to configure your application's services. Then, with `docker-compose up` command, you create and start all the services from your configuration. Enter {FORM_RECOGNIZER_ENDPOINT_URI} and {FORM_RECOGNIZER_KEY} values for your Receipt and Read container instances.
+
+You can use 3.1 GA Layout image as an upstream instead of Read image.
+
+```yml
+version: "3.9"
+services:
+  azure-cognitive-service-receipt:
+    container_name: azure-cognitive-service-receipt
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/receipt-3.1
+    environment:
+        - EULA=accept
+        - billing={FORM_RECOGNIZER_ENDPOINT_URI}
+        - apiKey={FORM_RECOGNIZER_KEY}
+        - AzureCognitiveServiceReadHost=http://azure-cognitive-service-read:5000
+    ports:
+          - "5000:5050"
+  azure-cognitive-service-read:
+    container_name: azure-cognitive-service-read
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/read-3.1
+    environment:
+      - EULA=accept
+        - billing={FORM_RECOGNIZER_ENDPOINT_URI}
+        - apiKey={FORM_RECOGNIZER_KEY}
+```
+
+Now, you can start the service with the [**docker compose**](https://docs.docker.com/compose/) command:
+
+```bash
+docker-compose up
+```
+
+### [ID Document](#tab/id-document)
+
+The following code sample is a self-contained `docker compose`  example to run the Document Intelligence General Document container. With `docker compose`, you use a YAML file to configure your application's services. Then, with `docker-compose up` command, you create and start all the services from your configuration. Enter {FORM_RECOGNIZER_ENDPOINT_URI} and {FORM_RECOGNIZER_KEY} values for your ID and Read container instances.
+
+You can use 3.1 GA Layout image as an upstream instead of Read image.
+
+```yml
+version: "3.9"
+services:
+  azure-cognitive-service-id-document:
+      container_name: azure-cognitive-service-id-document
+      image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/id-document-3.1
+      environment:
+          - EULA=accept
+          - billing={FORM_RECOGNIZER_ENDPOINT_URI}
+          - apiKey={FORM_RECOGNIZER_KEY}
+          - AzureCognitiveServiceReadHost=http://azure-cognitive-service-read:5000
+      ports:
+          - "5000:5050"
+  azure-cognitive-service-read:
+      container_name: azure-cognitive-service-read
+      image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/read-3.1
+      environment:
+          - EULA=accept
+          - billing={FORM_RECOGNIZER_ENDPOINT_URI}
+          - apiKey={FORM_RECOGNIZER_KEY}
+```
+
+Now, you can start the service with the [**docker compose**](https://docs.docker.com/compose/) command:
+
+```bash
+docker-compose up
+```
+
+### [Business Card](#tab/business-card)
+
+```yml
+version: "3.9"
+services:
+  azure-cognitive-service-invoice:
+    container_name: azure-cognitive-service-businesscard
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/businesscard-3.0
+    environment:
+        - EULA=accept
+        - billing={FORM_RECOGNIZER_ENDPOINT_URI}
+        - apiKey={FORM_RECOGNIZER_KEY}
+        - AzureCognitiveServiceLayoutHost=http://azure-cognitive-service-layout:5000
+    ports:
+      - "5000:5050"
+  azure-cognitive-service-layout:
+    container_name: azure-cognitive-service-layout
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-3.0
+    environment:
+        - EULA=accept
+        - billing={FORM_RECOGNIZER_ENDPOINT_URI}
+        - apiKey={FORM_RECOGNIZER_KEY}
+```
+
+
+### [Custom](#tab/custom)
+
+In addition to the [prerequisites](#prerequisites), you need to do the following to process a custom document:
+
+#### Create a folder and store the following files
+
+* [**.env**](#create-an-environment-file)
+* [**nginx.conf**](#create-an-nginx-file)
+* [**docker-compose.yml**](#create-a-docker-compose-file)
+
+#### Create a folder and store your input data
+
+* Name this folder **files**.
+* We reference the file path for this folder as  **{FILE_MOUNT_PATH}**.
+* Copy the file path in a convenient location, you need to add it to your **.env** file. As an example if the folder is called files, located in the same folder as the `docker-compose` file, the .env file entry is `FILE_MOUNT_PATH="./files"`
+
+#### Create a folder to store the logs  written by the Document Intelligence service on your local machine
+
+* Name this folder **output**.
+* We reference the file path for this folder as **{OUTPUT_MOUNT_PATH}**.
+* Copy the file path in a convenient location, you need to add it to your **.env** file. As an example if the folder is called output, located in the same folder as the `docker-compose` file, the .env file entry is `OUTPUT_MOUNT_PATH="./output"`
+
+#### Create a folder for storing internal processing shared between the containers
+
+* Name this folder **shared**.
+* We reference the file path for this folder as  **{SHARED_MOUNT_PATH}**.
+* Copy the file path in a convenient location, you need to add it to your **.env** file. As an example if the folder is called shared, located in the same folder as the `docker-compose` file, the .env file entry is `SHARED_MOUNT_PATH="./share"`
+
+#### Create a folder for the Studio to store project related information
+
+* Name this folder **db**.
+* We reference the file path for this folder as  **{DB_MOUNT_PATH}**.
+* Copy the file path in a convenient location, you need to add it to your **.env** file. As an example if the folder is called db, located in the same folder as the `docker-compose` file, the .env file entry is `DB_MOUNT_PATH="./db"`
+
+#### Create an environment file
+
+  1. Name this file **.env**.
+
+  1. Declare the following environment variables:
+
+```bash
+
+
+SHARED_MOUNT_PATH="./share"
+OUTPUT_MOUNT_PATH="./output"
+FILE_MOUNT_PATH="./files"
+DB_MOUNT_PATH="./db"
+FORM_RECOGNIZER_ENDPOINT_URI="YourFormRecognizerEndpoint"
+FORM_RECOGNIZER_KEY="YourFormRecognizerKey"
+NGINX_CONF_FILE="./nginx.conf"
+```
+
+#### Create an **nginx** file
+
+  1. Name this file **nginx.conf**.
+
+  1. Enter the following configuration:
+
+```bash
+worker_processes 1;
+
+events { worker_connections 1024; }
+
+http {
+
+    sendfile on;
+    client_max_body_size 90M;
+    upstream docker-custom {
+        server azure-cognitive-service-custom-template:5000;
+    }
+
+    upstream docker-layout {
+        server  azure-cognitive-service-layout:5000;
+    }
+
+    server {
+        listen 5000;
+
+        location = / {
+            proxy_set_header Host $host:$server_port;
+            proxy_set_header Referer $scheme://$host:$server_port;
+            proxy_pass http://docker-custom/;
+        }
+
+        location /status {
+            proxy_pass http://docker-custom/status;
+        }
+
+        location /test {
+            return 200 $scheme://$host:$server_port;
+        }
+
+        location /ready {
+            proxy_pass http://docker-custom/ready;
+        }
+
+        location /swagger {
+            proxy_pass http://docker-custom/swagger;
+        }
+
+        location /api-docs {
+            proxy_pass http://docker-custom/api-docs;
+        }
+
+        location /formrecognizer/documentModels/prebuilt-layout {
+            proxy_set_header Host $host:$server_port;
+            proxy_set_header Referer $scheme://$host:$server_port;
+
+            add_header 'Access-Control-Allow-Origin' '*' always;
+            add_header 'Access-Control-Allow-Headers' 'cache-control,content-type,ocp-apim-subscription-key,x-ms-useragent' always;
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS' always;
+            add_header 'Access-Control-Expose-Headers' '*' always;
+
+            if ($request_method = 'OPTIONS') {
+                return 200;
+            }
+
+            proxy_pass http://docker-layout/formrecognizer/documentModels/prebuilt-layout;
+        }
+
+        location /formrecognizer/documentModels {
+            proxy_set_header Host $host:$server_port;
+            proxy_set_header Referer $scheme://$host:$server_port;
+
+            add_header 'Access-Control-Allow-Origin' '*' always;
+            add_header 'Access-Control-Allow-Headers' 'cache-control,content-type,ocp-apim-subscription-key,x-ms-useragent' always;
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, DELETE' always;
+            add_header 'Access-Control-Expose-Headers' '*' always;
+
+            if ($request_method = 'OPTIONS') {
+                return 200;
+            }
+
+            proxy_pass http://docker-custom/formrecognizer/documentModels;
+        }
+
+        location /formrecognizer/operations {
+            add_header 'Access-Control-Allow-Origin' '*' always;
+            add_header 'Access-Control-Allow-Headers' 'cache-control,content-type,ocp-apim-subscription-key,x-ms-useragent' always;
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, PUT, DELETE, PATCH' always;
+            add_header 'Access-Control-Expose-Headers' '*' always;
+
+            if ($request_method = OPTIONS ) {
+                return 200;
+            }
+
+            proxy_pass http://docker-custom/formrecognizer/operations;
+        }
+    }
+
+}
+```
+::: moniker-end
+
 :::moniker range="<=doc-intel-3.0.0"
 
 #### Create a **docker compose** file
@@ -761,7 +1095,7 @@ Custom template containers require a few different configurations and support ot
 |Storage:ObjectStore:AzureBlob:ConnectionString    | No| Azure Blob connection string |
 | HealthCheck:MemoryUpperboundInMB    | No |    Memory threshold for reporting unhealthy to liveness. Default: Same as recommended memory |
 | StorageTimeToLiveInMinutes    | No| `TTL` duration to remove all intermediate and final files. Default: Two days, `TTL` can set between five minutes to seven days |
-| Task:MaxRunningTimeSpanInMinutes |    No| Maximum running time for treating request as timeout. Default: 60 minutes |
+| Task:MaxRunningTimeSpanInMinutes |    No| Maximum running time for treating request as time out. Default: 60 minutes |
 | HTTP_PROXY_BYPASS_URLS | No |    Specify URLs for bypassing proxy Example: HTTP_PROXY_BYPASS_URLS = abc.com, xyz.com |
 | AzureCognitiveServiceReadHost (Receipt, IdDocument Containers Only)| Yes    | Specify Read container uri Example:AzureCognitiveServiceReadHost=http://onprem-frread:5000 |
 | AzureCognitiveServiceLayoutHost (Document, Invoice Containers Only) |    Yes    | Specify Layout container uri Example:AzureCognitiveServiceLayoutHost=http://onprem-frlayout:5000 |
@@ -874,7 +1208,7 @@ That's it! In this article, you learned concepts and workflows for downloading, 
 * The billing information must be specified when you instantiate a container.
 
 > [!IMPORTANT]
-> Azure AI containers are not licensed to run without being connected to Azure for metering. Customers need to enable the containers to communicate billing information with the metering service at all times. Azure AI containers do not send customer data (for example, the image or text that is being analyzed) to Microsoft.
+> Azure AI containers aren't licensed to run without being connected to Azure for metering. Customers need to enable the containers to always communicate billing information with the metering service. Azure AI containers don't send customer data (for example, the image or text that is being analyzed) to Microsoft.
 
 ## Next steps
 
