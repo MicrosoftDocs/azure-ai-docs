@@ -19,9 +19,10 @@ author: msakande
 
 
 Model leaderboards in Azure AI Foundry portal allow you to streamline the model selection process in the Azure AI Foundry [model catalog](../how-to/model-catalog-overview.md). The model leaderboards, backed by industry-standard benchmarks can help you to find the best model for your custom AI solution. From the model leaderboards section of the model catalog, you can [browse leaderboards](https://aka.ms/model-leaderboards) to compare available models as follows:
-- [Quality, cost, and performance leaderboards](#quality-cost-and-performance-leaderboards) to quickly identify the model leaders along a single metric (quality, cost, or throughput);
-- [Trade-off charts](#trade-off-charts) to see how models perform on one metric versus another, such as quality versus cost;
-- [Leaderboards by scenario](#leaderboards-by-scenario) to find the best leaderboards that suite your scenario.
+
+- **Quality, cost, and performance leaderboards** to quickly identify the model leaders along a single metric (quality, cost, or throughput);
+- **Trade-off charts** to see how models perform on one metric versus another, such as quality versus cost;
+- **Leaderboards by scenario** to find the best leaderboards that suite your scenario.
 
 Whenever you find a model to your liking, you can select it and zoom into the [detailed benchmarking results](../how-to
 /benchmark-model-in-catalog.md) of the model within the model catalog. If satisfied with the model, you can deploy it, try it in the playgorund, or evaluate it on your data. The leaderboards support benchmarking across text language models (large language models (LLMs) and small language models (SLMs)) and embedding models.
@@ -138,5 +139,5 @@ Prompt construction follows best practices for each dataset, as specified by the
 
 ## Related content
 
-- [How to benchmark models in Azure AI Foundry portal](../how-to/benchmark-model-in-catalog.md)
+- [Select models using the model leaderboard in Azure AI Foundry portal](../how-to/benchmark-model-in-catalog.md)
 - [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md)

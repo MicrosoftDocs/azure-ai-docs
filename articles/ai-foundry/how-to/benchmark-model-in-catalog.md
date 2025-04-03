@@ -36,7 +36,7 @@ In this article, you learn to streamline your model selection process in the Azu
 
 4. Go to the **Model leaderboards** section of the model catalog. This section displays the top three model leaders ranked along [quality](#quality), [cost](#cost), and [performance](#cost). You can select any of these models to check out more details.
 
-    :::image type="content" source="../media/how-to/model-benchmarks/leaderboard-entry-select-model.png" alt-text="Screenshot showing the selected model from entry point of leaderboards on model catalog." lightbox="../media/how-to/model-benchmarks/leaderboard-entry-select-model.png":::
+    :::image type="content" source="../media/how-to/model-benchmarks/leaderboard-entry-select-model.png" alt-text="Screenshot showing the selected model from entry point of leaderboards on model catalog homepage." lightbox="../media/how-to/model-benchmarks/leaderboard-entry-select-model.png":::
 
 1. From the **Model leaderboards** section of the model catalog, select **Browse leaderboards**  to go to the [model leaderboards landing page](https://aka.ms/model-leaderboards) to see the full suite of leaderboards that are available. [Quality](#quality) is the most common criterion for model selection, followed by cost and performance.
 
@@ -109,6 +109,6 @@ The previous sections showed the benchmark results calculated by Microsoft, usin
 
 ## Related content
 
-- [Model benchmarks in Azure AI Foundry portal](../concepts/model-benchmarks.md)
+- [Model leaderboards in Azure AI Foundry portal](../concepts/model-benchmarks.md)
 - [How to evaluate generative AI apps with Azure AI Foundry](evaluate-generative-ai-app.md)
 - [How to view evaluation results in Azure AI Foundry portal](evaluate-results.md)

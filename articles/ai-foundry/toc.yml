@@ -42,11 +42,11 @@ items:
     href: how-to/concept-data-privacy.md
   - name: Model lifecycle and retirement
     href: concepts/model-lifecycle-retirement.md
-  - name: Model benchmarking
+  - name: Model leaderboards and benchmarking
     items:
-    - name: Model benchmarks
+    - name: Model leaderboards
       href: concepts/model-benchmarks.md
-    - name: How to use model benchmarking
+    - name: How to use model leaderboards
       href: how-to/benchmark-model-in-catalog.md
   - name: Model deployment in Azure AI Foundry
     items:
