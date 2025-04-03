@@ -77,9 +77,10 @@ Refer to the [models page](../concepts/models.md) for the most up-to-date inform
 |   | API Version   |
 |---|---|
 |**Latest GA API release:**| `2024-10-21`|
-|**Latest Preview API release:**| `2025-01-01-preview`|
+|**Latest Preview API release:**| `2025-03-01-preview`|
 
-Support first added in: `2024-07-01-preview`
+> [!NOTE]
+> While Global Batch supports older API versions, some models require newer preview API versions. For example, `o3-mini` is not supported with `2024-10-21` since it was released after this date. To access the newer models with global batch use the latest preview API version.
 
 ### Feature support
 
