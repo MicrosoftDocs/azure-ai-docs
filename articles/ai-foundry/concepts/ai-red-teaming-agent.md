@@ -21,9 +21,9 @@ Traditional red teaming involves exploiting the cyber kill chain and describes t
 
 The AI Red Teaming Agent leverages Microsoft's open-source framework for Python Risk Identification Tool's ([PyRIT](https://github.com/Azure/PyRIT)) AI red teaming capabilities along with Azure AI Foundry's [Risk and Safety Evaluations](./evaluation-metrics-built-in.md#risk-and-safety-evaluators) to help you automatically assess safety issues in three ways:
 
-1. **Automated scans for content safety risks:** Firstly, you can automatically scan your model and application endpoints for safety risks by simulating adversarial probing.
-2. **Evaluate probing success:** Next, you can evaluate and score each attack-response pair to generate insightful metrics such as Attack Success Rate (ASR).
-3. **Reporting and logging** Finally, you can generate a score card of the attack probing techniques and risk categories to help you decide if the system is ready for deployment. Findings can be logged, monitored, and tracked over time directly in Azure AI Foundry, ensuring compliance and continuous risk mitigation.
+- **Automated scans for content safety risks:** Firstly, you can automatically scan your model and application endpoints for safety risks by simulating adversarial probing.
+- **Evaluate probing success:** Next, you can evaluate and score each attack-response pair to generate insightful metrics such as Attack Success Rate (ASR).
+- **Reporting and logging** Finally, you can generate a score card of the attack probing techniques and risk categories to help you decide if the system is ready for deployment. Findings can be logged, monitored, and tracked over time directly in Azure AI Foundry, ensuring compliance and continuous risk mitigation.
 
 Together these components (scanning, evaluating, and reporting) help teams understand how AI systems respond to common attacks, ultimately guiding a comprehensive risk management strategy.
 
