@@ -73,18 +73,17 @@ import os
 from azure.ai.evaluation import AzureOpenAIModelConfiguration
 from azure.identity import DefaultAzureCredential
 from azure.ai.evaluation import IntentResolutionEvaluator, ResponseCompletenessEvaluator
-
-
+  
 model_config = AzureOpenAIModelConfiguration(
     azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
     api_key=os.environ["AZURE_OPENAI_API_KEY"],
     api_version=os.environ["AZURE_OPENAI_API_VERSION"],
     azure_deployment=os.environ["MODEL_DEPLOYMENT_NAME"],
 )
-
+ 
 intent_resolution_evaluator = IntentResolutionEvaluator(model_config)
-completeness_evaluator = CompletenessEvaluator(model_config=model_config)
-
+response_completeness_evaluator = ResponseCompletenessEvaluator(model_config=model_config)
+ 
 # Evaluating query and response as strings
 # A positive example. Intent is identified and understood and the response correctly resolves user intent
 result = intent_resolution_evaluator(
@@ -92,14 +91,13 @@ result = intent_resolution_evaluator(
     response="Opening hours of the Eiffel Tower are 9:00 AM to 11:00 PM.",
 )
 print(result)
-
+ 
 # A negative example. Only half of the statements in the response were complete according to the ground truth  
-result = completeness_evaluator(
+result = response_completeness_evaluator(
     response="Itinery: Day 1 take a train to visit Disneyland outside of the city; Day 2 rests in hotel.",
     ground_truth="Itinery: Day 1 take a train to visit the downtown area for city sightseeing; Day 2 rests in hotel."
 )
 print(result)
-
 ```
 
 Examples of `tool_calls` and `tool_definitions` for `ToolCallAccuracyEvaluator`: 
