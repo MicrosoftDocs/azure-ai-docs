@@ -33,7 +33,6 @@ In this article, you learn how to create and develop your first prompt flow in A
 ## Prerequisites
 
 [!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
-
 - Prompt flow requires a compute session. If you don't have a runtime, you can [create one in Azure AI Foundry portal](./create-manage-compute-session.md).
 - You need a deployed model.
 - In your project, configure access control for the blob storage account. Assign the **Storage Blob Data Contributor** role to your user account.
