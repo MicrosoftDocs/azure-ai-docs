@@ -195,7 +195,7 @@ Before following the steps in this article, make sure you have the following pre
 > * Container Registry
 > * API Management
 > 
-> If you would like to create a custom role instead, see [Azure AI Enterprise Network Connection Approver role](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-enterprise-network-connection-approver) to add the specific actions for each resource type.
+> If you would like to create a custom role instead, see [Azure AI Enterprise Network Connection Approver role](/azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-enterprise-network-connection-approver) to add the specific actions for each resource type.
 > 
 > For creating private endpoint outbound rules to target resource types not covered by the _Azure AI Enterprise Network Connection Approver_ role, such as Azure Data Factory, Azure Databricks, and Azure Function Apps, a custom scoped-down role is recommended, defined only by the actions necessary to approve private endpoint connections on the target resource types.
 > 
