@@ -88,7 +88,7 @@ To increase or decrease the capacity of your service, you have two options:
 
    The following screenshot shows a Standard service provisioned with one replica and partition. The formula at the bottom indicates how many search units are being used (1). If the unit price was $100 (not a real price), the monthly cost of running this service would be $100 on average.
 
-   :::image type="content" source="media/search-capacity-planning/initial-values.png" alt-text="Scale page showing current values" border="true":::
+   :::image type="content" source="media/search-capacity-planning/initial-values.png" alt-text="Screenshot of the Scale page showing the current replica and partition values." border="true":::
 
 1. Use the slider to increase or decrease the number of partitions. Select **Save**.
 
@@ -96,15 +96,15 @@ To increase or decrease the capacity of your service, you have two options:
 
    For the current per unit costs of each tier, visit the [pricing page](https://azure.microsoft.com/pricing/details/search/).
 
-   :::image type="content" source="media/search-capacity-planning/add-two-each.png" alt-text="Add replicas and partitions" border="true":::
+   :::image type="content" source="media/search-capacity-planning/add-two-each.png" alt-text="Screenshot of the Scale page with added replicas and partitions." border="true":::
 
 1. Check your notifications to confirm that the operation started.
 
-   :::image type="content" source="media/search-capacity-planning/portal-notifications.png" alt-text="Save changes" border="true":::
+   :::image type="content" source="media/search-capacity-planning/portal-notifications.png" alt-text="Screenshot of the notification of the scaling operation in the Azure portal." border="true":::
 
    This operation can take several hours to complete. You can’t cancel the process after it starts, and there’s no real-time monitoring of replica and partition adjustments. However, the following message displays while changes are underway.
 
-   :::image type="content" source="media/search-capacity-planning/updating-message.png" alt-text="Status message in the Azure portal" border="true":::
+   :::image type="content" source="media/search-capacity-planning/updating-message.png" alt-text="Screenshot of the Updating message in the Azure portal." border="true":::
 
 ### Change your pricing tier
 
