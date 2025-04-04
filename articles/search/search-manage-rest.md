@@ -20,7 +20,7 @@ The Management REST API is available in stable and preview versions. Be sure to 
 > [!div class="checklist"]
 > * [Create or update a service](#create-or-update-a-service)
 > * [Upgrade a service](#upgrade-a-service)
-> * [Change service tiers](#change-service-tiers)
+> * [Change pricing tiers](#change-pricing-tiers)
 > * [Enable Azure role-based access control for data plane](#enable-rbac)
 > * [Enforce a customer-managed key policy](#enforce-cmk)
 > * [Disable semantic ranker](#disable-semantic-ranker)
@@ -157,12 +157,12 @@ POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroup
      Authorization: Bearer {{token}}
 ```
 
-## Change service tiers
+## Change pricing tiers
 
-If you need more <!-- or less-->capacity, you can [switch to a higher service tier](search-capacity-planning.md#change-your-service-tier). Currently, you can only move up between Basic and Standard (S1, S2, and S3) tiers. Use the `sku` property to specify the higher <!-- your new -->tier.
+If you need more <!-- or less-->capacity, you can [switch to a higher pricing tier](search-capacity-planning.md#change-your-pricing-tier). Currently, you can only move up between Basic and Standard (S1, S2, and S3) tiers. Use the `sku` property to specify the higher <!-- your new -->tier.
 
 ```http
-### Change service tiers
+### Change pricing tiers
 @resource-group = my-rg
 @search-service-name = my-search
 PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2025-02-01-preview HTTP/1.1
