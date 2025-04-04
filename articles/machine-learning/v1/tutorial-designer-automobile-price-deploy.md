@@ -15,6 +15,8 @@ ms.custom: UpdateFrequency5, designer
 
 # Tutorial: Use the designer to deploy a machine learning model
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In [part one of this tutorial](tutorial-designer-automobile-price-train-score.md), you trained a linear regression model that predicts car prices. In this second part, you use the Azure Machine Learning designer to deploy the model so that others can use it.
 
 >[!Note]

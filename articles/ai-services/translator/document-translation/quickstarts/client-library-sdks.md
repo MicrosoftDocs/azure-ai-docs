@@ -2,7 +2,6 @@
 title: "Batch Document Translation C#/.NET or Python client library"
 titleSuffix: Azure AI services
 description: Use the Batch Document Translation C#/.NET or Python client library (SDK) for cloud-based batch document translation service and process.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator

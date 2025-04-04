@@ -2,7 +2,6 @@
 title: Entities
 titleSuffix: Azure AI services
 description: Entities concepts
-#services: cognitive-services
 ms.author: jboback
 author: jboback
 manager: nitinme

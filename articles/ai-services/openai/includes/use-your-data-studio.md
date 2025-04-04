@@ -2,7 +2,6 @@
 title: 'Use your own data to generate text using Azure OpenAI Service'
 titleSuffix: Azure OpenAI
 description: Use this article to import and use your data in Azure OpenAI.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom:
@@ -10,7 +9,7 @@ ms.custom:
 ms.topic: quickstart
 author: aahill
 ms.author: aahi
-ms.date: 02/12/2024
+ms.date: 03/31/2025
 recommendations: false
 ---
 

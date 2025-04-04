@@ -34,7 +34,7 @@ Key use cases include:
 * **Marketing and Personalization:** Generate personalized content and recommendations at scale.
 
 > [!IMPORTANT]
-> We aim to process batch requests within 24 hours; we do not expire the jobs that take longer. You can [cancel](#cancel-batch) the job anytime. When you cancel the job, any remaining work is cancelled and any already completed work is returned. You will be charged for any completed work.
+> We aim to process batch requests within 24 hours; we don't expire the jobs that take longer. You can [cancel](#cancel-batch) the job anytime. When you cancel the job, any remaining work is cancelled and any already completed work is returned. You'll be charged for any completed work.
 >
 > Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure OpenAI location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).  
 
@@ -77,9 +77,10 @@ Refer to the [models page](../concepts/models.md) for the most up-to-date inform
 |   | API Version   |
 |---|---|
 |**Latest GA API release:**| `2024-10-21`|
-|**Latest Preview API release:**| `2025-01-01-preview`|
+|**Latest Preview API release:**| `2025-03-01-preview`|
 
-Support first added in: `2024-07-01-preview`
+> [!NOTE]
+> While Global Batch supports older API versions, some models require newer preview API versions. For example, `o3-mini` isn't supported with `2024-10-21` since it was released after this date. To access the newer models with global batch use the latest preview API version.
 
 ### Feature support
 
@@ -202,8 +203,8 @@ When a job failure occurs, you'll find details about the failure in the `errors`
                 "object": “list”,
                 "data": [
                 {
-               “code”: “empty_file”,
-               “message”: “The input file is empty. Please ensure that the batch contains at least one   request.”
+               "code": "empty_file",
+               "message": "The input file is empty. Please ensure that the batch contains at least one   request."
                     }
                 ]
           },
@@ -240,7 +241,7 @@ When a job failure occurs, you'll find details about the failure in the `errors`
 
 - Resources deployed with Azure CLI won't work out-of-box with Azure OpenAI global batch. This is due to an issue where resources deployed using this method have endpoint subdomains that don't follow the `https://your-resource-name.openai.azure.com` pattern. A workaround for this issue is to deploy a new Azure OpenAI resource using one of the other common deployment methods which will properly handle the subdomain setup as part of the deployment process.
 
-- UTF-8-BOM encoded `jsonl` files are not supported. JSON lines files should be encoded using UTF-8. Use of Byte-Order-Mark (BOM) encoded files is not officially supported by the JSON RFC spec, and Azure OpenAI will currently treat BOM encoded files as invalid. A UTF-8-BOM encoded file will currently return the generic error message: "Validation failed: A valid model deployment name could not be extracted from the input file. Please ensure that each row in the input file has a valid deployment name specified in the 'model' field, and that the deployment name is consistent across all rows."
+- UTF-8-BOM encoded `jsonl` files aren't supported. JSON lines files should be encoded using UTF-8. Use of Byte-Order-Mark (BOM) encoded files isn't officially supported by the JSON RFC spec, and Azure OpenAI will currently treat BOM encoded files as invalid. A UTF-8-BOM encoded file will currently return the generic error message: "Validation failed: A valid model deployment name couldn't be extracted from the input file. Please ensure that each row in the input file has a valid deployment name specified in the 'model' field, and that the deployment name is consistent across all rows."
 
 ## See also
 

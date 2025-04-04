@@ -18,6 +18,8 @@ ms.custom: UpdateFrequency5, devx-track-python, data4ml, sdkv1
 
 # Data ingestion with Azure Data Factory
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you learn about the available options for building a data ingestion pipeline with [Azure Data Factory](/azure/data-factory/introduction). This Azure Data Factory pipeline is used to ingest data for use with [Azure Machine Learning](../overview-what-is-azure-machine-learning.md). Data Factory allows you to easily extract, transform, and load (ETL) data. Once the data is transformed and loaded into storage, it can be used to train your machine learning models in Azure Machine Learning.
 
 Simple data transformation can be handled with native Data Factory activities and instruments such as [data flow](/azure/data-factory/control-flow-execute-data-flow-activity). When it comes to more complicated scenarios, the data can be processed with some custom code. For example, Python or R code.

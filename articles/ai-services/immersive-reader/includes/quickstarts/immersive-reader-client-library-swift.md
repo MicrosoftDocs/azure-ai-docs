@@ -2,7 +2,6 @@
 title: Immersive Reader Swift client library quickstart 
 titleSuffix: Azure AI services
 description: In this quickstart, you build an iOS app from scratch and add the Immersive Reader API functionality.
-#services: cognitive-services
 author: sharmas
 manager: nitinme
 ms.service: azure-ai-immersive-reader

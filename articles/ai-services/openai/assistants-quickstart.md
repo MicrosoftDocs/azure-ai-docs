@@ -16,7 +16,7 @@ recommendations: false
 
 # Quickstart: Get started using Azure OpenAI Assistants (Preview)
 
-Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions.
+Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, file search, and custom functions.
 
 ::: zone pivot="ai-foundry-portal"
 

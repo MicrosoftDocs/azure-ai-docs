@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 03/17/2025
+ms.date: 03/27/2025
 ms.author: lajanuar
 ---
 
@@ -119,6 +119,11 @@ The layout model extracts structural elements from your documents. To follow are
 * [**Output response to markdown**](#output-response-to-markdown-format)
 * [**Figures**](#figures)
 * [**Sections**](#sections)
+
+Run the sample layout document analysis within [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio), then navigate to the results tab to access the full JSON output.
+
+   :::image type="content" source="../media/studio/json-output-tab.png" alt-text="Screenshot of results JSON output tab in the Document Intelligence Studio.":::
+
 
 ### Pages
 
