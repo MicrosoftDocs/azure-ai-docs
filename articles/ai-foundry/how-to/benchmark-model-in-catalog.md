@@ -67,9 +67,9 @@ Suppose you have a scenario that requires certain model capabilities. For exampl
 
 Once you've explored the leaderboards, you can decide on a model to use. 
 
----
+## View benchmarks from the model card
 
-1. Select a model to your liking and select **Model details**. For example, select **gpt-4o**. This action opens the model's overview page.
+1. Select a model to your liking and select **Model details**. You can select the model from one of the displayed leaderboards, such as the quality leaderboard at the top of the model leaderboards homepage. For this example, select **gpt-4o**. This action opens the model's overview page.
 
 1. Go to the **Benchmarks** tab to check the benchmark results for the model.
   
