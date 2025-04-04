@@ -36,11 +36,16 @@ In this article, you learn to streamline your model selection process in the Azu
 
 4. Go to the **Model leaderboards** section of the model catalog. This section displays the top three model leaders ranked along [quality](#quality), [cost](#cost), and [performance](#cost). You can select any of these models to check out more details.
 
-    :::image type="content" source="../media/how-to/model-benchmarks/leaderboard-entry-select-model.png" alt-text="Screenshot showing the selected model from entry point of leaderboards on model catalog homepage." lightbox="../media/how-to/model-benchmarks/leaderboard-entry-select-model.png":::
+    :::image type="content" source="../media/how-to/model-benchmarks/leaderboard-entry-select-model.png" alt-text="Screenshot showing the selected model from entry point of leaderboards on the model catalog homepage." lightbox="../media/how-to/model-benchmarks/leaderboard-entry-select-model.png":::
 
-1. From the **Model leaderboards** section of the model catalog, select **Browse leaderboards**  to go to the [model leaderboards landing page](https://aka.ms/model-leaderboards) to see the full suite of leaderboards that are available. [Quality](#quality) is the most common criterion for model selection, followed by cost and performance.
+1. From the **Model leaderboards** section of the model catalog, select **Browse leaderboards**  to go to the [model leaderboards landing page](https://aka.ms/model-leaderboards) to see the full suite of leaderboards that are available.
 
     :::image type="content" source="../media/how-to/model-benchmarks/leaderboard-entry.png" alt-text="Screenshot showing the entry point from model catalog into model leaderboards." lightbox="../media/how-to/model-benchmarks/leaderboard-entry.png"::: 
+
+    The homepage displays leaderboard highlights for model selection criteria. Quality is the most common criterion for model selection, followed by cost and performance.
+
+    :::image type="content" source="../media/how-to/model-benchmarks/leaderboard-highlights.png" alt-text="Screenshot showing the highlighted leaderboards in quality, cost, and performance." lightbox="../media/how-to/model-benchmarks/leaderboard-highlights.png":::
+
 
 ### Compare models in the trade-off charts
 
@@ -63,7 +68,7 @@ Once you've explored the leaderboards, you can decide on a model to use.
 
 ---
 
-1. Return to the model catalog homepage and select a model to use. For example, select **gpt-4o**. This action opens the model's overview page.
+1. Select a model to your liking and select **Model details**. For example, select **gpt-4o**. This action opens the model's overview page.
 
 1. Go to the **Benchmarks** tab to check the benchmark results for the model.
   
