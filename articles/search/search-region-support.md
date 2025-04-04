@@ -9,7 +9,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.custom: references_regions
-ms.date: 03/27/2025
+ms.date: 04/04/2025
 
 ---
 
@@ -42,18 +42,18 @@ AI service integration refers to internal connections to an Azure AI services mu
 
 | Region | AI service integration | Availability zones | Semantic ranker | Query rewrite |
 |--|--|--|--|--|
-| Brazil South​​ ​| ✅ |  | ✅ | ✅ |
-| Canada Central​​ | ✅ | ✅ | ✅ | ✅ |
+| Brazil South​​ ​| ✅ |  | ✅ |  |
+| Canada Central​​ | ✅ | ✅ | ✅ |  |
 | Canada East​​ ​|  |  | ✅ |  |
-| ​Central US​​ | ✅ | ✅ | ✅ | ✅ |
-| East US​ | ✅ | ✅ | ✅ | ✅ |
-| East US 2 ​ | ✅ | ✅ | ✅ | ✅ |
+| ​Central US​​ | ✅ | ✅ | ✅ |  |
+| East US​ | ✅ | ✅ | ✅ |  |
+| East US 2 ​ | ✅ | ✅ | ✅ |  |
 | Mexico Central |  | ✅ |  |  |
 | North Central US​ ​| ✅ |  | ✅ |  |
-| South Central US​ | ✅ | ✅ | ✅ | ✅ |
-| West US​​ | ✅ |  | ✅ | ✅ |
-| West US 2​ ​| ✅ | ✅ | ✅ | ✅ |
-| West US 3​ | ✅ | ✅ | ✅ | ✅ |
+| South Central US​ | ✅ | ✅ | ✅ |  |
+| West US​​ | ✅ |  | ✅ |  |
+| West US 2​ ​| ✅ | ✅ | ✅ |  |
+| West US 3​ | ✅ | ✅ | ✅ |  |
 | West Central US​ ​ | ✅ |  | ✅ |  |
 
 ### Europe
@@ -61,17 +61,17 @@ AI service integration refers to internal connections to an Azure AI services mu
 | Region | AI service integration | Availability zones | Semantic ranker | Query rewrite |
 |--|--|--|--|--|
 | North Europe​ <sup>1</sup>​ | ✅ | ✅ | ✅ | ✅ |
-| West Europe​​ | ✅ | ✅ | ✅ | ✅ |
-| France Central​​ | ✅ | ✅ | ✅ | ✅ |
+| West Europe​​ | ✅ | ✅ | ✅ |  |
+| France Central​​ | ✅ | ✅ | ✅ |  |
 | Germany West Central​ ​| ✅ | ✅ |  |  |
 | Italy North​​ |  | ✅ |  |  |
 | Norway East​​ | ✅ | ✅ |  |  |
 | Poland Central​​ |  |  |  |  |
 | Spain Central <sup>2</sup> |  | ✅ |  |  |
-| Sweden Central​​ | ✅ | ✅ | ✅ | ✅ |
-| Switzerland North​ | ✅ | ✅ | ✅ | ✅ |
+| Sweden Central​​ | ✅ | ✅ |  |  |
+| Switzerland North​ | ✅ | ✅ | ✅ |  |
 | Switzerland West​ | ✅ | ✅ | ✅ |  |
-| UK South​ | ✅ | ✅ | ✅ | ✅ |
+| UK South​ | ✅ | ✅ | ✅ |  |
 | UK West​ ​|  |  | ✅ |  |
 
 <sup>1</sup> This region has capacity constraints on the following tiers: S2, S3, L1, and L2.
@@ -82,8 +82,8 @@ AI service integration refers to internal connections to an Azure AI services mu
 
 | Region | AI service integration | Availability zones | Semantic ranker | Query rewrite |
 |--|--|--|--|--|
-| Israel Central​ <sup>1</sup> |  | ✅ | ✅ | ✅ |
-| Qatar Central​ <sup>1</sup> |  | ✅ | ✅ |  |
+| Israel Central​ <sup>1</sup> |  | ✅ |  |  |
+| Qatar Central​ <sup>1</sup> |  | ✅ |  |  |
 | UAE North​​ | ✅ | ✅ |  |  |
 
 <sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
@@ -98,16 +98,16 @@ AI service integration refers to internal connections to an Azure AI services mu
 
 | Region | AI service integration | Availability zones | Semantic ranker | Query rewrite |
 |--|--|--|--|--|
-| Australia East​ ​| ✅ | ✅ | ✅ | ✅ |
+| Australia East​ ​| ✅ | ✅ | ✅ |  |
 | Australia Southeast​​​ |  |  | ✅ |  |
-| East Asia​ | ✅ | ✅ | ✅ | ✅ |
+| East Asia​ | ✅ | ✅ | ✅ |  |
 | Southeast Asia​​ | ✅ | ✅ | ✅ | ✅ |
-| Central India | ✅ | ✅ | ✅ | ✅ |
-| Jio India West​​ | ✅ |  | ✅ | ✅ |
+| Central India | ✅ | ✅ | ✅ |  |
+| Jio India West​​ | ✅ |  | ✅ |  |
 | South India <sup>1</sup> |  | ✅ |  |  |
-| Japan East | ✅ | ✅ | ✅ | ✅ |
-| Japan West​ | ✅ |  | ✅ | ✅ |
-| Korea Central | ✅ | ✅ | ✅ | ✅ |
+| Japan East | ✅ | ✅ | ✅ |  |
+| Japan West​ | ✅ |  | ✅ |  |
+| Korea Central | ✅ | ✅ | ✅ |  |
 | Korea South​​ |  |  | ✅ |  |
 | Indonesia Central |  | ✅ |  |  |
 
@@ -117,9 +117,9 @@ AI service integration refers to internal connections to an Azure AI services mu
 
 | Region | AI service integration | Availability zones | Semantic ranker | Query rewrite |
 |--|--|--|--|--|
-| Arizona | ✅ |  | ✅ | ✅ |
+| Arizona | ✅ |  | ✅ |  |
 | Texas |  |  |  |  |
-| Virginia | ✅ | ✅ | ✅ | ✅ |
+| Virginia | ✅ | ✅ | ✅ |  |
 
 ## Azure operated by 21Vianet
 
@@ -129,7 +129,7 @@ AI service integration refers to internal connections to an Azure AI services mu
 | China East 2 <sup>1</sup> | ✅ |  |  |  |
 | China East 3 |  |  |  |  |
 | China North |  |  |  |  |
-| China North 2 <sup>1</sup> |  |  | ✅ |  |
+| China North 2 <sup>1</sup> |  |  |  |  |
 | China North 3 |  | ✅ | ✅ |  |
 
 <sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
