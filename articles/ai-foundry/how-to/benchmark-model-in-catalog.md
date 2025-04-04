@@ -7,8 +7,9 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ai-learning-hub
 ms.topic: how-to
-ms.date: 04/03/2025
+ms.date: 04/07/2025
 ms.reviewer: changliu2
+reviewer: changliu2
 ms.author: mopeakande
 author: msakande
 ---
