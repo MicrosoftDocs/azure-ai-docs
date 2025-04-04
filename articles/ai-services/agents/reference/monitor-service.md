@@ -19,20 +19,8 @@ See [Monitor Azure AI Agent Service](../how-to/metrics.md) for details on the da
 
 Here are the most important metrics we think you should monitor for Azure AI Agent Service. Later in this article is a longer list of all available metrics which contains more details on metrics in this shorter list. _See the below list for most up to date information. We're working on refreshing the tables in the following sections._
 
-- Cancel Requested Runs
-- Canceled Runs
-- Completed Runs
-- Errors
-- Failed Runs
-- Finalizing Runs
-- Not Responding Runs
-- Not Started Runs
-- Preparing Runs
-- Provisioning Runs
-- Queued Runs
-- Started Runs
-- Starting Runs
-- Warnings
+- [Runs](#category-agents)
+- [Indexed files](#category-agents)
 <!-- - Indexed files -->
 
 ## Supported metrics
@@ -41,6 +29,15 @@ This section lists all the automatically collected platform metrics for this ser
 
 [!INCLUDE [horz-monitor-ref-metrics-tableheader](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-tableheader.md)]
 [!INCLUDE [Microsoft.MachineLearningServices/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-machinelearningservices-workspaces-metrics-include.md)]
+
+## Category: Agents
+
+
+|Metric  |Name in REST API  |Unit  | Aggregation | Dimension | Time grains | DS Export |
+|---------|---------|---------|---------|---------|---------|---------|
+|Runs <br>  The number of runs in a given timeframe.     | `RunCount`        | Count        | Total (sum), Average, Minimum, Maximum, Count        | `ResourceId`, `ProjectId`, `AgentId`, `StreamType`, `Region`, `StatusCode (successful, clienterrors, server errors)`, `RunStatus (started, completed, failed, cancelled, expired)` | PT1M | Yes |
+|Indexed files <br> Number of files indexed for file search    |  `IndexedFiles`       | Count        |  Count, Average, Minimum, Maxmimum       | `ResourceId`, `ProjectId`, `VectorStoreId`, `StreamType`, `Region`, `Status`, `ErrorCode` | PT1M | Yes |
+
 
 ## Related content
 
