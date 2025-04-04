@@ -1,7 +1,7 @@
 ---
 title: Explore model leaderboards in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
-description: This article introduces benchmarking capabilities and the model benchmarks experience in Azure AI Foundry portal.
+description: This article introduces benchmarking capabilities and model leaderboards (preview) in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:

@@ -1,7 +1,7 @@
 ---
 title: Benchmark models in the model leaderboard of Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
-description: In this article, you learn to compare benchmarks across models and datasets, using the model leaderboard and the benchmarks feature in Azure AI Foundry portal.
+description: In this article, you learn to compare benchmarks across models and datasets, using the model leaderboards (preview) and the benchmarks feature in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
@@ -14,11 +14,11 @@ ms.author: mopeakande
 author: msakande
 ---
 
-# Compare and select models using the model leaderboard in Azure AI Foundry portal
+# Compare and select models using the model leaderboard in Azure AI Foundry portal (preview)
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn to streamline your model selection process in the Azure AI Foundry [model catalog](../how-to/model-catalog-overview.md) by comparing models in the model leaderboards available in Azure AI Foundry portal. This comparison can help you make informed decisions about which models meet the requirements for your particular use case or application. You can compare models by viewing the following leaderboards:
+In this article, you learn to streamline your model selection process in the Azure AI Foundry [model catalog](../how-to/model-catalog-overview.md) by comparing models in the model leaderboards (preview) available in Azure AI Foundry portal. This comparison can help you make informed decisions about which models meet the requirements for your particular use case or application. You can compare models by viewing the following leaderboards:
 
 - [Quality, cost, and performance leaderboards](#access-model-leaderboards) to quickly identify the model leaders along a single metric (quality, cost, or throughput);
 - [Trade-off charts](#compare-models-in-the-trade-off-charts) to see how models perform on one metric versus another, such as quality versus cost;
