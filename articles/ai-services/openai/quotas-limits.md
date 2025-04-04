@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: conceptual
-ms.date: 3/04/2025
+ms.date: 4/04/2025
 ms.author: mbullwin
 ---
 
@@ -57,16 +57,24 @@ The following sections provide you with a quick guide to the default quotas and 
 
 ## Regional quota limits
 
-[!INCLUDE [Quota](./includes/model-matrix/quota.md)]
+> [!NOTE]
+> Quota limits are subject to change. 
 
 [!INCLUDE [Quota](./includes/global-batch-limits.md)]
 
-### GPT-4.5 Preview global standard
+## computer-use-preview global standard
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
-| `gpt-4.5` | Enterprise Tier | 50 K | 50 |
-| `gpt-4.5` | Default | 50 K | 50 |
+| `computer-use-preview`| Enterprise Tier | 30 M | 300 K |
+| `computer-use-preview`| Default         | 450 K | 4.5 K |
+
+## GPT-4.5 Preview global standard
+
+| Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
+|---|---|:---:|:---:|
+| `gpt-4.5` | Enterprise Tier | 200 K | 200 |
+| `gpt-4.5` | Default | 150 K | 150 |
 
 ## `o-series` rate limits
 
@@ -93,13 +101,14 @@ The following sections provide you with a quick guide to the default quotas and 
 | `o1` & `o1-preview` | Default | 3 M | 500 |
 | `o1-mini`| Default | 5 M | 500 |
 
-### `o3-mini` data zone standard
+### `o-series` data zone standard
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
 | `o3-mini` | Enterprise agreement | 20 M | 2 K  |
 | `o3-mini` | Default | 2 M | 200 |
-
+| `o1` | Enterprise agreement | 6 M | 1 K |
+| `o1` | Default | 600 K | 100 |
 
 ### o1-preview & o1-mini standard
 
@@ -194,8 +203,8 @@ If your Azure subscription is linked to certain [offer types](https://azure.micr
 |Tier| Quota Limit in tokens per minute (TPM) |
 |---|:---|
 |Azure for Students, Free Trials | 1 K (all models) <br>Exception o-series & GPT 4.5 Preview: 0|
-| MSDN & Cloud Solution Provider (CSP) subscriptions | GPT 3.5 Turbo Series: 30 K <br> GPT-4 series: 8 K <br> gpt-4o-realtime-preview: 1 K <br> o-series: 0 <br> GPT 4.5 Preview: 0  |
-| Monthly credit card based subscriptions <sup>1</sup> | GPT 3.5 Turbo Series: 30 K <br> GPT-4 series: 8 K <br> o-series: 0 <br> GPT 4.5 Preview: 0   |
+| MSDN | GPT 3.5 Turbo Series: 30 K <br> GPT-4 series: 8 K <br>computer-use-preview: 30 K <br> gpt-4o-realtime-preview: 1 K <br> o-series: 0 <br> GPT 4.5 Preview: 0  |
+| Monthly credit card based subscriptions <sup>1</sup> | GPT 3.5 Turbo Series: 30 K <br> GPT-4 series: 8 K <br>computer-use-preview: 30 K <br> o-series: 0 <br> GPT 4.5 Preview: 0   |
 
 <sup>1</sup> This currently applies to [offer type 0003P](https://azure.microsoft.com/support/legal/offer-details/)
 
