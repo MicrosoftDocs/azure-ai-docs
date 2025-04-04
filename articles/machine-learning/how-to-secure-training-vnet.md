@@ -497,7 +497,7 @@ workspace = ml_client.workspaces.begin_update(workspace)
 
 # [Studio](#tab/azure-studio)
 
-Use Azure CLI or Python SDK to to configure **serverless compute** nodes with a public IP address in the VNet.
+Use Azure CLI or Python SDK to configure **serverless compute** nodes with a public IP address in the VNet.
 
 ---
 
