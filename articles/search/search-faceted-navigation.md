@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/31/2025
+ms.date: 04/04/2025
 ---
 
 # Add faceted navigation to search results
@@ -27,7 +27,7 @@ More facet capabilities are available through preview APIs:
 
 ## Faceted navigation in a search page
 
-Facets are dynamic and returned on a query. A search response brings with it all of the facet buckets used to navigate the documents in the result. The query executes first, and then facets are pulled from the current results and assembled into a faceted navigation structure.
+Facets are dynamic because they're based on each specific query result set. A search response brings with it all of the facet buckets used to navigate the documents in the result. The query executes first, and then facets are pulled from the current results and assembled into a faceted navigation structure.
 
 In Azure AI Search, facets are one layer deep and can't be hierarchical unless you use the preview API. If you aren't familiar with faceted navigation structures, the following example shows one on the left. Counts indicate the number of matches for each facet. The same document can be represented in multiple facets.
 
@@ -37,9 +37,9 @@ Facets can help you find what you're looking for, while ensuring that you don't 
 
 ## Faceted navigation in code
 
-Facets are enabled on supported fields in an index, and then specified on a query. At query time, a dynamic faceted navigation structure is returned at the top of the response.
+Facets are enabled on supported fields in an index, and then specified on a query. The faceted navigation structure is returned at the beginning of the response, followed by the results.
 
-The following REST example is an unqualified query (`"search": "*"`) that is scoped to the entire index (see the [built-in hotels sample](search-get-started-portal.md)). It returns a faceted navigation structure for the "Category" field.
+The following REST example is an empty query (`"search": "*"`) that is scoped to the entire index (see the [built-in hotels sample](search-get-started-portal.md)). The `facets` parameter specifies the "Category" field.
 
 ```http
 POST https://{{service_name}}.search.windows.net/indexes/hotels/docs/search?api-version={{api_version}}
@@ -55,7 +55,7 @@ POST https://{{service_name}}.search.windows.net/indexes/hotels/docs/search?api-
 }
 ```
 
-The response for the example includes the faceted navigation structure at the top. The structure consists of "Category" values and a count of the hotels for each one. It's followed by the rest of the search results, trimmed here to just one document for brevity. This example works well for several reasons. The number of facets for this field fall under the limit (default is 10) so all of them appear, and every hotel in the index of 50 hotels is represented in exactly one of these categories.
+The response for the example starts with the faceted navigation structure. The structure consists of "Category" values and a count of the hotels for each one. It's followed by the rest of the search results, trimmed here to just one document for brevity. This example works well for several reasons. The number of facets for this field fall under the limit (default is 10) so all of them appear, and every hotel in the index of 50 hotels is represented in exactly one of these categories.
 
 ```json
 {
@@ -102,7 +102,8 @@ The response for the example includes the faceted navigation structure at the to
                 "concierge"
             ],
             "ParkingIncluded": false,
-        }
+        },
+        . . . 
     ]
 }
 ```
@@ -121,7 +122,9 @@ Facets can be calculated over single-value fields and collections. Fields that w
 * Low cardinality (a few distinct values that repeat throughout documents in your search corpus).
 * Short descriptive values (one or two words) that render nicely in a navigation tree.
 
-The values within a field, and not the field name itself, produce the facets in a faceted navigation structure. If the facet is a string field named *Color*, facets are blue, green, and any other value for that field. As a best practice, review field values to ensure there are no typos, nulls, or casing differences. Consider [assigning a normalizer](search-normalizers.md) to a filterable and facetable field to smooth out minor variations in the text. For example, "Canada", "CANADA", and "canada" would all be normalized to one bucket.
+The values within a field, and not the field name itself, produce the facets in a faceted navigation structure. If the facet is a string field named *Color*, facets are blue, green, and any other value for that field. Review field values to ensure there are no typos, nulls, or casing differences. Consider [assigning a normalizer](search-normalizers.md) to a filterable and facetable field to smooth out minor variations in the text. For example, "Canada", "CANADA", and "canada" would all be normalized to one bucket.
+
+### Avoid unsupported fields
 
 You can't set facets on existing fields, on vector fields, or fields of type `Edm.GeographyPoint` or `Collection(Edm.GeographyPoint)`.
 
@@ -248,7 +251,11 @@ Remember that you can't use `Edm.GeographyPoint` or `Collection(Edm.GeographyPoi
 
 ### Check for bad data
 
-As you prepare data for indexing, check fields for null values, misspellings or case discrepancies, and single and plural versions of the same word. By default, filters and facets don't undergo lexical analysis or [spell check](speller-how-to-add.md), which means that all values of a "facetable" field are potential facets, even if the words differ by one character. Optionally, you can [assign a normalizer](search-normalizers.md) to a "filterable" and "facetable" field to smooth out variations in casing and characters.
+As you prepare data for indexing, check fields for null values, misspellings or case discrepancies, and single and plural versions of the same word. By default, filters and facets don't undergo lexical analysis or [spell check](speller-how-to-add.md), which means that all values of a "facetable" field are potential facets, even if the words differ by one character. 
+
+[Normalizers](search-normalizers.md) can mitigate data discrepancies, correcting for casing and character differences. Otherwise, to inspect your data, you can check fields at their source, or run queries that return values from the index.
+
+An index isn't the best place to fix nulls or invalid values. You should fix data problems in your source, assuming it's a database or persistent storage, or in a data cleansing step that you perform prior to indexing. 
 
 ### Ordering facet buckets
 
