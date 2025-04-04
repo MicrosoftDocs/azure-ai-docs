@@ -27,9 +27,9 @@ landingContent:
       - linkListType: overview
         links:
           - text: What is Azure AI Foundry?
-            url: what-is-ai-foundry.md
+            url: what-is-azure-ai-foundry.md
           - text: Azure OpenAI Service in Azure AI Foundry
-            url: azure-openai-in-ai-foundry.md
+            url: azure-openai-in-azure-ai-foundry.md
       - linkListType: concept
         links:
           - text: Azure AI Agent service

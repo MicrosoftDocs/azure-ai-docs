@@ -22,7 +22,7 @@ highlightedContent:
       url: ./what-are-ai-services.md
     - title: What is Azure AI Foundry?
       itemType: overview
-      url: ../ai-foundry/what-is-ai-foundry.md
+      url: ../ai-foundry/what-is-azure-ai-foundry.md
     - title: Chat with Azure OpenAI models using your own data
       itemType: quickstart
       url: ./openai/use-your-data-quickstart.md
