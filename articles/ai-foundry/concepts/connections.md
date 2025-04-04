@@ -54,7 +54,7 @@ When you create a connection with an existing Azure storage account, you can cho
 - **Identity-based**: Use your Microsoft Entra ID or managed identity to authenticate data access.
 
     > [!TIP]
-    > When you use an identity-based connection, Azure role-based access control (Azure RBAC) determines who can access the connection. You must assign the correct Azure RBAC roles to your developers before they can use the connection. For more information, see [Scenario: Connections using Microsoft Entra ID](rbac-ai-foundry.md#scenario-connections-using-microsoft-entra-id-authentication).
+    > When you use an identity-based connection, Azure role-based access control (Azure RBAC) determines who can access the connection. You must assign the correct Azure RBAC roles to your developers before they can use the connection. For more information, see [Scenario: Connections using Microsoft Entra ID](rbac-azure-ai-foundry.md#scenario-connections-using-microsoft-entra-id-authentication).
 
 
 The following table shows the supported Azure cloud-based storage services and authentication methods:
@@ -84,7 +84,7 @@ A Uniform Resource Identifier (URI) represents a storage location on your local 
 
 Connections allow you to securely store credentials, authenticate access, and consume data and information.  Secrets associated with connections are securely persisted in the corresponding Azure Key Vault, adhering to robust security and compliance standards. As an administrator, you can audit both shared and project-scoped connections on a hub level. 
 
-Azure connections serve as key vault proxies, and interactions with connections are direct interactions with an Azure key vault. Azure AI Foundry connections store API keys securely, as secrets, in a key vault. The key vault [Azure role-based access control (Azure RBAC)](./rbac-ai-foundry.md) controls access to these connection resources. A connection references the credentials from the key vault storage location for further use. You won't need to directly deal with the credentials after they're stored in the hub's key vault. You have the option to store the credentials in the YAML file. A CLI command or SDK can override them. We recommend that you avoid credential storage in a YAML file, because a security breach could lead to a credential leak.  
+Azure connections serve as key vault proxies, and interactions with connections are direct interactions with an Azure key vault. Azure AI Foundry connections store API keys securely, as secrets, in a key vault. The key vault [Azure role-based access control (Azure RBAC)](./rbac-azure-ai-foundry.md) controls access to these connection resources. A connection references the credentials from the key vault storage location for further use. You won't need to directly deal with the credentials after they're stored in the hub's key vault. You have the option to store the credentials in the YAML file. A CLI command or SDK can override them. We recommend that you avoid credential storage in a YAML file, because a security breach could lead to a credential leak.  
 
 
 ## Next steps

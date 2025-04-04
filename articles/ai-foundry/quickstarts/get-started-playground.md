@@ -27,7 +27,7 @@ If you don't have an Azure subscription, <a href="https://azure.microsoft.com/fr
 
 - You need permissions to create an Azure AI Foundry hub or have one created for you.
     - If your role is **Contributor** or **Owner**, you can follow the steps in this tutorial.
-    - If your role is **Azure AI Developer**, the hub must already be created before you can complete this tutorial. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../concepts/ai-resources.md) and [Azure AI roles](../concepts/rbac-ai-foundry.md).
+    - If your role is **Azure AI Developer**, the hub must already be created before you can complete this tutorial. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../concepts/ai-resources.md) and [Azure AI roles](../concepts/rbac-azure-ai-foundry.md).
 
 - Your subscription needs to be below your [quota limit](../how-to/quota.md) to [deploy a new model in this tutorial](#deploy-a-chat-model). Otherwise you already need to have a [deployed chat model](../how-to/deploy-models-openai.md).
 

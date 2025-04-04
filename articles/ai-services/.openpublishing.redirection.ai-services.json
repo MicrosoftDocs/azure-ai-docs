@@ -366,6 +366,46 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-container.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-local.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-operations.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-zone-line-placement.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/vehicle-analysis.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-camera-placement.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/use-case-dwell-time.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/use-case-queue-time.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+    {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-document-intelligence-studio.md",
       "redirect_url": "/azure/ai-services/document-intelligence/studio-overview",
       "redirect_document_id": true
