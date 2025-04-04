@@ -333,7 +333,7 @@ Our definition and grading rubrics to be used by the Large Language Model judge 
 
 **Definition:**
 
-An average accuracy score, or a passing rate, of a single or multiple tool calls. A correct tool call considers relevance and potential usefulness, including syntactic and semantic correctness of a proposed tool call from an intelligent system. The judgment for each tool call is based on the following provided criteria, user query, and the tool definitions available to the agent.  
+Tool Call Accuracy returns the correctness of a single tool call, or the passing rate of the correct tool calls among multiple ones. A correct tool call considers relevance and potential usefulness, including syntactic and semantic correctness of a proposed tool call from an intelligent system. The judgment for each tool call is based on the following provided criteria, user query, and the tool definitions available to the agent.  
 
 **Ratings:**
 
