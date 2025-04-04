@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 12/20/2024
+ms.date: 04/04/2025
 ---
 
 # Data sources gallery
@@ -468,6 +468,18 @@ By [RheinInsights](https://www.rheininsights.com/)
 Azure AI Search and secure vector search connector for indexing Atlassian Confluence Cloud. Reliably indexes spaces, personal spaces, wiki pages, blog posts, attachments, and labels. Comes with full metadata sets, advanced processing pipelines, and full support for Atlassian Confluence Cloud's permission model.
 
 [More details](https://www.rheininsights.com/en/connectors/confluence-cloud.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### Microsoft Active Directory Domain Services 
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Microsoft Active Directory Domain Services. Can serve as profile search or as source for early-binding security trimming. Comes with full sets of profile metadata and indexes all user-group relationships.
+
+[More details](https://www.rheininsights.com/en/connectors/ldap.php)
 
 :::column-end:::
 :::column span="":::
@@ -1040,6 +1052,30 @@ Azure AI Search connector for indexing Git repositories. Reliably indexes branch
 
 ---
 
+### GitHub Enterprise Cloud  
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing GitHub Enterprise Cloud. Reliably indexes all repositories, versioned files, wikis, issues or discussions. Comes with full metadata sets, advanced processing pipelines and full support for GitHub Enterprise Cloud's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/github-enterprise-cloud.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### GitHub Enterprise Server  
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing GitHub Enterprise Server. Reliably indexes all repositories, versioned files, wikis, issues or discussions. Comes with full metadata sets, advanced processing pipelines and full support for GitHub Enterprise Server's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/github-enterprise-server.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
 ### GitLab
 
 By [Raytion](https://www.raytion.com/contact)
@@ -1519,6 +1555,17 @@ Secure enterprise search connector for reliably indexing content from directory 
 
 ---
 
+### LDAP Directory Services  
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing LDAP-based directory services. Can serve as profile search or as source for early-binding security trimming. Comes with full sets of profile metadata and indexes all user-group relationships.
+
+[More details](https://www.rheininsights.com/en/connectors/ldap.php)
+
+:::column-end:::
+:::column span="":::
+
+---
 ### LegalKEY
 
 By [BA Insight](https://www.bainsight.com/) 
@@ -1650,6 +1697,18 @@ By [BA Insight](https://www.bainsight.com/)
 Our Microsoft Dynamics 365 CRM connector supports both on-premises CRM installations and Dynamics CRM Online.
 
 [More details](https://www.bainsight.com/connectors/microsoft-dynamics-crm-connector-sharepoint-azure-elasticsearch/)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### Microsoft Dynamics 365  
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Microsoft Dynamics 365. Reliably indexes all knowledge articles, cases, posts, notes, contacts, accounts, sales orders, opportunities and more. Comes with full metadata sets, advanced processing pipelines and full support for Microsoft Dynamics 365's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/dynamics-365.php)
 
 :::column-end:::
 :::column span="":::
@@ -1852,6 +1911,18 @@ Secure enterprise search connector for reliably indexing content from IBM Notes 
 :::row-end:::
 
 :::row:::
+:::column span="":::
+
+---
+
+### Notion  
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Notion. Reliably indexes databases, pages, attachments, and files. Comes with full metadata sets, advanced processing pipelines and connector-based support for Notion's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/notion.php)
+
+:::column-end:::
 :::column span="":::
 
 ---
@@ -2522,6 +2593,18 @@ BA Insight's SharePoint 2013 Connector allows you to connect to SharePoint 2013,
 
 ---
 
+### SharePoint 2013  
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing SharePoint 2013. Reliably indexes all SharePoint sites, pages, lists, list items and documents. Comes with full metadata sets, advanced processing pipelines and full support for SharePoint 2013's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/sharepoint-server.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
 ### SharePoint 2016
 
 By [Accenture](https://www.accenture.com)
@@ -2558,6 +2641,17 @@ BA Insight's SharePoint Connector allows you to connect to SharePoint 2016, fetc
 :::column span="":::
 
 ---
+### SharePoint 2016  
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing SharePoint 2016. Reliably indexes all SharePoint sites, pages, lists, list items and documents. Comes with full metadata sets, advanced processing pipelines and full support for SharePoint 2016's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/sharepoint-server.php)
+
+:::column-end:::
+:::column span="":::
+
+---
 
 ### SharePoint 2019
 
@@ -2572,6 +2666,17 @@ BA Insight's SharePoint Connector allows you to connect to SharePoint 2019, fetc
 
 ---
 
+### SharePoint 2019  
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing SharePoint 2019. Reliably indexes all SharePoint sites, pages, lists, list items and documents. Comes with full metadata sets, advanced processing pipelines and full support for SharePoint 2019's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/sharepoint-server.php)
+
+:::column-end:::
+:::column span="":::
+
+---
 ### SharePoint in Microsoft 365
 
 By [Accenture](https://www.accenture.com)
@@ -2616,6 +2721,18 @@ By [RheinInsights](https://www.rheininsights.com/)
 Azure AI Search and secure vector search connector for indexing SharePoint in Microsoft 365. Reliably indexes all SharePoint sites, pages, lists, list items and documents also in multi-geo scenarios. Comes with full metadata sets, advanced processing pipelines, document preview integrations, and full support for SharePoint in Microsoft 365's permission model.
 
 [More details](https://www.rheininsights.com/en/connectors/sharepoint-online.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### SharePoint Server Subscription  
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing SharePoint Server Subscription. Reliably indexes all SharePoint sites, pages, lists, list items and documents. Comes with full metadata sets, advanced processing pipelines and full support for SharePoint Server Subscription's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/sharepoint-server.php)
 
 :::column-end:::
 :::column span="":::
