@@ -324,6 +324,10 @@ items:
       href: /azure/search/tutorial-rag-build-solution?context=/azure/ai-foundry/context/context
   - name: Develop with code
     items:
+    - name: Work in VS Code (Preview)
+      href: how-to/develop/get-started-projects-vs-code.md
+    - name: Use the Azure AI Agent service in VS Code (Preview)
+      href: how-to/develop/vs-code-agents.md
     - name: Work with projects in VS Code containers
       href: how-to/develop/vscode.md
     - name: Start with an AI template
