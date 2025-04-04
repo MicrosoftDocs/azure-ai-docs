@@ -32,20 +32,20 @@ This article describes how to:
 - If you don't have an Azure subscription, <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">create one for free</a>.
 - You need permissions to create an Azure AI Foundry hub or have one created for you.
     - If your role is **Contributor** or **Owner**, you can follow the steps in this tutorial.
-    - If your role is **Azure AI Developer**, the hub must already be created before you can complete this tutorial. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../concepts/ai-resources.md) and [Azure AI roles](../concepts/rbac-ai-foundry.md).
-- Your subscription needs to be below your [quota limit](../how-to/quota.md) to [deploy a new model in this tutorial](#deploy-a-chat-model). Otherwise you already need to have a [deployed chat model](../how-to/deploy-models-openai.md).
+    - If your role is **Azure AI Developer**, the hub must already be created before you can complete this tutorial. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../../concepts/ai-resources.md) and [Azure AI roles](../../concepts/rbac-ai-foundry.md).
+- Your subscription needs to be below your [quota limit](../../how-to/quota.md) to [deploy a new model in this tutorial](#deploy-a-chat-model). Otherwise you already need to have a [deployed chat model](../../how-to/deploy-models-openai.md).
 
 ## Focus on Azure OpenAI Service
 
 If you've been using Azure OpenAI Studio, all your work, such as your deployments, content filters, batch jobs or fine-tuned models, is still available in Azure AI Foundry portal. All the features and functionality are still here, though the look and feel of some features are updated.
 
-:::image type="content" source="media/azure-openai-in-ai-studio/studio-home.png" alt-text="Screenshot shows the new Azure OpenAI in Azure AI Foundry portal." lightbox="media/azure-openai-in-ai-studio/studio-home.png":::
+:::image type="content" source="../media/azure-openai-in-ai-studio/studio-home.png" alt-text="Screenshot shows the new Azure OpenAI in Azure AI Foundry portal." lightbox="../media/azure-openai-in-ai-studio/studio-home.png":::
 
 Use the left navigation area to perform your tasks with Azure OpenAI models:
 
 * **Select models**: The **Model catalog** houses all the available Azure OpenAI models.
 
-    :::image type="content" source="media/azure-openai-in-ai-studio/model-catalog.png" alt-text="Screenshot shows the model catalog in Azure OpenAI Service." lightbox="media/azure-openai-in-ai-studio/model-catalog.png":::
+    :::image type="content" source="../media/azure-openai-in-ai-studio/model-catalog.png" alt-text="Screenshot shows the model catalog in Azure OpenAI Service." lightbox="../media/azure-openai-in-ai-studio/model-catalog.png":::
 
 * **Try models**: Use the various **Playgrounds** to decide which model is best for your needs.
 * **Deploy models**: In the **Model catalog** or **Deployments** list in the left navigation, you see all supported models. You can deploy models from either section.
@@ -53,14 +53,14 @@ Use the left navigation area to perform your tasks with Azure OpenAI models:
 * **Batch jobs**: Create and manage jobs for your global batch deployments.
 * Use the resource name in the top left to switch to another recently used resource.  Or find all your Azure OpenAI Service resources in the top right-hand corner under **All resources**.
 
-    :::image type="content" source="media/azure-openai-in-ai-studio/all-resources.png" alt-text="Screenshot shows the top right access to all resources in Azure AI Service section of Azure AI Foundry." lightbox="media/azure-openai-in-ai-studio/all-resources.png":::
+    :::image type="content" source="../media/azure-openai-in-ai-studio/all-resources.png" alt-text="Screenshot shows the top right access to all resources in Azure AI Service section of Azure AI Foundry." lightbox="../media/azure-openai-in-ai-studio/all-resources.png":::
 
 ## Azure OpenAI in an Azure AI Foundry project
 
 While the previous sections show how to focus on just the Azure OpenAI Service, you can also incorporate other AI services and models from various providers in Azure AI Foundry portal. You can access the Azure OpenAI Service in two ways:
 
 * When you focus on just the Azure OpenAI Service, as described in the previous sections, you don't use a project.
-* Azure AI Foundry portal uses a project to organize your work and save state while building customized AI apps. When you work in a project, you can connect to the service. For more information, see [How to use Azure OpenAI Service in Azure AI Foundry portal](ai-services/how-to/connect-azure-openai.md#project).
+* Azure AI Foundry portal uses a project to organize your work and save state while building customized AI apps. When you work in a project, you can connect to the service. For more information, see [How to use Azure OpenAI Service in Azure AI Foundry portal](how-to/connect-azure-openai.md#project).
 
 When you create a project, you can try other models and tools along with Azure OpenAI. For example, the **Model catalog** in a project contains many more models than just Azure OpenAI models. Inside a project, you'll have access to features that are common across all AI services and models.
 
@@ -84,15 +84,15 @@ Pay attention to the top left corner of the screen to see which context you are 
 
 * When you are in the Azure AI Foundry portal landing page, with choices of where to go next, you see **Azure AI Foundry**.
 
-    :::image type="content" source="media/azure-openai-in-ai-studio/ai-studio-no-project.png" alt-text="Screenshot shows top left corner of screen for Azure AI Foundry without a project.":::
+    :::image type="content" source="../media/azure-openai-in-ai-studio/ai-studio-no-project.png" alt-text="Screenshot shows top left corner of screen for Azure AI Foundry without a project.":::
 
 * When you are in a project, you see **Azure AI Foundry / project name**. The project name allows you to switch between projects.
 
-    :::image type="content" source="media/azure-openai-in-ai-studio/ai-studio-project.png" alt-text="Screenshot shows top left corner of screen for Azure AI Foundry with a project.":::
+    :::image type="content" source="../media/azure-openai-in-ai-studio/ai-studio-project.png" alt-text="Screenshot shows top left corner of screen for Azure AI Foundry with a project.":::
 
 * When you're working with Azure OpenAI outside of a project, you see **Azure AI Foundry | Azure OpenAI / resource name**. The resource name allows you to switch between Azure OpenAI resources.
 
-    :::image type="content" source="media/azure-openai-in-ai-studio/ai-studio-azure-openai.png" alt-text="Screenshot shows top left corner of screen for Azure AI Foundry when using Azure OpenAI without a project.":::
+    :::image type="content" source="../media/azure-openai-in-ai-studio/ai-studio-azure-openai.png" alt-text="Screenshot shows top left corner of screen for Azure AI Foundry when using Azure OpenAI without a project.":::
 
 Use the **Azure AI Foundry** breadcrumb to navigate back to the Azure AI Foundry portal home page.
 
@@ -160,13 +160,13 @@ If you already have a project and you want to connect your existing Azure OpenAI
 > [!TIP]
 > You can try Azure OpenAI models in the project-level playgrounds, or outside of a project. If you're only working with the Azure OpenAI Service models, we recommend working outside of a project, so you can skip deployment
 
-[!INCLUDE [deploy-model](../includes/deploy-model.md)]
+[!INCLUDE [deploy-model](../../includes/deploy-model.md)]
 
 7. Once the model is deployed, select **Open in playground** to test your model.
 
 You're now in a project, with a deployed model. You can use the chat playground to interact with your model.
 
-For more information about deploying models, see [how to deploy models](../how-to/deploy-models-openai.md).
+For more information about deploying models, see [how to deploy models](../../how-to/deploy-models-openai.md).
 
 ## Try Azure OpenAI models in the playgrounds
 
@@ -194,11 +194,11 @@ Each playground has different model requirements and capabilities. The supported
 1. In the chat session pane, enter the following question: "How much do the TrailWalker hiking shoes cost?"
 1. Select the right arrow icon to send.
 
-    :::image type="content" source="../media/tutorials/chat/chat-without-data.png" alt-text="Screenshot of the first chat question without grounding data." lightbox="../media/tutorials/chat/chat-without-data.png":::
+    :::image type="content" source="../../media/tutorials/chat/chat-without-data.png" alt-text="Screenshot of the first chat question without grounding data." lightbox="../../media/tutorials/chat/chat-without-data.png":::
 
 1. The assistant either replies that it doesn't know the answer or provides a generic response. For example, the assistant might say, "The price of TrailWalker hiking shoes can vary depending on the brand, model, and where you purchase them." The model doesn't have access to current product information about the TrailWalker hiking shoes. 
 
-Next, you can add your data to the model to help it answer questions about your products. Try the [Deploy an enterprise chat web app](../tutorials/deploy-chat-web-app.md) tutorial to learn more.
+Next, you can add your data to the model to help it answer questions about your products. Try the [Deploy an enterprise chat web app](../../tutorials/deploy-chat-web-app.md) tutorial to learn more.
 
 ## Fine-tune Azure OpenAI models
 
