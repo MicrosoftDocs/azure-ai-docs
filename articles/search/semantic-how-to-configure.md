@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 03/31/2025
+ms.date: 04/04/2025
 ---
 
 # Configure semantic ranker and return captions in search results
@@ -43,6 +43,8 @@ You can specify a semantic configuration on new or existing indexes, using any o
 ## Add a semantic configuration
 
 A *semantic configuration* is a section in your index that establishes field inputs for semantic ranking. You can add or update a semantic configuration at any time, no rebuild necessary. If you create multiple configurations, you can specify a default. At query time, specify a semantic configuration on a [query request](semantic-how-to-query-request.md), or leave it blank to use the default.
+
+You can create up to 100 semantic configurations in a single index.
 
 A semantic configuration has a name and the following properties:
 
